@@ -2,82 +2,81 @@
   "name": "CEffect",
   "binary_size": 245800,
   "known_members": {
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "vfptr_slot": true,
-      "source": "| [R94c-v2 终态 2026-10-25] vptr@0（手工表指针，as_data 语义）：static 占位不占字节 + 隐式 vptr 独占 +0；_field_004 修正 +0x8→+0x4 对齐原版绝对坐标"
-    },
-    "4": {
-      "name": "_field_004",
-      "type": "int",
-      "source": "| [gap 字段 2026-10-25] 原版 @4 有 4 字节（ctor mov [esi+8],1 直写证明 @8=m_eKind，@0 表+@8 eKind 之间必有 4B）——语义未知，占位保证 m_eKind@8 落位 | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）"
-    },
     "8": {
       "name": "m_eKind",
       "type": "EEffect",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "12": {
       "name": "m_bActive",
       "type": "unsigned char",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "13": {
       "name": "m_bVisible",
       "type": "unsigned char",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "16": {
       "name": "m_DeltaTime",
       "type": "double",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "24": {
       "name": "m_nPartical",
       "type": "int",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "28": {
       "name": "m_Partical",
       "type": "tagPartical[2048]",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "98332": {
       "name": "m_nQuad",
       "type": "int",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "98336": {
       "name": "m_QuadBuffer",
       "type": "gbGeomQuad[2048]",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "237600": {
       "name": "m_nQ2PIndex",
       "type": "int[2048]",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "245792": {
       "name": "m_pTexture",
       "type": "gbTexture *",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
     },
     "245796": {
       "name": "m_pTextureArray",
       "type": "gbTextureArray *",
-      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立） | [R94c-v2 2026-10-25] 偏移回滚 +4 | [R94c-v2 修正 2026-10-25] 偏移 -4（回滚方向搞反：+4 把全体再推高；正确=保持原版绝对值，仅 @0 static 化）",
+      "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
       "evidence_level": "unverified"
+    },
+    "0": {
+      "name": "m_pDispatchTable",
+      "type": "void *",
+      "source": "| [R94c-v3 2026-10-25·手工表指针定性] ctor sub_4C6240 mov [esi]=0x56F844：表 7 槽全 CEffect/CEffectSystem 方法但**零 vcall 引用**（全二进制无 [x+0] 间接调用指向该表的证据）⇒ 非 C++ virtual 机制，按普通数据成员发射；as_data v2 已使编译器不插 vptr，本成员占 @0（不占额外字节）"
+    },
+    "4": {
+      "name": "_field_004",
+      "type": "int",
+      "source": "| [gap 字段 2026-10-25] 原版 @4 有 4 字节（ctor mov [esi+8],1 直写证明 @8=m_eKind，@0 表+@8 eKind 之间必有 4B）——语义未知，占位保证 m_eKind@8 落位"
     }
   },
   "methods": {
@@ -288,7 +287,7 @@
     },
     "0x004C5E80": {
       "name": "ProcessEffects",
-      "signature": "int __thiscall(CEffectSystem *time, double time_4)",
+      "signature": "int __thiscall(CEffectSystem *this, double time)",
       "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符） | [R94c-v2 2026-10-25] 剥 virtual 前缀（as_data 类不得提升 virtual——CEffect 布局注解坐标已含 vptr）",
       "evidence_level": "A"
     },
@@ -300,16 +299,9 @@
     },
     "0x004C6030": {
       "name": "UpdateEffectState",
-      "signature": "int __thiscall(CEffectSystem *nVal, int a3)",
+      "signature": "int __thiscall(CEffectSystem *this, int nVal)",
       "source": "| [vtable 0x56F844 重验 2026-10-25] 槽实名（decomp 名）；归属=CEffect ctor sub_4C6240 唯一写点 + 7 槽全 CEffect 系方法 | [名归一 2026-10-25] 剥参数表后缀（decomp 文件名残留，非法标识符） | [R94c-v2 2026-10-25] 剥 virtual 前缀（as_data 类不得提升 virtual——CEffect 布局注解坐标已含 vptr）",
       "evidence_level": "A"
     }
-  },
-  "vtables": [
-    {
-      "addr": "0x0056F844",
-      "as_data": true,
-      "source": "| [R94c-v2 2026-10-25·用户已批准] as_data=true：表真实存在但按数据发射——注解坐标含 vptr 的绝对偏移，编译器不得再插 vptr（否则 +4 平移回归）"
-    }
-  ]
+  }
 }

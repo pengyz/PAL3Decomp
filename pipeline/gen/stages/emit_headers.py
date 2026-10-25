@@ -452,8 +452,6 @@ def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
         _is = _get_ida_structs().get(cls_name)
         if not _is or not _is.get('vtables'):
             return [] if not with_addr else []
-        if _vtable_as_data(cls_name):
-            return [] if not with_addr else []
         vtables = _is['vtables']
         methods = _is.get('methods', {})
         functions = {}
@@ -553,8 +551,6 @@ _CLASS_DECL_RE = re.compile(r'^(?:class|struct|enum)\s+(\w+)')
 
 def _get_vtable_addr(cls_name):
     """从 annotation vtables[0].addr 获取 vtable 地址。"""
-    if _vtable_as_data(cls_name):
-        return None
     try:
         _d = _get_ida_structs().get(cls_name, {})
         vts = _d.get('vtables') or []
@@ -1431,24 +1427,6 @@ def _offset0_is_vptr_member(cls_name):
 
 
 import os as _os_annotations
-
-
-def _vtable_as_data(cls_name):
-    """[R94c-v2 2026-10-25·用户已批准路线] 注解 vtables 带 as_data ⇒ 该表按
-    数据发射（不提升 virtual、不触发 vptr 插入）。前提：该类注解坐标为
-    【含 vptr 的绝对偏移】（CEffect 十进制数学+探针双证）。"""
-    try:
-        _p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
-            os.path.dirname(os.path.abspath(__file__))))),
-            'data', 'annotations', 'structs', cls_name + '.json')
-        ann = json.load(open(_p, encoding='utf-8'))
-        for _vt in ann.get('vtables') or []:
-            if isinstance(_vt, dict) and _vt.get('as_data'):
-                return True
-    except Exception:
-        pass
-    return False
-
 
 def _vfptr_slot_marked(cls_name):
     """注解 offset0 成员是否带 vfptr_slot 标记（取证后的显式声明，优先级最高）✓"""
@@ -2359,17 +2337,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         for _dm in ann_struct_fb.get('data_members', []):
             _off = str(_dm.get('offset', 0))
             ann_members.setdefault(_off, []).append(_dm)
-        # [R94c-v2 2026-10-25] vfptr_slot 注解条目注入：ida data_members 无 @0
-        # （@0=vptr 不导出为 data member）⇒ known_members['0'] 带 vfptr_slot 的
-        # 条目必须入表，否则 static 占位分支永不触发（CEffect +4 三轮实证）
-        try:
-            import annotation_view as _av_r94c
-            _ann_r94c = _av_r94c.struct_by_class(cls_name) or {}
-            _km0 = (_ann_r94c.get('known_members') or {}).get('0') or {}
-            if isinstance(_km0, dict) and _km0.get('vfptr_slot') and '0' not in ann_members:
-                ann_members['0'] = [dict(_km0, offset=0)]
-        except Exception:
-            pass
         ann_size = ann_struct_fb.get('size')
         if ann_members or ann_size:
             start_off = base_size
@@ -2883,10 +2850,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.insert(1, _ul)
 
         seen_methods = set()
-        _strip_virt = _vtable_as_data(cls_name)
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
-            if _strip_virt:
-                sig = re.sub(r'\bvirtual\s+', '', sig)
             # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
             sig = re.sub(r'@<\w+>', '', sig)
             sig = re.sub(r'\s*__userpurge\s*', ' ', sig)
