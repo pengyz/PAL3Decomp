@@ -135,9 +135,10 @@
     },
     "0x00440810": {
       "name": "CreateWithTextures",
-      "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)",
+      "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures(int id, void *pRect, UIWnd *parent, const char *pszName, char pData)",
       "ordinal": 7,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "source": "| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石"
     },
     "0x00440960": {
       "name": "FormatText",
