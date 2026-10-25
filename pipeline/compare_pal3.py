@@ -439,7 +439,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     os.makedirs(pc.OBJ_DIR, exist_ok=True)
     rows = []
     stats = {'symbols': 0, 'matched': 0, 'unmatched': 0,
-             'match_L1': 0, 'partial': 0, 'oob': 0, 'compile_skip': 0,
+             'match_L1': 0, 'match_L1_semantic': 0, 'partial': 0, 'oob': 0, 'compile_skip': 0,
             # R8：两种越界语义**不得合并计数**。
             #   oob_text_end —— 越过 `.text` 尾（真实代码区之外）⇒ 比对数据不可信
             #   oob_file_end —— 越过文件末尾 ⇒ 连字节都取不到
@@ -529,6 +529,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 res['sem_reg'] = _sem_reg
                 res['sem_real'] = _sem_real
                 res['semantic_match'] = (_sem_real == 0 and _sem_reg > 0)
+                if res['semantic_match']:
+                    stats['match_L1_semantic'] = stats.get('match_L1_semantic', 0) + 1
             # ---- [T146/P2 度量校正] 重定位核对（纯计量，不影响完美性判据）-----
             # ①站点级值核对（compare_bytes 内部已按站点聚合）——按 L1/全体分账；
             # ②**目标核对（符号法）**：我方 reloc 符号 ↔ 原函数该站点目标 VA 的
