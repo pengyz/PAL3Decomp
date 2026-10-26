@@ -349,6 +349,47 @@ git push origin master
 
 ---
 
+---
+
+## ⚠️ IDA Pro 依赖说明
+
+**IDA Pro 是商业反编译器**，开发者须**自行获取 license** 才能跑完整流程。
+
+**本项目高度依赖 IDA 的 Hex-Rays 插件**生成 C++ 伪代码（`asm/pal3/decomp/*.json`）。
+
+| 项 | 要求 |
+|---|---|
+| **软件** | IDA Pro（商业，需 license）|
+| **插件** | **Hex-Rays**（必需，生成 C++ 伪代码）|
+| **版本** | **9.x**（推荐，已测试）|
+| **其他版本** | ⚠️ **未测试**（可能不兼容）|
+
+### 为什么高度依赖 Hex-Rays
+
+- `export_full.py` 从 IDB 导出 `ida_structs.json`（结构体/签名/全局）
+- `asm/pal3/decomp/*.json` 是 Hex-Rays 生成的 C++ 伪代码（3038 函数）
+- **codegen 层**将伪代码转换为可编译 C++（修补 Hex-Rays 不支持的语法）
+
+### 无 IDA 时的替代
+
+- 降级用 objdump 自建索引（同源同效）
+- 但**丢失 Hex-Rays 伪代码**（codegen 无法工作）
+- **恢复后须用 IDA 交叉复核关键结论**
+
+### 版本兼容性
+
+- ✅ **9.x**（已测试，推荐）
+- ⚠️ **其他版本**（未测试，可能不兼容）
+- **建议**：开发者使用 9.x 以确保一致性
+
+### 获取 IDA
+
+- 官方：https://hex-rays.com/ida-pro/
+- 教育/商业 license 请自行申请
+- **本项目不提供 IDA 或 license**
+
+---
+
 ## 核心概念
 
 ### 证据模型（A 级 vs B 级）
