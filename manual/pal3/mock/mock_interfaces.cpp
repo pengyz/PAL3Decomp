@@ -1,59 +1,59 @@
-// manual/pal3/mock/mock_interfaces.cpp — 关键接口 mock 实现（临时——代换替）
-// TODO: 调用链推进时逐个替换为实函数（codegen 输出迁移）
+// manual/pal3/mock/mock_interfaces.cpp - mock interfaces (temporary, replace with real)
+// TODO: replace with real functions (codegen migration)
 
 #include "mock_interfaces.h"
 
-// 窗口 mock
+// Window mock
 BOOL Mock_InitWindow(HINSTANCE hInstance, int nCmdShow) {
-    // TODO: 实函数迁移（窗口类注册/初始化）
+    // TODO: real function (window class registration)
     return TRUE;
 }
 
 HWND Mock_CreateMainWindow(HINSTANCE hInstance, int nCmdShow) {
-    // TODO: 实函数迁移（窗口创建）
+    // TODO: real function (window creation)
     return NULL;
 }
 
 BOOL Mock_ShowWindow(HWND hWnd, int nCmdShow) {
-    // TODO: 实函数迁移（窗口显示）
+    // TODO: real function (window show)
     return TRUE;
 }
 
-// 消息 mock
+// Message mock
 int Mock_MessageLoop() {
-    // TODO: 实函数迁移（消息循环）
+    // TODO: real function (message loop)
     return 0;
 }
 
 LRESULT Mock_HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    // TODO: 实函数迁移（消息处理）
+    // TODO: real function (message handling)
     return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-// 资源 mock
+// Resource mock
 BOOL Mock_LoadResources() {
-    // TODO: 实函数迁移（资源加载）
+    // TODO: real function (resource loading)
     return TRUE;
 }
 
 void Mock_FreeResources() {
-    // TODO: 实函数迁移（资源释放）
+    // TODO: real function (resource release)
 }
 
-// 游戏状态 mock
+// Game state mock
 BOOL Mock_InitGameState() {
-    // TODO: 实函数迁移（游戏状态初始化）
+    // TODO: real function (game state init)
     return TRUE;
 }
 
 void Mock_UpdateGame() {
-    // TODO: 实函数迁移（游戏更新）
+    // TODO: real function (game update)
 }
 
 void Mock_RenderFrame() {
-    // TODO: 实函数迁移（渲染）
+    // TODO: real function (render)
 }
 
 void Mock_Shutdown() {
-    // TODO: 实函数迁移（清理）
+    // TODO: real function (cleanup)
 }
