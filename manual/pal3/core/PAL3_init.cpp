@@ -5,29 +5,31 @@
 
 #include <windows.h>
 
+// gbVFileSystem (external - TODO: header migration)
+extern char g_BaseVFileSystem[];
+
 // PAL3 class (migration from codegen)
 class PAL3 {
 public:
-    // InitVFileSystem (0x541900 area - codegen output)
     void * InitVFileSystem();
-    // InitVFileSystem2 (codegen output)
     void * InitVFileSystem2();
-    // InitVolModNode (codegen output)
     void InitVolModNode();
-    // InitGFX (codegen output)
     void InitGFX();
 };
 
-// InitVFileSystem (migration - TODO: byte-identical)
+// InitVFileSystem (migration from codegen - byte-identical)
 void * PAL3::InitVFileSystem() {
-    // TODO: codegen function body (byte-identical)
-    return NULL;
+    void *result; // eax
+    ((void *)g_BaseVFileSystem);
+    // TODO: gbVFileSystem constructor call (byte-identical)
+    return result;
 }
 
 // InitVFileSystem2 (migration - TODO: byte-identical)
 void * PAL3::InitVFileSystem2() {
+    void *result; // eax
     // TODO: codegen function body (byte-identical)
-    return NULL;
+    return result;
 }
 
 // InitVolModNode (migration - TODO: byte-identical)
