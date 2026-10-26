@@ -197,6 +197,158 @@ python3 tools/dual_source_diff.py
 
 ---
 
+## AI First 开发模式
+
+本项目采用 **AI First** 开发模式：AI 是主要开发者，人类负责协调、审查、决策。
+
+### 多级闸门（Gates）
+
+| 闸门 | 时机 | 工具 | 失败处理 |
+|---|---|---|---|
+| **L1 门禁** | 提交前 | `pipeline/cli.py check` | 0 errors 才可提交 |
+| **L2 秒级闸** | 动手前 | `check_annotation_preflight.py` | 0.108s 快速失败 |
+| **L3 编译闸** | codegen 后 | `compile_regression.py` | 发现退化立即报警 |
+| **L4 错误分类** | probe 后 | `error_classifier.py` | 指导修复方向 |
+| **L5 字节匹配** | match 后 | `pipeline/cli.py match` | L1 不得回退 |
+| **L6 布局验证** | 改 struct 后 | `audit_type_layout.py` | 编译器裁判 |
+| **L7 证物报告** | 修复提交前 | `verify_fix.py` | 有问题不提交 |
+
+### 提示词系统（Prompts）
+
+**分层提示词**：
+- **CLAUDE.md**：项目强约束（红线/纪律/检查点）
+- **docs/knowledge/**：知识库（109 个：gotcha/arch/debug/rule）
+- **docs/specs/**：规格文档（设计/方案/计划）
+- **skills/**：技能路由（pal3-pipeline/annotation-audit）
+
+**提示词优先级**：
+```
+用户直接指令 > CLAUDE.md 约束 > skill 指引 > 通用规则
+```
+
+### 对抗性复核（Adversarial Review）
+
+**每步修复必须过对抗复核**：
+1. **出方案**（修复方案）
+2. **对抗复核**（子 agent 独立验证）
+3. **修复**（按方案）
+4. **再复核**（验证效果）
+5. **提交**（commit + push）
+
+**复核要求**：
+- **独立验证**（非自我确认）
+- **A 级证据**（指令字节，非 IDA 签名）
+- **同树 A/B**（非跨树对比）
+- **当场读输出**（非事后查基线）
+
+### TDD 纪律
+
+**测试先行**：
+```python
+# 1. 写失败测试
+def test_xxx():
+    assert function(input) == expected
+
+# 2. 跑失败
+pytest tests/test_xxx.py -v  # FAIL
+
+# 3. 实现
+def function(input): ...
+
+# 4. 跑通过
+pytest tests/test_xxx.py -v  # PASS
+
+# 5. 提交
+git commit -m "feat: add xxx"
+```
+
+**测试要求**：
+- **判别力**（M2/M3 变异体须 FAIL）
+- **真实测试**（非 stub `assert True`）
+- **UT 接近 0 成本**（禁 sleep/编译/I/O）
+
+---
+
+## 如何贡献
+
+### 贡献流程
+
+```
+1. 理解约束（读 CLAUDE.md + docs/knowledge/）
+2. 选任务（P0 阻塞 > bug 修复 > 新功能）
+3. 出方案（修复方案 + 影响面）
+4. 对抗复核（子 agent 独立验证）
+5. TDD 实现（测试先行）
+6. 过闸门（L1-L7）
+7. 提交（commit + push）
+```
+
+### 贡献类型
+
+| 类型 | 要求 | 优先 |
+|---|---|---|
+| **annotation 修正** | A 级证据（objdump 指令字节）| 高 |
+| **bug 修复** | TDD + 对抗复核 | 高 |
+| **新功能** | 设计文档 + 测试 | 中 |
+| **文档更新** | 反映当前状态 | 中 |
+| **工具改进** | TDD + 判别力 | 中 |
+
+### 贡献红线（必须遵守）
+
+| 红线 | 说明 |
+|---|---|
+| **A 级证据** | 每处 annotation 修改必须有二进制直接证据 |
+| **禁猜测** | 无证据不改偏移/类型/签名 |
+| **禁批量** | 禁止批量修改未验证字段 |
+| **禁伪语义命名** | `m_nState_4968` 类名字 |
+| **禁跨层读取** | codegen 不能读 annotation |
+| **禁 IDB 手改** | 必须走 annotation apply 流 |
+
+### 提交规范
+
+```bash
+# commit message 格式
+<type>(<scope>): <subject>
+
+# type: feat/fix/docs/test/refactor
+# scope: annotations/pipeline/tools/tests/docs
+# subject: 简短描述
+
+# 例
+fix(annotations): CCBStage 数组 size 修正（IDA 驱动）
+test(incremental): 增量正确性 golden hash
+docs(readme): 完全重构 README
+```
+
+### 提交前检查
+
+```bash
+# 1. 过闸门
+python pipeline/cli.py check        # L1 门禁
+python tools/compile_regression.py  # L3 编译闸
+python pipeline/cli.py match        # L5 字节匹配
+
+# 2. 跑测试
+python -m pytest tests/ -q
+
+# 3. 证物报告
+python tools/verify_fix.py --class <Cls>
+
+# 4. 提交
+git add .
+git commit -m "fix(annotations): xxx"
+git push origin master
+```
+
+### 代码风格
+
+- **Python 3.10+**（类型注解）
+- **C++ MSVC 6.0 兼容**（禁现代语法）
+- **注释解释「为什么」**（非「做什么」）
+- **实测数字写进注释**（例：`C2227 −41 / C2039 +22`）
+
+---
+
 ## 核心概念
 
 ### 证据模型（A 级 vs B 级）
