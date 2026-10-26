@@ -4,9 +4,33 @@
 
 > **字节匹配 > 代码优雅 > 工具链便利 > 个人偏好**（核心原则）
 
-## 项目目标
+---
 
-**字节一致反编译** MSVC 6.0 SP0 编译的 `PAL3.exe`：
+## 项目概览
+
+本项目对 **仙剑奇侠传 3（PAL3）** 进行**字节匹配反编译**，目标是生成能编译出**与原始二进制字节完全相同**的 C/C++ 源码。
+
+### 两个核心目标
+
+| 目标 | 二进制 | 方法 | 状态 |
+|---|---|---|---|
+| **PAL3.exe** | 游戏主程序 | **反编译管线**（自动化）| 🟡 进行中（L1 17.2%）|
+| **gbengine.dll** | 游戏引擎 | **手写匹配**（人工）| 🟡 进行中（不完整）|
+
+### 项目性质
+
+**不是「还原源码」**，而是**「再创作」**：
+- C++ 编译成二进制是**不可逆的信息丢失**过程
+- 类型、类层次、继承、模板实例化全部坍缩为指令和数据
+- 我们做的是**再创作一个能输出完全相同二进制的 C++ 程序**
+
+---
+
+## PAL3.exe（核心目标）
+
+**MSVC 6.0 SP0 编译**（`/O2 /Ob2 /Oi /Ot /Oy`）的游戏主程序。
+
+### 反编译管线
 
 ```
 annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++ → 字节比对
@@ -14,46 +38,6 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++ �
                                                     ↕ 字节比对
                                     Phase 2（手工 fix）
 ```
-
-**L1（字节全同）** 是唯一真相源（三限定：截断 + 长度相等 + 重定位 4 字节 don't-care）
-
-## 当前状态（2026-10-26）
-
-| 指标 | 值 | 判 |
-|---|---|---|
-| **check** | **0 errors** | 🟢 PASS |
-| **S2**（编译通过）| **123/214**（57%）| 🟡 |
-| **L1**（字节全同）| **17.2%**（三限定）| 🔴 |
-| **字节覆盖** | **87.50%** | 🟢 |
-| **签名覆盖** | **94.37%** | 🟢 |
-| **测试** | 865 passed · 1 failed | 🟡 |
-
-## 项目结构
-
-```
-PAL3Decomp/
-├── data/
-│   ├── annotations/        # 类布局/函数签名/全局变量（真相源）
-│   │   ├── structs/*.json  # 类定义（成员/偏移/类型/vtable）
-│   │   ├── functions.json  # 函数签名
-│   │   └── globals.json    # 全局变量
-│   └── status/             # 状态/基线/报告
-├── pipeline/
-│   ├── cli.py              # 管线入口（check/apply/export/codegen/probe/match）
-│   ├── ida/                # IDA 层（apply_annotations/export_full）
-│   ├── gen/                # codegen 层（emit_headers/emit_cpp/ast_transform）
-│   └── compare_pal3.py     # L1 字节比对
-├── pal3/src/               # 生成的 C++ 源码（214 .cpp）
-├── asm/pal3/               # IDA 导出（ida_structs.json/decomp/*.json）
-├── tools/                  # 工具集（109 个）
-├── tests/                  # 测试（865 passed）
-├── docs/
-│   ├── knowledge/          # 知识库（109 个：gotcha/arch/debug/rule）
-│   └── specs/              # 规格文档
-└── original/               # 原始二进制（PAL3.exe）
-```
-
-## 管线架构
 
 ### 阶段 + 耗时
 
@@ -79,28 +63,123 @@ annotation → apply → IDB → export → ida_structs.json → codegen → C++
 - ❌ codegen **不能读 annotation**（跨层）
 - ❌ export **不能读 annotation**（跨层）
 
-## 快速开始
+### 当前状态（2026-10-26）
 
-### 环境要求
+| 指标 | 值 | 判 |
+|---|---|---|
+| **check** | **0 errors** | 🟢 PASS |
+| **S2**（编译通过）| **123/214**（57%）| 🟡 |
+| **L1**（字节全同）| **17.2%**（三限定）| 🔴 |
+| **字节覆盖** | **87.50%** | 🟢 |
+| **签名覆盖** | **94.37%** | 🟢 |
+| **测试** | 865 passed · 1 failed | 🟡 |
 
-- Python 3.10+
-- MSVC 6.0 SP0（`tools/compilers/msvc6.0/`）
-- wine（Linux 上跑 MSVC 6.0）
-- IDA Pro（`original/PAL3.exe.i64`）
+---
 
-### 一键循环
+## gbengine.dll（手写匹配）
+
+**MSVC 6.0 SP5 编译**的游戏引擎核心（数学库/渲染/音频/脚本）。
+
+### 方法：手写匹配
+
+**不走反编译管线**，而是**人工逐函数匹配**：
+1. IDA 反汇编获取函数
+2. 人工理解语义
+3. 手写 C++ 实现
+4. 编译 + 字节比对验证
+
+### 当前状态（不完整）
+
+| 项 | 状态 |
+|---|---|
+| **函数数** | ~1020 导出 |
+| **已实现** | 部分（56 .cpp，17553 行）|
+| **匹配率** | 27%（topo.dll）|
+| **编译** | ✅ 全部编译通过 |
+
+### 数学库（topo.dll）
+
+**VC6 SP5 编译**（~414 函数）：
+- `gbVec3D` / `gbMatrix4` / `gbQuaternion` / `gbPlane` 等
+- 7 文件，2885 行
+- 27% 匹配
+
+---
+
+## 项目结构
+
+```
+PAL3Decomp/
+├── data/
+│   ├── annotations/          # 类布局/函数签名/全局变量（真相源）
+│   │   ├── structs/*.json    # 类定义（成员/偏移/类型/vtable）
+│   │   ├── functions.json    # 函数签名
+│   │   └── globals.json      # 全局变量
+│   └── status/               # 状态/基线/报告
+│
+├── pipeline/                 # PAL3.exe 反编译管线
+│   ├── cli.py                # 管线入口（check/apply/export/codegen/probe/match）
+│   ├── check_annotations.py  # 注解一致性检查
+│   ├── compare_pal3.py       # L1 字节比对
+│   ├── ida/                  # IDA 层（apply_annotations/export_full）
+│   └── gen/                  # codegen 层（emit_headers/emit_cpp/ast_transform）
+│
+├── pal3/                     # PAL3.exe 生成的 C++ 源码
+│   ├── src/                  # 212 .cpp + 头文件
+│   └── CMakeLists.txt        # 构建配置
+│
+├── gbengine/                 # gbengine.dll 手写匹配
+│   ├── src/                  # 手写 C++ 实现
+│   ├── gbengine.def          # 导出定义
+│   └── CMakeLists.txt        # 构建配置
+│
+├── asm/
+│   └── pal3/                 # IDA 导出（ida_structs.json/decomp/*.json）
+│
+├── tools/                    # 工具集（109 个）
+│   ├── compilers/msvc6.0/    # MSVC 6.0 SP0 工具链
+│   ├── check_*.py            # 检查工具
+│   ├── audit_*.py            # 审计工具
+│   └── analyze_*.py          # 分析工具
+│
+├── tests/                    # 测试（865 passed）
+├── docs/
+│   ├── knowledge/            # 知识库（109 个：gotcha/arch/debug/rule）
+│   └── specs/                # 规格文档
+│
+├── cmake/                    # CMake 构建配置（VC6 toolchain）
+├── original/                 # 原始二进制（PAL3.exe + IDB）
+├── phase2/                   # Phase 2 手工 fix 留存
+└── extra/PAL3patch/          # 社区补丁（submodule）
+```
+
+---
+
+## 构建
+
+### PAL3.exe（MSVC 6.0 SP0）
 
 ```bash
 # 完整迭代（含基线断言）
 python pipeline/cli.py loop --expect-s2 123/214 --expect-errors 1273 --expect-l1 184
 
 # 分阶段
-python pipeline/cli.py check      # 秒级闸
-python pipeline/cli.py apply      # 注解 → IDB
-python pipeline/cli.py export     # IDB → decomp
-python pipeline/cli.py codegen all # decomp → C++
+python pipeline/cli.py check      # 秒级闸（2.3s）
+python pipeline/cli.py apply      # 注解 → IDB（11.3s）
+python pipeline/cli.py export     # IDB → decomp（150.9s）
+python pipeline/cli.py codegen all # decomp → C++（199.5s）
 python pipeline/cli.py probe s2   # 编译普查
 python pipeline/cli.py match      # L1 字节比对
+```
+
+### gbengine.dll（MSVC 6.0 SP5）
+
+```bash
+# 单文件编译验证
+python tools/gbengine_compare.py --compile gbengine/src/gbCamera.cpp
+
+# 字节比对
+python tools/gbengine_compare.py --func gbCamera::SetLookAt
 ```
 
 ### 测试
@@ -115,6 +194,8 @@ python3 tools/check_incremental.py
 # 双源 diff 报表
 python3 tools/dual_source_diff.py
 ```
+
+---
 
 ## 核心概念
 
@@ -135,6 +216,9 @@ python3 tools/dual_source_diff.py
 ③ 重定位 4 字节 don't-care：覆盖的字节即使不同也计 match
 ```
 
+**度量盲区**：L1 182 例里 179 例编译字节长于原函数（合计 1903 尾字节 NOP）
+**隐藏差异**：L1 字节的 19.24% / 重定位字节的 69.6%
+
 ### 度量指标
 
 | 指标 | 公式 | 当前值 |
@@ -143,6 +227,8 @@ python3 tools/dual_source_diff.py
 | **签名覆盖** | 两注册表并集 / decomp 全量 | 94.37% |
 | **S2** | 编译通过单元 | 123/214 |
 | **L1** | 字节全同函数数（三限定）| 17.2% |
+
+---
 
 ## 知识库
 
@@ -153,6 +239,8 @@ python3 tools/dual_source_diff.py
 - **rule**（2 个）：规则纪律
 
 **引用前必须验证文件/字段仍存在**（见该目录 README）
+
+---
 
 ## 工具集
 
@@ -166,6 +254,8 @@ python3 tools/dual_source_diff.py
 | `dual_source_diff` | 双源 diff 报表 |
 | `run_pipeline_incremental` | 增量管线执行 |
 
+---
+
 ## 强制检查点
 
 | 时机 | 工具 | 命令 |
@@ -178,6 +268,8 @@ python3 tools/dual_source_diff.py
 | **修改 struct 后** | 布局验证 | `python tools/audit_type_layout.py` |
 | **任何修复提交前** | 证物报告 | `python tools/verify_fix.py` |
 
+---
+
 ## 核心困难
 
 1. **CRT 边界**：哪些函数是 CRT 的、哪些是游戏自带的？
@@ -185,6 +277,8 @@ python3 tools/dual_source_diff.py
 3. **模板特化**：Hex-Rays 不支持模板，`template_bases.json` 做桥接
 4. **优化反编译产物**：Hex-Rays 反编译「看起来对但字节不对」
 5. **L1 三限定**：字节全同 ≠ 全字节相同（度量盲区）
+
+---
 
 ## 项目约束
 
@@ -194,6 +288,8 @@ python3 tools/dual_source_diff.py
 - **禁止伪语义命名**（`m_nState_4968` 类）
 - **禁止仅凭 Hex-Rays 反编译推断偏移**
 - **禁止仅凭 signature-this 判归属**
+
+---
 
 ## 相关文档
 
