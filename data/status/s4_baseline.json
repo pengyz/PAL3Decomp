@@ -18,27 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 944,
-  "matched": 714,
-  "unmatched": 230,
-  "match_L1": 109,
-  "partial": 545,
+  "symbols": 938,
+  "matched": 709,
+  "unmatched": 229,
+  "match_L1": 110,
+  "match_L1_semantic": 9,
+  "partial": 539,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
   "unresolved_synth": 60,
-  "reloc_total": 5548,
-  "reloc_ok": 1305,
+  "reloc_total": 5528,
+  "reloc_ok": 1317,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4243,
-  "rsite_total": 5548,
-  "rsite_unaligned": 5203,
-  "l1_bytes": 4533,
-  "l1_hidden_reloc_bytes": 988,
-  "l1_reloc_covered_bytes": 1380,
-  "rsite_ok": 54,
-  "rsite_unresolved": 290,
+  "reloc_unresolved": 4211,
+  "rsite_total": 5528,
+  "rsite_unaligned": 5181,
+  "l1_bytes": 4557,
+  "l1_hidden_reloc_bytes": 995,
+  "l1_reloc_covered_bytes": 1388,
+  "rsite_ok": 55,
+  "rsite_unresolved": 291,
   "rsite_mismatch": 1,
   "rsite_mismatch_samples": [
    {
@@ -1461,7 +1462,7 @@
    "name": "CEffQuake::Update(void)",
    "va": "0x004D3300",
    "status": "partial",
-   "match_pct": 10.3,
+   "match_pct": 9.0,
    "size": 145
   },
   {
@@ -1830,7 +1831,7 @@
    "name": "CEffgbParticle::Create(tagEffObjType *)",
    "va": "0x004C6C10",
    "status": "partial",
-   "match_pct": 14.5,
+   "match_pct": 15.9,
    "size": 774
   },
   {
@@ -1839,7 +1840,7 @@
    "name": "CEffgbParticle::Destroy(void)",
    "va": "0x004C6F20",
    "status": "partial",
-   "match_pct": 31.4,
+   "match_pct": 32.0,
    "size": 506
   },
   {
@@ -1910,8 +1911,8 @@
    "symbol": "?SetTimeScale@CEffgbParticle@@UAEPAV1@XZ",
    "name": "CEffgbParticle::SetTimeScale(void)",
    "va": "0x004C8930",
-   "status": "partial",
-   "match_pct": 33.3,
+   "status": "match_L1",
+   "match_pct": 100.0,
    "size": 24
   },
   {
@@ -2001,7 +2002,7 @@
    "name": "CEffgbParticle::CreateInstance(CEffgbParticle *,int,CEffgbParticle *)",
    "va": "0x004CEB60",
    "status": "partial",
-   "match_pct": 14.5,
+   "match_pct": 17.4,
    "size": 276
   },
   {
@@ -2037,7 +2038,7 @@
    "name": "ScreenEffect::ScreenEffect(void)",
    "va": "0x004BDFB0",
    "status": "partial",
-   "match_pct": 12.9,
+   "match_pct": 16.6,
    "size": 163
   },
   {
@@ -2766,7 +2767,7 @@
    "name": "MUIDialog::InvokeCallback(void)",
    "va": "0x004A1620",
    "status": "partial",
-   "match_pct": 27.0,
+   "match_pct": 30.2,
    "size": 159
   },
   {
@@ -3081,7 +3082,7 @@
    "name": "PathObj::GetPosition(float,float *,int *)",
    "va": "0x0041F120",
    "status": "partial",
-   "match_pct": 7.0,
+   "match_pct": 4.7,
    "size": 299
   },
   {
@@ -3594,7 +3595,7 @@
    "name": "TextureLibDataBase::_CheckItem(char *,char *)",
    "va": "0x00540210",
    "status": "partial",
-   "match_pct": 26.5,
+   "match_pct": 25.2,
    "size": 548
   },
   {
@@ -3909,7 +3910,7 @@
    "name": "UICoverFrm::UpdateClouds(int,int)",
    "va": "0x00527230",
    "status": "partial",
-   "match_pct": 25.0,
+   "match_pct": 25.3,
    "size": 308
   },
   {
@@ -4143,7 +4144,7 @@
    "name": "UIMap::_todo_4410F0(void)",
    "va": "0x004410F0",
    "status": "partial",
-   "match_pct": 16.8,
+   "match_pct": 17.3,
    "size": 185
   },
   {
@@ -4152,7 +4153,7 @@
    "name": "UIMap::Create(int,void *,int,char *,int,char)",
    "va": "0x004412C0",
    "status": "partial",
-   "match_pct": 35.8,
+   "match_pct": 37.4,
    "size": 179
   },
   {
@@ -4170,7 +4171,7 @@
    "name": "UIMap::Render(void)",
    "va": "0x004414F0",
    "status": "partial",
-   "match_pct": 9.4,
+   "match_pct": 9.9,
    "size": 573
   },
   {
@@ -4179,7 +4180,7 @@
    "name": "UIMap::ProcessHitTest(int,int)",
    "va": "0x00441730",
    "status": "partial",
-   "match_pct": 15.5,
+   "match_pct": 17.4,
    "size": 1548
   },
   {
@@ -4314,7 +4315,7 @@
    "name": "UIProgressBar::ctor(void)",
    "va": "0x00439030",
    "status": "partial",
-   "match_pct": 9.6,
+   "match_pct": 12.4,
    "size": 209
   },
   {
@@ -4332,7 +4333,7 @@
    "name": "UIProgressBar::Render(void)",
    "va": "0x00439410",
    "status": "partial",
-   "match_pct": 27.6,
+   "match_pct": 28.1,
    "size": 814
   },
   {
@@ -4350,7 +4351,7 @@
    "name": "UIProgressBar::CheckRayHitRole(int,int)",
    "va": "0x00439A20",
    "status": "partial",
-   "match_pct": 17.1,
+   "match_pct": 15.8,
    "size": 1458
   },
   {
@@ -4926,7 +4927,7 @@
    "name": "UITitle_XJTM::CreateSubWidgets(void)",
    "va": "0x0044CC60",
    "status": "partial",
-   "match_pct": 22.7,
+   "match_pct": 25.8,
    "size": 291
   },
   {
@@ -5259,7 +5260,7 @@
    "name": "NPC::SetRoleMode(int)",
    "va": "0x0040F060",
    "status": "partial",
-   "match_pct": 47.8,
+   "match_pct": 41.3,
    "size": 92
   },
   {
@@ -5592,7 +5593,7 @@
    "name": "Camera::InitUIElements(void)",
    "va": "0x0052BEB0",
    "status": "partial",
-   "match_pct": 14.3,
+   "match_pct": 14.8,
    "size": 1435
   },
   {
@@ -5693,51 +5694,6 @@
    "status": "partial",
    "match_pct": 2.9,
    "size": 70
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?IsPointVisible@UICamera@@QAEHPAMD@Z",
-   "name": "UICamera::IsPointVisible(float *,char)",
-   "va": "0x0041A070",
-   "status": "partial",
-   "match_pct": 13.3,
-   "size": 210
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetViewMode@UICamera@@SAHH@Z",
-   "name": "UICamera::GetViewMode(int)",
-   "va": "0x00420CD0",
-   "status": "partial",
-   "match_pct": 10.2,
-   "size": 374
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?CalcPosition@UICamera@@SAPAMPAM@Z",
-   "name": "UICamera::CalcPosition(float *)",
-   "va": "0x00420E50",
-   "status": "partial",
-   "match_pct": 11.6,
-   "size": 215
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetState@UICamera@@QAEHXZ",
-   "name": "UICamera::GetState(void)",
-   "va": "0x004230D0",
-   "status": "partial",
-   "match_pct": 15.4,
-   "size": 508
-  },
-  {
-   "file": "pal3/src/UI/UICamera.cpp",
-   "symbol": "?GetTarget@UICamera@@SAHXZ",
-   "name": "UICamera::GetTarget(void)",
-   "va": "0x004232D0",
-   "status": "partial",
-   "match_pct": 12.8,
-   "size": 452
   },
   {
    "file": "pal3/src/UI/UIDialog.cpp",
@@ -5898,7 +5854,7 @@
    "name": "UIWnd::sub_44E980(int,int)",
    "va": "0x0044E980",
    "status": "partial",
-   "match_pct": 19.6,
+   "match_pct": 20.6,
    "size": 97
   },
   {
@@ -5937,5 +5893,19 @@
    "match_pct": 62.7,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "WinMain 解除 skip 导出修复：可比总体 915→938（free_functions 扩容），L1 108→110 对齐新总体",
+  "at": "2026-10-27T20:34:40",
+  "prev_match_L1": 110,
+  "cur_match_L1": 110,
+  "prev_population": {
+   "matched": 709,
+   "symbols": 938
+  },
+  "cur_population": {
+   "matched": 709,
+   "symbols": 938
+  }
+ }
 }

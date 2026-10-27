@@ -1,9 +1,9 @@
 导出产物 vs 注解 一致性校验（[t4-DECLARED-EXCEPTION] 的透传字段）
 ========================================================================
-  两侧都有 struct: 826   仅导出侧: 259   仅注解侧: 64
+  两侧都有 struct: 861   仅导出侧: 310   仅注解侧: 64
   vtables  不一致: 0
   methods  不一致: 0
-  _variants 键不一致: 710  （**仅提示**：两侧表示不同，不参与失败判定）
+  _variants 键不一致: 744  （**仅提示**：两侧表示不同，不参与失败判定）
     [_variants] ARC_ArcBrief, ARC_ArcHeader, ARC_ArcLocaleRole, ARC_ArcMsic, ARC_ComboAttack, ARC_FightItem, ARC_FightSkill, ARC_Inventory, ARC_MonsterStar, ARC_OutFile …
 
 ✅ 一致：导出产物中这些字段与注解**逐字段等值**（与 export_full.py 头部自述的 761/761 相符）
@@ -14,19 +14,20 @@ EXPORT: decompiling to decomp/ ...
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **8 个**
-    EffObjectPool            size=40       (未找到生成头; 手写头 none: )
-    EffTargetPool            size=32       (未找到生成头; 手写头 none: )
-    PalScriptAnimTimer       size=16       (未找到生成头; 手写头 none: )
-    PalScriptFadeInTimer     size=20       (未找到生成头; 手写头 none: )
-    PalScriptFadeOutTimer    size=20       (未找到生成头; 手写头 none: )
-    PalScriptProgressTimer   size=16       (未找到生成头; 手写头 none: )
-    PalScriptWaitTimer       size=16       (未找到生成头; 手写头 none: )
-    ParticleVisNode          size=8        (未找到生成头; 手写头 none: )
-[A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：197 个 sub_ 符号的声明/调用形参数全部一致（另 108 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+    CCBStageCam              size=6272     无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffAudioNode             size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffBinkNode              size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffMultiPassNode         size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptFadeOutTimer    size=20       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptProgressTimer   size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptWaitTimer       size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
+    ScriptObj                size=4        无 virtual、无 +0x0 vptr 也无 _gap_000
+[A] FAIL：__vftable 出现在真实 code 位置 6 行 / 1 个文件（**结构性**指标：活代码位置的 __vftable 残留行数；不等于编译错误数 —— F11/F12 之后这些行多数已不再是错误）
+    pal3/src/Script/PalScript.cpp                   6 行（221,948,978,981,987,6773）
+[B] PASS：165 个 sub_ 符号的声明/调用形参数全部一致（另 104 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 8；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 14；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py codegen all
