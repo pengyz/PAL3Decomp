@@ -25,9 +25,13 @@ public:
 
 // [N=0] WinProc_HWND_InputLine - semantic equivalent
 int Logger::WinProc_HWND_InputLine(char pData) {
+    int result;
     if (pData == 96) {
-        m_nRenderMode = (m_nRenderMode == 0);
-    } else if (m_nRenderMode) {
+        result = (m_nRenderMode == 0);
+        m_nRenderMode = result;
+    } else {
+        result = m_nRenderMode;
+        if (result) {
         switch (pData) {
             case 8: {
                 // [R117 修] 退格实现（codegen 参考）
@@ -63,6 +67,7 @@ int Logger::WinProc_HWND_InputLine(char pData) {
         }
     }
     return 0;
+    }
 }
 
 // Mock implementations (ensure compilability)
