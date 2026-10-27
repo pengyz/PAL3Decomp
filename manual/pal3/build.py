@@ -45,7 +45,14 @@ def generate_makefile(build_dir, sources, gbengine_dir, include_dir, vc6_root, v
       - 路径全反斜杠绝对形（to_wine_path 已 abspath）
       - 去掉重复的 $(TARGET) 空依赖规则（两处 $(TARGET) 规则合并为一处）
     """
-    objs = [to_wine_path(os.path.join(build_dir, os.path.splitext(os.path.basename(s))[0] + '.obj')) for s in sources]
+    # [R109 修 2026-10-27] obj 镜像源相对路径（防同名碰撞）
+    objs = []
+    for s in sources:
+        rel = os.path.relpath(s, os.path.join(gbengine_dir, '..', '..', 'manual', 'pal3'))
+        obj_rel = os.path.splitext(rel)[0] + '.obj'
+        obj_path = os.path.join(build_dir, obj_rel)
+        os.makedirs(os.path.dirname(obj_path), exist_ok=True)
+        objs.append(to_wine_path(obj_path))
     bdir = to_wine_path(build_dir)
     gdir = to_wine_path(gbengine_dir)
 
@@ -120,7 +127,8 @@ def main():
     # Recursive source collection (auto - no hardcoded subdirs)
     sources = []
     for root, dirs, files in os.walk(src_dir):
-        if 'build' in root:
+        # [R109 修 2026-10-27] 'build' 子串匹配 -> 精确匹配（防 checkout 路径含 build 断链）
+        if 'build' in root.split(os.sep):
             continue
         for f in files:
             if f.endswith('.cpp'):
