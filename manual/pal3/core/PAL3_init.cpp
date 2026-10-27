@@ -1,12 +1,13 @@
 // manual/pal3/core/PAL3_init.cpp - PAL3 initialization (migration from codegen)
 // Source: pal3/src/GameBase/PAL3.cpp (codegen output)
 // Migration: codegen -> manual (byte-identical per function)
-// TODO: byte-identical verification (L1 per function)
+// gbengine: GBENGINE.DLL import (gbVFileSystem constructor)
 
 #include <windows.h>
+#include <gbengine/gbVFileSystem.h>
 
-// gbVFileSystem (external - TODO: header migration)
-extern char g_BaseVFileSystem[];
+// g_BaseVFileSystem (global - TODO: globals migration from codegen)
+char g_BaseVFileSystem[256];  // stub (TODO: real size from codegen globals)
 
 // PAL3 class (migration from codegen)
 class PAL3 {
@@ -18,10 +19,10 @@ public:
 };
 
 // InitVFileSystem (migration from codegen - byte-identical)
+// codegen: ((gbVFileSystem *)&g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
 void * PAL3::InitVFileSystem() {
     void *result; // eax
-    ((void *)g_BaseVFileSystem);
-    // TODO: gbVFileSystem constructor call (byte-identical)
+    ((gbVFileSystem *)&g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
     return result;
 }
 
