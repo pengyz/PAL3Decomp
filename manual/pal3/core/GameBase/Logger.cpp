@@ -47,6 +47,7 @@ public:
      // +0x4
      // +0x4
      // +0x4
+     // +0x4
     int m_nRenderX;                 // +0x1214
     int m_nRenderY;                 // +0x1218
     int m_bRenderEnabled;           // +0x121C
