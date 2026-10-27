@@ -12,6 +12,7 @@
 
   python3 tools/pal3_callgraph_comprehensive.py init          # 初始化(WinMain L0)
   python3 tools/pal3_callgraph_comprehensive.py expand        # 扩下一层
+  python3 tools/pal3_callgraph_comprehensive.py check         # L1 对拍（manual/pal3 vs 原 exe，语义+字节）
   python3 tools/pal3_callgraph_comprehensive.py status        # 进度统计
   python3 tools/pal3_callgraph_comprehensive.py layer N       # 查看第 N 层
   python3 tools/pal3_callgraph_comprehensive.py node ADDR     # 查看节点详情
@@ -24,6 +25,9 @@ import os
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from manual_l1_match import match_l1
 
 ROOT = Path(__file__).parent.parent
 GRAPH_PATH = ROOT / 'asm' / 'pal3' / 'bfs_comprehensive.json'
@@ -237,18 +241,20 @@ def mark(graph, addr, status, match_rate=None, diff_bytes=None):
 
 
 def check(graph):
-    """L1 对拍检查(每函数)+ 统计聚合.
+    """L1 对拍检查（manual/pal3 vs 原 exe）+ 统计聚合.
 
-    用 pipeline/compare_pal3.py 做 L1 对拍:
-    1. 编译 .cpp -> .obj(MSVC 6.0)
-    2. 提取函数体(COFF 符号表)
-    3. 匹配符号(vc6_mangler)
-    4. 比对字节(vs 原游戏 exe .text)
+    调用 manual_l1_match.match_l1() 当场跑 L1 对拍:
+    1. 提取编译 exe 符号（PAL3_manual.map）
+    2. 按符号名匹配原 exe 地址（ida_structs.json / pal3_names.json）
+    3. 语义一致性比对（汇编操作码，忽略寄存器分配）
+    4. 字节一致性比对（objdump 全字节）
 
-    刷新最新结果(match_rate / diff_bytes)+ 统计聚合.
+    输出 L1 对拍结果（语义/字节相似度百分比）· 回写节点（match_rate/diff_bytes）· 统计聚合.
+
+    [修 2026-10-27] 病灶: check 不跑 match —— 只读 s4_baseline.json 静态缓存
+    （join 恒空 0/637：'va' 补零/大小写与 node key 不一致），manual_l1_match 导入未调用。
+    改为当场调用 match_l1() 跑 L1 对拍（manual/pal3 vs 原 exe）并输出语义/字节百分比。
     """
-    import subprocess
-    
     nodes = graph.get('nodes', {})
     total = len(nodes)
     l1_consistent = 0
@@ -258,23 +264,60 @@ def check(graph):
     # 类维度聚合
     class_stats = {}
     
-    print(f'=== L1 对拍检查（{total} 个函数）===')
+    print(f'=== L1 对拍检查（{total} 个图节点）===')
     
-    # [R103 修 2026-10-27] 跑 pipeline/cli.py match 当场读 [metric]
-    # join 键用 va（非 address）· L1 判据用 status=='perfect'（非 95% 阈值）
-    s4_path = ROOT / 'data' / 'status' / 's4_baseline.json'
-    if s4_path.exists():
-        s4 = json.load(open(s4_path))
-        for func in s4.get('rows', []):
-            va = func.get('va')
-            if va in nodes:
-                nodes[va]['match_rate'] = func.get('match_pct', 0) / 100.0
-                nodes[va]['diff_bytes'] = func.get('diff_bytes', 0)
-                nodes[va]['l1_status'] = func.get('status', '')
+    # [修 2026-10-27] 对接 manual_l1_match：当场跑 L1 对拍（语义一致性 + 字节一致性）
+    matched = match_l1()
+    
+    # --- L1 对拍结果（相似度百分比）---
+    n_matched = len(matched)
+    print(f'\n=== L1 对拍结果（manual/pal3 vs 原 exe · {n_matched} 个匹配）===')
+    sem_sum = byte_sum = 0.0
+    sem_consistent = byte_perfect = 0
+    for m in matched:
+        sem_pct = m['semantic_match'] * 100.0
+        byte_pct = m['similarity'] * 100.0
+        sem_sum += m['semantic_match']
+        byte_sum += m['similarity']
+        if m['semantic_match'] >= 0.95:
+            sem_consistent += 1
+        if m['similarity'] >= 1.0:
+            byte_perfect += 1
+        print(f"  {m['symbol']}: 语义 {sem_pct:.1f}% · 字节 {byte_pct:.1f}% · "
+              f"差异 {m.get('diff_bytes', 0)} B  (manual={m['manual_addr']} orig={m['orig_addr']})")
+    if n_matched:
+        print(f'\n  平均语义相似度: {sem_sum / n_matched * 100:.1f}%')
+        print(f'  平均字节相似度: {byte_sum / n_matched * 100:.1f}%')
+        print(f'  语义一致 (>=95%): {sem_consistent}/{n_matched}')
+        print(f'  字节全同 (100%): {byte_perfect}/{n_matched}')
+    else:
+        print('  （无匹配：检查 PAL3_manual.map / ida_structs.json / pal3_names.json）')
+    
+    # 回写节点（地址归一化 join：node key '0x541d75'/'0x00541900' 补零/大小写不一；
+    # 节点键是地址不是符号名，按符号名 join 恒不命中）
+    node_by_int = {}
+    for k in nodes:
+        try:
+            node_by_int[int(k, 16)] = k
+        except ValueError:
+            continue
+    refreshed = 0
+    for m in matched:
+        try:
+            key = node_by_int.get(int(m['orig_addr'], 16))
+        except ValueError:
+            continue
+        if key is not None:
+            nodes[key]['match_rate'] = m['similarity']
+            nodes[key]['semantic_match'] = m['semantic_match']
+            nodes[key]['diff_bytes'] = m.get('diff_bytes', 0)
+            nodes[key]['l1_status'] = 'match_L1' if m['similarity'] >= 1.0 else 'partial'
+            nodes[key]['manual_addr'] = m['manual_addr']
+            refreshed += 1
+    print(f'  回写图节点: {refreshed}/{n_matched} 个（L1 对拍结果覆盖）')
     
     for addr, node in nodes.items():
         match_rate = node.get('match_rate')
-        diff_bytes = node.get('diff_bytes')
         
         if match_rate is None:
             continue
