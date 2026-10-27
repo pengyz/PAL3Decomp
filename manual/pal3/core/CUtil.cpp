@@ -18,8 +18,13 @@ public:
 };
 
 // RenderFrameY (0x5236e0 - game update - byte-identical target)
+// Original: update dispatch by m_nRenderMode (scene/battle/list/prop/game)
 int CUtil::RenderFrameY(void *fTime, int nVal) {
     // TODO: byte-identical migration (full function body from decomp)
+    // Original logic (from decomp/CUtil_RenderFrameYPalScript_int_005236e0.json):
+    //   if (g_nSceneState != 2 && (g_dwGameFlags & 1) != 0) { ... DetachAll3D ... }
+    //   if (!UIParabolaCtrl_GetState(v7)) CUtil_Update(2);
+    //   switch (m_nRenderMode) { case 0-6: dispatch ... }
     switch (this->m_nRenderMode) {
         case 0: return 1;  // SceneObj::Update
         case 1: return 1;  // CScreenMode update
