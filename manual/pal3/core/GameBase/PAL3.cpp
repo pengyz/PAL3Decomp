@@ -22,7 +22,7 @@ public:
 // codegen: ((gbVFileSystem *)&g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
 void * PAL3::InitVFileSystem() {
     void *result; // eax
-    ((gbVFileSystem *)&g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
+    ((gbVFileSystem *)g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
     return result;
 }
 

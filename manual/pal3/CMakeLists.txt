@@ -1,30 +1,29 @@
-# manual/pal3 可编译基（CMakeLists——MSVC 6.0·gbengine 链接）
-# 迁移：WinMain+mock+PAL3_init+gbengine.dll 导入
-# gbengine：gbengine.lib（def→lib）+include/gbengine/*.h
-# 编译（Windows 直编）：
-#   cl /c ... (sources) -> link ... gbengine.lib user32.lib gdi32.lib
+# manual/pal3 CMakeLists (out-of-tree build - CMake toolchain VC6)
+# Build: cmake -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=toolchain-windows-vc6.cmake .
+#        ninja -C build
 cmake_minimum_required(VERSION 3.10)
 project(PAL3_manual CXX)
 
-# gbengine（DLL 导入——lib+header）
+# gbengine (DLL import - lib+header)
 set(GBENGINE_DIR "${CMAKE_CURRENT_LIST_DIR}/../../gbengine")
 set(GBENGINE_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/../../include")
 
-# 手动改写域（manual/pal3）——独立 codegen
+# Manual rewrite domain (manual/pal3) - independent of codegen
 add_executable(PAL3_manual
     platform/windows/WinMain.cpp
     mock/mock_interfaces.cpp
-    core/PAL3_init.cpp
+    core/GameBase/PAL3.cpp
+    core/CUtil.cpp
 )
 
-# 链接（gbengine+Windows 库）
+# Link (gbengine+Windows libs)
 target_link_libraries(PAL3_manual
     ${GBENGINE_DIR}/gbengine.lib
-    user32 gdi32 winmm dinput8
+    user32 gdi32 winmm
 )
 
-# include 路径（gbengine header）
+# Include paths
 target_include_directories(PAL3_manual PRIVATE ${GBENGINE_INCLUDE} ${GBENGINE_INCLUDE}/gbengine)
 
-# 编译选项（MSVC 6.0——匹配原版）
+# Compile options (MSVC 6.0 - match original)
 target_compile_options(PAL3_manual PRIVATE /W3 /GX /O2 /Ob2 /Oi /Ot /Oy)

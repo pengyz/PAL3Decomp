@@ -55,7 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     strcpy(ClassName, "PAL3--SOFTSTAR.sh");
     WNDCLASSA WndClass;
     WndClass.style = 32;
-    WndClass.lpfnWndProc = WinProc;
+    WndClass.lpfnWndProc = (LRESULT (__stdcall *)(HWND__ *,unsigned int,unsigned int,long))WinProc;
     WndClass.cbClsExtra = 0;
     WndClass.cbWndExtra = 0;
     WndClass.hInstance = hInstance;
