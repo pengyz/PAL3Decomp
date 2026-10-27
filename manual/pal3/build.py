@@ -127,6 +127,8 @@ def main():
     # Recursive source collection (auto - no hardcoded subdirs)
     sources = []
     for root, dirs, files in os.walk(src_dir):
+        if 'error' in root:
+            continue
         # [R109 修 2026-10-27] 'build' 子串匹配 -> 精确匹配（防 checkout 路径含 build 断链）
         if 'build' in root.split(os.sep):
             continue
