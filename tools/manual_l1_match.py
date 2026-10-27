@@ -17,6 +17,20 @@ import subprocess
 import sys
 from pathlib import Path
 
+
+def demangle_msvc(mangled):
+    """MSVC C++ 符号 demangle(简化)."""
+    if not mangled.startswith('?'):
+        return mangled
+    s = mangled[1:]
+    if '@@' in s:
+        parts = s.split('@@')[0].split('@')
+        if len(parts) >= 2:
+            return f'{parts[1]}::{parts[0]}'
+        else:
+            return parts[0]
+    return mangled
+
 ROOT = Path(__file__).parent.parent
 MANUAL_DIR = ROOT / 'manual' / 'pal3'
 BUILD_DIR = MANUAL_DIR / 'build'
@@ -43,10 +57,8 @@ def get_manual_symbols():
                 if len(parts) >= 3:
                     mangled = parts[1] if '?' in parts[1] else parts[0]
                     addr = parts[2] if len(parts) > 2 else '0'
-                    # demangle (MSVC undname)
-                    r = subprocess.run(['wine', str(ROOT / 'tools' / 'compilers' / 'msvc6.0' / 'Bin' / 'UNDNAME.EXE'), mangled],
-                                       capture_output=True, text=True, timeout=30)
-                    demangled = r.stdout.strip().split('\n')[0] if r.stdout else mangled
+                    # demangle (Python)
+                    demangled = demangle_msvc(mangled)
                     symbols[demangled] = addr
     return symbols
     
@@ -103,22 +115,16 @@ def match_l1():
     orig_addrs = get_original_addresses()
     print(f'原 exe 地址: {len(orig_addrs)} 个')
     
-    # 3. 地址匹配（map addr vs pal3_names addr）
-    # [R114 修] demangle 失败 => 改地址匹配
-    orig_addr_map = {}
-    for name, addr in orig_addrs.items():
-        orig_addr_map[addr] = name
-    
+    # 3. 按符号名匹配（demangle 后）
+    # [R115 修] 地址匹配是巧合 => 按符号名匹配
     matched = []
     for sym_name, sym_addr in manual_syms.items():
-        # sym_addr 格式: 00401480 (map) vs 0x00408BC0 (pal3_names)
-        sym_addr_norm = '0x' + sym_addr.zfill(8).upper()
-        if sym_addr_norm in orig_addr_map:
+        # sym_name 已 demangle（如 PAL3::InitVolModNode）
+        if sym_name in orig_addrs:
             matched.append({
                 'symbol': sym_name,
                 'manual_addr': sym_addr,
-                'orig_addr': sym_addr_norm,
-                'orig_name': orig_addr_map[sym_addr_norm],
+                'orig_addr': orig_addrs[sym_name],  # 原 exe 地址
             })
     
     print(f'\\n匹配结果: {len(matched)} 个')
