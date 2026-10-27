@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""PAL3.exe 综合性 BFS 调用图工具。
+"""PAL3.exe 综合性 BFS 调用图工具.
 
 ## 功能
 
-1. **BFS 图**：WinMain 根节点，向下展开调用关系
-2. **元信息**：每个函数有地址/签名/所属类/字节数/状态
-3. **迁移跟踪**：已实现/L1 一致结果（相似百分比/差异字节）
-4. **查询**：按层展开 / 节点调用链 / 进度统计
+1. **BFS 图**:WinMain 根节点,向下展开调用关系
+2. **元信息**:每个函数有地址/签名/所属类/字节数/状态
+3. **迁移跟踪**:已实现/L1 一致结果(相似百分比/差异字节)
+4. **查询**:按层展开 / 节点调用链 / 进度统计
 
 ## 用法
 
-  python3 tools/pal3_callgraph_comprehensive.py init          # 初始化（WinMain L0）
+  python3 tools/pal3_callgraph_comprehensive.py init          # 初始化(WinMain L0)
   python3 tools/pal3_callgraph_comprehensive.py expand        # 扩下一层
   python3 tools/pal3_callgraph_comprehensive.py status        # 进度统计
   python3 tools/pal3_callgraph_comprehensive.py layer N       # 查看第 N 层
@@ -33,7 +33,7 @@ IDA_STRUCTS = ROOT / 'asm' / 'pal3' / 'ida_structs.json'
 
 
 def load_metadata():
-    """加载函数元信息（地址/签名/类/字节数）。"""
+    """加载函数元信息(地址/签名/类/字节数)."""
     meta = {}
     # 从 ida_structs.json
     if IDA_STRUCTS.exists():
@@ -66,7 +66,7 @@ def load_metadata():
 
 
 def find_decomp(addr):
-    """查找 decomp 文件。"""
+    """查找 decomp 文件."""
     addr_int = int(addr, 16) if isinstance(addr, str) else addr
     for f in DECOMP_DIR.glob('*.json'):
         try:
@@ -79,10 +79,10 @@ def find_decomp(addr):
 
 
 def extract_callees(decomp):
-    """从 decomp 提取 callees（具名调用，非 0x 字面量）。
+    """从 decomp 提取 callees(具名调用,非 0x 字面量).
 
-    [R103 修 2026-10-27·对抗复核] 原抓 0x 字面量当 callee（414/417 是常量）
-    修：抓具名调用 Cls::Method() 形式
+    [R103 修 2026-10-27·对抗复核] 原抓 0x 字面量当 callee(414/417 是常量)
+    修:抓具名调用 Cls::Method() 形式
     """
     callees = set()
     text = decomp.get('decompiled_c', '')
@@ -96,7 +96,7 @@ def extract_callees(decomp):
 
 
 def init():
-    """初始化（WinMain L0）。"""
+    """初始化(WinMain L0)."""
     meta = load_metadata()
     winmain_addr = '0x00541900'
     
@@ -127,7 +127,7 @@ def init():
 
 
 def expand(graph):
-    """扩下一层（BFS 向下）。"""
+    """扩下一层(BFS 向下)."""
     meta = load_metadata()
     depth = graph.get('max_depth', 0)
     layer_nodes = graph.get('layers', {}).get(str(depth), [])
@@ -170,7 +170,7 @@ def expand(graph):
 
 
 def show_layer(graph, n):
-    """查看第 N 层。"""
+    """查看第 N 层."""
     layer_nodes = graph.get('layers', {}).get(str(n), [])
     print(f'L{n}: {len(layer_nodes)} 个函数')
     for addr in layer_nodes:
@@ -180,7 +180,7 @@ def show_layer(graph, n):
 
 
 def show_node(graph, addr):
-    """查看节点详情。"""
+    """查看节点详情."""
     node = graph['nodes'].get(addr)
     if not node:
         print(f'节点不存在: {addr}')
@@ -199,7 +199,7 @@ def show_node(graph, addr):
 
 
 def show_chain(graph, addr):
-    """查看调用链（向上到根）。"""
+    """查看调用链(向上到根)."""
     chain = []
     current = addr
     while current in graph['nodes']:
@@ -216,7 +216,7 @@ def show_chain(graph, addr):
 
 
 def mark(graph, addr, status, match_rate=None, diff_bytes=None):
-    """标记节点状态。"""
+    """标记节点状态."""
     if addr not in graph['nodes']:
         print(f'节点不存在: {addr}')
         return
@@ -232,15 +232,15 @@ def mark(graph, addr, status, match_rate=None, diff_bytes=None):
 
 
 def check(graph):
-    """L1 对拍检查（每函数）+ 统计聚合。
+    """L1 对拍检查(每函数)+ 统计聚合.
 
-    用 pipeline/compare_pal3.py 做 L1 对拍：
-    1. 编译 .cpp → .obj（MSVC 6.0）
-    2. 提取函数体（COFF 符号表）
-    3. 匹配符号（vc6_mangler）
-    4. 比对字节（vs 原游戏 exe .text）
+    用 pipeline/compare_pal3.py 做 L1 对拍:
+    1. 编译 .cpp -> .obj(MSVC 6.0)
+    2. 提取函数体(COFF 符号表)
+    3. 匹配符号(vc6_mangler)
+    4. 比对字节(vs 原游戏 exe .text)
 
-    刷新最新结果（match_rate / diff_bytes）+ 统计聚合。
+    刷新最新结果(match_rate / diff_bytes)+ 统计聚合.
     """
     import subprocess
     
@@ -334,7 +334,7 @@ def check(graph):
 
 
 def status(graph):
-    """进度统计。"""
+    """进度统计."""
     nodes = graph.get('nodes', {})
     status_count = {}
     layer_count = {}
@@ -352,7 +352,7 @@ def status(graph):
 
 
 def export(graph):
-    """导出 JSON。"""
+    """导出 JSON."""
     out_path = ROOT / 'data' / 'status' / 'bfs_callgraph_export.json'
     json.dump(graph, open(out_path, 'w'), ensure_ascii=False, indent=2)
     print(f'导出: {out_path}')
