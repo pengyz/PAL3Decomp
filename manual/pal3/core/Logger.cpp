@@ -25,15 +25,21 @@ namespace gbColorQuad { extern int ColorQuadFmt; }
 void LogMessage(const char *fmt, ...);
 
 
+class tagLoggerCallback { public: char szDesc[40]; };
+
 class Logger {
 public:
-    int m_nRenderMode;
-    int m_nRenderCount;
-    int m_nRenderState;
-    // [R116 修] 真实布局：szCmdBuf2[104] @ +0x122C, szCmdBuf[100] @ +0x1230（重叠）
-    // szCmdBuf == &szCmdBuf2 + 4
-    char m_szCmdBuf2[104];  // +0x122C
-    char m_szCmdBuf[100];   // +0x1230 (重叠)
+    int m_nCallbackCount;           // +0x0
+    tagLoggerCallback m_callbacks[34]; // +0x4
+    int m_nRenderX;                 // +0x1214
+    int m_nRenderY;                 // +0x1218
+    int m_bRenderEnabled;           // +0x121C
+    void *m_pRenderTarget;          // +0x1220
+    int m_nRenderMode;              // +0x1224
+    int m_nRenderCount;             // +0x1228
+    char m_szCmdBuf2[104];          // +0x122C
+    char m_szCmdBuf[100];           // +0x1230 (重叠)
+    int m_nRenderState;             // +0x1294
     
     int Render();
     int WinProc_HWND_InputLine(char pData);
