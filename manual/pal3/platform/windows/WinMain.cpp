@@ -8,39 +8,39 @@
 // WinProc (migration from original 0x404d60 - window procedure)
 int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam) {
     // Message handling (from original WinProc 0x404d60)
-    if (Msg > 0x4A) {
-        if (Msg == 258) {
-            // WM_CHAR - TODO: Logger::WinProc_HWND_InputLine
+    if (Msg > WM_AFXFIRST) {
+        if (Msg == WM_CHAR) {
+            // TODO: Logger::WinProc_HWND_InputLine
         } else {
-            if (Msg != 274) {  // WM_SYSCOMMAND
-                if (Msg == 512) {  // WM_MOUSEMOVE
+            if (Msg != WM_SYSCOMMAND) {
+                if (Msg == WM_MOUSEMOVE) {
                     // TODO: mouse move handling (UIQuadManager)
                 }
                 return DefWindowProcA(hWnd, Msg, pvParam, lParam);
             }
-            // WM_SYSCOMMAND handling
-            if (pvParam > 0xF060) {
-                if (pvParam != 61696 && pvParam != 61760 && pvParam != 61808)
+            // WM_SYSCOMMAND handling (macros instead of numbers)
+            if (pvParam > SC_MOUSEMENU) {
+                if (pvParam != SC_TASKLIST && pvParam != SC_SCREENSAVE && pvParam != SC_HOTKEY)
                     return DefWindowProcA(hWnd, Msg, pvParam, lParam);
-            } else if (pvParam != 61536 && pvParam != 61440 && pvParam != 61456 && pvParam != 61488) {
+            } else if (pvParam != SC_MOVE && pvParam != SC_SIZE && pvParam != SC_MINIMIZE && pvParam != SC_MAXIMIZE) {
                 return DefWindowProcA(hWnd, Msg, pvParam, lParam);
             }
         }
         return 0;
     }
-    if (Msg == 74) {  // WM_COPYDATA
+    if (Msg == WM_COPYDATA) {
         // TODO: Logger::WinProc_HWND_SetAndExec
         return DefWindowProcA(hWnd, Msg, pvParam, lParam);
     }
     switch (Msg) {
-        case 1:  // WM_CREATE
+        case WM_CREATE:
             pvParam = 0;
-            SystemParametersInfoA(0x61, 1, 0, 0);  // SPI_SETSCREENSAVERRUNNING
-            SystemParametersInfoA(0x26, 1, 0, 0);  // SPI_SETMOUSETRAILS
-            SystemParametersInfoA(0x24, 1, &pvParam, 0);  // SPI_SETMOUSE
-            SystemParametersInfoA(0x61, 1, &pvParam, 0);
+            SystemParametersInfoA(SPI_SETSCREENSAVERRUNNING, 1, 0, 0);
+            SystemParametersInfoA(SPI_SETMOUSETRAILS, 1, 0, 0);
+            SystemParametersInfoA(SPI_SETMOUSE, 1, &pvParam, 0);
+            SystemParametersInfoA(SPI_SETSCREENSAVERRUNNING, 1, &pvParam, 0);
             return 0;
-        case 2:  // WM_DESTROY
+        case WM_DESTROY:
             PostQuitMessage(0);
             return 0;
         default:
