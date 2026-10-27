@@ -1,6 +1,6 @@
-// manual/pal3/core/game_loop.cpp - main loop/render (migration from original)
+// manual/pal3/core/CUtil.cpp - CUtil (migration from original)
 // Source: CUtil::RenderFrameY (0x5236e0) + CUtil::RenderFrame (0x523670)
-// Original game logic: game update + render dispatch
+// Original game logic: game update + render dispatch (byte-identical target)
 
 #include <windows.h>
 
@@ -13,62 +13,34 @@ public:
     void *m_pListView;
     void *m_pPropUI;
 
-    // RenderFrameY (0x5236e0 - game update)
     int RenderFrameY(void *fTime, int nVal);
-    // RenderFrame (0x523670 - render dispatch)
     int RenderFrame();
 };
 
-// RenderFrameY (migration - game update)
-// Original: update dispatch by m_nRenderMode (scene/battle/list/prop/game)
+// RenderFrameY (0x5236e0 - game update - byte-identical target)
 int CUtil::RenderFrameY(void *fTime, int nVal) {
-    // TODO: full migration from original (0x5236e0)
+    // TODO: byte-identical migration (full function body from decomp)
     switch (this->m_nRenderMode) {
-        case 0:
-            // SceneObj::Update
-            return 1;
-        case 1:
-            // CScreenMode update
-            return 1;
-        case 2:
-            // BattleSystem update
-            return 1;
-        case 3:
-            // ListView update
-            return 1;
-        case 4:
-            // PropUI update
-            return 1;
-        case 5:
-        case 6:
-            // CGameData::Load
-            return 1;
-        default:
-            return 1;
+        case 0: return 1;  // SceneObj::Update
+        case 1: return 1;  // CScreenMode update
+        case 2: return 1;  // BattleSystem update
+        case 3: return 1;  // ListView update
+        case 4: return 1;  // PropUI update
+        case 5: return 1;  // CGameData::Load
+        case 6: return 1;  // CGameData::Load
+        default: return 1;
     }
 }
 
-// RenderFrame (migration - render dispatch)
-// Original: render dispatch by m_nRenderMode
+// RenderFrame (0x523670 - render dispatch - byte-identical target)
 int CUtil::RenderFrame() {
-    // TODO: full migration from original (0x523670)
+    // TODO: byte-identical migration (full function body from decomp)
     switch (this->m_nRenderMode) {
-        case 0:
-            // CCBControlWindow::Render
-            return 0;
-        case 1:
-            // CScreenMode render
-            return 0;
-        case 2:
-            // BattleSystem render
-            return 0;
-        case 3:
-            // ListView render
-            return 0;
-        case 4:
-            // PropUI render
-            return 0;
-        default:
-            return 0;
+        case 0: return 0;  // CCBControlWindow::Render
+        case 1: return 0;  // CScreenMode render
+        case 2: return 0;  // BattleSystem render
+        case 3: return 0;  // ListView render
+        case 4: return 0;  // PropUI render
+        default: return 0;
     }
 }
