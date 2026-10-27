@@ -78,20 +78,26 @@ def find_decomp(addr):
     return None
 
 
-def extract_callees(decomp):
+def extract_callees(decomp, addr=None):
     """从 decomp 提取 callees(具名调用,非 0x 字面量).
 
     [R103 修 2026-10-27·对抗复核] 原抓 0x 字面量当 callee(414/417 是常量)
     修:抓具名调用 Cls::Method() 形式
     """
     callees = set()
-    text = decomp.get('decompiled_c', '')
-    # 抓具名调用（Cls::Method 或 Func 形式）
-    for m in re.finditer(r'\b([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*\(', text):
-        name = m.group(1)
-        # 排除关键字/类型
-        if name not in ('if', 'while', 'for', 'switch', 'return', 'sizeof', 'int', 'char', 'void', 'float'):
-            callees.add(name)
+    # [R111 修 2026-10-27] 用 objdump 提取 call 目标（IDA xrefs 不在 ida_structs.json）
+    import subprocess
+    if addr:
+        addr_int = int(addr, 16) if isinstance(addr, str) else addr
+        r = subprocess.run(['objdump', '-d', f'--start-address={addr_int}', 
+                          f'--stop-address={addr_int + 0x1000}',
+                          str(ROOT / 'original' / 'PAL3.exe')],
+                         capture_output=True, text=True, timeout=60)
+        for line in r.stdout.split('\n'):
+            # 找 call 指令（e8 直接调用）
+            m = re.search(r'call\s+(0x[0-9a-fA-F]+)', line)
+            if m:
+                callees.add(m.group(1))
     return callees
 
 
@@ -135,26 +141,25 @@ def expand(graph):
     new_callees = set()
     for addr in layer_nodes:
         node = graph['nodes'][addr]
-        decomp = find_decomp(addr)
-        if decomp:
-            callees = extract_callees(decomp)
-            node['callees'] = sorted(callees)
-            for callee in callees:
-                if callee not in graph['nodes']:
-                    new_callees.add(callee)
-                    m = meta.get(callee, {})
-                    graph['nodes'][callee] = {
-                        'name': m.get('name', f'func_{callee}'),
-                        'layer': depth + 1,
-                        'status': 'mock',
-                        'match_rate': None,
-                        'diff_bytes': None,
-                        'callees': [],
-                        'callers': [addr],
-                        'class': m.get('class'),
-                        'signature': m.get('signature', ''),
-                        'size': m.get('size', 0),
-                    }
+        # [R113 修] 无 decomp 也用 objdump 提取
+        callees = extract_callees(None, addr)
+        node['callees'] = sorted(callees)
+        for callee in callees:
+            if callee not in graph['nodes']:
+                new_callees.add(callee)
+                m = meta.get(callee, {})
+                graph['nodes'][callee] = {
+                    'name': m.get('name', f'func_{callee}'),
+                    'layer': depth + 1,
+                    'status': 'mock',
+                    'match_rate': None,
+                    'diff_bytes': None,
+                    'callees': [],
+                    'callers': [addr],
+                    'class': m.get('class'),
+                    'signature': m.get('signature', ''),
+                    'size': m.get('size', 0),
+                }
     
     if new_callees:
         next_depth = depth + 1
@@ -163,7 +168,7 @@ def expand(graph):
         graph['frontier'] = sorted(new_callees)
         print(f'扩层 L{next_depth}: 新增 {len(new_callees)} 个函数')
     else:
-        print(f'无新 callees（L{depth} 已到底）')
+        print(f'无新 callees(L{depth} 已到底)')
     
     json.dump(graph, open(GRAPH_PATH, 'w'), ensure_ascii=False, indent=2)
     return graph
