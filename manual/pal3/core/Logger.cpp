@@ -5,7 +5,25 @@
 #include <windows.h>
 #include <string.h>
 
-typedef unsigned char _BYTE;
+// Mock declarations
+void PopMatrixStacks(unsigned char *v);
+void PushMatrixStacks(unsigned char *v);
+void crt_sub_00540070();
+void crt_sub_00540FD0();
+void qmemcpy(void *d, const void *s, int n);
+namespace gbColorQuad { extern int ColorQuadFmt; }
+void LogMessage(const char *fmt, ...);
+
+
+
+// Mock declarations
+void PopMatrixStacks(unsigned char *v);
+void PushMatrixStacks(unsigned char *v);
+void crt_sub_00540070();
+void crt_sub_00540FD0();
+namespace gbColorQuad { extern int ColorQuadFmt; }
+void LogMessage(const char *fmt, ...);
+
 
 class Logger {
 public:
@@ -29,7 +47,8 @@ int Logger::WinProc_HWND_InputLine(char pData)
   int result; // eax
   unsigned int v4; // ecx
   char *m_szCmdBuf; // ebx
-  int v6; // ecx
+  int strLen; // ecx
+  unsigned char renderBuffer[4];
 
   if ( pData == 96 )
   {
@@ -45,16 +64,16 @@ int Logger::WinProc_HWND_InputLine(char pData)
       {
         case 8:
           result = 0;
-          v6 = strlen(this->m_szCmdBuf);
-          if ( v6 >= 2 )
+          strLen = strlen(this->m_szCmdBuf);
+          if ( strLen >= 2 )
           {
-            *((_BYTE *)&this->m_szCmdBuf2 + v6 + 3) = 0;
-            *((_BYTE *)&this->m_szCmdBuf2 + v6 + 2) = 95;
+            *((unsigned char *)&this->m_szCmdBuf2 + strLen + 3) = 0;
+            *((unsigned char *)&this->m_szCmdBuf2 + strLen + 2) = 95;
           }
           break;
         case 13:
           m_szCmdBuf = this->m_szCmdBuf;
-          *((_BYTE *)&this->m_szCmdBuf2 + strlen(this->m_szCmdBuf) + 3) = 0;
+          *((unsigned char *)&this->m_szCmdBuf2 + strlen(this->m_szCmdBuf) + 3) = 0;
           this->Logger::Write();
           this->Logger::WinProc_HWND_ExecCommand();
           result = 0;
@@ -71,7 +90,7 @@ int Logger::WinProc_HWND_InputLine(char pData)
           v4 = strlen(this->m_szCmdBuf);
           if ( v4 < 0x63 )
           {
-            *((_BYTE *)&this->m_szCmdBuf2 + v4 + 3) = pData;
+            *((unsigned char *)&this->m_szCmdBuf2 + v4 + 3) = pData;
             this->m_szCmdBuf[v4] = 95;
           }
           break;
@@ -81,7 +100,58 @@ int Logger::WinProc_HWND_InputLine(char pData)
   return result;
 }
 
+// [N=1] Render - codegen migration
+int Logger::Render()
+{
+  int v2; // ebp
+  unsigned char renderBuffer[4];
+  int *p_m_nRenderState; // ebx
+  int result; // eax
+
+  unsigned char v6[4]; // [esp+0xC] [ebp-0x10] BYREF
+  int v7; // [esp+0x18] [ebp-0x4]
+
+  v2 = 0;
+  if ( this->m_nRenderMode && this->m_nRenderCount )
+  {
+    PushMatrixStacks(v6);
+    v7 = 0;
+    crt_sub_00540070();
+    if ( gbColorQuad::ColorQuadFmt )
+      qmemcpy(renderBuffer, "\ndd", 3);
+    else
+      qmemcpy(renderBuffer, "dd\n", 3);
+    renderBuffer[3] = 0x80;
+    crt_sub_00540070();
+    crt_sub_00540FD0();
+    crt_sub_00540FD0();
+    p_m_nRenderState = (int *)&this->m_nRenderState;
+    do
+    {
+      if ( strlen((const char *)p_m_nRenderState) )
+        crt_sub_00540FD0();
+      v2 += 16;
+      p_m_nRenderState += 25;
+    }
+    while ( v2 < 272 );
+    v7 = -1;
+    PopMatrixStacks(renderBuffer);
+  return 0;
+  }
+  return result;
+}
+
 // Mock implementations (ensure compilability)
 char *Logger::Write() { return NULL; }
 char *Logger::WinProc_HWND_ExecCommand() { return NULL; }
-int Logger::Render() { return 0; }
+
+
+
+// Mock implementations
+void PopMatrixStacks(unsigned char *v) {}
+void PushMatrixStacks(unsigned char *v) {}
+void crt_sub_00540070() {}
+void crt_sub_00540FD0() {}
+void qmemcpy(void *d, const void *s, int n) {}
+namespace gbColorQuad { int ColorQuadFmt = 0; }
+void LogMessage(const char *fmt, ...) {}
