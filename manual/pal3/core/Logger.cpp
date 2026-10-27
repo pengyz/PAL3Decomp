@@ -42,13 +42,13 @@ public:
 };
 
 // [N=0] WinProc_HWND_InputLine - codegen migration
+// [N=0] WinProc_HWND_InputLine - codegen migration
 int Logger::WinProc_HWND_InputLine(char pData)
 {
   int result; // eax
   unsigned int v4; // ecx
   char *m_szCmdBuf; // ebx
-  int strLen; // ecx
-  unsigned char renderBuffer[4];
+  int v6; // ecx
 
   if ( pData == 96 )
   {
@@ -64,11 +64,11 @@ int Logger::WinProc_HWND_InputLine(char pData)
       {
         case 8:
           result = 0;
-          strLen = strlen(this->m_szCmdBuf);
-          if ( strLen >= 2 )
+          v6 = strlen(this->m_szCmdBuf);
+          if ( v6 >= 2 )
           {
-            *((unsigned char *)&this->m_szCmdBuf2 + strLen + 3) = 0;
-            *((unsigned char *)&this->m_szCmdBuf2 + strLen + 2) = 95;
+            *((unsigned char *)&this->m_szCmdBuf2 + v6 + 3) = 0;
+            *((unsigned char *)&this->m_szCmdBuf2 + v6 + 2) = 95;
           }
           break;
         case 13:
@@ -99,6 +99,8 @@ int Logger::WinProc_HWND_InputLine(char pData)
   }
   return result;
 }
+
+
 
 // [N=1] Render - codegen migration
 int Logger::Render()
