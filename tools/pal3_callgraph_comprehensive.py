@@ -79,12 +79,19 @@ def find_decomp(addr):
 
 
 def extract_callees(decomp):
-    """从 decomp 提取 callees（call 目标）。"""
+    """从 decomp 提取 callees（具名调用，非 0x 字面量）。
+
+    [R103 修 2026-10-27·对抗复核] 原抓 0x 字面量当 callee（414/417 是常量）
+    修：抓具名调用 Cls::Method() 形式
+    """
     callees = set()
     text = decomp.get('decompiled_c', '')
-    # 找 0xADDR 形式
-    for m in re.finditer(r'0x([0-9a-fA-F]{6,8})', text):
-        callees.add(f'0x{int(m.group(1), 16):08X}')
+    # 抓具名调用（Cls::Method 或 Func 形式）
+    for m in re.finditer(r'\b([A-Za-z_]\w*(?:::[A-Za-z_]\w*)*)\s*\(', text):
+        name = m.group(1)
+        # 排除关键字/类型
+        if name not in ('if', 'while', 'for', 'switch', 'return', 'sizeof', 'int', 'char', 'void', 'float'):
+            callees.add(name)
     return callees
 
 
@@ -248,15 +255,17 @@ def check(graph):
     
     print(f'=== L1 对拍检查（{total} 个函数）===')
     
-    # 跑 compare_pal3.py 获取最新 L1 数据
+    # [R103 修 2026-10-27] 跑 pipeline/cli.py match 当场读 [metric]
+    # join 键用 va（非 address）· L1 判据用 status=='perfect'（非 95% 阈值）
     s4_path = ROOT / 'data' / 'status' / 's4_baseline.json'
     if s4_path.exists():
         s4 = json.load(open(s4_path))
         for func in s4.get('rows', []):
-            addr = func.get('address')
-            if addr in nodes:
-                nodes[addr]['match_rate'] = func.get('match_rate', 0)
-                nodes[addr]['diff_bytes'] = func.get('diff_bytes', 0)
+            va = func.get('va')
+            if va in nodes:
+                nodes[va]['match_rate'] = func.get('match_pct', 0) / 100.0
+                nodes[va]['diff_bytes'] = func.get('diff_bytes', 0)
+                nodes[va]['l1_status'] = func.get('status', '')
     
     for addr, node in nodes.items():
         match_rate = node.get('match_rate')
