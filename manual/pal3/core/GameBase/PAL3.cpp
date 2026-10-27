@@ -21,14 +21,14 @@ public:
 // InitVFileSystem (migration from codegen - byte-identical)
 // codegen: ((gbVFileSystem *)&g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
 void * PAL3::InitVFileSystem() {
-    void *result; // eax
+    void *result = NULL; // eax
     ((gbVFileSystem *)g_BaseVFileSystem)->gbVFileSystem::gbVFileSystem();
     return result;
 }
 
 // InitVFileSystem2 (migration - TODO: byte-identical)
 void * PAL3::InitVFileSystem2() {
-    void *result; // eax
+    void *result = NULL; // eax
     // TODO: codegen function body (byte-identical)
     return result;
 }
