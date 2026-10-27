@@ -27,6 +27,8 @@ void LogMessage(const char *fmt, ...);
 
 class tagLoggerCallback { public: char szDesc[40]; };
 
+
+
 class Logger {
 public:
     int m_nCallbackCount;           // +0x0
