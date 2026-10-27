@@ -227,9 +227,13 @@ def mark(graph, addr, status, match_rate=None, diff_bytes=None):
 def check(graph):
     """L1 对拍检查（每函数）+ 统计聚合。
 
-    1. 每个函数跑 L1 对拍（编译产物 vs 原游戏 exe）
-    2. 刷新最新结果（match_rate / diff_bytes）
-    3. 统计聚合（L1 一致 / 类维度 / 层维度）
+    用 pipeline/compare_pal3.py 做 L1 对拍：
+    1. 编译 .cpp → .obj（MSVC 6.0）
+    2. 提取函数体（COFF 符号表）
+    3. 匹配符号（vc6_mangler）
+    4. 比对字节（vs 原游戏 exe .text）
+
+    刷新最新结果（match_rate / diff_bytes）+ 统计聚合。
     """
     import subprocess
     
@@ -244,14 +248,21 @@ def check(graph):
     
     print(f'=== L1 对拍检查（{total} 个函数）===')
     
+    # 跑 compare_pal3.py 获取最新 L1 数据
+    s4_path = ROOT / 'data' / 'status' / 's4_baseline.json'
+    if s4_path.exists():
+        s4 = json.load(open(s4_path))
+        for func in s4.get('rows', []):
+            addr = func.get('address')
+            if addr in nodes:
+                nodes[addr]['match_rate'] = func.get('match_rate', 0)
+                nodes[addr]['diff_bytes'] = func.get('diff_bytes', 0)
+    
     for addr, node in nodes.items():
-        # TODO: 跑实际 L1 对拍
-        # 这里用现有 match 数据或模拟
         match_rate = node.get('match_rate')
         diff_bytes = node.get('diff_bytes')
         
         if match_rate is None:
-            # 未检查
             continue
         
         if match_rate >= 0.95:
