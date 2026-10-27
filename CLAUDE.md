@@ -219,10 +219,14 @@ idb_xrefs(database="<session_id>", address="0x401000")
 | **Phase 2 手工 fix 落盘** | **phase2 retain check** | `python tools/phase2_retain.py check` | 禁直改 `pal3/src`（三重灭失零留存）⇒ `adopt`→改 `phase2/overlay`→`apply`；PASS 才放行 |
 | **probe all 后（自动）** | **链接层盲区探针** | `python pipeline/link_probe.py --check`（已接 `cli.py probe all` 链尾） | 治「S2 只编译不链接」盲区（LNK2005 重复符号 / LNK2001·2019 未解析外部）。棘轮：LNK2005 增长 或 单元未增而 unresolved 增长 ⇒ exit 1 且**不刷新** `data/status/link_census.json`；重锚须 `--rebaseline "<理由>"`。单元增长期 unresolved 增长 = advisory（视野扩大，非退化）|
 
-> **Phase 2 留存机制**（2026-10-15 起）：`pal3/src` 手改会被 codegen 覆盖/rmtree/不被 git
-> 跟踪（三重灭失）⇒ 手工 fix 收编进 `phase2/`（tracked）：`manifest.json`（base_sha256
-> 漂移门：override 漂移 exit 2 fail-loud）+ `overlay/`（fix 副本）。`codegen headers/cpp/all`
-> 末尾自动套用（`--no-retain` 逃生阀）。新增 .cpp 单元须 `new_unit: true` 并刷新 S2 分母
+> **Phase 2 留存机制**（2026-10-15 起 · **2026-10-27 开关翻转**）：`pal3/src` 手改会被 codegen
+> 覆盖/rmtree/不被 git 跟踪（三重灭失）⇒ 手工 fix 收编进 `phase2/`（tracked）：`manifest.json`
+> （base_sha256 漂移门：override 漂移 exit 2 fail-loud）+ `overlay/`（fix 副本）。
+> **overlay 补丁按需启用**：`codegen` 默认**不套用**（纯真身——补丁会让 match/L1/基线读数漂移），
+> `codegen --use-overlay` / `loop --use-overlay` 才套用；`phase2_retain.py apply`（覆盖前备份基座
+> 到 `phase2/base/`）/ `unapply`（还原纯态）秒级切换；`check` 对 ok（补丁在位）与 pure（纯态）
+> 双态 PASS。`probe_census.json` 带 `overlay.applied/pure` 标签，读数必看。
+> 新增 .cpp 单元须 `new_unit: true` 并刷新 S2 分母
 > 门禁数字。详见 `docs/knowledge/gotcha_pal3src_fix_threefold_eviction.md`。
 
 ### ⚠️ 衰退纪律：衰退 ≠ 必然回撤（2026-10-16 新增）

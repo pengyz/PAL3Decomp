@@ -1003,6 +1003,7 @@ def cmd_loop(argv):
         python pipeline/cli.py loop                        # 全链路
         python pipeline/cli.py loop --stages probe,match   # 只跑部分
         python pipeline/cli.py loop --dry-run              # 只打印计划
+        python pipeline/cli.py loop --use-overlay           # codegen 后套用 phase2 补丁（编译攻坚）
         python pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 35
     """
     from pipeline import preflight
@@ -1014,6 +1015,7 @@ def cmd_loop(argv):
         sys.exit(0)
 
     stages = LOOP_ORDER
+    use_overlay = '--use-overlay' in argv
     for i, a in enumerate(argv):
         if a == '--stages' and i + 1 < len(argv):
             stages = [x.strip() for x in argv[i + 1].split(',') if x.strip()]
@@ -1053,6 +1055,10 @@ def cmd_loop(argv):
     report = {'stages': {}, 'expect': exp, 'tolerated': [], 'failed': []}
     for name in stages:
         cmd = [sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'), name] + LOOP_STAGES[name]
+        # [2026-10-27] overlay 补丁按需启用：--use-overlay 透传给 codegen 阶段。
+        # 默认纯真身——overlay 补丁会让 match/L1/基线读数漂移（goal 批注法的代价显式化）。
+        if use_overlay and name == 'codegen':
+            cmd.append('--use-overlay')
         print('=' * 72)
         print('[loop] %s: %s' % (name, ' '.join(cmd[2:])))
         t0 = time.time()

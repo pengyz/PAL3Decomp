@@ -31,11 +31,14 @@
 
 | 层 | 位置 | 语义 | 套用点 | 进 probe 测量？ |
 |---|---|---|---|---|
-| workaround 补丁 | `phase2/overlay/`（已有，manifest base_sha256 漂移门） | 文本级 fix，落进 pal3/src | codegen 尾（已有） | ✓（测的是打补丁后的真身） |
+| workaround 补丁 | `phase2/overlay/`（已有，manifest base_sha256 漂移门 + `base/` 基座备份） | 文本级 fix，落进 pal3/src | **按需启用**（2026-10-27 开关翻转）：`codegen --use-overlay` / `loop --use-overlay` / `phase2_retain apply`；`unapply` 还原纯态 | ✓ 但读数**必须带 `overlay.applied/pure` 标签**（probe_census）；**验证/基线锚纯态** |
 | **stub 层** | `phase2/stubs/`（新增） | TU 级替换：声明 + 空函数体 | **仅 link-build** | ✗ **永不进入**（probe 只测真身） |
 
 > ⚠️ 铁律：stub 不得写入 pal3/src。否则 S2 量到的是 stub ⇒ 假绿（「92 空 TU」教训重演）。
 > `cli.py probe` 语义不变；mock 构建是**另一条命令**（不叫「编译通过」）。
+> ⚠️ **补丁态数据漂移**（2026-10-27 实测）：overlay 补丁会让 match/L1/回归对账读数漂移
+> （纯态 124/214 被补丁态基线 132/214 误判「回归」）⇒ 默认纯真身，补丁**按需启用**；
+> `check` 对 ok（补丁在位）与 pure（纯态）双态 PASS。
 
 ### 3.2 stub 形态
 

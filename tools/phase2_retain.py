@@ -37,11 +37,15 @@ phase2/
 
 ## 子命令
 
-    apply  [--root DIR] [--phase2 DIR]   # codegen 后：漂移门 → overlay 覆盖 → 写 census
-    check  [...]                         # 后置自校验：逐条目 sha256(pal3/src)==sha256(overlay)
-    adopt  <relpath> [...]               # 收编当前 pal3/src 文件为 fix 基底（拷入 overlay + 记 base hash）
-    diff   [<relpath>] [...]             # overlay vs 当前 pal3/src 的 unified diff
-    rebase [<relpath>] [...]             # 人工复核后把 base_sha256 刷新为 census 里的新 hash
+    apply   [--root DIR] [--phase2 DIR]  # 漂移门 → overlay 覆盖 → 写 census（覆盖前备份基座到 base/）
+    unapply [...]                        # 还原纯态：base 备份拷回 pal3/src（按需关闭补丁，2026-10-27）
+    check   [...]                        # 后置自校验：ok(补丁在位)/pure(纯态) 均 PASS，其余 FAIL
+    adopt   <relpath> [...]              # 收编当前 pal3/src 文件为 fix 基底（拷入 overlay + 记 base hash）
+    diff    [<relpath>] [...]            # overlay vs 当前 pal3/src 的 unified diff
+    rebase  [<relpath>] [...]            # 人工复核后把 base_sha256 刷新为 census 里的新 hash
+
+【2026-10-27 开关翻转】overlay 补丁**按需启用**：默认纯真身（管线验证读数不漂移），
+`codegen --use-overlay` / `apply` 启用，`unapply` 关闭（秒级切换）。
 
 退出码：0 成功 · 1 check 失败/用法错 · 2 override 漂移（fail-loud）。
 
@@ -68,6 +72,8 @@ EXIT_DRIFT = 2
 CENSUS_NAME = 'base_census.json'
 MANIFEST_NAME = 'manifest.json'
 OVERLAY_DIR = 'overlay'
+# [2026-10-27] base 备份目录：apply 时备份基座，unapply 还原纯态用（gitignore）
+BASE_DIR = 'base'
 
 
 # ─────────────────────────── 纯函数层 ───────────────────────────
@@ -186,29 +192,37 @@ def plan_check(manifest, root_hashes, overlay_hashes):
     """纯函数：后置自校验计划（防回退断言 ①）。
 
     返回 dict:
-      ok:      [rel]   sha256(pal3/src) == sha256(overlay) 的条目
+      ok:      [rel]   sha256(pal3/src) == sha256(overlay) 的条目（补丁在位）
+      pure:    [rel]   sha256(pal3/src) == base_sha256 的条目（纯态/unapplied，2026-10-27）
       missing: [rel]   pal3/src 侧缺失（被 codegen 冲掉/手删）
-      mismatch:[(rel, want, got)] 两侧 hash 不等（fix 未应用或被改）
+      mismatch:[(rel, want, got)] 两侧 hash 不等且非纯态（fix 未应用或被改）
       orphans: [rel]   overlay 有文件但 manifest 无条目（脏副本）
       no_overlay:[rel] manifest 有条目但 overlay 缺文件（记录损坏）
+
+    【2026-10-27 开关翻转】overlay 补丁按需启用（apply/unapply 切换）⇒
+    「纯态」（root==base_sha256）是合法状态，不算 mismatch。
     """
-    ok, missing, mismatch = [], [], []
+    ok, pure, missing, mismatch = [], [], [], []
     entries = manifest.get('entries', {})
     for rel in sorted(entries):
+        e = entries[rel]
         want = overlay_hashes.get(rel)
         got = root_hashes.get(rel)
+        base = e.get('base_sha256')
         if want is None:
             missing.append(rel)   # 占位：overlay 缺 → no_overlay 更精确（下面统一）
         elif got is None:
             missing.append(rel)
         elif got == want:
             ok.append(rel)
+        elif base is not None and got == base:
+            pure.append(rel)
         else:
             mismatch.append((rel, want, got))
     no_overlay = [r for r in sorted(entries) if r not in overlay_hashes]
     orphans = [r for r in sorted(overlay_hashes) if r not in entries]
     missing = [r for r in missing if r not in no_overlay]
-    return {'ok': ok, 'missing': missing, 'mismatch': mismatch,
+    return {'ok': ok, 'pure': pure, 'missing': missing, 'mismatch': mismatch,
             'orphans': orphans, 'no_overlay': no_overlay}
 
 
@@ -232,6 +246,7 @@ class Ctx(object):
         self.root = root
         self.phase2 = phase2
         self.overlay = os.path.join(phase2, OVERLAY_DIR)
+        self.base = os.path.join(phase2, BASE_DIR)
         self.manifest_path = os.path.join(phase2, MANIFEST_NAME)
         self.census_path = os.path.join(phase2, CENSUS_NAME)
 
@@ -265,13 +280,19 @@ def cmd_apply(ctx, note=''):
         print('[phase2-retain] 漂移 %d 条 ⇒ exit 2（fail-loud）'
               % len(plan['drift']))
         return EXIT_DRIFT
-    for rel, _base in plan['actions']:
+    for rel, base in plan['actions']:
         src = os.path.join(ctx.overlay, rel)
         if not os.path.exists(src):
             print('[phase2-retain][FAIL] %s — overlay 副本缺失' % rel)
             return EXIT_FAIL
         dst = os.path.join(ctx.root, rel)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
+        # [2026-10-27] 覆盖前备份基座 → phase2/base/（unapply 还原纯态的依据）
+        if os.path.exists(dst):
+            bk = os.path.join(ctx.base, rel)
+            os.makedirs(os.path.dirname(bk), exist_ok=True)
+            if not os.path.exists(bk) or (base and sha256_file(bk) != base):
+                shutil.copyfile(dst, bk)
         shutil.copyfile(src, dst)
         print('[phase2-retain] applied %s' % rel)
     print('[phase2-retain] apply 完成：%d 条' % len(plan['actions']))
@@ -287,6 +308,8 @@ def cmd_check(ctx):
     bad = False
     for rel in plan['ok']:
         print('[phase2-retain][OK] %s' % rel)
+    for rel in plan['pure']:
+        print('[phase2-retain][pure] %s — 纯态在位（补丁未启用，合法）' % rel)
     for rel in plan['missing']:
         bad = True
         print('[phase2-retain][FAIL] %s — pal3/src 侧缺失（被 codegen 冲掉/手删？）' % rel)
@@ -300,11 +323,60 @@ def cmd_check(ctx):
     for rel in plan['orphans']:
         bad = True
         print('[phase2-retain][FAIL] %s — overlay 游离文件（manifest 无条目）' % rel)
-    print('[phase2-retain] check %s（ok %d · missing %d · mismatch %d · '
+    print('[phase2-retain] check %s（ok %d · pure %d · missing %d · mismatch %d · '
           'no_overlay %d · orphan %d）'
-          % ('FAIL' if bad else 'PASS', len(plan['ok']), len(plan['missing']),
-             len(plan['mismatch']), len(plan['no_overlay']), len(plan['orphans'])))
+          % ('FAIL' if bad else 'PASS', len(plan['ok']), len(plan['pure']),
+             len(plan['missing']), len(plan['mismatch']),
+             len(plan['no_overlay']), len(plan['orphans'])))
     return EXIT_FAIL if bad else EXIT_OK
+
+
+def cmd_unapply(ctx):
+    """[2026-10-27] 还原纯态：把 base 备份拷回 pal3/src（按需关闭补丁）。
+
+    语义与 apply 对称：apply=补丁启用（root←overlay），unapply=补丁关闭（root←base）。
+    new_unit 条目无纯态（codegen 不生成该单元）⇒ 跳过并注明。
+    base 备份缺失/与 manifest base_sha256 不符 ⇒ fail-loud（不猜、不删）。
+    """
+    manifest = load_manifest(ctx.manifest_path)
+    if not manifest['entries']:
+        print('[phase2-retain] manifest 空 ⇒ no-op')
+        return EXIT_OK
+    if not os.path.isdir(ctx.root):
+        print('[phase2-retain] root 不存在：%s ⇒ no-op' % ctx.root)
+        return EXIT_OK
+    root_h = ctx.root_hashes()
+    restored = skipped = failed = 0
+    for rel in sorted(manifest['entries']):
+        e = manifest['entries'][rel]
+        if e.get('new_unit'):
+            print('[phase2-retain][SKIP] %s — new_unit 无纯态（codegen 不生成）' % rel)
+            skipped += 1
+            continue
+        got = root_h.get(rel)
+        base = e.get('base_sha256')
+        if got is not None and base and got == base:
+            print('[phase2-retain][pure] %s — 已是纯态（no-op）' % rel)
+            skipped += 1
+            continue
+        bk = os.path.join(ctx.base, rel)
+        if not os.path.exists(bk):
+            failed += 1
+            print('[phase2-retain][FAIL] %s — base 备份缺失（phase2/base/%s）⇒ 无法还原'
+                  % (rel, rel))
+            continue
+        if base and sha256_file(bk) != base:
+            failed += 1
+            print('[phase2-retain][FAIL] %s — base 备份与 manifest base_sha256 不符 '
+                  '⇒ 先人工复核（adopt/rebase）' % rel)
+            continue
+        dst = os.path.join(ctx.root, rel)
+        shutil.copyfile(bk, dst)
+        restored += 1
+        print('[phase2-retain] restored %s' % rel)
+    print('[phase2-retain] unapply 完成：还原 %d · 跳过 %d · 失败 %d'
+          % (restored, skipped, failed))
+    return EXIT_FAIL if failed else EXIT_OK
 
 
 def cmd_adopt(ctx, rel):
@@ -390,6 +462,7 @@ def main(argv=None):
     ap.add_argument('--phase2', default=DEFAULT_PHASE2)
     sub = ap.add_subparsers(dest='cmd')
     sub.add_parser('apply')
+    sub.add_parser('unapply')
     sub.add_parser('check')
     p = sub.add_parser('adopt')
     p.add_argument('relpath')
@@ -401,6 +474,8 @@ def main(argv=None):
     ctx = Ctx(os.path.abspath(args.root), os.path.abspath(args.phase2))
     if args.cmd == 'apply':
         return cmd_apply(ctx)
+    if args.cmd == 'unapply':
+        return cmd_unapply(ctx)
     if args.cmd == 'check':
         return cmd_check(ctx)
     if args.cmd == 'adopt':

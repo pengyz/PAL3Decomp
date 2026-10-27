@@ -235,6 +235,30 @@ def main():
         except (json.JSONDecodeError, OSError, UnicodeDecodeError):
             pass
     report['generated_at'] = datetime.now().isoformat(timespec='seconds')
+    # [2026-10-27] overlay 补丁状态标签：读数是否含补丁必须显式（防验证数据漂移）。
+    # applied=补丁在位（读数含手工 fix）· pure=纯态（读数=codegen 真身）。
+    try:
+        import hashlib
+        _mf = os.path.join(REPO, 'phase2', 'manifest.json')
+        _ovd = os.path.join(REPO, 'phase2', 'overlay')
+        _applied, _pure = [], []
+        if os.path.exists(_mf):
+            def _sha(p):
+                return hashlib.sha256(open(p, 'rb').read()).hexdigest()
+            _entries = json.load(open(_mf, encoding='utf-8')).get('entries', {})
+            for rel, e in sorted(_entries.items()):
+                rp = os.path.join(REPO, 'pal3', 'src', rel)
+                op = os.path.join(_ovd, rel)
+                if not (os.path.exists(rp) and os.path.exists(op)):
+                    continue
+                rh, oh = _sha(rp), _sha(op)
+                if rh == oh:
+                    _applied.append(rel)
+                elif e.get('base_sha256') and rh == e['base_sha256']:
+                    _pure.append(rel)
+        report['overlay'] = {'applied': _applied, 'pure': _pure}
+    except Exception as _e:
+        report['overlay'] = {'applied': [], 'pure': [], 'error': str(_e)}
     report['compiler'] = ('MSVC6 SP0 native' if NATIVE_WIN
                           else 'MSVC6 SP0 via wine') + ' (/TP /c /W3)'
 

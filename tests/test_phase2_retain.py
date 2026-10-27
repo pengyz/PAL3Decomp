@@ -158,6 +158,46 @@ def test_pin_drift_skips_without_fail(tmp_path):
     assert pr.cmd_apply(ctx) == pr.EXIT_OK      # pin ⇒ 跳过不 fail
 
 
+# ── ⑤ [2026-10-27 开关翻转] pure 桶 + unapply 还原 ──────────────────
+def test_plan_check_pure_bucket():
+    """纯态（root==base_sha256）是合法状态，不算 mismatch（补丁按需启用）。"""
+    manifest = {'entries': {
+        'on.cpp': {'base_sha256': 'BASE1'},
+        'off.cpp': {'base_sha256': 'BASE2'},
+        'bad.cpp': {'base_sha256': 'BASE3'}}}
+    root_h = {'on.cpp': 'NEW', 'off.cpp': 'BASE2', 'bad.cpp': 'GARBAGE'}
+    ov_h = {'on.cpp': 'NEW', 'off.cpp': 'NEW', 'bad.cpp': 'NEW'}
+    plan = pr.plan_check(manifest, root_h, ov_h)
+    assert plan['ok'] == ['on.cpp']            # 补丁在位
+    assert plan['pure'] == ['off.cpp']         # 纯态（unapplied）
+    assert plan['mismatch'] == [('bad.cpp', 'NEW', 'GARBAGE')]
+
+
+def test_end_to_end_apply_unapply_cycle(tmp_path):
+    """apply 备份基座 → unapply 还原纯态 → 再 apply 重新启用（秒级切换）。"""
+    ctx = _ctx(tmp_path)
+    _mk(tmp_path, 'src/Mod/File.cpp', 'GEN\n')
+    assert pr.cmd_adopt(ctx, 'Mod/File.cpp') == pr.EXIT_OK
+    _mk(tmp_path, 'phase2/overlay/Mod/File.cpp', 'GEN\nFIXED\n')
+    # apply ⇒ 补丁在位 + base 备份生成
+    assert pr.cmd_apply(ctx) == pr.EXIT_OK
+    assert open(os.path.join(ctx.root, 'Mod/File.cpp')).read() == 'GEN\nFIXED\n'
+    assert os.path.exists(os.path.join(ctx.base, 'Mod/File.cpp'))
+    # unapply ⇒ 还原纯态（root==base）⇒ check 以 pure PASS
+    assert pr.cmd_unapply(ctx) == pr.EXIT_OK
+    assert open(os.path.join(ctx.root, 'Mod/File.cpp')).read() == 'GEN\n'
+    plan = pr.plan_check(pr.load_manifest(ctx.manifest_path),
+                         ctx.root_hashes(), ctx.overlay_hashes())
+    assert plan['pure'] == ['Mod/File.cpp']
+    assert pr.cmd_check(ctx) == pr.EXIT_OK
+    # 幂等：再 unapply 是 no-op
+    assert pr.cmd_unapply(ctx) == pr.EXIT_OK
+    # 再 apply ⇒ 补丁重新在位
+    assert pr.cmd_apply(ctx) == pr.EXIT_OK
+    assert open(os.path.join(ctx.root, 'Mod/File.cpp')).read() == 'GEN\nFIXED\n'
+    assert pr.cmd_check(ctx) == pr.EXIT_OK
+
+
 if __name__ == '__main__':
     import pytest
     raise SystemExit(pytest.main([__file__, '-v']))
