@@ -113,13 +113,15 @@ def _disasm_lines(addr, exe_path, window=WINDOW):
 
 
 def get_opcodes(addr, exe_path, window=WINDOW):
-    """汇编操作码序列（寄存器名归一化，忽略寄存器分配）。"""
+    """汇编操作码序列（寄存器名归一化，忽略 nop）。"""
     opcodes = []
     for parts in _disasm_lines(addr, exe_path, window):
         if len(parts) >= 3:
             asm = parts[2].strip()
             asm = re.sub(r'%\w+', '%REG', asm)
-            opcodes.append(asm)
+            # 忽略 nop（编译器填充）
+            if asm != 'nop':
+                opcodes.append(asm)
     return opcodes
 
 
