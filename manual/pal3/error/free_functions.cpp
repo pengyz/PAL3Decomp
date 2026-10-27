@@ -30664,6 +30664,109 @@ void InitUIQuadManagerSingleton()
   crt_sub_00541490(&((TextureLibDataBase *)&stru_1894B78)->_isLoadTLI + 4);
 }
 
+// 0x00541900
+int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+  HWND WindowA; // esi
+  BOOL i; // eax
+  char *v7; // eax
+  void *v8; // esi
+  double v9; // st7
+  PAL3 *v10; // ecx
+  int v11; // edx
+  CCBSystem *v12; // edi
+  HWND ActiveWindow; // eax
+  PAL3 *v14; // ecx
+  PAL3 *v15; // ecx
+  int v16; // [esp+0x0] [ebp-0x698] BYREF
+  CHAR Text[256]; // [esp+0x40C] [ebp-0x28C] BYREF
+  char Buffer[324]; // [esp+0x50C] [ebp-0x18C] BYREF
+  struct tagMSG Msg; // [esp+0x650] [ebp-0x48] BYREF
+  int v20; // [esp+0x66C] [ebp-0x2C]
+  void *v21; // [esp+0x670] [ebp-0x28]
+  int v22; // [esp+0x678] [ebp-0x20]
+  char v23; // [esp+0x680] [ebp-0x18]
+  char v24; // [esp+0x681] [ebp-0x17]
+  char v25; // [esp+0x682] [ebp-0x16]
+  HHOOK hhk; // [esp+0x684] [ebp-0x14]
+  int *v27; // [esp+0x688] [ebp-0x10]
+  int v28; // [esp+0x694] [ebp-0x4]
+  float hInstancea; // [esp+0x6A0] [ebp+0x8]
+
+  v27 = (int *)&v16;
+  WindowA = FindWindowA(WindowName, WindowName);
+  if ( IsWindow(WindowA) )
+  {
+    ::ShowWindow(WindowA, 1);
+    return 0;
+  }
+  ::hInstance = hInstance;
+  hhk = SetWindowsHookExA(13, fn, hInstance, 0);
+  memset(&Data, 0, 0x104u);
+  v28 = 0;
+  if ( !(unsigned __int8)crt_sub_00541C40("software\\softstar\\pal3", "CDriver", &Data) )
+    crt_sub_00541860();
+  if ( !strrchr((const char *)&Data, 92) )
+    strcat((char *)&Data, "\\");
+  sprintf(Buffer, "%sMovie", (const char *)&Data);
+  for ( i = CheckDirectoryExists(Buffer); !i; i = CheckDirectoryExists(Buffer) )
+  {
+    sprintf(Text, "Please Insert Disc4 to Dirver %c:", (char)Data);
+    if ( MessageBoxA(0, Text, "Pal3", 0x41u) == 2 )
+      return 0;
+  }
+  memset(Filename, 0, sizeof(Filename));
+  GetModuleFileNameA(0, Filename, 0x104u);
+  v7 = strrchr(Filename, 92);
+  if ( v7 )
+    *v7 = 0;
+  sub_404800(hInstance);
+  gbUpdateCurTime();
+  v20 = 20;
+  *(_QWORD *)&dbl_1895070 = __PAIR64__(HIDWORD(g_CurrentTime), LODWORD(g_CurrentTime));
+  v8 = (void *)operator new(0x50u);
+  v21 = (void *)v8;
+  memset(v8, 0, 0x50u);
+  v22 = 0;
+  v23 = 1;
+  v24 = 0;
+  v25 = 0;
+  LOBYTE(v28) = 1;
+  while ( 1 )
+  {
+    if ( !PeekMessageA(&Msg, 0, 0, 0, 0) )
+      goto LABEL_20;
+    if ( !GetMessageA(&Msg, 0, 0, 0) )
+      break;
+    TranslateMessage(&Msg);
+    DispatchMessageA(&Msg);
+LABEL_20:
+    gbUpdateCurTime();
+    v9 = g_CurrentTime - dbl_1895070;
+    v10 = (PAL3 *)LODWORD(g_CurrentTime);
+    v11 = HIDWORD(g_CurrentTime);
+    LODWORD(dbl_1895070) = LODWORD(g_CurrentTime);
+    HIDWORD(dbl_1895070) = v11;
+    if ( g_nPAL3_5833B8
+      || (v12 = g_pCBSystem, ActiveWindow = GetActiveWindow(), (((CCBSystem *)v12))->CCBSystem::ProcUseItem(ActiveWindow)) )
+    {
+      hInstancea = v9;
+      (((PAL3 *)v10))->PAL3::Update(hInstancea);
+      (((PAL3 *)v14))->PAL3::Render();
+    }
+    else
+    {
+      Sleep(0x64u);
+    }
+  }
+  if ( v8 )
+    operator delete(v8);
+  v28 = -1;
+  UnhookWindowsHookEx(hhk);
+  (((PAL3 *)v15))->PAL3::Destroy();
+  return Msg.wParam;
+}
+
 // 0x0055CCE4
 // positive sp value has been detected, the output may be wrong!
 int NextRole(int *a1)

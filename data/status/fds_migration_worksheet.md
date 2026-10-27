@@ -13,7 +13,7 @@
 
 ## 优先级
 
-**N=0（WinProc）> N=1（33 个）> N=2（427 个）**
+**N=0（WinMain）> N=1（33 个）> N=2（427 个）**
 
 ## 工作表
 
@@ -21,7 +21,7 @@
 
 | # | 地址 | 符号 | 状态 | 语义 | 字节 | codegen 参考 |
 |---|---|---|---|---|---|---|
-| 1 | 0x00541900 | WinMain | pending | - | None | pal3/src/... |
+| 1 | 0x00541900 | WinMain | migrated | - | None | pal3/src/free_functions.cpp:26843 → manual/pal3/error/free_functions.cpp（2026-10-27 搬移；对拍 pending） |
 
 ### N=1（33 个）
 
