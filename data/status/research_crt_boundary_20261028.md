@@ -256,3 +256,9 @@ export 发现新 unnamed/新地址函数
 | 冤户 4 条=G | §3.3：0x5414A0(UICursor)/0x541860(CD)/0x541C40(registry) 反编译+caller |
 | start=CRT 启动 | §3.3：0x55507C 反编译（WinMainCRTStartup 序列） |
 | 名字误挂 | §3.3/§4.3：0x43A690、0x509080、0x509090 实录 |
+
+---
+
+## 【勘误 2026-10-28 · DX 对抗复核】（review_dx_static_boundary_20261028.md）
+
+- :113/:115 将 `push 1; call` 13B 桩标「scalar deleting destructor thunk」**误**——call 目标是 `_D3DXCpuOptimizations`，正名应为 **「PSGP 惰性初始化桩」**（D3DX9 调度面）。sub_542xxx 簇归属 D3DX9（非 gbEngine）已在正篇 D1 勘定。

@@ -208,3 +208,10 @@ SEH 6A FF 68..          筐滥用即混淆两者）
 ---
 
 *附：本报告全部 IDA 查询经 idapro MCP（session 278944bc）只读进行；未修改 IDB/标注/管线。字节证据均可按地址复验。*
+
+---
+
+## 【勘误 2026-10-28 · DX 对抗复核终裁】（review_dx_static_boundary_20261028.md）
+
+- **槽位语义标签双证伪**（:83/:143 涉及）：「槽[7]=矩阵×向量变换（D3DXVec3TransformCoord）、槽[35]=矩阵乘法（D3DXMatrixMultiply）」**错**。字节+反编译终裁：槽[7]@0x5450B5=`c_D3DXVec3Normalize`(157B, dot+1/sqrt)、槽[35]@0x544777=`c_D3DXQuaternionSlerp`(227B, atan2/sin 球面插值)；真 `D3DXMatrixMultiply` 在**槽#3 @0x543098**（566B）、真 `D3DXVec3TransformCoord` 在**槽#10 @0x545152**（188B）。命名以 d3dx9.lib 符号字节配对为准。
+- 其余 T3/T4 定性（PSGP 静态面、(c) 裁决）经复核 CONFIRMED 不变。
