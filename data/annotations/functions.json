@@ -3357,5 +3357,20 @@
     "signature": "D3DXQUATERNION *__stdcall(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t)",
     "source": "[T1 修 2026-10-28·A 级] j_D3DXMatrixMultiply 错名退役：PSGP 跳板 jmp [0x609134]，槽#35 default=0x544777 c_D3DXQuaternionSlerp（227B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXQuaternionSlerp（_D3DXQuaternionSlerp@16，lib_relink_ok 路由）| evidence: dx_static §2.2 + 调用方 c_D3DXQuaternionSquad Slerp×3 对应 d3dx9math.h | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（同上） | [修] declaration_only=真（同上）",
     "declaration_only": true
+  },
+  "0x005414A0": {
+    "name": "PAL3_LoadUICursor",
+    "signature": "void __thiscall(this)",
+    "source": "[T2 2026-10-28·G 冤户] UICursor 装载（235B SEH+\"ui\\cursor\\jt.tga\"+OpenBaseFile，thiscall mov ebp,ecx；caller sub_404800）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
+  },
+  "0x00541860": {
+    "name": "PAL3_FindCDRomDrive",
+    "signature": "int __cdecl()",
+    "source": "[T2 2026-10-28·G 冤户] CD 盘扫描（118B sprintf %c:\\\\ + GetDriveTypeA==5；caller WinMain@0x5419A7）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
+  },
+  "0x00541C40": {
+    "name": "PAL3_ReadRegistryStr",
+    "signature": "int __cdecl()",
+    "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
   }
 }
