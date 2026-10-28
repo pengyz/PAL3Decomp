@@ -25,7 +25,8 @@ _GB_REF_PARAM_FUNCS = {
     'IsColQuad': {0, 1, 2},
     'IsColSphere': {0},
     'IsColTriangle': {0, 1, 2, 3},
-    'GetAABBox': {0},
+    'gbOBBox::GetAABBox': {0},  # [C8·B 修补条 2026-10-14 落表] 跨类形参形态相反：gbOBBox=AAU 引用形留表；
+    # gbVisNode/gbGeomNode=PAU 指针形出表（裸键曾误解引用实参 ⇒ ScreenEffectMgr C2664）
     'GetSphere': {0},
     'GetCollideOBB': {0},
     'SetPosition': {0},
