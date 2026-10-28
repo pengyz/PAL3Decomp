@@ -1956,7 +1956,7 @@
   "0x0043DE40": {
     "name": "Destroy__ovl_03",
     "signature": "void __fastcall(int self)",
-    "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（25×槽3+0x56B898 槽6+双命中表）；vtable 同形簇实证（slot0/2/4=0x445e70/0x445c60/0x445b90 全同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（27 类同体 override 簇，UIWnd 本体不 override）。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high"
+    "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high"
   },
   "0x0051A880": {
     "name": "CCBItemWindow::CCBItemWindow_Destroy",
