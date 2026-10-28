@@ -68,3 +68,18 @@ def test_c2_stage5_rewired_identity():
     assert _s5mod._fix_ref_params is _rp._fix_ref_params
     assert _s5mod._build_var_types is _rp._build_var_types
     assert _s5mod._GB_REF_PARAM_TYPES is _rp._GB_REF_PARAM_TYPES
+
+
+def test_e1_noctx_degradation_absolute():
+    """D0' 绝对锁（设计 T2）：无 ctx 时 Case2 对裸标识符补 * 的退化形为逐案钉死。
+    C3 启用 ctx 后此面须收窄——断言变化即 D0' 门生效证据，禁静默改判。"""
+    assert _fix_ref_params('obj->GetAABBox(pBox);') == 'obj->GetAABBox(*pBox);'
+    assert _fix_ref_params('Rotate(v10, v15);') == 'Rotate(v10, v15);'   # 元数感知：双参位不动
+    assert _fix_ref_params('obj->Translate((T*)&x);') == 'obj->Translate(*(T*)&x);'
+
+
+def test_e2_tail_fold_idempotent():
+    """T5 明文锁：尾折叠步自身幂等。"""
+    once = re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', 'w = h->_tail_000;')
+    assert re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', once) == once
+    assert _fix_ref_params(_fix_ref_params('w = h->_tail_000;')) == _fix_ref_params('w = h->_tail_000;')
