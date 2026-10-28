@@ -65,10 +65,13 @@ def test_empty_free_set_noop():
 
 
 def test_real_free_func_names_loaded():
-    """实测：free_functions.h 的自由函数名能被收集（401 个），且含 MoveToAbsolute"""
+    """实测：free_functions.h 的自由函数名能被收集（400+ 个），且含 WinMain。
+    [T1 修 2026-10-28] 锚名 MoveToAbsolute ⇒ WinMain：前者经 R91 重归属已转
+    UIWnd 方法（生成源双零命中，stash 复测实证为既有失败非本次回归）；
+    WinMain 为已证自由函数（b343d6cfe），锚更稳。"""
     names = _load_free_func_names()
     assert len(names) > 100, 'free_functions.h 应收集到上百个自由函数名'
-    assert 'MoveToAbsolute' in names
+    assert 'WinMain' in names
 
 
 def test_in_string_ignored():

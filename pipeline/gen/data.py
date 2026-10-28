@@ -10,6 +10,37 @@ import struct as _struct
 from pathlib import Path
 
 
+# [T1 修 2026-10-28·病灶层三问实证] 自由函数 decl 合成分类器。
+# 原内联判据仅认 __thiscall/__cdecl/__stdcall：①__fastcall 静默落空档
+# （Destroy__ovl_03 ⇒ 无声明 ⇒ 10 单元 C2065）②名字插在 cc 与 `(` 之间的形
+# （`int __thiscall Destroy(int nMode)`）三正则皆不匹配 ⇒ 同样静默丢弃。
+# __fastcall 是唯一 ABI 等价自由形（ecx 传首参=this 入口；MSVC6 禁自由 __thiscall）。
+_FREE_SIG_CC_RE = re.compile(r'^(.+?)\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s*\((.*)\)$')
+# decomp 渲染名字夹在 cc 与 ( 之间（`void __fastcall Destroy__ovl_03(int self)`）——同样合法输入
+_FREE_SIG_CC_NAMED_RE = re.compile(r'^(.+?)\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s+~?[A-Za-z_]\w*\s*\((.*)\)$')
+
+
+def free_sig_decl(name, sig):
+    """自由函数前向声明合成：返回 decl 串；不适用（无 cc / 名字夹在 cc 与 ( 间）⇒ None。
+
+    约定：sig 形如 `ret __cc(params)`（cc 与 `(` 之间不得有名字——名字取 name 字段）。
+    __thiscall 丢 cc（非法于自由函数）且 this→_this；__cdecl 丢 cc（默认约定）；
+    __stdcall/__fastcall 保 cc（合法于自由函数；fastcall=ABI 等价载体）。
+    """
+    m = _FREE_SIG_CC_RE.match(sig) or _FREE_SIG_CC_NAMED_RE.match(sig)
+    if not m:
+        return None
+    ret = re.sub(r'\bvirtual\s+', '', m.group(1).strip())
+    cc = m.group(2)
+    params = m.group(3).strip() or 'void'
+    if cc == '__thiscall':
+        params = re.sub(r'\bthis\b', '_this', params)
+        return '%s %s(%s)' % (ret, name, params)
+    if cc == '__cdecl':
+        return '%s %s(%s)' % (ret, name, params)
+    return '%s %s %s(%s)' % (ret, cc, name, params)
+
+
 class DataStore:
     """All annotation + binary resources needed by codegen transforms."""
 
@@ -468,27 +499,11 @@ class DataStore:
                     # Parse signature: "ret __cc(params)"
                     # Strip 'virtual' from free function signatures (Hex-Rays adds it
                     # for vtable-related thunks, but free functions cannot be virtual).
-                    if '__thiscall' in _sig:
-                        m = _re2.match(r'^(.+?)\s*__thiscall\s*\((.*)\)$', _sig)
-                        if m:
-                            ret = m.group(1).strip()
-                            ret = _re2.sub(r'\bvirtual\s+', '', ret)
-                            params = m.group(2).strip()
-                            if not params: params = 'void'
-                            params = _re2.sub(r'\bthis\b', '_this', params)
-                            self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
-                    elif '__cdecl' in _sig or '__stdcall' in _sig:
-                        m = _re2.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*\((.*)\)$', _sig)
-                        if m:
-                            ret = m.group(1).strip()
-                            ret = _re2.sub(r'\bvirtual\s+', '', ret)
-                            cc = m.group(2)
-                            params = m.group(3).strip()
-                            if not params: params = 'void'
-                            if cc == '__cdecl':
-                                self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
-                            else:
-                                self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
+                    # [T1 修 2026-10-28] 分类器抽出为 free_sig_decl（补 __fastcall 空档，
+                    # 名字夹 cc 与 ( 间的形明确不适用——旧行为为静默丢弃，现为显式 None）
+                    _decl = free_sig_decl(_name, _sig)
+                    if _decl is not None:
+                        self.free_func_sigs[_name] = _decl
 
         # [T27] 裸名方法的 method_sigs 喂入（补挂账：feed 断点）：注解
         # structs/*.json 的 methods 条目名多为**裸名**（ScriptPoolPage_Alloc /
