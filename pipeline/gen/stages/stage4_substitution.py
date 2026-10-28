@@ -1850,7 +1850,7 @@ def _is_class_pointer_type(t):
     return kind == 'pointer' and bool(cls)
 
 
-def _call_return_type(node):
+def _node_call_return_type(node):
     """call_expression → 返回类型文本（只认注解方法签名；解析不出返回 ''）。"""
     func = node.child_by_field_name('function')
     if func is None:
@@ -1938,7 +1938,7 @@ def _collect_ptr_disguise_edits(code_bytes, tree, ctx):
                         rt = _expr_type(right, locals_, ctx)
                         rhs_ok = rt[0] == 'pointer' and bool(rt[2])
                         if not rhs_ok and right.type == 'call_expression':
-                            ret = _call_return_type(right)
+                            ret = _node_call_return_type(right)
                             rhs_ok = bool(ret) and _is_class_pointer_type(ret)
                         if rhs_ok:
                             # ③ 同名局部变量二进制步长 4（实证白名单 + 步进形）

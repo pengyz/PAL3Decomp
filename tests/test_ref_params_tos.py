@@ -101,3 +101,10 @@ def test_c3_stage3_rewired_ctx_gate():
     assert _s3._fix_ref_params is _rp._fix_ref_params
     import inspect
     assert '_fix_ref_params(code, ctx)' in inspect.getsource(_s3.run)
+
+
+def test_c5_call_return_type_disambiguated():
+    """C5 锁：同名异义已双改名（node 入参/注解源 vs name 入参/decomp 源），禁回流同名。"""
+    import stages.stage4_substitution as _s4, stages.stage5_fixup as _s5
+    assert hasattr(_s4, '_node_call_return_type') and not hasattr(_s4, '_call_return_type')
+    assert hasattr(_s5, '_sig_call_return_type') and not hasattr(_s5, '_call_return_type')

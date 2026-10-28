@@ -669,7 +669,7 @@ def _member_type(cls, member):
     return _MEMBER_TYPE_INDEX.get(cls, {}).get(member)
 
 
-def _call_return_type(name):
+def _sig_call_return_type(name):
     """Return-type text for 'Cls::Method' or 'Func', or None if unknown."""
     sig = store.method_sigs.get(name)
     if sig is None:
@@ -765,7 +765,7 @@ def _expr_is_pointer(e, vt, ctx):
     # qualified member call anywhere in the expression
     m = re.search(r'([A-Za-z_]\w*)::([A-Za-z_]\w*)\s*\(', e)
     if m:
-        ret = _call_return_type('%s::%s' % (m.group(1), m.group(2)))
+        ret = _sig_call_return_type('%s::%s' % (m.group(1), m.group(2)))
         return bool(ret) and '*' in ret
     # unqualified call at expression start
     m = re.match(r'([A-Za-z_]\w*)\s*\(', e)
@@ -773,7 +773,7 @@ def _expr_is_pointer(e, vt, ctx):
         n = m.group(1)
         if n in _PTR_RETURN_FUNCS:
             return True
-        ret = _call_return_type(n)
+        ret = _sig_call_return_type(n)
         return bool(ret) and '*' in ret
     # multi-level member path, with optional trailing subscripts:
     #   g_RoleSlotBuf.m_partyActor.m_pEquipAtt1[352 * n + 1]
