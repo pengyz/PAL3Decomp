@@ -35,5 +35,17 @@ def test_uicursor_fastcall_abi_carrier():
 
 
 def test_541490_alias_retained_linker_artifact():
-    """Ruling: A 级 5B jmp 别名=linker_artifact，留 skip（定义体免源）。"""
+    """Ruling（理由降级 P3）：留 skip——唯一消费方=编译器合成 atexit 桩（C 类永不源码重建）
+    无源码消费面；5B jmp 仅证纯转发（linker_artifact 过度定级，ILT/ICF 三假说未定谳）。"""
     assert '0x00541490' in SK
+
+
+def test_p4_correctness_locks():
+    """P4 补锁：双源零命中 + 名字唯一 + 0x541490 不入 functions（防双注/重名）。"""
+    import glob as _g
+    for a in ('0x005414A0', '0x00541860', '0x00541C40'):
+        assert not any(a in open(f).read() for f in _g.glob(str(ROOT / 'data/annotations/structs/*.json'))), a
+    assert '0x00541490' not in FN
+    names = [v.get('name') for v in FN.values()]
+    for n in ('PAL3_LoadUICursor', 'PAL3_FindCDRomDrive', 'PAL3_ReadRegistryStr'):
+        assert names.count(n) == 1, n
