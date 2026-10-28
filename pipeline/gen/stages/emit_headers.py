@@ -2884,7 +2884,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
             # Fix invalid parameter names (starting with digit or 'this' keyword)
             if params:
-                from stages.stage4_substitution import rewrite_thiscall_fnptr_param
+                from pipeline.gen.sig_resolve import rewrite_thiscall_fnptr_param  # [TOS C6]
                 def _fix_param(p):
                     p = p.strip()
                     # thiscall fn-ptr params → member-pointer form (VC6
@@ -3741,10 +3741,10 @@ def _interior_member_resolvable(addr, name=None):
     """
     # 与同文件 stage4 引用（:2419）同款导入路径——双路径 import 会创建
     # 第二个模块实例（store 空载）⇒ 解析恒 None ⇒ 退役全停摆
-    from stages.stage4_substitution import _try_struct_member_resolution
+    from pipeline.gen.sig_resolve import try_struct_member_resolution  # [TOS C6]
     # name 提供 prefix 语义（byte_/dword_/…）；仅有地址时按 dword_ 保守尝试
     prefix_name = name or ('dword_%X' % addr)
-    return _try_struct_member_resolution(prefix_name) is not None
+    return try_struct_member_resolution(prefix_name) is not None
 
 
 _ANN_GLOBAL_TYPE_CACHE = None

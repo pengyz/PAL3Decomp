@@ -6,7 +6,7 @@ import ast, glob, os, sys
 from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-FROZEN = [('emit_cpp', 'collect'), ('emit_cpp', 'emit_headers'), ('emit_cpp', 'transform'), ('emit_headers', 'collect'), ('emit_headers', 'scope_tree'), ('emit_headers', 'stage4_substitution')]
+FROZEN = [('emit_cpp', 'collect'), ('emit_cpp', 'emit_headers'), ('emit_cpp', 'transform'), ('emit_headers', 'collect'), ('emit_headers', 'scope_tree')]
 
 
 def _edges():
