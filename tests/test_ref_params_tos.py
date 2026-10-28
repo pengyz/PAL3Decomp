@@ -18,8 +18,9 @@ from stages.stage5_fixup import _fix_ref_params as _s5_legacy  # noqa: E402
 CASES = [
     # Case1 剥 &
     ('obj->Translate(&vec);', 'obj->Translate(vec);'),
-    # Case2 指针→ref 补 *
-    ('obj->GetAABBox(pBox);', 'obj->GetAABBox(*pBox);'),
+    # Case2 限定形（gbOBBox=AAU 引用形）补 *；裸形出表后不动（C8·B 修补条 2026-10-28）
+    ('obj->GetAABBox(pBox);', 'obj->GetAABBox(pBox);'),
+    ('x->gbOBBox::GetAABBox(pBox);', 'x->gbOBBox::GetAABBox(*pBox);'),
     # tail 折叠（stage3 随迁件）
     ('w = h->_tail_000;', 'w = *(void**)(h);'),
     ('w = h->_tail_000[2];', 'w = h->_tail_000[2];'),   # 带下标不折叠
@@ -73,7 +74,9 @@ def test_c2_stage5_rewired_identity():
 def test_e1_noctx_degradation_absolute():
     """D0' 绝对锁（设计 T2）：无 ctx 时 Case2 对裸标识符补 * 的退化形为逐案钉死。
     C3 启用 ctx 后此面须收窄——断言变化即 D0' 门生效证据，禁静默改判。"""
-    assert _fix_ref_params('obj->GetAABBox(pBox);') == 'obj->GetAABBox(*pBox);'
+    # [F1 修 2026-10-28] 裸形出表（B 修补条合法废止旧断言）；限定形为修复面
+    assert _fix_ref_params('obj->GetAABBox(pBox);') == 'obj->GetAABBox(pBox);'
+    assert _fix_ref_params('x->gbOBBox::GetAABBox(pBox);') == 'x->gbOBBox::GetAABBox(*pBox);'
     assert _fix_ref_params('Rotate(v10, v15);') == 'Rotate(v10, v15);'   # 元数感知：双参位不动
     assert _fix_ref_params('obj->Translate((T*)&x);') == 'obj->Translate(*(T*)&x);'
 

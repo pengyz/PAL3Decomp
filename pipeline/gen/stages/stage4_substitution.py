@@ -139,33 +139,6 @@ def _try_literal_replacement(name):
 
 
 
-def try_struct_member_resolution(name):
-    """Resolve IDA unnamed references (dword_XXXX) to struct member expressions."""
-    if name.startswith('sub_'):
-        return None
-    try:
-        addr = int(name.split('_', 1)[1], 16)
-    except (ValueError, IndexError):
-        return None
-    if addr < 0x00401000 or addr > 0x01800000:
-        return None
-    prefix = name.split('_')[0]
-    for base, end, gname, gtype in store.struct_instances:
-        if base <= addr < end:
-            offset = addr - base
-            # Check for a named global at the exact address within this range.
-            # If it has its own struct_instance, it's independent — use its name directly.
-            # Otherwise it's a phantom — resolve as parent.member access.
-            has_own_instance = any(b == addr for b, e, _, _ in store.struct_instances)
-            if has_own_instance:
-                for _gn, _ga in store.global_addrs.items():
-                    if _ga == addr:
-                        return _gn
-            resolved = _resolve_offset(gtype, offset, prefix)
-            if resolved:
-                return '%s%s' % (gname, resolved)
-    return None
-
 
 def _try_global_name(name):
     """Map IDA unnamed globals (dword_XXX) → annotated name via globals_map + direct lookup.

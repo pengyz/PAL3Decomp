@@ -1,0 +1,21 @@
+# TOS 批归因闭合 + 叙事勘误（2776d174 复核交付物）
+
+## C3 行为差集归因（E3 闭合）
+三态 worktree 全量再生成 A/B（C3 态输出与记录哈希 013ab196 逐字命中）：
+差集 = **8 文件 14 行纯空白等价形**（whitespace-normalized 全等）——
+CCBStage / CEffModel / GRPinput / RoleCamera / UIAnimateCtrlEX / Object3D /
+RoleSystem / Camera。编译不可见 ⇒ 错误多重集 214 单元全等 + L1 147 不动是必然。
+
+## 叙事勘误（两处）
+1. C3 commit message 称「Case2/3（ctx 门）激活」**错**——实为 **arg 前导空白保留 vs
+   旧 lstrip**；ctx 门语料零 token 级激活（stage5 下游同修复吸收）。
+2. C8 commit message「19+1 断言全过」**失实**——实为 test_ref_param_table_b 过而
+   test_ref_params_tos 3 红（GetAABBox 旧契约被 B 修补条合法废止），F1 修复后方 10/10。
+   同族：C3 测试计数「10/10」实为 pytest 收 9（双定义遮蔽 1 测）——已随 F2 双定义切除修复。
+
+## 读数台账（5 快照对账，复核实测）
+C3/C4/C5 错误多重集全等（1137）· 末步 1136（−1 = C8 预期修复 ScreenEffectMgr C2664）
+· L1 147 / 880-1141 全程不动。
+
+## 状态
+归因 ✅ 闭合 · 勘误 ✅ 本档 · F1/F2 ✅ 修复（13/13 测）· F4-F10 低危挂账（见复核报告）
