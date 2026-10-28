@@ -123,3 +123,20 @@ def test_t2p_pointworldtoscr_qualified():
         == 'f->gbCamera::PointWorldToScr(p,  *a,  *b);'   # no-ctx 退化面（已知）
     assert _fix_ref_params('x->gbCamera::PointWorldToScr(&p, v48, &v40);') \
         == 'x->gbCamera::PointWorldToScr(&p,  *v48, v40);'
+
+
+def test_t2p_rightmultiply_both_overloads_const_ref0():
+    """T2' 第二键：gbMatrix4::RightMultiply {0}（A 级：ABU1/ABUgbQuaternion 两载皆
+    const 引用@0 ⇒ 同形安全）。指针实参补 *、& 实参剥 &、两载同治。"""
+    assert _fix_ref_params('m->gbMatrix4::RightMultiply(pM);') == 'm->gbMatrix4::RightMultiply(*pM);'
+    assert _fix_ref_params('m->gbMatrix4::RightMultiply(&m2);') == 'm->gbMatrix4::RightMultiply(m2);'
+    assert _fix_ref_params('q->gbMatrix4::RightMultiply(pQ);') == 'q->gbMatrix4::RightMultiply(*pQ);'
+
+
+def test_t2p_getblend_iscoltriangle():
+    """T2' 三/四键：GetBlend AAM ref@0；IsColTriangle 三载全 AAU 引用形（元数感知）。"""
+    assert _fix_ref_params('n->gbVisNode::GetBlend(pF);') == 'n->gbVisNode::GetBlend(*pF);'
+    # 注：Case2 补 * 的空白拼接保留原前导空白（C3 勘误同款空白面）——语义对、形多空格
+    assert _fix_ref_params('r->gbRay::IsColTriangle(a, b, c);') == 'r->gbRay::IsColTriangle(*a,   *b,   *c);'
+    assert _fix_ref_params('r->gbRay::IsColTriangle(a, b, c, d);') == 'r->gbRay::IsColTriangle(*a,   *b,   *c,   *d);'
+    assert _fix_ref_params('s->gbSphere::IsColTriangle(a, b, c);') == 's->gbSphere::IsColTriangle(*a,   *b,   *c);'

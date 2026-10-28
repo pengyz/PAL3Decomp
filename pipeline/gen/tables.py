@@ -28,7 +28,16 @@ _GB_REF_PARAM_FUNCS = {
     'gbOBBox::GetAABBox': {0},
     # [T2' 首键 2026-10-28] mangled A 级：PAUgbVec3D@@AAM1 = ptr,ref,ref ⇒ {1,2}
     # （单载可证：gbengine.def 恰 1 条 + gbCamera.h 唯一 decl）
-    'gbCamera::PointWorldToScr': {1, 2},  # [C8·B 修补条 2026-10-14 落表] 跨类形参形态相反：gbOBBox=AAU 引用形留表；
+    'gbCamera::PointWorldToScr': {1, 2},
+    # [T2' 2026-10-28] RightMultiply 双载 A 级定谳：ABU1/ABUgbQuaternion 皆 const 引用@0
+    # ⇒ 同形安全，旧防错型排除条件消解（两载区分不再需要——ref 形态一致）
+    'gbMatrix4::RightMultiply': {0},
+    # [T2' 2026-10-28] GetBlend：A 级 AAM=ref@0 单载（SetBlend 反例是值参误登——
+    # 本键 mangled 实证 ref 形，性质不同）。IsColTriangle：三载全 AAU 引用形
+    # （gbRay 4参/3参 + gbSphere 3参）⇒ 元数感知全 ref 入册。
+    'gbVisNode::GetBlend': {0},
+    'gbRay::IsColTriangle': {4: {0, 1, 2, 3}, 3: {0, 1, 2}},
+    'gbSphere::IsColTriangle': {3: {0, 1, 2}},  # [C8·B 修补条 2026-10-14 落表] 跨类形参形态相反：gbOBBox=AAU 引用形留表；
     # gbVisNode/gbGeomNode=PAU 指针形出表（裸键曾误解引用实参 ⇒ ScreenEffectMgr C2664）
     'GetSphere': {0},
     'GetCollideOBB': {0},
