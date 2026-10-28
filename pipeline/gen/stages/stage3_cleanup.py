@@ -2058,7 +2058,7 @@ def run(code, ctx):
     code = _fold_vftable_mask(code, ctx)
 
     # --- Reference parameter adaptation (gbengine &param fix) ---
-    code = _fix_ref_params(code)
+    code = _fix_ref_params(code, ctx)  # [C3 D0p] 证据门启用（E1 绝对锁见证据面收窄）
 
     # --- AST-based structural detection ---
     code = _ast_cleanup(code, ctx)
@@ -2160,91 +2160,7 @@ def run(code, ctx):
 
 # Functions whose parameters are references (non-const &) in gbengine.
 # Key = method name, Value = set of 0-based param indices (excluding this).
-from pipeline.gen.tables import _GB_REF_PARAM_FUNCS  # [R99 阶段 3] 共享表
+from pipeline.gen.tables import _GB_REF_PARAM_FUNCS
+from pipeline.gen.ref_params import _fix_ref_params  # [TOS C3] 唯一实现体  # [R99 阶段 3] 共享表
 
 
-def _fix_ref_params(code):
-    """Strip '&' from arguments to functions that take reference params.
-    
-    Hex-Rays outputs: obj->Translate(&vec);
-    Correct C++:      obj->Translate(vec);
-    """
-    import re as _re
-    
-    for func_name, ref_indices in _GB_REF_PARAM_FUNCS.items():
-        # Match: ->FuncName( or ::FuncName( followed by arguments
-        # Pattern finds the function call and we process arguments
-        # 【B 修】限定键（Cls::fn）与裸名双形+元数感知（PAU/AAU 分流随行）
-        if '::' in func_name:
-            pattern = _re.escape(func_name) + r'\s*\('
-        else:
-            pattern = r'(?:->|::|\.)' + _re.escape(func_name) + r'\s*\('
-        
-        pos = 0
-        result = []
-        while True:
-            m = _re.search(pattern, code[pos:])
-            if not m:
-                result.append(code[pos:])
-                break
-            
-            # Add everything up to the opening paren
-            call_start = pos + m.end()
-            result.append(code[pos:call_start])
-            # 【B 修】元数预数（dict 形 ref_indices 需 arity 定位）
-            if isinstance(ref_indices, dict):
-                _d, _j, _na = 1, call_start, 1
-                while _j < len(code) and _d > 0:
-                    _c = code[_j]
-                    if _c == '(':
-                        _d += 1
-                    elif _c == ')':
-                        _d -= 1
-                    elif _c == ',' and _d == 1:
-                        _na += 1
-                    _j += 1
-                ref_positions = ref_indices.get(_na, set())
-            else:
-                ref_positions = ref_indices
-            
-            # Parse arguments (track parenthesis depth)
-            depth = 1
-            arg_start = call_start
-            arg_idx = 0
-            i = call_start
-            while i < len(code) and depth > 0:
-                ch = code[i]
-                if ch == '(':
-                    depth += 1
-                elif ch == ')':
-                    depth -= 1
-                    if depth == 0:
-                        # Process last argument
-                        arg = code[arg_start:i]
-                        if arg_idx in ref_positions:
-                            arg = arg.lstrip()
-                            if arg.startswith('&') and not arg.startswith('&&'):
-                                arg = arg[1:]
-                        result.append(arg)
-                        result.append(')')
-                        break
-                elif ch == ',' and depth == 1:
-                    # Process this argument
-                    arg = code[arg_start:i]
-                    if arg_idx in ref_positions:
-                        arg = arg.lstrip()
-                        if arg.startswith('&') and not arg.startswith('&&'):
-                            arg = arg[1:]
-                    result.append(arg)
-                    result.append(', ')
-                    arg_idx += 1
-                    arg_start = i + 1
-                i += 1
-            
-            pos = i + 1
-        
-        code = ''.join(result)
-    
-    # _tail_000 兼容转换（2026-09-25）：gbGfxManager offset0 旧 IDA 名 → 裸偏移
-    code = re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', code)
-    return code

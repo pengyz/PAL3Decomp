@@ -83,3 +83,21 @@ def test_e2_tail_fold_idempotent():
     once = re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', 'w = h->_tail_000;')
     assert re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', once) == once
     assert _fix_ref_params(_fix_ref_params('w = h->_tail_000;')) == _fix_ref_params('w = h->_tail_000;')
+
+
+def test_c3_stage3_rewired_ctx_gate():
+    """C3 锁：stage3 消费共享实现且调用点传 ctx（D0' 证据门启用）。"""
+    import stages.stage3_cleanup as _s3
+    import pipeline.gen.ref_params as _rp
+    assert _s3._fix_ref_params is _rp._fix_ref_params
+    import inspect
+    assert '_fix_ref_params(code, ctx)' in inspect.getsource(_s3.run)
+
+
+def test_c3_stage3_rewired_ctx_gate():
+    """C3 锁：stage3 消费共享实现且调用点传 ctx（D0p 证据门启用）。"""
+    import stages.stage3_cleanup as _s3
+    import pipeline.gen.ref_params as _rp
+    assert _s3._fix_ref_params is _rp._fix_ref_params
+    import inspect
+    assert '_fix_ref_params(code, ctx)' in inspect.getsource(_s3.run)
