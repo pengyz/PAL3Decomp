@@ -28,9 +28,21 @@ def test_rules_from_census_applied():
     同件双规则互斥时名形桶优先）。"""
     for a, e in SK.items():
         sr, nm = e['skip_reason'], e.get('name') or ''
-        if 'SingletonThunk' in nm or '_static_' in nm:
+        if 'SingletonThunk' in nm or nm.startswith('compiler_init_'):
             assert sr == 'compiler_regenerated', (a, sr)
-        elif nm.startswith('unknown_libname_') or nm.startswith('crt_sub_'):
+        elif '_static_' in nm or '_sub_' in nm:
+            assert sr == 'lib_relink_ok', (a, sr)      # F2 PSGP 供源（非再生）
+        elif a in ('0x0041CA30', '0x0041D590', '0x00485DC0', '0x005044F0'):
+            assert sr == 'awaiting_signature', (a, sr) # F1 真代码字节形证伪跳板
+        elif nm.startswith('unknown_libname_'):
+            n = int(nm.split('_')[-1]) if nm.split('_')[-1].isdigit() else -1
+            if 287 <= n <= 524 or n == 528:
+                assert sr == 'compiler_regenerated', (a, sr)   # F3 群 A C 静态初始化桩
+            elif 529 <= n <= 552:
+                assert sr == 'lib_relink_ok', (a, sr)          # F3 真 CRT 24 条
+            else:
+                assert sr == 'awaiting_signature', (a, sr)
+        elif nm.startswith('crt_sub_'):
             assert sr == 'awaiting_signature', (a, sr)
         elif 0x00550000 <= int(a, 16) <= 0x0055FFFF:
             assert sr == 'lib_relink_ok', (a, sr)

@@ -102,7 +102,7 @@
 2. **j_D3DX 三名正名**：0x4B8200=random-lerp 新名（**语义命名**，5 处调用点同步）；0x542533/0x544771 声明
    改走 `<d3dx9math.h>`（D3DXVec3Normalize/D3DXQuaternionSlerp）⇒ 回收 sg_emission_control 注释债。
 3. **4 个 crt_sub 冤户 unskip**（0x541490/005414A0/00541860/00541C40）——批0 前置检查（先查 decl 收编）。
-4. **skip_functions reason 拆分**（923 条 crt_runtime → 枚举化）+ 6 消费点对账 + 平账 1910。
+4. **skip_functions reason 拆分**（923→920 条 crt_runtime（勘误） → 枚举化）+ 6 消费点对账 + 平账 1907（勘误：T2 unskip 3 户）。
 5. **T6 adjustthunk 反模式清理**：codegen 合成物渲染成手写成员方法 ⇒ 逐个回收 + 编译器再生验证。
 6. **T5 LNK2001 排雷**：6 个 declaration_only 无定义体被调用（PalScriptMgr.cpp:3135/3142 补入调用面）。
 7. **注册表落地**：thunk_registry.json + system_lib_statics.json（含 confidence 轴 + 73 槽全量配对记录）。
