@@ -372,12 +372,6 @@ ORDINAL_MAP = {
     '#1465': 'gbRenderEffect',
 }
 
-def _resolve_ordinal_type(t):
-    """Resolve #NNN ordinal types to actual type names."""
-    for k, v in ORDINAL_MAP.items():
-        t = t.replace(k, v)
-    return t
-
 
 ORDINAL_MAP = {
     '#1472': 'gbTexture',

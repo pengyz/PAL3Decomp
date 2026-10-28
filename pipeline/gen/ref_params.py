@@ -254,10 +254,6 @@ def _fix_ref_params(code, ctx=None):
             pattern = re.escape(func_name) + r'\s*\('
         else:
             pattern = r'(?:->|::|\.)' + re.escape(func_name) + r'\s*\('
-        def _ref_positions(nargs, ref_idx=ref_indices):
-            if isinstance(ref_idx, dict):
-                return ref_idx.get(nargs, set())
-            return ref_idx
         pos = 0
         result = []
         while True:
