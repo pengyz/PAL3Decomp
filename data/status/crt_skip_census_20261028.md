@@ -37,3 +37,17 @@
 
 - 可达性判据：`asm/pal3/decomp/*.json`（3695 个）文本出现该名字且非自名 decomp 文件 ⇒ 游戏可达。
 - 局限：间接调用（函数指针/虚槽）不可见 ⇒「孤立」≠ 永不被调，仅=无静态直调。
+
+---
+
+## 【更正 2026-10-28 · DX 边界调研实证】（research_dx_static_boundary_20261028.md 裁定，待其对抗复核终审）
+
+上文两处引用须更正（名字不可信原则再证）：
+
+1. **`j_D3DXVec3TransformCoord` ≠「D3DX 导入跳板」**。三条 j_D3DX* 全是错名：
+   - `j_D3DXVec3TransformCoord` @0x4B8200 = **游戏代码**（rand 驱动两浮点随机插值），与 D3DX 无关；
+   - `j_D3DXVec3TransformCoord_0` @0x542533 = PSGP 入口实为 **`_D3DXVec3Normalize@8`**（槽#7 默认体 0x5450B5 与 d3dx9.lib `c_D3DXVec3Normalize` 157B 逐字节同）——C2065 根因件是它（0x542533 被 skip）；
+   - `j_D3DXMatrixMultiply` @0x544771 = PSGP 入口实为 **`_D3DXQuaternionSlerp@16`**。
+   正解=调用点改真名 + `#include <d3dx9math.h>`（d3dx9.lib 静态供给，无需源码重建）。
+2. **`__m64/__m128::_static_*` 簇归类更正**：应归 **D3DX PSGP 变体件**（sse_/sse2_/x3d_D3DXInitFastTable 安装器 0x547042/0x5471BA/0x54740C），非「真 CRT/静态簇」——skip 结论可留，**理由须换**为「可再生产件（d3dx9.lib 供给）」。
+3. **版本偏斜警示**：在手 `tools/vc6/Lib/d3dx9.lib`（obj 2002-12-11，71 槽 cpudetect）≠ exe 精确构建输入（73 槽 + new/delete 一致性检查 + WARN 串）⇒ 精确件待补给（FamilyId 9216652F-…），风险收敛为「73 槽调度脚手架+2 新表项」定点重建。
