@@ -682,24 +682,7 @@ def _call_return_type(name):
     return re.sub(r'^virtual\s+', '', m.group(1).strip()) or None
 
 
-def _strip_outer_parens(e):
-    e = e.strip()
-    while e.startswith('('):
-        depth = 0
-        for i, ch in enumerate(e):
-            if ch == '(':
-                depth += 1
-            elif ch == ')':
-                depth -= 1
-                if depth == 0:
-                    if i == len(e) - 1:
-                        e = e[1:i].strip()
-                    else:
-                        return e
-                    break
-        else:
-            return e
-    return e
+from pipeline.gen.textutil import _strip_outer_parens  # [TOS C4] 单源
 
 
 _GLOBAL_BASE_TYPE_MAP = None

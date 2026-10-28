@@ -870,23 +870,7 @@ def _resolve_vtbl_name_chain(cls_hint, byte_off):
     return name, None
 
 
-def _strip_outer_parens(text):
-    """剥掉**完整包裹**在最外层的圆括号（`(a) + (b)` 这类不剥）。"""
-    s = str(text or '').strip()
-    while s.startswith('(') and s.endswith(')'):
-        depth, complete = 0, True
-        for i, ch in enumerate(s):
-            if ch == '(':
-                depth += 1
-            elif ch == ')':
-                depth -= 1
-                if depth == 0 and i != len(s) - 1:
-                    complete = False
-                    break
-        if not complete or depth != 0:
-            break
-        s = s[1:-1].strip()
-    return s
+from pipeline.gen.textutil import _strip_outer_parens  # [TOS C4] 单源
 
 
 def _split_expr_offset(text):
