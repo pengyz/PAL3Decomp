@@ -18,28 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 938,
-  "matched": 709,
-  "unmatched": 229,
-  "match_L1": 110,
+  "symbols": 1141,
+  "matched": 880,
+  "unmatched": 261,
+  "match_L1": 147,
   "match_L1_semantic": 9,
-  "partial": 539,
+  "partial": 660,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 60,
-  "reloc_total": 5528,
-  "reloc_ok": 1317,
+  "unresolved_synth": 73,
+  "reloc_total": 6642,
+  "reloc_ok": 1635,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4211,
-  "rsite_total": 5528,
-  "rsite_unaligned": 5181,
-  "l1_bytes": 4557,
-  "l1_hidden_reloc_bytes": 995,
-  "l1_reloc_covered_bytes": 1388,
-  "rsite_ok": 55,
-  "rsite_unresolved": 291,
+  "reloc_unresolved": 5007,
+  "rsite_total": 6642,
+  "rsite_unaligned": 6219,
+  "l1_bytes": 6151,
+  "l1_hidden_reloc_bytes": 1209,
+  "l1_reloc_covered_bytes": 1692,
+  "rsite_ok": 87,
+  "rsite_unresolved": 335,
   "rsite_mismatch": 1,
   "rsite_mismatch_samples": [
    {
@@ -593,6 +593,114 @@
    "size": 59
   },
   {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "??0CCBItemWindow@@QAE@XZ",
+   "name": "CCBItemWindow::CCBItemWindow(void)",
+   "va": "0x004461B0",
+   "status": "partial",
+   "match_pct": 48.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "??_GCCBItemWindow@@UAEPAXI@Z",
+   "name": "CCBItemWindow::`scalar deleting destructor'(uint)",
+   "va": "0x0051B160",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?SetItemName@CCBItemWindow@@QAEPADPAD@Z",
+   "name": "CCBItemWindow::SetItemName(char *)",
+   "va": "0x00450650",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?DoTask@CCBItemWindow@@UAEXH@Z",
+   "name": "CCBItemWindow::DoTask(int)",
+   "va": "0x0051A390",
+   "status": "partial",
+   "match_pct": 23.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?CCBItemWindow_Destroy@CCBItemWindow@@UAEXXZ",
+   "name": "CCBItemWindow::CCBItemWindow_Destroy(void)",
+   "va": "0x0051A880",
+   "status": "partial",
+   "match_pct": 17.5,
+   "size": 166
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?HandleMessage@CCBItemWindow@@UAEHHIH@Z",
+   "name": "CCBItemWindow::HandleMessage(int,uint,int)",
+   "va": "0x0051A930",
+   "status": "partial",
+   "match_pct": 28.4,
+   "size": 225
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?Reset@CCBItemWindow@@QAEXXZ",
+   "name": "CCBItemWindow::Reset(void)",
+   "va": "0x0051B1D0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 55
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?Create@CCBItemWindow@@QAE_NPAHH@Z",
+   "name": "CCBItemWindow::Create(int *,int)",
+   "va": "0x0051B210",
+   "status": "partial",
+   "match_pct": 22.4,
+   "size": 670
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?Destroy@CCBItemWindow@@UAEXXZ",
+   "name": "CCBItemWindow::Destroy(void)",
+   "va": "0x0051B4B0",
+   "status": "partial",
+   "match_pct": 11.6,
+   "size": 181
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?HandleInput@CCBItemWindow@@UAEHHH@Z",
+   "name": "CCBItemWindow::HandleInput(int,int)",
+   "va": "0x0051B570",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 89
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?Update@CCBItemWindow@@QAEPAVUIListBox@@XZ",
+   "name": "CCBItemWindow::Update(void)",
+   "va": "0x0051B620",
+   "status": "partial",
+   "match_pct": 11.0,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/Combat/CCBItemWindow.cpp",
+   "symbol": "?CreateButtons@CCBItemWindow@@UAEPAVUIWnd@@PAV1@D@Z",
+   "name": "CCBItemWindow::CreateButtons(CCBItemWindow *,char)",
+   "va": "0x0051B670",
+   "status": "partial",
+   "match_pct": 13.3,
+   "size": 30
+  },
+  {
    "file": "pal3/src/Combat/CCBLineupWindow.cpp",
    "symbol": "??0CCBLineupWindow@@QAE@PAPAVCCBControlWindow@@@Z",
    "name": "CCBLineupWindow::CCBLineupWindow(CCBControlWindow * *)",
@@ -735,6 +843,402 @@
    "status": "partial",
    "match_pct": 60.0,
    "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?_scalar_deleting_destructor_@CCBMagicWindow@@UAEPAXPAVUIWnd@@D@Z",
+   "name": "CCBMagicWindow::_scalar_deleting_destructor_(UIWnd *,char)",
+   "va": "0x004B0520",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?OnMessage@CCBMagicWindow@@UAEHHHH@Z",
+   "name": "CCBMagicWindow::OnMessage(int,int,int)",
+   "va": "0x0051B860",
+   "status": "partial",
+   "match_pct": 95.2,
+   "size": 83
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??0CCBMagicWindow@@QAE@HHPAH@Z",
+   "name": "CCBMagicWindow::CCBMagicWindow(int,int,int *)",
+   "va": "0x0051B9F0",
+   "status": "partial",
+   "match_pct": 21.3,
+   "size": 178
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??_GCCBMagicWindow@@UAEPAXI@Z",
+   "name": "CCBMagicWindow::`scalar deleting destructor'(uint)",
+   "va": "0x0051B690",
+   "status": "partial",
+   "match_pct": 11.4,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?_todo_0051BAB0@CCBMagicWindow@@QAEXH@Z",
+   "name": "CCBMagicWindow::_todo_0051BAB0(int)",
+   "va": "0x0051BAB0",
+   "status": "partial",
+   "match_pct": 7.0,
+   "size": 71
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Reset@CCBMagicWindow@@QAEXHH@Z",
+   "name": "CCBMagicWindow::Reset(int,int)",
+   "va": "0x0051BB00",
+   "status": "partial",
+   "match_pct": 86.8,
+   "size": 53
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Create@CCBMagicWindow@@QAEHH@Z",
+   "name": "CCBMagicWindow::Create(int)",
+   "va": "0x0051BB40",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?ForbidPage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+   "name": "CCBMagicWindow::ForbidPage(void)",
+   "va": "0x0051BB90",
+   "status": "partial",
+   "match_pct": 8.2,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?ClearMagicData@CCBMagicWindow@@QAEHXZ",
+   "name": "CCBMagicWindow::ClearMagicData(void)",
+   "va": "0x0051BC50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?CreateButton@CCBMagicWindow@@QAE_NPAHH@Z",
+   "name": "CCBMagicWindow::CreateButton(int *,int)",
+   "va": "0x0051BC70",
+   "status": "partial",
+   "match_pct": 27.3,
+   "size": 1184
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?Destroy@CCBMagicWindow@@UAEXXZ",
+   "name": "CCBMagicWindow::Destroy(void)",
+   "va": "0x0051C110",
+   "status": "partial",
+   "match_pct": 14.0,
+   "size": 150
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?SetActivePage@CCBMagicWindow@@UAEHHH@Z",
+   "name": "CCBMagicWindow::SetActivePage(int,int)",
+   "va": "0x0051C1B0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 89
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "?GetActivePage@CCBMagicWindow@@QAEPAVUIListBox@@XZ",
+   "name": "CCBMagicWindow::GetActivePage(void)",
+   "va": "0x0051C210",
+   "status": "partial",
+   "match_pct": 11.0,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?LoadResourceEx@CCBParabolaWindow@@QAEPAVgbVFileSystem@@PBDD@Z",
+   "name": "CCBParabolaWindow::LoadResourceEx(char const *,char)",
+   "va": "0x00440BE0",
+   "status": "partial",
+   "match_pct": 40.4,
+   "size": 255
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "??_GCCBParabolaWindow@@UAEPAXI@Z",
+   "name": "CCBParabolaWindow::`scalar deleting destructor'(uint)",
+   "va": "0x0051C280",
+   "status": "partial",
+   "match_pct": 11.4,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?Destroy@CCBParabolaWindow@@UAEXXZ",
+   "name": "CCBParabolaWindow::Destroy(void)",
+   "va": "0x0051B920",
+   "status": "partial",
+   "match_pct": 22.7,
+   "size": 22
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?OnMessage@CCBParabolaWindow@@QAE_NHII@Z",
+   "name": "CCBParabolaWindow::OnMessage(int,uint,uint)",
+   "va": "0x0051B950",
+   "status": "partial",
+   "match_pct": 5.0,
+   "size": 80
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?_scalar_deleting_destructor_@CCBParabolaWindow@@UAEPAVUIWnd@@PAVCCBSkillWindow@",
+   "name": "CCBParabolaWindow::_scalar_deleting_destructor_(CCBSkillWindow *,char)",
+   "va": "0x0051C260",
+   "status": "partial",
+   "match_pct": 13.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?Destroy_c880@CCBParabolaWindow@@UAEHXZ",
+   "name": "CCBParabolaWindow::Destroy_c880(void)",
+   "va": "0x0051C880",
+   "status": "partial",
+   "match_pct": 7.5,
+   "size": 292
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?Update@CCBParabolaWindow@@UAEHHH@Z",
+   "name": "CCBParabolaWindow::Update(int,int)",
+   "va": "0x0051C9F0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 81
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?ToggleSlots@CCBParabolaWindow@@UAEPAVCCBAIWindow@@H@Z",
+   "name": "CCBParabolaWindow::ToggleSlots(int)",
+   "va": "0x0051CA50",
+   "status": "partial",
+   "match_pct": 50.6,
+   "size": 77
+  },
+  {
+   "file": "pal3/src/Combat/CCBParabolaWindow.cpp",
+   "symbol": "?Render@CCBParabolaWindow@@UAEXXZ",
+   "name": "CCBParabolaWindow::Render(void)",
+   "va": "0x0051CAA0",
+   "status": "partial",
+   "match_pct": 8.9,
+   "size": 191
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?Destroy_D920@CCBProtectWindow@@UAEXXZ",
+   "name": "CCBProtectWindow::Destroy_D920(void)",
+   "va": "0x0043D920",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?ValidateSlot@CCBProtectWindow@@QAEDI@Z",
+   "name": "CCBProtectWindow::ValidateSlot(uint)",
+   "va": "0x00449BE0",
+   "status": "partial",
+   "match_pct": 15.9,
+   "size": 63
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?GetUIElements@CCBProtectWindow@@UAEHMH@Z",
+   "name": "CCBProtectWindow::GetUIElements(float,int)",
+   "va": "0x0044A820",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?RenderText@CCBProtectWindow@@UAEXXZ",
+   "name": "CCBProtectWindow::RenderText(void)",
+   "va": "0x0044A870",
+   "status": "partial",
+   "match_pct": 24.1,
+   "size": 245
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?Destroy@CCBProtectWindow@@UAEXXZ",
+   "name": "CCBProtectWindow::Destroy(void)",
+   "va": "0x005164D0",
+   "status": "partial",
+   "match_pct": 5.6,
+   "size": 1123
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?ShowAndNotify@CCBProtectWindow@@UAEHHH@Z",
+   "name": "CCBProtectWindow::ShowAndNotify(int,int)",
+   "va": "0x00518E30",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 43
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "??0CCBProtectWindow@@QAE@XZ",
+   "name": "CCBProtectWindow::CCBProtectWindow(void)",
+   "va": "0x0051D6E0",
+   "status": "partial",
+   "match_pct": 45.5,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "??_GCCBProtectWindow@@UAEPAXI@Z",
+   "name": "CCBProtectWindow::`scalar deleting destructor'(uint)",
+   "va": "0x00516120",
+   "status": "partial",
+   "match_pct": 11.4,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?Reset@CCBProtectWindow@@QAEXXZ",
+   "name": "CCBProtectWindow::Reset(void)",
+   "va": "0x0051D700",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Combat/CCBProtectWindow.cpp",
+   "symbol": "?OnCommand@CCBProtectWindow@@UAEHHH@Z",
+   "name": "CCBProtectWindow::OnCommand(int,int)",
+   "va": "0x0051F0A0",
+   "status": "partial",
+   "match_pct": 85.0,
+   "size": 133
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?ctor@CCBResultWindow@@QAEXXZ",
+   "name": "CCBResultWindow::ctor(void)",
+   "va": "0x00442E10",
+   "status": "partial",
+   "match_pct": 77.6,
+   "size": 76
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?Create@CCBResultWindow@@QAEXXZ",
+   "name": "CCBResultWindow::Create(void)",
+   "va": "0x00443190",
+   "status": "partial",
+   "match_pct": 50.0,
+   "size": 18
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "??0CCBResultWindow@@QAE@XZ",
+   "name": "CCBResultWindow::CCBResultWindow(void)",
+   "va": "0x00444A20",
+   "status": "partial",
+   "match_pct": 23.4,
+   "size": 124
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?StartAnim@CCBResultWindow@@QAEHXZ",
+   "name": "CCBResultWindow::StartAnim(void)",
+   "va": "0x00444D10",
+   "status": "partial",
+   "match_pct": 13.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?SetDirty@CCBResultWindow@@QAEXXZ",
+   "name": "CCBResultWindow::SetDirty(void)",
+   "va": "0x00444D20",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?FindChildByID@CCBResultWindow@@QAEHH@Z",
+   "name": "CCBResultWindow::FindChildByID(int)",
+   "va": "0x00515CE0",
+   "status": "partial",
+   "match_pct": 41.7,
+   "size": 48
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?ShowLineupWindow@CCBResultWindow@@UAEXH@Z",
+   "name": "CCBResultWindow::ShowLineupWindow(uint)",
+   "va": "0x00519360",
+   "status": "partial",
+   "match_pct": 50.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?Destroy@CCBResultWindow@@UAEXXZ",
+   "name": "CCBResultWindow::Destroy(void)",
+   "va": "0x00519510",
+   "status": "partial",
+   "match_pct": 10.9,
+   "size": 201
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?OnMessage@CCBResultWindow@@UAEHHIH@Z",
+   "name": "CCBResultWindow::OnMessage(int,uint,int)",
+   "va": "0x005195E0",
+   "status": "partial",
+   "match_pct": 24.2,
+   "size": 128
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?IsImbibeNimbusNotFinish@CCBResultWindow@@UAEHHH@Z",
+   "name": "CCBResultWindow::IsImbibeNimbusNotFinish(int,int)",
+   "va": "0x00519660",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 91
+  },
+  {
+   "file": "pal3/src/Combat/CCBResultWindow.cpp",
+   "symbol": "?OnMessage@CCBResultWindow@@UAEHHHH@Z",
+   "name": "CCBResultWindow::OnMessage(int,int,int)",
+   "va": "0x0051F1B0",
+   "status": "partial",
+   "match_pct": 16.1,
+   "size": 10209
   },
   {
    "file": "pal3/src/Combat/CCBSkillWindow.cpp",
@@ -2337,6 +2841,195 @@
    "status": "partial",
    "match_pct": 14.4,
    "size": 125
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?CreateScriptAndCamera@CCBFiveNimbusWindow@@QAEPAHHH@Z",
+   "name": "CCBFiveNimbusWindow::CreateScriptAndCamera(int,int)",
+   "va": "0x00439740",
+   "status": "partial",
+   "match_pct": 16.4,
+   "size": 195
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?SetFloatParam@CCBFiveNimbusWindow@@QAEHM@Z",
+   "name": "CCBFiveNimbusWindow::SetFloatParam(float)",
+   "va": "0x0043A070",
+   "status": "partial",
+   "match_pct": 18.8,
+   "size": 32
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?CalcHitAngle@CCBFiveNimbusWindow@@QAEHH@Z",
+   "name": "CCBFiveNimbusWindow::CalcHitAngle(int)",
+   "va": "0x0043FD20",
+   "status": "partial",
+   "match_pct": 15.5,
+   "size": 103
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?Destroy_38f0@CCBFiveNimbusWindow@@UAEXXZ",
+   "name": "CCBFiveNimbusWindow::Destroy_38f0(void)",
+   "va": "0x004438F0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 85
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?Render@CCBFiveNimbusWindow@@UAEXXZ",
+   "name": "CCBFiveNimbusWindow::Render(void)",
+   "va": "0x00443950",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 24
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?UpdateIfVisible@CCBFiveNimbusWindow@@UAEHHH@Z",
+   "name": "CCBFiveNimbusWindow::UpdateIfVisible(int,int)",
+   "va": "0x00443970",
+   "status": "partial",
+   "match_pct": 96.5,
+   "size": 143
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?UpdateDisplay@CCBFiveNimbusWindow@@QAEHXZ",
+   "name": "CCBFiveNimbusWindow::UpdateDisplay(void)",
+   "va": "0x00443AF0",
+   "status": "partial",
+   "match_pct": 7.2,
+   "size": 166
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?IsAboveThreshold@CCBFiveNimbusWindow@@QAE_NM@Z",
+   "name": "CCBFiveNimbusWindow::IsAboveThreshold(float)",
+   "va": "0x00443BF0",
+   "status": "partial",
+   "match_pct": 24.4,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?IsHitRight@CCBFiveNimbusWindow@@QAE_NM@Z",
+   "name": "CCBFiveNimbusWindow::IsHitRight(float)",
+   "va": "0x00443C20",
+   "status": "partial",
+   "match_pct": 1.4,
+   "size": 69
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?IsHitBottom@CCBFiveNimbusWindow@@QAE_NM@Z",
+   "name": "CCBFiveNimbusWindow::IsHitBottom(float)",
+   "va": "0x00443C70",
+   "status": "partial",
+   "match_pct": 24.4,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?GetNimbusColor@CCBFiveNimbusWindow@@UAEPAVCCBUI@@H@Z",
+   "name": "CCBFiveNimbusWindow::GetNimbusColor(int)",
+   "va": "0x00519B40",
+   "status": "partial",
+   "match_pct": 23.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "??_GCCBFiveNimbusWindow@@UAEPAXI@Z",
+   "name": "CCBFiveNimbusWindow::`scalar deleting destructor'(uint)",
+   "va": "0x00450E90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?Destroy@CCBFiveNimbusWindow@@UAEXXZ",
+   "name": "CCBFiveNimbusWindow::Destroy(void)",
+   "va": "0x00519F50",
+   "status": "partial",
+   "match_pct": 9.8,
+   "size": 132
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?HandleInput@CCBFiveNimbusWindow@@UAEHHIH@Z",
+   "name": "CCBFiveNimbusWindow::HandleInput(int,uint,int)",
+   "va": "0x00519FE0",
+   "status": "partial",
+   "match_pct": 26.0,
+   "size": 173
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?AddResultWindowAni@CCBFiveNimbusWindow@@UAEHHH@Z",
+   "name": "CCBFiveNimbusWindow::AddResultWindowAni(int,int)",
+   "va": "0x0051A090",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 91
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?OnMessage@CCBFiveNimbusWindow@@UAEHIII@Z",
+   "name": "CCBFiveNimbusWindow::OnMessage(uint,uint,uint)",
+   "va": "0x0051C9B0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 64
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?UpdateAnimation@CCBFiveNimbusWindow@@QAEDH@Z",
+   "name": "CCBFiveNimbusWindow::UpdateAnimation(int)",
+   "va": "0x0052E2F0",
+   "status": "partial",
+   "match_pct": 10.6,
+   "size": 517
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?GetValue@CCBFiveNimbusWindow@@QAEHH@Z",
+   "name": "CCBFiveNimbusWindow::GetValue(int)",
+   "va": "0x0052F300",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?GetSlotA@CCBFiveNimbusWindow@@QAEHH@Z",
+   "name": "CCBFiveNimbusWindow::GetSlotA(int)",
+   "va": "0x0052FBB0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?GetSlotB@CCBFiveNimbusWindow@@QAEHH@Z",
+   "name": "CCBFiveNimbusWindow::GetSlotB(int)",
+   "va": "0x0052FC30",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/Misc/CCBFiveNimbusWindow.cpp",
+   "symbol": "?ApplySelection@CCBFiveNimbusWindow@@QAEHH@Z",
+   "name": "CCBFiveNimbusWindow::ApplySelection(int)",
+   "va": "0x00530BC0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 26
   },
   {
    "file": "pal3/src/Misc/CCBPanelSlot.cpp",
@@ -4598,6 +5291,186 @@
    "size": 260
   },
   {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "??0UISceneFrm@@QAE@XZ",
+   "name": "UISceneFrm::UISceneFrm(void)",
+   "va": "0x004590D0",
+   "status": "partial",
+   "match_pct": 30.9,
+   "size": 363
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "??_GUISceneFrm@@UAEPAXI@Z",
+   "name": "UISceneFrm::`scalar deleting destructor'(uint)",
+   "va": "0x00459240",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?Destroy@UISceneFrm@@UAEXXZ",
+   "name": "UISceneFrm::Destroy(void)",
+   "va": "0x00459360",
+   "status": "partial",
+   "match_pct": 18.3,
+   "size": 93
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?Render@UISceneFrm@@UAEXXZ",
+   "name": "UISceneFrm::Render(void)",
+   "va": "0x0045A490",
+   "status": "partial",
+   "match_pct": 20.3,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?fill@UISceneFrm@@UAEXPAVRoleTask@@00@Z",
+   "name": "UISceneFrm::fill(RoleTask *,RoleTask *,RoleTask *)",
+   "va": "0x0045A4F0",
+   "status": "partial",
+   "match_pct": 45.5,
+   "size": 233
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?_Construct_2@UISceneFrm@@UAEXPAVRoleTaskLine@@0@Z",
+   "name": "UISceneFrm::_Construct_2(RoleTaskLine *,RoleTaskLine *)",
+   "va": "0x0045A600",
+   "status": "partial",
+   "match_pct": 24.2,
+   "size": 293
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?ScreenToLocal@UISceneFrm@@QAEXPAM00@Z",
+   "name": "UISceneFrm::ScreenToLocal(float *,float *,float *)",
+   "va": "0x004BB200",
+   "status": "partial",
+   "match_pct": 91.8,
+   "size": 85
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_Base@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_Base(void)",
+   "va": "0x004BB330",
+   "status": "partial",
+   "match_pct": 62.2,
+   "size": 423
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_Rotation@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_Rotation(void)",
+   "va": "0x004BB4E0",
+   "status": "partial",
+   "match_pct": 56.2,
+   "size": 429
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_VertexAlpha@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_VertexAlpha(void)",
+   "va": "0x004BB690",
+   "status": "partial",
+   "match_pct": 57.1,
+   "size": 410
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_RGBColor@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_RGBColor(void)",
+   "va": "0x004BB830",
+   "status": "partial",
+   "match_pct": 67.8,
+   "size": 544
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_Direction@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_Direction(void)",
+   "va": "0x004BBA50",
+   "status": "partial",
+   "match_pct": 56.2,
+   "size": 584
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_RandomVelocity@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_RandomVelocity(void)",
+   "va": "0x004BBCA0",
+   "status": "partial",
+   "match_pct": 52.5,
+   "size": 514
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_EmissionRate@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_EmissionRate(void)",
+   "va": "0x004BBEB0",
+   "status": "partial",
+   "match_pct": 52.5,
+   "size": 514
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_Lifetime@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_Lifetime(void)",
+   "va": "0x004BC0C0",
+   "status": "partial",
+   "match_pct": 52.5,
+   "size": 514
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_SizeMultiplier@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_SizeMultiplier(void)",
+   "va": "0x004BC2D0",
+   "status": "partial",
+   "match_pct": 52.9,
+   "size": 518
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitGraph_RotationMultiplier@UISceneFrm@@QAEHXZ",
+   "name": "UISceneFrm::InitGraph_RotationMultiplier(void)",
+   "va": "0x004BC4E0",
+   "status": "partial",
+   "match_pct": 52.9,
+   "size": 518
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?CallFaceMethod@UISceneFrm@@QAEHH_E@Z",
+   "name": "UISceneFrm::CallFaceMethod(int,uchar)",
+   "va": "0x00528CD0",
+   "status": "partial",
+   "match_pct": 34.5,
+   "size": 84
+  },
+  {
+   "file": "pal3/src/Misc/UISceneFrm.cpp",
+   "symbol": "?InitTemplateStrings@UISceneFrm@@QAEPADXZ",
+   "name": "UISceneFrm::InitTemplateStrings(void)",
+   "va": "0x00535650",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 183
+  },
+  {
    "file": "pal3/src/Misc/UISceneMap.cpp",
    "symbol": "?sub_443CA0@UISceneMap@@QAEDM@Z",
    "name": "UISceneMap::sub_443CA0(float)",
@@ -4866,6 +5739,60 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 5
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "??0UITitle_ArcSave@@QAE@XZ",
+   "name": "UITitle_ArcSave::UITitle_ArcSave(void)",
+   "va": "0x0047BBF0",
+   "status": "partial",
+   "match_pct": 36.6,
+   "size": 257
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "?Destroy@UITitle_ArcSave@@UAEXXZ",
+   "name": "UITitle_ArcSave::Destroy(void)",
+   "va": "0x0047BDF0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 33
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "?Render@UITitle_ArcSave@@UAEXXZ",
+   "name": "UITitle_ArcSave::Render(void)",
+   "va": "0x0047C370",
+   "status": "partial",
+   "match_pct": 18.4,
+   "size": 38
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "?ProcessPageAction@UITitle_ArcSave@@UAEHPAVPalScript@@H@Z",
+   "name": "UITitle_ArcSave::ProcessPageAction(PalScript *,int)",
+   "va": "0x0047C3A0",
+   "status": "partial",
+   "match_pct": 61.3,
+   "size": 124
+  },
+  {
+   "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
+   "symbol": "?OnMessage@UITitle_ArcSave@@UAEHHHH@Z",
+   "name": "UITitle_ArcSave::OnMessage(int,int,int)",
+   "va": "0x0047C430",
+   "status": "partial",
+   "match_pct": 21.4,
+   "size": 234
   },
   {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
@@ -5741,6 +6668,501 @@
    "size": 15
   },
   {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RefreshSelection@UIListBox@@QAEXXZ",
+   "name": "UIListBox::RefreshSelection(void)",
+   "va": "0x00431CD0",
+   "status": "partial",
+   "match_pct": 10.8,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ReleaseVtable@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ReleaseVtable(void)",
+   "va": "0x00432680",
+   "status": "partial",
+   "match_pct": 92.3,
+   "size": 26
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??0UIListBox@@QAE@XZ",
+   "name": "UIListBox::UIListBox(void)",
+   "va": "0x0043DCD0",
+   "status": "partial",
+   "match_pct": 48.0,
+   "size": 25
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x0044E5C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "??_GUIListBox@@UAEPAXI@Z",
+   "name": "UIListBox::`scalar deleting destructor'(uint)",
+   "va": "0x00452600",
+   "status": "partial",
+   "match_pct": 9.2,
+   "size": 98
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSelTexture@UIListBox@@QAEXHHHHH@Z",
+   "name": "UIListBox::SetSelTexture(int,int,int,int,int)",
+   "va": "0x0043DD60",
+   "status": "partial",
+   "match_pct": 46.3,
+   "size": 134
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Destroy@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Destroy(void)",
+   "va": "0x0043DE90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AddColumn@UIListBox@@QAEXXZ",
+   "name": "UIListBox::AddColumn(void)",
+   "va": "0x0043DEA0",
+   "status": "partial",
+   "match_pct": 45.5,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AddRow@UIListBox@@QAEXXZ",
+   "name": "UIListBox::AddRow(void)",
+   "va": "0x0043DEB0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSubItem@UIListBox@@QAEXXZ",
+   "name": "UIListBox::SetSubItem(void)",
+   "va": "0x0043DEC0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSubItemInfo@UIListBox@@QAEPAV1@XZ",
+   "name": "UIListBox::GetSubItemInfo(void)",
+   "va": "0x0043DED0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 18
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Render@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Render(void)",
+   "va": "0x0043DEF0",
+   "status": "partial",
+   "match_pct": 30.8,
+   "size": 26
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalHeightCount@UIListBox@@QAEXXZ",
+   "name": "UIListBox::CalHeightCount(void)",
+   "va": "0x0043DF10",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemPos@UIListBox@@QAEXXZ",
+   "name": "UIListBox::GetItemPos(void)",
+   "va": "0x0043DF20",
+   "status": "partial",
+   "match_pct": 13.5,
+   "size": 74
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemAt@UIListBox@@QAEXXZ",
+   "name": "UIListBox::GetItemAt(void)",
+   "va": "0x0043DF70",
+   "status": "partial",
+   "match_pct": 31.5,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ",
+   "name": "UIListBox::UpdateKeyCtrl(void)",
+   "va": "0x0043DFC0",
+   "status": "partial",
+   "match_pct": 6.3,
+   "size": 319
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?DeleteRow@UIListBox@@QAEXXZ",
+   "name": "UIListBox::DeleteRow(void)",
+   "va": "0x0043E120",
+   "status": "partial",
+   "match_pct": 17.5,
+   "size": 160
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalScrollBarRange@UIListBox@@UAEXHPAHHPBDHD@Z",
+   "name": "UIListBox::CalScrollBarRange(int,int *,int,char const *,int,char)",
+   "va": "0x0043E1C0",
+   "status": "partial",
+   "match_pct": 18.4,
+   "size": 358
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSel@UIListBox@@QAEXHH@Z",
+   "name": "UIListBox::GetSel(int,int)",
+   "va": "0x0043E330",
+   "status": "partial",
+   "match_pct": 13.6,
+   "size": 118
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetLockSel@UIListBox@@QAEHHPAHHHD@Z",
+   "name": "UIListBox::GetLockSel(int,int *,int,int,char)",
+   "va": "0x0043E3B0",
+   "status": "partial",
+   "match_pct": 13.2,
+   "size": 136
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetSel@UIListBox@@QAEXH@Z",
+   "name": "UIListBox::SetSel(int)",
+   "va": "0x0043E440",
+   "status": "partial",
+   "match_pct": 12.7,
+   "size": 55
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?OnMessage@UIListBox@@UAEHHHH@Z",
+   "name": "UIListBox::OnMessage(int,int,int)",
+   "va": "0x0043E480",
+   "status": "partial",
+   "match_pct": 28.7,
+   "size": 160
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Destroy_e520@UIListBox@@UAEXXZ",
+   "name": "UIListBox::Destroy_e520(void)",
+   "va": "0x0043E520",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 53
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetColumnHead@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::SetColumnHead(int,int)",
+   "va": "0x0043E560",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 90
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?LoadListItems@UIListBox@@QAEHPADH@Z",
+   "name": "UIListBox::LoadListItems(char *,int)",
+   "va": "0x0043E5C0",
+   "status": "partial",
+   "match_pct": 24.7,
+   "size": 526
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetMouseMoveSel@UIListBox@@QAEPAVgbVFileSystem@@HHPADH@Z",
+   "name": "UIListBox::SetMouseMoveSel(int,int,char *,int)",
+   "va": "0x0043E7D0",
+   "status": "partial",
+   "match_pct": 14.8,
+   "size": 196
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Render_e8a0@UIListBox@@UAEHXZ",
+   "name": "UIListBox::Render_e8a0(void)",
+   "va": "0x0043E8A0",
+   "status": "partial",
+   "match_pct": 7.1,
+   "size": 764
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetDefaultSel@UIListBox@@QAEXXZ",
+   "name": "UIListBox::SetDefaultSel(void)",
+   "va": "0x0043EBA0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 16
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetGridOffset@UIListBox@@QAEXPAHH@Z",
+   "name": "UIListBox::GetGridOffset(int *,int)",
+   "va": "0x0043EBB0",
+   "status": "partial",
+   "match_pct": 26.8,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Update@UIListBox@@UAEHHH@Z",
+   "name": "UIListBox::Update(int,int)",
+   "va": "0x0043EBE0",
+   "status": "partial",
+   "match_pct": 30.3,
+   "size": 1176
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ProcessSelection@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ProcessSelection(void)",
+   "va": "0x0043F080",
+   "status": "partial",
+   "match_pct": 13.3,
+   "size": 729
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ClearAll@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ClearAll(void)",
+   "va": "0x0043F360",
+   "status": "partial",
+   "match_pct": 14.6,
+   "size": 171
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?AdjustScroll@UIListBox@@QAEHH@Z",
+   "name": "UIListBox::AdjustScroll(int)",
+   "va": "0x0043F410",
+   "status": "partial",
+   "match_pct": 18.3,
+   "size": 263
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?InitScrollbar@UIListBox@@QAEHXZ",
+   "name": "UIListBox::InitScrollbar(void)",
+   "va": "0x0043F520",
+   "status": "partial",
+   "match_pct": 15.0,
+   "size": 60
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CreateChild@UIListBox@@QAEHXZ",
+   "name": "UIListBox::CreateChild(void)",
+   "va": "0x0043F560",
+   "status": "partial",
+   "match_pct": 23.5,
+   "size": 34
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetLockedSel@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetLockedSel(void)",
+   "va": "0x0043F590",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 28
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItem@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetItem(void)",
+   "va": "0x0043F5B0",
+   "status": "partial",
+   "match_pct": 28.8,
+   "size": 139
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetLockSel@UIListBox@@QAEXH@Z",
+   "name": "UIListBox::SetLockSel(int)",
+   "va": "0x0043F640",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetItemData@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetItemData(void)",
+   "va": "0x0043F650",
+   "status": "partial",
+   "match_pct": 45.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?SetItemOffset@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::SetItemOffset(int,int)",
+   "va": "0x0043F670",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 23
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetCurSel@UIListBox@@QAEHXZ",
+   "name": "UIListBox::GetCurSel(void)",
+   "va": "0x0043FE90",
+   "status": "partial",
+   "match_pct": 35.4,
+   "size": 48
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UIListBox_Init@UIListBox@@QAEHXZ",
+   "name": "UIListBox::UIListBox_Init(void)",
+   "va": "0x00451850",
+   "status": "partial",
+   "match_pct": 15.3,
+   "size": 137
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?DestroyContent@UIListBox@@QAEXXZ",
+   "name": "UIListBox::DestroyContent(void)",
+   "va": "0x00451900",
+   "status": "partial",
+   "match_pct": 26.8,
+   "size": 123
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ReinitScrollbar@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ReinitScrollbar(void)",
+   "va": "0x00451AD0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?CalcVisibleRange@UIListBox@@QAEHPADH@Z",
+   "name": "UIListBox::CalcVisibleRange(char *,int)",
+   "va": "0x00451AF0",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 70
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UIListBox_ResizeToContent@UIListBox@@SAHH@Z",
+   "name": "UIListBox::UIListBox_ResizeToContent",
+   "va": "0x00451B40",
+   "status": "partial",
+   "match_pct": 19.6,
+   "size": 199
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?UIListBox_IsVisible@UIListBox@@SAHH@Z",
+   "name": "UIListBox::UIListBox_IsVisible",
+   "va": "0x00451C10",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 45
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ShouldProcessInput@UIListBox@@UAEHHH@Z",
+   "name": "UIListBox::ShouldProcessInput(int,int)",
+   "va": "0x004526C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RenderMagic@UIListBox@@UAEHXZ",
+   "name": "UIListBox::RenderMagic(void)",
+   "va": "0x004526F0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?GetSkillSlotLevel@UIListBox@@QAEHHH@Z",
+   "name": "UIListBox::GetSkillSlotLevel(int,int)",
+   "va": "0x0049CF20",
+   "status": "partial",
+   "match_pct": 64.4,
+   "size": 90
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?Reset@UIListBox@@QAEXXZ",
+   "name": "UIListBox::Reset(void)",
+   "va": "0x004B4690",
+   "status": "partial",
+   "match_pct": 15.5,
+   "size": 323
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?InitAndRender@UIListBox@@QAEPAVCCBUI@@XZ",
+   "name": "UIListBox::InitAndRender(void)",
+   "va": "0x00519AF0",
+   "status": "partial",
+   "match_pct": 11.0,
+   "size": 73
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ctor@UIListBox@@QAEHXZ",
+   "name": "UIListBox::ctor(void)",
+   "va": "0x00527950",
+   "status": "partial",
+   "match_pct": 9.8,
+   "size": 122
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?ResetRect@UIListBox@@QAEPAHXZ",
+   "name": "UIListBox::ResetRect(void)",
+   "va": "0x00532A40",
+   "status": "partial",
+   "match_pct": 69.5,
+   "size": 59
+  },
+  {
+   "file": "pal3/src/UI/UIListBox.cpp",
+   "symbol": "?RefreshList@UIListBox@@QAEXXZ",
+   "name": "UIListBox::RefreshList(void)",
+   "va": "0x0053D100",
+   "status": "partial",
+   "match_pct": 10.5,
+   "size": 76
+  },
+  {
    "file": "pal3/src/UI/UINote.cpp",
    "symbol": "?Create@UINote@@QAEPAXHHHPAD@Z",
    "name": "UINote::Create(int,int,int,char *)",
@@ -5895,17 +7317,17 @@
   }
  ],
  "rebaseline": {
-  "reason": "WinMain 解除 skip 导出修复：可比总体 915→938（free_functions 扩容），L1 108→110 对齐新总体",
-  "at": "2026-10-27T20:34:40",
-  "prev_match_L1": 110,
-  "cur_match_L1": 110,
+  "reason": "T1 Destroy__ovl_03 声明接通：9 单元入比（S2 124→133），L1 110→147，总体 938→1141 良性扩张",
+  "at": "2026-10-28T14:33:10",
+  "prev_match_L1": 147,
+  "cur_match_L1": 147,
   "prev_population": {
-   "matched": 709,
-   "symbols": 938
+   "matched": 880,
+   "symbols": 1141
   },
   "cur_population": {
-   "matched": 709,
-   "symbols": 938
+   "matched": 880,
+   "symbols": 1141
   }
  }
 }

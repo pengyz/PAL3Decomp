@@ -569,22 +569,12 @@ class DataStore:
                 # (e.g. atexit cleanup handlers).
                 if not re.match(r'^[A-Za-z_]\w*$', _name):
                     continue
-                # Parse signature — two formats:
-                #   decomp: "ret __cc(params)"
-                #   functions.json: "ret __cc FuncName(params)"
+                # Parse signature — 两格式统一交 free_sig_decl（T1 修 2026-10-28 二诊：
+                # 原判据仅 __cdecl/__stdcall——__fastcall 同空档二演 ⇒ 补洞并 DRY 收敛）
                 _sig_n = re.sub(r'\b__hidden\s+', '', _sig)
-                if '__cdecl' in _sig_n or '__stdcall' in _sig_n:
-                    m = re.match(r'^(.+?)\s*(__cdecl|__stdcall)\s*(?:\w+\s*)?\((.*)\)$', _sig_n)
-                    if m:
-                        ret = m.group(1).strip()
-                        ret = re.sub(r'\bvirtual\s+', '', ret)
-                        cc = m.group(2)
-                        params = m.group(3).strip()
-                        if not params: params = 'void'
-                        if cc == '__cdecl':
-                            self.free_func_sigs[_name] = '%s %s(%s)' % (ret, _name, params)
-                        else:
-                            self.free_func_sigs[_name] = '%s %s %s(%s)' % (ret, cc, _name, params)
+                _decl = free_sig_decl(_name, _sig_n)
+                if _decl is not None:
+                    self.free_func_sigs[_name] = _decl
 
         # [R91 2026-10-24·重归属战役 1b/1c] 路由决策（裸名→地址→归属唯一，spec v2 §3）
         # 命中集 = 本批路由进类（collect/emit_headers 消费 routed_free）+ 自由声明移除
