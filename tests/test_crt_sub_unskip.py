@@ -24,8 +24,14 @@ def test_three_g_wenhu_unskipped_and_declared():
         assert 'crt_runtime' not in (e.get('source') or '')
 
 
-def test_registry_reader_named():
-    assert FN['0x00541C40']['name'] == 'PAL3_ReadRegistryStr'   # 草稿钉名（行为证据）
+def test_registry_reader_named_and_arity():
+    e = FN['0x00541C40']
+    assert e['name'] == 'PAL3_ReadRegistryStr'        # 草稿钉名（行为证据）
+    assert e['signature'].count(',') == 2             # P1 三参形（WinMain 三 push+add esp,0xC 铁证）
+
+
+def test_uicursor_fastcall_abi_carrier():
+    assert '__fastcall' in FN['0x005414A0']['signature']   # P2 ABI 载体（T1 同法 ecx 传 this）
 
 
 def test_541490_alias_retained_linker_artifact():

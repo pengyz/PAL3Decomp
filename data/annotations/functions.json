@@ -3360,8 +3360,8 @@
   },
   "0x005414A0": {
     "name": "PAL3_LoadUICursor",
-    "signature": "void __thiscall(this)",
-    "source": "[T2 2026-10-28·G 冤户] UICursor 装载（235B SEH+\"ui\\cursor\\jt.tga\"+OpenBaseFile，thiscall mov ebp,ecx；caller sub_404800）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
+    "signature": "void __fastcall(int self)",
+    "source": "[T2 2026-10-28·G 冤户] UICursor 装载（235B SEH+\"ui\\cursor\\jt.tga\"+OpenBaseFile，thiscall mov ebp,ecx；caller sub_404800）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P2] ABI 载体改 __fastcall（thiscall 禁自由形；ecx 传 this=T1 同法，防 cdecl 栈传 ABI 错）"
   },
   "0x00541860": {
     "name": "PAL3_FindCDRomDrive",
@@ -3370,7 +3370,7 @@
   },
   "0x00541C40": {
     "name": "PAL3_ReadRegistryStr",
-    "signature": "int __cdecl()",
-    "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
+    "signature": "int __cdecl(const char *lpSubKey, const char *lpValueName, char *lpData)",
+    "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c）"
   }
 }
