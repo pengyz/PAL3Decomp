@@ -111,3 +111,15 @@ def test_c5_call_return_type_disambiguated():
     import stages.stage4_substitution as _s4, stages.stage5_fixup as _s5
     assert hasattr(_s4, '_node_call_return_type') and not hasattr(_s4, '_call_return_type')
     assert hasattr(_s5, '_sig_call_return_type') and not hasattr(_s5, '_call_return_type')
+
+
+def test_t2p_pointworldtoscr_qualified():
+    """T2' 首键：gbCamera::PointWorldToScr {1,2}（A 级 mangled：PAUgbVec3D@@AAM1）。
+    三面真契约：@1/2 剥 & · @0 指针不动 · no-ctx 裸标识符退化补 *（E1 同款危险面，
+    ctx 证据门启用后应收窄——变化即门生效证据）。"""
+    assert _fix_ref_params('x->gbCamera::PointWorldToScr(&pOut, &v48, &v40);') \
+        == 'x->gbCamera::PointWorldToScr(&pOut, v48, v40);'
+    assert _fix_ref_params('f->gbCamera::PointWorldToScr(p, a, b);') \
+        == 'f->gbCamera::PointWorldToScr(p,  *a,  *b);'   # no-ctx 退化面（已知）
+    assert _fix_ref_params('x->gbCamera::PointWorldToScr(&p, v48, &v40);') \
+        == 'x->gbCamera::PointWorldToScr(&p,  *v48, v40);'
