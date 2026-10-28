@@ -2932,10 +2932,10 @@
     "source": "批9 2026-10-07：桩名收编（0 参实参形——批5 atexit 教训）"
   },
   "0x004B8200": {
-    "name": "j_D3DXVec3TransformCoord",
-    "signature": "void __cdecl(void *pOut, void *pV, void *pM)",
+    "name": "RandLerpF",
+    "signature": "float __cdecl(float a, float b)",
     "declaration_only": true,
-    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形）"
+    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形） | [T1 修 2026-10-28·A 级] 错名 j_D3DXVec3TransformCoord 退役：真身=random-lerp（66B：if(a==b) return a; else a+(rand()%10000+1)*flt_56F494*(b-a)，thunk T11 + dx §2.2）⇒ 语义名 RandLerpF + float(float,float) | evidence: 反汇编逐字节 + 11 xref | confidence: high"
   },
   "0x00431D90": {
     "name": "SingletonThunk_00431D90",
@@ -3345,5 +3345,17 @@
     "name": "WinMain",
     "signature": "int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)",
     "source": "R121 修 2026-10-27：WinMain 标注为自由函数 | R122 修 2026-10-27：type: free_function 死信道退役"
+  },
+  "0x00542533": {
+    "name": "D3DXVec3Normalize",
+    "signature": "D3DXVECTOR3 *__stdcall(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV)",
+    "source": "[T1 修 2026-10-28·A 级] j_D3DXVec3TransformCoord_0 错名退役：PSGP 跳板 jmp [0x6090C4]，槽#7 default=0x5450B5 c_D3DXVec3Normalize（157B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXVec3Normalize（PSGP 入口 _D3DXVec3Normalize@8，lib_relink_ok 路由=系统库可重链接免定义体）| evidence: dx_static §2.2 槽位+字节 | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（cdecl 误写致 284 redefinition） | [修] declaration_only=真（声明收编形：d3dx9math.h 供原型，免定义体）",
+    "declaration_only": true
+  },
+  "0x00544771": {
+    "name": "D3DXQuaternionSlerp",
+    "signature": "D3DXQUATERNION *__stdcall(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t)",
+    "source": "[T1 修 2026-10-28·A 级] j_D3DXMatrixMultiply 错名退役：PSGP 跳板 jmp [0x609134]，槽#35 default=0x544777 c_D3DXQuaternionSlerp（227B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXQuaternionSlerp（_D3DXQuaternionSlerp@16，lib_relink_ok 路由）| evidence: dx_static §2.2 + 调用方 c_D3DXQuaternionSquad Slerp×3 对应 d3dx9math.h | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（同上） | [修] declaration_only=真（同上）",
+    "declaration_only": true
   }
 }
