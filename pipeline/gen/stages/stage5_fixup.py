@@ -562,9 +562,8 @@ def _fix_register_this_alias(code):
 # ============================================================
 
 from pipeline.gen.tables import _GB_REF_PARAM_FUNCS  # [R99 阶段 3] 共享表
-from pipeline.gen.ref_params import (  # [TOS 2026-10-28·C2 零行为重接线]
-    _GB_REF_PARAM_TYPES, _NON_POINTER_LOCAL_KINDS, _DECL_KEYWORDS,
-    _split_top_commas, _build_var_types, _fix_single_ref_arg, _fix_ref_params)
+from pipeline.gen.ref_params import (  # [TOS·C2] 瘦身(E6, 复核定稿 3 件)
+    _GB_REF_PARAM_TYPES, _build_var_types, _fix_single_ref_arg, _fix_ref_params)
 
 # F81（2026-09-25）：引用参数的**实参类型**（SDK 头权威，include/gbengine）。
 # 供 Case 2b 把 `*stru_XXXX`（无型数据全局被解引用作引用实参）重写为
