@@ -34,16 +34,11 @@ def test_shared_fixer_behavior_locked():
         assert got == want, (src, got, want)
 
 
-def test_ab_parity_non_tail_superset_on_tail():
-    """C1 平价契约：非尾折叠件与 legacy 逐字平价；_tail_000 件=超集（D0 随迁件）。"""
-    for src, _ in CASES:
-        s = _fix_ref_params(src)
-        lg = _s5_legacy(src)
-        if re.search(r'->_tail_000(?!\[)', src):
-            assert s != lg, src          # 超集面：legacy 不折叠
-            assert '_tail_000' not in s, src
-        else:
-            assert s == lg, src
+def test_ab_parity_legacy_is_shared_post_c2():
+    """C2 后契约：legacy 别名即共享体（C1 期的超集差已被消费）；行为面由
+    test_shared_fixer_behavior_locked 钉住（含 _tail_000 折叠件）。"""
+    for src, want in CASES:
+        assert _s5_legacy(src) == want == _fix_ref_params(src), src
 
 
 def test_single_apply_contract_double_apply_is_hazard():
@@ -64,3 +59,12 @@ def test_case3_no_gate_degradation_matches_legacy():
     """D0' 锁：无 ctx 时行为与 legacy 完全一致（防静默改判）。"""
     src = 'Rotate(v10, v15);'
     assert _fix_ref_params(src) == _s5_legacy(src)
+
+
+def test_c2_stage5_rewired_identity():
+    """C2 零行为提交锁：stage5 消费共享实现（身份同一，禁本地副本）。"""
+    import stages.stage5_fixup as _s5mod
+    import pipeline.gen.ref_params as _rp
+    assert _s5mod._fix_ref_params is _rp._fix_ref_params
+    assert _s5mod._build_var_types is _rp._build_var_types
+    assert _s5mod._GB_REF_PARAM_TYPES is _rp._GB_REF_PARAM_TYPES
