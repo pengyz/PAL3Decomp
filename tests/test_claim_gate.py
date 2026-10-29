@@ -54,3 +54,42 @@ def test_err_warns_split_contract():
     errs, warns = evaluate_claim_gate(3529, 3528, {}, set(), set(),
                                       gap_fill_unadjudicated=['0x1'], red_flags=['0x2'])
     assert errs and warns      # 硬错误与黄牌分轨
+
+
+def test_f1_wash_level_without_evidence_still_unverified():
+    """R1-a 堵洗绿：evidence_level=A 但无证据指针=仍计未验。"""
+    errs, _ = evaluate_claim_gate(3528, 3528, {}, set(), set(),
+                                  level_a_no_evidence_count=1)
+    assert any('unverified_growth' in e for e in errs), errs
+
+
+def test_f2_baseline_missing_fails_loud():
+    from claim_gate import load_state
+    import claim_gate as cg, json as _j, pathlib as _p
+    old = cg.BASELINE
+    cg.BASELINE = _p.Path('/tmp/nonexistent_baseline.json')
+    try:
+        b, _ = cg.load_state()
+        assert b == {'ERROR': 'baseline_missing'}, b   # fail-loud 非自举
+    finally:
+        cg.BASELINE = old
+
+
+def test_f3_ledger_requires_answer():
+    errs, _ = evaluate_claim_gate(3528, 3528,
+                                  multi_claims={'0x1': ['A', 'B']},
+                                  multi_baseline=set(), ledger={'0x1'},
+                                  ledger_entries={'0x1': {'answer': ''}})
+    assert errs == ['CLAIM_GATE:multi_claim_unadjudicated:0x1'], errs
+
+
+def test_f4_adjudication_valid_set_only():
+    errs, _ = evaluate_claim_gate(3528, 3528, {}, set(), set(),
+                                  gap_fill_unadjudicated=[],
+                                  gap_fill_adjudged={'0x1': '随便写的'})
+    assert any('gap_fill_invalid_adjudication' in e for e in errs), errs
+
+
+def test_f5_p_verdict_regression_blocked():
+    errs, _ = evaluate_claim_gate(3528, 3528, {}, set(), set(), p_count=800, p_baseline=821)
+    assert any('p_verdict_regression' in e for e in errs), errs
