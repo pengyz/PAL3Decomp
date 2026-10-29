@@ -4,9 +4,22 @@
     {
       "name": "d3dx9.lib (D3DX Summer 2003)",
       "boundary": "lib_thirdparty",
-      "supply": "lib_relink",
+      "supply": "lib_relink_skewed",
       "evidence": "dx_static §2.2 PSGP 73 槽分派（0x6090A8）+ 槽内 impl 字节全同；在手件 2002-12-11 obj ≠ 精确构建输入（版本偏斜）",
-      "confidence": "high"
+      "confidence": "high",
+      "supply_chase": {
+        "status": "environment_blocked_2026-10-29",
+        "found_urls": [
+          "https://web.archive.org/web/20051102075607/http://www.microsoft.com/downloads/details.aspx?FamilyId=9216652F-51E0-402E-B7B5-FEB68D00F298",
+          "archive.org item dx90bsdk (218.1M, d3dx9b sdk mirror)"
+        ],
+        "blockers": [
+          "bash egress 无外网（curl 空响应）",
+          "web_fetch 代理仅文本且 wayback 链 404"
+        ],
+        "next": "人工/有网环境下载 dx90bsdk → 提取 d3dx9.lib → 与 tools/vc6/Lib/d3dx9.lib 逐字节比对 → 4 残差单元终裁"
+      },
+      "note": " | supply=skewed：在手件 2002-12-11 obj ≠ 精确构建输入（版本偏斜），精确件未到货前 4 残差单元挂账"
     },
     {
       "name": "d3dxmath.obj (PSGP 静态簇)",
@@ -548,5 +561,10 @@
       "name": null,
       "status": "paired"
     }
-  ]
+  ],
+  "residual_units_pending_exact_lib": {
+    "count": 4,
+    "status": "supply_skewed",
+    "note": "dx §残差——精确 d3dx9.lib 到货前不做终裁"
+  }
 }
