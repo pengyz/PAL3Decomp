@@ -651,3 +651,5 @@
 | `LineupUI::GetUpdateFlag` | inline | `LineupUI` | 24 | self_arg_mismatch | `(*(int ( **)(LineupUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 788, 0)` |
 | `PropUI::GetInputFlag` | inline | `PropUI` | 24 | self_arg_mismatch | `(*(int ( **)(PropUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 518, 0)` |
 | `Actor::CreateSceneEntities` | inline | `int` | 28 | non_class_hint | `(*(void ( **)(int, char *, int *, Actor *, const char *, int, _DWORD))(*(_DWORD *)v64 + 28))( v64, (char *)*v59, nVal2, this, v14, 1, 0)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 96 | slot_out_of_range | `(*(int ( **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 96))( gfxMgr, *(_DWORD *)((char *)v7 + (char *)v10 - _this), 0, 0)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 104 | slot_out_of_range | `(*(void ( **)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 104))(gfxMgr, 1)` |
