@@ -235,7 +235,8 @@
       "type": "skip",
       "reason": "compiler-generated ctor/dtor/thunk, not game logic",
       "ordinal": 98,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C34D0": {
       "name": "DestroyEffCallBack",
@@ -292,14 +293,16 @@
       "signature": "virtual void __thiscall(float a2)",
       "source": "vtable_migrated",
       "ordinal": 0,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C1560": {
       "name": "vfunc_2",
       "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 2,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C2600": {
       "name": "CalcDeltaTime",
@@ -313,7 +316,8 @@
       "signature": "void __thiscall()",
       "source": "vtable_migrated | [槽名债清理 2026-10-16 analyzer] A 级本体=`6a 19 e8 … 59 c3` = amsg_exit(0x19) CRT 终止器（T145 CRT 家族）——非任何类本体方法；ScriptObj/RenderTarget3 的同址副本=gap-fill 双注册残留已摘，权威留 RenderTarget2（vtable_migrated）",
       "ordinal": 19,
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x00401800": {
       "name": "NullCallback",
@@ -327,14 +331,16 @@
       "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated | 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：0x4C2040 decompile=`return DestroyEffBase((RenderTarget2*)((char*)this-12), a2)` = **−12 基调整删除壳**（真身非 DestroyEffWithBase 实体；判定=名实错+**注册面重复**（EffTargetPool+RenderTarget2 同址双注册））⇒ 消歧 `_scalar_dtor_EffTargetNode` 制式；归属挂账（真属=基类析构链，槽反查待收）",
       "ordinal": 38,
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C27C0": {
       "name": "DestroyEffWithBink",
       "signature": "virtual char *__thiscall(char a2)",
       "source": "vtable_migrated",
       "ordinal": 59,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C3400": {
       "name": "BeginMultiPassRender",
@@ -360,13 +366,15 @@
       "name": "_scalar_dtor_DestroyEffBase",
       "signature": "char *__thiscall(char a2)",
       "source": "| 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBase ⇒ _scalar_dtor_DestroyEffBase：0x4C1640 decompile=调 0x4C1660 真体 + `if(a2&1) operator delete(this)` = **删际析构壳**（编译器生成形）；与真体 0x4C1660 同名 ⇒ 命名面未区分（判定：非法重载）⇒ 消歧 `_scalar_dtor_<真体名>` 制式",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C20B0": {
       "name": "_scalar_dtor_DestroyEffBink",
       "signature": "char *__thiscall(char a2)",
       "source": "| 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：原名 DestroyEffBink ⇒ _scalar_dtor_DestroyEffBink：0x4C20B0 decompile=调 0x4C20D0 真体 + delete = 删际壳同形（判定：非法重载）⇒ 消歧",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C2870": {
       "name": "~RenderTarget2",
@@ -385,7 +393,8 @@
       "type": "skip",
       "reason": "compiler-generated scalar deleting destructor for RenderTarget2 (adjustor -12)",
       "source": "| 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char) | [非 ctor/dtor 实证 2026-10-16 analyzer] A 级：adjustor thunk `sub ecx,0Ch; jmp _scalar_dtor_34b0`（MI this 调整跳板）",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x00408BD0": {
       "name": "NullCallback",
@@ -518,7 +527,8 @@
       "name": "_scalar_dtor_34b0",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:??_GRenderTarget2@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C3C70": {
       "name": "sub_4C3C70",
@@ -530,7 +540,8 @@
       "name": "_scalar_dtor_3db0",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     },
     "0x004C5740": {
       "name": "sub_4C5740",
@@ -554,7 +565,8 @@
       "name": "_scalar_dtor_0540",
       "signature": "void __thiscall(int nVal1)",
       "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4C0540 = scalar deleting destructor 形（`call 0x4c0560`(dtor) / `testb $1,0x8(%esp)`(flag) / `call 0x541d10`(operator delete)）⇒ _scalar_dtor 命名 + 1 栈参 flag；同 _scalar_dtor_0620/34b0 形制",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C09E0": {
       "name": "_todo_004C09E0",

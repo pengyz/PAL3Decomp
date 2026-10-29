@@ -179,6 +179,8 @@ def main():
     print('duplicate definitions: %d symbols' % len(duplicates))
     for sym, defs in sorted(duplicates.items(), key=lambda kv: -len(kv[1]))[:10]:
         print('  %s (%d defs)' % (sym[:60], len(defs) + 1))
+        for _w in defs[:3]:
+            print('      defined-at: %s' % _w[:120])
 
     if not args.keep_objs:
         import shutil

@@ -44,7 +44,8 @@
       "name": "_sdtor_22",
       "signature": "virtual ScriptObj *__thiscall(char a2)",
       "source": "vtable_owner_fix(Glow 层虚函数)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "declaration_only": true
     }
   },
   "source_note": "清账③定谳 2026-10-07：Role ctor 0x453030 实证 mov [esi],0x56B200=this+0（Role 自身 vfptr）·无 [esi+40h] 存储——GlowObj +0=对象指针成员 ✓（note 正确）·vtables 条目=证据误引撤"

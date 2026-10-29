@@ -1,3 +1,4 @@
+import re
 """共享逻辑表（收敛双副本）· 阶段 3。
 
 ## 背景
@@ -53,3 +54,13 @@ _GB_REF_PARAM_FUNCS = {
     'GetViewport': {0},
     'GetViewSizeOnNearPlane': {0, 1},
     'GetViewPort': {0, 1, 2, 3},}
+
+
+# [T4 2026-10-28·spec #5] 合成物判定（dtor 报告 A-E 字节形+名形）：编译器再生件禁手写。
+# 名形判据：*_adjthunk（sub this+forward）/ _scalar_dtor_* / ~X_addr / compiler_init_*
+_SYNTH_PAT = re.compile(r'(_adjthunk|_scalar_dtor_|_sdtor_|^~\w+_[0-9a-fA-F]{4,}$|^compiler_init_)')
+
+
+def is_synthesized_member(name):
+    """True=编译器合成物（源写 ~X()+delete/静态对象即再生，禁手写——防 LNK2005）。"""
+    return bool(_SYNTH_PAT.search(name or ''))

@@ -49,7 +49,8 @@
       "name": "_scalar_dtor_7310",
       "signature": "void __thiscall()",
       "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：real-method（0x4B72E0 ctor 域） | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4B7330 写 vptr 0x56F3C0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F3C0→CEffGroupNode（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffGroupNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4B7330 写 vptr 0x56F3C0",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004B7BA0": {
       "name": "_todo_4b7ba0",

@@ -682,7 +682,7 @@ def _sig_call_return_type(name):
     return re.sub(r'^virtual\s+', '', m.group(1).strip()) or None
 
 
-from pipeline.gen.textutil import _strip_outer_parens  # [TOS C4] 单源
+from pipeline.gen.textutil import _strip_outer_parens, rewrite_deleting_dtor_calls  # [TOS C4] 单源
 
 
 _GLOBAL_BASE_TYPE_MAP = None
@@ -1337,6 +1337,7 @@ def _run_inner(code, ctx):
 
     # Reference parameter restoration
     code = _fix_ref_params(code, ctx)
+    code = rewrite_deleting_dtor_calls(code)  # [T4 批1] B 组删析构渲染还原
 
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)

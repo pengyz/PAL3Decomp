@@ -1010,6 +1010,25 @@ def demangle_name(mangled):
     return cls, method
 
 
+
+# [T4·修法D 2026-10-28] 合成物判定接线（地址级闸）——读点 annotation_view
+from pipeline.gen.tables import is_synthesized_member as _is_synthesized_member
+_SK = None
+
+
+def _skip_addr_set():
+    """[T4 收窄] 仅合成物命名址（is_synthesized_member 命中其 skip 名）——
+    按址罩全 skip 会误杀 legacy decl（_nearby_/_init_ 等 C2039 实证）。"""
+    global _SK
+    if _SK is None:
+        try:
+            import annotation_view as _av
+        except ImportError:
+            from pipeline.gen import annotation_view as _av
+        _d = _av.load_annotation_json('skip_functions.json') or {}
+        _SK = {a for a, i in _d.items() if _is_synthesized_member((i or {}).get('name', ''))}
+    return _SK
+
 def collect_methods():
     """Collect all class methods from decomp JSONs."""
     classes = defaultdict(list)
@@ -1081,7 +1100,7 @@ def collect_methods():
         if not cls or '$' in cls or '<' in cls or not (cls[0].isalpha() or cls[0] == '_'):
             continue
         # Skip compiler-generated _scalar_dtor functions (handled by virtual ~ClassName())
-        if not _is_del_dtor and ('_scalar_dtor' in method or method.startswith('_sdtor')):
+        if not _is_del_dtor and _is_synthesized_member(method):   # [T4·修法D] 分类器接线
             seen_addrs.add(addr)
             continue
         if ' ' in method or '`' in method:
@@ -1133,6 +1152,8 @@ def collect_methods():
             if '::' in _method:
                 _method = _method.rsplit('::', 1)[-1]
             _sig = _minfo.get('signature', '')
+            if _is_synthesized_member(_method) or _addr_str in _skip_addr_set():
+                continue   # [T4·修法D] supplement 闸：合成物声明禁复活
             # Skip vtable-only (destructor-style) placeholders
             if not _method or '__vec_dtor' in _method:
                 continue
@@ -1162,6 +1183,8 @@ def collect_methods():
                 _addr = _minfo.get('address', '')
                 if not _method or not _addr:
                     continue
+                if _is_synthesized_member(_method) or _addr in _skip_addr_set():
+                    continue   # [T4·修法D] known_methods supplement 闸
                 # Check if this method already exists in this class
                 _existing = [m for m, _, _ in classes.get(_ann_cls, []) if m == _method]
                 if _existing:

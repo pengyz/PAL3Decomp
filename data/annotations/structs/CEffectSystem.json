@@ -99,7 +99,8 @@
       "signature": "int *__thiscall(CEffectSystem *Block)",
       "ordinal": 8,
       "source": "剥多余第 2 参 2026-10-15（T146）：A 级=原函数 c2 04 00（ret 4=1 个 dword 栈参）+ 体中唯一参槽访问 [esp+0x8]=param1（push esi 后）；我方签名 2 参⇒c2 08 00（ret 8），n_diff=1。第 2 参 pData 体中零引用（decomp 零读）。标量删除析构体（call Init/test [esp+8],1/operator delete/mov eax,esi/ret 4）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F824,0x56F844）",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C6280": {
       "name": "Init",
@@ -193,7 +194,8 @@
       "signature": "int __thiscall(void *Block, char)",
       "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4C5D70 写 vptr 0x56F824（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F824→CEffectSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4C5D70 写 vptr 0x56F824",
       "ordinal": 0,
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "declaration_only": true
     },
     "0x004C5D80": {
       "name": "slot_1",

@@ -19,7 +19,7 @@ def test_all_entries_have_skip_reason_in_enum():
 
 
 def test_total_unchanged_and_reason_mirror_intact():
-    assert len(SK) == 1907, len(SK)   # 平账（T2 unskip 3 户后真账；计划 1910 为陈旧基线——Ruling）
+    assert len(SK) == 1927, len(SK)   # 平账推导：1910(T2 前) -3(T2 unskip) +20(T4 registry: 18+0x43BE10+0x55434F)
     assert all(e.get('reason') for e in SK.values())         # reason 镜像在（6 消费点向后兼容）
 
 
