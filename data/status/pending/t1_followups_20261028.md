@@ -5,3 +5,9 @@
 - [D6 欠账] **T1 Step 5 未做**：overlay 47 条中 Destroy__ovl_03 注释块 10 处/9 文件待回收（须纯态 probe 该单元 ok 后逐条撤）
 - [D7 挂账] **PropUI deleting_view 解除动作**独立立项（身份已定谳：0x43D880 纯析构 thunk，源写 ~UIFrameWnd() 即再生）——归 PlanA-T4 合成物清理或独立
 - [D4 状态] 源形态（同体 override 簇 vs 单一中间类）**二进制不可判定**，解除时勿按「已定谳簇」处理
+
+## (ii) 对象定义进展（2026-10-29）
+- ✅ 0xD8C2E8/0xD8C2C8 存储注册（char[32] 保守型+_todo_ 名，布局证据入 source）
+- ✅ 0xD8C338=Iostream CRT 对象（<iostream> 再生路径，Site1 已闭）
+- ⏳ 0xDE8B40：尺寸未定（邻界取证待）——注册挂账
+- ✅ g_RenderTarget3 既有注册（RenderTarget3 型）
