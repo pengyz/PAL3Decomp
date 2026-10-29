@@ -9,17 +9,17 @@ from claim_gate import evaluate_claim_gate
 
 
 def test_unverified_growth_blocked():
-    errs = evaluate_claim_gate(unverified_count=3529, unverified_baseline=3528,
+    errs, _ = evaluate_claim_gate(unverified_count=3529, unverified_baseline=3528,
                                multi_claims={}, multi_baseline=set(), ledger=set())
     assert errs == ['CLAIM_GATE:unverified_growth 3529>3528'], errs
 
 
 def test_unverified_shrink_or_hold_ok():
-    assert evaluate_claim_gate(3500, 3528, {}, set(), set()) == []
+    assert evaluate_claim_gate(3500, 3528, {}, set(), set()) == ([], [])
 
 
 def test_new_multi_claim_needs_ledger():
-    errs = evaluate_claim_gate(3528, 3528,
+    errs, _ = evaluate_claim_gate(3528, 3528,
                                multi_claims={'0x00001234': ['A', 'B']},
                                multi_baseline=set(), ledger=set())
     assert errs == ['CLAIM_GATE:multi_claim_unadjudicated:0x00001234'], errs
@@ -28,4 +28,29 @@ def test_new_multi_claim_needs_ledger():
 def test_grandfathered_multi_ok():
     assert evaluate_claim_gate(3528, 3528,
                               multi_claims={'0x00001234': ['A', 'B']},
-                              multi_baseline={'0x00001234'}, ledger={'0x00001234'}) == []
+                              multi_baseline={'0x00001234'},
+                              ledger={'0x00001234'}) == ([], [])
+
+
+def test_b_gapfill_unadjudicated_warns():
+    """P2(b)：gap_fill 移植件无裁定状态=黄牌（名字搬家非证据）。"""
+    errs, warns = evaluate_claim_gate(
+        3528, 3528, {}, set(), set(),
+        gap_fill_unadjudicated=['0x0051B030'])
+    assert errs == []
+    assert warns == ['CLAIM_GATE:gap_fill_unadjudicated:0x0051B030'], warns
+
+
+def test_c_redflag_member_counter_evidence_warns():
+    """P2(c)：体成员反证红牌（索引不全⇒质疑级）=黄牌接进闸。"""
+    errs, warns = evaluate_claim_gate(
+        3528, 3528, {}, set(), set(),
+        red_flags=['0x00517CF0'])
+    assert errs == []
+    assert warns == ['CLAIM_GATE:member_counter_evidence:0x00517CF0'], warns
+
+
+def test_err_warns_split_contract():
+    errs, warns = evaluate_claim_gate(3529, 3528, {}, set(), set(),
+                                      gap_fill_unadjudicated=['0x1'], red_flags=['0x2'])
+    assert errs and warns      # 硬错误与黄牌分轨
