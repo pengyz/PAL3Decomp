@@ -1,0 +1,3654 @@
+{
+  "total": 216,
+  "note": "R7 首批人裁池（证据密度最高：移植链+原持有类+槽位全在）；裁法=成员访问证据/调用面/虚表反查",
+  "cards": [
+    {
+      "class": "UIFrameWnd",
+      "addr": "0x00443200",
+      "claim": "Render_3200",
+      "original_holder": "CCBPanelSlot",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBPanelSlot——Render_3200 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIFrameWnd",
+      "addr": "0x004433D0",
+      "claim": "LayoutAndRender",
+      "original_holder": "UIWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——LayoutAndRender 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffSParticle",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffSParticle",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffSParticle",
+      "addr": "0x004D33A0",
+      "claim": "ResetFlags",
+      "original_holder": "CEffQuake",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffSParticle",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffSParticle",
+      "addr": "0x004D4F00",
+      "claim": "_scalar_dtor_4F00",
+      "original_holder": null,
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_4F00 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffgbParticle",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        11,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#11 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffgbParticle",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffgbParticle",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffgbParticle",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffgbParticle",
+      "addr": "0x004C8950",
+      "claim": "_scalar_dtor_8950",
+      "original_holder": null,
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_8950 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffShock",
+      "addr": "0x004D3930",
+      "claim": "~CEffShock",
+      "original_holder": null,
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——~CEffShock 是否真属 CEffShock？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffShock",
+      "addr": "0x004D3DC0",
+      "claim": "sub_4D3DC0",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D3DC0 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffShock",
+      "addr": "0x004D4110",
+      "claim": "sub_4D4110",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D4110 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBResultWindow",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBResultWindow",
+      "addr": "0x0051F1B0",
+      "claim": "OnMessage",
+      "original_holder": "CCBStage",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——OnMessage 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBResultWindow",
+      "addr": "0x00524970",
+      "claim": "CCBRoleState::Render",
+      "original_holder": "CCBStage",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x0043BBC0",
+      "claim": "Update_bbc0",
+      "original_holder": "UIFrameWnd",
+      "slot": [
+        2,
+        "UILoadingFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——Update_bbc0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#2 from:UILoadingFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x00451B40",
+      "claim": "ResizeToContent",
+      "original_holder": "UIListBox",
+      "slot": [
+        0,
+        "UILoadingFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIListBox——ResizeToContent 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#0 from:UILoadingFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x00451C10",
+      "claim": "IsVisible",
+      "original_holder": "UIListBox",
+      "slot": [
+        1,
+        "UILoadingFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIListBox——IsVisible 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:UILoadingFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x00524970",
+      "claim": "CCBRoleState::Render",
+      "original_holder": "CCBStage",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UILoadingFrm",
+      "addr": "0x00451AA0",
+      "claim": "OnMessage_ovl_1aa0",
+      "original_holder": null,
+      "slot": [
+        6,
+        "UILoadingFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——OnMessage_ovl_1aa0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#6 from:UILoadingFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x004202A0",
+      "claim": "AllocSlotData",
+      "original_holder": "RoleSystem",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleSystem——AllocSlotData 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x00420430",
+      "claim": "_sdtor_2",
+      "original_holder": "functions",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 functions——_sdtor_2 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x004208A0",
+      "claim": "Reset",
+      "original_holder": "RoleSystem",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleSystem——Reset 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x004209E0",
+      "claim": "ResetState",
+      "original_holder": "RoleSystem",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleSystem——ResetState 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x00420270",
+      "claim": "sub_420270",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_420270 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbRenderEffect",
+      "addr": "0x004202F0",
+      "claim": "sub_4202F0",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4202F0 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffModel",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        9,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffModel？（移植=名字搬家非证据；槽位#9 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffModel",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffModel？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffModel",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffModel？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffModel",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffModel？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBControlWindow",
+      "addr": "0x0051B030",
+      "claim": "OnMessage",
+      "original_holder": "CCBFiveNimbusWindow",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——OnMessage 是否真属 CCBControlWindow？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCustomShape",
+      "addr": "0x004CFE20",
+      "claim": "_nearby_4cfe20",
+      "original_holder": "CEffect",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffect——_nearby_4cfe20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCustomShape",
+      "addr": "0x004CFFA0",
+      "claim": "DestroyEffect",
+      "original_holder": "CEffModel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffModel——DestroyEffect 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCustomShape",
+      "addr": "0x004CFFB0",
+      "claim": "_nearby_4cffb0",
+      "original_holder": "CEffect",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffect——_nearby_4cffb0 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCustomShape",
+      "addr": "0x004CFD20",
+      "claim": "_scalar_dtor_fd20",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_fd20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051C260",
+      "claim": "`scalar deleting destructor'",
+      "original_holder": "CCBParabolaWindow",
+      "slot": [
+        12,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBParabolaWindow——`scalar deleting destructor' 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#12 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051C880",
+      "claim": "Destroy_c880",
+      "original_holder": "CCBParabolaWindow",
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBParabolaWindow——Destroy_c880 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051C9B0",
+      "claim": "CCBFiveNimbusWindow::OnMessage",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——CCBFiveNimbusWindow::OnMessage 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051C9F0",
+      "claim": "Update",
+      "original_holder": "CCBParabolaWindow",
+      "slot": [
+        9,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBParabolaWindow——Update 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#9 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051CA50",
+      "claim": "ToggleSlots",
+      "original_holder": "CCBParabolaWindow",
+      "slot": [
+        7,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBParabolaWindow——ToggleSlots 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#7 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBSkillWindow",
+      "addr": "0x0051CAA0",
+      "claim": "Render",
+      "original_holder": "CCBParabolaWindow",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBParabolaWindow——Render 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIBigMap",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIBigMap",
+      "addr": "0x0045AE40",
+      "claim": "_scalar_dtor_AE40",
+      "original_holder": "SaleUI",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 SaleUI——_scalar_dtor_AE40 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuake",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuake",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuake",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuake",
+      "addr": "0x004D32E0",
+      "claim": "~CEffQuake",
+      "original_holder": null,
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——~CEffQuake 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBPanelSlot",
+      "addr": "0x00442FF0",
+      "claim": "Update_2ff0",
+      "original_holder": "UIFrameWnd",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——Update_2ff0 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBPanelSlot",
+      "addr": "0x00445E70",
+      "claim": "ShowClipped",
+      "original_holder": "UIWnd",
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——ShowClipped 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "EquipUI",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 EquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "LineupUI",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 LineupUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UISceneMap",
+      "addr": "0x00408BD0",
+      "claim": "NullCallback",
+      "original_holder": "CEffAction",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 UISceneMap？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScriptObj",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScriptObj",
+      "addr": "0x00411B80",
+      "claim": "_scalar_dtor_1b80",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_1b80 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScriptObj",
+      "addr": "0x00411BB0",
+      "claim": "_scalar_dtor_1bb0",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_1bb0 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBStage",
+      "addr": "0x0051F0A0",
+      "claim": "OnCommand",
+      "original_holder": "CCBProtectWindow",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBProtectWindow——OnCommand 是否真属 CCBStage？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBStage",
+      "addr": "0x0051DD80",
+      "claim": "~CCBStage",
+      "original_holder": null,
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——~CCBStage 是否真属 CCBStage？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "SystemUI",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 SystemUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIAnimateCtrlEX",
+      "addr": "0x00444FF0",
+      "claim": "_sdtor_13",
+      "original_holder": "UITextArea",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UITextArea——_sdtor_13 是否真属 UIAnimateCtrlEX？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAction",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        11,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffAction？（移植=名字搬家非证据；槽位#11 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAction",
+      "addr": "0x004C0650",
+      "claim": "AllocSegments",
+      "original_holder": "CEffQuake",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 CEffAction？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAction",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffAction？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAction",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffAction？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAction",
+      "addr": "0x004C1270",
+      "claim": "sub_4C1270",
+      "original_holder": null,
+      "slot": [
+        14,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 CEffAction？（移植=名字搬家非证据；槽位#14 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBMagicWindow",
+      "addr": "0x0043DDF0",
+      "claim": "CCBControlWindow::Render",
+      "original_holder": "CCBControlWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBMagicWindow",
+      "addr": "0x004B0520",
+      "claim": "`scalar deleting destructor'",
+      "original_holder": "UITitle_JDHY",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UITitle_JDHY——`scalar deleting destructor' 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBMagicWindow",
+      "addr": "0x0051B860",
+      "claim": "OnMessage",
+      "original_holder": "CCBSkillWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBSkillWindow——OnMessage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBMagicWindow",
+      "addr": "0x0051C110",
+      "claim": "Destroy",
+      "original_holder": "CCBSkillWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBSkillWindow——Destroy 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBMagicWindow",
+      "addr": "0x0051C1B0",
+      "claim": "SetActivePage",
+      "original_holder": "CCBSkillWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBSkillWindow——SetActivePage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffAudio",
+      "addr": "0x004C29A0",
+      "claim": "UpdateInternal",
+      "original_holder": "CEffQuake",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 CEffAudio？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "JusticeBookUI",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 JusticeBookUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIRoleSelectDialog",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIRoleSelectDialog？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScenePanel",
+      "addr": "0x0043A870",
+      "claim": "CreateChildWidget",
+      "original_holder": "UICaption",
+      "slot": [
+        7,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——CreateChildWidget 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#7 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScenePanel",
+      "addr": "0x0043AD40",
+      "claim": "Render_AD40",
+      "original_holder": "UICaption",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——Render_AD40 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RoleSystem",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RoleSystem",
+      "addr": "0x00524970",
+      "claim": "CCBRoleState::Render",
+      "original_holder": "CCBStage",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RoleSystem",
+      "addr": "0x00420910",
+      "claim": "_scalar_dtor_0910",
+      "original_holder": null,
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_0910 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "MainEquipUI",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 MainEquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445B90",
+      "claim": "Create",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        4,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 UIWnd？（移植=名字搬家非证据；槽位#4 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445C10",
+      "claim": "HideAll",
+      "original_holder": "SceneObj",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 SceneObj——HideAll 是否真属 UIWnd？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445C60",
+      "claim": "Update",
+      "original_holder": "SceneObj",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 SceneObj——Update 是否真属 UIWnd？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445CD0",
+      "claim": "Render",
+      "original_holder": "UITitle_BBTY",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UITitle_BBTY——Render 是否真属 UIWnd？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445D10",
+      "claim": "OnMessage",
+      "original_holder": "CGameData",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 UIWnd？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x0044E5C0",
+      "claim": "_sdtor_25",
+      "original_holder": "scScriptInstance",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 scScriptInstance——_sdtor_25 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x004A14C0",
+      "claim": "HideAll_14C0",
+      "original_holder": "UITitle",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UITitle——HideAll_14C0 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00439110",
+      "claim": "sub_439110",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_439110 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x00445B20",
+      "claim": "_scalar_dtor_5B20",
+      "original_holder": null,
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_5B20 是否真属 UIWnd？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIWnd",
+      "addr": "0x0044E980",
+      "claim": "sub_44E980",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_44E980 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffMeteor",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        11,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#11 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffMeteor",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffMeteor",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffMeteor",
+      "addr": "0x004CB4A0",
+      "claim": "_scalar_dtor_B4A0",
+      "original_holder": null,
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_B4A0 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x0043D7A0",
+      "claim": "ForwardOnMessage",
+      "original_holder": "RoleCameraCtrl",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIListBox？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIListBox？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x00445C60",
+      "claim": "Update_5C60",
+      "original_holder": "SceneObj",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 SceneObj——Update_5C60 是否真属 UIListBox？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x00453E50",
+      "claim": "_scalar_dtor_3E50",
+      "original_holder": "CCBUIPanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBUIPanel——_scalar_dtor_3E50 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x00454550",
+      "claim": "RenderIfUnlocked",
+      "original_holder": "CCBUIPanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBUIPanel——RenderIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x00454560",
+      "claim": "ProcessInputIfUnlocked",
+      "original_holder": "CCBUIPanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBUIPanel——ProcessInputIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIListBox",
+      "addr": "0x00454590",
+      "claim": "OnMessage_4590",
+      "original_holder": "CCBUIPanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBUIPanel——OnMessage_4590 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffectSystem",
+      "addr": "0x004C5DB0",
+      "claim": "Activate",
+      "original_holder": "CEffect",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffect——Activate 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffectSystem",
+      "addr": "0x004C5DE0",
+      "claim": "ReleaseTextures",
+      "original_holder": "CEffect",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffect——ReleaseTextures 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "gbLightObj",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 gbLightObj？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UICoverFrm",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UICoverFrm",
+      "addr": "0x005279D0",
+      "claim": "_scalar_dtor_79D0",
+      "original_holder": "UIListBox",
+      "slot": [
+        5,
+        "UICoverFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIListBox——_scalar_dtor_79D0 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#5 from:UICoverFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UICoverFrm",
+      "addr": "0x00527DC0",
+      "claim": "ProcessInput",
+      "original_holder": "UIListBox",
+      "slot": [
+        2,
+        "UICoverFrm"
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIListBox——ProcessInput 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#2 from:UICoverFrm）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBItemWindow",
+      "addr": "0x0051B5D0",
+      "claim": "OnMessage",
+      "original_holder": "CCBControlWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBControlWindow——OnMessage 是否真属 CCBItemWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuad",
+      "addr": "0x004D0D90",
+      "claim": "_scalar_dtor_0d90",
+      "original_holder": null,
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_0d90 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuad",
+      "addr": "0x004D1300",
+      "claim": "sub_4D1300",
+      "original_holder": null,
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D1300 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffQuad",
+      "addr": "0x004D17D0",
+      "claim": "sub_4D17D0",
+      "original_holder": null,
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D17D0 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CPK",
+      "addr": "0x0053C2B0",
+      "claim": "~CPK",
+      "original_holder": null,
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——~CPK 是否真属 CPK？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffGrid",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        11,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#11 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffGrid",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffGrid",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffGrid",
+      "addr": "0x004C9630",
+      "claim": "_scalar_dtor_9630",
+      "original_holder": null,
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_9630 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "PalScript",
+      "addr": "0x00445B90",
+      "claim": "Create",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        4,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 PalScript？（移植=名字搬家非证据；槽位#4 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "PalScript",
+      "addr": "0x00445D10",
+      "claim": "OnMessage",
+      "original_holder": "CGameData",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 PalScript？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "PalScript",
+      "addr": "0x00445E70",
+      "claim": "ShowWindow",
+      "original_holder": "UIWnd",
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——ShowWindow 是否真属 PalScript？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCylinder",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCylinder",
+      "addr": "0x004C5810",
+      "claim": "_sdtor",
+      "original_holder": "RenderTarget2",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RenderTarget2——_sdtor 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffCylinder",
+      "addr": "0x004C3DB0",
+      "claim": "_scalar_dtor_3DB0",
+      "original_holder": null,
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_3DB0 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x00456500",
+      "claim": "OnMsgHandleNav",
+      "original_holder": "LineupUI",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 LineupUI——OnMsgHandleNav 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x004568C0",
+      "claim": "OnMsgSaveData",
+      "original_holder": "UITitle_QCYM",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UITitle_QCYM——OnMsgSaveData 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x00483260",
+      "claim": "`scalar deleting destructor'",
+      "original_holder": "StateUI",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 StateUI——`scalar deleting destructor' 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x00485230",
+      "claim": "StateUI::sub_485230",
+      "original_holder": "functions",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 functions——StateUI::sub_485230 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x00524970",
+      "claim": "CCBRoleState::Render",
+      "original_holder": "CCBStage",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CScreenMode",
+      "addr": "0x004850E0",
+      "claim": "sub_4850E0",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4850E0 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIRoleDialog",
+      "addr": "0x004BEF30",
+      "claim": "sub_4BEF30",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4BEF30 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIRoleDialog",
+      "addr": "0x00542102",
+      "claim": "RenderShadowVolume",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——RenderShadowVolume 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIRoleDialog",
+      "addr": "0x00542114",
+      "claim": "Reset",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——Reset 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIRoleDialog",
+      "addr": "0x0054211A",
+      "claim": "Update",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——Update 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUIPanel",
+      "addr": "0x00449C20",
+      "claim": "sub_449C20",
+      "original_holder": null,
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_449C20 是否真属 CCBUIPanel？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004AF760",
+      "claim": "Update",
+      "original_holder": "CEffCylinder",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004D3910",
+      "claim": "CEffShock",
+      "original_holder": "CEffShock",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffShock——CEffShock 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004D4700",
+      "claim": "sub_4D4700",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D4700 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CEffect",
+      "addr": "0x004D4840",
+      "claim": "sub_4D4840",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4D4840 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ParabolaCalculator",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 ParabolaCalculator？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ParabolaCalculator",
+      "addr": "0x00523B90",
+      "claim": "sub_523B90",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_523B90 是否真属 ParabolaCalculator？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBProtectWindow",
+      "addr": "0x0043D920",
+      "claim": "Destroy_D920",
+      "original_holder": "UIPushButton",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIPushButton——Destroy_D920 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBProtectWindow",
+      "addr": "0x0044A7D0",
+      "claim": "_sdtor_14",
+      "original_holder": "UIWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——_sdtor_14 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBProtectWindow",
+      "addr": "0x0044A820",
+      "claim": "GetUIElements",
+      "original_holder": "UIWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——GetUIElements 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBProtectWindow",
+      "addr": "0x0044A870",
+      "claim": "RenderText",
+      "original_holder": "UIWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——RenderText 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBFiveNimbusWindow",
+      "addr": "0x00443530",
+      "claim": "_sdtor_ovl",
+      "original_holder": "UIFrameWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——_sdtor_ovl 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBFiveNimbusWindow",
+      "addr": "0x004438F0",
+      "claim": "Destroy_38f0",
+      "original_holder": "UIFrameWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——Destroy_38f0 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBFiveNimbusWindow",
+      "addr": "0x00443950",
+      "claim": "Render",
+      "original_holder": "UIFrameWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——Render 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBFiveNimbusWindow",
+      "addr": "0x00443970",
+      "claim": "UpdateIfVisible",
+      "original_holder": "UIFrameWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIFrameWnd——UpdateIfVisible 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBFiveNimbusWindow",
+      "addr": "0x00450E90",
+      "claim": "_sdtor_27",
+      "original_holder": "UIWnd",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIWnd——_sdtor_27 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043A7F0",
+      "claim": "_sdtor",
+      "original_holder": "UICaption",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——_sdtor 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043AB00",
+      "claim": "Destroy",
+      "original_holder": "UICaption",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——Destroy 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043AB20",
+      "claim": "Update2",
+      "original_holder": "UICaption",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——Update2 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043B4B0",
+      "claim": "_sdtor_5",
+      "original_holder": "UICaption",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UICaption——_sdtor_5 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043B660",
+      "claim": "Render",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——Render 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043B900",
+      "claim": "Update_B900",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——Update_B900 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0043D7A0",
+      "claim": "ForwardOnMessage",
+      "original_holder": "RoleCameraCtrl",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0044C910",
+      "claim": "Destroy_C910",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——Destroy_C910 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0044DAC0",
+      "claim": "PostRender",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——PostRender 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0044DB70",
+      "claim": "StopAllSounds",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——StopAllSounds 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0044DFC0",
+      "claim": "OnMessage",
+      "original_holder": "UIScenePanel",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 UIScenePanel——OnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UIScene",
+      "addr": "0x0044BE40",
+      "claim": "sub_44BE40",
+      "original_holder": null,
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_44BE40 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "Role",
+      "addr": "0x0041BE30",
+      "claim": "_sdtor_22",
+      "original_holder": "ScriptObj",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 ScriptObj——_sdtor_22 是否真属 Role？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x0043D7A0",
+      "claim": "ForwardOnMessage",
+      "original_holder": "RoleCameraCtrl",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x0043DDF0",
+      "claim": "CCBControlWindow::Render",
+      "original_holder": "CCBControlWindow",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBUI？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00516100",
+      "claim": "_sdtor_19",
+      "original_holder": "CCBProtectWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBProtectWindow——_sdtor_19 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x005164D0",
+      "claim": "Destroy",
+      "original_holder": "CCBProtectWindow",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBProtectWindow——Destroy 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00519360",
+      "claim": "_scalar_dtor_9360",
+      "original_holder": "CCBResultWindow",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBResultWindow——_scalar_dtor_9360 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00519510",
+      "claim": "Destroy_9510",
+      "original_holder": "CCBResultWindow",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBResultWindow——Destroy_9510 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x005195E0",
+      "claim": "OnMessage",
+      "original_holder": "CCBResultWindow",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBResultWindow——OnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00519660",
+      "claim": "IsImbibeNimbusNotFinish",
+      "original_holder": "CCBResultWindow",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBResultWindow——IsImbibeNimbusNotFinish 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00519B40",
+      "claim": "_scalar_dtor_9B40",
+      "original_holder": "CCBFiveNimbusWindow",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——_scalar_dtor_9B40 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x00519F50",
+      "claim": "Destroy_9F50",
+      "original_holder": "CCBFiveNimbusWindow",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——Destroy_9F50 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x0051A090",
+      "claim": "AddResultWindowAni",
+      "original_holder": "CCBFiveNimbusWindow",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——AddResultWindowAni 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x0051A390",
+      "claim": "_scalar_dtor_A390",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "A",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——_scalar_dtor_A390 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBUI",
+      "addr": "0x0051A880",
+      "claim": "Destroy_A880",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——Destroy_A880 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UINote",
+      "addr": "0x00450AB0",
+      "claim": "_sdtor_26",
+      "original_holder": "RoleCameraCtrl",
+      "slot": null,
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 RoleCameraCtrl——_sdtor_26 是否真属 UINote？（移植=名字搬家非证据；槽位未定位）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget",
+      "addr": "0x0048EB40",
+      "claim": "RenderWithEffects",
+      "original_holder": "MainPropUI",
+      "slot": [
+        1,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 MainPropUI——RenderWithEffects 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#1 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget",
+      "addr": "0x0048EF80",
+      "claim": "ValidateDevice",
+      "original_holder": "CameraCtrl",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CameraCtrl——ValidateDevice 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScreenEffectMgr",
+      "addr": "0x005420D8",
+      "claim": "EnableShadow",
+      "original_holder": "gbVisNode",
+      "slot": [
+        9,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 gbVisNode——EnableShadow 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#9 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScreenEffectMgr",
+      "addr": "0x005420DE",
+      "claim": "GetAABBox",
+      "original_holder": "gbVisNode",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 gbVisNode——GetAABBox 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "ScreenEffectMgr",
+      "addr": "0x0054210E",
+      "claim": "GetBoundSphere",
+      "original_holder": "gbVisNode",
+      "slot": [
+        7,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 gbVisNode——GetBoundSphere 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#7 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UITitle_YXXX",
+      "addr": "0x0043DE40",
+      "claim": "CCBRoleState::Destroy",
+      "original_holder": "CCBRoleState",
+      "slot": [
+        6,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#6 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "UITitle_YXXX",
+      "addr": "0x00524970",
+      "claim": "CCBRoleState::Render",
+      "original_holder": "CCBStage",
+      "slot": [
+        4,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#4 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x00408BD0",
+      "claim": "NullCallback",
+      "original_holder": "CEffAction",
+      "slot": [
+        28,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#28 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0500",
+      "claim": "OnTest",
+      "original_holder": "CEffAction",
+      "slot": [
+        32,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#32 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0520",
+      "claim": "AllocRenderTarget",
+      "original_holder": "CEffAction",
+      "slot": [
+        10,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——AllocRenderTarget 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#10 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0640",
+      "claim": "ResetState",
+      "original_holder": "CEffAction",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——ResetState 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0650",
+      "claim": "AllocSegments",
+      "original_holder": "CEffQuake",
+      "slot": [
+        4,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#4 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0740",
+      "claim": "UpdateFrame_0740",
+      "original_holder": "CEffAction",
+      "slot": [
+        8,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——UpdateFrame_0740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#8 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0920",
+      "claim": "PrepareEffect",
+      "original_holder": "CEffAction",
+      "slot": [
+        12,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffAction——PrepareEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#12 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C15D0",
+      "claim": "UpdateParticles",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        37,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#37 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C29A0",
+      "claim": "UpdateInternal",
+      "original_holder": "CEffQuake",
+      "slot": [
+        86,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#86 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C3D90",
+      "claim": "AllocEffect",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        31,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——AllocEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#31 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C4060",
+      "claim": "Create",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        25,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Create 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#25 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C4370",
+      "claim": "Destroy",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        30,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——Destroy 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#30 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C45A0",
+      "claim": "CreateTask",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        29,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——CreateTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#29 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C48D0",
+      "claim": "ProcInitTask",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        36,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——ProcInitTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#36 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C5010",
+      "claim": "GetEditorTaskDescription",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        38,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——GetEditorTaskDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#38 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C5150",
+      "claim": "GetEditorObjDescription",
+      "original_holder": "CEffCylinder",
+      "slot": [
+        34,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffCylinder——GetEditorObjDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#34 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004D33A0",
+      "claim": "ResetFlags",
+      "original_holder": "CEffQuake",
+      "slot": [
+        5,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0510",
+      "claim": "sub_4C0510",
+      "original_holder": null,
+      "slot": [
+        13,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#13 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0610",
+      "claim": "nullsub_75_override",
+      "original_holder": null,
+      "slot": [
+        23,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——nullsub_75_override 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#23 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C0620",
+      "claim": "_scalar_dtor_0620",
+      "original_holder": null,
+      "slot": [
+        21,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_0620 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#21 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C1270",
+      "claim": "sub_4C1270",
+      "original_holder": null,
+      "slot": [
+        17,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#17 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C34B0",
+      "claim": "_scalar_dtor_34b0",
+      "original_holder": null,
+      "slot": [
+        3,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_34b0 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#3 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C3C70",
+      "claim": "sub_4C3C70",
+      "original_holder": null,
+      "slot": [
+        0,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C3C70 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#0 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C3DB0",
+      "claim": "_scalar_dtor_3db0",
+      "original_holder": null,
+      "slot": [
+        24,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——_scalar_dtor_3db0 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#24 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C5740",
+      "claim": "sub_4C5740",
+      "original_holder": null,
+      "slot": [
+        41,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C5740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#41 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "RenderTarget2",
+      "addr": "0x004C5800",
+      "claim": "sub_4C5800",
+      "original_holder": null,
+      "slot": [
+        21,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": false
+      },
+      "question": "gap_fill 移植自 ?——sub_4C5800 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#21 from:None）",
+      "answer": null,
+      "adjudicator": null
+    },
+    {
+      "class": "CCBLineupWindow",
+      "addr": "0x0051B570",
+      "claim": "HandleInput",
+      "original_holder": "CCBItemWindow",
+      "slot": [
+        2,
+        null
+      ],
+      "signals": {
+        "source": "vtable_gap_fill_v1",
+        "evidence_level": "unverified",
+        "multi_claim": true
+      },
+      "question": "gap_fill 移植自 CCBItemWindow——HandleInput 是否真属 CCBLineupWindow？（移植=名字搬家非证据；槽位#2 from:None）",
+      "answer": null,
+      "adjudicator": null
+    }
+  ]
+}
