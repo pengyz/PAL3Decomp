@@ -18,6 +18,24 @@ THIS_REF = re.compile(r'(?:this->|&this->)(\w+)')
 CAST = re.compile(r'\(\((\w+) \*\)this\)')
 
 
+def build_member_index(ida_structs, structs_jsons):
+    """B2b：成员索引双源合并——ida_structs.data_members ∪ structs.known_members。"""
+    idx = {}
+    for nm, d in (ida_structs or {}).items():
+        s = set(idx.setdefault(nm, set()))
+        for m in (d or {}).get('data_members') or []:
+            if isinstance(m, dict) and m.get('name'):
+                s.add(m['name'])
+        idx[nm] = s
+    for nm, d in (structs_jsons or {}).items():
+        s = set(idx.setdefault(nm, set()))
+        for m in (d or {}).get('known_members') or []:
+            if isinstance(m, dict) and m.get('name'):
+                s.add(m['name'])
+        idx[nm] = s
+    return idx
+
+
 def extract_this_member_refs(body):
     """体中 this->成员 引用名集合。"""
     return set(THIS_REF.findall(body))
@@ -45,20 +63,12 @@ def classify_claim(body, claimed, claimed_members, other_classes,
 
 def main():
     structs = {}
-    members = {}
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
         d = json.load(open(f))
-        nm = d.get('name')
-        if not nm:
-            continue
-        structs[nm] = d
-        mems = set()
-        for m in d.get('known_members') or []:
-            if isinstance(m, dict) and m.get('name'):
-                mems.add(m['name'])
-        for k, v in (d.get('methods') or {}).items():
-            pass
-        members[nm] = mems
+        if d.get('name'):
+            structs[d['name']] = d
+    ida_s = json.load(open(ROOT / 'asm/pal3/ida_structs.json'))
+    members = build_member_index(ida_s, structs)
     out = []
     for nm, d in structs.items():
         for addr, info in (d.get('methods') or {}).items():
