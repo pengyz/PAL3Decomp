@@ -12592,5 +12592,7 @@
       "answer": null,
       "adjudicator": null
     }
-  ]
+  ],
+  "known_blindspot": "信号源错位：异类转换形在生成 cpp（stage 变换后渲染）而守卫读 raw decomp——NPC::ResetLineupWindow 目标件因 casts 未在 decomp 形出现而缺席；修法=信号源切 pal3/src（// 0xADDR 锚）+ CAST 正则纳参数形 (X*)this + 成员索引补缺（B2b-2）",
+  "errata": "a87229cb4 宣称盲区挂账但脚本 SyntaxError 未落——本条补落（记账失实第 4 例自纠，heredoc 多行串二犯）"
 }
