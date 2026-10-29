@@ -35,3 +35,13 @@ def rewrite_deleting_dtor_calls(code):
             return '%s%s->~%s();' % (m.group('ind'), m.group('recv'), m.group('cls'))
         return '%sdelete %s;' % (m.group('ind'), m.group('recv'))
     return _DDTOR_STMT.sub(_sub, code)
+
+
+# [T5(i) 2026-10-29] SingletonThunk 胶水剥离——编译器随全局对象定义再生（B9 imm32 E9 形证据），
+# 手写胶水（atexit 注册+立即调用）为合成物渲染残骸，等价变换删除。
+_ST_GLUE = _re_t.compile(r'(?m)^\s*(?:atexit\(\s*(?:\([^;]*?\)\s*)?SingletonThunk_[0-9A-Fa-f]+\s*\)|SingletonThunk_[0-9A-Fa-f]+\s*\([^;]*?\))\s*;\s*\n')
+
+
+def strip_singleton_thunk_glue(code):
+    """删 SingletonThunk_XXXX 相关语句（atexit 注册/立即调用形）。"""
+    return _ST_GLUE.sub('', code)
