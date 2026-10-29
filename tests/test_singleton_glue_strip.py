@@ -26,3 +26,16 @@ def test_unrelated_untouched():
 def test_idempotent():
     once = f('  atexit(SingletonThunk_00431E70);\n')
     assert f(once) == once
+
+
+def test_d2_semantic_pair_not_stripped():
+    """D2 守卫：Site2/3 手工单例对（0x431E70/EC0）禁剥——半剥离=真初始化丢失。"""
+    src = '  SingletonThunk_00431E70(this);\n  atexit(ConditionalCleanup);\n'
+    assert f(src) == src
+
+
+def test_d2b_pseudo_arg_stripped_pair_statement_kept():
+    """D2b：Site2/3 语句保留（D2）+ 伪参剥离（B9 零栈参字节形）。"""
+    from textutil import strip_singleton_thunk_args as g
+    src = '  SingletonThunk_00431E70(this);\n  atexit(ConditionalCleanup);\n'
+    assert g(src) == '  SingletonThunk_00431E70();\n  atexit(ConditionalCleanup);\n'

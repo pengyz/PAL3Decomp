@@ -682,7 +682,7 @@ def _sig_call_return_type(name):
     return re.sub(r'^virtual\s+', '', m.group(1).strip()) or None
 
 
-from pipeline.gen.textutil import _strip_outer_parens, rewrite_deleting_dtor_calls, strip_singleton_thunk_glue  # [TOS C4] 单源
+from pipeline.gen.textutil import _strip_outer_parens, rewrite_deleting_dtor_calls, strip_singleton_thunk_glue, strip_singleton_thunk_args  # [TOS C4] 单源
 
 
 _GLOBAL_BASE_TYPE_MAP = None
@@ -1339,6 +1339,7 @@ def _run_inner(code, ctx):
     code = _fix_ref_params(code, ctx)
     code = rewrite_deleting_dtor_calls(code)  # [T4 批1] B 组删析构渲染还原
     code = strip_singleton_thunk_glue(code)   # [T5(i)] 合成物胶水剥离
+    code = strip_singleton_thunk_args(code)    # [D2b] 伪参剥离（B9 零栈参证据）
 
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)

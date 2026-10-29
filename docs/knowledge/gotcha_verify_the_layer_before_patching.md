@@ -50,3 +50,10 @@ sed -n '40,55p' pipeline/probe_compile.py               # ⇒ INCLUDE_DIRS 第�
 - **改完必须有一次"单变量 + 基线断言"的测量** ✓（先断言 baseline 数值，否则会**自比** ✗ ——
  见 [[page:gotcha-interlocking-invariants-block-local-fixes]] 的同族教训 ✓）。
 - **零效果 ≠ 机制错** ✗：也可能是**改动没进编译** ✓ ⇒ 先验证"是否参与编译" ✓。
+
+## 追加实例（2026-10-29·T5 接线教训）：字符串 replace 接线须断言命中
+stage5 接线 `strip_singleton_thunk_glue` 时 import 行 replace 因模式不合
+（目标行含 `_strip_outer_parens, ` 前缀）**静默落空** ⇒ codegen 34s 速崩 NameError。
+规则：任何 replace 接线后必须 `assert 新符号 in 源码`（或断言 replace 计数>0），
+静默落空=延迟爆炸。同族：checkout 落暂存区坑（git checkout <file> 恢复的是
+INDEX 态；须 `git checkout HEAD -- <file>` 才是 HEAD 态——T4 一版矫正落空根因）。

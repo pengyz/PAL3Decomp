@@ -2943,7 +2943,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 return Iostream_init::Iostream_init(&unk_D8C338) 0 参 CRT iostream 静态初始化跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00D8C338",
+    "source_owner": "Iostream_init 对称件",
+    "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）"
   },
   "0x00431DB0": {
     "name": "SingletonThunk_00431DB0",
@@ -2951,7 +2954,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00D8C338",
+    "source_owner": "Iostream_init 对称件",
+    "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）"
   },
   "0x00431E70": {
     "name": "SingletonThunk_00431E70",
@@ -2959,7 +2965,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr ctor | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00D8C2E8",
+    "source_owner": "手工单例（0xD8C324 位守卫）",
+    "regen_path": "PENDING: Site2 语义对（D2）——对象定义/ctor 归属待取证"
   },
   "0x00431EC0": {
     "name": "SingletonThunk_00431EC0",
@@ -2967,7 +2976,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr::OpenSCE | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00D8C2C8",
+    "source_owner": "手工单例（0xD8C324 位守卫）",
+    "regen_path": "PENDING: Site3 语义对（D2）——同上"
   },
   "0x004B6D70": {
     "name": "SingletonThunk_004B6D70",
@@ -2975,7 +2987,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00DE6CD8",
+    "source_owner": "g_RenderTarget3",
+    "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site4）"
   },
   "0x004BFD60": {
     "name": "SingletonThunk_004BFD60",
@@ -2983,7 +2998,10 @@
     "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance_fd20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
     "declaration_only": true,
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "evidence_level": "B",
+    "object_addr": "0x00DE8B40",
+    "source_owner": "g_??（未名）",
+    "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site5）"
   },
   "0x00450A30": {
     "name": "accessor_00450A30",

@@ -39,9 +39,26 @@ def rewrite_deleting_dtor_calls(code):
 
 # [T5(i) 2026-10-29] SingletonThunk 胶水剥离——编译器随全局对象定义再生（B9 imm32 E9 形证据），
 # 手写胶水（atexit 注册+立即调用）为合成物渲染残骸，等价变换删除。
-_ST_GLUE = _re_t.compile(r'(?m)^\s*(?:atexit\(\s*(?:\([^;]*?\)\s*)?SingletonThunk_[0-9A-Fa-f]+\s*\)|SingletonThunk_[0-9A-Fa-f]+\s*\([^;]*?\))\s*;\s*\n')
+# [D2 修 2026-10-29·复核 f20cc6e7] 证据分流：仅 4 胶水件可剥——
+# 0x431D90/0x431DB0=Iostream_init CRT 对称双剥（Site1）· 0x4B6D70/0x4BFD60=
+# NullCallback 空跳（Site4/5）；0x431E70/0x431EC0=手工单例语义对（Site2/3，带
+# 0xD8C324 位守卫 + 配对 cleanup atexit）**禁剥**——半剥离=真初始化丢失（D2）。
+_GLUE_NAMES = ('00431D90', '00431DB0', '004B6D70', '004BFD60')
+_ST_GLUE = _re_t.compile(
+    r'(?m)^\s*(?:atexit\(\s*(?:\([^;]*?\)\s*)?SingletonThunk_(?:%s)\s*\)'
+    r'|SingletonThunk_(?:%s)\s*\([^;]*?\))\s*;\s*\n' % ('|'.join(_GLUE_NAMES), '|'.join(_GLUE_NAMES)))
 
 
 def strip_singleton_thunk_glue(code):
-    """删 SingletonThunk_XXXX 相关语句（atexit 注册/立即调用形）。"""
+    """删**证据核验**的 4 胶水件语句。语义对（Site2/3）禁剥——见 D2 注记。"""
     return _ST_GLUE.sub('', code)
+
+
+# [D2b 2026-10-29] SingletonThunk 伪参剥离——B9 imm32 形（自载对象、零栈参读取）⇒
+# Hex-Rays ecx 建模渲染的 (this) 实参为噪声；保留语句（Site2/3 语义对）仅剥参。
+_ST_ARG = _re_t.compile(r'(SingletonThunk_[0-9A-Fa-f]+)\s*\([^;]*?\)')
+
+
+def strip_singleton_thunk_args(code):
+    """SingletonThunk_*() 调用剥伪参（thunk 零栈参=字节形证据）。"""
+    return _ST_ARG.sub(r'\1()', code)
