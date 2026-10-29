@@ -1,0 +1,552 @@
+{
+  "_schema": "spec §三轴 boundary/supply/skip · 2026-10-28-reproducible-boundary-spec.md",
+  "libs": [
+    {
+      "name": "d3dx9.lib (D3DX Summer 2003)",
+      "boundary": "lib_thirdparty",
+      "supply": "lib_relink",
+      "evidence": "dx_static §2.2 PSGP 73 槽分派（0x6090A8）+ 槽内 impl 字节全同；在手件 2002-12-11 obj ≠ 精确构建输入（版本偏斜）",
+      "confidence": "high"
+    },
+    {
+      "name": "d3dxmath.obj (PSGP 静态簇)",
+      "boundary": "lib_thirdparty",
+      "supply": "lib_relink",
+      "evidence": "research_crt §E 簇 sub_542xxx + 微跳板簇 0x5424xx-0x543Axx",
+      "confidence": "high"
+    },
+    {
+      "name": "LIBC/libcmt (MSVC6 CRT)",
+      "boundary": "lib_crt",
+      "supply": "lib_relink",
+      "evidence": "crt_skip_census 0x55xxxx 真 CRT 段 ~340 件 + wincrt0/crt0 双启动 6 件共享",
+      "confidence": "high"
+    },
+    {
+      "name": "STL (MSVC6)",
+      "boundary": "lib_stl",
+      "supply": "lib_relink",
+      "evidence": "crt_skip_census L2 STL 525-527 等",
+      "confidence": "medium"
+    }
+  ],
+  "d3dx9_psgp_table": {
+    "table_va": "0x6090A8",
+    "template_va": "0x6091D0",
+    "init_va": "0x546F41",
+    "note": "_D3DXCpuOptimizations 惰性分派；默认目标=槽初始值，PSGPInit 后重指向"
+  },
+  "d3dx9_psgp_slots": [
+    {
+      "slot": 0,
+      "slot_va": "0x6090a8",
+      "default_target": "0x5424ba",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 1,
+      "slot_va": "0x6090ac",
+      "default_target": "0x542798",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 2,
+      "slot_va": "0x6090b0",
+      "default_target": "0x542e2c",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 3,
+      "slot_va": "0x6090b4",
+      "default_target": "0x543085",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 4,
+      "slot_va": "0x6090b8",
+      "default_target": "0x54334e",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 5,
+      "slot_va": "0x6090bc",
+      "default_target": "0x542502",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 6,
+      "slot_va": "0x6090c0",
+      "default_target": "0x542918",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 7,
+      "slot_va": "0x6090c4",
+      "default_target": "0x542526",
+      "name": "c_D3DXVec3Normalize",
+      "status": "named"
+    },
+    {
+      "slot": 8,
+      "slot_va": "0x6090c8",
+      "default_target": "0x542b61",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 9,
+      "slot_va": "0x6090cc",
+      "default_target": "0x5424de",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 10,
+      "slot_va": "0x6090d0",
+      "default_target": "0x5428ee",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 11,
+      "slot_va": "0x6090d4",
+      "default_target": "0x542fae",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 12,
+      "slot_va": "0x6090d8",
+      "default_target": "0x544b06",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 13,
+      "slot_va": "0x6090dc",
+      "default_target": "0x544b4b",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 14,
+      "slot_va": "0x6090e0",
+      "default_target": "0x542a20",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 15,
+      "slot_va": "0x6090e4",
+      "default_target": "0x542a42",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 16,
+      "slot_va": "0x6090e8",
+      "default_target": "0x542a64",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 17,
+      "slot_va": "0x6090ec",
+      "default_target": "0x5422b7",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 18,
+      "slot_va": "0x6090f0",
+      "default_target": "0x543591",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 19,
+      "slot_va": "0x6090f4",
+      "default_target": "0x5443e4",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 20,
+      "slot_va": "0x6090f8",
+      "default_target": "0x54448d",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 21,
+      "slot_va": "0x6090fc",
+      "default_target": "0x5449a3",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 22,
+      "slot_va": "0x609100",
+      "default_target": "0x544a57",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 23,
+      "slot_va": "0x609104",
+      "default_target": "0x5440d8",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 24,
+      "slot_va": "0x609108",
+      "default_target": "0x54411a",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 25,
+      "slot_va": "0x60910c",
+      "default_target": "0x5442d7",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 26,
+      "slot_va": "0x609110",
+      "default_target": "0x5439cd",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 27,
+      "slot_va": "0x609114",
+      "default_target": "0x5440be",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 28,
+      "slot_va": "0x609118",
+      "default_target": "0x5440cb",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 29,
+      "slot_va": "0x60911c",
+      "default_target": "0x54425b",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 30,
+      "slot_va": "0x609120",
+      "default_target": "0x543a57",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 31,
+      "slot_va": "0x609124",
+      "default_target": "0x543aed",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 32,
+      "slot_va": "0x609128",
+      "default_target": "0x543b84",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 33,
+      "slot_va": "0x60912c",
+      "default_target": "0x543943",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 34,
+      "slot_va": "0x609130",
+      "default_target": "0x544bfa",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 35,
+      "slot_va": "0x609134",
+      "default_target": "0x54474d",
+      "name": "c_D3DXQuaternionSlerp",
+      "status": "named"
+    },
+    {
+      "slot": 36,
+      "slot_va": "0x609138",
+      "default_target": "0x5448ec",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 37,
+      "slot_va": "0x60913c",
+      "default_target": "0x5432ce",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 38,
+      "slot_va": "0x609140",
+      "default_target": "0x543d4a",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 39,
+      "slot_va": "0x609144",
+      "default_target": "0x543e6d",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 40,
+      "slot_va": "0x609148",
+      "default_target": "0x543e3f",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 41,
+      "slot_va": "0x60914c",
+      "default_target": "0x543eaf",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 42,
+      "slot_va": "0x609150",
+      "default_target": "0x543c22",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 43,
+      "slot_va": "0x609154",
+      "default_target": "0x54485a",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 44,
+      "slot_va": "0x609158",
+      "default_target": "0x544550",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 45,
+      "slot_va": "0x60915c",
+      "default_target": "0x5448db",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 46,
+      "slot_va": "0x609160",
+      "default_target": "0x5422aa",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 47,
+      "slot_va": "0x609164",
+      "default_target": "0x54236f",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 48,
+      "slot_va": "0x609168",
+      "default_target": "0x542448",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 49,
+      "slot_va": "0x60916c",
+      "default_target": "0x542539",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 50,
+      "slot_va": "0x609170",
+      "default_target": "0x542611",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 51,
+      "slot_va": "0x609174",
+      "default_target": "0x54270c",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 52,
+      "slot_va": "0x609178",
+      "default_target": "0x542b6e",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 53,
+      "slot_va": "0x60917c",
+      "default_target": "0x542c69",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 54,
+      "slot_va": "0x609180",
+      "default_target": "0x542d86",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 55,
+      "slot_va": "0x609184",
+      "default_target": "0x544614",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 56,
+      "slot_va": "0x609188",
+      "default_target": "0x5446a2",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 57,
+      "slot_va": "0x60918c",
+      "default_target": "0x54215c",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 58,
+      "slot_va": "0x609190",
+      "default_target": "0x5421f8",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 59,
+      "slot_va": "0x609194",
+      "default_target": "0x5424cd",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 60,
+      "slot_va": "0x609198",
+      "default_target": "0x5424f1",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 61,
+      "slot_va": "0x60919c",
+      "default_target": "0x542515",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 62,
+      "slot_va": "0x6091a0",
+      "default_target": "0x542836",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 63,
+      "slot_va": "0x6091a4",
+      "default_target": "0x542901",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 64,
+      "slot_va": "0x6091a8",
+      "default_target": "0x542991",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 65,
+      "slot_va": "0x6091ac",
+      "default_target": "0x542ede",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 66,
+      "slot_va": "0x6091b0",
+      "default_target": "0x542a31",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 67,
+      "slot_va": "0x6091b4",
+      "default_target": "0x542a53",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 68,
+      "slot_va": "0x6091b8",
+      "default_target": "0x544ca6",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 69,
+      "slot_va": "0x6091bc",
+      "default_target": "0x544d76",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 70,
+      "slot_va": "0x6091c0",
+      "default_target": "0x544d87",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 71,
+      "slot_va": "0x6091c4",
+      "default_target": "0x543e7e",
+      "name": null,
+      "status": "paired"
+    },
+    {
+      "slot": 72,
+      "slot_va": "0x6091c8",
+      "default_target": "0x543fbc",
+      "name": null,
+      "status": "paired"
+    }
+  ]
+}

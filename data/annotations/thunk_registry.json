@@ -1,0 +1,105 @@
+{
+  "_schema": "spec §1 九类 · 每条 boundary/confidence/evidence",
+  "0x00431D90": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "B9 imm32 E9（Iostream_init 对称件 Site1）objdump 字节形 + research_{thunk_mechanism,dx_static,crt_boundary}_20261028.md",
+    "note": "胶水已剥（T5）"
+  },
+  "0x00431DB0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "B9 imm32 E9（Site1 对）objdump 字节形 + research_{thunk_mechanism,dx_static,crt_boundary}_20261028.md",
+    "note": "胶水已剥"
+  },
+  "0x00431E70": {
+    "boundary": "compiler_synthesized",
+    "confidence": "medium",
+    "evidence": "B9 imm32 E9 但被手工单例引用（D2 语义对，0xD8C324 位守卫）",
+    "note": "Site2 语义对保留+伪参剥（D2b）"
+  },
+  "0x00431EC0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "medium",
+    "evidence": "同 0x431E70（Site3）",
+    "note": "同上"
+  },
+  "0x004B6D70": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "B9 imm32 E9→NullCallback 空跳（Site4）",
+    "note": "胶水已剥"
+  },
+  "0x004BFD60": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "B9 imm32 E9→NullCallback 空跳（Site5）",
+    "note": "胶水已剥"
+  },
+  "0x004431B0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "30B 教科书删析构 ret4 flags（B 组 ??_G）",
+    "note": "转写 ~X()/delete X（T4）"
+  },
+  "0x0043BE10": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 B 组删析构形（test flags;delete）",
+    "note": "同上"
+  },
+  "0x0047DD70": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "30B 删析构（call 纯析构;test;delete;ret4）",
+    "note": "名字 _scalar_dtor_DD70 系命名倒置案"
+  },
+  "0x0044BE40": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "30B 删析构挂普通名（名实不符反例）",
+    "note": "——"
+  },
+  "0x0047E570": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "sub ecx,0x48;jmp（D 组 MI 跳板）",
+    "note": "地址级闸"
+  },
+  "0x00542533": {
+    "boundary": "lib_thirdparty",
+    "confidence": "high",
+    "evidence": "jmp [0x6090C4] PSGP 槽#7=c_D3DXVec3Normalize（157B 逐字节）",
+    "note": "声明走 d3dx9math"
+  },
+  "0x00544771": {
+    "boundary": "lib_thirdparty",
+    "confidence": "high",
+    "evidence": "jmp [0x609134] PSGP 槽#35=c_D3DXQuaternionSlerp（227B）",
+    "note": "同上"
+  },
+  "0x0041CA30": {
+    "boundary": "game",
+    "confidence": "high",
+    "evidence": "成员写/数组寻址字节形（F1 证真代码）",
+    "note": "j_ 名形冤户"
+  },
+  "0x0041D590": {
+    "boundary": "game",
+    "confidence": "high",
+    "evidence": "同 F1",
+    "note": "同上"
+  },
+  "0x00485DC0": {
+    "boundary": "game",
+    "confidence": "high",
+    "evidence": "同 F1",
+    "note": "同上"
+  },
+  "0x005044F0": {
+    "boundary": "game",
+    "confidence": "high",
+    "evidence": "同 F1",
+    "note": "同上"
+  }
+}
