@@ -112,21 +112,37 @@ def main():
            'red': red[:200], 'yellow_sample': yel[:50]}
     Path(ROOT / 'data/status/attribution_guard_census.json').write_text(
         json.dumps(res, ensure_ascii=False, indent=2))
-    # B2c：全量 Q 卡直产（禁样本截断——250≠734 自纠）
+    # B2c/R4a：全量 Q 卡直产——行表批只收黄牌（RED 召回人裁：成员反证≠家族语义）；
+    # 批卡全存卡体（R4-a 死账修复：禁计数化丢卡）。
     def _mk(x, grade, q):
         return {'class': x['class'], 'addr': x['addr'], 'claim': x['name'],
                 'signals': {'flags': x['flags'], 'missing_members': x['missing']},
                 'grade': grade, 'question': q, 'answer': None, 'adjudicator': None}
-    cards = [_mk(x, 'Q:counter_evidence_index_limited',
-                 '体访问 %s 不在 %s 成员索引而在他类——错归属反证（索引不全禁自动判），请人裁归属'
-                 % (','.join(x['missing'][:2]), x['class'])) for x in red]
-    cards += [_mk(x, 'Q:unverified+crosscast', '认领未验且体含异类 this 转换——请人裁归属')
-              for x in yel]
+    fam = set()
+    _famf = ROOT / 'data/status/_rowtable_family.json'
+    if _famf.exists():
+        fam = set(json.load(open(_famf)))
+    cards, batch = [], []
+    for x in red:
+        cards.append(_mk(x, 'Q:member_out_of_index',
+                         '体访问 %s 不在 %s 成员索引而在他类——反证（索引不全禁自动判），请人裁归属'
+                         % (','.join(x['missing'][:2]), x['class'])))
+    for x in yel:
+        c = _mk(x, 'Q:unverified+crosscast', '认领未验且体含异类 this 转换——请人裁归属')
+        if x['class'] in fam:
+            c['triage'] = 'rowtable_family_batch'
+            c['evidence'] = '_rowtable_family.json（decision_sceneobj v4）'
+            c['question'] = '行表家族成员——行表语义重建轨统一处置（非判定）'
+            batch.append(c)
+        else:
+            cards.append(c)
     Path(ROOT / 'data/status/pending/attribution_questions_20261029.json').write_text(
-        json.dumps({'total': len(cards),
-                    'by_grade': {'Q:counter_evidence_index_limited': len(red),
+        json.dumps({'total_human_queue': len(cards),
+                    'rowtable_batch': {'total': len(batch), 'cards': batch,
+                                       'note': 'R4a 卡体全存（死账修复）；只收黄牌，RED 已召回'},
+                    'by_grade': {'Q:member_out_of_index': len(red),
                                  'Q:unverified+crosscast': len(yel)},
-                    'note': 'P 档仅 vtable 字节真值（B2a）；RED=反证但索引不全⇒质疑级（不准确=不判定）',
+                    'note': 'P 档仅 vtable 字节真值；RED=member_out_of_index（索引不全⇒质疑级）',
                     'cards': cards}, ensure_ascii=False, indent=2))
     print('RED %d · YELLOW %d → data/status/attribution_guard_census.json' % (len(red), len(yel)))
 
