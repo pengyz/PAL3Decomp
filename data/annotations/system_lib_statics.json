@@ -4,9 +4,9 @@
     {
       "name": "d3dx9.lib (D3DX Summer 2003)",
       "boundary": "lib_thirdparty",
-      "supply": "lib_relink_skewed",
+      "supply": "skewed",
       "evidence": "dx_static §2.2 PSGP 73 槽分派（0x6090A8）+ 槽内 impl 字节全同；在手件 2002-12-11 obj ≠ 精确构建输入（版本偏斜）",
-      "confidence": "high",
+      "confidence": "medium",
       "supply_chase": {
         "status": "environment_blocked_2026-10-29",
         "found_urls": [
@@ -19,26 +19,26 @@
         ],
         "next": "人工/有网环境下载 dx90bsdk → 提取 d3dx9.lib → 与 tools/vc6/Lib/d3dx9.lib 逐字节比对 → 4 残差单元终裁"
       },
-      "note": " | supply=skewed：在手件 2002-12-11 obj ≠ 精确构建输入（版本偏斜），精确件未到货前 4 残差单元挂账"
+      "note": "73 槽配对 69 可复现/4 内核分叉（#39/#67/#71/#72）；槽#7/#35 等逐字节全同（抽验级）——blanket 全同宣称修正"
     },
     {
       "name": "d3dxmath.obj (PSGP 静态簇)",
       "boundary": "lib_thirdparty",
-      "supply": "lib_relink",
+      "supply": "skewed",
       "evidence": "research_crt §E 簇 sub_542xxx + 微跳板簇 0x5424xx-0x543Axx",
       "confidence": "high"
     },
     {
       "name": "LIBC/libcmt (MSVC6 CRT)",
       "boundary": "lib_crt",
-      "supply": "lib_relink",
+      "supply": "exact",
       "evidence": "crt_skip_census 0x55xxxx 真 CRT 段 ~340 件 + wincrt0/crt0 双启动 6 件共享",
       "confidence": "high"
     },
     {
       "name": "STL (MSVC6)",
       "boundary": "lib_stl",
-      "supply": "lib_relink",
+      "supply": "exact",
       "evidence": "crt_skip_census L2 STL 525-527 等",
       "confidence": "medium"
     }
@@ -47,524 +47,743 @@
     "table_va": "0x6090A8",
     "template_va": "0x6091D0",
     "init_va": "0x546F41",
-    "note": "_D3DXCpuOptimizations 惰性分派；默认目标=槽初始值，PSGPInit 后重指向"
+    "note": "live 表 0x6090A8=init_ 惰性桩初值（D2）；template 表 0x6091D0=default impl 直值；哨兵 0xFFFF"
   },
   "d3dx9_psgp_slots": [
     {
       "slot": 0,
       "slot_va": "0x6090a8",
-      "default_target": "0x5424ba",
+      "live_init": "0x5424ba",
+      "default_impl": "0x544e22",
+      "template_va": "0x6091d0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 1,
       "slot_va": "0x6090ac",
-      "default_target": "0x542798",
+      "live_init": "0x542798",
+      "default_impl": "0x5427ab",
+      "template_va": "0x6091d4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 2,
       "slot_va": "0x6090b0",
-      "default_target": "0x542e2c",
+      "live_init": "0x542e2c",
+      "default_impl": "0x542e3f",
+      "template_va": "0x6091d8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 3,
       "slot_va": "0x6090b4",
-      "default_target": "0x543085",
-      "name": null,
-      "status": "paired"
+      "live_init": "0x543085",
+      "default_impl": "0x543098",
+      "template_va": "0x6091dc",
+      "name": "c_D3DXMatrixMultiply",
+      "status": "named",
+      "note": null
     },
     {
       "slot": 4,
       "slot_va": "0x6090b8",
-      "default_target": "0x54334e",
+      "live_init": "0x54334e",
+      "default_impl": "0x54335b",
+      "template_va": "0x6091e0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 5,
       "slot_va": "0x6090bc",
-      "default_target": "0x542502",
+      "live_init": "0x542502",
+      "default_impl": "0x545025",
+      "template_va": "0x6091e4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 6,
       "slot_va": "0x6090c0",
-      "default_target": "0x542918",
+      "live_init": "0x542918",
+      "default_impl": "0x54292b",
+      "template_va": "0x6091e8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 7,
       "slot_va": "0x6090c4",
-      "default_target": "0x542526",
+      "live_init": "0x542526",
+      "default_impl": "0x5450b5",
+      "template_va": "0x6091ec",
       "name": "c_D3DXVec3Normalize",
-      "status": "named"
+      "status": "named",
+      "note": null
     },
     {
       "slot": 8,
       "slot_va": "0x6090c8",
-      "default_target": "0x542b61",
+      "live_init": "0x542b61",
+      "default_impl": "0x545a51",
+      "template_va": "0x6091f0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 9,
       "slot_va": "0x6090cc",
-      "default_target": "0x5424de",
+      "live_init": "0x5424de",
+      "default_impl": "0x544f10",
+      "template_va": "0x6091f4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 10,
       "slot_va": "0x6090d0",
-      "default_target": "0x5428ee",
-      "name": null,
-      "status": "paired"
+      "live_init": "0x5428ee",
+      "default_impl": "0x545152",
+      "template_va": "0x6091f8",
+      "name": "c_D3DXVec3TransformCoord",
+      "status": "named",
+      "note": null
     },
     {
       "slot": 11,
       "slot_va": "0x6090d4",
-      "default_target": "0x542fae",
+      "live_init": "0x542fae",
+      "default_impl": "0x542fbb",
+      "template_va": "0x6091fc",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 12,
       "slot_va": "0x6090d8",
-      "default_target": "0x544b06",
+      "live_init": "0x544b06",
+      "default_impl": "0x544b13",
+      "template_va": "0x609200",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 13,
       "slot_va": "0x6090dc",
-      "default_target": "0x544b4b",
+      "live_init": "0x544b4b",
+      "default_impl": "0x544b58",
+      "template_va": "0x609204",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 14,
       "slot_va": "0x6090e0",
-      "default_target": "0x542a20",
+      "live_init": "0x542a20",
+      "default_impl": "0x5452ed",
+      "template_va": "0x609208",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 15,
       "slot_va": "0x6090e4",
-      "default_target": "0x542a42",
+      "live_init": "0x542a42",
+      "default_impl": "0x54567a",
+      "template_va": "0x60920c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 16,
       "slot_va": "0x6090e8",
-      "default_target": "0x542a64",
+      "live_init": "0x542a64",
+      "default_impl": "0x542a71",
+      "template_va": "0x609210",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 17,
       "slot_va": "0x6090ec",
-      "default_target": "0x5422b7",
+      "live_init": "0x5422b7",
+      "default_impl": "0x5422e1",
+      "template_va": "0x609214",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 18,
       "slot_va": "0x6090f0",
-      "default_target": "0x543591",
+      "live_init": "0x543591",
+      "default_impl": "0x5435a4",
+      "template_va": "0x609218",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 19,
       "slot_va": "0x6090f4",
-      "default_target": "0x5443e4",
+      "live_init": "0x5443e4",
+      "default_impl": "0x5443f7",
+      "template_va": "0x60921c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 20,
       "slot_va": "0x6090f8",
-      "default_target": "0x54448d",
+      "live_init": "0x54448d",
+      "default_impl": "0x54449a",
+      "template_va": "0x609220",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 21,
       "slot_va": "0x6090fc",
-      "default_target": "0x5449a3",
+      "live_init": "0x5449a3",
+      "default_impl": "0x5449b6",
+      "template_va": "0x609224",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 22,
       "slot_va": "0x609100",
-      "default_target": "0x544a57",
+      "live_init": "0x544a57",
+      "default_impl": "0x544a64",
+      "template_va": "0x609228",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 23,
       "slot_va": "0x609104",
-      "default_target": "0x5440d8",
+      "live_init": "0x5440d8",
+      "default_impl": "0x5440e5",
+      "template_va": "0x60922c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 24,
       "slot_va": "0x609108",
-      "default_target": "0x54411a",
+      "live_init": "0x54411a",
+      "default_impl": "0x544127",
+      "template_va": "0x609230",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 25,
       "slot_va": "0x60910c",
-      "default_target": "0x5442d7",
+      "live_init": "0x5442d7",
+      "default_impl": "0x54430b",
+      "template_va": "0x609234",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 26,
       "slot_va": "0x609110",
-      "default_target": "0x5439cd",
+      "live_init": "0x5439cd",
+      "default_impl": "0x5439fb",
+      "template_va": "0x609238",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 27,
       "slot_va": "0x609114",
-      "default_target": "0x5440be",
+      "live_init": "0x5440be",
+      "default_impl": "0x5460f4",
+      "template_va": "0x60923c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 28,
       "slot_va": "0x609118",
-      "default_target": "0x5440cb",
+      "live_init": "0x5440cb",
+      "default_impl": "0x5461ce",
+      "template_va": "0x609240",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 29,
       "slot_va": "0x60911c",
-      "default_target": "0x54425b",
+      "live_init": "0x54425b",
+      "default_impl": "0x54427b",
+      "template_va": "0x609244",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 30,
       "slot_va": "0x609120",
-      "default_target": "0x543a57",
+      "live_init": "0x543a57",
+      "default_impl": "0x543a73",
+      "template_va": "0x609248",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 31,
       "slot_va": "0x609124",
-      "default_target": "0x543aed",
+      "live_init": "0x543aed",
+      "default_impl": "0x543b09",
+      "template_va": "0x60924c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 32,
       "slot_va": "0x609128",
-      "default_target": "0x543b84",
+      "live_init": "0x543b84",
+      "default_impl": "0x543ba6",
+      "template_va": "0x609250",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 33,
       "slot_va": "0x60912c",
-      "default_target": "0x543943",
+      "live_init": "0x543943",
+      "default_impl": "0x543971",
+      "template_va": "0x609254",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 34,
       "slot_va": "0x609130",
-      "default_target": "0x544bfa",
+      "live_init": "0x544bfa",
+      "default_impl": "0x544c07",
+      "template_va": "0x609258",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 35,
       "slot_va": "0x609134",
-      "default_target": "0x54474d",
+      "live_init": "0x54474d",
+      "default_impl": "0x544777",
+      "template_va": "0x60925c",
       "name": "c_D3DXQuaternionSlerp",
-      "status": "named"
+      "status": "named",
+      "note": null
     },
     {
       "slot": 36,
       "slot_va": "0x609138",
-      "default_target": "0x5448ec",
+      "live_init": "0x5448ec",
+      "default_impl": "0x54491b",
+      "template_va": "0x609260",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 37,
       "slot_va": "0x60913c",
-      "default_target": "0x5432ce",
+      "live_init": "0x5432ce",
+      "default_impl": "0x5432e1",
+      "template_va": "0x609264",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 38,
       "slot_va": "0x609140",
-      "default_target": "0x543d4a",
+      "live_init": "0x543d4a",
+      "default_impl": "0x543d5d",
+      "template_va": "0x609268",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 39,
       "slot_va": "0x609144",
-      "default_target": "0x543e6d",
+      "live_init": "0x543e6d",
+      "default_impl": "0x545b40",
+      "template_va": "0x60926c",
       "name": null,
-      "status": "paired"
+      "status": "unknown",
+      "note": "kernel_fork_+268B_masked_diff (c_D3DXMatrixTransformation 692B vs exe 794B)"
     },
     {
       "slot": 40,
       "slot_va": "0x609148",
-      "default_target": "0x543e3f",
+      "live_init": "0x543e3f",
+      "default_impl": "0x545b07",
+      "template_va": "0x609270",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 41,
       "slot_va": "0x60914c",
-      "default_target": "0x543eaf",
+      "live_init": "0x543eaf",
+      "default_impl": "0x543ed6",
+      "template_va": "0x609274",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 42,
       "slot_va": "0x609150",
-      "default_target": "0x543c22",
+      "live_init": "0x543c22",
+      "default_impl": "0x543c48",
+      "template_va": "0x609278",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 43,
       "slot_va": "0x609154",
-      "default_target": "0x54485a",
+      "live_init": "0x54485a",
+      "default_impl": "0x544884",
+      "template_va": "0x60927c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 44,
       "slot_va": "0x609158",
-      "default_target": "0x544550",
+      "live_init": "0x544550",
+      "default_impl": "0x544563",
+      "template_va": "0x609280",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 45,
       "slot_va": "0x60915c",
-      "default_target": "0x5448db",
+      "live_init": "0x5448db",
+      "default_impl": "0x54628d",
+      "template_va": "0x609284",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 46,
       "slot_va": "0x609160",
-      "default_target": "0x5422aa",
+      "live_init": "0x5422aa",
+      "default_impl": "0x544d98",
+      "template_va": "0x609288",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 47,
       "slot_va": "0x609164",
-      "default_target": "0x54236f",
+      "live_init": "0x54236f",
+      "default_impl": "0x542399",
+      "template_va": "0x60928c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 48,
       "slot_va": "0x609168",
-      "default_target": "0x542448",
+      "live_init": "0x542448",
+      "default_impl": "0x542477",
+      "template_va": "0x609290",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 49,
       "slot_va": "0x60916c",
-      "default_target": "0x542539",
+      "live_init": "0x542539",
+      "default_impl": "0x542563",
+      "template_va": "0x609294",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 50,
       "slot_va": "0x609170",
-      "default_target": "0x542611",
+      "live_init": "0x542611",
+      "default_impl": "0x54263b",
+      "template_va": "0x609298",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 51,
       "slot_va": "0x609174",
-      "default_target": "0x54270c",
+      "live_init": "0x54270c",
+      "default_impl": "0x54273b",
+      "template_va": "0x60929c",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 52,
       "slot_va": "0x609178",
-      "default_target": "0x542b6e",
+      "live_init": "0x542b6e",
+      "default_impl": "0x542b98",
+      "template_va": "0x6092a0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 53,
       "slot_va": "0x60917c",
-      "default_target": "0x542c69",
+      "live_init": "0x542c69",
+      "default_impl": "0x542c93",
+      "template_va": "0x6092a4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 54,
       "slot_va": "0x609180",
-      "default_target": "0x542d86",
+      "live_init": "0x542d86",
+      "default_impl": "0x542db5",
+      "template_va": "0x6092a8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 55,
       "slot_va": "0x609184",
-      "default_target": "0x544614",
+      "live_init": "0x544614",
+      "default_impl": "0x544627",
+      "template_va": "0x6092ac",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 56,
       "slot_va": "0x609188",
-      "default_target": "0x5446a2",
+      "live_init": "0x5446a2",
+      "default_impl": "0x5446b5",
+      "template_va": "0x6092b0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 57,
       "slot_va": "0x60918c",
-      "default_target": "0x54215c",
+      "live_init": "0x54215c",
+      "default_impl": "0x542169",
+      "template_va": "0x6092b4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 58,
       "slot_va": "0x609190",
-      "default_target": "0x5421f8",
+      "live_init": "0x5421f8",
+      "default_impl": "0x542205",
+      "template_va": "0x6092b8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 59,
       "slot_va": "0x609194",
-      "default_target": "0x5424cd",
+      "live_init": "0x5424cd",
+      "default_impl": "0x544e8d",
+      "template_va": "0x6092bc",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 60,
       "slot_va": "0x609198",
-      "default_target": "0x5424f1",
+      "live_init": "0x5424f1",
+      "default_impl": "0x544f8d",
+      "template_va": "0x6092c0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 61,
       "slot_va": "0x60919c",
-      "default_target": "0x542515",
+      "live_init": "0x542515",
+      "default_impl": "0x545061",
+      "template_va": "0x6092c4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 62,
       "slot_va": "0x6091a0",
-      "default_target": "0x542836",
+      "live_init": "0x542836",
+      "default_impl": "0x542847",
+      "template_va": "0x6092c8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 63,
       "slot_va": "0x6091a4",
-      "default_target": "0x542901",
+      "live_init": "0x542901",
+      "default_impl": "0x54520e",
+      "template_va": "0x6092cc",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 64,
       "slot_va": "0x6091a8",
-      "default_target": "0x542991",
+      "live_init": "0x542991",
+      "default_impl": "0x5429a2",
+      "template_va": "0x6092d0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 65,
       "slot_va": "0x6091ac",
-      "default_target": "0x542ede",
+      "live_init": "0x542ede",
+      "default_impl": "0x542eef",
+      "template_va": "0x6092d4",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 66,
       "slot_va": "0x6091b0",
-      "default_target": "0x542a31",
+      "live_init": "0x542a31",
+      "default_impl": "0x54547a",
+      "template_va": "0x6092d8",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 67,
       "slot_va": "0x6091b4",
-      "default_target": "0x542a53",
+      "live_init": "0x542a53",
+      "default_impl": "0x545820",
+      "template_va": "0x6092dc",
       "name": null,
-      "status": "paired"
+      "status": "unknown",
+      "note": "absent_or_changed"
     },
     {
       "slot": 68,
       "slot_va": "0x6091b8",
-      "default_target": "0x544ca6",
+      "live_init": "0x544ca6",
+      "default_impl": "0x544cb7",
+      "template_va": "0x6092e0",
       "name": null,
-      "status": "paired"
+      "status": "paired",
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
     },
     {
       "slot": 69,
       "slot_va": "0x6091bc",
-      "default_target": "0x544d76",
-      "name": null,
-      "status": "paired"
+      "live_init": "0x544d76",
+      "default_impl": "0x546667",
+      "template_va": "0x6092e4",
+      "name": "c_D3DXPSGPUpdateSkinnedMesh",
+      "status": "named",
+      "note": null
     },
     {
       "slot": 70,
       "slot_va": "0x6091c0",
-      "default_target": "0x544d87",
-      "name": null,
-      "status": "paired"
+      "live_init": "0x544d87",
+      "default_impl": "0x546b0e",
+      "template_va": "0x6092e8",
+      "name": "c_D3DXPSGPTessellateNPatch",
+      "status": "named",
+      "note": null
     },
     {
       "slot": 71,
       "slot_va": "0x6091c4",
-      "default_target": "0x543e7e",
+      "live_init": "0x543e7e",
+      "default_impl": "0x545e5a",
+      "template_va": "0x6092ec",
       "name": null,
-      "status": "paired"
+      "status": "unknown",
+      "note": "absent_or_changed"
     },
     {
       "slot": 72,
       "slot_va": "0x6091c8",
-      "default_target": "0x543fbc",
+      "live_init": "0x543fbc",
+      "default_impl": "0x543fe7",
+      "template_va": "0x6092f0",
       "name": null,
-      "status": "paired"
+      "status": "unknown",
+      "note": "absent_or_changed"
     }
   ],
   "residual_units_pending_exact_lib": {
     "count": 4,
-    "status": "supply_skewed",
+    "status": "supply_skewed+4_slot_unreproducible",
     "note": "dx §残差——精确 d3dx9.lib 到货前不做终裁"
   }
 }
