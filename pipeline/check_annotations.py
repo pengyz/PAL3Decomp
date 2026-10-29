@@ -774,8 +774,21 @@ def check(struct_dir=None):
                     f"若为声明收编形请标 declaration_only 或变参签名"
                         )
 
+    _run_claim_gate(errors)
     return errors, warnings
 
+
+
+def _run_claim_gate(errors):
+    """R1 产生端闸（棘轮）：未验认领禁增长 + 新多认领必入台账。存量 grandfather。"""
+    try:
+        import sys as _s, os as _o
+        _s.path.insert(0, _o.path.join(_o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))), 'tools'))
+        import claim_gate as _cg
+        _errs, _unv, _multi = _cg.main()
+        errors.extend(_errs)
+    except Exception as _e:
+        errors.append('CLAIM_GATE:internal_error %s' % _e)
 
 
 def _run_vtable_check(structs):
