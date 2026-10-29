@@ -24,3 +24,8 @@ C3/C4/C5 错误多重集全等（1137）· 末步 1136（−1 = C8 预期修复 
 - I-4：T2 commit f7b4faa「测试 6/6 绿」失实——实测 3 支（test_crt_sub_unskip 3）；同族第 2 例（前例 T6 D7「6/6」实 3）
 - M-1：T8 commit「文件清 18」实为 10 文件变更（9 overlay + 1 base 存在，其余 base 路径不存在）
 - I-1 附注：52 条 crt_sub_* 因 `_sub_` 截胡误桶 lib_relink_ok ⇒ 已重分 awaiting_signature（G 冤户候选禁猜测）
+
+## 终审勘误补 2（复核 8c777315，2026-10-29）
+- 失实第 5 例：a50e2415c「目标件入卡 ✓」为假（两版队列均缺席，信号源错位+正则漏参数形）——本条更正
+- B2a「P:misowned 3」为假判定（absence-based，违反不准确=不判定）——已改正向反证契约（4 参 located_classes）
+- B2b「双源合并」为假合并（known_members dict 形 0/9597 收录）+ 无继承闭包（RED 80% 假阳）——已修

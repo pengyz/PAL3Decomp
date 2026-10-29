@@ -24,17 +24,18 @@ def verify_slot_claim(claimed_addr, binary_slot_value):
     return int(str(claimed_addr), 16) == int(binary_slot_value)
 
 
-def classify_ownership(claim_cls, addr, ownership):
-    """归属判定：addr 的 vtable 槽归属与认领类比对。"""
+def classify_ownership(claim_cls, addr, ownership, located_classes=frozenset()):
+    """归属判定（R2 契约）：absence 禁判 P（不准确=不判定）——
+    P:misowned 需正向反证（认领类表已定位且不含该址 + 他类表实含）。"""
     n = _norm(addr)
     recs = ownership.get(n, []) or next(
         (v for k, v in ownership.items() if _norm(k) == n), [])
     if not recs:
-        return 'not_in_vtables'
+        return 'Q:not_in_located_tables'
     clss = {r[0] for r in recs}
     if claim_cls in clss:
         return 'P:multi_owned' if len(clss) > 1 else 'P:vtable_confirmed'
-    return 'P:misowned'
+    return 'P:misowned' if claim_cls in located_classes else 'Q:table_not_located'
 
 
 def dump_segment(lo, hi):
@@ -48,11 +49,13 @@ def dump_segment(lo, hi):
         if not m:
             continue
         va = int(m.group(1), 16)
+        off = 0
         for tok in m.group(2).split():
             if re.fullmatch(r'[0-9a-f]{2,8}', tok):
                 b = bytes.fromhex(tok)
                 for i in range(0, len(b)):
-                    mem[va + i] = b[i]
+                    mem[va + off + i] = b[i]
+                off += len(b)
     return mem
 
 
@@ -97,12 +100,14 @@ def main():
     mem.update(dump_segment(0x550000, 0x580000))
     ownership = {}
     slot_mismatch = []
+    located = set()
     for va, (nm, vt) in claims.items():
         seq = [cs.get('addr') for cs in (vt.get('slots') or []) if cs.get('addr')]
         base = find_table(mem, seq)
         if base is None:
             slot_mismatch.append((nm, va, 'TABLE_NOT_FOUND', seq[:2]))
             continue
+        located.add(nm)
         for i, cs in enumerate(vt.get('slots') or []):
             faddr = cs.get('addr')
             if not faddr or not _norm(faddr):
@@ -119,7 +124,7 @@ def main():
         for addr, info in (d.get('methods') or {}).items():
             if not isinstance(info, dict):
                 continue
-            v = classify_ownership(nm, _norm(addr), ownership)
+            v = classify_ownership(nm, _norm(addr), ownership, located)
             if v != 'not_in_vtables':
                 verdicts.setdefault(v, []).append((nm, addr, info.get('name')))
     res = {'verdict_counts': {k: len(v) for k, v in verdicts.items()},

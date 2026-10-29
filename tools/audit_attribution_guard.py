@@ -16,6 +16,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 THIS_REF = re.compile(r'(?:this->|&this->)(\w+)')
 CAST = re.compile(r'\(\((\w+) \*\)this\)')
+CAST_ARG = re.compile(r'\((\w+) \*\)this\b')   # R3: 参数形 cast（旗舰件证据形）
+
+
+def extract_cast_classes(body):
+    """体中 this 转换类集合（接收形+参数形）。"""
+    return set(CAST.findall(body)) | set(CAST_ARG.findall(body))
 
 
 def build_member_index(ida_structs, structs_jsons):
@@ -29,10 +35,18 @@ def build_member_index(ida_structs, structs_jsons):
         idx[nm] = s
     for nm, d in (structs_jsons or {}).items():
         s = set(idx.setdefault(nm, set()))
-        for m in (d or {}).get('known_members') or []:
+        km = (d or {}).get('known_members') or []
+        items = km.values() if isinstance(km, dict) else km    # R3: dict 形（offset 键）
+        for m in items:
             if isinstance(m, dict) and m.get('name'):
                 s.add(m['name'])
         idx[nm] = s
+    # R3: 继承闭包（bases 链成员并入）
+    for nm, d in (structs_jsons or {}).items():
+        for b in (d or {}).get('bases') or []:
+            bn = b.get('name') if isinstance(b, dict) else b
+            if bn and bn in idx:
+                idx[nm] |= idx[bn]
     return idx
 
 
@@ -87,7 +101,7 @@ def main():
                 claimed_members=members.get(nm, set()),
                 other_classes={c: members[c] for c in members if c != nm},
                 evidence_level=info.get('evidence_level'),
-                cross_casts=set(CAST.findall(body)))
+                cross_casts=extract_cast_classes(body))
             if sig['flags']:
                 out.append({'class': nm, 'addr': addr,
                             'name': info.get('name'), 'flags': sig['flags'],

@@ -49,3 +49,21 @@ def test_b2b_build_member_index_merges_ida_structs():
     assert idx['UIListBox'] == {'m_scrollbar', 'm_selcolor'}, idx
     assert idx['CCBLineupWindow'] == {'m_AnimWndC'}
     assert idx['NPC'] == {'m_nHP'}
+
+
+def test_r3_member_index_dict_form_and_closure():
+    """R3：known_members dict 形（offset 键）必须收 + 继承闭包（基类成员）。"""
+    from audit_attribution_guard import build_member_index
+    ida = {'UIWnd': {'data_members': [{'name': 'm_rect'}]}}
+    structs = {'UIListBox': {'known_members': {'16': {'name': 'm_selcolor'}},
+                             'bases': [{'name': 'UIWnd'}]},
+               'UIWnd': {'known_members': {}}}
+    idx = build_member_index(ida, structs)
+    assert 'm_selcolor' in idx['UIListBox']            # dict 形收录
+    assert 'm_rect' in idx['UIListBox']                # 继承闭包
+
+
+def test_r3_cast_arg_form_detected():
+    from audit_attribution_guard import extract_cast_classes
+    body = 'CCBLineupWindow::Reset((CCBLineupWindow *)this, x);'
+    assert extract_cast_classes(body) == {'CCBLineupWindow'}
