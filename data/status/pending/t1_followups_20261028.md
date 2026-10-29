@@ -11,3 +11,6 @@
 - ✅ 0xD8C338=Iostream CRT 对象（<iostream> 再生路径，Site1 已闭）
 - ⏳ 0xDE8B40：尺寸未定（邻界取证待）——注册挂账
 - ✅ g_RenderTarget3 既有注册（RenderTarget3 型）
+- ✅ 0xDE8B40 存储注册（char[696] 几何定界+双生胶水形；RT2 直挂已证伪；真名真型待裁 confidence:low）
+- ⏳ P6 挂账升级：crt_sub_00541590 调用形修复=字节匹配阶段项（真形 push 0+ecx 双参 thiscall，
+  自由函数载体不可等价（fastcall 双参走 ecx/edx≠栈参）⇒ 留待调用形转写基建（D2b 反方向）
