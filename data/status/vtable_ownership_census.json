@@ -1,25 +1,12 @@
 {
   "verdict_counts": {
-    "Q:not_in_located_tables": 3002,
-    "P:vtable_confirmed": 424,
-    "Q:table_not_located": 112,
+    "Q:not_in_located_tables": 2997,
+    "P:vtable_confirmed": 426,
+    "Q:table_not_located": 111,
     "P:misowned": 129,
-    "P:multi_owned": 268
+    "P:multi_owned": 272
   },
-  "slot_mismatch": [
-    [
-      "PalScriptMgr",
-      "0x56abb8",
-      "TABLE_NOT_FOUND",
-      []
-    ],
-    [
-      "RoleStatePanel",
-      "0x56f040",
-      "TABLE_NOT_FOUND",
-      []
-    ]
-  ],
+  "slot_mismatch": [],
   "misowned": [
     [
       "CCBParabolaWindow",
@@ -919,6 +906,11 @@
       "~UIProgressBar"
     ],
     [
+      "PalScriptMgr",
+      "0x00434CC0",
+      "IsWaitComplete"
+    ],
+    [
       "SaleUI",
       "0x0046B040",
       "ProcessCellAnimations"
@@ -1077,16 +1069,6 @@
       "CCBResultWindow",
       "0x00444AA0",
       "_scalar_dtor_4AA0"
-    ],
-    [
-      "PalScriptBlendTimer",
-      "0x00434D20",
-      "IsBlendComplete"
-    ],
-    [
-      "PalScriptBlendTimer",
-      "0x00434D40",
-      "AccumulateTime"
     ],
     [
       "UILoadingFrm",
@@ -2014,6 +1996,21 @@
       "OnMessageEx"
     ],
     [
+      "RoleStatePanel",
+      "0x004a5930",
+      "RenderThrottled"
+    ],
+    [
+      "RoleStatePanel",
+      "0x004a5b30",
+      "UpdateCaptions"
+    ],
+    [
+      "RoleStatePanel",
+      "0x004A2150",
+      "_scalar_dtor_2150"
+    ],
+    [
       "UIButton",
       "0x00440560",
       "Update"
@@ -2891,6 +2888,16 @@
       "IsAnimDone"
     ],
     [
+      "PalScriptMgr",
+      "0x00434D20",
+      "IsBlendComplete"
+    ],
+    [
+      "PalScriptMgr",
+      "0x00434D40",
+      "AccumulateTime"
+    ],
+    [
       "SaleUI",
       "0x0043DDF0",
       "CCBControlWindow::Render"
@@ -2954,6 +2961,16 @@
       "PalScriptBlendTimer",
       "0x00434D50",
       "_scalar_dtor"
+    ],
+    [
+      "PalScriptBlendTimer",
+      "0x00434D20",
+      "IsBlendComplete"
+    ],
+    [
+      "PalScriptBlendTimer",
+      "0x00434D40",
+      "AccumulateTime"
     ],
     [
       "UILoadingFrm",
