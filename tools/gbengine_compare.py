@@ -672,11 +672,15 @@ def decide_tail_jump_verdict(perfect_so_far, orig_bytes, our_target_name, orig_t
 # 我方符号形（mangled 语义）× 原方目标地址段 ⇒ class_ok/class_mismatch/unresolved。
 # 类别一致≠名等（不准确=不判定）⇒ 新桶纯计量，不入 ok。
 def _sym_class(sym):
+    """R2a-2 大类格（28/60 假阳根因修）：storage 三形归一（iat/const/data）。
+    段界实测：.rdata 0x56A000-0x580000 含 IAT 槽+__real@ 常量池+const 全局。"""
     s = sym or ''
-    if s.startswith('__imp__'):
-        return 'iat'
+    if s.startswith('__imp_'):            # __imp__ / __imp_? 双形 mangled 导入
+        return 'storage'
+    if s.startswith('__real@'):           # 浮点常量池（compiler 合成）
+        return 'storage'
     if s.startswith('?g_') or '@@3' in s:
-        return 'data'
+        return 'storage'
     if s.startswith('??3@') or s.startswith('??2@'):
         return 'crt'
     if s.startswith('_') and not s.startswith('?'):
@@ -685,13 +689,11 @@ def _sym_class(sym):
 
 
 def _tgt_class(t):
-    if 0x540000 <= t < 0x560000:
-        return 'crt'
-    if 0x560000 <= t < 0x580000:
-        return 'iat'
-    if t < 0x401000 or t >= 0x580000:
-        return 'data'
-    return 'unknown'
+    if 0x540000 <= t < 0x56A000:
+        return 'crt'                      # CRT 供给段（.rdata 起点 0x56A000 实测）
+    if t < 0x401000 or t >= 0x56A000:
+        return 'storage'                  # rdata/data/bss/动态池
+    return 'code'
 
 
 def classify_reloc_target(tgt, sym):
@@ -704,4 +706,5 @@ def class_agree_bucket(tgt, sym):
     sc, tc = _sym_class(sym), _tgt_class(tgt)
     if sc == 'unknown' or tc == 'unknown':
         return 'unresolved'
+    # 大类格：storage 三形（iat/const/data）互认——rdata 同居三类（段界实测）
     return 'class_ok' if sc == tc else 'class_mismatch'
