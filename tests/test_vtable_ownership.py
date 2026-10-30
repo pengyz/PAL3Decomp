@@ -30,3 +30,24 @@ def test_r2_absence_verdict_is_question_not_p():
     own = {'0x0043de40': [('Object', 0, '0x00500000')]}   # 持有表部分定位
     assert classify_ownership('ScriptObj', '0x0043de40', own, {'Object'}) == 'Q:table_not_located'
     assert classify_ownership('NPC', '0x00999999', own) == 'Q:not_in_located_tables'
+
+
+def test_b_findh_table_hole_tolerant():
+    """B：容洞序列定位——认领槽序在表中允许跳洞（非连续认领/继承槽空隙）。"""
+    from audit_vtable_ownership import find_table_holes
+    mem = {}
+    # 表址 0x560000：slot0=0x401000, [洞 2 槽], slot=0x402000, [洞], slot=0x403000
+    seq = [0x401000, 0x402000, 0x403000]
+    for i, v in [(0, 0x401000), (3, 0x402000), (5, 0x403000)]:
+        for b in range(4):
+            mem[0x560000 + 4*i + b] = (v >> (8*b)) & 0xFF
+    assert find_table_holes(mem, seq, max_gap=3) == 0x560000
+
+
+def test_b_findh_rejects_scattered():
+    from audit_vtable_ownership import find_table_holes
+    mem = {}
+    for i, v in [(0, 0x401000), (20, 0x402000)]:   # 巨洞=拒绝
+        for b in range(4):
+            mem[0x560000 + 4*i + b] = (v >> (8*b)) & 0xFF
+    assert find_table_holes(mem, [0x401000, 0x402000], max_gap=3) is None

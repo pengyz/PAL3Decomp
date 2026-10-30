@@ -13,6 +13,8 @@ CODE_LO, CODE_HI = 0x401000, 0x580000
 
 
 def _norm(a):
+    if isinstance(a, int):
+        return hex(a)          # B 修：int 形直通（测试/调用面双形）
     try:
         return hex(int(str(a), 16))
     except ValueError:
@@ -66,6 +68,35 @@ def read_u32(mem, va):
     return int.from_bytes(bytes(xs), 'little')
 
 
+def find_table_holes(mem, func_addrs, max_gap=3):
+    """容洞序列定位（B）：认领槽序在表中允许 ≤max_gap 槽空隙（继承槽/非连续认领）。"""
+    vals = []
+    for a in func_addrs:
+        n = _norm(a)
+        if not n:
+            return None
+        vals.append(int(n, 16))
+    if not vals:
+        return None
+    bases = [va for va in mem if read_u32(mem, va) == vals[0]]
+    for b in bases:
+        pos = b
+        ok = True
+        for v in vals[1:]:
+            found = None
+            for g in range(1, max_gap + 2):
+                if read_u32(mem, pos + 4 * g) == v:
+                    found = pos + 4 * g
+                    break
+            if found is None:
+                ok = False
+                break
+            pos = found
+        if ok:
+            return b
+    return None
+
+
 def find_table(mem, func_addrs):
     """认领槽序列（函数址列表）在二进制中定位真表址（序列匹配，认领 addr 约定不可靠）。"""
     vals = []
@@ -88,6 +119,18 @@ def find_table(mem, func_addrs):
     return None
 
 
+def anchor_by_methods(mem, near_va, maddrs, window=0x40):
+    """空 slots 骨架认领：在认领 vtable 邻域找类方法址聚集锚（逐槽锚定）。"""
+    cands = [int(_norm(a), 16) for a in (maddrs or []) if _norm(a)]
+    for off in range(-window, window + 1, 4):
+        b = near_va + off
+        hits = sum(1 for v in cands[:40] if any(
+            read_u32(mem, b + 4 * i) == v for i in range(8)))
+        if hits >= 2:
+            return b
+    return None
+
+
 def main():
     claims = {}
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
@@ -98,15 +141,27 @@ def main():
                 claims[_norm(vt['addr'])] = (nm, vt)
     mem = {}
     mem.update(dump_segment(0x550000, 0x580000))
+    method_addrs = {}
+    import glob as _g
+    for _f in _g.glob(str(ROOT / 'data/annotations/structs/*.json')):
+        _d = json.load(open(_f))
+        if _d.get('name'):
+            method_addrs[_d['name']] = [k for k in (_d.get('methods') or {})]
     ownership = {}
     slot_mismatch = []
     located = set()
     for va, (nm, vt) in claims.items():
         seq = [cs.get('addr') for cs in (vt.get('slots') or []) if cs.get('addr')]
-        base = find_table(mem, seq)
+        base = find_table(mem, seq) or find_table_holes(mem, seq)   # B：严格失败退容洞
         if base is None:
-            slot_mismatch.append((nm, va, 'TABLE_NOT_FOUND', seq[:2]))
-            continue
+            # B2 空 slots 骨架认领：类方法址锚定（认领 addr 邻域首个多命中聚集点）
+            anchor = anchor_by_methods(mem, int(va, 16), method_addrs.get(nm, []))
+            if anchor is not None:
+                base = anchor
+                seq = ['<anchored>']
+            else:
+                slot_mismatch.append((nm, va, 'TABLE_NOT_FOUND', seq[:2]))
+                continue
         located.add(nm)
         for i, cs in enumerate(vt.get('slots') or []):
             faddr = cs.get('addr')
