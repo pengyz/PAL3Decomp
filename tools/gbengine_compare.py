@@ -679,6 +679,8 @@ def _sym_class(sym):
         return 'storage'
     if s.startswith('__real@'):           # 浮点常量池（compiler 合成）
         return 'storage'
+    if s.startswith('??_C@'):             # 第五形：字符串字面量 mangled（R2a-3c 14/17）
+        return 'storage'
     if s.startswith('?g_') or '@@3' in s:
         return 'storage'
     if s.startswith('??3@') or s.startswith('??2@'):

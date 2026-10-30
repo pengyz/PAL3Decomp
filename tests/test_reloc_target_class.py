@@ -45,3 +45,9 @@ def test_dollar_L_prefix_is_self_local():
     from gbengine_compare import is_self_local_sym
     assert is_self_local_sym('$L81517') is True
     assert is_self_local_sym('?sub_519180@@YAHZZ') is False
+
+
+def test_e_string_literal_form():
+    """第五形（14/17）：??_C@_ 字符串常量（MSVC string literal mangled）⇒ storage。"""
+    from gbengine_compare import classify_reloc_target
+    assert classify_reloc_target(0x00608F58, '??_C@_0BE@OBBO@gfxscript?2ui_TL?4gbf?$AA@') == 'storage'
