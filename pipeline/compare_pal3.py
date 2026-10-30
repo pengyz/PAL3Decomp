@@ -601,7 +601,21 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                         {'va': '0x%08X' % e['va'], 'off': off,
                          'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
                 else:
-                    stats['rsite_unresolved'] = stats.get('rsite_unresolved', 0) + 1
+                    # [PlanB-T2a 2026-10-30] exp 缺名时双证类别桶（纯计量）
+                    _cb = gc.class_agree_bucket(tgt, sym_name) if tgt is not None else 'unresolved'
+                    if _cb == 'class_ok':
+                        stats['rsite_class_ok'] = stats.get('rsite_class_ok', 0) + 1
+                        continue
+                    if _cb == 'class_mismatch':
+                        stats['rsite_class_mismatch'] = stats.get('rsite_class_mismatch', 0) + 1
+                    else:
+                        stats['rsite_unresolved'] = stats.get('rsite_unresolved', 0) + 1
+                    # [PlanB-T2 2026-10-30] unresolved 取样（纯计量）：解析收敛诊断
+                    if len(stats.setdefault('rsite_unresolved_samples', [])) < 60:
+                        stats['rsite_unresolved_samples'].append(
+                            {'va': '0x%08X' % e['va'], 'off': off,
+                             'tgt': ('0x%08X' % tgt) if tgt is not None else None,
+                             'exp': exp_name, 'sym': (sym_name or '')[:60]})
             if status == 'match_L1':
                 p1 += 1
             else:

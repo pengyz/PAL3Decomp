@@ -666,3 +666,42 @@ def decide_tail_jump_verdict(perfect_so_far, orig_bytes, our_target_name, orig_t
     eq = (names_match(our_target_name, orig_target_name) if names_match
           else our_target_name == orig_target_name)
     return 'perfect' if eq else 'partial'
+
+
+# [PlanB-T2a 2026-10-30] 重定位目标类别一致判定（纯计量）——exp 缺名时双证：
+# 我方符号形（mangled 语义）× 原方目标地址段 ⇒ class_ok/class_mismatch/unresolved。
+# 类别一致≠名等（不准确=不判定）⇒ 新桶纯计量，不入 ok。
+def _sym_class(sym):
+    s = sym or ''
+    if s.startswith('__imp__'):
+        return 'iat'
+    if s.startswith('?g_') or '@@3' in s:
+        return 'data'
+    if s.startswith('??3@') or s.startswith('??2@'):
+        return 'crt'
+    if s.startswith('_') and not s.startswith('?'):
+        return 'crt'
+    return 'unknown'
+
+
+def _tgt_class(t):
+    if 0x540000 <= t < 0x560000:
+        return 'crt'
+    if 0x560000 <= t < 0x580000:
+        return 'iat'
+    if t < 0x401000 or t >= 0x580000:
+        return 'data'
+    return 'unknown'
+
+
+def classify_reloc_target(tgt, sym):
+    """单侧类别视图（符号形优先，地址段回退）。"""
+    return _sym_class(sym) if _sym_class(sym) != 'unknown' else _tgt_class(tgt)
+
+
+def class_agree_bucket(tgt, sym):
+    """双证桶：类别一致=class_ok；相斥=class_mismatch；不可判=unresolved。"""
+    sc, tc = _sym_class(sym), _tgt_class(tgt)
+    if sc == 'unknown' or tc == 'unknown':
+        return 'unresolved'
+    return 'class_ok' if sc == tc else 'class_mismatch'
