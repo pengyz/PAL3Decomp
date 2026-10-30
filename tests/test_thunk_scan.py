@@ -69,3 +69,22 @@ def test_unknown_libname_census_consistent_with_f3_bins():
     dist = d['family_dist']
     assert sum(dist.values()) == 210
     assert 'real_body' in dist and dist['real_body'] >= 24, dist   # 真 CRT 24 条下限
+
+
+def test_family_skip_reason_enum_consistency():
+    """族裁决↔skip_reason 六枚举对账锁（R2a 字节形正名 74 条后钉死）。
+    import_thunk→linker_generated（T1/T2 (c) 裁决；0x55EF80/86=F3 段锁例外
+    lib_relink_ok，语义兼容保持）；glue/form9/singleton→compiler_regenerated
+    （T5/T8/第 9 形 (b) 裁决，含 0x53C890 research 误归唯一件）。"""
+    import json
+    skip = json.loads((ROOT / 'data/annotations/skip_functions.json').read_text(encoding='utf-8'))
+    skip = {'0x' + k[2:].upper(): v for k, v in skip.items()}   # 键形混布（4 条小写）归一
+    d = json.loads((ROOT / 'data/status/all_skip_shape_census_20261031.json').read_text(encoding='utf-8'))
+    LOCKED = {'0x0055EF80', '0x0055EF86'}
+    for r in d['rows']:
+        sr = skip[r['addr']]['skip_reason']
+        if r['family'] == 'import_thunk':
+            assert sr == ('lib_relink_ok' if r['addr'] in LOCKED else 'linker_generated'), r
+        elif r['family'] in ('static_init_glue', 'static_obj_ctor_thunk_to_import',
+                             'singleton_thunk'):
+            assert sr == 'compiler_regenerated', r

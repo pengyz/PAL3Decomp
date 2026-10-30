@@ -130,13 +130,14 @@ class Exe:
 
 def scan(entries, exe):
     rows = []
-    for addr, name, skip_reason in entries:
+    for addr, name, skip_reason, reason in entries:
         va = int(addr, 16)
         h = exe.head(va)
         rows.append({
             'addr': '0x%08X' % va,
             'name': name,
             'skip_reason': skip_reason,
+            'reason': reason,
             'family': classify_shape(h, va),
             'head_hex': h[:11].hex(),
         })
@@ -154,17 +155,18 @@ def main():
 
     skip = json.loads(SKIP_PATH.read_text(encoding='utf-8'))
     entries = []
+
+    def _ent(a, e):
+        return (a, e.get('name') or '', e.get('skip_reason') or '', e.get('reason') or '')
+
     if args.skip_unknown_libname:
-        entries += [(a, e.get('name') or '', e.get('reason') or '')
-                    for a, e in skip.items()
+        entries += [_ent(a, e) for a, e in skip.items()
                     if (e.get('name') or '').startswith('unknown_libname_')]
     if args.all_skip:
-        entries += [(a, e.get('name') or '', e.get('reason') or '')
-                    for a, e in skip.items()
+        entries += [_ent(a, e) for a, e in skip.items()
                     if not (e.get('name') or '').startswith('unknown_libname_')]
     for a in args.addr:
-        e = skip.get('0x%08X' % int(a, 16), {})
-        entries.append(('0x%08X' % int(a, 16), e.get('name') or '', e.get('reason') or ''))
+        entries.append(_ent('0x%08X' % int(a, 16), skip.get('0x%08X' % int(a, 16), {})))
     if not entries:
         ap.error('需要 --skip-unknown-libname / --all-skip / --addr')
 
