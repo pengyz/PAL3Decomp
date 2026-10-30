@@ -641,3 +641,24 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# [PlanB-T3 2026-10-30] 尾跳 L1 空洞补环判据核心——尾跳族（5B E9 rel32）
+# 原判据只证 E9 一字节（rel32=reloc don't-care）=假 L1 温床；补环=目标符号等同门。
+def is_tail_jump_form(orig_bytes):
+    """尾跳族形判据：恰 5 字节且首字节 E9（jmp rel32 全函数体）。"""
+    try:
+        return len(orig_bytes) == 5 and orig_bytes[0] == 0xE9
+    except Exception:
+        return False
+
+
+def decide_tail_jump_verdict(perfect_so_far, orig_bytes, our_target_name, orig_target_name):
+    """尾跳补环裁决：perfect 须叠加目标符号等同；不等/未解=partial（不准确=不判定）。"""
+    if not perfect_so_far:
+        return 'partial'
+    if not is_tail_jump_form(orig_bytes):
+        return 'perfect'
+    if our_target_name and orig_target_name and our_target_name == orig_target_name:
+        return 'perfect'
+    return 'partial'
