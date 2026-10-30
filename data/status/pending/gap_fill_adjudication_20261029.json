@@ -29,10 +29,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIWnd——LayoutAndRender 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIWnd——LayoutAndRender 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffSParticle",
@@ -48,10 +53,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffSParticle",
@@ -67,10 +77,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffSParticle",
@@ -86,10 +101,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#5 from:None）",
+      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#5 from:None）【调用面：member=1 qualified=3 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CEffSParticle",
@@ -105,10 +125,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffSParticle",
@@ -124,10 +149,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——_scalar_dtor_4F00 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 ?——_scalar_dtor_4F00 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=0 qualified=1 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "CEffgbParticle",
@@ -143,10 +173,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#11 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#11 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffgbParticle",
@@ -162,10 +197,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffgbParticle",
@@ -181,10 +221,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffgbParticle",
@@ -200,10 +245,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffgbParticle",
@@ -238,10 +288,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——~CEffShock 是否真属 CEffShock？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 ?——~CEffShock 是否真属 CEffShock？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffShock",
@@ -254,9 +309,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D3DC0 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4D3DC0 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=3 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CEffShock",
@@ -269,9 +329,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D4110 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4D4110 是否真属 CEffShock？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBResultWindow",
@@ -284,10 +349,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=0 bare=4】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBRoleState/CCBUI/CScreenMode/EquipUI/JusticeBookUI/LineupUI/MainEquipUI/RenderTarget/RoleSystem/SystemUI/UICoverFrm/UIListBox/UILoadingFrm/UIRoleSelectDialog/UITitle_YXXX）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBRoleState/CCBUI/CScreenMode/EquipUI/JusticeBookUI/LineupUI/MainEquipUI/RenderTarget/RoleSystem/SystemUI/UICoverFrm/UIListBox/UILoadingFrm/UIRoleSelectDialog/UITitle_YXXX）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "CCBResultWindow",
@@ -300,10 +370,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——OnMessage 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBStage——OnMessage 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=101 qualified=117 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage）",
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "CCBResultWindow",
@@ -316,10 +391,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=0 bare=2】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage/CScreenMode/RoleSystem/UILoadingFrm/UITitle_YXXX）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage/CScreenMode/RoleSystem/UILoadingFrm/UITitle_YXXX）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "UILoadingFrm",
@@ -335,10 +415,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——Update_bbc0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#2 from:UILoadingFrm）",
+      "question": "gap_fill 移植自 UIFrameWnd——Update_bbc0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#2 from:UILoadingFrm）【调用面：member=8 qualified=10 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 8,
+        "qualified": 10,
+        "bare": 0
+      }
     },
     {
       "class": "UILoadingFrm",
@@ -354,10 +439,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UILoadingFrm",
@@ -392,10 +482,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIListBox——IsVisible 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:UILoadingFrm）",
+      "question": "gap_fill 移植自 UIListBox——IsVisible 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:UILoadingFrm）【调用面：member=1 qualified=7 bare=64】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 7,
+        "bare": 64
+      }
     },
     {
       "class": "UILoadingFrm",
@@ -411,10 +506,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=0 qualified=0 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "UILoadingFrm",
@@ -430,10 +530,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——OnMessage_ovl_1aa0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#6 from:UILoadingFrm）",
+      "question": "gap_fill 移植自 ?——OnMessage_ovl_1aa0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#6 from:UILoadingFrm）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "gbRenderEffect",
@@ -446,9 +551,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleSystem——AllocSlotData 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 RoleSystem——AllocSlotData 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=2 qualified=4 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 2,
+        "qualified": 4,
+        "bare": 0
+      }
     },
     {
       "class": "gbRenderEffect",
@@ -476,9 +586,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleSystem——Reset 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 RoleSystem——Reset 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=230 qualified=300 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 230,
+        "qualified": 300,
+        "bare": 0
+      }
     },
     {
       "class": "gbRenderEffect",
@@ -491,9 +606,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleSystem——ResetState 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 RoleSystem——ResetState 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=4 qualified=12 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 4,
+        "qualified": 12,
+        "bare": 0
+      }
     },
     {
       "class": "gbRenderEffect",
@@ -521,9 +641,14 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4202F0 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4202F0 是否真属 gbRenderEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=2 qualified=3 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 2,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CEffModel",
@@ -539,10 +664,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffModel？（移植=名字搬家非证据；槽位#9 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffModel？（移植=名字搬家非证据；槽位#9 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffModel",
@@ -558,10 +688,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffModel？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffModel？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffModel",
@@ -577,10 +712,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffModel？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffModel？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffModel",
@@ -596,10 +736,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffModel？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffModel？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBControlWindow",
@@ -615,9 +760,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBFiveNimbusWindow——OnMessage 是否真属 CCBControlWindow？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——OnMessage 是否真属 CCBControlWindow？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=101 qualified=117 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "CEffCustomShape",
@@ -630,9 +780,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffect——_nearby_4cfe20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffect——_nearby_4cfe20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffCustomShape",
@@ -645,9 +800,14 @@
         "evidence_level": "A",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffModel——DestroyEffect 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffModel——DestroyEffect 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）【调用面：member=4 qualified=10 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 4,
+        "qualified": 10,
+        "bare": 0
+      }
     },
     {
       "class": "CEffCustomShape",
@@ -660,9 +820,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffect——_nearby_4cffb0 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffect——_nearby_4cffb0 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=3 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CEffCustomShape",
@@ -675,9 +840,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——_scalar_dtor_fd20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——_scalar_dtor_fd20 是否真属 CEffCustomShape？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBSkillWindow",
@@ -712,10 +882,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBParabolaWindow——Destroy_c880 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 CCBParabolaWindow——Destroy_c880 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBSkillWindow",
@@ -731,10 +906,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBItemWindow——CCBFiveNimbusWindow::OnMessage 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CCBItemWindow——CCBFiveNimbusWindow::OnMessage 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=0 qualified=0 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "CCBSkillWindow",
@@ -750,10 +930,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBParabolaWindow——Update 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#9 from:None）",
+      "question": "gap_fill 移植自 CCBParabolaWindow——Update 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#9 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CCBSkillWindow",
@@ -769,10 +954,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBParabolaWindow——ToggleSlots 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#7 from:None）",
+      "question": "gap_fill 移植自 CCBParabolaWindow——ToggleSlots 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#7 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBSkillWindow",
@@ -788,10 +978,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBParabolaWindow——Render 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CCBParabolaWindow——Render 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=121 qualified=213 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 121,
+        "qualified": 213,
+        "bare": 0
+      }
     },
     {
       "class": "UIBigMap",
@@ -804,9 +999,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=0 bare=4】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIBigMap",
@@ -819,9 +1019,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 SaleUI——_scalar_dtor_AE40 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 SaleUI——_scalar_dtor_AE40 是否真属 UIBigMap？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=1 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuake",
@@ -837,10 +1042,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuake",
@@ -856,10 +1066,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuake",
@@ -875,10 +1090,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuake",
@@ -894,10 +1114,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——~CEffQuake 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#0 from:None）",
+      "question": "gap_fill 移植自 ?——~CEffQuake 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#0 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBPanelSlot",
@@ -913,9 +1138,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——Update_2ff0 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 UIFrameWnd——Update_2ff0 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBPanelSlot",
@@ -931,9 +1161,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIWnd——ShowClipped 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#0 from:None）",
+      "question": "gap_fill 移植自 UIWnd——ShowClipped 是否真属 CCBPanelSlot？（移植=名字搬家非证据；槽位#0 from:None）【调用面：member=12 qualified=14 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 12,
+        "qualified": 14,
+        "bare": 0
+      }
     },
     {
       "class": "EquipUI",
@@ -949,10 +1184,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 EquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 EquipUI？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "LineupUI",
@@ -968,10 +1208,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 LineupUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 LineupUI？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UISceneMap",
@@ -987,10 +1232,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 UISceneMap？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 UISceneMap？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=0 qualified=0 bare=74】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 74
+      }
     },
     {
       "class": "ScriptObj",
@@ -1003,10 +1253,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "ScriptObj",
@@ -1054,10 +1309,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBProtectWindow——OnCommand 是否真属 CCBStage？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CCBProtectWindow——OnCommand 是否真属 CCBStage？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=0 qualified=6 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 6,
+        "bare": 0
+      }
     },
     {
       "class": "CCBStage",
@@ -1073,10 +1333,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——~CCBStage 是否真属 CCBStage？（移植=名字搬家非证据；槽位#5 from:None）",
+      "question": "gap_fill 移植自 ?——~CCBStage 是否真属 CCBStage？（移植=名字搬家非证据；槽位#5 from:None）【调用面：member=0 qualified=1 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "SystemUI",
@@ -1092,10 +1357,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 SystemUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 SystemUI？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIAnimateCtrlEX",
@@ -1127,10 +1397,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffAction？（移植=名字搬家非证据；槽位#11 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffAction？（移植=名字搬家非证据；槽位#11 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffAction",
@@ -1146,10 +1421,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 CEffAction？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 CEffAction？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffAction",
@@ -1165,10 +1445,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffAction？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffAction？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffAction",
@@ -1184,10 +1469,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffAction？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffAction？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffAction",
@@ -1203,10 +1493,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 CEffAction？（移植=名字搬家非证据；槽位#14 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 CEffAction？（移植=名字搬家非证据；槽位#14 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBMagicWindow",
@@ -1219,9 +1514,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=26 qualified=0 bare=28】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 26,
+        "qualified": 0,
+        "bare": 28
+      }
     },
     {
       "class": "CCBMagicWindow",
@@ -1249,9 +1549,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBSkillWindow——OnMessage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBSkillWindow——OnMessage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=101 qualified=117 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "CCBMagicWindow",
@@ -1264,9 +1569,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBSkillWindow——Destroy 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBSkillWindow——Destroy 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=79 qualified=164 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 79,
+        "qualified": 164,
+        "bare": 0
+      }
     },
     {
       "class": "CCBMagicWindow",
@@ -1279,9 +1589,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBSkillWindow——SetActivePage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBSkillWindow——SetActivePage 是否真属 CCBMagicWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffAudio",
@@ -1294,9 +1609,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 CEffAudio？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 CEffAudio？（移植=名字搬家非证据；槽位未定位）【调用面：member=4 qualified=8 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 4,
+        "qualified": 8,
+        "bare": 0
+      }
     },
     {
       "class": "JusticeBookUI",
@@ -1312,10 +1632,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 JusticeBookUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 JusticeBookUI？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIRoleSelectDialog",
@@ -1331,10 +1656,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIRoleSelectDialog？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIRoleSelectDialog？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIScenePanel",
@@ -1350,10 +1680,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UICaption——CreateChildWidget 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#7 from:None）",
+      "question": "gap_fill 移植自 UICaption——CreateChildWidget 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#7 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScenePanel",
@@ -1388,10 +1723,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "RoleSystem",
@@ -1407,10 +1747,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=0 qualified=0 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "RoleSystem",
@@ -1445,10 +1790,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 MainEquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 MainEquipUI？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIWnd",
@@ -1464,10 +1814,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 UIWnd？（移植=名字搬家非证据；槽位#4 from:None）",
+      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 UIWnd？（移植=名字搬家非证据；槽位#4 from:None）【调用面：member=71 qualified=157 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 71,
+        "qualified": 157,
+        "bare": 0
+      }
     },
     {
       "class": "UIWnd",
@@ -1483,10 +1838,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 SceneObj——HideAll 是否真属 UIWnd？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 SceneObj——HideAll 是否真属 UIWnd？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=14 qualified=20 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 14,
+        "qualified": 20,
+        "bare": 0
+      }
     },
     {
       "class": "UIWnd",
@@ -1502,10 +1862,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 SceneObj——Update 是否真属 UIWnd？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 SceneObj——Update 是否真属 UIWnd？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "UIWnd",
@@ -1521,10 +1886,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UITitle_BBTY——Render 是否真属 UIWnd？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 UITitle_BBTY——Render 是否真属 UIWnd？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=121 qualified=213 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 121,
+        "qualified": 213,
+        "bare": 0
+      }
     },
     {
       "class": "UIWnd",
@@ -1540,10 +1910,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 UIWnd？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 UIWnd？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=101 qualified=117 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "UIWnd",
@@ -1623,10 +1998,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_44E980 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_44E980 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffMeteor",
@@ -1642,10 +2022,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#11 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#11 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffMeteor",
@@ -1661,10 +2046,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffMeteor",
@@ -1680,10 +2070,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffMeteor",
@@ -1699,10 +2094,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——_scalar_dtor_B4A0 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 ?——_scalar_dtor_B4A0 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIListBox",
@@ -1718,10 +2118,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIListBox？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIListBox？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIListBox",
@@ -1737,10 +2142,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIListBox？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIListBox？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UIListBox",
@@ -1772,10 +2182,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBUIPanel——_scalar_dtor_3E50 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBUIPanel——_scalar_dtor_3E50 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=1 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "UIListBox",
@@ -1788,10 +2203,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBUIPanel——RenderIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBUIPanel——RenderIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIListBox",
@@ -1804,10 +2224,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBUIPanel——ProcessInputIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBUIPanel——ProcessInputIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIListBox",
@@ -1839,10 +2264,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffect——Activate 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CEffect——Activate 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffectSystem",
@@ -1858,10 +2288,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffect——ReleaseTextures 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CEffect——ReleaseTextures 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "gbLightObj",
@@ -1877,10 +2312,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 gbLightObj？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 gbLightObj？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "UICoverFrm",
@@ -1896,10 +2336,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UICoverFrm",
@@ -1915,10 +2360,15 @@
         "evidence_level": "A",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIListBox——_scalar_dtor_79D0 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#5 from:UICoverFrm）",
+      "question": "gap_fill 移植自 UIListBox——_scalar_dtor_79D0 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#5 from:UICoverFrm）【调用面：member=0 qualified=1 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "UICoverFrm",
@@ -1934,10 +2384,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIListBox——ProcessInput 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#2 from:UICoverFrm）",
+      "question": "gap_fill 移植自 UIListBox——ProcessInput 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#2 from:UICoverFrm）【调用面：member=22 qualified=90 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 22,
+        "qualified": 90,
+        "bare": 0
+      }
     },
     {
       "class": "CCBItemWindow",
@@ -1950,9 +2405,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBControlWindow——OnMessage 是否真属 CCBItemWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBControlWindow——OnMessage 是否真属 CCBItemWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=101 qualified=117 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuad",
@@ -1987,10 +2447,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D1300 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4D1300 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffQuad",
@@ -2006,10 +2471,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D17D0 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#5 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4D17D0 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#5 from:None）【调用面：member=0 qualified=3 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CPK",
@@ -2025,10 +2495,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——~CPK 是否真属 CPK？（移植=名字搬家非证据；槽位#0 from:None）",
+      "question": "gap_fill 移植自 ?——~CPK 是否真属 CPK？（移植=名字搬家非证据；槽位#0 from:None）【调用面：member=1 qualified=1 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "CEffGrid",
@@ -2044,10 +2519,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#11 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#11 from:None）【调用面：member=134 qualified=207 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffGrid",
@@ -2063,10 +2543,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffGrid",
@@ -2082,10 +2567,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffGrid",
@@ -2120,10 +2610,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 PalScript？（移植=名字搬家非证据；槽位#4 from:None）",
+      "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 PalScript？（移植=名字搬家非证据；槽位#4 from:None）【调用面：member=71 qualified=157 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 71,
+        "qualified": 157,
+        "bare": 0
+      }
     },
     {
       "class": "PalScript",
@@ -2139,10 +2634,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 PalScript？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 PalScript？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=101 qualified=117 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "PalScript",
@@ -2158,10 +2658,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIWnd——ShowWindow 是否真属 PalScript？（移植=名字搬家非证据；槽位#0 from:None）",
+      "question": "gap_fill 移植自 UIWnd——ShowWindow 是否真属 PalScript？（移植=名字搬家非证据；槽位#0 from:None）【调用面：member=7 qualified=16 bare=13】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 7,
+        "qualified": 16,
+        "bare": 13
+      }
     },
     {
       "class": "CEffCylinder",
@@ -2177,10 +2682,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffCylinder",
@@ -2215,10 +2725,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——_scalar_dtor_3DB0 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 ?——_scalar_dtor_3DB0 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CScreenMode",
@@ -2234,10 +2749,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "CScreenMode",
@@ -2298,10 +2818,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 functions——StateUI::sub_485230 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 functions——StateUI::sub_485230 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=0 bare=2】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（StateUI）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（StateUI）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "CScreenMode",
@@ -2317,10 +2842,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=0 qualified=0 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "CScreenMode",
@@ -2333,10 +2863,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4850E0 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4850E0 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIRoleDialog",
@@ -2381,10 +2916,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——Reset 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——Reset 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）【调用面：member=230 qualified=300 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）",
+      "callsite_evidence": {
+        "member": 230,
+        "qualified": 300,
+        "bare": 0
+      }
     },
     {
       "class": "UIRoleDialog",
@@ -2397,10 +2937,15 @@
         "evidence_level": "A",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——Update 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——Update 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）【调用面：member=134 qualified=207 bare=2】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）",
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CCBUIPanel",
@@ -2416,10 +2961,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_449C20 是否真属 CCBUIPanel？（移植=名字搬家非证据；槽位#1 from:None）",
+      "question": "gap_fill 移植自 ?——sub_449C20 是否真属 CCBUIPanel？（移植=名字搬家非证据；槽位#1 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffect",
@@ -2432,9 +2982,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=134 qualified=207 bare=2】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 134,
+        "qualified": 207,
+        "bare": 2
+      }
     },
     {
       "class": "CEffect",
@@ -2447,9 +3002,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffect",
@@ -2462,9 +3022,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=5 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "CEffect",
@@ -2477,9 +3042,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffShock——CEffShock 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CEffShock——CEffShock 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=2】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 2
+      }
     },
     {
       "class": "CEffect",
@@ -2492,9 +3062,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffect",
@@ -2507,9 +3082,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D4700 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4D4700 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CEffect",
@@ -2522,9 +3102,14 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4D4840 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 ?——sub_4D4840 是否真属 CEffect？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "ParabolaCalculator",
@@ -2537,9 +3122,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 ParabolaCalculator？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 ParabolaCalculator？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=0 bare=4】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "ParabolaCalculator",
@@ -2567,10 +3157,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIPushButton——Destroy_D920 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIPushButton——Destroy_D920 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIPushButton）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIPushButton）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBProtectWindow",
@@ -2599,10 +3194,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIWnd——GetUIElements 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIWnd——GetUIElements 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBProtectWindow",
@@ -2615,10 +3215,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIWnd——RenderText 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIWnd——RenderText 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2631,9 +3236,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——_sdtor_ovl 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIFrameWnd——_sdtor_ovl 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=1 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2646,9 +3256,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——Destroy_38f0 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIFrameWnd——Destroy_38f0 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=1 qualified=3 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2661,9 +3276,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——Render 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIFrameWnd——Render 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=121 qualified=213 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 121,
+        "qualified": 213,
+        "bare": 0
+      }
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2676,9 +3296,14 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIFrameWnd——UpdateIfVisible 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIFrameWnd——UpdateIfVisible 是否真属 CCBFiveNimbusWindow？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": null,
-      "adjudicator": null
+      "adjudicator": null,
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2722,10 +3347,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UICaption——Destroy 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UICaption——Destroy 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=79 qualified=164 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）",
+      "callsite_evidence": {
+        "member": 79,
+        "qualified": 164,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2738,10 +3368,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UICaption——Update2 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UICaption——Update2 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2770,10 +3405,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——Render 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——Render 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=121 qualified=213 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 121,
+        "qualified": 213,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2786,10 +3426,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——Update_B900 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——Update_B900 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2805,10 +3450,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2821,10 +3471,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——Destroy_C910 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——Destroy_C910 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=3 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2837,10 +3492,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——PostRender 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——PostRender 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2853,10 +3513,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——StopAllSounds 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——StopAllSounds 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2869,10 +3534,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 UIScenePanel——OnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 UIScenePanel——OnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）【调用面：member=101 qualified=117 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）",
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "UIScene",
@@ -2920,10 +3590,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）【调用面：member=0 qualified=2 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（RoleCameraCtrl/UIListBox/UIScene）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（RoleCameraCtrl/UIListBox/UIScene）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBUI",
@@ -2939,10 +3614,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBUI？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBUI？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=26 qualified=0 bare=28】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 26,
+        "qualified": 0,
+        "bare": 28
+      }
     },
     {
       "class": "CCBUI",
@@ -2971,10 +3651,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBProtectWindow——Destroy 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
+      "question": "gap_fill 移植自 CCBProtectWindow——Destroy 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）【调用面：member=79 qualified=164 bare=0】",
       "answer": "rejected",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBProtectWindow）"
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBProtectWindow）",
+      "callsite_evidence": {
+        "member": 79,
+        "qualified": 164,
+        "bare": 0
+      }
     },
     {
       "class": "CCBUI",
@@ -3028,10 +3713,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBResultWindow——OnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 CCBResultWindow——OnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=101 qualified=117 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 101,
+        "qualified": 117,
+        "bare": 0
+      }
     },
     {
       "class": "CCBUI",
@@ -3047,10 +3737,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBResultWindow——IsImbibeNimbusNotFinish 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CCBResultWindow——IsImbibeNimbusNotFinish 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBUI",
@@ -3104,10 +3799,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBFiveNimbusWindow——AddResultWindowAni 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CCBFiveNimbusWindow——AddResultWindowAni 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "CCBUI",
@@ -3176,10 +3876,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#3 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#3 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "RenderTarget",
@@ -3233,10 +3938,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 gbVisNode——EnableShadow 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#9 from:None）",
+      "question": "gap_fill 移植自 gbVisNode——EnableShadow 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#9 from:None）【调用面：member=1 qualified=3 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "ScreenEffectMgr",
@@ -3252,10 +3962,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 gbVisNode——GetAABBox 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#8 from:None）",
+      "question": "gap_fill 移植自 gbVisNode——GetAABBox 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#8 from:None）【调用面：member=5 qualified=9 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 5,
+        "qualified": 9,
+        "bare": 0
+      }
     },
     {
       "class": "ScreenEffectMgr",
@@ -3271,10 +3986,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 gbVisNode——GetBoundSphere 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#7 from:None）",
+      "question": "gap_fill 移植自 gbVisNode——GetBoundSphere 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#7 from:None）【调用面：member=1 qualified=1 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 1,
+        "bare": 0
+      }
     },
     {
       "class": "UITitle_YXXX",
@@ -3290,10 +4010,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#6 from:None）",
+      "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#6 from:None）【调用面：member=1 qualified=0 bare=4】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 0,
+        "bare": 4
+      }
     },
     {
       "class": "UITitle_YXXX",
@@ -3309,10 +4034,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#4 from:None）",
+      "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#4 from:None）【调用面：member=0 qualified=0 bare=2】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 2
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3328,10 +4058,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#28 from:None）",
+      "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#28 from:None）【调用面：member=0 qualified=0 bare=74】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 0,
+        "bare": 74
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3347,10 +4082,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#32 from:None）",
+      "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#32 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3366,10 +4106,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——AllocRenderTarget 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#10 from:None）",
+      "question": "gap_fill 移植自 CEffAction——AllocRenderTarget 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#10 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3385,10 +4130,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——ResetState 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
+      "question": "gap_fill 移植自 CEffAction——ResetState 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）【调用面：member=4 qualified=12 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 4,
+        "qualified": 12,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3404,10 +4154,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#4 from:None）",
+      "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#4 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3442,10 +4197,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffAction——PrepareEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#12 from:None）",
+      "question": "gap_fill 移植自 CEffAction——PrepareEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#12 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3461,10 +4221,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#37 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#37 from:None）【调用面：member=1 qualified=5 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 5,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3480,10 +4245,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#86 from:None）",
+      "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#86 from:None）【调用面：member=4 qualified=8 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 4,
+        "qualified": 8,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3499,10 +4269,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——AllocEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#31 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——AllocEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#31 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3518,10 +4293,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Create 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#25 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Create 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#25 from:None）【调用面：member=71 qualified=157 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 71,
+        "qualified": 157,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3537,10 +4317,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——Destroy 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#30 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——Destroy 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#30 from:None）【调用面：member=79 qualified=164 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 79,
+        "qualified": 164,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3556,10 +4341,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——CreateTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#29 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——CreateTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#29 from:None）【调用面：member=1 qualified=9 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 9,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3575,10 +4365,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——ProcInitTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#36 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——ProcInitTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#36 from:None）【调用面：member=0 qualified=4 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 4,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3594,10 +4389,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——GetEditorTaskDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#38 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——GetEditorTaskDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#38 from:None）【调用面：member=23 qualified=31 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 23,
+        "qualified": 31,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3613,10 +4413,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffCylinder——GetEditorObjDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#34 from:None）",
+      "question": "gap_fill 移植自 CEffCylinder——GetEditorObjDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#34 from:None）【调用面：member=0 qualified=6 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 6,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3632,10 +4437,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
+      "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）【调用面：member=1 qualified=3 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 1,
+        "qualified": 3,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3651,10 +4461,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#13 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#13 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3670,10 +4485,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——nullsub_75_override 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#23 from:None）",
+      "question": "gap_fill 移植自 ?——nullsub_75_override 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#23 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3708,10 +4528,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#17 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#17 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3746,10 +4571,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C3C70 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#0 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C3C70 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#0 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "confirmed",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "vtable 槽字节真值（B2a located 表实含）"
+      "evidence": "vtable 槽字节真值（B2a located 表实含）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3784,10 +4614,15 @@
         "evidence_level": "unverified",
         "multi_claim": false
       },
-      "question": "gap_fill 移植自 ?——sub_4C5740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#41 from:None）",
+      "question": "gap_fill 移植自 ?——sub_4C5740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#41 from:None）【调用面：member=0 qualified=2 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 0,
+        "qualified": 2,
+        "bare": 0
+      }
     },
     {
       "class": "RenderTarget2",
@@ -3822,10 +4657,15 @@
         "evidence_level": "unverified",
         "multi_claim": true
       },
-      "question": "gap_fill 移植自 CCBItemWindow——HandleInput 是否真属 CCBLineupWindow？（移植=名字搬家非证据；槽位#2 from:None）",
+      "question": "gap_fill 移植自 CCBItemWindow——HandleInput 是否真属 CCBLineupWindow？（移植=名字搬家非证据；槽位#2 from:None）【调用面：member=26 qualified=46 bare=0】",
       "answer": "shared_impl",
       "adjudicator": "mechanical:P-tier",
-      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）",
+      "callsite_evidence": {
+        "member": 26,
+        "qualified": 46,
+        "bare": 0
+      }
     }
   ]
 }
