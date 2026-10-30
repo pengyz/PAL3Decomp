@@ -185,6 +185,13 @@ SEH 6A FF 68..          筐滥用即混淆两者）
   ②「1/1910」自相矛盾（T11 四件名实不符 + unknown_libname 族 210 条未经字节形分流，均不在分母定义内）⇒
   **误归率定义改窄为「跳板形条目的族间误归」**（选项一，禁维持 1/1910 原句）；
   ③unknown_libname 族 210 条按字节形分流（真身→非跳板、E9/E8E9→既有筐）**挂账后续普查**（须逐条二进制证据）。
+  **【2026-10-31 分流收账（tools/thunk_scan.py 全量字节形 census，head_hex 逐条可复验）】**：
+  210/210 全部 `real_body`（**零跳板**）——`8a0d…` 守卫旗标检查簇（287–306+ 大簇共享 prologue，
+  静态初始化守卫真身）+ 549–552 CRT 微体（call+ret/fstsw）⇒ E9/E8E9 既有筐零收入，
+  「跳板形条目的族间误归」分母在本族为空。全量 skip 1717 条族分布（`data/status/
+  all_skip_shape_census_20261031.json`）：real_body 1198 · tail_alias 344 · singleton_thunk 46
+  （=T5 表 45+1 误归件**精确吻合**）· static_init_glue 38 · import_thunk 30 · psgp_dispatch 22
+  （=T3 B 形 22 **精确**）· psgp_lazy_init 17 · this_adjustor 15 · form9 7（12 件中 5 件不在 skip 集）。
 - **判定数据结构放 annotation**：新建 `data/annotations/thunk_registry.json`。理由：annotation 是唯一真相源、可被 check_annotations 验证、可经 apply 写入 IDB 命名（IDA 名实漂移一并治理）；
 - **验证环覆盖跳板字节**：现行 `match`/L1 只比「有源码函数」，跳板被 skip 后**完全不可见** ⇒ 把跳板地址作为独立地址条目纳入 compare_pal3 对象清单（(c) 类比「链接产物一致性」：两侧同址同形即绿；(b)(d) 类按普通函数字节比对）。
 
