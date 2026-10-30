@@ -46,6 +46,21 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_41F8C0(...);
+int sub_41F8C0(...);
+
+// D  int sub_426EB0(...);
+int sub_426EB0(...);
+
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
+// D  extern CHAR byte_DDA73C[512];
+extern CHAR byte_DDA73C[512];
+
 // 0x0041F6F0  (SystemUI::Reset)
 void SystemUI::Reset()
 { }

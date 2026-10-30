@@ -19,6 +19,9 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_519180(...);
+int sub_519180(...);
+
 // 0x0043D920  (CCBProtectWindow::Destroy_D920)
 void CCBProtectWindow::Destroy_D920()
 { }

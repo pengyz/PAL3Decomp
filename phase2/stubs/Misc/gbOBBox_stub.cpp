@@ -11,4 +11,4 @@
 // 0x0052F6C0
 
 // PRUNED (hand-trim debt, compile-driven):
-//   gbOBBox::GetBBox
+//   func gbOBBox::GetBBox

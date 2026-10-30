@@ -52,6 +52,12 @@
 
 // Unnamed globals (extern)
 
+// D  extern LPCSTR off_5C641C;
+extern LPCSTR off_5C641C;
+
+// D  extern LPCSTR off_5C6420;
+extern LPCSTR off_5C6420;
+
 // 0x00474990  (LineupUI::GetUpdateFlag)
 char LineupUI::GetUpdateFlag()
 { return 0; }

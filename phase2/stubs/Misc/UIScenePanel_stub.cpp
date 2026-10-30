@@ -40,6 +40,36 @@
 
 // Forward declarations for unnamed functions
 
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern LPCSTR off_59DD08;
+extern LPCSTR off_59DD08;
+
+// D  extern LPCSTR off_59DD0C;
+extern LPCSTR off_59DD0C;
+
+// D  extern LPCSTR off_59DD10;
+extern LPCSTR off_59DD10;
+
+// D  extern LPCSTR off_59DD14;
+extern LPCSTR off_59DD14;
+
+// D  extern LPCSTR off_59DDCC;
+extern LPCSTR off_59DDCC;
+
+// D  extern LPCSTR off_59DDD0;
+extern LPCSTR off_59DDD0;
+
+// D  extern LPCSTR off_59DDD4;
+extern LPCSTR off_59DDD4;
+
+// D  extern LPCSTR off_59DDDC;
+extern LPCSTR off_59DDDC;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x0043B4D0  (UIScenePanel::~UIScenePanel)
 UIScenePanel::~UIScenePanel()
 { }

@@ -14,6 +14,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4B8290(...);
+int sub_4B8290(...);
+
+// D  int sub_4B8570(...);
+int sub_4B8570(...);
+
 // 0x004B8890  (sg_emission_control::_todo_004B8890)
 void sg_emission_control::_todo_004B8890(int a2, int a3)
 { }

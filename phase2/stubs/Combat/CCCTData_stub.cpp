@@ -34,6 +34,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_506340(...);
+int sub_506340(...);
+
+// D  void __cdecl nullsub_31(void);
+void __cdecl nullsub_31(void);
+
 // 0x0041C900  (CCCTData::CalcDist)
 void CCCTData::CalcDist(float fVal, float fVal2)
 { }

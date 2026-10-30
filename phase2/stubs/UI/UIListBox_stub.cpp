@@ -47,6 +47,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x00431CD0  (UIListBox::RefreshSelection)
 void UIListBox::RefreshSelection()
 { }

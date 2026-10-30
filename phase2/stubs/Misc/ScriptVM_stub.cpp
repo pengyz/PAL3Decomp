@@ -34,6 +34,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
 // 0x00423880  (ScriptVM::ProcessFrame)
 void ScriptVM::ProcessFrame()
 { }

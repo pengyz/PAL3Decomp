@@ -86,6 +86,213 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_508460(...);
+int sub_508460(...);
+
+// D  extern char aFleesuccess[];
+extern char aFleesuccess[];
+
+// D  extern char aFlydown[];
+extern char aFlydown[];
+
+// D  extern char aFlyup[];
+extern char aFlyup[];
+
+// D  extern char aPause[];
+extern char aPause[];
+
+// D  extern char aStore[];
+extern char aStore[];
+
+// D  extern char aWa012[];
+extern char aWa012[];
+
+// D  extern char aWa013[];
+extern char aWa013[];
+
+// D  extern char aWd023[];
+extern char aWd023[];
+
+// D  extern char aWd024[];
+extern char aWd024[];
+
+// D  extern char aWd025[];
+extern char aWd025[];
+
+// D  extern char aWd026[];
+extern char aWd026[];
+
+// D  extern char aWd027[];
+extern char aWd027[];
+
+// D  extern char aWd028[];
+extern char aWd028[];
+
+// D  extern char aWd029[];
+extern char aWd029[];
+
+// D  extern char aWd030[];
+extern char aWd030[];
+
+// D  extern char aWe020[];
+extern char aWe020[];
+
+// D  extern char aWe033[];
+extern char aWe033[];
+
+// D  extern char aWork[];
+extern char aWork[];
+
+// D  extern char aWork1[];
+extern char aWork1[];
+
+// D  extern char byte_17AAEE4[61];
+extern char byte_17AAEE4[61];
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
+// D  void __cdecl nullsub_20(void);
+void __cdecl nullsub_20(void);
+
+// D  void __cdecl nullsub_21(void);
+void __cdecl nullsub_21(void);
+
+// D  void __cdecl nullsub_22(void);
+void __cdecl nullsub_22(void);
+
+// D  void __cdecl nullsub_23(void);
+void __cdecl nullsub_23(void);
+
+// D  void __cdecl nullsub_24(void);
+void __cdecl nullsub_24(void);
+
+// D  void __cdecl nullsub_25(void);
+void __cdecl nullsub_25(void);
+
+// D  void __cdecl nullsub_26(void);
+void __cdecl nullsub_26(void);
+
+// D  void __cdecl nullsub_27(void);
+void __cdecl nullsub_27(void);
+
+// D  void __cdecl nullsub_28(void);
+void __cdecl nullsub_28(void);
+
+// D  void __cdecl nullsub_29(void);
+void __cdecl nullsub_29(void);
+
+// D  void __cdecl nullsub_30(void);
+void __cdecl nullsub_30(void);
+
+// D  void __cdecl nullsub_32(void);
+void __cdecl nullsub_32(void);
+
+// D  void __cdecl nullsub_33(void);
+void __cdecl nullsub_33(void);
+
+// D  void __cdecl nullsub_34(void);
+void __cdecl nullsub_34(void);
+
+// D  void __cdecl nullsub_35(void);
+void __cdecl nullsub_35(void);
+
+// D  void __cdecl nullsub_36(void);
+void __cdecl nullsub_36(void);
+
+// D  void __cdecl nullsub_37(void);
+void __cdecl nullsub_37(void);
+
+// D  void __cdecl nullsub_38(void);
+void __cdecl nullsub_38(void);
+
+// D  void __cdecl nullsub_39(void);
+void __cdecl nullsub_39(void);
+
+// D  void __cdecl nullsub_40(void);
+void __cdecl nullsub_40(void);
+
+// D  void __cdecl nullsub_41(void);
+void __cdecl nullsub_41(void);
+
+// D  void __cdecl nullsub_42(void);
+void __cdecl nullsub_42(void);
+
+// D  void __cdecl nullsub_43(void);
+void __cdecl nullsub_43(void);
+
+// D  void __cdecl nullsub_44(void);
+void __cdecl nullsub_44(void);
+
+// D  void __cdecl nullsub_45(void);
+void __cdecl nullsub_45(void);
+
+// D  void __cdecl nullsub_46(void);
+void __cdecl nullsub_46(void);
+
+// D  void __cdecl nullsub_47(void);
+void __cdecl nullsub_47(void);
+
+// D  void __cdecl nullsub_48(void);
+void __cdecl nullsub_48(void);
+
+// D  void __cdecl nullsub_49(void);
+void __cdecl nullsub_49(void);
+
+// D  void __cdecl nullsub_50(void);
+void __cdecl nullsub_50(void);
+
+// D  void __cdecl nullsub_51(void);
+void __cdecl nullsub_51(void);
+
+// D  void __cdecl nullsub_52(void);
+void __cdecl nullsub_52(void);
+
+// D  void __cdecl nullsub_53(void);
+void __cdecl nullsub_53(void);
+
+// D  void __cdecl nullsub_54(void);
+void __cdecl nullsub_54(void);
+
+// D  void __cdecl nullsub_55(void);
+void __cdecl nullsub_55(void);
+
+// D  void __cdecl nullsub_56(void);
+void __cdecl nullsub_56(void);
+
+// D  void __cdecl nullsub_57(void);
+void __cdecl nullsub_57(void);
+
+// D  void __cdecl nullsub_58(void);
+void __cdecl nullsub_58(void);
+
+// D  void __cdecl nullsub_59(void);
+void __cdecl nullsub_59(void);
+
+// D  void __cdecl nullsub_60(void);
+void __cdecl nullsub_60(void);
+
+// D  void __cdecl nullsub_61(void);
+void __cdecl nullsub_61(void);
+
+// D  void __cdecl nullsub_62(void);
+void __cdecl nullsub_62(void);
+
+// D  void __cdecl nullsub_63(void);
+void __cdecl nullsub_63(void);
+
+// D  void __cdecl nullsub_64(void);
+void __cdecl nullsub_64(void);
+
+// D  void __cdecl nullsub_65(void);
+void __cdecl nullsub_65(void);
+
+// D  void __cdecl nullsub_66(void);
+void __cdecl nullsub_66(void);
+
+// D  void __cdecl nullsub_67(void);
+void __cdecl nullsub_67(void);
+
 // 0x0040CC90  (CCBStage::Init)
 void CCBStage::Init(int thisa)
 { }

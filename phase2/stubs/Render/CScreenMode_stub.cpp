@@ -79,6 +79,42 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_528190(...);
+int sub_528190(...);
+
+// D  class PtrArray;
+class PtrArray;
+
+// D  extern CHAR byte_DC773C[256];
+extern CHAR byte_DC773C[256];
+
+// D  extern int dword_D92780;
+extern int dword_D92780;
+
+// D  extern PalScriptMgr * dword_DBA24C;
+extern PalScriptMgr * dword_DBA24C;
+
+// D  extern char dword_DCD63C[];
+extern char dword_DCD63C[];
+
+// D  extern char dword_DCD93C[];
+extern char dword_DCD93C[];
+
+// D  extern char dword_DCE83C[];
+extern char dword_DCE83C[];
+
+// D  extern char dword_DD393C[];
+extern char dword_DD393C[];
+
+// D  extern char dword_DD3A3C[];
+extern char dword_DD3A3C[];
+
+// D  extern char dword_DD3B3C[];
+extern char dword_DD3B3C[];
+
+// D  extern PtrArray stru_17B3EB0;
+extern PtrArray stru_17B3EB0;
+
 // 0x0040EB10  (CScreenMode::ProcessGameMode)
 void CScreenMode::ProcessGameMode(int nVal, int nVal2)
 { }

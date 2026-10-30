@@ -40,6 +40,9 @@
 
 // Unnamed globals (extern)
 
+// D  extern CHAR byte_DC6A3C[256];
+extern CHAR byte_DC6A3C[256];
+
 // 0x0045E9F0  (UITitle_JDHY::LayoutCalcRects)
 void UITitle_JDHY::LayoutCalcRects()
 { }

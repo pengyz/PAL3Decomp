@@ -35,6 +35,69 @@
 
 // Unnamed globals (extern)
 
+// D  extern char aBasedataSkeePa[];
+extern char aBasedataSkeePa[];
+
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
+// D  extern CHAR byte_DC4C3C[256];
+extern CHAR byte_DC4C3C[256];
+
+// D  extern CHAR byte_DC4D3C[256];
+extern CHAR byte_DC4D3C[256];
+
+// D  extern CHAR byte_DC4E3C[256];
+extern CHAR byte_DC4E3C[256];
+
+// D  extern CHAR byte_DC4F3C[256];
+extern CHAR byte_DC4F3C[256];
+
+// D  extern CHAR byte_DC503C[256];
+extern CHAR byte_DC503C[256];
+
+// D  extern CHAR byte_DC513C[256];
+extern CHAR byte_DC513C[256];
+
+// D  extern CHAR byte_DC523C[256];
+extern CHAR byte_DC523C[256];
+
+// D  extern CHAR byte_DC533C[256];
+extern CHAR byte_DC533C[256];
+
+// D  extern CHAR byte_DC543C[256];
+extern CHAR byte_DC543C[256];
+
+// D  extern CHAR byte_DC553C[256];
+extern CHAR byte_DC553C[256];
+
+// D  extern CHAR byte_DC563C[256];
+extern CHAR byte_DC563C[256];
+
+// D  extern CHAR byte_DC583C[256];
+extern CHAR byte_DC583C[256];
+
+// D  extern CHAR byte_DC593C[256];
+extern CHAR byte_DC593C[256];
+
+// D  extern CHAR byte_DC5A3C[256];
+extern CHAR byte_DC5A3C[256];
+
+// D  extern CHAR byte_DC5B3C[256];
+extern CHAR byte_DC5B3C[256];
+
+// D  extern CHAR byte_DC5C3C[768];
+extern CHAR byte_DC5C3C[768];
+
+// D  extern CHAR byte_DCBC3C[256];
+extern CHAR byte_DCBC3C[256];
+
+// D  extern CHAR byte_DCC93C[256];
+extern CHAR byte_DCC93C[256];
+
 // 0x00450EB0  (RoleAtt::_sdtor_call_dtor)
 void RoleAtt::_sdtor_call_dtor(UIWnd *pWnd)
 { }

@@ -19,6 +19,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
 // 0x00410360  (InputSystem::ProcessFrame)
 void InputSystem::ProcessFrame(char *pInputState)
 { }

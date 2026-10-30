@@ -24,6 +24,24 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4CE5C0(...);
+int sub_4CE5C0(...);
+
+// D  int sub_4CE7F0(...);
+int sub_4CE7F0(...);
+
+// D  int sub_4CE8A0(...);
+int sub_4CE8A0(...);
+
+// D  int sub_4CE970(...);
+int sub_4CE970(...);
+
+// D  int sub_4CEA40(...);
+int sub_4CEA40(...);
+
+// D  int sub_5057B0(...);
+int sub_5057B0(...);
+
 // 0x004E6020  (CCBStageCam::UpdateEditorState)
 int CCBStageCam::UpdateEditorState()
 { return 0; }
@@ -145,4 +163,4 @@ void CCBStageCam::Update()
 { }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   CCBStageCam::CCBStageCam
+//   func CCBStageCam::CCBStageCam

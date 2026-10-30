@@ -29,6 +29,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x0043BB70  (UIFrameWnd::UIFrameWnd)
 UIFrameWnd::UIFrameWnd()
 { }

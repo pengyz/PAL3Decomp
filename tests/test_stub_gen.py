@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from stub_gen import (extract_includes, extract_functions, split_signature,  # noqa: E402
-                      stub_body, render_stub, stub_path_for_unit)
+                      stub_body, render_stub, stub_path_for_unit, extract_data_items)
 
 FIXTURE = '''#include "pal3/ida_defs.h"
 #include "globals.h"
@@ -97,6 +97,22 @@ def test_render_stub_deterministic_and_paths():
     p = stub_path_for_unit('pal3/src/Combat/CCBAttackSequen.cpp')
     assert p.name == 'CCBAttackSequen_stub.cpp' and p.parent.name == 'Combat'
     assert stub_path_for_unit('pal3/src/free_functions.cpp').name == 'free_functions_stub.cpp'
+
+
+def test_extract_data_items_globals_form():
+    """globals.cpp 形态（纯数据 3011 行）：';' 顶层数语句逐条收，函数体丢弃。"""
+    t = ('#include "globals.h"\n'
+         'float g_fScale[8] = {1.0f};\n'
+         'unsigned __int8 g_bFlag = {0};\n'
+         'int f()\n{\n  return g_bFlag;\n}\n'
+         'char *const psz = {0};\n')
+    items = extract_data_items(t)
+    assert [d['label'] for d in items] == ['float g_fScale[8] = {1.0f};',
+                                          'unsigned __int8 g_bFlag = {0};',
+                                          'char *const psz = {0};'], items
+    # 嵌套初始式不破深度
+    t2 = 'int a[2][2] = { {1,2}, {3,4} };\nint b = 1;\n'
+    assert len(extract_data_items(t2)) == 2
 
 
 def test_iron_rule_no_stub_in_pal3src():

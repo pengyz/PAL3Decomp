@@ -62,6 +62,30 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4947E0(...);
+int sub_4947E0(...);
+
+// D  int sub_494880(...);
+int sub_494880(...);
+
+// D  extern CHAR byte_DC6A3C[256];
+extern CHAR byte_DC6A3C[256];
+
+// D  extern CHAR byte_DC773C[256];
+extern CHAR byte_DC773C[256];
+
+// D  void __cdecl nullsub_10(void);
+void __cdecl nullsub_10(void);
+
+// D  void __cdecl nullsub_7(void);
+void __cdecl nullsub_7(void);
+
+// D  void __cdecl nullsub_8(void);
+void __cdecl nullsub_8(void);
+
+// D  void __cdecl nullsub_9(void);
+void __cdecl nullsub_9(void);
+
 // 0x00414E50  (UIBigMap::UpdateActions)
 int UIBigMap::UpdateActions(int *deltatime, int haveinput)
 { return 0; }

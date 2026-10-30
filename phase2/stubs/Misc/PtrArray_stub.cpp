@@ -17,6 +17,9 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_434760(...);
+int sub_434760(...);
+
 // 0x0040D620  (PtrArray::GetSize)
 int PtrArray::GetSize()
 { return 0; }

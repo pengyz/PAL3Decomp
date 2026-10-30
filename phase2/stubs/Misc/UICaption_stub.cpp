@@ -27,6 +27,12 @@
 #include "Misc/_Texture_Info.h"
 #include "free_functions.h"
 
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x0043A870  (UICaption::CreateChildWidget)
 gbVFileSystem * UICaption::CreateChildWidget( int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)
 { return 0; }

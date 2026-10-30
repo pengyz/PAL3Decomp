@@ -18,6 +18,9 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4B7020(...);
+int sub_4B7020(...);
+
 // 0x00429EE0  (Object3D::SetTransform)
 void Object3D::SetTransform(gbMatrix4 *pMatrix)
 { }

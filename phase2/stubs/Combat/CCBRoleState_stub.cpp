@@ -70,6 +70,27 @@
 
 // Unnamed globals (extern)
 
+// D  extern char aWa014[];
+extern char aWa014[];
+
+// D  extern char aWa015[];
+extern char aWa015[];
+
+// D  extern CHAR byte_DC6A3C[256];
+extern CHAR byte_DC6A3C[256];
+
+// D  extern int dword_DCA13C;
+extern int dword_DCA13C;
+
+// D  extern int dword_DCA23C;
+extern int dword_DCA23C;
+
+// D  extern int dword_DDB93C;
+extern int dword_DDB93C;
+
+// D  extern LPCSTR off_5B0E28;
+extern LPCSTR off_5B0E28;
+
 // 0x0043DE40  (CCBRoleState::Destroy)
 int CCBRoleState::Destroy(int nMode)
 { return 0; }

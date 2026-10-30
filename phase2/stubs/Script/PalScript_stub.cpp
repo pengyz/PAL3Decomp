@@ -82,6 +82,63 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_53D2F0(...);
+int sub_53D2F0(...);
+
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern int dword_D8E48C;
+extern int dword_D8E48C;
+
+// D  extern int dword_D8E490;
+extern int dword_D8E490;
+
+// D  extern int dword_D8E494;
+extern int dword_D8E494;
+
+// D  extern int dword_D8E498;
+extern int dword_D8E498;
+
+// D  extern int dword_D8E4A4;
+extern int dword_D8E4A4;
+
+// D  extern int dword_D8E4AC;
+extern int dword_D8E4AC;
+
+// D  extern int dword_D8E4B0;
+extern int dword_D8E4B0;
+
+// D  extern int dword_D8E4B4;
+extern int dword_D8E4B4;
+
+// D  extern int dword_D8E4B8;
+extern int dword_D8E4B8;
+
+// D  extern int dword_D92780;
+extern int dword_D92780;
+
+// D  extern PalScriptMgr * dword_DBA24C;
+extern PalScriptMgr * dword_DBA24C;
+
+// D  extern PalScriptMgr * dword_DBA254;
+extern PalScriptMgr * dword_DBA254;
+
+// D  extern float flt_D8EB94;
+extern float flt_D8EB94;
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
 // 0x00410840  (PalScript::InitParticleSlht)
 PalScript * PalScript::InitParticleSlht(PalScript *pPalScript)
 { return 0; }

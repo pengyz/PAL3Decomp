@@ -52,6 +52,42 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_523CD0(...);
+int sub_523CD0(...);
+
+// D  int sub_523D20(...);
+int sub_523D20(...);
+
+// D  int sub_523D70(...);
+int sub_523D70(...);
+
+// D  int sub_523DC0(...);
+int sub_523DC0(...);
+
+// D  int sub_523E10(...);
+int sub_523E10(...);
+
+// D  extern int dword_D92780;
+extern int dword_D92780;
+
+// D  extern char dword_DD8F3C[];
+extern char dword_DD8F3C[];
+
+// D  extern char dword_DD903C[];
+extern char dword_DD903C[];
+
+// D  extern char dword_DD913C[];
+extern char dword_DD913C[];
+
+// D  extern LPCSTR off_59BA88;
+extern LPCSTR off_59BA88;
+
+// D  extern LPCSTR off_59BA8C;
+extern LPCSTR off_59BA8C;
+
+// D  extern LPCSTR off_59BA90;
+extern LPCSTR off_59BA90;
+
 // 0x00445A60  (CGameData::SetDefaultColors)
 char CGameData::SetDefaultColors()
 { return 0; }

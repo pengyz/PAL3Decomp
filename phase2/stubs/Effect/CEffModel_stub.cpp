@@ -22,6 +22,15 @@
 
 // Unnamed globals (extern)
 
+// D  void __cdecl nullsub_86(void);
+void __cdecl nullsub_86(void);
+
+// D  void __cdecl nullsub_87(void);
+void __cdecl nullsub_87(void);
+
+// D  void __cdecl nullsub_88(void);
+void __cdecl nullsub_88(void);
+
 // 0x004CEC80  (CEffModel::CreateInstance)
 int CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)
 { return 0; }

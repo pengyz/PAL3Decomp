@@ -20,6 +20,36 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4C55F0(...);
+int sub_4C55F0(...);
+
+// D  int sub_4CAD10(...);
+int sub_4CAD10(...);
+
+// D  int sub_4CB000(...);
+int sub_4CB000(...);
+
+// D  int sub_4CB0C0(...);
+int sub_4CB0C0(...);
+
+// D  void __cdecl nullsub_76(void);
+void __cdecl nullsub_76(void);
+
+// D  void __cdecl nullsub_77(void);
+void __cdecl nullsub_77(void);
+
+// D  void __cdecl nullsub_78(void);
+void __cdecl nullsub_78(void);
+
+// D  extern struct gbVec3D stru_DE9350;
+extern struct gbVec3D stru_DE9350;
+
+// D  extern struct gbVec3D stru_DE9360;
+extern struct gbVec3D stru_DE9360;
+
+// D  extern struct gbVec3D stru_DE9370;
+extern struct gbVec3D stru_DE9370;
+
 // 0x004C2600  (CEffCylinder::_todo_4C2600)
 void CEffCylinder::_todo_4C2600()
 { }

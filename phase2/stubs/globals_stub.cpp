@@ -6,3 +6,9000 @@
 // Auto-generated globals.cpp
 // Generated from ida_structs.json _globals + PE binary + CRT init data
 #include "globals.h"
+
+// D  float g_fHeuristicScale[8] = {1.0f};
+float g_fHeuristicScale[8] = {1.0f};
+
+// D  unsigned __int8 g_bActorFlag = {0};
+unsigned __int8 g_bActorFlag = {0};
+
+// D  const char ArgList[] = {"T7X"};
+const char ArgList[] = {"T7X"};
+
+// D  char *const pszAction = {0};
+char *const pszAction = {0};
+
+// D  int dword_56A898 = 3;
+int dword_56A898 = 3;
+
+// D  const unsigned int dwVal2 = 0xFFFFFFFF;
+const unsigned int dwVal2 = 0xFFFFFFFF;
+
+// D  const char * off_56ABA4 = {0};
+const char * off_56ABA4 = {0};
+
+// D  int dword_56AEE8 = 241;
+int dword_56AEE8 = 241;
+
+// D  int stru_56AF80 = 4480624;
+int stru_56AF80 = 4480624;
+
+// D  int dword_56B220 = 194;
+int dword_56B220 = 194;
+
+// D  int stru_56B22C = 4480624;
+int stru_56B22C = 4480624;
+
+// D  void * off_56B24C = {0};
+void * off_56B24C = {0};
+
+// D  void * off_56B260 = {0};
+void * off_56B260 = {0};
+
+// D  int dword_56B294 = 178;
+int dword_56B294 = 178;
+
+// D  int dword_56B3C8 = 280;
+int dword_56B3C8 = 280;
+
+// D  void * off_56B43C = {0};
+void * off_56B43C = {0};
+
+// D  const LPCSTR nData = {0};
+const LPCSTR nData = {0};
+
+// D  int dword_56B4DC = 308;
+int dword_56B4DC = 308;
+
+// D  int dword_56B4F0 = 313;
+int dword_56B4F0 = 313;
+
+// D  const char * off_56B504 = {0};
+const char * off_56B504 = {0};
+
+// D  const char * off_56B518 = {0};
+const char * off_56B518 = {0};
+
+// D  const char * off_56B52C = {0};
+const char * off_56B52C = {0};
+
+// D  int dword_56B540 = 345;
+int dword_56B540 = 345;
+
+// D  int dword_56B554 = 356;
+int dword_56B554 = 356;
+
+// D  int dword_56B568 = 361;
+int dword_56B568 = 361;
+
+// D  int dword_56B57C = 372;
+int dword_56B57C = 372;
+
+// D  int dword_56B590 = 377;
+int dword_56B590 = 377;
+
+// D  int dword_56B5A4 = 388;
+int dword_56B5A4 = 388;
+
+// D  int dword_56B5B8 = 393;
+int dword_56B5B8 = 393;
+
+// D  int dword_56B608 = 280;
+int dword_56B608 = 280;
+
+// D  void * off_56B674 = {0};
+void * off_56B674 = {0};
+
+// D  int dword_56B6F0 = 280;
+int dword_56B6F0 = 280;
+
+// D  int dword_56B77C = 808;
+int dword_56B77C = 808;
+
+// D  void * off_56B794 = {0};
+void * off_56B794 = {0};
+
+// D  int dword_56B884 = 0xAABC0011;
+int dword_56B884 = 0xAABC0011;
+
+// D  void * off_56B898 = {0};
+void * off_56B898 = {0};
+
+// D  void * off_56B97C = {0};
+void * off_56B97C = {0};
+
+// D  const char * off_56B990 = {0};
+const char * off_56B990 = {0};
+
+// D  const char * off_56BA08 = {0};
+const char * off_56BA08 = {0};
+
+// D  const char * g_pLineupNameStrs[] = {0};
+const char * g_pLineupNameStrs[] = {0};
+
+// D  void * g_pMonsterEntryTemplates[] = {0};
+void * g_pMonsterEntryTemplates[] = {0};
+
+// D  void * off_56C548 = {0};
+void * off_56C548 = {0};
+
+// D  int g_MonsterEntryTable[] = {0xAC0CAB00};
+int g_MonsterEntryTable[] = {0xAC0CAB00};
+
+// D  void * g_ArcSceneMonsterTable = {0};
+void * g_ArcSceneMonsterTable = {0};
+
+// D  void * off_56D5B0 = {0};
+void * off_56D5B0 = {0};
+
+// D  const char * g_pPropUINameStrs[] = {0};
+const char * g_pPropUINameStrs[] = {0};
+
+// D  int dword_56D5F0 = 0xAB0CAB00;
+int dword_56D5F0 = 0xAB0CAB00;
+
+// D  void * g_pfnCallback = {0};
+void * g_pfnCallback = {0};
+
+// D  void * g_pMonsterEntry2Templates[] = {0};
+void * g_pMonsterEntry2Templates[] = {0};
+
+// D  const char * off_56E130 = {0};
+const char * off_56E130 = {0};
+
+// D  int dword_56E148 = 0xAB00AB00;
+int dword_56E148 = 0xAB00AB00;
+
+// D  void * g_ArcSceneMonsterTable2 = {0};
+void * g_ArcSceneMonsterTable2 = {0};
+
+// D  void * off_56F018 = {0};
+void * off_56F018 = {0};
+
+// D  int g_ComposeUIChildIDs[] = {10486034};
+int g_ComposeUIChildIDs[] = {10486034};
+
+// D  const char * off_56F1A4 = {0};
+const char * off_56F1A4 = {0};
+
+// D  const char * off_56F1B8 = {0};
+const char * off_56F1B8 = {0};
+
+// D  const char * off_56F1CC = {0};
+const char * off_56F1CC = {0};
+
+// D  const char * off_56F1E0 = {0};
+const char * off_56F1E0 = {0};
+
+// D  void * off_56F1F4 = {0};
+void * off_56F1F4 = {0};
+
+// D  const char * off_56F208 = {0};
+const char * off_56F208 = {0};
+
+// D  const char * off_56F314[] = {0};
+const char * off_56F314[] = {0};
+
+// D  const char * off_56F328[] = {0};
+const char * off_56F328[] = {0};
+
+// D  const int nVal5 = 0xBF800000;
+const int nVal5 = 0xBF800000;
+
+// D  const LPCSTR lpFileName = {0};
+const LPCSTR lpFileName = {0};
+
+// D  int g_nStatePanelL[4] = {0};
+int g_nStatePanelL[4] = {0};
+
+// D  int g_nStatePanelT[4] = {491};
+int g_nStatePanelT[4] = {491};
+
+// D  const float fVal = 0.44f;
+const float fVal = 0.44f;
+
+// D  const float fVal1 = 8.606147e-39f;
+const float fVal1 = 8.606147e-39f;
+
+// D  const int bVisible = 5802384;
+const int bVisible = 5802384;
+
+// D  int animId = 5802264;
+int animId = 5802264;
+
+// D  int dword_56FE98 = 3;
+int dword_56FE98 = 3;
+
+// D  int g_nItemTypeBase[4] = {16};
+int g_nItemTypeBase[4] = {16};
+
+// D  int g_nSkillTabIDs[4] = {32};
+int g_nSkillTabIDs[4] = {32};
+
+// D  int g_nMagicTabIDs[4] = {48};
+int g_nMagicTabIDs[4] = {48};
+
+// D  int g_nItemTabIDs[4] = {64};
+int g_nItemTabIDs[4] = {64};
+
+// D  int g_nItemIDs_69[5] = {69};
+int g_nItemIDs_69[5] = {69};
+
+// D  int g_nSkillItemIDTable[25] = {74};
+int g_nSkillItemIDTable[25] = {74};
+
+// D  int g_nPropIDs_208[5] = {208};
+int g_nPropIDs_208[5] = {208};
+
+// D  int g_nPropIDs_241[11] = {241};
+int g_nPropIDs_241[11] = {241};
+
+// D  int g_nStatePanelL_dup[4] = {0};
+int g_nStatePanelL_dup[4] = {0};
+
+// D  int g_nStatePanelT_dup[4] = {491};
+int g_nStatePanelT_dup[4] = {491};
+
+// D  int g_nSpriteSize_64[5] = {64};
+int g_nSpriteSize_64[5] = {64};
+
+// D  int g_nSpriteSize_82[5] = {82};
+int g_nSpriteSize_82[5] = {82};
+
+// D  int g_nSpriteSize_20[5] = {20};
+int g_nSpriteSize_20[5] = {20};
+
+// D  int g_nUnkDataTable[30] = {32};
+int g_nUnkDataTable[30] = {32};
+
+// D  int g_nUnkTable_24C[7] = {0};
+int g_nUnkTable_24C[7] = {0};
+
+// D  int g_nUnkTable_268[7] = {0};
+int g_nUnkTable_268[7] = {0};
+
+// D  const char * off_570298 = {0};
+const char * off_570298 = {0};
+
+// D  void * off_570310 = {0};
+void * off_570310 = {0};
+
+// D  int dword_570324 = {0};
+int dword_570324 = {0};
+
+// D  const LPCSTR lpString = {0};
+const LPCSTR lpString = {0};
+
+// D  void * off_5706AC = {0};
+void * off_5706AC = {0};
+
+// D  void * off_5706C0 = {0};
+void * off_5706C0 = {0};
+
+// D  void * off_5706CC = {0};
+void * off_5706CC = {0};
+
+// D  void * off_570748 = {0};
+void * off_570748 = {0};
+
+// D  const char * off_570754 = {0};
+const char * off_570754 = {0};
+
+// D  const char * off_5707D0 = {0};
+const char * off_5707D0 = {0};
+
+// D  void * g_pStarTemplates[] = {0};
+void * g_pStarTemplates[] = {0};
+
+// D  void * off_57081C = {0};
+void * off_57081C = {0};
+
+// D  const char * off_570904 = {0};
+const char * off_570904 = {0};
+
+// D  const char FileName[] = {"Pal3Log.txt"};
+const char FileName[] = {"Pal3Log.txt"};
+
+// D  const CHAR SubKey[] = {"Software\\Microsoft\\Direct3D"};
+const CHAR SubKey[] = {"Software\\Microsoft\\Direct3D"};
+
+// D  const CHAR OutputString[] = {"D3DX: (WARN) Overloaded ::new 
+const CHAR OutputString[] = {"D3DX: (WARN) Overloaded ::new and ::delete operators do not conform to C++ standards:\r\n"};
+
+// D  const CHAR ProcName[] = {"IsProcessorFeaturePresent"};
+const CHAR ProcName[] = {"IsProcessorFeaturePresent"};
+
+// D  const CHAR ModuleName[] = {"KERNEL32"};
+const CHAR ModuleName[] = {"KERNEL32"};
+
+// D  const CHAR LibFileName[] = {"user32.dll"};
+const CHAR LibFileName[] = {"user32.dll"};
+
+// D  int dword_573800 = 1864182625;
+int dword_573800 = 1864182625;
+
+// D  int dword_573810 = 1864182624;
+int dword_573810 = 1864182624;
+
+// D  const IID riidltf;
+const IID riidltf;
+
+// D  int dword_573A5C = 24;
+int dword_573A5C = 24;
+
+// D  int dword_573C64 = 24;
+int dword_573C64 = 24;
+
+// D  char ValueName_0[] = "";
+char ValueName_0[] = "";
+
+// D  _PVFV First = {0};
+_PVFV First = {0};
+
+// D  _PVFV Last = {0};
+_PVFV Last = {0};
+
+// D  char Format[] = "object\\BB%02d_%02d.tga";
+char Format[] = "object\\BB%02d_%02d.tga";
+
+// D  char aGfxscriptSprit[] = "gfxscript\\sprite.gbf";
+char aGfxscriptSprit[] = "gfxscript\\sprite.gbf";
+
+// D  char msg[] = "Basedata system init failed.";
+char msg[] = "Basedata system init failed.";
+
+// D  char file[] = "D:\\Project\\PAL3\\gamebase\\FileSys.cpp";
+char file[] = "D:\\Project\\PAL3\\gamebase\\FileSys.cpp";
+
+// D  char aSS[] = "%s%s";
+char aSS[] = "%s%s";
+
+// D  const char * off_580CFC = {0};
+const char * off_580CFC = {0};
+
+// D  char Mode[] = "wb";
+char Mode[] = "wb";
+
+// D  int g_nPAL3_5833B8 = 1;
+int g_nPAL3_5833B8 = 1;
+
+// D  unsigned int g_dwGameFlags = 0xFFFFFFFF;
+unsigned int g_dwGameFlags = 0xFFFFFFFF;
+
+// D  unsigned __int8 g_bFullScreen = 0x01;
+unsigned __int8 g_bFullScreen = 0x01;
+
+// D  unsigned __int8 g_bGameFlag2 = 0x01;
+unsigned __int8 g_bGameFlag2 = 0x01;
+
+// D  int g_nKeyMap1 = 0xFFFFFFFF;
+int g_nKeyMap1 = 0xFFFFFFFF;
+
+// D  int g_nKeyMap2 = 0xFFFFFFFF;
+int g_nKeyMap2 = 0xFFFFFFFF;
+
+// D  int g_nKeyMap3 = 1;
+int g_nKeyMap3 = 1;
+
+// D  char g_szGamePath[] = "\x01";
+char g_szGamePath[] = "\x01";
+
+// D  char aObjectG03Cvd[] = "Object\\G03.cvd";
+char aObjectG03Cvd[] = "Object\\G03.cvd";
+
+// D  char aObjectG02Cvd[] = "Object\\G02.cvd";
+char aObjectG02Cvd[] = "Object\\G02.cvd";
+
+// D  char aCouldNotAlloca_0[] = "Could not allocate memory for Ef
+char aCouldNotAlloca_0[] = "Could not allocate memory for EffMgr!";
+
+// D  char aCouldNotAlloca[] = "Could not allocate memory for comb
+char aCouldNotAlloca[] = "Could not allocate memory for combat system!";
+
+// D  char aGameCreateOk[] = "Game Create OK ...";
+char aGameCreateOk[] = "Game Create OK ...";
+
+// D  char aSBulidSS[] = "%s Bulid %s %s";
+char aSBulidSS[] = "%s Bulid %s %s";
+
+// D  char a163941[] = "16:39:41";
+char a163941[] = "16:39:41";
+
+// D  char path[] = "AssisLang.lang";
+char path[] = "AssisLang.lang";
+
+// D  char aEffectSnowTga[] = "effect\\snow.tga";
+char aEffectSnowTga[] = "effect\\snow.tga";
+
+// D  char a03d[] = "%03d";
+char a03d[] = "%03d";
+
+// D  char aWindowCreateFa[] = "Window create failed";
+char aWindowCreateFa[] = "Window create failed";
+
+// D  char aRate[] = "rate";
+char aRate[] = "rate";
+
+// D  char aDepthbits[] = "depthbits";
+char aDepthbits[] = "depthbits";
+
+// D  char aColorbits[] = "colorbits";
+char aColorbits[] = "colorbits";
+
+// D  char aHeight[] = "height";
+char aHeight[] = "height";
+
+// D  char aDisplay[] = "display";
+char aDisplay[] = "display";
+
+// D  CHAR section[] = {"width"};
+CHAR section[] = {"width"};
+
+// D  char filename[] = "Config.ini";
+char filename[] = "Config.ini";
+
+// D  char aRegisterclassF[] = "RegisterClass Failed.";
+char aRegisterclassF[] = "RegisterClass Failed.";
+
+// D  CHAR WindowName[] = {"PAL3--SOFTSTAR.sh"};
+CHAR WindowName[] = {"PAL3--SOFTSTAR.sh"};
+
+// D  char aScursor[] = "scursor";
+char aScursor[] = "scursor";
+
+// D  char aMotionblur[] = "motionblur";
+char aMotionblur[] = "motionblur";
+
+// D  char aSync[] = "sync";
+char aSync[] = "sync";
+
+// D  char aXmusic[] = "xmusic";
+char aXmusic[] = "xmusic";
+
+// D  char aXsnd[] = "xsnd";
+char aXsnd[] = "xsnd";
+
+// D  char aSoftcursor[] = "softcursor";
+char aSoftcursor[] = "softcursor";
+
+// D  CHAR CmdLine[] = {"sc"};
+CHAR CmdLine[] = {"sc"};
+
+// D  char aMisc[] = "misc";
+char aMisc[] = "misc";
+
+// D  char aS[] = " %s ";
+char aS[] = " %s ";
+
+// D  CHAR szSubKey[] = {"SOFTWARE\\SOFTSTAR\\PAL3_S_GAME"};
+CHAR szSubKey[] = {"SOFTWARE\\SOFTSTAR\\PAL3_S_GAME"};
+
+// D  CHAR szValueName[] = {"S_GAME_A"};
+CHAR szValueName[] = {"S_GAME_A"};
+
+// D  char aWriteRegError[] = "Write Reg Error";
+char aWriteRegError[] = "Write Reg Error";
+
+// D  CHAR szCaption[] = {"Create KEY error"};
+CHAR szCaption[] = {"Create KEY error"};
+
+// D  char aExceptionInitC[] = "!!Exception:Init combat error.. ";
+char aExceptionInitC[] = "!!Exception:Init combat error.. ";
+
+// D  char dir[] = "fivemagic";
+char dir[] = "fivemagic";
+
+// D  int g_nPtrArray_586154 = 1142292480;
+int g_nPtrArray_586154 = 1142292480;
+
+// D  int g_nFrameRate = 35;
+int g_nFrameRate = 35;
+
+// D  int g_nUpdateInterval = 35;
+int g_nUpdateInterval = 35;
+
+// D  char aUiFlexNote_0[] = "ui\\flex\\note";
+char aUiFlexNote_0[] = "ui\\flex\\note";
+
+// D  char g_pszDefaultScene[] = "DXA";
+char g_pszDefaultScene[] = "DXA";
+
+// D  char g_pszScene1[] = "DXD";
+char g_pszScene1[] = "DXD";
+
+// D  char g_pszScene2[] = "109";
+char g_pszScene2[] = "109";
+
+// D  void * g_pfnUpdateFuncs[5] = {0};
+void * g_pfnUpdateFuncs[5] = {0};
+
+// D  char g_szFormat105[] = "107";
+char g_szFormat105[] = "107";
+
+// D  char * g_pszSceneSlot2 = {0};
+char * g_pszSceneSlot2 = {0};
+
+// D  char * g_pszSceneSlot1 = {0};
+char * g_pszSceneSlot1 = {0};
+
+// D  int dword_58619C = 3223601;
+int dword_58619C = 3223601;
+
+// D  char aGetmoney[] = "getmoney";
+char aGetmoney[] = "getmoney";
+
+// D  char aLossmoney[] = "lossmoney";
+char aLossmoney[] = "lossmoney";
+
+// D  char name[] = "lossallmoney";
+char name[] = "lossallmoney";
+
+// D  char aEffectGbpartic[] = "effect\\gbParticle\\slht.par";
+char aEffectGbpartic[] = "effect\\gbParticle\\slht.par";
+
+// D  char aYlfSS[] = "_ylf_%s_%s";
+char aYlfSS[] = "_ylf_%s_%s";
+
+// D  tagCCBStageData g_CCBStageData;
+tagCCBStageData g_CCBStageData;
+
+// D  char aC08[] = "c08";
+char aC08[] = "c08";
+
+// D  char pszOpt1[] = "hold";
+char pszOpt1[] = "hold";
+
+// D  char aTagWeapon2[] = "tag_weapon2";
+char aTagWeapon2[] = "tag_weapon2";
+
+// D  char aTagWeapon1[] = "tag_weapon1";
+char aTagWeapon1[] = "tag_weapon1";
+
+// D  char aOver[] = "over";
+char aOver[] = "over";
+
+// D  char pszMsgName[] = "holds";
+char pszMsgName[] = "holds";
+
+// D  char aOutdist[] = "outdist";
+char aOutdist[] = "outdist";
+
+// D  char aRoleSSTga[] = "role\\%s\\%s.tga";
+char aRoleSSTga[] = "role\\%s\\%s.tga";
+
+// D  char aS4[] = "%s_4";
+char aS4[] = "%s_4";
+
+// D  char aGetitem[] = "getitem";
+char aGetitem[] = "getitem";
+
+// D  char aGetexp[] = "getexp";
+char aGetexp[] = "getexp";
+
+// D  char aS3[] = "%s_3";
+char aS3[] = "%s_3";
+
+// D  char aWeaponSSSTga[] = "weapon\\%s\\%s%s.tga";
+char aWeaponSSSTga[] = "weapon\\%s\\%s%s.tga";
+
+// D  char aWeaponSSPol[] = "weapon\\%s\\%s.pol";
+char aWeaponSSPol[] = "weapon\\%s\\%s.pol";
+
+// D  int g_nCameraUpdateCount = 1;
+int g_nCameraUpdateCount = 1;
+
+// D  int g_nRoleSystem_58B234 = 1;
+int g_nRoleSystem_58B234 = 1;
+
+// D  float g_fCameraDefaultDist = 30.0f;
+float g_fCameraDefaultDist = 30.0f;
+
+// D  char aSndWe022CWav[] = "snd\\we022%c.wav";
+char aSndWe022CWav[] = "snd\\we022%c.wav";
+
+// D  char aSndWe021CWav[] = "snd\\we021%c.wav";
+char aSndWe021CWav[] = "snd\\we021%c.wav";
+
+// D  tagRoleSystemData g_RoleSystemData;
+tagRoleSystemData g_RoleSystemData;
+
+// D  int dword_58B440 = 1936617325;
+int dword_58B440 = 1936617325;
+
+// D  int off_58B444 = 7497076;
+int off_58B444 = 7497076;
+
+// D  char aRole[] = "role";
+char aRole[] = "role";
+
+// D  char aDatascriptScen_0[] = "datascript\\scene.txt";
+char aDatascriptScen_0[] = "datascript\\scene.txt";
+
+// D  char aViewm[] = "viewm";
+char aViewm[] = "viewm";
+
+// D  char aGfxscriptShado_0[] = "gfxscript\\shadow_F2.gbf";
+char aGfxscriptShado_0[] = "gfxscript\\shadow_F2.gbf";
+
+// D  char aGfxscriptShado[] = "gfxscript\\shadow.gbf";
+char aGfxscriptShado[] = "gfxscript\\shadow.gbf";
+
+// D  char aGBinhua[] = "g_binhua";
+char aGBinhua[] = "g_binhua";
+
+// D  char aN05[] = "n05";
+char aN05[] = "n05";
+
+// D  char aQ02[] = "q02";
+char aQ02[] = "q02";
+
+// D  char a1n07a[] = "1n07a";
+char a1n07a[] = "1n07a";
+
+// D  char aM26[] = "m26";
+char aM26[] = "m26";
+
+// D  char aSSLgt[] = "%s\\%s.lgt";
+char aSSLgt[] = "%s\\%s.lgt";
+
+// D  char aSSCvd[] = "%s\\%s.cvd";
+char aSSCvd[] = "%s\\%s.cvd";
+
+// D  char aSSPol_0[] = "%s\\%s.pol";
+char aSSPol_0[] = "%s\\%s.pol";
+
+// D  char aS1SPol[] = "%s\\1\\%s.pol";
+char aS1SPol[] = "%s\\1\\%s.pol";
+
+// D  char aSSNav[] = "%s\\%s.nav";
+char aSSNav[] = "%s\\%s.nav";
+
+// D  char aXmouse[] = "XMouse";
+char aXmouse[] = "XMouse";
+
+// D  char aSScn[] = "%s.scn";
+char aSScn[] = "%s.scn";
+
+// D  float g_fEffectTimer = 10.0f;
+float g_fEffectTimer = 10.0f;
+
+// D  char aM02[] = "m02";
+char aM02[] = "m02";
+
+// D  char aSSce[] = "%s.sce";
+char aSSce[] = "%s.sce";
+
+// D  char aQ08p[] = "q08p";
+char aQ08p[] = "q08p";
+
+// D  char aQ08f[] = "q08f";
+char aQ08f[] = "q08f";
+
+// D  char pszBuf[] = "q08";
+char pszBuf[] = "q08";
+
+// D  char aM25[] = "m25";
+char aM25[] = "m25";
+
+// D  char aM20_0[] = "m20";
+char aM20_0[] = "m20";
+
+// D  char aM19_0[] = "m19";
+char aM19_0[] = "m19";
+
+// D  char a4_0[] = "+4";
+char a4_0[] = "+4";
+
+// D  char aObjectS[] = "object\\%s";
+char aObjectS[] = "object\\%s";
+
+// D  char aItemSSPol_0[] = "item\\%s\\%s.pol";
+char aItemSSPol_0[] = "item\\%s\\%s.pol";
+
+// D  char aSS_1[] = "%s\\%s";
+char aSS_1[] = "%s\\%s";
+
+// D  char aSndSWav[] = "snd\\%s.wav";
+char aSndSWav[] = "snd\\%s.wav";
+
+// D  char aLessweight[] = "lessweight";
+char aLessweight[] = "lessweight";
+
+// D  char aM09[] = "m09";
+char aM09[] = "m09";
+
+// D  char aNothing[] = "Nothing";
+char aNothing[] = "Nothing";
+
+// D  char aAddluck[] = "AddLuck";
+char aAddluck[] = "AddLuck";
+
+// D  char aAddspeed[] = "AddSpeed";
+char aAddspeed[] = "AddSpeed";
+
+// D  int a368 = 3683891;
+int a368 = 3683891;
+
+// D  char aNotmoney[] = "NotMoney";
+char aNotmoney[] = "NotMoney";
+
+// D  char aThrow0[] = "throw0";
+char aThrow0[] = "throw0";
+
+// D  char aThrow100[] = "throw100";
+char aThrow100[] = "throw100";
+
+// D  char aThrow10[] = "throw10";
+char aThrow10[] = "throw10";
+
+// D  char aThrow1[] = "throw1";
+char aThrow1[] = "throw1";
+
+// D  char aChestNotopen[] = "chest_notopen";
+char aChestNotopen[] = "chest_notopen";
+
+// D  char aChestFailed[] = "chest_failed";
+char aChestFailed[] = "chest_failed";
+
+// D  char aObjectWz20DCvd[] = "object\\wz20_%d.cvd";
+char aObjectWz20DCvd[] = "object\\wz20_%d.cvd";
+
+// D  char aPol[] = ".pol";
+char aPol[] = ".pol";
+
+// D  char aCvd[] = ".cvd";
+char aCvd[] = ".cvd";
+
+// D  char aM22[] = "M22";
+char aM22[] = "M22";
+
+// D  CHAR a3[] = {"3"};
+CHAR a3[] = {"3"};
+
+// D  char aM15[] = "m15";
+char aM15[] = "m15";
+
+// D  CHAR a2[] = {"2"};
+CHAR a2[] = {"2"};
+
+// D  char aG01Cvd[] = "g01.cvd";
+char aG01Cvd[] = "g01.cvd";
+
+// D  char a3_0[] = "+3";
+char a3_0[] = "+3";
+
+// D  char aM22_0[] = "m22";
+char aM22_0[] = "m22";
+
+// D  char pszName2[] = "4";
+char pszName2[] = "4";
+
+// D  LPCSTR lpDefault = {0};
+LPCSTR lpDefault = {0};
+
+// D  char aPal3lang[] = "pal3lang";
+char aPal3lang[] = "pal3lang";
+
+// D  char aBegin[] = "Begin";
+char aBegin[] = "Begin";
+
+// D  char aBigmapScriptLo[] = "BigMap script load failed.";
+char aBigmapScriptLo[] = "BigMap script load failed.";
+
+// D  char aUiBigmapBigmap[] = "ui\\bigmap\\bigmap.sce";
+char aUiBigmapBigmap[] = "ui\\bigmap\\bigmap.sce";
+
+// D  char aSystemScriptLo[] = "System script load failed.";
+char aSystemScriptLo[] = "System script load failed.";
+
+// D  char pszName[] = "init.sce";
+char pszName[] = "init.sce";
+
+// D  char aScriptSysInitF[] = "Script sys init failed.";
+char aScriptSysInitF[] = "Script sys init failed.";
+
+// D  char aDProjectPal3Sc[] = "D:\\Project\\PAL3\\script\\PalScri
+char aDProjectPal3Sc[] = "D:\\Project\\PAL3\\script\\PalScript.cpp";
+
+// D  char pszFileName[] = "init.scs";
+char pszFileName[] = "init.scs";
+
+// D  char aSS_5[] = "_%s_%s";
+char aSS_5[] = "_%s_%s";
+
+// D  const char * off_592E58 = {0};
+const char * off_592E58 = {0};
+
+// D  int dword_592E5C = 4539219;
+int dword_592E5C = 4539219;
+
+// D  char aChangqing[] = "Changqing";
+char aChangqing[] = "Changqing";
+
+// D  char aZixuan[] = "Zixuan";
+char aZixuan[] = "Zixuan";
+
+// D  char aLongkui[] = "Longkui";
+char aLongkui[] = "Longkui";
+
+// D  char aXuejian[] = "Xuejian";
+char aXuejian[] = "Xuejian";
+
+// D  char aJingtian[] = "Jingtian";
+char aJingtian[] = "Jingtian";
+
+// D  char aPal3op[] = "Pal3op";
+char aPal3op[] = "Pal3op";
+
+// D  char a13i2[] = "13I2";
+char a13i2[] = "13I2";
+
+// D  char a14i1[] = "14I1";
+char a14i1[] = "14I1";
+
+// D  char a15b1[] = "15B1";
+char a15b1[] = "15B1";
+
+// D  char a15c1[] = "15C1";
+char a15c1[] = "15C1";
+
+// D  char a15h1[] = "15H1";
+char a15h1[] = "15H1";
+
+// D  char aRemoveteam[] = "RemoveTeam";
+char aRemoveteam[] = "RemoveTeam";
+
+// D  char aAddteam[] = "AddTeam";
+char aAddteam[] = "AddTeam";
+
+// D  char aLoseitem[] = "loseitem";
+char aLoseitem[] = "loseitem";
+
+// D  char a106[] = "106";
+char a106[] = "106";
+
+// D  char aAddskill[] = "AddSkill";
+char aAddskill[] = "AddSkill";
+
+// D  char aM08[] = "m08";
+char aM08[] = "m08";
+
+// D  char aD1[] = "D1";
+char aD1[] = "D1";
+
+// D  char aC1[] = "C1";
+char aC1[] = "C1";
+
+// D  char aB1[] = "B1";
+char aB1[] = "B1";
+
+// D  char aA1[] = "A1";
+char aA1[] = "A1";
+
+// D  char aD_5[] = "D";
+char aD_5[] = "D";
+
+// D  char aC_0[] = "C";
+char aC_0[] = "C";
+
+// D  char aB[] = "B";
+char aB[] = "B";
+
+// D  char aA[] = "A";
+char aA[] = "A";
+
+// D  char aCaptionSTga[] = "caption\\%s.tga";
+char aCaptionSTga[] = "caption\\%s.tga";
+
+// D  char aMovieSBik[] = "movie\\%s.bik";
+char aMovieSBik[] = "movie\\%s.bik";
+
+// D  char aEnd[] = "#End";
+char aEnd[] = "#End";
+
+// D  char aMovieB[] = "MOVIE_B";
+char aMovieB[] = "MOVIE_B";
+
+// D  char aSoftwareSoftst_2[] = "SOFTWARE\\SOFTSTAR\\PAL3_MOVIE";
+char aSoftwareSoftst_2[] = "SOFTWARE\\SOFTSTAR\\PAL3_MOVIE";
+
+// D  CHAR ValueName[] = {"MOVIE_A"};
+CHAR ValueName[] = {"MOVIE_A"};
+
+// D  CHAR pTemplate[] = {"EffectScn\\104s.tga"};
+CHAR pTemplate[] = {"EffectScn\\104s.tga"};
+
+// D  char aM16[] = "m16";
+char aM16[] = "m16";
+
+// D  char aSDTga[] = "%s%d.tga";
+char aSDTga[] = "%s%d.tga";
+
+// D  char aS_2[] = "%s";
+char aS_2[] = "%s";
+
+// D  void * pData = {0};
+void * pData = {0};
+
+// D  char aDProjectPal3Ui[] = "D:\\Project\\PAL3\\UI\\UIListBox.c
+char aDProjectPal3Ui[] = "D:\\Project\\PAL3\\UI\\UIListBox.cpp";
+
+// D  int off_5974E0 = 5781300;
+int off_5974E0 = 5781300;
+
+// D  CHAR String2[] = {"UI\\GameMainUI\\Prop\\List_Grid.tga"};
+CHAR String2[] = {"UI\\GameMainUI\\Prop\\List_Grid.tga"};
+
+// D  int off_599594 = 5780836;
+int off_599594 = 5780836;
+
+// D  const char * off_59959C = {0};
+const char * off_59959C = {0};
+
+// D  const char * off_5995A0 = {0};
+const char * off_5995A0 = {0};
+
+// D  const char * off_5995A4 = {0};
+const char * off_5995A4 = {0};
+
+// D  const char * off_5995A8 = {0};
+const char * off_5995A8 = {0};
+
+// D  const char * g_szDataPath = {0};
+const char * g_szDataPath = {0};
+
+// D  char aDatascriptScen[] = "datascript\\SceneName.txt";
+char aDatascriptScen[] = "datascript\\SceneName.txt";
+
+// D  char aSSS_0[] = "%s%s%s";
+char aSSS_0[] = "%s%s%s";
+
+// D  const char * g_pCScreenMode = {0};
+const char * g_pCScreenMode = {0};
+
+// D  LPCSTR off_59BA88 = {0};
+LPCSTR off_59BA88 = {0};
+
+// D  LPCSTR off_59BA8C = {0};
+LPCSTR off_59BA8C = {0};
+
+// D  LPCSTR off_59BA90 = {0};
+LPCSTR off_59BA90 = {0};
+
+// D  int off_59BA94 = 5780860;
+int off_59BA94 = 5780860;
+
+// D  char aMId[] = "M_ID";
+char aMId[] = "M_ID";
+
+// D  char aGStory[] = "g_story";
+char aGStory[] = "g_story";
+
+// D  char aNSDS_0[] = "\\n          %s%d%s";
+char aNSDS_0[] = "\\n          %s%d%s";
+
+// D  char aSec1[] = "sec1";
+char aSec1[] = "sec1";
+
+// D  void * off_59DC84 = {0};
+void * off_59DC84 = {0};
+
+// D  int off_59DC90 = 5781300;
+int off_59DC90 = 5781300;
+
+// D  LPCSTR off_59DD08 = {0};
+LPCSTR off_59DD08 = {0};
+
+// D  LPCSTR off_59DD0C = {0};
+LPCSTR off_59DD0C = {0};
+
+// D  LPCSTR off_59DD10 = {0};
+LPCSTR off_59DD10 = {0};
+
+// D  LPCSTR off_59DD14 = {0};
+LPCSTR off_59DD14 = {0};
+
+// D  int off_59DD18 = 5901564;
+int off_59DD18 = 5901564;
+
+// D  int off_59DD60 = 5901544;
+int off_59DD60 = 5901544;
+
+// D  int off_59DD70 = 5901484;
+int off_59DD70 = 5901484;
+
+// D  int off_59DD80 = 5901484;
+int off_59DD80 = 5901484;
+
+// D  int off_59DDA0 = 5901504;
+int off_59DDA0 = 5901504;
+
+// D  int off_59DDA8 = 5901424;
+int off_59DDA8 = 5901424;
+
+// D  int off_59DDB4 = 5901200;
+int off_59DDB4 = 5901200;
+
+// D  int off_59DDB8 = 5901172;
+int off_59DDB8 = 5901172;
+
+// D  int off_59DDBC = 5901148;
+int off_59DDBC = 5901148;
+
+// D  int off_59DDC0 = 5901124;
+int off_59DDC0 = 5901124;
+
+// D  int off_59DDC4 = 5901100;
+int off_59DDC4 = 5901100;
+
+// D  int off_59DDC8 = 5901076;
+int off_59DDC8 = 5901076;
+
+// D  LPCSTR off_59DDCC = {0};
+LPCSTR off_59DDCC = {0};
+
+// D  LPCSTR off_59DDD0 = {0};
+LPCSTR off_59DDD0 = {0};
+
+// D  LPCSTR off_59DDD4 = {0};
+LPCSTR off_59DDD4 = {0};
+
+// D  LPCSTR off_59DDDC = {0};
+LPCSTR off_59DDDC = {0};
+
+// D  char a13i2_0[] = "13I2";
+char a13i2_0[] = "13I2";
+
+// D  char a14i1_0[] = "14I1";
+char a14i1_0[] = "14I1";
+
+// D  char a15b1_0[] = "15B1";
+char a15b1_0[] = "15B1";
+
+// D  char a15c1_0[] = "15C1";
+char a15c1_0[] = "15C1";
+
+// D  char a15h1_0[] = "15H1";
+char a15h1_0[] = "15H1";
+
+// D  unsigned __int8 g_bSceneLoaded = 0x01;
+unsigned __int8 g_bSceneLoaded = 0x01;
+
+// D  float g_fDefaultFOV = 20.0f;
+float g_fDefaultFOV = 20.0f;
+
+// D  char aSGameC[] = "S_GAME_C";
+char aSGameC[] = "S_GAME_C";
+
+// D  char aSGameB[] = "S_GAME_B";
+char aSGameB[] = "S_GAME_B";
+
+// D  char aUiEmoteEm02dTg[] = "ui\\EMOTE\\EM_%02d.tga";
+char aUiEmoteEm02dTg[] = "ui\\EMOTE\\EM_%02d.tga";
+
+// D  int g_nMiniGameParam = 1;
+int g_nMiniGameParam = 1;
+
+// D  char aUiDlgSelbkTga[] = "ui\\dlg\\selbk.tga";
+char aUiDlgSelbkTga[] = "ui\\dlg\\selbk.tga";
+
+// D  char aUiDlgHeadbkTga[] = "ui\\dlg\\headbk.tga";
+char aUiDlgHeadbkTga[] = "ui\\dlg\\headbk.tga";
+
+// D  char tex[] = "ui\\dlg\\bigbk.tga";
+char tex[] = "ui\\dlg\\bigbk.tga";
+
+// D  char aUiGameoverDiTg[] = "ui\\GameOver\\di.tga";
+char aUiGameoverDiTg[] = "ui\\GameOver\\di.tga";
+
+// D  LPCSTR off_5A6234 = {0};
+LPCSTR off_5A6234 = {0};
+
+// D  LPCSTR off_5A6238 = {0};
+LPCSTR off_5A6238 = {0};
+
+// D  LPCSTR off_5A623C = {0};
+LPCSTR off_5A623C = {0};
+
+// D  LPCSTR off_5A6244 = {0};
+LPCSTR off_5A6244 = {0};
+
+// D  char aUiSceneTimepTg[] = "ui\\scene\\timep.tga";
+char aUiSceneTimepTg[] = "ui\\scene\\timep.tga";
+
+// D  char aUiSceneTimebkT[] = "ui\\scene\\timebk.tga";
+char aUiSceneTimebkT[] = "ui\\scene\\timebk.tga";
+
+// D  char aUiSceneTimeclo[] = "ui\\scene\\timeclose.tga";
+char aUiSceneTimeclo[] = "ui\\scene\\timeclose.tga";
+
+// D  char aUiFlexDlg[] = "ui\\flex\\dlg";
+char aUiFlexDlg[] = "ui\\flex\\dlg";
+
+// D  char aSeldlg[] = "_seldlg";
+char aSeldlg[] = "_seldlg";
+
+// D  int off_5A6A3C = 5781324;
+int off_5A6A3C = 5781324;
+
+// D  char aUiSceneFaceHpT[] = "ui\\scene\\face\\hp.tga";
+char aUiSceneFaceHpT[] = "ui\\scene\\face\\hp.tga";
+
+// D  char aUiSceneFaceMpT[] = "ui\\scene\\face\\mp.tga";
+char aUiSceneFaceMpT[] = "ui\\scene\\face\\mp.tga";
+
+// D  char aUiSceneFaceBkT[] = "ui\\scene\\face\\bk.tga";
+char aUiSceneFaceBkT[] = "ui\\scene\\face\\bk.tga";
+
+// D  char aUiSceneFaceFac[] = "ui\\scene\\face\\face%d\\face%02d.
+char aUiSceneFaceFac[] = "ui\\scene\\face\\face%d\\face%02d.tga";
+
+// D  char aUiSceneMapComp[] = "ui\\scene\\map\\compass.tga";
+char aUiSceneMapComp[] = "ui\\scene\\map\\compass.tga";
+
+// D  char aUiSceneMapBase[] = "ui\\scene\\map\\base.tga";
+char aUiSceneMapBase[] = "ui\\scene\\map\\base.tga";
+
+// D  char aUiFlexMap[] = "ui\\flex\\map";
+char aUiFlexMap[] = "ui\\flex\\map";
+
+// D  char aP[] = "\\p";
+char aP[] = "\\p";
+
+// D  int off_5ABBE0 = 5781324;
+int off_5ABBE0 = 5781324;
+
+// D  LPCSTR off_5AC080 = {0};
+LPCSTR off_5AC080 = {0};
+
+// D  int off_5AC084 = 5900928;
+int off_5AC084 = 5900928;
+
+// D  int off_5AC088 = 5900900;
+int off_5AC088 = 5900900;
+
+// D  LPCSTR off_5AC094 = {0};
+LPCSTR off_5AC094 = {0};
+
+// D  void * off_5AC098[] = {0};
+void * off_5AC098[] = {0};
+
+// D  LPCSTR off_5AC09C = {0};
+LPCSTR off_5AC09C = {0};
+
+// D  int off_5AC0A0 = 5900768;
+int off_5AC0A0 = 5900768;
+
+// D  LPCSTR off_5AC0A4 = {0};
+LPCSTR off_5AC0A4 = {0};
+
+// D  LPCSTR off_5AC0A8 = {0};
+LPCSTR off_5AC0A8 = {0};
+
+// D  LPCSTR off_5AC0AC = {0};
+LPCSTR off_5AC0AC = {0};
+
+// D  int off_5AC180 = 5900996;
+int off_5AC180 = 5900996;
+
+// D  unsigned __int8 g_bAudioEnabled = 0x01;
+unsigned __int8 g_bAudioEnabled = 0x01;
+
+// D  char aSNSNS[] = "%s\\n%s\\n%s";
+char aSNSNS[] = "%s\\n%s\\n%s";
+
+// D  char aSNSNSNS[] = "%s\\n%s\\n%s\\n%s";
+char aSNSNSNS[] = "%s\\n%s\\n%s\\n%s";
+
+// D  void * off_5AE380 = {0};
+void * off_5AE380 = {0};
+
+// D  int off_5AE388 = 5781308;
+int off_5AE388 = 5781308;
+
+// D  void * off_5AE38C = {0};
+void * off_5AE38C = {0};
+
+// D  void * off_5AE3A8 = {0};
+void * off_5AE3A8 = {0};
+
+// D  void * off_5AE3C4 = {0};
+void * off_5AE3C4 = {0};
+
+// D  LPCSTR off_5B087C = {0};
+LPCSTR off_5B087C = {0};
+
+// D  void * off_5B0950 = {0};
+void * off_5B0950 = {0};
+
+// D  unsigned __int8 g_bEffectEnabled = 0x01;
+unsigned __int8 g_bEffectEnabled = 0x01;
+
+// D  char aUiGamemainuiSy_3[] = "UI\\GameMainUI\\System\\hdt.tga"
+char aUiGamemainuiSy_3[] = "UI\\GameMainUI\\System\\hdt.tga";
+
+// D  char aUiGamemainuiSy_0[] = "UI\\GameMainUI\\System\\BottomBa
+char aUiGamemainuiSy_0[] = "UI\\GameMainUI\\System\\BottomBar.tga";
+
+// D  char aUiGamemainuiSy[] = "UI\\GameMainUI\\System\\TopBar.tga
+char aUiGamemainuiSy[] = "UI\\GameMainUI\\System\\TopBar.tga";
+
+// D  char aUiGamemainuiSy_5[] = "UI\\GameMainUI\\System\\Note2.tg
+char aUiGamemainuiSy_5[] = "UI\\GameMainUI\\System\\Note2.tga";
+
+// D  char aUiGamemainuiSy_16[] = "UI\\GameMainUI\\System\\dq.tga"
+char aUiGamemainuiSy_16[] = "UI\\GameMainUI\\System\\dq.tga";
+
+// D  char aNS_3[] = "\\n %s";
+char aNS_3[] = "\\n %s";
+
+// D  char aNS_0[] = "\\n      %s";
+char aNS_0[] = "\\n      %s";
+
+// D  char aSavePal304dJpg[] = "Save\\PAL3_%04d.JPG";
+char aSavePal304dJpg[] = "Save\\PAL3_%04d.JPG";
+
+// D  char aSS_4[] = "%s %s";
+char aSS_4[] = "%s %s";
+
+// D  char aSD[] = "%s %d";
+char aSD[] = "%s %d";
+
+// D  char aS02d02d02d[] = "%s %02d:%02d:%02d";
+char aS02d02d02d[] = "%s %02d:%02d:%02d";
+
+// D  char aSoftwareSoftst_0[] = "SOFTWARE\\SOFTSTAR\\PAL3_SAVE";
+char aSoftwareSoftst_0[] = "SOFTWARE\\SOFTSTAR\\PAL3_SAVE";
+
+// D  char aSeek[] = "SEEK";
+char aSeek[] = "SEEK";
+
+// D  int off_5B0DA4 = 5781324;
+int off_5B0DA4 = 5781324;
+
+// D  LPCSTR off_5B0E28 = {0};
+LPCSTR off_5B0E28 = {0};
+
+// D  const char * off_5B0E2C = {0};
+const char * off_5B0E2C = {0};
+
+// D  char a13i2_1[] = "13I2";
+char a13i2_1[] = "13I2";
+
+// D  char a14i1_1[] = "14I1";
+char a14i1_1[] = "14I1";
+
+// D  char a15b1_1[] = "15B1";
+char a15b1_1[] = "15B1";
+
+// D  char a15c1_1[] = "15C1";
+char a15c1_1[] = "15C1";
+
+// D  char a15h1_1[] = "15H1";
+char a15h1_1[] = "15H1";
+
+// D  int off_5B1604 = 5900996;
+int off_5B1604 = 5900996;
+
+// D  int byte_5B1A26 = 1867317249;
+int byte_5B1A26 = 1867317249;
+
+// D  char aMovieSBik_0[] = "Movie\\%s.bik";
+char aMovieSBik_0[] = "Movie\\%s.bik";
+
+// D  char aSt_0[] = "ST";
+char aSt_0[] = "ST";
+
+// D  char aAcptquantum[] = "AcptQuantum";
+char aAcptquantum[] = "AcptQuantum";
+
+// D  char aItemId[] = "Item_ID";
+char aItemId[] = "Item_ID";
+
+// D  int asc_5B1E74 = 35;
+int asc_5B1E74 = 35;
+
+// D  char aS10[] = "%s 10%% ";
+char aS10[] = "%s 10%% ";
+
+// D  char aSD_4[] = "%s-%d%% ";
+char aSD_4[] = "%s-%d%% ";
+
+// D  char aSD_3[] = "%s%d ";
+char aSD_3[] = "%s%d ";
+
+// D  char aSD_2[] = "%s%d%% ";
+char aSD_2[] = "%s%d%% ";
+
+// D  char aSD_1[] = "%s+%d ";
+char aSD_1[] = "%s+%d ";
+
+// D  char aSD_0[] = "%s+%d%% ";
+char aSD_0[] = "%s+%d%% ";
+
+// D  char aS_1[] = "%s ";
+char aS_1[] = "%s ";
+
+// D  char aSS_8[] = "%s%s ";
+char aSS_8[] = "%s%s ";
+
+// D  int off_5B203C = 5781324;
+int off_5B203C = 5781324;
+
+// D  const char * g_pCScreenMode_5B46B4 = {0};
+const char * g_pCScreenMode_5B46B4 = {0};
+
+// D  char * off_5B46C0[] = {0};
+char * off_5B46C0[] = {0};
+
+// D  int off_5B46C4 = 5781292;
+int off_5B46C4 = 5781292;
+
+// D  char aItemSSPol[] = "Item\\%s\\%s.pol";
+char aItemSSPol[] = "Item\\%s\\%s.pol";
+
+// D  char aNone[] = "NONE";
+char aNone[] = "NONE";
+
+// D  char aNum1[] = "Num1";
+char aNum1[] = "Num1";
+
+// D  char aPrice[] = "Price";
+char aPrice[] = "Price";
+
+// D  char aName[] = "Name";
+char aName[] = "Name";
+
+// D  char aSSS[] = "%s                %s   %s";
+char aSSS[] = "%s                %s   %s";
+
+// D  char aNS_4[] = "\\n    %s";
+char aNS_4[] = "\\n    %s";
+
+// D  int asc_5B74B4 = 32;
+int asc_5B74B4 = 32;
+
+// D  char aSD_10[] = "%s:%d";
+char aSD_10[] = "%s:%d";
+
+// D  char aItemSSTga[] = "Item\\%s\\%s.tga";
+char aItemSSTga[] = "Item\\%s\\%s.tga";
+
+// D  int off_5B7650 = 5781324;
+int off_5B7650 = 5781324;
+
+// D  char * off_5B765C[] = {0};
+char * off_5B765C[] = {0};
+
+// D  int off_5B7660 = 5781292;
+int off_5B7660 = 5781292;
+
+// D  int off_5B9DE4 = 5781324;
+int off_5B9DE4 = 5781324;
+
+// D  char * off_5B9DF0[] = {0};
+char * off_5B9DF0[] = {0};
+
+// D  void * off_5B9DF4 = {0};
+void * off_5B9DF4 = {0};
+
+// D  int off_5BC4A4 = 7889229;
+int off_5BC4A4 = 7889229;
+
+// D  void * g_pCombatUIData = {0};
+void * g_pCombatUIData = {0};
+
+// D  char aSSSS[] = "%s            %s   %s %s";
+char aSSSS[] = "%s            %s   %s %s";
+
+// D  char aCombatDataCoul[] = "Combat data couldn't found";
+char aCombatDataCoul[] = "Combat data couldn't found";
+
+// D  char aDProjectPal3Fi[] = "D:\\Project\\PAL3\\Fight\\LoadData
+char aDProjectPal3Fi[] = "D:\\Project\\PAL3\\Fight\\LoadData.cpp";
+
+// D  const char * off_5BC90C = {0};
+const char * off_5BC90C = {0};
+
+// D  int off_5BC914 = 5781308;
+int off_5BC914 = 5781308;
+
+// D  const char * g_pCScreenMode_5BC918 = {0};
+const char * g_pCScreenMode_5BC918 = {0};
+
+// D  int off_5BC940 = 5781220;
+int off_5BC940 = 5781220;
+
+// D  char aSmelt[] = "Smelt";
+char aSmelt[] = "Smelt";
+
+// D  char aBone[] = "Bone";
+char aBone[] = "Bone";
+
+// D  char szFilename[] = "UI\\GameMainUI\\Par_Effect\\spark.tga";
+char szFilename[] = "UI\\GameMainUI\\Par_Effect\\spark.tga";
+
+// D  int off_5BF000 = 5781324;
+int off_5BF000 = 5781324;
+
+// D  char aSubgameHocksho_1[] = "SubGame\\HockShop\\Control\\unra
+char aSubgameHocksho_1[] = "SubGame\\HockShop\\Control\\unrawbtn.tga";
+
+// D  char aUiFlexNote[] = "UI\\Flex\\Note";
+char aUiFlexNote[] = "UI\\Flex\\Note";
+
+// D  char aNS_5[] = "\\n  %s";
+char aNS_5[] = "\\n  %s";
+
+// D  int off_5C3EAC = 5781324;
+int off_5C3EAC = 5781324;
+
+// D  int off_5C3ED4 = 5781244;
+int off_5C3ED4 = 5781244;
+
+// D  char aUiGamemainuiJu[] = "UI\\GameMainUI\\JusticeBook\\CVD\\
+char aUiGamemainuiJu[] = "UI\\GameMainUI\\JusticeBook\\CVD\\close.CVD";
+
+// D  char aUiGamemainuiJu_23[] = "UI\\GameMainUI\\JusticeBook\\CV
+char aUiGamemainuiJu_23[] = "UI\\GameMainUI\\JusticeBook\\CVD\\pgdw.CVD";
+
+// D  char aUiGamemainuiJu_22[] = "UI\\GameMainUI\\JusticeBook\\CV
+char aUiGamemainuiJu_22[] = "UI\\GameMainUI\\JusticeBook\\CVD\\pgup.CVD";
+
+// D  char aUiGamemainuiJu_9[] = "UI\\GameMainUI\\JusticeBook\\Mag
+char aUiGamemainuiJu_9[] = "UI\\GameMainUI\\JusticeBook\\Magic";
+
+// D  char aUiGamemainuiJu_4[] = "UI\\GameMainUI\\JusticeBook\\God
+char aUiGamemainuiJu_4[] = "UI\\GameMainUI\\JusticeBook\\Gods";
+
+// D  char aUiGamemainuiJu_3[] = "UI\\GameMainUI\\JusticeBook\\UnD
+char aUiGamemainuiJu_3[] = "UI\\GameMainUI\\JusticeBook\\UnDw.tga";
+
+// D  char aUiGamemainuiJu_1[] = "UI\\GameMainUI\\JusticeBook\\UnU
+char aUiGamemainuiJu_1[] = "UI\\GameMainUI\\JusticeBook\\UnUp.tga";
+
+// D  char a02d02d02d[] = "%02d:%02d:%02d";
+char a02d02d02d[] = "%02d:%02d:%02d";
+
+// D  char aUiGamemainuiJu_21[] = "UI\\GameMainUI\\JusticeBook\\Ma
+char aUiGamemainuiJu_21[] = "UI\\GameMainUI\\JusticeBook\\Magic1.tga";
+
+// D  char aUiGamemainuiJu_20[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_20[] = "UI\\GameMainUI\\JusticeBook\\PassMagic0.tga";
+
+// D  char aUiGamemainuiJu_19[] = "UI\\GameMainUI\\JusticeBook\\Hu
+char aUiGamemainuiJu_19[] = "UI\\GameMainUI\\JusticeBook\\Human1.tga";
+
+// D  char aUiGamemainuiJu_18[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_18[] = "UI\\GameMainUI\\JusticeBook\\PassHuman0.tga";
+
+// D  char aUiGamemainuiJu_17[] = "UI\\GameMainUI\\JusticeBook\\De
+char aUiGamemainuiJu_17[] = "UI\\GameMainUI\\JusticeBook\\Demon1.tga";
+
+// D  char aUiGamemainuiJu_16[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_16[] = "UI\\GameMainUI\\JusticeBook\\PassDemon0.tga";
+
+// D  char aUiGamemainuiJu_15[] = "UI\\GameMainUI\\JusticeBook\\Gh
+char aUiGamemainuiJu_15[] = "UI\\GameMainUI\\JusticeBook\\Ghost1.tga";
+
+// D  char aUiGamemainuiJu_14[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_14[] = "UI\\GameMainUI\\JusticeBook\\PassGhost0.tga";
+
+// D  char aUiGamemainuiJu_13[] = "UI\\GameMainUI\\JusticeBook\\Im
+char aUiGamemainuiJu_13[] = "UI\\GameMainUI\\JusticeBook\\Immortal1.tga";
+
+// D  char aUiGamemainuiJu_12[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_12[] = "UI\\GameMainUI\\JusticeBook\\PassImmortal0.tga";
+
+// D  char aUiGamemainuiJu_11[] = "UI\\GameMainUI\\JusticeBook\\Go
+char aUiGamemainuiJu_11[] = "UI\\GameMainUI\\JusticeBook\\Gods1.tga";
+
+// D  char aUiGamemainuiJu_10[] = "UI\\GameMainUI\\JusticeBook\\Pa
+char aUiGamemainuiJu_10[] = "UI\\GameMainUI\\JusticeBook\\PassGods0.tga";
+
+// D  char aD_4[] = "    %d";
+char aD_4[] = "    %d";
+
+// D  char aSD_8[] = "%s%d";
+char aSD_8[] = "%s%d";
+
+// D  int off_5C5EBC = 5781324;
+int off_5C5EBC = 5781324;
+
+// D  char * off_5C5EC4[] = {0};
+char * off_5C5EC4[] = {0};
+
+// D  int off_5C5EC8 = 5781300;
+int off_5C5EC8 = 5781300;
+
+// D  void * fVal2 = {0};
+void * fVal2 = {0};
+
+// D  LPCSTR off_5C641C = {0};
+LPCSTR off_5C641C = {0};
+
+// D  LPCSTR off_5C6420 = {0};
+LPCSTR off_5C6420 = {0};
+
+// D  char aUiGamemainuiLi_2[] = "ui\\GameMainUI\\Lineup\\pointer.
+char aUiGamemainuiLi_2[] = "ui\\GameMainUI\\Lineup\\pointer.cvd";
+
+// D  char aUiGamemainuiLi_1[] = "ui\\GameMainUI\\Lineup\\wl.pol";
+char aUiGamemainuiLi_1[] = "ui\\GameMainUI\\Lineup\\wl.pol";
+
+// D  char aUiGamemainuiLi_4[] = "UI\\GameMainUI\\Lineup\\PlankDW.
+char aUiGamemainuiLi_4[] = "UI\\GameMainUI\\Lineup\\PlankDW.tga";
+
+// D  char aUiGamemainuiLi_3[] = "UI\\GameMainUI\\Lineup\\PlankUP.
+char aUiGamemainuiLi_3[] = "UI\\GameMainUI\\Lineup\\PlankUP.tga";
+
+// D  char aNS_6[] = "\\n%s";
+char aNS_6[] = "\\n%s";
+
+// D  int off_5C775C = 5781324;
+int off_5C775C = 5781324;
+
+// D  int off_5C7760 = 5781316;
+int off_5C7760 = 5781316;
+
+// D  void * off_5C7764 = {0};
+void * off_5C7764 = {0};
+
+// D  const char * g_pCScreenMode_5C7768 = {0};
+const char * g_pCScreenMode_5C7768 = {0};
+
+// D  int off_5C7770 = 5781284;
+int off_5C7770 = 5781284;
+
+// D  int off_5C7774 = 5781276;
+int off_5C7774 = 5781276;
+
+// D  int off_5C778C = 5781228;
+int off_5C778C = 5781228;
+
+// D  char aDD[] = "%d/%d";
+char aDD[] = "%d/%d";
+
+// D  char aNS[] = "\\n        %s";
+char aNS[] = "\\n        %s";
+
+// D  char aSSSN[] = "    %s%s %s\\n";
+char aSSSN[] = "    %s%s %s\\n";
+
+// D  char aNNSSSDSN[] = "\\n\\n    %s %s %s%d%s\\n";
+char aNNSSSDSN[] = "\\n\\n    %s %s %s%d%s\\n";
+
+// D  char aD_0[] = "%d%%";
+char aD_0[] = "%d%%";
+
+// D  char aNNNS[] = "\\n\\n\\n         %s";
+char aNNNS[] = "\\n\\n\\n         %s";
+
+// D  char aSDN[] = " [%s%d]\\n";
+char aSDN[] = " [%s%d]\\n";
+
+// D  int asc_5C9190 = 538976288;
+int asc_5C9190 = 538976288;
+
+// D  char aPercent[] = "Percent";
+char aPercent[] = "Percent";
+
+// D  char aCom3[] = "Com3";
+char aCom3[] = "Com3";
+
+// D  char aCom2[] = "Com2";
+char aCom2[] = "Com2";
+
+// D  char aCom1[] = "Com1";
+char aCom1[] = "Com1";
+
+// D  char aUsetimes[] = "UseTimes";
+char aUsetimes[] = "UseTimes";
+
+// D  char aLv[] = "Lv";
+char aLv[] = "Lv";
+
+// D  int off_5C91C8 = 7631937;
+int off_5C91C8 = 7631937;
+
+// D  char aNSNS[] = "\\n    %s\\n%s";
+char aNSNS[] = "\\n    %s\\n%s";
+
+// D  char aNS_2[] = "\\n            %s";
+char aNS_2[] = "\\n            %s";
+
+// D  int off_5C936C = 5781324;
+int off_5C936C = 5781324;
+
+// D  void * off_5C9370 = {0};
+void * off_5C9370 = {0};
+
+// D  char * off_5C9378[] = {0};
+char * off_5C9378[] = {0};
+
+// D  char aD_3[] = "      %d";
+char aD_3[] = "      %d";
+
+// D  char aD_2[] = "          (%d)";
+char aD_2[] = "          (%d)";
+
+// D  char aD_1[] = "      +%d";
+char aD_1[] = "      +%d";
+
+// D  char aSS_6[] = "%s                     %s";
+char aSS_6[] = "%s                     %s";
+
+// D  int off_5CADC4 = 5781324;
+int off_5CADC4 = 5781324;
+
+// D  int off_5CADC8 = 5781316;
+int off_5CADC8 = 5781316;
+
+// D  int off_5CADD0 = 5781300;
+int off_5CADD0 = 5781300;
+
+// D  char aNSS[] = "\\n   %s%s";
+char aNSS[] = "\\n   %s%s";
+
+// D  char aNSSSNNS[] = "\\n %s%s%s\\n\\n        %s";
+char aNSSSNNS[] = "\\n %s%s%s\\n\\n        %s";
+
+// D  char aSS_7[] = "%s                       %s";
+char aSS_7[] = "%s                       %s";
+
+// D  int off_5CC578 = 5781324;
+int off_5CC578 = 5781324;
+
+// D  int off_5CC7AC = 5781324;
+int off_5CC7AC = 5781324;
+
+// D  unsigned __int8 g_bDebugMode = 0x01;
+unsigned __int8 g_bDebugMode = 0x01;
+
+// D  unsigned __int8 g_bRoleSystem_5CEFA9 = 0x01;
+unsigned __int8 g_bRoleSystem_5CEFA9 = 0x01;
+
+// D  char aSNS_0[] = "%s\\n  %s";
+char aSNS_0[] = "%s\\n  %s";
+
+// D  char aSND[] = "%s\\n  %d";
+char aSND[] = "%s\\n  %d";
+
+// D  char aSDSDSDSD[] = "%s %d %s %d %s %d %s %d";
+char aSDSDSDSD[] = "%s %d %s %d %s %d %s %d";
+
+// D  const char * g_pCScreenMode_5CF1E8 = {0};
+const char * g_pCScreenMode_5CF1E8 = {0};
+
+// D  int off_5CF1EC = 5781316;
+int off_5CF1EC = 5781316;
+
+// D  int off_5CF1F0 = 5781308;
+int off_5CF1F0 = 5781308;
+
+// D  const char * g_pCScreenMode_5CF1F4 = {0};
+const char * g_pCScreenMode_5CF1F4 = {0};
+
+// D  int off_5CF220 = 5781212;
+int off_5CF220 = 5781212;
+
+// D  int g_nFiveNimbusCount = 3;
+int g_nFiveNimbusCount = 3;
+
+// D  char aGu[] = "Gu";
+char aGu[] = "Gu";
+
+// D  char aSSSS_0[] = " %s            %s %s  %s";
+char aSSSS_0[] = " %s            %s %s  %s";
+
+// D  char aNNS[] = "\\n\\n       %s";
+char aNNS[] = "\\n\\n       %s";
+
+// D  char aNSNS_0[] = "\\n   %s\\n   %s";
+char aNSNS_0[] = "\\n   %s\\n   %s";
+
+// D  char aSS_3[] = "      %s %s";
+char aSS_3[] = "      %s %s";
+
+// D  char aSD_5[] = "      %s     %d";
+char aSD_5[] = "      %s     %d";
+
+// D  char aN[] = "\\n";
+char aN[] = "\\n";
+
+// D  char aSS_2[] = "      %s   %s";
+char aSS_2[] = "      %s   %s";
+
+// D  char pszPath[] = "UI\\GameMainUI\\Sword\\Data\\J131Dst.tga";
+char pszPath[] = "UI\\GameMainUI\\Sword\\Data\\J131Dst.tga";
+
+// D  char aUiGamemainuiSw[] = "UI\\GameMainUI\\Sword\\Data\\J131S
+char aUiGamemainuiSw[] = "UI\\GameMainUI\\Sword\\Data\\J131Src.tga";
+
+// D  char aUiGamemainuiPa_0[] = "UI\\GameMainUI\\Par_Effect\\star
+char aUiGamemainuiPa_0[] = "UI\\GameMainUI\\Par_Effect\\star.tga";
+
+// D  char aUiGamemainuiPa_1[] = "UI\\GameMainUI\\Par_Effect\\flar
+char aUiGamemainuiPa_1[] = "UI\\GameMainUI\\Par_Effect\\flare.tga";
+
+// D  char aNNSDNSS[] = "\\n\\n%s: %d\\n%s:   %s";
+char aNNSDNSS[] = "\\n\\n%s: %d\\n%s:   %s";
+
+// D  char aQ14[] = "Q14";
+char aQ14[] = "Q14";
+
+// D  char aNNS_1[] = "\\n\\n    %s";
+char aNNS_1[] = "\\n\\n    %s";
+
+// D  char aNNS_0[] = "\\n\\n      %s";
+char aNNS_0[] = "\\n\\n      %s";
+
+// D  char aNSNS_1[] = "\\n     %s\\n     %s";
+char aNSNS_1[] = "\\n     %s\\n     %s";
+
+// D  int off_5D11B8 = 5781324;
+int off_5D11B8 = 5781324;
+
+// D  int off_5D11C0 = 5781308;
+int off_5D11C0 = 5781308;
+
+// D  void * off_5D11C4 = {0};
+void * off_5D11C4 = {0};
+
+// D  int off_5D11E0 = 5781244;
+int off_5D11E0 = 5781244;
+
+// D  int off_5D11F8 = 5781196;
+int off_5D11F8 = 5781196;
+
+// D  int off_5D11FC = 5781188;
+int off_5D11FC = 5781188;
+
+// D  char aUiGamemainuiSy_14[] = "UI\\GameMainUI\\System\\MusicEf
+char aUiGamemainuiSy_14[] = "UI\\GameMainUI\\System\\MusicEffect.tga";
+
+// D  char aUiGamemainuiSy_13[] = "UI\\GameMainUI\\System\\MusicBa
+char aUiGamemainuiSy_13[] = "UI\\GameMainUI\\System\\MusicBar.tga";
+
+// D  char aUiGamemainuiSy_12[] = "UI\\GameMainUI\\System\\MusicEf
+char aUiGamemainuiSy_12[] = "UI\\GameMainUI\\System\\MusicEffectText.tga";
+
+// D  char aUiGamemainuiSy_11[] = "UI\\GameMainUI\\System\\MusicTe
+char aUiGamemainuiSy_11[] = "UI\\GameMainUI\\System\\MusicText.tga";
+
+// D  char aUiGamemainuiSy_9[] = "UI\\GameMainUI\\System\\Loadon.t
+char aUiGamemainuiSy_9[] = "UI\\GameMainUI\\System\\Loadon.tga";
+
+// D  char aUiGamemainuiSy_7[] = "UI\\GameMainUI\\System\\Saveon.t
+char aUiGamemainuiSy_7[] = "UI\\GameMainUI\\System\\Saveon.tga";
+
+// D  char aUiGamemainuiSy_19[] = "UI\\GameMainUI\\System\\cc.tga"
+char aUiGamemainuiSy_19[] = "UI\\GameMainUI\\System\\cc.tga";
+
+// D  char aM05[] = "m05";
+char aM05[] = "m05";
+
+// D  char aM04[] = "m04";
+char aM04[] = "m04";
+
+// D  char aDS_1[] = "%d %s";
+char aDS_1[] = "%d %s";
+
+// D  float unk_5D3C68 = 128.0f;
+float unk_5D3C68 = 128.0f;
+
+// D  float unk_5D3C6C = 128.0f;
+float unk_5D3C6C = 128.0f;
+
+// D  char aGfxscriptGeomG[] = "gfxscript\\geom_glow.gbf";
+char aGfxscriptGeomG[] = "gfxscript\\geom_glow.gbf";
+
+// D  char aGfxscriptGlowG[] = "gfxscript\\glow.gbf";
+char aGfxscriptGlowG[] = "gfxscript\\glow.gbf";
+
+// D  char aEffectscnLampL[] = "EffectScn\\Lamp\\Lamp.pol";
+char aEffectscnLampL[] = "EffectScn\\Lamp\\Lamp.pol";
+
+// D  char aGfxscriptAddit[] = "gfxscript\\AdditiveBlend.gbf";
+char aGfxscriptAddit[] = "gfxscript\\AdditiveBlend.gbf";
+
+// D  char aEffectStonePol[] = "effect\\stone.pol";
+char aEffectStonePol[] = "effect\\stone.pol";
+
+// D  int dword_5D41AC = 65537;
+int dword_5D41AC = 65537;
+
+// D  int g_nTextureDefault = 1101004800;
+int g_nTextureDefault = 1101004800;
+
+// D  float g_fConst400 = 400.0f;
+float g_fConst400 = 400.0f;
+
+// D  float g_fRenderHeight = 220.0f;
+float g_fRenderHeight = 220.0f;
+
+// D  float g_fRenderWidth = 200.0f;
+float g_fRenderWidth = 200.0f;
+
+// D  int asc_5D41EC = 92;
+int asc_5D41EC = 92;
+
+// D  char aNotSupportedFi[] = "Not supported file version";
+char aNotSupportedFi[] = "Not supported file version";
+
+// D  char aInfo[] = "Info";
+char aInfo[] = "Info";
+
+// D  CHAR Text[] = {"Couldnot open particle file"};
+CHAR Text[] = {"Couldnot open particle file"};
+
+// D  CHAR Caption[] = {"Error"};
+CHAR Caption[] = {"Error"};
+
+// D  char aEffectGbpartic_0[] = "effect\\gbParticle\\poisonfog.pa
+char aEffectGbpartic_0[] = "effect\\gbParticle\\poisonfog.par";
+
+// D  char aLockBackBuffer[] = "Lock Back Buffer failed.";
+char aLockBackBuffer[] = "Lock Back Buffer failed.";
+
+// D  char aDProjectPal3Ef[] = "D:\\Project\\PAL3\\effect\\RenderT
+char aDProjectPal3Ef[] = "D:\\Project\\PAL3\\effect\\RenderTarget.cpp";
+
+// D  char aGfxscriptGeomF[] = "gfxscript\\Geom_Fx.gbf";
+char aGfxscriptGeomF[] = "gfxscript\\Geom_Fx.gbf";
+
+// D  const char * g_pszEditorDesc = {0};
+const char * g_pszEditorDesc = {0};
+
+// D  tagEffMgrData g_EffMgrData;
+tagEffMgrData g_EffMgrData;
+
+// D  char aCouldNotMalloc_1[] = "could not malloc in CMeteror con
+char aCouldNotMalloc_1[] = "could not malloc in CMeteror construction";
+
+// D  char aCouldNotMalloc_0[] = "could not malloc in cmeteror cre
+char aCouldNotMalloc_0[] = "could not malloc in cmeteror create.";
+
+// D  char aCouldNotMalloc[] = "could not malloc in CMeteror creat
+char aCouldNotMalloc[] = "could not malloc in CMeteror create.";
+
+// D  char aFewOfNodeInMet[] = "few of node in meteor chain";
+char aFewOfNodeInMet[] = "few of node in meteor chain";
+
+// D  int g_TargetData = 1937270375;
+int g_TargetData = 1937270375;
+
+// D  char aGfxscriptAddit_0[] = "gfxscript\\AdditiveBlendNoZ.gbf"
+char aGfxscriptAddit_0[] = "gfxscript\\AdditiveBlendNoZ.gbf";
+
+// D  char aGfxscriptAlpha[] = "gfxscript\\AlphaBlend.gbf";
+char aGfxscriptAlpha[] = "gfxscript\\AlphaBlend.gbf";
+
+// D  char g_EffMgr[] = "quake";
+char g_EffMgr[] = "quake";
+
+// D  char aBink[] = "bink";
+char aBink[] = "bink";
+
+// D  char aShock[] = "shock";
+char aShock[] = "shock";
+
+// D  char nGroup[] = "audio";
+char nGroup[] = "audio";
+
+// D  char aMeteor[] = "meteor";
+char aMeteor[] = "meteor";
+
+// D  char aExplosive[] = "explosive";
+char aExplosive[] = "explosive";
+
+// D  char aGrid[] = "grid";
+char aGrid[] = "grid";
+
+// D  char aCallback[] = "callback";
+char aCallback[] = "callback";
+
+// D  char aModel[] = "model";
+char aModel[] = "model";
+
+// D  char aCylinder[] = "cylinder";
+char aCylinder[] = "cylinder";
+
+// D  CEffMgr pEffMgr;
+CEffMgr pEffMgr;
+
+// D  RenderTarget2 pTarget;
+RenderTarget2 pTarget;
+
+// D  char aAction[] = "action";
+char aAction[] = "action";
+
+// D  char aQuad[] = "quad";
+char aQuad[] = "quad";
+
+// D  CEffgbParticle pSrc;
+CEffgbParticle pSrc;
+
+// D  char aCouldnTOpenEff[] = "Couldn't open effect define data f
+char aCouldnTOpenEff[] = "Couldn't open effect define data file";
+
+// D  char aDProjectPal3Co_1[] = "D:\\Project\\PAL3\\combat\\EffMg
+char aDProjectPal3Co_1[] = "D:\\Project\\PAL3\\combat\\EffMgr.cpp";
+
+// D  char aCbdataFlexeffD[] = "cbdata\\flexeff.data";
+char aCbdataFlexeffD[] = "cbdata\\flexeff.data";
+
+// D  char aCouldnTOpenCbE[] = "Couldn't open cb eff data file";
+char aCouldnTOpenCbE[] = "Couldn't open cb eff data file";
+
+// D  char unk_5D55AC = {0};
+char unk_5D55AC = {0};
+
+// D  char aDProjectPal3Co_2[] = "D:\\Project\\PAL3\\combat\\EffMo
+char aDProjectPal3Co_2[] = "D:\\Project\\PAL3\\combat\\EffModel.cpp";
+
+// D  char aNewFailInCeffq[] = "new fail in CEffQuad::Create";
+char aNewFailInCeffq[] = "new fail in CEffQuad::Create";
+
+// D  char aDProjectPal3Co_3[] = "D:\\Project\\PAL3\\combat\\EffQu
+char aDProjectPal3Co_3[] = "D:\\Project\\PAL3\\combat\\EffQuad.cpp";
+
+// D  char aNewFailInCeffs[] = "new fail in CEffShock::Create";
+char aNewFailInCeffs[] = "new fail in CEffShock::Create";
+
+// D  char aDProjectPal3Co_4[] = "D:\\Project\\PAL3\\combat\\EffSh
+char aDProjectPal3Co_4[] = "D:\\Project\\PAL3\\combat\\EffShock.cpp";
+
+// D  const char a0[] = {"0"};
+const char a0[] = {"0"};
+
+// D  char aDProjectPal3Co_5[] = "D:\\Project\\PAL3\\combat\\CB2DE
+char aDProjectPal3Co_5[] = "D:\\Project\\PAL3\\combat\\CB2DEffect.cpp";
+
+// D  char aGfxscriptTlAdd[] = "gfxscript\\TL_AdditiveBlendNoZ.gbf
+char aGfxscriptTlAdd[] = "gfxscript\\TL_AdditiveBlendNoZ.gbf";
+
+// D  char aDProjectPal3Co_8[] = "D:\\Project\\PAL3\\combat\\CB3DE
+char aDProjectPal3Co_8[] = "D:\\Project\\PAL3\\combat\\CB3DEffect.cpp";
+
+// D  const char aUiCombatAttack[] = "ui\\combat\\attacksequen";
+const char aUiCombatAttack[] = "ui\\combat\\attacksequen";
+
+// D  char aSSTga[] = "%s\\%s.tga";
+char aSSTga[] = "%s\\%s.tga";
+
+// D  int g_nTargetSlot = 0xFFFFFFFF;
+int g_nTargetSlot = 0xFFFFFFFF;
+
+// D  char format[] = "face %d, %d";
+char format[] = "face %d, %d";
+
+// D  unsigned int roleIdx = 0xFFFFFFFF;
+unsigned int roleIdx = 0xFFFFFFFF;
+
+// D  int unk_5D87F8 = 0xFFFFFFFF;
+int unk_5D87F8 = 0xFFFFFFFF;
+
+// D  int unk_5D87FC = 0xFFFFFFFF;
+int unk_5D87FC = 0xFFFFFFFF;
+
+// D  int index = 0xFFFFFFFF;
+int index = 0xFFFFFFFF;
+
+// D  int unk_5D8848 = 0xABBDD1D2;
+int unk_5D8848 = 0xABBDD1D2;
+
+// D  int ppUI = 0xABBDD1D2;
+int ppUI = 0xABBDD1D2;
+
+// D  int unk_5D8884 = 0xB7B6BDD5;
+int unk_5D8884 = 0xB7B6BDD5;
+
+// D  char aStopped[] = "Stopped";
+char aStopped[] = "Stopped";
+
+// D  char a164229[] = "16:42:29";
+char a164229[] = "16:42:29";
+
+// D  int unk_5D88EC = 0xB0BEA1B3;
+int unk_5D88EC = 0xB0BEA1B3;
+
+// D  int unk_5D88F4 = 0xC5BAF2D0;
+int unk_5D88F4 = 0xC5BAF2D0;
+
+// D  int unk_5D88FC = 0xA8B7DECE;
+int unk_5D88FC = 0xA8B7DECE;
+
+// D  char aBasedataCbscen[] = "basedata\\cbscene\\*.";
+char aBasedataCbscen[] = "basedata\\cbscene\\*.";
+
+// D  int unk_5D8940 = 20552;
+int unk_5D8940 = 20552;
+
+// D  int unk_5D8944 = 86;
+int unk_5D8944 = 86;
+
+// D  int unk_5D8950 = 43979;
+int unk_5D8950 = 43979;
+
+// D  int unk_5D8954 = 49613;
+int unk_5D8954 = 49613;
+
+// D  int unk_5D8958 = 59319;
+int unk_5D8958 = 59319;
+
+// D  int unk_5D895C = 55232;
+int unk_5D895C = 55232;
+
+// D  int unk_5D8960 = 61627;
+int unk_5D8960 = 61627;
+
+// D  int unk_5D8964 = 44747;
+int unk_5D8964 = 44747;
+
+// D  char a03dS[] = "%03d%s";
+char a03dS[] = "%03d%s";
+
+// D  char aY[] = "Y";
+char aY[] = "Y";
+
+// D  int unk_5D8974 = 1680199861;
+int unk_5D8974 = 1680199861;
+
+// D  char byte_5D897C[] = "\xB3\xA4\xC7\xE4%d";
+char byte_5D897C[] = "\xB3\xA4\xC7\xE4%d";
+
+// D  char byte_5D8984[] = "\xD7\xCF\xDD\xE6%d";
+char byte_5D8984[] = "\xD7\xCF\xDD\xE6%d";
+
+// D  char byte_5D898C[] = "\xC1\xFA\xBF\xFB%d";
+char byte_5D898C[] = "\xC1\xFA\xBF\xFB%d";
+
+// D  char byte_5D8994[] = "\xD1\xA9\xBC\xFB%d";
+char byte_5D8994[] = "\xD1\xA9\xBC\xFB%d";
+
+// D  char byte_5D899C[] = "\xBE\xB0\xCC\xEC%d";
+char byte_5D899C[] = "\xBE\xB0\xCC\xEC%d";
+
+// D  int unk_5D89A4 = 0xA7D0DECE;
+int unk_5D89A4 = 0xA7D0DECE;
+
+// D  int unk_5D89B0 = 57038;
+int unk_5D89B0 = 57038;
+
+// D  char a15f[] = "%1.5f";
+char a15f[] = "%1.5f";
+
+// D  CHAR AppName[] = {"Item"};
+CHAR AppName[] = {"Item"};
+
+// D  CHAR KeyName[] = {"NewItem"};
+CHAR KeyName[] = {"NewItem"};
+
+// D  int unk_5D8A00 = 0xD0D3BBC3;
+int unk_5D8A00 = 0xD0D3BBC3;
+
+// D  char byte_5D8A18[] = "\xC4\xA7";
+char byte_5D8A18[] = "\xC4\xA7";
+
+// D  char byte_5D8A1C[] = "\xB9\xED";
+char byte_5D8A1C[] = "\xB9\xED";
+
+// D  char byte_5D8A20[] = "\xC9\xF1";
+char byte_5D8A20[] = "\xC9\xF1";
+
+// D  char byte_5D8A24[] = "\xCF\xC9";
+char byte_5D8A24[] = "\xCF\xC9";
+
+// D  char byte_5D8A28[] = "\xD1\xFD";
+char byte_5D8A28[] = "\xD1\xFD";
+
+// D  char byte_5D8A2C[] = "\xC8\xCB";
+char byte_5D8A2C[] = "\xC8\xCB";
+
+// D  char byte_5D8A30[] = "\xD6\xF7\xBD\xC7";
+char byte_5D8A30[] = "\xD6\xF7\xBD\xC7";
+
+// D  char g_szCCBStageCamName[] = "No";
+char g_szCCBStageCamName[] = "No";
+
+// D  int unk_5D8A40 = 0xCDD0E0C0;
+int unk_5D8A40 = 0xCDD0E0C0;
+
+// D  int unk_5D8A48 = 0xE4BCB1CA;
+int unk_5D8A48 = 0xE4BCB1CA;
+
+// D  int unk_5D8A50 = 0xF1CECEC8;
+int unk_5D8A50 = 0xF1CECEC8;
+
+// D  int unk_5D8A58 = 62160;
+int unk_5D8A58 = 62160;
+
+// D  int unk_5D8A5C = 0xC3D3B9CA;
+int unk_5D8A5C = 0xC3D3B9CA;
+
+// D  int unk_5D8A64 = 0xA7D0D0D3;
+int unk_5D8A64 = 0xA7D0D0D3;
+
+// D  int unk_5D8A6C = 0xA1C8C1B6;
+int unk_5D8A6C = 0xA1C8C1B6;
+
+// D  int unk_5D8A90 = 0xA8B6B7C8;
+int unk_5D8A90 = 0xA8B6B7C8;
+
+// D  char aWarning[] = "Warning";
+char aWarning[] = "Warning";
+
+// D  int unk_5D8AB4 = 0xA7D1A6C1;
+int unk_5D8AB4 = 0xA7D1A6C1;
+
+// D  int unk_5D8ABC = 0xDCD6B2D4;
+int unk_5D8ABC = 0xDCD6B2D4;
+
+// D  int unk_5D8AC4 = 0xDFCFB1D6;
+int unk_5D8AC4 = 0xDFCFB1D6;
+
+// D  char a12f[] = "%1.2f";
+char a12f[] = "%1.2f";
+
+// D  int unk_5D8AD4 = 0xE4BCB1CA;
+int unk_5D8AD4 = 0xE4BCB1CA;
+
+// D  int unk_5D8AF4 = 0xADBCDFC2;
+int unk_5D8AF4 = 0xADBCDFC2;
+
+// D  int unk_5D8B00 = 53459;
+int unk_5D8B00 = 53459;
+
+// D  int unk_5D8B04 = 0xFEBCE9D7;
+int unk_5D8B04 = 0xFEBCE9D7;
+
+// D  int unk_5D8B0C = 0xD6D7FBC3;
+int unk_5D8B0C = 0xD6D7FBC3;
+
+// D  int unk_5D8B14 = 0xA8B6B7C8;
+int unk_5D8B14 = 0xA8B6B7C8;
+
+// D  int unk_5D8B3C = 0xE2D2A2D7;
+int unk_5D8B3C = 0xE2D2A2D7;
+
+// D  int unk_5D8B44 = 0xD0D3BBC3;
+int unk_5D8B44 = 0xD0D3BBC3;
+
+// D  int unk_5D8B6C = 54719;
+int unk_5D8B6C = 54719;
+
+// D  char aEmpty[] = "empty";
+char aEmpty[] = "empty";
+
+// D  char a02f[] = "%0.2f";
+char a02f[] = "%0.2f";
+
+// D  int asc_5D8B80 = 120;
+int asc_5D8B80 = 120;
+
+// D  char aO[] = "o";
+char aO[] = "o";
+
+// D  int unk_5D8B88 = 0xFAC9FAB2;
+int unk_5D8B88 = 0xFAC9FAB2;
+
+// D  int unk_5D8BE4 = 0xD8D6D0D3;
+int unk_5D8BE4 = 0xD8D6D0D3;
+
+// D  int unk_5D8C20 = 0xD0D3BBC3;
+int unk_5D8C20 = 0xD0D3BBC3;
+
+// D  int asc_5D8C3C = 701543720;
+int asc_5D8C3C = 701543720;
+
+// D  _DWORD dword_5D8DB8[1];
+_DWORD dword_5D8DB8[1];
+
+// D  _DWORD dword_5D8DBC[1];
+_DWORD dword_5D8DBC[1];
+
+// D  int dword_5D8DC0[] = {1};
+int dword_5D8DC0[] = {1};
+
+// D  _DWORD dword_5D8DC4[15];
+_DWORD dword_5D8DC4[15];
+
+// D  char aLevel[] = "Level";
+char aLevel[] = "Level";
+
+// D  char aFailToCreateWe[] = "Fail to create weapon model!";
+char aFailToCreateWe[] = "Fail to create weapon model!";
+
+// D  char aDProjectPal3Co[] = "D:\\Project\\PAL3\\Combat\\CBRoleS
+char aDProjectPal3Co[] = "D:\\Project\\PAL3\\Combat\\CBRoleState.cpp";
+
+// D  char aGpfullD[] = "GPFull%d";
+char aGpfullD[] = "GPFull%d";
+
+// D  char aSsleepD[] = "%sSleep%d";
+char aSsleepD[] = "%sSleep%d";
+
+// D  char aPoisonD[] = "Poison%d";
+char aPoisonD[] = "Poison%d";
+
+// D  char aShplowD[] = "%sHPLow%d";
+char aShplowD[] = "%sHPLow%d";
+
+// D  char aDyingD[] = "Dying%d";
+char aDyingD[] = "Dying%d";
+
+// D  char aSCombatdialog[] = "%s-CombatDialog";
+char aSCombatdialog[] = "%s-CombatDialog";
+
+// D  char aZ39[] = "z39";
+char aZ39[] = "z39";
+
+// D  char aD02d[] = "%d/%02d";
+char aD02d[] = "%d/%02d";
+
+// D  char aNewFailedAtCre[] = "new failed at create stage cam con
+char aNewFailedAtCre[] = "new failed at create stage cam control";
+
+// D  char aDProjectPal3Co_0[] = "D:\\Project\\PAL3\\Combat\\CBSta
+char aDProjectPal3Co_0[] = "D:\\Project\\PAL3\\Combat\\CBStage.cpp";
+
+// D  char aEnemysneakatta[] = "EnemySneakAttackUs";
+char aEnemysneakatta[] = "EnemySneakAttackUs";
+
+// D  char aWesneakattacke[] = "WeSneakAttackEnemy";
+char aWesneakattacke[] = "WeSneakAttackEnemy";
+
+// D  char aWitch[] = "Witch";
+char aWitch[] = "Witch";
+
+// D  char aMoney[] = "Money";
+char aMoney[] = "Money";
+
+// D  char aFleefail[] = "FleeFail";
+char aFleefail[] = "FleeFail";
+
+// D  char aSSDS[] = "%s%s %d %s";
+char aSSDS[] = "%s%s %d %s";
+
+// D  char aLevelup[] = "Levelup";
+char aLevelup[] = "Levelup";
+
+// D  char aSSD[] = "%s %s %d";
+char aSSD[] = "%s %s %d";
+
+// D  char aSDS_0[] = "%s %d %s";
+char aSDS_0[] = "%s %d %s";
+
+// D  char aGetitem_0[] = "GetItem";
+char aGetitem_0[] = "GetItem";
+
+// D  char aSSS_1[] = "%s%s %s";
+char aSSS_1[] = "%s%s %s";
+
+// D  char aMastered[] = "Mastered";
+char aMastered[] = "Mastered";
+
+// D  char aSSSDS[] = "%s %s %s %d %s";
+char aSSSDS[] = "%s %s %s %d %s";
+
+// D  const char aUiCombatPointe[] = "ui\\combat\\pointer\\pointer
+const char aUiCombatPointe[] = "ui\\combat\\pointer\\pointer.cvd";
+
+// D  const char aCbdataFlexcamD[] = "cbdata\\flexcam.dat";
+const char aCbdataFlexcamD[] = "cbdata\\flexcam.dat";
+
+// D  const char aDatascriptCbca[] = "datascript\\cbCam.ini";
+const char aDatascriptCbca[] = "datascript\\cbCam.ini";
+
+// D  char aRoll[] = "roll";
+char aRoll[] = "roll";
+
+// D  char aPitch[] = "pitch";
+char aPitch[] = "pitch";
+
+// D  char aZ[] = "z";
+char aZ[] = "z";
+
+// D  char aY_0[] = "y";
+char aY_0[] = "y";
+
+// D  char aEditorcamD[] = "EditorCam%d";
+char aEditorcamD[] = "EditorCam%d";
+
+// D  char aCamFovF[] = "Cam fov=%f";
+char aCamFovF[] = "Cam fov=%f";
+
+// D  char aCamYawFPitchFR[] = "Cam yaw=%f, pitch=%f, roll=%f";
+char aCamYawFPitchFR[] = "Cam yaw=%f, pitch=%f, roll=%f";
+
+// D  char aCamXFYFZF[] = "Cam x=%f, y=%f, z=%f";
+char aCamXFYFZF[] = "Cam x=%f, y=%f, z=%f";
+
+// D  char aCouldnTOpenCbC[] = "Couldn't open cb cct cam data file
+char aCouldnTOpenCbC[] = "Couldn't open cb cct cam data file";
+
+// D  char aDProjectPal3Co_9[] = "D:\\Project\\PAL3\\Combat\\CBSta
+char aDProjectPal3Co_9[] = "D:\\Project\\PAL3\\Combat\\CBStageCam.cpp";
+
+// D  char aBasedataCbdata[] = "basedata\\cbdata\\flexcam.dat";
+char aBasedataCbdata[] = "basedata\\cbdata\\flexcam.dat";
+
+// D  char aGfxscriptGeomD_0[] = "gfxscript\\geom_diffuse_t.gbf";
+char aGfxscriptGeomD_0[] = "gfxscript\\geom_diffuse_t.gbf";
+
+// D  char aGfxscriptGeomD[] = "gfxscript\\geom_diffuse.gbf";
+char aGfxscriptGeomD[] = "gfxscript\\geom_diffuse.gbf";
+
+// D  char aCouldnTOpenEff_0[] = "Couldn't open effect linker data
+char aCouldnTOpenEff_0[] = "Couldn't open effect linker data file";
+
+// D  char aDProjectPal3Co_10[] = "D:\\Project\\PAL3\\combat\\CBSt
+char aDProjectPal3Co_10[] = "D:\\Project\\PAL3\\combat\\CBStageEffect.cpp";
+
+// D  char aCbdataEfflinke[] = "cbdata\\efflinker.dat";
+char aCbdataEfflinke[] = "cbdata\\efflinker.dat";
+
+// D  char aCouldnTOpenCbE_0[] = "Couldn't open cb eff linker file
+char aCouldnTOpenCbE_0[] = "Couldn't open cb eff linker file";
+
+// D  const char asc_5DBE44[] = {"???"};
+const char asc_5DBE44[] = {"???"};
+
+// D  char aDProjectPal3Co_11[] = "D:\\Project\\PAL3\\Combat\\CBSt
+char aDProjectPal3Co_11[] = "D:\\Project\\PAL3\\Combat\\CBStageRole.cpp";
+
+// D  char a203[] = "203";
+char a203[] = "203";
+
+// D  char aRoleSSIni[] = "role\\%s\\%s.ini";
+char aRoleSSIni[] = "role\\%s\\%s.ini";
+
+// D  char aWe011b[] = "we011b";
+char aWe011b[] = "we011b";
+
+// D  char aWe011[] = "we011";
+char aWe011[] = "we011";
+
+// D  char aZ02d[] = "z%02d";
+char aZ02d[] = "z%02d";
+
+// D  char aWe014[] = "we014";
+char aWe014[] = "we014";
+
+// D  char aWe013[] = "we013";
+char aWe013[] = "we013";
+
+// D  char aWe012[] = "we012";
+char aWe012[] = "we012";
+
+// D  char aCouldnTCreateT[] = "Couldn't create texture array in c
+char aCouldnTCreateT[] = "Couldn't create texture array in combat stage scene";
+
+// D  char aDProjectPal3Co_12[] = "D:\\Project\\PAL3\\Combat\\CBSt
+char aDProjectPal3Co_12[] = "D:\\Project\\PAL3\\Combat\\CBStageScene.cpp";
+
+// D  char aGfxscriptAddit_1[] = "gfxscript\\additiveblend.gbf";
+char aGfxscriptAddit_1[] = "gfxscript\\additiveblend.gbf";
+
+// D  char aItemSSSTga[] = "item\\%s\\%s%s.tga";
+char aItemSSSTga[] = "item\\%s\\%s%s.tga";
+
+// D  char aDS_0[] = "%d(%s)";
+char aDS_0[] = "%d(%s)";
+
+// D  char aCbsceneSSLgt[] = "cbscene\\%s\\%s.lgt";
+char aCbsceneSSLgt[] = "cbscene\\%s\\%s.lgt";
+
+// D  char aCbsceneSSCvd[] = "cbscene\\%s\\%s.cvd";
+char aCbsceneSSCvd[] = "cbscene\\%s\\%s.cvd";
+
+// D  char aCbsceneSSPol[] = "cbscene\\%s\\%s.pol";
+char aCbsceneSSPol[] = "cbscene\\%s\\%s.pol";
+
+// D  char aRoleDZ[] = "Role%d-z";
+char aRoleDZ[] = "Role%d-z";
+
+// D  char aRoleDX[] = "Role%d-x";
+char aRoleDX[] = "Role%d-x";
+
+// D  char aRolepos[] = "RolePos";
+char aRolepos[] = "RolePos";
+
+// D  char aFivelineup[] = "FiveLineup";
+char aFivelineup[] = "FiveLineup";
+
+// D  char aEnemyfivelineu[] = "EnemyFiveLineup";
+char aEnemyfivelineu[] = "EnemyFiveLineup";
+
+// D  char aRadius[] = "radius";
+char aRadius[] = "radius";
+
+// D  char aDProjectPal3Co_13[] = "D:\\Project\\PAL3\\combat\\CBSt
+char aDProjectPal3Co_13[] = "D:\\Project\\PAL3\\combat\\CBStageShadow.cpp";
+
+// D  int nVal3 = 0xFFFFFFFF;
+int nVal3 = 0xFFFFFFFF;
+
+// D  char aDProjectPal3Co_6[] = "D:\\Project\\PAL3\\Combat\\CBSys
+char aDProjectPal3Co_6[] = "D:\\Project\\PAL3\\Combat\\CBSystem.cpp";
+
+// D  char aS_2_0[] = "%s \xCF\xB5\xCD\xB3\xD2\xD1\xBE\xAD\xB1\xBB
+char aS_2_0[] = "%s \xCF\xB5\xCD\xB3\xD2\xD1\xBE\xAD\xB1\xBB\xD4\xDD\xCD\xA3";
+
+// D  char aTooManyCharact[] = "Too many character in calling Mess
+char aTooManyCharact[] = "Too many character in calling Message";
+
+// D  int unk_5DE9E4 = 0xB7B6BDD5;
+int unk_5DE9E4 = 0xB7B6BDD5;
+
+// D  int unk_5DF59C = 1667000693;
+int unk_5DF59C = 1667000693;
+
+// D  int unk_5DF6AC = 1667000693;
+int unk_5DF6AC = 1667000693;
+
+// D  int unk_5DF6D0 = 1667000693;
+int unk_5DF6D0 = 1667000693;
+
+// D  int unk_5DF6F4 = 1667000693;
+int unk_5DF6F4 = 1667000693;
+
+// D  char aDProjectPal3Co_7[] = "D:\\Project\\PAL3\\Combat\\CBUI.
+char aDProjectPal3Co_7[] = "D:\\Project\\PAL3\\Combat\\CBUI.cpp";
+
+// D  char unk_5DFDB4[] = "Quantity";
+char unk_5DFDB4[] = "Quantity";
+
+// D  int unk_5DFDC0 = 1702257996;
+int unk_5DFDC0 = 1702257996;
+
+// D  int unk_5DFDCC = 1953722179;
+int unk_5DFDCC = 1953722179;
+
+// D  int unk_5DFDEB = 31489;
+int unk_5DFDEB = 31489;
+
+// D  unsigned int g_nCombatRandSeed = 123;
+unsigned int g_nCombatRandSeed = 123;
+
+// D  char aRb[] = "rb";
+char aRb[] = "rb";
+
+// D  const char * off_5DFF88 = {0};
+const char * off_5DFF88 = {0};
+
+// D  const char * off_5DFF90 = {0};
+const char * off_5DFF90 = {0};
+
+// D  const char * off_5DFF94 = {0};
+const char * off_5DFF94 = {0};
+
+// D  int asc_5E2540 = 1163873352;
+int asc_5E2540 = 1163873352;
+
+// D  int asc_5E25F4 = 1701601619;
+int asc_5E25F4 = 1701601619;
+
+// D  int asc_5E286C = 1431520594;
+int asc_5E286C = 1431520594;
+
+// D  int asc_5E28E4 = 1348431724;
+int asc_5E28E4 = 1348431724;
+
+// D  int asc_5E2A38 = 42;
+int asc_5E2A38 = 42;
+
+// D  int asc_5E2A3C = 38;
+int asc_5E2A3C = 38;
+
+// D  void * off_5E2BC4 = {0};
+void * off_5E2BC4 = {0};
+
+// D  char aSD_11[] = "%s: %d";
+char aSD_11[] = "%s: %d";
+
+// D  const char * off_5E524C = {0};
+const char * off_5E524C = {0};
+
+// D  int off_5E525C = 5781292;
+int off_5E525C = 5781292;
+
+// D  char aSubgameHocksho[] = "SubGame\\HockShop\\Data\\HockShopL
+char aSubgameHocksho[] = "SubGame\\HockShop\\Data\\HockShopLevel.hsl";
+
+// D  void * off_5E7ECC = {0};
+void * off_5E7ECC = {0};
+
+// D  char * off_5E7ED8[] = {0};
+char * off_5E7ED8[] = {0};
+
+// D  void * off_5E7F20 = {0};
+void * off_5E7F20 = {0};
+
+// D  void * off_5E7F24 = {0};
+void * off_5E7F24 = {0};
+
+// D  char aSubgameApprais_17[] = "SubGame\\Appraise\\Exhibit\\Dat
+char aSubgameApprais_17[] = "SubGame\\Appraise\\Exhibit\\Data\\%s.pol";
+
+// D  char aUiGamemainuiPa_2[] = "UI\\GameMainUI\\Par_Effect\\spar
+char aUiGamemainuiPa_2[] = "UI\\GameMainUI\\Par_Effect\\spark_16.tga";
+
+// D  char pszTexBase[] = "SubGame\\Appraise\\Number\\";
+char pszTexBase[] = "SubGame\\Appraise\\Number\\";
+
+// D  char aSSPol[] = "%s%s.pol";
+char aSSPol[] = "%s%s.pol";
+
+// D  int asc_5E9090 = 538976288;
+int asc_5E9090 = 538976288;
+
+// D  char aNNSNN[] = "\\n\\n        %s: \\n\\n";
+char aNNSNN[] = "\\n\\n        %s: \\n\\n";
+
+// D  char aNNSS[] = "\\n\\n        %s:   %s";
+char aNNSS[] = "\\n\\n        %s:   %s";
+
+// D  char aNNSDNSDNSDN[] = "\\n\\n        %s:   %d\\n        %s: 
+char aNNSDNSDNSDN[] = "\\n\\n        %s:   %d\\n        %s: %d\\n        %s:   %d\\n        %s:     %d\\n";
+
+// D  int off_5E92A0 = 5781308;
+int off_5E92A0 = 5781308;
+
+// D  char aNS_7[] = "\\n         %s";
+char aNS_7[] = "\\n         %s";
+
+// D  int off_5EB920 = 5781324;
+int off_5EB920 = 5781324;
+
+// D  char aSubgameApprais[] = "SubGame\\Appraise\\Exhibit\\Apprai
+char aSubgameApprais[] = "SubGame\\Appraise\\Exhibit\\Appraise.dft";
+
+// D  char aSNSN[] = "%s\\n%s\\n";
+char aSNSN[] = "%s\\n%s\\n";
+
+// D  int off_5ED1D0 = 5781132;
+int off_5ED1D0 = 5781132;
+
+// D  int off_5ED1D4 = 5781124;
+int off_5ED1D4 = 5781124;
+
+// D  char aSD_7[] = "%s%d%";
+char aSD_7[] = "%s%d%";
+
+// D  char aNNSDSNSD[] = "\\n\\n %s %d %s\\n %s %d \n";
+char aNNSDSNSD[] = "\\n\\n %s %d %s\\n %s %d \n";
+
+// D  char aDProjectPal3Su[] = "D:\\Project\\PAL3\\subgame\\Encamp
+char aDProjectPal3Su[] = "D:\\Project\\PAL3\\subgame\\Encampment\\Encampment_scene.cpp";
+
+// D  char aSubgameEncampm[] = "SubGame\\Encampment\\Encamp_Scene\
+char aSubgameEncampm[] = "SubGame\\Encampment\\Encamp_Scene\\%s.pol";
+
+// D  void * off_5EFAB4 = {0};
+void * off_5EFAB4 = {0};
+
+// D  char aSubgameEncampm_3[] = "SubGame\\Encampment\\EncampFlag\
+char aSubgameEncampm_3[] = "SubGame\\Encampment\\EncampFlag\\WZ10\\WZ10.pol";
+
+// D  char pszModelName[] = "Encamp_scene";
+char pszModelName[] = "Encamp_scene";
+
+// D  int off_5EFF48 = 5781260;
+int off_5EFF48 = 5781260;
+
+// D  int off_5EFF78 = 5781164;
+int off_5EFF78 = 5781164;
+
+// D  int off_5EFF90 = 5781116;
+int off_5EFF90 = 5781116;
+
+// D  int off_5EFF98 = 5781100;
+int off_5EFF98 = 5781100;
+
+// D  char aSubgameEncampm_5[] = "SubGame\\Encampment\\Encamp.rmk"
+char aSubgameEncampm_5[] = "SubGame\\Encampment\\Encamp.rmk";
+
+// D  char aSSSD[] = "          %s%s%s%d%%";
+char aSSSD[] = "          %s%s%s%d%%";
+
+// D  char aNSS10[] = "\\n            %s%s+10";
+char aNSS10[] = "\\n            %s%s+10";
+
+// D  char aNSS_2[] = "\\n          %s%s";
+char aNSS_2[] = "\\n          %s%s";
+
+// D  const char * off_5F2488 = {0};
+const char * off_5F2488 = {0};
+
+// D  char aFFF[] = "%f %f %f";
+char aFFF[] = "%f %f %f";
+
+// D  char aSUd[] = "%s %ud";
+char aSUd[] = "%s %ud";
+
+// D  char aR[] = "r";
+char aR[] = "r";
+
+// D  float flt_5F4B9C = 46.68f;
+float flt_5F4B9C = 46.68f;
+
+// D  const char * off_5F4D20 = {0};
+const char * off_5F4D20 = {0};
+
+// D  char aSSDPol[] = "%s%s%d.pol";
+char aSSDPol[] = "%s%s%d.pol";
+
+// D  char aBasedataSkeePa[] = "basedata\\Skee_path.ase";
+char aBasedataSkeePa[] = "basedata\\Skee_path.ase";
+
+// D  char aSubgameSkeeSke[] = "SubGame\\Skee\\SkeeScene\\Ball\\Ba
+char aSubgameSkeeSke[] = "SubGame\\Skee\\SkeeScene\\Ball\\Ball.pol";
+
+// D  char aObstruct[] = "obstruct";
+char aObstruct[] = "obstruct";
+
+// D  char pszFilename[] = "SubGame\\skee\\skeescene\\scene\\m22-6
+char pszFilename[] = "SubGame\\skee\\skeescene\\scene\\m22-6.pol";
+
+// D  const char * off_5F50B4 = {0};
+const char * off_5F50B4 = {0};
+
+// D  LPCSTR lpString2 = {0};
+LPCSTR lpString2 = {0};
+
+// D  const char * off_5F50BC = {0};
+const char * off_5F50BC = {0};
+
+// D  const char * off_5F50C0 = {0};
+const char * off_5F50C0 = {0};
+
+// D  const char * off_5F50C4 = {0};
+const char * off_5F50C4 = {0};
+
+// D  const char * off_5F50C8 = {0};
+const char * off_5F50C8 = {0};
+
+// D  char aSubgameSkeeWea[] = "SubGame\\Skee\\Weapon\\J13.pol";
+char aSubgameSkeeWea[] = "SubGame\\Skee\\Weapon\\J13.pol";
+
+// D  void * off_5F7790 = {0};
+void * off_5F7790 = {0};
+
+// D  LPCSTR off_5F7820 = {0};
+LPCSTR off_5F7820 = {0};
+
+// D  LPCSTR off_5F7824 = {0};
+LPCSTR off_5F7824 = {0};
+
+// D  LPCSTR off_5F7828 = {0};
+LPCSTR off_5F7828 = {0};
+
+// D  char aSubgameApprais_0[] = "SubGame\\Appraise\\Number\\%d.tg
+char aSubgameApprais_0[] = "SubGame\\Appraise\\Number\\%d.tga";
+
+// D  char aN_0[] = "\\n       ";
+char aN_0[] = "\\n       ";
+
+// D  char aNSSNNS[] = "\\n    %s%s\\n\\n    %s";
+char aNSSNNS[] = "\\n    %s%s\\n\\n    %s";
+
+// D  char aNSD[] = "\\n    %s %d";
+char aNSD[] = "\\n    %s %d";
+
+// D  int asc_5F9D04 = 538976288;
+int asc_5F9D04 = 538976288;
+
+// D  char aNSSNNSN[] = "\\n    %s%s\\n\\n    %s\\n";
+char aNSSNNSN[] = "\\n    %s%s\\n\\n    %s\\n";
+
+// D  float flt_5FC3A8 = 60.0f;
+float flt_5FC3A8 = 60.0f;
+
+// D  char pszModel1[] = "q17.pol";
+char pszModel1[] = "q17.pol";
+
+// D  CHAR a1[2] = {"1"};
+CHAR a1[2] = {"1"};
+
+// D  const char * off_60113C = {0};
+const char * off_60113C = {0};
+
+// D  char aSNS[] = "       %s\\n       %s";
+char aSNS[] = "       %s\\n       %s";
+
+// D  char aRoleS02dIni[] = "role\\%s\\%02d.ini";
+char aRoleS02dIni[] = "role\\%s\\%02d.ini";
+
+// D  char aSavePal02dArc[] = "save\\pal%02d.arc";
+char aSavePal02dArc[] = "save\\pal%02d.arc";
+
+// D  CHAR PathName[] = {"save"};
+CHAR PathName[] = {"save"};
+
+// D  char off_6088D8[] = ">%s";
+char off_6088D8[] = ">%s";
+
+// D  char aConsoleErrorCo[] = "CONSOLE error:Command buffer full.
+char aConsoleErrorCo[] = "CONSOLE error:Command buffer full.";
+
+// D  char aBadCommandOrFi[] = "Bad command or file name.";
+char aBadCommandOrFi[] = "Bad command or file name.";
+
+// D  char aSD_9[] = "%s = %d";
+char aSD_9[] = "%s = %d";
+
+// D  char aFv[] = "FV";
+char aFv[] = "FV";
+
+// D  char byte_608930[] = "\xB2\xE9\xBF\xB4/\xD0\xDE\xB8\xC4\xBA\
+char byte_608930[] = "\xB2\xE9\xBF\xB4/\xD0\xDE\xB8\xC4\xBA\xC3\xB8\xD0";
+
+// D  int dword_608940 = 28011;
+int dword_608940 = 28011;
+
+// D  char desc[] = "\xC9\xB1\xCB\xC0\xB5\xB1\xC7\xB0\xC3\xD4\xB9\
+char desc[] = "\xC9\xB1\xCB\xC0\xB5\xB1\xC7\xB0\xC3\xD4\xB9\xAC\xD6\xD0\xCB\xF9\xD3\xD0\xB9\xD6\xCE\xEF";
+
+// D  char aExceptionS[] = "_Exception: %s\x0D\n";
+char aExceptionS[] = "_Exception: %s\x0D\n";
+
+// D  char aSDS[] = "%s(%d):%s";
+char aSDS[] = "%s(%d):%s";
+
+// D  char aSDSS[] = "%s(%d):%s,%s";
+char aSDSS[] = "%s(%d):%s,%s";
+
+// D  char aLogAtS[] = "Log At:%s\x0D\n";
+char aLogAtS[] = "Log At:%s\x0D\n";
+
+// D  char aS_0[] = " %s]\x0D\n\x0D\n";
+char aS_0[] = " %s]\x0D\n\x0D\n";
+
+// D  char aSLogAt[] = "[%s Log at ";
+char aSLogAt[] = "[%s Log at ";
+
+// D  char aEnginelogTxt[] = "EngineLog.txt";
+char aEnginelogTxt[] = "EngineLog.txt";
+
+// D  char aAt[] = "at";
+char aAt[] = "at";
+
+// D  char aGfxscriptSkybo[] = "gfxscript\\skybox.gbf";
+char aGfxscriptSkybo[] = "gfxscript\\skybox.gbf";
+
+// D  char aDatascriptMusi[] = "datascript\\music.txt";
+char aDatascriptMusi[] = "datascript\\music.txt";
+
+// D  char aMusicSMp3[] = "music\\%s.mp3";
+char aMusicSMp3[] = "music\\%s.mp3";
+
+// D  char aScene[] = "scene";
+char aScene[] = "scene";
+
+// D  char aCombat[] = "combat";
+char aCombat[] = "combat";
+
+// D  char aLuLuMp3[] = "\\\\\\\\%lu,%lu.mp3";
+char aLuLuMp3[] = "\\\\\\\\%lu,%lu.mp3";
+
+// D  LPCSTR lpString1 = {0};
+LPCSTR lpString1 = {0};
+
+// D  char aTName[] = "t_name";
+char aTName[] = "t_name";
+
+// D  char aEndKey[] = "End_Key";
+char aEndKey[] = "End_Key";
+
+// D  char aEndfile[] = "#endfile";
+char aEndfile[] = "#endfile";
+
+// D  char Delimiter[] = " ,\x09\n\x0D";
+char Delimiter[] = " ,\x09\n\x0D";
+
+// D  char aGfxscriptGeomN[] = "gfxscript\\geom_notex_line.gbf";
+char aGfxscriptGeomN[] = "gfxscript\\geom_notex_line.gbf";
+
+// D  char aGfxscriptUiAdd[] = "gfxscript\\ui_AddColor.gbf";
+char aGfxscriptUiAdd[] = "gfxscript\\ui_AddColor.gbf";
+
+// D  char aGfxscriptUiAlp[] = "gfxscript\\ui_alpha.gbf";
+char aGfxscriptUiAlp[] = "gfxscript\\ui_alpha.gbf";
+
+// D  char aGfxscriptUiPar[] = "gfxscript\\ui_par_tex_color.gbf";
+char aGfxscriptUiPar[] = "gfxscript\\ui_par_tex_color.gbf";
+
+// D  char aGfxscriptUiTex_0[] = "gfxscript\\ui_tex_color.gbf";
+char aGfxscriptUiTex_0[] = "gfxscript\\ui_tex_color.gbf";
+
+// D  char aGfxscriptUiTex[] = "gfxscript\\ui_tex_vcolor.gbf";
+char aGfxscriptUiTex[] = "gfxscript\\ui_tex_vcolor.gbf";
+
+// D  char aGfxscriptUiNot_0[] = "gfxscript\\ui_notex.gbf";
+char aGfxscriptUiNot_0[] = "gfxscript\\ui_notex.gbf";
+
+// D  char aGfxscriptUiNot[] = "gfxscript\\ui_notex_TL.gbf";
+char aGfxscriptUiNot[] = "gfxscript\\ui_notex_TL.gbf";
+
+// D  char aGfxscriptUiTlG[] = "gfxscript\\ui_TL.gbf";
+char aGfxscriptUiTlG[] = "gfxscript\\ui_TL.gbf";
+
+// D  char aC[] = "%c:\\";
+char aC[] = "%c:\\";
+
+// D  char aPal3Exception[] = "Pal3::Exception ...";
+char aPal3Exception[] = "Pal3::Exception ...";
+
+// D  char aPal3[] = "Pal3";
+char aPal3[] = "Pal3";
+
+// D  char aPleaseInsertDi[] = "Please Insert Disc4 to Dirver %c:"
+char aPleaseInsertDi[] = "Please Insert Disc4 to Dirver %c:";
+
+// D  char aSmovie[] = "%sMovie";
+char aSmovie[] = "%sMovie";
+
+// D  char aSoftwareSoftst_1[] = "software\\softstar\\pal3";
+char aSoftwareSoftst_1[] = "software\\softstar\\pal3";
+
+// D  char aCdriver[] = "CDriver";
+char aCdriver[] = "CDriver";
+
+// D  char * off_60ACD0 = {0};
+char * off_60ACD0 = {0};
+
+// D  int g_TileData[] = {6335754};
+int g_TileData[] = {6335754};
+
+// D  unsigned __int16 __ctype[] = {0};
+unsigned __int16 __ctype[] = {0};
+
+// D  size_t cbMultiByte = {0};
+size_t cbMultiByte = {0};
+
+// D  void * jpt_55C6DD = {0};
+void * jpt_55C6DD = {0};
+
+// D  int dword_60BDC8 = {0};
+int dword_60BDC8 = {0};
+
+// D  gbVFileSystem * g_VFileSystem = {0};
+gbVFileSystem * g_VFileSystem = {0};
+
+// D  gbVFileSystem * g_BaseVFileSystem = {0};
+gbVFileSystem * g_BaseVFileSystem = {0};
+
+// D  int dword_800000 = {0};
+int dword_800000 = {0};
+
+// D  int byte_80AB19 = {0};
+int byte_80AB19 = {0};
+
+// D  int byte_80AB20 = {0};
+int byte_80AB20 = {0};
+
+// D  int byte_80AB21 = {0};
+int byte_80AB21 = {0};
+
+// D  int byte_80AC01 = {0};
+int byte_80AC01 = {0};
+
+// D  int byte_80AC02 = {0};
+int byte_80AC02 = {0};
+
+// D  int byte_80AC03 = {0};
+int byte_80AC03 = {0};
+
+// D  int byte_80AC04 = {0};
+int byte_80AC04 = {0};
+
+// D  int byte_80AC05 = {0};
+int byte_80AC05 = {0};
+
+// D  int byte_80AC06 = {0};
+int byte_80AC06 = {0};
+
+// D  int byte_80AC07 = {0};
+int byte_80AC07 = {0};
+
+// D  int g_nSaveDataSize = {0};
+int g_nSaveDataSize = {0};
+
+// D  char byte_8AC5D8[1556] = {0};
+char byte_8AC5D8[1556] = {0};
+
+// D  float g_fPAL3Timer = {0};
+float g_fPAL3Timer = {0};
+
+// D  PAL3 g_PAL3_Instance;
+PAL3 g_PAL3_Instance;
+
+// D  int g_nLoadBufferSize = {0};
+int g_nLoadBufferSize = {0};
+
+// D  _WORD p_WORD;
+_WORD p_WORD;
+
+// D  PAL_GDB * g_pGDB = {0};
+PAL_GDB * g_pGDB = {0};
+
+// D  unsigned __int8 g_UITemplateData[] = {0};
+unsigned __int8 g_UITemplateData[] = {0};
+
+// D  int byte_A00001 = {0};
+int byte_A00001 = {0};
+
+// D  int byte_A00102 = {0};
+int byte_A00102 = {0};
+
+// D  int byte_A00103 = {0};
+int byte_A00103 = {0};
+
+// D  int byte_A00104 = {0};
+int byte_A00104 = {0};
+
+// D  int byte_A00105 = {0};
+int byte_A00105 = {0};
+
+// D  int byte_A00106 = {0};
+int byte_A00106 = {0};
+
+// D  int byte_A00107 = {0};
+int byte_A00107 = {0};
+
+// D  int byte_A00108 = {0};
+int byte_A00108 = {0};
+
+// D  int byte_A00109 = {0};
+int byte_A00109 = {0};
+
+// D  int byte_A00110 = {0};
+int byte_A00110 = {0};
+
+// D  int byte_A00215 = {0};
+int byte_A00215 = {0};
+
+// D  int byte_A00217 = {0};
+int byte_A00217 = {0};
+
+// D  int byte_A00218 = {0};
+int byte_A00218 = {0};
+
+// D  int byte_A00219 = {0};
+int byte_A00219 = {0};
+
+// D  int byte_A00220 = {0};
+int byte_A00220 = {0};
+
+// D  int byte_A00221 = {0};
+int byte_A00221 = {0};
+
+// D  int byte_A00222 = {0};
+int byte_A00222 = {0};
+
+// D  int byte_A00223 = {0};
+int byte_A00223 = {0};
+
+// D  int byte_A00224 = {0};
+int byte_A00224 = {0};
+
+// D  int byte_A00225 = {0};
+int byte_A00225 = {0};
+
+// D  int byte_A00226 = {0};
+int byte_A00226 = {0};
+
+// D  int byte_A00227 = {0};
+int byte_A00227 = {0};
+
+// D  int byte_A00228 = {0};
+int byte_A00228 = {0};
+
+// D  int byte_A00229 = {0};
+int byte_A00229 = {0};
+
+// D  int byte_A00230 = {0};
+int byte_A00230 = {0};
+
+// D  int byte_A00231 = {0};
+int byte_A00231 = {0};
+
+// D  unsigned short word_A00232 = {0};
+unsigned short word_A00232 = {0};
+
+// D  int dword_A00234 = {0};
+int dword_A00234 = {0};
+
+// D  int byte_A00323 = {0};
+int byte_A00323 = {0};
+
+// D  int byte_A00324 = {0};
+int byte_A00324 = {0};
+
+// D  int byte_A00400 = {0};
+int byte_A00400 = {0};
+
+// D  int byte_A00401 = {0};
+int byte_A00401 = {0};
+
+// D  int byte_A00403 = {0};
+int byte_A00403 = {0};
+
+// D  int byte_A00404 = {0};
+int byte_A00404 = {0};
+
+// D  int byte_A00405 = {0};
+int byte_A00405 = {0};
+
+// D  int byte_A00406 = {0};
+int byte_A00406 = {0};
+
+// D  int byte_A00407 = {0};
+int byte_A00407 = {0};
+
+// D  int dword_A00408 = {0};
+int dword_A00408 = {0};
+
+// D  int byte_A00416 = {0};
+int byte_A00416 = {0};
+
+// D  int byte_A00417 = {0};
+int byte_A00417 = {0};
+
+// D  int byte_A00418 = {0};
+int byte_A00418 = {0};
+
+// D  int byte_A00419 = {0};
+int byte_A00419 = {0};
+
+// D  int byte_A00420 = {0};
+int byte_A00420 = {0};
+
+// D  int byte_A00421 = {0};
+int byte_A00421 = {0};
+
+// D  int byte_A00427 = {0};
+int byte_A00427 = {0};
+
+// D  int byte_A00428 = {0};
+int byte_A00428 = {0};
+
+// D  int byte_A00429 = {0};
+int byte_A00429 = {0};
+
+// D  int dword_A00430 = {0};
+int dword_A00430 = {0};
+
+// D  int dword_A00500 = {0};
+int dword_A00500 = {0};
+
+// D  int dword_A00510 = {0};
+int dword_A00510 = {0};
+
+// D  int byte_A00517 = {0};
+int byte_A00517 = {0};
+
+// D  int byte_A00518 = {0};
+int byte_A00518 = {0};
+
+// D  int byte_A00519 = {0};
+int byte_A00519 = {0};
+
+// D  int byte_A00520 = {0};
+int byte_A00520 = {0};
+
+// D  int byte_A00521 = {0};
+int byte_A00521 = {0};
+
+// D  int byte_A00522 = {0};
+int byte_A00522 = {0};
+
+// D  int byte_A00523 = {0};
+int byte_A00523 = {0};
+
+// D  int byte_A00524 = {0};
+int byte_A00524 = {0};
+
+// D  int byte_A00525 = {0};
+int byte_A00525 = {0};
+
+// D  int byte_A00526 = {0};
+int byte_A00526 = {0};
+
+// D  int byte_A00527 = {0};
+int byte_A00527 = {0};
+
+// D  int byte_A00529 = {0};
+int byte_A00529 = {0};
+
+// D  int byte_A00530 = {0};
+int byte_A00530 = {0};
+
+// D  int byte_A00531 = {0};
+int byte_A00531 = {0};
+
+// D  int byte_A00532 = {0};
+int byte_A00532 = {0};
+
+// D  int byte_A00533 = {0};
+int byte_A00533 = {0};
+
+// D  int byte_A00534 = {0};
+int byte_A00534 = {0};
+
+// D  int byte_A00536 = {0};
+int byte_A00536 = {0};
+
+// D  int byte_A00537 = {0};
+int byte_A00537 = {0};
+
+// D  int byte_A00539 = {0};
+int byte_A00539 = {0};
+
+// D  int byte_A00540 = {0};
+int byte_A00540 = {0};
+
+// D  int byte_A00541 = {0};
+int byte_A00541 = {0};
+
+// D  int byte_A00542 = {0};
+int byte_A00542 = {0};
+
+// D  int byte_A00543 = {0};
+int byte_A00543 = {0};
+
+// D  int byte_A00544 = {0};
+int byte_A00544 = {0};
+
+// D  int byte_A00545 = {0};
+int byte_A00545 = {0};
+
+// D  int byte_A00546 = {0};
+int byte_A00546 = {0};
+
+// D  int byte_A00547 = {0};
+int byte_A00547 = {0};
+
+// D  int byte_A00548 = {0};
+int byte_A00548 = {0};
+
+// D  int byte_A00549 = {0};
+int byte_A00549 = {0};
+
+// D  int byte_A00550 = {0};
+int byte_A00550 = {0};
+
+// D  int byte_A00551 = {0};
+int byte_A00551 = {0};
+
+// D  unsigned short word_A00552 = {0};
+unsigned short word_A00552 = {0};
+
+// D  int byte_A00555 = {0};
+int byte_A00555 = {0};
+
+// D  int byte_A00556 = {0};
+int byte_A00556 = {0};
+
+// D  int byte_A00557 = {0};
+int byte_A00557 = {0};
+
+// D  int byte_A00558 = {0};
+int byte_A00558 = {0};
+
+// D  int byte_A00559 = {0};
+int byte_A00559 = {0};
+
+// D  int byte_A00560 = {0};
+int byte_A00560 = {0};
+
+// D  int byte_A00561 = {0};
+int byte_A00561 = {0};
+
+// D  int byte_A00562 = {0};
+int byte_A00562 = {0};
+
+// D  int byte_A00563 = {0};
+int byte_A00563 = {0};
+
+// D  int byte_A00564 = {0};
+int byte_A00564 = {0};
+
+// D  int byte_A00565 = {0};
+int byte_A00565 = {0};
+
+// D  int byte_A00566 = {0};
+int byte_A00566 = {0};
+
+// D  int byte_A00567 = {0};
+int byte_A00567 = {0};
+
+// D  int byte_A00568 = {0};
+int byte_A00568 = {0};
+
+// D  int byte_A00569 = {0};
+int byte_A00569 = {0};
+
+// D  int byte_A00570 = {0};
+int byte_A00570 = {0};
+
+// D  int byte_A00571 = {0};
+int byte_A00571 = {0};
+
+// D  unsigned short word_A00572 = {0};
+unsigned short word_A00572 = {0};
+
+// D  int byte_A00602 = {0};
+int byte_A00602 = {0};
+
+// D  int byte_A00604 = {0};
+int byte_A00604 = {0};
+
+// D  int byte_A00605 = {0};
+int byte_A00605 = {0};
+
+// D  int byte_A00606 = {0};
+int byte_A00606 = {0};
+
+// D  int byte_A00607 = {0};
+int byte_A00607 = {0};
+
+// D  int byte_A00608 = {0};
+int byte_A00608 = {0};
+
+// D  int byte_A00609 = {0};
+int byte_A00609 = {0};
+
+// D  int byte_A00610 = {0};
+int byte_A00610 = {0};
+
+// D  int byte_A00611 = {0};
+int byte_A00611 = {0};
+
+// D  int byte_A00630 = {0};
+int byte_A00630 = {0};
+
+// D  int byte_A00700 = {0};
+int byte_A00700 = {0};
+
+// D  int byte_A00701 = {0};
+int byte_A00701 = {0};
+
+// D  int byte_A00702 = {0};
+int byte_A00702 = {0};
+
+// D  int byte_A00703 = {0};
+int byte_A00703 = {0};
+
+// D  int byte_A00704 = {0};
+int byte_A00704 = {0};
+
+// D  int byte_A00705 = {0};
+int byte_A00705 = {0};
+
+// D  int byte_A00708 = {0};
+int byte_A00708 = {0};
+
+// D  int byte_A00709 = {0};
+int byte_A00709 = {0};
+
+// D  int dword_A00710 = {0};
+int dword_A00710 = {0};
+
+// D  int byte_A00B00 = {0};
+int byte_A00B00 = {0};
+
+// D  int byte_A00B01 = {0};
+int byte_A00B01 = {0};
+
+// D  int byte_A00B02 = {0};
+int byte_A00B02 = {0};
+
+// D  int byte_A00B03 = {0};
+int byte_A00B03 = {0};
+
+// D  int byte_A00B04 = {0};
+int byte_A00B04 = {0};
+
+// D  int byte_A00B05 = {0};
+int byte_A00B05 = {0};
+
+// D  int byte_A00B06 = {0};
+int byte_A00B06 = {0};
+
+// D  int byte_A00B07 = {0};
+int byte_A00B07 = {0};
+
+// D  int dword_A00B08 = {0};
+int dword_A00B08 = {0};
+
+// D  int g_nRenderFlags = {0};
+int g_nRenderFlags = {0};
+
+// D  int g_nRenderMode = {0};
+int g_nRenderMode = {0};
+
+// D  gbVolModNode * g_pVolModNode = {0};
+gbVolModNode * g_pVolModNode = {0};
+
+// D  int dword_A3A750 = {0};
+int dword_A3A750 = {0};
+
+// D  CScreenMode g_ScreenMode;
+CScreenMode g_ScreenMode;
+
+// D  ARC_PlayerAtt g_PlayerAttBuffer;
+ARC_PlayerAtt g_PlayerAttBuffer;
+
+// D  int byte_AABC03 = {0};
+int byte_AABC03 = {0};
+
+// D  int dword_AABC04 = {0};
+int dword_AABC04 = {0};
+
+// D  unsigned __int8 g_PalScriptTemplate[] = {0};
+unsigned __int8 g_PalScriptTemplate[] = {0};
+
+// D  int byte_AABEF7 = {0};
+int byte_AABEF7 = {0};
+
+// D  int byte_AABEF8 = {0};
+int byte_AABEF8 = {0};
+
+// D  int byte_AABEF9 = {0};
+int byte_AABEF9 = {0};
+
+// D  int byte_ABAB09 = {0};
+int byte_ABAB09 = {0};
+
+// D  int byte_ABC000 = {0};
+int byte_ABC000 = {0};
+
+// D  int byte_ABC001 = {0};
+int byte_ABC001 = {0};
+
+// D  int word_ABC002 = {0};
+int word_ABC002 = {0};
+
+// D  int byte_ABC00B = {0};
+int byte_ABC00B = {0};
+
+// D  int byte_ABC00C = {0};
+int byte_ABC00C = {0};
+
+// D  int byte_ABC00D = {0};
+int byte_ABC00D = {0};
+
+// D  int word_ABC00E = {0};
+int word_ABC00E = {0};
+
+// D  ARC_PlayerAtt g_PlayerAttBuffer2;
+ARC_PlayerAtt g_PlayerAttBuffer2;
+
+// D  int byte_ABE000 = {0};
+int byte_ABE000 = {0};
+
+// D  int byte_ABE00B = {0};
+int byte_ABE00B = {0};
+
+// D  int g_ScriptSlots[132] = {0};
+int g_ScriptSlots[132] = {0};
+
+// D  GRPinput g_Input;
+GRPinput g_Input;
+
+// D  gbGfxDriverInfo g_DrvInfo;
+gbGfxDriverInfo g_DrvInfo;
+
+// D  int g_nGameTime = {0};
+int g_nGameTime = {0};
+
+// D  int g_nTickCount = {0};
+int g_nTickCount = {0};
+
+// D  float g_fDeltaTime = {0};
+float g_fDeltaTime = {0};
+
+// D  float g_fGameSpeed = {0};
+float g_fGameSpeed = {0};
+
+// D  gbDropGroup * g_pDropGroup = {0};
+gbDropGroup * g_pDropGroup = {0};
+
+// D  int g_nPAL3_BFDA3C = {0};
+int g_nPAL3_BFDA3C = {0};
+
+// D  int byte_BFDA40 = {0};
+int byte_BFDA40 = {0};
+
+// D  int byte_BFDA41 = {0};
+int byte_BFDA41 = {0};
+
+// D  int g_nWolfIndex = {0};
+int g_nWolfIndex = {0};
+
+// D  HINSTANCE hInstance = {0};
+HINSTANCE hInstance = {0};
+
+// D  int g_todo_BFDA4C = {0};
+int g_todo_BFDA4C = {0};
+
+// D  HWND g_todo_BFDA50 = {0};
+HWND g_todo_BFDA50 = {0};
+
+// D  HWND g_hMainWnd = {0};
+HWND g_hMainWnd = {0};
+
+// D  float g_fFadeAngle = {0};
+float g_fFadeAngle = {0};
+
+// D  float g_fTimeScale = {0};
+float g_fTimeScale = {0};
+
+// D  gbGfxManager * gfxMgr = {0};
+gbGfxManager * gfxMgr = {0};
+
+// D  gbActorMgr * g_pActorMgr = {0};
+gbActorMgr * g_pActorMgr = {0};
+
+// D  CameraCtrl * g_pCameraCtrl = {0};
+CameraCtrl * g_pCameraCtrl = {0};
+
+// D  int g_nSceneState = {0};
+int g_nSceneState = {0};
+
+// D  void * g_pEffectSystem = {0};
+void * g_pEffectSystem = {0};
+
+// D  CCBSystem * g_pCBSystem = {0};
+CCBSystem * g_pCBSystem = {0};
+
+// D  void * g_pSceneManager = {0};
+void * g_pSceneManager = {0};
+
+// D  void * g_pMiniGame2 = {0};
+void * g_pMiniGame2 = {0};
+
+// D  void * g_pMiniGame1 = {0};
+void * g_pMiniGame1 = {0};
+
+// D  void * g_pMiniGame3 = {0};
+void * g_pMiniGame3 = {0};
+
+// D  unsigned __int8 g_bSceneLoaded_0 = {0};
+unsigned __int8 g_bSceneLoaded_0 = {0};
+
+// D  int g_nCombatMode = {0};
+int g_nCombatMode = {0};
+
+// D  unsigned __int8 g_bTestCombat = {0};
+unsigned __int8 g_bTestCombat = {0};
+
+// D  unsigned __int8 g_bPAL3_BFDA91 = {0};
+unsigned __int8 g_bPAL3_BFDA91 = {0};
+
+// D  HCURSOR g_hCursor;
+HCURSOR g_hCursor;
+
+// D  int g_bEditorMode = {0};
+int g_bEditorMode = {0};
+
+// D  float g_fGameTimer = {0};
+float g_fGameTimer = {0};
+
+// D  CHAR Default[8] = {0};
+CHAR Default[8] = {0};
+
+// D  float g_fRoleGridScale = {0};
+float g_fRoleGridScale = {0};
+
+// D  int dword_BFDAB0 = {0};
+int dword_BFDAB0 = {0};
+
+// D  int g_nMagicSlotCountA = {0};
+int g_nMagicSlotCountA = {0};
+
+// D  int g_nMagicSlotCountB = {0};
+int g_nMagicSlotCountB = {0};
+
+// D  int byte_BFDB78 = {0};
+int byte_BFDB78 = {0};
+
+// D  void ** g_pScriptObjArray = {0};
+void ** g_pScriptObjArray = {0};
+
+// D  void * nIndex = {0};
+void * nIndex = {0};
+
+// D  int g_nScriptEventParam = {0};
+int g_nScriptEventParam = {0};
+
+// D  float g_fScriptEventParam2 = {0};
+float g_fScriptEventParam2 = {0};
+
+// D  int g_nScriptRolePosX = {0};
+int g_nScriptRolePosX = {0};
+
+// D  int g_nScriptRolePosY = {0};
+int g_nScriptRolePosY = {0};
+
+// D  int g_nScriptRolePosZ = {0};
+int g_nScriptRolePosZ = {0};
+
+// D  unsigned int g_nCurrentEventId = {0};
+unsigned int g_nCurrentEventId = {0};
+
+// D  int g_nActor_BFDBA8 = {0};
+int g_nActor_BFDBA8 = {0};
+
+// D  int g_nActor_BFDBAC = {0};
+int g_nActor_BFDBAC = {0};
+
+// D  RoleSystem g_RoleSystemExtra0;
+RoleSystem g_RoleSystemExtra0;
+
+// D  RoleSystem g_RoleSystemExtra1;
+RoleSystem g_RoleSystemExtra1;
+
+// D  float g_fCamRoleParams[40] = {0};
+float g_fCamRoleParams[40] = {0};
+
+// D  ScriptCounter g_ScriptCounters[10];
+ScriptCounter g_ScriptCounters[10];
+
+// D  int KEEP_dword_0205C = {0};
+int KEEP_dword_0205C = {0};
+
+// D  unsigned __int8 g_ScriptCountersEnd = {0};
+unsigned __int8 g_ScriptCountersEnd = {0};
+
+// D  int dword_C020F4 = {0};
+int dword_C020F4 = {0};
+
+// D  RoleSystem g_RoleSystemMain;
+RoleSystem g_RoleSystemMain;
+
+// D  float g_fScriptTimeAccum = {0};
+float g_fScriptTimeAccum = {0};
+
+// D  tagC10Data g_C10Data;
+tagC10Data g_C10Data;
+
+// D  int g_nRoleInitLevel[6] = {0};
+int g_nRoleInitLevel[6] = {0};
+
+// D  Array g_SceneMgrPrefix;
+Array g_SceneMgrPrefix;
+
+// D  Array g_RoleTeamArray;
+Array g_RoleTeamArray;
+
+// D  Array g_nSceneFlags;
+Array g_nSceneFlags;
+
+// D  Array g_SceneArray;
+Array g_SceneArray;
+
+// D  SceneMgr g_SceneMgr;
+SceneMgr g_SceneMgr;
+
+// D  int pElem = {0};
+int pElem = {0};
+
+// D  void * pEnd = {0};
+void * pEnd = {0};
+
+// D  int * g_pSceneArrayEnd2 = {0};
+int * g_pSceneArrayEnd2 = {0};
+
+// D  RoleSystem g_RoleSlotBuf;
+RoleSystem g_RoleSlotBuf;
+
+// D  unsigned __int8 byte_C061CF[5] = {0};
+unsigned __int8 byte_C061CF[5] = {0};
+
+// D  int dword_C061D4[] = {0};
+int dword_C061D4[] = {0};
+
+// D  int g_nUnk61D8 = {0};
+int g_nUnk61D8 = {0};
+
+// D  signed __int32 dword_C06274[5] = {0};
+signed __int32 dword_C06274[5] = {0};
+
+// D  RoleAtt * dword_C062A0 = {0};
+RoleAtt * dword_C062A0 = {0};
+
+// D  void * dword_C062B8 = {0};
+void * dword_C062B8 = {0};
+
+// D  signed __int16 word_C062BC[4] = {0};
+signed __int16 word_C062BC[4] = {0};
+
+// D  signed __int16 word_C062C4[20] = {0};
+signed __int16 word_C062C4[20] = {0};
+
+// D  unsigned __int32 dword_C062EC[80] = {0};
+unsigned __int32 dword_C062EC[80] = {0};
+
+// D  char byte_C06499[5] = {0};
+char byte_C06499[5] = {0};
+
+// D  unsigned __int8 byte_C0649E[7346] = {0};
+unsigned __int8 byte_C0649E[7346] = {0};
+
+// D  int dword_C08150 = {0};
+int dword_C08150 = {0};
+
+// D  int dword_C08154 = {0};
+int dword_C08154 = {0};
+
+// D  int dword_C08158 = {0};
+int dword_C08158 = {0};
+
+// D  int dword_C0815C = {0};
+int dword_C0815C = {0};
+
+// D  RoleSystem unk_C08160;
+RoleSystem unk_C08160;
+
+// D  int g_nScriptObjectCount = {0};
+int g_nScriptObjectCount = {0};
+
+// D  float fDeltaTime = {0};
+float fDeltaTime = {0};
+
+// D  RoleSystem unk_C0A360;
+RoleSystem unk_C0A360;
+
+// D  char unk_C0A40E[506] = {0};
+char unk_C0A40E[506] = {0};
+
+// D  Actor unk_C0A608;
+Actor unk_C0A608;
+
+// D  int unk_C0E760 = {0};
+int unk_C0E760 = {0};
+
+// D  int unk_C0EC50 = {0};
+int unk_C0EC50 = {0};
+
+// D  int g_RoleSystemArrayEnd = {0};
+int g_RoleSystemArrayEnd = {0};
+
+// D  PalScript g_palScript;
+PalScript g_palScript;
+
+// D  _DWORD dword_C109F0[6];
+_DWORD dword_C109F0[6];
+
+// D  signed __int32 dword_C10A08 = {0};
+signed __int32 dword_C10A08 = {0};
+
+// D  int dword_C10BA0 = {0};
+int dword_C10BA0 = {0};
+
+// D  int dword_C10CC4 = {0};
+int dword_C10CC4 = {0};
+
+// D  scAsmDecoder * dword_C10CC8 = {0};
+scAsmDecoder * dword_C10CC8 = {0};
+
+// D  int nVal = {0};
+int nVal = {0};
+
+// D  CHAR unk_C10D38[8] = {0};
+CHAR unk_C10D38[8] = {0};
+
+// D  float dword_C10D50 = {0};
+float dword_C10D50 = {0};
+
+// D  float byte_C10D80[2] = {0};
+float byte_C10D80[2] = {0};
+
+// D  struct gbVec3D dword_C10D88;
+struct gbVec3D dword_C10D88;
+
+// D  AStarPathFinder g_pathFinder;
+AStarPathFinder g_pathFinder;
+
+// D  char byte_C10E2C[36] = {0};
+char byte_C10E2C[36] = {0};
+
+// D  _DWORD dword_C10E50[146];
+_DWORD dword_C10E50[146];
+
+// D  gbSound2DNode * g_pBGMTable[24] = {0};
+gbSound2DNode * g_pBGMTable[24] = {0};
+
+// D  gbSound2DNode * g_pAmbientTable[24] = {0};
+gbSound2DNode * g_pAmbientTable[24] = {0};
+
+// D  int g_fCheckCollision1Out = {0};
+int g_fCheckCollision1Out = {0};
+
+// D  int dword_C11424 = {0};
+int dword_C11424 = {0};
+
+// D  int dword_C11428 = {0};
+int dword_C11428 = {0};
+
+// D  struct tagPOINT pPos;
+struct tagPOINT pPos;
+
+// D  int unk_C11438 = {0};
+int unk_C11438 = {0};
+
+// D  float g_fTileSize = {0};
+float g_fTileSize = {0};
+
+// D  unsigned __int8 g_bPathEnabled = {0};
+unsigned __int8 g_bPathEnabled = {0};
+
+// D  RoleSystem * g_pRoleSystem = {0};
+RoleSystem * g_pRoleSystem = {0};
+
+// D  int dword_C116F0 = {0};
+int dword_C116F0 = {0};
+
+// D  gbSound2DNode * g_pCurrentBGM = {0};
+gbSound2DNode * g_pCurrentBGM = {0};
+
+// D  float g_fCameraBlendWeight = {0};
+float g_fCameraBlendWeight = {0};
+
+// D  int g_nPartyRoles[6] = {0};
+int g_nPartyRoles[6] = {0};
+
+// D  int g_nPartyCount = {0};
+int g_nPartyCount = {0};
+
+// D  int dword_C1171C = {0};
+int dword_C1171C = {0};
+
+// D  PalScript unk_C11720;
+PalScript unk_C11720;
+
+// D  int g_nMonsterType = {0};
+int g_nMonsterType = {0};
+
+// D  int g_pCombatRole = {0};
+int g_pCombatRole = {0};
+
+// D  UIManager g_UIManager;
+UIManager g_UIManager;
+
+// D  struct gbRenderEffect * dword_C11760 = {0};
+struct gbRenderEffect * dword_C11760 = {0};
+
+// D  float g_fTileScale = {0};
+float g_fTileScale = {0};
+
+// D  int g_nLastUpdateTime = {0};
+int g_nLastUpdateTime = {0};
+
+// D  unsigned int g_lastupdateloading = {0};
+unsigned int g_lastupdateloading = {0};
+
+// D  float g_fPalScript_C12B28 = {0};
+float g_fPalScript_C12B28 = {0};
+
+// D  float g_fPalScript_C12B2C = {0};
+float g_fPalScript_C12B2C = {0};
+
+// D  float g_fPalScript_C12B30 = {0};
+float g_fPalScript_C12B30 = {0};
+
+// D  int g_nunknown_libname_331_C12B38 = {0};
+int g_nunknown_libname_331_C12B38 = {0};
+
+// D  int g_nunknown_libname_331_C12B3C = {0};
+int g_nunknown_libname_331_C12B3C = {0};
+
+// D  int g_nunknown_libname_331_C12B40 = {0};
+int g_nunknown_libname_331_C12B40 = {0};
+
+// D  RoleSystem g_RoleSystemInstance;
+RoleSystem g_RoleSystemInstance;
+
+// D  PalScriptMgr pOut;
+PalScriptMgr pOut;
+
+// D  int dword_C300C8 = {0};
+int dword_C300C8 = {0};
+
+// D  int dword_C9A63C = {0};
+int dword_C9A63C = {0};
+
+// D  int byte_D8B314 = {0};
+int byte_D8B314 = {0};
+
+// D  ScriptSystemData g_ScriptSystemData;
+ScriptSystemData g_ScriptSystemData;
+
+// D  SceneMapPlayer unk_D8B4A0;
+SceneMapPlayer unk_D8B4A0;
+
+// D  SceneMapPlayer unk_D8B628;
+SceneMapPlayer unk_D8B628;
+
+// D  SceneMapPlayer unk_D8B7B0;
+SceneMapPlayer unk_D8B7B0;
+
+// D  UISystem unk_D8B938;
+UISystem unk_D8B938;
+
+// D  int dword_D8BBEC = {0};
+int dword_D8BBEC = {0};
+
+// D  struct gbVec3D dword_D8BBF0;
+struct gbVec3D dword_D8BBF0;
+
+// D  struct gbVec3D dword_D8BC00;
+struct gbVec3D dword_D8BC00;
+
+// D  struct gbVec3D dword_D8BC10;
+struct gbVec3D dword_D8BC10;
+
+// D  gbVec3D g_vRotateAxis;
+gbVec3D g_vRotateAxis;
+
+// D  unsigned __int8 g_bMapRenderFlags = {0};
+unsigned __int8 g_bMapRenderFlags = {0};
+
+// D  int dword_D8BC30 = {0};
+int dword_D8BC30 = {0};
+
+// D  int dword_D8BC34 = {0};
+int dword_D8BC34 = {0};
+
+// D  int dword_D8BC38 = {0};
+int dword_D8BC38 = {0};
+
+// D  float g_fScriptTileSize = {0};
+float g_fScriptTileSize = {0};
+
+// D  RoleSystem * dword_D8BEEC = {0};
+RoleSystem * dword_D8BEEC = {0};
+
+// D  float g_fScriptTileSize2 = {0};
+float g_fScriptTileSize2 = {0};
+
+// D  CHAR unk_D8C1AC[260] = {0};
+CHAR unk_D8C1AC[260] = {0};
+
+// D  PalScript * dword_D8C2B0 = {0};
+PalScript * dword_D8C2B0 = {0};
+
+// D  unsigned __int8 g_InputStateBuf = {0};
+unsigned __int8 g_InputStateBuf = {0};
+
+// D  PtrArray unk_D8C2C8;
+PtrArray unk_D8C2C8;
+
+// D  PtrArray unk_D8C2E8;
+PtrArray unk_D8C2E8;
+
+// D  PtrArray p_DWORD;
+PtrArray p_DWORD;
+
+// D  PtrArray dword_D8C328;
+PtrArray dword_D8C328;
+
+// D  int dword_D8C32C = {0};
+int dword_D8C32C = {0};
+
+// D  Iostream_init unk_D8C338;
+Iostream_init unk_D8C338;
+
+// D  PtrArray dword_D8C348;
+PtrArray dword_D8C348;
+
+// D  int dword_D8C34C = {0};
+int dword_D8C34C = {0};
+
+// D  PtrArray unk_D8C358;
+PtrArray unk_D8C358;
+
+// D  DWORD dword_D8C360 = {0};
+DWORD dword_D8C360 = {0};
+
+// D  int dword_D8C364[] = {0};
+int dword_D8C364[] = {0};
+
+// D  int dword_D8C368[64] = {0};
+int dword_D8C368[64] = {0};
+
+// D  int dword_D8C468[] = {0};
+int dword_D8C468[] = {0};
+
+// D  char byte_D8C46C[8] = {0};
+char byte_D8C46C[8] = {0};
+
+// D  __int16 word_D8C474[] = {0};
+__int16 word_D8C474[] = {0};
+
+// D  int g_pLoadBuffer = {0};
+int g_pLoadBuffer = {0};
+
+// D  int g_nPtrArray_D8E46C = {0};
+int g_nPtrArray_D8E46C = {0};
+
+// D  int Block = {0};
+int Block = {0};
+
+// D  int g_nPalScript_D8E478 = {0};
+int g_nPalScript_D8E478 = {0};
+
+// D  int g_nPalScript_D8E47C = {0};
+int g_nPalScript_D8E47C = {0};
+
+// D  int nVal4 = {0};
+int nVal4 = {0};
+
+// D  int g_nPAL3_D8E488 = {0};
+int g_nPAL3_D8E488 = {0};
+
+// D  int g_GameData = {0};
+int g_GameData = {0};
+
+// D  char byte_D8EBBC[] = {0};
+char byte_D8EBBC[] = {0};
+
+// D  float g_fDonateValue = {0};
+float g_fDonateValue = {0};
+
+// D  float flt_D90060 = {0};
+float flt_D90060 = {0};
+
+// D  int dword_D90064 = {0};
+int dword_D90064 = {0};
+
+// D  float g_fSubItemOffset = {0};
+float g_fSubItemOffset = {0};
+
+// D  float g_fDefaultColumnWidth = {0};
+float g_fDefaultColumnWidth = {0};
+
+// D  int g_pbkLastCreated = {0};
+int g_pbkLastCreated = {0};
+
+// D  int g_fUIColorParam = {0};
+int g_fUIColorParam = {0};
+
+// D  char g_DefaultColorR = {0};
+char g_DefaultColorR = {0};
+
+// D  char g_DefaultColorG = {0};
+char g_DefaultColorG = {0};
+
+// D  char g_DefaultColorB = {0};
+char g_DefaultColorB = {0};
+
+// D  int g_bRoleLoadFlags = {0};
+int g_bRoleLoadFlags = {0};
+
+// D  int g_bGameUpdating = {0};
+int g_bGameUpdating = {0};
+
+// D  _BYTE p_BYTE;
+_BYTE p_BYTE;
+
+// D  int byte_D92785 = {0};
+int byte_D92785 = {0};
+
+// D  int g_SceneTransitionBuffer = {0};
+int g_SceneTransitionBuffer = {0};
+
+// D  CHAR byte_D92894[765] = {0};
+CHAR byte_D92894[765] = {0};
+
+// D  int g_gamefrm = {0};
+int g_gamefrm = {0};
+
+// D  unsigned __int8 * g_pSceneTransitionBegin = {0};
+unsigned __int8 * g_pSceneTransitionBegin = {0};
+
+// D  unsigned __int8 * g_pSceneTransitionEnd = {0};
+unsigned __int8 * g_pSceneTransitionEnd = {0};
+
+// D  int dword_DBA118 = {0};
+int dword_DBA118 = {0};
+
+// D  RoleCameraCtrl stru_DBA134;
+RoleCameraCtrl stru_DBA134;
+
+// D  int dword_DBA240 = {0};
+int dword_DBA240 = {0};
+
+// D  int dword_DBA244 = {0};
+int dword_DBA244 = {0};
+
+// D  int dword_DBA248 = {0};
+int dword_DBA248 = {0};
+
+// D  PalScriptMgr * dword_DBA24C = {0};
+PalScriptMgr * dword_DBA24C = {0};
+
+// D  unsigned int g_dwUISettings = {0};
+unsigned int g_dwUISettings = {0};
+
+// D  PalScriptMgr * dword_DBA254 = {0};
+PalScriptMgr * dword_DBA254 = {0};
+
+// D  int byte_DBA25C = {0};
+int byte_DBA25C = {0};
+
+// D  UIListBox g_UIListBoxDlg;
+UIListBox g_UIListBoxDlg;
+
+// D  int dword_DBA830 = {0};
+int dword_DBA830 = {0};
+
+// D  UISceneMap g_UISceneMapDlg;
+UISceneMap g_UISceneMapDlg;
+
+// D  CCBEditor g_CCBEditorInst;
+CCBEditor g_CCBEditorInst;
+
+// D  ComposeUI * g_pComposeUI = {0};
+ComposeUI * g_pComposeUI = {0};
+
+// D  int g_nsub_41FA90_DC10FC = {0};
+int g_nsub_41FA90_DC10FC = {0};
+
+// D  int g_nMiniGameState = {0};
+int g_nMiniGameState = {0};
+
+// D  int dword_DC25E8 = {0};
+int dword_DC25E8 = {0};
+
+// D  int dword_DC25EC = {0};
+int dword_DC25EC = {0};
+
+// D  int dword_DC25F0 = {0};
+int dword_DC25F0 = {0};
+
+// D  int byte_DC25F4 = {0};
+int byte_DC25F4 = {0};
+
+// D  unsigned __int8 g_bStateFlags[] = {0};
+unsigned __int8 g_bStateFlags[] = {0};
+
+// D  unsigned __int8 g_bListNeedsRefresh = {0};
+unsigned __int8 g_bListNeedsRefresh = {0};
+
+// D  char Destination[256] = {0};
+char Destination[256] = {0};
+
+// D  CHAR byte_DC343C[256] = {0};
+CHAR byte_DC343C[256] = {0};
+
+// D  int dword_DC353C = {0};
+int dword_DC353C = {0};
+
+// D  int dword_DC363C = {0};
+int dword_DC363C = {0};
+
+// D  int dword_DC373C = {0};
+int dword_DC373C = {0};
+
+// D  int dword_DC383C = {0};
+int dword_DC383C = {0};
+
+// D  int dword_DC393C = {0};
+int dword_DC393C = {0};
+
+// D  int dword_DC3A3C = {0};
+int dword_DC3A3C = {0};
+
+// D  int dword_DC3B3C = {0};
+int dword_DC3B3C = {0};
+
+// D  unsigned __int8 g_bSlotFlag[768] = {0};
+unsigned __int8 g_bSlotFlag[768] = {0};
+
+// D  CHAR byte_DC3F3C[256] = {0};
+CHAR byte_DC3F3C[256] = {0};
+
+// D  CHAR byte_DC403C[256] = {0};
+CHAR byte_DC403C[256] = {0};
+
+// D  int dword_DC413C = {0};
+int dword_DC413C = {0};
+
+// D  int dword_DC423C = {0};
+int dword_DC423C = {0};
+
+// D  int dword_DC433C = {0};
+int dword_DC433C = {0};
+
+// D  const char * g_szRoleName0 = {0};
+const char * g_szRoleName0 = {0};
+
+// D  const char * g_szRoleName1 = {0};
+const char * g_szRoleName1 = {0};
+
+// D  const char * g_szRoleName2 = {0};
+const char * g_szRoleName2 = {0};
+
+// D  const char * g_szRoleName3 = {0};
+const char * g_szRoleName3 = {0};
+
+// D  int dword_DC483C = {0};
+int dword_DC483C = {0};
+
+// D  int dword_DC493C = {0};
+int dword_DC493C = {0};
+
+// D  int dword_DC4A3C = {0};
+int dword_DC4A3C = {0};
+
+// D  int dword_DC4B3C = {0};
+int dword_DC4B3C = {0};
+
+// D  CHAR byte_DC4C3C[256] = {0};
+CHAR byte_DC4C3C[256] = {0};
+
+// D  CHAR byte_DC4D3C[256] = {0};
+CHAR byte_DC4D3C[256] = {0};
+
+// D  CHAR byte_DC4E3C[256] = {0};
+CHAR byte_DC4E3C[256] = {0};
+
+// D  CHAR byte_DC4F3C[256] = {0};
+CHAR byte_DC4F3C[256] = {0};
+
+// D  CHAR byte_DC503C[256] = {0};
+CHAR byte_DC503C[256] = {0};
+
+// D  CHAR byte_DC513C[256] = {0};
+CHAR byte_DC513C[256] = {0};
+
+// D  CHAR byte_DC523C[256] = {0};
+CHAR byte_DC523C[256] = {0};
+
+// D  CHAR byte_DC533C[256] = {0};
+CHAR byte_DC533C[256] = {0};
+
+// D  CHAR byte_DC543C[256] = {0};
+CHAR byte_DC543C[256] = {0};
+
+// D  CHAR byte_DC553C[256] = {0};
+CHAR byte_DC553C[256] = {0};
+
+// D  CHAR byte_DC563C[256] = {0};
+CHAR byte_DC563C[256] = {0};
+
+// D  int dword_DC573C = {0};
+int dword_DC573C = {0};
+
+// D  CHAR byte_DC583C[256] = {0};
+CHAR byte_DC583C[256] = {0};
+
+// D  CHAR byte_DC593C[256] = {0};
+CHAR byte_DC593C[256] = {0};
+
+// D  CHAR byte_DC5A3C[256] = {0};
+CHAR byte_DC5A3C[256] = {0};
+
+// D  CHAR byte_DC5B3C[256] = {0};
+CHAR byte_DC5B3C[256] = {0};
+
+// D  CHAR byte_DC5C3C[768] = {0};
+CHAR byte_DC5C3C[768] = {0};
+
+// D  unsigned __int8 g_bSaveFlag = {0};
+unsigned __int8 g_bSaveFlag = {0};
+
+// D  int dword_DC633C = {0};
+int dword_DC633C = {0};
+
+// D  int dword_DC643C = {0};
+int dword_DC643C = {0};
+
+// D  int dword_DC673C = {0};
+int dword_DC673C = {0};
+
+// D  int dword_DC683C = {0};
+int dword_DC683C = {0};
+
+// D  CHAR byte_DC6A3C[256] = {0};
+CHAR byte_DC6A3C[256] = {0};
+
+// D  int dword_DC6B3C = {0};
+int dword_DC6B3C = {0};
+
+// D  const char * g_szSceneName = {0};
+const char * g_szSceneName = {0};
+
+// D  char g_szRoleNameTable[256] = {0};
+char g_szRoleNameTable[256] = {0};
+
+// D  int dword_DC743C = {0};
+int dword_DC743C = {0};
+
+// D  int dword_DC753C = {0};
+int dword_DC753C = {0};
+
+// D  int dword_DC763C = {0};
+int dword_DC763C = {0};
+
+// D  CHAR byte_DC773C[256] = {0};
+CHAR byte_DC773C[256] = {0};
+
+// D  int dword_DC783C = {0};
+int dword_DC783C = {0};
+
+// D  CHAR byte_DC7D3C[512] = {0};
+CHAR byte_DC7D3C[512] = {0};
+
+// D  int dword_DC7F3C = {0};
+int dword_DC7F3C = {0};
+
+// D  int dword_DC803C = {0};
+int dword_DC803C = {0};
+
+// D  int dword_DC813C = {0};
+int dword_DC813C = {0};
+
+// D  int dword_DC823C = {0};
+int dword_DC823C = {0};
+
+// D  int dword_DC833C = {0};
+int dword_DC833C = {0};
+
+// D  int dword_DC843C = {0};
+int dword_DC843C = {0};
+
+// D  int dword_DC853C = {0};
+int dword_DC853C = {0};
+
+// D  int dword_DC863C = {0};
+int dword_DC863C = {0};
+
+// D  int dword_DC873C = {0};
+int dword_DC873C = {0};
+
+// D  int dword_DC883C = {0};
+int dword_DC883C = {0};
+
+// D  int dword_DC893C = {0};
+int dword_DC893C = {0};
+
+// D  int dword_DC8A3C = {0};
+int dword_DC8A3C = {0};
+
+// D  int dword_DC8B3C = {0};
+int dword_DC8B3C = {0};
+
+// D  int dword_DC8C3C = {0};
+int dword_DC8C3C = {0};
+
+// D  int dword_DC8D3C = {0};
+int dword_DC8D3C = {0};
+
+// D  int dword_DC913C = {0};
+int dword_DC913C = {0};
+
+// D  int dword_DC923C = {0};
+int dword_DC923C = {0};
+
+// D  int dword_DC933C = {0};
+int dword_DC933C = {0};
+
+// D  int dword_DC943C = {0};
+int dword_DC943C = {0};
+
+// D  int dword_DC9F3C = {0};
+int dword_DC9F3C = {0};
+
+// D  int dword_DCA03C = {0};
+int dword_DCA03C = {0};
+
+// D  int dword_DCA33C = {0};
+int dword_DCA33C = {0};
+
+// D  CHAR byte_DCAD3C[256] = {0};
+CHAR byte_DCAD3C[256] = {0};
+
+// D  char g_szCombatFieldName[] = {0};
+char g_szCombatFieldName[] = {0};
+
+// D  int dword_DCAF3C = {0};
+int dword_DCAF3C = {0};
+
+// D  int dword_DCB03C = {0};
+int dword_DCB03C = {0};
+
+// D  int dword_DCB13C = {0};
+int dword_DCB13C = {0};
+
+// D  int dword_DCB23C = {0};
+int dword_DCB23C = {0};
+
+// D  int dword_DCB33C = {0};
+int dword_DCB33C = {0};
+
+// D  int dword_DCB43C = {0};
+int dword_DCB43C = {0};
+
+// D  int dword_DCB53C = {0};
+int dword_DCB53C = {0};
+
+// D  int dword_DCB63C = {0};
+int dword_DCB63C = {0};
+
+// D  int dword_DCB73C = {0};
+int dword_DCB73C = {0};
+
+// D  int dword_DCB83C = {0};
+int dword_DCB83C = {0};
+
+// D  int dword_DCB93C = {0};
+int dword_DCB93C = {0};
+
+// D  int dword_DCBA3C = {0};
+int dword_DCBA3C = {0};
+
+// D  int dword_DCBB3C = {0};
+int dword_DCBB3C = {0};
+
+// D  CHAR byte_DCBC3C[256] = {0};
+CHAR byte_DCBC3C[256] = {0};
+
+// D  int dword_DCBD3C = {0};
+int dword_DCBD3C = {0};
+
+// D  int dword_DCBE3C = {0};
+int dword_DCBE3C = {0};
+
+// D  int dword_DCBF3C = {0};
+int dword_DCBF3C = {0};
+
+// D  int dword_DCC13C = {0};
+int dword_DCC13C = {0};
+
+// D  int dword_DCC23C = {0};
+int dword_DCC23C = {0};
+
+// D  int dword_DCC33C = {0};
+int dword_DCC33C = {0};
+
+// D  int dword_DCC43C = {0};
+int dword_DCC43C = {0};
+
+// D  int dword_DCC53C = {0};
+int dword_DCC53C = {0};
+
+// D  int dword_DCC63C = {0};
+int dword_DCC63C = {0};
+
+// D  int dword_DCC73C = {0};
+int dword_DCC73C = {0};
+
+// D  int dword_DCC83C = {0};
+int dword_DCC83C = {0};
+
+// D  CHAR byte_DCC93C[256] = {0};
+CHAR byte_DCC93C[256] = {0};
+
+// D  int dword_DCCA3C = {0};
+int dword_DCCA3C = {0};
+
+// D  int dword_DCCC3C = {0};
+int dword_DCCC3C = {0};
+
+// D  int dword_DCCD3C = {0};
+int dword_DCCD3C = {0};
+
+// D  int dword_DCCE3C = {0};
+int dword_DCCE3C = {0};
+
+// D  int dword_DCCF3C = {0};
+int dword_DCCF3C = {0};
+
+// D  CHAR byte_DCD03C[256] = {0};
+CHAR byte_DCD03C[256] = {0};
+
+// D  CHAR byte_DCD13C[256] = {0};
+CHAR byte_DCD13C[256] = {0};
+
+// D  char dword_DCD23C[] = {0};
+char dword_DCD23C[] = {0};
+
+// D  char dword_DCD33C[] = {0};
+char dword_DCD33C[] = {0};
+
+// D  char szText[] = {0};
+char szText[] = {0};
+
+// D  char dword_DCD53C[] = {0};
+char dword_DCD53C[] = {0};
+
+// D  char dword_DCD63C[] = {0};
+char dword_DCD63C[] = {0};
+
+// D  char dword_DCD93C[] = {0};
+char dword_DCD93C[] = {0};
+
+// D  int dword_DCDA3C = {0};
+int dword_DCDA3C = {0};
+
+// D  int dword_DCDB3C = {0};
+int dword_DCDB3C = {0};
+
+// D  int dword_DCDC3C = {0};
+int dword_DCDC3C = {0};
+
+// D  int dword_DCDD3C = {0};
+int dword_DCDD3C = {0};
+
+// D  int dword_DCDE3C = {0};
+int dword_DCDE3C = {0};
+
+// D  int dword_DCDF3C = {0};
+int dword_DCDF3C = {0};
+
+// D  int dword_DCE03C = {0};
+int dword_DCE03C = {0};
+
+// D  int dword_DCE13C = {0};
+int dword_DCE13C = {0};
+
+// D  int dword_DCE23C = {0};
+int dword_DCE23C = {0};
+
+// D  int dword_DCE33C = {0};
+int dword_DCE33C = {0};
+
+// D  int dword_DCE43C = {0};
+int dword_DCE43C = {0};
+
+// D  int dword_DCE53C = {0};
+int dword_DCE53C = {0};
+
+// D  int dword_DCE63C = {0};
+int dword_DCE63C = {0};
+
+// D  int dword_DCE73C = {0};
+int dword_DCE73C = {0};
+
+// D  char dword_DCE83C[] = {0};
+char dword_DCE83C[] = {0};
+
+// D  int dword_DCE93C = {0};
+int dword_DCE93C = {0};
+
+// D  int dword_DCEA3C = {0};
+int dword_DCEA3C = {0};
+
+// D  CHAR byte_DCEB3C[256] = {0};
+CHAR byte_DCEB3C[256] = {0};
+
+// D  int dword_DCEC3C = {0};
+int dword_DCEC3C = {0};
+
+// D  int dword_DCEF3C = {0};
+int dword_DCEF3C = {0};
+
+// D  int dword_DCF03C = {0};
+int dword_DCF03C = {0};
+
+// D  int dword_DCF13C = {0};
+int dword_DCF13C = {0};
+
+// D  int dword_DCF33C = {0};
+int dword_DCF33C = {0};
+
+// D  CHAR byte_DCF43C[256] = {0};
+CHAR byte_DCF43C[256] = {0};
+
+// D  int dword_DCF53C = {0};
+int dword_DCF53C = {0};
+
+// D  int dword_DCF63C = {0};
+int dword_DCF63C = {0};
+
+// D  int dword_DCF73C = {0};
+int dword_DCF73C = {0};
+
+// D  int dword_DCF83C = {0};
+int dword_DCF83C = {0};
+
+// D  int dword_DCF93C = {0};
+int dword_DCF93C = {0};
+
+// D  int dword_DCFA3C = {0};
+int dword_DCFA3C = {0};
+
+// D  int dword_DCFB3C = {0};
+int dword_DCFB3C = {0};
+
+// D  CHAR byte_DCFC3C[512] = {0};
+CHAR byte_DCFC3C[512] = {0};
+
+// D  int dword_DCFE3C = {0};
+int dword_DCFE3C = {0};
+
+// D  int dword_DCFF3C = {0};
+int dword_DCFF3C = {0};
+
+// D  unsigned __int8 g_ComposeRecipeTable[] = {0};
+unsigned __int8 g_ComposeRecipeTable[] = {0};
+
+// D  int dword_DD203C = {0};
+int dword_DD203C = {0};
+
+// D  int dword_DD213C = {0};
+int dword_DD213C = {0};
+
+// D  int dword_DD253C = {0};
+int dword_DD253C = {0};
+
+// D  int dword_DD263C = {0};
+int dword_DD263C = {0};
+
+// D  int dword_DD273C = {0};
+int dword_DD273C = {0};
+
+// D  int dword_DD293C = {0};
+int dword_DD293C = {0};
+
+// D  int dword_DD2A3C = {0};
+int dword_DD2A3C = {0};
+
+// D  int dword_DD2B3C = {0};
+int dword_DD2B3C = {0};
+
+// D  int dword_DD2C3C = {0};
+int dword_DD2C3C = {0};
+
+// D  int dword_DD2D3C = {0};
+int dword_DD2D3C = {0};
+
+// D  int dword_DD2E3C = {0};
+int dword_DD2E3C = {0};
+
+// D  int dword_DD2F3C = {0};
+int dword_DD2F3C = {0};
+
+// D  int dword_DD303C = {0};
+int dword_DD303C = {0};
+
+// D  int dword_DD313C = {0};
+int dword_DD313C = {0};
+
+// D  int dword_DD323C = {0};
+int dword_DD323C = {0};
+
+// D  int dword_DD333C = {0};
+int dword_DD333C = {0};
+
+// D  int dword_DD343C = {0};
+int dword_DD343C = {0};
+
+// D  int dword_DD353C = {0};
+int dword_DD353C = {0};
+
+// D  int dword_DD363C = {0};
+int dword_DD363C = {0};
+
+// D  int dword_DD373C = {0};
+int dword_DD373C = {0};
+
+// D  int dword_DD383C = {0};
+int dword_DD383C = {0};
+
+// D  char dword_DD393C[] = {0};
+char dword_DD393C[] = {0};
+
+// D  char dword_DD3A3C[] = {0};
+char dword_DD3A3C[] = {0};
+
+// D  char dword_DD3B3C[] = {0};
+char dword_DD3B3C[] = {0};
+
+// D  int dword_DD3D3C = {0};
+int dword_DD3D3C = {0};
+
+// D  char dword_DD3F3C[] = {0};
+char dword_DD3F3C[] = {0};
+
+// D  char dword_DD413C[] = {0};
+char dword_DD413C[] = {0};
+
+// D  int dword_DD423C = {0};
+int dword_DD423C = {0};
+
+// D  int dword_DD433C = {0};
+int dword_DD433C = {0};
+
+// D  int dword_DD443C = {0};
+int dword_DD443C = {0};
+
+// D  int dword_DD453C = {0};
+int dword_DD453C = {0};
+
+// D  int dword_DD463C = {0};
+int dword_DD463C = {0};
+
+// D  int dword_DD473C = {0};
+int dword_DD473C = {0};
+
+// D  int dword_DD483C = {0};
+int dword_DD483C = {0};
+
+// D  int dword_DD493C = {0};
+int dword_DD493C = {0};
+
+// D  int dword_DD4A3C = {0};
+int dword_DD4A3C = {0};
+
+// D  int dword_DD4B3C = {0};
+int dword_DD4B3C = {0};
+
+// D  int dword_DD4E3C = {0};
+int dword_DD4E3C = {0};
+
+// D  int dword_DD4F3C = {0};
+int dword_DD4F3C = {0};
+
+// D  int dword_DD513C = {0};
+int dword_DD513C = {0};
+
+// D  int dword_DD523C = {0};
+int dword_DD523C = {0};
+
+// D  int dword_DD533C = {0};
+int dword_DD533C = {0};
+
+// D  int dword_DD543C = {0};
+int dword_DD543C = {0};
+
+// D  int dword_DD553C = {0};
+int dword_DD553C = {0};
+
+// D  int dword_DD893C = {0};
+int dword_DD893C = {0};
+
+// D  int dword_DD8A3C = {0};
+int dword_DD8A3C = {0};
+
+// D  int dword_DD8B3C = {0};
+int dword_DD8B3C = {0};
+
+// D  int dword_DD8D3C = {0};
+int dword_DD8D3C = {0};
+
+// D  int dword_DD8E3C = {0};
+int dword_DD8E3C = {0};
+
+// D  char dword_DD8F3C[] = {0};
+char dword_DD8F3C[] = {0};
+
+// D  char dword_DD903C[] = {0};
+char dword_DD903C[] = {0};
+
+// D  char dword_DD913C[] = {0};
+char dword_DD913C[] = {0};
+
+// D  int dword_DD923C = {0};
+int dword_DD923C = {0};
+
+// D  int dword_DD933C = {0};
+int dword_DD933C = {0};
+
+// D  int dword_DD943C = {0};
+int dword_DD943C = {0};
+
+// D  int dword_DD953C = {0};
+int dword_DD953C = {0};
+
+// D  int dword_DD963C = {0};
+int dword_DD963C = {0};
+
+// D  int dword_DD973C = {0};
+int dword_DD973C = {0};
+
+// D  int dword_DD983C = {0};
+int dword_DD983C = {0};
+
+// D  int dword_DD993C = {0};
+int dword_DD993C = {0};
+
+// D  int dword_DD9A3C = {0};
+int dword_DD9A3C = {0};
+
+// D  int dword_DD9C3C = {0};
+int dword_DD9C3C = {0};
+
+// D  int dword_DD9D3C = {0};
+int dword_DD9D3C = {0};
+
+// D  CHAR byte_DD9E3C[256] = {0};
+CHAR byte_DD9E3C[256] = {0};
+
+// D  CHAR byte_DD9F3C[256] = {0};
+CHAR byte_DD9F3C[256] = {0};
+
+// D  CHAR byte_DDA03C[256] = {0};
+CHAR byte_DDA03C[256] = {0};
+
+// D  CHAR byte_DDA13C[256] = {0};
+CHAR byte_DDA13C[256] = {0};
+
+// D  CHAR byte_DDA23C[256] = {0};
+CHAR byte_DDA23C[256] = {0};
+
+// D  CHAR byte_DDA33C[256] = {0};
+CHAR byte_DDA33C[256] = {0};
+
+// D  CHAR byte_DDA43C[256] = {0};
+CHAR byte_DDA43C[256] = {0};
+
+// D  CHAR byte_DDA53C[256] = {0};
+CHAR byte_DDA53C[256] = {0};
+
+// D  CHAR byte_DDA63C[256] = {0};
+CHAR byte_DDA63C[256] = {0};
+
+// D  CHAR byte_DDA73C[512] = {0};
+CHAR byte_DDA73C[512] = {0};
+
+// D  int dword_DDA93C = {0};
+int dword_DDA93C = {0};
+
+// D  int dword_DDAA3C = {0};
+int dword_DDAA3C = {0};
+
+// D  int dword_DDAB3C = {0};
+int dword_DDAB3C = {0};
+
+// D  int dword_DDAC3C = {0};
+int dword_DDAC3C = {0};
+
+// D  int dword_DDAD3C = {0};
+int dword_DDAD3C = {0};
+
+// D  int dword_DDAE3C = {0};
+int dword_DDAE3C = {0};
+
+// D  int dword_DDAF3C = {0};
+int dword_DDAF3C = {0};
+
+// D  int dword_DDB03C = {0};
+int dword_DDB03C = {0};
+
+// D  int dword_DDB13C = {0};
+int dword_DDB13C = {0};
+
+// D  int dword_DDB23C = {0};
+int dword_DDB23C = {0};
+
+// D  int dword_DDB33C = {0};
+int dword_DDB33C = {0};
+
+// D  int dword_DDB43C = {0};
+int dword_DDB43C = {0};
+
+// D  int dword_DDB53C = {0};
+int dword_DDB53C = {0};
+
+// D  int dword_DDB63C = {0};
+int dword_DDB63C = {0};
+
+// D  int dword_DDB73C = {0};
+int dword_DDB73C = {0};
+
+// D  int dword_DDB83C = {0};
+int dword_DDB83C = {0};
+
+// D  int dword_DDBA3C = {0};
+int dword_DDBA3C = {0};
+
+// D  int dword_DDBB3C = {0};
+int dword_DDBB3C = {0};
+
+// D  int dword_DDBC3C = {0};
+int dword_DDBC3C = {0};
+
+// D  int dword_DDBD3C = {0};
+int dword_DDBD3C = {0};
+
+// D  int dword_DDBE3C = {0};
+int dword_DDBE3C = {0};
+
+// D  int dword_DDBF3C = {0};
+int dword_DDBF3C = {0};
+
+// D  int dword_DDC03C = {0};
+int dword_DDC03C = {0};
+
+// D  int dword_DDC13C = {0};
+int dword_DDC13C = {0};
+
+// D  int dword_DDC23C = {0};
+int dword_DDC23C = {0};
+
+// D  CHAR String1 = {0};
+CHAR String1 = {0};
+
+// D  float flt_DE4A00 = {0};
+float flt_DE4A00 = {0};
+
+// D  int dword_DE4C94 = {0};
+int dword_DE4C94 = {0};
+
+// D  unsigned __int8 g_SaveSlotFlags[40] = {0};
+unsigned __int8 g_SaveSlotFlags[40] = {0};
+
+// D  CHAR byte_DE54D4[3] = {0};
+CHAR byte_DE54D4[3] = {0};
+
+// D  CHAR byte_DE54D7[3] = {0};
+CHAR byte_DE54D7[3] = {0};
+
+// D  CHAR byte_DE54DA[3] = {0};
+CHAR byte_DE54DA[3] = {0};
+
+// D  CHAR byte_DE54DD[3] = {0};
+CHAR byte_DE54DD[3] = {0};
+
+// D  CHAR byte_DE54E0[3] = {0};
+CHAR byte_DE54E0[3] = {0};
+
+// D  CHAR byte_DE54E3[3] = {0};
+CHAR byte_DE54E3[3] = {0};
+
+// D  CHAR byte_DE54E6[3] = {0};
+CHAR byte_DE54E6[3] = {0};
+
+// D  CHAR byte_DE54E9[3] = {0};
+CHAR byte_DE54E9[3] = {0};
+
+// D  CHAR byte_DE54EC[3] = {0};
+CHAR byte_DE54EC[3] = {0};
+
+// D  unsigned __int8 g_ArcSceneObjBuffer = {0};
+unsigned __int8 g_ArcSceneObjBuffer = {0};
+
+// D  int g_nUILayoutFlags = {0};
+int g_nUILayoutFlags = {0};
+
+// D  CHAR byte_DE5F74[3] = {0};
+CHAR byte_DE5F74[3] = {0};
+
+// D  CHAR byte_DE5F77[3] = {0};
+CHAR byte_DE5F77[3] = {0};
+
+// D  CHAR byte_DE5F7A[3] = {0};
+CHAR byte_DE5F7A[3] = {0};
+
+// D  CHAR byte_DE5F7D[3] = {0};
+CHAR byte_DE5F7D[3] = {0};
+
+// D  CHAR byte_DE5F80[3] = {0};
+CHAR byte_DE5F80[3] = {0};
+
+// D  CHAR byte_DE5F83[3] = {0};
+CHAR byte_DE5F83[3] = {0};
+
+// D  CHAR byte_DE5F86[3] = {0};
+CHAR byte_DE5F86[3] = {0};
+
+// D  CHAR byte_DE5F89[3] = {0};
+CHAR byte_DE5F89[3] = {0};
+
+// D  CHAR byte_DE5F8C[3] = {0};
+CHAR byte_DE5F8C[3] = {0};
+
+// D  CHAR byte_DE5F8F[3] = {0};
+CHAR byte_DE5F8F[3] = {0};
+
+// D  unsigned __int8 g_bRoleFlag1 = {0};
+unsigned __int8 g_bRoleFlag1 = {0};
+
+// D  unsigned __int8 g_bRoleFlag2 = {0};
+unsigned __int8 g_bRoleFlag2 = {0};
+
+// D  int g_nActorState = {0};
+int g_nActorState = {0};
+
+// D  int g_nActor_DE5F9C = {0};
+int g_nActor_DE5F9C = {0};
+
+// D  int g_nRoleParam = {0};
+int g_nRoleParam = {0};
+
+// D  int g_nRoleState = {0};
+int g_nRoleState = {0};
+
+// D  int g_nActor_DE5FA8 = {0};
+int g_nActor_DE5FA8 = {0};
+
+// D  unsigned __int8 g_bUIWnd_DE625A = {0};
+unsigned __int8 g_bUIWnd_DE625A = {0};
+
+// D  int dword_DE6A30 = {0};
+int dword_DE6A30 = {0};
+
+// D  int byte_DE6A4C = {0};
+int byte_DE6A4C = {0};
+
+// D  RenderTarget3 g_RenderTarget3;
+RenderTarget3 g_RenderTarget3;
+
+// D  unsigned int g_nFileVersion = {0};
+unsigned int g_nFileVersion = {0};
+
+// D  char g_szParticleTexName[256] = {0};
+char g_szParticleTexName[256] = {0};
+
+// D  PAL3 g_PAL3;
+PAL3 g_PAL3;
+
+// D  float g_nRenderTarget2_DE8DF8 = {0};
+float g_nRenderTarget2_DE8DF8 = {0};
+
+// D  float g_nRenderTarget2_DE8DFC = {0};
+float g_nRenderTarget2_DE8DFC = {0};
+
+// D  float g_nRenderTarget2_DE8E00 = {0};
+float g_nRenderTarget2_DE8E00 = {0};
+
+// D  float g_nRenderTarget2_DE8E08 = {0};
+float g_nRenderTarget2_DE8E08 = {0};
+
+// D  float g_nRenderTarget2_DE8E0C = {0};
+float g_nRenderTarget2_DE8E0C = {0};
+
+// D  float g_nRenderTarget2_DE8E10 = {0};
+float g_nRenderTarget2_DE8E10 = {0};
+
+// D  float g_nRenderTarget2_DE8E18 = {0};
+float g_nRenderTarget2_DE8E18 = {0};
+
+// D  float g_nRenderTarget2_DE8E1C = {0};
+float g_nRenderTarget2_DE8E1C = {0};
+
+// D  float g_nRenderTarget2_DE8E20 = {0};
+float g_nRenderTarget2_DE8E20 = {0};
+
+// D  int g_nRenderTarget2State_DE8E24 = {0};
+int g_nRenderTarget2State_DE8E24 = {0};
+
+// D  int g_nRenderSceneSeq = {0};
+int g_nRenderSceneSeq = {0};
+
+// D  int g_nSoundTargetSeq = {0};
+int g_nSoundTargetSeq = {0};
+
+// D  int g_nVideoTargetSeq = {0};
+int g_nVideoTargetSeq = {0};
+
+// D  int g_nEffectTargetSeq = {0};
+int g_nEffectTargetSeq = {0};
+
+// D  int g_nCameraTargetSeq = {0};
+int g_nCameraTargetSeq = {0};
+
+// D  struct gbVec3D stru_DE9350;
+struct gbVec3D stru_DE9350;
+
+// D  struct gbVec3D stru_DE9360;
+struct gbVec3D stru_DE9360;
+
+// D  struct gbVec3D stru_DE9370;
+struct gbVec3D stru_DE9370;
+
+// D  int g_bCEffCylinderFlag_DE937C = {0};
+int g_bCEffCylinderFlag_DE937C = {0};
+
+// D  int g_nCylinderInitSeq = {0};
+int g_nCylinderInitSeq = {0};
+
+// D  gbColorQuad stru_DE9388;
+gbColorQuad stru_DE9388;
+
+// D  struct gbVec3D stru_DE9980;
+struct gbVec3D stru_DE9980;
+
+// D  struct gbVec3D stru_DE9990;
+struct gbVec3D stru_DE9990;
+
+// D  struct gbVec3D stru_DE99A0;
+struct gbVec3D stru_DE99A0;
+
+// D  int g_nShockEffectSeq = {0};
+int g_nShockEffectSeq = {0};
+
+// D  int g_nParticleQuadSeq = {0};
+int g_nParticleQuadSeq = {0};
+
+// D  struct gbVec3D stru_DE99B8;
+struct gbVec3D stru_DE99B8;
+
+// D  struct gbVec3D stru_DE99C8;
+struct gbVec3D stru_DE99C8;
+
+// D  struct gbVec3D stru_DE99D8;
+struct gbVec3D stru_DE99D8;
+
+// D  int g_nMeteorTargetSeq = {0};
+int g_nMeteorTargetSeq = {0};
+
+// D  CPK stru_DE9CB0;
+CPK stru_DE9CB0;
+
+// D  int g_nSaveSlot0 = {0};
+int g_nSaveSlot0 = {0};
+
+// D  int g_nSaveSlot1 = {0};
+int g_nSaveSlot1 = {0};
+
+// D  int g_nSaveSlotBase[] = {0};
+int g_nSaveSlotBase[] = {0};
+
+// D  int dword_EC9F00 = {0};
+int dword_EC9F00 = {0};
+
+// D  char byte_EC9F0C[] = {0};
+char byte_EC9F0C[] = {0};
+
+// D  int byte_FFFFFF = {0};
+int byte_FFFFFF = {0};
+
+// D  int dword_1000000 = {0};
+int dword_1000000 = {0};
+
+// D  int byte_1010101 = {0};
+int byte_1010101 = {0};
+
+// D  int byte_1234567 = {0};
+int byte_1234567 = {0};
+
+// D  char g_EffTable[370720] = {0};
+char g_EffTable[370720] = {0};
+
+// D  int g_nCEffMgr_17A7B50 = {0};
+int g_nCEffMgr_17A7B50 = {0};
+
+// D  tag17A7BData g_17A7BData;
+tag17A7BData g_17A7BData;
+
+// D  unsigned __int8 g_bgbMatrixStackFlag_17A7B84 = {0};
+unsigned __int8 g_bgbMatrixStackFlag_17A7B84 = {0};
+
+// D  int g_nEffectUID = {0};
+int g_nEffectUID = {0};
+
+// D  struct gbVec3D stru_17A7B90;
+struct gbVec3D stru_17A7B90;
+
+// D  struct gbVec3D stru_17A7BA0;
+struct gbVec3D stru_17A7BA0;
+
+// D  struct gbVec3D stru_17A7BB0;
+struct gbVec3D stru_17A7BB0;
+
+// D  int g_nSceneObjCount = {0};
+int g_nSceneObjCount = {0};
+
+// D  int g_EffTaskEnd = {0};
+int g_EffTaskEnd = {0};
+
+// D  int g_nQuakeEffectSeq = {0};
+int g_nQuakeEffectSeq = {0};
+
+// D  struct gbVec3D stru_17A7E58;
+struct gbVec3D stru_17A7E58;
+
+// D  struct gbVec3D stru_17A7E68;
+struct gbVec3D stru_17A7E68;
+
+// D  struct gbVec3D stru_17A7E78;
+struct gbVec3D stru_17A7E78;
+
+// D  int g_nEffShockCount = {0};
+int g_nEffShockCount = {0};
+
+// D  tagEffSParticleSys g_SParticleSys;
+tagEffSParticleSys g_SParticleSys;
+
+// D  tag17A8Data g_17A8Data;
+tag17A8Data g_17A8Data;
+
+// D  int dword_17A89C8 = {0};
+int dword_17A89C8 = {0};
+
+// D  int dword_17A89CC = {0};
+int dword_17A89CC = {0};
+
+// D  int dword_17A89D0 = {0};
+int dword_17A89D0 = {0};
+
+// D  int dword_17A89D4 = {0};
+int dword_17A89D4 = {0};
+
+// D  int dword_17A89D8 = {0};
+int dword_17A89D8 = {0};
+
+// D  int dword_17A89DC = {0};
+int dword_17A89DC = {0};
+
+// D  int dword_17A89E0 = {0};
+int dword_17A89E0 = {0};
+
+// D  int dword_17A89E4 = {0};
+int dword_17A89E4 = {0};
+
+// D  char byte_17A89E8[256] = {0};
+char byte_17A89E8[256] = {0};
+
+// D  RoleSystem g_RoleSystemCombat;
+RoleSystem g_RoleSystemCombat;
+
+// D  float flt_17A8E68 = {0};
+float flt_17A8E68 = {0};
+
+// D  DWORD dword_17A8E6C = {0};
+DWORD dword_17A8E6C = {0};
+
+// D  DWORD dword_17A8E7C = {0};
+DWORD dword_17A8E7C = {0};
+
+// D  DWORD dword_17A8E88 = {0};
+DWORD dword_17A8E88 = {0};
+
+// D  DWORD dword_17A8E8C = {0};
+DWORD dword_17A8E8C = {0};
+
+// D  DWORD dword_17A8E94 = {0};
+DWORD dword_17A8E94 = {0};
+
+// D  DWORD dword_17A8E98 = {0};
+DWORD dword_17A8E98 = {0};
+
+// D  DWORD dword_17A8E9C = {0};
+DWORD dword_17A8E9C = {0};
+
+// D  DWORD dword_17A8EA0 = {0};
+DWORD dword_17A8EA0 = {0};
+
+// D  DWORD dword_17A8EA4 = {0};
+DWORD dword_17A8EA4 = {0};
+
+// D  DWORD dword_17A8EB0 = {0};
+DWORD dword_17A8EB0 = {0};
+
+// D  DWORD dword_17A8EB4 = {0};
+DWORD dword_17A8EB4 = {0};
+
+// D  DWORD dword_17A8EB8 = {0};
+DWORD dword_17A8EB8 = {0};
+
+// D  DWORD dword_17A8EBC = {0};
+DWORD dword_17A8EBC = {0};
+
+// D  DWORD dword_17A8EC0 = {0};
+DWORD dword_17A8EC0 = {0};
+
+// D  DWORD dword_17A8EC4 = {0};
+DWORD dword_17A8EC4 = {0};
+
+// D  DWORD dword_17A8EC8 = {0};
+DWORD dword_17A8EC8 = {0};
+
+// D  DWORD dword_17A8ECC = {0};
+DWORD dword_17A8ECC = {0};
+
+// D  DWORD dword_17A8ED0 = {0};
+DWORD dword_17A8ED0 = {0};
+
+// D  DWORD dword_17A8EDC = {0};
+DWORD dword_17A8EDC = {0};
+
+// D  BYTE byte_17A8EE0 = {0};
+BYTE byte_17A8EE0 = {0};
+
+// D  int g_pCCBRoleStateArrayEnd = {0};
+int g_pCCBRoleStateArrayEnd = {0};
+
+// D  BYTE byte_17A8EF5 = {0};
+BYTE byte_17A8EF5 = {0};
+
+// D  BYTE byte_17A8EF6 = {0};
+BYTE byte_17A8EF6 = {0};
+
+// D  BYTE byte_17A8EF7 = {0};
+BYTE byte_17A8EF7 = {0};
+
+// D  BYTE byte_17A8EF8 = {0};
+BYTE byte_17A8EF8 = {0};
+
+// D  int g_fCBTimer = {0};
+int g_fCBTimer = {0};
+
+// D  int nID = {0};
+int nID = {0};
+
+// D  int pfVal = {0};
+int pfVal = {0};
+
+// D  int g_CCBStageCamBuffer = {0};
+int g_CCBStageCamBuffer = {0};
+
+// D  char unk_17A95E4[20] = {0};
+char unk_17A95E4[20] = {0};
+
+// D  float formal = {0};
+float formal = {0};
+
+// D  int g_nCombatViewMode = {0};
+int g_nCombatViewMode = {0};
+
+// D  int dwInitParam = {0};
+int dwInitParam = {0};
+
+// D  int g_hCombatDlg1 = {0};
+int g_hCombatDlg1 = {0};
+
+// D  int g_hCombatDlg2 = {0};
+int g_hCombatDlg2 = {0};
+
+// D  int g_nActorRenderCount = {0};
+int g_nActorRenderCount = {0};
+
+// D  int g_hCBStageCamDlg = {0};
+int g_hCBStageCamDlg = {0};
+
+// D  BYTE byte_17A9924 = {0};
+BYTE byte_17A9924 = {0};
+
+// D  BYTE byte_17A9925 = {0};
+BYTE byte_17A9925 = {0};
+
+// D  int g_bWPARAM_17A9926 = {0};
+int g_bWPARAM_17A9926 = {0};
+
+// D  BYTE byte_17A9927 = {0};
+BYTE byte_17A9927 = {0};
+
+// D  BYTE byte_17A9930 = {0};
+BYTE byte_17A9930 = {0};
+
+// D  BYTE byte_17A9931 = {0};
+BYTE byte_17A9931 = {0};
+
+// D  BYTE byte_17A9932 = {0};
+BYTE byte_17A9932 = {0};
+
+// D  BYTE byte_17A9933 = {0};
+BYTE byte_17A9933 = {0};
+
+// D  BYTE byte_17A9934 = {0};
+BYTE byte_17A9934 = {0};
+
+// D  BYTE byte_17A9935 = {0};
+BYTE byte_17A9935 = {0};
+
+// D  BYTE byte_17A9936 = {0};
+BYTE byte_17A9936 = {0};
+
+// D  BYTE byte_17A9937 = {0};
+BYTE byte_17A9937 = {0};
+
+// D  BYTE byte_17A9938 = {0};
+BYTE byte_17A9938 = {0};
+
+// D  int g_nCCBUISelectedRole = {0};
+int g_nCCBUISelectedRole = {0};
+
+// D  int g_nCCBUI_17A9940 = {0};
+int g_nCCBUI_17A9940 = {0};
+
+// D  BYTE byte_17A9944 = {0};
+BYTE byte_17A9944 = {0};
+
+// D  BYTE byte_17A9945 = {0};
+BYTE byte_17A9945 = {0};
+
+// D  int g_bCommandEdited = {0};
+int g_bCommandEdited = {0};
+
+// D  BYTE byte_17A9947 = {0};
+BYTE byte_17A9947 = {0};
+
+// D  BYTE byte_17A9948 = {0};
+BYTE byte_17A9948 = {0};
+
+// D  BYTE byte_17A9949 = {0};
+BYTE byte_17A9949 = {0};
+
+// D  BYTE byte_17A994A = {0};
+BYTE byte_17A994A = {0};
+
+// D  BYTE byte_17A994B = {0};
+BYTE byte_17A994B = {0};
+
+// D  BYTE byte_17A994C = {0};
+BYTE byte_17A994C = {0};
+
+// D  BYTE byte_17A994D = {0};
+BYTE byte_17A994D = {0};
+
+// D  BYTE byte_17A994E = {0};
+BYTE byte_17A994E = {0};
+
+// D  BYTE byte_17A994F = {0};
+BYTE byte_17A994F = {0};
+
+// D  char unk_17A9950[256] = {0};
+char unk_17A9950[256] = {0};
+
+// D  char unk_17A9A50[256] = {0};
+char unk_17A9A50[256] = {0};
+
+// D  char unk_17A9B50[256] = {0};
+char unk_17A9B50[256] = {0};
+
+// D  int g_AISelectItems = {0};
+int g_AISelectItems = {0};
+
+// D  int g_AISelectSkills = {0};
+int g_AISelectSkills = {0};
+
+// D  int g_AISelectHealItems = {0};
+int g_AISelectHealItems = {0};
+
+// D  int dword_17A9F50 = {0};
+int dword_17A9F50 = {0};
+
+// D  int dword_17AA050 = {0};
+int dword_17AA050 = {0};
+
+// D  int dword_17AA150 = {0};
+int dword_17AA150 = {0};
+
+// D  int dword_17AA250 = {0};
+int dword_17AA250 = {0};
+
+// D  int dword_17AA350 = {0};
+int dword_17AA350 = {0};
+
+// D  int dword_17AA450 = {0};
+int dword_17AA450 = {0};
+
+// D  float flt_17AA550 = {0};
+float flt_17AA550 = {0};
+
+// D  float flt_17AA800 = {0};
+float flt_17AA800 = {0};
+
+// D  int dword_17AA808 = {0};
+int dword_17AA808 = {0};
+
+// D  int dword_17AA818 = {0};
+int dword_17AA818 = {0};
+
+// D  int dword_17AA828 = {0};
+int dword_17AA828 = {0};
+
+// D  int dword_17AA838 = {0};
+int dword_17AA838 = {0};
+
+// D  int dword_17AA848 = {0};
+int dword_17AA848 = {0};
+
+// D  int dword_17AA858 = {0};
+int dword_17AA858 = {0};
+
+// D  unsigned __int8 g_CCBStageState = {0};
+unsigned __int8 g_CCBStageState = {0};
+
+// D  int g_nCBStageFlags[8] = {0};
+int g_nCBStageFlags[8] = {0};
+
+// D  int g_nCBRoleAnimData[24] = {0};
+int g_nCBRoleAnimData[24] = {0};
+
+// D  int pnVal = {0};
+int pnVal = {0};
+
+// D  int dword_17AA914 = {0};
+int dword_17AA914 = {0};
+
+// D  int dword_17AA918 = {0};
+int dword_17AA918 = {0};
+
+// D  int byte_17AA91C = {0};
+int byte_17AA91C = {0};
+
+// D  char byte_17AA920[256] = {0};
+char byte_17AA920[256] = {0};
+
+// D  int dword_17AAA20 = {0};
+int dword_17AAA20 = {0};
+
+// D  int dword_17AAA24 = {0};
+int dword_17AAA24 = {0};
+
+// D  int dword_17AAA28 = {0};
+int dword_17AAA28 = {0};
+
+// D  int byte_17AAA2C = {0};
+int byte_17AAA2C = {0};
+
+// D  int fBladeTime = {0};
+int fBladeTime = {0};
+
+// D  float g_fCBAnimTime = {0};
+float g_fCBAnimTime = {0};
+
+// D  tagCombatTaskData g_CombatTaskData;
+tagCombatTaskData g_CombatTaskData;
+
+// D  int byte_17AAEE0 = {0};
+int byte_17AAEE0 = {0};
+
+// D  char byte_17AAEE4[61] = {0};
+char byte_17AAEE4[61] = {0};
+
+// D  int byte_17AAF21 = {0};
+int byte_17AAF21 = {0};
+
+// D  unsigned __int8 g_CCBCamControlData = {0};
+unsigned __int8 g_CCBCamControlData = {0};
+
+// D  int dword_17AB584 = {0};
+int dword_17AB584 = {0};
+
+// D  int g_nCBFormation1[12] = {0};
+int g_nCBFormation1[12] = {0};
+
+// D  int g_nCBFormation2[16] = {0};
+int g_nCBFormation2[16] = {0};
+
+// D  int g_nCBFormation3[12] = {0};
+int g_nCBFormation3[12] = {0};
+
+// D  int g_nCBFormation4[12] = {0};
+int g_nCBFormation4[12] = {0};
+
+// D  int g_nCBRoleAttackTable[44] = {0};
+int g_nCBRoleAttackTable[44] = {0};
+
+// D  int g_nCBRoleMoveTable[24] = {0};
+int g_nCBRoleMoveTable[24] = {0};
+
+// D  char byte_17AB808[16] = {0};
+char byte_17AB808[16] = {0};
+
+// D  char byte_17AB818[16] = {0};
+char byte_17AB818[16] = {0};
+
+// D  gbMatrix4 stru_17AB828;
+gbMatrix4 stru_17AB828;
+
+// D  int g_nCBRoleHitTable[18] = {0};
+int g_nCBRoleHitTable[18] = {0};
+
+// D  int dword_17AB9B8 = {0};
+int dword_17AB9B8 = {0};
+
+// D  int dword_17AB9BC = {0};
+int dword_17AB9BC = {0};
+
+// D  int dword_17AB9C0 = {0};
+int dword_17AB9C0 = {0};
+
+// D  int byte_17AB9C4 = {0};
+int byte_17AB9C4 = {0};
+
+// D  int dword_17AB9C8 = {0};
+int dword_17AB9C8 = {0};
+
+// D  int dword_17AB9CC = {0};
+int dword_17AB9CC = {0};
+
+// D  int dword_17AB9D8 = {0};
+int dword_17AB9D8 = {0};
+
+// D  int dword_17AB9DC = {0};
+int dword_17AB9DC = {0};
+
+// D  tagStageRoleData g_StageRoleData;
+tagStageRoleData g_StageRoleData;
+
+// D  char byte_17ABD00[256] = {0};
+char byte_17ABD00[256] = {0};
+
+// D  char byte_17ABE00[256] = {0};
+char byte_17ABE00[256] = {0};
+
+// D  unsigned __int8 g_CCBStageSceneData = {0};
+unsigned __int8 g_CCBStageSceneData = {0};
+
+// D  UINT uType = {0};
+UINT uType = {0};
+
+// D  unsigned __int8 g_bCBFlag = {0};
+unsigned __int8 g_bCBFlag = {0};
+
+// D  CHAR byte_17AC6DC[256] = {0};
+CHAR byte_17AC6DC[256] = {0};
+
+// D  float g_fCBDeltaTime = {0};
+float g_fCBDeltaTime = {0};
+
+// D  int g_nCBRoundCount[3] = {0};
+int g_nCBRoundCount[3] = {0};
+
+// D  float g_fCBSpeed = {0};
+float g_fCBSpeed = {0};
+
+// D  unsigned __int8 g_bCBActive = {0};
+unsigned __int8 g_bCBActive = {0};
+
+// D  float g_fCBTimeScale = {0};
+float g_fCBTimeScale = {0};
+
+// D  int dword_17ACA7C = {0};
+int dword_17ACA7C = {0};
+
+// D  int g_nCBRolePos[32] = {0};
+int g_nCBRolePos[32] = {0};
+
+// D  char byte_17ACB08[128] = {0};
+char byte_17ACB08[128] = {0};
+
+// D  int g_nAIWindowBase = {0};
+int g_nAIWindowBase = {0};
+
+// D  int g_nCCBAIWindow_17ACB8C = {0};
+int g_nCCBAIWindow_17ACB8C = {0};
+
+// D  float g_fCBCamParam = {0};
+float g_fCBCamParam = {0};
+
+// D  int g_nCBCamState[24] = {0};
+int g_nCBCamState[24] = {0};
+
+// D  unsigned __int8 g_TempBuffer1024[1024] = {0};
+unsigned __int8 g_TempBuffer1024[1024] = {0};
+
+// D  float flt_17AD598 = {0};
+float flt_17AD598 = {0};
+
+// D  int dword_17AD59C = {0};
+int dword_17AD59C = {0};
+
+// D  unsigned __int8 g_CCBProtectData[] = {0};
+unsigned __int8 g_CCBProtectData[] = {0};
+
+// D  int dword_17AD5C8 = {0};
+int dword_17AD5C8 = {0};
+
+// D  int dword_17AD5CC = {0};
+int dword_17AD5CC = {0};
+
+// D  float flt_17ADB00 = {0};
+float flt_17ADB00 = {0};
+
+// D  int dword_17ADB04 = {0};
+int dword_17ADB04 = {0};
+
+// D  int dword_17AF5A8 = {0};
+int dword_17AF5A8 = {0};
+
+// D  int dword_17AF5AC = {0};
+int dword_17AF5AC = {0};
+
+// D  int dword_17AF5B0 = {0};
+int dword_17AF5B0 = {0};
+
+// D  int dword_17AF5B8 = {0};
+int dword_17AF5B8 = {0};
+
+// D  int dword_17AF5BC = {0};
+int dword_17AF5BC = {0};
+
+// D  int dword_17AF5C0 = {0};
+int dword_17AF5C0 = {0};
+
+// D  unsigned __int8 g_bgbGeomNodeFlag_17AF5C4 = {0};
+unsigned __int8 g_bgbGeomNodeFlag_17AF5C4 = {0};
+
+// D  int dword_17AFAE8 = {0};
+int dword_17AFAE8 = {0};
+
+// D  int dword_17AFAEC = {0};
+int dword_17AFAEC = {0};
+
+// D  int dword_17AFAF0 = {0};
+int dword_17AFAF0 = {0};
+
+// D  int dword_17AFAF8 = {0};
+int dword_17AFAF8 = {0};
+
+// D  int dword_17AFAFC = {0};
+int dword_17AFAFC = {0};
+
+// D  int dword_17AFB00 = {0};
+int dword_17AFB00 = {0};
+
+// D  int byte_17AFB04 = {0};
+int byte_17AFB04 = {0};
+
+// D  float g_fSceneScale = {0};
+float g_fSceneScale = {0};
+
+// D  float flt_17B1298 = {0};
+float flt_17B1298 = {0};
+
+// D  int dword_17B129C = {0};
+int dword_17B129C = {0};
+
+// D  float flt_17B1548 = {0};
+float flt_17B1548 = {0};
+
+// D  int dword_17B154C = {0};
+int dword_17B154C = {0};
+
+// D  Actor g_ActorSaveData;
+Actor g_ActorSaveData;
+
+// D  char Source[99] = {0};
+char Source[99] = {0};
+
+// D  char byte_17B1D23[413] = {0};
+char byte_17B1D23[413] = {0};
+
+// D  int g_InputState = {0};
+int g_InputState = {0};
+
+// D  int g_nCBResultState = {0};
+int g_nCBResultState = {0};
+
+// D  char byte_17B3AAC[1028] = {0};
+char byte_17B3AAC[1028] = {0};
+
+// D  PtrArray stru_17B3EB0;
+PtrArray stru_17B3EB0;
+
+// D  int byte_17B3ED0 = {0};
+int byte_17B3ED0 = {0};
+
+// D  CScreenModeNode stru_17B3ED8;
+CScreenModeNode stru_17B3ED8;
+
+// D  CScreenMode g_CScreenMode;
+CScreenMode g_CScreenMode;
+
+// D  BYTE Data = {0};
+BYTE Data = {0};
+
+// D  CHAR Filename[260] = {0};
+CHAR Filename[260] = {0};
+
+// D  TextureLibDataBase stru_1894B78;
+TextureLibDataBase stru_1894B78;
+
+// D  float flt_1895038 = {0};
+float flt_1895038 = {0};
+
+// D  int dword_189503C = {0};
+int dword_189503C = {0};
+
+// D  int dword_1895040 = {0};
+int dword_1895040 = {0};
+
+// D  int dword_1895044 = {0};
+int dword_1895044 = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895048 = {0};
+gbRenderEffect * g_pRenderEffect_1895048 = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_189504C = {0};
+gbRenderEffect * g_pRenderEffect_189504C = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895050 = {0};
+gbRenderEffect * g_pRenderEffect_1895050 = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895054 = {0};
+gbRenderEffect * g_pRenderEffect_1895054 = {0};
+
+// D  int g_pTexColorEffect = {0};
+int g_pTexColorEffect = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_189505C = {0};
+gbRenderEffect * g_pRenderEffect_189505C = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895060 = {0};
+gbRenderEffect * g_pRenderEffect_1895060 = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895064 = {0};
+gbRenderEffect * g_pRenderEffect_1895064 = {0};
+
+// D  gbRenderEffect * g_pRenderEffect_1895068 = {0};
+gbRenderEffect * g_pRenderEffect_1895068 = {0};
+
+// D  int g_nParent_Data_189506C = {0};
+int g_nParent_Data_189506C = {0};
+
+// D  double dbl_1895070 = {0};
+double dbl_1895070 = {0};
+
+// D  char * Str = {0};
+char * Str = {0};
+
+// D  int dword_1895328 = {0};
+int dword_1895328 = {0};
+
+// D  int g_nScriptState = {0};
+int g_nScriptState = {0};
+
+// D  void * lp = {0};
+void * lp = {0};
+
+// D  LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter;
+LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter;
+
+// D  LCID dword_18953A8;
+LCID dword_18953A8;
+
+// D  UINT dword_18953B8 = {0};
+UINT dword_18953B8 = {0};
+
+// D  CHAR byte_18953F0[260] = {0};
+CHAR byte_18953F0[260] = {0};
+
+// D  int byte_1895558 = {0};
+int byte_1895558 = {0};
+
+// D  int byte_1895559 = {0};
+int byte_1895559 = {0};
+
+// D  int dword_189555C = {0};
+int dword_189555C = {0};
+
+// D  unsigned __int8 g_bEffSystemFlags = {0};
+unsigned __int8 g_bEffSystemFlags = {0};
+
+// D  unsigned __int8 g_bScriptFlag = {0};
+unsigned __int8 g_bScriptFlag = {0};
+
+// D  int g_pCEffMgrBackup = {0};
+int g_pCEffMgrBackup = {0};
+
+// D  int g_nCEffect_1895980 = {0};
+int g_nCEffect_1895980 = {0};
+
+// D  unsigned int g_nRandSeed = {0};
+unsigned int g_nRandSeed = {0};
+
+// D  int g_nRandCount = {0};
+int g_nRandCount = {0};
+
+// D  int byte_189598C = {0};
+int byte_189598C = {0};
+
+// D  unsigned __int8 g_bSceneChangeFlags = {0};
+unsigned __int8 g_bSceneChangeFlags = {0};
+
+// D  unsigned __int8 g_bStaticInitFlags = {0};
+unsigned __int8 g_bStaticInitFlags = {0};
+
+// D  size_t Count = {0};
+size_t Count = {0};
+
+// D  UINT CodePage = {0};
+UINT CodePage = {0};
+
+// D  LCID Locale;
+LCID Locale;
+
+// D  int g_nUIState = {0};
+int g_nUIState = {0};
+
+// D  UINT uNumber = {0};
+UINT uNumber = {0};
+
+// D  void * g_Block_1896CF0 = {0};
+void * g_Block_1896CF0 = {0};
+
+// D  int g_nScriptCounter = {0};
+int g_nScriptCounter = {0};
+
+// D  LPVOID lpMem = {0};
+LPVOID lpMem = {0};
+
+// D  HANDLE hHeap = {0};
+HANDLE hHeap = {0};
+
+// D  float flt_56A610 = 0.5f;
+float flt_56A610 = 0.5f;
+
+// D  float flt_56A63C = 1.0f;
+float flt_56A63C = 1.0f;
+
+// D  float flt_56A644 = {0};
+float flt_56A644 = {0};
+
+// D  float flt_56A648 = 1.5f;
+float flt_56A648 = 1.5f;
+
+// D  float flt_56A64C = 40.0f;
+float flt_56A64C = 40.0f;
+
+// D  float flt_56A658 = 0.25f;
+float flt_56A658 = 0.25f;
+
+// D  float flt_56A65C = 12.0f;
+float flt_56A65C = 12.0f;
+
+// D  float flt_56A668 = 180.0f;
+float flt_56A668 = 180.0f;
+
+// D  float flt_56A6C0 = 60.0f;
+float flt_56A6C0 = 60.0f;
+
+// D  float flt_56A6C8 = 4.0f;
+float flt_56A6C8 = 4.0f;
+
+// D  float flt_56A744 = 5.0f;
+float flt_56A744 = 5.0f;
+
+// D  float flt_56A768 = 3.0f;
+float flt_56A768 = 3.0f;
+
+// D  float flt_56A774 = 100.0f;
+float flt_56A774 = 100.0f;
+
+// D  float flt_56A77C = 80.0f;
+float flt_56A77C = 80.0f;
+
+// D  float flt_56A984 = 12.0f;
+float flt_56A984 = 12.0f;
+
+// D  float flt_56A99C = 500.0f;
+float flt_56A99C = 500.0f;
+
+// D  float flt_56A9D0 = 45.0f;
+float flt_56A9D0 = 45.0f;
+
+// D  float flt_56A9D4 = 0.005f;
+float flt_56A9D4 = 0.005f;
+
+// D  float flt_56A9F0 = 0.01745329f;
+float flt_56A9F0 = 0.01745329f;
+
+// D  float flt_56A9F4 = -0.1f;
+float flt_56A9F4 = -0.1f;
+
+// D  float flt_56A9F8 = 5e-05f;
+float flt_56A9F8 = 5e-05f;
+
+// D  float flt_56A9FC = 0.3f;
+float flt_56A9FC = 0.3f;
+
+// D  float flt_56AA00 = 1.414f;
+float flt_56AA00 = 1.414f;
+
+// D  float flt_56AA04 = 6.103702e-05f;
+float flt_56AA04 = 6.103702e-05f;
+
+// D  float flt_56AA08 = 0.2f;
+float flt_56AA08 = 0.2f;
+
+// D  float flt_56AA24 = 90.0f;
+float flt_56AA24 = 90.0f;
+
+// D  float flt_56AA3C = 10.0f;
+float flt_56AA3C = 10.0f;
+
+// D  float flt_56AA54 = 180.0f;
+float flt_56AA54 = 180.0f;
+
+// D  float flt_56AA5C = 2.0f;
+float flt_56AA5C = 2.0f;
+
+// D  float flt_56AB10 = 12.0f;
+float flt_56AB10 = 12.0f;
+
+// D  float flt_56AB20 = 1.2f;
+float flt_56AB20 = 1.2f;
+
+// D  float flt_56AB24 = 600.0f;
+float flt_56AB24 = 600.0f;
+
+// D  float flt_56AB40 = 200.0f;
+float flt_56AB40 = 200.0f;
+
+// D  float flt_56AB44 = 48.0f;
+float flt_56AB44 = 48.0f;
+
+// D  float flt_56AB48 = 7.0f;
+float flt_56AB48 = 7.0f;
+
+// D  float flt_56AB4C = 280.0f;
+float flt_56AB4C = 280.0f;
+
+// D  void * off_56B364 = {0};
+void * off_56B364 = {0};
+
+// D  float flt_56B5E8 = 10.24f;
+float flt_56B5E8 = 10.24f;
+
+// D  void * off_56B754 = {0};
+void * off_56B754 = {0};
+
+// D  const char * off_56BA1C[] = {0};
+const char * off_56BA1C[] = {0};
+
+// D  void * off_56C534[] = {0};
+void * off_56C534[] = {0};
+
+// D  void * off_56D5A0 = {0};
+void * off_56D5A0 = {0};
+
+// D  void * off_56D5C4 = {0};
+void * off_56D5C4 = {0};
+
+// D  const char * off_56D5D8[] = {0};
+const char * off_56D5D8[] = {0};
+
+// D  void * off_56E11C[] = {0};
+void * off_56E11C[] = {0};
+
+// D  void * off_570284 = {0};
+void * off_570284 = {0};
+
+// D  void * off_57042C = {0};
+void * off_57042C = {0};
+
+// D  void * off_570440 = {0};
+void * off_570440 = {0};
+
+// D  void * off_5707F0[] = {0};
+void * off_5707F0[] = {0};
+
+// D  char * dword_586194 = {0};
+char * dword_586194 = {0};
+
+// D  char * dword_586198 = {0};
+char * dword_586198 = {0};
+
+// D  int dword_5D4D44 = 0xD5D6BCCA;
+int dword_5D4D44 = 0xD5D6BCCA;
+
+// D  int dword_5D4D58 = 0xF7D7AFB6;
+int dword_5D4D58 = 0xF7D7AFB6;
+
+// D  int dword_5D4D70 = 0xF3BAEED7;
+int dword_5D4D70 = 0xF3BAEED7;
+
+// D  int dword_5D4D88 = 0xC3D3B9CA;
+int dword_5D4D88 = 0xC3D3B9CA;
+
+// D  int dword_5D4D94 = 0xD6CAD2D3;
+int dword_5D4D94 = 0xD6CAD2D3;
+
+// D  int dword_5D4DA0 = 0xD6CAF3D7;
+int dword_5D4DA0 = 0xD6CAF3D7;
+
+// D  int unk_5D563C = 0xA8BDB4B4;
+int unk_5D563C = 0xA8BDB4B4;
+
+// D  int unk_5D5660 = 0xF0D5D8B5;
+int unk_5D5660 = 0xF0D5D8B5;
+
+// D  int unk_5D566C = 0xF5BCA5CB;
+int unk_5D566C = 0xF5BCA5CB;
+
+// D  int unk_5D5678 = 0xF0D5D8B5;
+int unk_5D5678 = 0xF0D5D8B5;
+
+// D  int unk_5D56C8 = 0xEDB4BBBD;
+int unk_5D56C8 = 0xEDB4BBBD;
+
+// D  int unk_5D56D4 = 0xA7CAFBCF;
+int unk_5D56D4 = 0xA7CAFBCF;
+
+// D  int unk_5D56E0 = 0xAAD4A5B5;
+int unk_5D56E0 = 0xAAD4A5B5;
+
+// D  int unk_5D56EC = 0xFEB5D8D6;
+int unk_5D56EC = 0xFEB5D8D6;
+
+// D  int unk_5D56F8 = 0xE7B5C1C9;
+int unk_5D56F8 = 0xE7B5C1C9;
+
+// D  int unk_5D5704 = 0xE7B5C1C9;
+int unk_5D5704 = 0xE7B5C1C9;
+
+// D  int unk_5D572C = 0xF8CAE1BD;
+int unk_5D572C = 0xF8CAE1BD;
+
+// D  int unk_5D5744 = 0xC4B8DED0;
+int unk_5D5744 = 0xC4B8DED0;
+
+// D  int unk_5D5758 = 0xD9CBD3BC;
+int unk_5D5758 = 0xD9CBD3BC;
+
+// D  int unk_5D5760 = 0xD9CBD3BC;
+int unk_5D5760 = 0xD9CBD3BC;
+
+// D  int unk_5D576C = 0xE4BCB1CA;
+int unk_5D576C = 0xE4BCB1CA;
+
+// D  int dword_5D5FEC = 0xFFFFFFFF;
+int dword_5D5FEC = 0xFFFFFFFF;
+
+// D  unsigned char byte_5D87F0 = 0x01;
+unsigned char byte_5D87F0 = 0x01;
+
+// D  int dword_5D87F8 = 0xFFFFFFFF;
+int dword_5D87F8 = 0xFFFFFFFF;
+
+// D  int dword_5D87FC = 0xFFFFFFFF;
+int dword_5D87FC = 0xFFFFFFFF;
+
+// D  int dword_5D8800 = 0xFFFFFFFF;
+int dword_5D8800 = 0xFFFFFFFF;
+
+// D  unsigned char byte_5D8808 = 0x01;
+unsigned char byte_5D8808 = 0x01;
+
+// D  int unk_5D88C8 = 0xB7CDB5BE;
+int unk_5D88C8 = 0xB7CDB5BE;
+
+// D  int unk_5D88D4 = 0xB7CDB5BE;
+int unk_5D88D4 = 0xB7CDB5BE;
+
+// D  int unk_5D88E0 = 0xB7B6BDD5;
+int unk_5D88E0 = 0xB7B6BDD5;
+
+// D  char byte_5D89BC[] = "%lu";
+char byte_5D89BC[] = "%lu";
+
+// D  void * off_5D8A3C = {0};
+void * off_5D8A3C = {0};
+
+// D  int unk_5D8C04 = 3336663;
+int unk_5D8C04 = 3336663;
+
+// D  int unk_5D8C08 = 3271127;
+int unk_5D8C08 = 3271127;
+
+// D  int unk_5D8C0C = 0xC6B3FBC3;
+int unk_5D8C0C = 0xC6B3FBC3;
+
+// D  int unk_5D8C14 = 0xBBD2DAB5;
+int unk_5D8C14 = 0xBBD2DAB5;
+
+// D  int unk_5D8E98 = 0xBDD5CBB4;
+int unk_5D8E98 = 0xBDD5CBB4;
+
+// D  int unk_5D8EC8 = 0xDDBEFDCA;
+int unk_5D8EC8 = 0xDDBEFDCA;
+
+// D  int unk_5D8EE0 = 0xBDD5CBB4;
+int unk_5D8EE0 = 0xBDD5CBB4;
+
+// D  int unk_5D8EF8 = 0xB7B6BDD5;
+int unk_5D8EF8 = 0xB7B6BDD5;
+
+// D  int unk_5D8F0C = 0xBDD5CBB4;
+int unk_5D8F0C = 0xBDD5CBB4;
+
+// D  char byte_5D8FEC[] = "%2d";
+char byte_5D8FEC[] = "%2d";
+
+// D  int unk_5DB670 = 1397967181;
+int unk_5DB670 = 1397967181;
+
+// D  int unk_5DB6C4 = 0xA8CCE8CE;
+int unk_5DB6C4 = 0xA8CCE8CE;
+
+// D  char byte_5DB9B0[] = "yaw";
+char byte_5DB9B0[] = "yaw";
+
+// D  int unk_5DBF30 = 25975;
+int unk_5DBF30 = 25975;
+
+// D  int unk_5DEA00 = 1667000693;
+int unk_5DEA00 = 1667000693;
+
+// D  int unk_5DEA20 = 1667000693;
+int unk_5DEA20 = 1667000693;
+
+// D  int unk_5DEA3C = 1667000693;
+int unk_5DEA3C = 1667000693;
+
+// D  int unk_5DEA64 = 1667000693;
+int unk_5DEA64 = 1667000693;
+
+// D  int unk_5DEA8C = 1667000693;
+int unk_5DEA8C = 1667000693;
+
+// D  int unk_5DEAB0 = 1667000693;
+int unk_5DEAB0 = 1667000693;
+
+// D  int unk_5DEAD4 = 1667000693;
+int unk_5DEAD4 = 1667000693;
+
+// D  int unk_5DEAFC = 1667000693;
+int unk_5DEAFC = 1667000693;
+
+// D  int unk_5DEB20 = 1667000693;
+int unk_5DEB20 = 1667000693;
+
+// D  int unk_5DEB44 = 1667000693;
+int unk_5DEB44 = 1667000693;
+
+// D  int unk_5DEB68 = 1667000693;
+int unk_5DEB68 = 1667000693;
+
+// D  int unk_5DEB90 = 1667000693;
+int unk_5DEB90 = 1667000693;
+
+// D  int unk_5DEBB4 = 1667000693;
+int unk_5DEBB4 = 1667000693;
+
+// D  int unk_5DEBDC = 1667000693;
+int unk_5DEBDC = 1667000693;
+
+// D  int unk_5DEC04 = 1667000693;
+int unk_5DEC04 = 1667000693;
+
+// D  int unk_5DEC2C = 1667000693;
+int unk_5DEC2C = 1667000693;
+
+// D  int unk_5DEC54 = 1667000693;
+int unk_5DEC54 = 1667000693;
+
+// D  int unk_5DEC7C = 1667000693;
+int unk_5DEC7C = 1667000693;
+
+// D  int unk_5DECA8 = 1667000693;
+int unk_5DECA8 = 1667000693;
+
+// D  int unk_5DECD4 = 1667000693;
+int unk_5DECD4 = 1667000693;
+
+// D  int unk_5DECFC = 1667000693;
+int unk_5DECFC = 1667000693;
+
+// D  int unk_5DEF18 = 1667000693;
+int unk_5DEF18 = 1667000693;
+
+// D  int unk_5DEF44 = 1667000693;
+int unk_5DEF44 = 1667000693;
+
+// D  int unk_5DEF70 = 1667000693;
+int unk_5DEF70 = 1667000693;
+
+// D  int unk_5DEF9C = 1667000693;
+int unk_5DEF9C = 1667000693;
+
+// D  int unk_5DEFB4 = 1667000693;
+int unk_5DEFB4 = 1667000693;
+
+// D  int unk_5DEFD4 = 1667000693;
+int unk_5DEFD4 = 1667000693;
+
+// D  int unk_5DF204 = 1667000693;
+int unk_5DF204 = 1667000693;
+
+// D  int unk_5DF2A0 = 1667000693;
+int unk_5DF2A0 = 1667000693;
+
+// D  int unk_5DF2C0 = 1667000693;
+int unk_5DF2C0 = 1667000693;
+
+// D  int unk_5DF2E0 = 1667000693;
+int unk_5DF2E0 = 1667000693;
+
+// D  int unk_5DF300 = 1667000693;
+int unk_5DF300 = 1667000693;
+
+// D  int unk_5DF320 = 1667000693;
+int unk_5DF320 = 1667000693;
+
+// D  int unk_5DF348 = 1667000693;
+int unk_5DF348 = 1667000693;
+
+// D  int unk_5DF370 = 1667000693;
+int unk_5DF370 = 1667000693;
+
+// D  int unk_5DF394 = 1667000693;
+int unk_5DF394 = 1667000693;
+
+// D  int unk_5DF3BC = 1667000693;
+int unk_5DF3BC = 1667000693;
+
+// D  int unk_5DF3E4 = 1667000693;
+int unk_5DF3E4 = 1667000693;
+
+// D  int unk_5DF408 = 1667000693;
+int unk_5DF408 = 1667000693;
+
+// D  int unk_5DF42C = 1667000693;
+int unk_5DF42C = 1667000693;
+
+// D  int unk_5DF450 = 1667000693;
+int unk_5DF450 = 1667000693;
+
+// D  int unk_5DF580 = 1667000693;
+int unk_5DF580 = 1667000693;
+
+// D  int unk_5DF718 = 1667000693;
+int unk_5DF718 = 1667000693;
+
+// D  int unk_5DF73C = 1667000693;
+int unk_5DF73C = 1667000693;
+
+// D  int dword_5DFDC0 = 1702257996;
+int dword_5DFDC0 = 1702257996;
+
+// D  int dword_5DFDCC = 1953722179;
+int dword_5DFDCC = 1953722179;
+
+// D  int dword_5DFDEB = 31489;
+int dword_5DFDEB = 31489;
+
+// D  unsigned char byte_A00002 = {0};
+unsigned char byte_A00002 = {0};
+
+// D  unsigned char byte_A00319 = {0};
+unsigned char byte_A00319 = {0};
+
+// D  unsigned char byte_A00320 = {0};
+unsigned char byte_A00320 = {0};
+
+// D  unsigned char byte_A00321 = {0};
+unsigned char byte_A00321 = {0};
+
+// D  unsigned char byte_A00322 = {0};
+unsigned char byte_A00322 = {0};
+
+// D  unsigned char byte_A00326 = {0};
+unsigned char byte_A00326 = {0};
+
+// D  unsigned char byte_A00330 = {0};
+unsigned char byte_A00330 = {0};
+
+// D  unsigned short word_A00336 = {0};
+unsigned short word_A00336 = {0};
+
+// D  unsigned char byte_A00601 = {0};
+unsigned char byte_A00601 = {0};
+
+// D  unsigned char byte_A00603 = {0};
+unsigned char byte_A00603 = {0};
+
+// D  unsigned char byte_A01B00 = {0};
+unsigned char byte_A01B00 = {0};
+
+// D  unsigned char byte_A01B01 = {0};
+unsigned char byte_A01B01 = {0};
+
+// D  unsigned char byte_A01B02 = {0};
+unsigned char byte_A01B02 = {0};
+
+// D  unsigned char byte_A01B03 = {0};
+unsigned char byte_A01B03 = {0};
+
+// D  unsigned char byte_A01B04 = {0};
+unsigned char byte_A01B04 = {0};
+
+// D  unsigned char byte_A01B05 = {0};
+unsigned char byte_A01B05 = {0};
+
+// D  unsigned char byte_A01B08 = {0};
+unsigned char byte_A01B08 = {0};
+
+// D  unsigned char byte_A01B09 = {0};
+unsigned char byte_A01B09 = {0};
+
+// D  unsigned char byte_A01B10 = {0};
+unsigned char byte_A01B10 = {0};
+
+// D  unsigned char byte_A01B11 = {0};
+unsigned char byte_A01B11 = {0};
+
+// D  unsigned char byte_A01B12 = {0};
+unsigned char byte_A01B12 = {0};
+
+// D  unsigned char byte_A01B13 = {0};
+unsigned char byte_A01B13 = {0};
+
+// D  unsigned char byte_A01B14 = {0};
+unsigned char byte_A01B14 = {0};
+
+// D  unsigned char byte_A01B15 = {0};
+unsigned char byte_A01B15 = {0};
+
+// D  unsigned char byte_A01B16 = {0};
+unsigned char byte_A01B16 = {0};
+
+// D  unsigned char byte_A01B17 = {0};
+unsigned char byte_A01B17 = {0};
+
+// D  unsigned char byte_A01B18 = {0};
+unsigned char byte_A01B18 = {0};
+
+// D  unsigned char byte_A01B19 = {0};
+unsigned char byte_A01B19 = {0};
+
+// D  unsigned char byte_A01B20 = {0};
+unsigned char byte_A01B20 = {0};
+
+// D  unsigned char byte_A01B21 = {0};
+unsigned char byte_A01B21 = {0};
+
+// D  unsigned char byte_A01B22 = {0};
+unsigned char byte_A01B22 = {0};
+
+// D  unsigned char byte_A01B23 = {0};
+unsigned char byte_A01B23 = {0};
+
+// D  unsigned char byte_A01B24 = {0};
+unsigned char byte_A01B24 = {0};
+
+// D  unsigned char byte_A01B25 = {0};
+unsigned char byte_A01B25 = {0};
+
+// D  int dword_C056A4 = {0};
+int dword_C056A4 = {0};
+
+// D  int dword_C056A8 = {0};
+int dword_C056A8 = {0};
+
+// D  int dword_C056AC = {0};
+int dword_C056AC = {0};
+
+// D  int dword_C056B0 = {0};
+int dword_C056B0 = {0};
+
+// D  int dword_C056B4 = {0};
+int dword_C056B4 = {0};
+
+// D  int dword_C056B8 = {0};
+int dword_C056B8 = {0};
+
+// D  int dword_C056BC = {0};
+int dword_C056BC = {0};
+
+// D  int dword_C056C0 = {0};
+int dword_C056C0 = {0};
+
+// D  int dword_C056C4 = {0};
+int dword_C056C4 = {0};
+
+// D  int dword_C056C8 = {0};
+int dword_C056C8 = {0};
+
+// D  int dword_C05704 = {0};
+int dword_C05704 = {0};
+
+// D  int dword_C05774 = {0};
+int dword_C05774 = {0};
+
+// D  int dword_C05778 = {0};
+int dword_C05778 = {0};
+
+// D  int dword_C0577C = {0};
+int dword_C0577C = {0};
+
+// D  int dword_C05780 = {0};
+int dword_C05780 = {0};
+
+// D  int dword_C05784 = {0};
+int dword_C05784 = {0};
+
+// D  int dword_C05788 = {0};
+int dword_C05788 = {0};
+
+// D  int dword_C0578C = {0};
+int dword_C0578C = {0};
+
+// D  int dword_C05790 = {0};
+int dword_C05790 = {0};
+
+// D  int dword_C05794 = {0};
+int dword_C05794 = {0};
+
+// D  int dword_C05798 = {0};
+int dword_C05798 = {0};
+
+// D  int dword_C0579C = {0};
+int dword_C0579C = {0};
+
+// D  int dword_C057A0 = {0};
+int dword_C057A0 = {0};
+
+// D  int dword_C057A4 = {0};
+int dword_C057A4 = {0};
+
+// D  int dword_C057A8 = {0};
+int dword_C057A8 = {0};
+
+// D  int dword_C057AC = {0};
+int dword_C057AC = {0};
+
+// D  int dword_C057B0 = {0};
+int dword_C057B0 = {0};
+
+// D  int dword_C057B4 = {0};
+int dword_C057B4 = {0};
+
+// D  int dword_C057EC[5] = {0};
+int dword_C057EC[5] = {0};
+
+// D  int dword_C05800 = {0};
+int dword_C05800 = {0};
+
+// D  int dword_C05804 = {0};
+int dword_C05804 = {0};
+
+// D  int dword_C05808 = {0};
+int dword_C05808 = {0};
+
+// D  int dword_C0580C = {0};
+int dword_C0580C = {0};
+
+// D  int dword_C05810 = {0};
+int dword_C05810 = {0};
+
+// D  int dword_C05814 = {0};
+int dword_C05814 = {0};
+
+// D  int dword_C05818 = {0};
+int dword_C05818 = {0};
+
+// D  int dword_C05C1C = {0};
+int dword_C05C1C = {0};
+
+// D  int dword_C05C20 = {0};
+int dword_C05C20 = {0};
+
+// D  int dword_C05C24 = {0};
+int dword_C05C24 = {0};
+
+// D  int dword_C05C28 = {0};
+int dword_C05C28 = {0};
+
+// D  int dword_C05C2C = {0};
+int dword_C05C2C = {0};
+
+// D  int dword_C05C30 = {0};
+int dword_C05C30 = {0};
+
+// D  int dword_C05C34 = {0};
+int dword_C05C34 = {0};
+
+// D  int dword_C05C38 = {0};
+int dword_C05C38 = {0};
+
+// D  int dword_C05C3C = {0};
+int dword_C05C3C = {0};
+
+// D  int dword_C05C40 = {0};
+int dword_C05C40 = {0};
+
+// D  int dword_C05C44 = {0};
+int dword_C05C44 = {0};
+
+// D  int dword_C05C48 = {0};
+int dword_C05C48 = {0};
+
+// D  int dword_C05C84 = {0};
+int dword_C05C84 = {0};
+
+// D  int dword_C05CF4 = {0};
+int dword_C05CF4 = {0};
+
+// D  int dword_C05CF8 = {0};
+int dword_C05CF8 = {0};
+
+// D  int dword_C05CFC = {0};
+int dword_C05CFC = {0};
+
+// D  int dword_C05D00 = {0};
+int dword_C05D00 = {0};
+
+// D  int dword_C05D04 = {0};
+int dword_C05D04 = {0};
+
+// D  int dword_C05D0C = {0};
+int dword_C05D0C = {0};
+
+// D  int dword_C05D10 = {0};
+int dword_C05D10 = {0};
+
+// D  int dword_C05D14 = {0};
+int dword_C05D14 = {0};
+
+// D  int dword_C05D18 = {0};
+int dword_C05D18 = {0};
+
+// D  int dword_C05D1C = {0};
+int dword_C05D1C = {0};
+
+// D  int dword_C05D20 = {0};
+int dword_C05D20 = {0};
+
+// D  int dword_C05D24 = {0};
+int dword_C05D24 = {0};
+
+// D  int dword_C05D28 = {0};
+int dword_C05D28 = {0};
+
+// D  int dword_C05D2C = {0};
+int dword_C05D2C = {0};
+
+// D  int dword_C05D30 = {0};
+int dword_C05D30 = {0};
+
+// D  int dword_C05D34 = {0};
+int dword_C05D34 = {0};
+
+// D  int dword_C05D38 = {0};
+int dword_C05D38 = {0};
+
+// D  int dword_C05D3C = {0};
+int dword_C05D3C = {0};
+
+// D  int dword_C05D40 = {0};
+int dword_C05D40 = {0};
+
+// D  int dword_C05D44 = {0};
+int dword_C05D44 = {0};
+
+// D  int dword_C05D6C = {0};
+int dword_C05D6C = {0};
+
+// D  int dword_C05D70 = {0};
+int dword_C05D70 = {0};
+
+// D  int dword_C05D74 = {0};
+int dword_C05D74 = {0};
+
+// D  int dword_C05D80 = {0};
+int dword_C05D80 = {0};
+
+// D  int dword_C05D84 = {0};
+int dword_C05D84 = {0};
+
+// D  int dword_C05D88 = {0};
+int dword_C05D88 = {0};
+
+// D  int dword_C05D8C = {0};
+int dword_C05D8C = {0};
+
+// D  int dword_C05D90 = {0};
+int dword_C05D90 = {0};
+
+// D  int dword_C05D94 = {0};
+int dword_C05D94 = {0};
+
+// D  int dword_C05D98 = {0};
+int dword_C05D98 = {0};
+
+// D  unsigned char byte_C05F1E = {0};
+unsigned char byte_C05F1E = {0};
+
+// D  int unk_C05F20 = {0};
+int unk_C05F20 = {0};
+
+// D  int dword_C05F24 = {0};
+int dword_C05F24 = {0};
+
+// D  int dword_C05F28 = {0};
+int dword_C05F28 = {0};
+
+// D  int unk_C05F30 = {0};
+int unk_C05F30 = {0};
+
+// D  int dword_C05F54 = {0};
+int dword_C05F54 = {0};
+
+// D  unsigned char byte_C05F5C = {0};
+unsigned char byte_C05F5C = {0};
+
+// D  int dword_C05F64 = {0};
+int dword_C05F64 = {0};
+
+// D  int dword_C05F68 = {0};
+int dword_C05F68 = {0};
+
+// D  int dword_C05F6C = {0};
+int dword_C05F6C = {0};
+
+// D  int dword_C05F74 = {0};
+int dword_C05F74 = {0};
+
+// D  int dword_C05F78 = {0};
+int dword_C05F78 = {0};
+
+// D  int dword_C05F7C = {0};
+int dword_C05F7C = {0};
+
+// D  int dword_C05F80 = {0};
+int dword_C05F80 = {0};
+
+// D  int dword_C05F84 = {0};
+int dword_C05F84 = {0};
+
+// D  int dword_C05F88 = {0};
+int dword_C05F88 = {0};
+
+// D  int unk_C05FF0 = {0};
+int unk_C05FF0 = {0};
+
+// D  int dword_C05FF4 = {0};
+int dword_C05FF4 = {0};
+
+// D  int dword_C05FF8 = {0};
+int dword_C05FF8 = {0};
+
+// D  int dword_C05FFC = {0};
+int dword_C05FFC = {0};
+
+// D  int dword_C06000 = {0};
+int dword_C06000 = {0};
+
+// D  int dword_C06004 = {0};
+int dword_C06004 = {0};
+
+// D  int dword_C06008 = {0};
+int dword_C06008 = {0};
+
+// D  int unk_C0600E = {0};
+int unk_C0600E = {0};
+
+// D  int unk_C06198 = {0};
+int unk_C06198 = {0};
+
+// D  int unk_C061A0 = {0};
+int unk_C061A0 = {0};
+
+// D  int unk_C061CE = {0};
+int unk_C061CE = {0};
+
+// D  int unk_C06288 = {0};
+int unk_C06288 = {0};
+
+// D  int unk_C062A4 = {0};
+int unk_C062A4 = {0};
+
+// D  int unk_C0642C = {0};
+int unk_C0642C = {0};
+
+// D  int unk_C06498 = {0};
+int unk_C06498 = {0};
+
+// D  float flt_C08164 = {0};
+float flt_C08164 = {0};
+
+// D  float flt_C08168 = {0};
+float flt_C08168 = {0};
+
+// D  float flt_C0816C = {0};
+float flt_C0816C = {0};
+
+// D  float flt_C08174 = {0};
+float flt_C08174 = {0};
+
+// D  float flt_C08178 = {0};
+float flt_C08178 = {0};
+
+// D  float flt_C0817C = {0};
+float flt_C0817C = {0};
+
+// D  float flt_C08180 = {0};
+float flt_C08180 = {0};
+
+// D  float flt_C08184 = {0};
+float flt_C08184 = {0};
+
+// D  float flt_C08188 = {0};
+float flt_C08188 = {0};
+
+// D  int dword_C0E760 = {0};
+int dword_C0E760 = {0};
+
+// D  int dword_C0EC50 = {0};
+int dword_C0EC50 = {0};
+
+// D  int unk_C10A0E = {0};
+int unk_C10A0E = {0};
+
+// D  int dword_C10A1C = {0};
+int dword_C10A1C = {0};
+
+// D  int dword_C10A20 = {0};
+int dword_C10A20 = {0};
+
+// D  int dword_C10A28 = {0};
+int dword_C10A28 = {0};
+
+// D  int dword_C10A38 = {0};
+int dword_C10A38 = {0};
+
+// D  int dword_C10A48 = {0};
+int dword_C10A48 = {0};
+
+// D  int dword_C10A4C = {0};
+int dword_C10A4C = {0};
+
+// D  int dword_C10A50 = {0};
+int dword_C10A50 = {0};
+
+// D  int dword_C10A88 = {0};
+int dword_C10A88 = {0};
+
+// D  int dword_C10A98 = {0};
+int dword_C10A98 = {0};
+
+// D  int dword_C10A9C = {0};
+int dword_C10A9C = {0};
+
+// D  int dword_C10AA8 = {0};
+int dword_C10AA8 = {0};
+
+// D  int dword_C10AAC = {0};
+int dword_C10AAC = {0};
+
+// D  int dword_C10AB0 = {0};
+int dword_C10AB0 = {0};
+
+// D  int dword_C10AB8 = {0};
+int dword_C10AB8 = {0};
+
+// D  int dword_C10ABC = {0};
+int dword_C10ABC = {0};
+
+// D  int dword_C10AC0 = {0};
+int dword_C10AC0 = {0};
+
+// D  int dword_C10ACC = {0};
+int dword_C10ACC = {0};
+
+// D  int dword_C10AD0 = {0};
+int dword_C10AD0 = {0};
+
+// D  int dword_C10AE8 = {0};
+int dword_C10AE8 = {0};
+
+// D  int dword_C10AEC = {0};
+int dword_C10AEC = {0};
+
+// D  int dword_C10AF0 = {0};
+int dword_C10AF0 = {0};
+
+// D  int dword_C10AF8 = {0};
+int dword_C10AF8 = {0};
+
+// D  int dword_C10AFC = {0};
+int dword_C10AFC = {0};
+
+// D  int dword_C10B00 = {0};
+int dword_C10B00 = {0};
+
+// D  int dword_C10B08 = {0};
+int dword_C10B08 = {0};
+
+// D  int dword_C10B0C = {0};
+int dword_C10B0C = {0};
+
+// D  int dword_C10B10 = {0};
+int dword_C10B10 = {0};
+
+// D  int dword_C10B18 = {0};
+int dword_C10B18 = {0};
+
+// D  int dword_C10B1C = {0};
+int dword_C10B1C = {0};
+
+// D  int dword_C10B20 = {0};
+int dword_C10B20 = {0};
+
+// D  int dword_C10B28 = {0};
+int dword_C10B28 = {0};
+
+// D  int dword_C10B2C = {0};
+int dword_C10B2C = {0};
+
+// D  int dword_C10B30 = {0};
+int dword_C10B30 = {0};
+
+// D  int dword_C10B38 = {0};
+int dword_C10B38 = {0};
+
+// D  int dword_C10B3C = {0};
+int dword_C10B3C = {0};
+
+// D  int dword_C10B40 = {0};
+int dword_C10B40 = {0};
+
+// D  int dword_C10B48 = {0};
+int dword_C10B48 = {0};
+
+// D  int dword_C10B4C = {0};
+int dword_C10B4C = {0};
+
+// D  int dword_C10B50 = {0};
+int dword_C10B50 = {0};
+
+// D  int dword_C10B58 = {0};
+int dword_C10B58 = {0};
+
+// D  int dword_C10B5C = {0};
+int dword_C10B5C = {0};
+
+// D  int dword_C10B60 = {0};
+int dword_C10B60 = {0};
+
+// D  int dword_C10B68 = {0};
+int dword_C10B68 = {0};
+
+// D  int dword_C10B6C = {0};
+int dword_C10B6C = {0};
+
+// D  int dword_C10B70 = {0};
+int dword_C10B70 = {0};
+
+// D  int dword_C10B78 = {0};
+int dword_C10B78 = {0};
+
+// D  int dword_C10B7C = {0};
+int dword_C10B7C = {0};
+
+// D  int dword_C10B80 = {0};
+int dword_C10B80 = {0};
+
+// D  int dword_C10B88 = {0};
+int dword_C10B88 = {0};
+
+// D  int dword_C10B8C = {0};
+int dword_C10B8C = {0};
+
+// D  int dword_C10B90 = {0};
+int dword_C10B90 = {0};
+
+// D  int dword_C10B98 = {0};
+int dword_C10B98 = {0};
+
+// D  int dword_C10B9C = {0};
+int dword_C10B9C = {0};
+
+// D  int dword_C10BA4 = {0};
+int dword_C10BA4 = {0};
+
+// D  int dword_C10BA8 = {0};
+int dword_C10BA8 = {0};
+
+// D  int dword_C10BAC = {0};
+int dword_C10BAC = {0};
+
+// D  int dword_C10BB0 = {0};
+int dword_C10BB0 = {0};
+
+// D  int dword_C10BB4 = {0};
+int dword_C10BB4 = {0};
+
+// D  int dword_C10BB8 = {0};
+int dword_C10BB8 = {0};
+
+// D  int dword_C10BBC = {0};
+int dword_C10BBC = {0};
+
+// D  int dword_C10BC0 = {0};
+int dword_C10BC0 = {0};
+
+// D  int dword_C10BC4 = {0};
+int dword_C10BC4 = {0};
+
+// D  int dword_C10BC8 = {0};
+int dword_C10BC8 = {0};
+
+// D  int dword_C10BCC = {0};
+int dword_C10BCC = {0};
+
+// D  int dword_C10BD0 = {0};
+int dword_C10BD0 = {0};
+
+// D  int dword_C10BD4 = {0};
+int dword_C10BD4 = {0};
+
+// D  int dword_C10BD8 = {0};
+int dword_C10BD8 = {0};
+
+// D  int dword_C10BDC = {0};
+int dword_C10BDC = {0};
+
+// D  int dword_C10BE0 = {0};
+int dword_C10BE0 = {0};
+
+// D  int dword_C10BE4 = {0};
+int dword_C10BE4 = {0};
+
+// D  int dword_C10BE8 = {0};
+int dword_C10BE8 = {0};
+
+// D  int dword_C10BEC = {0};
+int dword_C10BEC = {0};
+
+// D  int dword_C10BF0 = {0};
+int dword_C10BF0 = {0};
+
+// D  int dword_C10BF4 = {0};
+int dword_C10BF4 = {0};
+
+// D  int dword_C10BF8 = {0};
+int dword_C10BF8 = {0};
+
+// D  int dword_C10BFC = {0};
+int dword_C10BFC = {0};
+
+// D  int dword_C10C00 = {0};
+int dword_C10C00 = {0};
+
+// D  int dword_C10C04 = {0};
+int dword_C10C04 = {0};
+
+// D  int dword_C10C08 = {0};
+int dword_C10C08 = {0};
+
+// D  int dword_C10C0C = {0};
+int dword_C10C0C = {0};
+
+// D  int dword_C10C10 = {0};
+int dword_C10C10 = {0};
+
+// D  int dword_C10C14 = {0};
+int dword_C10C14 = {0};
+
+// D  int dword_C10C18 = {0};
+int dword_C10C18 = {0};
+
+// D  int dword_C10C1C = {0};
+int dword_C10C1C = {0};
+
+// D  int dword_C10C20 = {0};
+int dword_C10C20 = {0};
+
+// D  int dword_C10C24 = {0};
+int dword_C10C24 = {0};
+
+// D  int dword_C10C28 = {0};
+int dword_C10C28 = {0};
+
+// D  int dword_C10C2C = {0};
+int dword_C10C2C = {0};
+
+// D  int dword_C10C30 = {0};
+int dword_C10C30 = {0};
+
+// D  int dword_C10C34 = {0};
+int dword_C10C34 = {0};
+
+// D  int dword_C10C38 = {0};
+int dword_C10C38 = {0};
+
+// D  int dword_C10C3C = {0};
+int dword_C10C3C = {0};
+
+// D  int dword_C10C40 = {0};
+int dword_C10C40 = {0};
+
+// D  int dword_C10C44 = {0};
+int dword_C10C44 = {0};
+
+// D  int dword_C10C48 = {0};
+int dword_C10C48 = {0};
+
+// D  int dword_C10C4C = {0};
+int dword_C10C4C = {0};
+
+// D  int dword_C10C50 = {0};
+int dword_C10C50 = {0};
+
+// D  int dword_C10C54 = {0};
+int dword_C10C54 = {0};
+
+// D  int dword_C10C58 = {0};
+int dword_C10C58 = {0};
+
+// D  int dword_C10C5C = {0};
+int dword_C10C5C = {0};
+
+// D  int dword_C10C60 = {0};
+int dword_C10C60 = {0};
+
+// D  int dword_C10C64 = {0};
+int dword_C10C64 = {0};
+
+// D  int dword_C10C68 = {0};
+int dword_C10C68 = {0};
+
+// D  int dword_C10C6C = {0};
+int dword_C10C6C = {0};
+
+// D  int dword_C10C70 = {0};
+int dword_C10C70 = {0};
+
+// D  int dword_C10C74 = {0};
+int dword_C10C74 = {0};
+
+// D  int dword_C10C78 = {0};
+int dword_C10C78 = {0};
+
+// D  int dword_C10C7C = {0};
+int dword_C10C7C = {0};
+
+// D  int dword_C10C80 = {0};
+int dword_C10C80 = {0};
+
+// D  int dword_C10C84 = {0};
+int dword_C10C84 = {0};
+
+// D  int dword_C10C88 = {0};
+int dword_C10C88 = {0};
+
+// D  int dword_C10C8C = {0};
+int dword_C10C8C = {0};
+
+// D  int dword_C10CBC = {0};
+int dword_C10CBC = {0};
+
+// D  unsigned char byte_C10CC0 = {0};
+unsigned char byte_C10CC0 = {0};
+
+// D  unsigned char byte_C10CC1 = {0};
+unsigned char byte_C10CC1 = {0};
+
+// D  int dword_C10CCC = {0};
+int dword_C10CCC = {0};
+
+// D  int dword_C10CD0 = {0};
+int dword_C10CD0 = {0};
+
+// D  int dword_C10CD4 = {0};
+int dword_C10CD4 = {0};
+
+// D  int dword_C10D40 = {0};
+int dword_C10D40 = {0};
+
+// D  float flt_C10D44 = {0};
+float flt_C10D44 = {0};
+
+// D  float flt_C10D48 = {0};
+float flt_C10D48 = {0};
+
+// D  int dword_C10D54 = {0};
+int dword_C10D54 = {0};
+
+// D  int dword_C10D58 = {0};
+int dword_C10D58 = {0};
+
+// D  int dword_C10D5C = {0};
+int dword_C10D5C = {0};
+
+// D  int dword_C10D60 = {0};
+int dword_C10D60 = {0};
+
+// D  int dword_C10D64 = {0};
+int dword_C10D64 = {0};
+
+// D  int dword_C10D68 = {0};
+int dword_C10D68 = {0};
+
+// D  int dword_C10D6C = {0};
+int dword_C10D6C = {0};
+
+// D  int dword_C10D70 = {0};
+int dword_C10D70 = {0};
+
+// D  int dword_C10D74 = {0};
+int dword_C10D74 = {0};
+
+// D  int dword_C10D78 = {0};
+int dword_C10D78 = {0};
+
+// D  int dword_C10D7C = {0};
+int dword_C10D7C = {0};
+
+// D  int dword_C10D8C = {0};
+int dword_C10D8C = {0};
+
+// D  int dword_C10D90 = {0};
+int dword_C10D90 = {0};
+
+// D  unsigned char byte_C10D94 = {0};
+unsigned char byte_C10D94 = {0};
+
+// D  int dword_C10D98 = {0};
+int dword_C10D98 = {0};
+
+// D  int dword_C10D9C = {0};
+int dword_C10D9C = {0};
+
+// D  int dword_C10DA0 = {0};
+int dword_C10DA0 = {0};
+
+// D  unsigned char byte_C10DA4 = {0};
+unsigned char byte_C10DA4 = {0};
+
+// D  unsigned char byte_C11748 = {0};
+unsigned char byte_C11748 = {0};
+
+// D  unsigned char byte_C11750 = {0};
+unsigned char byte_C11750 = {0};
+
+// D  unsigned char byte_C11751 = {0};
+unsigned char byte_C11751 = {0};
+
+// D  unsigned char byte_C11752 = {0};
+unsigned char byte_C11752 = {0};
+
+// D  unsigned char byte_D8C339 = {0};
+unsigned char byte_D8C339 = {0};
+
+// D  int dword_D8C478 = {0};
+int dword_D8C478 = {0};
+
+// D  unsigned char byte_D8C47C = {0};
+unsigned char byte_D8C47C = {0};
+
+// D  unsigned short word_D8C484 = {0};
+unsigned short word_D8C484 = {0};
+
+// D  int dword_D8C488 = {0};
+int dword_D8C488 = {0};
+
+// D  unsigned char byte_D8C48C = {0};
+unsigned char byte_D8C48C = {0};
+
+// D  unsigned short word_D8C494 = {0};
+unsigned short word_D8C494 = {0};
+
+// D  int dword_D8C498 = {0};
+int dword_D8C498 = {0};
+
+// D  unsigned char byte_D8C49C = {0};
+unsigned char byte_D8C49C = {0};
+
+// D  unsigned short word_D8C4A4 = {0};
+unsigned short word_D8C4A4 = {0};
+
+// D  int dword_D8C4A8 = {0};
+int dword_D8C4A8 = {0};
+
+// D  unsigned short word_D8C4B4 = {0};
+unsigned short word_D8C4B4 = {0};
+
+// D  int dword_D8C4B8 = {0};
+int dword_D8C4B8 = {0};
+
+// D  unsigned char byte_D8C4BC = {0};
+unsigned char byte_D8C4BC = {0};
+
+// D  unsigned short word_D8C4C4 = {0};
+unsigned short word_D8C4C4 = {0};
+
+// D  int dword_D8C4C8 = {0};
+int dword_D8C4C8 = {0};
+
+// D  unsigned char byte_D8C4CC = {0};
+unsigned char byte_D8C4CC = {0};
+
+// D  unsigned char byte_D8C4CD = {0};
+unsigned char byte_D8C4CD = {0};
+
+// D  unsigned short word_D8C4D4 = {0};
+unsigned short word_D8C4D4 = {0};
+
+// D  int dword_D8C4D8 = {0};
+int dword_D8C4D8 = {0};
+
+// D  unsigned char byte_D8C4DC = {0};
+unsigned char byte_D8C4DC = {0};
+
+// D  unsigned char byte_D8C4DD = {0};
+unsigned char byte_D8C4DD = {0};
+
+// D  unsigned short word_D8C4E4 = {0};
+unsigned short word_D8C4E4 = {0};
+
+// D  int dword_D8C4E8 = {0};
+int dword_D8C4E8 = {0};
+
+// D  unsigned char byte_D8C4EC = {0};
+unsigned char byte_D8C4EC = {0};
+
+// D  unsigned char byte_D8C4ED = {0};
+unsigned char byte_D8C4ED = {0};
+
+// D  unsigned short word_D8C4F4 = {0};
+unsigned short word_D8C4F4 = {0};
+
+// D  int dword_D8C4F8 = {0};
+int dword_D8C4F8 = {0};
+
+// D  unsigned char byte_D8C4FC = {0};
+unsigned char byte_D8C4FC = {0};
+
+// D  unsigned char byte_D8C4FD = {0};
+unsigned char byte_D8C4FD = {0};
+
+// D  unsigned short word_D8C504 = {0};
+unsigned short word_D8C504 = {0};
+
+// D  int dword_D8C508 = {0};
+int dword_D8C508 = {0};
+
+// D  unsigned char byte_D8C50C = {0};
+unsigned char byte_D8C50C = {0};
+
+// D  unsigned char byte_D8C50D = {0};
+unsigned char byte_D8C50D = {0};
+
+// D  unsigned short word_D8C514 = {0};
+unsigned short word_D8C514 = {0};
+
+// D  int dword_D8C518 = {0};
+int dword_D8C518 = {0};
+
+// D  unsigned char byte_D8C51C = {0};
+unsigned char byte_D8C51C = {0};
+
+// D  unsigned char byte_D8C51D = {0};
+unsigned char byte_D8C51D = {0};
+
+// D  unsigned short word_D8C524 = {0};
+unsigned short word_D8C524 = {0};
+
+// D  int dword_D8C528 = {0};
+int dword_D8C528 = {0};
+
+// D  unsigned char byte_D8C52C = {0};
+unsigned char byte_D8C52C = {0};
+
+// D  unsigned short word_D8C534 = {0};
+unsigned short word_D8C534 = {0};
+
+// D  int dword_D8C538 = {0};
+int dword_D8C538 = {0};
+
+// D  unsigned char byte_D8C53C = {0};
+unsigned char byte_D8C53C = {0};
+
+// D  unsigned char byte_D8C53D = {0};
+unsigned char byte_D8C53D = {0};
+
+// D  unsigned short word_D8C544 = {0};
+unsigned short word_D8C544 = {0};
+
+// D  int dword_D8C548 = {0};
+int dword_D8C548 = {0};
+
+// D  unsigned char byte_D8C54C = {0};
+unsigned char byte_D8C54C = {0};
+
+// D  unsigned char byte_D8C54D = {0};
+unsigned char byte_D8C54D = {0};
+
+// D  unsigned short word_D8C554 = {0};
+unsigned short word_D8C554 = {0};
+
+// D  int dword_D8C558 = {0};
+int dword_D8C558 = {0};
+
+// D  unsigned char byte_D8C55C = {0};
+unsigned char byte_D8C55C = {0};
+
+// D  unsigned char byte_D8C55D = {0};
+unsigned char byte_D8C55D = {0};
+
+// D  unsigned short word_D8C564 = {0};
+unsigned short word_D8C564 = {0};
+
+// D  int dword_D8C568 = {0};
+int dword_D8C568 = {0};
+
+// D  unsigned char byte_D8C56C = {0};
+unsigned char byte_D8C56C = {0};
+
+// D  unsigned short word_D8C574 = {0};
+unsigned short word_D8C574 = {0};
+
+// D  int dword_D8C578 = {0};
+int dword_D8C578 = {0};
+
+// D  unsigned char byte_D8C57C = {0};
+unsigned char byte_D8C57C = {0};
+
+// D  unsigned char byte_D8C57D = {0};
+unsigned char byte_D8C57D = {0};
+
+// D  unsigned short word_D8C584 = {0};
+unsigned short word_D8C584 = {0};
+
+// D  int dword_D8C588 = {0};
+int dword_D8C588 = {0};
+
+// D  unsigned short word_D8C594 = {0};
+unsigned short word_D8C594 = {0};
+
+// D  int dword_D8C598 = {0};
+int dword_D8C598 = {0};
+
+// D  unsigned char byte_D8C59C = {0};
+unsigned char byte_D8C59C = {0};
+
+// D  unsigned char byte_D8C59D = {0};
+unsigned char byte_D8C59D = {0};
+
+// D  unsigned char byte_D8C59E = {0};
+unsigned char byte_D8C59E = {0};
+
+// D  unsigned short word_D8C5A4 = {0};
+unsigned short word_D8C5A4 = {0};
+
+// D  int dword_D8C5A8 = {0};
+int dword_D8C5A8 = {0};
+
+// D  unsigned char byte_D8C5AC = {0};
+unsigned char byte_D8C5AC = {0};
+
+// D  unsigned char byte_D8C5AD = {0};
+unsigned char byte_D8C5AD = {0};
+
+// D  unsigned char byte_D8C5AE = {0};
+unsigned char byte_D8C5AE = {0};
+
+// D  unsigned char byte_D8C5AF = {0};
+unsigned char byte_D8C5AF = {0};
+
+// D  unsigned short word_D8C5B4 = {0};
+unsigned short word_D8C5B4 = {0};
+
+// D  int dword_D8C5B8 = {0};
+int dword_D8C5B8 = {0};
+
+// D  unsigned char byte_D8C5BC = {0};
+unsigned char byte_D8C5BC = {0};
+
+// D  unsigned char byte_D8C5BD = {0};
+unsigned char byte_D8C5BD = {0};
+
+// D  unsigned char byte_D8C5BE = {0};
+unsigned char byte_D8C5BE = {0};
+
+// D  unsigned short word_D8C5C4 = {0};
+unsigned short word_D8C5C4 = {0};
+
+// D  int dword_D8C5C8 = {0};
+int dword_D8C5C8 = {0};
+
+// D  unsigned char byte_D8C5CC = {0};
+unsigned char byte_D8C5CC = {0};
+
+// D  unsigned char byte_D8C5CD = {0};
+unsigned char byte_D8C5CD = {0};
+
+// D  unsigned char byte_D8C5CE = {0};
+unsigned char byte_D8C5CE = {0};
+
+// D  unsigned short word_D8C5D4 = {0};
+unsigned short word_D8C5D4 = {0};
+
+// D  int dword_D8C5D8 = {0};
+int dword_D8C5D8 = {0};
+
+// D  unsigned char byte_D8C5DC = {0};
+unsigned char byte_D8C5DC = {0};
+
+// D  unsigned char byte_D8C5DD = {0};
+unsigned char byte_D8C5DD = {0};
+
+// D  unsigned short word_D8C5E4 = {0};
+unsigned short word_D8C5E4 = {0};
+
+// D  int dword_D8C5E8 = {0};
+int dword_D8C5E8 = {0};
+
+// D  unsigned char byte_D8C5EC = {0};
+unsigned char byte_D8C5EC = {0};
+
+// D  unsigned char byte_D8C5ED = {0};
+unsigned char byte_D8C5ED = {0};
+
+// D  unsigned short word_D8C5F4 = {0};
+unsigned short word_D8C5F4 = {0};
+
+// D  int dword_D8C5F8 = {0};
+int dword_D8C5F8 = {0};
+
+// D  unsigned short word_D8C604 = {0};
+unsigned short word_D8C604 = {0};
+
+// D  int dword_D8C608 = {0};
+int dword_D8C608 = {0};
+
+// D  unsigned short word_D8C614 = {0};
+unsigned short word_D8C614 = {0};
+
+// D  int dword_D8C618 = {0};
+int dword_D8C618 = {0};
+
+// D  unsigned char byte_D8C61C = {0};
+unsigned char byte_D8C61C = {0};
+
+// D  unsigned short word_D8C624 = {0};
+unsigned short word_D8C624 = {0};
+
+// D  int dword_D8C628 = {0};
+int dword_D8C628 = {0};
+
+// D  unsigned char byte_D8C62C = {0};
+unsigned char byte_D8C62C = {0};
+
+// D  unsigned char byte_D8C62D = {0};
+unsigned char byte_D8C62D = {0};
+
+// D  unsigned short word_D8C634 = {0};
+unsigned short word_D8C634 = {0};
+
+// D  int dword_D8C638 = {0};
+int dword_D8C638 = {0};
+
+// D  unsigned char byte_D8C63C = {0};
+unsigned char byte_D8C63C = {0};
+
+// D  unsigned char byte_D8C63D = {0};
+unsigned char byte_D8C63D = {0};
+
+// D  unsigned short word_D8C644 = {0};
+unsigned short word_D8C644 = {0};
+
+// D  int dword_D8C648 = {0};
+int dword_D8C648 = {0};
+
+// D  unsigned char byte_D8C64C = {0};
+unsigned char byte_D8C64C = {0};
+
+// D  unsigned short word_D8C654 = {0};
+unsigned short word_D8C654 = {0};
+
+// D  int dword_D8C658 = {0};
+int dword_D8C658 = {0};
+
+// D  unsigned char byte_D8C65C = {0};
+unsigned char byte_D8C65C = {0};
+
+// D  unsigned char byte_D8C65D = {0};
+unsigned char byte_D8C65D = {0};
+
+// D  unsigned char byte_D8C65E = {0};
+unsigned char byte_D8C65E = {0};
+
+// D  unsigned short word_D8C664 = {0};
+unsigned short word_D8C664 = {0};
+
+// D  int dword_D8C668 = {0};
+int dword_D8C668 = {0};
+
+// D  unsigned char byte_D8C66C = {0};
+unsigned char byte_D8C66C = {0};
+
+// D  unsigned char byte_D8C66D = {0};
+unsigned char byte_D8C66D = {0};
+
+// D  unsigned char byte_D8C66E = {0};
+unsigned char byte_D8C66E = {0};
+
+// D  unsigned short word_D8C674 = {0};
+unsigned short word_D8C674 = {0};
+
+// D  int dword_D8C678 = {0};
+int dword_D8C678 = {0};
+
+// D  unsigned char byte_D8C67C = {0};
+unsigned char byte_D8C67C = {0};
+
+// D  unsigned char byte_D8C67D = {0};
+unsigned char byte_D8C67D = {0};
+
+// D  unsigned char byte_D8C67E = {0};
+unsigned char byte_D8C67E = {0};
+
+// D  unsigned char byte_D8C67F = {0};
+unsigned char byte_D8C67F = {0};
+
+// D  unsigned short word_D8C684 = {0};
+unsigned short word_D8C684 = {0};
+
+// D  int dword_D8C688 = {0};
+int dword_D8C688 = {0};
+
+// D  unsigned char byte_D8C68C = {0};
+unsigned char byte_D8C68C = {0};
+
+// D  unsigned char byte_D8C68D = {0};
+unsigned char byte_D8C68D = {0};
+
+// D  unsigned char byte_D8C68E = {0};
+unsigned char byte_D8C68E = {0};
+
+// D  unsigned char byte_D8C68F = {0};
+unsigned char byte_D8C68F = {0};
+
+// D  unsigned char byte_D8C690 = {0};
+unsigned char byte_D8C690 = {0};
+
+// D  unsigned short word_D8C694 = {0};
+unsigned short word_D8C694 = {0};
+
+// D  int dword_D8C698 = {0};
+int dword_D8C698 = {0};
+
+// D  unsigned char byte_D8C69C = {0};
+unsigned char byte_D8C69C = {0};
+
+// D  unsigned char byte_D8C69D = {0};
+unsigned char byte_D8C69D = {0};
+
+// D  unsigned char byte_D8C69E = {0};
+unsigned char byte_D8C69E = {0};
+
+// D  unsigned char byte_D8C69F = {0};
+unsigned char byte_D8C69F = {0};
+
+// D  unsigned short word_D8C6A4 = {0};
+unsigned short word_D8C6A4 = {0};
+
+// D  int dword_D8C6A8 = {0};
+int dword_D8C6A8 = {0};
+
+// D  unsigned char byte_D8C6AC = {0};
+unsigned char byte_D8C6AC = {0};
+
+// D  unsigned char byte_D8C6AD = {0};
+unsigned char byte_D8C6AD = {0};
+
+// D  unsigned char byte_D8C6AE = {0};
+unsigned char byte_D8C6AE = {0};
+
+// D  unsigned char byte_D8C6AF = {0};
+unsigned char byte_D8C6AF = {0};
+
+// D  unsigned char byte_D8C6B0 = {0};
+unsigned char byte_D8C6B0 = {0};
+
+// D  unsigned char byte_D8C6B1 = {0};
+unsigned char byte_D8C6B1 = {0};
+
+// D  unsigned short word_D8C6B4 = {0};
+unsigned short word_D8C6B4 = {0};
+
+// D  int dword_D8C6B8 = {0};
+int dword_D8C6B8 = {0};
+
+// D  unsigned char byte_D8C6BC = {0};
+unsigned char byte_D8C6BC = {0};
+
+// D  unsigned short word_D8C6C4 = {0};
+unsigned short word_D8C6C4 = {0};
+
+// D  int dword_D8C6C8 = {0};
+int dword_D8C6C8 = {0};
+
+// D  unsigned short word_D8C6D4 = {0};
+unsigned short word_D8C6D4 = {0};
+
+// D  int dword_D8C6D8 = {0};
+int dword_D8C6D8 = {0};
+
+// D  unsigned short word_D8C6E4 = {0};
+unsigned short word_D8C6E4 = {0};
+
+// D  int dword_D8C6E8 = {0};
+int dword_D8C6E8 = {0};
+
+// D  unsigned char byte_D8C6EC = {0};
+unsigned char byte_D8C6EC = {0};
+
+// D  unsigned char byte_D8C6ED = {0};
+unsigned char byte_D8C6ED = {0};
+
+// D  unsigned char byte_D8C6EE = {0};
+unsigned char byte_D8C6EE = {0};
+
+// D  unsigned short word_D8C6F4 = {0};
+unsigned short word_D8C6F4 = {0};
+
+// D  int dword_D8C6F8 = {0};
+int dword_D8C6F8 = {0};
+
+// D  unsigned char byte_D8C6FC = {0};
+unsigned char byte_D8C6FC = {0};
+
+// D  unsigned char byte_D8C6FD = {0};
+unsigned char byte_D8C6FD = {0};
+
+// D  unsigned char byte_D8C6FE = {0};
+unsigned char byte_D8C6FE = {0};
+
+// D  unsigned short word_D8C704 = {0};
+unsigned short word_D8C704 = {0};
+
+// D  int dword_D8C708 = {0};
+int dword_D8C708 = {0};
+
+// D  unsigned char byte_D8C70C = {0};
+unsigned char byte_D8C70C = {0};
+
+// D  unsigned short word_D8C714 = {0};
+unsigned short word_D8C714 = {0};
+
+// D  int dword_D8C718 = {0};
+int dword_D8C718 = {0};
+
+// D  unsigned char byte_D8C71C = {0};
+unsigned char byte_D8C71C = {0};
+
+// D  unsigned char byte_D8C71D = {0};
+unsigned char byte_D8C71D = {0};
+
+// D  unsigned short word_D8C724 = {0};
+unsigned short word_D8C724 = {0};
+
+// D  int dword_D8C728 = {0};
+int dword_D8C728 = {0};
+
+// D  unsigned char byte_D8C72C = {0};
+unsigned char byte_D8C72C = {0};
+
+// D  unsigned char byte_D8C72D = {0};
+unsigned char byte_D8C72D = {0};
+
+// D  unsigned short word_D8C734 = {0};
+unsigned short word_D8C734 = {0};
+
+// D  int dword_D8C738 = {0};
+int dword_D8C738 = {0};
+
+// D  unsigned char byte_D8C73C = {0};
+unsigned char byte_D8C73C = {0};
+
+// D  unsigned char byte_D8C73D = {0};
+unsigned char byte_D8C73D = {0};
+
+// D  unsigned char byte_D8C73E = {0};
+unsigned char byte_D8C73E = {0};
+
+// D  unsigned short word_D8C744 = {0};
+unsigned short word_D8C744 = {0};
+
+// D  int dword_D8C748 = {0};
+int dword_D8C748 = {0};
+
+// D  unsigned char byte_D8C74C = {0};
+unsigned char byte_D8C74C = {0};
+
+// D  unsigned char byte_D8C74D = {0};
+unsigned char byte_D8C74D = {0};
+
+// D  unsigned short word_D8C754 = {0};
+unsigned short word_D8C754 = {0};
+
+// D  int dword_D8C758 = {0};
+int dword_D8C758 = {0};
+
+// D  unsigned char byte_D8C75C = {0};
+unsigned char byte_D8C75C = {0};
+
+// D  unsigned short word_D8C764 = {0};
+unsigned short word_D8C764 = {0};
+
+// D  int dword_D8C768 = {0};
+int dword_D8C768 = {0};
+
+// D  unsigned char byte_D8C76C = {0};
+unsigned char byte_D8C76C = {0};
+
+// D  unsigned short word_D8C774 = {0};
+unsigned short word_D8C774 = {0};
+
+// D  int dword_D8C778 = {0};
+int dword_D8C778 = {0};
+
+// D  unsigned char byte_D8C77C = {0};
+unsigned char byte_D8C77C = {0};
+
+// D  unsigned short word_D8C784 = {0};
+unsigned short word_D8C784 = {0};
+
+// D  int dword_D8C788 = {0};
+int dword_D8C788 = {0};
+
+// D  unsigned char byte_D8C78C = {0};
+unsigned char byte_D8C78C = {0};
+
+// D  unsigned char byte_D8C78D = {0};
+unsigned char byte_D8C78D = {0};
+
+// D  unsigned short word_D8C794 = {0};
+unsigned short word_D8C794 = {0};
+
+// D  int dword_D8C798 = {0};
+int dword_D8C798 = {0};
+
+// D  unsigned char byte_D8C79C = {0};
+unsigned char byte_D8C79C = {0};
+
+// D  unsigned char byte_D8C79D = {0};
+unsigned char byte_D8C79D = {0};
+
+// D  unsigned short word_D8C7A4 = {0};
+unsigned short word_D8C7A4 = {0};
+
+// D  int dword_D8C7A8 = {0};
+int dword_D8C7A8 = {0};
+
+// D  unsigned char byte_D8C7AC = {0};
+unsigned char byte_D8C7AC = {0};
+
+// D  unsigned short word_D8C7B4 = {0};
+unsigned short word_D8C7B4 = {0};
+
+// D  int dword_D8C7B8 = {0};
+int dword_D8C7B8 = {0};
+
+// D  unsigned char byte_D8C7BC = {0};
+unsigned char byte_D8C7BC = {0};
+
+// D  unsigned short word_D8C7C4 = {0};
+unsigned short word_D8C7C4 = {0};
+
+// D  int dword_D8C7C8 = {0};
+int dword_D8C7C8 = {0};
+
+// D  unsigned char byte_D8C7CC = {0};
+unsigned char byte_D8C7CC = {0};
+
+// D  unsigned char byte_D8C7CD = {0};
+unsigned char byte_D8C7CD = {0};
+
+// D  unsigned short word_D8C7D4 = {0};
+unsigned short word_D8C7D4 = {0};
+
+// D  int dword_D8C828 = {0};
+int dword_D8C828 = {0};
+
+// D  unsigned char byte_D8C82C = {0};
+unsigned char byte_D8C82C = {0};
+
+// D  unsigned char byte_D8C82D = {0};
+unsigned char byte_D8C82D = {0};
+
+// D  unsigned short word_D8C834 = {0};
+unsigned short word_D8C834 = {0};
+
+// D  int dword_D8C838 = {0};
+int dword_D8C838 = {0};
+
+// D  unsigned char byte_D8C83C = {0};
+unsigned char byte_D8C83C = {0};
+
+// D  unsigned short word_D8C844 = {0};
+unsigned short word_D8C844 = {0};
+
+// D  int dword_D8C848 = {0};
+int dword_D8C848 = {0};
+
+// D  unsigned char byte_D8C84C = {0};
+unsigned char byte_D8C84C = {0};
+
+// D  unsigned short word_D8C854 = {0};
+unsigned short word_D8C854 = {0};
+
+// D  int dword_D8C858 = {0};
+int dword_D8C858 = {0};
+
+// D  unsigned char byte_D8C85C = {0};
+unsigned char byte_D8C85C = {0};
+
+// D  unsigned char byte_D8C85D = {0};
+unsigned char byte_D8C85D = {0};
+
+// D  unsigned short word_D8C864 = {0};
+unsigned short word_D8C864 = {0};
+
+// D  int dword_D8C868 = {0};
+int dword_D8C868 = {0};
+
+// D  unsigned char byte_D8C86C = {0};
+unsigned char byte_D8C86C = {0};
+
+// D  unsigned char byte_D8C86D = {0};
+unsigned char byte_D8C86D = {0};
+
+// D  unsigned short word_D8C874 = {0};
+unsigned short word_D8C874 = {0};
+
+// D  int dword_D8C878 = {0};
+int dword_D8C878 = {0};
+
+// D  unsigned char byte_D8C87C = {0};
+unsigned char byte_D8C87C = {0};
+
+// D  unsigned short word_D8C884 = {0};
+unsigned short word_D8C884 = {0};
+
+// D  int dword_D8C888 = {0};
+int dword_D8C888 = {0};
+
+// D  unsigned char byte_D8C88C = {0};
+unsigned char byte_D8C88C = {0};
+
+// D  unsigned short word_D8C894 = {0};
+unsigned short word_D8C894 = {0};
+
+// D  int dword_D8C898 = {0};
+int dword_D8C898 = {0};
+
+// D  unsigned char byte_D8C89C = {0};
+unsigned char byte_D8C89C = {0};
+
+// D  unsigned char byte_D8C89D = {0};
+unsigned char byte_D8C89D = {0};
+
+// D  unsigned char byte_D8C89E = {0};
+unsigned char byte_D8C89E = {0};
+
+// D  unsigned short word_D8C8A4 = {0};
+unsigned short word_D8C8A4 = {0};
+
+// D  int dword_D8C8A8 = {0};
+int dword_D8C8A8 = {0};
+
+// D  unsigned char byte_D8C8AC = {0};
+unsigned char byte_D8C8AC = {0};
+
+// D  unsigned short word_D8C8B4 = {0};
+unsigned short word_D8C8B4 = {0};
+
+// D  int dword_D8C8B8 = {0};
+int dword_D8C8B8 = {0};
+
+// D  unsigned short word_D8C8C4 = {0};
+unsigned short word_D8C8C4 = {0};
+
+// D  int dword_D8C8C8 = {0};
+int dword_D8C8C8 = {0};
+
+// D  unsigned short word_D8C8D4 = {0};
+unsigned short word_D8C8D4 = {0};
+
+// D  int dword_D8C8D8 = {0};
+int dword_D8C8D8 = {0};
+
+// D  unsigned char byte_D8C8DC = {0};
+unsigned char byte_D8C8DC = {0};
+
+// D  unsigned short word_D8C8E4 = {0};
+unsigned short word_D8C8E4 = {0};
+
+// D  int dword_D8C8E8 = {0};
+int dword_D8C8E8 = {0};
+
+// D  unsigned char byte_D8C8EC = {0};
+unsigned char byte_D8C8EC = {0};
+
+// D  unsigned char byte_D8C8ED = {0};
+unsigned char byte_D8C8ED = {0};
+
+// D  unsigned short word_D8C8F4 = {0};
+unsigned short word_D8C8F4 = {0};
+
+// D  int dword_D8C8F8 = {0};
+int dword_D8C8F8 = {0};
+
+// D  unsigned char byte_D8C8FC = {0};
+unsigned char byte_D8C8FC = {0};
+
+// D  unsigned char byte_D8C8FD = {0};
+unsigned char byte_D8C8FD = {0};
+
+// D  unsigned char byte_D8C8FE = {0};
+unsigned char byte_D8C8FE = {0};
+
+// D  unsigned char byte_D8C8FF = {0};
+unsigned char byte_D8C8FF = {0};
+
+// D  unsigned short word_D8C904 = {0};
+unsigned short word_D8C904 = {0};
+
+// D  int dword_D8C908 = {0};
+int dword_D8C908 = {0};
+
+// D  unsigned char byte_D8C90C = {0};
+unsigned char byte_D8C90C = {0};
+
+// D  unsigned char byte_D8C90D = {0};
+unsigned char byte_D8C90D = {0};
+
+// D  unsigned short word_D8C914 = {0};
+unsigned short word_D8C914 = {0};
+
+// D  int dword_D8C928 = {0};
+int dword_D8C928 = {0};
+
+// D  unsigned char byte_D8C92C = {0};
+unsigned char byte_D8C92C = {0};
+
+// D  unsigned short word_D8C934 = {0};
+unsigned short word_D8C934 = {0};
+
+// D  int dword_D8C938 = {0};
+int dword_D8C938 = {0};
+
+// D  unsigned char byte_D8C93C = {0};
+unsigned char byte_D8C93C = {0};
+
+// D  unsigned short word_D8C944 = {0};
+unsigned short word_D8C944 = {0};
+
+// D  int dword_D8C948 = {0};
+int dword_D8C948 = {0};
+
+// D  unsigned char byte_D8C94C = {0};
+unsigned char byte_D8C94C = {0};
+
+// D  unsigned short word_D8C954 = {0};
+unsigned short word_D8C954 = {0};
+
+// D  int dword_D8C958 = {0};
+int dword_D8C958 = {0};
+
+// D  unsigned char byte_D8C95C = {0};
+unsigned char byte_D8C95C = {0};
+
+// D  unsigned char byte_D8C95D = {0};
+unsigned char byte_D8C95D = {0};
+
+// D  unsigned short word_D8C964 = {0};
+unsigned short word_D8C964 = {0};
+
+// D  int dword_D8C968 = {0};
+int dword_D8C968 = {0};
+
+// D  unsigned char byte_D8C96C = {0};
+unsigned char byte_D8C96C = {0};
+
+// D  unsigned char byte_D8C96D = {0};
+unsigned char byte_D8C96D = {0};
+
+// D  unsigned char byte_D8C96E = {0};
+unsigned char byte_D8C96E = {0};
+
+// D  unsigned char byte_D8C96F = {0};
+unsigned char byte_D8C96F = {0};
+
+// D  unsigned char byte_D8C970 = {0};
+unsigned char byte_D8C970 = {0};
+
+// D  unsigned char byte_D8C971 = {0};
+unsigned char byte_D8C971 = {0};
+
+// D  unsigned short word_D8C974 = {0};
+unsigned short word_D8C974 = {0};
+
+// D  int dword_D8C978 = {0};
+int dword_D8C978 = {0};
+
+// D  unsigned short word_D8C984 = {0};
+unsigned short word_D8C984 = {0};
+
+// D  int dword_D8C988 = {0};
+int dword_D8C988 = {0};
+
+// D  unsigned char byte_D8C98C = {0};
+unsigned char byte_D8C98C = {0};
+
+// D  unsigned short word_D8C994 = {0};
+unsigned short word_D8C994 = {0};
+
+// D  int dword_D8C998 = {0};
+int dword_D8C998 = {0};
+
+// D  unsigned short word_D8C9A4 = {0};
+unsigned short word_D8C9A4 = {0};
+
+// D  int dword_D8C9A8 = {0};
+int dword_D8C9A8 = {0};
+
+// D  unsigned char byte_D8C9AC = {0};
+unsigned char byte_D8C9AC = {0};
+
+// D  unsigned short word_D8C9B4 = {0};
+unsigned short word_D8C9B4 = {0};
+
+// D  int dword_D8C9B8 = {0};
+int dword_D8C9B8 = {0};
+
+// D  unsigned char byte_D8C9BC = {0};
+unsigned char byte_D8C9BC = {0};
+
+// D  unsigned char byte_D8C9BD = {0};
+unsigned char byte_D8C9BD = {0};
+
+// D  unsigned short word_D8C9C4 = {0};
+unsigned short word_D8C9C4 = {0};
+
+// D  int dword_D8C9C8 = {0};
+int dword_D8C9C8 = {0};
+
+// D  unsigned char byte_D8C9CC = {0};
+unsigned char byte_D8C9CC = {0};
+
+// D  unsigned char byte_D8C9CD = {0};
+unsigned char byte_D8C9CD = {0};
+
+// D  unsigned short word_D8C9D4 = {0};
+unsigned short word_D8C9D4 = {0};
+
+// D  int dword_D8C9D8 = {0};
+int dword_D8C9D8 = {0};
+
+// D  unsigned char byte_D8C9DC = {0};
+unsigned char byte_D8C9DC = {0};
+
+// D  unsigned short word_D8C9E4 = {0};
+unsigned short word_D8C9E4 = {0};
+
+// D  int dword_D8C9E8 = {0};
+int dword_D8C9E8 = {0};
+
+// D  unsigned char byte_D8C9EC = {0};
+unsigned char byte_D8C9EC = {0};
+
+// D  unsigned short word_D8C9F4 = {0};
+unsigned short word_D8C9F4 = {0};
+
+// D  int dword_D8C9F8 = {0};
+int dword_D8C9F8 = {0};
+
+// D  unsigned char byte_D8C9FC = {0};
+unsigned char byte_D8C9FC = {0};
+
+// D  unsigned char byte_D8C9FD = {0};
+unsigned char byte_D8C9FD = {0};
+
+// D  unsigned char byte_D8C9FE = {0};
+unsigned char byte_D8C9FE = {0};
+
+// D  unsigned short word_D8CA04 = {0};
+unsigned short word_D8CA04 = {0};
+
+// D  int dword_D8CA08 = {0};
+int dword_D8CA08 = {0};
+
+// D  unsigned char byte_D8CA0C = {0};
+unsigned char byte_D8CA0C = {0};
+
+// D  unsigned char byte_D8CA0D = {0};
+unsigned char byte_D8CA0D = {0};
+
+// D  unsigned char byte_D8CA0E = {0};
+unsigned char byte_D8CA0E = {0};
+
+// D  unsigned char byte_D8CA0F = {0};
+unsigned char byte_D8CA0F = {0};
+
+// D  unsigned char byte_D8CA10 = {0};
+unsigned char byte_D8CA10 = {0};
+
+// D  unsigned short word_D8CA14 = {0};
+unsigned short word_D8CA14 = {0};
+
+// D  int dword_D8CA18 = {0};
+int dword_D8CA18 = {0};
+
+// D  unsigned short word_D8CA24 = {0};
+unsigned short word_D8CA24 = {0};
+
+// D  int dword_D8CAA8 = {0};
+int dword_D8CAA8 = {0};
+
+// D  unsigned char byte_D8CAAC = {0};
+unsigned char byte_D8CAAC = {0};
+
+// D  unsigned short word_D8CAB4 = {0};
+unsigned short word_D8CAB4 = {0};
+
+// D  int dword_D8CAB8 = {0};
+int dword_D8CAB8 = {0};
+
+// D  unsigned char byte_D8CABC = {0};
+unsigned char byte_D8CABC = {0};
+
+// D  unsigned short word_D8CAC4 = {0};
+unsigned short word_D8CAC4 = {0};
+
+// D  int dword_D8CAC8 = {0};
+int dword_D8CAC8 = {0};
+
+// D  unsigned char byte_D8CACC = {0};
+unsigned char byte_D8CACC = {0};
+
+// D  unsigned short word_D8CAD4 = {0};
+unsigned short word_D8CAD4 = {0};
+
+// D  int dword_D8CAD8 = {0};
+int dword_D8CAD8 = {0};
+
+// D  unsigned char byte_D8CADC = {0};
+unsigned char byte_D8CADC = {0};
+
+// D  unsigned short word_D8CAE4 = {0};
+unsigned short word_D8CAE4 = {0};
+
+// D  int dword_D8CAE8 = {0};
+int dword_D8CAE8 = {0};
+
+// D  unsigned short word_D8CAF4 = {0};
+unsigned short word_D8CAF4 = {0};
+
+// D  int dword_D8CAF8 = {0};
+int dword_D8CAF8 = {0};
+
+// D  unsigned short word_D8CB04 = {0};
+unsigned short word_D8CB04 = {0};
+
+// D  int dword_D8CB08 = {0};
+int dword_D8CB08 = {0};
+
+// D  unsigned char byte_D8CB0C = {0};
+unsigned char byte_D8CB0C = {0};
+
+// D  unsigned short word_D8CB14 = {0};
+unsigned short word_D8CB14 = {0};
+
+// D  int dword_D8CB18 = {0};
+int dword_D8CB18 = {0};
+
+// D  unsigned char byte_D8CB1C = {0};
+unsigned char byte_D8CB1C = {0};
+
+// D  unsigned short word_D8CB24 = {0};
+unsigned short word_D8CB24 = {0};
+
+// D  int dword_D8CB28 = {0};
+int dword_D8CB28 = {0};
+
+// D  unsigned char byte_D8CB2C = {0};
+unsigned char byte_D8CB2C = {0};
+
+// D  unsigned short word_D8CB34 = {0};
+unsigned short word_D8CB34 = {0};
+
+// D  int dword_D8CB38 = {0};
+int dword_D8CB38 = {0};
+
+// D  unsigned char byte_D8CB3C = {0};
+unsigned char byte_D8CB3C = {0};
+
+// D  unsigned short word_D8CB44 = {0};
+unsigned short word_D8CB44 = {0};
+
+// D  int dword_D8CB48 = {0};
+int dword_D8CB48 = {0};
+
+// D  unsigned char byte_D8CB4C = {0};
+unsigned char byte_D8CB4C = {0};
+
+// D  unsigned short word_D8CB54 = {0};
+unsigned short word_D8CB54 = {0};
+
+// D  int dword_D8CB58 = {0};
+int dword_D8CB58 = {0};
+
+// D  unsigned char byte_D8CB5C = {0};
+unsigned char byte_D8CB5C = {0};
+
+// D  unsigned short word_D8CB64 = {0};
+unsigned short word_D8CB64 = {0};
+
+// D  int dword_D8CB68 = {0};
+int dword_D8CB68 = {0};
+
+// D  unsigned short word_D8CB74 = {0};
+unsigned short word_D8CB74 = {0};
+
+// D  int dword_D8CB78 = {0};
+int dword_D8CB78 = {0};
+
+// D  unsigned short word_D8CB84 = {0};
+unsigned short word_D8CB84 = {0};
+
+// D  int dword_D8CB88 = {0};
+int dword_D8CB88 = {0};
+
+// D  unsigned short word_D8CB94 = {0};
+unsigned short word_D8CB94 = {0};
+
+// D  int dword_D8CB98 = {0};
+int dword_D8CB98 = {0};
+
+// D  unsigned char byte_D8CB9C = {0};
+unsigned char byte_D8CB9C = {0};
+
+// D  unsigned short word_D8CBA4 = {0};
+unsigned short word_D8CBA4 = {0};
+
+// D  int dword_D8CBA8 = {0};
+int dword_D8CBA8 = {0};
+
+// D  unsigned char byte_D8CBAC = {0};
+unsigned char byte_D8CBAC = {0};
+
+// D  unsigned char byte_D8CBAD = {0};
+unsigned char byte_D8CBAD = {0};
+
+// D  unsigned short word_D8CBB4 = {0};
+unsigned short word_D8CBB4 = {0};
+
+// D  int dword_D8CBB8 = {0};
+int dword_D8CBB8 = {0};
+
+// D  unsigned char byte_D8CBBC = {0};
+unsigned char byte_D8CBBC = {0};
+
+// D  unsigned char byte_D8CBBD = {0};
+unsigned char byte_D8CBBD = {0};
+
+// D  unsigned char byte_D8CBBE = {0};
+unsigned char byte_D8CBBE = {0};
+
+// D  unsigned short word_D8CBC4 = {0};
+unsigned short word_D8CBC4 = {0};
+
+// D  int dword_D8CBC8 = {0};
+int dword_D8CBC8 = {0};
+
+// D  unsigned char byte_D8CBCC = {0};
+unsigned char byte_D8CBCC = {0};
+
+// D  unsigned char byte_D8CBCD = {0};
+unsigned char byte_D8CBCD = {0};
+
+// D  unsigned short word_D8CBD4 = {0};
+unsigned short word_D8CBD4 = {0};
+
+// D  int dword_D8CBD8 = {0};
+int dword_D8CBD8 = {0};
+
+// D  unsigned char byte_D8CBDC = {0};
+unsigned char byte_D8CBDC = {0};
+
+// D  unsigned char byte_D8CBDD = {0};
+unsigned char byte_D8CBDD = {0};
+
+// D  unsigned char byte_D8CBDE = {0};
+unsigned char byte_D8CBDE = {0};
+
+// D  unsigned char byte_D8CBDF = {0};
+unsigned char byte_D8CBDF = {0};
+
+// D  unsigned short word_D8CBE4 = {0};
+unsigned short word_D8CBE4 = {0};
+
+// D  int dword_D8CBE8 = {0};
+int dword_D8CBE8 = {0};
+
+// D  unsigned char byte_D8CBEC = {0};
+unsigned char byte_D8CBEC = {0};
+
+// D  unsigned short word_D8CBF4 = {0};
+unsigned short word_D8CBF4 = {0};
+
+// D  int dword_D8CBF8 = {0};
+int dword_D8CBF8 = {0};
+
+// D  unsigned char byte_D8CBFC = {0};
+unsigned char byte_D8CBFC = {0};
+
+// D  unsigned short word_D8CC04 = {0};
+unsigned short word_D8CC04 = {0};
+
+// D  int dword_D8CC08 = {0};
+int dword_D8CC08 = {0};
+
+// D  unsigned char byte_D8CC0C = {0};
+unsigned char byte_D8CC0C = {0};
+
+// D  unsigned short word_D8CC14 = {0};
+unsigned short word_D8CC14 = {0};
+
+// D  int dword_D8CC18 = {0};
+int dword_D8CC18 = {0};
+
+// D  unsigned char byte_D8CC1C = {0};
+unsigned char byte_D8CC1C = {0};
+
+// D  unsigned short word_D8CC24 = {0};
+unsigned short word_D8CC24 = {0};
+
+// D  int dword_D8CC28 = {0};
+int dword_D8CC28 = {0};
+
+// D  unsigned char byte_D8CC2C = {0};
+unsigned char byte_D8CC2C = {0};
+
+// D  unsigned short word_D8CC34 = {0};
+unsigned short word_D8CC34 = {0};
+
+// D  int dword_D8CC38 = {0};
+int dword_D8CC38 = {0};
+
+// D  unsigned char byte_D8CC3C = {0};
+unsigned char byte_D8CC3C = {0};
+
+// D  unsigned char byte_D8CC3D = {0};
+unsigned char byte_D8CC3D = {0};
+
+// D  unsigned short word_D8CC44 = {0};
+unsigned short word_D8CC44 = {0};
+
+// D  int dword_D8CC48 = {0};
+int dword_D8CC48 = {0};
+
+// D  unsigned char byte_D8CC4C = {0};
+unsigned char byte_D8CC4C = {0};
+
+// D  unsigned char byte_D8CC4D = {0};
+unsigned char byte_D8CC4D = {0};
+
+// D  unsigned char byte_D8CC4E = {0};
+unsigned char byte_D8CC4E = {0};
+
+// D  unsigned short word_D8CC54 = {0};
+unsigned short word_D8CC54 = {0};
+
+// D  int dword_D8CC58 = {0};
+int dword_D8CC58 = {0};
+
+// D  unsigned char byte_D8CC5C = {0};
+unsigned char byte_D8CC5C = {0};
+
+// D  unsigned char byte_D8CC5D = {0};
+unsigned char byte_D8CC5D = {0};
+
+// D  unsigned short word_D8CC64 = {0};
+unsigned short word_D8CC64 = {0};
+
+// D  int dword_D8CC68 = {0};
+int dword_D8CC68 = {0};
+
+// D  unsigned char byte_D8CC6C = {0};
+unsigned char byte_D8CC6C = {0};
+
+// D  unsigned char byte_D8CC6D = {0};
+unsigned char byte_D8CC6D = {0};
+
+// D  unsigned char byte_D8CC6E = {0};
+unsigned char byte_D8CC6E = {0};
+
+// D  unsigned short word_D8CC74 = {0};
+unsigned short word_D8CC74 = {0};
+
+// D  int dword_D8CC78 = {0};
+int dword_D8CC78 = {0};
+
+// D  unsigned char byte_D8CC7C = {0};
+unsigned char byte_D8CC7C = {0};
+
+// D  unsigned short word_D8CC84 = {0};
+unsigned short word_D8CC84 = {0};
+
+// D  int dword_D8CC88 = {0};
+int dword_D8CC88 = {0};
+
+// D  unsigned char byte_D8CC8C = {0};
+unsigned char byte_D8CC8C = {0};
+
+// D  unsigned char byte_D8CC8D = {0};
+unsigned char byte_D8CC8D = {0};
+
+// D  unsigned short word_D8CC94 = {0};
+unsigned short word_D8CC94 = {0};
+
+// D  int dword_D8CC98 = {0};
+int dword_D8CC98 = {0};
+
+// D  unsigned short word_D8CCA4 = {0};
+unsigned short word_D8CCA4 = {0};
+
+// D  int dword_D8CCA8 = {0};
+int dword_D8CCA8 = {0};
+
+// D  unsigned char byte_D8CCAC = {0};
+unsigned char byte_D8CCAC = {0};
+
+// D  unsigned short word_D8CCB4 = {0};
+unsigned short word_D8CCB4 = {0};
+
+// D  int dword_D8CCB8 = {0};
+int dword_D8CCB8 = {0};
+
+// D  unsigned char byte_D8CCBC = {0};
+unsigned char byte_D8CCBC = {0};
+
+// D  unsigned char byte_D8CCBD = {0};
+unsigned char byte_D8CCBD = {0};
+
+// D  unsigned short word_D8CCC4 = {0};
+unsigned short word_D8CCC4 = {0};
+
+// D  int dword_D8CCC8 = {0};
+int dword_D8CCC8 = {0};
+
+// D  unsigned short word_D8CCD4 = {0};
+unsigned short word_D8CCD4 = {0};
+
+// D  int dword_D8CCD8 = {0};
+int dword_D8CCD8 = {0};
+
+// D  unsigned char byte_D8CCDC = {0};
+unsigned char byte_D8CCDC = {0};
+
+// D  unsigned short word_D8CCE4 = {0};
+unsigned short word_D8CCE4 = {0};
+
+// D  int dword_D8CCE8 = {0};
+int dword_D8CCE8 = {0};
+
+// D  unsigned char byte_D8CCEC = {0};
+unsigned char byte_D8CCEC = {0};
+
+// D  unsigned short word_D8CCF4 = {0};
+unsigned short word_D8CCF4 = {0};
+
+// D  int dword_D8CCF8 = {0};
+int dword_D8CCF8 = {0};
+
+// D  unsigned char byte_D8CCFC = {0};
+unsigned char byte_D8CCFC = {0};
+
+// D  unsigned short word_D8CD04 = {0};
+unsigned short word_D8CD04 = {0};
+
+// D  int dword_D8CD08 = {0};
+int dword_D8CD08 = {0};
+
+// D  unsigned char byte_D8CD0C = {0};
+unsigned char byte_D8CD0C = {0};
+
+// D  unsigned short word_D8CD14 = {0};
+unsigned short word_D8CD14 = {0};
+
+// D  int dword_D8CD18 = {0};
+int dword_D8CD18 = {0};
+
+// D  unsigned char byte_D8CD1C = {0};
+unsigned char byte_D8CD1C = {0};
+
+// D  unsigned char byte_D8CD1D = {0};
+unsigned char byte_D8CD1D = {0};
+
+// D  unsigned char byte_D8CD1E = {0};
+unsigned char byte_D8CD1E = {0};
+
+// D  unsigned char byte_D8CD1F = {0};
+unsigned char byte_D8CD1F = {0};
+
+// D  unsigned short word_D8CD24 = {0};
+unsigned short word_D8CD24 = {0};
+
+// D  int dword_D8CD28 = {0};
+int dword_D8CD28 = {0};
+
+// D  unsigned char byte_D8CD2C = {0};
+unsigned char byte_D8CD2C = {0};
+
+// D  unsigned short word_D8CD34 = {0};
+unsigned short word_D8CD34 = {0};
+
+// D  int dword_D8CD38 = {0};
+int dword_D8CD38 = {0};
+
+// D  unsigned char byte_D8CD3C = {0};
+unsigned char byte_D8CD3C = {0};
+
+// D  unsigned short word_D8CD44 = {0};
+unsigned short word_D8CD44 = {0};
+
+// D  int dword_D8CD48 = {0};
+int dword_D8CD48 = {0};
+
+// D  unsigned char byte_D8CD4C = {0};
+unsigned char byte_D8CD4C = {0};
+
+// D  unsigned char byte_D8CD4D = {0};
+unsigned char byte_D8CD4D = {0};
+
+// D  unsigned char byte_D8CD4E = {0};
+unsigned char byte_D8CD4E = {0};
+
+// D  unsigned short word_D8CD54 = {0};
+unsigned short word_D8CD54 = {0};
+
+// D  int dword_D8CD58 = {0};
+int dword_D8CD58 = {0};
+
+// D  unsigned char byte_D8CD5C = {0};
+unsigned char byte_D8CD5C = {0};
+
+// D  unsigned short word_D8CD64 = {0};
+unsigned short word_D8CD64 = {0};
+
+// D  int dword_D8CD68 = {0};
+int dword_D8CD68 = {0};
+
+// D  unsigned char byte_D8CD6C = {0};
+unsigned char byte_D8CD6C = {0};
+
+// D  unsigned short word_D8CD74 = {0};
+unsigned short word_D8CD74 = {0};
+
+// D  int dword_D8CD78 = {0};
+int dword_D8CD78 = {0};
+
+// D  unsigned char byte_D8CD7C = {0};
+unsigned char byte_D8CD7C = {0};
+
+// D  unsigned char byte_D8CD7D = {0};
+unsigned char byte_D8CD7D = {0};
+
+// D  unsigned short word_D8CD84 = {0};
+unsigned short word_D8CD84 = {0};
+
+// D  int dword_D8CD88 = {0};
+int dword_D8CD88 = {0};
+
+// D  unsigned char byte_D8CD8C = {0};
+unsigned char byte_D8CD8C = {0};
+
+// D  unsigned short word_D8CD94 = {0};
+unsigned short word_D8CD94 = {0};
+
+// D  int dword_D8CD98 = {0};
+int dword_D8CD98 = {0};
+
+// D  unsigned short word_D8CDA4 = {0};
+unsigned short word_D8CDA4 = {0};
+
+// D  int dword_D8CDA8 = {0};
+int dword_D8CDA8 = {0};
+
+// D  unsigned char byte_D8CDAC = {0};
+unsigned char byte_D8CDAC = {0};
+
+// D  unsigned short word_D8CDB4 = {0};
+unsigned short word_D8CDB4 = {0};
+
+// D  int dword_D8CDB8 = {0};
+int dword_D8CDB8 = {0};
+
+// D  unsigned char byte_D8CDBC = {0};
+unsigned char byte_D8CDBC = {0};
+
+// D  unsigned short word_D8CDC4 = {0};
+unsigned short word_D8CDC4 = {0};
+
+// D  int dword_D8CDC8 = {0};
+int dword_D8CDC8 = {0};
+
+// D  unsigned char byte_D8CDCC = {0};
+unsigned char byte_D8CDCC = {0};
+
+// D  unsigned char byte_D8CDCD = {0};
+unsigned char byte_D8CDCD = {0};
+
+// D  unsigned short word_D8CDD4 = {0};
+unsigned short word_D8CDD4 = {0};
+
+// D  int dword_D8CDD8 = {0};
+int dword_D8CDD8 = {0};
+
+// D  unsigned char byte_D8CDDC = {0};
+unsigned char byte_D8CDDC = {0};
+
+// D  unsigned short word_D8CDE4 = {0};
+unsigned short word_D8CDE4 = {0};
+
+// D  int dword_D8CDE8 = {0};
+int dword_D8CDE8 = {0};
+
+// D  unsigned char byte_D8CDEC = {0};
+unsigned char byte_D8CDEC = {0};
+
+// D  unsigned short word_D8CDF4 = {0};
+unsigned short word_D8CDF4 = {0};
+
+// D  int dword_D8CDF8 = {0};
+int dword_D8CDF8 = {0};
+
+// D  unsigned short word_D8CE04 = {0};
+unsigned short word_D8CE04 = {0};
+
+// D  int dword_D8CE08 = {0};
+int dword_D8CE08 = {0};
+
+// D  unsigned char byte_D8CE0C = {0};
+unsigned char byte_D8CE0C = {0};
+
+// D  unsigned char byte_D8CE0D = {0};
+unsigned char byte_D8CE0D = {0};
+
+// D  unsigned char byte_D8CE0E = {0};
+unsigned char byte_D8CE0E = {0};
+
+// D  unsigned short word_D8CE14 = {0};
+unsigned short word_D8CE14 = {0};
+
+// D  int dword_D8CE18 = {0};
+int dword_D8CE18 = {0};
+
+// D  unsigned char byte_D8CE1C = {0};
+unsigned char byte_D8CE1C = {0};
+
+// D  unsigned short word_D8CE24 = {0};
+unsigned short word_D8CE24 = {0};
+
+// D  int dword_D8CE28 = {0};
+int dword_D8CE28 = {0};
+
+// D  unsigned short word_D8CE34 = {0};
+unsigned short word_D8CE34 = {0};
+
+// D  int dword_D8CE38 = {0};
+int dword_D8CE38 = {0};
+
+// D  unsigned char byte_D8CE3C = {0};
+unsigned char byte_D8CE3C = {0};
+
+// D  unsigned short word_D8CE44 = {0};
+unsigned short word_D8CE44 = {0};
+
+// D  int dword_D8CE48 = {0};
+int dword_D8CE48 = {0};
+
+// D  unsigned char byte_D8CE4C = {0};
+unsigned char byte_D8CE4C = {0};
+
+// D  unsigned short word_D8CE54 = {0};
+unsigned short word_D8CE54 = {0};
+
+// D  int dword_D8CE58 = {0};
+int dword_D8CE58 = {0};
+
+// D  unsigned short word_D8CE64 = {0};
+unsigned short word_D8CE64 = {0};
+
+// D  int dword_D8D0F8 = {0};
+int dword_D8D0F8 = {0};
+
+// D  unsigned char byte_D8D0FC = {0};
+unsigned char byte_D8D0FC = {0};
+
+// D  unsigned char byte_D8D0FD = {0};
+unsigned char byte_D8D0FD = {0};
+
+// D  unsigned char byte_D8D0FE = {0};
+unsigned char byte_D8D0FE = {0};
+
+// D  unsigned char byte_D8D0FF = {0};
+unsigned char byte_D8D0FF = {0};
+
+// D  unsigned short word_D8D104 = {0};
+unsigned short word_D8D104 = {0};
+
+// D  int dword_D8D108 = {0};
+int dword_D8D108 = {0};
+
+// D  unsigned char byte_D8D10C = {0};
+unsigned char byte_D8D10C = {0};
+
+// D  unsigned char byte_D8D10D = {0};
+unsigned char byte_D8D10D = {0};
+
+// D  unsigned short word_D8D114 = {0};
+unsigned short word_D8D114 = {0};
+
+// D  int dword_D8D118 = {0};
+int dword_D8D118 = {0};
+
+// D  unsigned char byte_D8D11C = {0};
+unsigned char byte_D8D11C = {0};
+
+// D  unsigned char byte_D8D11D = {0};
+unsigned char byte_D8D11D = {0};
+
+// D  unsigned short word_D8D124 = {0};
+unsigned short word_D8D124 = {0};
+
+// D  int dword_D8D128 = {0};
+int dword_D8D128 = {0};
+
+// D  unsigned char byte_D8D12C = {0};
+unsigned char byte_D8D12C = {0};
+
+// D  unsigned short word_D8D134 = {0};
+unsigned short word_D8D134 = {0};
+
+// D  int dword_D8D138 = {0};
+int dword_D8D138 = {0};
+
+// D  unsigned char byte_D8D13C = {0};
+unsigned char byte_D8D13C = {0};
+
+// D  unsigned char byte_D8D13D = {0};
+unsigned char byte_D8D13D = {0};
+
+// D  unsigned short word_D8D144 = {0};
+unsigned short word_D8D144 = {0};
+
+// D  int dword_D8D148 = {0};
+int dword_D8D148 = {0};
+
+// D  unsigned char byte_D8D14C = {0};
+unsigned char byte_D8D14C = {0};
+
+// D  unsigned char byte_D8D14D = {0};
+unsigned char byte_D8D14D = {0};
+
+// D  unsigned short word_D8D154 = {0};
+unsigned short word_D8D154 = {0};
+
+// D  int dword_D8D158 = {0};
+int dword_D8D158 = {0};
+
+// D  unsigned char byte_D8D15C = {0};
+unsigned char byte_D8D15C = {0};
+
+// D  unsigned char byte_D8D15D = {0};
+unsigned char byte_D8D15D = {0};
+
+// D  unsigned short word_D8D164 = {0};
+unsigned short word_D8D164 = {0};
+
+// D  int dword_D8D168 = {0};
+int dword_D8D168 = {0};
+
+// D  unsigned char byte_D8D16C = {0};
+unsigned char byte_D8D16C = {0};
+
+// D  unsigned char byte_D8D16D = {0};
+unsigned char byte_D8D16D = {0};
+
+// D  unsigned short word_D8D174 = {0};
+unsigned short word_D8D174 = {0};
+
+// D  int dword_D8D178 = {0};
+int dword_D8D178 = {0};
+
+// D  unsigned char byte_D8D17C = {0};
+unsigned char byte_D8D17C = {0};
+
+// D  unsigned char byte_D8D17D = {0};
+unsigned char byte_D8D17D = {0};
+
+// D  unsigned short word_D8D184 = {0};
+unsigned short word_D8D184 = {0};
+
+// D  int dword_D8D188 = {0};
+int dword_D8D188 = {0};
+
+// D  unsigned char byte_D8D18C = {0};
+unsigned char byte_D8D18C = {0};
+
+// D  unsigned char byte_D8D18D = {0};
+unsigned char byte_D8D18D = {0};
+
+// D  unsigned short word_D8D194 = {0};
+unsigned short word_D8D194 = {0};
+
+// D  int dword_D8D198 = {0};
+int dword_D8D198 = {0};
+
+// D  unsigned short word_D8D1A4 = {0};
+unsigned short word_D8D1A4 = {0};
+
+// D  int dword_D8D1A8 = {0};
+int dword_D8D1A8 = {0};
+
+// D  unsigned short word_D8D1B4 = {0};
+unsigned short word_D8D1B4 = {0};
+
+// D  unsigned short word_D8D1C4 = {0};
+unsigned short word_D8D1C4 = {0};
+
+// D  unsigned short word_D8D1D4 = {0};
+unsigned short word_D8D1D4 = {0};
+
+// D  unsigned short word_D8D244 = {0};
+unsigned short word_D8D244 = {0};
+
+// D  unsigned short word_D8D414 = {0};
+unsigned short word_D8D414 = {0};
+
+// D  unsigned short word_D8D424 = {0};
+unsigned short word_D8D424 = {0};
+
+// D  unsigned short word_D8DAF4 = {0};
+unsigned short word_D8DAF4 = {0};
+
+// D  int dword_D8E48C = {0};
+int dword_D8E48C = {0};
+
+// D  int dword_D8E490 = {0};
+int dword_D8E490 = {0};
+
+// D  int dword_D8E494 = {0};
+int dword_D8E494 = {0};
+
+// D  int dword_D8E498 = {0};
+int dword_D8E498 = {0};
+
+// D  int dword_D8E4A4 = {0};
+int dword_D8E4A4 = {0};
+
+// D  int dword_D8E4AC = {0};
+int dword_D8E4AC = {0};
+
+// D  int dword_D8E4B0 = {0};
+int dword_D8E4B0 = {0};
+
+// D  int dword_D8E4B4 = {0};
+int dword_D8E4B4 = {0};
+
+// D  int dword_D8E4B8 = {0};
+int dword_D8E4B8 = {0};
+
+// D  int dword_D8EB94 = {0};
+int dword_D8EB94 = {0};
+
+// D  unsigned char byte_D8EBF0 = {0};
+unsigned char byte_D8EBF0 = {0};
+
+// D  int dword_D92780 = {0};
+int dword_D92780 = {0};
+
+// D  int dword_DCA13C = {0};
+int dword_DCA13C = {0};
+
+// D  int dword_DCA23C = {0};
+int dword_DCA23C = {0};
+
+// D  int dword_DDB93C = {0};
+int dword_DDB93C = {0};
+
+// D  int dword_DE3448 = {0};
+int dword_DE3448 = {0};
+
+// D  int dword_DE3490 = {0};
+int dword_DE3490 = {0};
+
+// D  int dword_DE6F70 = {0};
+int dword_DE6F70 = {0};
+
+// D  float flt_DE71F8 = {0};
+float flt_DE71F8 = {0};
+
+// D  float flt_DE7480 = {0};
+float flt_DE7480 = {0};
+
+// D  int dword_DE8DE8 = {0};
+int dword_DE8DE8 = {0};
+
+// D  int dword_DE8DEC = {0};
+int dword_DE8DEC = {0};
+
+// D  int dword_DE8DF0 = {0};
+int dword_DE8DF0 = {0};
+
+// D  int dword_DE9384 = {0};
+int dword_DE9384 = {0};
+
+// D  unsigned char byte_DE93A8 = {0};
+unsigned char byte_DE93A8 = {0};
+
+// D  unsigned char byte_DE93A9 = {0};
+unsigned char byte_DE93A9 = {0};
+
+// D  int unk_DE93B0 = {0};
+int unk_DE93B0 = {0};
+
+// D  unsigned char byte_DE96F4 = {0};
+unsigned char byte_DE96F4 = {0};
+
+// D  float flt_DE9978 = {0};
+float flt_DE9978 = {0};
+
+// D  int dword_DE997C = {0};
+int dword_DE997C = {0};
+
+// D  int dword_DE99B4 = {0};
+int dword_DE99B4 = {0};
+
+// D  unsigned char byte_DE99E4 = {0};
+unsigned char byte_DE99E4 = {0};
+
+// D  int dword_DE99E8 = {0};
+int dword_DE99E8 = {0};
+
+// D  int dword_DE99F0 = {0};
+int dword_DE99F0 = {0};
+
+// D  int dword_DE99F4 = {0};
+int dword_DE99F4 = {0};
+
+// D  int dword_DE99F8 = {0};
+int dword_DE99F8 = {0};
+
+// D  int dword_DE9A00 = {0};
+int dword_DE9A00 = {0};
+
+// D  int dword_DE9A04 = {0};
+int dword_DE9A04 = {0};
+
+// D  int dword_DE9A08 = {0};
+int dword_DE9A08 = {0};
+
+// D  int dword_DE9A10 = {0};
+int dword_DE9A10 = {0};
+
+// D  int dword_DE9A14 = {0};
+int dword_DE9A14 = {0};
+
+// D  int dword_DE9A18 = {0};
+int dword_DE9A18 = {0};
+
+// D  unsigned char byte_DE9A1C = {0};
+unsigned char byte_DE9A1C = {0};
+
+// PRUNED (hand-trim debt, compile-driven):
+//   data char PathName_0[] = "\x846X";
+//   data char aQ07[] = "Q07";
+//   data char byte_583A1C[] = " %s";
+//   data char byte_5861F8[] = "p%d";
+//   data char byte_592DA4[] = "End";
+//   data char byte_596420[] = "cvd";
+//   data char byte_596424[] = "pol";
+//   data char g_EffCylinderEditorData[] = "\xCE\xDE\xD0\xA7";
+//   data char g_LanguageCode[] = "end";
+//   data char off_5D89BC[] = "%lu";
+//   data char off_5D8FEC[] = "%2d";
+//   data char off_5DB9B0[] = "yaw";
+//   data const WCHAR SrcStr;

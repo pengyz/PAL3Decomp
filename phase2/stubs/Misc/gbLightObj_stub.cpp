@@ -17,7 +17,7 @@ gbLightObj::~gbLightObj()
 { }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   gbLightObj::GetAABBox
-//   gbLightObj::GetCGEntry
-//   gbLightObj::GetGfxManager
-//   gbLightObj::IsIdle
+//   func gbLightObj::GetAABBox
+//   func gbLightObj::GetCGEntry
+//   func gbLightObj::GetGfxManager
+//   func gbLightObj::IsIdle

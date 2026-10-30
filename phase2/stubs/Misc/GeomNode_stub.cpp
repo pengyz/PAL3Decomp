@@ -16,6 +16,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4B70C0(...);
+int sub_4B70C0(...);
+
+// D  int sub_4B7220(...);
+int sub_4B7220(...);
+
 // 0x00429AF0  (GeomNode::InitFromFile)
 void GeomNode::InitFromFile(const gbGeomNode *pGeomNode, int nVal)
 { }

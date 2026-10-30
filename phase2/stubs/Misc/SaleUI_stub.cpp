@@ -60,6 +60,15 @@
 
 // Unnamed globals (extern)
 
+// D  extern char asc_5B74B8[];
+extern char asc_5B74B8[];
+
+// D  extern CHAR byte_DC343C[256];
+extern CHAR byte_DC343C[256];
+
+// D  extern CHAR byte_DCEB3C[256];
+extern CHAR byte_DCEB3C[256];
+
 // 0x0045A7B0  (SaleUI::SaleUI)
 SaleUI::SaleUI()
 { }

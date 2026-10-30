@@ -10,4 +10,4 @@
 // 0x004B6FB0
 
 // PRUNED (hand-trim debt, compile-driven):
-//   gbChain1DNode::Process
+//   func gbChain1DNode::Process

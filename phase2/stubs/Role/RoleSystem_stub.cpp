@@ -57,6 +57,48 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_401070(...);
+int sub_401070(...);
+
+// D  int sub_407EC0(...);
+int sub_407EC0(...);
+
+// D  int sub_408010(...);
+int sub_408010(...);
+
+// D  int sub_4080F0(...);
+int sub_4080F0(...);
+
+// D  int sub_420250(...);
+int sub_420250(...);
+
+// D  int sub_420380(...);
+int sub_420380(...);
+
+// D  int sub_4204B0(...);
+int sub_4204B0(...);
+
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern CHAR byte_DC7D3C[512];
+extern CHAR byte_DC7D3C[512];
+
+// D  extern CHAR byte_DCD03C[256];
+extern CHAR byte_DCD03C[256];
+
+// D  void __cdecl nullsub_4(void);
+void __cdecl nullsub_4(void);
+
+// D  void __cdecl nullsub_5(void);
+void __cdecl nullsub_5(void);
+
+// D  void __cdecl nullsub_6(void);
+void __cdecl nullsub_6(void);
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
 // 0x004083E0  (RoleSystem::CheckSceneCollision)
 BOOL RoleSystem::CheckSceneCollision(int *nFlag, int nVal)
 { return 0; }

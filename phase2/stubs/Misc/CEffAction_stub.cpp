@@ -23,6 +23,24 @@
 
 // Unnamed globals (extern)
 
+// D  extern int dword_5D4D44;
+extern int dword_5D4D44;
+
+// D  extern int dword_5D4D58;
+extern int dword_5D4D58;
+
+// D  extern int dword_5D4D70;
+extern int dword_5D4D70;
+
+// D  extern int dword_5D4D88;
+extern int dword_5D4D88;
+
+// D  extern int dword_5D4D94;
+extern int dword_5D4D94;
+
+// D  extern int dword_5D4DA0;
+extern int dword_5D4DA0;
+
 // 0x004C0500  (CEffAction::OnTest)
 bool CEffAction::OnTest()
 { return 0; }

@@ -23,6 +23,9 @@
 
 // Unnamed globals (extern)
 
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
 // 0x0040C7D0  (Scene::Render2)
 void Scene::Render2()
 { }

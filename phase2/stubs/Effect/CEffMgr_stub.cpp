@@ -25,6 +25,27 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4C9550(...);
+int sub_4C9550(...);
+
+// D  int sub_4CB3A0(...);
+int sub_4CB3A0(...);
+
+// D  int sub_4CD340(...);
+int sub_4CD340(...);
+
+// D  int sub_4D3870(...);
+int sub_4D3870(...);
+
+// D  int sub_4D4EA0(...);
+int sub_4D4EA0(...);
+
+// D  int sub_4D5A00(...);
+int sub_4D5A00(...);
+
+// D  extern CPK stru_DE9CB0;
+extern CPK stru_DE9CB0;
+
 // 0x004B7340  (CEffMgr::UpdateTimedTrigger)
 void CEffMgr::UpdateTimedTrigger(float fVal)
 { }

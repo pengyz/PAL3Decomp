@@ -56,6 +56,24 @@
 
 // Unnamed globals (extern)
 
+// D  extern char asc_5B74B8[];
+extern char asc_5B74B8[];
+
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
+// D  extern CHAR byte_DCD03C[256];
+extern CHAR byte_DCD03C[256];
+
+// D  extern CHAR byte_DCD13C[256];
+extern CHAR byte_DCD13C[256];
+
+// D  extern CHAR byte_DCFC3C[512];
+extern CHAR byte_DCFC3C[512];
+
 // 0x00479300  (MainEquipUI::MainEquipUI)
 MainEquipUI::MainEquipUI()
 { }

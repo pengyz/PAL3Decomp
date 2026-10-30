@@ -32,6 +32,27 @@
 
 // Unnamed globals (extern)
 
+// D  extern int dword_DE8DE8;
+extern int dword_DE8DE8;
+
+// D  extern int dword_DE8DEC;
+extern int dword_DE8DEC;
+
+// D  extern int dword_DE8DF0;
+extern int dword_DE8DF0;
+
+// D  void __cdecl nullsub_12(void);
+void __cdecl nullsub_12(void);
+
+// D  void __cdecl nullsub_13(void);
+void __cdecl nullsub_13(void);
+
+// D  void __cdecl nullsub_14(void);
+void __cdecl nullsub_14(void);
+
+// D  void __cdecl nullsub_15(void);
+void __cdecl nullsub_15(void);
+
 // 0x004BF780  (RenderTarget2::Init)
 int RenderTarget2::Init()
 { return 0; }

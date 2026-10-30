@@ -81,6 +81,24 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4C5CD0(...);
+int sub_4C5CD0(...);
+
+// D  int sub_4CE5C0(...);
+int sub_4CE5C0(...);
+
+// D  int sub_53D1D0(...);
+int sub_53D1D0(...);
+
+// D  extern char aSceneData[];
+extern char aSceneData[];
+
+// D  extern CHAR aSoftwareSoftst_2[];
+extern CHAR aSoftwareSoftst_2[];
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
 // 0x00401BC0  (PAL3::InitVFileSystem)
 void * PAL3::InitVFileSystem()
 { return 0; }

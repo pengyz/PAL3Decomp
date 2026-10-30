@@ -27,6 +27,9 @@
 
 // Forward declarations for unnamed functions
 
+// D  int PalScript_Cleanup(...);
+int PalScript_Cleanup(...);
+
 // 0x0047BBF0  (UITitle_ArcSave::UITitle_ArcSave)
 UITitle_ArcSave::UITitle_ArcSave()
 { }

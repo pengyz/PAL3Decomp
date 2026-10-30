@@ -43,6 +43,15 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_5427A5(...);
+int sub_5427A5(...);
+
+// D  int sub_543C42(...);
+int sub_543C42(...);
+
+// D  extern char asc_5B74B8[];
+extern char asc_5B74B8[];
+
 // 0x004867F0  (RenderTarget::InitChildPanels)
 int RenderTarget::InitChildPanels()
 { return 0; }

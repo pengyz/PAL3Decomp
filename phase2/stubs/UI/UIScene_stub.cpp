@@ -45,6 +45,18 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4019F0(...);
+int sub_4019F0(...);
+
+// D  int sub_407790(...);
+int sub_407790(...);
+
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x00419C20  (UIScene::RenderVertexPool)
 int UIScene::RenderVertexPool()
 { return 0; }

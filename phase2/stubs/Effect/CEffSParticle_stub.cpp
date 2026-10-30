@@ -20,6 +20,9 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4D4EA0(...);
+int sub_4D4EA0(...);
+
 // 0x004D4EE0  (CEffSParticle::CEffSParticle)
 CEffSParticle::CEffSParticle()
 { }

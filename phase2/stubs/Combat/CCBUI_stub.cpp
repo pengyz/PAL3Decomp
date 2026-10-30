@@ -81,6 +81,33 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4CE030(...);
+int sub_4CE030(...);
+
+// D  int sub_4CE5C0(...);
+int sub_4CE5C0(...);
+
+// D  int sub_511630(...);
+int sub_511630(...);
+
+// D  int sub_516170(...);
+int sub_516170(...);
+
+// D  int sub_51A400(...);
+int sub_51A400(...);
+
+// D  extern char aUiCombatContro_8[];
+extern char aUiCombatContro_8[];
+
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
+// D  extern CHAR byte_DCF43C[256];
+extern CHAR byte_DCF43C[256];
+
 // 0x0043D7A0  (CCBUI::ForwardOnMessage)
 int CCBUI::ForwardOnMessage(int nVal, int nMsg, int wParam)
 { return 0; }

@@ -34,6 +34,15 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_511630(...);
+int sub_511630(...);
+
+// D  int sub_511E20(...);
+int sub_511E20(...);
+
+// D  extern char aCbscene[];
+extern char aCbscene[];
+
 // 0x004FBA70  (CCBStageScene::ResetSceneState)
 int CCBStageScene::ResetSceneState()
 { return 0; }

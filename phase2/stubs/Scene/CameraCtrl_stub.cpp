@@ -48,6 +48,12 @@
 
 // Unnamed globals (extern)
 
+// D  extern CHAR byte_DCD03C[256];
+extern CHAR byte_DCD03C[256];
+
+// D  extern CHAR byte_DCD13C[256];
+extern CHAR byte_DCD13C[256];
+
 // 0x0041C1B0  (CameraCtrl::InitParams)
 int CameraCtrl::InitParams(void *pParams)
 { return 0; }

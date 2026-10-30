@@ -69,4 +69,4 @@ void RenderTarget3::Resolve()
 { }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   RenderTarget3::_nearby_4b6ca0
+//   func RenderTarget3::_nearby_4b6ca0

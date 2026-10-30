@@ -63,6 +63,138 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_407790(...);
+int sub_407790(...);
+
+// D  int sub_4B70B0(...);
+int sub_4B70B0(...);
+
+// D  int sub_4B9E50(...);
+int sub_4B9E50(...);
+
+// D  int sub_53D3F0(...);
+int sub_53D3F0(...);
+
+// D  void todo_00532A30(void);
+void todo_00532A30(void);
+
+// D  class CScreenModeNode;
+class CScreenModeNode;
+
+// D  extern CHAR aSoftwareSoftst_2[];
+extern CHAR aSoftwareSoftst_2[];
+
+// D  extern unsigned char byte_A01B00;
+extern unsigned char byte_A01B00;
+
+// D  extern unsigned char byte_A01B01;
+extern unsigned char byte_A01B01;
+
+// D  extern unsigned char byte_A01B02;
+extern unsigned char byte_A01B02;
+
+// D  extern unsigned char byte_A01B03;
+extern unsigned char byte_A01B03;
+
+// D  extern unsigned char byte_A01B04;
+extern unsigned char byte_A01B04;
+
+// D  extern unsigned char byte_A01B05;
+extern unsigned char byte_A01B05;
+
+// D  extern unsigned char byte_A01B08;
+extern unsigned char byte_A01B08;
+
+// D  extern unsigned char byte_A01B09;
+extern unsigned char byte_A01B09;
+
+// D  extern unsigned char byte_A01B10;
+extern unsigned char byte_A01B10;
+
+// D  extern unsigned char byte_A01B11;
+extern unsigned char byte_A01B11;
+
+// D  extern unsigned char byte_A01B12;
+extern unsigned char byte_A01B12;
+
+// D  extern unsigned char byte_A01B13;
+extern unsigned char byte_A01B13;
+
+// D  extern unsigned char byte_A01B14;
+extern unsigned char byte_A01B14;
+
+// D  extern unsigned char byte_A01B15;
+extern unsigned char byte_A01B15;
+
+// D  extern unsigned char byte_A01B16;
+extern unsigned char byte_A01B16;
+
+// D  extern unsigned char byte_A01B17;
+extern unsigned char byte_A01B17;
+
+// D  extern unsigned char byte_A01B18;
+extern unsigned char byte_A01B18;
+
+// D  extern unsigned char byte_A01B19;
+extern unsigned char byte_A01B19;
+
+// D  extern unsigned char byte_A01B20;
+extern unsigned char byte_A01B20;
+
+// D  extern unsigned char byte_A01B21;
+extern unsigned char byte_A01B21;
+
+// D  extern unsigned char byte_A01B22;
+extern unsigned char byte_A01B22;
+
+// D  extern unsigned char byte_A01B23;
+extern unsigned char byte_A01B23;
+
+// D  extern unsigned char byte_A01B24;
+extern unsigned char byte_A01B24;
+
+// D  extern unsigned char byte_A01B25;
+extern unsigned char byte_A01B25;
+
+// D  extern char dword_DCD23C[];
+extern char dword_DCD23C[];
+
+// D  extern char dword_DCD33C[];
+extern char dword_DCD33C[];
+
+// D  extern char dword_DCD53C[];
+extern char dword_DCD53C[];
+
+// D  extern char dword_DCD63C[];
+extern char dword_DCD63C[];
+
+// D  extern char dword_DCD93C[];
+extern char dword_DCD93C[];
+
+// D  extern int dword_DE6F70;
+extern int dword_DE6F70;
+
+// D  extern float flt_17B41E0;
+extern float flt_17B41E0;
+
+// D  extern float flt_DE71F8;
+extern float flt_DE71F8;
+
+// D  extern float flt_DE7480;
+extern float flt_DE7480;
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
+// D  void __cdecl nullsub_71(void);
+void __cdecl nullsub_71(void);
+
+// D  void __cdecl nullsub_72(void);
+void __cdecl nullsub_72(void);
+
+// D  extern CScreenModeNode stru_17B3ED8;
+extern CScreenModeNode stru_17B3ED8;
+
 // 0x004083D0  (Actor::_todo_004083D0)
 void Actor::_todo_004083D0(int a2)
 { }

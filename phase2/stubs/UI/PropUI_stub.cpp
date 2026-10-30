@@ -53,6 +53,9 @@
 
 // Unnamed globals (extern)
 
+// D  extern char asc_5B74B8[];
+extern char asc_5B74B8[];
+
 // 0x00452670  (PropUI::Init)
 void PropUI::Init()
 { }

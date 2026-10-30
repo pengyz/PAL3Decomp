@@ -51,6 +51,12 @@
 
 // Unnamed globals (extern)
 
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
 // 0x0047F390  (StateUI::LoadRoleList)
 int StateUI::LoadRoleList()
 { return 0; }

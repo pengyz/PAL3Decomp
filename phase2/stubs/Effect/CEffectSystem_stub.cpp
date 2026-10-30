@@ -18,6 +18,45 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4C5850(...);
+int sub_4C5850(...);
+
+// D  int sub_4C5910(...);
+int sub_4C5910(...);
+
+// D  int sub_4C5D00(...);
+int sub_4C5D00(...);
+
+// D  int sub_4C5D70(...);
+int sub_4C5D70(...);
+
+// D  extern unsigned char byte_DE93A8;
+extern unsigned char byte_DE93A8;
+
+// D  extern unsigned char byte_DE93A9;
+extern unsigned char byte_DE93A9;
+
+// D  extern unsigned char byte_DE96F4;
+extern unsigned char byte_DE96F4;
+
+// D  extern int dword_DE93B0;
+extern int dword_DE93B0;
+
+// D  extern int dword_DE997C;
+extern int dword_DE997C;
+
+// D  extern float flt_DE9978;
+extern float flt_DE9978;
+
+// D  void __cdecl nullsub_16(void);
+void __cdecl nullsub_16(void);
+
+// D  void __cdecl nullsub_79(...);
+void __cdecl nullsub_79(...);
+
+// D  extern gbColorQuad stru_DE9388;
+extern gbColorQuad stru_DE9388;
+
 // 0x004C5820  (CEffectSystem::Create)
 CEffectSystem * CEffectSystem::Create(int pGfxMgr)
 { return 0; }

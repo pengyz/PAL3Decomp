@@ -54,6 +54,9 @@
 
 // Unnamed globals (extern)
 
+// D  extern char asc_5B74B8[];
+extern char asc_5B74B8[];
+
 // 0x00484D20  (EquipUI::ShowPage)
 int EquipUI::ShowPage()
 { return 0; }

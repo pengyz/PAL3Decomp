@@ -47,6 +47,12 @@
 
 // Unnamed globals (extern)
 
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
 // 0x004460D0  (CCBUIPanel::CCBUIPanel)
 CCBUIPanel::CCBUIPanel()
 { }
@@ -104,4 +110,4 @@ int CCBUIPanel::InitScrollState()
 { return 0; }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   CCBUIPanel::Destroy
+//   func CCBUIPanel::Destroy

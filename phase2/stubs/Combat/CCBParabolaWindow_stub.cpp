@@ -30,6 +30,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
 // 0x00440BE0  (CCBParabolaWindow::LoadResourceEx)
 gbVFileSystem * CCBParabolaWindow::LoadResourceEx(const char *pszName, char pData)
 { return 0; }

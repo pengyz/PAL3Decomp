@@ -35,6 +35,9 @@
 
 // Unnamed globals (extern)
 
+// D  extern CHAR byte_DC6A3C[256];
+extern CHAR byte_DC6A3C[256];
+
 // 0x0043BE30  (CCBResultWindow::~CCBResultWindow)
 CCBResultWindow::~CCBResultWindow()
 { }

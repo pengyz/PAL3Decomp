@@ -20,6 +20,18 @@
 
 // Forward declarations for unnamed functions
 
+// D  int DirectInput8Create(...);
+int DirectInput8Create(...);
+
+// D  int sub_404350(...);
+int sub_404350(...);
+
+// D  int sub_404380(...);
+int sub_404380(...);
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
 // 0x004020E0  (GRPinput::Create)
 int GRPinput::Create(HINSTANCE *hInst, int hwnd, int flag)
 { return 0; }

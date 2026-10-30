@@ -60,6 +60,27 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_4C5980(...);
+int sub_4C5980(...);
+
+// D  int sub_515C90(...);
+int sub_515C90(...);
+
+// D  int sub_5163D0(...);
+int sub_5163D0(...);
+
+// D  int sub_51D5C0(...);
+int sub_51D5C0(...);
+
+// D  extern char aEffectCombat10[];
+extern char aEffectCombat10[];
+
+// D  extern CHAR byte_17AC6DC[256];
+extern CHAR byte_17AC6DC[256];
+
+// D  void __cdecl nullsub_68(void);
+void __cdecl nullsub_68(void);
+
 // 0x00462280  (CCBSystem::ProcessSlotResults)
 void CCBSystem::ProcessSlotResults(int nVal)
 { }
@@ -453,4 +474,4 @@ int CCBSystem::InitObj_5fd0()
 { return 0; }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   CCBSystem::CreateProtectedObj
+//   func CCBSystem::CreateProtectedObj

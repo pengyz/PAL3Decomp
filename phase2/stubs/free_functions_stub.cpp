@@ -118,6 +118,213 @@
 
 // Forward declarations for unnamed functions
 
+// D  int FileSysInit(...);
+int FileSysInit(...);
+
+// D  int LocalFree(...);
+int LocalFree(...);
+
+// D  int sub_41FA90(...);
+int sub_41FA90(...);
+
+// D  int sub_420200(...);
+int sub_420200(...);
+
+// D  int sub_4206F0(...);
+int sub_4206F0(...);
+
+// D  int sub_420730(...);
+int sub_420730(...);
+
+// D  int sub_495CA0(...);
+int sub_495CA0(...);
+
+// D  int sub_4BA150(...);
+int sub_4BA150(...);
+
+// D  int sub_4BA270(...);
+int sub_4BA270(...);
+
+// D  int sub_4BA3D0(...);
+int sub_4BA3D0(...);
+
+// D  int sub_4BA770(...);
+int sub_4BA770(...);
+
+// D  int sub_4BACA0(...);
+int sub_4BACA0(...);
+
+// D  int sub_4C5940(...);
+int sub_4C5940(...);
+
+// D  int sub_4C5FA0(...);
+int sub_4C5FA0(...);
+
+// D  int sub_4CCDA0(...);
+int sub_4CCDA0(...);
+
+// D  int sub_4CD3A0(...);
+int sub_4CD3A0(...);
+
+// D  int sub_53D460(...);
+int sub_53D460(...);
+
+// D  int sub_53DAD0(...);
+int sub_53DAD0(...);
+
+// D  int todo_0044AB40(...);
+int todo_0044AB40(...);
+
+// D  void todo_004D0C90(void);
+void todo_004D0C90(void);
+
+// D  class PtrArray;
+class PtrArray;
+
+// D  class TextureLibDataBase;
+class TextureLibDataBase;
+
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern CHAR aSoftwareSoftst_2[];
+extern CHAR aSoftwareSoftst_2[];
+
+// D  extern unsigned char byte_A00002;
+extern unsigned char byte_A00002;
+
+// D  extern unsigned char byte_A00319;
+extern unsigned char byte_A00319;
+
+// D  extern unsigned char byte_A00320;
+extern unsigned char byte_A00320;
+
+// D  extern unsigned char byte_A00321;
+extern unsigned char byte_A00321;
+
+// D  extern unsigned char byte_A00322;
+extern unsigned char byte_A00322;
+
+// D  extern unsigned char byte_A00326;
+extern unsigned char byte_A00326;
+
+// D  extern unsigned char byte_A00330;
+extern unsigned char byte_A00330;
+
+// D  extern char byte_D8EBBC[];
+extern char byte_D8EBBC[];
+
+// D  extern CHAR byte_DC3F3C[256];
+extern CHAR byte_DC3F3C[256];
+
+// D  extern CHAR byte_DC403C[256];
+extern CHAR byte_DC403C[256];
+
+// D  extern CHAR byte_DC7D3C[512];
+extern CHAR byte_DC7D3C[512];
+
+// D  extern CHAR byte_DCAD3C[256];
+extern CHAR byte_DCAD3C[256];
+
+// D  extern CHAR byte_DD9E3C[256];
+extern CHAR byte_DD9E3C[256];
+
+// D  extern CHAR byte_DD9F3C[256];
+extern CHAR byte_DD9F3C[256];
+
+// D  extern CHAR byte_DDA03C[256];
+extern CHAR byte_DDA03C[256];
+
+// D  extern CHAR byte_DDA13C[256];
+extern CHAR byte_DDA13C[256];
+
+// D  extern CHAR byte_DDA23C[256];
+extern CHAR byte_DDA23C[256];
+
+// D  extern CHAR byte_DDA33C[256];
+extern CHAR byte_DDA33C[256];
+
+// D  extern CHAR byte_DDA43C[256];
+extern CHAR byte_DDA43C[256];
+
+// D  extern CHAR byte_DDA53C[256];
+extern CHAR byte_DDA53C[256];
+
+// D  extern CHAR byte_DDA63C[256];
+extern CHAR byte_DDA63C[256];
+
+// D  extern CHAR byte_DDA73C[512];
+extern CHAR byte_DDA73C[512];
+
+// D  extern CHAR byte_DE54D4[3];
+extern CHAR byte_DE54D4[3];
+
+// D  extern CHAR byte_DE54D7[3];
+extern CHAR byte_DE54D7[3];
+
+// D  extern CHAR byte_DE54DA[3];
+extern CHAR byte_DE54DA[3];
+
+// D  extern CHAR byte_DE54DD[3];
+extern CHAR byte_DE54DD[3];
+
+// D  extern CHAR byte_DE54E0[3];
+extern CHAR byte_DE54E0[3];
+
+// D  extern CHAR byte_DE54E3[3];
+extern CHAR byte_DE54E3[3];
+
+// D  extern CHAR byte_DE54E6[3];
+extern CHAR byte_DE54E6[3];
+
+// D  extern CHAR byte_DE54E9[3];
+extern CHAR byte_DE54E9[3];
+
+// D  extern CHAR byte_DE54EC[3];
+extern CHAR byte_DE54EC[3];
+
+// D  extern int dword_D8EBF0;
+extern int dword_D8EBF0;
+
+// D  extern PalScriptMgr * dword_DBA254;
+extern PalScriptMgr * dword_DBA254;
+
+// D  extern int dword_DE9384;
+extern int dword_DE9384;
+
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
+// D  void __cdecl nullsub_69(void);
+void __cdecl nullsub_69(void);
+
+// D  void __cdecl nullsub_70(void);
+void __cdecl nullsub_70(void);
+
+// D  extern LPCSTR off_5B087C;
+extern LPCSTR off_5B087C;
+
+// D  extern LPCSTR off_5F7820;
+extern LPCSTR off_5F7820;
+
+// D  extern LPCSTR off_5F7824;
+extern LPCSTR off_5F7824;
+
+// D  extern LPCSTR off_5F7828;
+extern LPCSTR off_5F7828;
+
+// D  extern PtrArray stru_17B3EB0;
+extern PtrArray stru_17B3EB0;
+
+// D  extern TextureLibDataBase stru_1894B78;
+extern TextureLibDataBase stru_1894B78;
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
+// D  extern unsigned short word_A00336;
+extern unsigned short word_A00336;
+
 // 0x004019B0  (PtrArray_ReleasePtrArray)
 int PtrArray_ReleasePtrArray(int nVal)
 { return 0; }
@@ -1451,8 +1658,8 @@ int NextRole(int *a1)
 { return 0; }
 
 // PRUNED (hand-trim debt, compile-driven):
-//   ArraySort
-//   CreateDigitPair
-//   GetGlobalUserVar
-//   UIFrameWnd__deleting_view
-//   todo_004D0C90
+//   func ArraySort
+//   func CreateDigitPair
+//   func GetGlobalUserVar
+//   func UIFrameWnd__deleting_view
+//   func todo_004D0C90

@@ -22,6 +22,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  int sub_51A400(...);
+int sub_51A400(...);
+
+// D  int sub_51B6E0(...);
+int sub_51B6E0(...);
+
 // 0x004461B0  (CCBItemWindow::CCBItemWindow)
 CCBItemWindow::CCBItemWindow()
 { }

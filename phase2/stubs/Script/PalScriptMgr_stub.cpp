@@ -52,6 +52,12 @@
 
 // Forward declarations for unnamed functions
 
+// D  class RoleCameraCtrl;
+class RoleCameraCtrl;
+
+// D  extern RoleCameraCtrl stru_DBA134;
+extern RoleCameraCtrl stru_DBA134;
+
 // 0x004100A0  (PalScriptMgr::RunScript)
 int PalScriptMgr::RunScript(int nVal, int nVal2, int nVal3)
 { return 0; }

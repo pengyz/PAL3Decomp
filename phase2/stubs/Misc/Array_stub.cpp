@@ -40,6 +40,9 @@
 
 // Unnamed globals (extern)
 
+// D  void __cdecl nullsub_2(...);
+void __cdecl nullsub_2(...);
+
 // 0x00410960  (Array::Free)
 void Array::Free()
 { }
