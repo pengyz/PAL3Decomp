@@ -21,9 +21,9 @@
   "symbols": 1188,
   "matched": 924,
   "unmatched": 264,
-  "match_L1": 162,
+  "match_L1": 161,
   "match_L1_semantic": 11,
-  "partial": 689,
+  "partial": 690,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -34,12 +34,21 @@
   "reloc_mismatch": 0,
   "reloc_unresolved": 5370,
   "rsite_total": 7078,
-  "rsite_unaligned": 6649,
-  "l1_bytes": 6739,
-  "l1_hidden_reloc_bytes": 1226,
-  "l1_reloc_covered_bytes": 1716,
+  "rsite_unaligned": 6650,
+  "l1_bytes": 6734,
+  "l1_hidden_reloc_bytes": 1225,
+  "l1_reloc_covered_bytes": 1712,
   "rsite_ok": 90,
-  "rsite_unresolved": 338,
+  "rsite_unresolved": 337,
+  "tail_jump_downgrades": 1,
+  "tail_jump_downgrade_samples": [
+   {
+    "va": "0x00509090",
+    "name": "CCBStageEffect::PreLoadEffGroup(void)",
+    "our": null,
+    "orig": null
+   }
+  ],
   "rsite_mismatch": 1,
   "rsite_mismatch_samples": [
    {
@@ -1317,7 +1326,7 @@
    "symbol": "?PreLoadEffGroup@CCBStageEffect@@QAEXXZ",
    "name": "CCBStageEffect::PreLoadEffGroup(void)",
    "va": "0x00509090",
-   "status": "match_L1",
+   "status": "partial",
    "match_pct": 100.0,
    "size": 5
   },
@@ -7711,5 +7720,19 @@
    "match_pct": 62.7,
    "size": 166
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "PlanB-T3 尾跳 L1 空洞补环：目标符号等同门生效——假 L1 出清（判据升级非退化），逐条留案 tail_jump_downgrade_samples",
+  "at": "2026-10-30T18:25:04",
+  "prev_match_L1": 162,
+  "cur_match_L1": 161,
+  "prev_population": {
+   "matched": 924,
+   "symbols": 1188
+  },
+  "cur_population": {
+   "matched": 924,
+   "symbols": 1188
+  }
+ }
 }

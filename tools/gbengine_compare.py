@@ -653,12 +653,16 @@ def is_tail_jump_form(orig_bytes):
         return False
 
 
-def decide_tail_jump_verdict(perfect_so_far, orig_bytes, our_target_name, orig_target_name):
-    """尾跳补环裁决：perfect 须叠加目标符号等同；不等/未解=partial（不准确=不判定）。"""
+def decide_tail_jump_verdict(perfect_so_far, orig_bytes, our_target_name, orig_target_name,
+                             names_match=None):
+    """尾跳补环裁决：perfect 须叠加目标符号等同；不等/未解=partial（不准确=不判定）。
+    names_match：可注等价判据（默认名串==；接线用 _rsite_names_match 归一形）。"""
     if not perfect_so_far:
         return 'partial'
     if not is_tail_jump_form(orig_bytes):
         return 'perfect'
-    if our_target_name and orig_target_name and our_target_name == orig_target_name:
-        return 'perfect'
-    return 'partial'
+    if not (our_target_name and orig_target_name):
+        return 'partial'
+    eq = (names_match(our_target_name, orig_target_name) if names_match
+          else our_target_name == orig_target_name)
+    return 'perfect' if eq else 'partial'

@@ -510,6 +510,26 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                                    verbose=False, relocs=relocs,
                                    reloc_type_map=reloc_type_map, va=e['va'])
             status = 'match_L1' if res['perfect'] else 'partial'
+            # [PlanB-T3 2026-10-30] 尾跳 L1 空洞补环：尾跳族（5B E9）perfect 须叠加
+            # 目标符号等同（rel32=reloc don't-care 致原判据只证 E9 一字节=假 L1 温床）。
+            if status == 'match_L1' and gc.is_tail_jump_form(text[idx0:idx0 + size]):
+                _our_t = _orig_t = None
+                for (_off, _rt, _sn, _a) in info.get('reloc_sites', ()):
+                    if _rt == 0x14 and _off == 1:
+                        _rel = int.from_bytes(text[idx0 + _off:idx0 + _off + 4], 'little', signed=True)
+                        _tgt = e['va'] + _off + 4 + _rel
+                        _orig_t = va_idx.get(_tgt)
+                        _ge = mangled_map.get(_sn)
+                        _our_t = _ge['name'] if _ge else None
+                        break
+                status = 'match_L1' if gc.decide_tail_jump_verdict(
+                    True, text[idx0:idx0 + size], _our_t, _orig_t,
+                    names_match=_rsite_names_match) == 'perfect' else 'partial'
+                if status == 'partial':
+                    stats['tail_jump_downgrades'] = stats.get('tail_jump_downgrades', 0) + 1
+                    stats.setdefault('tail_jump_downgrade_samples', []).append(
+                        {'va': '0x%08X' % e['va'], 'name': e['name'],
+                         'our': _our_t, 'orig': _orig_t})
             # [R94d] 寄存器归一化分类（分析指标，不改 status）：
             # partial 的 diff 字节按 XOR 分类为 reg_diff（<0x3F）vs real_diff
             _sem_reg = 0; _sem_real = 0
