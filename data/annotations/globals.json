@@ -8591,24 +8591,5 @@
     "address": "0x5DFDB4",
     "type": "char[]",
     "source": "[C2065 通道收口 2026-10-16] IDA 地址名 asc_5DFDB4（A 级绝对地址+尺寸名型证）· 引用 CCBUI.cpp:4210"
-  },
-  "0x00D8C2E8": {
-    "name": "_todo_D8C2E8",
-    "type": "char[32]",
-    "extern": false,
-    "source": "[T5(ii)] ConditionalCleanup 清理对象 | [T5(ii) 2026-10-29] 存储定义补全：SingletonThunk 0x431E70 构造此对象（B9 imm32），cleanup FindScript/ConditionalCleanup 调 PtrArray::Remove 引用；布局证据=ctor 0x434470 写 +4(byte)/+8/+C(zero)/+0x10(ptr)/+0x14(word)/+0x18(ptr)，对象步距 0x20 ⇒ char[32] 保守存储（真型未知：PtrArray.json 空布局）| confidence: medium"
-  },
-  "0x00D8C2C8": {
-    "name": "_todo_D8C2C8",
-    "type": "char[32]",
-    "extern": false,
-    "source": "[T5(ii)] FindScript 清理对象 | [T5(ii) 2026-10-29] 存储定义补全：SingletonThunk 0x431E70 构造此对象（B9 imm32），cleanup FindScript/ConditionalCleanup 调 PtrArray::Remove 引用；布局证据=ctor 0x434470 写 +4(byte)/+8/+C(zero)/+0x10(ptr)/+0x14(word)/+0x18(ptr)，对象步距 0x20 ⇒ char[32] 保守存储（真型未知：PtrArray.json 空布局）| confidence: medium"
-  },
-  "0x00DE8B40": {
-    "name": "_todo_DE8B40",
-    "type": "char[696]",
-    "extern": false,
-    "source": "[T5(ii) 2026-10-29] 存储定义：几何定界 0x2B8=696B（后邻 g_nRenderTarget2_DE8DF8）；双生胶水形（SingletonThunk 0x4BFD60→NullCallback 空跳+atexit，与 g_RenderTarget3 同款）；RenderTarget2 sizeof=4292 已证伪直挂（SetBlend 纪律）；真型/真名待裁 ⇒ char[696] 保守存储 | confidence: low",
-    "errata": "c019312d8 提交宣称注册但脚本语法错未落——本条为补正（记账失实第 3 例自纠）"
   }
 }
