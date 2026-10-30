@@ -602,6 +602,20 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                          'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
                 else:
                     # [PlanB-T2a 2026-10-30] exp 缺名时双证类别桶（纯计量）
+                    # [R2a-3] $L 局部标签自指向=独立桶（无跨实体风险）
+                    # [R2a-3b] $L 前缀=工具链语义自证（size 盲区下仍 A 级）
+                    if tgt is not None and (gc.is_self_local(e['va'], size, tgt)
+                                            or gc.is_self_local_sym(sym_name)):
+                        stats['rsite_self_local'] = stats.get('rsite_self_local', 0) + 1
+                        continue
+                    # [R2a-3] sub_ 自动名兜底（va_idx 缺自动名 + mangled_map 缺键）
+                    if tgt is not None and not exp_name:
+                        exp_name = gc.fallback_autoname(tgt)
+                        _ge2 = mangled_map.get(sym_name)
+                        _gn2 = _ge2['name'] if _ge2 else gc.sym_direct_name(sym_name)
+                        if exp_name and _gn2 and _rsite_names_match(exp_name, _gn2):
+                            stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
+                            continue
                     _cb = gc.class_agree_bucket(tgt, sym_name) if tgt is not None else 'unresolved'
                     if _cb == 'class_ok':
                         stats['rsite_class_ok'] = stats.get('rsite_class_ok', 0) + 1

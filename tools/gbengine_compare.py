@@ -708,3 +708,26 @@ def class_agree_bucket(tgt, sym):
         return 'unresolved'
     # 大类格：storage 三形（iat/const/data）互认——rdata 同居三类（段界实测）
     return 'class_ok' if sc == tc else 'class_mismatch'
+
+
+# [R2a-3 2026-10-30] unresolved 32 收敛二件：$L 局部标签自指向 + sub_ 自动名兜底。
+def is_self_local(func_va, func_size, tgt):
+    """$L 局部标签目标=本函数界内 ⇒ 自局部（无跨实体归属风险）。"""
+    return func_va <= tgt < func_va + func_size
+
+
+def fallback_autoname(tgt):
+    """va_idx 缺自动名兜底：IDA 自动名形 sub_XXXXXXXX。"""
+    return 'sub_%X' % tgt if tgt < 0x10000000 else None   # IDA 自动名无填充形
+
+
+def is_self_local_sym(sym):
+    """$L 前缀=MSVC 静态局部标签（工具链语义自证自局部，A 级）。"""
+    return (sym or '').startswith('$L')
+
+
+def sym_direct_name(sym):
+    """?Name@@... mangled 形直接抽名（mangled_map 缺键兜底）。"""
+    import re
+    m = re.match(r'\?(\w+)@@', sym or '')
+    return m.group(1) if m else None
