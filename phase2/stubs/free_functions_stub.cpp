@@ -349,10 +349,6 @@ char * __stdcall StrCopyRange(char *pStart, char *pEnd, char *pDest)
 int __stdcall WinProc(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)
 { return 0; }
 
-// 0x004074C0  (PAL3::StartCombat)
-void PAL3::StartCombat(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)
-{ }
-
 // 0x00408B60  (InitScriptObjArray)
 void InitScriptObjArray()
 { }
@@ -1663,3 +1659,5 @@ int NextRole(int *a1)
 //   func GetGlobalUserVar
 //   func UIFrameWnd__deleting_view
 //   func todo_004D0C90
+// DUP-FALLBACK (defined elsewhere, LNK2005 dedup):
+//   PAL3::StartCombat

@@ -115,6 +115,25 @@ def test_extract_data_items_globals_form():
     assert len(extract_data_items(t2)) == 2
 
 
+def test_parse_header_slots_class_context():
+    """虚槽批量供给的声明提取：类上下文 + virtual/static 剥离 + 参数保留。"""
+    from stub_gen import parse_header_slots
+    h = ('class UIFrameWnd : public UIWnd\n'
+         '{\n'
+         'public:\n'
+         '    virtual void slot_0(); // 0x445e70\n'
+         '    virtual int slot_5(int a2); // 0x004C9ED0\n'
+         '    static int slot_1(); // 0x004C5D80\n'
+         '    void normal();\n'
+         '};\n'
+         'class Other\n{\n    virtual void slot_2();\n};\n')
+    items = parse_header_slots(h)
+    assert items == [('UIFrameWnd', 'void', 'slot_0', ''),
+                     ('UIFrameWnd', 'int', 'slot_5', 'int a2'),
+                     ('UIFrameWnd', 'int', 'slot_1', ''),
+                     ('Other', 'void', 'slot_2', '')], items
+
+
 def test_iron_rule_no_stub_in_pal3src():
     """铁律棘轮（设计 §3.1）：stub 永不落 pal3/src（S2 量到 stub=假绿）。
     2026-10-31 实测教训：绝对路径进 stub_path_for_unit 会让 Path 连接失效

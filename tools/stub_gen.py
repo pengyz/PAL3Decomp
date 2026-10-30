@@ -204,7 +204,107 @@ def stub_path_for_unit(unit_rel):
     return STUB_ROOT / (stem + '_stub.cpp')
 
 
-def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None):
+def definition_dups():
+    """跨单元同名定义普查（2026-10-31 LNK2005 根因）：同名函数被多个单元锚定
+    （codegen 聚合面重复）⇒ 真身优先，stub 间先到先得（字典序），其余剔除。
+    返回 {unit: set(names_to_skip)}。"""
+    c = json.loads(CENSUS.read_text(encoding='utf-8'))
+    status = {x['unit']: x.get('status') for x in c['s2']['results']}
+    owners = {}
+    for x in c['s2']['results']:
+        u = x['unit']
+        try:
+            t = (PROJECT_ROOT / u).read_text(encoding='utf-8', errors='replace')
+        except OSError:
+            continue
+        for f in extract_functions(t):
+            owners.setdefault(f['name'], []).append(u)
+    drops = {}
+    for name, us in owners.items():
+        if len(us) < 2:
+            continue
+        real = sorted(u for u in us if status.get(u) == 'ok')
+        keep = real[0] if real else sorted(us)[0]
+        for u in us:
+            if u != keep and status.get(u) != 'ok':
+                drops.setdefault(u, set()).add(name)
+    return drops
+
+
+# ── 虚槽批量供给（2026-10-31 LNK2001 大类）──────────────────────────
+SLOT_DECL_RE = re.compile(
+    r'^\s*(?:virtual\s+|static\s+)?'
+    r'((?:[\w:\*&\s]|::)*?)\s*(slot_\d+)\s*\(([^;{]*)\)\s*(?:const\s*)?;\s*(?://.*)?$')
+
+
+def parse_header_slots(text):
+    """类头 → [(cls, ret, name, params)]。slot_N 声明挂类上下文（brace 深度跟踪）。"""
+    items, cls, depth = [], None, 0
+    for line in text.splitlines():
+        s = line.strip()
+        if depth == 0:
+            m = re.match(r'^(?:template\s*<[^>]*>\s*)?(?:class|struct)\s+(\w+)', s)
+            if m:
+                cls = m.group(1)
+        else:
+            m = SLOT_DECL_RE.match(line)
+            if m and cls:
+                ret = ' '.join(m.group(1).split())
+                items.append((cls, ret, m.group(2), m.group(3).strip()))
+        depth += line.count('{') - line.count('}')
+        if depth <= 0:
+            depth = 0
+    return items
+
+
+def generate_virtual_slots(out_dir=None):
+    """全仓类头 slot_N 声明 → 批量定义体 stub（逐头一文件；未被真身/其它 stub 定义者）。
+    语义无关（链接闭合用）；命名债（slot_N=地址占位名）归 annotation 阶段。"""
+    c = json.loads(CENSUS.read_text(encoding='utf-8'))
+    all_units = [x['unit'] for x in c['s2']['results']]
+    # 定义面普查：真身 + 已生成 stub 全文（排除本生成面自身，防再生成自吞）
+    haystack = []
+    for u in all_units:
+        try:
+            haystack.append((PROJECT_ROOT / u).read_text(encoding='utf-8', errors='replace'))
+        except OSError:
+            pass
+    for f in STUB_ROOT.rglob('*_stub.cpp'):
+        if out_dir is None and '_slots' in f.parts:
+            continue                      # 虚槽生成面自身不进定义普查（防再生成自吞）
+        haystack.append(f.read_text(encoding='utf-8'))
+    hay = '\n'.join(haystack)
+
+    out_root = Path(out_dir) if out_dir else STUB_ROOT / '_slots'
+    n_files = n_defs = 0
+    for h in sorted(SRC_ROOT.rglob('*.h')):
+        slots = parse_header_slots(h.read_text(encoding='utf-8', errors='replace'))
+        defs, seen = [], set()
+        for cls, ret, name, params in slots:
+            key = (cls, name, params)
+            if key in seen:
+                continue
+            seen.add(key)
+            if re.search(r'\b%s::%s\s*\(' % (re.escape(cls), re.escape(name)), hay):
+                continue                      # 已有定义面（真身/其它 stub）
+            sig = '%s %s::%s(%s)' % (ret or 'void', cls, name, params)
+            defs.append({'addr': 'header', 'name': '%s::%s' % (cls, name),
+                         'ret': ret, 'sig': sig})
+        if not defs:
+            continue
+        rel = str(h.resolve().relative_to(SRC_ROOT)).replace('\\', '/')
+        inc = '#include "globals.h"\n#include "pal3/ida_defs.h"\n#include "%s"' % rel
+        body = render_stub('virtual slots from %s' % rel, inc, defs)
+        out = out_root / (rel.replace('/', '_') + '_slots_stub.cpp')
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(body, encoding='utf-8')
+        n_files += 1
+        n_defs += len(defs)
+    return n_files, n_defs
+
+
+def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None,
+                      notes=None):
     p = Path(unit_path)
     text = p.read_text(encoding='utf-8', errors='replace')
     # [铁律护栏 2026-10-31] 一律相对仓根归一后再算 stub 路径——绝对路径会让
@@ -218,6 +318,8 @@ def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None)
     if skip_data:
         data = [d for d in data if d['label'] not in skip_data]
     body = render_stub(rel, extract_includes(text), funcs, data)
+    if notes:
+        body += '\n' + '\n'.join(notes) + '\n'
     out = Path(out_path) if out_path else stub_path_for_unit(rel)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(body, encoding='utf-8')
@@ -240,13 +342,15 @@ def stub_function_spans(text):
     return spans
 
 
-def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12):
+def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12, base_skip=None):
     """编译驱动修剪：错行→函数/数据段→剔除重生成，直到编译绿或无归属错。
     被剔除项以 `// PRUNED` 债账注记留档（人工修剪面，链接期 LNK2001 兜底催补）。"""
     src = PROJECT_ROOT / unit_rel
+    base_skip = base_skip or set()
     dropped_f, dropped_d, report, ok = set(), set(), [], False
     for _ in range(max_rounds):
-        out, _ = generate_for_unit(src, skip_names=dropped_f, skip_data=dropped_d)
+        out, _ = generate_for_unit(src, skip_names=(base_skip | dropped_f),
+                                   skip_data=dropped_d)
         text = out.read_text(encoding='utf-8')
         spans = stub_function_spans(text)
         errs_txt, err = run_cl(incs + ['/Fo' + wpath(str(out) + '.obj'), '/c', wpath(str(out))])
@@ -274,15 +378,16 @@ def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12):
             (dropped_f if kind == 'func' else dropped_d).add(name)
         report += sorted('%s:%s' % it for it in err_items)
     # 收口：重生成 + PRUNED 债账注记（无论成功与否，债账都落盘）
-    out, _ = generate_for_unit(src, skip_names=dropped_f, skip_data=dropped_d)
+    notes = []
     if dropped_f or dropped_d:
-        text = out.read_text(encoding='utf-8')
-        text += '\n// PRUNED (hand-trim debt, compile-driven):\n'
-        for n in sorted(dropped_f):
-            text += '//   func %s\n' % n
-        for n in sorted(dropped_d):
-            text += '//   data %s\n' % n
-        out.write_text(text, encoding='utf-8')
+        notes.append('// PRUNED (hand-trim debt, compile-driven):')
+        notes += ['//   func %s' % n for n in sorted(dropped_f)]
+        notes += ['//   data %s' % n for n in sorted(dropped_d)]
+    if base_skip:
+        notes.append('// DUP-FALLBACK (defined elsewhere, LNK2005 dedup):')
+        notes += ['//   %s' % n for n in sorted(base_skip)]
+    out, _ = generate_for_unit(src, skip_names=(base_skip | dropped_f),
+                               skip_data=dropped_d, notes=notes or None)
     return sorted(dropped_f) + sorted(dropped_d), report, ok
 
 
@@ -293,7 +398,13 @@ def main():
     ap.add_argument('--out', help='输出路径（仅 --unit 用）')
     ap.add_argument('--prune', action='store_true',
                     help='编译驱动修剪（剔除签名漂移/残留函数，落 PRUNED 债账）')
+    ap.add_argument('--vslots', action='store_true',
+                    help='虚槽批量供给（类头 slot_N 声明 → _slots/ 批量定义体）')
     args = ap.parse_args()
+    if args.vslots:
+        n_files, n_defs = generate_virtual_slots()
+        print('virtual slots: %d files | %d defs' % (n_files, n_defs))
+        return
     if not (args.all_fail or args.unit):
         ap.error('需要 --all-fail 或 --unit')
 
@@ -308,24 +419,32 @@ def main():
         sys.path.insert(0, str(PROJECT_ROOT / 'pipeline'))
         import probe_compile as pc
         incs_base = ['/I' + pc.wpath(d) for d in pc.INCLUDE_DIRS]
+        drops = definition_dups()
         n_drop = 0
         for u in units:
             unit_dir = str(Path(u).parent)
             incs = incs_base + ['/I' + pc.wpath(str(PROJECT_ROOT / unit_dir))]
-            dropped, report, ok = prune_stub(u, pc.run_cl, pc.wpath, incs)
+            dropped, report, ok = prune_stub(u, pc.run_cl, pc.wpath, incs,
+                                             base_skip=drops.get(u, set()))
             n_drop += len(dropped)
             print('prune %-45s ok=%s dropped=%d %s'
                   % (u, ok, len(dropped), ('| ' + ', '.join(dropped[:4])) if dropped else ''))
         print('prune done | dropped total %d' % n_drop)
         return
 
+    drops = definition_dups()
     total = 0
     for u in units:
         src = PROJECT_ROOT / u
         if not src.exists():
             print('MISSING unit: %s' % u, file=sys.stderr)
             continue
-        out, n = generate_for_unit(src, args.out if args.unit else None)
+        notes = None
+        if drops.get(u):
+            notes = ['// DUP-FALLBACK (defined elsewhere, LNK2005 dedup):'] + \
+                    ['//   %s' % n for n in sorted(drops[u])]
+        out, n = generate_for_unit(src, args.out if args.unit else None,
+                                   skip_names=drops.get(u), notes=notes)
         total += n
         print('stub %-60s funcs=%d' % (str(out.relative_to(PROJECT_ROOT)), n))
     print('units %d | functions %d' % (len(units), total))
