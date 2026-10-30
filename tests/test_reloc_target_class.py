@@ -51,3 +51,33 @@ def test_e_string_literal_form():
     """第五形（14/17）：??_C@_ 字符串常量（MSVC string literal mangled）⇒ storage。"""
     from gbengine_compare import classify_reloc_target
     assert classify_reloc_target(0x00608F58, '??_C@_0BE@OBBO@gfxscript?2ui_TL?4gbf?$AA@') == 'storage'
+
+
+def test_rsite_directname_gate_unresolved3():
+    """R2a-4 直名等同门：2026-10-30 s4_baseline rsite_unresolved_samples 三案定谳。
+    全部同实体、名字形失配（mangler 键拼写差 / 显示名参表不可靠 / 裸名条目不入 map）。
+    病灶层：compare_pal3 不可达分支（exp 有名 + mangled_map 缺键时无名字解析路径），
+    消费者=rsite 分账（纯计量）；判据=gbengine_compare.rsite_sym_name_equiv。"""
+    from gbengine_compare import rsite_sym_name_equiv
+    # 案1 0x535600→0x535650（LPSTR 返回型拼写差致缺键）→ strict
+    assert rsite_sym_name_equiv('UISceneFrm::InitTemplateStrings(void)',
+                               '?InitTemplateStrings@UISceneFrm@@QAEPADXZ') == 'strict'
+    # 案2 0x443CA0→0x4022E0（显示名 (int) vs 真实 (LPPOINT*)）→ strict（剥参表）
+    assert rsite_sym_name_equiv('GRPinput::GetCursorPos(int)',
+                               '?GetCursorPos@GRPinput@@QAEHPAUtagPOINT@@@Z') == 'strict'
+    # 案3 0x41C170→0x41C1E0（裸名条目 + sig this 类复核）→ bare
+    assert rsite_sym_name_equiv('ScriptPoolPage_Alloc',
+                               '?ScriptPoolPage_Alloc@_Console@@QAEXXZ',
+                               'void __thiscall(_Console *this)') == 'bare'
+    # 负例：不同实体（0x4B7310 mismatch 旧案，不许被门误收）
+    assert rsite_sym_name_equiv('Actor::_todo_004B7330(int)',
+                               '??1CEffGroupNode@@UAE@XZ') is None
+    # 负例：bare 形缺 sig / sig this 类不符 ⇒ 不判定
+    assert rsite_sym_name_equiv('ScriptPoolPage_Alloc',
+                               '?ScriptPoolPage_Alloc@_Console@@QAEXXZ') is None
+    assert rsite_sym_name_equiv('ScriptPoolPage_Alloc',
+                               '?ScriptPoolPage_Alloc@_Console@@QAEXXZ',
+                               'void __thiscall(_Other *this)') is None
+    # 负例：exp 已限定且类不同 ⇒ 不判定（禁止跨类收编）
+    assert rsite_sym_name_equiv('Other::InitTemplateStrings(void)',
+                               '?InitTemplateStrings@UISceneFrm@@QAEPADXZ') is None

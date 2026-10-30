@@ -19,35 +19,49 @@
         ],
         "next": "人工/有网环境下载 dx90bsdk → 提取 d3dx9.lib → 与 tools/vc6/Lib/d3dx9.lib 逐字节比对 → 4 残差单元终裁"
       },
-      "note": "73 槽配对 69 可复现/4 内核分叉（#39/#67/#71/#72）；槽#7/#35 等逐字节全同（抽验级）——blanket 全同宣称修正"
+      "note": "73 槽配对 69 可复现/4 内核分叉（#39/#67/#71/#72）；槽#7/#35 等逐字节全同（抽验级）——blanket 全同宣称修正",
+      "flags": "unknown（库自身构建参数不在手，2002-12-11 obj 世代）",
+      "disposition": "(c) 链接期库供给；精确件（Summer 2003）补给后免逆向——supply chase 中"
     },
     {
       "name": "d3dxmath.obj (PSGP 静态簇)",
       "boundary": "lib_thirdparty",
       "supply": "skewed",
       "evidence": "research_crt §E 簇 sub_542xxx + 微跳板簇 0x5424xx-0x543Axx",
-      "confidence": "high"
+      "confidence": "high",
+      "flags": "unknown（同 d3dx9.lib）",
+      "disposition": "(c) 同 d3dx9.lib"
     },
     {
       "name": "LIBC/libcmt (MSVC6 CRT)",
       "boundary": "lib_crt",
       "supply": "exact",
       "evidence": "crt_skip_census 0x55xxxx 真 CRT 段 ~340 件 + wincrt0/crt0 双启动 6 件共享",
-      "confidence": "high"
+      "confidence": "high",
+      "flags": "exe 侧静态链（导入表无 MSVCRT 佐证）",
+      "disposition": "(c) 链接期库供给（同版 MSVC6.0 SP0 CRT 在手）"
     },
     {
       "name": "STL (MSVC6)",
       "boundary": "lib_stl",
       "supply": "exact",
       "evidence": "crt_skip_census L2 STL 525-527 等",
-      "confidence": "medium"
+      "confidence": "medium",
+      "flags": "exe 侧静态链（同上）",
+      "disposition": "(c) 链接期库供给（同版 MSVC6 STL 在手）"
     }
   ],
   "d3dx9_psgp_table": {
     "table_va": "0x6090A8",
     "template_va": "0x6091D0",
     "init_va": "0x546F41",
-    "note": "live 表 0x6090A8=init_ 惰性桩初值（D2）；template 表 0x6091D0=default impl 直值；哨兵 0xFFFF"
+    "note": "live 表 0x6090A8=init_ 惰性桩初值（D2）；template 表 0x6091D0=default impl 直值；哨兵 0xFFFF",
+    "exe_ranges": {
+      "live_table": "0x6090A8-0x6091CB",
+      "template_table": "0x6091D0-0x6092F3",
+      "state_word": "0x6092F8"
+    },
+    "disposition": "(c) 链接期库供给（d3dx9.lib PSGP）；精确件补给后免逆向，4 unmatched 单元 ⇒ reverse-edge 定点重建"
   },
   "d3dx9_psgp_slots": [
     {
@@ -58,7 +72,9 @@
       "template_va": "0x6091d0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 1,
@@ -68,7 +84,9 @@
       "template_va": "0x6091d4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 2,
@@ -78,7 +96,9 @@
       "template_va": "0x6091d8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 3,
@@ -88,7 +108,9 @@
       "template_va": "0x6091dc",
       "name": "c_D3DXMatrixMultiply",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 4,
@@ -98,7 +120,9 @@
       "template_va": "0x6091e0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 5,
@@ -108,7 +132,9 @@
       "template_va": "0x6091e4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 6,
@@ -118,7 +144,9 @@
       "template_va": "0x6091e8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 7,
@@ -128,7 +156,9 @@
       "template_va": "0x6091ec",
       "name": "c_D3DXVec3Normalize",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "byte-match",
+      "verify_note": "三限定全同（dx §3.2：157=157 reloc 12B diff 0）+ T6 复核独立复现逐字节全同"
     },
     {
       "slot": 8,
@@ -138,7 +168,9 @@
       "template_va": "0x6091f0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 9,
@@ -148,7 +180,9 @@
       "template_va": "0x6091f4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 10,
@@ -158,7 +192,9 @@
       "template_va": "0x6091f8",
       "name": "c_D3DXVec3TransformCoord",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 11,
@@ -168,7 +204,9 @@
       "template_va": "0x6091fc",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 12,
@@ -178,7 +216,9 @@
       "template_va": "0x609200",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 13,
@@ -188,7 +228,9 @@
       "template_va": "0x609204",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 14,
@@ -198,7 +240,9 @@
       "template_va": "0x609208",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 15,
@@ -208,7 +252,9 @@
       "template_va": "0x60920c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 16,
@@ -218,7 +264,9 @@
       "template_va": "0x609210",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 17,
@@ -228,7 +276,9 @@
       "template_va": "0x609214",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 18,
@@ -238,7 +288,9 @@
       "template_va": "0x609218",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 19,
@@ -248,7 +300,9 @@
       "template_va": "0x60921c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 20,
@@ -258,7 +312,9 @@
       "template_va": "0x609220",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 21,
@@ -268,7 +324,9 @@
       "template_va": "0x609224",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 22,
@@ -278,7 +336,9 @@
       "template_va": "0x609228",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 23,
@@ -288,7 +348,9 @@
       "template_va": "0x60922c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 24,
@@ -298,7 +360,9 @@
       "template_va": "0x609230",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 25,
@@ -308,7 +372,9 @@
       "template_va": "0x609234",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 26,
@@ -318,7 +384,9 @@
       "template_va": "0x609238",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 27,
@@ -328,7 +396,9 @@
       "template_va": "0x60923c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 28,
@@ -338,7 +408,9 @@
       "template_va": "0x609240",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 29,
@@ -348,7 +420,9 @@
       "template_va": "0x609244",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 30,
@@ -358,7 +432,9 @@
       "template_va": "0x609248",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 31,
@@ -368,7 +444,9 @@
       "template_va": "0x60924c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 32,
@@ -378,7 +456,9 @@
       "template_va": "0x609250",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 33,
@@ -388,7 +468,9 @@
       "template_va": "0x609254",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 34,
@@ -398,7 +480,9 @@
       "template_va": "0x609258",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 35,
@@ -408,7 +492,9 @@
       "template_va": "0x60925c",
       "name": "c_D3DXQuaternionSlerp",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "byte-match",
+      "verify_note": "三限定全同（dx §3.2：227=227 reloc 12B diff 0）+ T6 复核独立复现逐字节全同"
     },
     {
       "slot": 36,
@@ -418,7 +504,9 @@
       "template_va": "0x609260",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 37,
@@ -428,7 +516,9 @@
       "template_va": "0x609264",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 38,
@@ -438,7 +528,9 @@
       "template_va": "0x609268",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 39,
@@ -448,7 +540,9 @@
       "template_va": "0x60926c",
       "name": null,
       "status": "unknown",
-      "note": "kernel_fork_+268B_masked_diff (c_D3DXMatrixTransformation 692B vs exe 794B)"
+      "note": "kernel_fork_+268B_masked_diff (c_D3DXMatrixTransformation 692B vs exe 794B)",
+      "verify": "unmatched",
+      "verify_note": "kernel_fork +268B masked diff（c_D3DXMatrixTransformation 692B vs exe 794B）"
     },
     {
       "slot": 40,
@@ -458,7 +552,9 @@
       "template_va": "0x609270",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 41,
@@ -468,7 +564,9 @@
       "template_va": "0x609274",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 42,
@@ -478,7 +576,9 @@
       "template_va": "0x609278",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 43,
@@ -488,7 +588,9 @@
       "template_va": "0x60927c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 44,
@@ -498,7 +600,9 @@
       "template_va": "0x609280",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 45,
@@ -508,7 +612,9 @@
       "template_va": "0x609284",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 46,
@@ -518,7 +624,9 @@
       "template_va": "0x609288",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 47,
@@ -528,7 +636,9 @@
       "template_va": "0x60928c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 48,
@@ -538,7 +648,9 @@
       "template_va": "0x609290",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 49,
@@ -548,7 +660,9 @@
       "template_va": "0x609294",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 50,
@@ -558,7 +672,9 @@
       "template_va": "0x609298",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 51,
@@ -568,7 +684,9 @@
       "template_va": "0x60929c",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 52,
@@ -578,7 +696,9 @@
       "template_va": "0x6092a0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 53,
@@ -588,7 +708,9 @@
       "template_va": "0x6092a4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 54,
@@ -598,7 +720,9 @@
       "template_va": "0x6092a8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 55,
@@ -608,7 +732,9 @@
       "template_va": "0x6092ac",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 56,
@@ -618,7 +744,9 @@
       "template_va": "0x6092b0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 57,
@@ -628,7 +756,9 @@
       "template_va": "0x6092b4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 58,
@@ -638,7 +768,9 @@
       "template_va": "0x6092b8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 59,
@@ -648,7 +780,9 @@
       "template_va": "0x6092bc",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 60,
@@ -658,7 +792,9 @@
       "template_va": "0x6092c0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 61,
@@ -668,7 +804,9 @@
       "template_va": "0x6092c4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 62,
@@ -678,7 +816,9 @@
       "template_va": "0x6092c8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 63,
@@ -688,7 +828,9 @@
       "template_va": "0x6092cc",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 64,
@@ -698,7 +840,9 @@
       "template_va": "0x6092d0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 65,
@@ -708,7 +852,9 @@
       "template_va": "0x6092d4",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 66,
@@ -718,7 +864,9 @@
       "template_va": "0x6092d8",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 67,
@@ -728,7 +876,9 @@
       "template_va": "0x6092dc",
       "name": null,
       "status": "unknown",
-      "note": "absent_or_changed"
+      "note": "absent_or_changed",
+      "verify": "unmatched",
+      "verify_note": "absent_or_changed（在手库无法复现，review_dx §3.4）"
     },
     {
       "slot": 68,
@@ -738,7 +888,9 @@
       "template_va": "0x6092e0",
       "name": null,
       "status": "paired",
-      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）"
+      "note": "name pending: 环2 字节匹配派生（review_dx §3.3 方法）",
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 69,
@@ -748,7 +900,9 @@
       "template_va": "0x6092e4",
       "name": "c_D3DXPSGPUpdateSkinnedMesh",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 70,
@@ -758,7 +912,9 @@
       "template_va": "0x6092e8",
       "name": "c_D3DXPSGPTessellateNPatch",
       "status": "named",
-      "note": null
+      "note": null,
+      "verify": "partial",
+      "verify_note": "supply 配对闭合（review_dx §3.4 全量配对）；逐槽字节三元组未记（抽验级）"
     },
     {
       "slot": 71,
@@ -768,7 +924,9 @@
       "template_va": "0x6092ec",
       "name": null,
       "status": "unknown",
-      "note": "absent_or_changed"
+      "note": "absent_or_changed",
+      "verify": "unmatched",
+      "verify_note": "absent_or_changed（在手库无法复现，review_dx §3.4）"
     },
     {
       "slot": 72,
@@ -778,12 +936,40 @@
       "template_va": "0x6092f0",
       "name": null,
       "status": "unknown",
-      "note": "absent_or_changed"
+      "note": "absent_or_changed",
+      "verify": "unmatched",
+      "verify_note": "absent_or_changed（在手库无法复现，review_dx §3.4）"
     }
   ],
   "residual_units_pending_exact_lib": {
     "count": 4,
     "status": "supply_skewed+4_slot_unreproducible",
     "note": "dx §残差——精确 d3dx9.lib 到货前不做终裁"
-  }
+  },
+  "naming_corrections": [
+    {
+      "addr": "0x004B8200",
+      "from": "j_D3DXVec3TransformCoord",
+      "to": "RandLerpF（建议语义名）",
+      "kind": "game_code_wrong_name",
+      "confidence": "high",
+      "evidence": "dx §2.2：rand 驱动两浮点随机插值 66B 真身，11 xref；与 D3DX 无关；语义命名须同步 5 调用点（spec §7.2）"
+    },
+    {
+      "addr": "0x00542533",
+      "from": "j_D3DXVec3TransformCoord_0",
+      "to": "_D3DXVec3Normalize@8",
+      "kind": "psgp_entry",
+      "confidence": "high",
+      "evidence": "dx §2.2：jmp [0x6090C4]=槽#7；default 0x5450B5=c_D3DXVec3Normalize 157B 三限定全同（§3.2 例C）"
+    },
+    {
+      "addr": "0x00544771",
+      "from": "j_D3DXMatrixMultiply",
+      "to": "_D3DXQuaternionSlerp@16",
+      "kind": "psgp_entry",
+      "confidence": "high",
+      "evidence": "dx §2.2：jmp [0x609134]=槽#35；default 0x544777=c_D3DXQuaternionSlerp 227B 三限定全同（§3.2 例B）+ c_D3DXQuaternionSquad 调用链"
+    }
+  ]
 }

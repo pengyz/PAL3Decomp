@@ -13,6 +13,7 @@ gbengine.dll 字节比对工具
 
 import argparse
 import json
+import re
 import struct
 import sys
 import subprocess
@@ -733,3 +734,50 @@ def sym_direct_name(sym):
     import re
     m = re.match(r'\?(\w+)@@', sym or '')
     return m.group(1) if m else None
+
+
+# [R2a-4 2026-10-31] 直名等同门——unresolved 3 逐案收敛（exp 有名、mangled_map 缺键）。
+# 三案实测（2026-10-30 s4_baseline rsite_unresolved_samples，2026-10-31 逐案定谳）：
+#   0x535600→0x535650  UISceneFrm::InitTemplateStrings(void)  vs ?InitTemplateStrings@UISceneFrm@@QAEPADXZ
+#     根因：decomp 签名返回型 LPSTR 与 mangler 键拼写差 ⇒ mangled_map 缺键；同实体。
+#   0x443CA0→0x4022E0  GRPinput::GetCursorPos(int)            vs ?GetCursorPos@GRPinput@@QAEHPAUtagPOINT@@@Z
+#     根因：显示名参表 (int) 与真实形 (LPPOINT*) 不符（corpus 显示名参表不可靠）；同实体。
+#   0x41C170→0x41C1E0  ScriptPoolPage_Alloc（裸名）           vs ?ScriptPoolPage_Alloc@_Console@@QAEXXZ
+#     根因：build_mangled_map 跳过无 '::' 裸名条目；decomp 签名 (_Console *this) 与 sym 类双证；同实体。
+# 判据纯计量（名字层），不改 perfect 判据；「不准确=不判定」——bare 形须叠加 sig this 类复核。
+def sym_display_name(sym):
+    """mangled 直解显示名形：'?M@C@@...'→'C::M'；'?M@@...'→'M'；其余 None。"""
+    m = re.match(r'^\?(\w+)@(\w+)@@', sym or '')
+    if m:
+        return '%s::%s' % (m.group(2), m.group(1))
+    m = re.match(r'^\?(\w+)@@', sym or '')
+    return m.group(1) if m else None
+
+
+def strip_param_list(n):
+    """剥尾参表（任意形）：'C::M(int)'→'C::M'。
+    corpus 显示名参表实测不可靠（'GRPinput::GetCursorPos(int)' 真实形为 (LPPOINT*)）
+    ⇒ 剥表比对是精度改进，非放宽。"""
+    return re.sub(r'\s*\([^()]*\)\s*$', '', (n or '').strip())
+
+
+def sig_this_class(sig):
+    """Hex-Rays 签名 this 类抽取：'void __thiscall(_Console *this)'→'_Console'。"""
+    m = re.search(r'\(\s*(?:const\s+)?(\w+)\s*\*\s*this', sig or '')
+    return m.group(1) if m else None
+
+
+def rsite_sym_name_equiv(exp_name, sym, sig=None):
+    """直名等同门（R2a-4）：'strict'（限定归一相等）| 'bare'（exp 未限定 + 方法名相等
+    + sig this 类与 sym 类一致）| None（不判定）。"""
+    ours = sym_display_name(sym)
+    if not ours:
+        return None
+    e, o = strip_param_list(exp_name), strip_param_list(ours)
+    if e and e == o:
+        return 'strict'
+    if e and '::' not in e and '::' in o:
+        cls, meth = o.split('::', 1)
+        if e == meth and sig_this_class(sig) == cls:
+            return 'bare'
+    return None

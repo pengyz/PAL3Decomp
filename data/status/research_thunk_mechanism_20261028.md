@@ -176,6 +176,15 @@ SEH 6A FF 68..          筐滥用即混淆两者）
 ```
 
 - **识别可以完全自动化**：上述字节签名是充分判据（本次普查全部按此定类，误归仅 1/1910（0x53C890）且可由签名纠正）；
+  **【2026-10-31 勘误（review_thunk_mechanism_20261028 D4/D5/B5 定谳，禁止维持原表述）】**：
+  ①「充分判据」缺**第 9 形 `B9 imm32 FF 25 [IAT]`（`static_obj_ctor_thunk_to_import`）**——实测 12 件
+  （0x401BC0/0x401BE0/0x401C00/0x401C20/0x401C40/0x401C60/0x404530/0x404550/0x404670/0x4046A4/0x4CE0D0/0x4CE0F0），
+  = 6 个 gbengine 导入类静态对象 ×(ctor+dtor)（gbVFileSystem×3(0x7CC178/0x6EBFA0/0x60BDC8)·gbVolModNode(0xA3A6F8)·
+  gbImage2D(0x8ACC10)·CPK(0xDE9CB0)；2026-10-31 PE 字节形 11B 直证 + PE 导入表 IAT 名双证）——
+  不匹配 T5（`B9 imm32 E9`）且会被 `FF 25 [IAT]` 规则误归 T1/T2 ⇒ 已入册 `thunk_registry.json`（form 字段 12 条）；
+  ②「1/1910」自相矛盾（T11 四件名实不符 + unknown_libname 族 210 条未经字节形分流，均不在分母定义内）⇒
+  **误归率定义改窄为「跳板形条目的族间误归」**（选项一，禁维持 1/1910 原句）；
+  ③unknown_libname 族 210 条按字节形分流（真身→非跳板、E9/E8E9→既有筐）**挂账后续普查**（须逐条二进制证据）。
 - **判定数据结构放 annotation**：新建 `data/annotations/thunk_registry.json`。理由：annotation 是唯一真相源、可被 check_annotations 验证、可经 apply 写入 IDB 命名（IDA 名实漂移一并治理）；
 - **验证环覆盖跳板字节**：现行 `match`/L1 只比「有源码函数」，跳板被 skip 后**完全不可见** ⇒ 把跳板地址作为独立地址条目纳入 compare_pal3 对象清单（(c) 类比「链接产物一致性」：两侧同址同形即绿；(b)(d) 类按普通函数字节比对）。
 

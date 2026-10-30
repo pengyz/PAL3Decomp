@@ -453,6 +453,9 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     detail = {}
     # [T146/P2] 目标核对用：VA → decomp name（原函数重定位目标的语义名）
     va_idx = {e['va']: n for n, e in decomp_idx.items() if isinstance(e, dict) and 'va' in e}
+    # [R2a-4 2026-10-31] va→signature 伴随索引（直名等同门 bare 形的 sig this 类复核）
+    va_sig = {e['va']: (e.get('signature') or '')
+              for e in decomp_idx.values() if isinstance(e, dict) and 'va' in e}
     for n, unit in enumerate(passing, 1):
         src = str(REPO / unit)
         # ROI-1：`.obj` 名改用**稳定哈希**。原来用内建 `hash(unit)`，受 PYTHONHASHSEED 影响
@@ -615,6 +618,18 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                         _gn2 = _ge2['name'] if _ge2 else gc.sym_direct_name(sym_name)
                         if exp_name and _gn2 and _rsite_names_match(exp_name, _gn2):
                             stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
+                            continue
+                    # [R2a-4 2026-10-31] 直名等同门（exp 有名 + mangled_map 缺键）：
+                    # mangled 形直解 Class::Method 与 exp 归一比对（剥任意参表）；
+                    # bare 形叠加 decomp 签名 this 类复核（不准确=不判定）。
+                    # 实绩：unresolved 3→0（0x535650/0x4022E0/0x41C1E0 三案定谳同实体）。
+                    if tgt is not None and exp_name and not got_name:
+                        _eq = gc.rsite_sym_name_equiv(exp_name, sym_name,
+                                                      va_sig.get(tgt, ''))
+                        if _eq:
+                            stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1
+                            stats['rsite_ok_directname'] = (
+                                stats.get('rsite_ok_directname', 0) + 1)
                             continue
                     _cb = gc.class_agree_bucket(tgt, sym_name) if tgt is not None else 'unresolved'
                     if _cb == 'class_ok':

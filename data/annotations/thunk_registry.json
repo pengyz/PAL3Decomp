@@ -101,5 +101,89 @@
     "confidence": "high",
     "evidence": "同 F1",
     "note": "同上"
+  },
+  "0x00401BC0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "B9 imm32 FF 25 [IAT] 字节形直证（2026-10-31 PE 11B：b978c17c00 ff2568a55600）+ PE 导入表 IAT 0x56A568=??0gbVFileSystem@@QAE@XZ 双证",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0x7CC178(&obj); jmp [IAT ??0gbVFileSystem]；decomp 名 PAL3::InitVFileSystem（实为静态构造跳板）"
+  },
+  "0x00401BE0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b978c17c00 ff2564a55600）+ IAT 0x56A564=??1gbVFileSystem@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0x7CC178 对偶 dtor 跳板（6 对 ctor/dtor 之一）"
+  },
+  "0x00401C00": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9a0bf6e00 ff2568a55600）+ IAT 0x56A568=??0gbVFileSystem",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0x6EBFA0; jmp [IAT ??0gbVFileSystem]；decomp 名 PAL3::InitVFileSystem2（实为静态构造跳板）"
+  },
+  "0x00401C20": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9a0bf6e00 ff2564a55600）+ IAT 0x56A564=??1gbVFileSystem",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0x6EBFA0 对偶 dtor 跳板"
+  },
+  "0x00401C40": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9c8bd6000 ff2568a55600）+ IAT 0x56A568=??0gbVFileSystem",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0x60BDC8; jmp [IAT ??0gbVFileSystem]（gbVFileSystem 第三实例）"
+  },
+  "0x00401C60": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9c8bd6000 ff2564a55600）+ IAT 0x56A564=??1gbVFileSystem",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0x60BDC8 对偶 dtor 跳板"
+  },
+  "0x00404530": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9f8a6a300 ff2528a55600）+ IAT 0x56A528=??0gbVolModNode@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0xA3A6F8; jmp [IAT ??0gbVolModNode]；decomp 名 PAL3::InitVolModNode（实为静态构造跳板）"
+  },
+  "0x00404550": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9f8a6a300 ff2524a55600）+ IAT 0x56A524=??1gbVolModNode@@UAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0xA3A6F8 对偶 dtor 跳板"
+  },
+  "0x00404670": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b910cc8a00 ff2520a55600）+ IAT 0x56A520=??0gbImage2D@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0x8ACC10; jmp [IAT ??0gbImage2D]"
+  },
+  "0x004046A4": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b910cc8a00 ff251ca55600）+ IAT 0x56A51C=??1gbImage2D@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0x8ACC10 对偶 dtor 跳板"
+  },
+  "0x004CE0D0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9b09cde00 ff2528a45600）+ IAT 0x56A428=??0CPK@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "mov ecx,0xDE9CB0; jmp [IAT ??0CPK]；decomp 名 CPK::GetInstance（实为静态构造跳板）"
+  },
+  "0x004CE0F0": {
+    "boundary": "compiler_synthesized",
+    "confidence": "high",
+    "evidence": "同 0x401BC0 字节形（b9b09cde00 ff252ca45600）+ IAT 0x56A42C=??1CPK@@QAE@XZ",
+    "form": "static_obj_ctor_thunk_to_import",
+    "note": "0xDE9CB0 对偶 dtor 跳板"
   }
 }
