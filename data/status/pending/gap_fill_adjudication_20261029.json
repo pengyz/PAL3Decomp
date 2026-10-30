@@ -14,8 +14,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBPanelSlot——Render_3200 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
     },
     {
       "class": "UIFrameWnd",
@@ -29,8 +30,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIWnd——LayoutAndRender 是否真属 UIFrameWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
     },
     {
       "class": "CEffSParticle",
@@ -47,8 +49,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffSParticle",
@@ -65,8 +68,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffSParticle",
@@ -83,8 +87,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffSParticle",
@@ -101,8 +106,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffSParticle",
@@ -119,8 +125,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_4F00 是否真属 CEffSParticle？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffgbParticle",
@@ -137,8 +144,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#11 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffgbParticle",
@@ -155,8 +163,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffgbParticle",
@@ -173,8 +182,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffgbParticle",
@@ -191,8 +201,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffgbParticle",
@@ -209,8 +220,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_8950 是否真属 CEffgbParticle？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffShock",
@@ -227,8 +239,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——~CEffShock 是否真属 CEffShock？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffShock",
@@ -272,8 +285,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBRoleState/CCBUI/CScreenMode/EquipUI/JusticeBookUI/LineupUI/MainEquipUI/RenderTarget/RoleSystem/SystemUI/UICoverFrm/UIListBox/UILoadingFrm/UIRoleSelectDialog/UITitle_YXXX）"
     },
     {
       "class": "CCBResultWindow",
@@ -287,8 +301,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——OnMessage 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage）"
     },
     {
       "class": "CCBResultWindow",
@@ -302,8 +317,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CCBResultWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBStage/CScreenMode/RoleSystem/UILoadingFrm/UITitle_YXXX）"
     },
     {
       "class": "UILoadingFrm",
@@ -320,8 +336,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIFrameWnd——Update_bbc0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#2 from:UILoadingFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UILoadingFrm",
@@ -338,8 +355,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UILoadingFrm",
@@ -356,8 +374,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIListBox——ResizeToContent 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#0 from:UILoadingFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UILoadingFrm",
@@ -374,8 +393,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIListBox——IsVisible 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:UILoadingFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UILoadingFrm",
@@ -392,8 +412,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UILoadingFrm",
@@ -410,8 +431,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——OnMessage_ovl_1aa0 是否真属 UILoadingFrm？（移植=名字搬家非证据；槽位#6 from:UILoadingFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "gbRenderEffect",
@@ -518,8 +540,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffModel？（移植=名字搬家非证据；槽位#9 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffModel",
@@ -536,8 +559,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffModel？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffModel",
@@ -554,8 +578,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffModel？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffModel",
@@ -572,8 +597,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffModel？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBControlWindow",
@@ -668,8 +694,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBParabolaWindow——`scalar deleting destructor' 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#12 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBSkillWindow",
@@ -686,8 +713,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBParabolaWindow——Destroy_c880 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBSkillWindow",
@@ -704,8 +732,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——CCBFiveNimbusWindow::OnMessage 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBSkillWindow",
@@ -722,8 +751,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBParabolaWindow——Update 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#9 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBSkillWindow",
@@ -740,8 +770,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBParabolaWindow——ToggleSlots 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#7 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBSkillWindow",
@@ -758,8 +789,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBParabolaWindow——Render 是否真属 CCBSkillWindow？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIBigMap",
@@ -806,8 +838,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffQuake",
@@ -824,8 +857,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffQuake",
@@ -842,8 +876,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffQuake",
@@ -860,8 +895,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——~CEffQuake 是否真属 CEffQuake？（移植=名字搬家非证据；槽位#0 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBPanelSlot",
@@ -914,8 +950,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 EquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "LineupUI",
@@ -932,8 +969,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 LineupUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UISceneMap",
@@ -950,8 +988,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 UISceneMap？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "ScriptObj",
@@ -965,8 +1004,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "ScriptObj",
@@ -980,8 +1020,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_1b80 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "ScriptObj",
@@ -995,8 +1036,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_1bb0 是否真属 ScriptObj？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBStage",
@@ -1013,8 +1055,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBProtectWindow——OnCommand 是否真属 CCBStage？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBStage",
@@ -1031,8 +1074,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——~CCBStage 是否真属 CCBStage？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "SystemUI",
@@ -1049,8 +1093,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 SystemUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIAnimateCtrlEX",
@@ -1064,8 +1109,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UITextArea——_sdtor_13 是否真属 UIAnimateCtrlEX？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UITextArea）"
     },
     {
       "class": "CEffAction",
@@ -1082,8 +1128,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffAction？（移植=名字搬家非证据；槽位#11 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffAction",
@@ -1100,8 +1147,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 CEffAction？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffAction",
@@ -1118,8 +1166,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffAction？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffAction",
@@ -1136,8 +1185,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 CEffAction？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffAction",
@@ -1154,8 +1204,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 CEffAction？（移植=名字搬家非证据；槽位#14 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBMagicWindow",
@@ -1262,8 +1313,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 JusticeBookUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIRoleSelectDialog",
@@ -1280,8 +1332,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIRoleSelectDialog？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIScenePanel",
@@ -1298,8 +1351,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——CreateChildWidget 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#7 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIScenePanel",
@@ -1316,8 +1370,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——Render_AD40 是否真属 UIScenePanel？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RoleSystem",
@@ -1334,8 +1389,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RoleSystem",
@@ -1352,8 +1408,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RoleSystem",
@@ -1370,8 +1427,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_0910 是否真属 RoleSystem？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "MainEquipUI",
@@ -1388,8 +1446,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 MainEquipUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1406,8 +1465,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 UIWnd？（移植=名字搬家非证据；槽位#4 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1424,8 +1484,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 SceneObj——HideAll 是否真属 UIWnd？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1442,8 +1503,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 SceneObj——Update 是否真属 UIWnd？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1460,8 +1522,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UITitle_BBTY——Render 是否真属 UIWnd？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1478,8 +1541,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 UIWnd？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIWnd",
@@ -1493,8 +1557,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 scScriptInstance——_sdtor_25 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（scScriptInstance）"
     },
     {
       "class": "UIWnd",
@@ -1508,8 +1573,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UITitle——HideAll_14C0 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UITitle）"
     },
     {
       "class": "UIWnd",
@@ -1523,8 +1589,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_439110 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIProgressBar）"
     },
     {
       "class": "UIWnd",
@@ -1541,8 +1608,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_5B20 是否真属 UIWnd？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "UIWnd",
@@ -1556,8 +1624,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_44E980 是否真属 UIWnd？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
     },
     {
       "class": "CEffMeteor",
@@ -1574,8 +1643,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#11 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffMeteor",
@@ -1592,8 +1662,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffMeteor",
@@ -1610,8 +1681,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffMeteor",
@@ -1628,8 +1700,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_B4A0 是否真属 CEffMeteor？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "UIListBox",
@@ -1646,8 +1719,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIListBox？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIListBox",
@@ -1664,8 +1738,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UIListBox？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIListBox",
@@ -1682,8 +1757,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 SceneObj——Update_5C60 是否真属 UIListBox？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIListBox",
@@ -1697,8 +1773,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBUIPanel——_scalar_dtor_3E50 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
     },
     {
       "class": "UIListBox",
@@ -1712,8 +1789,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBUIPanel——RenderIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
     },
     {
       "class": "UIListBox",
@@ -1727,8 +1805,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBUIPanel——ProcessInputIfUnlocked 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
     },
     {
       "class": "UIListBox",
@@ -1742,8 +1821,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBUIPanel——OnMessage_4590 是否真属 UIListBox？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBUIPanel）"
     },
     {
       "class": "CEffectSystem",
@@ -1760,8 +1840,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffect——Activate 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffectSystem",
@@ -1778,8 +1859,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffect——ReleaseTextures 是否真属 CEffectSystem？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "gbLightObj",
@@ -1796,8 +1878,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 gbLightObj？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UICoverFrm",
@@ -1814,8 +1897,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UICoverFrm",
@@ -1832,8 +1916,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIListBox——_scalar_dtor_79D0 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#5 from:UICoverFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "UICoverFrm",
@@ -1850,8 +1935,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIListBox——ProcessInput 是否真属 UICoverFrm？（移植=名字搬家非证据；槽位#2 from:UICoverFrm）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBItemWindow",
@@ -1883,8 +1969,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_0d90 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#0 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffQuad",
@@ -1901,8 +1988,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4D1300 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffQuad",
@@ -1919,8 +2007,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4D17D0 是否真属 CEffQuad？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CPK",
@@ -1937,8 +2026,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——~CPK 是否真属 CPK？（移植=名字搬家非证据；槽位#0 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffGrid",
@@ -1955,8 +2045,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Update 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#11 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffGrid",
@@ -1973,8 +2064,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffGrid",
@@ -1991,8 +2083,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffGrid",
@@ -2009,8 +2102,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_9630 是否真属 CEffGrid？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "PalScript",
@@ -2027,8 +2121,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——Create 是否真属 PalScript？（移植=名字搬家非证据；槽位#4 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "PalScript",
@@ -2045,8 +2140,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CGameData——OnMessage 是否真属 PalScript？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "PalScript",
@@ -2063,8 +2159,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIWnd——ShowWindow 是否真属 PalScript？（移植=名字搬家非证据；槽位#0 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffCylinder",
@@ -2081,8 +2178,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffCylinder",
@@ -2099,8 +2197,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 RenderTarget2——_sdtor 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CEffCylinder",
@@ -2117,8 +2216,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_3DB0 是否真属 CEffCylinder？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CScreenMode",
@@ -2135,8 +2235,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CScreenMode",
@@ -2150,8 +2251,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 LineupUI——OnMsgHandleNav 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（LineupUI）"
     },
     {
       "class": "CScreenMode",
@@ -2165,8 +2267,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UITitle_QCYM——OnMsgSaveData 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
     },
     {
       "class": "CScreenMode",
@@ -2180,8 +2283,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 StateUI——`scalar deleting destructor' 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（StateUI）"
     },
     {
       "class": "CScreenMode",
@@ -2195,8 +2299,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 functions——StateUI::sub_485230 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（StateUI）"
     },
     {
       "class": "CScreenMode",
@@ -2213,8 +2318,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 CScreenMode？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CScreenMode",
@@ -2228,8 +2334,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4850E0 是否真属 CScreenMode？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（?）"
     },
     {
       "class": "UIRoleDialog",
@@ -2243,8 +2350,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4BEF30 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（ScreenEffectMgr）"
     },
     {
       "class": "UIRoleDialog",
@@ -2258,8 +2366,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——RenderShadowVolume 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）"
     },
     {
       "class": "UIRoleDialog",
@@ -2273,8 +2382,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——Reset 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）"
     },
     {
       "class": "UIRoleDialog",
@@ -2288,8 +2398,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——Update 是否真属 UIRoleDialog？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（SceneVisNode）"
     },
     {
       "class": "CCBUIPanel",
@@ -2306,8 +2417,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_449C20 是否真属 CCBUIPanel？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CEffect",
@@ -2456,8 +2568,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIPushButton——Destroy_D920 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIPushButton）"
     },
     {
       "class": "CCBProtectWindow",
@@ -2471,8 +2584,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIWnd——_sdtor_14 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
     },
     {
       "class": "CCBProtectWindow",
@@ -2486,8 +2600,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIWnd——GetUIElements 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
     },
     {
       "class": "CCBProtectWindow",
@@ -2501,8 +2616,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIWnd——RenderText 是否真属 CCBProtectWindow？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIWnd）"
     },
     {
       "class": "CCBFiveNimbusWindow",
@@ -2591,8 +2707,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——_sdtor 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）"
     },
     {
       "class": "UIScene",
@@ -2606,8 +2723,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——Destroy 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）"
     },
     {
       "class": "UIScene",
@@ -2621,8 +2739,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——Update2 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption）"
     },
     {
       "class": "UIScene",
@@ -2636,8 +2755,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UICaption——_sdtor_5 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UICaption/UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2651,8 +2771,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——Render 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2666,8 +2787,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——Update_B900 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2684,8 +2806,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UIScene",
@@ -2699,8 +2822,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——Destroy_C910 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2714,8 +2838,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——PostRender 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2729,8 +2854,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——StopAllSounds 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2744,8 +2870,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 UIScenePanel——OnMessage 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "UIScene",
@@ -2759,8 +2886,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_44BE40 是否真属 UIScene？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（UIScenePanel）"
     },
     {
       "class": "Role",
@@ -2777,8 +2905,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 ScriptObj——_sdtor_22 是否真属 Role？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2792,8 +2921,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 RoleCameraCtrl——ForwardOnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（RoleCameraCtrl/UIListBox/UIScene）"
     },
     {
       "class": "CCBUI",
@@ -2810,8 +2940,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBControlWindow——CCBControlWindow::Render 是否真属 CCBUI？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBUI",
@@ -2825,8 +2956,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBProtectWindow——_sdtor_19 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBProtectWindow）"
     },
     {
       "class": "CCBUI",
@@ -2840,8 +2972,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBProtectWindow——Destroy 是否真属 CCBUI？（移植=名字搬家非证据；槽位未定位）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "rejected",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "正向反证：认领类表已定位且不含，他表实含（CCBProtectWindow）"
     },
     {
       "class": "CCBUI",
@@ -2858,8 +2991,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBResultWindow——_scalar_dtor_9360 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2876,8 +3010,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBResultWindow——Destroy_9510 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2894,8 +3029,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBResultWindow——OnMessage 是否真属 CCBUI？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2912,8 +3048,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBResultWindow——IsImbibeNimbusNotFinish 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2930,8 +3067,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBFiveNimbusWindow——_scalar_dtor_9B40 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2948,8 +3086,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBFiveNimbusWindow——Destroy_9F50 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2966,8 +3105,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBFiveNimbusWindow——AddResultWindowAni 是否真属 CCBUI？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -2984,8 +3124,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——_scalar_dtor_A390 是否真属 CCBUI？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "CCBUI",
@@ -3002,8 +3143,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——Destroy_A880 是否真属 CCBUI？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "UINote",
@@ -3035,8 +3177,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget",
@@ -3053,8 +3196,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 MainPropUI——RenderWithEffects 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#1 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "RenderTarget",
@@ -3071,8 +3215,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CameraCtrl——ValidateDevice 是否真属 RenderTarget？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "ScreenEffectMgr",
@@ -3089,8 +3234,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 gbVisNode——EnableShadow 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#9 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "ScreenEffectMgr",
@@ -3107,8 +3253,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 gbVisNode——GetAABBox 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "ScreenEffectMgr",
@@ -3125,8 +3272,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 gbVisNode——GetBoundSphere 是否真属 ScreenEffectMgr？（移植=名字搬家非证据；槽位#7 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UITitle_YXXX",
@@ -3143,8 +3291,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBRoleState——CCBRoleState::Destroy 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#6 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "UITitle_YXXX",
@@ -3161,8 +3310,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBStage——CCBRoleState::Render 是否真属 UITitle_YXXX？（移植=名字搬家非证据；槽位#4 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3179,8 +3329,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——NullCallback 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#28 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3197,8 +3348,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——OnTest 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#32 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3215,8 +3367,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——AllocRenderTarget 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#10 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3233,8 +3386,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——ResetState 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3251,8 +3405,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffQuake——AllocSegments 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#4 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3269,8 +3424,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——UpdateFrame_0740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#8 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3287,8 +3443,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffAction——PrepareEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#12 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3305,8 +3462,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——UpdateParticles 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#37 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3323,8 +3481,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffQuake——UpdateInternal 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#86 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3341,8 +3500,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——AllocEffect 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#31 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3359,8 +3519,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Create 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#25 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3377,8 +3538,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——Destroy 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#30 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3395,8 +3557,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——CreateTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#29 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3413,8 +3576,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——ProcInitTask 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#36 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3431,8 +3595,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——GetEditorTaskDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#38 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3449,8 +3614,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffCylinder——GetEditorObjDescription 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#34 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3467,8 +3633,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CEffQuake——ResetFlags 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#5 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3485,8 +3652,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C0510 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#13 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3503,8 +3671,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——nullsub_75_override 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#23 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3521,8 +3690,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_0620 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#21 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3539,8 +3709,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C1270 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#17 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3557,8 +3728,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_34b0 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#3 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3575,8 +3747,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C3C70 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#0 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "confirmed",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "vtable 槽字节真值（B2a located 表实含）"
     },
     {
       "class": "RenderTarget2",
@@ -3593,8 +3766,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——_scalar_dtor_3db0 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#24 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3611,8 +3785,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C5740 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#41 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "RenderTarget2",
@@ -3629,8 +3804,9 @@
         "multi_claim": false
       },
       "question": "gap_fill 移植自 ?——sub_4C5800 是否真属 RenderTarget2？（移植=名字搬家非证据；槽位#21 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     },
     {
       "class": "CCBLineupWindow",
@@ -3647,8 +3823,9 @@
         "multi_claim": true
       },
       "question": "gap_fill 移植自 CCBItemWindow——HandleInput 是否真属 CCBLineupWindow？（移植=名字搬家非证据；槽位#2 from:None）",
-      "answer": null,
-      "adjudicator": null
+      "answer": "shared_impl",
+      "adjudicator": "mechanical:P-tier",
+      "evidence": "多表实含（合成物/共享实现形，Destroy__ovl_03 同款）"
     }
   ]
 }

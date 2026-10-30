@@ -166,64 +166,74 @@
       "signature": "int __thiscall(int id, tagRECT *pRect, UIWnd *parent)",
       "source": "vtable_gap_fill_v1(from CCBItemWindow.json)| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石",
       "owner": "UIWnd",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00445C10": {
       "name": "HideAll",
       "signature": "void __thiscall UIWnd::HideAll()",
       "source": "vtable_gap_fill_v1(from SceneObj.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00445C60": {
       "name": "Update",
       "signature": "int __thiscall(int a2, int a3)",
       "source": "vtable_gap_fill_v1(from SceneObj.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00445CD0": {
       "name": "Render",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00445D10": {
       "name": "OnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
       "source": "vtable_gap_fill_v1(from CGameData.json)",
       "owner": "UIWnd",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x0044E5C0": {
       "name": "_sdtor_25",
       "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
       "source": "vtable_gap_fill_v1(from scScriptInstance.json)",
       "evidence_level": "unverified",
-      "declaration_only": true
+      "declaration_only": true,
+      "adjudication": "rejected"
     },
     "0x004A14C0": {
       "name": "HideAll_14C0",
       "signature": "void __thiscall __thiscall()",
       "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "adjudication": "rejected"
     },
     "0x00439110": {
       "name": "sub_439110",
       "signature": "void* __thiscall(int)",
       "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "adjudication": "rejected"
     },
     "0x00445B20": {
       "name": "_scalar_dtor_5B20",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
       "declaration_only": true,
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "adjudication": "confirmed"
     },
     "0x0044E980": {
       "name": "sub_44E980",
       "signature": "void __thiscall(int, int)",
       "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x004431B0": {
       "name": "_scalar_dtor_31B0",

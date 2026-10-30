@@ -851,83 +851,96 @@
       "name": "ForwardOnMessage",
       "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
       "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x0043DDF0": {
       "name": "CCBControlWindow::Render",
       "signature": "virtual void __thiscall(CCBMagicWindow *this)",
       "source": "vtable_gap_fill_v1(from CCBControlWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00516100": {
       "name": "_sdtor_19",
       "signature": "CCBProtectWindow *__thiscall(CCBProtectWindow *Block, char a2)",
       "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
       "evidence_level": "unverified",
-      "declaration_only": true
+      "declaration_only": true,
+      "adjudication": "rejected"
     },
     "0x005164D0": {
       "name": "Destroy",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x00519360": {
       "name": "_scalar_dtor_9360",
       "signature": "void __thiscall(BOOL bShow)",
       "source": "vtable_gap_fill_v1(from CCBResultWindow.json) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8）",
       "evidence_level": "A",
-      "declaration_only": true
+      "declaration_only": true,
+      "adjudication": "confirmed"
     },
     "0x00519510": {
       "name": "Destroy_9510",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x005195E0": {
       "name": "OnMessage",
       "signature": "int __thiscall(int pt, unsigned int area, int nVal)",
       "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x00519660": {
       "name": "IsImbibeNimbusNotFinish",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x00519B40": {
       "name": "_scalar_dtor_9B40",
       "signature": "CCBUI * __thiscall(int nNimbusType)",
       "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4）",
       "evidence_level": "A",
-      "declaration_only": true
+      "declaration_only": true,
+      "adjudication": "confirmed"
     },
     "0x00519F50": {
       "name": "Destroy_9F50",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x0051A090": {
       "name": "AddResultWindowAni",
       "signature": "BOOL __thiscall(int nVal, int nVal2)",
       "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x0051A390": {
       "name": "_scalar_dtor_A390",
       "signature": "void __thiscall(int)",
       "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500）",
       "evidence_level": "A",
-      "declaration_only": true
+      "declaration_only": true,
+      "adjudication": "confirmed"
     },
     "0x0051A880": {
       "name": "Destroy_A880",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "confirmed"
     },
     "0x0051B8C0": {
       "name": "_todo_B8C0",

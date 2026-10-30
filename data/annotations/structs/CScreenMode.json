@@ -898,43 +898,50 @@
       "name": "CCBRoleState::Destroy",
       "signature": "int __thiscall Destroy(int nMode)",
       "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00456500": {
       "name": "OnMsgHandleNav",
       "signature": "int __thiscall LineupUI::OnMsgHandleNav(unsigned int uMsg, unsigned int wParam, int lParam)",
       "source": "vtable_gap_fill_v1(from LineupUI.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x004568C0": {
       "name": "OnMsgSaveData",
       "signature": "int __thiscall UITitle_QCYM::OnMsgSaveData(unsigned int uMsg, unsigned int wParam, int lParam)",
       "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x00483260": {
       "name": "`scalar deleting destructor'",
       "signature": "StateUI *__thiscall(StateUI *Block, char a2)",
       "source": "vtable_gap_fill_v1(from StateUI.json) | [T142R] 删除析构族机械判定（T138 形，逐形 objdump A 级）：全形=call 0x483380 + testb $0x1,0x8(%esp) + call 0x541d10(operator delete) + mov eax,esi + ret $4；被调 0x483380 本体=SEH + vptr store 0x56BA30 + try-level 0x1e 递减 + 条件释放 ⇒ 完整析构 ⇒ 本体=真标量删除析构（T142 曾判『call StateUI::ctor 误名』—— 误：vptr 写入+try-level 递减=析构指纹，T119 禁凭 ctor_ 名判读）。⚠️ 归属挂账：vtable 0x56BA30 非 CScreenMode 本体 vtable 0x570630",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "adjudication": "rejected"
     },
     "0x00485230": {
       "name": "StateUI::sub_485230",
       "signature": "void __thiscall(int, int)",
       "source": "vtable_gap_fill_v1(from functions.json) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x00524970": {
       "name": "CCBRoleState::Render",
       "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
       "source": "vtable_gap_fill_v1(from CCBStage.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x004850E0": {
       "name": "sub_4850E0",
       "signature": "int __thiscall()",
       "source": "vtable_gap_fill_v1(IDB:?sub_4850E0@StateUI@@QAEHXZ)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "rejected"
     },
     "0x0042C1C0": {
       "name": "sub_42C1C0",

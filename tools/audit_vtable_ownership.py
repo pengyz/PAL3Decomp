@@ -127,10 +127,12 @@ def main():
             v = classify_ownership(nm, _norm(addr), ownership, located)
             if v != 'not_in_vtables':
                 verdicts.setdefault(v, []).append((nm, addr, info.get('name')))
+    # R2⑤ 兑现：全量落档禁截断（机械裁定交叉依赖）
     res = {'verdict_counts': {k: len(v) for k, v in verdicts.items()},
-           'slot_mismatch': slot_mismatch[:50],
-           'misowned': verdicts.get('P:misowned', [])[:100],
-           'multi_owned_sample': verdicts.get('P:multi_owned', [])[:30]}
+           'slot_mismatch': slot_mismatch,
+           'misowned': verdicts.get('P:misowned', []),
+           'vtable_confirmed': verdicts.get('P:vtable_confirmed', []),
+           'multi_owned': verdicts.get('P:multi_owned', [])}
     Path(ROOT / 'data/status/vtable_ownership_census.json').write_text(
         json.dumps(res, ensure_ascii=False, indent=2))
     print('判定分布:', res['verdict_counts'], '| 槽不一致:', len(slot_mismatch))

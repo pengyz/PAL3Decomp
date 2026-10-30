@@ -14,21 +14,24 @@
       "name": "Update",
       "signature": "int __thiscall(int)",
       "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00411B80": {
       "name": "_scalar_dtor_1b80",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | 修复 2026-10-17: 同址多类注册补标 declaration_only",
       "declaration_only": true,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00411BB0": {
       "name": "_scalar_dtor_1bb0",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor_0) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | 修复 2026-10-17: 同址多类注册补标 declaration_only",
       "declaration_only": true,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x00411BD0": {
       "name": "_scalar_dtor_1BD0",

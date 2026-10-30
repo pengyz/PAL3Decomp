@@ -56,25 +56,29 @@
       "name": "OnTest",
       "signature": "int()",
       "source": "vtable_gap_fill_v1(from CEffAction.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x004C15D0": {
       "name": "UpdateParticles",
       "signature": "void __thiscall()",
       "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x004C0510": {
       "name": "sub_4C0510",
       "signature": "int __thiscall(int)",
       "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
     },
     "0x004D32E0": {
       "name": "~CEffQuake",
       "signature": "void __thiscall(int nVal1)",
       "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffQuake（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA88,0x56FA7C）",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "adjudication": "shared_impl"
     },
     "0x004AF760": {
       "name": "_todo_004AF760",
