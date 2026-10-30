@@ -119,6 +119,29 @@ def find_table(mem, func_addrs):
     return None
 
 
+def find_table_cluster(mem, func_addrs, window=8, min_hits=2):
+    """全局聚集扫描（骨架认领复活）：类方法址 ≥min_hits 聚窗 → 窗基=首命中。"""
+    vals = set()
+    for a in func_addrs:
+        n = _norm(a)
+        if n:
+            vals.add(int(n, 16))
+    if not vals:
+        return None
+    hits = []
+    for va in sorted(mem):
+        if va % 4:
+            continue
+        u = read_u32(mem, va)
+        if u in vals:
+            hits.append((va, u))
+    for va, _ in hits:
+        distinct = {v for p, v in hits if va <= p < va + 4 * window}
+        if len(distinct) >= min_hits:
+            return va
+    return None
+
+
 def anchor_by_methods(mem, near_va, maddrs, window=0x40):
     """空 slots 骨架认领：在认领 vtable 邻域找类方法址聚集锚（逐槽锚定）。"""
     cands = [int(_norm(a), 16) for a in (maddrs or []) if _norm(a)]
@@ -141,6 +164,7 @@ def main():
                 claims[_norm(vt['addr'])] = (nm, vt)
     mem = {}
     mem.update(dump_segment(0x550000, 0x580000))
+    mem.update(dump_segment(0x580000, 0x5A0000))   # B：vtable 外居域（0x58xxxx 表）
     method_addrs = {}
     import glob as _g
     for _f in _g.glob(str(ROOT / 'data/annotations/structs/*.json')):
@@ -155,10 +179,18 @@ def main():
         base = find_table(mem, seq) or find_table_holes(mem, seq)   # B：严格失败退容洞
         if base is None:
             # B2 空 slots 骨架认领：类方法址锚定（认领 addr 邻域首个多命中聚集点）
-            anchor = anchor_by_methods(mem, int(va, 16), method_addrs.get(nm, []))
+            anchor = find_table_cluster(mem, method_addrs.get(nm, []))
             if anchor is not None:
                 base = anchor
-                seq = ['<anchored>']
+                seq = ['<cluster>']
+                # 聚窗命中即归属（idx=窗内序）
+                _vals = {int(_norm(a), 16) for a in (method_addrs.get(nm) or []) if _norm(a)}
+                _i = 0
+                for _g in range(8):
+                    _v = read_u32(mem, base + 4 * _g)
+                    if _v in _vals:
+                        ownership.setdefault(_norm(_v), []).append((nm, _i, hex(base)))
+                        _i += 1
             else:
                 slot_mismatch.append((nm, va, 'TABLE_NOT_FOUND', seq[:2]))
                 continue

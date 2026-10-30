@@ -51,3 +51,24 @@ def test_b_findh_rejects_scattered():
         for b in range(4):
             mem[0x560000 + 4*i + b] = (v >> (8*b)) & 0xFF
     assert find_table_holes(mem, [0x401000, 0x402000], max_gap=3) is None
+
+
+def test_c_find_table_cluster_locates():
+    """骨架认领复活：全 mem 聚集扫描（类方法址 ≥2 聚窗 → 真表址）。"""
+    from audit_vtable_ownership import find_table_cluster
+    mem = {}
+    # 真表在 0x571000（认领址 0x56abb8 无关）：窗内聚集 2 方法址
+    for i, v in [(0, 0x402000), (2, 0x403000), (4, 0x401000)]:
+        for b in range(4):
+            mem[0x571000 + 4*i + b] = (v >> (8*b)) & 0xFF
+    got = find_table_cluster(mem, [0x402000, 0x403000, 0x404000])
+    assert got == 0x571000, got
+
+
+def test_c_find_table_cluster_rejects_scattered():
+    from audit_vtable_ownership import find_table_cluster
+    mem = {}
+    for i, v in [(0, 0x402000), (50, 0x403000)]:
+        for b in range(4):
+            mem[0x571000 + 4*i + b] = (v >> (8*b)) & 0xFF
+    assert find_table_cluster(mem, [0x402000, 0x403000]) is None
