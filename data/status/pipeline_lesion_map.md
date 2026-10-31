@@ -9,12 +9,14 @@
 | 项 | 内容 |
 |---|---|
 | **指标症状** | len-delta shorter + orig 序言 SEH 形（`6A FF 68` / FPO-SEH `64 A1 … 6A FF 68`） |
-| **簇规模** | 82 件（首字节形 70 + 深位变体 12）＝ len-delta 桶 33% |
+| **簇规模** | 83 件（首字节形 70 + 深位变体 12）＝ len-delta 桶 33% |
 | **判因证据** | 3/3 抽样（CCBAIWindow::Reset/Destroy/OnMessage）：decomp 含 `ebp-4h` SEH 状态变量 + `v6=0/-1` 跃迁 + `_CxxThrowException`；我方生成体**原样搬摊平形**（v6 当普通 int、裸 _CxxThrowException）⇒ 编译器看不到 try ⇒ 不发 SEH 序言；decomp 语料 123 件含异常构形 |
-| **管线病灶** | codegen 层：Hex-Rays EH 状态机摊平形未还原为 C++ `try`/`throw` 语义 |
-| **落点** | codegen AST 改写：①`_CxxThrowException(obj,&_TI1_AV_Exception__)`→`throw` 形（机械等价）②`vN=状态` 跃迁模式→try 块还原（模式识别） |
-| **验证面** | 修复后该簇 82 件 SEH 序言出现（字节形回归）；L1 增量当场读 |
-| **状态** | 已判因（待实施） |
+| **判因实验** | E 形（离线 ctor `new T(...)`）→ SEH 序言 `6A FF 68` ✓ HIT（与原版 `0x51CCE0` 同形）；A/B/C/F 形 ✗；D 形（`try { } catch`）✓ |
+| **管线病灶** | codegen 层：Hex-Rays EH 状态机摊平形未还原为 C++ `new` 表达式/`try` 块 |
+| **落点** | `stage5_fixup._rewrite_new_expression`（已实施）：`ptr=(T*)operator new(N); [state;] if(ptr) ptr->T::Method(); else r=0; [state;]` → `ptr=new T(); r=(int)ptr;` |
+| **命中率** | **15/83 = 18%**（正则扩面三连修：Method 形/多层括号/结果 cast）；有模式仍漏 7（异形：`operator new` 在 if 条件内/复杂流）；**61 件无 new 模式**（构造链/try-catch 形，需不同修法） |
+| **验证面** | 修复后 15 件 SEH 序言回归（字节形）；L1 增量当场读 |
+| **状态** | 已判因·部分实施（15 件已修；61 件构造链形待 try/catch 还原修法） |
 
 ## B. 帧指针形缺失（部分判因——/Oy- 复现实证）
 
