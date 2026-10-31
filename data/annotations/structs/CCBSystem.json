@@ -772,6 +772,20 @@
       "signature": "int __thiscall()",
       "source": "[函数归属 2026-10-17·主攻点 2 终] CCBSystem——面卡④类=CCBSystem（SetThreadFlag 调用者族 ✓）（五面卡类归属面 ✓ decomp member access 证）",
       "evidence_level": "unverified"
+    },
+    "0x0041C710": {
+      "name": "ProcessKeyboard",
+      "signature": "void __thiscall(InputSystem *this, int a1)",
+      "name_source": "归属修正 2026-10-31（InputSystem→CCBSystem，偏移重叠证据）",
+      "name_note": "键盘处理（访问 m_bQuitFlag/m_bPause/m_eState 等 CCBSystem 成员）",
+      "attribution_evidence": "7/19 offsets overlap CCBSystem members (m_bQuitFlag/m_bPause/m_eState/m_eResult/m_bFiveNimbus)"
+    },
+    "0x0041C9A0": {
+      "name": "SetCameraTransition",
+      "signature": "int __thiscall(InputSystem *this, int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)",
+      "name_source": "归属修正 2026-10-31（InputSystem→CCBSystem，偏移重叠证据）",
+      "name_note": "相机过渡（访问 m_bPause/m_eState/m_eResult CCBSystem 成员）",
+      "attribution_evidence": "7/19 offsets overlap CCBSystem members (m_bQuitFlag/m_bPause/m_eState/m_eResult/m_bFiveNimbus)"
     }
   }
 }
