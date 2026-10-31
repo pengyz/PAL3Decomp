@@ -167,6 +167,36 @@ def test_ledger_retired_and_defined_surface_skip():
     assert sym_base_forms('_WinMain@16') & {'_WinMain@16', 'WinMain'}
 
 
+def test_rewrite_new_expression_ctor_only():
+    """v2 审核修正：只匹配 T::T() 构造形，普通方法调用不改写（F2 BLOCKER 教训）。"""
+    import re
+    RESULT_ASSIGN = r'(?:(?P<result>\w+)\s*=\s*(?:\(\s*\w+\s*\*\s*\)\s*)?)?'
+    pat = re.compile(
+        r'(?P<indent>^\s+)(?P<ptr>\w+)\s*=\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*operator new\s*\([^)]+\);\s*\n'
+        r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?'
+        r'\s*if\s*\(\s*(?P=ptr)\s*\)\s*\n'
+        r'\s*' + RESULT_ASSIGN +
+        r'(?:\(\s*)*(?:\(\s*\w+\s*\*\s*\)\s*)?(?P=ptr)(?:\s*\))*(?:\s*->)'
+        r'\s*(?P=cls)::(?P=cls)\s*\((?P<args>[^;]*)\);\s*\n'
+        r'\s*else\s*\n'
+        r'\s*(?P<fallback>\w+)\s*=\s*0;\s*\n'
+        r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?',
+        re.MULTILINE)
+
+    ctor = '  v2 = (CCBUI *)operator new(0x74u);\n  if ( v2 )\n    v2->CCBUI::CCBUI();\n  else\n    v3 = 0;\n'
+    assert pat.search(ctor), 'ctor form T::T() should match'
+
+    ctor_args = '  v2 = (gbCamera *)operator new(0x100u);\n  if ( v2 )\n    v2->gbCamera::gbCamera(1, 2);\n  else\n    v3 = 0;\n'
+    m = pat.search(ctor_args)
+    assert m and '1, 2' in m.group('args'), 'ctor args should be captured'
+
+    method = '  v3 = (GRPinput *)operator new(0x24u);\n  if ( v3 )\n    v4 = v3->GRPinput::SetMousePos();\n  else\n    v4 = 0;\n'
+    assert not pat.search(method), 'non-ctor form T::Method() should NOT match'
+
+    m = pat.search(ctor)
+    assert m and m.group('result') is None, 'result should be None when absent'
+
+
 def test_iron_rule_no_stub_in_pal3src():
     """铁律棘轮（设计 §3.1）：stub 永不落 pal3/src（S2 量到 stub=假绿）。
     2026-10-31 实测教训：绝对路径进 stub_path_for_unit 会让 Path 连接失效

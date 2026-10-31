@@ -1222,8 +1222,8 @@ def _fix_operator_new_cast(code):
 # 看不到 new 表达式 ⇒ 不发 SEH 序言 ⇒ len-delta 桶 82 件（33%）缺质量。
 # 修法：ptr = (T*)operator new(N); [state=0;] if(ptr) ptr->T::Method(args); else r=0;
 #       [state=-1;] → ptr = new T(); r = (int)ptr;
-# [扩面] Method 可以是 ctor（T::T）或 ctor 体展开的 init 方法（T::Init）——
-#   两者都是 new 表达式的编译器展开形，统一重写为 new T()。
+# [扩面] Method 只能是 ctor（T::T）——普通方法调用（T::Init）不可重写为 new T()
+#   （new T() 调构造函数，普通方法调用被丢弃 = 语义改变，F2 BLOCKER 教训）。
 # [扩面 2] 指针表达式可带多层括号：v2 / ((T*)v2) / (((T*)v2))——统一匹配。
 # [扩面 3] 结果赋值可带 cast：v3 = (T*)——与指针 cast 分开捕获。
 _PTR_EXPR = r'(?:\(\s*)*(?:\(\s*\w+\s*\*\s*\)\s*)?(?P=ptr)(?:\s*\))*(?:\s*->)'
@@ -1233,7 +1233,7 @@ _NEW_EXPR_RE = re.compile(
     r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?'                                    # 可选状态变量 = 0
     r'\s*if\s*\(\s*(?P=ptr)\s*\)\s*\n'
     r'\s*' + _RESULT_ASSIGN + _PTR_EXPR +
-    r'\s*\w+::\w+\s*\([^;]*\);\s*\n'                                     # T::T 或 T::Method
+    r'\s*(?P=cls)::(?P=cls)\s*\((?P<args>[^;]*)\);\s*\n'                  # 只匹配构造函数形 T::T(args)
     r'\s*else\s*\n'
     r'\s*(?P<fallback>\w+)\s*=\s*0;\s*\n'
     r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?',                                    # 可选状态变量 = -1
@@ -1241,8 +1241,9 @@ _NEW_EXPR_RE = re.compile(
 
 
 def _rewrite_new_expression(code):
-    """operator new + 手调 ctor/method + 状态变量 → new 表达式（E 形验证形）。
-    返回 (new_code, hit_count)。Method 可以是 ctor 或 init 方法——统一 new T()。"""
+    """operator new + 手调 ctor + 状态变量 → new 表达式（E 形验证形）。
+    返回 (new_code, hit_count)。只匹配构造函数形 T::T()——普通方法调用不改写。
+    [v2 修] 传递构造参数（T::T(args) → new T(args)），不丢参数。"""
     hits = []
     def _replace(m):
         hits.append(m.group('ptr'))
@@ -1250,8 +1251,9 @@ def _rewrite_new_expression(code):
         ptr = m.group('ptr')
         cls = m.group('cls')
         result = m.group('result')
-        body = '%s%s = new %s();\n' % (indent, ptr, cls)
-        if result != ptr:
+        args = m.group('args') or ''
+        body = '%s%s = new %s(%s);\n' % (indent, ptr, cls, args.strip())
+        if result and result != ptr:
             body += '%s%s = (int)%s;\n' % (indent, result, ptr)
         return body
     code = _NEW_EXPR_RE.sub(_replace, code)
@@ -1390,6 +1392,7 @@ def _run_inner(code, ctx):
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
     # [簇 A 管线修复 2026-10-31] new 表达式化（E 形验证：SEH 序言回归）
+    # [v2 修 2026-10-31] 只匹配 T::T() 构造形 + result=None 防护
     code, _new_hits = _rewrite_new_expression(code)
 
     # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
