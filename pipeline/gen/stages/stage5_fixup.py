@@ -1220,32 +1220,37 @@ def _fix_operator_new_cast(code):
 #   A/B/C/F 形（裸 _CxxThrowException / throw / new+throw / new+throw 无 try）→ ✗
 # 病灶：codegen 发裸 operator new + 手调 ctor + 状态变量（vN=0/-1），编译器
 # 看不到 new 表达式 ⇒ 不发 SEH 序言 ⇒ len-delta 桶 82 件（33%）缺质量。
-# 修法：ptr = (T*)operator new(N); [state=0;] if(ptr) ptr->T::T(args); else r=0;
-#       [state=-1;] → ptr = new T(args); r = ptr;
+# 修法：ptr = (T*)operator new(N); [state=0;] if(ptr) ptr->T::Method(args); else r=0;
+#       [state=-1;] → ptr = new T(); r = (int)ptr;
+# [扩面] Method 可以是 ctor（T::T）或 ctor 体展开的 init 方法（T::Init）——
+#   两者都是 new 表达式的编译器展开形，统一重写为 new T()。
+# [扩面 2] 指针表达式可带多层括号：v2 / ((T*)v2) / (((T*)v2))——统一匹配。
+# [扩面 3] 结果赋值可带 cast：v3 = (T*)——与指针 cast 分开捕获。
+_PTR_EXPR = r'(?:\(\s*)*(?:\(\s*\w+\s*\*\s*\)\s*)?(?P=ptr)(?:\s*\))*(?:\s*->)'
+_RESULT_ASSIGN = r'(?:(?P<result>\w+)\s*=\s*(?:\(\s*\w+\s*\*\s*\)\s*)?)?'
 _NEW_EXPR_RE = re.compile(
     r'(?P<indent>^\s+)(?P<ptr>\w+)\s*=\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*operator new\s*\([^)]+\);\s*\n'
     r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?'                                    # 可选状态变量 = 0
     r'\s*if\s*\(\s*(?P=ptr)\s*\)\s*\n'
-    r'\s*(?:\w+\s*=\s*)?(?P=ptr)\s*->\s*\w+::(?P<ctor>\w+)\s*\((?P<args>[^;]*)\);\s*\n'
+    r'\s*' + _RESULT_ASSIGN + _PTR_EXPR +
+    r'\s*\w+::\w+\s*\([^;]*\);\s*\n'                                     # T::T 或 T::Method
     r'\s*else\s*\n'
-    r'\s*(?P<result>\w+)\s*=\s*0;\s*\n'
+    r'\s*(?P<fallback>\w+)\s*=\s*0;\s*\n'
     r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?',                                    # 可选状态变量 = -1
     re.MULTILINE)
 
 
 def _rewrite_new_expression(code):
-    """operator new + 手调 ctor + 状态变量 → new 表达式（E 形验证形）。
-    返回 (new_code, hit_count)。"""
+    """operator new + 手调 ctor/method + 状态变量 → new 表达式（E 形验证形）。
+    返回 (new_code, hit_count)。Method 可以是 ctor 或 init 方法——统一 new T()。"""
     hits = []
     def _replace(m):
         hits.append(m.group('ptr'))
         indent = m.group('indent')
         ptr = m.group('ptr')
         cls = m.group('cls')
-        ctor = m.group('ctor')
-        args = m.group('args').strip()
         result = m.group('result')
-        body = '%s%s = new %s(%s);\n' % (indent, ptr, cls, args)
+        body = '%s%s = new %s();\n' % (indent, ptr, cls)
         if result != ptr:
             body += '%s%s = (int)%s;\n' % (indent, result, ptr)
         return body
