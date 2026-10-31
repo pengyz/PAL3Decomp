@@ -953,6 +953,20 @@ def cmd_status(argv):
     from pipeline import preflight
     state = preflight.collect_state()
     print(preflight.render(state))
+    # [方案 v2 D2/S4 2026-10-31] stub↔S2 三读数（覆盖率四元组口径 + 存量 + retire_due）
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), 'tools'))
+        import stub_retire as _sr
+        _cov = _sr.census_reading()
+        _cls, _due, _missing, _orphan = _sr.reconcile()
+        print('[stub_retire] 覆盖率 %d/%d = %.0f%%（unit_set %s · census %s）'
+              % (_cov['ok'], _cov['total'], 100.0 * _cov['ok'] / max(_cov['total'], 1),
+                 _cov['unit_set_hash'], _cov['generated_at']))
+        print('[stub_retire] 存量: unit %d · 符号 %d | retire_due %d | 缺 stub %d'
+              % (len(_cls['unit']), _sr.stub_symbol_count(), len(_due), len(_missing)))
+    except Exception as e:                       # 只读展示，坏了不阻断 status
+        print('[stub_retire] 读数不可用: %s' % e)
     if '--strict' in argv:
         rows = preflight.baseline_rows(state)
         inconsistent = (rows[0]['ok'] is not None and rows[1]['ok'] is not None
