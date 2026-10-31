@@ -360,12 +360,15 @@ KNOWN_CFUNC_FORMS = {
 
 
 def decl_lookup(name):
-    """include 链既有声明原文（ida_defs.h/globals.h 的 `ret name(params);` 形）。
+    """include 链既有声明原文（ida_defs.h/globals.h/pal3/src 全头的 `ret name(params);` 形）。
     合成定义必须挂既有声明形——同名异形（void* vs _TEB* / void vs uint）
     是 C2556/C2733 的根因（2026-10-31 实测 NtCurrentTeb+Bink 三件）。
-    extern "C" 块内声明带链接域前缀（定义缺包裹 ⇒ C2733 second C linkage）。"""
+    extern "C" 块内声明带链接域前缀（定义缺包裹 ⇒ C2733 second C linkage）。
+    [T1a 扩面] 扫描集扩 pal3/src 全头（ArraySort/成员形回退用）。"""
     if not _DECL_LOOKUP_CACHE:
-        for p in (PROJECT_ROOT / 'include' / 'pal3' / 'ida_defs.h', SRC_ROOT / 'globals.h'):
+        files = [PROJECT_ROOT / 'include' / 'pal3' / 'ida_defs.h',
+                 SRC_ROOT / 'globals.h'] + sorted(SRC_ROOT.rglob('*.h'))
+        for p in files:
             if not p.exists():
                 continue
             t = p.read_text(encoding='utf-8', errors='replace')
@@ -405,29 +408,35 @@ def globals_decl(name):
     return _GLOBALS_DECL_CACHE.get(name)
 
 
-_SURFACE_DEF_RE = re.compile(
-    r'^\s*((?:[\w:\*&\s~]|::)*?[\w:~]+)\s*\([^;{]*\)\s*\n\s*\{', re.M)
-_SURFACE_DATA_RE = re.compile(
-    r'^\s*[\w:\*&\s~]*?([\w:~]+)\s*(?:\[[0-9]*\])?\s*=\s*\{?', re.M)
+_SURFACE_MARK_RE = re.compile(r'^// (?:0x[0-9A-Fa-f]+|header|supply)\s+\((.+)\)\s*$',
+                             re.M)
+_DATA_MARK_RE = re.compile(r'^// D  (.+)$', re.M)
 
 
 def defined_surface_names():
     """已定义面普查（单元 stub/_real/_slots 的定义名集合）——防供给双定义 LNK2005
-    （v2 D0-2.1：手修/真函数嵌入后同名供给 = 双定义，ArraySort 案）。"""
+    （v2 D0-2.1）。[T1a 修] 改标记行提取（// 0x (名)/// supply (显示名)——
+    签名正则扛不住嵌套括号参数，CreateProtectedObj 案 LNK2005）。"""
     names = set()
-    files = list(STUB_ROOT.glob('*_stub.cpp'))
-    for sub in ('_real', '_slots'):
-        d = STUB_ROOT / sub
-        if d.exists():
-            files += list(d.glob('*.cpp'))
+    # [T1a 修 2] rglob 全深度（glob('*_stub.cpp') 非递归漏 87 个子目录单元 stub）；
+    # _supply 自身排除（再生成面——普查它=全量自吞）。
+    files = [f for f in STUB_ROOT.rglob('*_stub.cpp')
+             if not f.relative_to(STUB_ROOT).as_posix().startswith('_supply/')]
+    d = STUB_ROOT / '_real'
+    if d.exists():
+        files += list(d.glob('*.cpp'))
     for f in files:
         t = f.read_text(encoding='utf-8', errors='replace')
-        for m in _SURFACE_DEF_RE.finditer(t):
-            nm = re.search(r'([\w:~]+)\s*$', m.group(1))
-            if nm:
-                names.add(nm.group(1))
-        for m in _SURFACE_DATA_RE.finditer(t):
-            names.add(m.group(1))
+        for m in _SURFACE_MARK_RE.finditer(t):
+            raw = m.group(1).strip()
+            if raw.startswith(('public:', 'private:', 'protected:', 'char ', 'int ',
+                               'void ', '__declspec', 'struct ', 'class ', 'unsigned',
+                               'float ', 'double ', 'const ', 'short ', 'long ', '_')):
+                raw = parse_link_display(raw)[2] or raw
+            names.add(raw)
+        for m in _DATA_MARK_RE.finditer(t):
+            mm = re.match(r'[\w:\*&\s]*?([\w:~]+)(?:\s*\[[0-9]*\])?\s*=', m.group(1))
+            names.add(mm.group(1) if mm else m.group(1).strip())
     return names
 
 
@@ -580,8 +589,29 @@ def generate_supply_from_log(log_paths, out_root=None, exclude=None):
     return files, sum(len(v) for v in groups.values()), skipped
 
 
+def _decl_override(kind, label):
+    """T1a 声明形回退：编译失败项先按头声明形重试（不手改——方案 v2 R1-F7），仍败才剔除。"""
+    if kind == 'func':
+        form = decl_lookup(label) or decl_lookup(label.split('::')[-1])
+        if not form:
+            return None
+        if '::' in label:
+            m = re.match(r'^(.*?)\s*[\w:~]+\s*\(([^;{]*)\)\s*$', form)
+            if not m:
+                return None
+            ret = ' '.join(m.group(1).split())
+            return '%s %s(%s)' % (ret, label, m.group(2).strip())
+        return form
+    m = re.match(r'[\w:\*&\s]*?([\w:~]+)(?:\s*\[[0-9]*\])?\s*=', label)
+    if m:
+        decl = globals_decl(m.group(1))
+        if decl:
+            return '%s = {0};' % decl
+    return None
+
+
 def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None,
-                      notes=None):
+                      notes=None, decl_overrides=None):
     p = Path(unit_path)
     text = p.read_text(encoding='utf-8', errors='replace')
     # [铁律护栏 2026-10-31] 一律相对仓根归一后再算 stub 路径——绝对路径会让
@@ -594,6 +624,16 @@ def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None,
         funcs = [f for f in funcs if f['name'] not in skip_names]
     if skip_data:
         data = [d for d in data if d['label'] not in skip_data]
+    if decl_overrides:
+        for f in funcs:
+            ov = decl_overrides.get(('func', f['name']))
+            if ov:
+                f['sig'] = ov
+                f['ret'] = split_signature(ov)[0] or ''
+        for d in data:
+            ov = decl_overrides.get(('data', d['label']))
+            if ov:
+                d['text'] = ov
     body = render_stub(rel, extract_includes(text), funcs, data)
     if notes:
         body += '\n' + '\n'.join(notes) + '\n'
@@ -628,9 +668,10 @@ def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12, base_skip=None):
     src = PROJECT_ROOT / unit_rel
     base_skip = base_skip or set()
     dropped_f, dropped_d, report, ok = set(), set(), [], False
+    overrides, retried = {}, set()
     for _ in range(max_rounds):
         out, _ = generate_for_unit(src, skip_names=(base_skip | dropped_f),
-                                   skip_data=dropped_d)
+                                   skip_data=dropped_d, decl_overrides=overrides)
         text = out.read_text(encoding='utf-8')
         spans = stub_function_spans(text)
         obj_dir = PROJECT_ROOT / 'build' / 'obj'
@@ -657,8 +698,16 @@ def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12, base_skip=None):
         if not err_items:
             report = unattributed
             break
-        for kind, name in err_items:
-            (dropped_f if kind == 'func' else dropped_d).add(name)
+        for kind, label in err_items:
+            # [T1a 声明形回退] 编译失败项先按头声明形重试一次，仍败才剔除
+            key = (kind, label)
+            if key not in retried:
+                ov = _decl_override(kind, label)
+                if ov:
+                    retried.add(key)
+                    overrides[key] = ov
+                    continue
+            (dropped_f if kind == 'func' else dropped_d).add(label)
         report += sorted('%s:%s' % it for it in err_items)
     # 收口：重生成 + PRUNED 债账注记（无论成功与否，债账都落盘）
     notes = []
@@ -670,7 +719,8 @@ def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12, base_skip=None):
         notes.append('// DUP-FALLBACK (defined elsewhere, LNK2005 dedup):')
         notes += ['//   %s' % n for n in sorted(base_skip)]
     out, _ = generate_for_unit(src, skip_names=(base_skip | dropped_f),
-                               skip_data=dropped_d, notes=notes or None)
+                               skip_data=dropped_d, notes=notes or None,
+                               decl_overrides=overrides)
     return sorted(dropped_f) + sorted(dropped_d), report, ok
 
 
