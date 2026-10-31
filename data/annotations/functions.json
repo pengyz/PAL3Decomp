@@ -551,11 +551,10 @@
     "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] CalcWeightedOffset 保留（补面完成）：①调用者 4 站（UIBigMap::SetScrollRange/UIMap::ProcessHitTest **滚动/命中测试族** ✓）②本体=计算形 ✓ ③成员=无 this ④类归属=自由工具 ✓ ⑤交互=坐标计算路径 ✓ **5/5 满卡**——体语义单面 → **机械补面**（调用者 xref 具名族 + 调用约定 + 交互路径）"
   },
   "0x00442100": {
-    "name": "sub_442100",
+    "name": "SyncState",
     "signature": "int __cdecl()",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·UIMap::Create 域",
-    "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-    "source_note": " | [余 8 补面 2026-10-17] ③面无参无 offset（cdecl() 形）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "状态同步（v[4,5]→v[76,77]）"
   },
   "0x004422e0": {
     "name": "ResetContainerState",
@@ -2305,5 +2304,41 @@
     "signature": "void __thiscall(int this, int a2, float a3)",
     "name_source": "IDA语义分析 2026-10-31 批4",
     "name_note": "角度归一化（0-360 包裹）"
+  },
+  "0x0043DCA0": {
+    "name": "SetMagicConstant",
+    "signature": "int()",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "设置魔数常量 0x41414141"
+  },
+  "0x0043FD90": {
+    "name": "SetFrameIndex",
+    "signature": "int __thiscall(float *this, int a2)",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "帧索引设置（带验证 a2>=0）"
+  },
+  "0x0043FDB0": {
+    "name": "SetFrameCount",
+    "signature": "void __thiscall(float *this, int a2)",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "帧计数设置"
+  },
+  "0x0043FEC0": {
+    "name": "CopyFieldsFrom",
+    "signature": "int __cdecl(void *a2)",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "字段拷贝（this+76/+16 ← a2）"
+  },
+  "0x00445BF0": {
+    "name": "SetArrayElement",
+    "signature": "void __thiscall(int this, int newElement)",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "数组元素设置（PtrArray::SetAt）"
+  },
+  "0x00445DB0": {
+    "name": "CalcSize",
+    "signature": "int __cdecl(void *a2)",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "尺寸计算（width/height）"
   }
 }

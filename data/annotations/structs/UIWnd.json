@@ -250,10 +250,10 @@
       "evidence_level": "A"
     },
     "0x00445D40": {
-      "name": "sub_445D40",
-      "signature": "int __thiscall UIWnd::sub_445D40(int a2, int a3)",
-      "source": "| [归属定谳 2026-10-25·布局面] 体调 this+16/20/24/28 四 DWORD ±delta = UIWnd m_rect(tagRECT@16) 四字段——布局铁证；被 UIWnd::MoveToAbsolute 尾调（this 直传）⇒ 同类方法",
-      "evidence_level": "A"
+      "name": "HitTest",
+      "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
+      "name_source": "IDA语义分析 2026-11-01 批6",
+      "name_note": "矩形命中测试（left/right/top/bottom）"
     }
   },
   "vtables": [

@@ -508,11 +508,10 @@
       "adjudication": "shared_impl"
     },
     "0x0044C910": {
-      "name": "Destroy_C910",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UIScenePanel.json)",
-      "evidence_level": "unverified",
-      "adjudication": "rejected"
+      "name": "Destroy",
+      "signature": "virtual void __thiscall(UIScene *this)",
+      "name_source": "IDA语义分析 2026-11-01 批7",
+      "name_note": "销毁（虚调用链）"
     },
     "0x0044DAC0": {
       "name": "PostRender",
