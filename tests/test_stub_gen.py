@@ -137,6 +137,36 @@ def test_parse_header_slots_class_context():
                      ('Other', 'void', 'slot_2', '')], items
 
 
+def test_parse_link_display_forms():
+    """按需供给解析（v2 D0-2）：显示名三形 + 裸 C 符号 + dllimport 识别。"""
+    from stub_gen import parse_link_display
+    k, ret, n, p = parse_link_display(
+        'public: int __thiscall CCBSystem::F(int (__thiscall CCBSystem::*)(int),int)')
+    assert k == 'func' and n == 'CCBSystem::F' and 'CCBSystem::*)(int)' in p
+    k, ret, n, p = parse_link_display('char * g_Foo')
+    assert k == 'data' and ret == 'char *' and n == 'g_Foo'
+    k, ret, n, p = parse_link_display('_NtCurrentTeb')
+    assert k == 'cfunc' and n == '_NtCurrentTeb'
+    k = parse_link_display('__declspec(dllimport) public: void __thiscall X::f(void)')[0]
+    assert k == 'dllimport'
+
+
+def test_ledger_retired_and_defined_surface_skip():
+    """退役复活闸（v2 D0-2.1）：retired 行不入供给；已定义面跳过（防 LNK2005 双定义）。"""
+    import tempfile
+    from stub_gen import generate_supply_from_log, defined_surface_names, sym_base_forms
+    tmp = Path(tempfile.mkdtemp())
+    log = tmp / 'demand_ledger.txt'
+    log.write_text('active\tint __cdecl live_fn(int)\n'
+                   'retired\tint __cdecl dead_fn(int)\n', encoding='utf-8')
+    generate_supply_from_log([str(log)], out_root=tmp / 'out')
+    body = ''.join(f.read_text(encoding='utf-8') for f in (tmp / 'out').glob('*.cpp'))
+    assert 'live_fn' in body and 'dead_fn' not in body
+    defined = defined_surface_names()
+    assert isinstance(defined, set) and defined          # 名集（含 ArraySort 等）
+    assert sym_base_forms('_WinMain@16') & {'_WinMain@16', 'WinMain'}
+
+
 def test_iron_rule_no_stub_in_pal3src():
     """铁律棘轮（设计 §3.1）：stub 永不落 pal3/src（S2 量到 stub=假绿）。
     2026-10-31 实测教训：绝对路径进 stub_path_for_unit 会让 Path 连接失效

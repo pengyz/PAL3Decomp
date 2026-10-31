@@ -67,7 +67,9 @@ def compile_units(plan, keep_going=False):
     objs, failed = [], []
     # EH 元数据胶水 + 虚槽批量供给（(d) 手工合成，非单元——恒编）
     extras = [PROJECT_ROOT / 'phase2/stubs/_eh_metadata_stub.cpp']
-    for sub in ('_slots', '_supply'):
+    # [v2 D0-2.2] _real/ 真函数回填面入编译面（母设计 §6 M2「stub TU 内嵌」的
+    # 显式偏离声明：独立 _real/ 面防 AUTO-GENERATED 再生成灭失手修/真嵌）。
+    for sub in ('_slots', '_supply', '_real'):
         d = PROJECT_ROOT / 'phase2/stubs' / sub
         if d.exists():
             extras += sorted(d.glob('*.cpp'))
@@ -155,22 +157,36 @@ def main():
     (BUILD / 'link.log').write_text(log, encoding='utf-8')   # 全量日志（分析面）
     # [2026-10-31] 需求台账累积——供给按 ledger 并集生成，防迭代振荡
     # （只看当轮日志会丢已供给符号：上轮满足⇒当轮缺名⇒下轮丢定义⇒再现）。
-    seen = set()
+    # [v2 状态化] active|retired 两态行（退役条目不得复活——方案 v2 D0-2.1）。
+    states = {}
     ledger = BUILD / 'demand_ledger.txt'
     if ledger.exists():
-        seen.update(l.strip() for l in ledger.read_text(encoding='utf-8').splitlines() if l.strip())
+        for l in ledger.read_text(encoding='utf-8').splitlines():
+            l = l.strip()
+            if not l:
+                continue
+            if l.startswith('retired\t'):
+                states[l[len('retired\t'):]] = 'retired'
+            elif l.startswith('active\t'):
+                states.setdefault(l[len('active\t'):], 'active')
+            else:
+                states.setdefault(l, 'active')   # 旧版纯行形
     for l in log.splitlines():
         if 'LNK2001' not in l and 'LNK2019' not in l:
             continue
         i = l.find('symbol "')
+        sym = None
         if i >= 0:
             j = l.find('"', i + 8)
-            seen.add(l[i + 8:j])
+            sym = l[i + 8:j]
         else:
             m = re.search(r'symbol\s+([A-Za-z_][\w$?@]*)\s*$', l)
             if m:
-                seen.add(m.group(1))
-    ledger.write_text('\n'.join(sorted(seen)) + '\n', encoding='utf-8')
+                sym = m.group(1)
+        if sym and sym not in states:
+            states[sym] = 'active'
+    ledger.write_text(''.join('%s\t%s\n' % (v, k) for k, v in sorted(states.items())),
+                      encoding='utf-8')
     if rc == 0:
         size = TARGET.stat().st_size
         print('[mock_link] 链接闭合 ✓ %s (%d bytes)' % (TARGET, size))

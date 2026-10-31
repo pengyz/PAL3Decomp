@@ -405,6 +405,45 @@ def globals_decl(name):
     return _GLOBALS_DECL_CACHE.get(name)
 
 
+_SURFACE_DEF_RE = re.compile(
+    r'^\s*((?:[\w:\*&\s~]|::)*?[\w:~]+)\s*\([^;{]*\)\s*\n\s*\{', re.M)
+_SURFACE_DATA_RE = re.compile(
+    r'^\s*[\w:\*&\s~]*?([\w:~]+)\s*(?:\[[0-9]*\])?\s*=\s*\{?', re.M)
+
+
+def defined_surface_names():
+    """已定义面普查（单元 stub/_real/_slots 的定义名集合）——防供给双定义 LNK2005
+    （v2 D0-2.1：手修/真函数嵌入后同名供给 = 双定义，ArraySort 案）。"""
+    names = set()
+    files = list(STUB_ROOT.glob('*_stub.cpp'))
+    for sub in ('_real', '_slots'):
+        d = STUB_ROOT / sub
+        if d.exists():
+            files += list(d.glob('*.cpp'))
+    for f in files:
+        t = f.read_text(encoding='utf-8', errors='replace')
+        for m in _SURFACE_DEF_RE.finditer(t):
+            nm = re.search(r'([\w:~]+)\s*$', m.group(1))
+            if nm:
+                names.add(nm.group(1))
+        for m in _SURFACE_DATA_RE.finditer(t):
+            names.add(m.group(1))
+    return names
+
+
+def sym_base_forms(name):
+    """显示名 → 匹配形集（限定形 + 裸形 + 去装饰形）。"""
+    forms = {name}
+    if '::' in name:
+        forms.add(name.split('::')[-1])
+    ms = re.match(r'^_(\w+)@(\d+)$', name)
+    if ms:
+        forms.add(ms.group(1))
+    elif name.startswith('_'):
+        forms.add(name[1:])
+    return forms
+
+
 def generate_supply_from_log(log_paths, out_root=None, exclude=None):
     """link 日志/需求台账 → 按需供给 stub（_supply/ 逐类文件 + 自由件合集）。
     语义无关（链接闭合用）；dllimport 误标件留缺口（归 annotation 线）。
@@ -428,9 +467,22 @@ def generate_supply_from_log(log_paths, out_root=None, exclude=None):
                     if m:                    # 裸 C 符号（无引号形）
                         disp.add(m.group(1))
         else:
-            for l in text.splitlines():      # ledger 形：纯显示名行
-                if l.strip() and not l.startswith('#'):
-                    disp.add(l.strip())
+            for l in text.splitlines():      # ledger 形（两态行 + 旧版纯行）
+                l = l.strip()
+                if not l or l.startswith('#'):
+                    continue
+                if l.startswith('retired\t'):
+                    continue                  # 退役条目不得复活（v2 D0-2.1）
+                if l.startswith('active\t'):
+                    l = l[len('active\t'):]
+                disp.add(l)
+    # 持久排除面（人工退役/绕行，v2 D0-2.1）
+    ex_file = STUB_ROOT / '_supply' / 'exclude.txt'
+    if ex_file.exists():
+        for l in ex_file.read_text(encoding='utf-8').splitlines():
+            l = l.strip()
+            if l and not l.startswith('#'):
+                exclude.add(l)
     out_root = Path(out_root) if out_root else STUB_ROOT / '_supply'
     if out_root.exists():
         for f in out_root.glob('*.cpp'):
@@ -447,12 +499,16 @@ def generate_supply_from_log(log_paths, out_root=None, exclude=None):
 
     groups = {}
     skipped = []
+    defined = defined_surface_names()
     for display in sorted(disp):
         if display in exclude:
             continue
         kind, ret, name, params = parse_link_display(display)
         if kind in ('dllimport', 'unknown'):
             skipped.append((kind, display))
+            continue
+        # 已定义面跳过（手修/真函数/_slots 同名 ⇒ 供给=双定义 LNK2005）
+        if name and (name in defined or ('::' not in name and sym_base_forms(name) & defined)):
             continue
         cls = name.split('::')[0] if '::' in name else ''
         if kind == 'cfunc':
@@ -625,7 +681,36 @@ def main():
     ap.add_argument('--vslots', action='store_true',
                     help='虚槽批量供给（类头 slot_N 声明 → _slots/ 批量定义体）')
     ap.add_argument('--supply-log', help='按需供给（link 日志 unresolved → _supply/）')
+    ap.add_argument('--retire', help='退役供给条目（ledger 标 retired + 原子重生成；'
+                                     '实删后须 mock_link 闭合回归）')
     args = ap.parse_args()
+    if args.retire:
+        ledger = PROJECT_ROOT / 'build' / 'mock_link' / 'demand_ledger.txt'
+        states = {}
+        if ledger.exists():
+            for l in ledger.read_text(encoding='utf-8').splitlines():
+                l = l.strip()
+                if not l:
+                    continue
+                st, sym = (l.split('\t', 1) + ['active'])[:2] if '\t' in l else ('active', l)
+                states[sym] = 'retired' if st == 'retired' else 'active'
+        n = 0
+        for sym in list(states):
+            if args.retire in sym and states[sym] != 'retired':
+                states[sym] = 'retired'
+                n += 1
+        ledger.parent.mkdir(parents=True, exist_ok=True)
+        ledger.write_text(''.join('%s\t%s\n' % (v, k) for k, v in sorted(states.items())),
+                          encoding='utf-8')
+        paths = []
+        link_log = PROJECT_ROOT / 'build' / 'mock_link' / 'link.log'
+        if link_log.exists():
+            paths.append(str(link_log))
+        paths.append(str(ledger))
+        files, m, skipped = generate_supply_from_log(paths)
+        print('retire: %d 条标 retired | 供给重生成 %d files/%d defs | 下一步: mock_link 闭合回归'
+              % (n, files, m))
+        return
     if args.supply_log:
         # 需求并集：当轮日志 + demand_ledger（累积台账，防迭代振荡）
         paths = [args.supply_log]
@@ -695,6 +780,33 @@ def main():
             print('prune %-45s ok=%s dropped=%d %s'
                   % (u, ok, len(dropped), ('| ' + ', '.join(dropped[:4])) if dropped else ''))
         print('prune done | dropped total %d' % n_drop)
+        # 债账自动入账（v2 D0-2.3：stub 内注记会被再生成灭失——台账才是权威）
+        ledger_p = PROJECT_ROOT / 'data' / 'status' / 'pruned_debt.json'
+        if n_drop and ledger_p.exists():
+            led = json.loads(ledger_p.read_text(encoding='utf-8'))
+            known = {e['name'] for e in led['entries']}
+            added = 0
+            for u in units:
+                out_p = stub_path_for_unit(u)
+                if not out_p.exists():
+                    continue
+                t = out_p.read_text(encoding='utf-8')
+                i = t.find('// PRUNED')
+                if i < 0:
+                    continue
+                for m in re.finditer(r'^//   (?:func |data )?(.+)$', t[i:], re.M):
+                    nm = re.sub(r'^//   (?:func |data )?', '', m.group(0)).strip()
+                    if nm not in known:
+                        known.add(nm)
+                        led['entries'].append({
+                            'kind': 'data' if '//   data ' in m.group(0) else 'func',
+                            'name': nm, 'status': 'open',
+                            'origin': 'stub_gen prune_stub compile-driven (auto-append)'})
+                        added += 1
+            led['count'] = len(led['entries'])
+            ledger_p.write_text(json.dumps(led, ensure_ascii=False, indent=2) + '\n',
+                                encoding='utf-8')
+            print('pruned_debt.json +%d 条' % added)
         return
 
     drops = definition_dups()
