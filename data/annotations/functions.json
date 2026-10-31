@@ -1924,22 +1924,6 @@
     "declaration_only": true,
     "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
   },
-  "0x00401820": {
-    "name": "ArraySort__ovl_Jump",
-    "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)",
-    "declaration_only": true,
-    "source": "批9 2026-10-07：桩名收编（0 参实参形——批5 atexit 教训）",
-    "name_source": "IDA语义分析 2026-10-31：j_InputSystem=ArraySort 跳转包装，消名冲突",
-    "name_note": "IDA误名j_InputSystem→ArraySort（反编译码实证）"
-  },
-  "0x004B8200": {
-    "name": "RandLerpF",
-    "signature": "float __cdecl(float a, float b)",
-    "declaration_only": true,
-    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形） | [T1 修 2026-10-28·A 级] 错名 j_D3DXVec3TransformCoord 退役：真身=random-lerp（66B：if(a==b) return a; else a+(rand()%10000+1)*flt_56F494*(b-a)，thunk T11 + dx §2.2）⇒ 语义名 RandLerpF + float(float,float) | evidence: 反汇编逐字节 + 11 xref | confidence: high",
-    "name_source": "IDA语义分析 2026-10-31 批1-2",
-    "name_note": "IDA误名j_D3DXVec3TransformCoord→RandLerpF（spec§7.2）"
-  },
   "0x00431D90": {
     "name": "SingletonThunk_00431D90",
     "signature": "Iostream_init * __cdecl()",
@@ -2309,11 +2293,5 @@
     "name": "PAL3_ReadRegistryStr",
     "signature": "int __cdecl(const char *lpSubKey, const char *lpValueName, char *lpData)",
     "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c）"
-  },
-  "0x004232D0": {
-    "name": "AnimUpdate",
-    "name_source": "IDA语义分析 2026-10-31 批1-2",
-    "name_note": "全局动画更新",
-    "signature": "int __cdecl()"
   }
 }

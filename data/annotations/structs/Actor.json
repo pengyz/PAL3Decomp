@@ -1204,11 +1204,9 @@
     },
     "0x004503C0": {
       "name": "OnEvent_2",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批2 2026-10-06：thiscall 序言(this=esi)+偏移[84,88]=Actor.m_nTransform+m_nRoleState0 双偏移证 | [归属体检 2026-10-25·SUSPECT] offset-match: 弱命中: 越界 0/1 (最大 0x-10), 命中 0（越界比>30% 或弱命中——this 复用/多对象待裁，不撤不路由）",
-      "evidence_level": "unverified",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "空覆盖虚方法（第二件）"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "空覆盖虚方法",
+      "signature": "virtual void __thiscall(Actor *this, int a2)"
     },
     "0x004BA230": {
       "name": "_todo_004BA230",
@@ -1236,11 +1234,9 @@
     },
     "0x0041F2D0": {
       "name": "SortAnimData",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批6 2026-10-06：thiscall 序言+深窗偏移[0,4,8,12,16,64] Actor 证（六偏移簇）",
-      "evidence_level": "unverified",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "动画数组排序"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "动画数组排序（55 次循环）",
+      "signature": "void __thiscall(Actor *this, int a2)"
     },
     "0x004B7260": {
       "name": "_todo_004B7260",
@@ -1310,11 +1306,9 @@
     },
     "0x004083D0": {
       "name": "ReleasePath",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批10 2026-10-06：thiscall 序言+深窗偏移[0,24,28,32] Actor 多偏移簇证 | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "evidence_level": "unverified",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "A*路径释放"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "A* 路径释放",
+      "signature": "void __thiscall(Actor *this, int a2)"
     },
     "0x004B7560": {
       "name": "_todo_004B7560",

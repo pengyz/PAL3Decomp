@@ -35,11 +35,9 @@
     },
     "0x00434130": {
       "name": "InitFromStream",
-      "signature": "void __thiscall(int nInitSize, int nGrowBy, char bOwned)",
-      "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] 消歧：0x44BD60=ctor（零初始化 `mov [eax],ecx;[eax+4];[eax+8]`）保留；0x434130=静态函数形（参数全栈取，无 ecx=this）改名",
-      "evidence_level": "unverified",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "流读取数组初始化"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "流读取数组初始化",
+      "signature": "void __thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
     },
     "0x004341E0": {
       "name": "~PtrArray",

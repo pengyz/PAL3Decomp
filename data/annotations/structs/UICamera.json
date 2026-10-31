@@ -97,23 +97,27 @@
   "methods": {
     "0x0041A070": {
       "name": "IsPointVisible",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "相机视锥可见性检测"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "相机视锥可见性检测",
+      "signature": "BOOL __thiscall(UICamera *this, float *pfTargetPos, char bNearVisible)"
     },
     "0x00420CD0": {
       "name": "FindNearest",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "相机/目标查找"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "相机/目标查找",
+      "signature": "int __cdecl(int nVal)"
     },
     "0x00420E50": {
       "name": "FindVisible",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "可见性过滤搜索"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "可见性过滤搜索",
+      "signature": "float *__cdecl(float *pMat)"
     },
     "0x004230D0": {
       "name": "FindNearestTarget",
-      "name_source": "IDA语义分析 2026-10-31 批1-2",
-      "name_note": "相机最近目标查找"
+      "name_source": "IDA语义分析 2026-10-31 批3-6",
+      "name_note": "相机最近目标查找",
+      "signature": "int __thiscall(UICamera *this)"
     }
   },
   "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。",
