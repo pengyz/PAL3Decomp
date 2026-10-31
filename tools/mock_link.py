@@ -17,6 +17,7 @@ exe 自身代码 = 唯一重写对象。本工具做「空壳但真闭合」的�
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -66,9 +67,10 @@ def compile_units(plan, keep_going=False):
     objs, failed = [], []
     # EH 元数据胶水 + 虚槽批量供给（(d) 手工合成，非单元——恒编）
     extras = [PROJECT_ROOT / 'phase2/stubs/_eh_metadata_stub.cpp']
-    slots_dir = PROJECT_ROOT / 'phase2/stubs/_slots'
-    if slots_dir.exists():
-        extras += sorted(slots_dir.glob('*.cpp'))
+    for sub in ('_slots', '_supply'):
+        d = PROJECT_ROOT / 'phase2/stubs' / sub
+        if d.exists():
+            extras += sorted(d.glob('*.cpp'))
     plan = [(str(e.relative_to(PROJECT_ROOT)), 'glue', e) for e in extras] + list(plan)
     for u, kind, src in plan:
         obj = BUILD / (u.replace('/', '_').replace('\\', '_') + '.obj')
@@ -150,6 +152,25 @@ def main():
         return 4
 
     rc, log = link(objs)
+    (BUILD / 'link.log').write_text(log, encoding='utf-8')   # 全量日志（分析面）
+    # [2026-10-31] 需求台账累积——供给按 ledger 并集生成，防迭代振荡
+    # （只看当轮日志会丢已供给符号：上轮满足⇒当轮缺名⇒下轮丢定义⇒再现）。
+    seen = set()
+    ledger = BUILD / 'demand_ledger.txt'
+    if ledger.exists():
+        seen.update(l.strip() for l in ledger.read_text(encoding='utf-8').splitlines() if l.strip())
+    for l in log.splitlines():
+        if 'LNK2001' not in l and 'LNK2019' not in l:
+            continue
+        i = l.find('symbol "')
+        if i >= 0:
+            j = l.find('"', i + 8)
+            seen.add(l[i + 8:j])
+        else:
+            m = re.search(r'symbol\s+([A-Za-z_][\w$?@]*)\s*$', l)
+            if m:
+                seen.add(m.group(1))
+    ledger.write_text('\n'.join(sorted(seen)) + '\n', encoding='utf-8')
     if rc == 0:
         size = TARGET.stat().st_size
         print('[mock_link] 链接闭合 ✓ %s (%d bytes)' % (TARGET, size))

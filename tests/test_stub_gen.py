@@ -86,6 +86,9 @@ def test_stub_body_three_rules():
     assert stub_body('char *', 'f') == '{ return 0; }'          # 指针
     assert stub_body('int __stdcall', 'f') == '{ return 0; }'   # 修饰剥离后元语
     assert stub_body('_Texture_uv', 'operator_') == '{ return *(_Texture_uv *)0; }'  # 类值兜底
+    # 回归锁（2026-10-31 C2562 连锁根因）：带调用约定的 void 必须落空体
+    assert stub_body('void __cdecl', 'nullsub_17') == '{ }'
+    assert stub_body('void __fastcall', 'PushMatrixStacks') == '{ }'
 
 
 def test_render_stub_deterministic_and_paths():

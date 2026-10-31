@@ -32,7 +32,8 @@ STUB_ROOT = PROJECT_ROOT / 'phase2' / 'stubs'
 
 ANCHOR_RE = re.compile(r'^// 0x([0-9A-Fa-f]{6,8})\s*$', re.M)
 # 调用约定/修饰词（返回型里剥掉）
-CONV_WORDS = {'__stdcall', '__cdecl', '__fastcall', '__thiscall', 'virtual', 'static'}
+CONV_WORDS = {'__stdcall', '__cdecl', '__fastcall', '__thiscall', 'virtual', 'static',
+              'extern', '"C"', 'WINAPI', 'APIENTRY', 'CALLBACK', 'NTAPI', 'PASCAL'}
 # 元语/typedef 白名单（`return 0;` 可赋形）
 PRIM_RE = re.compile(
     r'^(?:unsigned\s+|signed\s+)?(?:void|char|short|int|long|float|double|bool|BOOL|'
@@ -143,13 +144,17 @@ def split_signature(sig):
 
 def stub_body(ret, name):
     """空体三规则。ret=''（ctor/dtor）或 void → { }；白名单/指针 → return 0;；
-    其余 → return *(T *)0;（引用形剥 &/const 后同样式）。"""
-    if not ret or ret == 'void':
+    其余 → return *(T *)0;（引用形剥 &/const 后同样式）。
+    [2026-10-31 修] 先剥调用约定词再判 void——'void __cdecl' 曾落 return 0;
+    分支 ⇒ C2562 连锁（nullsub 族 15 件+sub_ 系全灭根因）。"""
+    if not ret:
         return '{ }'
     toks = [t for t in ret.split() if t not in CONV_WORDS]
     if not toks:
         return '{ }'
     r = ' '.join(toks)
+    if r == 'void':
+        return '{ }'
     if r.endswith('*') or PRIM_RE.match(r):
         return '{ return 0; }'
     base = r.rstrip('&').replace('const', '').strip()
@@ -303,6 +308,222 @@ def generate_virtual_slots(out_dir=None):
     return n_files, n_defs
 
 
+# ── 按需供给（demand-driven，link 日志即需求单）────────────────────
+_ACCESS_RE = re.compile(r'^\s*(?:public|private|protected):\s*')
+_DLLIMPORT_MARK = '__declspec(dllimport)'
+
+
+def parse_link_display(display):
+    """LINK 显示名 → 条目。'public: int __thiscall X::f(int)' → ('func', ret, name, params)；
+    'char * g_Foo' → ('data', 'char *', 'g_Foo', ''); dllimport → ('dllimport', ...);
+    裸 C 符号（_NtCurrentTeb 等无引号形）→ ('cfunc', ...)。显示名即完整签名。"""
+    s = _ACCESS_RE.sub('', display.strip())
+    if _DLLIMPORT_MARK in s:
+        return ('dllimport', None, None, None)
+    i = s.find('(')
+    if i < 0:
+        # 裸 C 符号：单标识符、无型（LINK 无引号打印形）⇒ C 函数合成
+        if re.match(r'^[A-Za-z_][\w$?@]*$', s):
+            return ('cfunc', 'void *', s, 'void')
+        # 数据形：末标识符为名，其余为型（static/class 修饰保留）
+        m = re.search(r'([\w:~]+)\s*$', s)
+        if not m:
+            return ('unknown', None, None, None)
+        return ('data', s[:m.start()].strip(), m.group(1), '')
+    head, rest = s[:i].strip(), s[i:]
+    depth = 0
+    for j, ch in enumerate(rest):
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth -= 1
+            if depth == 0:
+                break
+    params = rest[1:j].strip()
+    m = re.search(r'(operator\s*\S+|[\w:~]+)\s*$', head)
+    if not m:
+        return ('unknown', None, None, None)
+    name = m.group(1)
+    ret = head[:m.start()].strip()
+    return ('func', ret, name, params)
+
+
+_GLOBALS_DECL_CACHE = {}
+
+
+_DECL_LOOKUP_CACHE = {}
+# 特形表（编译器 C2556/C2733 自证形 + windows.h 形；2026-10-31 人工修剪面）
+KNOWN_CFUNC_FORMS = {
+    '_NtCurrentTeb': 'struct _TEB * NtCurrentTeb(void)',
+    '_WinMain@16': 'int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)',
+}
+
+
+def decl_lookup(name):
+    """include 链既有声明原文（ida_defs.h/globals.h 的 `ret name(params);` 形）。
+    合成定义必须挂既有声明形——同名异形（void* vs _TEB* / void vs uint）
+    是 C2556/C2733 的根因（2026-10-31 实测 NtCurrentTeb+Bink 三件）。
+    extern "C" 块内声明带链接域前缀（定义缺包裹 ⇒ C2733 second C linkage）。"""
+    if not _DECL_LOOKUP_CACHE:
+        for p in (PROJECT_ROOT / 'include' / 'pal3' / 'ida_defs.h', SRC_ROOT / 'globals.h'):
+            if not p.exists():
+                continue
+            t = p.read_text(encoding='utf-8', errors='replace')
+            in_c = False
+            for line in t.splitlines():
+                if 'extern "C"' in line:
+                    in_c = '{' in line
+                if line.strip().startswith('}') and in_c:
+                    in_c = False
+                m = re.match(r'^\s*((?:[\w:\s\*&]|::)*?\b[\w:~]+)\s*\(([^;{]*)\)\s*;',
+                             line)
+                if not m:
+                    continue
+                nm = re.search(r'([\w:~]+)\s*$', m.group(1))
+                if not nm:
+                    continue
+                form = '%s(%s)' % (' '.join(m.group(1).split()), m.group(2).strip())
+                if in_c:
+                    form = 'extern "C" ' + form
+                _DECL_LOOKUP_CACHE.setdefault(nm.group(1), form)
+    return _DECL_LOOKUP_CACHE.get(name)
+
+
+def globals_decl(name):
+    """globals.h 中 name 的声明形（去 extern）——数据定义挂声明形保 mangling 对齐。"""
+    if not _GLOBALS_DECL_CACHE:
+        p = SRC_ROOT / 'globals.h'
+        if p.exists():
+            t = p.read_text(encoding='utf-8', errors='replace')
+            for m in re.finditer(
+                    r'^extern\s+((?:[\w:\s\*&]|::)*?\b[\w:~]+(?:\s*\[[0-9]*\])*)\s*;',
+                    t, re.M):
+                decl = ' '.join(m.group(1).split())
+                nm = re.search(r'([\w:~]+)(?:\s*\[[0-9]*\])?\s*$', decl)
+                if nm:
+                    _GLOBALS_DECL_CACHE[nm.group(1)] = decl
+    return _GLOBALS_DECL_CACHE.get(name)
+
+
+def generate_supply_from_log(log_paths, out_root=None, exclude=None):
+    """link 日志/需求台账 → 按需供给 stub（_supply/ 逐类文件 + 自由件合集）。
+    语义无关（链接闭合用）；dllimport 误标件留缺口（归 annotation 线）。
+    显示名含 class X 内联详型符 ⇒ 自由件零前向声明；成员定义挂类头（完整类）。
+    log_paths：多源并集（demand_ledger.txt 累积，防迭代振荡）。
+    exclude：自愈修剪排除集（display 全串）。"""
+    exclude = exclude or set()
+    disp = set()
+    for lp in (log_paths if isinstance(log_paths, (list, tuple)) else [log_paths]):
+        text = Path(lp).read_text(encoding='utf-8', errors='replace')
+        if 'LNK2001' in text or 'LNK2019' in text:
+            for l in text.splitlines():      # link 日志形：只认 LNK 行内符号
+                if 'LNK2001' not in l and 'LNK2019' not in l:
+                    continue
+                i = l.find('symbol "')
+                if i >= 0:
+                    j = l.find('"', i + 8)
+                    disp.add(l[i + 8:j])
+                else:
+                    m = re.search(r'symbol\s+([A-Za-z_][\w$?@]*)\s*$', l)
+                    if m:                    # 裸 C 符号（无引号形）
+                        disp.add(m.group(1))
+        else:
+            for l in text.splitlines():      # ledger 形：纯显示名行
+                if l.strip() and not l.startswith('#'):
+                    disp.add(l.strip())
+    out_root = Path(out_root) if out_root else STUB_ROOT / '_supply'
+    if out_root.exists():
+        for f in out_root.glob('*.cpp'):
+            f.unlink()                      # 陈旧供给面清场（防旧定义残留/震荡）
+    out_root.mkdir(parents=True, exist_ok=True)
+
+    hdr_of = {}
+    for h in SRC_ROOT.rglob('*.h'):
+        t = h.read_text(encoding='utf-8', errors='replace')
+        # [2026-10-31 修] 只认真定义头（开括号行）——前向声明 `class X;`
+        # 曾被误索引 ⇒ CCBItemWindow 挂到 CCBControlWindow.h ⇒ C2027。
+        for m in re.finditer(r'^(?:class|struct)\s+(\w+)[^;{]*\{', t, re.M):
+            hdr_of.setdefault(m.group(1), h)
+
+    groups = {}
+    skipped = []
+    for display in sorted(disp):
+        if display in exclude:
+            continue
+        kind, ret, name, params = parse_link_display(display)
+        if kind in ('dllimport', 'unknown'):
+            skipped.append((kind, display))
+            continue
+        cls = name.split('::')[0] if '::' in name else ''
+        if kind == 'cfunc':
+            # 裸 C 符号：先挂既有声明形（特形表→decl_lookup）；无源可挂才
+            # 装饰感知合成（cdecl 去一底线、stdcall @N 按字节数），heal 兜底。
+            form = KNOWN_CFUNC_FORMS.get(name) or decl_lookup(name) \
+                or (decl_lookup(name[1:]) if name.startswith('_') else None)
+            if form:
+                f_ret, _ = split_signature(form)
+                sig = form
+            else:
+                ms = re.match(r'^_(\w+)@(\d+)$', name)
+                if ms:
+                    nb = int(ms.group(2))
+                    plist = ', '.join(['int'] * (nb // 4)) or 'void'
+                    f_ret, sig = 'int', 'extern "C" int __stdcall %s(%s)' % (ms.group(1), plist)
+                elif name.startswith('_'):
+                    f_ret, sig = 'void *', 'extern "C" void * %s(void)' % name[1:]
+                else:
+                    f_ret, sig = 'void *', 'extern "C" void * %s(void)' % name
+            groups.setdefault(cls, []).append(
+                ('func', {'addr': 'supply', 'name': display,
+                          'ret': f_ret or 'void *', 'sig': sig}))
+            continue
+        if kind == 'func':
+            if not ret:                                  # ctor/dtor
+                sig = '%s(%s)' % (name, params)
+                f_ret, f_name = '', name
+            else:
+                # [2026-10-31 修] 成员定义禁写 __thiscall（C4234+C2562 连锁：
+                # 成员默认 __thiscall，行内书写被 MSVC6 拒）；virtual 同剥。
+                # 自由件保留 __stdcall/__cdecl（mangling 依词）。
+                drop = {'virtual'}
+                if '::' in name:
+                    drop.add('__thiscall')
+                clean = ' '.join(t for t in ret.split() if t not in drop)
+                sig = '%s %s(%s)' % (clean, name, params)
+                f_ret, f_name = clean, name
+            groups.setdefault(cls, []).append(
+                ('func', {'addr': 'supply', 'name': display,
+                          'ret': f_ret, 'sig': sig}))
+        else:
+            # [2026-10-31 修] 数据定义挂 globals.h 声明形（MSVC6 数组数据按指针
+            # mangling——display 'char * g_X' 实为 `char g_X[3]` 的 3PADA 还原形；
+            # 按 display 直出 ⇒ C2372 缩进差异 + mangling 不对齐）。
+            decl = globals_decl(name)
+            if decl:
+                text = '%s = {0};' % decl
+            else:
+                clean = ' '.join(t for t in ret.split() if t not in ('virtual', 'static'))
+                text = '%s %s = {0};' % (clean, name)
+            groups.setdefault(cls, []).append(
+                ('data', {'text': text, 'label': display}))
+
+    files = 0
+    for cls, items in sorted(groups.items()):
+        incs = ['windows.h', 'globals.h', 'pal3/ida_defs.h']
+        if cls and cls in hdr_of:
+            rel = str(hdr_of[cls].resolve().relative_to(SRC_ROOT)).replace('\\', '/')
+            incs.append(rel)
+        funcs = [it for k, it in items if k == 'func']
+        data = [it for k, it in items if k == 'data']
+        body = render_stub('missing-symbol supply (%s)' % (cls or 'free'),
+                           '\n'.join('#include "%s"' % x for x in incs),
+                           funcs, data)
+        out = out_root / (('%s_supply_stub.cpp' % cls) if cls else '_free_supply_stub.cpp')
+        out.write_text(body, encoding='utf-8')
+        files += 1
+    return files, sum(len(v) for v in groups.values()), skipped
+
+
 def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None,
                       notes=None):
     p = Path(unit_path)
@@ -328,15 +549,18 @@ def generate_for_unit(unit_path, out_path=None, skip_names=None, skip_data=None,
 
 # ── 编译驱动修剪（设计 §3.2「人工修剪」的机械化初刀）────────────────
 def stub_function_spans(text):
-    """stub 文本 → [(起始行1基, 结束行1基, kind, label)]（// 0x 函数段 + // D 数据段）。"""
+    """stub 文本 → [(起始行1基, 结束行1基, kind, label)]（// 0x|supply 函数段 + // D 数据段）。"""
     lines = text.splitlines()
     marks = [(i, l) for i, l in enumerate(lines)
-             if l.startswith('// 0x') or l.startswith('// D  ')]
+             if l.startswith('// 0x') or l.startswith('// D  ') or l.startswith('// supply')]
     spans = []
     for k, (i, l) in enumerate(marks):
         end = marks[k + 1][0] - 1 if k + 1 < len(marks) else len(lines)
         if l.startswith('// D  '):
             spans.append((i + 1, end, 'data', l[6:].strip()))
+        elif l.startswith('// supply'):
+            a, b = l.find('('), l.rfind(')')
+            spans.append((i + 1, end, 'func', l[a + 1:b] if a >= 0 and b > a else l))
         else:
             spans.append((i + 1, end, 'func', l.split('(')[-1].rstrip(')').strip()))
     return spans
@@ -400,7 +624,48 @@ def main():
                     help='编译驱动修剪（剔除签名漂移/残留函数，落 PRUNED 债账）')
     ap.add_argument('--vslots', action='store_true',
                     help='虚槽批量供给（类头 slot_N 声明 → _slots/ 批量定义体）')
+    ap.add_argument('--supply-log', help='按需供给（link 日志 unresolved → _supply/）')
     args = ap.parse_args()
+    if args.supply_log:
+        # 需求并集：当轮日志 + demand_ledger（累积台账，防迭代振荡）
+        paths = [args.supply_log]
+        ledger = Path(args.supply_log).parent / 'demand_ledger.txt'
+        if ledger.exists():
+            paths.append(str(ledger))
+        # 自愈循环：编译驱动剔除病件（与 stub 同款错行归属），直到全绿或无归属
+        sys.path.insert(0, str(PROJECT_ROOT / 'pipeline'))
+        import probe_compile as pc
+        incs = ['/I' + pc.wpath(d) for d in pc.INCLUDE_DIRS]
+        exclude = set()
+        for _ in range(8):
+            files, n, skipped = generate_supply_from_log(paths, exclude=exclude)
+            out_root = STUB_ROOT / '_supply'
+            bad = set()
+            for f in sorted(out_root.glob('*.cpp')):
+                txt = f.read_text(encoding='utf-8')
+                spans = stub_function_spans(txt)
+                errs, err = pc.run_cl(incs + ['/Fo' + pc.wpath(str(f) + '.obj'),
+                                              '/c', pc.wpath(str(f))], timeout=60)
+                for l in errs.splitlines():
+                    if ' error ' not in l:
+                        continue
+                    m = re.search(r'\((\d+)\) : (?:fatal )?error', l)
+                    if not m:
+                        bad.add(None)
+                        continue
+                    ln = int(m.group(1))
+                    hit = [s for s in spans if s[0] <= ln <= s[1]]
+                    bad.add(hit[0][3] if hit else None)
+            if not bad:
+                break
+            exclude |= {b for b in bad if b}
+        print('supply: %d files | %d defs | excluded %d | skipped %d'
+              % (files, n, len(exclude), len(skipped)))
+        for k, d in skipped[:10]:
+            print('   skip [%s] %s' % (k, d[:90]))
+        for b in sorted(exclude)[:15]:
+            print('   excluded %s' % b[:90])
+        return
     if args.vslots:
         n_files, n_defs = generate_virtual_slots()
         print('virtual slots: %d files | %d defs' % (n_files, n_defs))
