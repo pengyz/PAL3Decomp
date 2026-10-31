@@ -1082,8 +1082,10 @@
     },
     "0x0051F1B0": {
       "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "evidence_level": "unverified"
+      "signature": "int __thiscall(int, int, int, int)",
+      "name_source": "归属修正 2026-10-31（vtable 二进制证据）",
+      "name_note": "CCBStage 虚方法（vtable 0x005705D0 +24 槽位），10KB 消息处理",
+      "attribution_evidence": "vtable 0x005705D0 +24 槽位 + 构造器 0x0051D710 Create_d710 引用 + 偏移范围 628-671128 超出 CCBResultWindow 180B"
     },
     "0x00508930": {
       "name": "_todo_00508930",

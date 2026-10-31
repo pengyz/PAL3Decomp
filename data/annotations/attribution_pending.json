@@ -1,0 +1,11 @@
+{
+  "0x0051F1B0": {
+    "current": "CCBResultWindow::OnMessage",
+    "issue": "归属错误：偏移范围 628-671128 超出 CCBResultWindow 180B struct",
+    "binary_evidence": "vtable 0x005705D0 +24 槽位虚函数，10KB 函数体，无直接 caller",
+    "need": "找 vptr=0x005705D0 的构造函数确定真正归属类",
+    "date": "2026-10-31",
+    "resolved": "CCBStage::OnMessage",
+    "resolution": "vtable 0x005705D0 +24 槽位 + 构造器 0x0051D710"
+  }
+}
