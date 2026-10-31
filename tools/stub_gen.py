@@ -633,7 +633,10 @@ def prune_stub(unit_rel, run_cl, wpath, incs, max_rounds=12, base_skip=None):
                                    skip_data=dropped_d)
         text = out.read_text(encoding='utf-8')
         spans = stub_function_spans(text)
-        errs_txt, err = run_cl(incs + ['/Fo' + wpath(str(out) + '.obj'), '/c', wpath(str(out))])
+        obj_dir = PROJECT_ROOT / 'build' / 'obj'
+        obj_dir.mkdir(parents=True, exist_ok=True)
+        errs_txt, err = run_cl(incs + ['/Fo' + wpath(str(obj_dir / (out.name + '.obj'))),
+                                       '/c', wpath(str(out))])
         err_items, unattributed = set(), []
         for l in errs_txt.splitlines():
             if ' error ' not in l:
@@ -729,7 +732,9 @@ def main():
             for f in sorted(out_root.glob('*.cpp')):
                 txt = f.read_text(encoding='utf-8')
                 spans = stub_function_spans(txt)
-                errs, err = pc.run_cl(incs + ['/Fo' + pc.wpath(str(f) + '.obj'),
+                obj_dir = PROJECT_ROOT / 'build' / 'obj'
+                obj_dir.mkdir(parents=True, exist_ok=True)
+                errs, err = pc.run_cl(incs + ['/Fo' + pc.wpath(str(obj_dir / (f.name + '.obj'))),
                                               '/c', pc.wpath(str(f))], timeout=60)
                 for l in errs.splitlines():
                     if ' error ' not in l:
