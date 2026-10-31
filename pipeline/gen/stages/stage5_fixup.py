@@ -1215,6 +1215,44 @@ def _fix_operator_new_cast(code):
     return code
 
 
+# [簇 A 管线修复 2026-10-31] new 表达式化——判因实验实证（编译器裁判）：
+#   E 形（离线 ctor 的 new T(...)）→ SEH 序言 6A FF 68 ✓ HIT（原版同形）
+#   A/B/C/F 形（裸 _CxxThrowException / throw / new+throw / new+throw 无 try）→ ✗
+# 病灶：codegen 发裸 operator new + 手调 ctor + 状态变量（vN=0/-1），编译器
+# 看不到 new 表达式 ⇒ 不发 SEH 序言 ⇒ len-delta 桶 82 件（33%）缺质量。
+# 修法：ptr = (T*)operator new(N); [state=0;] if(ptr) ptr->T::T(args); else r=0;
+#       [state=-1;] → ptr = new T(args); r = ptr;
+_NEW_EXPR_RE = re.compile(
+    r'(?P<indent>^\s+)(?P<ptr>\w+)\s*=\s*\(\s*(?P<cls>\w+)\s*\*\s*\)\s*operator new\s*\([^)]+\);\s*\n'
+    r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?'                                    # 可选状态变量 = 0
+    r'\s*if\s*\(\s*(?P=ptr)\s*\)\s*\n'
+    r'\s*(?:\w+\s*=\s*)?(?P=ptr)\s*->\s*\w+::(?P<ctor>\w+)\s*\((?P<args>[^;]*)\);\s*\n'
+    r'\s*else\s*\n'
+    r'\s*(?P<result>\w+)\s*=\s*0;\s*\n'
+    r'(?:\s*\w+\s*=\s*-?\d+;\s*\n)?',                                    # 可选状态变量 = -1
+    re.MULTILINE)
+
+
+def _rewrite_new_expression(code):
+    """operator new + 手调 ctor + 状态变量 → new 表达式（E 形验证形）。
+    返回 (new_code, hit_count)。"""
+    hits = []
+    def _replace(m):
+        hits.append(m.group('ptr'))
+        indent = m.group('indent')
+        ptr = m.group('ptr')
+        cls = m.group('cls')
+        ctor = m.group('ctor')
+        args = m.group('args').strip()
+        result = m.group('result')
+        body = '%s%s = new %s(%s);\n' % (indent, ptr, cls, args)
+        if result != ptr:
+            body += '%s%s = (int)%s;\n' % (indent, result, ptr)
+        return body
+    code = _NEW_EXPR_RE.sub(_replace, code)
+    return code, len(hits)
+
+
 # ============================================================
 # struct_instances overlap resolution: dword_XXXX.member → cast
 # ============================================================
@@ -1346,6 +1384,8 @@ def _run_inner(code, ctx):
 
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
+    # [簇 A 管线修复 2026-10-31] new 表达式化（E 形验证：SEH 序言回归）
+    code, _new_hits = _rewrite_new_expression(code)
 
     # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
     code = _fix_c2440_casts(code, ctx)
