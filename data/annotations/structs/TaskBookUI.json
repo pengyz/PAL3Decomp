@@ -328,10 +328,10 @@
       "evidence_level": "unverified"
     },
     "0x00456220": {
-      "name": "_todo_00456220",
-      "signature": "int __thiscall()",
-      "source": "| 挂账③ F 案改名 2026-10-06：~TaskBookUI_6220→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=初始化/Reset）——真名未知留 _todo_",
-      "evidence_level": "unverified"
+      "name": "Reset",
+      "signature": "int __thiscall(TaskBookUI *this)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "重置（SetProgress + memset + 字段清零）"
     },
     "0x004562C0": {
       "name": "HandleNavigation",

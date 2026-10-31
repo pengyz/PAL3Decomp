@@ -2293,5 +2293,17 @@
     "name": "PAL3_ReadRegistryStr",
     "signature": "int __cdecl(const char *lpSubKey, const char *lpValueName, char *lpData)",
     "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c）"
+  },
+  "0x004339F0": {
+    "name": "LoadResource",
+    "signature": "int __cdecl(char *a1)",
+    "name_source": "IDA语义分析 2026-10-31 批4",
+    "name_note": "资源加载（gbVFile 读取）"
+  },
+  "0x0043A090": {
+    "name": "NormalizeAngle",
+    "signature": "void __thiscall(int this, int a2, float a3)",
+    "name_source": "IDA语义分析 2026-10-31 批4",
+    "name_note": "角度归一化（0-360 包裹）"
   }
 }

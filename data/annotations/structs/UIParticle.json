@@ -262,28 +262,22 @@
       "evidence_level": "unverified"
     },
     "0x004B5570": {
-      "name": "_todo_4b5570",
-      "signature": "__int64 __thiscall UIParticle::_todo_4b5570(int, int, TextureLibDataBase *, int)",
-      "note": "reattribute: 独立复核推翻原归属（TextureLibDataBase）⇒ 真类 UIParticle。A级证据：①元素尺寸 0x248=584：asm 187160-187172 `push 248h; call ??_L@YGXPAXIHP6EX0@Z1@Z` + `lea eax,[esi+1258h]`/`lea ecx,[esi+13658h]`，而 0x1258+128*584=0x13658 算得精确；②ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致（含 _element:UIStatic@0x1a4，420+152=572=_sizeX）；③本函数体的 [esi+off] 全落在 UIParticle 成员内且宽度吻合（fld/fild 读 float），用 TextureLibDataBase 解释则全落进 _libfolder char[512]@12 —— char 缓冲不可能被 fld 读；④生成物自证：改前渲染出 `_libfolder[124]=cos(_libfolder[32])*...`，换算即 `_x=cos(m_HelixAngle)*m_helix_rx+m_tempx`，逐条 UIParticle。原证据②（(TextureLibDataBase*)this 强转）是循环证据、③（地址相邻）是弱证据。另：仓库自身审计 data/status/_cleanup_scan_triage.json 的 AT-168..AT-178 早已把该 cluster 判 [MISATTRIBUTED]/NEED_EVIDENCE。",
-      "name_evidence": "含义未定：未读函数体语义命名；按规则用 _todo_ 占位名，禁止造名。签名首参 a4 的类型(TextureLibDataBase*)源自 IDA 猜测，存疑待核。",
-      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5570(int, int, TextureLibDataBase *, int))",
-      "evidence_level": "unverified"
+      "name": "Update",
+      "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "粒子更新（helix/diffuse）"
     },
     "0x004B5830": {
-      "name": "_todo_4b5830",
-      "signature": "__int64 __thiscall UIParticle::_todo_4b5830(int, int, TextureLibDataBase *, int)",
-      "note": "reattribute: 同 0x004B5570：同类 cluster（0x4B4DC0 的 case 7，`mov ecx,esi`+`ret 0x10`），复核证据 E1-E4 适用。",
-      "name_evidence": "含义未定：按规则用 _todo_ 占位名。",
-      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5830(int, int, TextureLibDataBase *, int))",
-      "evidence_level": "unverified"
+      "name": "Update2",
+      "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "粒子更新变体（GetLib）"
     },
     "0x004B5BB0": {
-      "name": "_todo_4b5bb0",
-      "signature": "__int64 __thiscall UIParticle::_todo_4b5bb0(int, int, TextureLibDataBase *, int)",
-      "note": "reattribute: 同 0x004B5570：同类 cluster（0x4B4DC0 的 case 8），复核证据 E1-E4 适用。",
-      "name_evidence": "含义未定：按规则用 _todo_ 占位名。",
-      "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::_todo_4b5bb0(int, int, TextureLibDataBase *, int))",
-      "evidence_level": "unverified"
+      "name": "Update4",
+      "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "粒子更新变体（GetTop + 物理）"
     },
     "0x004B4DC0": {
       "name": "Apply",
@@ -334,12 +328,10 @@
       "evidence_level": "unverified"
     },
     "0x004B59B0": {
-      "name": "_todo_004b59b0",
-      "signature": "__int64 __thiscall UIParticle::_todo_004b59b0(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
-      "signature_note": "guard-fix: 原签名无类前缀 ⇒ 补 UIParticle::（否则会被发射成 static 自由函数） | name-fix: 原签名为无名原型，补上成员名 _todo_004b59b0",
-      "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
-      "name_evidence": "原名为 `sub_4B59B0`（无语义）⇒ 按规则用 _todo_ 占位名，未读函数体不造名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
-      "evidence_level": "unverified"
+      "name": "Update3",
+      "signature": "__int64 __thiscall(UIParticle *this, char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "粒子更新变体（color quad）"
     },
     "0x004B5D20": {
       "name": "RenderFrame",

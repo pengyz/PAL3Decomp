@@ -214,10 +214,10 @@
       "evidence_level": "unverified"
     },
     "0x0047CB90": {
-      "name": "_todo_0047CB90",
-      "signature": "OpenNULLFile *__thiscall(const char *pszName, int actionIdx)",
-      "source": "| 析构名误挂改名 2026-09-29：~Object3D→_todo_0047CB90（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
-      "evidence_level": "unverified"
+      "name": "Load",
+      "signature": "OpenNULLFile *__thiscall(Object3D *this, const char *pszName, int actionIdx)",
+      "name_source": "IDA语义分析 2026-10-31 批5",
+      "name_note": "3D 模型加载（gbGeomNode + Actor）"
     },
     "0x0047CD70": {
       "name": "LoadObject",
