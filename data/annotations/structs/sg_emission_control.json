@@ -89,16 +89,16 @@
   },
   "methods": {
     "0x004BA800": {
-      "name": "_todo_004BA800",
-      "signature": "void __thiscall(int, int, int, int)",
-      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 4 push 元数+[edi+0x9050] pemitter 布局）——类路由（functions.json 裸名会进 free_functions 黑洞） | [归属体检 2026-10-25·SUSPECT] offset-match: 弱命中: 越界 0/1 (最大 0x9050), 命中 1（越界比>30% 或弱命中——this 复用/多对象待裁，不撤不路由）",
-      "evidence_level": "A"
+      "name": "Emit",
+      "signature": "void __thiscall(sg_emission_control *this, int a2, int a3, int a4, int a5)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "粒子发射（sg_emitter+D3DXVECTOR3）"
     },
     "0x004B8890": {
-      "name": "_todo_004B8890",
-      "signature": "void __thiscall(int, int)",
-      "source": "挂账④ 试点 2026-10-06：双 A 级（thiscall 序言+调用点 2 push 元数+[ebx+0x9050] pemitter 同族）",
-      "evidence_level": "A"
+      "name": "Update",
+      "signature": "void __thiscall(sg_emission_control *this, int a2, int a3)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "发射控制更新（浮点计算）"
     }
   }
 }

@@ -1197,10 +1197,10 @@
       "name_note": "空覆盖虚方法"
     },
     "0x004B7330": {
-      "name": "_todo_004B7330",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批1 2026-10-06：thiscall 序言(this=esi)+偏移[92,96,100,104,108,112] Actor 连续块证+调用点 1 push",
-      "evidence_level": "unverified"
+      "name": "ProcessChain",
+      "signature": "void __thiscall(Actor *this, int a2)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "链式节点处理（gbChain1DNode）"
     },
     "0x004503C0": {
       "name": "OnEvent_2",
@@ -1209,10 +1209,10 @@
       "signature": "virtual void __thiscall(Actor *this, int a2)"
     },
     "0x004BA230": {
-      "name": "_todo_004BA230",
-      "signature": "void __thiscall(int, int, int, int, int)",
-      "source": "挂账④ 放量批3 2026-10-06：thiscall 序言+偏移[280]=Actor.m_szTexture+调用点 5 push 元数 | [归属体检 2026-10-25·SUSPECT] offset-match: 越界 2/4 (最大 0x9050), 命中 2（越界比>30% 或弱命中——this 复用/多对象待裁，不撤不路由）",
-      "evidence_level": "A"
+      "name": "CheckState",
+      "signature": "void __thiscall(Actor *this)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "状态检查（float 比较 + 缓存更新）"
     },
     "0x004B72C0": {
       "name": "_todo_004B72C0",
@@ -1221,16 +1221,16 @@
       "evidence_level": "A"
     },
     "0x004B72D0": {
-      "name": "_todo_004B72D0",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇）",
-      "evidence_level": "unverified"
+      "name": "SetDefaultSpeed",
+      "signature": "void __thiscall(Actor *this, int a2)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "设默认速度 24.0"
     },
     "0x004B7490": {
-      "name": "_todo_004B7490",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批5 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,232,236,240] Actor 八偏移簇证",
-      "evidence_level": "unverified"
+      "name": "SetDefaultRange",
+      "signature": "void __thiscall(Actor *this, int a2)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "设默认范围 24.0"
     },
     "0x0041F2D0": {
       "name": "SortAnimData",
@@ -1239,10 +1239,10 @@
       "signature": "void __thiscall(Actor *this, int a2)"
     },
     "0x004B7260": {
-      "name": "_todo_004B7260",
-      "signature": "void __thiscall(int)",
-      "source": "挂账④ 放量批6 2026-10-06：thiscall 序言+深窗偏移[0,92,96,100,104,108,112] Actor 证（七偏移簇）",
-      "evidence_level": "unverified"
+      "name": "CleanupStatic",
+      "signature": "void __thiscall(Actor *this, int a2)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "静态数据清理"
     },
     "0x0051DFD0": {
       "name": "_todo_0051DFD0",
@@ -1311,10 +1311,10 @@
       "signature": "void __thiscall(Actor *this, int a2)"
     },
     "0x004B7560": {
-      "name": "_todo_004B7560",
-      "signature": "void __thiscall(int)",
-      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[0,92,104,168,232] Actor 多偏移证（ctor 装配实证表）",
-      "evidence_level": "A"
+      "name": "ResetMatrix",
+      "signature": "virtual int __thiscall(Actor *this, int nArg)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "矩阵重置（虚调用链）"
     },
     "0x004B7590": {
       "name": "RenderActorTransform2",
@@ -1323,10 +1323,10 @@
       "evidence_level": "A"
     },
     "0x004B7650": {
-      "name": "_todo_004B7650",
-      "signature": "void __thiscall(int)",
-      "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[244] Actor 多偏移证（ctor 装配实证表）",
-      "evidence_level": "A"
+      "name": "Render",
+      "signature": "virtual void __thiscall(Actor *this, int nFlag)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "渲染（MatrixStack+GeomQuad+DynVertBuf）"
     },
     "0x004B7980": {
       "name": "LoadActorVisual",
@@ -1341,10 +1341,10 @@
       "evidence_level": "A"
     },
     "0x004B7D30": {
-      "name": "_todo_004B7D30",
-      "signature": "void __thiscall(int)",
-      "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[96,160,164,168] Actor 证",
-      "evidence_level": "A"
+      "name": "LoadTexture",
+      "signature": "virtual void __thiscall(Actor *this, int nParam)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "纹理加载（gbTexture+gbGeomNode+OpenBaseFile）"
     },
     "0x004B80C0": {
       "name": "RenderActorTransform",
@@ -1353,10 +1353,10 @@
       "evidence_level": "A"
     },
     "0x004B8030": {
-      "name": "_todo_004B8030",
-      "signature": "void __thiscall(int)",
-      "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[72] Actor 证",
-      "evidence_level": "A"
+      "name": "UpdateRenderInfo",
+      "signature": "virtual void __thiscall(Actor *this, int a2)",
+      "name_source": "IDA语义分析 2026-11-01 批8",
+      "name_note": "渲染信息更新（RenderInfoObj+Matrix4）"
     },
     "0x0053D5D0": {
       "name": "RenderActorGeometry",
