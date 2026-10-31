@@ -25,15 +25,6 @@ char * aEffectFlaregre = {0};
 // D  char * asc_5B74B8
 char * asc_5B74B8 = {0};
 
-// D  char * byte_592DA4
-char byte_592DA4[3] = {0};
-
-// D  char * g_EffCylinderEditorData
-char g_EffCylinderEditorData[4] = {0};
-
-// D  char * g_LanguageCode
-char g_LanguageCode[3] = {0};
-
 // D  unsigned char byte_17A7BBC
 unsigned char byte_17A7BBC = {0};
 

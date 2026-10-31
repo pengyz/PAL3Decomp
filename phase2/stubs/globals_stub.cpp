@@ -478,6 +478,9 @@ CHAR CmdLine[] = {"sc"};
 // D  char aMisc[] = "misc";
 char aMisc[] = "misc";
 
+// D  char byte_583A1C[] = " %s";
+char byte_583A1C[3] = {0};
+
 // D  char aS[] = " %s ";
 char aS[] = " %s ";
 
@@ -543,6 +546,9 @@ char aLossmoney[] = "lossmoney";
 
 // D  char name[] = "lossallmoney";
 char name[] = "lossallmoney";
+
+// D  char byte_5861F8[] = "p%d";
+char byte_5861F8[3] = {0};
 
 // D  char aEffectGbpartic[] = "effect\\gbParticle\\slht.par";
 char aEffectGbpartic[] = "effect\\gbParticle\\slht.par";
@@ -618,6 +624,9 @@ int dword_58B440 = 1936617325;
 
 // D  int off_58B444 = 7497076;
 int off_58B444 = 7497076;
+
+// D  char g_LanguageCode[] = "end";
+char g_LanguageCode[3] = {0};
 
 // D  char aRole[] = "role";
 char aRole[] = "role";
@@ -793,6 +802,9 @@ char aPal3lang[] = "pal3lang";
 // D  char aBegin[] = "Begin";
 char aBegin[] = "Begin";
 
+// D  char byte_592DA4[] = "End";
+char byte_592DA4[3] = {0};
+
 // D  char aBigmapScriptLo[] = "BigMap script load failed.";
 char aBigmapScriptLo[] = "BigMap script load failed.";
 
@@ -922,6 +934,12 @@ CHAR pTemplate[] = {"EffectScn\\104s.tga"};
 // D  char aM16[] = "m16";
 char aM16[] = "m16";
 
+// D  char byte_596420[] = "cvd";
+char byte_596420[3] = {0};
+
+// D  char byte_596424[] = "pol";
+char byte_596424[3] = {0};
+
 // D  char aSDTga[] = "%s%d.tga";
 char aSDTga[] = "%s%d.tga";
 
@@ -939,6 +957,9 @@ int off_5974E0 = 5781300;
 
 // D  CHAR String2[] = {"UI\\GameMainUI\\Prop\\List_Grid.tga"};
 CHAR String2[] = {"UI\\GameMainUI\\Prop\\List_Grid.tga"};
+
+// D  char aQ07[] = "Q07";
+int aQ07 = {0};
 
 // D  int off_599594 = 5780836;
 int off_599594 = 5780836;
@@ -1858,6 +1879,9 @@ char aDProjectPal3Ef[] = "D:\\Project\\PAL3\\effect\\RenderTarget.cpp";
 // D  char aGfxscriptGeomF[] = "gfxscript\\Geom_Fx.gbf";
 char aGfxscriptGeomF[] = "gfxscript\\Geom_Fx.gbf";
 
+// D  char g_EffCylinderEditorData[] = "\xCE\xDE\xD0\xA7";
+char g_EffCylinderEditorData[4] = {0};
+
 // D  const char * g_pszEditorDesc = {0};
 const char * g_pszEditorDesc = {0};
 
@@ -2080,6 +2104,9 @@ int unk_5D89B0 = 57038;
 // D  char a15f[] = "%1.5f";
 char a15f[] = "%1.5f";
 
+// D  char off_5D89BC[] = "%lu";
+char off_5D89BC[3] = {0};
+
 // D  CHAR AppName[] = {"Item"};
 CHAR AppName[] = {"Item"};
 
@@ -2245,6 +2272,9 @@ char aSCombatdialog[] = "%s-CombatDialog";
 // D  char aZ39[] = "z39";
 char aZ39[] = "z39";
 
+// D  char off_5D8FEC[] = "%2d";
+char off_5D8FEC[3] = {0};
+
 // D  char aD02d[] = "%d/%02d";
 char aD02d[] = "%d/%02d";
 
@@ -2307,6 +2337,9 @@ char aRoll[] = "roll";
 
 // D  char aPitch[] = "pitch";
 char aPitch[] = "pitch";
+
+// D  char off_5DB9B0[] = "yaw";
+char off_5DB9B0[3] = {0};
 
 // D  char aZ[] = "z";
 char aZ[] = "z";
@@ -2715,6 +2748,9 @@ CHAR a1[2] = {"1"};
 
 // D  const char * off_60113C = {0};
 const char * off_60113C = {0};
+
+// D  char PathName_0[] = "\x846X";
+char PathName_0[256] = {0};
 
 // D  char aSNS[] = "       %s\\n       %s";
 char aSNS[] = "       %s\\n       %s";
@@ -8990,16 +9026,4 @@ int dword_DE9A18 = {0};
 unsigned char byte_DE9A1C = {0};
 
 // PRUNED (hand-trim debt, compile-driven):
-//   data char PathName_0[] = "\x846X";
-//   data char aQ07[] = "Q07";
-//   data char byte_583A1C[] = " %s";
-//   data char byte_5861F8[] = "p%d";
-//   data char byte_592DA4[] = "End";
-//   data char byte_596420[] = "cvd";
-//   data char byte_596424[] = "pol";
-//   data char g_EffCylinderEditorData[] = "\xCE\xDE\xD0\xA7";
-//   data char g_LanguageCode[] = "end";
-//   data char off_5D89BC[] = "%lu";
-//   data char off_5D8FEC[] = "%2d";
-//   data char off_5DB9B0[] = "yaw";
 //   data const WCHAR SrcStr;

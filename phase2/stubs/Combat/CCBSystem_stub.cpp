@@ -429,6 +429,10 @@ BOOL CCBSystem::CreateUIObj(CCBUI **ppUI, const char *szName, UINT nFlags)
 char CCBSystem::CreateRoleStateObj(CCBRoleState **a2)
 { return 0; }
 
+// 0x00515B20  (CCBSystem::CreateProtectedObj)
+int CCBSystem::CreateProtectedObj(int (CCBSystem::*a2)(int a2), int nVal, int nVal2, int nVal3, const void *pData)
+{ return 0; }
+
 // 0x00515C50  (CCBSystem::ClearEffect)
 char CCBSystem::ClearEffect(int idx)
 { return 0; }
@@ -472,6 +476,3 @@ int CCBSystem::InitObj_5f80()
 // 0x00515FD0  (CCBSystem::InitObj_5fd0)
 int CCBSystem::InitObj_5fd0()
 { return 0; }
-
-// PRUNED (hand-trim debt, compile-driven):
-//   func CCBSystem::CreateProtectedObj

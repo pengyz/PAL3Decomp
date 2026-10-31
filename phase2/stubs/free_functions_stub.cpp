@@ -997,6 +997,10 @@ int SyncUIRoleDialogMembers()
 void Create__ovl_1(ARC_PlayerAtt *_this)
 { }
 
+// 0x004A1A7C  (GetGlobalUserVar)
+static struct scGlobalUserVar * GetGlobalUserVar(char *)
+{ return 0; }
+
 // 0x004A1CF0  (UIParabolaCtrl_GetState)
 int UIParabolaCtrl_GetState(int nVal)
 { return 0; }
@@ -1656,7 +1660,6 @@ int NextRole(int *a1)
 // PRUNED (hand-trim debt, compile-driven):
 //   func ArraySort
 //   func CreateDigitPair
-//   func GetGlobalUserVar
 //   func UIFrameWnd__deleting_view
 //   func todo_004D0C90
 // DUP-FALLBACK (defined elsewhere, LNK2005 dedup):
