@@ -106,11 +106,13 @@
       "evidence_level": "unverified"
     },
     "0x0044AB00": {
-      "name": "_todo_",
+      "name": "GetType",
       "signature": "int __thiscall(UIEmote *this)",
       "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `mov eax,[ecx-0xC]; ret`（字段 getter 形，读 this-12 处槽）| 表主已认领 UIEmote（0x56AFA4 槽）| confidence: high（注册）/ 名挂账（raw 别名渲染 `this[-1].m_nLoop[10]` 第③面不达 ⇒ 不赋名） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
       "declaration_only": true,
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "偏移访问器"
     },
     "0x00541F13": {
       "name": "_todo_541F13",
@@ -120,11 +122,18 @@
       "evidence_level": "unverified"
     },
     "0x0044EB40": {
-      "name": "_todo_44EB40",
+      "name": "Reset",
       "signature": "void __thiscall()",
       "declaration_only": true,
       "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "空覆盖虚方法"
+    },
+    "0x0044AB40": {
+      "name": "OnEvent",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "空覆盖虚方法"
     }
   },
   "base_size": 76,

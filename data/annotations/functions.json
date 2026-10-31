@@ -122,30 +122,12 @@
     "name": "GetActorMgr",
     "signature": "gbActorMgr *__cdecl()"
   },
-  "0x0042C1C0": {
-    "name": "CScreenMode::sub_42C1C0",
-    "signature": "bool __thiscall(int this)",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=CScreenMode（IDB 限定名证）"
-  },
   "0x00430180": {
     "name": "InitSceneScriptLoader",
     "signature": "_BYTE *__thiscall(_BYTE *this)",
     "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [函数归属余3 2026-10-17] 归属挂账 4.5/5（IDB 名无限定前缀=类归属直证缺失）：①调用者=SingletonThunk_00404630（**静态初始化域**）②被调=PalScript* 构造/使用 ③字节谱 [0,1,8]（+8 疑 m_script 清零——PalScriptMgr 候选最强但谱撞 200+ 类唯一性不足）④类归属待定 ⑤静态初始化生命周期；IDB decompile 形 `InitSceneScriptLoader(_BYTE *this)` 无 Class:: 前缀",
     "declaration_only": true,
     "source_note": " | [归属 2026-10-17·余 3] ④类归属薄（SingletonThunk 注册点 ✓ 但无类限定名/谱唯一匹配）⇒ **五面 4/5 挂账** ✓"
-  },
-  "0x00430C10": {
-    "name": "PalScript::sub_430C10",
-    "signature": "_BYTE *__thiscall(_BYTE *this, _DWORD *a2, _BYTE *a3)",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=PalScript（IDB 限定名证）"
-  },
-  "0x00431760": {
-    "name": "PalScript::_sdtor_23",
-    "signature": "PalScript *__thiscall(PalScript *Block, char a2)",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=PalScript（IDB 限定名证）"
   },
   "0x00431E90": {
     "name": "ConditionalCleanup",
@@ -232,35 +214,13 @@
     "signature": "virtual BOOL __thiscall(_BYTE *this)",
     "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓"
   },
-  "0x004499A0": {
-    "name": "CCBRoleState::sub_4499A0",
-    "signature": "char __thiscall(void *this, unsigned int a2, int a3)",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=CCBRoleState（IDB 限定名证）"
-  },
   "0x0044BD80": {
     "name": "SafeDeletePtr",
     "signature": "void __cdecl SafeDeletePtr(void **pptr)"
   },
-  "0x0044F4C0": {
-    "name": "PAL3::SceneUpdate",
-    "signature": "int __thiscall(PAL3 *this, int nVal, int nVal2)"
-  },
-  "0x0044F8D0": {
-    "name": "CGameData::_init_44f8d0",
-    "signature": "CCBUI *__thiscall(int this, int a2)",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=CGameData（IDB 限定名证）"
-  },
   "0x00450370": {
     "name": "_sdtor_15",
     "signature": "void *__thiscall(void *Block, char a2)"
-  },
-  "0x004531F0": {
-    "name": "RoleAtt::_sub_4531F0",
-    "signature": "void __thiscall()",
-    "source": "|fix:class_from_xref | [批1-5#4 this 建模修正 2026-10-15] `_BYTE *this`→隐含 this：A 级本体 0x4531f0 `c6 41 64 01`（movb $0x1,0x64(%ecx)）+ `c3`（ret）= 零栈参 thiscall（this 在 ecx、无栈参、无 ret N）；原签名把 this 建成显式形参 ⇒ 调用侧实参错位（下游）。⚠️ 非变参问题（mangled `AAEXI@Z` 反证 std::_Eos 是单定参——T66-F1 族措辞教训第 5 次，原「变参丢失」定性已证伪）",
-    "source_note": " | [归属 2026-10-17] 类=RoleAtt（IDB 限定名证）"
   },
   "0x00456670": {
     "name": "ShowMessageBox",
@@ -269,15 +229,6 @@
   "0x00456FC0": {
     "name": "ReadRegistryString",
     "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
-  },
-  "0x00459F80": {
-    "name": "IsStateFlagSet",
-    "signature": "int __thiscall CCBStage::IsStateFlagSet(CCBStage *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·CCBStage sub 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [归属定谳 2026-10-25·五面补全] 10-17 阻塞面（成员面不可达）已解除：decomp 体读 this+153..156 四字节 = CCBStage known_members m_nTodo_99/9A/9B（A偏移旗标）+ m_nTaskCount 低字节（逐偏移吻合）；共置面：5 调用者 0x459FA0-0x45A1A0 全为 CCBStage 方法（生成代码 CCBStage::sub_00459fa0 族）且传 this；调用者面 5 ✓ ⇒ 归属 CCBStage",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[17 挂账补面 2026-10-17·五面满卡] IsStateFlagSet（五面满卡：①调用者 5 站 CCBStage::sub_00459fa0/a020/a0a0 族 ✓ ②本体=flag 判 ✓ ③this[i+153] 索引形（成员偏移 ✓ thiscall 面）④类=CCBStage ✓ ⑤交互=Stage 内部状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B",
-    "class": "CCBStage"
   },
   "0x0046ADF0": {
     "name": "GetCellStateByte",
@@ -288,32 +239,10 @@
     "declaration_only": true,
     "evidence_level": "B"
   },
-  "0x0046F3D0": {
-    "name": "GetInputFlag",
-    "signature": "char __thiscall PropUI::GetInputFlag(PropUI *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞2·HandleInput 域 | [IDB 重定型 2026-10-24·G7 队列] structs/PropUI.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetInputFlag（①PropUI::HandleInput ✓ ③this[21261] 字节读 ✓ ④PropUI ✓ ⑤输入处理状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PropUI（成员访问谱比对）",
-    "class": "PropUI"
-  },
-  "0x00474990": {
-    "name": "GetUpdateFlag",
-    "signature": "char __thiscall LineupUI::GetUpdateFlag(LineupUI *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·UpdateAndForward 域（lits 0/5） | [IDB 重定型 2026-10-24·G7 队列试点] structs/LineupUI.json methods 同地址归属已在（10-17 五面满卡 ④LineupUI ✓）；本条补 class+类化签名供 apply 函数级定型，非新归属",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetUpdateFlag（①LineupUI::UpdateAndForward ✓ ③this[103789] 字节读 ✓ ④LineupUI ✓ ⑤更新状态查询 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=LineupUI（成员访问谱比对）",
-    "class": "LineupUI"
-  },
   "0x004A13E0": {
     "name": "SyncUIRoleDialogMembers",
     "signature": "int __cdecl()",
     "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _sub_4A13E0 ⇒ SyncUIRoleDialogMembers | evidence: ①**UIRoleDialog ctor+dtor**（构造/析构双点=成员同步件）②无 ③117B ④UIRoleDialog ⑤生命周期伴生 | confidence: medium"
-  },
-  "0x004A3360": {
-    "name": "CCBRoleState::sub_4A3360",
-    "signature": "int __thiscall(CHAR *this, int a2, int *a3)",
-    "source": "|fix:class_from_ida_analysis",
-    "source_note": " | [归属 2026-10-17] 类=CCBRoleState（IDB 限定名证）"
   },
   "0x004A36B0": {
     "name": "FormatChineseNumber",
@@ -368,10 +297,6 @@
     "name": "SceneMgrUpdate",
     "signature": "int __stdcall(float fVal)"
   },
-  "0x004CFD40": {
-    "name": "CEffgbParticle::_nearby_4cfd40",
-    "signature": "int __fastcall(CEffgbParticle *a1)"
-  },
   "0x004D0CA0": {
     "name": "_sdtor_38",
     "signature": "char *__thiscall(char *this, char a2)"
@@ -389,24 +314,12 @@
     "name": "_sdtor_40",
     "signature": "char *__thiscall(char *this, char a2)"
   },
-  "0x004DB940": {
-    "name": "StoreThreadFlag",
-    "signature": "int __thiscall CCBSystem::StoreThreadFlag(CCBSystem *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体·线程旗/动作处理域（lits 0/76/892） | [IDB 重定型 2026-10-24·G7 队列] structs/CCBSystem.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] StoreThreadFlag（①CCBSystem::SetThreadFlag + CCBRoleState::ProcessActions ✓ ③this[454]=a2 写 ✓ ④CCBSystem ✓ ⑤线程标志存储 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=CCBSystem（五面卡面证）",
-    "class": "CCBSystem"
-  },
   "0x004E0A30": {
     "name": "DialogFunc",
     "signature": "int __stdcall(HWND, UINT, WPARAM, LPARAM)",
     "source": "ida_decomp",
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
     "evidence_level": "B"
-  },
-  "0x004E0A60": {
-    "name": "CCBUI::DlgProcEditorMain",
-    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
   },
   "0x004E5300": {
     "name": "EditBoxSetReadOnly",
@@ -436,18 +349,6 @@
     "name": "EditBoxGetInt",
     "signature": "int __cdecl(HWND hWnd)"
   },
-  "0x004EA5C0": {
-    "name": "CCBUI::DlgProcCameraEdit",
-    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
-  },
-  "0x004EB230": {
-    "name": "CCBUI::_nearby_4eb230",
-    "signature": "INT_PTR __stdcall(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)"
-  },
-  "0x004EB260": {
-    "name": "CCBUI::DlgProcCameraConfig",
-    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)"
-  },
   "0x004EC480": {
     "name": "_nearby_4ec480",
     "signature": "int __cdecl()",
@@ -468,12 +369,6 @@
     "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·邻接簇 sub_523CD0/D20 域 | [函数归属余3 2026-10-17] 归属挂账 4/5：①调用者=**同簇 5 兄弟** sub_523CD0/D20/D70/DC0/E10（80B 步进簇）②被调=无 ③成员谱=+352..355 四字节非零计数器 ④**簇归属未定**（raw-offset 自由函数族判定维持）⑤簇内工具调用形；功能定性=标志计数器",
     "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
     "source_note": " | [余 14 补面 2026-10-17] ①调用者 sub_523CD0/523D20 未具名 ⇒ **①面未满挂账**（不达五面 ✓） | [归属 2026-10-17·余 3] ①调用者 sub_523CD0/523D20/523D70 未具名 ⇒ **4/5 挂账** ✓"
-  },
-  "0x00525090": {
-    "name": "CCBStage::sub_525090",
-    "signature": "int __thiscall(CCBStage *this, void *thisa)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
   },
   "0x005269B0": {
     "name": "CreateDigitPair",
@@ -590,32 +485,6 @@
     "signature": "int __cdecl()",
     "type": "skip",
     "reason": "CRT init function, not game logic"
-  },
-  "0x0053EDD0": {
-    "name": "_nearby_53edd0",
-    "class": "CScreenMode",
-    "signature": "int __stdcall(int)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·CleanupSoundList 域",
-    "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-    "source_note": " | [余 8 补面 2026-10-17] ③面 a1 无 offset（stdcall(int) 仅参无偏移）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
-  },
-  "0x0053F4C0": {
-    "name": "CScreenMode::_nearby_53f4c0",
-    "class": "CScreenMode",
-    "signature": "_DWORD *__thiscall()",
-    "source": "|fix:class_from_ida_analysis"
-  },
-  "0x0053F4F0": {
-    "name": "SceneObj::_nearby_53f4f0",
-    "class": "SceneObj",
-    "signature": "void __thiscall(_DWORD *)",
-    "source": "|fix:class_from_ida_analysis"
-  },
-  "0x004B6CA0": {
-    "name": "RenderTarget3::_nearby_4b6ca0",
-    "class": "RenderTarget3",
-    "signature": "void __thiscall(vtbl_0056F36C **)",
-    "source": "|fix:class_from_ida_analysis"
   },
   "0x00452580": {
     "name": "_todo_ctor",
@@ -1678,14 +1547,6 @@
     "type": "skip",
     "reason": "misattributed in struct, removed"
   },
-  "0x00502000": {
-    "name": "CCBRoleState::CCBRoleState_Func",
-    "signature": "int __thiscall(int nVal)",
-    "type": "skip",
-    "reason": "misattributed: max_offset=164>class_size=4",
-    "source": "|fix:class_from_xref",
-    "source_note": " | [归属 2026-10-17] 类=CCBRoleState（IDB 限定名证）"
-  },
   "0x005322D0": {
     "name": "RoleAtt_SetPageParam",
     "signature": "int __cdecl(int nVal)",
@@ -1926,27 +1787,12 @@
     "type": "skip",
     "reason": "misattributed in struct, removed"
   },
-  "0x00445D20": {
-    "name": "MoveToAbsolute",
-    "signature": "int __thiscall UIWnd::MoveToAbsolute(UIWnd *this, int a2, int a3)",
-    "source": "ida_pdb | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only| [归属定谳 2026-10-25·布局+调用者双面] 体读 this+16/+20 = UIWnd m_rect.left/top（known_members @16 m_rect:tagRECT 逐偏移吻合，绝对坐标→增量换算语义自洽）；调用者面：5 站全为 UIWnd 派生指针（CCBUI m_pRoleStateMP[4]=UIProgressBar*、m_pRoleStateFace/AttackInc=UIStatic* 等）调同一函数 ⇒ 基类方法；尾调 sub_445D40（UIWnd::MoveBy，m_rect 四字段 ±delta 布局铁证）",
-    "source_note": "[再创作命名 2026-10-16·五维上下文] **MoveToAbsolute**（绝对坐标→增量换算+累加）——A 级上下文语义五维证：①调用者 `CameraCtrl::UpdateInternal`+`PalScript::Op_LK_Ghost`（相机更新/脚本位移操作域 ✓）②被调用者 0x445D40=this[4..7] 累加器（`this[4]=a2+v4` 增量累积形）③成员访问 this[4]/this[5]=x/y 当前位（视口/相机位）④类归属=视口控制族 ⑤交互模式=绝对定位入口（MoveTo(a2,a3)=OffsetBy(a2-curX,a3-curY)）· 用户指令（2026-10-17）：命名须上下文语义+IDA 优先 ✓ 本条为强化工作流示范",
-    "class": "UIWnd"
-  },
   "0x004A4770": {
     "name": "SetUIWndFlag",
     "signature": "unsigned __int8 __stdcall(unsigned __int8 a1)",
     "source": "[主攻点2 2026-10-17] 五面满卡 5/5（①调用者=PalScript::Op_StopMusic 脚本 Op 域 ②被调=无（直写全局）③成员访问=全局 g_bUIWnd_DE625A 赋值+返回值 ④类归属=自由函数·全局 setter ⑤交互=脚本停止音乐路径置 UI 窗标志）；A 级=idapro decompile 体 `g_bUIWnd_DE625A=a1; return a1`（0x4A4770）+ xrefs 1 站；原名 sub_4A4770（中性未名形）⇒ 再创作命名 SetUIWndFlag（功能驱动：UI 窗标志置位器）；⚠️ 旗标本名 g_bUIWnd_DE625A 含地址尾=伪语义族另账",
     "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
     "evidence_level": "B"
-  },
-  "0x00523E70": {
-    "name": "GetScriptBufferAddr",
-    "signature": "int __thiscall PalScript::GetScriptBufferAddr(PalScript *this)",
-    "source": "ida_pdb | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·脚本算子 Op_HY_FLY/Op_SetRoleTexture 域 | [IDB 重定型 2026-10-24·G7 队列] structs/PalScript.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": "[余 14 补面 2026-10-17·五面满卡] GetScriptBufferAddr（①PalScript::Op_HY_FLY + Op_SetRoleTexture ✓ ③return this[435]+345572 计算址 ✓ ④PalScript ✓ ⑤脚本缓冲取址 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=PalScript（五面卡面证）",
-    "class": "PalScript"
   },
   "0x00408BD0": {
     "name": "NullCallback",
@@ -1957,16 +1803,6 @@
     "name": "Destroy__ovl_03",
     "signature": "void __fastcall(int self)",
     "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high"
-  },
-  "0x0051A880": {
-    "name": "CCBItemWindow::CCBItemWindow_Destroy",
-    "signature": "void __thiscall(CCBItemWindow *this)",
-    "source": "|fix:class_from_ida_analysis"
-  },
-  "0x0044B460": {
-    "name": "UITitle::UITitle_Render",
-    "signature": "void __thiscall(UITitle *this)",
-    "source": "|fix:class_from_ida_analysis"
   },
   "0x00445010": {
     "name": "UITextArea_Destroy",
@@ -2020,809 +1856,10 @@
     "name": "CCBStageRole_DispatchUpdate_1f70",
     "signature": "int __cdecl(unsigned char nFlag)"
   },
-  "0x0043ddf0": {
-    "name": "CCBControlWindow::CCBControlWindow_Render",
-    "signature": "void __thiscall(CCBControlWindow *this)",
-    "source": "|fix:class_from_ida_analysis"
-  },
-  "0x0041BCA0": {
-    "name": "Actor::ExecuteAction",
-    "signature": "int __thiscall(tagActionCommand *pCmd)"
-  },
-  "0x004DB910": {
-    "name": "CCBAttackSequen::SetPause",
-    "signature": "double __thiscall(char bPause)"
-  },
   "0x00541630": {
     "name": "InitUIQuadManagerSingleton",
     "signature": "void __cdecl unknown_libname_522(void)",
     "source": "manual:atexit handler for UIQuadManager singleton cleanup, size=0xA | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 unknown_libname_522 ⇒ InitUIQuadManagerSingleton | evidence: ①UIQuadManager::GetInstance ②无 ③155B（MSVC unknown_libname_522 合成名=单例初始化壳）④✓ ⑤单例生命周期 | confidence: high"
-  },
-  "0x004DC610": {
-    "name": "CountAttackSequences",
-    "signature": "char __thiscall CCBUI::CountAttackSequences(CCBUI *this)",
-    "class": "CCBUI"
-  },
-  "0x0043BE80": {
-    "name": "ReleaseTexture",
-    "signature": "void __thiscall UIScene::ReleaseTexture(UIScene *this)",
-    "class": "UIScene"
-  },
-  "0x00503020": {
-    "name": "ResetAll",
-    "signature": "void __thiscall CCBStage::ResetAll(CCBStage *this)",
-    "class": "CCBStage"
-  },
-  "0x004A16C0": {
-    "name": "Create__ovl_1",
-    "signature": "void __thiscall ARC_PlayerAtt::Create(ARC_PlayerAtt *this)",
-    "class": "ARC_PlayerAtt",
-    "source_note": " | [归属 2026-10-17] 类=ARC_PlayerAtt（decompile 类名直证） | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
-  },
-  "0x004517A0": {
-    "name": "SetVideoRect",
-    "signature": "void __thiscall BINK::SetVideoRect(BINK *this)",
-    "class": "BINK"
-  },
-  "0x00532D30": {
-    "name": "GetStateMode",
-    "signature": "int __thiscall RoleSystem::GetStateMode(RoleSystem *this)",
-    "class": "RoleSystem"
-  },
-  "0x00443BA0": {
-    "name": "IsHitLeft",
-    "signature": "bool __thiscall CCBFiveNimbusWindow::IsHitLeft(CCBFiveNimbusWindow *this)",
-    "class": "CCBFiveNimbusWindow"
-  },
-  "0x00533DB0": {
-    "name": "ResetNameField",
-    "signature": "void __thiscall RoleAtt::ResetNameField(RoleAtt *this)",
-    "class": "RoleAtt"
-  },
-  "0x00532E10": {
-    "name": "ResetPathState",
-    "signature": "void __thiscall RoleSystem::ResetPathState(RoleSystem *this)",
-    "class": "RoleSystem"
-  },
-  "0x0041C710": {
-    "name": "ProcessKeyboard",
-    "signature": "void __thiscall InputSystem::ProcessKeyboard(InputSystem *this, int a1)",
-    "sig_note": "F81 (round 139): the missing stack argument was restored. Binary evidence (A-level, IDA): callee 0x0041C710 ends `add esp,1Ch; retn 4` (exactly one 4-byte stack argument beyond `this`) and every call site is `push <int>; mov ecx,<InputSystem*>; call` (0x0041C526-28, 0x0041C9F5-F6). The previous spelling listed only `this`, so the IDB type had zero stack arguments, Hex-Rays rendered the calls as `InputSystem::ProcessKeyboard(this)` (dropping the pushed constant) and the generated C++ failed with C2664 against the class declaration `void ProcessKeyboard(int a1)`.",
-    "class": "InputSystem"
-  },
-  "0x004B7AF0": {
-    "name": "ReleaseAllTextures",
-    "signature": "void __thiscall UI3DModelNode::ReleaseAllTextures(UI3DModelNode *this)",
-    "class": "UI3DModelNode"
-  },
-  "0x0052CD40": {
-    "name": "LayoutSlot",
-    "signature": "void __thiscall UIScenePanel::LayoutSlot(UIScenePanel *this)",
-    "class": "UIScenePanel"
-  },
-  "0x004D6D30": {
-    "name": "Update",
-    "signature": "void __thiscall C3DSpark::Update(C3DSpark *this)",
-    "class": "C3DSpark"
-  },
-  "0x004BDB10": {
-    "name": "GetInstance_db10",
-    "signature": "void* __thiscall PAL3::GetInstance_db10(PAL3 *this)",
-    "class": "PAL3"
-  },
-  "0x004427C0": {
-    "name": "SetEnable",
-    "signature": "void __thiscall UICaption::SetEnable(UICaption *this)",
-    "class": "UICaption"
-  },
-  "0x0041C1E0": {
-    "name": "ScriptPoolPage_Alloc",
-    "signature": "void __thiscall _Console::ScriptPoolPage_Alloc(_Console *this)",
-    "class": "_Console",
-    "source": " | ⑤型补强 2026-10-16：归属收敛（A 级：this->m_cmd@4=_Console__ConCmd[64]/_tail_000 访问证据）；ScriptPoolPage.json 错挂双注已删（C2228×16 根因之一）"
-  },
-  "0x0043F7F0": {
-    "name": "ctor_17",
-    "signature": "void __thiscall UIButton::ctor_17(UIButton *this)",
-    "class": "UIButton"
-  },
-  "0x004BEF50": {
-    "name": "_UIWnd",
-    "signature": "void __thiscall ScreenEffectMgr::_UIWnd(ScreenEffectMgr *this)",
-    "class": "ScreenEffectMgr"
-  },
-  "0x00535930": {
-    "name": "LoadOverlayTexture",
-    "signature": "void __thiscall UISceneFrm::LoadOverlayTexture(UISceneFrm *this)",
-    "class": "UISceneFrm"
-  },
-  "0x004DC650": {
-    "name": "FindFreeThread",
-    "signature": "int __thiscall CCBSystem::FindFreeThread(CCBSystem *this, int, int, int, int, int, int, int, int, int)",
-    "class": "CCBSystem"
-  },
-  "0x0041C090": {
-    "name": "FlushCommandQueue",
-    "signature": "int __thiscall RoleSystem::FlushCommandQueue(RoleSystem *this)",
-    "class": "RoleSystem"
-  },
-  "0x00529400": {
-    "name": "CountActiveParticles",
-    "signature": "int* __thiscall UIParticle::CountActiveParticles(UIParticle *this, int*)",
-    "class": "UIParticle"
-  },
-  "0x004C5B90": {
-    "name": "operator_",
-    "signature": "_Texture_uv __thiscall _Texture_uv::operator_(_Texture_uv *this, _Texture_uv*)",
-    "class": "_Texture_uv"
-  },
-  "0x004A8770": {
-    "name": "Create__ovl_1",
-    "class": "CCCTData",
-    "signature": "bool __thiscall CCCTData::Create(CCCTData *this, void *param)",
-    "source": "fix:C2660:CCBCamControl_Create_param_count"
-  },
-  "0x00522120": {
-    "name": "CCBStage::CleanupScript",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509290": {
-    "name": "CCBStage::GetRoleRadius",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509410": {
-    "name": "CCBStage::GetRotAngle",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00523090": {
-    "name": "CCBStage::GetWeaponSlotPtr",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509690": {
-    "name": "CCBStage::IsAtInitPos",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509280": {
-    "name": "CCBStage::IsCollideRay",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509540": {
-    "name": "CCBStage::IsIdle",
-    "signature": "bool __thiscall(CCBStage *this, unsigned int dwVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509270": {
-    "name": "CCBStage::IsUnderMouse",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509220": {
-    "name": "CCBStage::OnPlayAction",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509130": {
-    "name": "CCBStage::SetAlive",
-    "signature": "void __thiscall(CCBStage *this, bool bAlive)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509140": {
-    "name": "CCBStage::SetMaxBlend",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509190": {
-    "name": "CCBStage::SetPause",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509180": {
-    "name": "CCBStage::SetVisible",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00501410": {
-    "name": "CCBStage::TaskBlendToEnd",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00501330": {
-    "name": "CCBStage::TaskBlendToReady",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00500550": {
-    "name": "CCBStage::TaskExecItem",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00500220": {
-    "name": "CCBStage::TaskExecSkill",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00508930": {
-    "name": "CCBStage::~CCBStageRole",
-    "signature": "void __thiscall(CCBStage *this, int nVal, int nVal2, int *p_DWORD)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00459fa0": {
-    "name": "CCBStage::sub_00459fa0",
-    "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x0045a020": {
-    "name": "CCBStage::sub_0045a020",
-    "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x0045a0a0": {
-    "name": "CCBStage::sub_0045a0a0",
-    "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x0045a120": {
-    "name": "CCBStage::sub_0045a120",
-    "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x0045a1a0": {
-    "name": "CCBStage::sub_0045a1a0",
-    "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x004feef0": {
-    "name": "CCBStage::sub_4FEEF0",
-    "signature": "int __thiscall(CCBStage *this, void *thisa)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor",
-    "source_note": " | [归属 2026-10-17] 类=CCBStage（IDB 限定名证）"
-  },
-  "0x0050a5d0": {
-    "name": "CCBStage::AddTask",
-    "signature": "double __thiscall(CCBStage *this, float *fp)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00521a80": {
-    "name": "CCBStage::CheckActionValid",
-    "signature": "bool __cdecl(int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005091e0": {
-    "name": "CCBStage::CheckAction",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050eda0": {
-    "name": "CCBStage::CheckPushState",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040d010": {
-    "name": "CCBStage::CheckValid",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a4b0": {
-    "name": "CCBStage::CheckViewTarget",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050ab10": {
-    "name": "CCBStage::ClearAniMsg",
-    "signature": "void __thiscall(CCBStage *this, char pData, float fVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050aa60": {
-    "name": "CCBStage::ClearBadPushTask",
-    "signature": "void __thiscall(CCBStage *this, float fVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005220e0": {
-    "name": "CCBStage::ClearRoleState",
-    "signature": "int *__thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050fa20": {
-    "name": "CCBStage::ClearTaskIfMatch",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b4c0": {
-    "name": "CCBStage::CountValidTasks",
-    "signature": "char __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a200": {
-    "name": "CCBStage::DangerForceRelease",
-    "signature": "void __thiscall(CCBStage *this, char pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a8f0": {
-    "name": "CCBStage::DelAllTask",
-    "signature": "bool __thiscall(CCBStage *this, int nVal, char pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a8e0": {
-    "name": "CCBStage::DelTask",
-    "signature": "bool __thiscall(CCBStage *this, int nIndex)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00521f30": {
-    "name": "CCBStage::DispatchUpdateAll",
-    "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00521e60": {
-    "name": "CCBStage::DispatchUpdate",
-    "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a9b0": {
-    "name": "CCBStage::DoTask",
-    "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a770": {
-    "name": "CCBStage::EndTask",
-    "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040dd30": {
-    "name": "CCBStage::Find",
-    "signature": "int __thiscall(CCBStage *this, char *String1)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b430": {
-    "name": "CCBStage::FindFreeSlot",
-    "signature": "char __thiscall(CCBStage *this, int a2)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b4f0": {
-    "name": "CCBStage::FindNextTask",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a6f0": {
-    "name": "CCBStage::ForceDelTaskByPFN",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a700": {
-    "name": "CCBStage::ForceEndTaskByPFN",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a1f0": {
-    "name": "CCBStage::ForceRelease",
-    "signature": "void __thiscall(CCBStage *this, char pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040ccf0": {
-    "name": "CCBStage::GetAlive",
-    "signature": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040dcf0": {
-    "name": "CCBStage::GetByIndex",
-    "signature": "int *__thiscall(CCBStage *this, int *p_DWORD)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b330": {
-    "name": "CCBStage::GetCurrentState",
-    "signature": "char __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a960": {
-    "name": "CCBStage::GetCurrentTaskIndex",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a920": {
-    "name": "CCBStage::GetCurrentTask",
-    "signature": "char __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005092b0": {
-    "name": "CCBStage::GetOBBox",
-    "signature": "CCBStage *__thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a260": {
-    "name": "CCBStage::GetPointerPos",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050ad30": {
-    "name": "CCBStage::GetProperCurAction",
-    "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005092a0": {
-    "name": "CCBStage::GetRoleHeight",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a520": {
-    "name": "CCBStage::GetStatus",
-    "signature": "int __thiscall(CCBStage *this, int index)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b530": {
-    "name": "CCBStage::GetTaskState",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a560": {
-    "name": "CCBStage::GetWorldPos",
-    "signature": "float *__thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a180": {
-    "name": "CCBStage::Grab",
-    "signature": "int(int dwStageTaskID, bool bNormal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040cc90": {
-    "name": "CCBStage::Init",
-    "signature": "void __thiscall(CCBStage *this, int thisa)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004e2c50": {
-    "name": "CCBStage::InitUIByName",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005096d0": {
-    "name": "CCBStage::IsAtProtectPos",
-    "signature": "bool __thiscall(CCBStage *this, int index, int nAttacker, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00509b90": {
-    "name": "CCBStage::IsDoTask",
-    "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a210": {
-    "name": "CCBStage::IsGrabedBy",
-    "signature": "bool __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a980": {
-    "name": "CCBStage::IsReady",
-    "signature": "bool __thiscall(CCBStage *this, int idx)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005099a0": {
-    "name": "CCBStage::IsTaskFinished",
-    "signature": "bool __thiscall(CCBStage *this, int nVal, BOOL fpTask)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a500": {
-    "name": "CCBStage::LoadAction",
-    "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005091d0": {
-    "name": "CCBStage::OnChangeAction",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050f200": {
-    "name": "CCBStage::OnMagicHit",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050ee70": {
-    "name": "CCBStage::OnPhysicalHit",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040cf60": {
-    "name": "CCBStage::PassCmd",
-    "signature": "int __thiscall(CCBStage *this, void *p_DWORD)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0053e9c0": {
-    "name": "CCBStage::PauseSound",
-    "signature": "unsigned int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0053e310": {
-    "name": "CCBStage::PlaySound",
-    "signature": "void __thiscall(CCBStage *this, char *name, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050c320": {
-    "name": "CCBStage::ProcBlock",
-    "signature": "unsigned int __thiscall(CCBStage *this, int dwMsg)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b360": {
-    "name": "CCBStage::ProcCatchED",
-    "signature": "unsigned int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005090f0": {
-    "name": "CCBStage::Proceed",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050c970": {
-    "name": "CCBStage::ProcMagic",
-    "signature": "unsigned int __thiscall(CCBStage *this, unsigned int dwMsg)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b580": {
-    "name": "CCBStage::ProcPursueRole",
-    "signature": "char __thiscall(CCBStage *this, int formal, int nVal, char pData)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b070": {
-    "name": "CCBStage::ProcTransportRun",
-    "signature": "char __thiscall(CCBStage *this, unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050bcd0": {
-    "name": "CCBStage::ProcTurnToRole",
-    "signature": "unsigned int __thiscall(CCBStage *this, int formal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050bbd0": {
-    "name": "CCBStage::ProcTurn",
-    "signature": "unsigned int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050cde0": {
-    "name": "CCBStage::ProcUseRecoverItem",
-    "signature": "unsigned int __thiscall(CCBStage *this, float dwMsg)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050aae0": {
-    "name": "CCBStage::PushBackAllTask",
-    "signature": "double __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0044cff0": {
-    "name": "CCBStage::RandomizePositions",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a1a0": {
-    "name": "CCBStage::Release",
-    "signature": "void __thiscall(CCBStage *this, char dwStageTaskID)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0040dd80": {
-    "name": "CCBStage::Reset",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0053ea10": {
-    "name": "CCBStage::ResumeSound",
-    "signature": "unsigned int __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00518e10": {
-    "name": "CCBStage::SetActionVisible",
-    "signature": "int __thiscall(CCBStage *this, char nActIndex)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a2b0": {
-    "name": "CCBStage::SetBladeTime",
-    "signature": "void __thiscall(CCBStage *this, int fBladeTime)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050b290": {
-    "name": "CCBStage::SetForceFinishThrowingWeapon",
-    "signature": "void __thiscall(CCBStage *this, int bForce)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050ac50": {
-    "name": "CCBStage::SetParam",
-    "signature": "void __thiscall(CCBStage *this, int pParam, char dw1)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005015c0": {
-    "name": "CCBStage::SetupCombatAction",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005014e0": {
-    "name": "CCBStage::TaskEnterGuard",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00500c20": {
-    "name": "CCBStage::TaskExecAction",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004ffa90": {
-    "name": "CCBStage::TaskExecAttack",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004ffcb0": {
-    "name": "CCBStage::TaskExecCommand",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004fff60": {
-    "name": "CCBStage::TaskExecMagicEffect",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005007a0": {
-    "name": "CCBStage::TaskForceEnd",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005011b0": {
-    "name": "CCBStage::TaskMoveToStart",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004ffed0": {
-    "name": "CCBStage::TaskResetToIdle",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00500d50": {
-    "name": "CCBStage::TaskResolveAction",
-    "signature": "int __thiscall(CCBStage *this, int nState)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00501cf0": {
-    "name": "CCBStage::TaskReturnToIdle",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00501e60": {
-    "name": "CCBStage::TaskShowLevelUp",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x00501f30": {
-    "name": "CCBStage::TaskShowSkillLearned",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x005004b0": {
-    "name": "CCBStage::TaskWaitIdle",
-    "signature": "int __thiscall(CCBStage *this, int nVal)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x0050a1b0": {
-    "name": "CCBStage::TryRelease",
-    "signature": "void __thiscall(CCBStage *this)",
-    "source": "2026-09-13 provenance: heuristic-scan names; IDB has no vtable/RTTI for CCBStageRole; sole external caller CCBStage::OnMessage (vtable-confirmed) passes CCBStage this (mov ecx,ebx @0x520336); ctor 0x522030 constructs TxtFile@+4, sole caller CScreenMode ctor"
-  },
-  "0x004bb200": {
-    "name": "UISceneFrm::ScreenToLocal",
-    "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)",
-    "source": "2026-09-13 provenance: all 16 xrefs are UISceneFrm::InitGraph_* methods; call sites pass UISceneFrm this (mov ecx,ebx @0x4BB439, entry mov ebx,ecx — IDA MCP disasm); previous RenderTarget:: binding was heuristic (0x4BB region adjacency), old scan signature even lacked the this param"
-  },
-  "0x004202f0": {
-    "name": "RoleSystem::sub_4202F0",
-    "signature": "int __thiscall(RoleSystem *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of RoleSystem (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x00451aa0": {
-    "name": "UIListBox::OnMessage_ovl_1aa0",
-    "signature": "int __thiscall(UIListBox *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of UIListBox (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004850e0": {
-    "name": "StateUI::sub_4850E0",
-    "signature": "int __thiscall(StateUI *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of StateUI (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x00485230": {
-    "name": "StateUI::sub_485230",
-    "signature": "int __thiscall(StateUI *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of StateUI (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004c0510": {
-    "name": "CEffSParticle::sub_4C0510",
-    "signature": "int __thiscall(CEffSParticle *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffSParticle (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004c1270": {
-    "name": "CEffAction::sub_4C1270",
-    "signature": "int __thiscall(CEffAction *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffAction (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004c5740": {
-    "name": "RenderTarget2::sub_4C5740",
-    "signature": "int __thiscall(RenderTarget2 *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of RenderTarget2 (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d1300": {
-    "name": "CEffect::sub_4D1300",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d17d0": {
-    "name": "CEffect::sub_4D17D0",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d3dc0": {
-    "name": "CEffect::sub_4D3DC0",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d4110": {
-    "name": "CEffect::sub_4D4110",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d4700": {
-    "name": "CEffect::sub_4D4700",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004d4840": {
-    "name": "CEffect::sub_4D4840",
-    "signature": "int __thiscall(CEffect *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CEffect (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x00523b90": {
-    "name": "CUtil::sub_523B90",
-    "signature": "int __thiscall(CUtil *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of CUtil (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x0043a250": {
-    "name": "PalScript::MoveAndHide",
-    "signature": "int __thiscall(PalScript *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of PalScript (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x0043ab00": {
-    "name": "UICaption::Destroy_39",
-    "signature": "int __thiscall(UICaption *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of UICaption (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004414d0": {
-    "name": "UIMap::Destroy_36",
-    "signature": "int __thiscall(UIMap *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of UIMap (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x004c0610": {
-    "name": "RenderTarget2::nullsub_75_override",
-    "signature": "int __thiscall(RenderTarget2 *this)",
-    "source": "2026-09-13 skip-list decontamination: vtable slot of RenderTarget2 (vtable membership = user class code, never library-regenerable); was skipped on polluted name"
-  },
-  "0x0051f070": {
-    "name": "CCBStage::UpdateWeaponSlots",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
-  },
-  "0x0051f080": {
-    "name": "CCBStage::SetWeaponSlotA",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
-  },
-  "0x0051f090": {
-    "name": "CCBStage::SetWeaponSlotB",
-    "signature": "int __thiscall(CCBStage *this)",
-    "source": "2026-09-14 provenance: sole caller CCBStage::GetWeaponSlotPtr; this+0x1F4C access fits CCBStage; was ScriptSystemData::* (scan-stolen, impossible names)"
-  },
-  "0x00469d50": {
-    "name": "SaleUI::AddItem",
-    "signature": "int __thiscall(PlayerMgr *this)",
-    "source": "2026-09-14 provenance: unanimous caller PlayerMgr::SetSelectionFlags (15x); body indexes array at this+0xF574 inside PlayerMgr(107056B) member region; was CCBUI::AddItem (2648B class, offset impossible)"
   },
   "0x0052d770": {
     "name": "MiniGame2_ClearState",
@@ -2834,48 +1871,10 @@
     "signature": "void __cdecl StopSceneScripts(const char *pszScene)",
     "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only."
   },
-  "0x00532D50": {
-    "name": "ClearStateMode",
-    "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
-    "class": "RoleSystem",
-    "_flirt_correction": "FLIRT 曾将 0x00532D50 误命名为 ?MarkInactive@ExternalStatistics@details@Concurrency@@QAEXXZ，并被前一轮以「函数名属于 MSVC Concurrency Runtime」为由写入 skip_functions.json (reason=crt_runtime)。该判断仅凭名字、无函数体取证，属错误：实测函数体 = C7 41 18 00 00 00 00 C3 (mov dword [ecx+0x18], 0 ; retn)，是**游戏函数**，非 CRT。位置证据：邻居 0x00532CF0 CalcAngleBetweenVectors / 0x00532D30 GetStateMode / 0x00532E10 ResetPathState 全为游戏函数。调用点证据：xrefs_to = 0x534EA9，落在 ExternalStatistics::UpdateFromRole(0x00534E60) 内；同函数前两分支分别调 GetStateMode 与 RoleSystem::NegateStateMode，均取 *(RoleSystem **)this。命名理由：C7 41 18 = mov dword [ecx+0x18], 0 与邻居 GetStateMode 的 8B 41 50 89 41 18 (mov eax,[ecx+0x50]; mov [ecx+0x18],eax) 操作**同一字段 0x18**，故本函数是该字段的『清零』变体。",
-    "source_note": " | [归属 2026-10-17] 类=RoleSystem（decompile 类名直证） | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
-  },
-  "0x004B4830": {
-    "name": "IsVisible",
-    "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
-    "class": "RenderTarget",
-    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?IsThrottled@VirtualProcessor@details@Concurrency@@QBE_NXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4B4830 = 8A 81 80 00 00 00 C3 = `mov al,[ecx+0x80]; retn`（7B bool getter）。字段证据：RenderTarget 注解 +0x80 = m_bVisible (int)；setter 0x4B4820 RenderTarget_SetVisible 写同一字段 [ecx+0x80]（88 81 80 00 00 00）。",
-    "source_note": " | [归属 2026-10-17] 类=RenderTarget（decompile 类名直证） | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
-  },
-  "0x004790F0": {
-    "name": "GDB_GetRoleNum",
-    "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
-    "class": "PAL_GDB",
-    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetExecutionResourceId@VirtualProcessor@details@Concurrency@@QBEIXZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x4790F0 = 8B 81 8C 00 00 00 C3 = `mov eax,[ecx+0x8C]; retn`（7B getter）。邻居 0x479080 GDB_GetRoleNum 读同一字段 [ecx+0x8C] 并作计数用（8B 91 8C 00 00 00 + test/jle）；调用者 4 个全游戏区，this=&g_pGDB，返回值作 NPC::GetPropertyByIndex 循环上限。",
-    "source_note": " | [归属 2026-10-17] 类=PAL_GDB（decompile 类名直证） | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
-  },
-  "0x00479250": {
-    "name": "GDB_GetItemNum",
-    "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
-    "class": "PAL_GDB",
-    "_flirt_correction": "FLIRT 曾误命名为 Conformance Runtime 命名空间函数（原名 ?GetProxy@InternalContextBase@details@Concurrency@@UAEPAUIThreadProxy@3@XZ）。判定为误命名的依据：PE 静态读（tools/pe_probe.py，与 idat 探针逐字节互证）实测函数体；MSVC6(1998) 二进制不含 VS2010 才有的 Concurrency Runtime；调用者全在游戏区、this 为游戏对象、邻居为游戏函数。见 data/status/_cleanup_review_abc_plan.json。 命名依据：0x479250 = 8B 81 9C 00 00 00 C3 = `mov eax,[ecx+0x9C]; retn`（7B getter）。夹在 GDB_GetItemNum 与 GetRoleBySlot 之间；调用者 CCBRoleState/CCBCamControl，返回值作计数。",
-    "source_note": " | [归属 2026-10-17] 类=PAL_GDB（decompile 类名直证） | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
-  },
   "0x00445E10": {
     "name": "OffsetRect",
     "signature": "int *__thiscall PalScript::OffsetRect(long *p_DWORD)",
     "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7"
-  },
-  "0x004343F0": {
-    "name": "FindByName",
-    "signature": "void __thiscall PtrArray::FindByName(PtrArray *this, const char *pszName)",
-    "source": "同上（体证据 strcmp） | [T141] 声明侧同步：与 structs/PtrArray.json:0x004343F0 名一致化（RemoveAt→FindByName，消歧语义名——体证据 strcmp 查表非删除）；functions.json 无 owner 且 merge 时 wins ⇒ 此处为有效名源头，须与 struct 侧一致 | [IDB 重定型 2026-10-24·G7 队列] structs/PtrArray.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
-    "class": "PtrArray"
   },
   "0x00540B20": {
     "name": "UIInitSystem",
@@ -2926,16 +1925,20 @@
     "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
   },
   "0x00401820": {
-    "name": "j_InputSystem",
-    "signature": "void __cdecl()",
+    "name": "ArraySort__ovl_Jump",
+    "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)",
     "declaration_only": true,
-    "source": "批9 2026-10-07：桩名收编（0 参实参形——批5 atexit 教训）"
+    "source": "批9 2026-10-07：桩名收编（0 参实参形——批5 atexit 教训）",
+    "name_source": "IDA语义分析 2026-10-31：j_InputSystem=ArraySort 跳转包装，消名冲突",
+    "name_note": "IDA误名j_InputSystem→ArraySort（反编译码实证）"
   },
   "0x004B8200": {
     "name": "RandLerpF",
     "signature": "float __cdecl(float a, float b)",
     "declaration_only": true,
-    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形） | [T1 修 2026-10-28·A 级] 错名 j_D3DXVec3TransformCoord 退役：真身=random-lerp（66B：if(a==b) return a; else a+(rand()%10000+1)*flt_56F494*(b-a)，thunk T11 + dx §2.2）⇒ 语义名 RandLerpF + float(float,float) | evidence: 反汇编逐字节 + 11 xref | confidence: high"
+    "source": "批15 2026-10-07：D3DX 桩收编（0x4BA800 call 目标 0x4B8200 证）——3 参 D3DX 真形（API 形） | [T1 修 2026-10-28·A 级] 错名 j_D3DXVec3TransformCoord 退役：真身=random-lerp（66B：if(a==b) return a; else a+(rand()%10000+1)*flt_56F494*(b-a)，thunk T11 + dx §2.2）⇒ 语义名 RandLerpF + float(float,float) | evidence: 反汇编逐字节 + 11 xref | confidence: high",
+    "name_source": "IDA语义分析 2026-10-31 批1-2",
+    "name_note": "IDA误名j_D3DXVec3TransformCoord→RandLerpF（spec§7.2）"
   },
   "0x00431D90": {
     "name": "SingletonThunk_00431D90",
@@ -3057,20 +2060,6 @@
     "declaration_only": true,
     "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查"
   },
-  "0x00536D20": {
-    "name": "LoadActionSequences",
-    "signature": "void __thiscall Actor::LoadActionSequences(Actor *this, const char *pszRoleDir, int nSeqIdx)",
-    "source_note": "[试点 2026-10-20·五面证据] ①调用者=待补 ②被调用者=LoadActionSequence/LoadActorFile/UpdateAllActions/GetArrayCount/StoreParam（动作序列加载族 ✓）③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name（动作数组域 ✓）④类归属=Actor（5 成员命中，0 未解析）⑤交互模式=路径模板 `role\\%s\\%s.ini`/`role\\%s\\%02d.ini`（按角色目录加载）；返回值=void",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 LoadActionSequences 为准（注解名 sub_536D20 对齐）；类化签名供 apply 定型"
-  },
-  "0x0053D5D0": {
-    "name": "RenderActorGeometry",
-    "signature": "virtual void __thiscall Actor::RenderActorGeometry(Actor *this, int nRenderFlag)",
-    "source_note": "[试点 2026-10-20·五面证据] ②被调用者=RenderGeomQuad/GetDynVertBuf（渲染族 ✓）+ Push/Pop/LoadMatrix/IdentityWorldMatrix（矩阵栈 ✓）③成员访问=m_nModelId/m_pResource/m_fAnimParam/m_szText ④类归属=Actor（6 命中 0 未解析）⑤交互模式=矩阵栈包装渲染；**virtual**（生命周期钩子）；返回值=void",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 RenderActorGeometry 为准（注解名 _todo_0053D5D0 对齐）；类化签名供 apply 定型"
-  },
   "0x00496190": {
     "name": "CreateSceneEntities",
     "signature": "void __thiscall Actor::CreateSceneEntities(Actor *this, int nSceneId)",
@@ -3112,13 +2101,6 @@
     "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
     "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FB20 vtable 槽间接调用）②被调用者=operator delete(void*)（同 0x004D37A0）③成员访问=+0x0C / +0x1C / +0x20（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FB18`（写 vptr）+ `DATA XREF: .rdata:0056FB20` ⇒ vtable 0x56FB18 之删除析构，与 0x004D37A0（vptr 0x56FAC4）**分属不同类**；反编译文本与 0x004D37A0 逐字同形（code_len 788 / size 129 全同）⇒ 是两个不同类的同形删除析构，**不是** COMDAT 折叠副本；同 0x004D37A0 的 + ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
     "evidence_level": "B"
-  },
-  "0x00530F70": {
-    "name": "BlendAnimation",
-    "signature": "int __thiscall Actor::BlendAnimation(Actor *this, int a1)",
-    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 Actor::UpdateFrame(float: BlendAnimation(this, arg0); · 返回 eax?（asm 尾部寄存器扫（eax 族））· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。",
-    "class": "Actor",
-    "source": " | [G3 C2 2026-10-25] IDB 重定型：以 decomp 现名 _todo_00530F70 为准（注解名 BlendAnimation 对齐）；类化签名供 apply 定型 | [G3 C2 修正 2026-10-25] name 对齐注解语义名 BlendAnimation（上轮误写 decomp 名 _todo_00530F70——C2 的本意即语义名传播）"
   },
   "0x005363A0": {
     "name": "ResetDefaultState",
@@ -3171,20 +2153,6 @@
     "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const void *pVal)",
     "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray"
   },
-  "0x0053BD30": {
-    "name": "BoneIndexVec_Assign",
-    "signature": "int __thiscall Actor::BoneIndexVec_Assign(Actor *this, int a1)",
-    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 ActVecUninitCopy2: WordVec_Assign((Actor *)(v9 + 3), p_D · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。",
-    "class": "Actor",
-    "source": " | [G3 C2 2026-10-25] IDB 重定型：以 decomp 现名 _todo_0053BD30 为准（注解名 BoneIndexVec_Assign 对齐）；类化签名供 apply 定型 | [G3 C2 修正 2026-10-25] name 对齐注解语义名 BoneIndexVec_Assign（上轮误写 decomp 名 _todo_0053BD30——C2 的本意即语义名传播）"
-  },
-  "0x00419690": {
-    "name": "UpdatePhysics",
-    "signature": "void __thiscall Actor::UpdatePhysics(Actor *this, float fFrameDt)",
-    "source_note": "[五面证据] ①调用者=ScriptUpdate ②被调用者=Actor::QueryState(&m_InnerActor)、cos、Actor::CompareActionName(&m_InnerActor, 0, 0)（完成分支）③成员访问=m_InnerActor(+0x2A8=680，取址后当 `Actor*` 传)、m_vecTargetPos(+0xA0=160，写入插值结果)（2 命中 0 未解析）④类归属=**存疑**：`this[1].m_pEquipAtt0` / `this[1].m_nRoleState1` / `this[1].m_dwMatMsg[1..3]` / `this[1].m_pParticleData` / `this[1].m_pEquipAtt1` 等访问落在 `this + sizeof(Actor) = this+820` 之上（远超 Actor 的 binary_size 820）⇒ 型别/归属不可信；且 `&this->m_InnerActor` 被当 `Actor*` 使用 ⇒ m_InnerActor 应是内嵌对象而非 `void*` ⑤交互模式=`(1.0 - cos(t/period*3.1415927))*0.5` 余弦缓动、`(1-k)*A + k*B` 三分量 lerp、终值吸附。返回值=void（asm `retn 4`=1 个栈参 float）。⚠️ 原名 `UpdatePhysics` 被证伪：函数体无任何物理运算（无重力/碰撞/速度积分），只有计时累加 + 余弦缓动 + 位置插值 + 完成回调。候选语义名 `InterpTargetPos` **未采纳**（④面布局/归属存疑）⇒ 按铁律冻结为 `_todo_00419690`。",
-    "class": "Actor",
-    "source": " | [G3 C2 2026-10-25] IDB 重定型：以 decomp 现名 _todo_00419690 为准（注解名 UpdatePhysics 对齐）；类化签名供 apply 定型 | [G3 C2 修正 2026-10-25] name 对齐注解语义名 UpdatePhysics（上轮误写 decomp 名 _todo_00419690——C2 的本意即语义名传播）"
-  },
   "0x0044CB30": {
     "name": "InitParticles",
     "signature": "int __thiscall(Actor *this)",
@@ -3211,13 +2179,6 @@
     "signature": "bool __thiscall(Actor *this)",
     "source_note": "[五面证据] ①调用者=Actor::UpdateFrame：`if ( Actor::GetBoundRadius(this) && this->m_bDirFlag ) { this->m_bStateFlag = 1; Actor::UpdateAnimState(this, 1); ... }` ⇒ 返回值被当**布尔门**使用 ②被调用者=sub_52FBD0（MiniGame2Scene::GetOBBox，取 p 的 OBBox）、gbOBBox::GetRadius、fabs ③成员访问=m_pRoleState(+0x308=776，作大对象指针 p)、m_fDistAccum(+0x290=656，作 float 参与差值)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=无路径/字面量。返回值=**bool**（A 级 asm：`fcomp` + `fnstsw ax; test ah,41h`，两路 `mov al,1` / `xor al,al` 后 `retn`，0 个栈参）。⚠️ 原名 `GetBoundRadius` 被证伪：函数不返回任何半径，返回的是 `gbOBBox::GetRadius(OBBox) > fabs(this->m_fDistAccum - p[0xE90])` 的**比较结果** ⇒ 改 `IsWithinBoundRadius`（判定自身是否落在包围半径内）。"
   },
-  "0x00537120": {
-    "name": "SetTextureName",
-    "signature": "int __thiscall Actor::SetTextureName(Actor *this, int a1)",
-    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 RoleSystem::SetActorText: SetTextureName((Actor *)&this- · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。",
-    "class": "Actor",
-    "source": " | [G3 C2 2026-10-25] IDB 重定型：以 decomp 现名 _todo_00537120 为准（注解名 SetTextureName 对齐）；类化签名供 apply 定型 | [G3 C2 修正 2026-10-25] name 对齐注解语义名 SetTextureName（上轮误写 decomp 名 _todo_00537120——C2 的本意即语义名传播）"
-  },
   "0x00536A80": {
     "name": "FastInit",
     "signature": "void __thiscall(Actor *this)",
@@ -3228,37 +2189,16 @@
     "signature": "char *__thiscall(Actor *this)",
     "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零）③成员访问=m_actarray_begin/end/capacity_end/type/m_fRoleParam2/m_fScale/m_name/m_pact（动作序列域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=memset + ret=&m_actarray_type。ret=**char***（`return &this->m_actarray_type`，:实证）。名 InitAnimSequence 与动作序列域相符。"
   },
-  "0x0053A670": {
-    "name": "CopyActionData",
-    "signature": "int __thiscall Actor::CopyActionData(Actor *this, int a1)",
-    "source_note": "[A+B 级四要素齐 2026-10-20·逐条核] asm `retn 4` ⇒ 1 参（A 级）· 调用点证据（B 级）：a1:int[B]=调用点 PtrVec_InsertN: CopyActionData((Actor *)&v28->m_curact[3 · 返回 eax?（asm 尾部寄存器扫）· 约定 __thiscall。P0-3 纪律：仅四要素齐者落盘（本轮 5/56），39 条缺调用点证据不落盘、12 条 tail-jmp 待 tail-follow。",
-    "class": "Actor",
-    "source": " | [G3 C2 2026-10-25] IDB 重定型：以 decomp 现名 _todo_0053A670 为准（注解名 CopyActionData 对齐）；类化签名供 apply 定型 | [G3 C2 修正 2026-10-25] name 对齐注解语义名 CopyActionData（上轮误写 decomp 名 _todo_0053A670——C2 的本意即语义名传播）"
-  },
   "0x005375F0": {
     "name": "ClearPathBuffer",
     "signature": "void __thiscall(Actor *this)",
     "source_note": "[五面] ①调用者=待补 ②被调用者=Free/delete/nullsub_2（释放族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveSpeed/m_actarray_begin/end/capacity_end/m_name（路径缓冲+过渡参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=Free/delete 释放缓冲。ret=void。名 ClearPathBuffer 与释放 m_pAllocBuf 相符。"
-  },
-  "0x004B80C0": {
-    "name": "RenderActorTransform",
-    "signature": "virtual void __thiscall Actor::RenderActorTransform(Actor *this, int nRenderFlag)",
-    "source_note": "[五面] ①调用者=待补 ②被调用者=RenderGeomQuad/GetDynVertBuf（渲染族）+ Push/Pop/LoadMatrix/Rotate/Translate（矩阵栈）③成员访问=m_fInterpStart/m_fMatrixParamB/m_vecTargetPos/m_fAnimParam/m_bUIFlagA（变换+插值域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=矩阵栈包装渲染。ret=void。**virtual**（生命周期钩子）。名 RenderActorTransform 与矩阵栈+渲染相符（conf 64：无字面量，五面⑤弱）。",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 RenderActorTransform 为准（注解名 _todo_004B80C0 对齐）；类化签名供 apply 定型"
   },
   "0x00536160": {
     "name": "SetParam",
     "signature": "double __thiscall(Actor *this, double fVal)",
     "source_note": "[A 级汇编 2026-10-21·重核] retn 8（5361ed c2 08 00）=2 dword 槽 = **1 double**。调用点 53555f/535560 push %edi;push %ebx = double 分解双 push ✓。另 535451/535456 push $0x3fc... = double 位型常量对同证。**体零参数读**（参数未在函数体内使用）。⚠️ 原 `int nVal, int nVal2` **错**（double 被拆两 int）· 原 source 引用 IDA stack_frame=循环证据，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
     "evidence_level": "B"
-  },
-  "0x004B7980": {
-    "name": "LoadActorVisual",
-    "signature": "virtual void __thiscall Actor::LoadActorVisual(Actor *this, int nVisualId)",
-    "source_note": "[五面] ①调用者=待补 ②被调用者=LoadFromFile/LoadTexture/NewRenderEffect/gbGeomNode/new（资源加载族）③成员访问=m_fMatrixE/m_fMatrixParamA/m_fMatrixParamB/m_szText/m_bUIFlagA（矩阵+文本域）④类归属=Actor（5 命中 0 未解析）⑤交互模式=文件/纹理加载 + 渲染效果创建。ret=void。**virtual**。名 LoadActorVisual 与资源加载族相符（conf 64）。",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 LoadActorVisual 为准（注解名 _todo_004B7980 对齐）；类化签名供 apply 定型"
   },
   "0x004B7650": {
     "name": "_todo_004B7650",
@@ -3284,13 +2224,6 @@
     "name": "ClearActionArrays",
     "signature": "int *__thiscall(Actor *this)",
     "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归（清空逻辑）③成员访问=m_actarray_begin/end/capacity_end/m_name/m_pact（动作数组三元组 + 名）④类归属=Actor（5 命中 0 未解析）⑤交互模式=三元组 reset。ret=int*（result）。名 ClearActionArrays 与 actarray 三元组清空相符。"
-  },
-  "0x004B7590": {
-    "name": "RenderActorTransform2",
-    "signature": "virtual void __thiscall Actor::RenderActorTransform2(Actor *this, int nFlag)",
-    "source_note": "[五面] ①调用者=待补 ②被调用者=GetTop/NewOneRenderObj/Transform（渲染对象变换族）③成员访问=m_bUIFlagA/m_nMatrixParam/m_szText/m_vecTargetPos（矩阵参数+目标位）④类归属=Actor（4 命中 0 未解析）⑤交互模式=新建渲染对象+Transform。ret=void。**virtual**。名 RenderActorTransform2 与渲染变换相符（conf 60：与 0x004B80C0 同族，序号区分）。",
-    "class": "Actor",
-    "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 RenderActorTransform2 为准（注解名 _todo_004B7590 对齐）；类化签名供 apply 定型"
   },
   "0x00537A30": {
     "name": "ClearAllocBuffers",
@@ -3328,14 +2261,6 @@
     "source_note": "[A 级汇编 2026-10-21·重核] retn 16（4dfb5f c2 10 00）=4 槽 ✓ 个数一致。opcode 实证：flds 0x14(%esp) = slot1 float · flds 0xc(%esp) = slot3 float。⚠️ 原 `int nVal1, int nVal3` **错**（实为 float）。slot2/4 类型待 opcode 核（暂 int）· 原 source 引 IDA stack_frame=循环，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
     "evidence_level": "B"
   },
-  "0x004DFED0": {
-    "name": "EndTurnAndAdvance",
-    "signature": "int __thiscall CCBStage::EndTurnAndAdvance(CCBStage *this, int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
-    "source_note": "[UNVERIFIABLE 2026-10-21] **双 ret 出口**（4dff86 ret $0x14=5 槽 + 4dffde ret $0x4=1 槽）疑两函数拼段 ⇒ **须先拆段**再定参。暂不落签名。原 5 参 int 型无 A 级支撑。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-    "evidence_level": "B",
-    "source": " | [R93 修 2026-10-23·8 errors] IDA 签名 | [IDB 重定型 2026-10-24·G7 队列] structs/CCBStage.json methods 同地址归属已在；补 class+类化签名供 apply 函数级定型，非新归属",
-    "class": "CCBStage"
-  },
   "0x004C6290": {
     "name": "Destroy__ovl_02",
     "signature": "int __thiscall(int nMode)",
@@ -3352,12 +2277,6 @@
     "name": "~UIFrameWnd",
     "signature": "void __thiscall(UIFrameWnd *this)",
     "source_note": "[A 级 tail-follow 2026-10-21] 同上形。bare ret ⇒ 0 栈参。vptr 写 0x56ACB8 = **UIFrameWnd 主表** ⇒ scalar dtor。dtor 序铁证（先写派生 vptr 再入基 dtor）。"
-  },
-  "0x00445D40": {
-    "name": "sub_445D40",
-    "signature": "int __thiscall UIWnd::sub_445D40(UIWnd *this, int a2, int a3)",
-    "class": "UIWnd",
-    "source": "| [归属定谳 2026-10-25·布局面] 体调 this+16/20/24/28 四 DWORD ±delta = UIWnd m_rect(tagRECT@16) 四字段——布局铁证；被 UIWnd::MoveToAbsolute 尾调（this 直传）⇒ 同类方法"
   },
   "0x00541900": {
     "name": "WinMain",
@@ -3390,5 +2309,11 @@
     "name": "PAL3_ReadRegistryStr",
     "signature": "int __cdecl(const char *lpSubKey, const char *lpValueName, char *lpData)",
     "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c）"
+  },
+  "0x004232D0": {
+    "name": "AnimUpdate",
+    "name_source": "IDA语义分析 2026-10-31 批1-2",
+    "name_note": "全局动画更新",
+    "signature": "int __cdecl()"
   }
 }

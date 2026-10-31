@@ -605,6 +605,16 @@
       "signature": "void __thiscall(int nVal1, float fVal, int nVal3, int nVal4)",
       "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4c3ec0 `flds 0x8(%esp)`（参2=float FPU 载入）+ `mov 0x10(%esp),%edi`（3 push 后 =参1）+ `mov %ecx,%esi`（thiscall）+ 尾 `ret $0x10`（4 栈参）；语义未定 ⇒ _todo_ 占位。vtable[RenderTarget2][1] slot[26]",
       "evidence_level": "A"
+    },
+    "0x004c5740": {
+      "name": "sub_4C5740",
+      "signature": "int __thiscall(RenderTarget2 *this)",
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+    },
+    "0x004c0610": {
+      "name": "nullsub_75_override",
+      "signature": "int __thiscall(RenderTarget2 *this)",
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     }
   },
   "vtables": [

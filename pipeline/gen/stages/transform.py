@@ -71,6 +71,14 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
         except ImportError:
             from pipeline.gen import annotation_view as _annview
         _fd = _annview.load_annotation_json('functions.json') or {}
+        # [规则断言 2026-10-31] functions.json 只放全局函数，禁止类函数
+        # （成员函数必须在 structs/<Class>.json methods 中）
+        for _k, _v in _fd.items():
+            if isinstance(_v, dict):
+                assert not _v.get('class'), \
+                    'functions.json 不允许 class 字段（%s: %s）——成员函数应在 structs/<Class>.json' % (_k, _v.get('name'))
+                assert '::' not in _v.get('name', ''), \
+                    'functions.json 不允许 :: 形名字（%s: %s）——成员函数应在 structs/<Class>.json' % (_k, _v.get('name'))
         classless_names = set()
         for _k, _v in _fd.items():
             if isinstance(_v, dict) and not _v.get('class') and _v.get('name'):

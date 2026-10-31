@@ -1978,10 +1978,12 @@
       "adjudication": "shared_impl"
     },
     "0x00430C10": {
-      "name": "sub_430C10",
+      "name": "CopyFrom",
       "signature": "_BYTE *__thiscall(_BYTE *this, _DWORD *a2, _BYTE *a3)",
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 PalScript::sub_430C10（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 PalScript 方法面",
-      "evidence_level": "A"
+      "evidence_level": "A",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "对象拷贝/赋值"
     },
     "0x00431760": {
       "name": "_sdtor_23",
@@ -1995,6 +1997,11 @@
       "signature": "int __thiscall()",
       "source": "[函数归属 2026-10-17·主攻点 2 终] PalScript——面卡④类=PalScript（Op_HY_FLY 族 ✓）（五面卡类归属面 ✓ decomp member access 证）",
       "evidence_level": "unverified"
+    },
+    "0x0043a250": {
+      "name": "MoveAndHide",
+      "signature": "int __thiscall(PalScript *this)",
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     }
   },
   "vtables": [

@@ -2,4 +2,5 @@
 # 双真相源统一 2026-10-07（工作流梳理——复核教训）：hook 只调 cli.py check（单一真相源）
 # 原内嵌扫描器（对齐/重叠+硬编码例外）与 check_annotations 双真相源不一致——统一
 # 安装: ln -sf ../../pipeline/hooks/pre-commit .git/hooks/pre-commit
-exec python pipeline/cli.py check
+# [2026-10-31] PYTHONUTF8=1 防 Windows GBK 编码错（CLAIM_GATE 读 annotation）
+PYTHONUTF8=1 exec python pipeline/cli.py check

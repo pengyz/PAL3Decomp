@@ -137,11 +137,18 @@
       "evidence_level": "unverified"
     },
     "0x00421870": {
-      "name": "_todo_421870",
+      "name": "RemoveVisNode",
       "signature": "void __thiscall Scene::_todo_421870()",
       "note": "add_method: 指令级归属（A 级，三重）：① 调用点 0x00422DF0+8 = `call sub_4226F0; mov ecx,eax; call sub_421870` ⇒ 实参走 ecx（__thiscall）且**无 push**（0 个栈参数），eax 来自 getter 0x004226F0；② getter 的算术（`lea eax,ds:0C21FE8h[ecx*4]`，ecx 已由移位链算成 状态*123289 ⇒ base+状态*493156）证明它返回 0xC21FE8 数组的第 state 个元素，而该数组由 0x00422617 处的 `push 0x0041F800(dtor); push 0x0041F6F0(ctor); push 3; push 0x00078664; push 0x00C21FE8; call ??_L` 构造 ⇒ 元素尺寸/个数/基址**三个字面量**；③ 本函数访问 `[esi+84h]`（= Scene.m_geomnode，类型 gbVisNode*，被 push 给 gbSceneGraph::DelVisNode）与 `[esi+78658h]`，**且 0x0041F6F0(ctor) 初始化的 7 个偏移与 Scene 既有成员 7/7 精确吻合**（+0x84 m_geomnode / +0x88 m_lights / +0x8C m_aabb / +0xA4 m_bbArray / +0xB4 m_objmap / +0xDC m_numobj / +0xE0 m_obj）⇒ 宿主类 = Scene。",
       "name_evidence": "语义未定（未读函数体给出可靠语义）⇒ 按项目规则用 `_todo_` 占位名 `_todo_421870`（与既有 `_todo_4b5570` 等一致）。",
-      "evidence_level": "unverified"
+      "evidence_level": "unverified",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "场景图节点移除"
+    },
+    "0x00421830": {
+      "name": "AddVisNode",
+      "name_source": "IDA语义分析 2026-10-31 批1-2",
+      "name_note": "场景图节点注册"
     }
   }
 }
