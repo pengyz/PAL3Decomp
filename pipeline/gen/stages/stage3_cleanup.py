@@ -2089,18 +2089,28 @@ def run(code, ctx):
             lines[i] = line.replace(stripped, '// ' + stripped)
     code = '\n'.join(lines)
 
-    # Replace IDA code labels (loc_XXXXXX, qword_XXXXXX) with (void*)0
-    # Handle both &loc_XXX (address-of) and bare loc_XXX references
+    # [P0-3 修 2026-11-01] 对抗审核 F3：NULL 化是编造信息（违反红线）
+    # 改为 UNRESOLVED 标记（响亮可见+census 可计），禁止静默编造
+    # 原逻辑：Replace IDA code labels (loc_XXXXXX, qword_XXXXXX) with (void*)0
     import re as _re_loc
-    code = _re_loc.sub(r'&loc_[0-9A-Fa-f]+\b', '((void*)0)', code)
-    code = _re_loc.sub(r'\bloc_[0-9A-Fa-f]+\b', '((void*)0)', code)
-    code = _re_loc.sub(r'&qword_[0-9A-Fa-f]+\b', '((void*)0)', code)
-    code = _re_loc.sub(r'\bqword_[0-9A-Fa-f]+\b', '((void*)0)', code)
-
-    # Replace IDA CRT internal function calls (_E68, _E158 etc) — only in call context
-    code = _re_loc.sub(r'\b_E\d+(?=\s*\()', '((void(*)(void))0)', code)
-    # Replace IDA label _L references
-    code = _re_loc.sub(r'\b_L\d+\b', '((void*)0)', code)
+    # 收集 UNRESOLVED 标记用于 census
+    _unresolved_labels = set()
+    def _mark_unresolved(m):
+        _unresolved_labels.add(m.group(0))
+        return 'UNRESOLVED_%s' % m.group(0).lstrip('&')
+    code = _re_loc.sub(r'&loc_[0-9A-Fa-f]+\b', _mark_unresolved, code)
+    code = _re_loc.sub(r'\bloc_[0-9A-Fa-f]+\b', _mark_unresolved, code)
+    code = _re_loc.sub(r'&qword_[0-9A-Fa-f]+\b', _mark_unresolved, code)
+    code = _re_loc.sub(r'\bqword_[0-9A-Fa-f]+\b', _mark_unresolved, code)
+    # IDA CRT internal function calls (_E68, _E158 etc) — only in call context
+    code = _re_loc.sub(r'\b_E\d+(?=\s*\()', lambda m: 'UNRESOLVED_%s' % m.group(0), code)
+    # IDA label _L references
+    code = _re_loc.sub(r'\b_L\d+\b', lambda m: 'UNRESOLVED_%s' % m.group(0), code)
+    # census 计数（度量可见）
+    if _unresolved_labels:
+        if not hasattr(stage3_cleanup, '_unresolved_census'):
+            stage3_cleanup._unresolved_census = set()
+        stage3_cleanup._unresolved_census |= _unresolved_labels
     # Replace __SPAIR64__ IDA macro with equivalent
     code = code.replace('__SPAIR64__', '__PAIR64__')
     # 批 E 单点（TextureLibDataBase:391 C2520）：MSVC6 无 unsigned __int64→double 转换
