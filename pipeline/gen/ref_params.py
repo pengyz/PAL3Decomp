@@ -15,28 +15,54 @@ from data import store
 from pipeline.gen.tables import _GB_REF_PARAM_FUNCS
 
 _GB_REF_PARAM_TYPES = {
-    ('gbMatrixStack::Rotate', 1): 'struct gbVec3D',  # B 修键随迁（失配致 Case2b 不触发 C2100 +24 实证）
-    ('Translate', 0): 'struct gbVec3D',     # :158 Translate(gbVec3D&)
-    ('Scale', 0): 'struct gbVec3D',         # :154 Scale(gbVec3D&)
-    ('LeftTranslate', 0): 'struct gbVec3D', # gbengine_types.h:128
-    ('RightTranslate', 0): 'struct gbVec3D',
-    ('MakeMatrix', 0): 'struct gbVec3D',    # gbengine_types.h:131
-    ('MakeMatrix', 1): 'struct gbVec3D',
-    ('MakeMatrix', 2): 'struct gbVec3D',
-    ('LeftMultiply', 0): 'struct gbMatrix4',
-    ('IntersectPlane', 0): 'struct gbVec3D',  # gbengine_types.h:197
-    ('IntersectPlane', 1): 'struct gbVec3D',
-    ('IsColAABB', 0): 'struct gbAABBox',
-    ('gbRay::IsColOBB', 0): 'struct gbOBBox', ('gbPlane::IsColOBB', 0): 'struct gbOBBox',
-    ('IsColOBB_H', 0): 'struct gbOBBox',
-    ('IsColQuad', 0): 'struct gbVec3D',
-    ('IsColQuad', 1): 'struct gbVec3D',
-    ('IsColQuad', 2): 'struct gbVec3D',
-    ('IsColSphere', 0): 'struct gbSphere',
-    ('IsColTriangle', 0): 'struct gbVec3D',
-    ('IsColTriangle', 1): 'struct gbVec3D',
-    ('IsColTriangle', 2): 'struct gbVec3D',
-    ('IsColTriangle', 3): 'struct gbVec3D',
+    # [mangled name 证据表 2026-11-02] 从 gbengine.def 提取（AAU/ABU=引用证据）
+    # 原则：引用/指针判定必须来自 MSVC6 mangled name 证据，无证据默认指针
+    ('CalEffectiveVolMod', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('GetAABBox', 0): 'struct gbAABBox',  # AAU/ABU 证据
+    ('GetCollideOBB', 0): 'struct gbOBBox',  # AAU/ABU 证据
+    ('GetEffectOnPoint', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('GetListenerPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('GetPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('GetRadiusInDirection', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('GetSphere', 0): 'struct gbSphere',  # AAU/ABU 证据
+    ('GetViewMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
+    ('GetViewport', 0): 'struct gbViewPort',  # AAU/ABU 证据
+    ('GetWorldMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
+    ('IntersectPlane', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColAABB', 1): 'struct gbAABBox',  # AAU/ABU 证据
+    ('IsColAABB', 2): 'struct gbAABBox',  # AAU/ABU 证据
+    ('IsColOBB', 0): 'struct gbOBBox',  # AAU/ABU 证据
+    ('IsColOBB', 1): 'struct gbOBBox',  # AAU/ABU 证据
+    ('IsColOBB_H', 0): 'struct gbOBBox',  # AAU/ABU 证据
+    ('IsColPoint', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColPoint', 1): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColPoint', 2): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColQuad', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColSphere', 0): 'struct gbSphere',  # AAU/ABU 证据
+    ('IsColSphere', 1): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColTriangle', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColTriangle', 1): 'struct gbVec3D',  # AAU/ABU 证据
+    ('IsColTriangle', 2): 'struct gbVec3D',  # AAU/ABU 证据
+    ('LeftMultiply', 1): 'struct gbQuaternion',  # AAU/ABU 证据
+    ('LeftTranslate', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('MakeMatrix', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('PopMessage', 0): 'struct gbNodeMsgObj',  # AAU/ABU 证据
+    ('PushMessage', 0): 'struct gbNodeMsgObj',  # AAU/ABU 证据
+    ('RightMultiply', 1): 'struct gbQuaternion',  # AAU/ABU 证据
+    ('RightTranslate', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('Rotate', 0): 'struct gbQuaternion',  # AAU/ABU 证据
+    ('Rotate', 1): 'struct gbVec3D',  # AAU/ABU 证据
+    ('Scale', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetAmbientLight', 0): 'struct gbColorFlt',  # AAU/ABU 证据
+    ('SetCameraMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
+    ('SetListenerOrientation', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetListenerPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetOrientation', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetPosition', 0): 'struct gbMatrix4',  # AAU/ABU 证据
+    ('SetPosition', 1): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetPosition', 2): 'struct gbVec3D',  # AAU/ABU 证据
+    ('SetVelocity', 0): 'struct gbVec3D',  # AAU/ABU 证据
+    ('Translate', 0): 'struct gbVec3D',  # AAU/ABU 证据
 }
 
 # NOTE (F1b): 'SetAxisAngle': {0} was WRONG and has been deleted.
