@@ -1258,7 +1258,17 @@ _NEW_EXPR_RE = re.compile(
 def _rewrite_new_expression(code):
     """operator new + 手调 ctor + 状态变量 → new 表达式（E 形验证形）。
     返回 (new_code, hit_count)。只匹配构造函数形 T::T()——普通方法调用不改写。
-    [v2 修] 传递构造参数（T::T(args) → new T(args)），不丢参数。"""
+    [v2 修] 传递构造参数（T::T(args) → new T(args)），不丢参数。
+    [F6 修] 掩码保护字符串字面量不被改写（对抗审核 F11 同族）。"""
+    # 掩码字符串字面量（保护不被改写）
+    string_pattern = re.compile(r'"(?:[^"\\]|\\.)*"')
+    string_map = {}
+    def _mask(m):
+        key = '__STR_%d__' % len(string_map)
+        string_map[key] = m.group(0)
+        return key
+    masked = string_pattern.sub(_mask, code)
+
     hits = []
     def _replace(m):
         hits.append(m.group('ptr'))
@@ -1271,8 +1281,12 @@ def _rewrite_new_expression(code):
         if result and result != ptr:
             body += '%s%s = (int)%s;\n' % (indent, result, ptr)
         return body
-    code = _NEW_EXPR_RE.sub(_replace, code)
-    return code, len(hits)
+    masked = _NEW_EXPR_RE.sub(_replace, masked)
+
+    # 还原字符串
+    for key, val in string_map.items():
+        masked = masked.replace(key, val)
+    return masked, len(hits)
 
 
 # ============================================================
