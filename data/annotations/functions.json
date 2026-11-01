@@ -2388,5 +2388,59 @@
     "signature": "int *()",
     "name_source": "IDA语义分析 2026-11-01 批12",
     "name_note": "返回 dword_DE3448 数据指针"
+  },
+  "0x0045ADD0": {
+    "name": "InitState",
+    "signature": "void __thiscall(_BYTE *this)",
+    "name_source": "IDA语义分析 2026-11-01 批13",
+    "name_note": "状态初始化（offset 0/36/40/44/48 设值）"
+  },
+  "0x0047F590": {
+    "name": "ProcessTree",
+    "signature": "int __thiscall(int parent, int a2)",
+    "name_source": "IDA语义分析 2026-11-01 批13",
+    "name_note": "树处理（parent+int 操作）"
+  },
+  "0x00401820": {
+    "name": "ArraySort__ovl_Jump",
+    "signature": "int __stdcall(int, int, int, int)",
+    "name_source": "IDA语义分析 2026-10-31 批1-2",
+    "name_note": "从 decomp 推断（j_InputSystem）"
+  },
+  "0x004232D0": {
+    "name": "AnimUpdate",
+    "signature": "int __cdecl()",
+    "name_source": "IDA语义分析 2026-10-31 批1-2",
+    "name_note": "从 decomp 推断（sub_4232D0）"
+  },
+  "0x004912D0": {
+    "name": "Destroy_912D0",
+    "signature": "void __thiscall(stdiobuf *this)",
+    "name_source": "IDA语义分析 2026-11-01 批14",
+    "name_note": "从 decomp 推断（sub_4912D0）"
+  },
+  "0x004AB560": {
+    "name": "Method_B560",
+    "signature": "bool __thiscall(_DWORD *this, int a2, int a3)",
+    "name_source": "IDA语义分析 2026-11-01 批14",
+    "name_note": "从 decomp 推断（sub_4AB560）"
+  },
+  "0x004B6D80": {
+    "name": "Load",
+    "signature": "void __thiscall(_DWORD *this)",
+    "name_source": "IDA语义分析 2026-11-01 批14",
+    "name_note": "从 decomp 推断（sub_4B6D80）"
+  },
+  "0x004B8200": {
+    "name": "RandLerpF",
+    "signature": "double __cdecl(float fFrom, float fTo)",
+    "name_source": "IDA语义分析 2026-10-31 批1-2",
+    "name_note": "从 decomp 推断（j_D3DXVec3TransformCoord）"
+  },
+  "0x004C4B00": {
+    "name": "SetValue",
+    "signature": "int __thiscall(int this, int a2)",
+    "name_source": "IDA语义分析 2026-11-01 批14",
+    "name_note": "从 decomp 推断（sub_4C4B00）"
   }
 }

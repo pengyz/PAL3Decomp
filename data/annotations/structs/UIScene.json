@@ -508,7 +508,7 @@
       "adjudication": "shared_impl"
     },
     "0x0044C910": {
-      "name": "Destroy",
+      "name": "Destroy_C910",
       "signature": "virtual void __thiscall(UIScene *this)",
       "name_source": "IDA语义分析 2026-11-01 批7",
       "name_note": "销毁（虚调用链）"
@@ -535,12 +535,9 @@
       "adjudication": "rejected"
     },
     "0x0044BE40": {
-      "name": "sub_44BE40",
-      "signature": "void __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_44BE40) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "evidence_level": "unverified",
-      "declaration_only": true,
-      "adjudication": "rejected"
+      "name": "_scalar_dtor_BE40",
+      "signature": "void __thiscall(UIScene *this, int a2)",
+      "name_source": "恢复 2026-11-01（vtable 需要）"
     }
   },
   "vtables": [
