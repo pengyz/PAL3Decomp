@@ -1184,6 +1184,18 @@ def _fix_ulong_uint_cast(code):
     return code
 
 
+# [指针算术优先级修 2026-11-01] *(T*)expr + N → *(T*)((char*)expr + N)
+# 病灶：codegen 生成 *(gbVec3D*)this + 14（结构体+整数 = C2676/C2784）
+# 修法：显式 char* 转换使 + N 成为字节偏移算术
+_PTR_ARITH_RE = re.compile(
+    r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)')
+
+
+def _fix_ptr_arith_precedence(code):
+    """*(T*)expr + N → *(T*)((char*)expr + N)（字节偏移算术优先级修）。"""
+    return _PTR_ARITH_RE.sub(r'*(\1 *)((char *)\2 + \3)', code)
+
+
 def _fix_operator_new_cast(code):
     """Add explicit casts for operator new return values.
 
@@ -1388,6 +1400,9 @@ def _run_inner(code, ctx):
 
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)
+
+    # [指针算术优先级修 2026-11-01] *(T*)expr + N → *(T*)((char*)expr + N)
+    code = _fix_ptr_arith_precedence(code)
 
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
