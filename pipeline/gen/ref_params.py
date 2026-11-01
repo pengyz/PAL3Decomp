@@ -214,13 +214,34 @@ def _fix_single_ref_arg(arg, vt=None, ref_type=None):
     comes from declarations already present in the same function text.
     """
     arg_stripped = arg.lstrip()
-    # Case 1: &arg → arg
+    # [F1/F3 修 2026-11-02·对抗复核] 条件化包括号：仅顶层二元算符时包整体
+    # 简单形不动（金测锁旧形）；深度内算符不触发（&f(a+b) / &arr[i+1]）
+    # [F4 作用域] 仅 ref 实参位（左值绑定强制解引用，无值算术读法）
+    def _has_toplevel_binop(s):
+        depth = 0
+        for ch in s:
+            if ch in '([{':
+                depth += 1
+            elif ch in ')]}':
+                depth -= 1
+            elif depth == 0 and ch in '+-*/%':
+                return True
+        return False
+    # Case 1: &arg → arg（仅 & 覆盖整个实参才剥；&X + N 形 → *(&X + N)）
     if arg_stripped.startswith('&') and not arg_stripped.startswith('&&'):
-        return arg_stripped[1:]
+        rest = arg_stripped[1:]  # & 之后的部分
+        if _has_toplevel_binop(rest):
+            # & 不覆盖整个实参 → 整体解引用
+            return arg_stripped[:1] + '*(' + rest + ')' if arg_stripped[0].isspace() else '*(' + rest + ')'
+        return arg_stripped[1:]  # 全覆盖 → 剥 &
     # Case 2: cast-to-pointer  (Type *)expr  or  (Type *)__thiscall
     cast_m = re.match(r'^(\s*\([^)]*\*\)\s*)', arg)
     if cast_m:
-        return '*' + arg
+        rest = arg[cast_m.end():]
+        if _has_toplevel_binop(rest):
+            # cast 未覆盖整个实参 → 包整体
+            return '*(' + arg.strip() + ')'
+        return '*' + arg  # 简单形保持
     # Case 2b (F81): `*无型数据全局` 作引用实参 —— Hex-Rays 对未定型 stru_/dword_
     # 等全局渲染裸解引用，MSVC6 的 T& 只绑同型左值 ⇒ C2100。用被调方 SDK 头的
     # 参数类型重写为 `*(T *)&全局`（同一对象的再解释绑定，语义等价）。
