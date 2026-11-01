@@ -22,6 +22,19 @@ CLAUDE.md 的红线是「**codegen 不读 annotation**：codegen 只读 export �
 """
 import json
 import os
+import re
+
+# [归一化单点律 2026-11-01] __ovl_ 后缀剥离——全部调用方统一走此函数
+# 对抗审核 F2：__ovl_ 剥离散在 6 处规则互不一致（双副本分叉温床）
+# 收口到此，禁止各 stage 私藏副本
+
+
+def strip_ovl(name):
+    """剥离 __ovl_XXXX 后缀（annotation 层 IDB 唯一性标记，生成代码用裸名）。
+
+    归一化单点律：全部 __ovl_ 剥离必须调用此函数，禁止各处私藏正则。
+    """
+    return re.sub(r'__ovl_[0-9a-fA-F]+$', '', name or '')
 
 _STRUCTS_CACHE = None
 _MEMBER_NAMES_CACHE = None

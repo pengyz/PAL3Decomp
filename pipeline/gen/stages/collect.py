@@ -208,10 +208,10 @@ def collect_functions(decomp_dir=None):
         # can flip between exports when IDB types are re-applied, turning a
         # previously-fine method into an undeclared-member cascade.
         if method:
-            _stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+            # [归一化单点律 2026-11-01] __ovl_ 剥离统一走 annotation_view.strip_ovl
+            from pipeline.gen.annotation_view import strip_ovl
+            _stripped = strip_ovl(method)
             if _stripped != method:
-                # rename inside the body too: stage1 rebuilds the definition
-                # from the code text's own signature line
                 code = re.sub(r'\b%s\b' % re.escape(method), _stripped, code)
             method = _stripped
 
@@ -262,17 +262,8 @@ def collect_functions(decomp_dir=None):
                 code = code.replace('_misattrib_' + cls + '::', cls + '::')
                 code = code.replace('misattrib_' + cls + '::', cls + '::')
 
-            # Strip __ovl_XXXX suffix to match header declaration (emit_headers.py does the same)
-            ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
-            if ovl_stripped != method:
-                collides = False
-                for existing in by_class.get(cls, []):
-                    if existing['method'] == ovl_stripped:
-                        if existing.get('sig') == sig:
-                            collides = True
-                            break
-                if not collides:
-                    method = ovl_stripped
+            # [死守卫删除 2026-11-01] 对抗审核 F2：L211 已无条件剥，此守卫是死代码
+            # 原逻辑：Strip __ovl_XXXX suffix to match header declaration (emit_headers.py does the same)
 
             by_class[cls].append({
                 'name': '%s::%s' % (cls, method),
