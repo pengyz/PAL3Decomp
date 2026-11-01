@@ -137,10 +137,10 @@
   },
   "methods": {
     "0x004CFE20": {
-      "name": "_nearby_4cfe20",
-      "signature": "virtual int __thiscall(CEffect *this, int a2, float a3, float a4, float a5)",
-      "source": "vtable_gap_fill_v1(from CEffect.json)",
-      "evidence_level": "unverified"
+      "name": "CreateEffect",
+      "signature": "virtual int __thiscall(CEffCustomShape *this, CEffect *thisa, int a2, float a3, float a4, float a5)",
+      "name_source": "IDA语义分析 2026-11-01 批10",
+      "name_note": "特效创建（CEffect+float 参数）"
     },
     "0x004CFFA0": {
       "name": "DestroyEffect",
@@ -149,10 +149,10 @@
       "evidence_level": "A"
     },
     "0x004CFFB0": {
-      "name": "_nearby_4cffb0",
-      "signature": "virtual void __thiscall(CEffect *this, float a2)",
-      "source": "vtable_gap_fill_v1(from CEffect.json)",
-      "evidence_level": "unverified"
+      "name": "UpdateEffect",
+      "signature": "virtual void __thiscall(CEffCustomShape *this, CEffect *thisa, float a2)",
+      "name_source": "IDA语义分析 2026-11-01 批10",
+      "name_note": "特效更新（CTaskTpl+特效参数）"
     },
     "0x004CFD20": {
       "name": "_scalar_dtor_fd20",

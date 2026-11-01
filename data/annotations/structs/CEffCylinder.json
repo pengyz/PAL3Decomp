@@ -334,18 +334,16 @@
       "adjudication": "shared_impl"
     },
     "0x004C2600": {
-      "name": "_todo_4C2600",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
+      "name": "UpdateDelta",
+      "signature": "virtual void __thiscall(CEffCylinder *this)",
+      "name_source": "IDA语义分析 2026-11-01 批9",
+      "name_note": "增量计算（float delta = new - old）"
     },
     "0x004C2620": {
-      "name": "_todo_4C2620",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
+      "name": "ProcessData",
+      "signature": "void __thiscall(CEffCylinder *this)",
+      "name_source": "IDA语义分析 2026-11-01 批9",
+      "name_note": "数据处理（DWORD 循环操作）"
     },
     "0x004C2640": {
       "name": "_todo_4C2640",
@@ -376,18 +374,16 @@
       "evidence_level": "unverified"
     },
     "0x004C3BB0": {
-      "name": "_todo_4C3BB0",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
+      "name": "CheckState",
+      "signature": "virtual void __thiscall(CEffCylinder *this)",
+      "name_source": "IDA语义分析 2026-11-01 批9",
+      "name_note": "状态检查（_tail_000[16] 判断+循环）"
     },
     "0x004C5800": {
-      "name": "_todo_4C5800",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
+      "name": "CreateTaskWrapper",
+      "signature": "virtual void __thiscall(CEffCylinder *this)",
+      "name_source": "IDA语义分析 2026-11-01 批9",
+      "name_note": "CreateTask 包装（this-12 调整）"
     },
     "0x004C2850": {
       "name": "_todo_4C2850",
