@@ -1,42 +1,45 @@
-"""TDD：指针算术优先级 bug——*(T*)this + N 应为 *(T*)((char*)this + N)。"""
+"""TDD：指针算术优先级修已停用（对抗审核 F1 BLOCKER：语义破坏器）。"""
 import re
 import sys
+import os
 
-sys.path.insert(0, 'pipeline/gen')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'pipeline', 'gen', 'stages'))
 
 
-def test_ptr_arith_precdence_fix():
-    """*(T*)expr + N 应修正为 *(T*)((char*)expr + N)（字节偏移算术）。"""
+def test_ptr_arith_fix_disabled():
+    """_fix_ptr_arith_precedence 已停用，应原样返回。"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'pipeline', 'gen', 'stages'))
+    from stage5_fixup import _fix_ptr_arith_precedence
     code = 'x = *(gbVec3D *)this + 14;'
-    # 修复正则：*(T*)expr + N → *(T*)((char*)expr + N)
-    fixed = re.sub(
-        r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)',
-        r'*(\1 *)((char *)\2 + \3)',
-        code)
-    assert '(char *)this + 14' in fixed, f'应修正指针算术: {fixed}'
-    assert 'gbVec3D *)this + 14' not in fixed, f'不应保留旧形: {fixed}'
+    result = _fix_ptr_arith_precedence(code)
+    assert result == code, f'已停用不应改写: {result}'
 
 
-def test_ptr_arith_preserve_valid():
-    """合法的指针算术不变（已有括号）。"""
-    code = 'x = *((gbVec3D *)this + 14);'
-    fixed = re.sub(
-        r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)',
-        r'*(\1 *)((char *)\2 + \3)',
-        code)
-    # 这个形是 *((T*)this + N) = 指针算术（元素偏移），不该改
-    # 但正则不匹配（因为 * 后面是 ( 不是 ((T*)），所以不变
-    assert fixed == code, f'不应变: {fixed}'
+def test_ptr_arith_original_preserved():
+    """原始代码（解引用后加）不应被改写——这是合法值算术。"""
+    code = 'v23 = *(_DWORD *)v17 + 4088;'
+    # 验证停用后正则不匹配
+    pat = re.compile(r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)')
+    m = pat.search(code)
+    # 即使正则匹配，_fix_ptr_arith_precedence 已停用不应改写
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'pipeline', 'gen', 'stages'))
+    from stage5_fixup import _fix_ptr_arith_precedence
+    result = _fix_ptr_arith_precedence(code)
+    assert result == code, f'已停用不应改写: {result}'
 
 
-def test_ptr_arith_member_access():
-    """成员访问形不变。"""
-    code = 'x = this->field + 14;'
-    fixed = re.sub(
-        r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)',
-        r'*(\1 *)((char *)\2 + \3)',
-        code)
-    assert fixed == code, f'不应变: {fixed}'
+if __name__ == '__main__':
+    failures = 0
+    for name, fn in list(globals().items()):
+        if name.startswith('test_') and callable(fn):
+            try:
+                fn()
+                print(f'  PASS: {name}')
+            except AssertionError as e:
+                print(f'  FAIL: {name}: {e}')
+                failures += 1
+    print(f'\n{failures} failures')
+    sys.exit(1 if failures else 0)
 
 
 if __name__ == '__main__':

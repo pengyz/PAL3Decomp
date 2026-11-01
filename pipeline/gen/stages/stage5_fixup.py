@@ -1184,16 +1184,19 @@ def _fix_ulong_uint_cast(code):
     return code
 
 
-# [指针算术优先级修 2026-11-01] *(T*)expr + N → *(T*)((char*)expr + N)
-# 病灶：codegen 生成 *(gbVec3D*)this + 14（结构体+整数 = C2676/C2784）
-# 修法：显式 char* 转换使 + N 成为字节偏移算术
-_PTR_ARITH_RE = re.compile(
-    r'\*\(\s*(\w+)\s*\*\s*\)\s*(\w+)\s*\+\s*(\d+)')
+# [指针算术优先级修 2026-11-01] 已停用（对抗审核 F1 BLOCKER）
+# 原正则 *(T*)expr + N → *(T*)((char*)expr + N) 是语义破坏器：
+# - 把「解引用后加 N」（合法值算术）改成「偏移 N 处解引用」（指针算术）——语义不同
+# - 语料实测命中 463 处/248 站点，全是 vtable 槽算术/整型指针+偏移（合法代码）
+# - 真正 C2784 病灶（*(gbVec3D*)(X+N) 括号在内）该正则根本不匹配
+# - 病灶生产者是 stage4 升型 cast，需在生产者处修（修生产者不修症状）
+# [2026-11-01] 对抗审核 F1 判定后停用，待生产者定位后再设计正确修法
+_PTR_ARITH_RE = None  # 停用
 
 
 def _fix_ptr_arith_precedence(code):
-    """*(T*)expr + N → *(T*)((char*)expr + N)（字节偏移算术优先级修）。"""
-    return _PTR_ARITH_RE.sub(r'*(\1 *)((char *)\2 + \3)', code)
+    """已停用（对抗审核 F1 BLOCKER：语义破坏器）。"""
+    return code
 
 
 def _fix_operator_new_cast(code):
@@ -1401,8 +1404,8 @@ def _run_inner(code, ctx):
     # ulong* → uint* cast fix
     code = _fix_ulong_uint_cast(code)
 
-    # [指针算术优先级修 2026-11-01] *(T*)expr + N → *(T*)((char*)expr + N)
-    code = _fix_ptr_arith_precedence(code)
+    # [指针算术优先级修 2026-11-01] 已停用（对抗审核 F1 BLOCKER）
+    # code = _fix_ptr_arith_precedence(code)
 
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
