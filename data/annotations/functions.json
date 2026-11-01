@@ -2241,16 +2241,6 @@
     "evidence_level": "B",
     "source": " | [R94 修 2026-10-23·8 errors] 补签名（Destroy 同族）"
   },
-  "0x0043D880": {
-    "name": "~UIFrameWnd__deleting_view",
-    "signature": "void __thiscall(UIFrameWnd *this)",
-    "source_note": "[A 级 tail-follow 2026-10-21] wrapper 6 字节体 + tail-jmp 0x445b40。tail-follow 实证：目标体 **bare ret（c3）@0x445B8F ⇒ 0 栈参**（推翻前次 ret $0x14 借邻函数伪造）。目标体=~UIWnd（dtor）：0x445B5D 写基 vptr 0x56AEC8 + lea 0x24(%esi) call 0x432680（成员析构）+ SEH + bare ret。wrapper **先写派生 vptr 再 jmp 基 dtor 体 = dtor 序铁证**（ctor 应反向）。vptr 写 0x56ACFC = **UIFrameWnd 删际表**（主表 0x56ACB8+0x44）⇒ 删际析构视图。"
-  },
-  "0x0043BBB0": {
-    "name": "~UIFrameWnd_BBB0",
-    "signature": "void __thiscall(UIFrameWnd *this)",
-    "source_note": "[A 级 tail-follow 2026-10-21] 同上形。bare ret ⇒ 0 栈参。vptr 写 0x56ACB8 = **UIFrameWnd 主表** ⇒ scalar dtor。dtor 序铁证（先写派生 vptr 再入基 dtor）。"
-  },
   "0x00541900": {
     "name": "WinMain",
     "signature": "int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)",
