@@ -1493,8 +1493,10 @@ def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by
             if name not in (methods_by_cls.get(cls) or ()):
                 return m.group(0)
             target = cls
+        # [__ovl_ 剥离 2026-11-01] 调用侧与定义侧/头侧一致剥 __ovl_XXXX 后缀
+        _name = re.sub(r'__ovl_[0-9a-fA-F]+$', '', name)
         return '(((%s *)%s))->%s::%s(%s)' % (
-            target, m.group('recv'), target, name, rest.lstrip(', '))
+            target, m.group('recv'), target, _name, rest.lstrip(', '))
 
     return pat.sub(_sub, code)
 
@@ -1587,8 +1589,11 @@ def rewrite_routed_free_calls(code, routed_by_name):
         if _rc:
             recv = _rc.group(1).strip()
         out.append(code[i:m.start()])
+        # [__ovl_ 剥离 2026-11-01] 调用侧与定义侧/头侧一致剥 __ovl_XXXX 后缀
+        # （annotation 层 __ovl_ 仅用于 IDB 唯一性，生成代码必须用裸名）
+        _method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
         out.append('(((%s *)%s))->%s::%s(%s)' % (
-            cls, recv, cls, method, ', '.join(rest)))
+            cls, recv, cls, _method, ', '.join(rest)))
         i = j
     return ''.join(out)
 

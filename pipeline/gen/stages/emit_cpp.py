@@ -867,6 +867,8 @@ def run_cpp_generation(filter_classes=None):
         safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').replace('(', '_').replace(')', '_').strip()
         out_path = out_dir / ("%s.cpp" % safe_name)
         content = generate_class_cpp(cls_name, methods)
+        # [__ovl_ 精准剥离 2026-11-01] 只剥调用形 ::method__ovl_XXX( 中的后缀
+        content = re.sub(r'::(\w+?)__ovl_[0-9a-fA-F]+\(', r'::\1(', content)
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
@@ -876,6 +878,8 @@ def run_cpp_generation(filter_classes=None):
     if free_funcs and not filter_classes:
         out_path = output_dir / "free_functions.cpp"
         content = generate_free_funcs_cpp(free_funcs)
+        # [__ovl_ 精准剥离 2026-11-01]
+        content = re.sub(r'::(\w+?)__ovl_[0-9a-fA-F]+\(', r'::\1(', content)
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
