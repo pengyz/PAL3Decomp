@@ -47,10 +47,10 @@
       "evidence_level": "unverified"
     },
     "0x0051D070": {
-      "name": "_todo_0051D070",
-      "signature": "void __thiscall(CCBItemWindow **a2)",
-      "source": "| 析构名误挂改名 2026-09-29：~CCBLineupWindow→_todo_0051D070（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
-      "evidence_level": "unverified"
+      "name": "Update_D070",
+      "signature": "void __thiscall(CCBLineupWindow *this, CCBItemWindow **a2)",
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x0051D120": {
       "name": "Reset",
@@ -75,7 +75,7 @@
       "evidence_level": "unverified"
     },
     "0x0051D3F0": {
-      "name": "Update",
+      "name": "Update_D3F0",
       "signature": "char __thiscall(int *deltatime)",
       "evidence_level": "unverified"
     },
@@ -90,9 +90,10 @@
       "evidence_level": "unverified"
     },
     "0x0051D590": {
-      "name": "IsPtOnFace_d590",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Method_D590",
+      "signature": "int __thiscall(CCBLineupWindow *this)",
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x0051D5A0": {
       "name": "IsPtOnInitPos",
@@ -100,9 +101,10 @@
       "evidence_level": "unverified"
     },
     "0x0051D5B0": {
-      "name": "IsPtOnInitPos_d5b0",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize",
+      "signature": "void __thiscall(CCBLineupWindow *this)",
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x0051D5F0": {
       "name": "IsFaceOnInitPos",

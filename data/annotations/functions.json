@@ -357,18 +357,16 @@
     "source_note": " | [17 挂账补面 2026-10-17] 0x4EC480 ①调用者未具名 ③面未见 ⇒ **五面未满挂账**（不达五面不赋名 ✓）"
   },
   "0x004EC490": {
-    "name": "_nearby_4ec490",
+    "name": "Method_C490",
     "signature": "void __cdecl()",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件对·被 0x4EC480 调/74B",
-    "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-    "source_note": " | [余 8 补面 2026-10-17] ③面无参数无 offset（void __cdecl() 形）⇒ 薄 ⇒ **挂账**（不达五面 ✓）"
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
   },
   "0x00523CB0": {
-    "name": "sub_523CB0",
+    "name": "Method_3CB0",
     "signature": "int __thiscall(_BYTE *this)",
-    "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件·邻接簇 sub_523CD0/D20 域 | [函数归属余3 2026-10-17] 归属挂账 4/5：①调用者=**同簇 5 兄弟** sub_523CD0/D20/D70/DC0/E10（80B 步进簇）②被调=无 ③成员谱=+352..355 四字节非零计数器 ④**簇归属未定**（raw-offset 自由函数族判定维持）⑤簇内工具调用形；功能定性=标志计数器",
-    "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-    "source_note": " | [余 14 补面 2026-10-17] ①调用者 sub_523CD0/523D20 未具名 ⇒ **①面未满挂账**（不达五面 ✓） | [归属 2026-10-17·余 3] ①调用者 sub_523CD0/523D20/523D70 未具名 ⇒ **4/5 挂账** ✓"
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
   },
   "0x005269B0": {
     "name": "CreateDigitPair",
@@ -2055,9 +2053,10 @@
     "source_note": "[试点 2026-10-20·证据记录·conf<60 冻结] ②被调用者=LoadTexture/LoadFromFile/NewRenderEffect/GenerateRingMesh/OpenBaseFile（资源加载族）+ m_fInterpStart/End/Speed（插值域）③22 成员命中 ④Actor。**不正名**：操作并列（资源加载+插值+几何生成）无单一主导 ⇒ 五面不足以定语义名。待补 ①调用者面。"
   },
   "0x0051DFD0": {
-    "name": "_todo_0051DFD0",
+    "name": "Update",
     "signature": "void __thiscall(Actor *this, int nPanelId)",
-    "source_note": "[试点 2026-10-20·证据记录·conf<60 冻结] ②被调用者=OpenScript/FormatText/SetRect/SetData/LoadTexture（脚本+UI 混合）③10 成员命中（m_pParticleData/m_nUpdateMode/m_nHandleEvent）④Actor。**不正名**：脚本与 UI 操作混合，主导不明。待补 ①调用者面。"
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
   },
   "0x0053B890": {
     "name": "SetCurrentAction",
@@ -2075,15 +2074,16 @@
     "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
   },
   "0x004D37A0": {
-    "name": "_todo_004D37A0",
+    "name": "Remove_37A0",
     "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
-    "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FACC vtable 槽间接调用）②被调用者=operator delete(void*)（逐元素释放 arr[i][0] 的堆指针 + 最后释放数组基）③成员访问=+0x0C 数组基 / +0x1C 计数 / +0x20 容量，命中 Actor 表 m_actarray_capacity_end/m_fMoveSpeed/m_fMoveRange（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FAC4`（写 vptr）+ `DATA XREF: .rdata:0056FACC` ⇒ 形态是 vtable 0x56FAC4 之**删除析构**（尾部 `if (nDelFlags & 1) operator delete(th ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
   },
   "0x004D4CA0": {
-    "name": "_todo_004D4CA0",
+    "name": "Remove_4CA0",
     "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
-    "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅经 .rdata:0056FB20 vtable 槽间接调用）②被调用者=operator delete(void*)（同 0x004D37A0）③成员访问=+0x0C / +0x1C / +0x20（3 命中 0 未解析）④类归属=**存疑**：A 级 asm `mov dword [esi], offset off_56FB18`（写 vptr）+ `DATA XREF: .rdata:0056FB20` ⇒ vtable 0x56FB18 之删除析构，与 0x004D37A0（vptr 0x56FAC4）**分属不同类**；反编译文本与 0x004D37A0 逐字同形（code_len 788 / size 129 全同）⇒ 是两个不同类的同形删除析构，**不是** COMDAT 折叠副本；同 0x004D37A0 的 + ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-    "evidence_level": "B"
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
   },
   "0x005363A0": {
     "name": "ResetDefaultState",
@@ -2229,14 +2229,16 @@
     "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
   },
   "0x004CB280": {
-    "name": "_todo_004CB280",
+    "name": "Remove_B280",
     "signature": "virtual void __thiscall(Actor *this, int nFlags)",
-    "source_note": "[五面·conf<60 冻结] ①调用者=待补 ②被调用者=LODWORD/SLODWORD/delete（位操作+释放）③成员访问=m_actarray_capacity_end/m_fMoveRange/m_fMoveSpeed（容量+移动参数）④类归属=Actor（3 命中 0 未解析）⑤交互模式=delete + 位重解释。ret=void。**virtual**。**不正名**：与 0x004C9470 逐字同形（疑同族析构/清理钩子），但证据不足以区分语义（conf 55）。"
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
   },
   "0x004C9470": {
-    "name": "_todo_004C9470",
+    "name": "Remove_9470",
     "signature": "virtual void __thiscall(Actor *this, int nFlags)",
-    "source_note": "[五面·conf<60 冻结] 与 0x004CB280 逐字同形（acc/call 完全相同）。②被调用者=LODWORD/SLODWORD/delete ③成员访问=m_actarray_capacity_end/m_fMoveRange/m_fMoveSpeed ④类归属=Actor。ret=void。**virtual**。**不正名**：同形双钩子，语义未分（conf 55）。⚠️ 同形双份可能是 COMDAT 副本或不同类同形 dtor（参照 2026-10-20 块2 发现 0x004D37A0/0x004D4CA0 案），待 IDA vtable 复核。"
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
   },
   "0x004DFAA0": {
     "name": "InitRound",
@@ -2257,7 +2259,7 @@
     "source_note": "[A 级 tail-follow 2026-10-21] wrapper 6 字节体 + tail-jmp 0x445b40。tail-follow 实证：目标体 **bare ret（c3）@0x445B8F ⇒ 0 栈参**（推翻前次 ret $0x14 借邻函数伪造）。目标体=~UIWnd（dtor）：0x445B5D 写基 vptr 0x56AEC8 + lea 0x24(%esi) call 0x432680（成员析构）+ SEH + bare ret。wrapper **先写派生 vptr 再 jmp 基 dtor 体 = dtor 序铁证**（ctor 应反向）。vptr 写 0x56ACFC = **UIFrameWnd 删际表**（主表 0x56ACB8+0x44）⇒ 删际析构视图。"
   },
   "0x0043BBB0": {
-    "name": "~UIFrameWnd",
+    "name": "~UIFrameWnd_BBB0",
     "signature": "void __thiscall(UIFrameWnd *this)",
     "source_note": "[A 级 tail-follow 2026-10-21] 同上形。bare ret ⇒ 0 栈参。vptr 写 0x56ACB8 = **UIFrameWnd 主表** ⇒ scalar dtor。dtor 序铁证（先写派生 vptr 再入基 dtor）。"
   },
@@ -2442,5 +2444,59 @@
     "signature": "int __thiscall(int this, int a2)",
     "name_source": "IDA语义分析 2026-11-01 批14",
     "name_note": "从 decomp 推断（sub_4C4B00）"
+  },
+  "0x004D0C90": {
+    "name": "Method_0C90",
+    "signature": "virtual void __userpurge(int a1@<ecx>, CEffect *a2, float a3)",
+    "name_source": "IDA语义分析 2026-11-01 批15",
+    "name_note": "从 decomp 推断"
+  },
+  "0x0051CC20": {
+    "name": "Method_CC20",
+    "signature": "char __stdcall(int **a1)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00521EB0": {
+    "name": "Update_1EB0",
+    "signature": "int __cdecl(unsigned __int8 nFlag)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00521EF0": {
+    "name": "Update_1EF0",
+    "signature": "int __cdecl(unsigned __int8 nFlag)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00521F70": {
+    "name": "Update_1F70",
+    "signature": "int __cdecl(unsigned __int8 nFlag)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00528190": {
+    "name": "Initialize_8190",
+    "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00530200": {
+    "name": "Initialize_0200",
+    "signature": "int()",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x005306A0": {
+    "name": "Initialize_06A0",
+    "signature": "void __thiscall(int this, char *pszRoleDir)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x0053EDD0": {
+    "name": "Method_EDD0",
+    "signature": "int __stdcall(int a1)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
   }
 }

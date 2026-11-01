@@ -154,18 +154,16 @@
       "adjudication": "shared_impl"
     },
     "0x004D1300": {
-      "name": "sub_4D1300",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D1300@CEffect@@QAEHXZ)",
-      "evidence_level": "unverified",
-      "adjudication": "confirmed"
+      "name": "Render",
+      "signature": "virtual int __thiscall(CEffect *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004D17D0": {
-      "name": "sub_4D17D0",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D17D0@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "evidence_level": "unverified",
-      "adjudication": "confirmed"
+      "name": "Cleanup",
+      "signature": "virtual int __thiscall(CEffect *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004D3220": {
       "name": "sub_4D17D0_adjthunk",

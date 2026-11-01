@@ -246,7 +246,7 @@
       "evidence_level": "unverified"
     },
     "0x004DB3B0": {
-      "name": "InitCmdTable1",
+      "name": "InitCmdTable1_B3B0",
       "signature": "int __thiscall()",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "evidence_level": "unverified"
@@ -258,7 +258,7 @@
       "evidence_level": "unverified"
     },
     "0x004DB400": {
-      "name": "InitCmdTable2",
+      "name": "InitCmdTable2_B400",
       "signature": "int __thiscall()",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "evidence_level": "unverified"
@@ -270,7 +270,7 @@
       "evidence_level": "unverified"
     },
     "0x004DB450": {
-      "name": "InitCmdTable3",
+      "name": "InitCmdTable3_B450",
       "signature": "int __thiscall()",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "evidence_level": "unverified"
@@ -556,12 +556,12 @@
       "evidence_level": "unverified"
     },
     "0x00514FE0": {
-      "name": "PassCmdToThread",
+      "name": "PassCmdToThread_4FE0",
       "signature": "int __thiscall(int _34)",
       "evidence_level": "unverified"
     },
     "0x00515200": {
-      "name": "PassCmdToThread",
+      "name": "PassCmdToThread_5200",
       "signature": "int(int nThreadIndex, tagCmdData *_68)",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "evidence_level": "unverified"
@@ -614,9 +614,10 @@
       "evidence_level": "A"
     },
     "0x00515DF0": {
-      "name": "DestroyObj_5df0",
-      "signature": "void *__thiscall(CCBSystem *Block, char pData)",
-      "evidence_level": "unverified"
+      "name": "Cleanup_5DF0",
+      "signature": "void *__thiscall(CCBSystem *this, CCBSystem *Block, char pData)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00515E50": {
       "name": "DestroyObj",
@@ -624,9 +625,10 @@
       "evidence_level": "unverified"
     },
     "0x00515E70": {
-      "name": "DestroyObj_5e70",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Cleanup_5E70",
+      "signature": "void __thiscall(CCBSystem *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00515E90": {
       "name": "InitObj",
@@ -635,24 +637,28 @@
       "evidence_level": "A"
     },
     "0x00515EE0": {
-      "name": "InitObj_5ee0",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize_5EE0",
+      "signature": "int __thiscall(CCBSystem *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00515F30": {
-      "name": "InitObj_5f30",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize_5F30",
+      "signature": "int __thiscall(CCBSystem *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00515F80": {
-      "name": "InitObj_5f80",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize_5F80",
+      "signature": "int __thiscall(CCBSystem *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00515FD0": {
-      "name": "InitObj_5fd0",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize_5FD0",
+      "signature": "int __thiscall(CCBSystem *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x00512500": {
       "name": "CCBSystem",

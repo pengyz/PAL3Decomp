@@ -481,10 +481,10 @@
       "source": "[R95 修 2026-10-23·A 级] objdump mov %ebx,%eax 返回 this（指针）"
     },
     "0x004FB9F0": {
-      "name": "_todo_004FB9F0",
-      "signature": "unsigned int __thiscall()",
-      "source": "| 挂账③ F 案改名 2026-10-06：~CCBStage→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：非析构（体=初始化/Reset 语义）——真名未知留 _todo_",
-      "evidence_level": "unverified"
+      "name": "SetData",
+      "signature": "unsigned int __thiscall(CCBStage *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004FBE50": {
       "name": "Create",
@@ -499,9 +499,10 @@
       "evidence_level": "A"
     },
     "0x004FC150": {
-      "name": "Update_c150",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
+      "name": "Update_C150",
+      "signature": "int __thiscall(CCBStage *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004FC3A0": {
       "name": "EditorUpdate",
@@ -542,13 +543,13 @@
       "evidence_level": "unverified"
     },
     "0x004FC980": {
-      "name": "IsDoTask",
+      "name": "IsDoTask_C980",
       "signature": "bool __thiscall(int eTask)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
     },
     "0x004FC9A0": {
-      "name": "EndTask",
+      "name": "EndTask_C9A0",
       "signature": "bool __thiscall(int nIndex)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
@@ -575,19 +576,19 @@
       "evidence_level": "unverified"
     },
     "0x004FCC10": {
-      "name": "GetTaskState",
+      "name": "GetTaskState_CC10",
       "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn)",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
       "evidence_level": "unverified"
     },
     "0x004FCC50": {
-      "name": "GetTaskState",
+      "name": "GetTaskState_CC50",
       "signature": "char(int nIndex, ECBStageTaskState *State)",
       "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical",
       "evidence_level": "unverified"
     },
     "0x004FCD00": {
-      "name": "IsTaskFinished",
+      "name": "IsTaskFinished_CD00",
       "signature": "bool __thiscall(int nIndex)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
@@ -604,7 +605,7 @@
       "evidence_level": "A"
     },
     "0x004FCDE0": {
-      "name": "DoTask",
+      "name": "DoTask_CDE0",
       "signature": "void __thiscall(int nVal)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
@@ -769,7 +770,7 @@
       "evidence_level": "unverified"
     },
     "0x004FC0A0": {
-      "name": "Update",
+      "name": "Update_C0A0",
       "signature": "void __thiscall()",
       "source": "pdb_ret",
       "evidence_level": "unverified"
@@ -1040,9 +1041,10 @@
       "evidence_level": "unverified"
     },
     "0x0051D710": {
-      "name": "Create_d710",
-      "signature": "CCBProtectWindow *__thiscall()",
-      "evidence_level": "unverified"
+      "name": "Initialize",
+      "signature": "CCBProtectWindow *__thiscall(CCBStage *this)",
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x0051DDA0": {
       "name": "ShowWindow",
@@ -1088,7 +1090,7 @@
       "evidence_level": "unverified"
     },
     "0x005090F0": {
-      "name": "Proceed",
+      "name": "Proceed_90F0",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
@@ -1116,13 +1118,13 @@
       "evidence_level": "unverified"
     },
     "0x005091D0": {
-      "name": "OnChangeAction",
+      "name": "OnChangeAction_91D0",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x005091E0": {
-      "name": "CheckAction",
+      "name": "CheckAction_91E0",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
@@ -1150,12 +1152,12 @@
       "evidence_level": "unverified"
     },
     "0x005092A0": {
-      "name": "GetRoleHeight",
+      "name": "GetRoleHeight_92A0",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x005092B0": {
-      "name": "GetOBBox",
+      "name": "GetOBBox_92B0",
       "signature": "CCBStage *__thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
@@ -1177,7 +1179,7 @@
       "evidence_level": "A"
     },
     "0x005096D0": {
-      "name": "IsAtProtectPos",
+      "name": "IsAtProtectPos_96D0",
       "signature": "bool __thiscall(CCBStage *this, int index, int nAttacker, int nVal)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
@@ -1195,78 +1197,78 @@
       "evidence_level": "A"
     },
     "0x0050A180": {
-      "name": "Grab",
+      "name": "Grab_A180",
       "signature": "int(int dwStageTaskID, bool bNormal)",
       "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width",
       "evidence_level": "A"
     },
     "0x0050A1A0": {
-      "name": "Release",
+      "name": "Release_A1A0",
       "signature": "void __thiscall(CCBStage *this, char dwStageTaskID)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050A1B0": {
-      "name": "TryRelease",
+      "name": "TryRelease_A1B0",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050A1F0": {
-      "name": "ForceRelease",
+      "name": "ForceRelease_A1F0",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050A200": {
-      "name": "DangerForceRelease",
+      "name": "DangerForceRelease_A200",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050A210": {
-      "name": "IsGrabedBy",
+      "name": "IsGrabedBy_A210",
       "signature": "bool __thiscall(CCBStage *this)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
     },
     "0x0050A260": {
-      "name": "GetPointerPos",
+      "name": "GetPointerPos_A260",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050A2B0": {
-      "name": "SetBladeTime",
+      "name": "SetBladeTime_A2B0",
       "signature": "void __thiscall(CCBStage *this, int fBladeTime)",
       "evidence_level": "unverified"
     },
     "0x0050A500": {
-      "name": "LoadAction",
+      "name": "LoadAction_A500",
       "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
       "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "evidence_level": "unverified"
     },
     "0x0050A520": {
-      "name": "GetStatus",
+      "name": "GetStatus_A520",
       "signature": "int __thiscall(CCBStage *this, int index)",
       "evidence_level": "unverified"
     },
     "0x0050A560": {
-      "name": "GetWorldPos",
+      "name": "GetWorldPos_A560",
       "signature": "float *__thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050A5D0": {
-      "name": "AddTask",
+      "name": "AddTask_A5D0",
       "signature": "double __thiscall(CCBStage *this, float *fp)",
       "evidence_level": "unverified"
     },
     "0x0050A6F0": {
-      "name": "ForceDelTaskByPFN",
+      "name": "ForceDelTaskByPFN_A6F0",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050A700": {
-      "name": "ForceEndTaskByPFN",
+      "name": "ForceEndTaskByPFN_A700",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
@@ -1277,29 +1279,29 @@
       "evidence_level": "A"
     },
     "0x0050A8E0": {
-      "name": "DelTask",
+      "name": "DelTask_A8E0",
       "signature": "bool __thiscall(CCBStage *this, int nIndex)",
       "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：⚠️ 五面未满（调用者 CCBSystem::GetSameThreadNum 名可疑域）⇒ 挂账不赋名；体证=m_TurnBuffer+DelTask 转发（回合缓冲推进候选形）",
       "evidence_level": "A"
     },
     "0x0050A8F0": {
-      "name": "DelAllTask",
+      "name": "DelAllTask_A8F0",
       "signature": "bool __thiscall(CCBStage *this, int nVal, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050A920": {
-      "name": "GetCurrentTask",
+      "name": "GetCurrentTask_A920",
       "signature": "char __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x0050A960": {
-      "name": "GetCurrentTaskIndex",
+      "name": "GetCurrentTaskIndex_A960",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050A980": {
-      "name": "IsReady",
+      "name": "IsReady_A980",
       "signature": "bool __thiscall(CCBStage *this, int idx)",
       "evidence_level": "unverified"
     },
@@ -1310,157 +1312,157 @@
       "evidence_level": "A"
     },
     "0x0050AA60": {
-      "name": "ClearBadPushTask",
+      "name": "ClearBadPushTask_AA60",
       "signature": "void __thiscall(CCBStage *this, float fVal)",
       "evidence_level": "unverified"
     },
     "0x0050AAE0": {
-      "name": "PushBackAllTask",
+      "name": "PushBackAllTask_AAE0",
       "signature": "double __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050AB10": {
-      "name": "ClearAniMsg",
+      "name": "ClearAniMsg_AB10",
       "signature": "void __thiscall(CCBStage *this, char pData, float fVal)",
       "evidence_level": "unverified"
     },
     "0x0050AC50": {
-      "name": "SetParam",
+      "name": "SetParam_AC50",
       "signature": "void __thiscall(CCBStage *this, int pParam, char dw1)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050AD30": {
-      "name": "GetProperCurAction",
+      "name": "GetProperCurAction_AD30",
       "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)",
       "evidence_level": "unverified"
     },
     "0x0050B070": {
-      "name": "ProcTransportRun",
+      "name": "ProcTransportRun_B070",
       "signature": "char __thiscall(CCBStage *this, unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)",
       "evidence_level": "unverified"
     },
     "0x0050B290": {
-      "name": "SetForceFinishThrowingWeapon",
+      "name": "SetForceFinishThrowingWeapon_B290",
       "signature": "void __thiscall(CCBStage *this, int bForce)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050B360": {
-      "name": "ProcCatchED",
+      "name": "ProcCatchED_B360",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050B580": {
-      "name": "ProcPursueRole",
+      "name": "ProcPursueRole_B580",
       "signature": "char __thiscall(CCBStage *this, int formal, int nVal, char pData)",
       "evidence_level": "unverified"
     },
     "0x0050BBD0": {
-      "name": "ProcTurn",
+      "name": "ProcTurn_BBD0",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050BCD0": {
-      "name": "ProcTurnToRole",
+      "name": "ProcTurnToRole_BCD0",
       "signature": "unsigned int __thiscall(CCBStage *this, int formal)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050C320": {
-      "name": "ProcBlock",
+      "name": "ProcBlock_C320",
       "signature": "unsigned int __thiscall(CCBStage *this, int dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050C970": {
-      "name": "ProcMagic",
+      "name": "ProcMagic_C970",
       "signature": "unsigned int __thiscall(CCBStage *this, unsigned int dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0050CDE0": {
-      "name": "ProcUseRecoverItem",
+      "name": "ProcUseRecoverItem_CDE0",
       "signature": "unsigned int __thiscall(CCBStage *this, float dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0053E310": {
-      "name": "PlaySound",
+      "name": "PlaySound_E310",
       "signature": "void __thiscall(CCBStage *this, char *name, int nVal)",
       "evidence_level": "unverified"
     },
     "0x0040CCF0": {
-      "name": "GetAlive",
+      "name": "GetAlive_CCF0",
       "signature": "char *__thiscall(CCBStage *this, int *pConfig)",
       "source": "fix:C2660:dual evidence: caller push x1 + callee retn 4 x5; mangled QAEPADHPAH is pollution",
       "evidence_level": "A"
     },
     "0x0040DCF0": {
-      "name": "GetByIndex",
+      "name": "GetByIndex_DCF0",
       "signature": "int *__thiscall(CCBStage *this, int *p_DWORD)",
       "evidence_level": "unverified"
     },
     "0x0040DD30": {
-      "name": "Find",
+      "name": "Find_DD30",
       "signature": "int __thiscall(CCBStage *this, char *String1)",
       "evidence_level": "unverified"
     },
     "0x0040DD80": {
-      "name": "Reset",
+      "name": "Reset_DD80",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified"
     },
     "0x0040CF60": {
-      "name": "PassCmd",
+      "name": "PassCmd_CF60",
       "signature": "int __thiscall(CCBStage *this, void *p_DWORD)",
       "evidence_level": "unverified"
     },
     "0x0040CC90": {
-      "name": "Init",
+      "name": "Init_CC90",
       "signature": "void __thiscall(CCBStage *this, int thisa)",
       "evidence_level": "unverified"
     },
     "0x0040D010": {
-      "name": "CheckValid",
+      "name": "CheckValid_D010",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00521F30": {
-      "name": "DispatchUpdateAll",
+      "name": "DispatchUpdateAll_1F30",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "evidence_level": "unverified"
     },
     "0x00521E60": {
-      "name": "DispatchUpdate",
+      "name": "DispatchUpdate_1E60",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "evidence_level": "unverified"
     },
     "0x0050A4B0": {
-      "name": "CheckViewTarget",
+      "name": "CheckViewTarget_A4B0",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x004E2C50": {
-      "name": "InitUIByName",
+      "name": "InitUIByName_2C50",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x004FFA90": {
-      "name": "TaskExecAttack",
+      "name": "TaskExecAttack_FA90",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x004FFCB0": {
-      "name": "TaskExecCommand",
+      "name": "TaskExecCommand_FCB0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x004FFF60": {
-      "name": "TaskExecMagicEffect",
+      "name": "TaskExecMagicEffect_FF60",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
@@ -1475,33 +1477,33 @@
       "evidence_level": "unverified"
     },
     "0x00500D50": {
-      "name": "TaskResolveAction",
+      "name": "TaskResolveAction_0D50",
       "signature": "int __thiscall(CCBStage *this, int nState)",
       "evidence_level": "unverified"
     },
     "0x0050B430": {
-      "name": "FindFreeSlot",
+      "name": "FindFreeSlot_B430",
       "signature": "char __thiscall(CCBStage *this, int a2)",
       "source": "| fn-ptr return form was unparseable ([6] permanent fail); adopted decomp projection char(int). Return width needs caller confirmation — indirect dispatch tail call eax",
       "evidence_level": "unverified"
     },
     "0x0050B4C0": {
-      "name": "CountValidTasks",
+      "name": "CountValidTasks_B4C0",
       "signature": "char __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050B4F0": {
-      "name": "FindNextTask",
+      "name": "FindNextTask_B4F0",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0050F200": {
-      "name": "OnMagicHit",
+      "name": "OnMagicHit_F200",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x0050FA20": {
-      "name": "ClearTaskIfMatch",
+      "name": "ClearTaskIfMatch_FA20",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
@@ -1511,32 +1513,32 @@
       "evidence_level": "unverified"
     },
     "0x0044CFF0": {
-      "name": "RandomizePositions",
+      "name": "RandomizePositions_CFF0",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x004FFED0": {
-      "name": "TaskResetToIdle",
+      "name": "TaskResetToIdle_FED0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x005004B0": {
-      "name": "TaskWaitIdle",
+      "name": "TaskWaitIdle_04B0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x005007A0": {
-      "name": "TaskForceEnd",
+      "name": "TaskForceEnd_07A0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00500C20": {
-      "name": "TaskExecAction",
+      "name": "TaskExecAction_0C20",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x005011B0": {
-      "name": "TaskMoveToStart",
+      "name": "TaskMoveToStart_11B0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
@@ -1551,53 +1553,53 @@
       "evidence_level": "unverified"
     },
     "0x005014E0": {
-      "name": "TaskEnterGuard",
+      "name": "TaskEnterGuard_14E0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x005015C0": {
-      "name": "SetupCombatAction",
+      "name": "SetupCombatAction_15C0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00501CF0": {
-      "name": "TaskReturnToIdle",
+      "name": "TaskReturnToIdle_1CF0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00501E60": {
-      "name": "TaskShowLevelUp",
+      "name": "TaskShowLevelUp_1E60",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00501F30": {
-      "name": "TaskShowSkillLearned",
+      "name": "TaskShowSkillLearned_1F30",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x0050EDA0": {
-      "name": "CheckPushState",
+      "name": "CheckPushState_EDA0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x0050EE70": {
-      "name": "OnPhysicalHit",
+      "name": "OnPhysicalHit_EE70",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified"
     },
     "0x00518E10": {
-      "name": "SetActionVisible",
+      "name": "SetActionVisible_8E10",
       "signature": "int __thiscall(CCBStage *this, char nActIndex)",
       "evidence_level": "unverified"
     },
     "0x00521A80": {
-      "name": "CheckActionValid",
+      "name": "CheckActionValid_1A80",
       "signature": "bool __cdecl(int nVal)",
       "static": true,
       "evidence_level": "unverified"
     },
     "0x005220E0": {
-      "name": "ClearRoleState",
+      "name": "ClearRoleState_20E0",
       "signature": "int *__thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
@@ -1607,12 +1609,12 @@
       "evidence_level": "unverified"
     },
     "0x0053E9C0": {
-      "name": "PauseSound",
+      "name": "PauseSound_E9C0",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0053EA10": {
-      "name": "ResumeSound",
+      "name": "ResumeSound_EA10",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
@@ -1623,22 +1625,22 @@
       "evidence_level": "A"
     },
     "0x0050B330": {
-      "name": "GetCurrentState",
+      "name": "GetCurrentState_B330",
       "signature": "char __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0051F070": {
-      "name": "UpdateWeaponSlots",
+      "name": "UpdateWeaponSlots_F070",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0051F080": {
-      "name": "SetWeaponSlotA",
+      "name": "SetWeaponSlotA_F080",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
     "0x0051F090": {
-      "name": "SetWeaponSlotB",
+      "name": "SetWeaponSlotB_F090",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified"
     },
@@ -1664,10 +1666,10 @@
       "adjudication": "confirmed"
     },
     "0x00525090": {
-      "name": "sub_525090",
+      "name": "GetData_5090",
       "signature": "int __thiscall(CCBStage *this, void *thisa)",
-      "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_525090（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
-      "evidence_level": "A"
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x00459fa0": {
       "name": "sub_00459fa0",
@@ -1712,437 +1714,437 @@
       "evidence_level": "A"
     },
     "0x0050a5d0": {
-      "name": "AddTask",
+      "name": "AddTask_a5d0",
       "signature": "double __thiscall(CCBStage *this, float *fp)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00521a80": {
-      "name": "CheckActionValid",
+      "name": "CheckActionValid_1a80",
       "signature": "bool __cdecl(int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005091e0": {
-      "name": "CheckAction",
+      "name": "CheckAction_91e0",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050eda0": {
-      "name": "CheckPushState",
+      "name": "CheckPushState_eda0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040d010": {
-      "name": "CheckValid",
+      "name": "CheckValid_d010",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a4b0": {
-      "name": "CheckViewTarget",
+      "name": "CheckViewTarget_a4b0",
       "signature": "bool __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050ab10": {
-      "name": "ClearAniMsg",
+      "name": "ClearAniMsg_ab10",
       "signature": "void __thiscall(CCBStage *this, char pData, float fVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050aa60": {
-      "name": "ClearBadPushTask",
+      "name": "ClearBadPushTask_aa60",
       "signature": "void __thiscall(CCBStage *this, float fVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005220e0": {
-      "name": "ClearRoleState",
+      "name": "ClearRoleState_20e0",
       "signature": "int *__thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050fa20": {
-      "name": "ClearTaskIfMatch",
+      "name": "ClearTaskIfMatch_fa20",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b4c0": {
-      "name": "CountValidTasks",
+      "name": "CountValidTasks_b4c0",
       "signature": "char __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a200": {
-      "name": "DangerForceRelease",
+      "name": "DangerForceRelease_a200",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a8f0": {
-      "name": "DelAllTask",
+      "name": "DelAllTask_a8f0",
       "signature": "bool __thiscall(CCBStage *this, int nVal, char pData)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a8e0": {
-      "name": "DelTask",
+      "name": "DelTask_a8e0",
       "signature": "bool __thiscall(CCBStage *this, int nIndex)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00521f30": {
-      "name": "DispatchUpdateAll",
+      "name": "DispatchUpdateAll_1f30",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00521e60": {
-      "name": "DispatchUpdate",
+      "name": "DispatchUpdate_1e60",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a9b0": {
-      "name": "DoTask",
+      "name": "DoTask_a9b0",
       "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a770": {
-      "name": "EndTask",
+      "name": "EndTask_a770",
       "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040dd30": {
-      "name": "Find",
+      "name": "Find_dd30",
       "signature": "int __thiscall(CCBStage *this, char *String1)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b430": {
-      "name": "FindFreeSlot",
+      "name": "FindFreeSlot_b430",
       "signature": "char __thiscall(CCBStage *this, int a2)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b4f0": {
-      "name": "FindNextTask",
+      "name": "FindNextTask_b4f0",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a6f0": {
-      "name": "ForceDelTaskByPFN",
+      "name": "ForceDelTaskByPFN_a6f0",
       "signature": "bool __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a700": {
-      "name": "ForceEndTaskByPFN",
+      "name": "ForceEndTaskByPFN_a700",
       "signature": "bool __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a1f0": {
-      "name": "ForceRelease",
+      "name": "ForceRelease_a1f0",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040ccf0": {
-      "name": "GetAlive",
+      "name": "GetAlive_ccf0",
       "signature": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040dcf0": {
-      "name": "GetByIndex",
+      "name": "GetByIndex_dcf0",
       "signature": "int *__thiscall(CCBStage *this, int *p_DWORD)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b330": {
-      "name": "GetCurrentState",
+      "name": "GetCurrentState_b330",
       "signature": "char __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a960": {
-      "name": "GetCurrentTaskIndex",
+      "name": "GetCurrentTaskIndex_a960",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a920": {
-      "name": "GetCurrentTask",
+      "name": "GetCurrentTask_a920",
       "signature": "char __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005092b0": {
-      "name": "GetOBBox",
+      "name": "GetOBBox_92b0",
       "signature": "CCBStage *__thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a260": {
-      "name": "GetPointerPos",
+      "name": "GetPointerPos_a260",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050ad30": {
-      "name": "GetProperCurAction",
+      "name": "GetProperCurAction_ad30",
       "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005092a0": {
-      "name": "GetRoleHeight",
+      "name": "GetRoleHeight_92a0",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a520": {
-      "name": "GetStatus",
+      "name": "GetStatus_a520",
       "signature": "int __thiscall(CCBStage *this, int index)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b530": {
-      "name": "GetTaskState",
+      "name": "GetTaskState_b530",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a560": {
-      "name": "GetWorldPos",
+      "name": "GetWorldPos_a560",
       "signature": "float *__thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a180": {
-      "name": "Grab",
+      "name": "Grab_a180",
       "signature": "int(int dwStageTaskID, bool bNormal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040cc90": {
-      "name": "Init",
+      "name": "Init_cc90",
       "signature": "void __thiscall(CCBStage *this, int thisa)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x004e2c50": {
-      "name": "InitUIByName",
+      "name": "InitUIByName_2c50",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005096d0": {
-      "name": "IsAtProtectPos",
+      "name": "IsAtProtectPos_96d0",
       "signature": "bool __thiscall(CCBStage *this, int index, int nAttacker, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00509b90": {
-      "name": "IsDoTask",
+      "name": "IsDoTask_9b90",
       "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a210": {
-      "name": "IsGrabedBy",
+      "name": "IsGrabedBy_a210",
       "signature": "bool __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a980": {
-      "name": "IsReady",
+      "name": "IsReady_a980",
       "signature": "bool __thiscall(CCBStage *this, int idx)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005099a0": {
-      "name": "IsTaskFinished",
+      "name": "IsTaskFinished_99a0",
       "signature": "bool __thiscall(CCBStage *this, int nVal, BOOL fpTask)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a500": {
-      "name": "LoadAction",
+      "name": "LoadAction_a500",
       "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005091d0": {
-      "name": "OnChangeAction",
+      "name": "OnChangeAction_91d0",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050f200": {
-      "name": "OnMagicHit",
+      "name": "OnMagicHit_f200",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050ee70": {
-      "name": "OnPhysicalHit",
+      "name": "OnPhysicalHit_ee70",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040cf60": {
-      "name": "PassCmd",
+      "name": "PassCmd_cf60",
       "signature": "int __thiscall(CCBStage *this, void *p_DWORD)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0053e9c0": {
-      "name": "PauseSound",
+      "name": "PauseSound_e9c0",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0053e310": {
-      "name": "PlaySound",
+      "name": "PlaySound_e310",
       "signature": "void __thiscall(CCBStage *this, char *name, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050c320": {
-      "name": "ProcBlock",
+      "name": "ProcBlock_c320",
       "signature": "unsigned int __thiscall(CCBStage *this, int dwMsg)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b360": {
-      "name": "ProcCatchED",
+      "name": "ProcCatchED_b360",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005090f0": {
-      "name": "Proceed",
+      "name": "Proceed_90f0",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050c970": {
-      "name": "ProcMagic",
+      "name": "ProcMagic_c970",
       "signature": "unsigned int __thiscall(CCBStage *this, unsigned int dwMsg)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b580": {
-      "name": "ProcPursueRole",
+      "name": "ProcPursueRole_b580",
       "signature": "char __thiscall(CCBStage *this, int formal, int nVal, char pData)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b070": {
-      "name": "ProcTransportRun",
+      "name": "ProcTransportRun_b070",
       "signature": "char __thiscall(CCBStage *this, unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050bcd0": {
-      "name": "ProcTurnToRole",
+      "name": "ProcTurnToRole_bcd0",
       "signature": "unsigned int __thiscall(CCBStage *this, int formal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050bbd0": {
-      "name": "ProcTurn",
+      "name": "ProcTurn_bbd0",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050cde0": {
-      "name": "ProcUseRecoverItem",
+      "name": "ProcUseRecoverItem_cde0",
       "signature": "unsigned int __thiscall(CCBStage *this, float dwMsg)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050aae0": {
-      "name": "PushBackAllTask",
+      "name": "PushBackAllTask_aae0",
       "signature": "double __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0044cff0": {
-      "name": "RandomizePositions",
+      "name": "RandomizePositions_cff0",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a1a0": {
-      "name": "Release",
+      "name": "Release_a1a0",
       "signature": "void __thiscall(CCBStage *this, char dwStageTaskID)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0040dd80": {
-      "name": "Reset",
+      "name": "Reset_dd80",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0053ea10": {
-      "name": "ResumeSound",
+      "name": "ResumeSound_ea10",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00518e10": {
-      "name": "SetActionVisible",
+      "name": "SetActionVisible_8e10",
       "signature": "int __thiscall(CCBStage *this, char nActIndex)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a2b0": {
-      "name": "SetBladeTime",
+      "name": "SetBladeTime_a2b0",
       "signature": "void __thiscall(CCBStage *this, int fBladeTime)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050b290": {
-      "name": "SetForceFinishThrowingWeapon",
+      "name": "SetForceFinishThrowingWeapon_b290",
       "signature": "void __thiscall(CCBStage *this, int bForce)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050ac50": {
-      "name": "SetParam",
+      "name": "SetParam_ac50",
       "signature": "void __thiscall(CCBStage *this, int pParam, char dw1)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005015c0": {
-      "name": "SetupCombatAction",
+      "name": "SetupCombatAction_15c0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005014e0": {
-      "name": "TaskEnterGuard",
+      "name": "TaskEnterGuard_14e0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00500c20": {
-      "name": "TaskExecAction",
+      "name": "TaskExecAction_0c20",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x004ffa90": {
-      "name": "TaskExecAttack",
+      "name": "TaskExecAttack_fa90",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x004ffcb0": {
-      "name": "TaskExecCommand",
+      "name": "TaskExecCommand_fcb0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x004fff60": {
-      "name": "TaskExecMagicEffect",
+      "name": "TaskExecMagicEffect_ff60",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005007a0": {
-      "name": "TaskForceEnd",
+      "name": "TaskForceEnd_07a0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005011b0": {
-      "name": "TaskMoveToStart",
+      "name": "TaskMoveToStart_11b0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x004ffed0": {
-      "name": "TaskResetToIdle",
+      "name": "TaskResetToIdle_fed0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00500d50": {
-      "name": "TaskResolveAction",
+      "name": "TaskResolveAction_0d50",
       "signature": "int __thiscall(CCBStage *this, int nState)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00501cf0": {
-      "name": "TaskReturnToIdle",
+      "name": "TaskReturnToIdle_1cf0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00501e60": {
-      "name": "TaskShowLevelUp",
+      "name": "TaskShowLevelUp_1e60",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x00501f30": {
-      "name": "TaskShowSkillLearned",
+      "name": "TaskShowSkillLearned_1f30",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x005004b0": {
-      "name": "TaskWaitIdle",
+      "name": "TaskWaitIdle_04b0",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0050a1b0": {
-      "name": "TryRelease",
+      "name": "TryRelease_a1b0",
       "signature": "void __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0051f070": {
-      "name": "UpdateWeaponSlots",
+      "name": "UpdateWeaponSlots_f070",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0051f080": {
-      "name": "SetWeaponSlotA",
+      "name": "SetWeaponSlotA_f080",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
     "0x0051f090": {
-      "name": "SetWeaponSlotB",
+      "name": "SetWeaponSlotB_f090",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
@@ -2175,6 +2177,12 @@
       "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
       "name_source": "IDA语义分析 2026-11-01 批13",
       "name_note": "显示类别 4（ShowCategory4+LayoutSlotPanelE）"
+    },
+    "0x004FEEF0": {
+      "name": "GetData_EEF0",
+      "signature": "int __thiscall(CCBStage *this, void *thisa)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     }
   },
   "vtables": [

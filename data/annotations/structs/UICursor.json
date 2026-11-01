@@ -41,15 +41,15 @@
   },
   "methods": {
     "0x00535120": {
-      "name": "Update",
+      "name": "Update_5120",
       "signature": "void __thiscall UICursor::Update(double fDelta)",
       "evidence_level": "unverified"
     },
     "0x00541CC0": {
-      "name": "_todo_541CC0",
-      "signature": "void __thiscall()",
-      "source": "| [重名消解 2026-10-16 analyzer] 0x541CC0 A 级本体=6 次 vptr 写（0x541CC0+168/+259/+340/+635/+724/+867 三子对象组装）=**ctor 形**非 IRender（0x541160 才是 IRender(int,int,int,int,...) 真渲染）⇒ 改名 UICursor（ctor）消类内重名（C2065 暴露源） | [改名修正 2026-10-16 analyzer] 「UICursor(ctor)」判据不足收回——0x541CC0 头部 A 级=`ff 15 [IAT]` 调用+浮点操作非 ctor 头（6 写表是工作负载非组装序）⇒ 语义未考诚实保留 _todo_541CC0（重名消解仍达成）",
-      "evidence_level": "A"
+      "name": "Update_1CC0",
+      "signature": "void __thiscall(UICursor *this)",
+      "name_source": "IDA语义分析 2026-11-01 批16",
+      "name_note": "从 decomp 推断"
     },
     "0x00541160": {
       "name": "IRender",

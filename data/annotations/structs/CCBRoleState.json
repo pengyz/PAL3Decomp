@@ -670,7 +670,7 @@
       "evidence_level": "A"
     },
     "0x004EE7C0": {
-      "name": "Init",
+      "name": "Init_E7C0",
       "signature": "bool __thiscall(int nVal, char pData)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A"
@@ -681,7 +681,7 @@
       "evidence_level": "unverified"
     },
     "0x004EE890": {
-      "name": "UpdateRoleMP",
+      "name": "UpdateRoleMP_E890",
       "signature": "int __thiscall(int roleIdx)",
       "source": "| [T100] 同名消歧：@0x4EE890 体=GetRoleMP(this,roleIdx); return 0（decomp 证据）⇒ 语义名 UpdateRoleMP（与类内 GetRoleMP 命名族一致）；@0x4ECB00 保留 Update（全周期：CheckStatus/ProcessActions/UpdateEffects）——禁伪语义命名 ✓",
       "evidence_level": "unverified"
@@ -1096,7 +1096,7 @@
       "evidence_level": "unverified"
     },
     "0x004FA930": {
-      "name": "UpdateRoleMP",
+      "name": "UpdateRoleMP_A930",
       "signature": "char __thiscall(char arg0, int nVal)",
       "evidence_level": "unverified"
     },
@@ -1111,7 +1111,7 @@
       "evidence_level": "unverified"
     },
     "0x00456AB0": {
-      "name": "Init",
+      "name": "Init_6AB0",
       "signature": "void __thiscall(CCBRoleState *this)",
       "name_source": "IDA语义分析 2026-10-31 批5",
       "name_note": "初始化（UIListBox ctor + 字段设值）"
@@ -1176,7 +1176,7 @@
       "evidence_level": "unverified"
     },
     "0x004EEF20": {
-      "name": "CalcCombatDamage",
+      "name": "CalcCombatDamage_EF20",
       "signature": "int __thiscall(const void *pData, unsigned int roleIdx)",
       "evidence_level": "unverified"
     },
@@ -1253,7 +1253,7 @@
       "evidence_level": "unverified"
     },
     "0x004F0A10": {
-      "name": "CalcCombatDamage",
+      "name": "CalcCombatDamage_0A10",
       "signature": "char __thiscall(int nVal)",
       "evidence_level": "unverified"
     },
@@ -1746,7 +1746,7 @@
       "name_note": "输入处理（虚调用链）"
     },
     "0x004A3360": {
-      "name": "Init",
+      "name": "Init_3360",
       "signature": "int __thiscall(CCBRoleState *this, CHAR *thisa, int a2, int *a3)",
       "name_source": "IDA语义分析 2026-11-01 批14",
       "name_note": "从 decomp 推断（sub_4A3360）"

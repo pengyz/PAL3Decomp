@@ -136,10 +136,10 @@
       "evidence_level": "unverified"
     },
     "0x004D3AD0": {
-      "name": "Create_3ad0",
-      "signature": "char __thiscall(tagEffObjType *pEffObjType)",
-      "ordinal": 1,
-      "evidence_level": "unverified"
+      "name": "Initialize",
+      "signature": "virtual char __thiscall(CEffect *this, tagEffObjType *pEffObjType)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004CE460": {
       "name": "Render",
@@ -250,16 +250,16 @@
       "evidence_level": "unverified"
     },
     "0x004D4700": {
-      "name": "sub_4D4700",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D4700@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "evidence_level": "unverified"
+      "name": "Method_4700",
+      "signature": "int __thiscall(CEffect *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004D4840": {
-      "name": "sub_4D4840",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:?sub_4D4840@CEffect@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-      "evidence_level": "unverified"
+      "name": "Method_4840",
+      "signature": "int __thiscall(CEffect *this)",
+      "name_source": "IDA语义分析 2026-11-01 批15",
+      "name_note": "从 decomp 推断"
     },
     "0x004D3950": {
       "name": "~CEffect",
