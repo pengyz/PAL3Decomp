@@ -2074,13 +2074,7 @@
     "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
   },
   "0x004D37A0": {
-    "name": "Remove_37A0",
-    "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
-    "name_source": "IDA语义分析 2026-11-01 批15",
-    "name_note": "从 decomp 推断"
-  },
-  "0x004D4CA0": {
-    "name": "Remove_4CA0",
+    "name": "Remove__ovl_37A0",
     "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
     "name_source": "IDA语义分析 2026-11-01 批15",
     "name_note": "从 decomp 推断"
@@ -2229,13 +2223,7 @@
     "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
   },
   "0x004CB280": {
-    "name": "Remove_B280",
-    "signature": "virtual void __thiscall(Actor *this, int nFlags)",
-    "name_source": "IDA语义分析 2026-11-01 批15",
-    "name_note": "从 decomp 推断"
-  },
-  "0x004C9470": {
-    "name": "Remove_9470",
+    "name": "Remove__ovl_B280",
     "signature": "virtual void __thiscall(Actor *this, int nFlags)",
     "name_source": "IDA语义分析 2026-11-01 批15",
     "name_note": "从 decomp 推断"
