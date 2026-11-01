@@ -65,9 +65,10 @@
   },
   "methods": {
     "0x00445FA0": {
-      "name": "sub_445FA0",
-      "signature": "int __thiscall(void *a2)",
-      "evidence_level": "unverified"
+      "name": "SetRect",
+      "signature": "int __thiscall(UIWnd *this, void *a2)",
+      "name_source": "IDA语义分析 2026-11-01 批11",
+      "name_note": "设置矩形+发送消息 1022"
     },
     "0x0043BB90": {
       "name": "_scalar_dtor",
@@ -230,11 +231,10 @@
       "adjudication": "confirmed"
     },
     "0x0044E980": {
-      "name": "sub_44E980",
-      "signature": "void __thiscall(int, int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_44E980) | vtable_sig_arity_fill(ret-N=8) | vtable_sig_arity_fill(ret-N=8)",
-      "evidence_level": "unverified",
-      "adjudication": "rejected"
+      "name": "OnVisible",
+      "signature": "virtual void __thiscall(UIWnd *this, int a2, int a3)",
+      "name_source": "IDA语义分析 2026-11-01 批11",
+      "name_note": "可见性处理（m_bvisible 检查+offset 19）"
     },
     "0x004431B0": {
       "name": "_scalar_dtor_31B0",

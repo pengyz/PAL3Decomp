@@ -2145,6 +2145,12 @@
       "name": "SetWeaponSlotB",
       "signature": "int __thiscall(CCBStage *this)",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+    },
+    "0x00459FA0": {
+      "name": "CheckStateLimit",
+      "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
+      "name_source": "IDA语义分析 2026-11-01 批12",
+      "name_note": "状态限制检查（IsStateFlagSet<5）"
     }
   },
   "vtables": [

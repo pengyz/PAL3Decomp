@@ -2340,5 +2340,53 @@
     "signature": "int __cdecl(void *a2)",
     "name_source": "IDA语义分析 2026-11-01 批6",
     "name_note": "尺寸计算（width/height）"
+  },
+  "0x00445E50": {
+    "name": "GetRectRight",
+    "signature": "int __thiscall(int a2)",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "偏移 52 读取（矩形右边界）"
+  },
+  "0x00445FE0": {
+    "name": "CopyFields",
+    "signature": "void *__cdecl(void *a2)",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "字段拷贝（v1+16→a2）"
+  },
+  "0x00446030": {
+    "name": "AddToArray",
+    "signature": "void __thiscall(_DWORD *newElement)",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "数组添加（PtrArray::FindFirst+SetAt）"
+  },
+  "0x0044F130": {
+    "name": "InitUIComponents",
+    "signature": "void __thiscall(int nVal)",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "UI 组件初始化（PropUI/RoleStatePanel/EquipUI）"
+  },
+  "0x00452DF0": {
+    "name": "LoadRoleData",
+    "signature": "void __stdcall(int *a1, int nRoleIndex)",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "角色数据加载（RoleData+texture+float）"
+  },
+  "0x00458F70": {
+    "name": "ProcessString",
+    "signature": "CHAR *__cdecl(LPCSTR lpString, int a2, LPSTR lpString1)",
+    "name_source": "IDA语义分析 2026-11-01 批12",
+    "name_note": "字符串处理（LPCSTR→LPSTR）"
+  },
+  "0x00459080": {
+    "name": "GetDataPtr1",
+    "signature": "int *()",
+    "name_source": "IDA语义分析 2026-11-01 批12",
+    "name_note": "返回 dword_DE3490 数据指针"
+  },
+  "0x004590B0": {
+    "name": "GetDataPtr2",
+    "signature": "int *()",
+    "name_source": "IDA语义分析 2026-11-01 批12",
+    "name_note": "返回 dword_DE3448 数据指针"
   }
 }
