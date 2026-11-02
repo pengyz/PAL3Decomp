@@ -1219,550 +1219,725 @@
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Proceed_90F0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005091D0": {
       "name": "OnChangeAction",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "OnChangeAction_91D0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005091E0": {
       "name": "CheckAction",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CheckAction_91E0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005092A0": {
       "name": "GetRoleHeight",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetRoleHeight_92a0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005092B0": {
       "name": "GetOBBox",
       "signature": "CCBStage *__thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetOBBox_92b0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005096D0": {
       "name": "IsAtProtectPos",
       "signature": "bool __thiscall(CCBStage *this, int index, int nAttacker, int nVal)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "IsAtProtectPos_96D0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005099A0": {
       "name": "ApplyTaskTimeScale",
       "signature": "bool __thiscall(CCBStage *this, int nVal, BOOL fpTask)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族 | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsTaskFinished（0x509xxx 簇错挂）⇒ ApplyTaskTimeScale：五面：①调用者=CCBStage::Update() 帧链 ②被调=Actor::SetTimeScale+gbGeomNode::SetBladeTimeScale（时间/刀光缩放语义确凿）③成员 m_nActiveIdx/m_RoleSlots/m_nTodo_124 ④CCBStage ⑤Update 帧内 ⇒ 任务帧时间缩放处理（原名 IsTaskFinished 错挂）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "IsTaskFinished_99a0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00509B90": {
       "name": "RunActiveTask",
       "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
       "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsDoTask（0x509xxx 簇错挂）⇒ RunActiveTask：五面：①调用者=0x4FC480 update 域单链 ②被调=CCBRoleState::InitUI×6+gbMatrixStack Push/Pop+Actor::DispatchAction+子步 0x50A9B0 ③成员 m_nActiveIdx×14/m_pCBSystem×10/m_pRoleState×10/m_CamParams ④CCBStage 战斗舞台 ⑤主更新入口链 ⇒ 战斗任务主执行体（原名 IsDoTask 错挂——0x4FC980 才是真 IsDoTask 包装）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "IsDoTask_9b90",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A180": {
       "name": "Grab",
       "signature": "int(int dwStageTaskID, bool bNormal)",
       "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Grab_A180",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A1A0": {
       "name": "Release",
       "signature": "void __thiscall(CCBStage *this, char dwStageTaskID)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Release_a1a0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A1B0": {
       "name": "TryRelease",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TryRelease_a1b0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A1F0": {
       "name": "ForceRelease",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ForceRelease_a1f0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A200": {
       "name": "DangerForceRelease",
       "signature": "void __thiscall(CCBStage *this, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DangerForceRelease_A200",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A210": {
       "name": "IsGrabedBy",
       "signature": "bool __thiscall(CCBStage *this)",
       "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "IsGrabedBy_a210",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A260": {
       "name": "GetPointerPos",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetPointerPos_a260",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A2B0": {
       "name": "SetBladeTime",
       "signature": "void __thiscall(CCBStage *this, int fBladeTime)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetBladeTime_a2b0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A500": {
       "name": "LoadAction",
       "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
       "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "LoadAction_a500",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A520": {
       "name": "GetStatus",
       "signature": "int __thiscall(CCBStage *this, int index)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetStatus_a520",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A560": {
       "name": "GetWorldPos",
       "signature": "float *__thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetWorldPos_a560",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A5D0": {
       "name": "AddTask",
       "signature": "double __thiscall(CCBStage *this, float *fp)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "AddTask_a5d0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A6F0": {
       "name": "ForceDelTaskByPFN",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ForceDelTaskByPFN_A6F0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A700": {
       "name": "ForceEndTaskByPFN",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ForceEndTaskByPFN_a700",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A770": {
       "name": "MoveToAbsolute",
       "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
       "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 EndTask（0x509xxx 簇错挂）⇒ MoveToAbsolute：五面：①调用者=0x4EEEDC（状态域）②被调=gbVec3D::Normalize/Length+EndTask 转发 ③成员 m_fCurPosX/m_fCurPosY/m_pCBSystem ④CCBStage ⑤移动语义体 ⇒ 绝对位移处理（原名 EndTask 错挂）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "EndTask_a770",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A8E0": {
       "name": "DelTask",
       "signature": "bool __thiscall(CCBStage *this, int nIndex)",
       "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：⚠️ 五面未满（调用者 CCBSystem::GetSameThreadNum 名可疑域）⇒ 挂账不赋名；体证=m_TurnBuffer+DelTask 转发（回合缓冲推进候选形）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DelTask_a8e0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A8F0": {
       "name": "DelAllTask",
       "signature": "bool __thiscall(CCBStage *this, int nVal, char pData)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DelAllTask_A8F0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A920": {
       "name": "GetCurrentTask",
       "signature": "char __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetCurrentTask_a920",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A960": {
       "name": "GetCurrentTaskIndex",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetCurrentTaskIndex_a960",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A980": {
       "name": "IsReady",
       "signature": "bool __thiscall(CCBStage *this, int idx)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "IsReady_A980",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A9B0": {
       "name": "CalcTaskWorldMatrix",
       "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
       "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 DoTask（0x509xxx 簇错挂）⇒ CalcTaskWorldMatrix：五面：①调用者=0x509B90 主执行体内部步骤（语义明确）+EditorUpdate ②被调=CCBStage::GetWorldPos+gbMatrix4 ctor ③成员 m_CamParams/m_pRoleState ④CCBStage ⑤主执行体内坐标计算步 ⇒ 任务世界矩阵计算（原名 DoTask 错挂）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DoTask_a9b0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050AA60": {
       "name": "ClearBadPushTask",
       "signature": "void __thiscall(CCBStage *this, float fVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ClearBadPushTask_AA60",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050AAE0": {
       "name": "PushBackAllTask",
       "signature": "double __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "PushBackAllTask_AAE0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050AB10": {
       "name": "ClearAniMsg",
       "signature": "void __thiscall(CCBStage *this, char pData, float fVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ClearAniMsg_AB10",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050AC50": {
       "name": "SetParam",
       "signature": "void __thiscall(CCBStage *this, int pParam, char dw1)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetParam_AC50",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050AD30": {
       "name": "GetProperCurAction",
       "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetProperCurAction_ad30",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B070": {
       "name": "ProcTransportRun",
       "signature": "char __thiscall(CCBStage *this, unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcTransportRun_b070",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B290": {
       "name": "SetForceFinishThrowingWeapon",
       "signature": "void __thiscall(CCBStage *this, int bForce)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetForceFinishThrowingWeapon_b290",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B360": {
       "name": "ProcCatchED",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcCatchED_b360",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B580": {
       "name": "ProcPursueRole",
       "signature": "char __thiscall(CCBStage *this, int formal, int nVal, char pData)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcPursueRole_b580",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050BBD0": {
       "name": "ProcTurn",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcTurn_BBD0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050BCD0": {
       "name": "ProcTurnToRole",
       "signature": "unsigned int __thiscall(CCBStage *this, int formal)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcTurnToRole_bcd0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050C320": {
       "name": "ProcBlock",
       "signature": "unsigned int __thiscall(CCBStage *this, int dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcBlock_c320",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050C970": {
       "name": "ProcMagic",
       "signature": "unsigned int __thiscall(CCBStage *this, unsigned int dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcMagic_C970",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050CDE0": {
       "name": "ProcUseRecoverItem",
       "signature": "unsigned int __thiscall(CCBStage *this, float dwMsg)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ProcUseRecoverItem_CDE0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0053E310": {
       "name": "PlaySound",
       "signature": "void __thiscall(CCBStage *this, char *name, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "PlaySound_e310",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040CCF0": {
       "name": "GetAlive",
       "signature": "char *__thiscall(CCBStage *this, int *pConfig)",
       "source": "fix:C2660:dual evidence: caller push x1 + callee retn 4 x5; mangled QAEPADHPAH is pollution",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetAlive_CCF0",
+      "alt_signature": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040DCF0": {
       "name": "GetByIndex",
       "signature": "int *__thiscall(CCBStage *this, int *p_DWORD)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetByIndex_dcf0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040DD30": {
       "name": "Find",
       "signature": "int __thiscall(CCBStage *this, char *String1)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Find_DD30",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040DD80": {
       "name": "Reset",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Reset_dd80",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040CF60": {
       "name": "PassCmd",
       "signature": "int __thiscall(CCBStage *this, void *p_DWORD)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "PassCmd_cf60",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040CC90": {
       "name": "Init",
       "signature": "void __thiscall(CCBStage *this, int thisa)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "Init_cc90",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0040D010": {
       "name": "CheckValid",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CheckValid_D010",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00521F30": {
       "name": "DispatchUpdateAll",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DispatchUpdateAll_1F30",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00521E60": {
       "name": "DispatchUpdate",
       "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "DispatchUpdate_1e60",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050A4B0": {
       "name": "CheckViewTarget",
       "signature": "bool __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CheckViewTarget_a4b0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004E2C50": {
       "name": "InitUIByName",
       "signature": "void __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "InitUIByName_2C50",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004FFA90": {
       "name": "TaskExecAttack",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskExecAttack_FA90",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004FFCB0": {
       "name": "TaskExecCommand",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskExecCommand_FCB0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004FFF60": {
       "name": "TaskExecMagicEffect",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskExecMagicEffect_FF60",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00500D50": {
       "name": "TaskResolveAction",
       "signature": "int __thiscall(CCBStage *this, int nState)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskResolveAction_0d50",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B430": {
       "name": "FindFreeSlot",
       "signature": "char __thiscall(CCBStage *this, int a2)",
       "source": "| fn-ptr return form was unparseable ([6] permanent fail); adopted decomp projection char(int). Return width needs caller confirmation — indirect dispatch tail call eax",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "FindFreeSlot_B430",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B4C0": {
       "name": "CountValidTasks",
       "signature": "char __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CountValidTasks_b4c0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B4F0": {
       "name": "FindNextTask",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "FindNextTask_B4F0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050F200": {
       "name": "OnMagicHit",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "OnMagicHit_F200",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050FA20": {
       "name": "ClearTaskIfMatch",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ClearTaskIfMatch_FA20",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0044CFF0": {
       "name": "RandomizePositions",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "RandomizePositions_CFF0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004FFED0": {
       "name": "TaskResetToIdle",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskResetToIdle_FED0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005004B0": {
       "name": "TaskWaitIdle",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskWaitIdle_04B0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005007A0": {
       "name": "TaskForceEnd",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskForceEnd_07a0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00500C20": {
       "name": "TaskExecAction",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskExecAction_0c20",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005011B0": {
       "name": "TaskMoveToStart",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskMoveToStart_11B0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005014E0": {
       "name": "TaskEnterGuard",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskEnterGuard_14e0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005015C0": {
       "name": "SetupCombatAction",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetupCombatAction_15c0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00501CF0": {
       "name": "TaskReturnToIdle",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskReturnToIdle_1cf0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00501E60": {
       "name": "TaskShowLevelUp",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskShowLevelUp_1E60",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00501F30": {
       "name": "TaskShowSkillLearned",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "TaskShowSkillLearned_1f30",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050EDA0": {
       "name": "CheckPushState",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CheckPushState_eda0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050EE70": {
       "name": "OnPhysicalHit",
       "signature": "int __thiscall(CCBStage *this, int nVal)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "OnPhysicalHit_ee70",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00518E10": {
       "name": "SetActionVisible",
       "signature": "int __thiscall(CCBStage *this, char nActIndex)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetActionVisible_8E10",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00521A80": {
       "name": "CheckActionValid",
       "signature": "bool __cdecl(int nVal)",
       "static": true,
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "CheckActionValid_1a80",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x005220E0": {
       "name": "ClearRoleState",
       "signature": "int *__thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ClearRoleState_20e0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0053E9C0": {
       "name": "PauseSound",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "PauseSound_E9C0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0053EA10": {
       "name": "ResumeSound",
       "signature": "unsigned int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "ResumeSound_EA10",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B530": {
       "name": "RefreshTaskTargetPos",
       "signature": "void __thiscall(CCBStage *this)",
       "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 GetTaskState（0x509xxx 簇错挂）⇒ RefreshTaskTargetPos：五面：①调用者=CCBStage::GetProperCurAction+ProcTransportRun（动作选取/传送链）②被调=GetTaskState 转发 ③成员 m_CamParams×2/m_TargetPos×2 ④CCBStage ⑤动作处理链 ⇒ 目标位置/相机参数刷新（原名 GetTaskState 错挂）",
       "evidence_level": "A",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetTaskState_b530",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0050B330": {
       "name": "GetCurrentState",
       "signature": "char __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "GetCurrentState_B330",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0051F070": {
       "name": "UpdateWeaponSlots",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "UpdateWeaponSlots_F070",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0051F080": {
       "name": "SetWeaponSlotA",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetWeaponSlotA_f080",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0051F090": {
       "name": "SetWeaponSlotB",
       "signature": "int __thiscall(CCBStage *this)",
       "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+      "alt_name": "SetWeaponSlotB_f090",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x00459FA0": {
       "name": "sub_00459fa0",
@@ -1770,7 +1945,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_00459fa0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批12",
-      "name_note": "状态限制检查（IsStateFlagSet<5）"
+      "name_note": "状态限制检查（IsStateFlagSet<5）",
+      "alt_name": "CheckStateLimit",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0045A020": {
       "name": "sub_0045a020",
@@ -1778,7 +1955,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a020（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批13",
-      "name_note": "显示类别 1（ShowCategory1+LayoutSlotPanelB）"
+      "name_note": "显示类别 1（ShowCategory1+LayoutSlotPanelB）",
+      "alt_name": "ShowCategory1",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0045A0A0": {
       "name": "sub_0045a0a0",
@@ -1786,7 +1965,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a0a0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批13",
-      "name_note": "显示类别 2（ShowCategory2+LayoutSlotPanelC）"
+      "name_note": "显示类别 2（ShowCategory2+LayoutSlotPanelC）",
+      "alt_name": "ShowCategory2",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0045A120": {
       "name": "sub_0045a120",
@@ -1794,7 +1975,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a120（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批13",
-      "name_note": "显示类别 3（ShowCategory3+LayoutSlotPanelD）"
+      "name_note": "显示类别 3（ShowCategory3+LayoutSlotPanelD）",
+      "alt_name": "ShowCategory3",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x0045A1A0": {
       "name": "sub_0045a1a0",
@@ -1802,7 +1985,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a1a0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批13",
-      "name_note": "显示类别 4（ShowCategory4+LayoutSlotPanelE）"
+      "name_note": "显示类别 4（ShowCategory4+LayoutSlotPanelE）",
+      "alt_name": "ShowCategory4",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     },
     "0x004FEEF0": {
       "name": "sub_4FEEF0",
@@ -1810,7 +1995,9 @@
       "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_4FEEF0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
       "evidence_level": "A",
       "name_source": "IDA语义分析 2026-11-01 批15",
-      "name_note": "从 decomp 推断"
+      "name_note": "从 decomp 推断",
+      "alt_name": "GetData_EEF0",
+      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
     }
   },
   "vtables": [

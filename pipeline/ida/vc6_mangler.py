@@ -99,6 +99,8 @@ def encode_type(t):
 
 
 def strip_param_name(p):
+    if '(*' in (p or ''):
+        return p.strip()   # fp 形不削名（D6 修：削则独剩 ret 型）
     """Strip a trailing parameter name, but only when the last token can
     actually be a name ('unsigned short', 'char const *' etc. are types)."""
     toks = p.strip().rstrip('*').split()
@@ -284,18 +286,24 @@ def mangled_conflict(mangled_names):
 
 
 def mangle_global(func_name, sig):
-    """全局函数 mangled：?name@@YA/ YG/ YI<ret><params>@Z（cls=None 形）。"""
+    """全局函数 mangled：?name@@YA/ YG/ YI<ret><params>…（cls=None 形）。
+    D1 修（2026-11-02 复核）：已 mangled 名短路；零参尾=XZ（void 参 X+收尾 Z 无 @）。"""
+    if (func_name or '').startswith('?'):
+        return func_name   # D1② 已 mangled 名禁重绞
     cc, ret, params = parse_signature(sig)
     g = _GCC.get(cc, 'YA')
     def _enc(t):
         t = t.strip()
-        m = re.match(r'^(.+?)\s*\(\s*\*\s*\)\s*\((.*)\)$', t)   # 函数指针形
+        m = re.match(r'^(.+?)\s*\(\s*(?:__(?P<fc>stdcall|cdecl|fastcall)\s*)?\*\s*\)\s*\((.*)\)$', t)   # fp 形（D6 收调用约定）
         if m:
+            fpc = {'stdcall': 'P6G', 'fastcall': 'P6I', None: 'P6A', 'cdecl': 'P6A'}.get(m.group('fc'), 'P6A')
             fp_ret = encode_type(m.group(1).strip())
-            fp_args = ''.join(encode_type(strip_param_name(p)) for p in _split_params(m.group(2)))
-            return 'P6A' + fp_ret + fp_args + '@Z'   # fp 形收 @Z（2026-11-02 真值锚）
+            fp_args = ''.join(encode_type(strip_param_name(p)) for p in _split_params(m.group(3)))   # 命名组占 2 号位，args=3
+            return fpc + fp_ret + fp_args + '@Z'   # fp 形收 @Z（2026-11-02 真值锚）
         return encode_type(t)
     body = _enc(ret) + ''.join(_enc(strip_param_name(p)) for p in params)
+    if not params:
+        return '?' + func_name + '@@' + g + body + 'XZ'   # D1① 零参：void 参 X+Z 无 @
     return '?' + func_name + '@@' + g + body + '@Z'
 
 
@@ -306,3 +314,9 @@ def idb_name(cls_name, method_name, sig):
         return mangle(cls_name, method_name, sig)
     except Exception:
         return None
+
+
+def is_eh_funclet(name):
+    """D4（2026-11-02 复核）：_E/$E/$LN 形=EH funclet（编译器合成物）非可解析符号。"""
+    import re
+    return bool(re.match(r'^[$_]E\d+$|^\$LN\d+$|^\$\w+\d*$', name or ''))

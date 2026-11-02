@@ -2408,45 +2408,63 @@
     "signature": "void * __cdecl(void *a2)",
     "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账",
     "name_source": "P2 类型修 2026-11-02（调用方实证：解引用+数组访问=unsigned long*）",
-    "name_note": "字段拷贝（v1+16→a2）"
+    "name_note": "字段拷贝（v1+16→a2）",
+    "alt_name": "CopyFields",
+    "alt_signature": "unsigned long * __cdecl(void *a2)",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x0043FEC0": {
     "name": "sub_43FEC0",
     "signature": "int __cdecl(void *a2)",
     "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账",
     "name_source": "IDA语义分析 2026-11-01 批6",
-    "name_note": "字段拷贝（this+76/+16 ← a2）"
+    "name_note": "字段拷贝（this+76/+16 ← a2）",
+    "alt_name": "CopyFieldsFrom",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x00445DB0": {
     "name": "sub_445DB0",
     "signature": "int __cdecl(void *a2)",
     "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账",
     "name_source": "IDA语义分析 2026-11-01 批6",
-    "name_note": "尺寸计算（width/height）"
+    "name_note": "尺寸计算（width/height）",
+    "alt_name": "CalcSize",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x00445E50": {
     "name": "sub_445E50",
     "signature": "int __thiscall(int a2)",
     "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账",
     "name_source": "IDA语义分析 2026-11-01 批11",
-    "name_note": "偏移 52 读取（矩形右边界）"
+    "name_note": "偏移 52 读取（矩形右边界）",
+    "alt_name": "GetRectRight",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x00521EB0": {
     "name": "CCBStageRole_DispatchUpdate_1eb0",
     "signature": "int __cdecl(unsigned char nFlag)",
     "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
+    "name_note": "从 decomp 推断",
+    "alt_name": "Update_1EB0",
+    "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x00521EF0": {
     "name": "CCBStageRole_DispatchUpdate_1ef0",
     "signature": "int __cdecl(unsigned char nFlag)",
     "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
+    "name_note": "从 decomp 推断",
+    "alt_name": "Update_1EF0",
+    "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x00521F70": {
     "name": "CCBStageRole_DispatchUpdate_1f70",
     "signature": "int __cdecl(unsigned char nFlag)",
     "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
+    "name_note": "从 decomp 推断",
+    "alt_name": "Update_1F70",
+    "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
+    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   }
 }

@@ -50,3 +50,28 @@ def test_conflict_normalizes_ovl_suffix():
     b2 = mangle('UIListBox', strip('Destroy__ovl_E520'), 'void __thiscall()')
     assert mangled_conflict([a, b]) is False   # 现名不撞（后缀未清）
     assert mangled_conflict([a2, b2]) is True  # 清扫后名=真冲突必报
+
+
+def test_d1_zero_param_global_XZ_form():
+    """D1① 零参全局=尾 XZ（void 参 X+收尾 Z，无 @）：?FileSysInit@@YAXXZ。"""
+    assert mangle(None, 'FileSysInit', 'void __cdecl()') == '?FileSysInit@@YAXXZ'
+    assert mangle(None, 'GlobOvl2', 'int __stdcall()') == '?GlobOvl2@@YGXZ' or \
+           mangle(None, 'GlobOvl2', 'int __stdcall()') == '?GlobOvl2@@YGHXZ'
+
+
+def test_d1_already_mangled_shortcircuit():
+    assert mangle(None, '?FileSysInit@@YAXXZ', 'void __cdecl()') == '?FileSysInit@@YAXXZ'
+
+
+def test_d6_stdcall_fp_param():
+    """D6 stdcall fp 参须 P6G 编码（静默编 H=bug）。"""
+    out = mangle(None, 'F', 'void __cdecl(void (__stdcall *)(int))')
+    assert 'P6GXH@Z' in out, out
+
+
+def test_d4_E_family_is_eh_funclet_note():
+    """D4 口径修正：_E/$E=EH funclet（编译器合成物），非 stage4 可解析符号——
+    Fix1 注释主张撤回，collect_sub_refs 接面挂账。"""
+    is_eh_funclet = vm.is_eh_funclet
+    assert is_eh_funclet('_E68') and is_eh_funclet('$E68') and is_eh_funclet('$LN4')
+    assert not is_eh_funclet('sub_401000')
