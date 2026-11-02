@@ -2129,6 +2129,11 @@ def _mangle_vc6_class_chain(cls_name):
     return '@'.join(reversed(parts))
 
 def _mangle_vc6(cls_name, method_name, sig):
+    if not cls_name:
+        # [TOS 2026-11-02] 全局形单源委派（本副本不支持 None——2026-11-02 apply 崩因）；
+        # TODO: 本副本整体收编 vc6_mangler（双副本分叉债）
+        import vc6_mangler as _vm6
+        return _vm6.mangle(None, method_name, sig)
     cls_chain = _mangle_vc6_class_chain(cls_name)
     paren = sig.find('(') if sig else -1
     if paren == -1: return '?' + method_name + '@' + cls_chain + '@@QAEXXZ'

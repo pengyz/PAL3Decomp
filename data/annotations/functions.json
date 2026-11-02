@@ -532,16 +532,6 @@
     "signature": "int __cdecl(int a2, int a3)",
     "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_445ED0 ⇒ LoadUISceneTexture | evidence: ①UIScene::LoadResource+UIScene_OpenAndLoadResource ②**gbTexture::LoadTexture** ③591B ④UI 资源域 ⑤资源加载链 | confidence: high"
   },
-  "0x00445fe0": {
-    "name": "sub_445FE0",
-    "signature": "void * __cdecl(void *a2)",
-    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账"
-  },
-  "0x0043fec0": {
-    "name": "sub_43FEC0",
-    "signature": "int __cdecl(void *a2)",
-    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账"
-  },
   "0x00442000": {
     "name": "CalcWeightedOffset",
     "signature": "int __cdecl()",
@@ -560,16 +550,6 @@
     "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
     "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ResetContainerState 保留（补面完成）：①调用者 100 站（PalScript::Op_WaterMagic/UIPushButton::CtorWithFlag 广布 ✓）②本体=thiscall(this) 重置形 ✓ ③成员=this+N 触面 ✓ ④类归属=广泛基类 utility ✓ ⑤交互=构造/操作重置 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
     "declaration_only": true
-  },
-  "0x00445db0": {
-    "name": "sub_445DB0",
-    "signature": "int __cdecl(void *a2)",
-    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账"
-  },
-  "0x00445e50": {
-    "name": "sub_445E50",
-    "signature": "int __thiscall(int a2)",
-    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账"
   },
   "0x00445ea0": {
     "name": "ZeroInitSelf68",
@@ -1841,18 +1821,6 @@
     "name": "CCBProtectWindow_Destroy",
     "signature": "void __cdecl()"
   },
-  "0x00521eb0": {
-    "name": "CCBStageRole_DispatchUpdate_1eb0",
-    "signature": "int __cdecl(unsigned char nFlag)"
-  },
-  "0x00521ef0": {
-    "name": "CCBStageRole_DispatchUpdate_1ef0",
-    "signature": "int __cdecl(unsigned char nFlag)"
-  },
-  "0x00521f70": {
-    "name": "CCBStageRole_DispatchUpdate_1f70",
-    "signature": "int __cdecl(unsigned char nFlag)"
-  },
   "0x00541630": {
     "name": "InitUIQuadManagerSingleton",
     "signature": "void __cdecl unknown_libname_522(void)",
@@ -2303,35 +2271,11 @@
     "name_source": "IDA语义分析 2026-11-01 批6",
     "name_note": "帧计数设置"
   },
-  "0x0043FEC0": {
-    "name": "CopyFieldsFrom",
-    "signature": "int __cdecl(void *a2)",
-    "name_source": "IDA语义分析 2026-11-01 批6",
-    "name_note": "字段拷贝（this+76/+16 ← a2）"
-  },
   "0x00445BF0": {
     "name": "SetArrayElement",
     "signature": "void __thiscall(int this, int newElement)",
     "name_source": "IDA语义分析 2026-11-01 批6",
     "name_note": "数组元素设置（PtrArray::SetAt）"
-  },
-  "0x00445DB0": {
-    "name": "CalcSize",
-    "signature": "int __cdecl(void *a2)",
-    "name_source": "IDA语义分析 2026-11-01 批6",
-    "name_note": "尺寸计算（width/height）"
-  },
-  "0x00445E50": {
-    "name": "GetRectRight",
-    "signature": "int __thiscall(int a2)",
-    "name_source": "IDA语义分析 2026-11-01 批11",
-    "name_note": "偏移 52 读取（矩形右边界）"
-  },
-  "0x00445FE0": {
-    "name": "CopyFields",
-    "signature": "unsigned long * __cdecl(void *a2)",
-    "name_source": "P2 类型修 2026-11-02（调用方实证：解引用+数组访问=unsigned long*）",
-    "name_note": "字段拷贝（v1+16→a2）"
   },
   "0x00446030": {
     "name": "AddToArray",
@@ -2435,24 +2379,6 @@
     "name_source": "IDA语义分析 2026-11-01 批16",
     "name_note": "从 decomp 推断"
   },
-  "0x00521EB0": {
-    "name": "Update_1EB0",
-    "signature": "int __cdecl(unsigned __int8 nFlag)",
-    "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
-  },
-  "0x00521EF0": {
-    "name": "Update_1EF0",
-    "signature": "int __cdecl(unsigned __int8 nFlag)",
-    "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
-  },
-  "0x00521F70": {
-    "name": "Update_1F70",
-    "signature": "int __cdecl(unsigned __int8 nFlag)",
-    "name_source": "IDA语义分析 2026-11-01 批16",
-    "name_note": "从 decomp 推断"
-  },
   "0x00528190": {
     "name": "Initialize_8190",
     "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)",
@@ -2474,6 +2400,52 @@
   "0x0053EDD0": {
     "name": "Method_EDD0",
     "signature": "int __stdcall(int a1)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00445FE0": {
+    "name": "sub_445FE0",
+    "signature": "void * __cdecl(void *a2)",
+    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账",
+    "name_source": "P2 类型修 2026-11-02（调用方实证：解引用+数组访问=unsigned long*）",
+    "name_note": "字段拷贝（v1+16→a2）"
+  },
+  "0x0043FEC0": {
+    "name": "sub_43FEC0",
+    "signature": "int __cdecl(void *a2)",
+    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "字段拷贝（this+76/+16 ← a2）"
+  },
+  "0x00445DB0": {
+    "name": "sub_445DB0",
+    "signature": "int __cdecl(void *a2)",
+    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账",
+    "name_source": "IDA语义分析 2026-11-01 批6",
+    "name_note": "尺寸计算（width/height）"
+  },
+  "0x00445E50": {
+    "name": "sub_445E50",
+    "signature": "int __thiscall(int a2)",
+    "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账",
+    "name_source": "IDA语义分析 2026-11-01 批11",
+    "name_note": "偏移 52 读取（矩形右边界）"
+  },
+  "0x00521EB0": {
+    "name": "CCBStageRole_DispatchUpdate_1eb0",
+    "signature": "int __cdecl(unsigned char nFlag)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00521EF0": {
+    "name": "CCBStageRole_DispatchUpdate_1ef0",
+    "signature": "int __cdecl(unsigned char nFlag)",
+    "name_source": "IDA语义分析 2026-11-01 批16",
+    "name_note": "从 decomp 推断"
+  },
+  "0x00521F70": {
+    "name": "CCBStageRole_DispatchUpdate_1f70",
+    "signature": "int __cdecl(unsigned char nFlag)",
     "name_source": "IDA语义分析 2026-11-01 批16",
     "name_note": "从 decomp 推断"
   }

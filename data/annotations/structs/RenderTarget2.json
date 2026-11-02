@@ -522,13 +522,6 @@
       "evidence_level": "unverified",
       "adjudication": "shared_impl"
     },
-    "0x004C0610": {
-      "name": "nullsub_75_override_0610",
-      "signature": "int __thiscall(int, int, int, int)",
-      "source": "vtable_gap_fill_v1(IDB:?nullsub_75_override@RenderTarget2@@QAEHXZ) | vtable_sig_arity_fill(ret-N=16) | vtable_sig_arity_fill(ret-N=16)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
     "0x004C0620": {
       "name": "_scalar_dtor_0620",
       "signature": "void __thiscall(int nVal1)",
@@ -566,12 +559,6 @@
       "declaration_only": true,
       "adjudication": "shared_impl"
     },
-    "0x004C5740": {
-      "name": "Render_5740",
-      "signature": "virtual int __thiscall(RenderTarget2 *this)",
-      "name_source": "IDA语义分析 2026-11-01 批14",
-      "name_note": "从 decomp 推断（sub_4C5740）"
-    },
     "0x004C5800": {
       "name": "sub_4C5800",
       "signature": "void __thiscall(int nVal1)",
@@ -604,15 +591,19 @@
       "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4c3ec0 `flds 0x8(%esp)`（参2=float FPU 载入）+ `mov 0x10(%esp),%edi`（3 push 后 =参1）+ `mov %ecx,%esi`（thiscall）+ 尾 `ret $0x10`（4 栈参）；语义未定 ⇒ _todo_ 占位。vtable[RenderTarget2][1] slot[26]",
       "evidence_level": "A"
     },
-    "0x004c5740": {
-      "name": "sub_4C5740",
-      "signature": "int __thiscall(RenderTarget2 *this)",
+    "0x004C0610": {
+      "name": "nullsub_75_override_0610",
+      "signature": "int __thiscall(int, int, int, int)",
+      "source": "vtable_gap_fill_v1(IDB:?nullsub_75_override@RenderTarget2@@QAEHXZ) | vtable_sig_arity_fill(ret-N=16) | vtable_sig_arity_fill(ret-N=16)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl",
       "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
     },
-    "0x004c0610": {
-      "name": "nullsub_75_override_0610",
-      "signature": "int __thiscall(RenderTarget2 *this)",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+    "0x004C5740": {
+      "name": "Render_5740",
+      "signature": "virtual int __thiscall(RenderTarget2 *this)",
+      "name_source": "IDA语义分析 2026-11-01 批14",
+      "name_note": "从 decomp 推断（sub_4C5740）"
     }
   },
   "vtables": [
