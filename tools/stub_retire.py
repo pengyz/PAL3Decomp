@@ -1,3 +1,5 @@
+# 【语义翻转 2026-11-02】stub 台账=真身需求单（每条 stub = 待真身 TODO）；
+# 本工具保留为退役对账/存量计量（度量职能收编），stub 生成已废弃。
 #!/usr/bin/env python3
 """tools/stub_retire.py — stub↔S2 退役对账（方案 v2 §2，M3）。
 
