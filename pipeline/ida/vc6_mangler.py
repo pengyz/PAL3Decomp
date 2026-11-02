@@ -151,6 +151,8 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     Returns:
         Mangled name string (e.g. '?FindInOpen@NODE@AStarPathFinder@@QAEHH@Z')
     """
+    if not cls_name:
+        return mangle_global(method_name, sig)
     cls_chain = _mangle_class_chain(cls_name)
 
     paren = sig.find('(') if sig else -1
@@ -231,3 +233,67 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
         r += ''.join(_self_ref_backref(encode_type(strip_param_name(p)), cls_name)
                      for p in params) + '@Z'
     return r
+
+
+# [2026-11-02 基建] 全局形 + 签名解析 + mangled 冲突裁定（apply 期转换用）。
+_GCC = {'__cdecl': 'YA', '__stdcall': 'YG', '__fastcall': 'YI'}
+
+
+def _split_params(pstr):
+    params = []
+    if pstr and pstr.strip() not in ('', 'void'):
+        depth = 0; cur = ''
+        for ch in pstr:
+            if ch in '<([': depth += 1; cur += ch
+            elif ch in '>)]': depth -= 1; cur += ch
+            elif ch == ',' and depth == 0:
+                if cur.strip(): params.append(cur.strip()); cur = ''
+            else: cur += ch
+        if cur.strip(): params.append(cur.strip())
+    return params
+
+
+def parse_signature(sig):
+    """'int __cdecl(const char *,const char *,char *)' → (conv, ret, params)。"""
+    sig = sig or ''
+    paren = sig.find('(')
+    if paren == -1:
+        return ('__thiscall', sig.strip(), [])
+    prefix = sig[:paren].strip()
+    pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
+    for kw in ('virtual', 'static'):
+        prefix = re.sub(r'\b%s\s+' % kw, '', prefix)
+    cc = '__thiscall'
+    for c in ('__thiscall', '__cdecl', '__stdcall', '__fastcall'):
+        if c in prefix:
+            cc = c
+            break
+    ret = prefix.replace(cc, '').strip()
+    ret = re.sub(r'\w+::\w+', '', ret).strip()
+    return (cc, ret, _split_params(pstr))
+
+
+def mangled_conflict(mangled_names):
+    """冲突裁定升级：mangled 形相等=冲突（同名异签名=重载不冲突；异类不冲突）。"""
+    seen = set()
+    for n in mangled_names:
+        if n in seen:
+            return True
+        seen.add(n)
+    return False
+
+
+def mangle_global(func_name, sig):
+    """全局函数 mangled：?name@@YA/ YG/ YI<ret><params>@Z（cls=None 形）。"""
+    cc, ret, params = parse_signature(sig)
+    g = _GCC.get(cc, 'YA')
+    def _enc(t):
+        t = t.strip()
+        m = re.match(r'^(.+?)\s*\(\s*\*\s*\)\s*\((.*)\)$', t)   # 函数指针形
+        if m:
+            fp_ret = encode_type(m.group(1).strip())
+            fp_args = ''.join(encode_type(strip_param_name(p)) for p in _split_params(m.group(2)))
+            return 'P6A' + fp_ret + fp_args + '@Z'   # fp 形收 @Z（2026-11-02 真值锚）
+        return encode_type(t)
+    body = _enc(ret) + ''.join(_enc(strip_param_name(p)) for p in params)
+    return '?' + func_name + '@@' + g + body + '@Z'
