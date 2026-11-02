@@ -1776,6 +1776,9 @@ def dedupe_lvar_decls(code):
     return '\n'.join(out) if not dropped else '\n'.join(out)
 
 
+_unresolved_census = None  # P0-3 UNRESOLVED 标记 census
+
+
 def run(code, ctx):
     """Stage 3: post-OOP cleanup."""
     cls_name = ctx.cls_name
@@ -2107,10 +2110,10 @@ def run(code, ctx):
     # IDA label _L references
     code = _re_loc.sub(r'\b_L\d+\b', lambda m: 'UNRESOLVED_%s' % m.group(0), code)
     # census 计数（度量可见）
-    if _unresolved_labels:
-        if not hasattr(stage3_cleanup, '_unresolved_census'):
-            stage3_cleanup._unresolved_census = set()
-        stage3_cleanup._unresolved_census |= _unresolved_labels
+    global _unresolved_census
+    if _unresolved_census is None:
+        _unresolved_census = set()
+    _unresolved_census |= _unresolved_labels
     # Replace __SPAIR64__ IDA macro with equivalent
     code = code.replace('__SPAIR64__', '__PAIR64__')
     # 批 E 单点（TextureLibDataBase:391 C2520）：MSVC6 无 unsigned __int64→double 转换

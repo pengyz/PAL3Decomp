@@ -661,3 +661,48 @@
 | `CCCTData::CreateUI` | vftable_local | `_BYTE` | 28 | non_class_hint | `(*(void ( **)(_BYTE *, int *, _DWORD *, CCCTData *, char *, _DWORD, int))(v24 + 28))( &this->m_Pool[1881].bStartCamValid, &byte_A00560, v67, this, aUiGamemainuiEq_1, 0, v25)` |
 | `CEffect::sub_4D17D0` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)p_m_bActive + 4))( p_m_bActive, *(_DWORD *)(*(_DWORD *)v18 + v19), *(_DWORD *)(*(_DWORD *)v18 + v19 + 4), 0)` |
 | `PAL3::InitGame` | inline | `_DWORD` | 28 | non_class_hint | `(*(void ( **)(_DWORD, char *))(*(_DWORD *)LODWORD(gfxMgr[1].InvViewMatrix.xy) + 28))( LODWORD(gfxMgr[1].InvViewMatrix.xy), v51)` |
+| `MainEquipUI::HandleMessage` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(BOOL ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)m_pfather + 24))(m_pfather, 1000, 0, 0)` |
+| `UIAnimateCtrlEX::StepAnimation` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, *((_DWORD *)&this->UIAnimateCtrl + 43))` |
+| `UIAnimateCtrlEX::NextFrame` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, *((_DWORD *)&this->UIAnimateCtrl + 43))` |
+| `UICaption::Update2` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1021, this->m_id, 1)` |
+| `UIFrameWnd::Update` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIFrameWnd::ProcessInput` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1009, this->m_id, LOWORD(pt.x) \| (LOWORD(pt.y) << 16))` |
+| `UIListBox::OnMessage` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::LoadListItems` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::Update` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::ProcessSelection` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, result)` |
+| `UIMap::ProcessHitTest` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, *((_DWORD *)this + 43))` |
+| `UIProgressBar::CheckRayHitRole` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v24 + 24))( v24, 1016, this->m_id, v22)` |
+| `UIPushButton::Update` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v6 + 24))(v6, 1021, this->m_id, 1)` |
+| `UIScene::Update` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIScene::ProcessMessage` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIScene::Destroy` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1)` |
+| `UIWnd::HitTest` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `UIWnd::sub_445FA0` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `CCCTData::Create` | inline | `_BYTE` | 28 | non_class_hint | `(*(int ( **)(_BYTE *, int *, int *, CCCTData *, _DWORD, int, int))(*(_DWORD *)&this->m_Pool[1929].bLineMove + 28))( &this->m_Pool[1929].bLineMove, &byte_A00532, &p_DWORD, this, 0, ` |
+| `CCCTData::Create` | inline | `float` | 16 | non_class_hint | `(*(void ( **)(float *, __int16 *, int *, CCCTData *))(*(_DWORD *)p_fSwingFre + 16))( p_fSwingFre, &word_A00552, &v77, this)` |
+| `CCCTData::Create` | vftable_local | `_BYTE` | 28 | non_class_hint | `(*(void ( **)(_BYTE *, int *, _DWORD *, CCCTData *, char *, _DWORD, int))(v24 + 28))( &this->m_Pool[1881].bStartCamValid, &byte_A00560, v67, this, aUiGamemainuiEq_1, 0, v25)` |
+| `CCBParabolaWindow::Cleanup` | inline | `_DWORD` | 20 | non_class_hint | `(*(int ( **)(_DWORD, int))(*(_DWORD *)*v3 + 20))(*v3, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `UIListBox` | 20 | self_arg_mismatch | `(*(int ( **)(UIListBox *, int))(*(_DWORD *)&m_pItemList->UIWnd + 20))(m_pItemList, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1)` |
+| `CCBRoleState::Init_E7C0` | vftable_local | `_DWORD` | 1068 | self_arg_mismatch | `(***(void ( ****)(_DWORD, int))(v3 + 1068))(*(_DWORD *)(v3 + 1068), 1)` |
+| `CCBStage::IsDoTask_9b90` | inline | `unsigned int` | 16 | non_class_hint | `(*(void ( **)(unsigned int, _DWORD))(*(_DWORD *)inited[1].dwMagicID[1][3] + 16))( inited[1].dwMagicID[1][3], 0)` |
+| `CCBUI::DlgProcEditor` | inline | `int` | 40 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 40))(v6, v4)` |
+| `CCBUIPanel::InitMagicWindows` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *))(*(_DWORD *)v2 + 4))(v2)` |
+| `CEffCustomShape::CreateEffect` | inline | `int` | 24 | non_class_hint | `(*(int ( **)(int, _DWORD))(*(_DWORD *)v7 + 24))(v7, 0)` |
+| `CEffCustomShape::UpdateEffect` | inline | `CTaskTpl_tagEffTaskParam_CEffCustomShape` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffCustomShape *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v3->_tail_000 + 4))( v3, *(_DWORD *)(*v5 + v7), *(_DWORD *)(*v5 + v7 + 4), 0)` |
+| `CEffCustomShape::UpdateEffect` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v17 + 20))(v17)` |
+| `CUtil::Method_31F0` | inline | `char` | 20 | non_class_hint | `(*(void ( **)(char *, int))(*(_DWORD *)m_pBattleSystem + 20))(m_pBattleSystem, 1)` |
+| `CUtil::Method_31F0` | inline | `PropUI` | 20 | self_arg_mismatch | `(*(void ( **)(PropUI *, int))(*(_DWORD *)&m_pPropUI->UIWnd + 20))(m_pPropUI, 1)` |
+| `LineupUI::OnMessage_7BB0` | inline | `LineupUI` | 24 | self_arg_mismatch | `(*(void ( **)(LineupUI *, int, int, int))(*(_DWORD *)&this->UIWnd + 24))( this, 1007, 773, this->m_TimeMoney.m_bfocus)` |
+| `LineupUI::OnMessage_0600` | inline | `int` | 24 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)this->m_CtrlPlank[11].m_Dw.m_bvisible + 24))( this->m_CtrlPlank[11].m_Dw.m_bvisible, 0)` |
+| `PAL3::Render_5C00` | inline | `gbGfxManager` | 48 | slot_out_of_range | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 48))(gfxMgr)` |
+| `PAL3::Render_5C00` | inline | `gbGfxManager` | 52 | slot_out_of_range | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 52))(gfxMgr)` |
+| `PAL3::Render_5C00` | inline | `gbGfxManager` | 112 | slot_out_of_range | `(*(void ( **)(gbGfxManager *, int *))(*(_DWORD *)gfxMgr->_tail_000 + 112))(gfxMgr, &g_nPAL3_D8E488)` |
+| `PAL3::Render_5C00` | inline | `_DWORD` | 4 | non_class_hint | `(*(void ( **)(_DWORD))(*(_DWORD *)LODWORD(g_fGameSpeed) + 4))(LODWORD(g_fGameSpeed))` |
+| `SaleUI::OnMessage_B4B0` | inline | `SaleUI` | 24 | self_arg_mismatch | `(*(void ( **)(SaleUI *, int, _DWORD, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1007, 0, 0)` |
+| `UIFrameWnd::Update_2AD0` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIWnd::SetRect_5FA0` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `::InitUIComponents` | vftable_local | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD, tagRECT *, int))(v17 + 16))(nVal + 260, 0, &pRect, nVal)` |
+| `::ProcessTree` | vftable_local | `int` | 16 | non_class_hint | `(*(void ( **)(int, int, int *, int))(v6 + 16))(parent + 368, 161, &v18, parent)` |
