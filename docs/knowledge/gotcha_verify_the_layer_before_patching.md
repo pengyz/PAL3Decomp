@@ -57,3 +57,10 @@ stage5 接线 `strip_singleton_thunk_glue` 时 import 行 replace 因模式不�
 规则：任何 replace 接线后必须 `assert 新符号 in 源码`（或断言 replace 计数>0），
 静默落空=延迟爆炸。同族：checkout 落暂存区坑（git checkout <file> 恢复的是
 INDEX 态；须 `git checkout HEAD -- <file>` 才是 HEAD 态——T4 一版矫正落空根因）。
+
+## 2026-11-02 追加：idalib worker 与管线 idat 互斥（许可/资源面）
+症状：`cli.py apply`/loop 的 apply 阶段 2.8s 静默 exit non-zero，无日志无异常档；
+直跑 idat -A -S<script> EXIT=0 但**脚本不执行**（沙盒证明文件不产生）。
+根因：ida_pro_mcp 的 idalib_server 常驻 worker 在进程 ⇒ 独立 idat 拿不到许可/资源静默退。
+处置：`ps aux | grep idalib_server` → kill worker（supervisor 保留，下次 MCP 调用自动复生）。
+教训：R14 已记正向（管线持 IDB 禁并发 idat）——反向同病：**用 MCP 取证后、跑管线前须清 worker**。
