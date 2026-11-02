@@ -40,3 +40,15 @@ def test_placeholder_names_pass():
         functions={'0x004074C0': {'name': 'todo_ctor', 'signature': 'void __cdecl()'}},
         structs={}, globals={})
     assert any(op['kind'] == 'set_name' and op['name'] == 'todo_ctor' for op in plan)
+
+
+def test_union_dict_maps_to_define_union():
+    """inline-union dict 型 → define_union op（禁字节桩）。"""
+    plan = build_import_plan(functions={}, globals={},
+        structs={'C': {'size': 36,
+            'known_members': {'16': {'name': 'fval', 'type': {'union': [
+                {'type': 'float', 'name': 'fval'}, {'type': 'int', 'name': 'ival'}]}}}}})
+    u = [op for op in plan if op['kind'] == 'define_union']
+    assert u and {m['name'] for m in u[0]['members']} == {'fval', 'ival'}
+    s = [op for op in plan if op['kind'] == 'define_struct'][0]
+    assert s['members'][0]['type'] == u[0]['name']   # 成员引用 union 型名

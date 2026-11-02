@@ -12,7 +12,7 @@ pyghidra.start()   # JVM 先起，ghidra.* 方可 import（PyGhidra 契约）
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_annotation import partition_struct_passes, ghidra_sig_params, reconcile_sizes
 
-from ghidra.program.model.data import StructureDataType, CategoryPath
+from ghidra.program.model.data import StructureDataType, CategoryPath, UnionDataType
 from ghidra.program.model.symbol import SourceType
 try:
     from ghidra.program.model.data import ParameterDefinitionImpl
@@ -43,6 +43,14 @@ def apply_plan(currentProgram, plan_path):
 
   # ---- 结构体两遍建 ----
   p1, p2 = partition_struct_passes([op for op in plan if op['kind'] == 'define_struct'])
+  # union 建型（define_union 先于 pass2 引用）
+  for op in plan:
+      if op.get('kind') == 'define_union':
+          if dtm.getDataType('/annotations/' + op['name']) is not None:
+              continue
+          u = dtm.addDataType(UnionDataType(CategoryPath('/annotations'), op['name']), None)
+          for um in op.get('members') or []:
+              u.add(resolve_dt(dtm, str(um.get('type') or 'int')), um.get('name') or 'u', None)
   created = {}
   for s in p1:
     st = StructureDataType(CategoryPath('/annotations'), s['name'], 0)
@@ -70,6 +78,7 @@ def apply_plan(currentProgram, plan_path):
   obs = {n: created[n].getLength() for n in created}
   decl = {s['name']: s['size'] for s in p1 if s.get('size')}
   diffs = reconcile_sizes(decl, obs)
+  _mismatch = {k: {'declared': v[0], 'observed': v[1]} for k, v in diffs.items()}
   if diffs:
     print('[apply_plan][SIZE-MISMATCH] %s' % diffs)
   else:
@@ -87,22 +96,34 @@ def apply_plan(currentProgram, plan_path):
         a = addr(op['addr'])
         f = fm.getFunctionAt(a) if a else None
         if not f:
+            _nf = globals().setdefault('_nofunc', [])
+            _nf.append(op.get('name'))
             continue
         params = ghidra_sig_params(op)
         try:
-            from ghidra.program.model.listing import ParameterImpl
+            from ghidra.program.model.listing import ParameterImpl, Function
+            from ghidra.program.model.symbol import SourceType as _ST
+            from java.util import ArrayList
             pd = []
             for nm, ty in params:
                 base = resolve_dt(dtm, ty)
                 d = PointerDataType(base) if ty.endswith('*') else base
-                pd.append(ParameterImpl(nm or None, d, prog if False else currentProgram))
-            from ghidra.program.model.data import VoidDataType
+                pd.append(ParameterImpl(nm or None, d, currentProgram))
             ret = resolve_dt(dtm, op.get('ret') or 'void')
-            from ghidra.program.model.symbol import SourceType as _ST
             f.setReturnType(ret, _ST.USER_DEFINED)
             if pd:
-                f.setArguments(pd)
-            f.setCallingConvention('thiscall' if op.get('cls') and op.get('conv') == '__thiscall' else '__stdcall' if op.get('conv') == '__stdcall' else 'cdecl')
+                # [根因修 2026-11-02] varargs 形静默错绑（JPype）——ArrayList 结构形；
+                # thiscall 的 this 变量独立于 formals ⇒ setThis 绑型
+                # [T3 修] setThis 不存在（复核 L9）；this 以首 formal 保留
+                # （剔除致 this 塌寄存器 in_RSI+偏移错位——新鲜会话 T3 实证）
+                formals = pd
+                if formals:
+                    _lst = ArrayList()
+                    for _v in formals:
+                        _lst.add(_v)
+                    f.replaceParameters(_lst, Function.FunctionUpdateType.DYNAMIC_STORAGE_FORMAL_PARAMS,
+                                        False, _ST.USER_DEFINED)
+            f.setCallingConvention('__thiscall' if op.get('cls') and op.get('conv') == '__thiscall' else '__stdcall' if op.get('conv') == '__stdcall' else '__cdecl')
             sigd += 1
         except Exception as e:
             print('[apply_plan][sig-skip] %s: %s' % (op.get('name'), e))
@@ -112,7 +133,17 @@ def apply_plan(currentProgram, plan_path):
             currentProgram.getSymbolTable().createLabel(a, op['name'], SourceType.USER_DEFINED)
             named += 1
 
-  print('[apply_plan] done: names=%d sigs=%d structs=%d' % (named, sigd, len(created)))
+  # 读回验证：成员命名/union 落型（探针级证据入报告）
+  _verify = {}
+  for _n, _st in created.items():
+      try:
+          _verify[_n] = [(c.getFieldName(), c.getOffset()) for c in _st.getComponents()]
+      except Exception as _e:
+          _verify[_n] = 'ERR:%s' % _e
+  _u = dtm.getDataType('/annotations/UNION_Complex_16')
+  print('[apply_plan] done: names=%d sigs=%d structs=%d union=%s nofunc=%s' % (named, sigd, len(created), bool(_u), globals().get('_nofunc')))
+  print('[apply_plan][verify-comps] %s' % _verify)
+  return _mismatch, _verify
 
 def main(argv):
     """pyghidraRun 驱动：argv = <projdir> <projname> <progpath> <plan.json>"""
@@ -123,10 +154,10 @@ def main(argv):
     proj = GhidraProject.openProject(projdir, projname)
     _fp = progpath.rsplit('/', 1)
     _folder, _name = (_fp[0] or '/'), _fp[1]
-    prog = proj.openProgram(_folder, _name, True)
+    prog = proj.openProgram(_folder, _name, False)   # readOnly=False（第三参=readOnly——True=DomainFileProxy 脱钩副本，持久化死根因）
     _tx = prog.startTransaction('apply_plan')
     try:
-        _mismatch = apply_plan(prog, plan_path)
+        _mismatch, _verify = apply_plan(prog, plan_path)
     finally:
         prog.endTransaction(_tx, True)
     # 验证合体：decompile 抽样验类型传播
@@ -149,7 +180,7 @@ def main(argv):
     print('[verify] emitted %d decompiled units -> %s' % (n, _out))
     # 机读报告（e2e judge 消费）：sizeof 对账 + 出码计数 + 成员渲染抽样
     import json as _json
-    rep = {'sizeof_mismatch': _mismatch, 'emitted_units': n, 'member_hits': []}
+    rep = {'sizeof_mismatch': _mismatch, 'verify_comps': _verify, 'emitted_units': n, 'member_hits': [], 'verify_comps': _verify}
     for f in fns:
         try:
             r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
@@ -161,7 +192,7 @@ def main(argv):
             pass
     _json.dump(rep, open(_os.path.join(_out, '..', 'apply_report.json'), 'w'), indent=1)
     print('[verify] apply_report.json written')
-    proj.save()
+    proj.save(prog)   # 单通道（复核定谳：prog.save 回退双死，已删）
     proj.close()
 
 

@@ -59,8 +59,17 @@ def build_import_plan(functions=None, structs=None, globals=None):
                     off = int(k)
                 except (TypeError, ValueError):
                     continue
-                members.append({'offset': off, 'name': m['name'],
-                                'type': m.get('type') or 'undefined'})
+                ty = m.get('type')
+                if isinstance(ty, dict) and 'union' in ty:
+                    # inline-union → define_union op + 成员引用 union 型名（禁字节桩）
+                    uname = 'UNION_%s_%d' % (cls, off)
+                    umems = [{'name': v.get('name') or 'u%d' % i, 'type': v.get('type') or 'int'}
+                             for i, v in enumerate(ty['union']) if isinstance(v, dict)]
+                    plan.append({'kind': 'define_union', 'name': uname, 'members': umems})
+                    members.append({'offset': off, 'name': m['name'], 'type': uname})
+                else:
+                    members.append({'offset': off, 'name': m['name'],
+                                    'type': ty if isinstance(ty, str) else (ty or 'undefined')})
         plan.append({'kind': 'define_struct', 'name': cls,
                      'size': d.get('size') or d.get('binary_size'),
                      'members': sorted(members, key=lambda x: x['offset'])})

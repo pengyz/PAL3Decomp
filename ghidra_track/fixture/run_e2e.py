@@ -12,7 +12,7 @@ rep = {'case': sys.argv[1], 'D1': {}, 'D2': {}, 'D3': {}, 'D4': 'pending-ida-tra
 
 # ---- fixture 编译+运行（冒烟）----
 src = os.path.join(CASE, 'src', 'fixture.cpp')
-r = sh('g++ -std=c++98 -O0 -o %s %s' % (os.path.join(OUT, 'fixture'), src))
+r = sh('g++ -std=c++98 -O0 -no-pie -o %s %s' % (os.path.join(OUT, 'fixture'), src))   # 地址轴钉死（PIE 覆盖坑）
 smoke = sh(os.path.join(OUT, 'fixture'))
 rep['smoke'] = {'compile_ok': r.returncode == 0, 'run': smoke.stdout.strip()[:80]}
 
@@ -54,7 +54,18 @@ if os.path.exists(plan):
     aj = os.path.join(OUT, 'apply_report.json')
     if os.path.exists(aj):
         a = load(aj)
-        rep['D1']['sizeof_reconcile'] = 'PASS' if not a.get('sizeof_mismatch') else a['sizeof_mismatch']
+        _sm = a.get('sizeof_mismatch')
+        rep['D1']['sizeof_reconcile'] = ('PASS' if _sm == {} else (_sm if _sm else 'BLIND(null)-TREATED-AS-FAIL'))
+        # T1 持久化断言：新鲜进程读回（readOnly=False 修复的回归钉）
+        pb = sh('GHIDRA_INSTALL_DIR=%s python3.10 -c "'
+                'import pyghidra,os;os.environ.setdefault(\'GHIDRA_INSTALL_DIR\',os.environ[\'GHIDRA_INSTALL_DIR\']);'
+                'pyghidra.start();from ghidra.base.project import GhidraProject;'
+                'p=GhidraProject.openProject(\'%s\',\'PAL3_FX\');pr=p.openProgram(\'/\',\'fixture\',False);'
+                'd=pr.getDataTypeManager().getDataType(\'/annotations/Complex\');'
+                'print(\'PERSIST\',bool(d))" 2>/dev/null | grep PERSIST' % (
+                    os.path.join(ROOT, 'tools/ghidra/ghidra_12.1.2_PUBLIC'),
+                    os.path.join(ROOT, 'ghidra_track/ghidra_proj')))
+        rep['D1']['persistence'] = 'PASS' if 'PERSIST True' in pb.stdout else 'FAIL:' + pb.stdout.strip()[:80]
         slice_dir = os.path.join(OUT, 'slice')
         units = [f for f in os.listdir(slice_dir) if f.endswith('.c')] if os.path.isdir(slice_dir) else []
         # ---- D2: 编译桶 ----
