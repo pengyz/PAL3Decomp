@@ -775,8 +775,22 @@ def check(struct_dir=None):
                         )
 
     _run_claim_gate(errors, warnings)
+    _run_cxx_gate(errors, warnings)
     return errors, warnings
 
+
+
+def _run_cxx_gate(errors, warnings):
+    """强检测闸（2026-11-02）：重名必被查出——三门棘轮（同址双录/同名双址/C++ 铁律）。"""
+    try:
+        import sys as _s, os as _o
+        _s.path.insert(0, _o.path.join(_o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))), 'tools'))
+        import cxx_gate as _cg
+        _errs, _warns = _cg.main()
+        errors.extend(_errs)
+        warnings.extend(_warns)
+    except Exception as _e:
+        errors.append('CXX_GATE:internal_error %s' % _e)
 
 
 def _run_claim_gate(errors, warnings):
