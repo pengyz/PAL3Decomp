@@ -1,0 +1,5 @@
+{"Vec3": {"size": 12, "members": {"x": 0, "y": 4, "z": 8}},
+ "Complex": {"size": 36, "members": {"id": 0, "pos": 4, "fval": 16, "name": 20}},
+ "Base": {"size": 16, "members": {"m_baseVal": 8}},
+ "Derived": {"size": 64, "members": {"m_complex": 12, "m_pNext": 48, "m_flags": 56}},
+ "note": "机测 layout_dump（g++ -std=c++98）——尾填充复用实证 m_complex@12"}

@@ -6,57 +6,78 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(getSourceFile().getAbsolutePath())))
+import pyghidra
+pyghidra.start()   # JVM 先起，ghidra.* 方可 import（PyGhidra 契约）
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_annotation import partition_struct_passes, ghidra_sig_params, reconcile_sizes
 
 from ghidra.program.model.data import StructureDataType, CategoryPath
 from ghidra.program.model.symbol import SourceType
-from ghidra.program.model.listing import ParameterDefinitionImpl
-from ghidra.program.model.data import PointerDataType
+try:
+    from ghidra.program.model.data import ParameterDefinitionImpl
+except ImportError:
+    from ghidra.program.model.listing import ParameterDefinitionImpl
+from ghidra.program.model.data import (PointerDataType, VoidDataType, IntegerDataType,
+    UnsignedIntegerDataType, FloatDataType, DoubleDataType, CharDataType, ByteDataType)
 
-plan_path = getScriptArgs()[0]
-plan = json.load(open(plan_path))
-fm = currentProgram.getFunctionManager()
-dtm = currentProgram.getDataTypeManager()
-af = currentProgram.getAddressFactory()
+_PRIM = {'void': VoidDataType, 'int': IntegerDataType, 'unsigned int': UnsignedIntegerDataType,
+         'float': FloatDataType, 'double': DoubleDataType, 'char': CharDataType,
+         'byte': ByteDataType, 'undefined': ByteDataType}
 
-def addr(s):
+def resolve_dt(dtm, name):
+    n = (name or 'undefined').strip().rstrip(' *').strip()
+    if n in _PRIM:
+        return _PRIM[n]()
+    dt = dtm.getDataType('/annotations/' + n) or dtm.getDataType('/' + n) or dtm.getDataType(n)
+    return dt or ByteDataType()
+
+def apply_plan(currentProgram, plan_path):
+  plan = json.load(open(plan_path))
+  fm = currentProgram.getFunctionManager()
+  dtm = currentProgram.getDataTypeManager()
+  af = currentProgram.getAddressFactory()
+
+  def addr(s):
     return af.getAddress(s) if not s.startswith('0x') else af.getAddress(hex(int(s, 16)))
 
-# ---- 结构体两遍建 ----
-p1, p2 = partition_struct_passes([op for op in plan if op['kind'] == 'define_struct'])
-created = {}
-for s in p1:
+  # ---- 结构体两遍建 ----
+  p1, p2 = partition_struct_passes([op for op in plan if op['kind'] == 'define_struct'])
+  created = {}
+  for s in p1:
     st = StructureDataType(CategoryPath('/annotations'), s['name'], 0)
+    existing = dtm.getDataType('/annotations/' + s['name'])
+    if existing is not None and hasattr(existing, 'deleteAll'):
+        existing.deleteAll()          # 幂等：多轮重跑不得累积移位
+        existing.setLength(s.get('size') or 0)
+        created[s['name']] = existing
+        continue
     if s.get('size'):
         st.setLength(s['size'])
     created[s['name']] = dtm.addDataType(st, None)
-for s in p2:
+  for s in p2:
     st = created[s['name']]
     for m in s['members']:
         try:
             dt = dtm.getDataType('/annotations/' + str(m.get('type') or 'undefined'))
             if dt is None:
                 dt = dtm.addDataType(StructureDataType(CategoryPath('/annotations'), str(m['type']), 4), None)
-            st.insertAtOffset(m['offset'], dt, dt.getLength())
-            mem = st.getMemberAt(m['offset'])
-            if mem:
-                mem.setName(m['name'])
+            st.replaceAtOffset(m['offset'], dt, dt.getLength(), m['name'], None)   # 覆盖式（insert=移位）
         except Exception as e:
             print('[apply_plan][member-skip] %s.%s @%d: %s' % (s['name'], m['name'], m['offset'], e))
 
-# ---- sizeof 对账（导入即校验）----
-obs = {n: created[n].getLength() for n in created}
-decl = {s['name']: s['size'] for s in p1 if s.get('size')}
-diffs = reconcile_sizes(decl, obs)
-if diffs:
+  # ---- sizeof 对账（导入即校验）----
+  obs = {n: created[n].getLength() for n in created}
+  decl = {s['name']: s['size'] for s in p1 if s.get('size')}
+  diffs = reconcile_sizes(decl, obs)
+  if diffs:
     print('[apply_plan][SIZE-MISMATCH] %s' % diffs)
-else:
+  else:
     print('[apply_plan][sizeof] reconcile OK (%d structs)' % len(decl))
 
-# ---- 符号/签名 ----
-named = sigd = 0
-for op in plan:
+  # ---- 符号/签名 ----
+  named = sigd = 0
+  for op in plan:
     if op['kind'] == 'set_name':
         a = addr(op['addr'])
         if a:
@@ -69,13 +90,19 @@ for op in plan:
             continue
         params = ghidra_sig_params(op)
         try:
+            from ghidra.program.model.listing import ParameterImpl
             pd = []
             for nm, ty in params:
-                base = dtm.getDataType('/annotations/' + ty.rstrip(' *').strip()) or dtm.getDataType(ty.rstrip(' *').strip()) or dtm.getDataType('int')
+                base = resolve_dt(dtm, ty)
                 d = PointerDataType(base) if ty.endswith('*') else base
-                pd.append(ParameterDefinitionImpl(nm or None, d, None))
-            ret = dtm.getDataType(op.get('ret') or 'void') or dtm.getDataType('void')
-            f.setSignature(ret, f.getCallingConventionName(), pd, SourceType.USER_DEFINED)
+                pd.append(ParameterImpl(nm or None, d, prog if False else currentProgram))
+            from ghidra.program.model.data import VoidDataType
+            ret = resolve_dt(dtm, op.get('ret') or 'void')
+            from ghidra.program.model.symbol import SourceType as _ST
+            f.setReturnType(ret, _ST.USER_DEFINED)
+            if pd:
+                f.setArguments(pd)
+            f.setCallingConvention('thiscall' if op.get('cls') and op.get('conv') == '__thiscall' else '__stdcall' if op.get('conv') == '__stdcall' else 'cdecl')
             sigd += 1
         except Exception as e:
             print('[apply_plan][sig-skip] %s: %s' % (op.get('name'), e))
@@ -85,4 +112,55 @@ for op in plan:
             currentProgram.getSymbolTable().createLabel(a, op['name'], SourceType.USER_DEFINED)
             named += 1
 
-print('[apply_plan] done: names=%d sigs=%d structs=%d' % (named, sigd, len(created)))
+  print('[apply_plan] done: names=%d sigs=%d structs=%d' % (named, sigd, len(created)))
+
+def main(argv):
+    """pyghidraRun 驱动：argv = <projdir> <projname> <progpath> <plan.json>"""
+    import pyghidra
+    pyghidra.start()
+    from ghidra.base.project import GhidraProject
+    projdir, projname, progpath, plan_path = argv[1], argv[2], argv[3], argv[4]
+    proj = GhidraProject.openProject(projdir, projname)
+    _fp = progpath.rsplit('/', 1)
+    _folder, _name = (_fp[0] or '/'), _fp[1]
+    prog = proj.openProgram(_folder, _name, True)
+    _tx = prog.startTransaction('apply_plan')
+    try:
+        apply_plan(prog, plan_path)
+    finally:
+        prog.endTransaction(_tx, True)
+    # 验证合体：decompile 抽样验类型传播
+    from ghidra.app.decompiler import DecompInterface
+    from ghidra.util.task import ConsoleTaskMonitor
+    di = DecompInterface(); di.openProgram(prog)
+    af = prog.getAddressFactory(); fm = prog.getFunctionManager()
+    import os as _os
+    _out = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'out', 'slice')
+    _os.makedirs(_out, exist_ok=True)
+    n = 0
+    fns = list(fm.getFunctions(True))
+    for f in fns[:40]:
+        r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
+        if r and r.decompileCompleted() and r.getDecompiledFunction().getC():
+            c = r.getDecompiledFunction().getC()
+            fn = ''.join(ch if ch.isalnum() else '_' for ch in f.getName())[:60]
+            open(_os.path.join(_out, fn + '.c'), 'w').write(c)
+            n += 1
+    print('[verify] emitted %d decompiled units -> %s' % (n, _out))
+    for want in ('0x0043E520', '0x00445B90'):
+        f = fm.getFunctionAt(af.getAddress(hex(int(want, 16))))
+        if not f:
+            print('[verify] no func at', want); continue
+        r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
+        if r and r.decompileCompleted():
+            c = r.getDecompiledFunction().getC()
+            print('[verify] %s (%s): this->hits=%d' % (want, f.getName(), c.count('this->')))
+            for line in c.splitlines():
+                if 'this->' in line or 'm_' in line:
+                    print('   |', line.strip()[:90])
+    proj.save()
+    proj.close()
+
+
+if __name__ == '__main__':
+    main(sys.argv)
