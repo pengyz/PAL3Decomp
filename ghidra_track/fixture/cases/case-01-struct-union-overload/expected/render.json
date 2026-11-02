@@ -1,6 +1,29 @@
-{"assertions": [
- {"id": "member-access", "desc": "Derived::render 内 this->m_flags/m_complex 成员渲染", "regex": "m_complex|m_flags"},
- {"id": "union-view", "desc": "Complex::fval/ival 位面视图可分辨", "regex": "fval|ival"},
- {"id": "overload-split", "desc": "calc(int,int) 与 calc(double) 两定义分离", "count_min": 2},
- {"id": "zero-arg-xz", "desc": "fixture_get 已 mangled 名直通 (?fixture_get@@YAHXZ)", "regex": "fixture_get"},
- {"id": "vtable-call", "desc": "update/render 虚调用形", "regex": "update|render"}]}
+{
+ "assertions": [
+  {
+   "id": "member-access",
+   "desc": "G2 收紧：成员访问须 ->形（裸成员名禁假绿；this-> 形=终判据）",
+   "regex": "param_1->(pos|fval|name|id)|this->m_"
+  },
+  {
+   "id": "union-view",
+   "desc": "Complex::fval/ival 位面视图可分辨",
+   "regex": "->(fval|ival)|UNION_Complex_16"
+  },
+  {
+   "id": "overload-split",
+   "desc": "calc(int,int) 与 calc(double) 两定义分离",
+   "count_min": 2
+  },
+  {
+   "id": "zero-arg-xz",
+   "desc": "fixture_get 已 mangled 名直通 (?fixture_get@@YAHXZ)",
+   "regex": "fixture_get"
+  },
+  {
+   "id": "vtable-call",
+   "desc": "update/render 虚调用形",
+   "regex": "update|render"
+  }
+ ]
+}

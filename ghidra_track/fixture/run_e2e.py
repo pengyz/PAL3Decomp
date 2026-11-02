@@ -49,6 +49,10 @@ if os.path.exists(plan):
     # fixture exe 导入（幂等：已存在跳过）
     sh('%s/support/analyzeHeadless %s PAL3_FX -import %s' % (
         gh, os.path.join(ROOT, 'ghidra_track/ghidra_proj'), os.path.join(OUT, 'fixture')))
+    import shutil as _sh
+    for _d in (os.path.join(OUT, 'slice'), os.path.join(OUT, 'slice_fresh')):
+        if os.path.isdir(_d):
+            _sh.rmtree(_d)   # [G4] 判读防污染：清场禁双代同堂
     sh(env + 'python3.10 ghidra_track/apply_plan.py %s PAL3_FX /fixture %s %s' % (
         os.path.join(ROOT, 'ghidra_track/ghidra_proj'), plan, os.path.join(OUT, 'slice')))
     aj = os.path.join(OUT, 'apply_report.json')
@@ -56,13 +60,18 @@ if os.path.exists(plan):
         a = load(aj)
         _sm = a.get('sizeof_mismatch')
         rep['D1']['sizeof_reconcile'] = ('PASS' if _sm == {} else (_sm if _sm else 'BLIND(null)-TREATED-AS-FAIL'))
+        fr = sh('GHIDRA_INSTALL_DIR=%s python3.10 ghidra_track/render_fresh.py %s PAL3_FX fixture %s' % (
+            os.path.join(ROOT, 'tools/ghidra/ghidra_12.1.2_PUBLIC'),
+            os.path.join(ROOT, 'ghidra_track/ghidra_proj'),
+            os.path.join(OUT, 'slice_fresh')))
+        rep['D3_fresh_render'] = 'ok' if '[render_fresh]' in fr.stdout else 'FAIL:' + fr.stdout[-80:]
         # T1 持久化断言：新鲜进程读回（readOnly=False 修复的回归钉）
         pb = sh('GHIDRA_INSTALL_DIR=%s python3.10 -c "'
                 'import pyghidra,os;os.environ.setdefault(\'GHIDRA_INSTALL_DIR\',os.environ[\'GHIDRA_INSTALL_DIR\']);'
                 'pyghidra.start();from ghidra.base.project import GhidraProject;'
                 'p=GhidraProject.openProject(\'%s\',\'PAL3_FX\');pr=p.openProgram(\'/\',\'fixture\',False);'
                 'd=pr.getDataTypeManager().getDataType(\'/annotations/Complex\');'
-                'print(\'PERSIST\',bool(d))" 2>/dev/null | grep PERSIST' % (
+                'print(\'PERSIST\',bool(d));p.close()" 2>/dev/null | grep PERSIST' % (
                     os.path.join(ROOT, 'tools/ghidra/ghidra_12.1.2_PUBLIC'),
                     os.path.join(ROOT, 'ghidra_track/ghidra_proj')))
         rep['D1']['persistence'] = 'PASS' if 'PERSIST True' in pb.stdout else 'FAIL:' + pb.stdout.strip()[:80]
@@ -75,6 +84,19 @@ if os.path.exists(plan):
             # 复用 types.h 生成（case 注解）
             sh('python3 %s %s %s' % (os.path.join(ROOT, 'ghidra_track/fixture/gen_types.py'),
                tdir, os.path.join(slice_dir, 'types.h')))
+            # [G3] isms 生成（此前从未生成=include 缺件假红）
+            import re as _rx
+            _toks, _dats = set(), set()
+            for _f in units:
+                _s = open(os.path.join(slice_dir, _f)).read()
+                _toks |= {(_k, _h) for _k, _h in _rx.findall(r'\b(LAB|FUN)_([0-9a-fA-F]+)\b', _s)}
+                _dats |= set(_rx.findall(r'\bDAT_([0-9a-fA-F]+)\b', _s))
+            with open(isms, 'w') as _w:
+                _w.write('typedef unsigned char undefined1;\ntypedef unsigned short undefined2;\ntypedef unsigned int undefined4;\ntypedef unsigned long long undefined8;\ntypedef void code;\n')
+                for _k, _h in sorted(_toks):
+                    _w.write('extern "C" int %s_%s(...);\n' % (_k, _h))
+                for _h in sorted(_dats):
+                    _w.write('extern "C" int DAT_%s;\n' % _h)
             cat = os.path.join(slice_dir, 'all_units.cc')
             with open(cat, 'w') as w:
                 w.write('#include "types.h"\n#include "ghidra_isms.h"\n')
@@ -82,16 +104,17 @@ if os.path.exists(plan):
                     w.write(open(os.path.join(slice_dir, f)).read())
             cc = sh('g++ -fsyntax-only -fpermissive %s 2>&1 | grep -c "error:"' % cat)
             errs = sh('g++ -fsyntax-only -fpermissive %s 2>&1 | grep "error:"' % cat).stdout
-            buckets = {'noise-missing-src': 0, 'ghidra-ism': 0, 'transform-broken': 0, 'annotation-signal': 0}
+            buckets = {'noise-missing-src': 0, 'ghidra-ism': 0, 'transform-broken': 0, 'annotation-signal': 0, 'unclassified': 0}
             for ln in errs.splitlines():
-                if re.search(r'\b(LAB|FUN|DAT)_\w+ .*undeclared|unknown type name .undefined', ln):
-                    if 'undefined' in ln: buckets['ghidra-ism'] += 1
-                    else: buckets['noise-missing-src'] += 1
+                if re.search(r'no member|has no member|cannot convert|invalid conversion', ln):
+                    buckets['annotation-signal'] += 1          # [G3] 真信号桶先判（:: 先判会吞此桶）
+                elif re.search(r'unknown type name .undefined|unknown type name .code', ln):
+                    buckets['ghidra-ism'] += 1
+                elif re.search(r'\b(LAB|FUN|DAT)_\w+ .*(undeclared|not declared)', ln):
+                    buckets['noise-missing-src'] += 1
                 elif re.search(r'constructor|code\*|template|::', ln):
                     buckets['transform-broken'] += 1
-                elif re.search(r'no member|has no member|cannot convert|invalid', ln):
-                    buckets['annotation-signal'] += 1
-                else: buckets['transform-broken'] += 1
+                else: buckets['unclassified'] += 1             # [G3] 未分类桶禁吞
             exp2 = load(os.path.join(CASE, 'expected', 'compile.json'))
             allowed = exp2.get('allowed_buckets', {})
             verdict = {k: {'count': v, 'allowed': allowed.get(k, 0), 'ok': v <= allowed.get(k, 0) if k != 'annotation-signal' else v == 0}
@@ -101,7 +124,9 @@ if os.path.exists(plan):
         # ---- D3: 渲染钉 ----
         rj = load(os.path.join(CASE, 'expected', 'render.json'))
         results = []
-        allc = ''.join(open(os.path.join(slice_dir, f)).read() for f in units) if units else ''
+        _fd = os.path.join(OUT, 'slice_fresh')
+        funits = [f for f in os.listdir(_fd) if f.endswith('.c')] if os.path.isdir(_fd) else []
+        allc = ''.join(open(os.path.join(_fd, f)).read() for f in funits) if funits else ''
         for a in rj.get('assertions', []):
             if 'regex' in a:
                 ok = bool(re.search(a['regex'], allc))

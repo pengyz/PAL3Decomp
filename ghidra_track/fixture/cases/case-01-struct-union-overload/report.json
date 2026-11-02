@@ -2,11 +2,11 @@
  "case": "case-01-struct-union-overload",
  "D1": {
   "layout": "PASS",
-  "sizeof_reconcile": "BLIND(null)-TREATED-AS-FAIL",
-  "persistence": "FAIL:PERSIST False"
+  "sizeof_reconcile": "PASS",
+  "persistence": "PASS"
  },
  "D2": {
-  "total_errors": 1,
+  "total_errors": 38,
   "buckets": {
    "noise-missing-src": {
     "count": 0,
@@ -19,7 +19,7 @@
     "ok": true
    },
    "transform-broken": {
-    "count": 1,
+    "count": 4,
     "allowed": 0,
     "ok": false
    },
@@ -27,6 +27,11 @@
     "count": 0,
     "allowed": 0,
     "ok": true
+   },
+   "unclassified": {
+    "count": 34,
+    "allowed": 0,
+    "ok": false
    }
   },
   "D2": "FAIL"
@@ -34,11 +39,11 @@
  "D3": [
   {
    "id": "member-access",
-   "ok": false
+   "ok": true
   },
   {
    "id": "union-view",
-   "ok": false
+   "ok": true
   },
   {
    "id": "overload-split",
@@ -57,5 +62,6 @@
  "smoke": {
   "compile_ok": true,
   "run": "hello from fixture counter=63 name=hello from fixture"
- }
+ },
+ "D3_fresh_render": "ok"
 }
