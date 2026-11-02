@@ -70,3 +70,29 @@ def build_import_plan(functions=None, structs=None, globals=None):
         plan.append({'kind': 'define_global', 'addr': addr,
                      'name': info['name'], 'type': info.get('type') or 'undefined'})
     return plan
+
+
+def partition_struct_passes(plan):
+    """两遍建分区：pass1=全部空壳（name,size，前向引用可用）；pass2=成员填充。"""
+    p1, p2 = [], []
+    for op in plan:
+        if op.get('kind') == 'define_struct':
+            p1.append({'name': op['name'], 'size': op.get('size')})
+            p2.append({'name': op['name'], 'members': op.get('members') or []})
+    return p1, p2
+
+
+def ghidra_sig_params(sig):
+    """签名参数形（Ghidra ParameterDefinition 预览）：thiscall 注入隐藏 this 首参。"""
+    params = []
+    if sig.get('cls') and sig.get('conv') == '__thiscall':
+        params.append(('this', '%s *' % sig['cls']))
+    for p in sig.get('params') or []:
+        params.append(('', p))
+    return params
+
+
+def reconcile_sizes(declared, observed):
+    """sizeof 对账（导入即校验）：注解 size vs 库内实际——差异=布局钉。"""
+    return {k: (v, observed[k]) for k, v in declared.items()
+            if k in observed and observed[k] != v}
