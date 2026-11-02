@@ -100,6 +100,17 @@ report.json=度量产物（入库）。
 - 每 case 产 `report.json`；全绿判据=四钉全过
 - 演进规则：新特性=新 case 目录（期望即真值，禁改期望迁就实现）
 
+### 4.6 差分器 `ghidra_track/diff_tool.py`（spec M1 判据件）
+- 输入：`a_errors.txt`（A 轨=Hex-Rays/codegen 编译错误）+ `b_errors.txt`（B 轨=丑C 编译错误），行形 `unit: error: TEXT`
+- 归一：地址/数字/空白 → `error_key`（对齐键）；按 key 聚合计数
+- 输出 `data/status/dual_track_m1_diff.json`（schema_version:1）：三桶
+  - `A_only`=仅 A 有 ⇒ **Hex-Rays 约束候选**（spec M1「仅 A 有」簇归因对象，逐条 trace+class 裁定）
+  - `B_only`=仅 B 有 ⇒ 验证轨伪影/转换层桶
+  - `intersection`=共有 ⇒ 注解/共性问题
+- 每 item 带 `text/source_unit/count/class/trace`（class 归因**留空待逐条裁定**——不准确=不判定）
+- 定性基准（与 e2e-rules §3 对齐）：B 侧 `transform-broken`=变换应消（quick/full 的效果面）；
+  差分后 A_only 里**归因为 Hex-Rays 约束**的条目=约束隔离清单产出
+
 ### 4.5 生命周期与状态管理（铁律，全部来自实证）
 
 | 铁律 | 出处实证 |
@@ -140,7 +151,7 @@ tools/ghidra/ghidra_12.1.2_PUBLIC             Ghidra（GHIDRA_HOME 钉 12.1.2）
 
 | 里程碑 | 内容 | 验收（沿用 spec M1-M4 口径） |
 |---|---|---|
-| **M1 收官**（当前） | ①apply 迁回 postScript 形（ADR-2）②daemon 通道消费跑通 ③reconstruct quick 跑 ④case-01 四钉全绿（D3 5/5 含 this->m_flags）⑤D2 变换红绿对照表 | `dual_track_m1_diff.json` 差分表+「仅 A 有」≥1 条归因 |
+| **M1 收官**（当前） | ①case-01 四钉全绿（✅ 已达：D1 三件+D3 5/5）②**PAL3 切片双轨差分**（spec:102-104 口径）：A 轨=既有 probe/match 错误面，B 轨=切片灌库→reconstruct quick→编译 ③diff_tool 产三桶清单**逐条溯源归因** ④D2 变换红绿对照（transform-broken 烧减率）| **spec:86 口径**：`dual_track_m1_diff.json` 三桶差分清单+「仅 A 有」簇≥1 条 Hex-Rays 约束归因（带 trace） |
 | **M2 全量** | PAL3 全量注解灌库（~2000 函数/3935 认领）→ reconstruct quick 全量丑C → 编译 → 错误四桶分账 → B−A 差分=Hex-Rays 约束清单 | 全量差分表+桶账 |
 | **M3 边界登记册** | spec G3：边界语义差登记（引用/模板/内联汇编…） | 登记册 v1 |
 | **M4 条件门** | 2a 借壳（Python 变换插件化+tiering）评估 | 条件门判定文 |
@@ -168,7 +179,7 @@ tools/ghidra/ghidra_12.1.2_PUBLIC             Ghidra（GHIDRA_HOME 钉 12.1.2）
 ## 8. 验收判据（M1 终口径）
 
 1. `case-01 report.json`：D1 三件（layout/sizeof/persistence）PASS · D2 ⊆ 白名单 · D3 5/5（member-access/union-view/overload-split/zero-arg-xz/vtable-call，fresh-session）· D4 挂位或出首表
-2. `data/status/dual_track_m1_diff.json`：B−A/A−B/交集三桶差分表 + 「仅 A 有」≥1 条 Hex-Rays 约束归因
+2. `data/status/dual_track_m1_diff.json`（diff_tool 产，schema_version:1）：A_only/B_only/intersection 三桶清单**逐条 trace+class**；「A_only」中≥1 条 class=hexrays-constraint（Hex-Rays 约束归因）
 3. `git diff` 对 `pal3/src` 与 `data/annotations` **零字节变更**
 4. 生命周期铁律 L-persist/L-lock/L-fresh 在 run_e2e 内自动执行（不靠人记）
 
