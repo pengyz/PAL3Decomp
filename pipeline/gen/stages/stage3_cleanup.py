@@ -24,6 +24,21 @@ _parser = tree_sitter.Parser(_lang)
 # AST node analysis (pure structural — no regex matching)
 # ============================================================
 
+
+def resolve_unresolved_labels(code):
+    """[Fix1 2026-11-02] UNRESOLVED 标记裁撤纯函数：
+    loc_/qword_（携带址）→ ((void*)0xADDR) 地址字面量；_E/_L 无形址 → 原样过
+    （stage4 解析域，时序反转修正）。返回 (code, marked_set)。"""
+    import re as _re
+    marked = set()
+    def _lit(m):
+        s = m.group(0).lstrip('&')
+        marked.add(s)
+        return '((void*)0x%s)' % m.group(1)   # 组捕获址（'loc' 的 c 是 hex——越界修）
+    code = _re.sub(r'&?\b(?:loc|qword)_([0-9A-Fa-f]+)\b', _lit, code)
+    return code, marked
+
+
 def _node_contains_text(node, text):
     """Check if any descendant token contains exact text."""
     if node.text and text.encode() in node.text:
@@ -2092,23 +2107,11 @@ def run(code, ctx):
             lines[i] = line.replace(stripped, '// ' + stripped)
     code = '\n'.join(lines)
 
-    # [P0-3 修 2026-11-01] 对抗审核 F3：NULL 化是编造信息（违反红线）
-    # 改为 UNRESOLVED 标记（响亮可见+census 可计），禁止静默编造
-    # 原逻辑：Replace IDA code labels (loc_XXXXXX, qword_XXXXXX) with (void*)0
-    import re as _re_loc
-    # 收集 UNRESOLVED 标记用于 census
-    _unresolved_labels = set()
-    def _mark_unresolved(m):
-        _unresolved_labels.add(m.group(0))
-        return 'UNRESOLVED_%s' % m.group(0).lstrip('&')
-    code = _re_loc.sub(r'&loc_[0-9A-Fa-f]+\b', _mark_unresolved, code)
-    code = _re_loc.sub(r'\bloc_[0-9A-Fa-f]+\b', _mark_unresolved, code)
-    code = _re_loc.sub(r'&qword_[0-9A-Fa-f]+\b', _mark_unresolved, code)
-    code = _re_loc.sub(r'\bqword_[0-9A-Fa-f]+\b', _mark_unresolved, code)
-    # IDA CRT internal function calls (_E68, _E158 etc) — only in call context
-    code = _re_loc.sub(r'\b_E\d+(?=\s*\()', lambda m: 'UNRESOLVED_%s' % m.group(0), code)
-    # IDA label _L references
-    code = _re_loc.sub(r'\b_L\d+\b', lambda m: 'UNRESOLVED_%s' % m.group(0), code)
+    # [Fix1 2026-11-02] UNRESOLVED 标记机制裁撤（标记=多余中间层）：
+    # addr-bearing（loc_/qword_）→ 地址字面量（就地 extern/地址原则完成态，零新规则）；
+    # _E/_L 无形址 → 时序反转修正（stage3 不判死，留 stage4 名字解析——P0-3 自述的
+    # 「本可解析符号被提前判死」根因）
+    code, _unresolved_labels = resolve_unresolved_labels(code)
     # census 计数（度量可见）
     global _unresolved_census
     if _unresolved_census is None:
