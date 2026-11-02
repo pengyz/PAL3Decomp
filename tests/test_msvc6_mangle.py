@@ -38,3 +38,15 @@ def test_conflict_by_mangled_not_name():
     assert mangled_conflict([a, b]) is False   # 同类同名异签名=重载不冲突
     assert mangled_conflict([b, c]) is False   # 异类同名不冲突
     assert mangled_conflict([b, b]) is True    # 同 mangled 双址=真冲突
+
+
+def test_conflict_normalizes_ovl_suffix():
+    """冲突裁定按清扫后名（__ovl_ 归一）：Destroy vs Destroy__ovl_E520 同签名=真冲突。"""
+    a = mangle('UIListBox', 'Destroy', 'void __thiscall()')
+    b = mangle('UIListBox', 'Destroy__ovl_E520', 'void __thiscall()')
+    import re as _re
+    strip = lambda n: _re.sub(r'__ovl_[0-9a-fA-F]+$', '', n)
+    a2 = mangle('UIListBox', strip('Destroy'), 'void __thiscall()')
+    b2 = mangle('UIListBox', strip('Destroy__ovl_E520'), 'void __thiscall()')
+    assert mangled_conflict([a, b]) is False   # 现名不撞（后缀未清）
+    assert mangled_conflict([a2, b2]) is True  # 清扫后名=真冲突必报

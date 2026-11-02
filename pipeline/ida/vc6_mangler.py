@@ -297,3 +297,12 @@ def mangle_global(func_name, sig):
         return encode_type(t)
     body = _enc(ret) + ''.join(_enc(strip_param_name(p)) for p in params)
     return '?' + func_name + '@@' + g + body + '@Z'
+
+
+def idb_name(cls_name, method_name, sig):
+    """apply 期统一转换入口（2026-11-02）：可读名+签名 → mangled；失败返回 None
+    （调用方回退可读名）。注解=可读名单源；此函数=IDB 名转换单源。"""
+    try:
+        return mangle(cls_name, method_name, sig)
+    except Exception:
+        return None

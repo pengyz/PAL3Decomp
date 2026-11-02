@@ -2358,7 +2358,11 @@ def apply_annotations():
                 else:
                     rename_fail.append((addr_str, cur, name))
             else:
-                if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                # [2026-11-02 统一转换] 全局函数同走 mangled（注解=可读名单源）；
+                # mangling 失败（签名缺/不可解析）回退可读名。
+                _gm = _mangle_vc6(None, name, info.get('signature', ''))
+                _target = _gm or name
+                if ida_name.set_name(addr, _target, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
 
     # Also name skip_functions (not decompiled, but callers need their names)

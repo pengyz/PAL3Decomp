@@ -166,14 +166,25 @@ def check_struct(name, d, path):
                                'msg': f'+{off} {m.get("name")} ≥ binary_size {bs}'})
 
     # ⑤ 函数声明重复（methods 内同名）
-    names = defaultdict(list)
+    # [2026-11-02 冲突规则升级] 按 mangled 形裁定（__ovl_ 归一后）：
+    # 同名异签名=重载不冲突；异类不冲突；同 mangled 双址=真冲突
+    import importlib.util as _il, re as _re
+    _spec = _il.spec_from_file_location('vc6m', os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        'pipeline', 'ida', 'vc6_mangler.py'))
+    _vm = _il.module_from_spec(_spec); _spec.loader.exec_module(_vm)
+    _strip = lambda n: _re.sub(r'__ovl_[0-9a-fA-F]+$', '', n)
+    keys = defaultdict(list)
+    _clsname = d.get('name') or ''
     for k, m in (d.get('methods') or {}).items():
         if isinstance(m, dict) and m.get('name'):
-            names[str(m['name'])].append(k)
-    for nm, addrs in names.items():
-        if len(addrs) > 1 and '__ovl_' not in nm:
+            _k = _vm.idb_name(_clsname, _strip(str(m['name'])), str(m.get('signature') or '')) \
+                 or (str(m['name']), str(m.get('signature') or ''))
+            keys[_k].append(k)
+    for _k, addrs in keys.items():
+        if len(addrs) > 1:
             issues.append({'kind': 'duplicate_method_name', 'severity': 'medium',
-                           'msg': f'methods 同名 {nm} ×{len(addrs)}（需 __ovl_ 去重）'})
+                           'msg': f'methods mangled 冲突 {_k} ×{len(addrs)}（同名同签名双址）'})
     return issues
 
 
@@ -198,9 +209,24 @@ def check_functions(path=None):
         if sig:
             sigs[sig].append((addr, nm))
     for nm, addrs in names.items():
-        if len(addrs) > 1 and '__ovl_' not in nm:
-            issues.append({'kind': 'duplicate_function_name', 'severity': 'medium',
-                           'msg': f'functions 同名 {nm} ×{len(addrs)}（需 __ovl_ 去重）'})
+        _sk = defaultdict(list)
+        for _a in addrs:
+            _s = str((fn.get(_a) or {}).get('signature') or '')
+            _mk = None
+            try:
+                import importlib.util as _il2
+                _sp = _il2.spec_from_file_location('vc6m2', os.path.join(
+                    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                    'pipeline', 'ida', 'vc6_mangler.py'))
+                _vm2 = _il2.module_from_spec(_sp); _sp.loader.exec_module(_vm2)
+                _mk = _vm2.idb_name(None, re.sub(r'__ovl_[0-9a-fA-F]+$', '', nm), _s)
+            except Exception:
+                _mk = None
+            _sk[_mk or (nm, _s)].append(_a)
+        for _k, _as in _sk.items():
+            if len(_as) > 1:
+                issues.append({'kind': 'duplicate_function_name', 'severity': 'medium',
+                               'msg': f'functions mangled 冲突 {nm} ×{len(_as)}（同名同签名双址）'})
     for sig, items in sigs.items():
         if len(items) > 1:
             # 同签名不同名 = 可疑
