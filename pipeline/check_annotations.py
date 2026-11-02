@@ -257,11 +257,26 @@ def check(struct_dir=None):
     for base, members in base_groups.items():
         if len(members) < 2:
             continue
-        no_ovl = [m for m in members if not m[2]]
-        for addr, name, _ in no_ovl:
-            errors.append(
-                f"functions[{addr}]: '{name}' needs __ovl_ suffix — "
-                f"base name '{base}' collides with {len(members)} entries")
+        # [2026-11-02 重载换轨] 旧「needs __ovl_ suffix」规退役——按 mangled 形裁定：
+        # 同名异签=合法重载（mangled 天然唯一）；仅同(基名,cxx_sig_key)双址=铁律真冲突
+        try:
+            import importlib.util as _il, os as _os
+            from collections import defaultdict
+            _sp = _il.spec_from_file_location(
+                'ccd_chk', _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                                        'tools', 'cxx_collision_detector.py'))
+            _ccd = _il.module_from_spec(_sp); _sp.loader.exec_module(_ccd)
+            _sigs = defaultdict(list)
+            for addr, name, _h in members:
+                _sigs[_ccd.cxx_sig_key((funcs.get(addr) or {}).get('signature') or '')].append((addr, name))
+            for _sk, _ms in _sigs.items():
+                if len(_ms) > 1:
+                    for addr, name in _ms:
+                        errors.append(
+                            f"functions[{addr}]: '{name}' 同签名双址（C++ 铁律违反）"
+                            f"——归属/正名裁决（重载换轨规）")
+        except Exception as _e:
+            errors.append(f"2c-mangled: internal {_e}")
 
     # 2c. Check __ovl_ overload validity: same base name must have different signatures
     for base, members in base_groups.items():

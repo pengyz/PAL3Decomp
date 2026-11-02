@@ -706,3 +706,11 @@
 | `UIWnd::SetRect_5FA0` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
 | `::InitUIComponents` | vftable_local | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD, tagRECT *, int))(v17 + 16))(nVal + 260, 0, &pRect, nVal)` |
 | `::ProcessTree` | vftable_local | `int` | 16 | non_class_hint | `(*(void ( **)(int, int, int *, int))(v6 + 16))(parent + 368, 161, &v18, parent)` |
+| `CCBParabolaWindow::Cleanup` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)*p_right + 20))(*p_right, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `unsigned int` | 20 | non_class_hint | `(*(int ( **)(unsigned int, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `gbTexture` | 20 | self_arg_mismatch | `(*(int ( **)(gbTexture *, int))(*(_DWORD *)&m_pbktex->gbRefObject + 20))(m_pbktex, 1)` |
+| `::Update` | vftable_local | `char` | 16 | non_class_hint | `(*(int ( **)(char *, char *, int *, Actor *))(v29 + 16))( &_this[1].m_curact[19], &byte_A01B00, &v117, _this)` |
+| `CUtil::Method` | inline | `char` | 20 | non_class_hint | `(*(void ( **)(char *, int))(*(_DWORD *)m_pBattleSystem + 20))(m_pBattleSystem, 1)` |
+| `CUtil::Method` | inline | `PropUI` | 20 | self_arg_mismatch | `(*(void ( **)(PropUI *, int))(*(_DWORD *)&m_pPropUI->UIWnd + 20))(m_pPropUI, 1)` |
+| `StateUI::sub` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&(*v49)->gbChain1DNode + 24))(*v49, 0)` |
+| `UIWnd::SetRect` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |

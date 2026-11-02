@@ -33,3 +33,14 @@ def test_same_addr_casedup_and_namedup():
         {'addr': '0x2', 'class': 'X', 'name': 'Foo_1', 'sig': 'void __thiscall()'},
     ])
     assert any('same_name' in k or 'cxx_rule' in k for k in v2), v2
+
+
+def test_gate2_sig_aware_overload_legal():
+    """G2 去戳产生同名异签双址=合法重载，闸②不得误炸（用户规则：A::m(int)/A::m() 不冲突）。"""
+    from cxx_gate import collect_violations
+    v = collect_violations([
+        {'addr': '0x1', 'class': 'X', 'name': 'Destroy', 'sig': 'void __thiscall(int)'},
+        {'addr': '0x2', 'class': 'X', 'name': 'Destroy', 'sig': 'int __thiscall()'},
+    ])
+    assert not any('same_name' in k for k in v), v
+    assert not any('cxx_rule' in k for k in v), v

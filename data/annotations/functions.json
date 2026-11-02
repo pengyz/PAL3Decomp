@@ -1591,7 +1591,7 @@
     "reason": "misattributed in struct, removed"
   },
   "0x0047C260": {
-    "name": "PAL3_Render_47c260",
+    "name": "PAL3_Render",
     "signature": "int __cdecl(int nVal)",
     "type": "skip",
     "reason": "misattributed in struct, removed"
@@ -2004,7 +2004,7 @@
     "evidence_level": "B"
   },
   "0x004074C0": {
-    "name": "ProcessKeyboard_2",
+    "name": "ProcessKeyboard",
     "signature": "void __cdecl(int nVal)",
     "declaration_only": true,
     "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查"
@@ -2042,7 +2042,7 @@
     "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
   },
   "0x004D37A0": {
-    "name": "Remove__ovl_37A0",
+    "name": "Remove",
     "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
     "name_source": "IDA语义分析 2026-11-01 批15",
     "name_note": "从 decomp 推断"
@@ -2094,7 +2094,7 @@
     "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertN(this, &m_actarray_end->m_actarray_type, 1u, nY)`（容器 = Actor 的动作数组）②被调用者=VideoPlayer::SetRegion（拷贝构造包装）、Actor::ActArray_Assign(元素+132)、Actor::BoneIndexVec_Assign(元素+148)、Actor::ClearAllocBuffers（析构）、qmemcpy(dst,src,0x84)、operator new/delete ⇒ 元素 ="
   },
   "0x0053ACA0": {
-    "name": "PtrVec_InsertN_64",
+    "name": "PtrVec_InsertN",
     "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const void *pVal)",
     "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray"
   },
@@ -2191,7 +2191,7 @@
     "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
   },
   "0x004CB280": {
-    "name": "Remove__ovl_B280",
+    "name": "Remove",
     "signature": "virtual void __thiscall(Actor *this, int nFlags)",
     "name_source": "IDA语义分析 2026-11-01 批15",
     "name_note": "从 decomp 推断"
@@ -2326,7 +2326,7 @@
     "name_note": "树处理（parent+int 操作）"
   },
   "0x00401820": {
-    "name": "ArraySort__ovl_Jump",
+    "name": "ArraySort",
     "signature": "int __stdcall(int, int, int, int)",
     "name_source": "IDA语义分析 2026-10-31 批1-2",
     "name_note": "从 decomp 推断（j_InputSystem）"

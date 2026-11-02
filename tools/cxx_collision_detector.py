@@ -77,7 +77,7 @@ def cxx_sig_key(sig):
     s = re.sub(r'\b\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', s)   # this 剥
     paren = s.find('(')
     if paren == -1:
-        return ('', s.strip())
+        return ('', '', s.strip())   # 3 元契约（2026-11-02 早退支修）
     cc = ''
     for c in ('__thiscall', '__cdecl', '__stdcall', '__fastcall'):
         if c in s[:paren]:

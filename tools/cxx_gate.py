@@ -45,7 +45,10 @@ def collect_violations(entries):
             v.add('same_addr:0x%X:%s' % (a, '|'.join(sorted(x['name'] for x in es))))
     for (cls, nm), es in by_name.items():
         if len(es) > 1:
-            v.add('same_name:%s:%s:x%d' % (cls or 'global', nm, len(es)))
+            # [2026-11-02 G2] 同名异签=合法重载 ⇒ 闸②签名感知（仅同签双址=违规）
+            _sk = {ccd.cxx_sig_key(e.get('sig') or '') for e in es}
+            if len(_sk) < len(es):
+                v.add('same_name:%s:%s:x%d' % (cls or 'global', nm, len(es)))
     for k, es in by_rule.items():
         if len(es) > 1:
             v.add('cxx_rule:%s:%s:%s:x%d' % (k[0] or 'global', k[1], k[2], len(es)))
