@@ -87,6 +87,8 @@ def apply_plan(currentProgram, plan_path):
   # ---- 符号/签名 ----
   named = sigd = 0
   for op in plan:
+    if op['kind'] not in ('set_name', 'set_func_sig', '_meta', 'define_global'):
+        raise RuntimeError('未知 op 禁静默跳过: %r' % (op.get('kind'),))   # [G8]
     if op['kind'] == 'set_name':
         a = addr(op['addr'])
         if a:
