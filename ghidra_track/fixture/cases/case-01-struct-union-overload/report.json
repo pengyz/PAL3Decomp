@@ -1,0 +1,60 @@
+{
+ "case": "case-01-struct-union-overload",
+ "D1": {
+  "layout": "PASS",
+  "sizeof_reconcile": "PASS"
+ },
+ "D2": {
+  "total_errors": 1,
+  "buckets": {
+   "noise-missing-src": {
+    "count": 0,
+    "allowed": 0,
+    "ok": true
+   },
+   "ghidra-ism": {
+    "count": 0,
+    "allowed": 0,
+    "ok": true
+   },
+   "transform-broken": {
+    "count": 1,
+    "allowed": 0,
+    "ok": false
+   },
+   "annotation-signal": {
+    "count": 0,
+    "allowed": 0,
+    "ok": true
+   }
+  },
+  "D2": "FAIL"
+ },
+ "D3": [
+  {
+   "id": "member-access",
+   "ok": false
+  },
+  {
+   "id": "union-view",
+   "ok": false
+  },
+  {
+   "id": "overload-split",
+   "ok": true
+  },
+  {
+   "id": "zero-arg-xz",
+   "ok": true
+  },
+  {
+   "id": "vtable-call",
+   "ok": true
+  }
+ ],
+ "D4": "pending-ida-track",
+ "smoke": {
+  "compile_ok": true,
+  "run": "hello from fixture counter=63 name=hello from fixture"
+ }
+}

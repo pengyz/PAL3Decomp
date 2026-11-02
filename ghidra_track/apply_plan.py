@@ -126,7 +126,7 @@ def main(argv):
     prog = proj.openProgram(_folder, _name, True)
     _tx = prog.startTransaction('apply_plan')
     try:
-        apply_plan(prog, plan_path)
+        _mismatch = apply_plan(prog, plan_path)
     finally:
         prog.endTransaction(_tx, True)
     # 验证合体：decompile 抽样验类型传播
@@ -135,11 +135,11 @@ def main(argv):
     di = DecompInterface(); di.openProgram(prog)
     af = prog.getAddressFactory(); fm = prog.getFunctionManager()
     import os as _os
-    _out = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'out', 'slice')
+    _out = (sys.argv[5] if len(sys.argv) > 5 else _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'out', 'slice'))
     _os.makedirs(_out, exist_ok=True)
     n = 0
     fns = list(fm.getFunctions(True))
-    for f in fns[:40]:
+    for f in fns:
         r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
         if r and r.decompileCompleted() and r.getDecompiledFunction().getC():
             c = r.getDecompiledFunction().getC()
@@ -147,17 +147,20 @@ def main(argv):
             open(_os.path.join(_out, fn + '.c'), 'w').write(c)
             n += 1
     print('[verify] emitted %d decompiled units -> %s' % (n, _out))
-    for want in ('0x0043E520', '0x00445B90'):
-        f = fm.getFunctionAt(af.getAddress(hex(int(want, 16))))
-        if not f:
-            print('[verify] no func at', want); continue
-        r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
-        if r and r.decompileCompleted():
-            c = r.getDecompiledFunction().getC()
-            print('[verify] %s (%s): this->hits=%d' % (want, f.getName(), c.count('this->')))
-            for line in c.splitlines():
-                if 'this->' in line or 'm_' in line:
-                    print('   |', line.strip()[:90])
+    # 机读报告（e2e judge 消费）：sizeof 对账 + 出码计数 + 成员渲染抽样
+    import json as _json
+    rep = {'sizeof_mismatch': _mismatch, 'emitted_units': n, 'member_hits': []}
+    for f in fns:
+        try:
+            r = di.decompileFunction(f, 30, ConsoleTaskMonitor())
+            if r and r.decompileCompleted() and r.getDecompiledFunction():
+                c = r.getDecompiledFunction().getC()
+                if 'this->' in c or 'm_' in c:
+                    rep['member_hits'].append({'fn': f.getName(), 'this_hits': c.count('this->')})
+        except Exception:
+            pass
+    _json.dump(rep, open(_os.path.join(_out, '..', 'apply_report.json'), 'w'), indent=1)
+    print('[verify] apply_report.json written')
     proj.save()
     proj.close()
 

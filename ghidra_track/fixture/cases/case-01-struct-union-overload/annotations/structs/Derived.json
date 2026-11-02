@@ -1,6 +1,41 @@
-{"name":"Derived","size":64,"bases":[{"name":"Base"}],
- "known_members":{"12":{"name":"m_complex","type":"Complex"},"48":{"name":"m_pNext","type":"Derived *"},"56":{"name":"m_flags","type":"int"}},
- "methods":{"0x0":{"name":"update","signature":"int __thiscall(int)"},
-            "0x1":{"name":"render","signature":"void __thiscall(Complex *)"},
-            "0x2":{"name":"calc","signature":"int __thiscall(int,int)"},
-            "0x3":{"name":"calc","signature":"double __thiscall(double)"}}}
+{
+ "name": "Derived",
+ "size": 64,
+ "bases": [
+  {
+   "name": "Base"
+  }
+ ],
+ "known_members": {
+  "12": {
+   "name": "m_complex",
+   "type": "Complex"
+  },
+  "48": {
+   "name": "m_pNext",
+   "type": "Derived *"
+  },
+  "56": {
+   "name": "m_flags",
+   "type": "int"
+  }
+ },
+ "methods": {
+  "0x0000000000401282": {
+   "name": "update",
+   "signature": "int __thiscall(int)"
+  },
+  "0x00000000004012B2": {
+   "name": "render",
+   "signature": "void __thiscall(Complex *)"
+  },
+  "0x0000000000401308": {
+   "name": "calc",
+   "signature": "int __thiscall(int,int)"
+  },
+  "0x000000000040132E": {
+   "name": "calc",
+   "signature": "double __thiscall(double)"
+  }
+ }
+}

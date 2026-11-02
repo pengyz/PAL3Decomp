@@ -19,6 +19,7 @@ int main() {
     std::printf("SIZE Complex %zu\n", sizeof(Complex));
     std::printf("SIZE Base %zu\n", sizeof(Base));
     std::printf("SIZE Derived %zu\n", sizeof(Derived));
+    P(Vec3, x); P(Vec3, y); P(Vec3, z);
     P(Complex, id); P(Complex, pos); P(Complex, fval); P(Complex, name);
     P(Base, m_baseVal);
     P(Derived, m_complex); P(Derived, m_pNext); P(Derived, m_flags);
