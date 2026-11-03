@@ -75,3 +75,42 @@ def test_d4_E_family_is_eh_funclet_note():
     is_eh_funclet = vm.is_eh_funclet
     assert is_eh_funclet('_E68') and is_eh_funclet('$E68') and is_eh_funclet('$LN4')
     assert not is_eh_funclet('sub_401000')
+
+
+# ===== ovl 换轨·五缺陷真值锚（plan-1to5 §467-522 实测名，2026-11-03 TDD）=====
+
+def test_defect1_class_prefix_V():
+    """类类型前缀=V（PAV），非 U（PAU）。真值: obj 实测 ?OnMessage@CCBAIWindow@@QAEDPAPAVUIListBox@@@Z"""
+    from pipeline.ida.vc6_mangler import mangle
+    got = mangle('CCBAIWindow', 'OnMessage', 'char __thiscall(UIListBox **)')
+    assert got == '?OnMessage@CCBAIWindow@@QAEDPAPAVUIListBox@@@Z'
+
+
+def test_defect2_virtual_prefix_UAE():
+    """虚性传入=U 前缀（UAE），非 Q。真值: ?Update@UIStatic@@UAEHMH@Z"""
+    from pipeline.ida.vc6_mangler import mangle
+    got = mangle('UIStatic', 'Update', 'int __thiscall(float, int)', virtual_=True)
+    assert got == '?Update@UIStatic@@UAEHMH@Z'
+
+
+def test_defect3_nested_class_backref():
+    """嵌套类→层级号 NODE@1@（1=外层类回指）。真值: ?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z"""
+    from pipeline.ida.vc6_mangler import mangle
+    got = mangle('AStarPathFinder', 'PushOpen', 'int __thiscall(AStarPathFinder::NODE *)')
+    assert got == '?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z'
+
+
+def test_defect4_backref_repeated_type():
+    """重复类型第二现=backref 压缩（省类型重拼）。真值形: PA V... @N@ 回指"""
+    from pipeline.ida.vc6_mangler import mangle
+    got = mangle('Bag', 'Swap', 'void __thiscall(UIListBox *, UIListBox *)')
+    # 第二参 UIListBox* 应为回指形（@N@），禁整名重拼
+    import re as _re
+    assert _re.search(r'PAV\d+@', got), '无 backref 压缩: %s' % got
+
+
+def test_defect5_typedef_resolution():
+    """typedef 展开：CHAR→D(char)·LPCSTR→PB(const char*)"""
+    from pipeline.ida.vc6_mangler import mangle
+    assert mangle('X', 'F', 'void __thiscall(CHAR)').endswith('D@Z'), 'CHAR 未展开为 D'
+    assert mangle('X', 'F', 'void __thiscall(LPCSTR)').endswith('PB@Z'), 'LPCSTR 未展开为 PB'

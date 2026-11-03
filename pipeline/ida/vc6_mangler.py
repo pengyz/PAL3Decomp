@@ -37,7 +37,7 @@ _TYPE_WORDS = {
 }
 
 
-def encode_type(t):
+def encode_type(t, seen=None):
     t = t.strip()
     # normalize qualifier placement: the IDA demangler emits trailing forms
     # ('char const * *'); rotate const/volatile tokens to the front so the
@@ -61,7 +61,10 @@ def encode_type(t):
         tag = 'U'; t = t[7:].strip()
     elif t.startswith('class ') or t == 'class':
         tag = 'V'; t = t[6:].strip()
-    code = _TC.get(t)
+    if t in _TYPEDEFS:
+        code = _TYPEDEFS[t]
+    else:
+        code = _TC.get(t)
     # 0b-③（2026-09-15）：**嵌套类**编码。限定名不能原样嵌入。
     # 实测：签名 `AStarPathFinder::NODE *pNode`，真实符号 `?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z`
     # ⇒ 正确编码是 `PAU` + `NODE` + `@1@`（`U`=struct、`1`=嵌套深度），
@@ -83,7 +86,12 @@ def encode_type(t):
         #     PAU: gbOBBox + 嵌套 NODE@1@）。
         # 离线复测（tools/mangler_bench.py）：matched 129 → **136**（+7）。
         # `struct `/`class ` 关键字仍走上面的 tag 分支（优先于此处）。
-        code = 'V' + t + '@@'
+        if seen is not None and t in seen:
+            code = 'V%d@' % seen[t]
+        else:
+            code = 'V' + t + '@@'
+            if seen is not None:
+                seen.setdefault(t, len(seen) + 2)   # 1=当前类（_self_ref 用），2 起=参数类型
     elif code is None and tag:
         code = tag + t + '@@'
     elif code is None:
@@ -96,6 +104,13 @@ def encode_type(t):
     for _ in range(ptr):
         code = 'P' + ('B' if (is_const and _ == 0) else 'A') + code
     return code
+
+
+_TYPEDEFS = {'CHAR': 'D', 'LPCSTR': 'PB', 'BYTE': 'C', 'WORD': 'G', 'DWORD': 'K', 'BOOL': 'H'}
+
+
+def resolve_typedef(t):
+    return _TYPEDEFS.get((t or '').strip(), t)
 
 
 def strip_param_name(p):
@@ -113,9 +128,13 @@ def strip_param_name(p):
     return p.strip()
 
 
-def _mangle_class_chain(cls_name):
-    """Convert 'AStarPathFinder::NODE' to 'NODE@AStarPathFinder' (MSVC format)."""
+def _mangle_class_chain(cls_name, current_cls=None):
+    """Convert 'AStarPathFinder::NODE' to nested backref form.
+    外层==当前类时回指 @1@（真值: ?PushOpen@AStarPathFinder@@QAEHPAUNODE@1@@Z）；
+    其余外层保持链形（无回指编号实测证据）。"""
     parts = cls_name.split('::')
+    if current_cls and len(parts) == 2 and parts[0] == current_cls.split('::')[-1]:
+        return parts[1] + '@1@'
     return '@'.join(reversed(parts))
 
 
@@ -228,11 +247,12 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
             r += ''.join(encode_type(strip_param_name(p)) for p in params) + '@Z'
         return r
 
-    r += _self_ref_backref(encode_type(ret), cls_name)
+    _seen = {last_seg: 1}
+    r += _self_ref_backref(encode_type(ret, _seen), cls_name)
     if not params:
         r += 'XZ'   # void parameter list: 'X' + 'Z' (no '@' terminator)
     else:
-        r += ''.join(_self_ref_backref(encode_type(strip_param_name(p)), cls_name)
+        r += ''.join(_self_ref_backref(encode_type(strip_param_name(p), _seen), cls_name)
                      for p in params) + '@Z'
     return r
 
