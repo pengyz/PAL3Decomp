@@ -1,67 +1,38 @@
 {
  "case": "case-01-struct-union-overload",
  "D1": {
-  "layout": "PASS",
-  "sizeof_reconcile": "PASS",
-  "persistence": "PASS"
- },
- "D2": {
-  "total_errors": 38,
-  "buckets": {
-   "noise-missing-src": {
-    "count": 0,
-    "allowed": 0,
-    "ok": true
+  "layout": [
+   {
+    "struct": "Vec3",
+    "kind": "size",
+    "exp": 12,
+    "act": null
    },
-   "ghidra-ism": {
-    "count": 0,
-    "allowed": 0,
-    "ok": true
+   {
+    "struct": "Complex",
+    "kind": "size",
+    "exp": 36,
+    "act": null
    },
-   "transform-broken": {
-    "count": 4,
-    "allowed": 0,
-    "ok": false
+   {
+    "struct": "Base",
+    "kind": "size",
+    "exp": 16,
+    "act": null
    },
-   "annotation-signal": {
-    "count": 0,
-    "allowed": 0,
-    "ok": true
-   },
-   "unclassified": {
-    "count": 34,
-    "allowed": 0,
-    "ok": false
+   {
+    "struct": "Derived",
+    "kind": "size",
+    "exp": 64,
+    "act": null
    }
-  },
-  "D2": "FAIL"
+  ]
  },
- "D3": [
-  {
-   "id": "member-access",
-   "ok": true
-  },
-  {
-   "id": "union-view",
-   "ok": true
-  },
-  {
-   "id": "overload-split",
-   "ok": true
-  },
-  {
-   "id": "zero-arg-xz",
-   "ok": true
-  },
-  {
-   "id": "vtable-call",
-   "ok": true
-  }
- ],
+ "D2": {},
+ "D3": {},
  "D4": "pending-ida-track",
  "smoke": {
-  "compile_ok": true,
-  "run": "hello from fixture counter=63 name=hello from fixture"
- },
- "D3_fresh_render": "ok"
+  "compile_ok": false,
+  "run": ""
+ }
 }

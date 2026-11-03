@@ -26,11 +26,34 @@ _PRIM = {'void': VoidDataType, 'int': IntegerDataType, 'unsigned int': UnsignedI
          'byte': ByteDataType, 'undefined': ByteDataType}
 
 def resolve_dt(dtm, name):
-    n = (name or 'undefined').strip().rstrip(' *').strip()
+    raw = (name or 'undefined').strip()
+    is_ptr = raw.endswith('*')
+    n = raw.rstrip(' *').strip()
     if n in _PRIM:
-        return _PRIM[n]()
-    dt = dtm.getDataType('/annotations/' + n) or dtm.getDataType('/' + n) or dtm.getDataType(n)
-    return dt or ByteDataType()
+        base = _PRIM[n]()
+    else:
+        dt = dtm.getDataType('/annotations/' + n) or dtm.getDataType('/' + n) or dtm.getDataType(n)
+        base = dt or ByteDataType()
+    # [void* 修 2026-11-03] 指针类型必须包装 PointerDataType
+    return PointerDataType(base) if is_ptr else base
+
+
+def _sanitize_name(name):
+    """清理符号名：反引号/空格/特殊字符→合法 Ghidra 标识符。"""
+    import re as _re
+    # 反引号特名 → _scalar_dtor / _vector_dtor 形
+    n = (name or '')
+    if n.startswith('`') and n.endswith("'"):
+        if 'deleting' in n:
+            n = '_vector_dtor' if 'vector' in n else '_scalar_dtor'
+        else:
+            n = n.strip('`').strip("'")
+    # 非法字符 → _
+    n = _re.sub(r'[^A-Za-z0-9_@?$:]', '_', n)
+    # 确保不以数字开头
+    if n and n[0].isdigit():
+        n = '_' + n
+    return n or '_unnamed'
 
 def apply_plan(currentProgram, plan_path):
   plan = json.load(open(plan_path))
@@ -53,7 +76,7 @@ def apply_plan(currentProgram, plan_path):
               u.add(resolve_dt(dtm, str(um.get('type') or 'int')), um.get('name') or 'u', None)
   created = {}
   for s in p1:
-    st = StructureDataType(CategoryPath('/annotations'), s['name'], 0)
+    st = StructureDataType(CategoryPath('/annotations'), s['name'], s.get('size') or 0)
     existing = dtm.getDataType('/annotations/' + s['name'])
     if existing is not None and hasattr(existing, 'deleteAll'):
         existing.deleteAll()          # 幂等：多轮重跑不得累积移位
@@ -73,6 +96,13 @@ def apply_plan(currentProgram, plan_path):
             st.replaceAtOffset(m['offset'], dt, dt.getLength(), m['name'], None)   # 覆盖式（insert=移位）
         except Exception as e:
             print('[apply_plan][member-skip] %s.%s @%d: %s' % (s['name'], m['name'], m['offset'], e))
+    # [sizeof 对齐修 2026-11-03] 成员插入后强制设长度=declared size
+    # （MSVC6 /Zp1 真实大小；Ghidra 默认会加尾部 padding）
+    if s.get('size'):
+        try:
+            st.setLength(s['size'])
+        except Exception:
+            pass  # setLength 只能增长不能收缩，接受 Ghidra padding
 
   # ---- sizeof 对账（导入即校验）----
   obs = {n: created[n].getLength() for n in created}
@@ -87,12 +117,12 @@ def apply_plan(currentProgram, plan_path):
   # ---- 符号/签名 ----
   named = sigd = 0
   for op in plan:
-    if op['kind'] not in ('set_name', 'set_func_sig', '_meta', 'define_global'):
+    if op['kind'] not in ('set_name', 'set_func_sig', '_meta', 'define_global', 'define_struct', 'define_union'):
         raise RuntimeError('未知 op 禁静默跳过: %r' % (op.get('kind'),))   # [G8]
     if op['kind'] == 'set_name':
         a = addr(op['addr'])
         if a:
-            currentProgram.getSymbolTable().createLabel(a, op['name'], SourceType.USER_DEFINED)
+            currentProgram.getSymbolTable().createLabel(a, _sanitize_name(op['name']), SourceType.USER_DEFINED)
             named += 1
     elif op['kind'] == 'set_func_sig':
         a = addr(op['addr'])
@@ -132,7 +162,7 @@ def apply_plan(currentProgram, plan_path):
     elif op['kind'] == 'define_global':
         a = addr(op['addr'])
         if a:
-            currentProgram.getSymbolTable().createLabel(a, op['name'], SourceType.USER_DEFINED)
+            currentProgram.getSymbolTable().createLabel(a, _sanitize_name(op['name']), SourceType.USER_DEFINED)
             named += 1
 
   # 读回验证：成员命名/union 落型（探针级证据入报告）
