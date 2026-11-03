@@ -44,6 +44,39 @@ def norm_type(ty):
     ty = _RE_CONST.sub('', ty)
     return ty.strip()
 
+def type_candidates(ty):
+    """型解析回退链（2026-11-03 修缮）：daemon 解析拒时的渐进降级候选。
+    实测残余形：X*→X · A::B*→B*→B · __int64→longlong · _BYTE*→byte*→byte。"""
+    t0 = (ty or '').strip()
+    out = [t0]
+    if '::' in t0:
+        out.append(t0.split('::')[-1].strip())
+    core = out[-1]
+    if core.endswith('*'):
+        plain = core[:-1].strip()
+        out.append(plain)
+        if '::' in plain:
+            out.append(plain.split('::')[-1].strip())
+    aliases = {'__int64': 'longlong', '_BYTE': 'byte', '__int32': 'int',
+               '__int16': 'short', '__int8': 'char', 'BOOL': 'int', 'DWORD': 'uint',
+               'WORD': 'ushort', 'BYTE': 'uchar', 'FLOAT': 'float'}
+    extra = []
+    for cand in out:
+        base = cand.rstrip('*').strip()
+        if base in aliases:
+            al = aliases[base]
+            extra.append(al + (' *' if cand.endswith('*') else ''))
+            if cand.endswith('*'):
+                extra.append(al)
+    out.extend(extra)
+    seen, res = set(), []
+    for x in out:
+        if x and x not in seen:
+            seen.add(x)
+            res.append(x)
+    return res
+
+
 def norm_name(n):
     """名 sanitizer：反引号等非法字符（Ghidra 符号规则）。"""
     return (n or '').replace('`', "'")
@@ -92,9 +125,30 @@ def main():
                 cc = {'__thiscall': 'thiscall', '__cdecl': 'cdecl', '__stdcall': 'stdcall'}.get(op.get('conv'), 'cdecl')
                 _ret = norm_type(op.get('ret') or 'void')
                 _params = ', '.join(norm_type(p) for p in (op.get('params') or []))
+                proto = '%s %s(%s)' % (_ret, norm_name(op.get('name')), _params)
                 r = tool('set_prototype', dict(S, functionAddress=op['addr'],
-                          prototype='%s %s(%s)' % (_ret, norm_name(op.get('name')), _params),
-                          callingConvention=cc), rid)
+                          prototype=proto, callingConvention=cc), rid)
+                txt = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+                # [修缮①] 边界缺口: 函数不存在则先建（真函数 848/856 实证=Ghidra 发现缺）
+                if 'No function at or containing' in txt:
+                    tool('create_function', dict(S, address=op['addr']), rid)
+                    r = tool('set_prototype', dict(S, functionAddress=op['addr'],
+                              prototype=proto, callingConvention=cc), rid)
+                    txt = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+                # [修缮②] 型解析回退链重试
+                if isinstance(r, dict) and (r.get('isError') or 'Can\'t resolve' in txt):
+                    txt0 = str((r.get('content') or [{}])[0].get('text', ''))
+                    import re as _re2
+                    m = _re2.search(r"Can't resolve (?:datatype|return type): (.+)", txt0)
+                    if m:
+                        bad = m.group(1).strip()
+                        for cand in type_candidates(bad):
+                            proto2 = ('%s %s(%s)' % (_ret, norm_name(op.get('name')), _params)).replace(bad, cand)
+                            r = tool('set_prototype', dict(S, functionAddress=op['addr'],
+                                      prototype=proto2, callingConvention=cc), rid)
+                            txt = str((r.get('content') or [{}])[0].get('text', ''))
+                            if not (isinstance(r, dict) and (r.get('isError') or 'Can\'t resolve' in txt)):
+                                break
             elif op['kind'] == 'define_global':
                 r = tool('create_label', dict(S, address=op['addr'], name=norm_name(op['name'])), rid)
             else:
