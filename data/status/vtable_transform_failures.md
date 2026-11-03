@@ -717,3 +717,4 @@
 | `UIScenePanel::PostRender` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, UIScenePanel *))(*(_DWORD *)m_hSettingsUI + 4))(m_hSettingsUI, this)` |
 | `UIScenePanel::StopAllSounds` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, _DWORD, int))(*(_DWORD *)v29 + 8))(v29, LODWORD(fFade), nFlags)` |
 | `UIWnd::RenderText` | inline | `UIWnd` | 12 | name_declared_at_other_address | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
+| `CScreenMode::sub_485230` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&(*v49)->gbChain1DNode + 24))(*v49, 0)` |
