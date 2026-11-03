@@ -4,6 +4,7 @@
 # 两遍建结构 + thiscall 签名 + sizeof 对账（导入即校验）。纯逻辑在 import_annotation。
 import json
 import os
+import re
 import sys
 
 import pyghidra
@@ -19,7 +20,7 @@ try:
 except ImportError:
     from ghidra.program.model.listing import ParameterDefinitionImpl
 from ghidra.program.model.data import (PointerDataType, VoidDataType, IntegerDataType,
-    UnsignedIntegerDataType, FloatDataType, DoubleDataType, CharDataType, ByteDataType)
+    UnsignedIntegerDataType, FloatDataType, DoubleDataType, CharDataType, ByteDataType, ArrayDataType)
 
 _PRIM = {'void': VoidDataType, 'int': IntegerDataType, 'unsigned int': UnsignedIntegerDataType,
          'float': FloatDataType, 'double': DoubleDataType, 'char': CharDataType,
@@ -29,6 +30,12 @@ def resolve_dt(dtm, name):
     raw = (name or 'undefined').strip()
     is_ptr = raw.endswith('*')
     n = raw.rstrip(' *').strip()
+    # [数组类型修 2026-11-03] T[N] 形 → ArrayDataType(base, N)
+    arr_m = re.match(r'^(.+?)\s*\[(\d+)\]$', n)
+    if arr_m:
+        base_name, count = arr_m.group(1).strip(), int(arr_m.group(2))
+        base = resolve_dt(dtm, base_name)
+        return ArrayDataType(base, count, 1)
     if n in _PRIM:
         base = _PRIM[n]()
     else:
