@@ -1,7 +1,7 @@
 """annotation plan → ghidra-mcp daemon 通道回放（产品路径写入面，2026-11-02 换轨）。
 用法: python3 import_via_daemon.py <binaryPath> <plan.json>
 MCP Streamable HTTP 直连（urllib，无三方依赖）。"""
-import json, sys, urllib.request
+import json, os, sys, urllib.request
 
 URL = 'http://localhost:8432/mcp'
 
@@ -35,6 +35,19 @@ def notify(method, params=None):
     except Exception:
         pass
 
+_RE_VIRTUAL = __import__('re').compile(r'\bvirtual\s+')
+_RE_CONST = __import__('re').compile(r'\bconst\s+')
+
+def norm_type(ty):
+    """注解类型形 → daemon 解析形：virtual 剥（签名串混入）· const 剥（解析器不认修饰形）。"""
+    ty = _RE_VIRTUAL.sub('', ty or '')
+    ty = _RE_CONST.sub('', ty)
+    return ty.strip()
+
+def norm_name(n):
+    """名 sanitizer：反引号等非法字符（Ghidra 符号规则）。"""
+    return (n or '').replace('`', "'")
+
 def tool(name, args, rid=1):
     r = rpc('tools/call', {'name': name, 'arguments': args}, rid)
     return r.get('result', r)
@@ -55,6 +68,14 @@ def main():
     ok = fail = 0
     rid = 10
     S = {'sessionId': sid} if sid else {}
+    _FAILS = []
+    # 拓扑序: union→struct（型先立）→name→sig→global（sig 引用型须后行）
+    _order = {'define_union': 0, 'define_struct': 1, 'set_name': 2, 'set_func_sig': 3, 'define_global': 4}
+    plan = sorted((o for o in plan if o.get('kind') != '_meta'), key=lambda o: _order.get(o['kind'], 9))
+    _counts = {}
+    for op in plan:
+        _counts[op['kind']] = _counts.get(op['kind'], 0) + 1
+    print('拓扑序:', _counts)
     for op in plan:
         rid += 1
         try:
@@ -66,28 +87,36 @@ def main():
             elif op['kind'] == 'define_union':
                 r = tool('create_union', dict(S, name=op['name']), rid)
             elif op['kind'] == 'set_name':
-                r = tool('create_label', dict(S, address=op['addr'], name=op['name']), rid)
+                r = tool('create_label', dict(S, address=op['addr'], name=norm_name(op['name'])), rid)
             elif op['kind'] == 'set_func_sig':
                 cc = {'__thiscall': 'thiscall', '__cdecl': 'cdecl', '__stdcall': 'stdcall'}.get(op.get('conv'), 'cdecl')
+                _ret = norm_type(op.get('ret') or 'void')
+                _params = ', '.join(norm_type(p) for p in (op.get('params') or []))
                 r = tool('set_prototype', dict(S, functionAddress=op['addr'],
-                          prototype='%s %s(%s)' % (op.get('ret') or 'void', op.get('name'),
-                                                   ', '.join(op.get('params') or [])),
+                          prototype='%s %s(%s)' % (_ret, norm_name(op.get('name')), _params),
                           callingConvention=cc), rid)
             elif op['kind'] == 'define_global':
-                r = tool('create_label', dict(S, address=op['addr'], name=op['name']), rid)
+                r = tool('create_label', dict(S, address=op['addr'], name=norm_name(op['name'])), rid)
             else:
                 continue
             txt = ((r.get('content') or [{}])[0].get('text', '') if isinstance(r, dict) else '')
             bad = (isinstance(r, dict) and (r.get('isError') or 'Error' in txt[:20] or 'error' in txt[:20].lower()))
             if bad:
                 fail += 1
-                if fail <= 3: print('  [fail]', op['kind'], op.get('name'), txt[:110])
+                _FAILS.append({'kind': op['kind'], 'name': op.get('name'), 'addr': op.get('addr'),
+                               'err': txt[:160]})
             else:
                 ok += 1
         except Exception as e:
             fail += 1
             if fail <= 3: print('  [exc]', op['kind'], e)
-    print('replay done: ok=%d fail=%d / %d ops' % (ok, fail, len(plan)))
+    import json as _j
+    _p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'out', 'import_failures.jsonl')
+    with open(_p, 'w') as _fh:
+        for _f in _FAILS:
+            _fh.write(_j.dumps(_f, ensure_ascii=False) + '\n')
+    print('replay done: ok=%d fail=%d / %d ops -> %s' % (ok, fail, len(plan), _p))
+    assert ok > 0, '零成功=通道断（禁吞）'
 
 if __name__ == '__main__':
     main()
