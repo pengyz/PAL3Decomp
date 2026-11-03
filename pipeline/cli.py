@@ -46,6 +46,12 @@
   pipeline.toml（gitignored，每环境独立）
   首次: cp pipeline.toml.example pipeline.toml && 编辑路径
 """
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 import sys
 import os
 import json
@@ -1076,7 +1082,10 @@ def cmd_loop(argv):
         print('=' * 72)
         print('[loop] %s: %s' % (name, ' '.join(cmd[2:])))
         t0 = time.time()
-        proc = subprocess.run(cmd, cwd=_PROJECT_DIR, capture_output=True, text=True, errors='replace')
+        # encoding='utf-8'：子进程经 force_utf8_stdio 的 PYTHONIOENCODING 传播以 UTF-8 写出，
+        # 此处必须同规解码（默认 locale=gbk 会把日志/解析文本解成乱码）。
+        proc = subprocess.run(cmd, cwd=_PROJECT_DIR, capture_output=True, text=True,
+                              encoding='utf-8', errors='replace')
         secs = round(time.time() - t0, 1)
         text = (proc.stdout or '') + (proc.stderr or '')
         logfile = os.path.join(logdir, 'loop_%s.log' % name)

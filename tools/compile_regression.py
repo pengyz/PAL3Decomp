@@ -27,11 +27,13 @@ from datetime import datetime
 # stdout 编码是 GBK ⇒ `UnicodeEncodeError` 直接让**门禁自己崩掉**
 # （第 132/133 轮实测：报告已经算完并打印，最后一行 `✅ No regressions detected`
 #   抛异常 → 退出码 1，被 `cli.py` 当成"有退化"）。门禁工具的结论行必须能打印出来。
-for _s in (sys.stdout, sys.stderr):
-    try:
-        _s.reconfigure(encoding='utf-8', errors='replace')
-    except Exception:
-        pass
+# 2026-11-03 D7 收敛：下方原内联 reconfigure 块下沉为单源 pipeline/utf8_stdio.py（此处即其原型）。
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 
 PROJECT_ROOT = Path(__file__).parent.parent
 PROBE_FILE = PROJECT_ROOT / "data" / "status" / "probe_census.json"

@@ -58,6 +58,9 @@
 - [**codegen 输出路径未锚定 PROJECT_ROOT**](gotcha_codegen_output_path_not_anchored_to_project_root.md) — `emit_cpp` 用 `store.project_root`、`emit_headers` 用 `PIPELINE_ROOT.parent`，而 `pipeline.toml` 的输入路径是绝对的 ⇒ 在 `git worktree` 里跑 codegen 会**先 rmtree 再重建主仓库的 pal3/src**；不要用 worktree 做 A-B-A
 - [**落后 checkout + init --force = 全线崩塌且增量全绿**](gotcha_stale_checkout_fresh_idb_regeneration_collapse.md) — Windows 侧 master 落后 3 天（ddb29a290），init --force 在**无修复代码**上全量重生成 ⇒ C2079 循环序 ×213（修复 2183b71bd 只在 origin 上）；增量 12 项 hash 不含 `include/pal3/gen` ⇒ 崩塌被掩盖；修=gen_headers 纳入 hash（R89）+ 跑重管线前必对齐 origin/master；S2=0/全 fail_imported_only 形态先读 census `root_blame` 找公共头单点
 
+- [Windows GBK 编码三连崩（print/写盘/子进程解码）](gotcha_windows_gbk_stdio_unicode_crash.md) — stdio=locale=gbk ⇒ print ⚠/⇒ 崩、`ensure_ascii=False` 写盘崩、`text=True` 捕获 UTF-8 子进程解码崩（异常被吞成"内容读不出"）；单源修复 `pipeline/utf8_stdio.py`（11 入口接线）；registry 环境变量/pwsh profile/repo 级 sitecustomize 三条全局路**实测无效**
+- [git rev:path 树内路径必须正斜杠](gotcha_git_rev_path_needs_posix_separators.md) — Windows 下 `git show HEAD:<WindowsPath>` rc=128 "exists on disk, but not in 'HEAD'"；`ls-tree` pathspec 容忍反斜杠 ⇒ 列表正常、逐文件读全灭，症状像"内容读不出"；修 `.as_posix()`（实测案例 annotation_diff 942 文件）
+
 ## Patterns
 - [字段"类型与名字"的证据分级（disp32 全二进制扫描）](pattern_member_evidence_grading_by_disp32_scan.md) — 对每个偏移扫 disp32 小端模式：**0 命中 ⇒ 无直接访问 ⇒ 不得给类型/语义名**（应作 padding/未知）；命中须回 disasm 确认承载指令（假阳性常见：栈偏移/立即数）；类型可证到"宽度+int/float/指针+有/无符号"，名字仅在字符串/RTTI/API/PDB 等**语义把手**存在时可给 ✓
 - [字节优先的 ROI 筛选（唯一能把修复变成 L1 的入口）](pattern_byte_first_roi_screening.md) — 候选须同时满足「S2 绿单元 + 编译/原始长度≈1.0 + n_diff 小」；当前 198 条 partial 里 **10 条 ≥80%**、**3 条只差 1 字节**（`FindInOpen`/`FindInClosed` 寄存器选择；`GetEntryPtr` 结构/归属）；其余 ~190 条匹配度<50% ⇒ 小修**不产生字节收益**；按 diffs 偏移 + MCP 原指令分类（偏移错/寄存器选择/结构）

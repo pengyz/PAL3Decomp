@@ -24,6 +24,12 @@
     python3 tools/verify_fix.py --class UIListBox --max-dependents 8 --json
 只读；退出码：发现不一致或回归 ⇒ 1 ✓
 """
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 import argparse
 import json
 import os
@@ -341,7 +347,7 @@ def git_show(path):
     """读**已提交（HEAD）**版本 —— "与已提交基线比较" ✓"""
     try:
         r = subprocess.run(['git', 'show', 'HEAD:%s' % path], capture_output=True, text=True,
-                           cwd=ROOT, timeout=60)
+                           encoding='utf-8', cwd=ROOT, timeout=60)
         return json.loads(r.stdout) if r.returncode == 0 and r.stdout.strip() else None
     except Exception:
         return None

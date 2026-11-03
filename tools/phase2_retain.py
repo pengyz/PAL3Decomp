@@ -52,6 +52,12 @@ phase2/
 R15：纯函数（hash/manifest/plan）单测见 tests/test_phase2_retain.py（fixture 树，
 不碰真 pal3/src）。
 """
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 import argparse
 import difflib
 import hashlib

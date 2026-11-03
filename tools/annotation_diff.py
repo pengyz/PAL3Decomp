@@ -27,6 +27,12 @@ Annotation Diff Visualization Tool
     python3 tools/annotation_diff.py --format html      # 输出HTML报告
     python3 tools/annotation_diff.py --output report.txt # 保存到文件
 """
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 
 import argparse
 import json
@@ -113,7 +119,7 @@ class AnnotationDiffer:
         try:
             result = subprocess.run(
                 ["git", "rev-parse", "--verify", "--quiet", "%s^{commit}" % commit],
-                capture_output=True, text=True, cwd=PROJECT_ROOT)
+                capture_output=True, text=True, encoding='utf-8', errors='replace', cwd=PROJECT_ROOT)
         except FileNotFoundError as e:
             raise GitUnavailableError(
                 "git is not runnable: %s\n"
@@ -141,6 +147,7 @@ class AnnotationDiffer:
                 ["git", "show", f"{commit}:{filepath}"],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
                 cwd=PROJECT_ROOT
             )
             if result.returncode == 0:
@@ -338,8 +345,8 @@ class AnnotationDiffer:
         git_files = set()
         result = subprocess.run(
             ["git", "ls-tree", "-r", "--name-only", commit,
-             str(ANNOTATIONS_DIR.relative_to(PROJECT_ROOT))],
-            capture_output=True, text=True, cwd=PROJECT_ROOT)
+             (ANNOTATIONS_DIR.relative_to(PROJECT_ROOT)).as_posix()],
+            capture_output=True, text=True, encoding='utf-8', errors='replace', cwd=PROJECT_ROOT)
         if result.returncode != 0:
             raise GitUnavailableError(
                 "git ls-tree failed for %r (exit %d)\n  stderr: %s\n"
@@ -353,7 +360,10 @@ class AnnotationDiffer:
         all_files = current_files | git_files
 
         for filename in sorted(all_files):
-            filepath = str(ANNOTATIONS_DIR.relative_to(PROJECT_ROOT) / filename)
+            # as_posix()：git rev:path 树内路径必须正斜杠——WindowsPath 的反斜杠在
+            # `git show HEAD:<path>` 下 rc=128 "exists on disk, but not in 'HEAD'"
+            # （2026-11-03 实测 942 文件全数读不出的真凶；解码不是病灶）。
+            filepath = (ANNOTATIONS_DIR.relative_to(PROJECT_ROOT) / filename).as_posix()
 
             current_content = self.get_current_file_content(filepath)
             git_content = self.get_git_file_content(filepath, commit)

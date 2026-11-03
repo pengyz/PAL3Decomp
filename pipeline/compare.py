@@ -92,7 +92,7 @@ def compile_source(src_path, obj_path=None):
         env["WINEDEBUG"] = "-all"
 
     print(f"编译: {src.name} -> {obj.name}")
-    result = subprocess.run(cmd, capture_output=True, text=True, env=env)
+    result = subprocess.run(cmd, capture_output=True, text=True, errors='replace', env=env)
 
     if result.returncode != 0:
         print(f"编译失败!")
