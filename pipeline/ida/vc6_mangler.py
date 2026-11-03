@@ -188,6 +188,9 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     for kw in ('virtual', 'static'):
         prefix = re.sub(r'\b%s\s+' % kw, '', prefix)
 
+    _tm = re.search(r'\)\s*(const\s+volatile|volatile|const)\s*$', sig or '')
+    if _tm and not cv:
+        cv = _tm.group(1).strip()
     cc = '__thiscall'
     for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
         if c in prefix: cc = c; break
@@ -276,11 +279,17 @@ def _split_params(pstr):
 
 
 def parse_signature(sig):
-    """'int __cdecl(const char *,const char *,char *)' → (conv, ret, params)。"""
+    """'int __cdecl(const char *) const' → dict(conv, ret, params, cv)。
+    D5 修：尾 cv 吸收（const/volatile 重载区分）——此前丢 cv 致双规分叉。"""
     sig = sig or ''
+    cv = ''
+    m = re.search(r'\)\s*(const\s+volatile|volatile|const)\s*$', sig)
+    if m:
+        cv = m.group(1).strip()
+        sig = sig[:m.start() + 1]
     paren = sig.find('(')
     if paren == -1:
-        return ('__thiscall', sig.strip(), [])
+        return {'conv': '__thiscall', 'ret': sig.strip(), 'params': [], 'cv': cv}
     prefix = sig[:paren].strip()
     pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
     for kw in ('virtual', 'static'):
@@ -292,7 +301,7 @@ def parse_signature(sig):
             break
     ret = prefix.replace(cc, '').strip()
     ret = re.sub(r'\w+::\w+', '', ret).strip()
-    return (cc, ret, _split_params(pstr))
+    return {'conv': cc, 'ret': ret, 'params': _split_params(pstr), 'cv': cv}
 
 
 def mangled_conflict(mangled_names):
@@ -310,7 +319,8 @@ def mangle_global(func_name, sig):
     D1 修（2026-11-02 复核）：已 mangled 名短路；零参尾=XZ（void 参 X+收尾 Z 无 @）。"""
     if (func_name or '').startswith('?'):
         return func_name   # D1② 已 mangled 名禁重绞
-    cc, ret, params = parse_signature(sig)
+    _s = parse_signature(sig)
+    cc, ret, params = _s['conv'], _s['ret'], _s['params']
     g = _GCC.get(cc, 'YA')
     def _enc(t):
         t = t.strip()

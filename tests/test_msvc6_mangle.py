@@ -27,8 +27,8 @@ def test_global_cdecl_groundtruth():
 
 
 def test_parse_signature():
-    conv, ret, params = parse_signature('int __cdecl(const char *,const char *,char *)')
-    assert conv == '__cdecl' and ret == 'int' and params == ['const char *', 'const char *', 'char *']
+    s = parse_signature('int __cdecl(const char *,const char *,char *)')
+    assert s['conv'] == '__cdecl' and s['ret'] == 'int' and s['params'] == ['const char *', 'const char *', 'char *'] and s['cv'] == ''
 
 
 def test_conflict_by_mangled_not_name():
@@ -114,3 +114,22 @@ def test_defect5_typedef_resolution():
     from pipeline.ida.vc6_mangler import mangle
     assert mangle('X', 'F', 'void __thiscall(CHAR)').endswith('D@Z'), 'CHAR 未展开为 D'
     assert mangle('X', 'F', 'void __thiscall(LPCSTR)').endswith('PB@Z'), 'LPCSTR 未展开为 PB'
+
+
+# ===== D5 cv 双规统一（复核 review_mangled_migration_20261102）=====
+
+def test_d5_parse_signature_absorbs_trailing_cv():
+    """parse_signature 须吸收尾 cv（'void __thiscall() const' → cv='const'）。"""
+    from pipeline.ida.vc6_mangler import parse_signature
+    s = parse_signature('void __thiscall() const')
+    assert s.get('cv') == 'const', '尾 cv 未吸收: %r' % s
+    s2 = parse_signature('void __thiscall()')
+    assert not s2.get('cv'), '无 cv 却带: %r' % s2
+
+
+def test_d5_cv_distinguishes_mangled():
+    """同名同参 cv 异 ⇒ mangled 异（const 重载=合法，禁误判冲突）。"""
+    from pipeline.ida.vc6_mangler import mangle
+    m1 = mangle('A', 'f', 'void __thiscall()')
+    m2 = mangle('A', 'f', 'void __thiscall()', cv='const')
+    assert m1 != m2, 'cv 未参与 mangled: %s' % m1
