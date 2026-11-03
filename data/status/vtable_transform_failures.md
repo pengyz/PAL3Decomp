@@ -714,3 +714,6 @@
 | `CUtil::Method` | inline | `PropUI` | 20 | self_arg_mismatch | `(*(void ( **)(PropUI *, int))(*(_DWORD *)&m_pPropUI->UIWnd + 20))(m_pPropUI, 1)` |
 | `StateUI::sub` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&(*v49)->gbChain1DNode + 24))(*v49, 0)` |
 | `UIWnd::SetRect` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `UIScenePanel::PostRender` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, UIScenePanel *))(*(_DWORD *)m_hSettingsUI + 4))(m_hSettingsUI, this)` |
+| `UIScenePanel::StopAllSounds` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, _DWORD, int))(*(_DWORD *)v29 + 8))(v29, LODWORD(fFade), nFlags)` |
+| `UIWnd::RenderText` | inline | `UIWnd` | 12 | name_declared_at_other_address | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
