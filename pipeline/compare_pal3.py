@@ -27,12 +27,13 @@ import json
 import os
 import re
 
-from pipeline.ida.vc6_mangler import strip_stamp
 import struct
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).parent.parent
+sys.path.insert(0, str(REPO))   # 独立脚本形（cli.py 子进程）也可导 pipeline 包 [D7 二犯修]
+from pipeline.ida.vc6_mangler import strip_stamp   # [D7] 单源
 sys.path.insert(0, str(REPO / 'tools'))
 sys.path.insert(0, str(REPO / 'pipeline'))
 
