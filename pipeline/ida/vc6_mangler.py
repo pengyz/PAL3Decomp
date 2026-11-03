@@ -346,6 +346,19 @@ def idb_name(cls_name, method_name, sig):
         return None
 
 
+def strip_stamp(name, mode='ovl'):
+    """戳/戳名剥离单源（D7，2026-11-03）。分模式=各调用点语义不同，禁过度统一
+    （2026-11-03 教训：hex 尾规则误剥地址戳名 crt_sub_00540D20→18 假碰撞）。
+    mode='ovl'：__ovl_ 全后缀 + _ovl（G1 形）——碰撞判定用（地址=身份不剥）
+    mode='all'：再加 _<hex>{3,} 尾——比对匹配用（容忍名漂）"""
+    n = name or ''
+    n = re.sub(r'__ovl_.*$', '', n)
+    n = re.sub(r'_ovl$', '', n)
+    if mode == 'all':
+        n = re.sub(r'_[0-9a-fA-F]{3,}$', '', n)
+    return n
+
+
 def is_eh_funclet(name):
     """D4（2026-11-02 复核）：_E/$E/$LN 形=EH funclet（编译器合成物）非可解析符号。"""
     import re

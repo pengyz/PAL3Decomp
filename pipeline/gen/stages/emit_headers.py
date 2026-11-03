@@ -19,6 +19,8 @@ from annotation_view import base_names as _base_names, base_entries as _base_ent
 import json
 import os
 import re
+
+from pipeline.ida.vc6_mangler import strip_stamp
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -1107,7 +1109,7 @@ def collect_methods():
             continue
         # Strip __ovl_XXXX suffix for overloading, but only if sig differs
         # from existing functions with same stripped name
-        ovl_stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        ovl_stripped = strip_stamp(method)   # [D7] 单源
         if ovl_stripped != method:
             collides = False
             for existing_method, existing_sig, _ in classes.get(cls, []):

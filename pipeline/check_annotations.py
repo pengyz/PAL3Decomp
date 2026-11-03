@@ -15,12 +15,14 @@
 import json
 import os
 import re
+
 import sys
 
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _PROJECT_ROOT)
 
 from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
+from pipeline.ida.vc6_mangler import strip_stamp   # [D7] 单源
 
 ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
 
@@ -246,7 +248,7 @@ def check(struct_dir=None):
     # Entries WITH __ovl_ sharing the same base are validated by section 2c (different sigs required).
     # Build base -> [(addr, name, has_ovl)]
     base_groups = {}
-    OVL_SUFFIX = re.compile(r'__ovl_[0-9a-fA-F]+$')
+    OVL_SUFFIX = re.compile(r'__ovl_[0-9a-fA-F]+$')  # [D7] 语义=vc6_mangler.strip_stamp 单源
     for addr, info in funcs.items():
         name = info.get('name', '')
         if not name or info.get('type') == 'skip':
@@ -355,7 +357,7 @@ def check(struct_dir=None):
         sig = info.get('signature', '')
         if not name or not sig:
             continue
-        stripped = re.sub(r'__ovl_[0-9a-fA-F]+$', '', name)
+        stripped = strip_stamp(name)   # [D7] 单源
         sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
         sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
         sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)

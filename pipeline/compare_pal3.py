@@ -26,6 +26,8 @@ import hashlib
 import json
 import os
 import re
+
+from pipeline.ida.vc6_mangler import strip_stamp
 import struct
 import sys
 from pathlib import Path
@@ -190,7 +192,7 @@ def _load_annotation_dtors():
                 pass
             else:
                 cands.append('~' + cls)
-            stripped = re.sub(r'_[0-9a-fA-F]{3,}$', '', nm)
+            stripped = strip_stamp(nm)   # [D7] 单源
             if stripped != nm and stripped.startswith('~') and stripped not in cands:
                 cands.append(stripped)
             for c in cands:

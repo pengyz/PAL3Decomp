@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SIG_TAIL = re.compile(r'\([^()]*\)\s*$')
-OVL_SUFFIX = re.compile(r'__ovl_.*$')
+OVL_SUFFIX = re.compile(r'__ovl_.*$')  # [D7] 形语义=strip_stamp 超集
 PARAM_NAME = re.compile(r'(\w)\s+\w+\s*$')
 SYNTH = re.compile(r'(_scalar_dtor|_vector_dtor|_sdtor|~|thunk|_init_)', re.I)
 
