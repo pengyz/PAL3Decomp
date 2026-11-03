@@ -1,0 +1,4345 @@
+{
+ "schema": 1,
+ "date": "2026-11-03",
+ "trigger": "StateUI +94 \u5f52\u56e0\uff080x485230 \u53cc\u6ce8\uff09",
+ "provenance_claims": 134,
+ "multi_claim_groups": 229,
+ "multi_claims": {
+  "0x00523b90": [
+   {
+    "class": "CUtil",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "ParabolaCalculator",
+    "name": "sub_523B90",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_523B90@CUtil@@QAEHXZ) | vtable_s"
+   }
+  ],
+  "0x005420d8": [
+   {
+    "class": "gbVisNode",
+    "name": "EnableShadow",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "EnableShadow",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [\u771f\u578b\u8865\u5168 2026-10-16] "
+   }
+  ],
+  "0x005420de": [
+   {
+    "class": "gbVisNode",
+    "name": "GetAABBox",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "GetAABBox",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [\u771f\u578b\u8865\u5168 2026-10-16] "
+   }
+  ],
+  "0x0054210e": [
+   {
+    "class": "gbVisNode",
+    "name": "GetBoundSphere",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "SceneVisNode",
+    "name": "SceneVisNode_adjthunk_210E",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "GetBoundSphere",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [\u771f\u578b\u8865\u5168 2026-10-16] "
+   }
+  ],
+  "0x0051ca50": [
+   {
+    "class": "CCBParabolaWindow",
+    "name": "ToggleSlots",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBSkillWindow",
+    "name": "ToggleSlots",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+   }
+  ],
+  "0x0051caa0": [
+   {
+    "class": "CCBParabolaWindow",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBSkillWindow",
+    "name": "Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+   }
+  ],
+  "0x0051c9f0": [
+   {
+    "class": "CCBParabolaWindow",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBSkillWindow",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+   }
+  ],
+  "0x0051c880": [
+   {
+    "class": "CCBParabolaWindow",
+    "name": "Cleanup",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627916"
+   },
+   {
+    "class": "CCBSkillWindow",
+    "name": "Destroy_c880",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)"
+   }
+  ],
+  "0x0051c260": [
+   {
+    "class": "CCBParabolaWindow",
+    "name": "`scalar deleting destructor'",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T138 \u5f62\uff0c\u9010\u5f62 objdump A \u7ea7\uff09\uff1a\u5168\u5f62=call 0x51C280 "
+   },
+   {
+    "class": "CCBSkillWindow",
+    "name": "`scalar deleting destructor'",
+    "adjudication": "shared_impl",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] \u540c "
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_C260",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x004b0520": [
+   {
+    "class": "UITitle_JDHY",
+    "name": "_scalar_dtor_0520",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T138 \u5f62\uff0c\u9010\u5f62 objdump A \u7ea7\uff09\uff1a\u5168\u5f62=call 0x4B0540 "
+   },
+   {
+    "class": "CCBMagicWindow",
+    "name": "`scalar deleting destructor'",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] \u8de8\u7c7b\u91cd\u590d\u6761\u76ee\u540c"
+   }
+  ],
+  "0x00405580": [
+   {
+    "class": "gbRain",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 38\u6761\u6ce8\u518c 2026-10-17\uff08verifier\u00b7\u5220\u9645\u6790\u6784\u7c7b\u81ea\u8bc1\u00b7\u8bc1\u636e\u8d26\u76ee\u5236\uff09\uff1a\u5220\u9645\u6790\u6784\u5f62\uff08A \u7ea7 disasm\uff09"
+   },
+   {
+    "class": "WeatherEffectNode",
+    "name": "_scalar_dtor_weather",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable IMPOSSIBLE \u65cf 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a\u5220\u9645\u6790\u6784\uff086 \u69fd"
+   }
+  ],
+  "0x00541f13": [
+   {
+    "class": "UICursor",
+    "name": "_scalar_dtor_1F13",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=real-method\uff1b\u8868 0"
+   },
+   {
+    "class": "UIEmote",
+    "name": "_todo_541F13",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x00442390": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_todo_442390",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [ctor/dtor \u9519\u4f4d\u6539\u540d 2026-10-16] \u540d _UIFrameWnd \u8bed\u4e49\u5b9e\u4e3a**\u771f\u6790\u6784**\uff1aidap"
+   },
+   {
+    "class": "UIFrameContainer",
+    "name": "~UIFrameContainer",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 55 \u7eed 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7 decompile\uff1aUIFram"
+   }
+  ],
+  "0x0043bbc0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "ProcessMessage",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62793-6"
+   },
+   {
+    "class": "UILoadingFrm",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+   }
+  ],
+  "0x00442370": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_sdtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIFrameContainer",
+    "name": "_scalar_dtor_2370",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 55 \u7eed 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] deleting \u4e09\u6bb5\u5f0f\uff08\u5305\u88c5 0x44"
+   }
+  ],
+  "0x00442ff0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "Update_2ff0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBPanelSlot",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62797"
+   }
+  ],
+  "0x004438f0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "Destroy_38f0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "Destroy__ovl_38F0",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62797"
+   }
+  ],
+  "0x00443950": [
+   {
+    "class": "UIFrameWnd",
+    "name": "Render_3950",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "+canonical_rename"
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+   }
+  ],
+  "0x00443970": [
+   {
+    "class": "UIFrameWnd",
+    "name": "UpdateIfVisible",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "UpdateIfVisible",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+   }
+  ],
+  "0x004431b0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_sdtor_call_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "UIWnd",
+    "name": "_scalar_dtor_31B0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   }
+  ],
+  "0x004433a0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_sdtor_thunk",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "UIPushButton",
+    "name": "_scalar_dtor_33A0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   }
+  ],
+  "0x00443530": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_scalar_dtor_3530",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361"
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "_sdtor_ovl",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIFrameWnd.json)"
+   }
+  ],
+  "0x00444aa0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_sdtor_full",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "CCBResultWindow",
+    "name": "_scalar_dtor_4AA0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00442d20": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_sdtor_8",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIPushButton",
+    "name": "_scalar_dtor_2D20",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   }
+  ],
+  "0x00443200": [
+   {
+    "class": "UIFrameWnd",
+    "name": "Render_3200",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBPanelSlot.json)"
+   },
+   {
+    "class": "CCBPanelSlot",
+    "name": "CCBPanelSlot::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004433d0": [
+   {
+    "class": "UIFrameWnd",
+    "name": "LayoutAndRender",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   },
+   {
+    "class": "UIWnd",
+    "name": "LayoutAndRender",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated+manual_ida_body"
+   }
+  ],
+  "0x0043bb90": [
+   {
+    "class": "UIFrameWnd",
+    "name": "_scalar_dtor_BB90",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIWnd",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004be060": [
+   {
+    "class": "ScreenEffect",
+    "name": "Reset",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627914"
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "_scalar_dtor_E060",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x004c0500": [
+   {
+    "class": "CEffSParticle",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffgbParticle",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffModel",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffAction",
+    "name": "OnTest",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | [T47] \u8fd4\u578b int\u2192bool\uff1aA \u7ea7 objdump 0x4c0500 `32"
+   },
+   {
+    "class": "CEffMeteor",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffGrid",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffCylinder",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffect",
+    "name": "OnTest",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "OnTest",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   }
+  ],
+  "0x004c15d0": [
+   {
+    "class": "CEffSParticle",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffgbParticle",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffModel",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffAction",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffMeteor",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffGrid",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffCylinder",
+    "name": "UpdateParticles",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CEffect",
+    "name": "UpdateParticles",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "UpdateParticles",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004d33a0": [
+   {
+    "class": "CEffSParticle",
+    "name": "ResetFlags",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "ResetFlags",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "ResetFlags",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "ResetIdle",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x004af760": [
+   {
+    "class": "CEffSParticle",
+    "name": "_todo_004AF760",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4AF760 \u5355\u6307\u4ee4 `c2 04 00`\uff08"
+   },
+   {
+    "class": "CEffgbParticle",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffModel",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "_todo_004AF760",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4AF760 \u5355\u6307\u4ee4 `c2 04 00`\uff08"
+   },
+   {
+    "class": "ScriptObj",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffAction",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffMeteor",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "gbLightObj",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffGrid",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "CEffCylinder",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CEffect",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   },
+   {
+    "class": "EffObjectPool",
+    "name": "Object_Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_todo_004AF760",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4AF760 \u5355\u6307\u4ee4 `c2 04 00`\uff08"
+   }
+  ],
+  "0x004c0510": [
+   {
+    "class": "CEffSParticle",
+    "name": "sub_4C0510_0510",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "CEffgbParticle",
+    "name": "sub_4C0510",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | "
+   },
+   {
+    "class": "CEffModel",
+    "name": "sub_4C0510",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | "
+   },
+   {
+    "class": "CEffQuake",
+    "name": "sub_4C0510",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | "
+   },
+   {
+    "class": "CEffAction",
+    "name": "Method_0510",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627914"
+   },
+   {
+    "class": "CEffect",
+    "name": "sub_4C0510",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "sub_4C0510",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | "
+   }
+  ],
+  "0x00434d50": [
+   {
+    "class": "PalScriptWaitTimer",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u4ec5\u8868\u5185 d"
+   },
+   {
+    "class": "PalScriptBlendTimer",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[vtable 100 \u8ba4\u9886 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] deleting \u4e09\u6bb5\u5f0f\u4f53\u5f62\u8bc1"
+   },
+   {
+    "class": "PalScriptFadeInTimer",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "PalScriptFadeOutTimer",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "GameObject",
+    "name": "_scalar_dtor_4D50",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00438100": [
+   {
+    "class": "PalScriptWaitTimer",
+    "name": "IsWaitDone",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u4ec5\u8868\u5185 d"
+   },
+   {
+    "class": "PalScriptProgressTimer",
+    "name": "IsProgressDone",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScriptAnimTimer",
+    "name": "IsAnimDone",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "CheckFlag0C",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   }
+  ],
+  "0x004382a0": [
+   {
+    "class": "PalScriptWaitTimer",
+    "name": "UpdateIdleTimer",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u4ec5\u8868\u5185 d"
+   },
+   {
+    "class": "PalScript",
+    "name": "UpdateIdleTimer",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00438190": [
+   {
+    "class": "PalScriptProgressTimer",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "_scalar_dtor_8190",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361"
+   }
+  ],
+  "0x00438110": [
+   {
+    "class": "PalScriptProgressTimer",
+    "name": "UpdateProgress",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "UpdateWaitTimer",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x005420fc": [
+   {
+    "class": "CScreenModeNode",
+    "name": "CScreenModeNode_adjthunk_20FC",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "SceneVisNode",
+    "name": "SceneVisNode_adjthunk_20FC",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "ParticleVisNode_adjthunk_20FC",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   }
+  ],
+  "0x00542120": [
+   {
+    "class": "CScreenModeNode",
+    "name": "CScreenModeNode_adjthunk_2120",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "SceneVisNode",
+    "name": "VisAttach",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u4f59 9 \u6302\u8d26\u5b9a\u6848 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7 IDA thunk\uff1aVisAttach"
+   }
+  ],
+  "0x00438e90": [
+   {
+    "class": "PalScriptAnimTimer",
+    "name": "~PalScriptAnimTimer",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "filebuf",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00438e30": [
+   {
+    "class": "PalScriptAnimTimer",
+    "name": "UpdateAnimTimer",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "filebuf",
+    "name": "AccumulateTime",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00439110": [
+   {
+    "class": "UIProgressBar",
+    "name": "~UIProgressBar",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIWnd",
+    "name": "sub_439110",
+    "adjudication": "rejected",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(r"
+   }
+  ],
+  "0x00434d20": [
+   {
+    "class": "PalScriptMgr",
+    "name": "IsBlendComplete",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "PalScriptBlendTimer",
+    "name": "IsBlendComplete",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 100 \u8ba4\u9886 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7 decompile\uff1a`ret"
+   }
+  ],
+  "0x00434d40": [
+   {
+    "class": "PalScriptMgr",
+    "name": "AccumulateTime",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "PalScriptBlendTimer",
+    "name": "AccumulateTime",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 100 \u8ba4\u9886 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7 decompile\uff1a`m_f"
+   }
+  ],
+  "0x00526a40": [
+   {
+    "class": "SaleUI",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| [\u649e\u540d 28 \u7ec4\u56db\u5206\u8d26\u88c1\u51b3 2026-10-16 analyzer] int this \u5047\u53c2\u6b8b\u7559\u6e05\u9664\uff08\u9996\u53c2 `int"
+   },
+   {
+    "class": "CCBUI",
+    "name": "Update_6A40",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627916"
+   }
+  ],
+  "0x0045ae40": [
+   {
+    "class": "SaleUI",
+    "name": "_scalar_dtor_AE40",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIBigMap",
+    "name": "_scalar_dtor_AE40",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from SaleUI.json)"
+   }
+  ],
+  "0x0046b4b0": [
+   {
+    "class": "SaleUI",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIListBox",
+    "name": "_todo_0046B4B0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x46b4b0 `mov 0x4(%esp),"
+   }
+  ],
+  "0x0043ddf0": [
+   {
+    "class": "SaleUI",
+    "name": "CCBControlWindow::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+   },
+   {
+    "class": "CCBControlWindow",
+    "name": "CCBControlWindow::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "CCBMagicWindow",
+    "name": "CCBControlWindow::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+   },
+   {
+    "class": "PropUI",
+    "name": "CCBControlWindow::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+   },
+   {
+    "class": "CCBUI",
+    "name": "CCBControlWindow::Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+   },
+   {
+    "class": "CCBLineupWindow",
+    "name": "CCBControlWindow::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)"
+   }
+  ],
+  "0x0041be30": [
+   {
+    "class": "Object",
+    "name": "_ScriptObj_adjthunk2",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[thunk \u547d\u540d\u843d\u5730 2026-10-16\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,0x40 ; j"
+   },
+   {
+    "class": "ScriptObj",
+    "name": "_sdtor_22",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "Role",
+    "name": "_sdtor_22",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from ScriptObj.json)"
+   }
+  ],
+  "0x004b7ba0": [
+   {
+    "class": "CEffGroupNode",
+    "name": "_todo_4b7ba0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| [\u8868\u8ba4\u9886+\u69fd\u6ce8\u518c\u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c\uff1areal-method | [\u649e\u540d 28 "
+   },
+   {
+    "class": "UI3DModelNode",
+    "name": "_todo_7BA0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=real-method\uff1b\u8868 0"
+   }
+  ],
+  "0x004b7f70": [
+   {
+    "class": "CEffGroupNode",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u8868\u8ba4\u9886+\u69fd\u6ce8\u518c\u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c\uff1aA \u7ea7 `c3` \u7a7a\u5b9e\u73b0\u6869 \u21d2 nulls"
+   },
+   {
+    "class": "RenderTargetNode",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=nullsub-retN\uff1b\u8868 "
+   },
+   {
+    "class": "UI3DModelNode",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=nullsub-retN\uff1b\u8868 "
+   },
+   {
+    "class": "ScreenEffectNode",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=nullsub-retN\uff1b\u8868 "
+   }
+  ],
+  "0x004cb340": [
+   {
+    "class": "CEffgbParticle",
+    "name": "_sdtor_adj",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u6cbb\u7406\u00b7\u672a\u6ce8\u518c\u65cf 2026-10-16 analyzer] A \u7ea7\u672c\u4f53\u5224\u8bfb\uff1a`sub ecx,N; j"
+   },
+   {
+    "class": "CEffGrid",
+    "name": "slot_5_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   }
+  ],
+  "0x004c88b0": [
+   {
+    "class": "CEffgbParticle",
+    "name": "_todo_88B0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=adjustor\uff1b\u8868 0x00"
+   },
+   {
+    "class": "CEffect",
+    "name": "CreateOnePartical_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   }
+  ],
+  "0x004c9630": [
+   {
+    "class": "CEffgbParticle",
+    "name": "_scalar_dtor_9630",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "CEffGrid",
+    "name": "_scalar_dtor_9630",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:_sdtor_36) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4/"
+   }
+  ],
+  "0x004cb350": [
+   {
+    "class": "CEffgbParticle",
+    "name": "_todo_4CB350",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "CEffGrid",
+    "name": "_todo_4CB350",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x004d3910": [
+   {
+    "class": "CEffShock",
+    "name": "CEffShock",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_evidence+pdb_correct"
+   },
+   {
+    "class": "CEffect",
+    "name": "CEffShock",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffShock.json)"
+   }
+  ],
+  "0x004d3dc0": [
+   {
+    "class": "CEffShock",
+    "name": "Initialize",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627915"
+   },
+   {
+    "class": "CEffect",
+    "name": "sub_4D3DC0",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004d4110": [
+   {
+    "class": "CEffShock",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627915"
+   },
+   {
+    "class": "CEffect",
+    "name": "sub_4D4110",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004d4de0": [
+   {
+    "class": "CEffShock",
+    "name": "sub_4D3DC0_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "_sdtor_adj",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u6cbb\u7406\u00b7\u672a\u6ce8\u518c\u65cf 2026-10-16 analyzer] A \u7ea7\u672c\u4f53\u5224\u8bfb\uff1aadjustor \u8df3\u677f c"
+   }
+  ],
+  "0x004d4df0": [
+   {
+    "class": "CEffShock",
+    "name": "_todo_4D4DF0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "CEffQuake",
+    "name": "_todo_4D4DF0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x0043d920": [
+   {
+    "class": "UIPushButton",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBProtectWindow",
+    "name": "Destroy__ovl_D920",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62794"
+   }
+  ],
+  "0x00519660": [
+   {
+    "class": "CCBResultWindow",
+    "name": "IsImbibeNimbusNotFinish",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "IsImbibeNimbusNotFinish",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBResultWindow.json)"
+   }
+  ],
+  "0x00519360": [
+   {
+    "class": "CCBResultWindow",
+    "name": "ShowLineupWindow",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_9360",
+    "adjudication": "confirmed",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from CCBResultWindow.json) | [\u5220\u6790\u6784 133 \u6b63\u540d "
+   }
+  ],
+  "0x00519510": [
+   {
+    "class": "CCBResultWindow",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "Destroy_9510",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBResultWindow.json)"
+   }
+  ],
+  "0x005195e0": [
+   {
+    "class": "CCBResultWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "OnMessage",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBResultWindow.json)"
+   }
+  ],
+  "0x0043de40": [
+   {
+    "class": "CCBResultWindow",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UILoadingFrm",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UIBigMap",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "EquipUI",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "LineupUI",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "SystemUI",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "JusticeBookUI",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UIRoleSelectDialog",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "MainEquipUI",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UIListBox",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UICoverFrm",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "CScreenMode",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "ParabolaCalculator",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "CCBRoleState",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_todo_43DE40",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "RenderTarget",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   },
+   {
+    "class": "UITitle_YXXX",
+    "name": "CCBRoleState::Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)"
+   }
+  ],
+  "0x00524970": [
+   {
+    "class": "CCBResultWindow",
+    "name": "CCBRoleState::Render",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBStage.json)"
+   },
+   {
+    "class": "UILoadingFrm",
+    "name": "CCBRoleState::Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBStage.json)"
+   },
+   {
+    "class": "CCBStage",
+    "name": "CCBRoleState::Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RoleSystem",
+    "name": "CCBRoleState::Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBStage.json)"
+   },
+   {
+    "class": "CScreenMode",
+    "name": "CCBRoleState::Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBStage.json)"
+   },
+   {
+    "class": "UITitle_YXXX",
+    "name": "CCBRoleState::Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBStage.json)"
+   }
+  ],
+  "0x0051b940": [
+   {
+    "class": "CCBResultWindow",
+    "name": "ForwardShowClipped",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 97\u65cf\u6ce8\u518c\u7eed 2026-10-17\uff08verifier\u00b7\u8bc1\u636e\u8d26\u76ee\u5236 symbol+addr\uff09\uff1a\u6ce8\u518c evidence\uff1a"
+   },
+   {
+    "class": "CCBControlWindow",
+    "name": "ForwardShowClipped",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 97\u65cf\u6ce8\u518c\u7eed 2026-10-17\uff08verifier\u00b7\u8bc1\u636e\u8d26\u76ee\u5236 symbol+addr\uff09\uff1a\u6ce8\u518c evidence\uff1a"
+   },
+   {
+    "class": "CCBItemWindow",
+    "name": "ForwardShowClipped",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 97\u65cf\u6ce8\u518c\u7eed 2026-10-17\uff08verifier\u00b7\u8bc1\u636e\u8d26\u76ee\u5236 symbol+addr\uff09\uff1a\u6ce8\u518c evidence\uff1a"
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "ForwardShowClipped",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 97\u65cf\u6ce8\u518c\u7eed 2026-10-17\uff08verifier\u00b7\u8bc1\u636e\u8d26\u76ee\u5236 symbol+addr\uff09\uff1a\u6ce8\u518c evidence\uff1a"
+   },
+   {
+    "class": "CCBUI",
+    "name": "_todo_B940",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| [method 27 \u4f59\u91cf\u6279 2026-10-16 analyzer] \u8868 0x005704C8 \u8ba4\u9886\u8fde\u5e26\u6ce8\u518c"
+   },
+   {
+    "class": "CCBLineupWindow",
+    "name": "ForwardShowClipped",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 97\u65cf\u6ce8\u518c\u7eed 2026-10-17\uff08verifier\u00b7\u8bc1\u636e\u8d26\u76ee\u5236 symbol+addr\uff09\uff1a\u6ce8\u518c evidence\uff1a"
+   }
+  ],
+  "0x00451b40": [
+   {
+    "class": "UILoadingFrm",
+    "name": "ResizeToContent",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIListBox.json)"
+   },
+   {
+    "class": "UIListBox",
+    "name": "ResizeToContent",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00451c10": [
+   {
+    "class": "UILoadingFrm",
+    "name": "IsVisible",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIListBox.json)"
+   },
+   {
+    "class": "UIListBox",
+    "name": "IsVisible",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00451aa0": [
+   {
+    "class": "UILoadingFrm",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62797"
+   },
+   {
+    "class": "UIListBox",
+    "name": "OnMessage_ovl",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004518e0": [
+   {
+    "class": "UILoadingFrm",
+    "name": "_scalar_dtor_18E0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIListBox",
+    "name": "_sdtor_28",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[0x4518xx \u6536\u53e3 2026-10-16] registry \u5f52\u5c5e\u88c1\u51b3\uff1a\u5220\u6790\u6784\u4e0e\u5b8c\u6574\u6790\u6784=ABI \u914d\u5bf9\u4f53\uff08deco"
+   }
+  ],
+  "0x004202a0": [
+   {
+    "class": "gbRenderEffect",
+    "name": "AllocSlotData",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "AllocSlotData",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00420430": [
+   {
+    "class": "gbRenderEffect",
+    "name": "_sdtor_2",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from functions.json) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1a"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "_scalar_dtor_0430",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[5\u8868\u91cd\u843d\u6536\u5c3e 2026-10-16] \u8865\u767b\u8bb0\uff08\u69fd\u540d\u503a\u6e05\u6bd5\u540e\u91cd\u843d\u7f3a\u53e3\uff09\uff1aA \u7ea7 decomp \u5feb\u7167 RoleSystem"
+   }
+  ],
+  "0x004208a0": [
+   {
+    "class": "gbRenderEffect",
+    "name": "Reset",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleSystem.json)"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "Reset",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004209e0": [
+   {
+    "class": "gbRenderEffect",
+    "name": "ResetState",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleSystem.json) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "ResetState",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 8/4=2 \u53c2 vs \u7b7e\u540d 0\u2014\u2014\u8865 2 \u53c2\uff08int \u5360\u4f4d\u00b7nVal \u5e8f"
+   }
+  ],
+  "0x00420270": [
+   {
+    "class": "gbRenderEffect",
+    "name": "sub_420270",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:sub_420270) | vtable_sig_arity_fill(r"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "_scalar_dtor_0270",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   }
+  ],
+  "0x004202f0": [
+   {
+    "class": "gbRenderEffect",
+    "name": "Release",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62793-6"
+   },
+   {
+    "class": "RoleSystem",
+    "name": "sub_4202F0",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004a14c0": [
+   {
+    "class": "UITitle",
+    "name": "HideAll",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 16/4=4 \u53c2 vs \u7b7e\u540d 0\u2014\u2014\u8865 "
+   },
+   {
+    "class": "UIWnd",
+    "name": "HideAll_14C0",
+    "adjudication": "rejected",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from UITitle.json) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1are"
+   }
+  ],
+  "0x004cffa0": [
+   {
+    "class": "CEffModel",
+    "name": "DestroyEffect",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| \u6302\u8d2619\u7eed\u62792b 2026-10-17\uff08verifier\u00b7DestroyEffect/\u6563\u7ec4\u56db\u5206\u8d26\u00b7\u4e94\u9762\u8bed\u4e49\u5361\uff09\uff1a\u26a0\ufe0f"
+   },
+   {
+    "class": "CEffCustomShape",
+    "name": "DestroyEffect",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from CEffModel.json) | \u6302\u8d2619\u7eed\u62792b 2026-10-1"
+   }
+  ],
+  "0x004d3220": [
+   {
+    "class": "CEffModel",
+    "name": "_sdtor_adj",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u6cbb\u7406\u00b7\u672a\u6ce8\u518c\u65cf 2026-10-16 analyzer] A \u7ea7\u672c\u4f53\u5224\u8bfb\uff1aadjustor \u8df3\u677f c"
+   },
+   {
+    "class": "CEffQuad",
+    "name": "sub_4D17D0_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   }
+  ],
+  "0x004cfd20": [
+   {
+    "class": "CEffModel",
+    "name": "~CEffModel",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "CEffCustomShape",
+    "name": "_scalar_dtor_fd20",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:_sdtor_38) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4/"
+   }
+  ],
+  "0x004d0d90": [
+   {
+    "class": "CEffModel",
+    "name": "_scalar_dtor_0D90",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "CEffQuad",
+    "name": "_scalar_dtor_0d90",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:_sdtor_39) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4/"
+   }
+  ],
+  "0x004d0c90": [
+   {
+    "class": "CEffModel",
+    "name": "_todo_004D0C90",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable \u5f52\u5c5e 2026-10-21\u00b7A \u7ea7] vtable ['0x0056F9D0'] \u69fd\u6307\u5411\u672c\u51fd\u6570 \u21d2 \u5f52\u5c5e"
+   },
+   {
+    "class": "CEffect",
+    "name": "_nearby_4cffb0_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   }
+  ],
+  "0x0051ac90": [
+   {
+    "class": "CCBControlWindow",
+    "name": "HandleEnable",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_AC90",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0051b5d0": [
+   {
+    "class": "CCBControlWindow",
+    "name": "UpdateDescriptionPage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| [T115] \u540c\u540d\u6d88\u6b67\uff1a@0x51B5D0 \u5168\u51fd\u6570\u4f53\uff08654 \u5b57\u7b26\uff09\u6210\u5458\u7c07=m_nActivePage/m_pDes"
+   },
+   {
+    "class": "CCBItemWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBControlWindow.json)"
+   }
+  ],
+  "0x0051b030": [
+   {
+    "class": "CCBControlWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)"
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated+pdb_name"
+   }
+  ],
+  "0x0043b4b0": [
+   {
+    "class": "UICaption",
+    "name": "_sdtor_5",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScenePanel",
+    "name": "_scalar_dtor_B4B0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   },
+   {
+    "class": "UIScene",
+    "name": "_sdtor_5",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x0044be00": [
+   {
+    "class": "UICaption",
+    "name": "_sdtor_24",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScenePanel",
+    "name": "_scalar_dtor_BE00",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0043ad40": [
+   {
+    "class": "UICaption",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScenePanel",
+    "name": "Render_AD40",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x0043ab20": [
+   {
+    "class": "UICaption",
+    "name": "Update2",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "Update2",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x0043a7f0": [
+   {
+    "class": "UICaption",
+    "name": "_scalar_dtor_A7F0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIScene",
+    "name": "_sdtor",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x0043a870": [
+   {
+    "class": "UICaption",
+    "name": "CreateChildWidget",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScenePanel",
+    "name": "CreateChildWidget",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x0043ab00": [
+   {
+    "class": "UICaption",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "UIScene",
+    "name": "Destroy",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UICaption.json)"
+   }
+  ],
+  "0x004cfe20": [
+   {
+    "class": "CEffCustomShape",
+    "name": "CreateEffect",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627910"
+   },
+   {
+    "class": "CEffect",
+    "name": "_nearby_4cfe20",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": " | [R94c-v2 2026-10-25] \u5265 virtual \u524d\u7f00\uff08as_data \u7c7b\u4e0d\u5f97\u63d0\u5347 virtual\u2014\u2014"
+   }
+  ],
+  "0x004cffb0": [
+   {
+    "class": "CEffCustomShape",
+    "name": "UpdateEffect",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627910"
+   },
+   {
+    "class": "CEffect",
+    "name": "_nearby_4cffb0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": " | [R94c-v2 2026-10-25] \u5265 virtual \u524d\u7f00\uff08as_data \u7c7b\u4e0d\u5f97\u63d0\u5347 virtual\u2014\u2014"
+   }
+  ],
+  "0x0051bbe0": [
+   {
+    "class": "CCBSkillWindow",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_BBE0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0051c1b0": [
+   {
+    "class": "CCBSkillWindow",
+    "name": "SetActivePage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBMagicWindow",
+    "name": "SetActivePage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
+   }
+  ],
+  "0x0051b860": [
+   {
+    "class": "CCBSkillWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBMagicWindow",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)"
+   }
+  ],
+  "0x0051c9b0": [
+   {
+    "class": "CCBSkillWindow",
+    "name": "CCBFiveNimbusWindow::OnMessage",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+   },
+   {
+    "class": "CCBItemWindow",
+    "name": "CCBFiveNimbusWindow::OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   }
+  ],
+  "0x00404d40": [
+   {
+    "class": "WeatherEffectNode",
+    "name": "_scalar_dtor_full",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable IMPOSSIBLE \u65cf 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a\u5220\u9645\u6790\u6784\u4e09\u6bb5\u5f0f\uff08"
+   },
+   {
+    "class": "gbGeomNode",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 38\u6761\u6ce8\u518c 2026-10-17\uff08verifier\u00b7\u5220\u9645\u6790\u6784\u7c7b\u81ea\u8bc1\u00b7\u8bc1\u636e\u8d26\u76ee\u5236\uff09\uff1a\u5220\u9645\u6790\u6784\u5f62\uff08A \u7ea7 disasm\uff09"
+   }
+  ],
+  "0x00405310": [
+   {
+    "class": "WeatherEffectNode",
+    "name": "_scalar_dtor_light",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable IMPOSSIBLE \u65cf 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a\u5220\u9645\u6790\u6784\uff0811 "
+   },
+   {
+    "class": "gbLightObj",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 38\u6761\u6ce8\u518c 2026-10-17\uff08verifier\u00b7\u5220\u9645\u6790\u6784\u7c7b\u81ea\u8bc1\u00b7\u8bc1\u636e\u8d26\u76ee\u5236\uff09\uff1a\u5220\u9645\u6790\u6784\u5f62\uff08A \u7ea7 disasm\uff09"
+   }
+  ],
+  "0x00405560": [
+   {
+    "class": "WeatherEffectNode",
+    "name": "_scalar_dtor_rain",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable IMPOSSIBLE \u65cf 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a\u5220\u9645\u6790\u6784\uff083 \u69fd"
+   },
+   {
+    "class": "gbSnow",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| 38\u6761\u6ce8\u518c 2026-10-17\uff08verifier\u00b7\u5220\u9645\u6790\u6784\u7c7b\u81ea\u8bc1\u00b7\u8bc1\u636e\u8d26\u76ee\u5236\uff09\uff1a\u5220\u9645\u6790\u6784\u5f62\uff08A \u7ea7 disasm\uff09"
+   }
+  ],
+  "0x00490e70": [
+   {
+    "class": "UIBigMap",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "MainPropUI",
+    "name": "~MainPropUI",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x004c0650": [
+   {
+    "class": "CEffQuake",
+    "name": "AllocSegments",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CEffAction",
+    "name": "AllocSegments",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "AllocSegments",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   }
+  ],
+  "0x004c29a0": [
+   {
+    "class": "CEffQuake",
+    "name": "UpdateInternal",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CEffAudio",
+    "name": "UpdateInternal",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "UpdateInternal",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffQuake.json)"
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "UpdateAudioTargets",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x00445e70": [
+   {
+    "class": "CCBPanelSlot",
+    "name": "ShowClipped",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json) | [T115] \u540c\u540d\u6d88\u6b67\uff1a@0x445E70 "
+   },
+   {
+    "class": "UIWnd",
+    "name": "ShowWindow",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "PalScript",
+    "name": "ShowWindow",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   },
+   {
+    "class": "CCBUI",
+    "name": "_todo_445E70",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x0041cba0": [
+   {
+    "class": "CameraCtrl",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "GameObject",
+    "name": "~GameObject",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0048ef80": [
+   {
+    "class": "CameraCtrl",
+    "name": "ValidateDevice",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget",
+    "name": "ValidateDevice",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CameraCtrl.json)"
+   }
+  ],
+  "0x004be8f0": [
+   {
+    "class": "CameraCtrl",
+    "name": "_sdtor_17",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "_scalar_dtor_E8F0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00438530": [
+   {
+    "class": "PalScriptFadeInTimer",
+    "name": "IsFadeDone",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "IsScriptReady",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "PalScriptFadeOutTimer",
+    "name": "IsFadeDone",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   }
+  ],
+  "0x00438640": [
+   {
+    "class": "PalScriptFadeInTimer",
+    "name": "UpdateFadeIn",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   },
+   {
+    "class": "PalScript",
+    "name": "UpdateFadeIn",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00445cd0": [
+   {
+    "class": "UITitle_BBTY",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIWnd",
+    "name": "Render",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)"
+   }
+  ],
+  "0x004b7af0": [
+   {
+    "class": "UITextArea",
+    "name": "ReleaseAllTextures",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UI3DModelNode",
+    "name": "ReleaseAllTextures",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x00444ff0": [
+   {
+    "class": "UITextArea",
+    "name": "~UITextArea",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIAnimateCtrlEX",
+    "name": "_sdtor_13",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UITextArea.json)"
+   }
+  ],
+  "0x00456500": [
+   {
+    "class": "LineupUI",
+    "name": "OnMsgHandleNav",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CScreenMode",
+    "name": "OnMsgHandleNav",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from LineupUI.json)"
+   }
+  ],
+  "0x00470f20": [
+   {
+    "class": "LineupUI",
+    "name": "_scalar_dtor_0F20",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIListBox",
+    "name": "_scalar_dtor_0f20",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00535930": [
+   {
+    "class": "UISceneMap",
+    "name": "LoadOverlayTexture",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UISceneFrm",
+    "name": "LoadOverlayTexture",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x00408bd0": [
+   {
+    "class": "UISceneMap",
+    "name": "NullCallback",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "CEffAction",
+    "name": "NullCallback",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "NullCallback_8BD0",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x00451800": [
+   {
+    "class": "UISceneMap",
+    "name": "_todo_00451800",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable \u5f52\u5c5e 2026-10-21\u00b7A \u7ea7] vtable ['0x0056B140'] \u69fd\u6307\u5411\u672c\u51fd\u6570 \u21d2 \u5f52\u5c5e"
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "_sdtor_27_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   }
+  ],
+  "0x00411b80": [
+   {
+    "class": "ScriptObj",
+    "name": "_scalar_dtor_1b80",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor) | \u7b7e\u540d"
+   },
+   {
+    "class": "GameObject",
+    "name": "_reset_vfptr_alt",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 100 \u8ba4\u9886\u7eed 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a\u540c\u5f62\u5199\u8868\u6869\uff080x411B8"
+   }
+  ],
+  "0x00411bb0": [
+   {
+    "class": "ScriptObj",
+    "name": "_scalar_dtor_1bb0",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:ScriptObj::scalar_deleting_dtor_0) | "
+   },
+   {
+    "class": "GameObject",
+    "name": "_reset_vfptr",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable 100 \u8ba4\u9886\u7eed 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7\uff1a`c7 01 c0 a9 "
+   }
+  ],
+  "0x0055434f": [
+   {
+    "class": "ScriptObj",
+    "name": "ScriptObj_adjthunk_434F",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "CEffCylinder",
+    "name": "CEffCylinder_adjthunk_434F",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "EffObjectPool",
+    "name": "_amsg_exit_stub",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "TextureLib",
+    "name": "TextureLib_adjthunk_434F",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "FatalExit",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | [\u69fd\u540d\u503a\u6e05\u7406 2026-10-16 analyzer] A \u7ea7\u672c\u4f53=`6a 19 e"
+   }
+  ],
+  "0x0051f0a0": [
+   {
+    "class": "CCBStage",
+    "name": "OnCommand",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)"
+   },
+   {
+    "class": "CCBProtectWindow",
+    "name": "OnCommand",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x0044e5c0": [
+   {
+    "class": "scScriptInstance",
+    "name": "_scalar_dtor_E5C0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIWnd",
+    "name": "_sdtor_25",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from scScriptInstance.json)"
+   }
+  ],
+  "0x004c0740": [
+   {
+    "class": "CEffAction",
+    "name": "UpdateFrame",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "manual_fix_vtable"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "UpdateFrame",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   }
+  ],
+  "0x004c0640": [
+   {
+    "class": "CEffAction",
+    "name": "ResetState",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 16/4=4 \u53c2 vs \u7b7e\u540d 0\u2014\u2014\u8865 4 \u53c2\uff08int \u5360\u4f4d\u00b7nVal "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "ResetState",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06"
+   }
+  ],
+  "0x004c0520": [
+   {
+    "class": "CEffAction",
+    "name": "AllocRenderTarget",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "manual_fix_vtable+manual_ida_body"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "AllocRenderTarget",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)"
+   }
+  ],
+  "0x004c0920": [
+   {
+    "class": "CEffAction",
+    "name": "PrepareEffect",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(re"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "PrepareEffect",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffAction.json) | vtable_sig_arity_"
+   }
+  ],
+  "0x004c09e0": [
+   {
+    "class": "CEffAction",
+    "name": "RenderScene",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(re"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_todo_004C09E0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4C09E0 `push ecx;push "
+   }
+  ],
+  "0x004c0540": [
+   {
+    "class": "CEffAction",
+    "name": "~CEffAction",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [T140] \u8bed\u4e49\u504f\u79bb\u540d\u4fee\u6b63\uff1a@0x4C0540 \u5168\u51fd\u6570\u4f53\uff08202 \u5b57\u7b26\uff09= ExecutePasses \u8c03\u7528+fl"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_0540",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4C0540 = scalar deleti"
+   }
+  ],
+  "0x004c1270": [
+   {
+    "class": "CEffAction",
+    "name": "Method_1270",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627914"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "sub_4C1270",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?sub_4C1270@CEffAction@@QAEHXZ) | vta"
+   }
+  ],
+  "0x005362f0": [
+   {
+    "class": "SceneObj",
+    "name": "Destructor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4/4=1 \u53c2 vs \u7b7e\u540d 0\u2014\u2014\u8865 1 \u53c2\uff08int \u5360\u4f4d\u00b7nVal \u5e8f"
+   },
+   {
+    "class": "CCBRoleState",
+    "name": "_scalar_dtor_62F0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00445c60": [
+   {
+    "class": "SceneObj",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIWnd",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from SceneObj.json)"
+   },
+   {
+    "class": "UIListBox",
+    "name": "Update",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from SceneObj.json)"
+   }
+  ],
+  "0x00445c10": [
+   {
+    "class": "SceneObj",
+    "name": "HideAll",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIWnd",
+    "name": "HideAll",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from SceneObj.json)"
+   }
+  ],
+  "0x0048eb40": [
+   {
+    "class": "MainPropUI",
+    "name": "RenderWithEffects",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget",
+    "name": "RenderWithEffects",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from MainPropUI.json)"
+   }
+  ],
+  "0x00483260": [
+   {
+    "class": "StateUI",
+    "name": "~StateUI",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "CScreenMode",
+    "name": "`scalar deleting destructor'",
+    "adjudication": "rejected",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from StateUI.json) | [T142R] \u5220\u9664\u6790\u6784\u65cf\u673a\u68b0\u5224\u5b9a\uff08T1"
+   }
+  ],
+  "0x00485230": [
+   {
+    "class": "StateUI",
+    "name": "CalcState",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627913"
+   },
+   {
+    "class": "CScreenMode",
+    "name": "StateUI::sub",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from functions.json) | vtable_sig_arity_f"
+   }
+  ],
+  "0x004850e0": [
+   {
+    "class": "StateUI",
+    "name": "sub_4850E0",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "CScreenMode",
+    "name": "CalcPosition",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627913"
+   }
+  ],
+  "0x004c34b0": [
+   {
+    "class": "EffCallBackNode",
+    "name": "~EffCallBackNode",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_34b0",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:??_GRenderTarget2@@UAEPAXI@Z) | \u7b7e\u540d\u7f3a\u53c2\u6279"
+   }
+  ],
+  "0x004c5b90": [
+   {
+    "class": "_Texture_uv",
+    "name": "operator_",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   },
+   {
+    "class": "CEffectSystem",
+    "name": "SetEffectVisible",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "pdb"
+   }
+  ],
+  "0x0044c910": [
+   {
+    "class": "UIScenePanel",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "Destroy__ovl_C910",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62797"
+   }
+  ],
+  "0x0044db70": [
+   {
+    "class": "UIScenePanel",
+    "name": "StopAllSounds",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "StopAllSounds",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIScenePanel.json)"
+   }
+  ],
+  "0x0043b660": [
+   {
+    "class": "UIScenePanel",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "Render_B660",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIScenePanel.json)"
+   }
+  ],
+  "0x0043b900": [
+   {
+    "class": "UIScenePanel",
+    "name": "Update",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "ProcessMessage",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62793-6"
+   }
+  ],
+  "0x0044dac0": [
+   {
+    "class": "UIScenePanel",
+    "name": "PostRender",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "PostRender",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIScenePanel.json)"
+   }
+  ],
+  "0x0044dfc0": [
+   {
+    "class": "UIScenePanel",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UIScene",
+    "name": "OnMessage",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIScenePanel.json)"
+   }
+  ],
+  "0x0044be40": [
+   {
+    "class": "UIScenePanel",
+    "name": "_scalar_dtor_BE40",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIScene",
+    "name": "_scalar_dtor_BE40",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u6062\u590d 2026-11-01\uff08vtable \u9700\u8981\uff09"
+   }
+  ],
+  "0x00450e90": [
+   {
+    "class": "UIWnd",
+    "name": "_sdtor_27",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "_sdtor_27",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   },
+   {
+    "class": "RoleAtt",
+    "name": "_scalar_dtor_0E90",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0044a870": [
+   {
+    "class": "UIWnd",
+    "name": "RenderText",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBProtectWindow",
+    "name": "RenderText",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   }
+  ],
+  "0x0044a820": [
+   {
+    "class": "UIWnd",
+    "name": "GetUIElements",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBProtectWindow",
+    "name": "GetUIElements",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   }
+  ],
+  "0x0044a7d0": [
+   {
+    "class": "UIWnd",
+    "name": "_scalar_dtor_A7D0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u6279 3 \u9636\u6bb5 2 2026-10-17 analyzer] \u6b63\u540d\u8d4b\u503c\uff08\u4e94\u9762\u95ed\u5408\u8bc1\u636e\u5361\uff09\uff1a\u2460\u8c03\u7528\u8005\u9762=\u672c\u7c7b vtab"
+   },
+   {
+    "class": "CCBProtectWindow",
+    "name": "_sdtor_14",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIWnd.json)"
+   }
+  ],
+  "0x00445b90": [
+   {
+    "class": "UIWnd",
+    "name": "Create",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)| [parent \u7c7b\u578b\u5b9a\u8c33 20"
+   },
+   {
+    "class": "PalScript",
+    "name": "Create",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+   },
+   {
+    "class": "CCBUI",
+    "name": "_todo_445B90",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x00445d10": [
+   {
+    "class": "UIWnd",
+    "name": "OnMessage",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CGameData.json)"
+   },
+   {
+    "class": "PalScript",
+    "name": "OnMessage",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CGameData.json)"
+   },
+   {
+    "class": "CGameData",
+    "name": "OnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x0054211a": [
+   {
+    "class": "SceneVisNode",
+    "name": "VisUpdate",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u4f59 9 \u6302\u8d26\u5b9a\u6848 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] A \u7ea7 IDA thunk\uff1aVisUpdate"
+   },
+   {
+    "class": "UIRoleDialog",
+    "name": "Update",
+    "adjudication": "rejected",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(IDB:?Update@gbVisNode@@UAEXXZ) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2"
+   }
+  ],
+  "0x0052b980": [
+   {
+    "class": "SceneVisNode",
+    "name": "_todo_52B980",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "Remove",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627916"
+   }
+  ],
+  "0x0052b9a0": [
+   {
+    "class": "SceneVisNode",
+    "name": "_todo_52B9A0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "_todo_52B9A0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x0052b9c0": [
+   {
+    "class": "SceneVisNode",
+    "name": "_todo_52B9C0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "_todo_52B9C0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x0052b9e0": [
+   {
+    "class": "SceneVisNode",
+    "name": "_todo_52B9E0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "_todo_52B9E0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x0052ba00": [
+   {
+    "class": "SceneVisNode",
+    "name": "_todo_52BA00",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   },
+   {
+    "class": "ParticleVisNode",
+    "name": "_todo_52BA00",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: \u5f85 idapro decompile \u5b9a\u771f\u540d + declaration_only"
+   }
+  ],
+  "0x00542102": [
+   {
+    "class": "SceneVisNode",
+    "name": "SceneVisNode_adjthunk_2102",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "UIRoleDialog",
+    "name": "RenderShadowVolume",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?RenderShadowVolume@gbVisNode@@UAEXPA"
+   }
+  ],
+  "0x00542114": [
+   {
+    "class": "SceneVisNode",
+    "name": "SceneVisNode_adjthunk_2114",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "UIRoleDialog",
+    "name": "Reset",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:?Reset@gbVisNode@@UAEXM@Z) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2"
+   }
+  ],
+  "0x00527dc0": [
+   {
+    "class": "UIListBox",
+    "name": "ProcessInput",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UICoverFrm",
+    "name": "ProcessInput",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UIListBox.json)"
+   }
+  ],
+  "0x005279d0": [
+   {
+    "class": "UIListBox",
+    "name": "_scalar_dtor_79d0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "UICoverFrm",
+    "name": "_scalar_dtor_79D0",
+    "adjudication": "confirmed",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from UIListBox.json) | [\u5220\u6790\u6784 133 \u6b63\u540d 2026-1"
+   }
+  ],
+  "0x0043d7a0": [
+   {
+    "class": "UIListBox",
+    "name": "ForwardOnMessage",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+   },
+   {
+    "class": "UIScene",
+    "name": "ForwardOnMessage",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+   },
+   {
+    "class": "CCBUI",
+    "name": "ForwardOnMessage",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+   },
+   {
+    "class": "RoleCameraCtrl",
+    "name": "ForwardOnMessage",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00453e50": [
+   {
+    "class": "UIListBox",
+    "name": "_scalar_dtor_3E50",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+   },
+   {
+    "class": "CCBUIPanel",
+    "name": "_scalar_dtor_3E50",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00454550": [
+   {
+    "class": "UIListBox",
+    "name": "RenderIfUnlocked",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+   },
+   {
+    "class": "CCBUIPanel",
+    "name": "RenderIfUnlocked",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00454560": [
+   {
+    "class": "UIListBox",
+    "name": "ProcessInputIfUnlocked",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+   },
+   {
+    "class": "CCBUIPanel",
+    "name": "ProcessInputIfUnlocked",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x00454590": [
+   {
+    "class": "UIListBox",
+    "name": "OnMessage",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)"
+   },
+   {
+    "class": "CCBUIPanel",
+    "name": "OnMessage_4590",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004c5d80": [
+   {
+    "class": "CEffectSystem",
+    "name": "slot_1",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "CEffect",
+    "name": "slot_1",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable 0x56F844 \u91cd\u9a8c 2026-10-25] \u69fd\u5b9e\u540d\uff08decomp \u540d\uff09\uff1b\u5f52\u5c5e=CEffect c"
+   }
+  ],
+  "0x004c5e80": [
+   {
+    "class": "CEffectSystem",
+    "name": "ProcessEffects",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "CEffect",
+    "name": "ProcessEffects",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable 0x56F844 \u91cd\u9a8c 2026-10-25] \u69fd\u5b9e\u540d\uff08decomp \u540d\uff09\uff1b\u5f52\u5c5e=CEffect c"
+   }
+  ],
+  "0x004c5e20": [
+   {
+    "class": "CEffectSystem",
+    "name": "slot_6",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "CEffect",
+    "name": "slot_6",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable 0x56F844 \u91cd\u9a8c 2026-10-25] \u69fd\u5b9e\u540d\uff08decomp \u540d\uff09\uff1b\u5f52\u5c5e=CEffect c"
+   }
+  ],
+  "0x004c6030": [
+   {
+    "class": "CEffectSystem",
+    "name": "UpdateEffectState",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "CEffect",
+    "name": "UpdateEffectState",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable 0x56F844 \u91cd\u9a8c 2026-10-25] \u69fd\u5b9e\u540d\uff08decomp \u540d\uff09\uff1b\u5f52\u5c5e=CEffect c"
+   }
+  ],
+  "0x004c5db0": [
+   {
+    "class": "CEffectSystem",
+    "name": "Activate",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffect.json)"
+   },
+   {
+    "class": "CEffect",
+    "name": "Activate",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   }
+  ],
+  "0x004c5de0": [
+   {
+    "class": "CEffectSystem",
+    "name": "ReleaseTextures",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffect.json)"
+   },
+   {
+    "class": "CEffect",
+    "name": "ReleaseTextures",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004a2150": [
+   {
+    "class": "RoleStatePanel",
+    "name": "_scalar_dtor_2150",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "UIGameFrm",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4/4=1 \u53c2 vs \u7b7e\u540d 0\u2014\u2014\u8865 1 \u53c2\uff08int \u5360\u4f4d\u00b7nVal \u5e8f"
+   }
+  ],
+  "0x0051b160": [
+   {
+    "class": "CCBItemWindow",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_B160",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0051b570": [
+   {
+    "class": "CCBItemWindow",
+    "name": "HandleInput",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBLineupWindow",
+    "name": "HandleInput",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+   }
+  ],
+  "0x0051b670": [
+   {
+    "class": "CCBItemWindow",
+    "name": "CreateButtons",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_B670",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x0051a880": [
+   {
+    "class": "CCBItemWindow",
+    "name": "CCBItemWindow_Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "Destroy_A880",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
+   }
+  ],
+  "0x0051a390": [
+   {
+    "class": "CCBItemWindow",
+    "name": "DoTask",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N"
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_A390",
+    "adjudication": "confirmed",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | vtable_sig_ari"
+   }
+  ],
+  "0x004d1300": [
+   {
+    "class": "CEffQuad",
+    "name": "Render",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627915"
+   },
+   {
+    "class": "CEffect",
+    "name": "sub_4D1300",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004d17d0": [
+   {
+    "class": "CEffQuad",
+    "name": "Cleanup",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627915"
+   },
+   {
+    "class": "CEffect",
+    "name": "sub_4D17D0",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x0041c710": [
+   {
+    "class": "InputSystem",
+    "name": "ProcessKeyboard",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBSystem",
+    "name": "ProcessKeyboard",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u5f52\u5c5e\u4fee\u6b63 2026-10-31\uff08InputSystem\u2192CCBSystem\uff0c\u504f\u79fb\u91cd\u53e0\u8bc1\u636e\uff09"
+   }
+  ],
+  "0x0041c9a0": [
+   {
+    "class": "InputSystem",
+    "name": "SetCameraTransition",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBSystem",
+    "name": "SetCameraTransition",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u5f52\u5c5e\u4fee\u6b63 2026-10-31\uff08InputSystem\u2192CCBSystem\uff0c\u504f\u79fb\u91cd\u53e0\u8bc1\u636e\uff09"
+   }
+  ],
+  "0x00438540": [
+   {
+    "class": "PalScript",
+    "name": "UpdateFadeOut",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "PalScriptFadeOutTimer",
+    "name": "UpdateFadeOut",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5 2026-10-16 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref \u8868\u5185 da"
+   }
+  ],
+  "0x004568c0": [
+   {
+    "class": "UITitle_QCYM",
+    "name": "OnMsgSaveData",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CScreenMode",
+    "name": "OnMsgSaveData",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)"
+   }
+  ],
+  "0x004c3d90": [
+   {
+    "class": "CEffCylinder",
+    "name": "AllocEffect",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "manual_fix_vtable+manual_ida_body"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "AllocEffect",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c3ec0": [
+   {
+    "class": "CEffCylinder",
+    "name": "Init_3EC0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| \u6302\u8d2619\u7eed\u62792b 2026-10-17\uff08verifier\u00b7DestroyEffect/\u6563\u7ec4\u56db\u5206\u8d26\u00b7\u4e94\u9762\u8bed\u4e49\u5361\uff09\uff1a\u2705 "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_todo_004C3EC0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[\u62791-5#5 vtable \u8865\u69fd 2026-10-15] A \u7ea7\u672c\u4f53 0x4c3ec0 `flds 0x8(%esp)"
+   }
+  ],
+  "0x004c4060": [
+   {
+    "class": "CEffCylinder",
+    "name": "Create",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "Create",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c4370": [
+   {
+    "class": "CEffCylinder",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "Destroy",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c45a0": [
+   {
+    "class": "CEffCylinder",
+    "name": "CreateTask",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "CreateTask",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c48d0": [
+   {
+    "class": "CEffCylinder",
+    "name": "ProcInitTask",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "ProcInitTask",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c5010": [
+   {
+    "class": "CEffCylinder",
+    "name": "GetEditorTaskDescription",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "GetEditorTaskDescription",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c5150": [
+   {
+    "class": "CEffCylinder",
+    "name": "GetEditorObjDescription",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "GetEditorObjDescription",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   }
+  ],
+  "0x004c5810": [
+   {
+    "class": "CEffCylinder",
+    "name": "_sdtor",
+    "adjudication": "shared_impl",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from RenderTarget2.json) | [\u975e ctor/dtor \u5b9e"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_sdtor",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u975e ctor/dtor \u5b9e\u8bc1 2026-10-16 analyzer 66 \u6761] A \u7ea7\u5f62\u5224\uff1a\u5220\u9645\u6790\u6784/adjus"
+   }
+  ],
+  "0x004c3db0": [
+   {
+    "class": "CEffCylinder",
+    "name": "_scalar_dtor_3DB0",
+    "adjudication": "shared_impl",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_3db0",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf"
+   }
+  ],
+  "0x004c2600": [
+   {
+    "class": "CEffCylinder",
+    "name": "UpdateDelta",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62799"
+   },
+   {
+    "class": "EffObjectPool",
+    "name": "CalcDeltaTime",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "CalcDeltaTime",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated+manual_ida_body"
+   }
+  ],
+  "0x004c2620": [
+   {
+    "class": "CEffCylinder",
+    "name": "ProcessData",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62799"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "RenderEffect",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "pdb_ret"
+   }
+  ],
+  "0x004c3bb0": [
+   {
+    "class": "CEffCylinder",
+    "name": "CheckState",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62799"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "AdvancePass",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004c5800": [
+   {
+    "class": "CEffCylinder",
+    "name": "CreateTaskWrapper",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u62799"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "sub_4C5800",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:sub_4C5800) | \u7b7e\u540d\u7f3a\u53c2\u6279\u91cf 2026-10-06\uff1aret 4"
+   }
+  ],
+  "0x004c2850": [
+   {
+    "class": "CEffCylinder",
+    "name": "Method",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627914"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "AdjustThisCall",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "AdjustThisCall",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x00454980": [
+   {
+    "class": "CScreenMode",
+    "name": "_scalar_dtor_0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "TaskBookUI",
+    "name": "_scalar_dtor_4980",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x004b7090": [
+   {
+    "class": "PAL3VisNode",
+    "name": "Method",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-11-01 \u627914"
+   },
+   {
+    "class": "gbChain1DNode",
+    "name": "_scalar_dtor_7090",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [vtable \u5408\u5e76\u6279 2026-10-16 analyzer] \u69fd\u6ce8\u518c A \u7ea7\u672c\u4f53=real-method\uff1b\u8868 0"
+   }
+  ],
+  "0x004bef50": [
+   {
+    "class": "UIRoleDialog",
+    "name": "~UIWnd",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "_UIWnd",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x004bef30": [
+   {
+    "class": "UIRoleDialog",
+    "name": "sub_4BEF30",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:sub_4BEF30) | vtable_sig_arity_fill(r"
+   },
+   {
+    "class": "ScreenEffectMgr",
+    "name": "_scalar_dtor_EF30",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x00516100": [
+   {
+    "class": "CCBProtectWindow",
+    "name": "_scalar_dtor_6100",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "CCBUI",
+    "name": "_sdtor_19",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)"
+   }
+  ],
+  "0x005164d0": [
+   {
+    "class": "CCBProtectWindow",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "Destroy_64D0",
+    "adjudication": "rejected",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)"
+   }
+  ],
+  "0x0044ab40": [
+   {
+    "class": "CCBProtectWindow",
+    "name": "_sdtor_14_adjthunk",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[97 \u65cf\u6ce8\u518c 2026-10-17\u00b7\u88c1\u51b3 A] adjustor thunk\uff08sub ecx,imm8;jmp 0x0"
+   },
+   {
+    "class": "UIEmote",
+    "name": "OnEvent",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62793-6"
+   },
+   {
+    "class": "ArraySlots",
+    "name": "_todo_0044AB40",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable \u5f52\u5c5e 2026-10-21\u00b7A \u7ea7] vtable ['0x0056AFA4'] \u69fd\u6307\u5411\u672c\u51fd\u6570 \u21d2 \u5f52\u5c5e"
+   }
+  ],
+  "0x0044ab00": [
+   {
+    "class": "UIEmote",
+    "name": "GetType",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "IDA\u8bed\u4e49\u5206\u6790 2026-10-31 \u62793-6"
+   },
+   {
+    "class": "ArraySlots",
+    "name": "_todo_0044AB00",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[vtable \u5f52\u5c5e 2026-10-21\u00b7A \u7ea7] vtable ['0x0056AFA4'] \u69fd\u6307\u5411\u672c\u51fd\u6570 \u21d2 \u5f52\u5c5e"
+   }
+  ],
+  "0x0051a090": [
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "AddResultWindowAni",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "AddResultWindowAni",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)"
+   }
+  ],
+  "0x00519f50": [
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "Destroy",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "Destroy_9F50",
+    "adjudication": "confirmed",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)"
+   }
+  ],
+  "0x00519b40": [
+   {
+    "class": "CCBFiveNimbusWindow",
+    "name": "GetNimbusColor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "CCBUI",
+    "name": "_scalar_dtor_9B40",
+    "adjudication": "confirmed",
+    "evidence_level": "A",
+    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json) | [\u5220\u6790\u6784 133"
+   }
+  ],
+  "0x0044f4c0": [
+   {
+    "class": "CGameData",
+    "name": "SceneUpdate",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   },
+   {
+    "class": "PAL3",
+    "name": "SceneUpdate",
+    "adjudication": null,
+    "evidence_level": null,
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x005420ea": [
+   {
+    "class": "ParticleVisNode",
+    "name": "ParticleVisNode_adjthunk_20EA",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "TextureLib",
+    "name": "TextureLib_adjthunk_20EA",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   }
+  ],
+  "0x005420e4": [
+   {
+    "class": "ParticleVisNode",
+    "name": "ParticleVisNode_adjthunk_20E4",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   },
+   {
+    "class": "TextureLib",
+    "name": "TextureLib_adjthunk_20E4",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "\u4fee\u590d 2026-10-17: thunk \u5730\u5740\u6ce8\u518c\uff085c \u5236\u5f0f _adjthunk\uff09+ declaration_only"
+   }
+  ],
+  "0x00450ab0": [
+   {
+    "class": "UINote",
+    "name": "_sdtor_26",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)"
+   },
+   {
+    "class": "RoleCameraCtrl",
+    "name": "_scalar_dtor_0AB0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   }
+  ],
+  "0x004c1490": [
+   {
+    "class": "EffObjectPool",
+    "name": "ReleaseObjects152",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "BeginRenderPass",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004c0620": [
+   {
+    "class": "EffObjectPool",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_0620",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "vtable_gap_fill_v1(IDB:RenderTarget2::scalar_deleting_dtor) "
+   }
+  ],
+  "0x004c0600": [
+   {
+    "class": "EffObjectPool",
+    "name": "StubReturn0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "StubReturn0",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   }
+  ],
+  "0x004c0610": [
+   {
+    "class": "EffObjectPool",
+    "name": "nullsub_75_override",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "nullsub_75_override",
+    "adjudication": "shared_impl",
+    "evidence_level": "unverified",
+    "source": "\u4ece functions.json \u8fc1\u79fb 2026-10-31 \u53cc\u526f\u672c\u6e05\u7406"
+   }
+  ],
+  "0x00401800": [
+   {
+    "class": "EffObjectPool",
+    "name": "nullsub",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref Cal"
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "NullCallback_1800",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "vtable_migrated"
+   }
+  ],
+  "0x004c1640": [
+   {
+    "class": "EffObjectPool",
+    "name": "~EffObjectPool",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_DestroyEffBase",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| \u6302\u8d2619\u7eed 2026-10-17\uff08verifier A \u7ea7\u00b7DestroyEff \u65cf\u56db\u5206\u8d26\uff09\uff1a\u539f\u540d DestroyE"
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "_scalar_dtor",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x004c20b0": [
+   {
+    "class": "EffObjectPool",
+    "name": "_scalar_dtor_20B0",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_DestroyEffBink",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| \u6302\u8d2619\u7eed 2026-10-17\uff08verifier A \u7ea7\u00b7DestroyEff \u65cf\u56db\u5206\u8d26\uff09\uff1a\u539f\u540d DestroyE"
+   }
+  ],
+  "0x004c2870": [
+   {
+    "class": "EffObjectPool",
+    "name": "_scalar_dtor_2870",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "| [\u5220\u6790\u6784 133 \u6b63\u540d 2026-10-17 analyzer \u8bc1\u636e\u8d26\u76ee\u5236] \u4e94\u9762\u5361\u6b63\u540d\uff1a\u2460\u8c03\u7528\u8005\u9762=vtable "
+   },
+   {
+    "class": "RenderTarget2",
+    "name": "~RenderTarget2",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "| [T111] \u8bed\u4e49\u504f\u79bb\u540d\u4fee\u6b63\uff1a@0x4C2870 \u5168\u51fd\u6570\u4f53\uff08193 \u5b57\u7b26\uff09= BeginMultiPass(this"
+   }
+  ],
+  "0x004c2170": [
+   {
+    "class": "RenderTarget2",
+    "name": "AllocTargets",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "AllocTargets",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x004c2040": [
+   {
+    "class": "RenderTarget2",
+    "name": "_scalar_dtor_EffTargetNode",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "vtable_migrated | \u6302\u8d2619\u7eed 2026-10-17\uff08verifier A \u7ea7\u00b7DestroyEff \u65cf"
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "_scalar_dtor_EffTargetNode",
+    "adjudication": null,
+    "evidence_level": "A",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ],
+  "0x004c2030": [
+   {
+    "class": "RenderTarget2",
+    "name": "UpdateInternalAdj",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": ""
+   },
+   {
+    "class": "EffTargetPool",
+    "name": "_adjustor_c",
+    "adjudication": null,
+    "evidence_level": "unverified",
+    "source": "[caller \u4e09\u8bc1\u6cd5\u4f59\u91cf 2026-10-17 analyzer \u518d\u521b\u4f5c\u547d\u540d] \u4e09\u8bc1\u6cd5\u547d\u540d\uff1a\u8c03\u7528\u8005\u9762:xref All"
+   }
+  ]
+ }
+}

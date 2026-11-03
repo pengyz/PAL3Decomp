@@ -1379,6 +1379,8 @@ def load_annotations():
         # Merge struct methods into functions dict (class methods not in functions.json)
         # Class name derived from file name; name field stores short method name only.
         for addr, minfo in sdata.get("methods", {}).items():
+            if minfo.get("adjudication") == "rejected":
+                continue   # [2026-11-03 复核安全前置] rejected 条目禁消费（0x485230 病灶）
             _claims.setdefault(addr, []).append(sname)
             if minfo.get("owner") == sname:
                 _owner_claims.setdefault(addr, []).append(sname)

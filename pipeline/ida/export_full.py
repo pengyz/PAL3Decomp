@@ -366,6 +366,8 @@ def main():
                         # set_name，**覆盖 apply 的正确命名**（病灶：0x00445D10 被命名为
                         # CGameData::OnMessage 而非 UIWnd::OnMessage ⇒ ast_transform 落
                         # broken 形 ⇒ C2660）。实测 13 个 ok→fail 单元的根因。
+                        if _info.get('adjudication') == 'rejected':
+                            continue   # [2026-11-03 复核安全前置] rejected 禁消费
                         if _addr not in _ann_funcs or _info.get('owner') == _sname:
                             _mn = _info.get('name', '')
                             # After method name migration (2026-06), names are short
