@@ -1,364 +1,366 @@
 {
-  "name": "UIWnd",
-  "binary_size": 68,
-  "known_members": {
-    "4": {
-      "name": "m_fontcolor",
-      "type": "gbColorQuad",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "m_wndcolor",
-      "type": "gbColorQuad",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "m_id",
-      "type": "unsigned int",
-      "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29",
-      "evidence_level": "unverified"
-    },
-    "16": {
-      "name": "m_rect",
-      "type": "tagRECT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "32": {
-      "name": "m_pfather",
-      "type": "UIWnd *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "36": {
-      "name": "m_childs",
-      "type": "PtrArray",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "52": {
-      "name": "m_bcreateok",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "56": {
-      "name": "m_bvisible",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "60": {
-      "name": "m_benable",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "64": {
-      "name": "m_bfocus",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "UIWnd",
+ "binary_size": 68,
+ "known_members": {
+  "4": {
+   "name": "m_fontcolor",
+   "type": "gbColorQuad",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x00445FA0": {
-      "name": "SetRect",
-      "signature": "int __thiscall(UIWnd *this, void *a2)",
-      "name_source": "IDA语义分析 2026-11-01 批11",
-      "name_note": "设置矩形+发送消息 1022"
-    },
-    "0x0043BB90": {
-      "name": "_scalar_dtor",
-      "evidence_level": "unverified"
-    },
-    "0x00445B40": {
-      "name": "_UIWnd",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x004D589C": {
-      "name": "SetRect",
-      "signature": "void (tagRECT *)",
-      "source": "pdb",
-      "evidence_level": "unverified"
-    },
-    "0x004D5950": {
-      "name": "BringWindowToTop",
-      "signature": "void (int nVal1)",
-      "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "evidence_level": "unverified"
-    },
-    "0x004433D0": {
-      "name": "LayoutAndRender",
-      "signature": "int __thiscall()",
-      "source": "vtable_migrated+manual_ida_body",
-      "ordinal": 15,
-      "evidence_level": "unverified"
-    },
-    "0x00457340": {
-      "name": "CleanupScript",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=805416>class_size=68",
-      "evidence_level": "unverified"
-    },
-    "0x00445F20": {
-      "name": "MoveWindow",
-      "signature": "int __thiscall(void)",
-      "evidence_level": "unverified"
-    },
-    "0x00450440": {
-      "name": "RenderContent",
-      "signature": "void __thiscall()",
-      "source": "ida_xref:sub_fix_from_decomp_this_type",
-      "evidence_level": "unverified"
-    },
-    "0x00450390": {
-      "name": "DelegateRender",
-      "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type",
-      "evidence_level": "unverified"
-    },
-    "0x00450E90": {
-      "name": "_sdtor_27",
-      "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
-      "evidence_level": "unverified",
-      "declaration_only": true
-    },
-    "0x00445E70": {
-      "name": "ShowWindow",
-      "signature": "int __thiscall(int nFlags)",
-      "evidence_level": "unverified"
-    },
-    "0x0044A870": {
-      "name": "RenderText",
-      "signature": "virtual void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0044A820": {
-      "name": "GetUIElements",
-      "signature": "int __thiscall(float fVal, int nVal)",
-      "evidence_level": "unverified"
-    },
-    "0x0044A7D0": {
-      "name": "_scalar_dtor_A7D0",
-      "signature": "void *__thiscall(void *Block, char a2)",
-      "type": "skip",
-      "reason": "compiler-generated scalar deleting destructor for UIWnd",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00451730": {
-      "name": "GetState",
-      "signature": "int __thiscall(UIWnd *this)",
-      "name_source": "IDA语义分析 2026-10-31 批5",
-      "name_note": "偏移访问器（+276 DWORD）"
-    },
-    "0x00445B90": {
-      "name": "Create",
-      "signature": "int __thiscall(int id, tagRECT *pRect, UIWnd *parent)",
-      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石",
-      "owner": "UIWnd",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x00445C10": {
-      "name": "HideAll",
-      "signature": "void __thiscall UIWnd::HideAll()",
-      "source": "vtable_gap_fill_v1(from SceneObj.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x00445C60": {
-      "name": "Update",
-      "signature": "int __thiscall(int a2, int a3)",
-      "source": "vtable_gap_fill_v1(from SceneObj.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x00445CD0": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x00445D10": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-      "source": "vtable_gap_fill_v1(from CGameData.json)",
-      "owner": "UIWnd",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0044E5C0": {
-      "name": "_sdtor_25",
-      "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
-      "source": "vtable_gap_fill_v1(from scScriptInstance.json)",
-      "evidence_level": "unverified",
-      "declaration_only": true,
-      "adjudication": "rejected"
-    },
-    "0x004A14C0": {
-      "name": "HideAll_14C0",
-      "signature": "void __thiscall __thiscall()",
-      "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
-      "evidence_level": "A",
-      "adjudication": "rejected"
-    },
-    "0x00439110": {
-      "name": "sub_439110",
-      "signature": "void* __thiscall(int)",
-      "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数",
-      "evidence_level": "A",
-      "adjudication": "rejected"
-    },
-    "0x00445B20": {
-      "name": "_scalar_dtor_5B20",
-      "signature": "void __thiscall(int nVal1)",
-      "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
-      "declaration_only": true,
-      "evidence_level": "A",
-      "adjudication": "confirmed"
-    },
-    "0x0044E980": {
-      "name": "OnVisible",
-      "signature": "virtual void __thiscall(UIWnd *this, int a2, int a3)",
-      "name_source": "IDA语义分析 2026-11-01 批11",
-      "name_note": "可见性处理（m_bvisible 检查+offset 19）"
-    },
-    "0x004431B0": {
-      "name": "_scalar_dtor_31B0",
-      "signature": "void __thiscall()",
-      "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4431D0 写 vptr 0x56AE2C",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00445D20": {
-      "name": "MoveToAbsolute",
-      "signature": "int __thiscall UIWnd::MoveToAbsolute()",
-      "source": "| [归属定谳 2026-10-25·布局+调用者双面] 体读 this+16/+20 = UIWnd m_rect.left/top（known_members @16 m_rect:tagRECT 逐偏移吻合，绝对坐标→增量换算语义自洽）；调用者面：5 站全为 UIWnd 派生指针（CCBUI m_pRoleStateMP[4]=UIProgressBar*、m_pRoleStateFace/AttackInc=UIStatic* 等）调同一函数 ⇒ 基类方法；尾调 sub_445D40（UIWnd::MoveBy，m_rect 四字段 ±delta 布局铁证）",
-      "evidence_level": "A"
-    },
-    "0x00445D40": {
-      "name": "HitTest",
-      "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
-      "name_source": "IDA语义分析 2026-11-01 批6",
-      "name_note": "矩形命中测试（left/right/top/bottom）"
-    }
+  "8": {
+   "name": "m_wndcolor",
+   "type": "gbColorQuad",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
-    {
-      "addr": "0x0056AE2C",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": null
-        },
-        {
-          "addr": "0x00443200",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00442FF0",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00442420",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": null
-        },
-        {
-          "addr": "0x004431B0",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00445D10",
-          "from": null
-        }
-      ]
-    },
-    {
-      "addr": "0x0056AFB0",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": null
-        },
-        {
-          "addr": "0x0044A870",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x0044A820",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x0043D920",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": null
-        },
-        {
-          "addr": "0x0044A7D0",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x00445D10",
-          "from": null
-        }
-      ]
-    },
-    {
-      "addr": "0x0056AEC8",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": null
-        },
-        {
-          "addr": "0x00445CD0",
-          "from": null
-        },
-        {
-          "addr": "0x00445C60",
-          "from": null
-        },
-        {
-          "addr": "0x00445C10",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": null
-        },
-        {
-          "addr": "0x00445B20",
-          "from": null
-        },
-        {
-          "addr": "0x00445D10",
-          "from": null
-        }
-      ]
-    }
-  ],
-  "known_methods": {
-    "6": {
-      "name": "OnMessage",
-      "signature": "int __thiscall OnMessage(int nMsg, int wParam, int lParam)",
-      "address": "0x00445D10",
-      "source": "manual:vtable slot 6, C2039 fix for 31 hits"
-    }
+  "12": {
+   "name": "m_id",
+   "type": "unsigned int",
+   "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "m_rect",
+   "type": "tagRECT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "32": {
+   "name": "m_pfather",
+   "type": "UIWnd *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "36": {
+   "name": "m_childs",
+   "type": "PtrArray",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "52": {
+   "name": "m_bcreateok",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "56": {
+   "name": "m_bvisible",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "60": {
+   "name": "m_benable",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "64": {
+   "name": "m_bfocus",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   }
+ },
+ "methods": {
+  "0x00445FA0": {
+   "name": "SetRect",
+   "signature": "int __thiscall(UIWnd *this, void *a2)",
+   "name_source": "IDA语义分析 2026-11-01 批11",
+   "name_note": "设置矩形+发送消息 1022"
+  },
+  "0x0043BB90": {
+   "name": "_scalar_dtor",
+   "evidence_level": "unverified"
+  },
+  "0x00445B40": {
+   "name": "_UIWnd",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified"
+  },
+  "0x004D589C": {
+   "name": "SetRect",
+   "signature": "void (tagRECT *)",
+   "source": "pdb",
+   "evidence_level": "unverified"
+  },
+  "0x004D5950": {
+   "name": "BringWindowToTop",
+   "signature": "void (int nVal1)",
+   "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+   "evidence_level": "unverified"
+  },
+  "0x004433D0": {
+   "name": "LayoutAndRender",
+   "signature": "int __thiscall()",
+   "source": "vtable_migrated+manual_ida_body",
+   "ordinal": 15,
+   "evidence_level": "unverified"
+  },
+  "0x00457340": {
+   "name": "CleanupScript",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "max_offset=805416>class_size=68",
+   "evidence_level": "unverified"
+  },
+  "0x00445F20": {
+   "name": "MoveWindow",
+   "signature": "int __thiscall(void)",
+   "evidence_level": "unverified"
+  },
+  "0x00450440": {
+   "name": "RenderContent",
+   "signature": "void __thiscall()",
+   "source": "ida_xref:sub_fix_from_decomp_this_type",
+   "evidence_level": "unverified"
+  },
+  "0x00450390": {
+   "name": "DelegateRender",
+   "signature": "void __thiscall()",
+   "source": "batch:sub_fix_from_decomp_this_type",
+   "evidence_level": "unverified"
+  },
+  "0x00450E90": {
+   "name": "_sdtor_27",
+   "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
+   "evidence_level": "unverified",
+   "declaration_only": true
+  },
+  "0x00445E70": {
+   "name": "ShowWindow",
+   "signature": "int __thiscall(int nFlags)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "source": " | multiclaim 裁决 2026-11-03: 败于 CCBPanelSlot（uniq=2）"
+  },
+  "0x0044A870": {
+   "name": "RenderText",
+   "signature": "virtual void __thiscall()",
+   "evidence_level": "unverified"
+  },
+  "0x0044A820": {
+   "name": "GetUIElements",
+   "signature": "int __thiscall(float fVal, int nVal)",
+   "evidence_level": "unverified"
+  },
+  "0x0044A7D0": {
+   "name": "_scalar_dtor_A7D0",
+   "signature": "void *__thiscall(void *Block, char a2)",
+   "type": "skip",
+   "reason": "compiler-generated scalar deleting destructor for UIWnd",
+   "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x00451730": {
+   "name": "GetState",
+   "signature": "int __thiscall(UIWnd *this)",
+   "name_source": "IDA语义分析 2026-10-31 批5",
+   "name_note": "偏移访问器（+276 DWORD）"
+  },
+  "0x00445B90": {
+   "name": "Create",
+   "signature": "int __thiscall(int id, tagRECT *pRect, UIWnd *parent)",
+   "source": "vtable_gap_fill_v1(from CCBItemWindow.json)| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石",
+   "owner": "UIWnd",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x00445C10": {
+   "name": "HideAll",
+   "signature": "void __thiscall UIWnd::HideAll()",
+   "source": "vtable_gap_fill_v1(from SceneObj.json)",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x00445C60": {
+   "name": "Update",
+   "signature": "int __thiscall(int a2, int a3)",
+   "source": "vtable_gap_fill_v1(from SceneObj.json)",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x00445CD0": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from UITitle_BBTY.json)",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x00445D10": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+   "source": "vtable_gap_fill_v1(from CGameData.json)",
+   "owner": "UIWnd",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x0044E5C0": {
+   "name": "_sdtor_25",
+   "signature": "scScriptInstance *__thiscall(scScriptInstance *Block, char a2)",
+   "source": "vtable_gap_fill_v1(from scScriptInstance.json)",
+   "evidence_level": "unverified",
+   "declaration_only": true,
+   "adjudication": "rejected"
+  },
+  "0x004A14C0": {
+   "name": "HideAll_14C0",
+   "signature": "void __thiscall __thiscall()",
+   "source": "vtable_gap_fill_v1(from UITitle.json) | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
+   "evidence_level": "A",
+   "adjudication": "rejected"
+  },
+  "0x00439110": {
+   "name": "sub_439110",
+   "signature": "void* __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:sub_439110) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | 回型 void→void* 2026-10-15（T146）：A 级=原函数尾部 8b c6（mov eax,esi=回 this）+ 5e c2 04 00 形=标量删除析构体（call dtor/test [esp+8],1/push esi/call delete/add esp,4/mov eax,esi/ret 4）；我方缺 8b c6（n_diff=5 尾部族）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数",
+   "evidence_level": "A",
+   "adjudication": "rejected"
+  },
+  "0x00445B20": {
+   "name": "_scalar_dtor_5B20",
+   "signature": "void __thiscall(int nVal1)",
+   "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
+   "declaration_only": true,
+   "evidence_level": "A",
+   "adjudication": "confirmed"
+  },
+  "0x0044E980": {
+   "name": "OnVisible",
+   "signature": "virtual void __thiscall(UIWnd *this, int a2, int a3)",
+   "name_source": "IDA语义分析 2026-11-01 批11",
+   "name_note": "可见性处理（m_bvisible 检查+offset 19）"
+  },
+  "0x004431B0": {
+   "name": "_scalar_dtor_31B0",
+   "signature": "void __thiscall()",
+   "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4431D0 写 vptr 0x56AE2C",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x00445D20": {
+   "name": "MoveToAbsolute",
+   "signature": "int __thiscall UIWnd::MoveToAbsolute()",
+   "source": "| [归属定谳 2026-10-25·布局+调用者双面] 体读 this+16/+20 = UIWnd m_rect.left/top（known_members @16 m_rect:tagRECT 逐偏移吻合，绝对坐标→增量换算语义自洽）；调用者面：5 站全为 UIWnd 派生指针（CCBUI m_pRoleStateMP[4]=UIProgressBar*、m_pRoleStateFace/AttackInc=UIStatic* 等）调同一函数 ⇒ 基类方法；尾调 sub_445D40（UIWnd::MoveBy，m_rect 四字段 ±delta 布局铁证）",
+   "evidence_level": "A"
+  },
+  "0x00445D40": {
+   "name": "HitTest",
+   "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
+   "name_source": "IDA语义分析 2026-11-01 批6",
+   "name_note": "矩形命中测试（left/right/top/bottom）"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056AE2C",
+   "slots": [
+    {
+     "addr": "0x00445E70",
+     "from": null
+    },
+    {
+     "addr": "0x00443200",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00442FF0",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00442420",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": null
+    },
+    {
+     "addr": "0x004431B0",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00445D10",
+     "from": null
+    }
+   ]
+  },
+  {
+   "addr": "0x0056AFB0",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00445E70",
+     "from": null
+    },
+    {
+     "addr": "0x0044A870",
+     "from": "CCBProtectWindow"
+    },
+    {
+     "addr": "0x0044A820",
+     "from": "CCBProtectWindow"
+    },
+    {
+     "addr": "0x0043D920",
+     "from": "CCBProtectWindow"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": null
+    },
+    {
+     "addr": "0x0044A7D0",
+     "from": "CCBProtectWindow"
+    },
+    {
+     "addr": "0x00445D10",
+     "from": null
+    }
+   ]
+  },
+  {
+   "addr": "0x0056AEC8",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00445E70",
+     "from": null
+    },
+    {
+     "addr": "0x00445CD0",
+     "from": null
+    },
+    {
+     "addr": "0x00445C60",
+     "from": null
+    },
+    {
+     "addr": "0x00445C10",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": null
+    },
+    {
+     "addr": "0x00445B20",
+     "from": null
+    },
+    {
+     "addr": "0x00445D10",
+     "from": null
+    }
+   ]
+  }
+ ],
+ "known_methods": {
+  "6": {
+   "name": "OnMessage",
+   "signature": "int __thiscall OnMessage(int nMsg, int wParam, int lParam)",
+   "address": "0x00445D10",
+   "source": "manual:vtable slot 6, C2039 fix for 31 hits"
+  }
+ }
 }

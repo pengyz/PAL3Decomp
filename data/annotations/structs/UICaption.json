@@ -1,260 +1,264 @@
 {
-  "name": "UICaption",
-  "binary_size": 344,
-  "known_members": {
-    "76": {
-      "name": "m_tex",
-      "type": "gbTexture *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "m_numline",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "84": {
-      "name": "m_lineheight",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "88": {
-      "name": "m_curline",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "92": {
-      "name": "m_linetime",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "UICaption",
+ "binary_size": 344,
+ "known_members": {
+  "76": {
+   "name": "m_tex",
+   "type": "gbTexture *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x004427C0": {
-      "name": "SetEnable",
-      "signature": "void __thiscall(UICaption *this, int szName, int bEnable)",
-      "evidence_level": "unverified"
-    },
-    "0x004461F0": {
-      "name": "DestroyPanel",
-      "signature": "void __thiscall UICaption::DestroyPanel()",
-      "evidence_level": "unverified"
-    },
-    "0x00450320": {
-      "name": "LayoutDefault",
-      "signature": "void __thiscall UICaption::LayoutDefault()",
-      "evidence_level": "unverified"
-    },
-    "0x0043A810": {
-      "name": "Destroy2",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0044BDA0": {
-      "name": "DestroyAll",
-      "signature": "void __thiscall()",
-      "source": "batch:sub_fix_from_decomp_this_type",
-      "evidence_level": "unverified"
-    },
-    "0x0043B4B0": {
-      "name": "_sdtor_5",
-      "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
-      "evidence_level": "unverified",
-      "declaration_only": true
-    },
-    "0x0044BE00": {
-      "name": "_sdtor_24",
-      "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
-      "evidence_level": "unverified",
-      "declaration_only": true
-    },
-    "0x0043AD40": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0043AB20": {
-      "name": "Update2",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "evidence_level": "unverified"
-    },
-    "0x0043A7F0": {
-      "name": "_scalar_dtor_A7F0",
-      "signature": "UIScene *__thiscall(UIScene *Block, char pData)",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC70）",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x0043A870": {
-      "name": "CreateChildWidget",
-      "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)",
-      "evidence_level": "unverified"
-    },
-    "0x00450370": {
-      "name": "_scalar_dtor_0370",
-      "signature": "void __thiscall()",
-      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00450670": {
-      "name": "_todo_0670",
-      "signature": "void __thiscall()",
-      "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册",
-      "evidence_level": "unverified"
-    },
-    "0x004506C0": {
-      "name": "~UICaption_adjthunk",
-      "signature": "void __thiscall()",
-      "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x0043AB00": {
-      "name": "Destroy",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified",
-      "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
-      "alt_name": "Destroy_39",
-      "alt_signature": "int __thiscall(UICaption *this)",
-      "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
-    }
+  "80": {
+   "name": "m_numline",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
+  "84": {
+   "name": "m_lineheight",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "88": {
+   "name": "m_curline",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "92": {
+   "name": "m_linetime",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x004427C0": {
+   "name": "SetEnable",
+   "signature": "void __thiscall(UICaption *this, int szName, int bEnable)",
+   "evidence_level": "unverified"
+  },
+  "0x004461F0": {
+   "name": "DestroyPanel",
+   "signature": "void __thiscall UICaption::DestroyPanel()",
+   "evidence_level": "unverified"
+  },
+  "0x00450320": {
+   "name": "LayoutDefault",
+   "signature": "void __thiscall UICaption::LayoutDefault()",
+   "evidence_level": "unverified"
+  },
+  "0x0043A810": {
+   "name": "Destroy2",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified"
+  },
+  "0x0044BDA0": {
+   "name": "DestroyAll",
+   "signature": "void __thiscall()",
+   "source": "batch:sub_fix_from_decomp_this_type",
+   "evidence_level": "unverified"
+  },
+  "0x0043B4B0": {
+   "name": "_sdtor_5",
+   "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
+   "evidence_level": "unverified",
+   "declaration_only": true
+  },
+  "0x0044BE00": {
+   "name": "_sdtor_24",
+   "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
+   "evidence_level": "unverified",
+   "declaration_only": true
+  },
+  "0x0043AD40": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "evidence_level": "A",
+   "adjudication": "confirmed",
+   "evidence": "成员实访独占证据 uniq=3: m_benable,m_bvisible,m_fontcolor,m_linetime,m_needscriptdel（adjudicate_multiclaim 2026-11-03）"
+  },
+  "0x0043AB20": {
+   "name": "Update2",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "evidence_level": "unverified"
+  },
+  "0x0043A7F0": {
+   "name": "_scalar_dtor_A7F0",
+   "signature": "UIScene *__thiscall(UIScene *Block, char pData)",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC70）",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x0043A870": {
+   "name": "CreateChildWidget",
+   "signature": "gbVFileSystem *__thiscall UIScene::CreateChildWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData, char pData2)",
+   "evidence_level": "A",
+   "adjudication": "confirmed",
+   "evidence": "成员实访独占证据 uniq=2: m_linetime,m_nTodo_000（adjudicate_multiclaim 2026-11-03）"
+  },
+  "0x00450370": {
+   "name": "_scalar_dtor_0370",
+   "signature": "void __thiscall()",
+   "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x00450670": {
+   "name": "_todo_0670",
+   "signature": "void __thiscall()",
+   "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册",
+   "evidence_level": "unverified"
+  },
+  "0x004506C0": {
+   "name": "~UICaption_adjthunk",
+   "signature": "void __thiscall()",
+   "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x0043AB00": {
+   "name": "Destroy",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified",
+   "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+   "alt_name": "Destroy_39",
+   "alt_signature": "int __thiscall(UICaption *this)",
+   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056AC70",
+   "slots": [
     {
-      "addr": "0x0056AC70",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043AD40",
-          "from": "UIScenePanel"
-        },
-        {
-          "addr": "0x0043AB20",
-          "from": "UIScene"
-        },
-        {
-          "addr": "0x0043AB00",
-          "from": "UIScenePanel"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043A7F0",
-          "from": "UIScene"
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043A870",
-          "from": null
-        }
-      ]
+     "addr": "0x00445E70",
+     "from": "UIWnd"
     },
     {
-      "addr": "0x0056B0E0",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "CCBPanelSlot"
-        },
-        {
-          "addr": "0x00450440",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450560",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00450670",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450370",
-          "from": null
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        }
-      ],
-      "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor 域 UICaption::LayoutDefault@+29 写（+35 相邻=MI 对）+UIWnd::DelegateRender+9 复写"
+     "addr": "0x0043AD40",
+     "from": "UIScenePanel"
     },
     {
-      "addr": "0x0056B0D4",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x004506C0",
-          "from": null
-        },
-        {
-          "addr": "0x004503C0",
-          "from": "Actor"
-        },
-        {
-          "addr": "0x004AF760",
-          "from": "CEffSParticle"
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "CCBPanelSlot"
-        },
-        {
-          "addr": "0x00450440",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450560",
-          "from": "UIFrameWnd"
-        },
-        {
-          "addr": "0x00450670",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00450370",
-          "from": null
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        }
-      ],
-      "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：MI 对（LayoutDefault+35/+29 相邻双写）+DelegateRender+17 复写"
+     "addr": "0x0043AB20",
+     "from": "UIScene"
+    },
+    {
+     "addr": "0x0043AB00",
+     "from": "UIScenePanel"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043A7F0",
+     "from": "UIScene"
+    },
+    {
+     "addr": "0x00445D10",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x0043A870",
+     "from": null
     }
-  ],
-  "base_size": 76,
-  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 96 → 344（A 级 new-ctor 三元组：new@0x4a7a05 push $0x158(344) → call 0x43a810（注解名 Destroy2=疑 ctor 误名族））· req=344 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
-  "bases": [
+   ]
+  },
+  {
+   "addr": "0x0056B0E0",
+   "base": null,
+   "slots": [
     {
-      "name": "UIWnd",
-      "offset": 0
+     "addr": "0x00445E70",
+     "from": "CCBPanelSlot"
     },
     {
-      "name": "PalScriptWaitObj",
-      "offset": 68
+     "addr": "0x00450440",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450560",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00450670",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450370",
+     "from": null
+    },
+    {
+     "addr": "0x00445D10",
+     "from": "UIWnd"
     }
-  ]
+   ],
+   "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor 域 UICaption::LayoutDefault@+29 写（+35 相邻=MI 对）+UIWnd::DelegateRender+9 复写"
+  },
+  {
+   "addr": "0x0056B0D4",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x004506C0",
+     "from": null
+    },
+    {
+     "addr": "0x004503C0",
+     "from": "Actor"
+    },
+    {
+     "addr": "0x004AF760",
+     "from": "CEffSParticle"
+    },
+    {
+     "addr": "0x00445E70",
+     "from": "CCBPanelSlot"
+    },
+    {
+     "addr": "0x00450440",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450560",
+     "from": "UIFrameWnd"
+    },
+    {
+     "addr": "0x00450670",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "UIWnd"
+    },
+    {
+     "addr": "0x00450370",
+     "from": null
+    },
+    {
+     "addr": "0x00445D10",
+     "from": "UIWnd"
+    }
+   ],
+   "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：MI 对（LayoutDefault+35/+29 相邻双写）+DelegateRender+17 复写"
+  }
+ ],
+ "base_size": 76,
+ "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 96 → 344（A 级 new-ctor 三元组：new@0x4a7a05 push $0x158(344) → call 0x43a810（注解名 Destroy2=疑 ctor 误名族））· req=344 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  },
+  {
+   "name": "PalScriptWaitObj",
+   "offset": 68
+  }
+ ]
 }
