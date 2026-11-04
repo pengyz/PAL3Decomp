@@ -1,0 +1,677 @@
+{
+ "functions.alt_name": {
+  "transfer": "dropped",
+  "reason": "备用名注记=现不转（T7 裁）",
+  "verify": "none"
+ },
+ "functions.alt_signature": {
+  "transfer": "dropped",
+  "reason": "备用签注记=现不转（T7 裁）",
+  "verify": "none"
+ },
+ "functions.declaration_only": {
+  "transfer": "dropped",
+  "reason": "仅声明标记=T7 skip 语义",
+  "verify": "none"
+ },
+ "functions.evidence_level": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.face3_rule": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.name": {
+  "transfer": "op",
+  "reason": "set_name op",
+  "verify": "direct"
+ },
+ "functions.name_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.name_source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.object_addr": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.pending_adjudication": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.reason": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.regen_path": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.signature": {
+  "transfer": "op",
+  "reason": "set_func_sig op",
+  "verify": "direct"
+ },
+ "functions.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.source_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.source_owner": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "functions.type": {
+  "transfer": "dropped",
+  "reason": "skip/墓碑语义=T7 消费（现未转）",
+  "verify": "none"
+ },
+ "globals.address": {
+  "transfer": "op",
+  "reason": "rename_global op 地址维",
+  "verify": "direct"
+ },
+ "globals.binary_size": {
+  "transfer": "dropped",
+  "reason": "unreviewed—T7 处置（保守缺省：禁假完备）",
+  "verify": "none"
+ },
+ "globals.category": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.comment": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.decomp_name": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.deleted": {
+  "transfer": "dropped",
+  "reason": "墓碑语义=T7 消费",
+  "verify": "none"
+ },
+ "globals.name": {
+  "transfer": "op",
+  "reason": "rename_global op",
+  "verify": "direct"
+ },
+ "globals.naming_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.orig_type": {
+  "transfer": "dropped",
+  "reason": "原类型注记（现 type 主键承载）",
+  "verify": "none"
+ },
+ "globals.overlap_evidence": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.overlaps_with": {
+  "transfer": "dropped",
+  "reason": "位面复用关系注记=A 面语义（B 平坦结构不承载）",
+  "verify": "none"
+ },
+ "globals.reason": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.rename_deferred": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.rename_reason": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "globals.type": {
+  "transfer": "dropped",
+  "reason": "T7：set_global_type 补发（plan_to_changeset 现未转——复核缺口②）",
+  "verify": "direct(补后)"
+ },
+ "member._evidence": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member._rename_evidence": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.comment": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.count": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.evidence_level": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.name": {
+  "transfer": "op",
+  "reason": "define_struct member",
+  "verify": "direct"
+ },
+ "member.note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.offset": {
+  "transfer": "op",
+  "reason": "define_struct member offset（十进制键）",
+  "verify": "direct"
+ },
+ "member.repro_pointer": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.size": {
+  "transfer": "dropped",
+  "reason": "unreviewed—T7 处置（保守缺省：禁假完备）",
+  "verify": "none"
+ },
+ "member.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "member.type": {
+  "transfer": "op",
+  "reason": "define_struct member type（str 形）",
+  "verify": "direct"
+ },
+ "member.union": {
+  "transfer": "dropped",
+  "reason": "inline-struct/union dict 形=T7/8 缺口（现降级 byte）",
+  "verify": "none"
+ },
+ "member.vfptr_slot": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods._attribution_evidence": {
+  "transfer": "dropped",
+  "reason": "归属证据=B 无载体",
+  "verify": "comment"
+ },
+ "methods._evidence": {
+  "transfer": "dropped",
+  "reason": "证据串（_ 前缀内部键）=B 无载体",
+  "verify": "comment"
+ },
+ "methods._migrated_from": {
+  "transfer": "dropped",
+  "reason": "迁移注记（非语义）",
+  "verify": "none"
+ },
+ "methods._misattrib_evidence": {
+  "transfer": "dropped",
+  "reason": "错认证据=B 无载体",
+  "verify": "comment"
+ },
+ "methods.adjudication": {
+  "transfer": "dropped",
+  "reason": "T7：gen_plan 跳 rejected/prefer confirmed（25367 三连实锤缺口）",
+  "verify": "indirect:胜者名/签"
+ },
+ "methods.alt_name": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.alt_signature": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.alt_source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.attribution_evidence": {
+  "transfer": "dropped",
+  "reason": "归属证据=B 无载体",
+  "verify": "comment"
+ },
+ "methods.class": {
+  "transfer": "op",
+  "reason": "归属随 methods dict 文件（apply 侧）",
+  "verify": "indirect:归属效果"
+ },
+ "methods.declaration_only": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.evidence": {
+  "transfer": "dropped",
+  "reason": "证据串=B 无载体（set_comment 载体候选）",
+  "verify": "comment"
+ },
+ "methods.evidence_level": {
+  "transfer": "dropped",
+  "reason": "证据级=B 无载体",
+  "verify": "none"
+ },
+ "methods.local_vars": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.name": {
+  "transfer": "op",
+  "reason": "set_name op",
+  "verify": "direct"
+ },
+ "methods.name_evidence": {
+  "transfer": "dropped",
+  "reason": "命名证据=B 无载体",
+  "verify": "comment"
+ },
+ "methods.name_note": {
+  "transfer": "dropped",
+  "reason": "命名注记=B 无载体",
+  "verify": "comment"
+ },
+ "methods.name_source": {
+  "transfer": "dropped",
+  "reason": "命名来源=B 无载体（comment 载体候选）",
+  "verify": "comment"
+ },
+ "methods.naming_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.ordinal": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.owner": {
+  "transfer": "dropped",
+  "reason": "T7：owner 转（对冲控制维）",
+  "verify": "indirect:归属效果"
+ },
+ "methods.pending_adjudication": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.reason": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.repro_pointer": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.sig_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.signature": {
+  "transfer": "op",
+  "reason": "set_func_sig op",
+  "verify": "direct"
+ },
+ "methods.signature_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.static": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "methods.type": {
+  "transfer": "dropped",
+  "reason": "unreviewed—T7 处置（保守缺省：禁假完备）",
+  "verify": "none"
+ },
+ "skip.declaration_only": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.entry": {
+  "transfer": "dropped",
+  "reason": "T7：skip 语义消费或显式 dropped（现未转）",
+  "verify": "none"
+ },
+ "skip.name": {
+  "transfer": "dropped",
+  "reason": "T7 skip 面",
+  "verify": "none"
+ },
+ "skip.object_addr": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.reason": {
+  "transfer": "dropped",
+  "reason": "T7 skip 面",
+  "verify": "none"
+ },
+ "skip.regen_path": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.skip_reason": {
+  "transfer": "dropped",
+  "reason": "T7 skip 面",
+  "verify": "none"
+ },
+ "skip.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.source_owner": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.target_addr": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "skip.target_name": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._analysis_20261025": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._analysis_20261026": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._attribution_migrations": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._attribution_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._base_fix": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._cascade_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._change_log": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._context_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._fix_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._flexible": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._known_members_comment": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._naming": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._naming_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._origin": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._phantom_clear": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._rebuild_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._rename_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._size_evidence": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._size_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._strip_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._verdict": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._verdicts": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct._vptr_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.base_size": {
+  "transfer": "dropped",
+  "reason": "unreviewed—T7 处置（保守缺省：禁假完备）",
+  "verify": "none"
+ },
+ "struct.bases": {
+  "transfer": "dropped",
+  "reason": "继承链 A 面承载；B 平坦结构（T7 裁定面）",
+  "verify": "none"
+ },
+ "struct.bases_source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.binary_size": {
+  "transfer": "op",
+  "reason": "define_struct size",
+  "verify": "direct"
+ },
+ "struct.binary_size_source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.is_union": {
+  "transfer": "dropped",
+  "reason": "union 标记=define_union 未消费此维（T7 裁）",
+  "verify": "none"
+ },
+ "struct.known_members_source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.known_methods": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.methods_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.name": {
+  "transfer": "op",
+  "reason": "define_struct op",
+  "verify": "direct"
+ },
+ "struct.name_source_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.nested_types": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.pack": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.pdb_size": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.size": {
+  "transfer": "op",
+  "reason": "define_struct size",
+  "verify": "direct"
+ },
+ "struct.size_evidence": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.size_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.source": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.source_note": {
+  "transfer": "dropped",
+  "reason": "证据/注记字段=B 无载体（comment 载体候选，矩阵判）",
+  "verify": "comment"
+ },
+ "struct.vtables": {
+  "transfer": "dropped",
+  "reason": "带 slot from 归属信息不可转（spec §4 勘误：非「Ghidra 重算」）",
+  "verify": "none"
+ }
+}
