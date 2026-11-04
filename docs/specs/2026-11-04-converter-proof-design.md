@@ -51,7 +51,7 @@
 
 **回读工具面（复核勘误正名）**：`list_functions`/`get_function_info`/`list_data_types`/`get_data_type`（FieldDetail 字段名/偏移/型/尺寸 GhidraEngine.java:960-965）/`get_global_variables`（CommandHandler.java:208；v1 误写 get_global_value）/`set_comment`（evidence 载体候选）。
 
-**门禁接线（R9 勘误）**：触发面=转换器全链 5 件（**import_annotation.py（build_import_plan 真身 :38-81）**+gen_plan.py+plan_to_changeset.py+import_standard.py+verify 自身）改动必跑 fixture+mutation 二证。接线=仓内 pre-commit 钩子链+独立 `ghidra_track/gate.sh`（勘误：「pre-commit/loop」混称不成立——loop=IDA 轨 cli.py，B 面门禁独立立；daemon 互斥持库+端口 8432 环境约束随 gate 注明）。
+**门禁接线（R9 勘误）**：触发面=转换器全链 5 件（**import_annotation.py（build_import_plan 真身 :38-81）**+gen_plan.py+plan_to_changeset.py+import_standard.py+verify 自身）改动必跑 fixture+mutation 二证。接线=**`.git/hooks/pre-commit`（实路径·R9 勘误——钩尾 `exec` 替换进程，T9 段须插 exec 前·触发面=9 件全家族）**+独立 `ghidra_track/gate.sh`（mutation+fixture+matrix 三证串跑）（勘误：「pre-commit/loop」混称不成立——loop=IDA 轨 cli.py，B 面门禁独立立；daemon 互斥持库+端口 8432 环境约束随 gate 注明）。
 
 ## 3. 确定性与归并语义（R7·v1 遗漏）
 
