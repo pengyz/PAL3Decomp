@@ -1777,7 +1777,7 @@
     "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits)"
   },
   "0x0043DE40": {
-    "name": "Destroy__ovl_03",
+    "name": "Destroy",
     "signature": "void __fastcall(int self)",
     "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high"
   },
@@ -2203,7 +2203,7 @@
     "evidence_level": "B"
   },
   "0x004C6290": {
-    "name": "Destroy__ovl_02",
+    "name": "Destroy",
     "signature": "int __thiscall(int nMode)",
     "source_note": "[NEEDS_EVIDENCE 2026-10-21] retn=5 槽 ✓ 个数一致，但**类型零 opcode 实证**。xor %al,%al 形提示 FP 约定面 ⇒ 逐参 opcode 核（优先查 FP 参数）。暂标 needs_caller_evidence。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
     "evidence_level": "B",
@@ -2329,7 +2329,9 @@
     "name": "ArraySort",
     "signature": "int __stdcall(int, int, int, int)",
     "name_source": "IDA语义分析 2026-10-31 批1-2",
-    "name_note": "从 decomp 推断（j_InputSystem）"
+    "name_note": "从 decomp 推断（j_InputSystem）",
+    "type": "skip",
+    "source": "[幻影边界裁决 2026-11-04] A 级字节证据：0x401810-0x401839 为单个 ArraySort 函数体——`8b 6c 24 10`（mov ebp,[esp+10h]）指令跨 0x401820 边界（0x401820 落在指令第 4 字节）、`78 20` js→0x401837 恰落 `c2 10 00`（ret 16 = stdcall 4×int 清栈 ✓ 合签名）⇒ 0x401820=函数体中指令地址误注册（10-31 批1-2 从残缺 decomp j_InputSystem 推断），非独立函数。同名同签双址铁律告警（check 2c-mangled）与 free_functions C2084 均此幻影 ⇒ skip 结案（name_adjudication_queue §1 #5）"
   },
   "0x004232D0": {
     "name": "AnimUpdate",

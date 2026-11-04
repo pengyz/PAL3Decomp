@@ -49,12 +49,12 @@ def evaluate_claim_gate(unverified_count, unverified_baseline, multi_claims,
 
 def load_state():
     """R1-b：基线缺失=fail-loud（禁自动重自举洗白）。"""
-    if not BASELINE.exists() or json.load(open(BASELINE)) == {}:
+    if not BASELINE.exists() or json.load(open(BASELINE, encoding='utf-8')) == {}:
         return {'ERROR': 'baseline_missing'}, set()
-    b = json.load(open(BASELINE))
+    b = json.load(open(BASELINE, encoding='utf-8'))
     led, le = set(), {}
     if LEDGER.exists():
-        for c in json.load(open(LEDGER)).get('adjudicated', []):
+        for c in json.load(open(LEDGER, encoding='utf-8')).get('adjudicated', []):
             le[c['addr']] = c
             led.add(c['addr'])
     return b, led, le
@@ -63,7 +63,8 @@ def load_state():
 def save_baseline(unverified_count, multi_addrs):
     BASELINE.write_text(json.dumps(
         {'unverified_baseline': unverified_count,
-         'multi_baseline': sorted(multi_addrs)}, ensure_ascii=False, indent=2))
+         'multi_baseline': sorted(multi_addrs)}, ensure_ascii=False, indent=2),
+        encoding='utf-8')
 
 
 def main():
@@ -72,7 +73,7 @@ def main():
     unv = 0
     claims = {}
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
-        d = json.load(open(f))
+        d = json.load(open(f, encoding='utf-8'))
         nm = d.get('name')
         for k, v in (d.get('methods') or {}).items():
             if not isinstance(v, dict):
@@ -83,18 +84,18 @@ def main():
     multi = {a: cs for a, cs in claims.items() if len(set(cs)) > 1}
     gap_un = []
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
-        d = json.load(open(f))
+        d = json.load(open(f, encoding='utf-8'))
         for k, v in (d.get('methods') or {}).items():
             if isinstance(v, dict) and 'gap_fill' in json.dumps(v) and not v.get('adjudication'):
                 gap_un.append(k)
     red = []
     gc = ROOT / 'data/status/attribution_guard_census.json'
     if gc.exists():
-        red = [x['addr'] for x in json.load(open(gc)).get('red', [])]
+        red = [x['addr'] for x in json.load(open(gc, encoding='utf-8')).get('red', [])]
     la_no_ev = 0
     adjudged = {}
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
-        d = json.load(open(f))
+        d = json.load(open(f, encoding='utf-8'))
         for k, v in (d.get('methods') or {}).items():
             if not isinstance(v, dict):
                 continue
@@ -105,7 +106,7 @@ def main():
     pc = ROOT / 'data/status/vtable_ownership_census.json'
     if not pc.exists():
         return ['CLAIM_GATE:census_missing (vtable_ownership_census.json 删除即洗牌=堵死)'], [], unv, multi
-    p_count = sum(json.load(open(pc)).get('verdict_counts', {}).get(k, 0)
+    p_count = sum(json.load(open(pc, encoding='utf-8')).get('verdict_counts', {}).get(k, 0)
                   for k in ('P:vtable_confirmed', 'P:multi_owned', 'P:misowned'))
     b, led, le = load_state()
     if 'ERROR' in b:

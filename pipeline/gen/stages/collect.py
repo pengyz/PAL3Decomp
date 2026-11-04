@@ -201,19 +201,13 @@ def collect_functions(decomp_dir=None):
         # 30 函数改类后裸调用失 free_func_sigs 声明 ⇒ C2065 洪泛（S2 100→91）。
         # **分类保持 name 形原判**；N1 的正确闭合在调用形转写层（挂账）。
 
-        # IDA same-name dedup suffix (__ovl_1 / __ovl_2 / ...) is a decompiler
-        # bookkeeping artifact — the original C++ source never had such
-        # identifiers. Strip it so cpp definitions match header declarations
-        # (emit_headers applies the same strip for declarations). The ordinal
-        # can flip between exports when IDB types are re-applied, turning a
-        # previously-fine method into an undeclared-member cascade.
-        if method:
-            # [归一化单点律 2026-11-01] __ovl_ 剥离统一走 annotation_view.strip_ovl
-            from pipeline.gen.annotation_view import strip_ovl
-            _stripped = strip_ovl(method)
-            if _stripped != method:
-                code = re.sub(r'\b%s\b' % re.escape(method), _stripped, code)
-            method = _stripped
+        # [__ovl_ 剥离退役 2026-11-04] 原「collect 无条件 strip_ovl + 正文重写」
+        # （2026-09-14 959ef254b 起存在）已退役：戳归一已下沉 annotation 层
+        # （2026-11-04 全量剥除 17 处，撞名如实显形——用户裁定「让隐性撞名变真撞名」）。
+        # 对抗复核定谳（out/_adversarial_review_verdict.md #1）：定义名剥落的真路径是
+        # 此处（stage1 从正文签名行重建定义），emit_cpp 正则只是调用形残余清理；
+        # 无条件剥（定义侧）+ 撞则不剥（声明侧）判据不对称 = C2084 隐性撞名制造点。
+        # 此后 annotation 名即最终名：再有戳名原样透传（可见、不静默合并）。
 
         # 【2026-09-15 修】规范化 Hex-Rays 的**反引号特名**：
         #   `` `scalar deleting destructor' `` → `_scalar_dtor`

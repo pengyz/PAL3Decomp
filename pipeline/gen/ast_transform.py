@@ -1236,7 +1236,8 @@ def resolve_method_identity(addr, ann_structs=None, functions=None, decomp=None,
                 n = '_vector_dtor' if 'vector' in n else '_scalar_dtor'
             else:
                 n = n.strip('`').strip("'")
-        n = re.sub(r'__ovl_[0-9a-fA-F]+$', '', n)     # 去序号（collect 同款——非保序）
+        # [__ovl_ 剥离退役 2026-11-04] 归一化侧不再剥戳（戳归一下沉 annotation 层；
+        # 戳名原样参与比对 = 可见、不静默合并）。
         return n
 
     def _bad(cls, name):
@@ -1493,8 +1494,8 @@ def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by
             if name not in (methods_by_cls.get(cls) or ()):
                 return m.group(0)
             target = cls
-        # [__ovl_ 剥离 2026-11-01] 调用侧与定义侧/头侧一致剥 __ovl_XXXX 后缀
-        _name = re.sub(r'__ovl_[0-9a-fA-F]+$', '', name)
+        # [__ovl_ 剥离退役 2026-11-04] 调用形不再剥戳（戳归一下沉 annotation 层，原样透传）。
+        _name = name
         return '(((%s *)%s))->%s::%s(%s)' % (
             target, m.group('recv'), target, _name, rest.lstrip(', '))
 
@@ -1589,9 +1590,8 @@ def rewrite_routed_free_calls(code, routed_by_name):
         if _rc:
             recv = _rc.group(1).strip()
         out.append(code[i:m.start()])
-        # [__ovl_ 剥离 2026-11-01] 调用侧与定义侧/头侧一致剥 __ovl_XXXX 后缀
-        # （annotation 层 __ovl_ 仅用于 IDB 唯一性，生成代码必须用裸名）
-        _method = re.sub(r'__ovl_[0-9a-fA-F]+$', '', method)
+        # [__ovl_ 剥离退役 2026-11-04] 调用形不再剥戳（戳归一下沉 annotation 层，原样透传）。
+        _method = method
         out.append('(((%s *)%s))->%s::%s(%s)' % (
             cls, recv, cls, _method, ', '.join(rest)))
         i = j

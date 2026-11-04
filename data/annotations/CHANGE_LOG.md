@@ -6366,3 +6366,13 @@ R15 test_gbengine_reloc_sites.py 4/4 绿 + pre-commit 存量豁免无关）。
 
 ### 环境修复（同批顺带，A 级 IDA 自身日志）
 - **IDB 打包基恢复**：`original/PAL3.exe.i64` 处于 unpacked 残留态（idat rc=4 + IDA 日志「found unpacked version…did not close properly / PAL3.exe.id0: 资源暂时不可用」——idapro MCP 会话异常关闭遗留 sidecar）⇒ 按 IDA 对话框建议**恢复打包基**：sidecar（id0/id1/nam/til）移至 `/tmp/idb_sidecars_backup_20261016/` 备份（**非删除**），packed i64（11:29:18 mtime=claims 落地后的保存点）解包重生 ⇒ apply 恢复 rc=0。⚠️ 机制教训：**idalib/MCP 会话必须显式关库**，否则 sidecar 残留毒化后续 idat（R14 族新变体）。
+
+
+## ovl 戳全量剥离批（2026-11-04，机械剥除 + 重做修正）：17 处剥戳 + 6 处纠偏 + 剥离机制退役
+
+**设计定案（用户裁定）**：戳归一下沉 annotation 层；发射/收集层剥离全退役；**让隐性撞名变真撞名**（不保留戳名消歧）。
+- **17 处剥戳**：10 处 name（`Destroy__ovl_*`×6 / `OnMessage_ovl` / `_sdtor_ovl` / `ProcCommonTask__ovl` / `Create__ovl_1`）+ 7 处 signature 内嵌名（含 4 处对齐语义正名：`HandleInput__ovl_ff90`→`NavigateSlots`、`SaveData__ovl_2920`→`LoadData`、`Update__ovl_8260`→`UpdateTransform`、`Create__ovl_1`→`Create`）。
+- **6 处纠偏（对抗复核+用户 audit 后重做）**：3 处 sig 剥戳残留 `_XXXX` 地址尾（`UpdateTransform_7420`/`CreateEffect_F580`/`DestroyEffect_0A60`）系"对齐 name 字段"误法——整戳去净为 `UpdateTransform`/`CreateEffect`/`DestroyEffect`，name 字段同步（twin 均异签=合法重载，实证：`UpdateTransform()` vs `(float)` · `CreateEffect()` vs `(int,CEffectSystem*)` · `DestroyEffect()` vs `(CEffgbParticle*)`）。
+- **剥离机制退役**：collect.py strip_ovl+正文重写（定义名剥落真路径，对抗复核定谳 out/_adversarial_review_verdict.md #1）、emit_cpp:870/882 调用形正则、emit_headers strip 守卫、ast_transform 三处调用侧剥离。防回流锁 tests/test_ovl_migration_lock.py。
+- **门禁修复**：cxx_sig_key 末参名泄漏（`int,int,intnVal3` vs `int,int,inta4` 误判合法重载 ⇒ UILoadingFrm 真撞名漏检）；类型词防护；test_ovl_suffixed_exempt 契约翻转（戳名剥后撞名必须报）。
+- **统计弹药**：`_xx` 尾戳名普查 data/status/tail_name_census_20261104.md（388 尾名/195 基名组：真撞 26 · 重载候选 19 · 单例 8，合成物/CRT 另账 142）= 下一步语义正名进攻点。

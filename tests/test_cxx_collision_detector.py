@@ -23,6 +23,19 @@ def test_sig_key_normalizes_param_names():
     assert sig_key('void __thiscall()') != sig_key('void __thiscall(int)')
 
 
+def test_cxx_sig_key_last_param_name_no_leak():
+    """末参参名不得泄进键（2026-11-04 修）：UILoadingFrm OnMessage 真撞名曾因此漏检。"""
+    assert cxx_sig_key('int __thiscall(int nVal, int nVal2, int nVal3)') == \
+        cxx_sig_key('int __thiscall(int a2, int a3, int a4)')
+    assert cxx_sig_key('void __thiscall(UIListBox *this)') == cxx_sig_key('void __thiscall()')
+
+
+def test_cxx_sig_key_keeps_multiword_types():
+    """类型词不当参名剥：`unsigned int` 与 `unsigned long` 不得合成同键（假碰撞防护）。"""
+    assert cxx_sig_key('int __thiscall(unsigned int)') != cxx_sig_key('int __thiscall(unsigned long)')
+    assert cxx_sig_key('int __thiscall(unsigned int nVal)') == cxx_sig_key('int __thiscall(unsigned int)')
+
+
 def test_collision_and_noncollision():
     # 同类同名同签双址=铁律违反（真缺陷）
     c = find_collisions([

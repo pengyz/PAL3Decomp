@@ -867,8 +867,9 @@ def run_cpp_generation(filter_classes=None):
         safe_name = cls_name.replace('<', '_').replace('>', '_').replace(':', '_').replace('"', '_').replace('?', '_').replace('*', '_').replace('|', '_').replace('\\', '_').replace('/', '_').replace('(', '_').replace(')', '_').strip()
         out_path = out_dir / ("%s.cpp" % safe_name)
         content = generate_class_cpp(cls_name, methods)
-        # [__ovl_ 精准剥离 2026-11-01] 只剥调用形 ::method__ovl_XXX( 中的后缀
-        content = re.sub(r'::(\w+?)__ovl_[0-9a-fA-F]+\(', r'::\1(', content)
+        # [__ovl_ 剥离退役 2026-11-04] 戳归一已下沉 annotation 层（17 处剥除，撞名如实显形）。
+        # 发射层不再剥戳——原正则 `::(\w+?)__ovl_[0-9A-F]+\(` 会连**定义行**一起剥
+        # （`void Cls::f__ovl_X() {` 同样命中），是 C2084 隐性撞名的制造点（2026-11-04 定谳）。
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1
@@ -878,8 +879,7 @@ def run_cpp_generation(filter_classes=None):
     if free_funcs and not filter_classes:
         out_path = output_dir / "free_functions.cpp"
         content = generate_free_funcs_cpp(free_funcs)
-        # [__ovl_ 精准剥离 2026-11-01]
-        content = re.sub(r'::(\w+?)__ovl_[0-9a-fA-F]+\(', r'::\1(', content)
+        # [__ovl_ 剥离退役 2026-11-04] 同上，不再剥戳。
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)
         generated += 1

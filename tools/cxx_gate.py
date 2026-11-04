@@ -4,6 +4,12 @@
 棘轮形：存量 grandfather 基线冻结 · 新增=硬红 · 清理后基线刷新。
 用法: python3 tools/cxx_gate.py [--bootstrap]
 """
+# ── stdio UTF-8 单源引导：Windows GBK 控制台 print ⚠/⇒ 即崩（UnicodeEncodeError）──
+# 单源: pipeline/utf8_stdio.py · gotcha: docs/knowledge/gotcha_windows_gbk_stdio_unicode_crash.md
+import os as _os8, sys as _sys8
+_sys8.path.append(_os8.path.dirname(_os8.path.dirname(_os8.path.abspath(__file__))))
+from pipeline.utf8_stdio import force_utf8_stdio as _force_utf8_stdio
+_force_utf8_stdio()
 import glob
 import json
 from collections import defaultdict
@@ -58,13 +64,13 @@ def collect_violations(entries):
 def load_entries():
     entries = []
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
-        d = json.load(open(f))
+        d = json.load(open(f, encoding='utf-8'))
         cls = d.get('name') or ''
         for addr, m in (d.get('methods') or {}).items():
             if isinstance(m, dict) and m.get('name'):
                 entries.append({'addr': addr, 'class': cls, 'name': m['name'],
                                 'sig': m.get('signature') or ''})
-    for addr, m in json.load(open(ROOT / 'data/annotations/functions.json')).items():
+    for addr, m in json.load(open(ROOT / 'data/annotations/functions.json', encoding='utf-8')).items():
         if isinstance(m, dict) and m.get('name'):
             entries.append({'addr': addr, 'class': '', 'name': m['name'],
                             'sig': m.get('signature') or ''})
@@ -74,10 +80,11 @@ def load_entries():
 def main(bootstrap=False):
     v = collect_violations(load_entries())
     if bootstrap:
-        BASELINE.write_text(json.dumps({'baseline': sorted(v)}, ensure_ascii=False, indent=2))
+        BASELINE.write_text(json.dumps({'baseline': sorted(v)}, ensure_ascii=False, indent=2),
+                            encoding='utf-8')
         print('基线自举: %d 违规键冻结' % len(v))
         return [], []
-    b = json.load(open(BASELINE)) if BASELINE.exists() else {'ERROR': 'baseline_missing'}
+    b = json.load(open(BASELINE, encoding='utf-8')) if BASELINE.exists() else {'ERROR': 'baseline_missing'}
     if 'ERROR' in b:
         return ['CXX_GATE:baseline_missing (fail-loud 禁自举)'], []
     baseline = set(b.get('baseline', []))
@@ -96,3 +103,5 @@ if __name__ == '__main__':
             print(' ', e)
         for w in warns[:4]:
             print('  warn:', w)
+        # 新增违规=硬红须有出口码（2026-11-04 修：此前只打印不退出 ⇒ "硬红"无牙齿）
+        sys.exit(1 if errs else 0)

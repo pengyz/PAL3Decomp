@@ -103,11 +103,16 @@ def test_duplicate_method_name():
     assert any(i['kind'] == 'duplicate_method_name' for i in issues)
 
 
-def test_ovl_suffixed_exempt():
-    """__ovl_ 后缀豁免同名检查。"""
+def test_ovl_suffixed_stripped_and_judged():
+    """__ovl_ 戳名剥后同名同签双址=真撞名 ⇒ 必须报（2026-11-04 契约翻转）。
+
+    旧契约「__ovl_ 豁免同名检查」已随「剥戳下沉 annotation 层、让隐性撞名变真撞名」
+    设计定案退役（用户裁定 2026-11-04）。
+    """
     d = _mk({}, methods={'0x1': {'name': 'Foo'}, '0x2': {'name': 'Foo__ovl_01'}})
     issues = check_struct('T', d, '/tmp/t.json')
-    assert not any(i['kind'] == 'duplicate_method_name' for i in issues)
+    assert any(i['kind'] == 'duplicate_method_name' for i in issues), \
+        f'戳名剥后撞名必须显形，实得 {[i["kind"] for i in issues]}'
 
 
 def test_dual_pairs_nonempty():

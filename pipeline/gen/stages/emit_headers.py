@@ -20,7 +20,6 @@ import json
 import os
 import re
 
-from pipeline.ida.vc6_mangler import strip_stamp
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -1107,31 +1106,9 @@ def collect_methods():
             continue
         if ' ' in method or '`' in method:
             continue
-        # Strip __ovl_XXXX suffix for overloading, but only if sig differs
-        # from existing functions with same stripped name
-        ovl_stripped = strip_stamp(method)   # [D7] 单源
-        if ovl_stripped != method:
-            collides = False
-            for existing_method, existing_sig, _ in classes.get(cls, []):
-                if existing_method != ovl_stripped:
-                    continue
-                # Compare params only (strip return type + calling conv + func name)
-                # C++ can't overload by return type alone
-                def _params(s):
-                    # Extract just the parameter types from a signature.
-                    # Strip return type, calling convention, and 'this' parameter.
-                    p = re.sub(r'^.*?__thiscall\(', '', s)  # everything before params
-                    p = re.sub(r'\)\s*$', '', p).strip()    # trailing paren
-                    # Strip the 'this' parameter (always first for __thiscall)
-                    # Handle 'this', 'Block', namespace types (std::ios_base), and $
-                    p = re.sub(r'^(?:struct\s+)?[\w$][\w$:]*(?:\s*\*+\s*)?\s*\w+\s*,?\s*', '', p)
-                    p = re.sub(r'\bstruct\s+', '', p)       # struct keyword optional
-                    return p.strip()
-                if _params(existing_sig) == _params(sig):
-                    collides = True
-                    break
-            if not collides:
-                method = ovl_stripped
+        # [__ovl_ 剥离退役 2026-11-04] 戳归一已下沉 annotation 层（撞名如实显形）。
+        # 发射层不再剥戳/防撞——同名多址直接进 classes，由 cxx_gate/preflight 在数据层报真撞名；
+        # 原「剥前防撞」守卫与 emit_cpp 盲剥判据不一致（声明侧防/定义侧剥）= C2084 分叉病灶。
         classes[cls].append((method, sig, addr))
         seen_addrs.add(addr)
 

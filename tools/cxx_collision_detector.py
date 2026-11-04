@@ -87,6 +87,13 @@ def cxx_sig_key(sig):
     if re.search(r'\)\s*volatile\s*$', s):
         cv += ' volatile'
     params = s[paren + 1:s.rfind(')')] if s.rfind(')') > paren else ''
-    params = re.sub(r'(\w)\s+\w+\s*([,)])', r'\1\2', params)
+    # 参名剥离（2026-11-04 修）：原正则要求名后跟 `[,)]`，而 params 切片已排尾 `)`
+    # ⇒ **末参名永泄进键**（`int,int,intnVal3` vs `int,int,inta4` 判合法重载 ⇒
+    # UILoadingFrm::OnMessage 真撞名漏检，对抗复核实证 out/_adversarial_review_verdict.md #4）。
+    # 补 `$` 形；两形都带类型词防护（int/unsigned… 不当参名剥，防 `unsigned int`→`unsigned`
+    # 的假碰撞——该隐患中缀形原本就有）。
+    _TYPE = r'int|char|short|long|float|double|void|unsigned|signed|const|struct|class|enum|union|bool'
+    params = re.sub(r'(\w)\s+(?!%s\b)(\w+)\s*([,)])' % _TYPE, r'\1\3', params)
+    params = re.sub(r'(\w)\s+(?!%s\b)(\w+)\s*$' % _TYPE, r'\1', params)
     params = re.sub(r'\s+', '', params)
     return (cc, cv, params)
