@@ -35,6 +35,25 @@ def honest_signature(sig, cls=None, name=None):
     return {'conv': conv, 'ret': ret, 'params': params, 'cls': cls}
 
 
+_DECIMAL_KEY = re.compile(r'[0-9]+')
+
+
+def parse_variant_key(key):
+    """known_members 键 → 偏移 int（仅十进制纯数字形）| 原样键 str（变体/异形）。
+
+    键谱系 `base_offset[_variant]`（check_annotations.py:607 同款语义）：'144_1'
+    = 偏移 144 的第 1 位面视图（同存储 alias），**不是**独立偏移。PEP 515 下划线
+    数字分隔符语义下 int('144_1')==1441 / int('50814_0')==508140 / int('0_1')==1
+    —— int() 直吞即发明偏移（病灶=本模块旧 `int(k)`，语料 PalScript.json '144_1'）。
+    契约（task-1 Step 3）：十进制纯数字形才 int()；含 '_'/非数字（hex 等）原样返回，
+    由下游显式处理——禁发明偏移、禁 lstrip('0x') 前导零陷阱（'0x0abc' 会丢 '0'）。
+    """
+    if isinstance(key, int):
+        return key  # list 形 known_members 的 int 键直通
+    s = str(key)
+    return int(s) if _DECIMAL_KEY.fullmatch(s) else s
+
+
 def build_import_plan(functions=None, structs=None, globals=None):
     """注解三源 → Ghidra 导入 op 列表（set_name/set_func_sig/define_struct/define_global）。"""
     functions = functions or {}
@@ -55,9 +74,11 @@ def build_import_plan(functions=None, structs=None, globals=None):
         pairs = km.items() if isinstance(km, dict) else [(m.get('offset'), m) for m in km if isinstance(m, dict)]
         for k, m in pairs:
             if isinstance(m, dict) and m.get('name') and k is not None:
-                try:
-                    off = int(k)
-                except (TypeError, ValueError):
+                off = parse_variant_key(k)
+                if not isinstance(off, int):
+                    # 变体键（'144_1'）/异形键（hex 等）不是偏移：显式排除——存储偏移
+                    # 归基键（'144'→144）落位；禁 int() 吞发明偏移（144_1→1441 实锤）。
+                    # 变体视图形补（union 折叠）= Task 7/8 missing-shapes 面。
                     continue
                 ty = m.get('type')
                 if isinstance(ty, dict) and 'union' in ty:
