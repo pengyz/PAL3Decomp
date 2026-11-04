@@ -54,7 +54,66 @@ def parse_variant_key(key):
     return int(s) if _DECIMAL_KEY.fullmatch(s) else s
 
 
+def merge_method_claims(ann):
+    """{文件名: structdata} → {addr: claim} 归并（确定性纯函数·与插入序无关）。
+    tie-break（对齐 apply_annotations.py:1382-1385 语义、代码独立）：
+    owner(==本 struct name) 优先 > adjudication=='confirmed' > sorted 文件名序 > 首个。"""
+    out = {}
+    for fname in sorted(ann.keys()):
+        d = ann[fname] or {}
+        cls = d.get('name')
+        for addr, m in (d.get('methods') or {}).items():
+            if not isinstance(m, dict) or not m.get('name'):
+                continue
+            claim = dict(m)
+            claim['class'] = cls
+            prev = out.get(addr)
+            if prev is None:
+                out[addr] = claim
+                continue
+            # owner 赢（claim 自 owner==自类 且 prev 无同形 owner）
+            if claim.get('owner') == cls and prev.get('owner') != prev.get('class'):
+                out[addr] = claim
+            # confirmed 赢（prev 非 confirmed）
+            elif claim.get('adjudication') == 'confirmed' and prev.get('adjudication') != 'confirmed':
+                out[addr] = claim
+            # 其余保持 prev（sorted 文件名序=平局首个）
+    return out
+
+
+def load_ann_dir(ann_dir, only=None):
+    """annotation 目录 → (functions, structs, globals)。sorted glob+merge_method_claims
+    （确定性：文件系统序不得进入结果——test_ann_dir_glob_order_independent 钉）。"""
+    import glob as _glob
+    import json as _json
+    import os as _os
+    funcs = {}
+    fp = _os.path.join(ann_dir, 'functions.json')
+    if _os.path.exists(fp):
+        funcs.update(_json.load(open(fp)))
+    structs = {}
+    ann_map = {}
+    for f in sorted(_glob.glob(_os.path.join(ann_dir, 'structs', '*.json'))):
+        d = _json.load(open(f))
+        n = d.get('name')
+        if not n or (only and n not in only):
+            continue
+        structs[n] = d
+        ann_map[_os.path.basename(f)] = d
+    for addr, m in merge_method_claims(ann_map).items():
+        funcs[addr] = {'name': m['name'], 'signature': m.get('signature') or '',
+                       'class': m.get('class')}
+    g = {}
+    gp = _os.path.join(ann_dir, 'globals.json')
+    if _os.path.exists(gp):
+        g = _json.load(open(gp))
+    return funcs, structs, g
+
+
 def build_import_plan(functions=None, structs=None, globals=None):
+    # 目录形入口（brief 契约）：build_import_plan(ann_dir) → 走 load_ann_dir
+    if isinstance(functions, str):
+        functions, structs, globals = load_ann_dir(functions)
     """注解三源 → Ghidra 导入 op 列表（set_name/set_func_sig/define_struct/define_global）。"""
     functions = functions or {}
     structs = structs or {}

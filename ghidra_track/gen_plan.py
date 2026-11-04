@@ -4,30 +4,13 @@
 plan 头插 _meta 版本锚；apply 遇未知 op 必报错（禁静默跳过）。"""
 import json, glob, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from import_annotation import build_import_plan
+from import_annotation import build_import_plan, load_ann_dir
 
 PLAN_VERSION = 1
 
 def load(ann_dir, only=None):
-    funcs = {}
-    fp = os.path.join(ann_dir, 'functions.json')
-    if os.path.exists(fp):
-        funcs.update(json.load(open(fp)))
-    structs = {}
-    for f in glob.glob(os.path.join(ann_dir, 'structs', '*.json')):
-        d = json.load(open(f))
-        n = d.get('name')
-        if not n or (only and n not in only):
-            continue
-        structs[n] = d
-        for addr, m in (d.get('methods') or {}).items():
-            if isinstance(m, dict) and m.get('name'):
-                funcs[addr] = {'name': m['name'], 'signature': m.get('signature') or '', 'class': n}
-    g = {}
-    gp = os.path.join(ann_dir, 'globals.json')
-    if os.path.exists(gp):
-        g = json.load(open(gp))
-    return funcs, structs, g
+    # [T2] 确定性单源：委托 import_annotation.load_ann_dir（sorted glob+merge_method_claims）
+    return load_ann_dir(ann_dir, only=only)
 
 def main():
     ann, out = sys.argv[1], sys.argv[2]
