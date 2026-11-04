@@ -28,9 +28,16 @@ def plan_to_changesets(plan):
             params = ', '.join(op.get('params') or [])
             # set_prototype 契约（Changeset.java:233）：signature 含函数名+
             # callingConvention 独立（__x 形）+ expect 双键（执行层 enrich）
+            # 裸名修：'int GRPinput::InitKeyMappings(...)' 的 :: 限定名被 daemon
+            # 吞进返回型（Can't resolve return type 实锤）→ 取末段
+            _bn = (op.get('name') or '').split('::')[-1]
+            _ret = op.get('ret') or 'void'
+            # ret 内 :: 限定名剥离（annotation 签名形 'int GRPinput::InitKeyMappings
+            # __thiscall'——honest_signature 未剥名 ⇒ 整串被吞进返回型实锤）
+            if '::' in _ret and ' ' in _ret:
+                _ret = _ret.rsplit(' ', 1)[0].strip()
             seen[key] = {'op': 'set_prototype', 'address': addr,
-                         'signature': '%s %s(%s)' % (op.get('ret') or 'void',
-                                                     op.get('name') or '', params),
+                         'signature': '%s %s(%s)' % (_ret, _bn, params),
                          'callingConvention': op.get('conv') or '__thiscall'}
         elif k == 'define_global':
             key = 'global-name:' + na

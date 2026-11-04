@@ -59,3 +59,33 @@ def test_global_type_expect_enriched():
     cs2, _ = split_renames(cs0, {}, globals_={})
     gt2 = [o for o in cs2 if o['op'] == 'set_global_type'][0]
     assert gt2['expect'] == {'type': '', 'size': 0}
+
+
+# ===== dryRun 逐错剔除重试环（interior 边界族修·原子批真相）=====
+
+def test_parse_fail_indexes():
+    """dryRun errors[] 文本 → 失败 op 下标（实测形：'errors[2]:\\n  - index: 31...'）。"""
+    from ghidra_track.import_standard import parse_fail_indexes
+    txt = """ok: false
+dryRun: true
+errors[2]:
+  - index: 31
+    op: set_prototype
+    errors[1]: "address 0x00401820 is inside FUN_00401810"
+  - index: 47
+    op: rename_function
+    errors[1]: "expect.name mismatch\""""
+    assert parse_fail_indexes(txt) == [31, 47]
+    assert parse_fail_indexes('ok: true\napplied: [x]') == []
+
+
+def test_partition_batch():
+    """剔除环：坏下标剔出 → (good, bad)；全坏→空 good；无坏→全 good。"""
+    from ghidra_track.import_standard import partition_batch
+    ops = [{'op': 'a'}, {'op': 'b'}, {'op': 'c'}]
+    good, bad = partition_batch(ops, [1])
+    assert good == [{'op': 'a'}, {'op': 'c'}] and bad == [{'op': 'b'}]
+    good, bad = partition_batch(ops, [])
+    assert len(good) == 3 and bad == []
+    good, bad = partition_batch(ops, [0, 1, 2])
+    assert good == [] and len(bad) == 3

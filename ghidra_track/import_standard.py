@@ -11,6 +11,19 @@ from plan_to_changeset import plan_to_changesets
 _IDENT = __import__('re').compile(r'[A-Za-z_][A-Za-z0-9_]{0,127}$')
 
 
+def parse_fail_indexes(text):
+    """dryRun errors[] 文本 → 失败 op 下标列表（interior 边界族探测——原子批剔环用）。"""
+    import re as _re
+    return [int(m) for m in _re.findall(r'-\s*index:\s*(\d+)', text or '')]
+
+
+def partition_batch(ops, bad_indexes):
+    """按坏下标分批 → (good, bad)（剔除重试环纯函数）。"""
+    bad = set(bad_indexes or [])
+    return ([o for i, o in enumerate(ops) if i not in bad],
+            [o for i, o in enumerate(ops) if i in bad])
+
+
 def _addr_int(a):
     s = str(a or '').strip().lower()
     s = s[2:] if s.startswith('0x') else s
@@ -41,8 +54,10 @@ def split_renames(ops, current, globals_=None):
             key = None
         cur = current.get(key) if key is not None else None
         cur_name = cur.get('name') if isinstance(cur, dict) else cur
-        if op.get('op') == 'rename_function':
-            if is_ident(op.get('name')) and cur_name:
+        if op.get('op') in ('rename_function', 'rename_global'):
+            # globals 无数据定义 ⇒ changeset rename 全拒（boundary-gap 1356 实锤）——
+            # create_label 标准面同路（符号落地）；type 面=set_global_type 留分账
+            if op.get('op') == 'rename_function' and is_ident(op.get('name')) and cur_name:
                 cs.append(dict(op, expect={'name': cur_name}))
             else:
                 labels.append({'address': op.get('address'), 'name': op.get('name')})
@@ -215,15 +230,32 @@ def main(gpr, plan_path):
     batches = [{'description': 'pal3-import batch %d' % (i // 250 + 1),
                 'ops': _cs_ops[i:i + 250]} for i in range(0, len(_cs_ops), 250)]
     for i, b in enumerate(batches):
-        r = tool('apply_changeset', dict(S, description=b['description'], ops=b['ops'], dryRun=True), 4)
-        t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
-        if not batch_ok(r):
-            stat['changeset_ops'][1] += len(b['ops'])
-            _fails.append({'stage': 'changeset-dryrun', 'batch': i, 'err': t[:300]})
+        _ops = b['ops']
+        # 干跑剔重试环（原子批真相：interior 边界/单点坏拒整批 250）
+        for _round in range(10):
+            r = tool('apply_changeset', dict(S, description=b['description'], ops=_ops, dryRun=True), 4)
+            t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+            if batch_ok(r):
+                break
+            _bad_idx = parse_fail_indexes(t)
+            if not _bad_idx:
+                stat['changeset_ops'][1] += len(_ops)
+                _fails.append({'stage': 'changeset-dryrun', 'batch': i, 'err': t[:300]})
+                _ops = []
+                break
+            _good, _bad = partition_batch(_ops, _bad_idx)
+            for _bo in _bad:
+                _fails.append({'stage': 'boundary-gap', 'op': _bo.get('op'),
+                               'addr': _bo.get('address'), 'err': 'dryRun 拒（剔环）'})
+            if not _good:
+                _ops = []
+                break
+            _ops = _good
+        if not _ops:
             continue
-        r = tool('apply_changeset', dict(S, description=b['description'], ops=b['ops'], dryRun=False), 5)
+        r = tool('apply_changeset', dict(S, description=b['description'], ops=_ops, dryRun=False), 5)
         ok = batch_ok(r)
-        stat['changeset_ops'][0 if ok else 1] += len(b['ops'])
+        stat['changeset_ops'][0 if ok else 1] += len(_ops)
         if not ok:
             _fails.append({'stage': 'changeset-apply', 'batch': i,
                            'err': str((r.get('content') or [{}])[0].get('text', ''))[:300] if isinstance(r, dict) else ''})
