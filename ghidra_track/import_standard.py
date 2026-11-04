@@ -8,6 +8,17 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_via_daemon import rpc, notify, tool
 from plan_to_changeset import plan_to_changesets
 
+def batch_ok(r):
+    """apply_changeset 批成败：text 内 `ok: false` 判失败（T10 dryRun 实锤——
+    工具级 isError=None 盖不住批内 errors[]，旧计数=假成功）。"""
+    if not isinstance(r, dict) or r.get('isError'):
+        return False
+    txt = str((r.get('content') or [{}])[0].get('text', ''))
+    if 'ok: false' in txt:
+        return False
+    return 'ok: true' in txt or 'applied:' in txt
+
+
 def fail_rc(fails, accounted):
     """fail-loud（R10/spec §4⑥）：未入分账 fail>0 ⇒ exit 1（禁只计数静默——
     2026-11-03 实测 24 条 No transaction 仅计数教训）。"""
@@ -26,6 +37,7 @@ def main(gpr, plan_path):
     sid = txt.split('id:')[1].split()[0].strip('"')
     S = {'sessionId': sid}
     stat = {'structs': [0, 0], 'unions': [0, 0], 'functions': [0, 0], 'changeset_ops': [0, 0]}
+    _fails = []
     # ①创建段（拓扑：union→struct→function 存在性）
     for op in plan:
         k = op['kind']
@@ -45,6 +57,7 @@ def main(gpr, plan_path):
         bad = isinstance(r, dict) and (r.get('isError') or t.startswith('Error'))
         b = 'unions' if k == 'define_union' else 'structs'
         stat[b][0 if not bad else 1] += 1
+        if bad: _fails.append({'stage': b, 'name': op.get('name'), 'err': t[:150]})
     # ①b 函数存在性（set_name/set_func_sig 全地址=存在断言；已存在忽略）
     faddrs = []
     for op in plan:
@@ -56,22 +69,29 @@ def main(gpr, plan_path):
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
         bad = isinstance(r, dict) and (r.get('isError') or t.startswith('Error')) and 'already' not in t.lower()
         stat['functions'][0 if not bad else 1] += 1
+        if bad: _fails.append({'stage': 'function', 'addr': a, 'err': t[:150]})
     # ②编辑段：changeset 批 dryRun→apply
     batches = plan_to_changesets(plan)
     for i, b in enumerate(batches):
         r = tool('apply_changeset', dict(S, description=b['description'], ops=b['ops'], dryRun=True), 4)
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
-        if isinstance(r, dict) and (r.get('isError') or 'fail' in t[:200].lower() or 'refuse' in t.lower()):
+        if not batch_ok(r):
             stat['changeset_ops'][1] += len(b['ops'])
-            if i < 3: print('dryRun 拒:', t[:150])
+            _fails.append({'stage': 'changeset-dryrun', 'batch': i, 'err': t[:300]})
             continue
         r = tool('apply_changeset', dict(S, description=b['description'], ops=b['ops'], dryRun=False), 5)
-        t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
-        ok = not (isinstance(r, dict) and r.get('isError'))
+        ok = batch_ok(r)
         stat['changeset_ops'][0 if ok else 1] += len(b['ops'])
+        if not ok:
+            _fails.append({'stage': 'changeset-apply', 'batch': i,
+                           'err': str((r.get('content') or [{}])[0].get('text', ''))[:300] if isinstance(r, dict) else ''})
     print('标准导入: structs %d ok/%d bad · unions %d/%d · functions %d/%d · changeset %d ok/%d bad / %d 批' % (
         stat['structs'][0], stat['structs'][1], stat['unions'][0], stat['unions'][1],
         stat['functions'][0], stat['functions'][1], stat['changeset_ops'][0], stat['changeset_ops'][1], len(batches)))
+    import json as _j
+    with open('ghidra_track/out/import_standard_fails.jsonl', 'w') as _fh:
+        for f in _fails:
+            _fh.write(_j.dumps(f, ensure_ascii=False) + '\n')
     # [T7⑥] fail-loud：stat 总 fail 未全入 _fails 分账 ⇒ rc=1（R10）
     _total_fail = (stat['structs'][1] + stat['unions'][1] + stat['functions'][1]
                    + stat['changeset_ops'][1])
