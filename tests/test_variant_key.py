@@ -29,6 +29,11 @@ def test_variant_key_returned_as_is():
     assert parse_variant_key('144_1') == '144_1'
     assert parse_variant_key('50814_0') == '50814_0'
     assert parse_variant_key('0_1') == '0_1'
+    # 空串/负号形（透镜四形之二，复核 Important #1 补钉）：int('-5')/int('+5')/int(' 144 ')
+    # 均不抛异常 ⇒ 若判别式回退 try/int 形，负号形会静默复活发明偏移（-5 进 plan）；
+    # 空串形另钉 [0-9]+ fullmatch 门（误改 [0-9]* 则 int('') 抛未捕获异常）
+    assert parse_variant_key('') == ''
+    assert parse_variant_key('-5') == '-5'
     # hex 异形键同样原样返回——禁 lstrip('0x') 前导零陷阱（'0x0abc'→'abc' 会丢位）
     assert parse_variant_key('0x0abc') == '0x0abc'
 
@@ -54,6 +59,9 @@ def test_no_invented_offset_in_plan():
 
 def test_variant_only_group_no_invented_offset():
     # 真值锚 SceneMgr.json:138 键 '50814_0'（无基键 '50814'）：不得发明 508140 偏移/union 名
+    # fixture 形差异（复核 Minor #3；报告 §5 已披露）：语料真形外层 "name": "" 走 name 门
+    # （import_annotation.py:76）从不达 parse；本 fixture 补 'name' 才走到调用点
+    # （union 内成员名与语料逐字一致）——勿误以为语料形直通 parse。
     structs = {'SceneMgr': {'size': 65536, 'known_members': {
         '50814_0': {'name': 'm_pRoleSystemArray', 'type': {'union': [
             {'type': 'RoleSystem *', 'name': 'm_pRoleSystemArrayEnd'},
@@ -61,8 +69,10 @@ def test_variant_only_group_no_invented_offset():
         ]}},
     }}}
     plan = build_import_plan(structs=structs)
-    for op in plan:
-        if op['kind'] == 'define_struct':
-            assert 508140 not in [m['offset'] for m in op['members']]
-        if op['kind'] == 'define_union':
-            assert '508140' not in op['name']  # UNION 名后缀=真偏移，禁发明
+    # 正锚（同 :49 [ds]= 解构，复核 Minor #2）：define_struct 必须存在——
+    # 堵空 plan/漏产 define_struct 时循环断言不执行即 PASS 的空过
+    [ds] = [op for op in plan if op['kind'] == 'define_struct']
+    assert 508140 not in [m['offset'] for m in ds['members']]  # 禁发明偏移
+    # 修复后变体键显式排除 ⇒ union op 正确缺席（正锚断言强于循环内断言；旧 bug 形
+    # 产 UNION_SceneMgr_508140 即在此被拦）
+    assert not any(op['kind'] == 'define_union' for op in plan)
