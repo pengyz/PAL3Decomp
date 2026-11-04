@@ -1,0 +1,319 @@
+# `_xx` 尾戳名普查（2026-11-04）——下一步「统计+正确语义化」进攻点弹药
+
+家族总数: 388 条尾名 | 基名组: 195（语义化进攻面: 真撞 26 · 重载候选 19 · 单例 8；合成物/CRT 另账 142）
+
+## A. 剥尾即真撞（同名同签双址 —— 语义正名优先队列）
+- **<global>::CCBStageRole_DispatchUpdate**
+  - 0x00521EB0 `CCBStageRole_DispatchUpdate_1eb0`  sig=`int __cdecl(unsigned char nFlag)`
+  - 0x00521EF0 `CCBStageRole_DispatchUpdate_1ef0`  sig=`int __cdecl(unsigned char nFlag)`
+  - 0x00521F70 `CCBStageRole_DispatchUpdate_1f70`  sig=`int __cdecl(unsigned char nFlag)`
+- **Actor::CopyConstruct**
+  - 0x0053B6E0 `CopyConstruct_1C`  sig=`void __cdecl(void *pDst, const void *pSrc)`
+  - 0x0053B700 `CopyConstruct_290`  sig=`void __cdecl(void *pDst, const void *pSrc, int nVal)`
+  - 0x0053B870 `CopyConstruct`  sig=`void __cdecl(void *pDst, const void *pSrc, int nVal)`
+- **Actor::Method**
+  - 0x0053DB10 `Method_DB10`  sig=`void __thiscall(Actor *this, int a2)`
+  - 0x0053D390 `Method_D390`  sig=`void __thiscall(Actor *this, int a2)`
+- **CCBCamControl::GetData**
+  - 0x004E9750 `GetData`  sig=`int __thiscall(CCBCamControl *this, HWND hDlg)`
+  - 0x004EB720 `GetData_B720`  sig=`LRESULT __thiscall(CCBCamControl *this, HWND hDlg)`
+  - 0x004EB8D0 `GetData_B8D0`  sig=`LRESULT __thiscall(CCBCamControl *this, HWND hDlg)`
+- **CCBStage::Update**
+  - 0x004FC150 `Update_C150`  sig=`int __thiscall(CCBStage *this)`
+  - 0x004FC0A0 `Update_C0A0`  sig=`void __thiscall()`
+- **CCBSystem::Initialize**
+  - 0x00515EE0 `Initialize_5EE0`  sig=`int __thiscall(CCBSystem *this)`
+  - 0x00515F30 `Initialize_5F30`  sig=`int __thiscall(CCBSystem *this)`
+  - 0x00515F80 `Initialize_5F80`  sig=`int __thiscall(CCBSystem *this)`
+  - 0x00515FD0 `Initialize_5FD0`  sig=`int __thiscall(CCBSystem *this)`
+- **CCBUI::Destroy**
+  - 0x005164D0 `Destroy_64D0`  sig=`void __thiscall()`
+  - 0x00519510 `Destroy_9510`  sig=`void __thiscall()`
+  - 0x00519F50 `Destroy_9F50`  sig=`void __thiscall()`
+  - 0x0051A880 `Destroy_A880`  sig=`void __thiscall()`
+- **CCBUI::InitUI**
+  - 0x004E3A20 `InitUI`  sig=`LRESULT __thiscall()`
+  - 0x004E3D90 `InitUI_4E3D90`  sig=`void __thiscall()`
+- **CCBUI::Update**
+  - 0x00526740 `Update`  sig=`int __thiscall CCBUI::Update(int deltatime, int haveinput)`
+  - 0x0051B8C0 `Update_B8C0`  sig=`virtual void __thiscall(CCBUI *this)`
+  - 0x00526A40 `Update_6A40`  sig=`virtual void __thiscall(CCBUI *this)`
+- **CCBUIPanel::OnMessage**
+  - 0x00454590 `OnMessage_4590`  sig=`int __thiscall(int nVal, int nVal2, int nVal3)`
+  - 0x0044A540 `OnMessage_A540`  sig=`virtual int __thiscall(CCBUIPanel *this, int nVal, int nVal2, int nVal3)`
+- **CEffAction::Method**
+  - 0x004C0510 `Method_0510`  sig=`virtual int __thiscall(CEffSParticle *this)`
+  - 0x004C1270 `Method_1270`  sig=`virtual int __thiscall(CEffAction *this)`
+- **CEffect::Method**
+  - 0x004D4700 `Method_4700`  sig=`int __thiscall(CEffect *this)`
+  - 0x004D4840 `Method_4840`  sig=`int __thiscall(CEffect *this)`
+- **CScreenModeNode::CScreenModeNode_adjthunk**
+  - 0x005420FC `CScreenModeNode_adjthunk_20FC`  sig=`void __thiscall()`
+  - 0x00542120 `CScreenModeNode_adjthunk_2120`  sig=`void __thiscall()`
+- **PAL3::Render**
+  - 0x00405C00 `Render_5C00`  sig=`void __thiscall()`
+  - 0x0047C260 `Render_47c260`  sig=`void __thiscall()`
+- **ParticleVisNode::ParticleVisNode_adjthunk**
+  - 0x00542108 `ParticleVisNode_adjthunk_2108`  sig=`void __thiscall()`
+  - 0x005420FC `ParticleVisNode_adjthunk_20FC`  sig=`void __thiscall()`
+  - 0x005420F6 `ParticleVisNode_adjthunk_20F6`  sig=`void __thiscall()`
+  - 0x005420F0 `ParticleVisNode_adjthunk_20F0`  sig=`void __thiscall()`
+  - 0x005420EA `ParticleVisNode_adjthunk_20EA`  sig=`void __thiscall()`
+  - 0x005420E4 `ParticleVisNode_adjthunk_20E4`  sig=`void __thiscall()`
+- **RenderTarget2::Render**
+  - 0x004C3C70 `Render_3C70`  sig=`virtual void __thiscall(RenderTarget2 *this)`
+  - 0x004C5740 `Render_5740`  sig=`virtual int __thiscall(RenderTarget2 *this)`
+- **SceneVisNode::SceneVisNode_adjthunk**
+  - 0x00542102 `SceneVisNode_adjthunk_2102`  sig=`void __thiscall()`
+  - 0x005420FC `SceneVisNode_adjthunk_20FC`  sig=`void __thiscall()`
+  - 0x00542114 `SceneVisNode_adjthunk_2114`  sig=`void __thiscall()`
+  - 0x0054210E `SceneVisNode_adjthunk_210E`  sig=`void __thiscall()`
+- **TextureLib::TextureLib_adjthunk**
+  - 0x005420E4 `TextureLib_adjthunk_20E4`  sig=`void __thiscall()`
+  - 0x005420EA `TextureLib_adjthunk_20EA`  sig=`void __thiscall()`
+  - 0x0055434F `TextureLib_adjthunk_434F`  sig=`void __thiscall()`
+- **UIFrameWnd::Destroy**
+  - 0x00442420 `Destroy_2420`  sig=`void __thiscall()`
+  - 0x004438F0 `Destroy_38f0`  sig=`void __thiscall()`
+- **UIFrameWnd::Render**
+  - 0x00443950 `Render_3950`  sig=`void __thiscall()`
+  - 0x00443200 `Render_3200`  sig=`void __thiscall()`
+- **UIFrameWnd::Update**
+  - 0x00442AD0 `Update_2AD0`  sig=`BOOL __thiscall(int nVal, int nVal2)`
+  - 0x00442FF0 `Update_2ff0`  sig=`BOOL __thiscall(int nVal, int nVal2)`
+- **UIListBox::Render**
+  - 0x0043DEF0 `Render_DEF0`  sig=`void __thiscall()`
+  - 0x0043E8A0 `Render_E8A0`  sig=`virtual int __thiscall(UIListBox *this)`
+- **UIScene::Render**
+  - 0x0043CDF0 `Render_CDF0`  sig=`virtual int __thiscall(UIScene *this)`
+  - 0x0043B660 `Render_B660`  sig=`int __thiscall()`
+- **UISceneMap::Render**
+  - 0x00527CD0 `Render_527cd0`  sig=`void __thiscall()`
+  - 0x00529C80 `Render_529c80`  sig=`void __thiscall()`
+  - 0x00450230 `Render_0230`  sig=`void __thiscall()`
+- **UIScenePanel::Render**
+  - 0x0043B660 `Render`  sig=`int __thiscall()`
+  - 0x0043AD40 `Render_AD40`  sig=`void __thiscall()`
+- **UIWnd::HideAll**
+  - 0x00445C10 `HideAll`  sig=`void __thiscall UIWnd::HideAll()`
+  - 0x004A14C0 `HideAll_14C0`  sig=`void __thiscall __thiscall()`
+
+## B. 剥尾=合法重载候选（异签）
+- <global>::Destroy
+  - 0x0043DE40 `Destroy`  sig=`void __fastcall(int self)`
+  - 0x004C6290 `Destroy`  sig=`int __thiscall(int nMode)`
+  - 0x004912D0 `Destroy_912D0`  sig=`void __thiscall(stdiobuf *this)`
+- <global>::Initialize
+  - 0x00528190 `Initialize_8190`  sig=`bool(CHAR *lpSubKey, DWORD dwDisposition, ...)`
+  - 0x00530200 `Initialize_0200`  sig=`int()`
+  - 0x005306A0 `Initialize_06A0`  sig=`void __thiscall(int this, char *pszRoleDir)`
+- <global>::Method
+  - 0x004EC490 `Method_C490`  sig=`void __cdecl()`
+  - 0x00523CB0 `Method_3CB0`  sig=`int __thiscall(_BYTE *this)`
+  - 0x004AB560 `Method_B560`  sig=`bool __thiscall(_DWORD *this, int a2, int a3)`
+  - 0x004D0C90 `Method_0C90`  sig=`virtual void __userpurge(int a1@<ecx>, CEffect *a2, float a3)`
+  - 0x0051CC20 `Method_CC20`  sig=`char __stdcall(int **a1)`
+  - 0x0053EDD0 `Method_EDD0`  sig=`int __stdcall(int a1)`
+- CCBRoleState::Init
+  - 0x004EE7C0 `Init_E7C0`  sig=`bool __thiscall(int nVal, char pData)`
+  - 0x00456AB0 `Init_6AB0`  sig=`void __thiscall(CCBRoleState *this)`
+  - 0x004A3360 `Init_3360`  sig=`int __thiscall(CCBRoleState *this, CHAR *thisa, int a2, int *a3)`
+- CCBSkillWindow::Destroy
+  - 0x0051BBE0 `Destroy`  sig=``
+  - 0x0051C880 `Destroy_c880`  sig=`int __thiscall()`
+- CCBStageCam::Update
+  - 0x005054E0 `Update_54E0`  sig=`void __thiscall()`
+  - 0x004E95A0 `Update_95A0`  sig=`int __thiscall(CCBStageCam *this, HWND hDlg)`
+- CCBStageScene::CCBStageScene
+  - 0x0050FEE0 `CCBStageScene_FEE0`  sig=`void __thiscall()`
+  - 0x0050FD00 `CCBStageScene_FD00`  sig=`CCBStageScene *__thiscall CCBStageScene::CCBStageScene(CCBStage *pCBStage)`
+- CCBSystem::Cleanup
+  - 0x00515DF0 `Cleanup_5DF0`  sig=`void *__thiscall(CCBSystem *this, CCBSystem *Block, char pData)`
+  - 0x00515E70 `Cleanup_5E70`  sig=`void __thiscall(CCBSystem *this)`
+- CCCTData::CCCTData
+  - 0x005058F0 `CCCTData_58F0`  sig=`void __thiscall(int *p_DWORD, int *p_DWORD2)`
+  - 0x004A6F10 `CCCTData_6F10`  sig=`void __thiscall()`
+- CEffCylinder::Init
+  - 0x004C3C90 `Init_3C90`  sig=`CEffCylinder **__thiscall CEffCylinder::Init()`
+  - 0x004C3EC0 `Init_3EC0`  sig=`int __thiscall(float *pType, float fx, float fy, float fz)`
+- CEffect::_nearby
+  - 0x004CFE20 `_nearby_4cfe20`  sig=`int __thiscall(CEffect *this, int a2, float a3, float a4, float a5)`
+  - 0x004CFFB0 `_nearby_4cffb0`  sig=`void __thiscall(CEffect *this, float a2)`
+- CEffectSystem::CreateEffect
+  - 0x004C6340 `CreateEffect_6340`  sig=`int __thiscall()`
+  - 0x004CF580 `CreateEffect`  sig=`int __thiscall CEffectSystem::CreateEffect(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)`
+- CEffgbParticle::DestroyEffect
+  - 0x004D0A60 `DestroyEffect`  sig=`void __thiscall CEffgbParticle::DestroyEffect()`
+  - 0x004CFD40 `DestroyEffect_FD40`  sig=`int __fastcall(CEffgbParticle *a1)`
+- PAL_GDB::GDB_GetItemNum
+  - 0x004791E0 `GDB_GetItemNum_91E0`  sig=`int __thiscall(int nVal)`
+  - 0x00479250 `GDB_GetItemNum_9250`  sig=`int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)`
+- PAL_GDB::GDB_GetRoleNum
+  - 0x00479080 `GDB_GetRoleNum_9080`  sig=`int __thiscall(int nVal)`
+  - 0x004790F0 `GDB_GetRoleNum_90F0`  sig=`int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)`
+- RenderTarget2::NullCallback
+  - 0x00401800 `NullCallback_1800`  sig=`void __thiscall()`
+  - 0x00408BD0 `NullCallback_8BD0`  sig=`void __thiscall (void *pData)`
+- RoleSystem::UpdateTransform
+  - 0x00412710 `UpdateTransform_2710`  sig=`int __thiscall()`
+  - 0x00417420 `UpdateTransform`  sig=`void __thiscall RoleSystem::UpdateTransform(float arg0)`
+- UICursor::Update
+  - 0x00535120 `Update_5120`  sig=`void __thiscall UICursor::Update(double fDelta)`
+  - 0x00541CC0 `Update_1CC0`  sig=`void __thiscall(UICursor *this)`
+- UIFrameWnd::_UIFrameWnd_ovl
+  - 0x00443550 `_UIFrameWnd_ovl_00443550`  sig=`void __thiscall()`
+  - 0x00442D40 `_UIFrameWnd_ovl_00442d40`  sig=`void __thiscall UIFrameWnd::~UIFrameWnd(int nVal1)`
+
+## C. 单例尾名（孤立 —— 直接语义正名对象）
+- <global> `_nearby_4ec480` (0x004EC480) sig=`int __cdecl()`
+- CEffCylinder `CEffCylinder_adjthunk_434F` (0x0055434F) sig=`void __thiscall()`
+- CGameData `_init_44f8d0` (0x0044F8D0) sig=`CCBUI *__thiscall(int this, int a2)`
+- CameraCtrl `_nearby_41cbc0` (0x0041CBC0) sig=`void __thiscall()`
+- EffTargetPool `_adjustor_c` (0x004C2030) sig=`void __thiscall()`
+- SceneObj `_init_4530c0` (0x004530C0) sig=`void __thiscall(const char *pszName)`
+- ScriptObj `ScriptObj_adjthunk_434F` (0x0055434F) sig=`void __thiscall()`
+- UITitle_BBTY `_nearby_452570` (0x00452570) sig=`void __thiscall()`
+
+## D. 合成物/CRT/占位族（地址尾=身份，不剥不算进攻面）
+- <global>::SingletonThunk ×6
+- <global>::_sdtor ×7
+- <global>::_todo ×5
+- <global>::accessor ×3
+- <global>::compiler_init ×4
+- <global>::crt_sub ×7
+- <global>::sub ×4
+- AStarPathFinder::_scalar_dtor ×1
+- Actor::_scalar_dtor ×2
+- Actor::_todo ×9
+- ArraySlots::_todo ×2
+- CCBCamControl::_scalar_dtor ×1
+- CCBFiveNimbusWindow::_sdtor ×2
+- CCBProtectWindow::_scalar_dtor ×2
+- CCBProtectWindow::_sdtor ×1
+- CCBResultWindow::_scalar_dtor ×1
+- CCBRoleState::_scalar_dtor ×3
+- CCBStage::_todo ×1
+- CCBStage::sub ×6
+- CCBUI::_scalar_dtor ×9
+- CCBUI::_sdtor ×1
+- CCBUI::_todo ×8
+- CCBUIPanel::_scalar_dtor ×3
+- CEffCustomShape::_scalar_dtor ×1
+- CEffCylinder::_scalar_dtor ×2
+- CEffCylinder::_todo ×3
+- CEffGrid::_scalar_dtor ×1
+- CEffGrid::_todo ×1
+- CEffGroupNode::_scalar_dtor ×1
+- CEffGroupNode::_todo ×1
+- CEffMeteor::_scalar_dtor ×1
+- CEffMeteor::_todo ×1
+- CEffModel::_scalar_dtor ×1
+- CEffModel::_todo ×1
+- CEffModel::sub ×1
+- CEffQuad::_scalar_dtor ×1
+- CEffQuake::_todo ×2
+- CEffQuake::sub ×1
+- CEffSParticle::_scalar_dtor ×1
+- CEffSParticle::_todo ×1
+- CEffSParticle::sub_4C0510 ×1
+- CEffShock::_todo ×1
+- CEffect::sub ×5
+- CEffectSystem::_scalar_dtor ×2
+- CEffgbParticle::_scalar_dtor ×3
+- CEffgbParticle::_todo ×2
+- CEffgbParticle::sub ×1
+- CGameData::_scalar_dtor ×1
+- CScreenMode::_scalar_dtor ×1
+- CScreenMode::sub ×1
+- CUtil::_scalar_dtor ×1
+- Camera::_scalar_dtor ×1
+- CameraCtrl::_sdtor ×1
+- EffObjectPool::_scalar_dtor ×3
+- EquipUI::_scalar_dtor ×1
+- GRPinput::_scalar_dtor ×1
+- GameObject::_scalar_dtor ×1
+- GlowObj::_sdtor ×1
+- JusticeBookUI::_scalar_dtor ×1
+- LineupUI::_scalar_dtor ×3
+- MainEquipUI::_scalar_dtor ×1
+- Object::_scalar_dtor ×3
+- ObjectCamera::_scalar_dtor ×1
+- PAL3VisNode::_todo ×1
+- PalScript::_scalar_dtor ×2
+- PalScript::_sdtor ×1
+- ParabolaCalculator::sub ×1
+- ParticleEffect::_scalar_dtor ×1
+- ParticleEffect::_todo ×3
+- ParticleVisNode::_todo ×5
+- PropUI::_scalar_dtor ×1
+- PtrArray::_scalar_dtor ×1
+- RenderTarget::_scalar_dtor ×1
+- RenderTarget2::_scalar_dtor ×4
+- RenderTarget2::_sdtor ×2
+- RenderTarget2::_todo ×3
+- RenderTarget2::sub ×3
+- RenderTarget3::_scalar_dtor ×1
+- RenderTargetNode::_scalar_dtor ×1
+- Role::_sdtor ×1
+- RoleAtt::_scalar_dtor ×1
+- RoleCameraCtrl::_scalar_dtor ×1
+- RoleStatePanel::_scalar_dtor ×1
+- RoleSystem::_scalar_dtor ×4
+- RoleSystem::sub ×1
+- SaleUI::_scalar_dtor ×1
+- SceneObj::_scalar_dtor ×1
+- SceneObjParam::_scalar_dtor ×1
+- SceneVisNode::_todo ×5
+- ScreenEffectMgr::_scalar_dtor ×6
+- ScreenEffectMgr::_todo ×1
+- ScreenEffectNode::_scalar_dtor ×1
+- ScreenEffectNode::_todo ×2
+- ScriptObj::_scalar_dtor ×3
+- ScriptObj::_sdtor ×1
+- StateUI::sub ×1
+- SystemUI::_scalar_dtor ×1
+- TaskBookUI::_scalar_dtor ×1
+- TextureLib::_scalar_dtor ×3
+- UI3DCtrl::_scalar_dtor ×1
+- UI3DModelNode::_scalar_dtor ×1
+- UI3DModelNode::_todo ×2
+- UIAnimateCtrlEX::_scalar_dtor ×1
+- UIAnimateCtrlEX::_sdtor ×1
+- UIBigMap::_scalar_dtor ×2
+- UIButton::_scalar_dtor ×1
+- UICaption::_scalar_dtor ×2
+- UICaption::_sdtor ×1
+- UICaption::_todo ×1
+- UICoverFrm::_scalar_dtor ×2
+- UICursor::_scalar_dtor ×3
+- UICursor::_todo ×4
+- UIEmote::_todo ×1
+- UIFrameContainer::_scalar_dtor ×1
+- UIFrameWnd::_scalar_dtor ×3
+- UIFrameWnd::_todo ×1
+- UIListBox::_scalar_dtor ×8
+- UIListBox::_sdtor ×1
+- UIListBox::_todo ×2
+- UILoadingFrm::_scalar_dtor ×2
+- UINote::_sdtor ×1
+- UIPushButton::_scalar_dtor ×3
+- UIRoleDialog::_scalar_dtor ×1
+- UIRoleDialog::sub ×1
+- UIRoleSelectDialog::_scalar_dtor ×1
+- UIScene::_scalar_dtor ×1
+- UISceneFrm::_scalar_dtor ×1
+- UISceneMap::_scalar_dtor ×1
+- UISceneMap::_todo ×1
+- UIScenePanel::_scalar_dtor ×4
+- UITitle::_scalar_dtor ×1
+- UITitle_ArcSave::_scalar_dtor ×1
+- UITitle_BBTY::_scalar_dtor ×1
+- UITitle_JDHY::_scalar_dtor ×1
+- UITitle_YXXX::_scalar_dtor ×1
+- UIWnd::_scalar_dtor ×4
+- UIWnd::_sdtor ×2
+- UIWnd::sub ×1
+- gbChain1DNode::_scalar_dtor ×1
+- gbGfxManager::_todo ×1
+- gbRenderEffect::sub ×1
+- scScriptInstance::_scalar_dtor ×1

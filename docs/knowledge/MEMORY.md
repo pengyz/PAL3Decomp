@@ -61,6 +61,8 @@
 - [Windows GBK 编码三连崩（print/写盘/子进程解码）](gotcha_windows_gbk_stdio_unicode_crash.md) — stdio=locale=gbk ⇒ print ⚠/⇒ 崩、`ensure_ascii=False` 写盘崩、`text=True` 捕获 UTF-8 子进程解码崩（异常被吞成"内容读不出"）；单源修复 `pipeline/utf8_stdio.py`（11 入口接线）；registry 环境变量/pwsh profile/repo 级 sitecustomize 三条全局路**实测无效**
 - [git rev:path 树内路径必须正斜杠](gotcha_git_rev_path_needs_posix_separators.md) — Windows 下 `git show HEAD:<WindowsPath>` rc=128 "exists on disk, but not in 'HEAD'"；`ls-tree` pathspec 容忍反斜杠 ⇒ 列表正常、逐文件读全灭，症状像"内容读不出"；修 `.as_posix()`（实测案例 annotation_diff 942 文件）
 
+- [隐性撞名三联病灶：剥戳分叉/sig_key 末参泄漏/棘轮冻结](gotcha_hidden_collision_strip_machinery_divergence.md) — ①剥戳 3 副本语义不一（collect 无条件剥=定义名剥落真路径、emit_headers 撞则不剥、emit_cpp 只清调用形）⇒ 双定义 C2084 静默生成 ②cxx_sig_key 参名剥离不吃行尾 ⇒ 末参名泄进键 ⇒ 真撞名误判"合法重载" ③grandfather 冻结先于门禁存在的撞名（一条还是注解粒度假阳性）。多副本归一化必须单点+防回流锁
+
 ## Patterns
 - [字段"类型与名字"的证据分级（disp32 全二进制扫描）](pattern_member_evidence_grading_by_disp32_scan.md) — 对每个偏移扫 disp32 小端模式：**0 命中 ⇒ 无直接访问 ⇒ 不得给类型/语义名**（应作 padding/未知）；命中须回 disasm 确认承载指令（假阳性常见：栈偏移/立即数）；类型可证到"宽度+int/float/指针+有/无符号"，名字仅在字符串/RTTI/API/PDB 等**语义把手**存在时可给 ✓
 - [字节优先的 ROI 筛选（唯一能把修复变成 L1 的入口）](pattern_byte_first_roi_screening.md) — 候选须同时满足「S2 绿单元 + 编译/原始长度≈1.0 + n_diff 小」；当前 198 条 partial 里 **10 条 ≥80%**、**3 条只差 1 字节**（`FindInOpen`/`FindInClosed` 寄存器选择；`GetEntryPtr` 结构/归属）；其余 ~190 条匹配度<50% ⇒ 小修**不产生字节收益**；按 diffs 偏移 + MCP 原指令分类（偏移错/寄存器选择/结构）
@@ -76,6 +78,7 @@
 - [两层定位"是谁改写了我这行文本"](debug_two_layer_localization.md) — `sys.settrace` 行级追踪（钉死源码行）+ 代理该模块命名空间里的 `re`（打印真正生效的 pattern/repl/before/after）；配合"先禁用可疑解析器做二分"；本会话用它把上一轮的 12 次猜测换成 1 次定位
 
 ## Decisions
+- [戳归一单点在 annotation 层，管线原样透传](decision_stamp_normalization_annotation_layer_only.md) — `__ovl_`/地址尾戳剥除只在数据层（2026-11-04 全量剥 17+6 处）；管线三处剥离已退役+防回流锁；**让隐性撞名变真撞名**（显形后按 name_adjudication_queue.md 逐对取证正名）；合成物族地址尾=身份不剥
 - **decision_sceneobj_composition_not_inheritance.md**（v4 终裁）：gbUI 跨类调用是**行表注册制（非继承非组合）**；正文 :34 明文"不是 base_class（行表不是继承），不是成员组合"。现行 `[ROWTABLE]` 分支 + `_rowtable_family.json`（63 类）是该终裁的落地。
 - [步长是二进制真相，尺寸表只是兜底](decision_stride_is_binary_truth_over_size_table.md) — 记账以**注解步长**为准、估计>步长时须改类型；
  **含两次自我纠正**：① `string` 曾被误判 12（实为 **16**，`pal3_stl.h` 仅 `#include <string>`）✗
