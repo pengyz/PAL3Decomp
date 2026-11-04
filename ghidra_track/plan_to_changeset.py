@@ -26,8 +26,12 @@ def plan_to_changesets(plan):
         elif k == 'set_func_sig':
             key = 'proto:' + na
             params = ', '.join(op.get('params') or [])
+            # set_prototype 契约（Changeset.java:233）：signature 含函数名+
+            # callingConvention 独立（__x 形）+ expect 双键（执行层 enrich）
             seen[key] = {'op': 'set_prototype', 'address': addr,
-                         'prototype': '%s %s(%s)' % (op.get('ret') or 'void', op.get('name'), params)}
+                         'signature': '%s %s(%s)' % (op.get('ret') or 'void',
+                                                     op.get('name') or '', params),
+                         'callingConvention': op.get('conv') or '__thiscall'}
         elif k == 'define_global':
             key = 'global-name:' + na
             seen[key] = {'op': 'rename_global', 'address': addr, 'name': op.get('name')}

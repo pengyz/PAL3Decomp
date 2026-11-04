@@ -8,6 +8,51 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_via_daemon import rpc, notify, tool
 from plan_to_changeset import plan_to_changesets
 
+_IDENT = __import__('re').compile(r'[A-Za-z_][A-Za-z0-9_]{0,127}$')
+
+
+def is_ident(name):
+    """ProposalNorm.IDENT 同形（letters/digits/_ ≤128·数字开头拒）——
+    changeset rename 的 name 校验面（Changeset.java ident() 实锤）。"""
+    return bool(name) and bool(_IDENT.fullmatch(str(name)))
+
+
+def split_renames(ops, current):
+    """两阶段改名落地（T10 双根因修）：
+    ident 名 → rename_function 带 expect={name: 现名}（乐观锁 Changeset.java:514）
+    非 ident 名（~dtor/?mangled）/现名缺失 → create_label 面（标准工具·fixture 已证收任意名）
+    → (changeset_ops, label_ops)。set_* 等非改名 op 原样入 changeset。"""
+    cs, labels = [], []
+    for op in ops:
+        addr = str(op.get('address', '')).strip().lower()
+        _hx = addr[2:] if addr.startswith('0x') else addr
+        try:
+            key = int(_hx, 16)   # 双侧 int 归一（16/8-hex 形分叉终修）
+        except ValueError:
+            key = None
+        cur = current.get(key) if key is not None else None
+        cur_name = cur.get('name') if isinstance(cur, dict) else cur
+        if op.get('op') == 'rename_function':
+            if is_ident(op.get('name')) and cur_name:
+                cs.append(dict(op, expect={'name': cur_name}))
+            else:
+                labels.append({'address': op.get('address'), 'name': op.get('name')})
+        elif op.get('op') == 'set_prototype':
+            # expect 双键（normSignature/normConvention 比对——Changeset.java:610-614）
+            cs.append(dict(op, expect={
+                'signature': ((cur or {}).get('signature') or 'undefined')
+                if isinstance(cur, dict) else 'undefined',
+                'callingConvention': (cur or {}).get('callingConvention') or 'unknown'
+                if isinstance(cur, dict) else 'unknown'}))
+        elif op.get('op') == 'set_global_type':
+            cs.append(dict(op, expect={
+                'type': (cur or {}).get('type', '') if isinstance(cur, dict) else '',
+                'size': (cur or {}).get('size', 0) if isinstance(cur, dict) else 0}))
+        else:
+            cs.append(op)
+    return cs, labels
+
+
 def batch_ok(r):
     """apply_changeset 批成败：text 内 `ok: false` 判失败（T10 dryRun 实锤——
     工具级 isError=None 盖不住批内 errors[]，旧计数=假成功）。"""
@@ -71,7 +116,54 @@ def main(gpr, plan_path):
         stat['functions'][0 if not bad else 1] += 1
         if bad: _fails.append({'stage': 'function', 'addr': a, 'err': t[:150]})
     # ②编辑段：changeset 批 dryRun→apply
-    batches = plan_to_changesets(plan)
+    # ①b 两阶段改名落地（T10 双根因修）：读现名 → split（ident→expect / 非ident→label）
+    _cur = {}
+    _off = 0
+    while True:
+        _r = tool('list_functions', dict(S, offset=_off, limit=500), 3)
+        _txt = str((_r.get('content') or [{}])[0].get('text', '')) if isinstance(_r, dict) else ''
+        _items, _cur_blk = [], None
+        for _line in _txt.splitlines():
+            _s = _line.strip()
+            if _s.startswith('- '):
+                if _cur_blk: _items.append(_cur_blk)
+                _cur_blk = {}; _s = _s[2:]
+            import re as _re
+            _m = _re.match(r'^(\w+):\s*(.*)$', _s)
+            if _m and _cur_blk is not None:
+                _cur_blk[_m.group(1)] = _m.group(2).strip().strip('"')
+        if _cur_blk: _items.append(_cur_blk)
+        if not _items: break
+        for _it in _items:
+            _a = _it.get('address') or _it.get('entryPoint')
+            if _a and _it.get('name'):
+                _k = str(_a).lower()
+                _k = _k[2:] if _k.startswith('0x') else _k
+                try:
+                    _k = int(_k, 16)
+                except ValueError:
+                    continue
+                _cur[_k] = {'name': _it['name'],
+                            'signature': _it.get('signature') or '',
+                            'callingConvention': _it.get('callingConvention') or 'unknown'}
+        if len(_items) < 500: break
+        _off += 500
+    _cs0 = [o for b in plan_to_changesets(plan) for o in b['ops']]
+    _cs_ops, _labels = split_renames(_cs0, _cur)
+    print('改名落地: changeset %d（带 expect）+ label %d（非 ident/现名缺）' % (
+        sum(1 for o in _cs_ops if o.get('op') == 'rename_function'), len(_labels)))
+    # label 面执行（create_label=标准工具面·fixture 时代已证收任意名）
+    for lb in _labels:
+        r = tool('create_label', dict(S, address=lb['address'], name=lb['name']), 4)
+        tt = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+        if not (isinstance(r, dict) and not r.get('isError') and 'rror' not in tt[:60]):
+            stat['functions'][1] += 1
+            _fails.append({'stage': 'create_label', 'addr': lb['address'], 'err': tt[:150]})
+        else:
+            stat['functions'][0] += 1
+    # ②changeset 批执行（ident 改名带 expect + 其余 op）
+    batches = [{'description': 'pal3-import batch %d' % (i // 250 + 1),
+                'ops': _cs_ops[i:i + 250]} for i in range(0, len(_cs_ops), 250)]
     for i, b in enumerate(batches):
         r = tool('apply_changeset', dict(S, description=b['description'], ops=b['ops'], dryRun=True), 4)
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
