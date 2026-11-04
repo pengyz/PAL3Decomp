@@ -1,0 +1,17 @@
+{
+ "name": "Nested",
+ "binary_size": 16,
+ "known_members": {
+  "0": {"name": "m_flat", "type": "int"},
+  "4": {"name": "m_uni", "type": {"union": [
+    {"type": "int", "name": "u_as_int"},
+    {"type": "float", "name": "u_as_f"}]}},
+  "8": {"name": "m_inl", "type": {"struct": [
+    {"offset": 0, "name": "ia", "type": "int"},
+    {"offset": 4, "name": "ib", "type": "int"}]}},
+  "12_1": {"name": "m_variant_view", "type": "int"}
+ },
+ "methods": {
+  "0x0000000000402100": {"name": "nested_do", "signature": "int __thiscall(int)", "owner": "Nested"}
+ }
+}

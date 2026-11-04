@@ -1,0 +1,135 @@
+{
+ "functions": {
+  "0x401356": {
+   "name": "fixture_init",
+   "signature": "void __cdecl()"
+  },
+  "0x401380": {
+   "name": "?fixture_get@@YAHXZ",
+   "signature": "int __cdecl()"
+  },
+  "0x401390": {
+   "name": "fixture_tick",
+   "signature": "void __cdecl(int)"
+  },
+  "0x4011fe": {
+   "name": "update",
+   "signature": "int __thiscall(int)",
+   "class": "Base"
+  },
+  "0x401282": {
+   "name": "update",
+   "signature": "int __thiscall(int)",
+   "class": "Derived"
+  },
+  "0x4012b2": {
+   "name": "render",
+   "signature": "void __thiscall(Complex *)",
+   "class": "Derived"
+  },
+  "0x401308": {
+   "name": "calc",
+   "signature": "int __thiscall(int, int)",
+   "class": "Derived"
+  },
+  "0x40132e": {
+   "name": "calc",
+   "signature": "double __thiscall(double)",
+   "class": "Derived"
+  }
+ },
+ "structs": {
+  "Base": {
+   "size": 16,
+   "members": {
+    "8": {
+     "name": "m_baseVal",
+     "type": "int"
+    }
+   }
+  },
+  "Complex": {
+   "size": 36,
+   "members": {
+    "0": {
+     "name": "id",
+     "type": "int"
+    },
+    "4": {
+     "name": "pos",
+     "type": "Vec3"
+    },
+    "16": {
+     "name": "fval",
+     "type": "UNION_Complex_16"
+    },
+    "20": {
+     "name": "name",
+     "type": "char[16]"
+    }
+   }
+  },
+  "Derived": {
+   "size": 64,
+   "members": {
+    "12": {
+     "name": "m_complex",
+     "type": "Complex"
+    },
+    "48": {
+     "name": "m_pNext",
+     "type": "Derived *"
+    },
+    "56": {
+     "name": "m_flags",
+     "type": "int"
+    }
+   }
+  },
+  "Vec3": {
+   "size": 12,
+   "members": {
+    "0": {
+     "name": "x",
+     "type": "float"
+    },
+    "4": {
+     "name": "y",
+     "type": "float"
+    },
+    "8": {
+     "name": "z",
+     "type": "float"
+    }
+   }
+  },
+  "UNION_Complex_16": {
+   "size": null,
+   "members": {
+    "0": {
+     "name": "fval",
+     "type": "float"
+    },
+    "1": {
+     "name": "ival",
+     "type": "int"
+    }
+   }
+  }
+ },
+ "globals": {
+  "0x2000": {
+   "name": "g_root",
+   "type": "Derived"
+  },
+  "0x2040": {
+   "name": "g_counter",
+   "type": "int"
+  },
+  "0x2048": {
+   "name": "g_message",
+   "type": "char *"
+  }
+ },
+ "skips": {}
+}

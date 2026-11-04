@@ -1,0 +1,24 @@
+{
+ "functions": {
+  "0x402000": {"name": "winner_m", "signature": "void __thiscall()", "class": "PairB"},
+  "0x402100": {"name": "nested_do", "signature": "int __thiscall(int)", "class": "Nested", "owner": "Nested"},
+  "0x403000": {"name": "_todo_00403000"},
+  "0x403100": {"name": "own_fn", "signature": "void __cdecl()", "owner": "Nested"}
+ },
+ "structs": {
+  "Nested": {"size": 16, "members": {
+    "0": {"name": "m_flat", "type": "int"},
+    "4": {"name": "m_uni", "type": "UNION_Nested_4"},
+    "8": {"name": "m_inl", "type": "INLINE_Nested_8"}}},
+  "UNION_Nested_4": {"size": null, "members": {
+    "0": {"name": "u_as_int", "type": "int"},
+    "1": {"name": "u_as_f", "type": "float"}}},
+  "INLINE_Nested_8": {"size": null, "members": {
+    "0": {"name": "ia", "type": "int"},
+    "4": {"name": "ib", "type": "int"}}},
+  "PairA": {"size": 4, "members": {}},
+  "PairB": {"size": 4, "members": {}}
+ },
+ "globals": {"0x500100": {"name": "g_case2", "type": "int"}},
+ "skips": {}
+}
