@@ -11,13 +11,22 @@ from plan_to_changeset import plan_to_changesets
 _IDENT = __import__('re').compile(r'[A-Za-z_][A-Za-z0-9_]{0,127}$')
 
 
+def _addr_int(a):
+    s = str(a or '').strip().lower()
+    s = s[2:] if s.startswith('0x') else s
+    try:
+        return int(s, 16)
+    except ValueError:
+        return None
+
+
 def is_ident(name):
     """ProposalNorm.IDENT 同形（letters/digits/_ ≤128·数字开头拒）——
     changeset rename 的 name 校验面（Changeset.java ident() 实锤）。"""
     return bool(name) and bool(_IDENT.fullmatch(str(name)))
 
 
-def split_renames(ops, current):
+def split_renames(ops, current, globals_=None):
     """两阶段改名落地（T10 双根因修）：
     ident 名 → rename_function 带 expect={name: 现名}（乐观锁 Changeset.java:514）
     非 ident 名（~dtor/?mangled）/现名缺失 → create_label 面（标准工具·fixture 已证收任意名）
@@ -45,9 +54,11 @@ def split_renames(ops, current):
                 'callingConvention': (cur or {}).get('callingConvention') or 'unknown'
                 if isinstance(cur, dict) else 'unknown'}))
         elif op.get('op') == 'set_global_type':
+            # expect={type,size}（Changeset.java:252）——globals 读面（T10 余项）
+            g = (globals_ or {}).get(key)
             cs.append(dict(op, expect={
-                'type': (cur or {}).get('type', '') if isinstance(cur, dict) else '',
-                'size': (cur or {}).get('size', 0) if isinstance(cur, dict) else 0}))
+                'type': (g or {}).get('type', '') if isinstance(g, dict) else '',
+                'size': (g or {}).get('size', 0) if isinstance(g, dict) else 0}))
         else:
             cs.append(op)
     return cs, labels
@@ -148,8 +159,47 @@ def main(gpr, plan_path):
                             'callingConvention': _it.get('callingConvention') or 'unknown'}
         if len(_items) < 500: break
         _off += 500
-    _cs0 = [o for b in plan_to_changesets(plan) for o in b['ops']]
-    _cs_ops, _labels = split_renames(_cs0, _cur)
+    # globals 读面（set_global_type expect={type,size}）
+    _gcur, _goff = {}, 0
+    while True:
+        _r = tool('list_data_symbols', dict(S, offset=_goff, limit=500), 3)
+        _txt = str((_r.get('content') or [{}])[0].get('text', '')) if isinstance(_r, dict) else ''
+        _items, _cur_blk = [], None
+        for _line in _txt.splitlines():
+            _s = _line.strip()
+            if _s.startswith('- '):
+                if _cur_blk: _items.append(_cur_blk)
+                _cur_blk = {}; _s = _s[2:]
+            import re as _re
+            _m = _re.match(r'^(\w+):\s*(.*)$', _s)
+            if _m and _cur_blk is not None:
+                _cur_blk[_m.group(1)] = _m.group(2).strip().strip('"')
+        if _cur_blk: _items.append(_cur_blk)
+        if not _items: break
+        for _it in _items:
+            _a = _it.get('address')
+            if not _a or ':' in str(_a): continue
+            _k = str(_a).lower()
+            _k = _k[2:] if _k.startswith('0x') else _k
+            try: _k = int(_k, 16)
+            except ValueError: continue
+            _sz = _it.get('size')
+            _gcur[_k] = {'name': _it.get('name'), 'type': _it.get('dataType'),
+                         'size': int(_sz) if str(_sz).isdigit() else 0}
+        if len(_items) < 500: break
+        _goff += 500
+    # 占位地址预滤（原子批：1 个 0x0/0x1000x 拒整批 250——数据缺陷分账禁拖累全批）
+    _plan = [o for o in plan
+             if not (o.get('kind') in ('set_name', 'set_func_sig', 'define_global')
+                     and _addr_int(o.get('addr')) is not None
+                     and _addr_int(o.get('addr')) < 0x400000)]
+    _skipped_ph = len(plan) - len(_plan)
+    if _skipped_ph:
+        _fails.append({'stage': 'placeholder-skipped', 'count': _skipped_ph,
+                       'err': '占位地址 <0x400000 预滤（数据缺陷=findings 族）'})
+        print('占位预滤: %d op（数据缺陷分账）' % _skipped_ph)
+    _cs0 = [o for b in plan_to_changesets(_plan) for o in b['ops']]
+    _cs_ops, _labels = split_renames(_cs0, _cur, globals_=_gcur)
     print('改名落地: changeset %d（带 expect）+ label %d（非 ident/现名缺）' % (
         sum(1 for o in _cs_ops if o.get('op') == 'rename_function'), len(_labels)))
     # label 面执行（create_label=标准工具面·fixture 时代已证收任意名）

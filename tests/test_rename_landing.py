@@ -43,3 +43,19 @@ def test_split_missing_current_fails_loud():
     cs, labels = split_renames(cs0, {})
     assert not any(o['op'] == 'rename_function' for o in cs)
     assert labels and labels[0]['address'] == '0x409999', '现名缺失=label 面兜底'
+
+
+def test_global_type_expect_enriched():
+    """set_global_type expect={type,size}（Changeset.java:252 expectKeys）——
+    缺 globals 读面=空串 loud fail（T10 余项修）。"""
+    from ghidra_track.plan_to_changeset import plan_to_changesets
+    plan = [{'kind': 'define_global', 'addr': '0x601000', 'name': 'g_X', 'type': 'int'}]
+    cs0 = [o for b in plan_to_changesets(plan) for o in b['ops']]
+    gcur = {0x601000: {'name': 'old_g', 'type': 'unsigned int', 'size': 4}}
+    cs, labels = split_renames(cs0, {}, globals_=gcur)
+    gt = [o for o in cs if o['op'] == 'set_global_type'][0]
+    assert gt['expect'] == {'type': 'unsigned int', 'size': 4}, gt
+    # 无读面 → expect 兜底非空（loud fail 可记账，禁 NPE）
+    cs2, _ = split_renames(cs0, {}, globals_={})
+    gt2 = [o for o in cs2 if o['op'] == 'set_global_type'][0]
+    assert gt2['expect'] == {'type': '', 'size': 0}
