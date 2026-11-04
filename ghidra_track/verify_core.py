@@ -17,6 +17,8 @@ _AUTO_PREFIXES = ('FUN_', 'AUTO_', 'thunk_')
 _CMP_FIELDS = frozenset({'name', 'signature', 'class', 'adjudication', 'size', 'type'})
 # B 侧无载体字段 → unverifiable（须带 reason，禁静默丢——R4）
 _NOCARRIER_FIELDS = frozenset({'evidence', 'evidence_level', 'name_source', 'name_note', 'source'})
+# B 侧应承载字段（readback 缺席=真缺口 missing，非 unverifiable——mutation field_delete 钉）
+_CARRIER_FIELDS = frozenset({'name', 'signature', 'size', 'type'})
 
 _DECIMAL_OFF = re.compile(r'[0-9]+$')
 
@@ -183,7 +185,14 @@ def _cmp_fields(ev, av, ep, res):
                                             'actual': None, 'reason': 'field not classified'})
             continue
         if f not in av:
-            # B 读回缺席该字段=无法验证（禁判 changed——缺席≠值不同；R4 unverifiable 语义）
+            if f in _CARRIER_FIELDS:
+                # B 应承载字段缺席=真缺口（missing 抓红——禁以 unverifiable 豁免）
+                res['missing'].append({'path': path, 'expected': ev.get(f),
+                                       'actual': None,
+                                       'reason': 'carrier field absent from B readback'})
+                changed = True
+                continue
+            # 无载体/归属类字段缺席=无法验证（R4 unverifiable 语义）
             res['unverifiable'].append({'path': path, 'expected': ev.get(f),
                                         'actual': None,
                                         'reason': 'no carrier in B' if f in _NOCARRIER_FIELDS
