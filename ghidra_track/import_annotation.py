@@ -65,6 +65,8 @@ def merge_method_claims(ann):
         for addr, m in (d.get('methods') or {}).items():
             if not isinstance(m, dict) or not m.get('name'):
                 continue
+            if m.get('adjudication') == 'rejected':
+                continue   # [T7①] rejected 败者禁消费（25367 三连实锤缺口）
             claim = dict(m)
             claim['class'] = cls
             prev = out.get(addr)
@@ -122,9 +124,16 @@ def build_import_plan(functions=None, structs=None, globals=None):
     for addr, info in sorted(functions.items()):
         if not isinstance(info, dict) or not info.get('name'):
             continue
+        if info.get('adjudication') == 'rejected':
+            continue   # [T7①] rejected 禁入 plan
+        if info.get('skip'):
+            continue   # [T7③] skip 语义消费（禁当正常 claim）
         name = info['name']
         sig = honest_signature(info.get('signature') or '', cls=info.get('class'), name=name)
-        plan.append({'kind': 'set_name', 'addr': addr, 'name': name})
+        _op = {'kind': 'set_name', 'addr': addr, 'name': name}
+        if info.get('owner'):
+            _op['owner'] = info['owner']   # [T7⑤] owner 维入 plan（归属效果可验）
+        plan.append(_op)
         if sig['ret'] or sig['params']:
             plan.append({'kind': 'set_func_sig', 'addr': addr, 'name': name, **sig})
     for cls, d in sorted(structs.items()):
@@ -140,6 +149,17 @@ def build_import_plan(functions=None, structs=None, globals=None):
                     # 变体视图形补（union 折叠）= Task 7/8 missing-shapes 面。
                     continue
                 ty = m.get('type')
+                if isinstance(ty, dict) and 'struct' in ty:
+                    # [T7④] inline-struct dict 显式化：禁静默降 byte（复核实测 4 件）
+                    iname = 'INLINE_%s_%d' % (cls, off)
+                    imems = [{'offset': sm.get('offset') or 0,
+                              'name': sm.get('name') or 'f%d' % i,
+                              'type': sm.get('type') if isinstance(sm.get('type'), str) else 'int'}
+                             for i, sm in enumerate(ty['struct']) if isinstance(sm, dict)]
+                    plan.append({'kind': 'define_struct', 'name': iname,
+                                 'size': None, 'members': sorted(imems, key=lambda x: x['offset'])})
+                    members.append({'offset': off, 'name': m['name'], 'type': iname})
+                    continue
                 if isinstance(ty, dict) and 'union' in ty:
                     # inline-union → define_union op + 成员引用 union 型名（禁字节桩）
                     uname = 'UNION_%s_%d' % (cls, off)

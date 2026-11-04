@@ -8,6 +8,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_via_daemon import rpc, notify, tool
 from plan_to_changeset import plan_to_changesets
 
+def fail_rc(fails, accounted):
+    """fail-loud（R10/spec §4⑥）：未入分账 fail>0 ⇒ exit 1（禁只计数静默——
+    2026-11-03 实测 24 条 No transaction 仅计数教训）。"""
+    return 1 if (int(fails or 0) - int(accounted or 0)) > 0 else 0
+
+
 def main(gpr, plan_path):
     plan = json.load(open(plan_path))
     plan = [o for o in plan if o.get('kind') != '_meta']
@@ -66,6 +72,13 @@ def main(gpr, plan_path):
     print('标准导入: structs %d ok/%d bad · unions %d/%d · functions %d/%d · changeset %d ok/%d bad / %d 批' % (
         stat['structs'][0], stat['structs'][1], stat['unions'][0], stat['unions'][1],
         stat['functions'][0], stat['functions'][1], stat['changeset_ops'][0], stat['changeset_ops'][1], len(batches)))
+    # [T7⑥] fail-loud：stat 总 fail 未全入 _fails 分账 ⇒ rc=1（R10）
+    _total_fail = (stat['structs'][1] + stat['unions'][1] + stat['functions'][1]
+                   + stat['changeset_ops'][1])
+    _rc = fail_rc(_total_fail, len(_fails))
+    if _rc:
+        print('FAIL-LOUD: stat fail=%d 未全入分账(%d) ⇒ rc=1' % (_total_fail, len(_fails)))
+    return _rc
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2])

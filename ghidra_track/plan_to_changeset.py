@@ -31,6 +31,13 @@ def plan_to_changesets(plan):
         elif k == 'define_global':
             key = 'global-name:' + na
             seen[key] = {'op': 'rename_global', 'address': addr, 'name': op.get('name')}
+            if op.get('type'):
+                # [T7②] 带 type 的全局必须发 set_global_type（词表支持 Changeset.java:252）
+                _gtk = 'global-type:' + na
+                seen[_gtk] = {'op': 'set_global_type', 'address': addr,
+                              'type': op['type']}
+                if _gtk not in order:
+                    order.append(_gtk)   # 发射序表补挂（seen-only=不发射）
         else:
             continue
         if key not in order:
