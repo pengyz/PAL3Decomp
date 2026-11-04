@@ -35,8 +35,9 @@ def _m_field_delete(f):
 
 
 def _m_extra_field(f):
-    # 非自动名（FUN_/AUTO_ 前缀会被 extra 域过滤——注入必须躲过滤才验得到 extra 通路）
-    f['functions'][0x402000] = {'name': 'NEW_REAL', 'signature': 'void n()'}
+    # 改靶 struct 幽灵成员（T10 裁定：functions/globals extra=覆盖信号非缺陷——
+    # 注入 B 不应发明的 struct 成员=真缺陷形，躲 unnamed 过滤）
+    f['structs']['S']['members'][12] = {'name': 'phantom_member', 'type': 'int'}
     return f
 
 

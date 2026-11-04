@@ -12,7 +12,7 @@ import os
 import re
 
 # B 侧自动分析产物名——extra 域过滤（否则恒红）
-_AUTO_PREFIXES = ('FUN_', 'AUTO_', 'thunk_')
+_AUTO_PREFIXES = ('FUN_', 'AUTO_', 'thunk_', 'Catch@', 'caseD_', 'DAT_', 'byte_', 'switchD_', 'j_', '_std_')
 # B 侧可承载（可比）字段
 _CMP_FIELDS = frozenset({'name', 'signature', 'class', 'adjudication', 'size', 'type'})
 # B 侧无载体字段 → unverifiable（须带 reason，禁静默丢——R4）
@@ -213,6 +213,8 @@ def diff_facts(expected, actual):
     a = norm_facts(actual or {})
     res = {'match': [], 'missing': [], 'changed': [], 'extra': [], 'unverifiable': []}
     for domain in sorted(set(e) | set(a)):
+        if domain == 'skips':
+            continue  # 设计性丢弃域（T7 契约：converter 不转 skip）——不入 verdict
         em = e.get(domain) or {}
         am = a.get(domain) or {}
         for key in sorted(em, key=str):
@@ -258,6 +260,11 @@ def diff_facts(expected, actual):
             nm = av.get('name') if isinstance(av, dict) else None
             if _is_auto(nm) or (domain == 'structs' and _is_auto(str(key))):
                 continue  # extra 域过滤：B 侧自动分析产物不计 extra
-            res['extra'].append({'path': '%s/%s' % (domain, _fmt_key(key)),
-                                 'expected': None, 'actual': av, 'reason': None})
+            item = {'path': '%s/%s' % (domain, _fmt_key(key)),
+                    'expected': None, 'actual': av, 'reason': None}
+            if domain in ('functions', 'globals'):
+                # 覆盖信号非缺陷：B 必有未认领/CRT/自动面（spec §8 覆盖=A 面注解工作）
+                res.setdefault('coverage_extra', []).append(item)
+            else:
+                res['extra'].append(item)
     return res

@@ -12,6 +12,7 @@ import argparse
 import datetime
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -19,55 +20,161 @@ from verify_core import diff_facts, norm_addr, project_ann_facts  # noqa: E402
 
 
 def _call(tool, name, args, S):
-    """daemon 调用 → 解析 JSON 文本；失败返回 None（缺席语义，不崩）。"""
+    """daemon 调用 → 返回**原文**（daemon 出 YAML-ish 表形非 JSON——T10 实测；
+    解析器接管）。失败返回 None（通道缺席语义，不崩）。"""
     r = tool(name, dict(S, **args), 1)
-    if not isinstance(r, dict):
-        return None
-    if r.get('isError'):
+    if not isinstance(r, dict) or r.get('isError'):
         return None
     try:
-        return json.loads(str((r.get('content') or [{}])[0].get('text', '')))
-    except (ValueError, IndexError, KeyError):
+        return str((r.get('content') or [{}])[0].get('text', ''))
+    except (IndexError, KeyError):
         return None
 
 
-def project_b_facts(tool, S):
-    """B 程序回读 → canonical facts（键形与 verify_core.project_ann_facts 对齐）。"""
+def _parse_list(text):
+    """daemon 列表态（'key:\n  - k: v' 列表项）→ [dict]。"""
+    if not text:
+        return []
+    entries, cur = [], None
+    for line in text.splitlines():
+        s = line.strip()
+        if s.startswith('- '):
+            if cur:
+                entries.append(cur)
+            cur = {}
+            s = s[2:]
+        m = re.match(r'^(\w+):\s*(.*)$', s)
+        if m and cur is not None:
+            v = m.group(2).strip().strip('"')
+            cur[m.group(1)] = None if v in ('', 'undefined', 'null') else v
+    if cur:
+        entries.append(cur)
+    return entries
+
+
+def _parse_kv(text):
+    """daemon 平铺 kv 态（get_function_info）→ dict。"""
+    out = {}
+    if not text:
+        return out
+    for line in text.splitlines():
+        m = re.match(r'^(\w+):\s*(.*)$', line.strip())
+        if m:
+            v = m.group(2).strip().strip('"')
+            out[m.group(1)] = None if v in ('', 'undefined', 'null') else v
+    return out
+
+
+def _parse_table(text):
+    """daemon 表态（'X[N]{cols}:' + CSV 行）→ [dict]（list_data_types 实形 T10 探）。"""
+    out, cols = [], None
+    for line in (text or '').splitlines():
+        s = line.strip()
+        m = re.match(r'\w+\[\d+\]\{(.+)\}:', s)
+        if m:
+            cols = [c.strip() for c in m.group(1).split(',')]
+            continue
+        if cols and s and ',' in s and not re.match(r'^\w+: ', s):
+            vals = [v.strip().strip('"') for v in s.split(',')]
+            out.append(dict(zip(cols, vals + [None] * (len(cols) - len(vals)))))
+    return out
+
+
+def _parse_dtype(text):
+    """get_data_type 表态（kv + fields[N]{cols}: + CSV 行）→ dict{name,size,fields}。"""
+    out = {'fields': []}
+    if not text:
+        return out
+    cols = None
+    for line in text.splitlines():
+        s = line.strip()
+        m = re.match(r'fields\[\d+\]\{(.+)\}:', s)
+        if m:
+            cols = [c.strip() for c in m.group(1).split(',')]
+            continue
+        m = re.match(r'^(\w+):\s*(.*)$', s)
+        if m and cols is None:
+            v = m.group(2).strip().strip('"')
+            if v in ('', 'undefined', 'null'):
+                out[m.group(1)] = None
+            elif m.group(1) in ('size', 'alignment') and v.isdigit():
+                out[m.group(1)] = int(v)   # 数值强转（str '8' vs int 8=diff 假红）
+            elif m.group(1) != 'fields':
+                out[m.group(1)] = v
+            continue
+        if cols and (',' in s) and not s.startswith('-'):
+            vals = [v.strip().strip('"') for v in s.split(',')]
+            row = dict(zip(cols, vals + [None] * (len(cols) - len(vals))))
+            out['fields'].append({k: (None if v in ('', 'undefined', 'null') else v)
+                                 for k, v in row.items()})
+    return out
+
+
+def project_b_facts(tool, S, page=500):
+    """B 程序回读 → canonical facts（真形解析：list/kv/fields 三态+分页）。"""
     funcs = {}
-    lst = _call(tool, 'list_functions', {}, S)
-    for item in (lst or []):
-        addr = item.get('address') or item.get('addr')
-        if addr is None:
-            continue
-        info = _call(tool, 'get_function_info', {'functionAddress': addr}, S) or {}
-        entry = {'name': info.get('name') or item.get('name')}
-        if info.get('signature'):
-            entry['signature'] = info['signature']
-        if info.get('className') or info.get('class'):
-            entry['class'] = info.get('className') or info.get('class')
-        funcs[norm_addr(addr)] = entry
-    structs = {}
-    dtypes = _call(tool, 'list_data_types', {'kind': 'struct'}, S)
-    for item in (dtypes or []):
-        nm = item.get('name')
-        if not nm:
-            continue
-        d = _call(tool, 'get_data_type', {'name': nm}, S) or {}
-        members = {}
-        for fld in (d.get('fields') or []):
-            off = fld.get('offset')
-            if off is None:
+    offset = 0
+    while True:
+        txt = _call(tool, 'list_functions', {'offset': offset, 'limit': page}, S)
+        items = _parse_list(txt)
+        if not items:
+            break
+        for item in items:
+            addr = item.get('address') or item.get('entryPoint')
+            if not addr or ':' in str(addr):
                 continue
-            members[int(off)] = {'name': fld.get('name'),
-                                 'type': fld.get('type') or 'undefined'}
-        structs[nm] = {'size': d.get('size'), 'members': members}
+            info = _parse_kv(_call(tool, 'get_function_info', {'address': addr}, S) or '')
+            entry = {'name': item.get('name') or info.get('name')}
+            sig = info.get('signature') or item.get('signature')
+            if sig:
+                # daemon 形 'undefined NAME(void)' → 去类型前缀保留形
+                entry['signature'] = re.sub(r'^undefined\s+', '', str(sig))
+            funcs[norm_addr(addr)] = entry
+        if len(items) < page:
+            break
+        offset += page
+    structs = {}
+    offset = 0
+    while True:
+        txt = _call(tool, 'list_data_types', {'offset': offset, 'limit': page}, S)
+        items = _parse_table(txt) or _parse_list(txt)
+        if not items:
+            break
+        for item in items:
+            nm = item.get('name')
+            if not nm:
+                continue
+            d = _parse_dtype(_call(tool, 'get_data_type', {'name': nm}, S) or '')
+            members = {}
+            for fld in (d.get('fields') or []):
+                if not isinstance(fld, dict):
+                    continue  # 行形不齐防御（T10 崩溃钉：某型无表头形）
+                off = fld.get('offset')
+                nm2 = fld.get('name')
+                if off is None or nm2 in (None, 'null'):
+                    continue  # 未名字节=非 annotation 面（不计）
+                members[int(off)] = {'name': nm2,
+                                     'type': fld.get('dataType') or 'undefined'}
+            structs[nm] = {'size': d.get('size'), 'members': members}
+        if len(items) < page:
+            break
+        offset += page
     globals_ = {}
-    gvars = _call(tool, 'get_global_variables', {}, S)
-    for item in (gvars or []):
-        addr = item.get('address') or item.get('addr')
-        if addr is None or not item.get('name'):
-            continue
-        globals_[norm_addr(addr)] = {'name': item['name'], 'type': item.get('type')}
+    offset = 0
+    while True:
+        txt = _call(tool, 'list_data_symbols', {'offset': offset, 'limit': page}, S)
+        items = _parse_list(txt)
+        if not items:
+            break
+        for item in items:
+            addr = item.get('address')
+            if not addr or ':' in str(addr) or not item.get('name'):
+                continue  # EXTERNAL:/段前缀=导入面非注解全局
+            globals_[norm_addr(addr)] = {'name': item['name'],
+                                         'type': item.get('dataType')}
+        if len(items) < page:
+            break
+        offset += page
     return {'functions': funcs, 'structs': structs, 'globals': globals_, 'skips': {}}
 
 
