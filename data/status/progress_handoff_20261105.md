@@ -88,3 +88,30 @@ L1 可与 161 直接比、免 rebaseline。在 handoff 登记，不混本车道�
 `::` 精确名优先+size honor）→ `npm run install:worker` 重编+daemon 重启 →
 P2 929 重灌（存在性去重）→ P3 nested_types 入 build_import_plan →
 P4 污染清 → P5 终验（get_data_type size 对齐+set_prototype 全探 ok+活体 proof）
+
+## 追加（2026-11-05 15:50 · 三方件质疑定案+四探终局）
+
+**用户质疑→取证定案**（三方改动三项全保留）：D2 证据=issues.md §4（D2 实战同款
+错误类·上游修法=worker 预归一 extractCallingConvention 先例）+test/e2e 可执行契约
+（纯 C 签名·从不传 size）+redivivus 无独立客户端（测试即契约）。
+三方仓 commit `485639b`（7 文件·additive·D2 零行为变化）。
+
+**四探终局（活体·全绿）**：
+- `const char *` 返回 → **ok=True**（setPrototype 剥离生效）
+- `struct gbVFileSystem *` → **ok=True**（同剥离）
+- `AStarPathFinder::NODE` 指参+返回 → **双 ok=True**——**第 2 条定谳：根因=
+  nested_types 未建型（型缺失），parser 不拒 ::**；建型（字面 :: 名·size64
+  honor）即通。converter 侧 P3=nested_types 消费仍要做（批量建型）
+- UIWnd size **65→68 honor** ✅ · NODE size **64** ✅（size 链三层+TS 转发全通）
+
+**运维教训（新坑·记）**：**daemon 复用孤儿 java worker**——15:01 旧 JVM（载
+15:00 jar）被新 daemon 接管，15:13 setPrototype 补丁假失效（探针全败假象）。
+规矩：**重建 worker jar 后必须杀光 java 进程再验**（`ps java` 代际对表 jar mtime）。
+
+**污染账（P4 待清）**：`gbVec3D` root size1 副本（/Demangler 占位仍在）·
+`AStarPathFinder` root size1 空壳（P2 重建真型时 REPLACE）· ProbeNoColon 已删 ✓
+· ProbeB/E/C/F dryRun 已回滚无痕 ✓
+
+**P 链进度**：P0 resp_ok 假成功修 ✅（5/5）· P1 Java+TS 补丁 ✅（485639b·四探验）
+· **P2 929 重灌（852 回填·存在性去重）=下一步** · P3 nested_types 入
+build_import_plan · P4 污染清 · P5 终验（size 对齐+全探+活体 proof）
