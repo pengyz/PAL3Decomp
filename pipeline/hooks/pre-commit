@@ -3,4 +3,10 @@
 # 原内嵌扫描器（对齐/重叠+硬编码例外）与 check_annotations 双真相源不一致——统一
 # 安装: ln -sf ../../pipeline/hooks/pre-commit .git/hooks/pre-commit
 # [2026-10-31] PYTHONUTF8=1 防 Windows GBK 编码错（CLAIM_GATE 读 annotation）
+# [T9] B 转换证明门禁（spec v2 §2·R9）：转换器/证明器改动 ⇒ mutation+fixture+matrix 三证必跑
+if git diff --cached --name-only | grep -qE '^ghidra_track/(import_annotation|gen_plan|plan_to_changeset|import_standard|verify_core|verify_b_import|fixture_proof|mutation_proof|proof_matrix)\.py$'; then
+    echo "[gate] 转换器/证明器触发面命中 → 三证串跑"
+    bash ghidra_track/gate.sh || exit 1
+fi
+
 PYTHONUTF8=1 exec python pipeline/cli.py check

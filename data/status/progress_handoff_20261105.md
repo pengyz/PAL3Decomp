@@ -1,0 +1,39 @@
+# 接续声明（2026-11-05）——B 导入改名落地战役·中场
+
+## 已完成（全带证据·门禁五弹护航）
+1. **证明链 T1-T10 全完**（spec 2026-11-04-converter-proof-design.md v2）：
+   mutation 6/6 硬闸 · case-01/02 手写 oracle 零差 · 135 键矩阵 · 活体 proof
+   · gate.sh+pre-commit 触发面（实路径 .git/hooks/pre-commit=符号链接→pipeline/hooks/）
+2. **改名落地四轮**（标准通路逐根因族打通）：
+   changeset ok **0→702→242→3165**；非 ident 名活验落地（0x401000=~AStarPathFinder）
+   根因族账：expect 乐观锁 · C 标识符拒 dtor/mangled → create_label 面 ·
+   set_prototype 三字段（signature 含名+cc __x+expect 双键）· 16/8-hex 键 int 归一 ·
+   原子批单点拒（占位预滤+dryRun 剔重试环 parse_fail_indexes/partition_batch）·
+   globals→label 面（无数据定义 1356 拒）· 签名 :: 限定名双位剥离（name 末段+ret 内剥名）
+
+## 进行中（昨日中断点）
+**ret 残名族诊断**：15 失败型分两类——
+- ret 残名族（`virtual int GRPinput::InitKeyMappings`/`char * SetRoleLevelAndRefresh`/
+  `BOOL PointInRect`/`int WinMain`/`void InitScriptEventArray`）=注解签名形
+  `ret qualifiedName cc(params)` 中名字未从 ret 剥离（修：plan_to_changeset/ret 剥名
+  通用规则——含 '::' 或尾 token 形如标识符且非类型词）
+- 真缺型族（`__int64`/`const char *`/`const void *`/`void * `scalar deleting`）
+  = 别名表（__int64→longlong 等）+ ret 形清洗（'virtual'/'scalar deleting' 前缀误入）
+
+## 未完成（序）
+1. ret 残名族修 + 真缺型别名 → 型解析族清（23 批→0）
+2. ident 改名全量落地验证（0x401030 FUN_ 残面）
+3. **② B 重跑**（净室导入→proof→generate→整编=真修后读数——欠两轮的兑现点）
+4. 函数 bad 154 分类
+
+## 新目标（2026-11-05 立项·oot 借鉴）
+zeldaret/oot 分析结论：同编译器+声明式单源+逐函数匹配三支柱与我们同构（路线硬背书）；
+值得借=诊断/进度工具层：①first_diff 首差定位 ②progress per-unit 仪表
+③asm-differ 式函数级 asm 并排 diff（x86 支持度待验）+permuter 思想移植 Phase2。
+序：2→3→1（first_diff 零成本即用）。
+
+## 环境注记
+- daemon 端口 8432（死则重启：GHIDRA_HOME=... node packages/cli/dist/bin.js &
+  于 thirdparty/ghidra-mcp）；会话=PAL3_P.gpr（bf3837cd）
+- 预存 7 测试失败（A 轨债·名单在 .superpowers/sdd/.../t*-suite.log）
+- lstrip('0x') 陷阱禁用（切片 [2:]）——已三次犯
