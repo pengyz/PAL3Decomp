@@ -79,6 +79,19 @@ def split_renames(ops, current, globals_=None):
     return cs, labels
 
 
+def resp_ok(r):
+    """create_* 响应真判（P0 假成功修·929→77 实证）：JSON-RPC error 对象/
+    空文本/isError/'success: false' → False；create_* 成功必须文本含
+    `success: true`（与 changeset batch_ok 同族：工具级信号盖不住批内真值）。"""
+    if not isinstance(r, dict) or r.get('isError') or r.get('error'):
+        return False
+    content = r.get('content') or []
+    txt = str(content[0].get('text', '')) if content else ''
+    if not txt.strip() or 'success: false' in txt or txt.startswith('Error'):
+        return False
+    return 'success: true' in txt
+
+
 def batch_ok(r):
     """apply_changeset 批成败：text 内 `ok: false` 判失败（T10 dryRun 实锤——
     工具级 isError=None 盖不住批内 errors[]，旧计数=假成功）。"""
@@ -114,18 +127,20 @@ def main(gpr, plan_path):
         k = op['kind']
         if k == 'define_union':
             fields = [{'name': m.get('name'), 'offset': m.get('offset'),
-                       'type': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
+                       # 工具契约键是 dataType（schema required；缺省回 undefined→成员失名）
+                       'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
                       for m in (op.get('members') or [])]
             r = tool('create_union', dict(S, name=op.get('name') or op.get('struct'), fields=fields), 3)
         elif k == 'define_struct':
             fields = [{'name': m.get('name'), 'offset': m.get('offset'),
-                       'type': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
+                       # 工具契约键是 dataType（schema required；缺省回 undefined→成员失名）
+                       'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
                       for m in (op.get('members') or [])]
             r = tool('create_structure', dict(S, name=op['name'], size=op.get('size'), fields=fields), 3)
         else:
             continue
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
-        bad = isinstance(r, dict) and (r.get('isError') or t.startswith('Error'))
+        bad = not resp_ok(r)          # P0：error 对象/空文本/success:false 全判败
         b = 'unions' if k == 'define_union' else 'structs'
         stat[b][0 if not bad else 1] += 1
         if bad: _fails.append({'stage': b, 'name': op.get('name'), 'err': t[:150]})
