@@ -37,3 +37,24 @@ zeldaret/oot 分析结论：同编译器+声明式单源+逐函数匹配三支�
   于 thirdparty/ghidra-mcp）；会话=PAL3_P.gpr（bf3837cd）
 - 预存 7 测试失败（A 轨债·名单在 .superpowers/sdd/.../t*-suite.log）
 - lstrip('0x') 陷阱禁用（切片 [2:]）——已三次犯
+
+## 追加（2026-11-05 13:16 · s4 源修诊断中）
+
+**s4 双文件异源病灶定谳+修**（commit a5eb05770）：cli.py 棘轮真退步分支只回写旧
+baseline、detail 已被本轮 compare 覆写 ⇒ 双文件异源（实证 baseline 161/924-1188
+vs detail 110）。修：`pipeline/s4_pair.restore_pair` 成对回滚+regressed detail
+存档 `data/status/archive/`（诊断不丢）+prev detail 缺则移除 cur（宁缺勿伪同源）。
+**盘上旧伤仍存**（恢复只保旧对不愈旧伤）——愈合须全链重跑+按需 --rebaseline。
+
+**L1 161→94 读数定性（衰退纪律·先分析后动）**：主因=**总体收缩 1188→957**，
+非可直接比 L1。指认 9 失 2 得（10-30 ok=135 → 11-03 ok=128·净 −7·
+**窗口 10-30→11-03 的 annotation/gen 批所致·非本会话**·src 最新 11-03 20:18）：
+- **C2084 重复体族 ×4**：CCBProtectWindow::Destroy / CCBFiveNimbusWindow::Destroy /
+  UILoadingFrm::OnMessage / UIListBox::Destroy（already has a body——疑 codegen
+  双发射单根因）
+- **C2100 悬垂解引用族 ×3**：Effect/CEffGrid·CEffect·CEffgbParticle（illegal indirection
+  ——疑 Effect 族单根因）
+- JusticeBookUI（UIParticle 型可见性 C2227/C2653）· CameraCtrl（float*→float C2109/C2106）
+- GAINED ×2：ARC_PlayerAtt.cpp·UICamera.cpp
+⇒ **A 轨债移交项**：C2084 与 C2100 各疑单根因（2 修≈7 单元回）——修好即总体回升、
+L1 可与 161 直接比、免 rebaseline。在 handoff 登记，不混本车道。
