@@ -58,3 +58,33 @@ vs detail 110）。修：`pipeline/s4_pair.restore_pair` 成对回滚+regressed 
 - GAINED ×2：ARC_PlayerAtt.cpp·UICamera.cpp
 ⇒ **A 轨债移交项**：C2084 与 C2100 各疑单根因（2 修≈7 单元回）——修好即总体回升、
 L1 可与 161 直接比、免 rebaseline。在 handoff 登记，不混本车道。
+
+## 追加（2026-11-05 14:45 · B 面型解析族=四层病灶定谳）
+
+**damage**：plan define_struct 929 → 程序在场 **77** · 缺 **852**（list_data_types
+全量∩plan 清点）。函数名/改名面正常（~AStarPathFinder 持久）⇒ 仅 struct 阶段塌。
+
+**四层病灶（全码证）**：
+1. **假成功计数**（与 changeset ok 同族）：import 时 worker 病态（其后 daemon 死=
+   同源）返回 JSON-RPC error 对象/空文本 → `t.startswith('Error')` 不中 → 计 ok。
+   修：create_* 阶段 bad 判定必须认 `success: true` 文本（resp_ok 纯函数·TDD）。
+2. **create_structure 无 size 参数**（inputSchema 证·128 工具无 resize/pad）：
+   UIWnd `success:true 但 size=65≠68`——Ghidra 按 fields 和算，**尾部填充字节丢**。
+   修=Java 侧 honor size（补 padding）或 fields 补 gap 成员。
+3. **resolver 三缺形**（GhidraContext.resolveDataType:470 读码证实无 const 段）：
+   dryRun 干探四例：`gbRay *`占位**可解 ok**（历史失败=当时型未生成）·
+   `const char *` ❌ · `AStarPathFinder::NODE *` ❌（`::` 无映射且程序 0 条）·
+   `struct gbVFileSystem *` ❌（前缀未剥）。
+4. **nested_types 不消费**：AStarPathFinder.json nested_types.NODE 全声明
+   （size64+f/h/g/x 成员）未建 → `AStarPathFinder::NODE *` 无解。
+   + demangler 占位（/Demangler size1·gbRay/gbVec3D/gbVFileSystem/gbSound2DNode）
+   可解但**布局是占位 1 字节**——语义使用前须以 annotation 真型覆盖。
+
+**探针污染自首**（须清）：直调 create_structure 建出 root 副本——
+`AStarPathFinder`(size1 空)·`gbVec3D`(root size1·与 /Demangler 占位并存)·
+`UIWnd`(size65=按 fields 算·尾 3 字节缺) → 修后统一 delete_data_type+重建。
+
+**修复序**：P0 resp_ok 假成功修（TDD）→ P1 Java 补丁（const/struct/class 剥离+
+`::` 精确名优先+size honor）→ `npm run install:worker` 重编+daemon 重启 →
+P2 929 重灌（存在性去重）→ P3 nested_types 入 build_import_plan →
+P4 污染清 → P5 终验（get_data_type size 对齐+set_prototype 全探 ok+活体 proof）
