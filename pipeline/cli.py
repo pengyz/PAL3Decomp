@@ -724,6 +724,9 @@ def cmd_match(args=()):
     prev_sem = 0
     prev_text = None
     prev_pop = (None, None)
+    # 2026-11-05 s4 源修：detail 与 baseline 成对读（恢复须成对·同源纪律）
+    _det_path = Path('data/status/s4_diff_detail.json')
+    prev_detail_text = _det_path.read_text(encoding='utf-8') if _det_path.exists() else None
     if s4.exists():
         try:
             prev_text = s4.read_text(encoding='utf-8')
@@ -787,14 +790,24 @@ def cmd_match(args=()):
                           "寄存器分配迁移（非真退步），棘轮维持基线"
                           % (prev_l1, cur_l1, prev_l1 + prev_sem, cur_l1 + cur_sem))
                 else:
-                    # 真退步：旧基线写回
+                    # 真退步：旧基线+detail **成对**写回（2026-11-05 s4 源修——
+                    # 单文件恢复=双文件异源病灶实证 161 vs 110；regressed detail 存档）
                     if prev_text is not None:
                         try:
-                            s4.write_text(prev_text, encoding='utf-8')
-                            print("[L1 ratchet] baseline restored to previous value "
-                                  "(ratchet may only advance explicitly)")
+                            from s4_pair import restore_pair
+                            _r = restore_pair(
+                                str(s4), str(_det_path),
+                                prev_s4_text=prev_text,
+                                prev_detail_text=prev_detail_text,
+                                cur_detail_text=_det_path.read_text(encoding='utf-8')
+                                if _det_path.exists() else None,
+                                archive_dir='data/status/archive')
+                            print("[L1 ratchet] baseline+detail pair restored to "
+                                  "previous run (ratchet may only advance explicitly)"
+                                  + (" · regressed detail → %s" % _r['archived']
+                                     if _r['archived'] else ''))
                         except OSError as e:
-                            print("[L1 ratchet] WARN: could not restore baseline: %s" % e)
+                            print("[L1 ratchet] WARN: could not restore pair: %s" % e)
                     print("[L1 ratchet] REGRESSION: byte-perfect functions lost — "
                           "investigate before committing")
                     sys.exit(1)
