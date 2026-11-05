@@ -115,3 +115,29 @@ P4 污染清 → P5 终验（get_data_type size 对齐+set_prototype 全探 ok+�
 **P 链进度**：P0 resp_ok 假成功修 ✅（5/5）· P1 Java+TS 补丁 ✅（485639b·四探验）
 · **P2 929 重灌（852 回填·存在性去重）=下一步** · P3 nested_types 入
 build_import_plan · P4 污染清 · P5 终验（size 对齐+全探+活体 proof）
+
+## 追加（2026-11-05 17:11 · A 案收口：P2 达成+B 面阶段性封账）
+
+**用户裁定 A**：让 P2 跑完→跑一次 proof→**B 面阶段性收口**；P3-P5 降级按需；
+B 面转低频交叉验证（只在 A 面新 annotation 批次时跑）；不再追求 B 面自身完美。
+成本背景：B 面运维 debug ≈1.5-2 天（daemon 死×3/僵尸锁/孤儿 JVM/双会话互抢/
+假成功/D2 契约考证）vs 验证收益（改名未落/852 型/1869 findings）——运维成本已超
+验证收益，故止损收口。
+
+**P2 终读**：structs **929 ok/0 bad·在场 929 缺 0**（852 全回填）·unions 12/0·
+functions 5269/28·changeset 4800 ok/3571 bad（boundary-gap+interior 剔账族）·
+占位预滤 11·label 1473·fail-loud 按设计响（rc=1·stat 分账缺口 509=剔环计数
+结构差·已知不阻）·size 抽验 UIWnd=68/CCBAI=3664 ✓。
+耗时 ~30min（串行 RPC 架构性成本：929 型+3800 函数+42 批×2.3s+剔环重试）。
+
+**proof 终读（data/status/b_import_proof_20261105.json）**：
+- match **11→924**（structs/成员面回填直接兑现）·structs exp925/**act1349**
+- missing 2935→**453**·changed 11062→**6363**·extra 424·unverifiable 7570·
+  coverage_extra 6227·verdict 仍 **BROKEN**（设计=缺口显形）
+- 余量归因（=下轮两件）：①改名 changeset 3571 bad 剔账族（boundary-gap/
+  interior/expect 残留）②nested_types（`AStarPathFinder::NODE` 未建·P3·
+  手动建的随会话 churn 丢）
+
+**下轮序（低频触发）**：A 面主线回（9 单元 S2 退化三族修复=c508a6c24 移交项·
+L1 94 爬坡）→按需时 B 轮：P3 nested_types 入 build_import_plan + 改名 3571 bad
+分类 + P5 终验。环境手册=本 handoff 三节（锁/会话/JVM 三清+孤儿教训）。
