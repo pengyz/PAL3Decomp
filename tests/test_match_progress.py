@@ -73,26 +73,30 @@ def test_build_progress_l1_sum_mismatch_fails():
         build_progress(bad, _census())
 
 
-def test_same_source_scope_aware():
-    """域感知：detail.units=覆盖域——全局差=范围差（161=103+58）非源差，
-    域内仍差才是源差（自验：103 vs 110）。"""
-    base = {'stats': {'match_L1': 2}, 'rows': [
-        {'file': 'in.cpp', 'va': '0x1', 'status': 'match_L1'},
-        {'file': 'out.cpp', 'va': '0x2', 'status': 'match_L1'}]}
-    # 域内一致（1==1）→ 过（全局 1≠2 不再误拒=范围差豁免）
-    ok, msg = check_same_source(base, {'l1': 1, 'units': {'in.cpp': [
-        {'va': '0x1', 'n_diff': 0}]}})
-    assert ok, msg
-    # 域内差 → 拒
-    ok, msg = check_same_source(base, {'l1': 9, 'units': {'in.cpp': [
-        {'va': '0x1', 'n_diff': 0}]}})
-    assert not ok and '域内' in msg, msg
+def test_same_source_scope_exempt():
+    """detail.l1=全局 94·detail.units=仅含 partial 行的单元（compare 形证）：
+    域内 baseline match_L1=87 vs 全局 94 是范围差（7 个 L1 在无 partial 单元）——
+    且 detail.units 内不出现 L1 行（只装 partial）⇒ 无状态相反，必须过。"""
+    rows, units = [], {}
+    for u in ('u1', 'u2', 'u3'):
+        for _ in range(29):
+            rows.append({'file': u, 'va': hex(0x400000 + len(rows) * 4),
+                         'status': 'match_L1'})
+        va = hex(0x500000 + len(rows) * 4)
+        rows.append({'file': u, 'va': va, 'status': 'partial'})
+        units[u] = [{'va': va, 'n_diff': 5}]     # 只装 partial 行（真形）
+    for i in range(7):
+        rows.append({'file': 'nopart', 'va': hex(0x600000 + i * 4),
+                     'status': 'match_L1'})     # 无 partial 单元的 L1 不入 units
+    base = {'stats': {'match_L1': 94}, 'rows': rows}
+    ok, msg = check_same_source(base, {'l1': 94, 'units': units})
+    assert ok, '全局同源+域内范围差必须过: %s' % msg
 
 
-def test_same_source_state_opposite():
-    """状态相反逐行检测（复核实证 0x4420C0 形）。"""
-    base = {'stats': {'match_L1': 1}, 'rows': [
-        {'file': 'in.cpp', 'va': '0x4420C0', 'status': 'match_L1'}]}
-    ok, msg = check_same_source(base, {'l1': 1, 'units': {'in.cpp': [
-        {'va': '0x4420C0', 'n_diff': 5}]}})
-    assert not ok and '状态相反' in msg and '0x4420C0' in msg, msg
+def test_same_source_global_mismatch_fails():
+    """跨 run 异源（原实证 161 vs 110·棘轮恢复单文件病灶）→ 全局对账必拒。"""
+    rows = [{'file': 'a.cpp', 'va': hex(0x400000 + i * 4), 'status': 'match_L1'}
+            for i in range(161)]
+    base = {'stats': {'match_L1': 161}, 'rows': rows}
+    ok, msg = check_same_source(base, {'l1': 110, 'units': {}})
+    assert not ok and '161' in msg and '110' in msg, msg

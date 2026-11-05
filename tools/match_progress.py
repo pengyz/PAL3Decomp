@@ -25,27 +25,27 @@ def check_same_source(baseline, detail):
     if n_all != stats.get('match_L1'):
         return False, ('同文件自洽破坏: rows match_L1 计数=%d != stats.match_L1=%s'
                        % (n_all, stats.get('match_L1')))
+    # 全局对账（detail.l1=compare stats['match_L1'] 全局值·13:34:25 形证）：
+    # 域内计数 vs 全局=范围差非源差（8 个 L1 在无 partial 单元）——禁比。
+    want = stats.get('match_L1')
+    if want != detail.get('l1'):
+        return False, ('不同源禁聚合: s4_baseline.stats.match_L1=%s vs '
+                       's4_diff_detail.l1=%s（跨 run 异源实证 161 vs 110·'
+                       '棘轮单文件恢复病灶已修 a5eb05770）' % (want, detail.get('l1')))
+    # 域内状态相反逐行检测（detail.units=仅含 partial 行的单元）
     units = detail.get('units') or {}
-    if units:
-        dom = set(units)
-        n = sum(1 for r in rows if r.get('file') in dom
-                and r.get('status') == 'match_L1')
-        got = detail.get('l1')
-        if n != got:
-            return False, ('域内不同源: baseline∈detail域 match_L1=%d vs '
-                           'detail.l1=%d（同域仍差=非范围差·疑棘轮回写）' % (n, got))
-        # 状态相反逐行检测（复核实证 1 例 0x4420C0）
-        for r in rows:
-            if r.get('file') not in dom:
+    dom = set(units)
+    for r in rows:
+        if r.get('file') not in dom:
+            continue
+        for dr in units.get(r['file']) or []:
+            if dr.get('va') != r.get('va') or dr.get('n_diff') is None:
                 continue
-            for dr in units.get(r['file']) or []:
-                if dr.get('va') != r.get('va') or dr.get('n_diff') is None:
-                    continue
-                d_st = 'match_L1' if dr['n_diff'] == 0 else 'partial'
-                if r.get('status') in ('match_L1', 'partial') and d_st != r['status']:
-                    return False, ('状态相反 %s: baseline=%s detail=%s(n_diff=%d)'
-                                   % (r.get('va'), r.get('status'), d_st, dr['n_diff']))
-        return True, 'same-source ok (域内 match_L1=%s·状态一致)' % got
+            d_st = 'match_L1' if dr['n_diff'] == 0 else 'partial'
+            if r.get('status') in ('match_L1', 'partial') and d_st != r['status']:
+                return False, ('状态相反 %s: baseline=%s detail=%s(n_diff=%d)'
+                               % (r.get('va'), r.get('status'), d_st, dr['n_diff']))
+    return True, 'same-source ok (全局 match_L1=%s·域内状态一致)' % want
     want = stats.get('match_L1')
     if want != detail.get('l1'):
         return False, ('不同源禁聚合: s4_baseline.stats.match_L1=%s vs '
@@ -55,10 +55,13 @@ def check_same_source(baseline, detail):
 
 def _top_error(errors_field):
     """census errors JSON 串 → 出现最多的错误码（无则 '-'）。"""
-    try:
-        errs = json.loads(errors_field or '[]')
-    except ValueError:
-        return '-'
+    if isinstance(errors_field, list):          # 真 census 形：errors 已是 list
+        errs = errors_field
+    else:
+        try:
+            errs = json.loads(errors_field or '[]')
+        except (ValueError, TypeError):
+            return '-'
     codes = []
     for e in errs:
         if isinstance(e, str):
