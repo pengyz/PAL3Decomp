@@ -25,7 +25,10 @@ from pathlib import Path
 # `misattribution_ledger.py` 把 197 cluster 改写成 3）。
 # 统一护栏：见到任何以 `-` 开头的参数即打印用法并**退出，不执行任何工作**。
 import sys as _sys_guard
-if any(_a.startswith('-') for _a in _sys_guard.argv[1:]):
+# 2026-11-05 修（病灶层：守卫判在模块级误伤 import——asm_diff 接线实锤：
+# pytest -q 一 import 即 exit(0)）。守卫收 __main__ 域：脚本模式行为不变·
+# import 面解放（护栏原意=挡脚本误收 - 参数写盘·P2-4 不丢）。
+if __name__ == '__main__' and any(_a.startswith('-') for _a in _sys_guard.argv[1:]):
     print('[%s] 本工具不接受命令行开关；收到 %r ⇒ 不执行任何操作。'
           % (__file__.rsplit('/', 1)[-1], _sys_guard.argv[1:]))
     print('用法: python3 %s    # 无参数，直接运行' % __file__)
