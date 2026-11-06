@@ -112,15 +112,33 @@ def load_ann_dir(ann_dir, only=None):
     return funcs, structs, g
 
 
-def build_import_plan(functions=None, structs=None, globals=None):
+def build_import_plan(functions=None, structs=None, globals=None, enums=None):
     # 目录形入口（brief 契约）：build_import_plan(ann_dir) → 走 load_ann_dir
     if isinstance(functions, str):
-        functions, structs, globals = load_ann_dir(functions)
+        _ad = functions
+        functions, structs, globals = load_ann_dir(_ad)
+        if enums is None:
+            import os as _os, json as _json
+            _ep = _os.path.join(_ad, 'enums.json')
+            if _os.path.exists(_ep):
+                enums = _json.load(open(_ep))
     """注解三源 → Ghidra 导入 op 列表（set_name/set_func_sig/define_struct/define_global）。"""
     functions = functions or {}
     structs = structs or {}
     globals = globals or {}
     plan = []
+    # define_enum 头插（2026-11-06 C 族：enums.json 68 枚举此前不进 plan——
+    # 成员引用 ECB*/SCENE_TYPE 等全数 Unknown。先于 struct 建=创建序即依赖序）
+    for _en in sorted((enums or {}).keys()):
+        _evs = ((enums[_en] or {}).get('values')) or {}
+        _ev = {}
+        for _vk, _vv in _evs.items():
+            try:
+                _ev[_vk] = int(str(_vv), 0)
+            except (ValueError, TypeError):
+                _ev[_vk] = _vv   # 非整值原样透传→create_enum 契约层报错（禁静默吞）
+        if _ev:
+            plan.append({'kind': 'define_enum', 'name': _en, 'values': _ev})
     for addr, info in sorted(functions.items()):
         if not isinstance(info, dict) or not info.get('name'):
             continue

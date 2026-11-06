@@ -120,12 +120,14 @@ def main(gpr, plan_path):
     assert 'id:' in txt, '会话创建失败=禁静默落默认会话（2026-11-03 污染教训）: %s' % txt[:120]
     sid = txt.split('id:')[1].split()[0].strip('"')
     S = {'sessionId': sid}
-    stat = {'structs': [0, 0], 'unions': [0, 0], 'functions': [0, 0], 'changeset_ops': [0, 0]}
+    stat = {'structs': [0, 0], 'unions': [0, 0], 'enums': [0, 0], 'functions': [0, 0], 'changeset_ops': [0, 0]}
     _fails = []
     # ①创建段（拓扑：union→struct→function 存在性）
     for op in plan:
         k = op['kind']
-        if k == 'define_union':
+        if k == 'define_enum':
+            r = tool('create_enum', dict(S, name=op['name'], values=op.get('values') or {}), 3)
+        elif k == 'define_union':
             fields = [{'name': m.get('name'), 'offset': m.get('offset'),
                        # 工具契约键是 dataType（schema required；缺省回 undefined→成员失名）
                        'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
@@ -141,7 +143,7 @@ def main(gpr, plan_path):
             continue
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
         bad = not resp_ok(r)          # P0：error 对象/空文本/success:false 全判败
-        b = 'unions' if k == 'define_union' else 'structs'
+        b = {'define_union': 'unions', 'define_enum': 'enums'}.get(k, 'structs')
         stat[b][0 if not bad else 1] += 1
         if bad: _fails.append({'stage': b, 'name': op.get('name'), 'err': t[:150]})
     # ①b 函数存在性（set_name/set_func_sig 全地址=存在断言；已存在忽略）
@@ -274,8 +276,9 @@ def main(gpr, plan_path):
         if not ok:
             _fails.append({'stage': 'changeset-apply', 'batch': i,
                            'err': str((r.get('content') or [{}])[0].get('text', ''))[:300] if isinstance(r, dict) else ''})
-    print('标准导入: structs %d ok/%d bad · unions %d/%d · functions %d/%d · changeset %d ok/%d bad / %d 批' % (
+    print('标准导入: structs %d ok/%d bad · unions %d/%d · enums %d/%d · functions %d/%d · changeset %d ok/%d bad / %d 批' % (
         stat['structs'][0], stat['structs'][1], stat['unions'][0], stat['unions'][1],
+        stat['enums'][0], stat['enums'][1],
         stat['functions'][0], stat['functions'][1], stat['changeset_ops'][0], stat['changeset_ops'][1], len(batches)))
     import json as _j
     with open('ghidra_track/out/import_standard_fails.jsonl', 'w') as _fh:

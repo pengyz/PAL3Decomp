@@ -18,8 +18,10 @@ def main():
     if '--structs' in sys.argv:
         only = set(sys.argv[sys.argv.index('--structs') + 1].split(','))
     funcs, structs, g = load(ann, only)
+    ep = os.path.join(ann, 'enums.json')
+    enums = json.load(open(ep)) if os.path.exists(ep) else {}
     plan = [{'kind': '_meta', 'version': PLAN_VERSION, 'source': ann}] + \
-           build_import_plan(functions=funcs, structs=structs, globals=g)
+           build_import_plan(functions=funcs, structs=structs, globals=g, enums=enums)
     json.dump(plan, open(out, 'w'), indent=1, ensure_ascii=False)
     print('plan v%d: %d ops -> %s' % (PLAN_VERSION, len(plan), out))
 
