@@ -7,6 +7,7 @@ import json, sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from import_via_daemon import rpc, notify, tool
 from plan_to_changeset import plan_to_changesets
+from import_annotation import partition_struct_passes
 
 _IDENT = __import__('re').compile(r'[A-Za-z_][A-Za-z0-9_]{0,127}$')
 
@@ -133,19 +134,40 @@ def main(gpr, plan_path):
                        'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
                       for m in (op.get('members') or [])]
             r = tool('create_union', dict(S, name=op.get('name') or op.get('struct'), fields=fields), 3)
-        elif k == 'define_struct':
-            fields = [{'name': m.get('name'), 'offset': m.get('offset'),
-                       # 工具契约键是 dataType（schema required；缺省回 undefined→成员失名）
-                       'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
-                      for m in (op.get('members') or [])]
-            r = tool('create_structure', dict(S, name=op['name'], size=op.get('size'), fields=fields), 3)
         else:
-            continue
+            continue   # define_struct 走下方两遍段（2026-11-06 顺序保证）
         t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
         bad = not resp_ok(r)          # P0：error 对象/空文本/success:false 全判败
-        b = {'define_union': 'unions', 'define_enum': 'enums'}.get(k, 'structs')
+        b = {'define_union': 'unions', 'define_enum': 'enums'}[k]
         stat[b][0 if not bad else 1] += 1
         if bad: _fails.append({'stage': b, 'name': op.get('name'), 'err': t[:150]})
+    # ①a 结构两遍（partition_struct_passes：pass1 全空壳 name+size → pass2 成员填充——
+    # 前向引用/自引用在壳期全就位，顺序从字母序侥幸变保证；壳败跳填防半态；
+    # 计数仍按 struct 一次（壳败记败·填败记败·填成记成））
+    sizes = {op['name']: op.get('size') for op in plan if op.get('kind') == 'define_struct'}
+    shells, fills = partition_struct_passes(plan)
+    ok_shell = set()
+    for sh in shells:
+        r = tool('create_structure', dict(S, name=sh['name'], size=sh.get('size'), fields=[]), 3)
+        t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+        if not resp_ok(r):
+            stat['structs'][1] += 1
+            _fails.append({'stage': 'structs', 'phase': 'shell', 'name': sh['name'], 'err': t[:150]})
+        else:
+            ok_shell.add(sh['name'])
+    fill_by = {f['name']: f for f in fills}
+    for name in sorted(fill_by):      # 确定性序（与 plan 序无关）
+        if name not in ok_shell:
+            continue
+        fields = [{'name': m.get('name'), 'offset': m.get('offset'),
+                   # 工具契约键是 dataType（schema required；缺省回 undefined→成员失名）
+                   'dataType': m.get('type') if isinstance(m.get('type'), str) else 'byte'}
+                  for m in (fill_by[name].get('members') or [])]
+        r = tool('create_structure', dict(S, name=name, size=sizes.get(name), fields=fields), 3)
+        t = str((r.get('content') or [{}])[0].get('text', '')) if isinstance(r, dict) else ''
+        bad = not resp_ok(r)
+        stat['structs'][0 if not bad else 1] += 1
+        if bad: _fails.append({'stage': 'structs', 'phase': 'fill', 'name': name, 'err': t[:150]})
     # ①b 函数存在性（set_name/set_func_sig 全地址=存在断言；已存在忽略）
     faddrs = []
     for op in plan:
