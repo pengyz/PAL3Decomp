@@ -141,3 +141,15 @@ functions 5269/28·changeset 4800 ok/3571 bad（boundary-gap+interior 剔账族�
 **下轮序（低频触发）**：A 面主线回（9 单元 S2 退化三族修复=c508a6c24 移交项·
 L1 94 爬坡）→按需时 B 轮：P3 nested_types 入 build_import_plan + 改名 3571 bad
 分类 + P5 终验。环境手册=本 handoff 三节（锁/会话/JVM 三清+孤儿教训）。
+
+## 追加（2026-11-05 18:07 · 硬教训：杀 worker=丢未落盘程序状态）
+
+**事故**：为换新 jar（gap-collapse 补丁）`pkill -9` java worker → Ghidra 程序**未落盘
+状态全丢**——P2 的 852 型回填回落 77（UIWnd 幸存=最后落盘点在 P2 前）。P2 须重跑。
+**规矩（入环境手册）**：
+1. **导入后必须 close_session 落盘**（Ghidra 程序非常驻保存——杀进程即回滚）
+2. 换 jar 杀 worker 前**先 close_session**；非必要不杀
+3. pkill 模式串必须括号 trick（`[X]mx4g`）——明文模式自匹配本 shell 已两犯
+4. reconstruct 试点链：gap-collapse 补丁（runaway struct 缺口行折叠·D2 正常态零感知）
+   已入 jar（485639b 族第 4 项）——待 P2 重灌后验 gbBinkVideo（1.8MB annotation
+   runaway·全 unverified·A 面二进制取证裁定项已记）

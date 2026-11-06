@@ -12,29 +12,29 @@
 |---|---|
 | 导出产物 | `asm/pal3/ida_structs.json` |
 | 注解目录 | `data/annotations/structs`（942 个 JSON） |
-| export 时间戳 | 2026-10-29 13:53:06 +0800（epoch 1793253186.211410） |
-| 注解最新改动 | 2026-10-29 11:55:08 +0800（epoch 1793246108.757658） |
-| 注解最新改动文件 | `data/annotations/structs/EffTargetPool.json` |
+| export 时间戳 | 2026-11-05 13:19:33 +0800（epoch 1793855973.776982） |
+| 注解最新改动 | 2026-11-04 10:04:56 +0800（epoch 1793757896.757505） |
+| 注解最新改动文件 | `data/annotations/structs/UIListBox.json` |
 | 陈旧判定 | FRESH（export 不早于注解最新改动） |
 
 ## 1. 量化统计
 
 | 指标 | 值 |
 |---|---|
-| 结构：双侧共有 / 仅导出 / 仅注解 | 861 / 310 / 64 |
+| 结构：双侧共有 / 仅导出 / 仅注解 | 861 / 311 / 64 |
 | 成员全同（type 串全同） | 7749 |
 | 成员拼写归一（语义等价，不计差异） | 1083 |
 | **类型差异（语义不等）** | **34** |
 | **成员缺失（注解有 · 导出缺，真缺口）** | **0** |
 | **成员新增（导出有 · 注解缺）** | **109** |
 | └ 其中 export 合成补尾 `_tail_*` | 109 |
-| 位面复用声明（dict / overlap / 同偏移变体） | 259 |
-| 已解释·基类区域成员（偏移 < base_size） | 69 |
+| 位面复用声明（dict / overlap / 同偏移变体） | 255 |
+| 已解释·基类区域成员（偏移 < base_size） | 72 |
 | 已解释·vptr/base 声明迁移到 vtables/bases | 13 |
 | 结构 sizeof 不一致 | 0 |
-| `_inline_*` 引用 / 定义 / 引用无定义 / 定义未引用 | 27 / 27 / 0 / 0 |
+| `_inline_*` 引用 / 定义 / 引用无定义 / 定义未引用 | 26 / 27 / 0 / 1 |
 
-**多少类不一致？** 399 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 82 个已解释不计缺口）。
+**多少类不一致？** 398 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 85 个已解释不计缺口）。
 
 ## 2. 成员缺失（注解有 · 导出缺）
 
@@ -46,11 +46,11 @@
 
 | 解释类 | 数量 | 说明 |
 |---|---|---|
-| 基类区域成员 | 69 | 偏移 < base_size：IDB 只在基类声明，派生类不重复 |
+| 基类区域成员 | 72 | 偏移 < base_size：IDB 只在基类声明，派生类不重复 |
 | vptr 声明迁移 | 9 | `__vftable`/`_vftable` 归位 IDB `vtables`/`bases` 字段 |
 | baseclass 声明迁移 | 4 | `baseclass*` 归位 IDB `bases` 字段 |
 
-### 基类区域成员（69）
+### 基类区域成员（72）
 
 | 类 | 偏移键 | 成员 |
 |---|---|---|
@@ -91,6 +91,7 @@
 | CCBRoleState | 76 | m_nState_04C |
 | CCBRoleState | 8 | m_nCurrentRound |
 | CCBRoleState | 96 | m_nState_060 |
+| CCBUI | 0 |  |
 | CEffBase | 4 | m_pEffectSystem |
 | CEffBase | 8 | m_eKind |
 | CEffTrackCustomShape | 172 | m_pTrack |
@@ -111,11 +112,13 @@
 | CEffTrackSParticle | 100 | m_pTrack |
 | CEffTrackSParticle | 104 | m_fTrackSpeed |
 | CEffTrackSParticle | 108 | m_fTrackDecPart |
+| EquipUI | 0 |  |
 | RoleCamera | 28 | m_nStackIdx |
 | RoleCamera | 32 | m_nStackSize |
 | SaleUI | 16 | m_underctrl |
 | SaleUI | 20 | m_bStartNGHEffect |
 | SaleUI | 24 | m_nHuaYingMode |
+| StateUI | 0 |  |
 | TextureLib_Data | 12 | _libfolder |
 | TextureLib_Data | 4 | Seps |
 | TextureLib_Data | 524 | _realNum |
@@ -400,10 +403,10 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 |---|---|
 | dict | 14 |
 | dict+overlap | 1 |
-| dict+overlap+suffix | 2 |
+| dict+overlap+suffix | 1 |
 | overlap | 236 |
-| suffix | 6 |
-| 合计（条目） | 259 |
+| suffix | 3 |
+| 合计（条目） | 255 |
 
 | 类 | 偏移键 | 成员 | 形态 | 导出 type | 备注 |
 |---|---|---|---|---|---|
@@ -446,12 +449,9 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | PalScriptRoleSlotOverlay | 0 | overlay | dict | `_inline_PalScriptRoleSlotOverlay_overlay` | — |
 | RoleAtt | 6 | Remark | dict | `_inline_RoleAtt_Remark` | — |
 | RoleAttRemarkSkills | 290 | skillCount | dict | `_inline_RoleAttRemarkSkills_skillCount` | — |
-| RoleCameraCtrl | 8_1 | m_pVtable_f | suffix | `float` | — |
-| RoleCameraCtrl | 8_2 | m_pVtable_i | suffix | `int` | — |
 | RoleStatePanel | 176064 | m_pSubTab2 | overlap | `void *` | — |
 | RoleSystem | 1316 | m_FrameA | overlap | `UIFrameWnd` | — |
 | RoleSystem | 1572 | m_nTodo_624 | overlap | `UIWnd` | — |
-| RoleSystem | 1684_0 | m_teamSlotOverlay | dict+overlap+suffix | `_inline_RoleSystem_m_teamSlotOverlay` | — |
 | RoleSystem | 3072 | m_teamSlotsB | dict | `_inline_RoleSystem_m_teamSlotsB` | — |
 | RoleSystemTeamSlotOverlay | 4 | m_teamSlots | dict | `_inline_RoleSystemTeamSlotOverlay_m_teamSlots` | — |
 | SceneMgr | 11104 | m_nTodo_61D8 | overlap | `int` | — |
@@ -557,7 +557,6 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | tagCombatTaskData | 88 | m_nEffParam58 | overlap | `float` | — |
 | tagCombatTaskData | 92 | m_nEffParam5C | overlap | `int` | — |
 | tagCombatTaskData | 96 | m_nEffParam3 | overlap | `int` | — |
-| tagNewItem | 12_1 | fMP | suffix | `float` | — |
 | tagPAL3GameState | 0 | m_nEffParamBase0 | overlap | `int` | — |
 | tagPAL3GameState | 104 | m_nEffParam4 | overlap | `int` | — |
 | tagPAL3GameState | 112 | m_nEffParam5 | overlap | `int` | — |
@@ -671,10 +670,14 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 
 | 项 | 数量 |
 |---|---|
-| 引用（成员 type 里的合成名） | 27 |
+| 引用（成员 type 里的合成名） | 26 |
 | 定义（ida_structs 顶层 `_inline_*` 键） | 27 |
 | 引用无定义 | 0 |
-| 定义未被引用 | 0 |
+| 定义未被引用 | 1 |
+
+定义未被引用：
+
+- `_inline_RoleSystem_m_teamSlotOverlay`
 
 ## 8. 逐类差异（成员数 / 偏移 / 类型）
 
@@ -722,7 +725,7 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | CCBStageScene | 109/109 | 0 | 0 | 1 | 0 | 0 |
 | CCBTaskSlot | 9/9 | 0 | 0 | 2 | 0 | 0 |
 | CCBTaskSlot208 | 12/12 | 0 | 0 | 1 | 0 | 0 |
-| CCBUI | 57/57 | 0 | 0 | 1 | 0 | 0 |
+| CCBUI | 58/57 | 0 | 0 | 1 | 0 | 0 |
 | CCBUIPanel | 58/58 | 0 | 1 | 1 | 0 | 0 |
 | CCBUI_funcptr_t | 2/2 | 1 | 0 | 0 | 0 | 0 |
 | CCCTData | 3/3 | 1 | 0 | 0 | 0 | 0 |
@@ -800,7 +803,7 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | EH3_EXCEPTION_REGISTRATION | 4/4 | 2 | 0 | 0 | 0 | 0 |
 | EffectInfo | 4/4 | 2 | 0 | 0 | 0 | 0 |
 | EffectItem | 3/3 | 0 | 1 | 0 | 0 | 0 |
-| EquipUI | 90/90 | 5 | 0 | 0 | 0 | 0 |
+| EquipUI | 91/90 | 5 | 0 | 0 | 0 | 0 |
 | ExternalStatistics | 0/1 | 0 | 0 | 0 | 0 | 1 |
 | FLOATING_SAVE_AREA | 8/8 | 8 | 0 | 0 | 0 | 0 |
 | FLTSTAGE | 2/2 | 1 | 0 | 0 | 0 | 0 |
@@ -873,9 +876,8 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | Role | 47/47 | 0 | 1 | 0 | 0 | 0 |
 | RoleAtt | 35/35 | 16 | 0 | 1 | 0 | 0 |
 | RoleAttRemarkSkills | 1/1 | 0 | 0 | 1 | 0 | 0 |
-| RoleCameraCtrl | 15/15 | 0 | 0 | 2 | 0 | 0 |
 | RoleStatePanel | 10/10 | 1 | 0 | 1 | 0 | 0 |
-| RoleSystem | 152/152 | 1 | 0 | 4 | 0 | 0 |
+| RoleSystem | 151/151 | 1 | 0 | 3 | 0 | 0 |
 | RoleSystemTeamSlotOverlay | 1/1 | 0 | 0 | 1 | 0 | 0 |
 | RoleTask | 5/5 | 1 | 0 | 0 | 0 | 0 |
 | RoleTaskPool | 4/4 | 0 | 2 | 0 | 0 | 0 |
@@ -908,7 +910,7 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | SoundItem | 2/2 | 1 | 0 | 0 | 0 | 0 |
 | SoundMgr | 13/13 | 0 | 2 | 0 | 0 | 0 |
 | SoundSystem | 0/1 | 0 | 0 | 0 | 0 | 1 |
-| StateUI | 66/66 | 2 | 0 | 0 | 0 | 0 |
+| StateUI | 67/66 | 2 | 0 | 0 | 0 | 0 |
 | String | 0/1 | 0 | 0 | 0 | 0 | 1 |
 | SwitchVariable | 1/1 | 1 | 0 | 0 | 0 | 0 |
 | SwordUI | 134/134 | 3 | 0 | 0 | 0 | 0 |
@@ -1060,7 +1062,7 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | tagHeader | 5/5 | 3 | 0 | 0 | 0 | 0 |
 | tagLVITEMA | 10/10 | 1 | 0 | 0 | 0 | 0 |
 | tagNMITEMACTIVATE | 9/9 | 1 | 0 | 0 | 0 | 0 |
-| tagNewItem | 5/5 | 2 | 0 | 1 | 0 | 0 |
+| tagNewItem | 4/4 | 2 | 0 | 0 | 0 | 0 |
 | tagPAL3GameState | 137/137 | 0 | 0 | 72 | 0 | 0 |
 | tagPartical | 18/18 | 1 | 0 | 0 | 0 | 0 |
 | tagQuad | 23/23 | 1 | 0 | 0 | 0 | 0 |
@@ -1086,7 +1088,7 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 
 | 侧 | 数量 | 说明 |
 |---|---|---|
-| 仅导出（IDB 独有） | 310 | 多为 CRT/系统类型（无注解属预期） |
+| 仅导出（IDB 独有） | 311 | 多为 CRT/系统类型（无注解属预期） |
 | 仅注解（导出缺） | 64 | 注解结构未见于导出 ⇒ 整类往返缺口，须查 apply 是否跳过 |
 
 仅注解（导出缺）清单：
