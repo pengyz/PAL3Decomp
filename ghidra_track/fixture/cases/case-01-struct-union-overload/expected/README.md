@@ -14,3 +14,7 @@
 - 地址：annotation 16 位 hex → oracle 8 位短写（norm_addr 同 int，diff 归一）。
 
 - `UNION_Complex_16` ← inline-union 转换产物（变体键=声明序：fval/ival 源序）。
+
+
+## 2026-11-07 同名消歧更新
+build_import_plan 新增同名 set_name 消歧（204 组实证）：撞名组有 class → `cls_name`；同 class 二轮仍撞 → `cls_name_ADDR8`。上表 update/calc 按此规则更新 expected 名（oracle 仍为手写：变化来自命名层有意语义，非机械派生）。

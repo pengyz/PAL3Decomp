@@ -14,6 +14,14 @@
 
 set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_SYSTEM_PROCESSOR X86)
+# 目标字长显式声明：COMPILER_WORKS=FORCED 跳过了 CMake 的 try-compile 探测，
+# CMAKE_SIZEOF_VOID_P 不经探测就是空——CMakeLists 的 32 位 guard（WIN32 && sizeof==4）
+# 会误报（2026-11-07 重建 /tmp/rvc6 实锤；旧 cache 带着历史值掩盖了这一点）。
+set(CMAKE_SIZEOF_VOID_P 4)
+# CMP0091 OLD：MSVC runtime flag 手管（本 toolchain 的 /Zl /D_WINDOWS 已自管）。
+# NEW 行为下 CMake 给每个 target 注入 MSVC_RUNTIME_LIBRARY=MultiThreadedDLL 抽象属性，
+# generate 阶段对 ASM 语言检查失败（2026-11-07 重建 /tmp/rvc6 实锤）。
+set(CMAKE_POLICY_DEFAULT_CMP0091 OLD)
 
 # VC6 SP0 compiler (RTM, cl 12.00.8168) from decomp.me
 get_filename_component(VC6_ROOT "${CMAKE_CURRENT_LIST_DIR}/../tools/compilers/msvc6.0" ABSOLUTE)

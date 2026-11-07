@@ -139,6 +139,22 @@ def build_import_plan(functions=None, structs=None, globals=None, enums=None):
                 _ev[_vk] = _vv   # 非整值原样透传→create_enum 契约层报错（禁静默吞）
         if _ev:
             plan.append({'kind': 'define_enum', 'name': _en, 'values': _ev})
+    # 同名冲突消歧（2026-11-07 根修，204 组实证）：Ghidra 符号表允许多地址同名共存，
+    # 但 C++ 名字空间无重载区分——三个 Load(0x44F610/0x47CB90/0x5062D0) 生成同一裸名
+    # 调用点，C++ 重载解析歧义（C2059/C2660），且 sig 不同合法同名覆盖掉声明。
+    # 规则：组内唯一名保留裸名；撞名组内有 class 的 → cls_name（与 vc6_nested_ns 的
+    # 点号→下划线先例同构）；无 class 的 → name_0044F610（地址消歧——名字不承载
+    # 语义主张，语义主张在 set_func_sig.cls；非伪语义命名）。
+    # 两轮消歧：round1 cls_name / name_ADDR8；round2 对仍撞的（同 class 同名多址——
+    # annotation 归属疑点族，账另记）加地址后缀。addr 归一小写计数（大小写变体
+    # 00469EB0/00469eb0=同址重复 claim，禁误判为撞名）。
+    _addr_norm = lambda a: a.lower()
+    name_uses = {}
+    _seen_addr = {}
+    for _a, _i in functions.items():
+        if isinstance(_i, dict) and _i.get('name') and _i.get('adjudication') != 'rejected' and not _i.get('skip'):
+            name_uses.setdefault(_i['name'], []).append(_a)
+            _seen_addr.setdefault(_addr_norm(_a), []).append(_a)
     for addr, info in sorted(functions.items()):
         if not isinstance(info, dict) or not info.get('name'):
             continue
@@ -147,6 +163,23 @@ def build_import_plan(functions=None, structs=None, globals=None, enums=None):
         if info.get('skip'):
             continue   # [T7③] skip 语义消费（禁当正常 claim）
         name = info['name']
+        if len(name_uses.get(name, ())) > 1:
+            _cls = info.get('class')
+            # addr 形 '0x0044F610'（或 16 位 '0x0000000000401308'）——[2:] 切片后取末 8 位
+            # hex（lstrip('0x') 会吞前导零，parse_variant_key 同款陷阱；16 位形截出 16 位尾巴）
+            name = ('%s_%s' % (_cls, name)) if _cls else ('%s_%s' % (name, addr[2:].upper()[-8:]))
+        # round2: cls_name 仍撞（同 class 同名多址）→ 地址后缀终局消歧
+        _final_uses = {}
+        for _a, _i in functions.items():
+            if not (isinstance(_i, dict) and _i.get('name') and _i.get('adjudication') != 'rejected' and not _i.get('skip')):
+                continue
+            _n = _i['name']
+            if len(name_uses.get(_n, ())) > 1:
+                _c = _i.get('class')
+                _n = ('%s_%s' % (_c, _n)) if _c else ('%s_%s' % (_n, _a[2:]))
+            _final_uses.setdefault(_n, []).append(_a)
+        if len(_final_uses.get(name, ())) > 1:
+            name = '%s_%s' % (name, addr[2:].upper()[-8:])
         sig = honest_signature(info.get('signature') or '', cls=info.get('class'), name=name)
         _op = {'kind': 'set_name', 'addr': addr, 'name': name}
         if info.get('owner'):
