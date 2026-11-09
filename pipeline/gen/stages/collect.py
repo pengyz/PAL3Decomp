@@ -259,6 +259,32 @@ def collect_functions(decomp_dir=None):
             # [死守卫删除 2026-11-01] 对抗审核 F2：L211 已无条件剥，此守卫是死代码
             # 原逻辑：Strip __ovl_XXXX suffix to match header declaration (emit_headers.py does the same)
 
+            # P-A5 (2026-11-09): structs annotation methods[addr].name 覆盖 decomp 名。
+            # IDA 错名实证: UIListBox 0x43DE90(jmp 0x43dea0=AddColumn 的 5 字节 thunk)
+            # 被命名为 Destroy,与真体 0x43E520(vtable 槽)同名 → C2084。
+            try:
+                try:
+                    import annotation_view as _av_p5
+                except ImportError:
+                    from pipeline.gen import annotation_view as _av_p5
+                _sp5 = _av_p5.struct_by_class(cls, store=store)
+                _anm5 = (_sp5.get('methods', {}) or {}).get(addr) if _sp5 else None
+                if _anm5 is None and _sp5:
+                    _au = (str(addr).upper().replace('0X', '0x'))
+                    _methods5 = _sp5.get('methods', {}) or {}
+                    for _k5, _v5 in _methods5.items():
+                        if str(_k5).upper() == _au:
+                            _anm5 = _v5
+                            break
+                _an5 = _anm5.get('name') if isinstance(_anm5, dict) else None
+                if _an5 and _an5 != method and 'thunk' in str(_anm5.get('name_source', '')) + str(_anm5.get('name_note', '')):
+                    # 体文本定义行同步改名(stage1 重建按 ctx.method 搜定义行——
+                    # 不同步则搜不到 → 保留旧名 → C2084 复活)
+                    code = code.replace('%s::%s(' % (cls, method), '%s::%s(' % (cls, _an5), 1)
+                    code = code.replace('%s::%~%s(' % (cls, method), '%s::%~%s(' % (cls, _an5), 1)
+                    method = _an5
+            except Exception:
+                pass
             by_class[cls].append({
                 'name': '%s::%s' % (cls, method),
                 'method': method,

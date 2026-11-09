@@ -164,9 +164,10 @@
    "evidence_level": "unverified"
   },
   "0x0043DE90": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "name": "Destroy_thunk_3de90",
+   "signature": "void __thiscall(UIListBox *this)",
+   "name_source": "IDA取证 2026-11-09",
+   "name_note": "IDA错名Destroy(真Destroy=0x0043E520,vtable槽引用)。0x43de90实证=e9 0b000000 jmp 0x43dea0(AddColumn)的5字节转发thunk——保持体生成(F20 byte-match),addr后缀消歧避免C2084"
   },
   "0x0043DEA0": {
    "name": "AddColumn",

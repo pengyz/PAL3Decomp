@@ -1366,6 +1366,34 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A4 (2026-11-09) Hex-Rays 泄漏的未声明路径缓冲: sprintf(Buffer,...) 用了
+    #   local_vars 未含的标识符(IDA decomp 缺陷, CCBAttackSequen InitCombatSlot 实证)。
+    #   体引用 Buffer 且无声明 → 函数定义行后合成 char Buffer[260](MAX_PATH 惯例)。
+    if re.search(r'\bsprintf\(\s*Buffer\s*,', code) and not re.search(r'\bchar\s+Buffer\s*\[', code):
+        _lines_b = code.split('\n')
+        for _bi, _bl in enumerate(_lines_b):
+            _s = _bl.strip()
+            # 函数定义行: ')' 结尾(可带行尾{)且下一行(或本行)以 '{' 开——K&R 分行风格实证
+            _is_def = (_s.endswith(')') or _s.endswith('{')) and '(' in _s and \
+                not _s.startswith(('if', 'for', 'while', 'switch', 'else', 'return', '//')) and \
+                '=' not in _s.split('(')[0]
+            _next_open = _bi + 1 < len(_lines_b) and _lines_b[_bi + 1].strip().startswith('{')
+            if _is_def and (_s.endswith('{') or _next_open):
+                _ins = _bi + 2 if _next_open else _bi + 1
+                _lines_b.insert(_ins, '    char Buffer[260]; /* P-A4: Hex-Rays leaked undeclared path buffer */')
+                code = '\n'.join(_lines_b)
+                break
+
+    # P-A2 (2026-11-09) 数据成员的基类限定剥除: obj.Class::dataField → obj.dataField
+    #   (Hex-Rays 基类限定泄漏到数据访问;方法限定 Class::Method( 不受影响——
+    #    那些是显式分派语义,ROWTABLE 标记依赖)。判据: 点形态`.`+限定名大写开头。
+    code = re.sub(r'\.([A-Z]\w*)::(?=[A-Za-z_]\w*\b(?![\s]*\())', '.', code)
+
+    # P-A3 (2026-11-09) _vftable 虚表字段名泄漏: IDA把vptr当具名字段访问,
+    #   C++生成后virtual方法自带隐式vptr,无_vftable成员 → 改 *(void**)expr。
+    #   实测 CGameData.cpp:284 C2535/_vftable not a member。
+    code = re.sub(r'\b([A-Za-z_][\w]*)->_vftable\b', r'*(void **)\1', code)
+
     # UIScene::GetSys is a static method but Hex-Rays calls it without scope.
     code = re.sub(r'(?<!::)\bGetSys\s*\(', 'UIScene::GetSys(', code)
 
