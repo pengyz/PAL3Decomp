@@ -1,6 +1,6 @@
 {
-  "name": "20261109_130719",
-  "timestamp": "2026-11-09T13:07:19.046633",
+  "name": "20261109_165821",
+  "timestamp": "2026-11-09T16:58:21.896596",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -150,8 +150,8 @@
           "line": 2619
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5D8E98' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 4948
         },
         {
@@ -160,23 +160,23 @@
           "line": 5799
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5D8EC8' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 5902
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5D8F0C' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 7048
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5D8EF8' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 7065
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5D8EE0' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 7075
         },
         {
@@ -261,8 +261,8 @@
           "line": 1937
         },
         {
-          "code": "C2065",
-          "msg": "'dword_5DB6C4' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
           "line": 1995
         },
         {
@@ -401,8 +401,8 @@
           "line": 6905
         },
         {
-          "code": "C2065",
-          "msg": "'pszRoleDir' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'sprintf' : cannot convert parameter 2 from 'int' to 'const char *'",
           "line": 7031
         },
         {
@@ -957,7 +957,7 @@
     },
     "pal3/src/Combat/CCBUI.cpp": {
       "status": "fail",
-      "error_count": 32,
+      "error_count": 33,
       "errors": [
         {
           "code": "C2664",
@@ -1103,6 +1103,11 @@
           "code": "C2039",
           "msg": "'ShowWindow' : is not a member of 'PalScript'",
           "line": 5203
+        },
+        {
+          "code": "C2065",
+          "msg": "'off_5706CC' : undeclared identifier",
+          "line": 5219
         },
         {
           "code": "C2664",
@@ -1263,8 +1268,8 @@
           "line": 671
         },
         {
-          "code": "C2065",
-          "msg": "'pszRoleDir' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'strlen' : cannot convert parameter 1 from 'int' to 'const char *'",
           "line": 1642
         },
         {
@@ -1934,7 +1939,7 @@
     },
     "pal3/src/GameBase/PAL3.cpp": {
       "status": "fail",
-      "error_count": 53,
+      "error_count": 50,
       "errors": [
         {
           "code": "C2664",
@@ -2022,11 +2027,6 @@
           "line": 807
         },
         {
-          "code": "C2065",
-          "msg": "'flt_C1096C' : undeclared identifier",
-          "line": 845
-        },
-        {
           "code": "C2039",
           "msg": "'UIPostUpdate' : is not a member of 'gbSound2DNode'",
           "line": 884
@@ -2082,11 +2082,6 @@
           "line": 1736
         },
         {
-          "code": "C2065",
-          "msg": "'pszRoleDir' : undeclared identifier",
-          "line": 2433
-        },
-        {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
           "line": 2436
@@ -2105,11 +2100,6 @@
           "code": "C2036",
           "msg": "'void *' : unknown size",
           "line": 2453
-        },
-        {
-          "code": "C2065",
-          "msg": "'byte_C10A0E' : undeclared identifier",
-          "line": 2455
         },
         {
           "code": "C2664",
@@ -2907,14 +2897,14 @@
       "error_count": 10,
       "errors": [
         {
+          "code": "C2065",
+          "msg": "'off_56B794' : undeclared identifier",
+          "line": 277
+        },
+        {
           "code": "C2664",
           "msg": "'void (class gbTexture ** ,const char *,char *,class LineupUI *,char *,int,int)' : cannot convert parameter 2 from 'void *' to 'const char *'",
           "line": 2474
-        },
-        {
-          "code": "C2065",
-          "msg": "'byte_C10A0E' : undeclared identifier",
-          "line": 2540
         },
         {
           "code": "C2440",
@@ -3158,8 +3148,8 @@
           "line": 142
         },
         {
-          "code": "C2065",
-          "msg": "'pszRoleDir' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'Initialize_06A0' : cannot convert parameter 2 from 'int' to 'char *'",
           "line": 663
         },
         {
@@ -3660,35 +3650,9 @@
       "errors": []
     },
     "pal3/src/Misc/SystemUI.cpp": {
-      "status": "fail",
-      "error_count": 5,
-      "errors": [
-        {
-          "code": "C2065",
-          "msg": "'dword_56F22C' : undeclared identifier",
-          "line": 1450
-        },
-        {
-          "code": "C2065",
-          "msg": "'dword_56F224' : undeclared identifier",
-          "line": 1455
-        },
-        {
-          "code": "C2065",
-          "msg": "'dword_56F230' : undeclared identifier",
-          "line": 1461
-        },
-        {
-          "code": "C2065",
-          "msg": "'dword_56F228' : undeclared identifier",
-          "line": 1466
-        },
-        {
-          "code": "C2065",
-          "msg": "'dword_56F234' : undeclared identifier",
-          "line": 1475
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/TaskBookUI.cpp": {
       "status": "ok",
@@ -4165,8 +4129,13 @@
     },
     "pal3/src/Misc/UITitle_YXXX.cpp": {
       "status": "fail",
-      "error_count": 1,
+      "error_count": 2,
       "errors": [
+        {
+          "code": "C2065",
+          "msg": "'off_56B898' : undeclared identifier",
+          "line": 327
+        },
         {
           "code": "C2664",
           "msg": "'HandleDllEntryUITitle' : cannot convert parameter 1 from 'struct HINSTANCE__ *' to 'int'",
@@ -4981,7 +4950,7 @@
     },
     "pal3/src/Role/RoleSystem.cpp": {
       "status": "fail",
-      "error_count": 48,
+      "error_count": 47,
       "errors": [
         {
           "code": "C2109",
@@ -5159,14 +5128,9 @@
           "line": 4113
         },
         {
-          "code": "C2065",
-          "msg": "'pszRoleDir' : undeclared identifier",
+          "code": "C2664",
+          "msg": "'_strcmpi' : cannot convert parameter 2 from 'int' to 'const char *'",
           "line": 6300
-        },
-        {
-          "code": "C2065",
-          "msg": "'byte_C10A0E' : undeclared identifier",
-          "line": 6339
         },
         {
           "code": "C2440",
@@ -6074,11 +6038,6 @@
           "line": 326
         },
         {
-          "code": "C2065",
-          "msg": "'flt_C1096C' : undeclared identifier",
-          "line": 862
-        },
-        {
           "code": "C2446",
           "msg": "'<' : no conversion from 'void *' to 'int'",
           "line": 1615
@@ -6562,6 +6521,11 @@
           "code": "C2664",
           "msg": "'void (unsigned int *,unsigned long)' : cannot convert parameter 1 from 'unsigned long *' to 'unsigned int *'",
           "line": 13262
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned int *,unsigned long)' : cannot convert parameter 1 from 'unsigned long *' to 'unsigned int *'",
+          "line": 13313
         }
       ]
     },
@@ -6572,72 +6536,72 @@
         {
           "code": "C2734",
           "msg": "'SrcStr' : const object must be initialized if not extern",
-          "line": 109
+          "line": 112
         },
         {
           "code": "C2117",
           "msg": "' %s' : array bounds overflow",
-          "line": 162
+          "line": 165
         },
         {
           "code": "C2117",
           "msg": "'p%d' : array bounds overflow",
-          "line": 184
+          "line": 188
         },
         {
           "code": "C2117",
           "msg": "'end' : array bounds overflow",
-          "line": 210
+          "line": 214
         },
         {
           "code": "C2117",
           "msg": "'End' : array bounds overflow",
-          "line": 269
+          "line": 273
         },
         {
           "code": "C2117",
           "msg": "'cvd' : array bounds overflow",
-          "line": 313
+          "line": 317
         },
         {
           "code": "C2117",
           "msg": "'pol' : array bounds overflow",
-          "line": 314
+          "line": 318
         },
         {
           "code": "C2040",
           "msg": "'aQ07' : 'char []' differs in levels of indirection from 'int'",
-          "line": 321
+          "line": 325
         },
         {
           "code": "C2117",
           "msg": "'��Ч' : array bounds overflow",
-          "line": 628
+          "line": 632
         },
         {
           "code": "C2117",
           "msg": "'%lu' : array bounds overflow",
-          "line": 703
+          "line": 705
         },
         {
           "code": "C2117",
           "msg": "'%2d' : array bounds overflow",
-          "line": 759
+          "line": 766
         },
         {
           "code": "C2117",
           "msg": "'yaw' : array bounds overflow",
-          "line": 781
+          "line": 789
         },
         {
           "code": "C2022",
           "msg": "'2118' : too big for character",
-          "line": 918
+          "line": 927
         },
         {
           "code": "C2117",
           "msg": "'�鿴/�޸ĺø�' : array bounds overflow",
-          "line": 928
+          "line": 937
         }
       ]
     }
