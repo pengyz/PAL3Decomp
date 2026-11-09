@@ -718,3 +718,10 @@
 | `UIScenePanel::StopAllSounds` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, _DWORD, int))(*(_DWORD *)v29 + 8))(v29, LODWORD(fFade), nFlags)` |
 | `UIWnd::RenderText` | inline | `UIWnd` | 12 | name_declared_at_other_address | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
 | `CScreenMode::sub_485230` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&(*v49)->gbChain1DNode + 24))(*v49, 0)` |
+| `CCBUI::Destroy_64D0` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&m_pAttackSequenBack->UIWnd + 20))(m_pAttackSequenBack, 1)` |
+| `CCBUI::Destroy_64D0` | inline | `UIProgressBar` | 20 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int))(*(_DWORD *)&v5->UIWnd + 20))(v5, 1)` |
+| `CCBUI::Destroy_64D0` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1)` |
+| `CCBUI::Destroy_64D0` | inline | `UIStaticCB` | 20 | self_arg_mismatch | `(*(void ( **)(UIStaticCB *, int))(*(_DWORD *)&m_pTrickName->UIWnd + 20))(m_pTrickName, 1)` |
+| `CCBUI::Destroy_64D0` | inline | `CCBControlWindow` | 20 | self_arg_mismatch | `(*(void ( **)(CCBControlWindow *, int))(*(_DWORD *)&(*p_m_pMain)->UIWnd + 20))(*p_m_pMain, 1)` |
+| `CCBUI::Destroy_9F50` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&(*m_pBattleFieldAttr)->UIWnd + 20))(*m_pBattleFieldAttr, 1)` |
+| `UIListBox::OnMessage_E480` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |

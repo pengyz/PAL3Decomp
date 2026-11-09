@@ -12,7 +12,7 @@ APPLY: updating annotations in PAL3.exe.i64 ...
     PalScriptWaitTimer       size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
     ScriptObj                size=4        无 virtual、无 +0x0 vptr 也无 _gap_000
 [A] FAIL：__vftable 出现在真实 code 位置 6 行 / 1 个文件（**结构性**指标：活代码位置的 __vftable 残留行数；不等于编译错误数 —— F11/F12 之后这些行多数已不再是错误）
-    pal3\src\Script\PalScript.cpp                   6 行（222,941,971,974,980,6755）
+    pal3/src/Script/PalScript.cpp                   6 行（222,949,979,982,988,6773）
 [B] PASS：117 个 sub_ 符号的声明/调用形参数全部一致（另 104 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码

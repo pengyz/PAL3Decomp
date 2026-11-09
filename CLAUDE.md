@@ -215,6 +215,7 @@ idb_xrefs(database="<session_id>", address="0x401000")
 | **任何"无证据/无冲突"结论** | 语义/类型证据（**三形态**）| `python tools/audit_member_semantics.py --class <Cls>` | 否定结论必须来自**权威批量原始扫描** ✓ |
 | **函数归属改动** | 归属证据（**可证**）| `python tools/audit_attribution_evidence.py` | 只看 contradiction 告警，人工裁定 |
 | **任何修复提交前** | **证物报告** | `python tools/verify_fix.py --class <Cls>` | 成员偏移+**sizeof**+传递依赖+端到端+基线；有问题 ⇒ 不提交 |
+| **任何二进制裁决/审计结论确立时** | **证据台账登记** | `python tools/evidence_ledger.py add|resolve|query` | 结论无 ev id ⇒ 不得被后续 annotation 修改引用；台账只存指针不复制内容 |
 | **annotation 批量改动** | **四道门** | ①布局等价 ②`loop --expect-errors`不增 ③`l1`不降 ④证据自校验 | 缺一不可 ⇒ 见 `annotation-audit` skill |
 | **Phase 2 手工 fix 落盘** | **phase2 retain check** | `python tools/phase2_retain.py check` | 禁直改 `pal3/src`（三重灭失零留存）⇒ `adopt`→改 `phase2/overlay`→`apply`；PASS 才放行 |
 | **probe all 后（自动）** | **链接层盲区探针** | `python pipeline/link_probe.py --check`（已接 `cli.py probe all` 链尾） | 治「S2 只编译不链接」盲区（LNK2005 重复符号 / LNK2001·2019 未解析外部）。棘轮：LNK2005 增长 或 单元未增而 unresolved 增长 ⇒ exit 1 且**不刷新** `data/status/link_census.json`；重锚须 `--rebaseline "<理由>"`。单元增长期 unresolved 增长 = advisory（视野扩大，非退化）|
@@ -404,3 +405,25 @@ MSVC 在单个编译单元错误数超过 ~100 时以 **C1003** 停住（**2026-
 
 管线、annotation、IDA 查询、编译错误分析 → 加载 `pal3-pipeline` skill
 annotation 的**布局/类型/名字/归属审计**（DAG 序、三形态证据、四道基线门、盲区与反模式）→ 加载 `annotation-audit` skill
+
+## 任务路由表（2026-11-09 新增）
+
+**借鉴 REA「Route the target first + Evidence 账本」**：接到任务先按类型查表选路径，再动手；
+每行末列是**证据义务**——不登记等于没做。证据统一登记 `tools/evidence_ledger.py`
+（账本 `data/status/evidence_ledger.json`，只存指针不复制内容——防双副本分叉，
+同 `docs/knowledge/gotcha_dual_copy_table_divergence.md` 的教训）。
+
+**三条台账纪律**：
+1. **引用结论必须带 ev id**（进 commit message / 代码注释 / 报告）——与「Rn 引用必须带文件路径」同构；
+2. **复用优先**：二进制裁决前先 `python tools/evidence_ledger.py query --subject <名>`，已有结论不重复考古；
+3. **summary-first**：query 默认只回 id+等级+状态+一句话结论，`--full` 才展开证据指针。
+
+| 任务类型 | 入口动作 | 工具链 | 证据义务 |
+|---|---|---|---|
+| 查函数行为/归属/xref（二进制裁决） | 先查台账，再开 IDA | idapro MCP 优先（断连降级 objdump，恢复后交叉复核） | 结论 `add`（authority 按上方证据等级表） |
+| 修改 annotation | 先查台账 + `cli.py status` 预检 | 四道门 → `verify_fix` 证物报告 | 所依据结论须有 ev id；完成后 `resolve` 相应 open 项 |
+| 修编译错误 | 病灶层三问（答不出不许动手） | `error_classifier --summary` | 优先 annotation_fix 桶；定位实测数字写进被改代码旁注释 |
+| match 退化 / 字节差异分析 | `match` 输出 `[metric]` 行当场读（三限定） | `compare_pal3.py` partial diff | 走「衰退纪律」：先分析定位再决策，禁立即回退 |
+| 「无证据/无冲突」类否定结论 | `audit_member_semantics --class <Cls>` 权威批量扫描 | `audit_attribution_evidence.py`（只看 contradiction） | 否定结论 `add`（authority=B，3+ 交叉确认） |
+| 函数语义命名 / 改名 | `tools/misattribution_ledger.py` A/B/C 分桶 | 伪语义命名禁令（`_todo_` 保底） | 桶内逐条裁决，禁止批量跳过 C 桶 |
+| 新会话冷启动 | `cli.py status` + `query --status open` | 复用优先，禁止重复考古 | — |
