@@ -130,9 +130,13 @@ class DataStore:
         # ——原读 pal3/src/globals.h ✗✗ 读错文件 ⇒ unk_* 被误标"已声明" ⇒ undef
         # 误清空 ⇒ 就地 extern 不生成 ⇒ 但 include 件无声明 ⇒ C2065 ×1114
         # （gotcha_dual_copy_table_divergence 同族 ✓）。
-        globals_h = self.project_root / "include" / "pal3" / "gen" / "globals.h"
+        # [对抗复核修正 2026-11-09] 优先序反转：include/pal3/gen/globals.h 是
+        # 10-17 死副本（1028 externs vs pal3/src 2868），R90 后全部消费者只认
+        # pal3/src（emit_cpp.py:801 注记同源结论）——旧优先序让 declared_globals
+        # 消杀集被十月旧名毒化（stale-only 70 名污染 / fresh 1910 名缺席）。
+        globals_h = self.project_root / "pal3" / "src" / "globals.h"
         if not globals_h.exists():
-            globals_h = self.project_root / "pal3" / "src" / "globals.h"  # 回退（旧址）
+            globals_h = self.project_root / "include" / "pal3" / "gen" / "globals.h"  # 回退（旧址）
         if globals_h.exists():
             for line in open(globals_h, encoding='utf-8', errors='replace'):
                 m = re.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', line)

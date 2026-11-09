@@ -4138,14 +4138,27 @@ def generate_globals():
             # 头/定义两侧必须同源解析，否则 extern int vs 定义 void*/int[5] 相撞 C2040）
             # P-A6b (2026-11-09): forced 名是 IDA 默认名(dword_56F22C)；语义改名后
             # (g_HelpNoteIdxCol2)复活判定按名失配 → extern 消失。补地址维度判定。
+            # [对抗复核修正 2026-11-09 深夜] P-A5g 曾把查找键改大写(%08X)——
+            # 构建侧(:4412) ann 字典键全为小写(:08x) → 查找永不命中 → cpp 链
+            # orig_type 复活失效(+5 C2040/C2371 实证)。此处恢复小写查找，
+            # 复活对账用地址维度(IDA 默认名族，大小写无关——键族按 int 地址生成)。
             _addr_int = int(addr_str, 16)
-            _ida_names = {'%s_%X' % (p, _addr_int) for p in
+            _ida_names = {'%s_%x' % (p, _addr_int) for p in
                           ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk', 'asc', 'qword')}
-            if name in _forced_names or (_ida_names & _forced_names):
+            _forced_lower = {n.lower() for n in _forced_names}
+            if name in _forced_names or (_ida_names & _forced_lower):
                 typ = g.get('orig_type') or _prefix_type(name) or 'int'
                 g = dict(g, type=typ)
             else:
                 continue  # known-unnameable: don't emit extern declaration
+        # P-A8 (2026-11-09): aXxx(IDA 字符串数组惯例)同源类型校正——cpp 定义链
+        # (generate_globals_cpp, 判据同款 ^a[A-Z])按 exe 字符串发 char[] 定义,
+        # h 侧若按 export 的 int 发 extern → 头 int vs 定义 char[] = C2040
+        # (aQ07 实证: globals.h:1944 extern int vs globals.cpp:320 char aQ07[])。
+        if re.match(r'^a[A-Z]', name) and typ == 'int':
+            typ = 'char[]'
+            g = dict(g, type=typ)
+
         # Skip globals with :: in type (PDB artifacts like Concurrency::details::VirtualProcessor)
         # These types don't exist in VC6 and cause C2653 errors
         if '::' in typ:
@@ -4445,7 +4458,7 @@ def generate_globals_cpp():
         addr = int(addr_s, 16)
         nm = info.get('name', '')
         tp = info.get('type', '')
-        ann_key = '0x%08X' % addr  # P-A5g: 大写归一(原 f-string 小写x → 键永不命中 → override 从未生效)
+        ann_key = '0x%08x' % addr  # [对抗复核修正] 构建侧(:4412)键为 :08x 小写——P-A5g 曾改 %08X 大写致查表永不命中(name覆盖/ann skip过滤/orig_type复活三处全灭, +5 C2040/C2371 实证)
         ann_info = ann.get(ann_key, {})
         if info.get('_synthesized'):
             ann_info = {}
