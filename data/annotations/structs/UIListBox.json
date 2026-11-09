@@ -244,10 +244,11 @@
    "evidence_level": "unverified"
   },
   "0x0043E480": {
-   "name": "OnMessage",
+   "name": "OnMessage_E480",
    "signature": "int __thiscall(int height, int nVal, int nVal2)",
    "ordinal": 6,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "name_note": " | 2026-11-09 C2084/same_name消歧: UIListBox虚槽OnMessage由继承槽(0x00451AA0)占据,本址在第二vtable自有槽,消歧名"
   },
   "0x0043E520": {
    "name": "Destroy",
@@ -589,11 +590,12 @@
    "adjudication": "rejected"
   },
   "0x00454590": {
-   "name": "OnMessage",
+   "name": "OnMessage_4590",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
    "evidence_level": "unverified",
-   "adjudication": "rejected"
+   "adjudication": "rejected",
+   "name_note": " | 2026-11-09 消歧: 与B面命名OnMessage_4590趋同(thiscall mov ecx,this实证)"
   },
   "0x0046B4B0": {
    "name": "_todo_0046B4B0",
@@ -627,11 +629,6 @@
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004518E0）⇒ 目标名 _sdtor_28 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true
-  },
-  "0x00451aa0": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(UIListBox *this)",
-   "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
   }
  },
  "vtables": [

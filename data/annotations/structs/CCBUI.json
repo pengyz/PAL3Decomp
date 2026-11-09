@@ -875,13 +875,6 @@
    "declaration_only": true,
    "adjudication": "rejected"
   },
-  "0x005164D0": {
-   "name": "Destroy_64D0",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  },
   "0x00519360": {
    "name": "_scalar_dtor_9360",
    "signature": "void __thiscall(BOOL bShow)",
@@ -918,13 +911,6 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed"
-  },
-  "0x00519F50": {
-   "name": "Destroy_9F50",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json) | multiclaim 裁决 2026-11-03: 败于 CCBFiveNimbusWindow（uniq=3）",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
   },
   "0x0051A090": {
    "name": "AddResultWindowAni",
@@ -1074,6 +1060,18 @@
    "name": "DlgProcCameraConfig",
    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
+  },
+  "0x005164D0": {
+   "name": "Destroy_64D0",
+   "signature": "void __thiscall()",
+   "name_source": "same-name消歧 + 2026-11-09 复核",
+   "name_note": "CCBUI虚链成员(CCBProtectWindow vtable继承槽指向);B面: 调CCBRoleState::Destroy+清子件=dtor族逻辑。与0x0043D920同族消歧"
+  },
+  "0x00519F50": {
+   "name": "Destroy_9F50",
+   "signature": "void __thiscall()",
+   "name_source": "same-name消歧 + 2026-11-09 复核",
+   "name_note": "CCBUI自有虚槽×2(双vtable引用);B面: dtor族逻辑。与CCBFiveNimbusWindow:0x004438F0同族消歧"
   }
  },
  "base_size": 72,
