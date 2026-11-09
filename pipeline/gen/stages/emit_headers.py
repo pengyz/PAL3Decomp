@@ -1082,6 +1082,25 @@ def collect_methods():
                 cls, method = _r91
         if not cls or not method:
             continue
+        # P-A5h (2026-11-09): structs annotation methods[addr].name 覆盖 decomp 错名。
+        # 与 stages/collect.py P-A5 同源裁决（头/体名字必须同源——否则体改名而
+        # 头无声明 → C2039 is not a member，UIListBox Destroy_thunk_3de90 实证）。
+        try:
+            import annotation_view as _avh
+            from data import store as _store_p5h
+            _sph = _avh.struct_by_class(cls, store=_store_p5h)
+            _anh = (_sph.get('methods', {}) or {}).get(addr) if _sph else None
+            if _anh is None and _sph:
+                _auh = str(addr).upper().replace('0X', '0x')
+                for _kh, _vh in (_sph.get('methods', {}) or {}).items():
+                    if str(_kh).upper() == _auh:
+                        _anh = _vh
+                        break
+            _anh_name = _anh.get('name') if isinstance(_anh, dict) else None
+            if _anh_name and _anh_name != method and                     'thunk' in str(_anh.get('name_source', '')) + str(_anh.get('name_note', '')):
+                method = _anh_name
+        except Exception as _e5h:
+            print('[P5H-EXC] %s: %s' % (addr, _e5h))
         # [T23-F1] 标量删除析构（dtor 名 + sig 含 this 外形参）⇒ _sdtor_call_dtor
         # 形（与 stage1 定义侧一致；MSVC6 拒绝 ~X(int)（C2524 实测））。保留
         # flags 形参（A 级：0x411bd8 test BYTE PTR [esp+0x8],0x1 读栈槽）。
