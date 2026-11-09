@@ -2471,20 +2471,5 @@
   "alt_name": "Update_1F70",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
- },
- "0x00404760": {
-  "name": "PAL3_init_fn",
-  "signature": "void __cdecl(void *param_1)",
-  "note": "fn name PAL3 hides struct PAL3 type name (C++ name hiding); rename to avoid collision. Body: PAL3 ctor wrapper. 2026-11-08."
- },
- "0x00553041": {
-  "name": "RegisterAtExit",
-  "signature": "int __cdecl(void *param_1)",
-  "note": "Registers cleanup handler (callers pass &LAB_xxxx code labels); calls FUN_00552fd4, returns (result!=0)-1. Evidence: 3 call sites pass function ptrs, body is a 2-line forward. 2026-11-09."
- },
- "0x00553627": {
-  "name": "RegisterInputCallbacks",
-  "signature": "void __cdecl(unsigned int param_1, unsigned int param_2, int param_3, void *param_4, void *param_5)",
-  "note": "Registers paired acquire/unacquire callbacks for input devices. Callers: (pThis+4, 0xa4, 2, UnacquireJoystick, AcquireKeyboard), (pThis+0x14c, 0x10, 2, UnacquireMouse, AcquireJoystick). ret 0x14=5 stack args. 2026-11-09."
  }
 }
