@@ -44,7 +44,7 @@
 #define HIBYTE(x)   (*(((_BYTE*)&(x))+(sizeof(x)-1)))
 #define LOWORD(x)   (*((_WORD*)&(x)))
 #define HIWORD(x)   (*(((_WORD*)&(x))+1))
-// 挂账⑥ C2065 补 2026-10-06：IDA 符号字宏（HIWORD 同款解引用形——位保持）
+// 挂账⑥ C2065 补 2026-10-06：IDA 符号字宏（HIWORD 同款解引用形——位保持） 
 #define SLOWORD(x)  (*(((__int16*)&(x))))
 #define SHIWORD(x)  (*(((__int16*)&(x))+1))
 // 挂账⑥ 2026-10-06：三方 Bink API 声明（调用点 2 参证：handle+volume）——无址导入表形
@@ -99,17 +99,17 @@ static void *retaddr = 0;
 
 // CRT 前向声明（T145）。A 级证据：PAL3.exe@0x55434F
 //   `6a 19` push 0x19 ; `e8 1c 0e 00 00` call 0x555172 ; `59` pop ecx ; `c3` ret
-//   ⇒ caller-clean = __cdecl，1 个 int 形参，void 返回。
-//   VC6 公开头未声明该符号 ⇒ RenderTarget2.cpp:3262 C2065。
+//   ⇒ caller-clean = __cdecl，1 个 int 形参，void 返回。 
+//   VC6 公开头未声明该符号 ⇒ RenderTarget2.cpp:3262 C2065。 
 extern "C" void __cdecl _amsg_exit(int);
 #define SLODWORD(x) (*((_DWORD*)&(x)))
 #define SHIDWORD(x) (*(((_DWORD*)&(x))+1))
 #define COERCE_FLOAT(x) (*(float*)&(x))
 #define COERCE_DOUBLE(x) (*(double*)&(x))
 // [COERCE_INT 补宏 2026-10-16] 词法产物 `COERCE_INT(x)` 原 0 定义/2+ 引用（宏缺口）：
-// 语义=**浮点位重解释为 int**（COERCE 族逆向；实测 CCBRoleState:1864 等 4 站
-// `COERCE_INT(*(float *)(...+916))` = float 槽位传 int 形参）。同族 rvalue 教训：
-// 宏内取址仅限左值；rvalue 用 _pal3_coerce_i32 helper（取值传参）。
+// 语义=**浮点位重解释为 int**（COERCE 族逆向；实测 CCBRoleState:1864 等 4 站 
+// `COERCE_INT(*(float *)(...+916))` = float 槽位传 int 形参）。同族 rvalue 教训： 
+// 宏内取址仅限左值；rvalue 用 _pal3_coerce_i32 helper（取值传参）。 
 #define COERCE_INT(x) (*(int*)&(x))
 #define __PAIR64__(high, low) (((unsigned __int64)(high) << 32) | (unsigned int)(low))
 
@@ -119,18 +119,18 @@ extern "C" void __cdecl _amsg_exit(int);
 // 下面用**取值传参的 inline 函数**替代：形参本身即 lvalue ⇒ 语义等价（按位重解释）， 
 // 且 __forceinline 保证与宏一致的零开销（MSVC6 支持 __forceinline）。 
 // ⚠️ 名字刻意避开双下划线开头（那是实现保留命名空间）。 
-// [F-CG#15 回归修 2026-10-15] 模板化（任意实参型保位）：非模板版签名过窄——
-// 指针/cast 形实参（`(UIBigMap *)&x` 等）过 `unsigned long` 断型 C2664（实测
-// UIBigMap.cpp:300）；模板取值传参 = 形参 lvalue + 位重解释 ⇒ 与宏语义等价且
-// 覆盖全型。双参版本（f64 对 32 位实参的 8 字节读）与原宏同语义（刻意保留）。
+// [F-CG#15 回归修 2026-10-15] 模板化（任意实参型保位）：非模板版签名过窄—— 
+// 指针/cast 形实参（`(UIBigMap *)&x` 等）过 `unsigned long` 断型 C2664（实测 
+// UIBigMap.cpp:300）；模板取值传参 = 形参 lvalue + 位重解释 ⇒ 与宏语义等价且 
+// 覆盖全型。双参版本（f64 对 32 位实参的 8 字节读）与原宏同语义（刻意保留）。 
 template<class T> __forceinline float  _pal3_coerce_f32(T v) { return *(float *)&v; }
 template<class T> __forceinline double _pal3_coerce_f64(T v) { return *(double *)&v; }
 __forceinline long   _pal3_slo_dword(unsigned __int64 v) { return (long)(unsigned long)v; }
 __forceinline long   _pal3_shi_dword(unsigned __int64 v) { return (long)(unsigned long)(v >> 32); }
-// [F-CG#19 2026-10-15] (POINT)__PAIR64__(H,L) 的位等价 helper：宏低 32=L=POINT.x、
-// 高 32=H=POINT.y（PtInRect 按值传 8B）。MSVC6 拒 __int64→struct 直转（C2440/C2102）。
+// [F-CG#19 2026-10-15] (POINT)__PAIR64__(H,L) 的位等价 helper：宏低 32=L=POINT.x、 
+// 高 32=H=POINT.y（PtInRect 按值传 8B）。MSVC6 拒 __int64→struct 直转（C2440/C2102）。 
 // [COERCE_INT 补宏 2026-10-16] rvalue 形 helper（同 COERCE_FLOAT 族教训：宏内取址
-// 仅限左值 ⇒ rvalue 走取值传参形）。位等价：float 位模式 → int 同位。
+// 仅限左值 ⇒ rvalue 走取值传参形）。位等价：float 位模式 → int 同位。 
 __forceinline int    _pal3_coerce_i32(float v) { return *(int *)&v; }
 __forceinline POINT  _pal3_pair_to_point(unsigned int high, unsigned int low) {
     POINT p; p.x = (long)low; p.y = (long)high; return p;
@@ -185,17 +185,17 @@ void UIQuadManager_Reset();
 
 // gbengine imports used across many files
 void * __cdecl gbLoadLightFile(const char *szFilename);
-// [T10] 形参实证：PAL3::InitGFX@0x404FF0 调用点 `0x40500e push 0xbfd6c8` 后
+// [T10] 形参实证：PAL3::InitGFX@0x404FF0 调用点 `0x40500e push 0xbfd6c8` 后 
 // `0x405013 call [0x56a1fc]`（gbengine 导入）——0xbfd6c8 = &g_DrvInfo（globals.json
-// 结构体全局，含 display/window 参数）⇒ 实参是结构体指针，`int mode` 为占位误标。
+// 结构体全局，含 display/window 参数）⇒ 实参是结构体指针，`int mode` 为占位误标。 
 void * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo *pDriverInfo);
 
 // [T18] _TEB 最小定义：IDA 伪代码 `NtCurrentTeb()->NtTib.ExceptionList` 引用
 // Windows SDK 的 _TEB（winnt.h 只前向声明、winternl.h 未引入 ⇒ C2027/C2227/C2228
 // 三错同源）。A 级证据：CEffGrid@0x004C98F0 内 4c98f2 mov eax,fs:0x0 读 +
-// 4c9903 mov fs:0x0,esp 写 —— fs:[0] 即 TEB.NtTib.ExceptionList（NtTib=TEB 首
-// 成员、ExceptionList=NT_TIB 首成员，二者皆 offset 0，段寄存器寻址直证）。
-// 仅补被引用通路所需的最小形；NT_TIB 复用 SDK winnt.h 既有定义。
+// 4c9903 mov fs:0x0,esp 写 —— fs:[0] 即 TEB.NtTib.ExceptionList（NtTib=TEB 首 
+// 成员、ExceptionList=NT_TIB 首成员，二者皆 offset 0，段寄存器寻址直证）。 
+// 仅补被引用通路所需的最小形；NT_TIB 复用 SDK winnt.h 既有定义。 
 struct _TEB {
     NT_TIB NtTib;
 };
@@ -237,9 +237,9 @@ inline F mfp_cast(M mfp) {
 }
 
 // [T14/T9-F-memfnptr] 成员函数指针→位模式（实参形等价变换）：
-// MSVC6 单继承 PMF 紧凑表示=4 字节纯地址（实测 sizeof==4）⇒ union 位拷贝取出
-// 的 u 与原始「地址入参」字节一致；MSVC6 拒绝 PMF↔整型直接 cast（C2440，
-// T9 探针实测）⇒ union 旁路是唯一不改字节的表达式形。模板参数化以容纳任意 PMF 形。
+// MSVC6 单继承 PMF 紧凑表示=4 字节纯地址（实测 sizeof==4）⇒ union 位拷贝取出 
+// 的 u 与原始「地址入参」字节一致；MSVC6 拒绝 PMF↔整型直接 cast（C2440， 
+// T9 探针实测）⇒ union 旁路是唯一不改字节的表达式形。模板参数化以容纳任意 PMF 形。 
 template <class PMF>
 inline unsigned int pmf_to_u32(PMF pmf) {
     union { PMF p; unsigned int u; } _c;

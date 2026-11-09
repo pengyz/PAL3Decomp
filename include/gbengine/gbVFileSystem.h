@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <stdio.h>
 #include "gbengine/gbengine_export.h"
-// 2026-09-26: 消费方（RoleAtt.h 等）按值使用 gbVec3D 却只经本头取 SDK 声明——
-// 本头此前不引入 gbengine_types.h，导致含链上 gbVec3D 未声明（C2061，
-// RoleAtt/PAL_GDB/DealData/PlayerAtt 四个 S1 失败头的共同根因）。
+// 2026-09-26: 消费方（RoleAtt.h 等）按值使用 gbVec3D 却只经本头取 SDK 声明—— 
+// 本头此前不引入 gbengine_types.h，导致含链上 gbVec3D 未声明（C2061， 
+// RoleAtt/PAL_GDB/DealData/PlayerAtt 四个 S1 失败头的共同根因）。 
 #include "gbengine/gbengine_types.h"
 
 // ============================================================================
@@ -124,10 +124,10 @@ public:
     static int s_bCrcTableInitialized;
 
     // F70（第 124 轮）：GBAPI 按成员给，**只给 IAT 里真实存在的方法**（A 级清单：GBENGINE 模块
-    // 的 9 个 CPK 符号 —— ctor/dtor/Load/IsValidCPK/Open/Close/DeCompress/Seek/SetOpenMode）。
+    // 的 9 个 CPK 符号 —— ctor/dtor/Load/IsValidCPK/Open/Close/DeCompress/Seek/SetOpenMode）。 
     // 类级 GBAPI 对"引擎导出 + 游戏侧又实现"的类是错的：`Init`/`InitPackFiles` 由 PAL3.exe 实现
     // （0x0053DB90 / 0x0053C250，在 PAL3 的 .text 里）⇒ 类级 dllimport 让它们的定义变成
-    // "全局函数里的 this"（实测 C2673 ×16）。
+    // "全局函数里的 this"（实测 C2673 ×16）。 
     GBAPI CPK();
     GBAPI ~CPK();
     CPK& operator=(const CPK& other);
@@ -153,7 +153,7 @@ public:
     void Rewind(CPKFile* pFile);
     GBAPI void SetOpenMode(ECPKMode mode);
 
-    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI：
+    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI： 
     //   CPK *__thiscall CPK::Init()          @0x0053DB90
     //   CPK *__thiscall CPK::InitPackFiles() @0x0053C250
     CPK* Init();
@@ -287,11 +287,11 @@ extern GBAPI gbVFileSystem* g_pVFileSys;
 // CIniFile class - INI file reader/writer using gbVFileSystem
 // ============================================================================
 
-// F70（第 123 轮）：GBAPI（dllimport）**按成员给**，只给真正来自 gbengine.dll 的方法
-// （IAT 实测清单：%TEMP%\dd105\imports.json 的 GBENGINE 模块，A 级）。类级 GBAPI 对
+// F70（第 123 轮）：GBAPI（dllimport）**按成员给**，只给真正来自 gbengine.dll 的方法 
+// （IAT 实测清单：%TEMP%\dd105\imports.json 的 GBENGINE 模块，A 级）。类级 GBAPI 对 
 // "引擎导出 + 游戏侧又实现"的类是错的：`LoadData`/`LoadStructuredConfig` 由 **PAL3.exe 自己实现**
 // （0x004EC700 / 0x00504130 在 PAL3 的 .text 里），类级 dllimport 会让它们的定义触发 C2491 /
-// 退化成"全局函数里的 this"（实测 C2673 ×4 + C2039 连锁）。
+// 退化成"全局函数里的 this"（实测 C2673 ×4 + C2039 连锁）。 
 class CIniFile {
 public:
     gbVFile*    m_pFile;        // +0x00: file handle
@@ -319,7 +319,7 @@ public:
     int  IfRead();
     gbVFile* GetFilePointer();
 
-    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI：
+    // PAL3.exe 侧实现（注解/IDA 类型，A 级）—— 不带 GBAPI： 
     //   char __thiscall CIniFile::LoadData()            @0x004EC700
     //   void __thiscall CIniFile::LoadStructuredConfig() @0x00504130
     char LoadData();

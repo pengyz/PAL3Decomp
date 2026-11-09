@@ -23,16 +23,16 @@ struct gbVec3D {
     float x, y, z;
 
     // Methods (auto-generated)
-    // F70（第 127 轮）：GBAPI 按成员给 —— 只给 IAT 实测存在的 9 个成员
-    // （ctor×2 / operator= / operator*= / operator+= / CrossProduct / DotProduct / Length / Normalize）。
+    // F70（第 127 轮）：GBAPI 按成员给 —— 只给 IAT 实测存在的 9 个成员 
+    // （ctor×2 / operator= / operator*= / operator+= / CrossProduct / DotProduct / Length / Normalize）。 
     // 类级 GBAPI 对"引擎导出 + 游戏侧又实现"的类是错的：`Copy(int, gbVec3D*)` 由 **PAL3.exe 实现**
-    // （0x0042FD40 在 PAL3 的 .text 里）⇒ 类级 dllimport 下补声明会 C2491，且调用点拿不到该重载
-    // （实测 `C2661 'Copy' : no overloaded function takes 2 parameters` **×47**，是本族最大单条）。
+    // （0x0042FD40 在 PAL3 的 .text 里）⇒ 类级 dllimport 下补声明会 C2491，且调用点拿不到该重载 
+    // （实测 `C2661 'Copy' : no overloaded function takes 2 parameters` **×47**，是本族最大单条）。 
     // 2026-09-26 字节对照（Scene::Render2 reloc 表）：dllimport 默认构造 `??0gbVec3D@@QAE@XZ`
     // 在 PAL3.exe 导入串中 **0 次出现** ⇒ 原始代码从未调用过 ⇒ 不能声明为 dllimport
-    // （每个局部 gbVec3D 都会插 lea+call[__imp_] 构造调用）。但又不能完全不声明——
-    // 三参构造仍在，类非 POD，局部声明 C2512。折衷 = 内联空构造：VC6 对空内联构造
-    // 零代码发射，局部声明处与无构造字节等价。
+    // （每个局部 gbVec3D 都会插 lea+call[__imp_] 构造调用）。但又不能完全不声明—— 
+    // 三参构造仍在，类非 POD，局部声明 C2512。折衷 = 内联空构造：VC6 对空内联构造 
+    // 零代码发射，局部声明处与无构造字节等价。 
     gbVec3D() {}
     GBAPI gbVec3D(float p0, float p1, float p2);
     GBAPI void operator=(struct gbVec3D const & p0);
@@ -53,7 +53,7 @@ struct gbVec3D {
     inline void Copy(const gbVec3D& src) { x = src.x; y = src.y; z = src.z; }
     inline void Copy(const gbVec3D* src) { x = src->x; y = src->y; z = src->z; }
     // PAL3.exe 侧实现（decomp/注解 A 级）：`gbVec3D *__thiscall gbVec3D::Copy(int, gbVec3D*)` @0x0042FD40
-    // —— 47 条 C2661 的根：调用点就是两参形式（`gbVec3D::Copy(nSrcIndex, pSrc)`）。
+    // —— 47 条 C2661 的根：调用点就是两参形式（`gbVec3D::Copy(nSrcIndex, pSrc)`）。 
     gbVec3D * Copy(int nSrcIndex, gbVec3D *pSrc);
 #ifdef GBVEC3D_NO_CTOR
     inline void Zero() { z = 0.0f; y = 0.0f; x = 0.0f; }

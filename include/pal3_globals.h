@@ -82,7 +82,7 @@ extern struct gbRenderEffect *ui_tex_color_gbf;
  * IO/Media Globals
  * ======================================================================== */
 
-/* 虚拟文件系统 (GBENGINE.dll + 0x1015D3A8) —— 从 gbengine.dll 导入的变量本身
+/* 虚拟文件系统 (GBENGINE.dll + 0x1015D3A8) —— 从 gbengine.dll 导入的变量本身 
  * (PAL3.exe 只导入它，不定义；IDA: .idata/GBENGINE, IAT 槽 0x0056A598) */
 extern GBAPI struct gbVFileSystem *g_pVFileSys;
 

@@ -9,10 +9,10 @@
 // Single-linked list node (8 bytes)
 
 // [F70 按成员 GBAPI 2026-10-31] 类级 GBAPI 修正——IAT 真相逐成员：
-// 导出 4 件（??0 XZ / ??0 ABV0@ / ??1 UAE / ??4）挂 GBAPI；
+// 导出 4 件（??0 XZ / ??0 ABV0@ / ??1 UAE / ??4）挂 GBAPI； 
 // Process 非 gbengine 导出（GBENGINE.DLL 导出表 1019 项零命中，2026-10-31 双证），
 // 是 PAL3 侧实现（自有单元 Misc/gbChain1DNode）⇒ 不得 dllimport
-// （类级 GBAPI 曾致 __imp_?Process 未闭，M1 mock_link 实测）。
+// （类级 GBAPI 曾致 __imp_?Process 未闭，M1 mock_link 实测）。 
 class gbChain1DNode {
 public:
     gbChain1DNode* next;   // +0x04: next node (vptr at +0x00 from virtual dtor)

@@ -63,7 +63,7 @@ public:
     // 0x10022b00 (63B)
     // 2026-09-26 字节对照（Scene::Render2）：原始访问 curColor=+0x2C/ScaleX=+0x30 ⇒ 无 vptr
     // ⇒ 真实类非多态；此前 4 个 virtual 使 MSVC6 插 vptr 全成员 +4（layout_probe 实测
-    // curColor=+0x30/ScaleX=+0x34）⇒ 已去 virtual。方法经 DLL 导入调用，调用形态不受影响。
+    // curColor=+0x30/ScaleX=+0x34）⇒ 已去 virtual。方法经 DLL 导入调用，调用形态不受影响。 
     int Init(void);
     // 0x10022b40 (36B)
     void Release(void);
@@ -98,7 +98,7 @@ class gbPrintFontMgr {
 public:
     // 2026-09-26 字节对照（Scene::Render2）：原始访问 pAllFont[3]=+0x0C ⇒ 字体指针数组只有
     // 一份在 +0x00；此前 fonts[5]+pAllFont[5] 双成员别名使 pAllFont 落 +0x14、gfxMgr 落 +0x28
-    // （layout_probe 实测）⇒ 已并成单数组。原始 gfxMgr 在 +0x14。
+    // （layout_probe 实测）⇒ 已并成单数组。原始 gfxMgr 在 +0x14。 
     gbPrintFont*    pAllFont[5];   // +0x00
     gbGfxManager*   gfxMgr;        // +0x14
 
