@@ -4445,10 +4445,15 @@ def generate_globals_cpp():
         addr = int(addr_s, 16)
         nm = info.get('name', '')
         tp = info.get('type', '')
-        ann_key = f'0x{addr:08x}'
+        ann_key = '0x%08X' % addr  # P-A5g: 大写归一(原 f-string 小写x → 键永不命中 → override 从未生效)
         ann_info = ann.get(ann_key, {})
         if info.get('_synthesized'):
             ann_info = {}
+        # P-A5g (2026-11-09): annotation name 覆盖——与头链(phantom 段 L4009)同源。
+        # 缺此覆盖 → cpp 定义名(off_5AE380) vs 头 extern 新名(g_pStr_Wa001_005AE380)
+        # → C2371/链接断(globals 三链名字同步的最后一条)。
+        if (ann_info or {}).get('name'):
+            nm = ann_info['name']
 
         if not nm or not tp:
             continue
