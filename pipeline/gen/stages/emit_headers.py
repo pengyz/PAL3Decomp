@@ -3949,7 +3949,14 @@ def generate_globals():
     _filtered = []
     for _addr_s, _ginfo in sorted_globs:
         _addr = int(_addr_s, 16)
-        if _ginfo.get('name') in _phantom_forced:
+        # P-A6 (2026-11-09): forced 名是 decomp 引用的 **IDA 默认名**(dword_56F22C 等)。
+        # 条目语义改名后(g_HelpNoteIdxCol2)新名不在 forced——但 decomp 引用经过
+        # globals_map 改写(引用侧已用新名)而 phantom 过滤仍按旧名判 → extern 被滤。
+        # 判定补 IDA 默认名维度(按地址推 dword_/byte_/off_ 等前缀名)。
+        _ida_default_names = set()
+        for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk'):
+            _ida_default_names.add('%s_%X' % (_pfx, _addr))
+        if _ginfo.get('name') in _phantom_forced or (_ida_default_names & _phantom_forced):
             _filtered.append((_addr_s, _ginfo))
             continue
         _phantom = False
@@ -4110,7 +4117,12 @@ def generate_globals():
             # export-layer skip — resurrect when the decompiler references
             # the name（W3 类型源律：墓碑 orig_type 优先 → 名字启发仅最后回退——
             # 头/定义两侧必须同源解析，否则 extern int vs 定义 void*/int[5] 相撞 C2040）
-            if name in _forced_names:
+            # P-A6b (2026-11-09): forced 名是 IDA 默认名(dword_56F22C)；语义改名后
+            # (g_HelpNoteIdxCol2)复活判定按名失配 → extern 消失。补地址维度判定。
+            _addr_int = int(addr_str, 16)
+            _ida_names = {'%s_%X' % (p, _addr_int) for p in
+                          ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk')}
+            if name in _forced_names or (_ida_names & _forced_names):
                 typ = g.get('orig_type') or _prefix_type(name) or 'int'
                 g = dict(g, type=typ)
             else:
