@@ -4442,23 +4442,29 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x005DFDB4": {
-  "name": "unk_5DFDB4",
+  "name": "g_strColHeadQuantity",
   "type": "skip",
   "reason": "address within g_EffMgr range, not an independent global",
   "category": "string_literal",
-  "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
+  "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入",
+  "name_source": "IDA语义分析 2026-11-09 字符串内容直读",
+  "name_note": "列标题字符串\"Quantity\"(GBK直读实证)。使用点 SystemUI case1002 SetColumnHead((int)本址, 列宽)"
  },
  "0x005DFDC0": {
-  "name": "unk_5DFDC0",
+  "name": "g_strColHeadLevelCost",
   "type": "int",
   "source": "C2065:skip_to_int | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入",
-  "category": "string_literal"
+  "category": "string_literal",
+  "name_source": "IDA语义分析 2026-11-09 字符串内容直读",
+  "name_note": "列标题字符串\"LevelCost\"(GBK直读实证)"
  },
  "0x005DFDCC": {
-  "name": "unk_5DFDCC",
+  "name": "g_strColHeadCost",
   "type": "int",
   "source": "C2065:skip_to_int | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入",
-  "category": "string_literal"
+  "category": "string_literal",
+  "name_source": "IDA语义分析 2026-11-09 字符串内容直读",
+  "name_note": "列标题字符串\"Cost\"(GBK直读实证)。使用点 SystemUI case1002 SetColumnHead((int)本址, 43)"
  },
  "0x005DFE04": {
   "name": "aWt",
@@ -5662,7 +5668,7 @@
   "source": "phantom_auto | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
   "category": "const_data",
   "name_source": "IDA语义分析 2026-11-09 SystemUI case1002",
-  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址的5x5 int矩阵(100B, BSS运行时填充),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。"
+  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址5x5 int矩阵(100B,.rdata初始数据[208..232]连续段实证),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。 [2026-11-09复核修正: 前轮BSS结论系PE节映射漏加ImageBase 0x400000的算术错误,实为.rdata初始数据,const_data分类维持]"
  },
  "0x0056F228": {
   "name": "g_HelpNoteIdxCol1",
@@ -5670,7 +5676,7 @@
   "source": "phantom_auto | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
   "category": "const_data",
   "name_source": "IDA语义分析 2026-11-09 SystemUI case1002",
-  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址的5x5 int矩阵(100B, BSS运行时填充),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。"
+  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址5x5 int矩阵(100B,.rdata初始数据[208..232]连续段实证),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。 [2026-11-09复核修正: 前轮BSS结论系PE节映射漏加ImageBase 0x400000的算术错误,实为.rdata初始数据,const_data分类维持]"
  },
  "0x0056F22C": {
   "name": "g_HelpNoteIdxCol2",
@@ -5678,7 +5684,7 @@
   "source": "phantom_auto | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
   "category": "const_data",
   "name_source": "IDA语义分析 2026-11-09 SystemUI case1002",
-  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址的5x5 int矩阵(100B, BSS运行时填充),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。"
+  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址5x5 int矩阵(100B,.rdata初始数据[208..232]连续段实证),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。 [2026-11-09复核修正: 前轮BSS结论系PE节映射漏加ImageBase 0x400000的算术错误,实为.rdata初始数据,const_data分类维持]"
  },
  "0x0056F230": {
   "name": "g_HelpNoteIdxCol3",
@@ -5686,7 +5692,7 @@
   "source": "phantom_auto | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
   "category": "const_data",
   "name_source": "IDA语义分析 2026-11-09 SystemUI case1002",
-  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址的5x5 int矩阵(100B, BSS运行时填充),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。"
+  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址5x5 int矩阵(100B,.rdata初始数据[208..232]连续段实证),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。 [2026-11-09复核修正: 前轮BSS结论系PE节映射漏加ImageBase 0x400000的算术错误,实为.rdata初始数据,const_data分类维持]"
  },
  "0x0056F234": {
   "name": "g_HelpNoteIdxCol4",
@@ -5694,7 +5700,7 @@
   "source": "phantom_auto | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
   "category": "const_data",
   "name_source": "IDA语义分析 2026-11-09 SystemUI case1002",
-  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址的5x5 int矩阵(100B, BSS运行时填充),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。"
+  "name_note": "语义命名 2026-11-09: SystemUI::InitScreenUI HandleMessage case 1002——帮助页5列按钮控件表(off_56F1A4/1B8/1CC/1E0/208,各5项)命中后,从本表列取说明条目号v,SetEnable(&Destination[256*v],0)禁用对应文本条目。布局=0x56F224基址5x5 int矩阵(100B,.rdata初始数据[208..232]连续段实证),本址=列首元素,使用形态&addr+5*v46(行宽步进列遍历)。原const_data分类修正为运行时表(BSS)。 [2026-11-09复核修正: 前轮BSS结论系PE节映射漏加ImageBase 0x400000的算术错误,实为.rdata初始数据,const_data分类维持]"
  },
  "0x00DC943C": {
   "name": "dword_DC943C",
@@ -8601,5 +8607,19 @@
   "address": "0x5DFDB4",
   "type": "char[]",
   "source": "[C2065 通道收口 2026-10-16] IDA 地址名 asc_5DFDB4（A 级绝对地址+尺寸名型证）· 引用 CCBUI.cpp:4210"
+ },
+ "0x017A8EE0": {
+  "name": "g_MagicUseTimeByRole",
+  "type": "int",
+  "category": "game_state",
+  "name_source": "IDA语义分析 2026-11-09 使用点取证",
+  "name_note": "CCBRoleState L1731: 循环写 &本址+(v3-24) = InitUI()->byMagicUseTime[8][3]——按角色记录的魔法使用时间数组(BSS运行时)"
+ },
+ "0x00D8C360": {
+  "name": "g_ScriptSlotIdx",
+  "type": "int",
+  "category": "game_state",
+  "name_source": "IDA语义分析 2026-11-09 使用点取证",
+  "name_note": "PalScript L1594: 作脚本槽索引(×2步进入 m_nTodo_1050 槽组)——当前脚本槽号(BSS运行时)"
  }
 }

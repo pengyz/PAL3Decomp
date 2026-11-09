@@ -3973,7 +3973,7 @@ def generate_globals():
         # globals_map 改写(引用侧已用新名)而 phantom 过滤仍按旧名判 → extern 被滤。
         # 判定补 IDA 默认名维度(按地址推 dword_/byte_/off_ 等前缀名)。
         _ida_default_names = set()
-        for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk'):
+        for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk', 'asc', 'qword'):
             _ida_default_names.add('%s_%X' % (_pfx, _addr))
         if _ginfo.get('name') in _phantom_forced or (_ida_default_names & _phantom_forced):
             _filtered.append((_addr_s, _ginfo))
@@ -4140,7 +4140,7 @@ def generate_globals():
             # (g_HelpNoteIdxCol2)复活判定按名失配 → extern 消失。补地址维度判定。
             _addr_int = int(addr_str, 16)
             _ida_names = {'%s_%X' % (p, _addr_int) for p in
-                          ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk')}
+                          ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk', 'asc', 'qword')}
             if name in _forced_names or (_ida_names & _forced_names):
                 typ = g.get('orig_type') or _prefix_type(name) or 'int'
                 g = dict(g, type=typ)

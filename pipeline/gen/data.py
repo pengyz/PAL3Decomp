@@ -394,7 +394,7 @@ class DataStore:
                 continue
             _addr_hex = '%X' % _addr
             # Add all possible raw names for extern generation and name resolution
-            for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk'):
+            for _pfx in ('dword', 'byte', 'word', 'flt', 'off', 'stru', 'unk', 'asc', 'qword'):  # P-A7: +asc/qword(asc_族字符串引用此前不进替换链→C2065)
                 _raw = '%s_%s' % (_pfx, _addr_hex)
                 self.annotated_globals[_raw] = (_name, _type)
                 self.globals_map[_raw] = _name
