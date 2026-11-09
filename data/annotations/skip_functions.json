@@ -9731,5 +9731,13 @@
   "name": "_sdtor_call_dtor",
   "reason": "compiler_thunk",
   "skip_reason": "compiler_regenerated"
+ },
+ "0x00401820": {
+  "name": "ArraySort",
+  "reason": "phantom_instruction_boundary",
+  "skip_reason": "annotation_functions_skip_20261104",
+  "note": "0x401820 落在 0x401810 ArraySort 函数体指令中间(mov ebp,[esp+10h] 第4字节)——非独立函数。functions.json 同址 skip 结案(2026-11-04 A级字节证据)联动至此: codegen 消费本文件",
+  "type": "skip",
+  "declaration_only": true
  }
 }

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "ev_0001",
+    "subject": "CEffMgr::m_EffTable 布局",
+    "claim": "布局应为 _BYTE[584] 而非 tagEffObj[2048]；旧 audit_layout.py 无判别力已归档",
+    "evidence_refs": [
+      "CLAUDE.md:371",
+      "tools/audit_type_layout.py --only CEffMgr（编译器裁判）"
+    ],
+    "authority": "B",
+    "status": "resolved",
+    "created": "2026-11-09",
+    "resolved": {
+      "date": "2026-11-09",
+      "verdict": "resolved",
+      "note": "2026-10-16 编译器裁判定谳，全程记录见 CLAUDE.md L368-371"
+    }
+  },
+  {
+    "id": "ev_0002",
+    "subject": "match L1 判据",
+    "claim": "「字节全同」非全字节相同：截断单元/长度相等/重定位 don't-care 三限定；引用 L1 必须带三限定",
+    "evidence_refs": [
+      "CLAUDE.md:304-325",
+      "docs/knowledge/gotcha_l1_reloc_dontcare_three_qualifications.md"
+    ],
+    "authority": "B",
+    "status": "resolved",
+    "created": "2026-11-09",
+    "resolved": {
+      "date": "2026-11-09",
+      "verdict": "resolved",
+      "note": "T146 度量校正定谳（2026-10-15）；此条为规则引用示例，正文以 gotcha 文档为准"
+    }
+  }
+]

@@ -2328,14 +2328,6 @@
   "name_source": "IDA语义分析 2026-11-01 批13",
   "name_note": "树处理（parent+int 操作）"
  },
- "0x00401820": {
-  "name": "ArraySort",
-  "signature": "int __stdcall(int, int, int, int)",
-  "name_source": "IDA语义分析 2026-10-31 批1-2",
-  "name_note": "从 decomp 推断（j_InputSystem）",
-  "type": "skip",
-  "source": "[幻影边界裁决 2026-11-04] A 级字节证据：0x401810-0x401839 为单个 ArraySort 函数体——`8b 6c 24 10`（mov ebp,[esp+10h]）指令跨 0x401820 边界（0x401820 落在指令第 4 字节）、`78 20` js→0x401837 恰落 `c2 10 00`（ret 16 = stdcall 4×int 清栈 ✓ 合签名）⇒ 0x401820=函数体中指令地址误注册（10-31 批1-2 从残缺 decomp j_InputSystem 推断），非独立函数。同名同签双址铁律告警（check 2c-mangled）与 free_functions C2084 均此幻影 ⇒ skip 结案（name_adjudication_queue §1 #5）"
- },
  "0x004232D0": {
   "name": "AnimUpdate",
   "signature": "int __cdecl()",

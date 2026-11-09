@@ -738,6 +738,24 @@ def generate_free_funcs_cpp(funcs):
     # Transform all through the pipeline (as free functions)
     transformed = []
     _stub_reg = set()
+    # P-A1 (2026-11-09): functions.json type=skip 的函数不生成定义体。
+    # ArraySort 0x401820 双定义 C2084 实证——幻影指令边界已 A 级裁决 skip
+    # (functions.json 2026-11-04)但 codegen 无 skip 消费 → 体照发。
+    _fn_skip = {}
+    try:
+        import annotation_view as _av
+        _fn_skip = _av.skip_functions(store=store) or {}
+    except Exception:
+        _fn_skip = {}
+    def _is_skipped(f):
+        _a = f.get('addr') or 0
+        try:
+            _ai = int(_a, 16) if isinstance(_a, str) else int(_a)
+        except (ValueError, TypeError):
+            return False
+        _e = _fn_skip.get('0x%08X' % _ai)
+        return bool(_e and _e.get('type') == 'skip')
+    funcs = [f for f in funcs if not _is_skipped(f)]
     for f in funcs:
         ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True,
                            stub_registry=_stub_reg)
