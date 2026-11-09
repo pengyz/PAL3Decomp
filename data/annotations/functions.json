@@ -378,7 +378,8 @@
  },
  "0x0052F350": {
   "name": "MiniGame2Update",
-  "signature": "int __stdcall(float fVal)"
+  "signature": "void __cdecl(float fVal)",
+  "evidence_note": "ret 0x4=1 float stack param (stdcall would be ret 4=same but this is cdecl per call site cleanup)"
  },
  "0x00532CF0": {
   "name": "CalcAngleBetweenVectors",
@@ -480,9 +481,10 @@
  },
  "0x00541590": {
   "name": "crt_sub_00541590",
-  "signature": "int __cdecl()",
+  "signature": "int __cdecl(int param_1)",
   "type": "skip",
-  "reason": "CRT init function, not game logic"
+  "reason": "CRT init function, not game logic",
+  "evidence_note": "decomp 1-param, ret 0x4=1 stack arg; call sites pass int"
  },
  "0x00452580": {
   "name": "_todo_ctor",
@@ -1833,8 +1835,9 @@
  },
  "0x004323C0": {
   "name": "StopSceneScripts",
-  "signature": "void __cdecl StopSceneScripts(const char *pszScene)",
-  "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only."
+  "signature": "void __cdecl(void)",
+  "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only.",
+  "evidence_note": "prologue ebp=global ds:0xd8c32c (not param), no [esp+X] access, 5 call sites all 0-arg; objdump 0x4323c0 ret (no ret N)"
  },
  "0x00445E10": {
   "name": "OffsetRect",
@@ -2473,5 +2476,15 @@
   "name": "PAL3_init_fn",
   "signature": "void __cdecl(void *param_1)",
   "note": "fn name PAL3 hides struct PAL3 type name (C++ name hiding); rename to avoid collision. Body: PAL3 ctor wrapper. 2026-11-08."
+ },
+ "0x00553041": {
+  "name": "RegisterAtExit",
+  "signature": "int __cdecl(void *param_1)",
+  "note": "Registers cleanup handler (callers pass &LAB_xxxx code labels); calls FUN_00552fd4, returns (result!=0)-1. Evidence: 3 call sites pass function ptrs, body is a 2-line forward. 2026-11-09."
+ },
+ "0x00553627": {
+  "name": "RegisterInputCallbacks",
+  "signature": "void __cdecl(unsigned int param_1, unsigned int param_2, int param_3, void *param_4, void *param_5)",
+  "note": "Registers paired acquire/unacquire callbacks for input devices. Callers: (pThis+4, 0xa4, 2, UnacquireJoystick, AcquireKeyboard), (pThis+0x14c, 0x10, 2, UnacquireMouse, AcquireJoystick). ret 0x14=5 stack args. 2026-11-09."
  }
 }
