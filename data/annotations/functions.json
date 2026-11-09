@@ -2468,5 +2468,10 @@
   "alt_name": "Update_1F70",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+ },
+ "0x00404760": {
+  "name": "PAL3_init_fn",
+  "signature": "void __cdecl(void *param_1)",
+  "note": "fn name PAL3 hides struct PAL3 type name (C++ name hiding); rename to avoid collision. Body: PAL3 ctor wrapper. 2026-11-08."
  }
 }
