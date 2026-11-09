@@ -1,6 +1,6 @@
 {
-  "name": "20261109_194452",
-  "timestamp": "2026-11-09T19:44:52.244990",
+  "name": "20261109_210038",
+  "timestamp": "2026-11-09T21:00:38.826207",
   "results": {
     "pal3/src/Combat/CCBAI.cpp": {
       "status": "ok",
@@ -35,7 +35,7 @@
     },
     "pal3/src/Combat/CCBControlWindow.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2664",
@@ -51,11 +51,6 @@
           "code": "C2664",
           "msg": "'Create' : cannot convert parameter 1 from 'class UIButton ** ' to 'class UIWnd ** '",
           "line": 61
-        },
-        {
-          "code": "C2065",
-          "msg": "'asc_5DFDCC' : undeclared identifier",
-          "line": 336
         }
       ]
     },
@@ -91,17 +86,12 @@
     },
     "pal3/src/Combat/CCBRoleState.cpp": {
       "status": "fail",
-      "error_count": 18,
+      "error_count": 17,
       "errors": [
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIWnd' to 'void (__cdecl ** )(class UIWnd *,unsigned long)'",
           "line": 573
-        },
-        {
-          "code": "C2065",
-          "msg": "'unk_17A8EE0' : undeclared identifier",
-          "line": 1731
         },
         {
           "code": "C2660",
@@ -941,7 +931,7 @@
     },
     "pal3/src/Combat/CCBUI.cpp": {
       "status": "fail",
-      "error_count": 33,
+      "error_count": 30,
       "errors": [
         {
           "code": "C2664",
@@ -1069,16 +1059,6 @@
           "line": 4609
         },
         {
-          "code": "C2065",
-          "msg": "'asc_5DFDCC' : undeclared identifier",
-          "line": 4897
-        },
-        {
-          "code": "C2065",
-          "msg": "'asc_5DFDC0' : undeclared identifier",
-          "line": 4898
-        },
-        {
           "code": "C2664",
           "msg": "'int (char *,char *,int *,class CCBUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
           "line": 5071
@@ -1087,11 +1067,6 @@
           "code": "C2039",
           "msg": "'ShowWindow' : is not a member of 'PalScript'",
           "line": 5203
-        },
-        {
-          "code": "C2065",
-          "msg": "'off_5706CC' : undeclared identifier",
-          "line": 5219
         },
         {
           "code": "C2664",
@@ -2873,13 +2848,8 @@
     },
     "pal3/src/Misc/LineupUI.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 9,
       "errors": [
-        {
-          "code": "C2065",
-          "msg": "'off_56B794' : undeclared identifier",
-          "line": 277
-        },
         {
           "code": "C2664",
           "msg": "'void (class gbTexture ** ,const char *,char *,class LineupUI *,char *,int,int)' : cannot convert parameter 2 from 'void *' to 'const char *'",
@@ -4108,13 +4078,8 @@
     },
     "pal3/src/Misc/UITitle_YXXX.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2065",
-          "msg": "'off_56B898' : undeclared identifier",
-          "line": 327
-        },
         {
           "code": "C2664",
           "msg": "'HandleDllEntryUITitle' : cannot convert parameter 1 from 'struct HINSTANCE__ *' to 'int'",
@@ -5875,30 +5840,9 @@
       "errors": []
     },
     "pal3/src/UI/UIListBox.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2039",
-          "msg": "'Destroy_thunk_3de90' : is not a member of 'UIListBox'",
-          "line": 109
-        },
-        {
-          "code": "C2673",
-          "msg": "'Destroy_thunk_3de90' : global functions do not have 'this' pointers",
-          "line": 111
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->UIListBox' must point to class/struct/union",
-          "line": 111
-        },
-        {
-          "code": "C2653",
-          "msg": "'UIListBox' : is not a class or namespace name",
-          "line": 111
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/UI/UIManager.cpp": {
       "status": "fail",
@@ -6530,72 +6474,72 @@
         {
           "code": "C2734",
           "msg": "'SrcStr' : const object must be initialized if not extern",
-          "line": 112
+          "line": 107
         },
         {
           "code": "C2117",
           "msg": "' %s' : array bounds overflow",
-          "line": 165
+          "line": 160
         },
         {
           "code": "C2117",
           "msg": "'p%d' : array bounds overflow",
-          "line": 188
+          "line": 183
         },
         {
           "code": "C2117",
           "msg": "'end' : array bounds overflow",
-          "line": 214
+          "line": 209
         },
         {
           "code": "C2117",
           "msg": "'End' : array bounds overflow",
-          "line": 273
+          "line": 268
         },
         {
           "code": "C2117",
           "msg": "'cvd' : array bounds overflow",
-          "line": 317
+          "line": 312
         },
         {
           "code": "C2117",
           "msg": "'pol' : array bounds overflow",
-          "line": 318
+          "line": 313
         },
         {
           "code": "C2040",
           "msg": "'aQ07' : 'char []' differs in levels of indirection from 'int'",
-          "line": 325
+          "line": 320
         },
         {
           "code": "C2117",
           "msg": "'��Ч' : array bounds overflow",
-          "line": 632
+          "line": 627
         },
         {
           "code": "C2117",
           "msg": "'%lu' : array bounds overflow",
-          "line": 705
+          "line": 700
         },
         {
           "code": "C2117",
           "msg": "'%2d' : array bounds overflow",
-          "line": 766
+          "line": 761
         },
         {
           "code": "C2117",
           "msg": "'yaw' : array bounds overflow",
-          "line": 789
+          "line": 784
         },
         {
           "code": "C2022",
           "msg": "'2118' : too big for character",
-          "line": 927
+          "line": 922
         },
         {
           "code": "C2117",
           "msg": "'�鿴/�޸ĺø�' : array bounds overflow",
-          "line": 937
+          "line": 932
         }
       ]
     }
