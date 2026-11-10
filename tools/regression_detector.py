@@ -95,7 +95,24 @@ class RegressionDetector:
     def extract_results(self, census: Dict) -> Dict:
         """从census提取结果摘要"""
         results = {}
-        
+
+        # Top2-① (2026-11-10): S1 头单元入基线——783 个头此前完全在
+        # 对账之外（架构审计 D6：ok→fail 翻转永不触发闸）。s1:/ 前缀
+        # 防与 cpp 单元名碰撞。
+        for result in census.get("s1", {}).get("results", []):
+            unit = "s1:" + result["unit"]
+            results[unit] = {
+                "status": result["status"],
+                "error_count": len(result.get("errors", [])),
+                "errors": [
+                    {
+                        "code": e["code"],
+                        "msg": e["msg"],
+                    }
+                    for e in result.get("errors", [])
+                ],
+            }
+
         for result in census.get("s2", {}).get("results", []):
             unit = result["unit"]
             status = result["status"]
@@ -263,10 +280,18 @@ class RegressionDetector:
 
         # 第一遍：逐文件多重集差  gone = 基线有现值无, added = 现值有基线无
         per_unit = {}
+        _vanished = []   # Top2-② (2026-11-10): 基线有/census 无 = 单元蒸发(不静默)
+        _gained = []     # census 有/基线无 = 新单元
         for unit in all_units:
             current = current_results.get(unit)
             baseline_unit = baseline_results.get(unit)
             if current is None or baseline_unit is None:
+                if baseline_unit is not None:
+                    _vanished.append((unit, baseline_unit.get("status"),
+                                      baseline_unit.get("error_count", 0)))
+                elif current is not None:
+                    _gained.append((unit, current.get("status"),
+                                    current.get("error_count", 0)))
                 continue
             before = _multiset(baseline_unit["errors"])
             after = _multiset(current["errors"])
@@ -404,6 +429,9 @@ class RegressionDetector:
                 "churn_errors": len(churn_errors),
                 "increased_codes": increased_codes,
                 "truncated_units": len(truncated_units),
+                # Top2-②: 蒸发/新增单元显式化(fail 单元蒸发曾可被基线刷新洗白)
+                "vanished_units": _vanished,
+                "gained_units": _gained,
             },
             "new_failures": new_failures,
             "new_errors": new_errors,
@@ -691,7 +719,19 @@ def main():
                 print(report)
             
             # 返回码：有回归返回1，无回归返回0
-            has_regression = comparison["summary"]["new_failures"] > 0 or comparison["summary"]["new_errors"] > 0
+            # Top2-③ (2026-11-10): --check 判据对齐自家报告(报告含
+            # increased_codes"净增错误码需归因",正式闸却不含 = 纸面纪律)。
+            # fail 单元蒸发也计入(蒸发曾被 probe 干净自动刷基线永久洗白)。
+            _s = comparison["summary"]
+            _vanished_fail = [u for u, st, _ in _s.get("vanished_units", []) if st != 'ok']
+            has_regression = (_s["new_failures"] > 0
+                              or _s["new_errors"] > 0
+                              or bool(_s.get("increased_codes"))
+                              or bool(_vanished_fail))
+            if _vanished_fail:
+                print(f"[vanished] {len(_vanished_fail)} 个失败单元从 census 蒸发(回归门视同回归):")
+                for u in _vanished_fail[:10]:
+                    print(f"  {u}")
             return 1 if has_regression else 0
         
         # 默认：显示帮助

@@ -10,6 +10,7 @@ import tree_sitter_cpp as tscpp
 import tree_sitter
 import re
 import os
+import sys as _sys  # Top1-①: 指令级retn源降级路径的stderr引用(此前NameError硬崩,降级路径不存在)
 import json
 
 _lang = tree_sitter.Language(tscpp.language())

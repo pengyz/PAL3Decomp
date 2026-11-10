@@ -1036,11 +1036,16 @@ def collect_methods():
     seen_addrs = set()
 
     # Primary source: decomp JSONs
+    _bad_json = 0
     for f in sorted(DECOMP_DIR.glob("*.json")):
         try:
             with open(f, 'r', encoding='utf-8') as fh:
                 d = json.load(fh)
-        except:
+        except Exception as _e_h:
+            # Top1-② (2026-11-10): 头侧与体侧(collect.py [collect-ERR] 同款)对称
+            # 修复——坏 JSON 静默 continue = 声明丢失无根因信号(对抗复核 D3 实锤)
+            _bad_json += 1
+            print("  [collect-ERR][header] %s: %s" % (f.name, _e_h))
             continue
 
         name = d.get('name', '')
@@ -1189,6 +1194,8 @@ def collect_methods():
                     continue
                 classes[_ann_cls].append((_method, _sig, _addr))
 
+    if _bad_json:
+        print('[collect-ERR][header] %d bad decomp JSON(s) skipped — declarations lost' % _bad_json)
     return classes
 
 
@@ -4250,6 +4257,22 @@ def generate_globals():
     globals_h = OUTPUT_DIR / "globals.h"
     with open(globals_h, 'w', encoding='utf-8') as f:
         f.write('\n'.join(h_lines) + '\n')
+
+    # Top1-③ (2026-11-10): declared_globals 时序修复——codegen all 先 rmtree
+    # pal3/src 再 store.load() ⇒ declared_globals 恒空集(消费方 emit_cpp 的
+    # undef 消杀/抑制结构性失效,163 条重复 extern 地雷)。globals.h 写盘后
+    # 从成品重扫刷新,并同步 pal3/src 副本(globals.h 也发到 pal3/src 侧由
+    # 上游管线负责——此处刷新进程内 store 即可, cpp 阶段消费进程内状态)。
+    import re as _re_g
+    _gl_decl = set()
+    _gl_path = OUTPUT_DIR / "globals.h"
+    if _gl_path.exists():
+        for _ln in open(_gl_path, encoding='utf-8', errors='replace'):
+            _mg = _re_g.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', _ln)
+            if _mg:
+                _gl_decl.add(_mg.group(1))
+    store.declared_globals = _gl_decl
+    print("  declared_globals refreshed post-emit: %d" % len(_gl_decl))
 
     print("  Globals: %d in globals.h" % (len(h_lines) - 6))
 
