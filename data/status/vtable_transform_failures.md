@@ -725,3 +725,35 @@
 | `CCBUI::Destroy_64D0` | inline | `CCBControlWindow` | 20 | self_arg_mismatch | `(*(void ( **)(CCBControlWindow *, int))(*(_DWORD *)&(*p_m_pMain)->UIWnd + 20))(*p_m_pMain, 1)` |
 | `CCBUI::Destroy_9F50` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&(*m_pBattleFieldAttr)->UIWnd + 20))(*m_pBattleFieldAttr, 1)` |
 | `UIListBox::OnMessage_E480` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `CCBItemWindow::CCBItemWindow_Destroy` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |
+| `CCBItemWindow::Create` | inline | `signed __int32` | 28 | no_vtables_declaration | `(*(void ( **)(signed __int32, int, int *, CCBItemWindow *, int, _DWORD))(*(_DWORD *)*p_m_nActivePage + 28))( *p_m_nActivePage, 216, pRect, this, g_nUnkDataTable[24], 0)` |
+| `CCBItemWindow::Destroy` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |
+| `CCBParabolaWindow::~CCBParabolaWindow` | inline | `unsigned __int32` | 20 | no_vtables_declaration | `(*(void (**)(unsigned __int32, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBParabolaWindow::Cleanup` | inline | `unsigned __int32` | 20 | no_vtables_declaration | `(*(int ( **)(unsigned __int32, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBSkillWindow::Create` | inline | `unsigned __int32` | 16 | no_vtables_declaration | `(*(void ( **)(unsigned __int32, int, int *, CCBSkillWindow *))(*(_DWORD *)p_m_fontcolor->Color + 16))( p_m_fontcolor->Color, 517, pRect, this)` |
+| `CCBStage::RunActiveTask` | inline | `unsigned __int32` | 16 | no_vtables_declaration | `(*(void ( **)(unsigned __int32, _DWORD))(*(_DWORD *)inited[1].dwMagicID[1][3] + 16))( inited[1].dwMagicID[1][3], 0)` |
+| `CCBUI::LineMove` | inline | `signed __int32` | 28 | no_vtables_declaration | `(*(int ( **)(signed __int32, POINT *, int, CCBUI *, int, _DWORD))(*(_DWORD *)v5 + 28))( v5, pEnd, v10, this, v11, 0)` |
+| `CGameData::Cleanup` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32, int))(*(_DWORD *)m_nMode + 20))(m_nMode, 1)` |
+| `CGameData::SceneUpdate` | inline | `signed __int32` | 4 | no_vtables_declaration | `(*(int ( **)(signed __int32))(*(_DWORD *)m_nSceneLoadParam + 4))(m_nSceneLoadParam)` |
+| `LineupUI::OnMessage` | inline | `signed __int32` | 24 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD))(*(_DWORD *)this->m_CtrlPlank[11].m_Dw.m_bvisible + 24))( this->m_CtrlPlank[11].m_Dw.m_bvisible, 0)` |
+| `MainEquipUI::HandleMessage` | inline | `unsigned __int32` | 24 | no_vtables_declaration | `(*(int ( **)(unsigned __int32, int, _DWORD, _DWORD))(*(_DWORD *)m_id + 24))(m_id, 1000, 0, 0)` |
+| `RenderTarget::UpdateParticleEffect` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(int ( **)(signed __int32))(*(_DWORD *)this->m_nDefaultH + 20))(this->m_nDefaultH)` |
+| `RenderTarget::Stop` | inline | `signed __int32` | 16 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD))(*(_DWORD *)this->m_nDefaultH + 16))(this->m_nDefaultH, 0)` |
+| `SceneMgr::RenderAll` | inline | `signed __int32` | 24 | no_vtables_declaration | `(*(int ( **)(signed __int32))(*(_DWORD *)*v1 + 24))(*v1)` |
+| `SceneMgr::RenderUpdate` | inline | `signed __int32` | 16 | no_vtables_declaration | `(*(int ( **)(signed __int32))(*(_DWORD *)*v1 + 16))(*v1)` |
+| `UIBigMap::LoadScene` | inline | `signed __int32` | 24 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD))(*(_DWORD *)this->bkWndY + 24))(this->bkWndY, 0)` |
+| `UIBigMap::RenderRole` | inline | `signed __int32` | 16 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD))(*(_DWORD *)this->m_bcreateok + 16))(this->m_bcreateok, 0)` |
+| `UIProgressBar::Render` | inline | `signed __int32` | 16 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD))(*(_DWORD *)*v19 + 16))(*v19, 0)` |
+| `UIProgressBar::CheckRayHitRole` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32))(*(_DWORD *)*p_m_progress + 20))(*p_m_progress)` |
+| `UIScene::CheckMouseHit` | inline | `signed __int32` | 24 | no_vtables_declaration | `(*(void ( **)(signed __int32, int, _DWORD, _DWORD))(*(_DWORD *)m_nViewW + 24))( m_nViewW, 1019, LODWORD(this->m_fScaleY), (__int64)*((float *)&this->m_hTexture + 6))` |
+| `UIScene::Destroy` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32, int))(*(_DWORD *)m_nClipX + 20))(m_nClipX, 1)` |
+| `UIScenePanel::PostRender` | inline | `signed __int32` | 4 | no_vtables_declaration | `(*(void ( **)(signed __int32, UIScenePanel *))(*(_DWORD *)m_hSettingsUI + 4))(m_hSettingsUI, this)` |
+| `UIScenePanel::StopAllSounds` | inline | `signed __int32` | 8 | no_vtables_declaration | `(*(void ( **)(signed __int32, _DWORD, int))(*(_DWORD *)this->m_hSettingsUI + 8))( this->m_hSettingsUI, LODWORD(fFade), nFlags)` |
+| `UITitle::RunFrame` | inline | `signed __int32` | 4 | no_vtables_declaration | `(*(int ( **)(signed __int32))(*(_DWORD *)m_hEffect + 4))(m_hEffect)` |
+| `UITitle_ArcSave::Destroy` | inline | `signed __int32` | 20 | no_vtables_declaration | `(*(void ( **)(signed __int32, int))(*(_DWORD *)m_needscriptdel + 20))(m_needscriptdel, 3)` |
+| `UITitle_ArcSave::Render` | inline | `signed __int32` | 4 | no_vtables_declaration | `(*(void ( **)(signed __int32))(*(_DWORD *)this->m_YesNo.m_childs.m_needscriptdel + 4))(this->m_YesNo.m_childs.m_needscriptdel)` |
+| `UITitle_ArcSave::ProcessPageAction` | inline | `signed __int32` | 8 | no_vtables_declaration | `(*(void ( **)(signed __int32, struct PalScript *, int))(*(_DWORD *)this->m_YesNo.m_childs.m_needscriptdel + 8))( this->m_YesNo.m_childs.m_needscriptdel, p, nVal)` |
+| `::SingletonThunk_00404590` | inline | `IDirectInputDevice8` | 8 | no_vtables_declaration | `(*(void ( **)(IDirectInputDevice8 *))(*(_DWORD *)g_Input.m_lpDIDKeyboard + 8))(g_Input.m_lpDIDKeyboard)` |
+| `::SingletonThunk_00404590` | inline | `IDirectInput8` | 8 | no_vtables_declaration | `(*(void ( **)(IDirectInput8 *))(*(_DWORD *)g_Input.m_lpDI + 8))(g_Input.m_lpDI)` |
+| `::UIAnimateCtrlEX_Render` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)(v1 + 748) + 4))(v1 + 748)` |
+| `::$E68` | inline | `_DWORD` | 12 | non_class_hint | `(*(void ( **)(_DWORD))(*(_DWORD *)*v3 + 12))(*v3)` |

@@ -7,12 +7,13 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   With methods: 234
   Enums: 0
   Template stubs: 0
-  Phantom globals skipped: 27 (arr, unk_C0A40E, flt_C1096C, dword_C10A08, byte_C10A0E, dword_C11760, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00)
-    ... and 17 more
-  Annotation-skipped globals: 82
-  Globals: 3060 in globals.h
+  Phantom globals skipped: 25 (arr, unk_C0A40E, dword_C10A08, dword_C11760, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00, dword_D8BC10, dword_D8BC30)
+    ... and 15 more
+  Annotation-skipped globals: 77
+  declared_globals refreshed post-emit: 2867
+  Globals: 2949 in globals.h
 
-[WARN] Header generation found 37 annotation conflicts (deduplicated):
+[WARN] Header generation found 36 annotation conflicts (deduplicated):
   DUPLICATE METHOD: CCBRoleState::UpdatePanel(BOOL) (addr=0x004dc250)
   DUPLICATE METHOD: CCBRoleState::AddCommand(int, BOOL, int) (addr=0x004f2c70)
   DUPLICATE METHOD: CEffect::sub_4D1300() (addr=0x004d1300)
@@ -48,15 +49,14 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   DUPLICATE METHOD: SaleUI::ToggleSlot4(unsigned __int8) (addr=0x004714e0)
   DUPLICATE METHOD: ScriptVM::ExecuteBlock() (addr=0x00424c20)
   DUPLICATE METHOD: StateUI::sub_4850E0() (addr=0x004850e0)
-  DUPLICATE METHOD: UIListBox::Destroy() (addr=0x0043DE90)
   DUPLICATE METHOD: UIListBox::CreateChild() (addr=0x0043f560)
-  Globals: 3007 in globals.cpp
-  Globals: 3007 in globals.cpp
+  Globals: 2885 in globals.cpp
+  Globals: 2885 in globals.cpp
 Collecting functions from decomp...
   Classes with methods: 213
-  Free functions: 366
+  Free functions: 365
 
-Generated 214 .cpp files (3530 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 214 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 2 files
   Effect/: 18 files
@@ -69,415 +69,191 @@ Generated 214 .cpp files (3530 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 131/215 ok | own-fail 84 | imported-only 0  (27s)
+S2 cpp: 141/215 ok | own-fail 74 | imported-only 0  (17s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261030_180757
-基线时间: 2026-10-30T18:07:57.897972
-检测时间: 2026-11-09T13:04:12.037476
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-10T18:05:00.634999
 
 📊 摘要:
-  总文件数: 216
-  新失败: 6
-  新错误(真新增 (code,msg)): 15
-  已修复: 0
-  错误收敛(消失 (code,msg)): 26
-  持续失败: 78
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 4
+  已修复: 4
+  错误收敛(消失 (code,msg)): 11
+  持续失败: 79
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2100    +29  ⚠️ 增加
-  C2664    -22
-  C2440    -9
-  C2059    -8
-  C2660    -4
-  C2228    -4
-  C2679    +4  ⚠️ 增加
-  C2227    +4  ⚠️ 增加
-  C2039    -3
-  C2653    -2
-  C2109    -2
-  C2106    +2  ⚠️ 增加
-  C2084    +2  ⚠️ 增加
-  C2197    -1
-  C2296    -1
-  ⚠️ 注意: 以下错误码**净增** C2018, C2065, C2084, C2100, C2106, C2143, C2166, C2227, C2297, C2679 —— 即使总错误数在下降也要逐条归因
-
-❌ 新失败 (之前成功，现在失败):
-----------------------------------------
-  pal3/src/Misc/JusticeBookUI.cpp
-    L290: C2227 - left of '->UIParticle' must point to class/struct/union
-    L290: C2653 - 'UIParticle' : is not a class or namespace name
-  pal3/src/Scene/CameraCtrl.cpp
-    L222: C2440 - '=' : cannot convert from 'float *' to 'float'
-    L232: C2109 - subscript requires array or pointer type
-    L232: C2106 - '=' : left operand must be l-value
-    ... 还有 3 个错误
-  pal3/src/UI/UIListBox.cpp
-    L425: C2084 - function 'void __thiscall UIListBox::Destroy(void)' already 
-  pal3/src/Effect/CEffgbParticle.cpp
-    L320: C2100 - illegal indirection
-    L321: C2100 - illegal indirection
-    L322: C2100 - illegal indirection
-  pal3/src/Effect/CEffect.cpp
-    L1203: C2100 - illegal indirection
-    L1204: C2100 - illegal indirection
-    L1205: C2100 - illegal indirection
-    ... 还有 5 个错误
-  pal3/src/Effect/CEffGrid.cpp
-    L443: C2100 - illegal indirection
-    L444: C2100 - illegal indirection
-    L445: C2100 - illegal indirection
+  C2440    -38
+  C2039    -14
+  C2653    -14
+  C2227    -13
+  C2059    -12
+  C2228    -8
+  C2065    +5  ⚠️ 增加
+  C2673    -4
+  C2143    -2
+  C2181    -1
+  C2511    -1
+  C2660    +1  ⚠️ 增加
+  ⚠️ 注意: 以下错误码**净增** C2065, C2660 —— 即使总错误数在下降也要逐条归因
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp
-    错误数: 3 -> 19  真新增 19 {'C2664': 16, 'C2679': 2, 'C2039': 1}
-    新增 L727: C2664 - 'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert par
-    新增 L740: C2664 - 'void (unsigned int *,__int16 *,int *,class CCCTData *)' : cannot conv
-    新增 L740: C2664 - 'void (unsigned int *,__int16 *,int *,class CCCTData *)' : cannot conv
-    新增 L762: C2664 - 'void (float *,__int16 *,unsigned long *,char *,unsigned long,class CC
-    新增 L869: C2664 - 'int (char *,int *,int *,class CCCTData *,unsigned long,int,int)' : ca
-  pal3/src/Script/PalScript.cpp
-    错误数: 58 -> 59  真新增 1 {'C2065': 1}
-    新增 L2900: C2065 - 'ProcessKeyboard_2' : undeclared identifier
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 1 -> 3  真新增 2 {'C2039': 2}
-    新增 L46: C2039 - '_scalar_dtor_E5C0' : is not a member of 'scScriptInstance'
-    新增 L46: C2039 - '_scalar_dtor_E5C0' : is not a member of 'scScriptInstance'
-  pal3/src/Effect/CEffCylinder.cpp
-    错误数: 1 -> 4  真新增 3 {'C2100': 3}
-    新增 L473: C2100 - illegal indirection
-    新增 L474: C2100 - illegal indirection
-    新增 L475: C2100 - illegal indirection
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 19 -> 28  真新增 8 {'C2100': 8}
-    新增 L919: C2100 - illegal indirection
-    新增 L926: C2100 - illegal indirection
-    新增 L943: C2100 - illegal indirection
-    新增 L950: C2100 - illegal indirection
-    新增 L999: C2100 - illegal indirection
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 20 -> 20  真新增 1 {'C2065': 1}
-    新增 L721: C2065 - '_E68' : undeclared identifier
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 54 -> 53  真新增 6 {'C2660': 2, 'C2039': 3, 'C2065': 1}
-    新增 L246: C2660 - 'Write' : function does not take 0 parameters
-    新增 L247: C2660 - 'Write' : function does not take 0 parameters
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 6 -> 5  真新增 1 {'C2065': 1}
-    新增 L663: C2065 - 'pszRoleDir' : undeclared identifier
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 15 -> 16  真新增 1 {'C2065': 1}
+    新增 L458: C2065 - 'off_5D8A3C' : undeclared identifier
   pal3/src/Data/PAL_GDB.cpp
-    错误数: 7 -> 7  真新增 1 {'C2065': 1}
-    新增 L1642: C2065 - 'pszRoleDir' : undeclared identifier
-  pal3/src/Misc/SystemUI.cpp
-    错误数: 1 -> 5  真新增 4 {'C2065': 4}
-    新增 L1450: C2065 - 'dword_56F22C' : undeclared identifier
-    新增 L1455: C2065 - 'dword_56F224' : undeclared identifier
-    新增 L1461: C2065 - 'dword_56F230' : undeclared identifier
-    新增 L1466: C2065 - 'dword_56F228' : undeclared identifier
-    新增 L1475: C2065 - 'dword_56F234' : undeclared identifier
-  pal3/src/Misc/Array.cpp
-    错误数: 16 -> 20  真新增 13 {'C2440': 6, 'C2227': 6, 'C2297': 1}
-    新增 L541: C2440 - '=' : cannot convert from 'int' to 'class NPC *'
-    新增 L542: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L552: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L556: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L564: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 38 -> 28  真新增 2 {'C2100': 2}
-    新增 L3109: C2100 - illegal indirection
-    新增 L3110: C2100 - illegal indirection
-  pal3/src/Role/Object3D.cpp
-    错误数: 4 -> 6  真新增 2 {'C2100': 2}
-    新增 L822: C2100 - illegal indirection
-    新增 L866: C2100 - illegal indirection
+    错误数: 7 -> 8  真新增 1 {'C2065': 1}
+    新增 L1263: C2065 - 'off_5D8A3C' : undeclared identifier
   pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 8 {'C2084': 1, 'C2018': 1, 'C2143': 1, 'C2059': 1, 'C2166': 1, 'C2440': 2, 'C2664': 1}
-    新增 L254: C2084 - function 'int __stdcall ArraySort(int,int,int,int)' already has a body
-    新增 L4573: C2018 - unknown character '0x40'
-    新增 L4573: C2143 - syntax error : missing ',' before '<'
-    新增 L4573: C2059 - syntax error : '<'
-    新增 L6334: C2166 - l-value specifies const object
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 51 -> 48  真新增 2 {'C2100': 1, 'C2065': 1}
-    新增 L917: C2100 - illegal indirection
-    新增 L6300: C2065 - 'pszRoleDir' : undeclared identifier
+    错误数: 101 -> 101  真新增 2 {'C2660': 1, 'C2664': 1}
+    新增 L231: C2660 - 'Init' : function does not take 2 parameters
+    新增 L14743: C2664 - 'void (int,__int16 *,unsigned long *,int,char *,int,int)' : cannot con
+  pal3/src/Combat/CCBUI.cpp
+    错误数: 30 -> 32  真新增 3 {'C2065': 3}
+    新增 L561: C2065 - 'byte_5D87F0' : undeclared identifier
+    新增 L768: C2065 - 'byte_5D8808' : undeclared identifier
+    新增 L1409: C2065 - 'dword_5D8800' : undeclared identifier
+    新增 L4606: C2065 - 'g_strColHeadQuantity' : undeclared identifier
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Script/PalScript.cpp: {'C2664': 2, 'C2660': 1}
-  pal3/src/Misc/MainEquipUI.cpp: {'C2664': 1}
-  pal3/src/Role/Actor.cpp: {'C2664': 1}
-  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1}
-  pal3/src/GameBase/PAL3.cpp: {'C2664': 4, 'C2440': 1}
-  pal3/src/Combat/CCBUI.cpp: {'C2664': 1}
-  pal3/src/UI/UICursor.cpp: {'C2440': 1}
-  pal3/src/Combat/CCBSystem.cpp: {'C2440': 2}
-  pal3/src/Misc/SystemUI.cpp: {'C2065': 1}
-  pal3/src/Misc/Array.cpp: {'C2440': 1, 'C2227': 5}
-  pal3/src/Misc/ArcLocaleRole.cpp: {'C2664': 4}
-  pal3/src/Render/CScreenMode.cpp: {'C2065': 1}
-  pal3/src/free_functions.cpp: {'C2039': 2, 'C2065': 1, 'C2373': 1}
+  pal3/src/Script/PalScript.cpp: {'C2065': 2, 'C2146': 3}
+  pal3/src/Combat/CCBUI.cpp: {'C2065': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp: 3 -> 19  (消失 3)
-  pal3/src/Script/PalScript.cpp: 58 -> 59  (消失 3)
-  pal3/src/Misc/MainEquipUI.cpp: 5 -> 4  (消失 2)
-  pal3/src/Role/Actor.cpp: 78 -> 30  (消失 45)
-  pal3/src/UI/EquipUI.cpp: 5 -> 4  (消失 1)
-  pal3/src/Combat/CCBControlWindow.cpp: 6 -> 4  (消失 2)
-  pal3/src/Combat/CCBStageScene.cpp: 3 -> 2  (消失 1)
-  pal3/src/Misc/SaleUI.cpp: 25 -> 24  (消失 1)
-  pal3/src/Effect/CEffMgr.cpp: 20 -> 20  (消失 2)
-  pal3/src/GameBase/PAL3.cpp: 54 -> 53  (消失 15)
-  pal3/src/Combat/CCBStageCam.cpp: 18 -> 15  (消失 2)
-  pal3/src/Misc/RoleAtt.cpp: 6 -> 5  (消失 2)
-  pal3/src/Render/RenderTarget.cpp: 6 -> 1  (消失 5)
-  pal3/src/Combat/CCBUI.cpp: 32 -> 32  (消失 1)
-  pal3/src/UI/UICursor.cpp: 1 -> 1  (消失 1)
+  pal3/src/MiniGame/MiniGame3.cpp: 18 -> 6  (消失 7)
+  pal3/src/Script/PalScript.cpp: 59 -> 59  (消失 5)
+  pal3/src/Role/RoleSystem.cpp: 47 -> 39  (消失 8)
+  pal3/src/UI/StateUI.cpp: 17 -> 8  (消失 9)
+  pal3/src/Role/Actor.cpp: 30 -> 25  (消失 2)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 2)
+  pal3/src/GameBase/PAL3.cpp: 50 -> 44  (消失 4)
+  pal3/src/Misc/GeomNode.cpp: 11 -> 2  (消失 7)
+  pal3/src/Misc/CCBUIPanel.cpp: 30 -> 3  (消失 27)
+  pal3/src/MiniGame/MiniGame1.cpp: 7 -> 1  (消失 6)
+  pal3/src/Combat/CCBUI.cpp: 30 -> 32  (消失 5)
+
+✅ 已修复 (之前失败，现在成功):
+----------------------------------------
+  pal3/src/Misc/gbLightObj.cpp
+  pal3/src/Misc/PtrArray.cpp
+  pal3/src/Misc/sg_emission_control.cpp
+  pal3/src/Effect/CEffectSystem.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp: 3 → 19
-  pal3/src/Script/PalScript.cpp: 58 → 59
-  pal3/src/Misc/UIEmote.cpp: 1 → 3
-  pal3/src/Misc/MainEquipUI.cpp: 5 ↓ 4
-  pal3/src/Effect/CEffCylinder.cpp: 1 → 4
-  pal3/src/Role/Actor.cpp: 78 ↓ 30
-  pal3/src/UI/EquipUI.cpp: 5 ↓ 4
-  pal3/src/Combat/CCBControlWindow.cpp: 6 ↓ 4
-  pal3/src/Combat/CCBStageScene.cpp: 3 ↓ 2
-  pal3/src/Misc/SaleUI.cpp: 25 ↓ 24
-  pal3/src/Misc/UIBigMap.cpp: 19 → 28
-  pal3/src/Misc/UIScenePanel.cpp: 3 → 6
-  pal3/src/GameBase/PAL3.cpp: 54 ↓ 53
-  pal3/src/UI/StateUI.cpp: 8 → 17
-  pal3/src/Combat/CCBStageCam.cpp: 18 ↓ 15
-  pal3/src/Misc/RoleAtt.cpp: 6 ↓ 5
-  pal3/src/Render/RenderTarget.cpp: 6 ↓ 1
-  pal3/src/UI/UIScene.cpp: 12 ↓ 9
-  pal3/src/Render/RenderTarget3.cpp: 3 ↓ 2
-  pal3/src/Misc/SystemUI.cpp: 1 → 5
-  pal3/src/Misc/Array.cpp: 16 → 20
-  pal3/src/Misc/ArcLocaleRole.cpp: 7 ↓ 4
-  pal3/src/UI/PropUI.cpp: 5 ↓ 4
-  pal3/src/Misc/ScriptVM.cpp: 44 ↓ 42
-  pal3/src/Render/CScreenMode.cpp: 38 ↓ 28
-  pal3/src/Role/Object3D.cpp: 4 → 6
-  pal3/src/Role/RoleSystem.cpp: 51 ↓ 48
+  pal3/src/Combat/CCBStageCam.cpp: 15 → 16
+  pal3/src/MiniGame/MiniGame3.cpp: 18 ↓ 6
+  pal3/src/Role/RoleSystem.cpp: 47 ↓ 39
+  pal3/src/Data/PAL_GDB.cpp: 7 → 8
+  pal3/src/UI/StateUI.cpp: 17 ↓ 8
+  pal3/src/Role/Actor.cpp: 30 ↓ 25
+  pal3/src/GameBase/PAL3.cpp: 50 ↓ 44
+  pal3/src/Misc/GeomNode.cpp: 11 ↓ 2
+  pal3/src/Misc/CCBUIPanel.cpp: 30 ↓ 3
+  pal3/src/MiniGame/MiniGame1.cpp: 7 ↓ 1
+  pal3/src/Combat/CCBUI.cpp: 30 → 32
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261030_180757
-基线时间: 2026-10-30T18:07:57.897972
-检测时间: 2026-11-09T13:04:12.073368
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-10T18:05:00.674167
 
 📊 摘要:
-  总文件数: 216
-  新失败: 6
-  新错误(真新增 (code,msg)): 15
-  已修复: 0
-  错误收敛(消失 (code,msg)): 26
-  持续失败: 78
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 4
+  已修复: 4
+  错误收敛(消失 (code,msg)): 11
+  持续失败: 79
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2100    +29  ⚠️ 增加
-  C2664    -22
-  C2440    -9
-  C2059    -8
-  C2660    -4
-  C2228    -4
-  C2227    +4  ⚠️ 增加
-  C2679    +4  ⚠️ 增加
-  C2039    -3
-  C2109    -2
-  C2653    -2
-  C2106    +2  ⚠️ 增加
-  C2084    +2  ⚠️ 增加
-  C2197    -1
-  C2296    -1
-  ⚠️ 注意: 以下错误码**净增** C2018, C2065, C2084, C2100, C2106, C2143, C2166, C2227, C2297, C2679 —— 即使总错误数在下降也要逐条归因
-
-❌ 新失败 (之前成功，现在失败):
-----------------------------------------
-  pal3/src/Scene/CameraCtrl.cpp
-    L222: C2440 - '=' : cannot convert from 'float *' to 'float'
-    L232: C2109 - subscript requires array or pointer type
-    L232: C2106 - '=' : left operand must be l-value
-    ... 还有 3 个错误
-  pal3/src/Misc/JusticeBookUI.cpp
-    L290: C2227 - left of '->UIParticle' must point to class/struct/union
-    L290: C2653 - 'UIParticle' : is not a class or namespace name
-  pal3/src/Effect/CEffgbParticle.cpp
-    L320: C2100 - illegal indirection
-    L321: C2100 - illegal indirection
-    L322: C2100 - illegal indirection
-  pal3/src/UI/UIListBox.cpp
-    L425: C2084 - function 'void __thiscall UIListBox::Destroy(void)' already 
-  pal3/src/Effect/CEffect.cpp
-    L1203: C2100 - illegal indirection
-    L1204: C2100 - illegal indirection
-    L1205: C2100 - illegal indirection
-    ... 还有 5 个错误
-  pal3/src/Effect/CEffGrid.cpp
-    L443: C2100 - illegal indirection
-    L444: C2100 - illegal indirection
-    L445: C2100 - illegal indirection
+  C2440    -38
+  C2653    -14
+  C2039    -14
+  C2227    -13
+  C2059    -12
+  C2228    -8
+  C2065    +5  ⚠️ 增加
+  C2673    -4
+  C2143    -2
+  C2511    -1
+  C2181    -1
+  C2660    +1  ⚠️ 增加
+  ⚠️ 注意: 以下错误码**净增** C2065, C2660 —— 即使总错误数在下降也要逐条归因
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 6 -> 5  真新增 1 {'C2065': 1}
-    新增 L663: C2065 - 'pszRoleDir' : undeclared identifier
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 54 -> 53  真新增 6 {'C2660': 2, 'C2039': 3, 'C2065': 1}
-    新增 L246: C2660 - 'Write' : function does not take 0 parameters
-    新增 L247: C2660 - 'Write' : function does not take 0 parameters
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-    新增 L343: C2039 - 'gbGeomNode' : is not a member of 'gbVFileSystem'
-  pal3/src/Effect/CEffCylinder.cpp
-    错误数: 1 -> 4  真新增 3 {'C2100': 3}
-    新增 L473: C2100 - illegal indirection
-    新增 L474: C2100 - illegal indirection
-    新增 L475: C2100 - illegal indirection
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 20 -> 20  真新增 1 {'C2065': 1}
-    新增 L721: C2065 - '_E68' : undeclared identifier
-  pal3/src/Misc/SystemUI.cpp
-    错误数: 1 -> 5  真新增 4 {'C2065': 4}
-    新增 L1450: C2065 - 'dword_56F22C' : undeclared identifier
-    新增 L1455: C2065 - 'dword_56F224' : undeclared identifier
-    新增 L1461: C2065 - 'dword_56F230' : undeclared identifier
-    新增 L1466: C2065 - 'dword_56F228' : undeclared identifier
-    新增 L1475: C2065 - 'dword_56F234' : undeclared identifier
+  pal3/src/Combat/CCBUI.cpp
+    错误数: 30 -> 32  真新增 3 {'C2065': 3}
+    新增 L561: C2065 - 'byte_5D87F0' : undeclared identifier
+    新增 L768: C2065 - 'byte_5D8808' : undeclared identifier
+    新增 L1409: C2065 - 'dword_5D8800' : undeclared identifier
+    新增 L4606: C2065 - 'g_strColHeadQuantity' : undeclared identifier
   pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 8 {'C2084': 1, 'C2018': 1, 'C2143': 1, 'C2059': 1, 'C2166': 1, 'C2440': 2, 'C2664': 1}
-    新增 L254: C2084 - function 'int __stdcall ArraySort(int,int,int,int)' already has a body
-    新增 L4573: C2018 - unknown character '0x40'
-    新增 L4573: C2143 - syntax error : missing ',' before '<'
-    新增 L4573: C2059 - syntax error : '<'
-    新增 L6334: C2166 - l-value specifies const object
-  pal3/src/Script/PalScript.cpp
-    错误数: 58 -> 59  真新增 1 {'C2065': 1}
-    新增 L2900: C2065 - 'ProcessKeyboard_2' : undeclared identifier
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 19 -> 28  真新增 8 {'C2100': 8}
-    新增 L919: C2100 - illegal indirection
-    新增 L926: C2100 - illegal indirection
-    新增 L943: C2100 - illegal indirection
-    新增 L950: C2100 - illegal indirection
-    新增 L999: C2100 - illegal indirection
-  pal3/src/Misc/Array.cpp
-    错误数: 16 -> 20  真新增 13 {'C2440': 6, 'C2227': 6, 'C2297': 1}
-    新增 L541: C2440 - '=' : cannot convert from 'int' to 'class NPC *'
-    新增 L542: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L552: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L556: C2227 - left of '->m_AnimWndA' must point to class/struct/union
-    新增 L564: C2227 - left of '->m_AnimWndA' must point to class/struct/union
+    错误数: 101 -> 101  真新增 2 {'C2660': 1, 'C2664': 1}
+    新增 L231: C2660 - 'Init' : function does not take 2 parameters
+    新增 L14743: C2664 - 'void (int,__int16 *,unsigned long *,int,char *,int,int)' : cannot con
   pal3/src/Data/PAL_GDB.cpp
-    错误数: 7 -> 7  真新增 1 {'C2065': 1}
-    新增 L1642: C2065 - 'pszRoleDir' : undeclared identifier
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 38 -> 28  真新增 2 {'C2100': 2}
-    新增 L3109: C2100 - illegal indirection
-    新增 L3110: C2100 - illegal indirection
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 51 -> 48  真新增 2 {'C2100': 1, 'C2065': 1}
-    新增 L917: C2100 - illegal indirection
-    新增 L6300: C2065 - 'pszRoleDir' : undeclared identifier
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 1 -> 3  真新增 2 {'C2039': 2}
-    新增 L46: C2039 - '_scalar_dtor_E5C0' : is not a member of 'scScriptInstance'
-    新增 L46: C2039 - '_scalar_dtor_E5C0' : is not a member of 'scScriptInstance'
-  pal3/src/Combat/CCCTData.cpp
-    错误数: 3 -> 19  真新增 19 {'C2664': 16, 'C2679': 2, 'C2039': 1}
-    新增 L727: C2664 - 'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert par
-    新增 L740: C2664 - 'void (unsigned int *,__int16 *,int *,class CCCTData *)' : cannot conv
-    新增 L740: C2664 - 'void (unsigned int *,__int16 *,int *,class CCCTData *)' : cannot conv
-    新增 L762: C2664 - 'void (float *,__int16 *,unsigned long *,char *,unsigned long,class CC
-    新增 L869: C2664 - 'int (char *,int *,int *,class CCCTData *,unsigned long,int,int)' : ca
-  pal3/src/Role/Object3D.cpp
-    错误数: 4 -> 6  真新增 2 {'C2100': 2}
-    新增 L822: C2100 - illegal indirection
-    新增 L866: C2100 - illegal indirection
+    错误数: 7 -> 8  真新增 1 {'C2065': 1}
+    新增 L1263: C2065 - 'off_5D8A3C' : undeclared identifier
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 15 -> 16  真新增 1 {'C2065': 1}
+    新增 L458: C2065 - 'off_5D8A3C' : undeclared identifier
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Misc/ArcLocaleRole.cpp: {'C2664': 4}
-  pal3/src/Misc/MainEquipUI.cpp: {'C2664': 1}
-  pal3/src/GameBase/PAL3.cpp: {'C2664': 4, 'C2440': 1}
-  pal3/src/Combat/CCBSystem.cpp: {'C2440': 2}
-  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1}
-  pal3/src/UI/UICursor.cpp: {'C2440': 1}
-  pal3/src/Misc/SystemUI.cpp: {'C2065': 1}
-  pal3/src/free_functions.cpp: {'C2039': 2, 'C2065': 1, 'C2373': 1}
-  pal3/src/Script/PalScript.cpp: {'C2664': 2, 'C2660': 1}
-  pal3/src/Misc/Array.cpp: {'C2440': 1, 'C2227': 5}
-  pal3/src/Render/CScreenMode.cpp: {'C2065': 1}
-  pal3/src/Combat/CCBUI.cpp: {'C2664': 1}
-  pal3/src/Role/Actor.cpp: {'C2664': 1}
+  pal3/src/Script/PalScript.cpp: {'C2065': 2, 'C2146': 3}
+  pal3/src/Combat/CCBUI.cpp: {'C2065': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Misc/SaleUI.cpp: 25 -> 24  (消失 1)
-  pal3/src/UI/EquipUI.cpp: 5 -> 4  (消失 1)
-  pal3/src/Misc/RoleAtt.cpp: 6 -> 5  (消失 2)
-  pal3/src/UI/PropUI.cpp: 5 -> 4  (消失 1)
-  pal3/src/Misc/ArcLocaleRole.cpp: 7 -> 4  (消失 7)
-  pal3/src/Misc/MainEquipUI.cpp: 5 -> 4  (消失 2)
-  pal3/src/GameBase/PAL3.cpp: 54 -> 53  (消失 15)
-  pal3/src/Combat/CCBSystem.cpp: 23 -> 23  (消失 2)
-  pal3/src/Effect/CEffMgr.cpp: 20 -> 20  (消失 2)
-  pal3/src/UI/UICursor.cpp: 1 -> 1  (消失 1)
-  pal3/src/Misc/SystemUI.cpp: 1 -> 5  (消失 1)
-  pal3/src/Combat/CCBControlWindow.cpp: 6 -> 4  (消失 2)
-  pal3/src/free_functions.cpp: 101 -> 101  (消失 7)
-  pal3/src/Script/PalScript.cpp: 58 -> 59  (消失 3)
-  pal3/src/Misc/Array.cpp: 16 -> 20  (消失 11)
+  pal3/src/GameBase/PAL3.cpp: 50 -> 44  (消失 4)
+  pal3/src/Script/PalScript.cpp: 59 -> 59  (消失 5)
+  pal3/src/MiniGame/MiniGame1.cpp: 7 -> 1  (消失 6)
+  pal3/src/Combat/CCBUI.cpp: 30 -> 32  (消失 5)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 2)
+  pal3/src/Role/Actor.cpp: 30 -> 25  (消失 2)
+  pal3/src/Role/RoleSystem.cpp: 47 -> 39  (消失 8)
+  pal3/src/Misc/CCBUIPanel.cpp: 30 -> 3  (消失 27)
+  pal3/src/UI/StateUI.cpp: 17 -> 8  (消失 9)
+  pal3/src/Misc/GeomNode.cpp: 11 -> 2  (消失 7)
+  pal3/src/MiniGame/MiniGame3.cpp: 18 -> 6  (消失 7)
+
+✅ 已修复 (之前失败，现在成功):
+----------------------------------------
+  pal3/src/Effect/CEffectSystem.cpp
+  pal3/src/Misc/gbLightObj.cpp
+  pal3/src/Misc/sg_emission_control.cpp
+  pal3/src/Misc/PtrArray.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/SaleUI.cpp: 25 ↓ 24
-  pal3/src/UI/EquipUI.cpp: 5 ↓ 4
-  pal3/src/Misc/RoleAtt.cpp: 6 ↓ 5
-  pal3/src/UI/PropUI.cpp: 5 ↓ 4
-  pal3/src/Misc/ArcLocaleRole.cpp: 7 ↓ 4
-  pal3/src/Misc/MainEquipUI.cpp: 5 ↓ 4
-  pal3/src/GameBase/PAL3.cpp: 54 ↓ 53
-  pal3/src/Effect/CEffCylinder.cpp: 1 → 4
-  pal3/src/Misc/SystemUI.cpp: 1 → 5
-  pal3/src/Combat/CCBControlWindow.cpp: 6 ↓ 4
-  pal3/src/Script/PalScript.cpp: 58 → 59
-  pal3/src/Misc/UIScenePanel.cpp: 3 → 6
-  pal3/src/Misc/UIBigMap.cpp: 19 → 28
-  pal3/src/Misc/Array.cpp: 16 → 20
-  pal3/src/Misc/ScriptVM.cpp: 44 ↓ 42
-  pal3/src/UI/StateUI.cpp: 8 → 17
-  pal3/src/Render/CScreenMode.cpp: 38 ↓ 28
-  pal3/src/Role/RoleSystem.cpp: 51 ↓ 48
-  pal3/src/Misc/UIEmote.cpp: 1 → 3
-  pal3/src/UI/UIScene.cpp: 12 ↓ 9
-  pal3/src/Combat/CCBStageCam.cpp: 18 ↓ 15
-  pal3/src/Render/RenderTarget.cpp: 6 ↓ 1
-  pal3/src/Render/RenderTarget3.cpp: 3 ↓ 2
-  pal3/src/Combat/CCCTData.cpp: 3 → 19
-  pal3/src/Role/Actor.cpp: 78 ↓ 30
-  pal3/src/Combat/CCBStageScene.cpp: 3 ↓ 2
-  pal3/src/Role/Object3D.cpp: 4 → 6
+  pal3/src/GameBase/PAL3.cpp: 50 ↓ 44
+  pal3/src/MiniGame/MiniGame1.cpp: 7 ↓ 1
+  pal3/src/Combat/CCBUI.cpp: 30 → 32
+  pal3/src/Role/Actor.cpp: 30 ↓ 25
+  pal3/src/Data/PAL_GDB.cpp: 7 → 8
+  pal3/src/Role/RoleSystem.cpp: 47 ↓ 39
+  pal3/src/Misc/CCBUIPanel.cpp: 30 ↓ 3
+  pal3/src/UI/StateUI.cpp: 17 ↓ 8
+  pal3/src/Misc/GeomNode.cpp: 11 ↓ 2
+  pal3/src/Combat/CCBStageCam.cpp: 15 → 16
+  pal3/src/MiniGame/MiniGame3.cpp: 18 ↓ 6
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 
@@ -497,4 +273,4 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 [emit] Logger: member at +0x1230 is behind bookkeeping (start_off=0x1294, +0x64) — 不跳过，交由布局审计裁决
 [emit] SceneMgr: member at +0x2B54 is behind bookkeeping (start_off=0x33C0, +0x86C) — 不跳过，交由布局审计裁决
 [emit] UIGameFrm: member at +0x164 is behind bookkeeping (start_off=0x25C, +0xF8) — 不跳过，交由布局审计裁决
-[ret-N evidence] 指令级(asm) 3486 / 裸扫描回退 433 / 无证据 15
+[ret-N evidence] 指令级(asm) 3487 / 裸扫描回退 433 / 无证据 15
