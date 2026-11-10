@@ -1366,6 +1366,43 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A10 (2026-11-09) Hex-Rays delete 展开形态合并——虚析构 thunk 错归属 +
+    #   operator delete 双语句 → C++ delete 单语句。
+    #   病灶(CCBStage L1560): `(((j_j_codecvt_base *)v10))->j_j_codecvt_base::
+    #   do_always_noconv(); operator delete(v10);` —— Hex-Rays 把虚析构槽调用
+    #   错归属到 std 类名(j_j_=双thunk前缀),产生 C2653/C2248/C2059 级联
+    #   (CCBStage.cpp 102 错的主级联源——CEffectSystem 等后续引用全被
+    #   编译器错乱状态污染成 C2653)。
+    #   语义: 槽位调用(经vtable)=虚析构 + operator delete = `delete expr` ✓
+    #   (B 面 _scalar_dtor→delete 家族同款等价变换)
+    # v2 (2026-11-10): 三形态——虚析构槽调用按成员真实类型改显式析构调用
+    # (m_pCam=CCBStageCam* / m_pCamControl=CCBCamControl* / m_TempStorageNGH=Actor*,
+    #  CCBStage.h 成员声明取证)。delete 展开: 槽调用=析构,operator delete 保留。
+    # 孤立槽调用(无 operator delete 配对)→ 显式析构调用(p->~T(), VC6 合法,
+    # 语义=槽位虚析构)。错归属类名(std::codecvt_base/j_j_codecvt_base)一并消除。
+    code = code.replace(
+        '(((j_j_codecvt_base *)this->m_pCamControl))->j_j_codecvt_base::do_always_noconv();\n'
+        '              operator delete(v10);',
+        'delete ((CCBCamControl *)v10);')
+    code = code.replace(
+        '(((std::codecvt_base *)m_pCam))->do_always_noconv();',
+        'm_pCam->~CCBStageCam();')
+    code = code.replace(
+        '(((std::codecvt_base *)m_TempStorageNGH))->do_always_noconv();',
+        'm_TempStorageNGH->~Actor();')
+    # v2b: 错归属 cast 污染的赋值行(Hex-Rays 数据流反向污染——
+    # 槽调用解析到 codecvt_base 后,成员重赋值行也用了错 cast →
+    # 后续 ~T() 显式析构报 C2300 静态类型错)
+    # v2c: 局部变量声明行才是类型源头(Hex-Rays local_vars 错型遮蔽成员)
+    code = code.replace('std::codecvt_base *m_pCam; // ecx',
+                        'CCBStageCam *m_pCam; // ecx')
+    code = code.replace('std::codecvt_base *m_TempStorageNGH; // ecx',
+                        'Actor *m_TempStorageNGH; // ecx')
+    code = code.replace('m_pCam = (std::codecvt_base *)this->m_pCam;',
+                        'm_pCam = (CCBStageCam *)this->m_pCam;')
+    code = code.replace('m_TempStorageNGH = (std::codecvt_base *)this->m_TempStorageNGH;',
+                        'm_TempStorageNGH = (Actor *)this->m_TempStorageNGH;')
+
     # P-A4 (2026-11-09) Hex-Rays 泄漏的未声明路径缓冲: sprintf(Buffer,...) 用了
     #   local_vars 未含的标识符(IDA decomp 缺陷, CCBAttackSequen InitCombatSlot 实证)。
     #   体引用 Buffer 且无声明 → 函数定义行后合成 char Buffer[260](MAX_PATH 惯例)。
