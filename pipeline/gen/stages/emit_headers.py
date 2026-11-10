@@ -2891,6 +2891,25 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if not is_thiscall and '*this' in params:
                 is_thiscall = True
             is_static = not is_thiscall and not is_ctor and not is_dtor
+            # P-A16 (2026-11-10): annotation methods 的 static 签名覆盖 decomp 的 __thiscall
+            # (Hex-Rays decomp JSON 永远报 __thiscall 因为 IDA 归属到类; 但纯 dlgproc 等
+            #  this=0 的函数实际是 static——annotation 层已修正, 头/体需跟随)
+            try:
+                import json as _json
+                import os as _os
+                _sp = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))), 'data', 'annotations', 'structs', cls_name + '.json')
+                if _os.path.exists(_sp):
+                    _sj = _json.loads(open(_sp, encoding='utf-8').read())
+                    _au = str(addr).upper().replace('0X', '0x')
+                    _am = None
+                    for _mk, _mv in (_sj.get('methods', {}) or {}).items():
+                        if str(_mk).upper() == _au:
+                            _am = _mv; break
+                    if _am and 'static' in str(_am.get('signature', '')):
+                        is_static = True
+                        is_thiscall = False
+            except Exception:
+                pass
 
             # Strip register annotations
             # ★ vtable 槽位方法必须 virtual（2026-09-25）
