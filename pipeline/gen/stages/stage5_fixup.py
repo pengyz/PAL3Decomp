@@ -1367,6 +1367,15 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A15 (2026-11-10) D3DX 函数的 float 槽实参显式 cast——Hex-Rays 把
+    #   D3DXVECTOR3 栈实参拆成连续 dword 槽(反编译器结构限制,签名已对无法
+    #   自愈: d3dx9math.h 原型正确, lvars 栈合并是 IDA 交互态)。
+    #   &float 槽 → (D3DXVECTOR3 *)&float 槽(C 风格 cast, 同内存布局零语义损失)。
+    #   实测 sg_emission_control.cpp D3DXVec3Normalize 1 处。
+    code = re.sub(
+        r'D3DXVec3Normalize\(&([\w.]+),\s*&([\w.]+)\)',
+        r'D3DXVec3Normalize((D3DXVECTOR3 *)&\1, (D3DXVECTOR3 *)&\2)', code)
+
     # P-A14 (2026-11-10) 数组成员的对象→int cast 补地址符——
     #   `(int)this->m_Slots[20]`(CCBPanelSlot 对象)缺 `&` → C2440 ×27
     #   (CCBUIPanel 单文件)。判据窄门: m_Slots 是 CCBUIPanel.h:55 声明的
