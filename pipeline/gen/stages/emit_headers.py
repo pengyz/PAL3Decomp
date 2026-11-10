@@ -4167,6 +4167,12 @@ def generate_globals():
             _cur_sect[0] = _s
             h_lines.append('')
             h_lines.append('// ==== %s ====' % _SECTION_NAMES.get(_s, 'UNCLASSIFIED'))
+        # noreturn array 变体 (P-A18-na): `void (__noreturn *[6])()` → `void (*NAME[6])()`
+        _nt_arr = re.match(r'^(\w+)\s*\(__noreturn\s*\*\s*\[(\d+)\]\)\s*\(\)', typ)
+        if _nt_arr:
+            h_lines.append('extern %s (*%s[%s])(); // %s' % (_nt_arr.group(1), name, _nt_arr.group(2), addr_str))
+            continue
+
         if typ == 'skip':
             # export-layer skip — resurrect when the decompiler references
             # the name（W3 类型源律：墓碑 orig_type 优先 → 名字启发仅最后回退——
@@ -4239,7 +4245,23 @@ def generate_globals():
         arr_match = re.match(r'^([\w\s]+?)((?:\[[^\]]*\])+)$', typ)
         ptr_arr_match = re.match(r'^(.+\*)\s*(\[\d+\])$', typ)
 
-        if ptr_arr_match:
+        # P-A18 (2026-11-10): fn-ptr 类型 `int (*)()` 需要把名字注入括号内
+        # ——`extern int (*)() off_6090A8;` 是非法 C++（C2059 ×9305 级联实证）。
+        # 正确形态: `extern int (*off_6090A8)();`
+        # P-A18 v3: fn-ptr 全面处理——所有形态归一为 `ret (*name)(args)` 或 `ret (*name[N])(args)`
+        # 判据: typ 含 `(*)` 或 `(__cdecl *)` 或 `(__noreturn *`
+        if re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ) or re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\w*\s*\)', typ):
+            _ret = re.match(r'^(.*?)\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ)
+            _ret_clean = re.sub(r'\b(__noreturn|__cdecl)\b\s*', '', _ret.group(1)).strip() if _ret else ''
+            _args = re.search(r'\)\s*(\(.*\))\s*$', typ)
+            _arr_size = re.search(r'\[\s*(\d+)\s*\]', typ)
+            _r = _ret_clean if _ret_clean else 'int'
+            if _arr_size:
+                h_lines.append('extern void (*%s[%s])(); // %s' % (name, _arr_size.group(1), addr_str))
+            else:
+                _a = _args.group(1) if _args else '()'
+                h_lines.append('extern %s (*%s)%s; // %s' % (_r, name, _a, addr_str))
+        elif ptr_arr_match:
             base, arr = ptr_arr_match.group(1).strip(), ptr_arr_match.group(2)
             h_lines.append('extern %s %s%s; // %s' % (base, name, arr, addr_str))
         elif arr_match and '*' not in typ:
@@ -4534,6 +4556,23 @@ def generate_globals_cpp():
 
         if not nm or not tp:
             continue
+        # P-A18-gc-na: noreturn array 变体——`void (__noreturn *[6])()`
+        _nt_arr_gc = re.match(r'^(\w+)\s*\(__noreturn\s*\*\s*\[(\d+)\]\)\s*\(\)', tp)
+        if _nt_arr_gc:
+            tp = '%s (*%s[%s])()' % (_nt_arr_gc.group(1), nm, _nt_arr_gc.group(2))
+            nm = ''
+        # P-A18-gc: fn-ptr 类型归一——`int (__cdecl *)(ARGS)` → `int (*NAME)(ARGS)`
+        if re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', tp):
+            _ret_gc = re.match(r'^(.*?)\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', tp)
+            _args_gc = re.search(r'\)\s*(\(.*\))\s*$', tp)
+            _ret_gc_c = re.sub(r'\b(__noreturn|__cdecl)\b\s*', '', _ret_gc.group(1)).strip() if _ret_gc else 'int'
+            _a_gc = _args_gc.group(1) if _args_gc else '()'
+            tp = '%s (*%s)%s' % (_ret_gc_c, nm, _a_gc)
+            nm = ''  # 名字已在 tp 中, 后续发射不再追加
+            # fn-ptr 定义值: int 整数不可直接初始化 fn-ptr → 用 reinterpret_cast
+            # (VC6: fn-ptr = int 是 C2440)——定义值来自 PE 数据, 用 union hack
+            _fnptr_value_mode = True
+
         if '__stdcall' in tp and '*)' in tp:
             continue  # WinAPI GetProcAddress pointers: windows.h declares
         if tp == 'skip':
@@ -4606,7 +4645,19 @@ def generate_globals_cpp():
         else:
             tp_out = f'{tp} {nm}'
             if iv:
-                lines.append(f'{tp_out} = {iv};')
+                # fn-ptr: int 初值需要 reinterpret——VC6 C2440
+                if '(*' in tp and ')' in tp:
+                    # cast 用完整声明类型: `int (*)(ARGS)` → `((int (*)(ARGS))(iv))`
+                    # 提取: 返回类型 + (*) + args
+                    _mret = re.match(r'^(.*?)\(\s*(?:__cdecl\s+|__noreturn\s+)*\*(?:\s*\w+)?\s*\)\s*(\(.*\))?$', tp)
+                    if _mret:
+                        _rt = re.sub(r'\b(__noreturn|__cdecl)\b\s*', '', _mret.group(1)).strip() or 'int'
+                        _ar = _mret.group(2) or '()'
+                        lines.append(f'{tp_out} = ({_rt}(*){_ar})({iv});')
+                    else:
+                        lines.append(f'{tp_out} = (void(*)())({iv});')
+                else:
+                    lines.append(f'{tp_out} = {iv};')
             else:
                 lines.append(f'{tp_out} = {{0}};')
         inc += 1
