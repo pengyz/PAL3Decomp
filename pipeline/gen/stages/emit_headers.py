@@ -4061,8 +4061,17 @@ def generate_globals():
     _have = {g.get('name') for _, g in sorted_globs}
     for _addr_s, _ginfo in _extra_entries:
         if _ginfo['name'] not in _have:
+            # 债4 (2026-11-10): 合成条目并入后补 annotation name 覆盖
+            # (与上方 _ann_filtered 循环同键同语义——语义改名的引用改写
+            #  靠 globals_map,头 extern 若仍用合成 IDA 名 → 名字分叉 C2065)
+            _ann_key_h = '0x%08X' % int(_addr_s, 16)
+            _ann_e_h = _ann_data.get(_ann_key_h, {})
+            if _ann_e_h.get('name'):
+                _ginfo = dict(_ginfo, name=_ann_e_h['name'])
+                _have.add(_ginfo['name'])
             sorted_globs.append((_addr_s, _ginfo))
-            _have.add(_ginfo['name'])
+    # 重算 _have(覆盖可能引入新名)
+    _have = {g.get('name') for _, g in sorted_globs}
     # same-name globals at multiple addresses would emit conflicting externs
     # (C2040): first address wins
     _dedup, _seen_names = [], set()
@@ -4494,7 +4503,10 @@ def generate_globals_cpp():
         ann_key = '0x%08x' % addr  # [对抗复核修正] 构建侧(:4412)键为 :08x 小写——P-A5g 曾改 %08X 大写致查表永不命中(name覆盖/ann skip过滤/orig_type复活三处全灭, +5 C2040/C2371 实证)
         ann_info = ann.get(ann_key, {})
         if info.get('_synthesized'):
-            ann_info = {}
+            # 债4 (2026-11-10): 合成条目原双路跳过 annotation——但 **name 覆盖**
+            # 必须保留(合成名=IDA默认名,语义改名的引用改写靠 globals_map 同键——
+            # 定义/引用名字分叉 = C2065)。仅 type/orig_type 维持合成(类型源律)。
+            ann_info = {'name': ann_info.get('name', '')} if ann_info else {}
         # P-A5g (2026-11-09): annotation name 覆盖——与头链(phantom 段 L4009)同源。
         # 缺此覆盖 → cpp 定义名(off_5AE380) vs 头 extern 新名(g_pStr_Wa001_005AE380)
         # → C2371/链接断(globals 三链名字同步的最后一条)。

@@ -136,6 +136,21 @@ def main():
         print('  %s: %s -> %s | %s' % (a, old, new or '(comment)', ev[:60]))
     print('  ... 共 %d 项计划' % len(plan))
     if apply:
+        # 债2 (2026-11-10): 写键归一为 0x%08X(同址 6 位/缺零填充键曾造成
+        # 三组冲突 artifact——0x5DFDB4 与 0x005DFDB4 并存)
+        import collections as _col
+        _g2 = {}
+        for k, v in g.items():
+            try:
+                _nk = '0x%08X' % int(k, 16)
+            except ValueError:
+                _nk = k
+            if _nk in _g2 and _g2[_nk] is not v:
+                v = v  # 同址冲突: 语义名条目优先(与 globals.json 去重同策略)
+                if not str(_g2[_nk].get('name','')).startswith(('dword_','byte_','word_','unk_','off_','flt_','stru_','asc_')):
+                    continue
+            _g2[_nk] = v
+        g = _g2
         for a, old, new, ev, act in plan:
             e = g[a]
             if act == 'rename' and new:

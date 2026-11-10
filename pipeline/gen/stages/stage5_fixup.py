@@ -1570,22 +1570,11 @@ def _run_inner(code, ctx):
         code
     )
 
-    # Struct global array access: g_StructName[N] → *(int *)((char *)&g_StructName + N*4)
-    _array_globals = []
-    for gname, gtype in store.global_types.items():
-        if gname in store.globals_map:
-            gname = store.globals_map[gname]
-        if gname.startswith('g_') and gtype and '[' not in gtype:
-            for base, end, _, _ in store.struct_instances:
-                if base <= int(gname.split('_')[1], 16) < end if re.match(r'^g_\w+$', gname) and False else False:
-                    _array_globals.append(gname)
-                    break
-    for _ag in _array_globals:
-        code = re.sub(
-            r'\b' + re.escape(_ag) + r'\[(\d+)\]',
-            lambda m: '*(int *)((char *)&' + _ag + ' + ' + m.group(1) + ' * 4)',
-            code
-        )
+    # [债3 2026-11-10 删除死代码] 原块 `... and False else False` 恒 False 从未运行。
+    # 其目标问题(g_ 标量误下标)已被 annotation 数组类型路径覆盖——
+    # globals.json 数组条目(int[44] 等)直接发真数组声明,下标访问合法。
+    # 复活反而会把真数组误改写为指针算术(误伤实证: g_nCBRoleAttackTable 等
+    # 44 符号全已有正确数组类型)。零行为变化,诚实化删除。
 
     # --- H（2026-09-15）：dtor 形参被剥后残留的自由变量（必须放在本函数**最末**） ---
     #
