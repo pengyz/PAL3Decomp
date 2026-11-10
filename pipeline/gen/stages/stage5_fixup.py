@@ -1367,6 +1367,15 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A14 (2026-11-10) 数组成员的对象→int cast 补地址符——
+    #   `(int)this->m_Slots[20]`(CCBPanelSlot 对象)缺 `&` → C2440 ×27
+    #   (CCBUIPanel 单文件)。判据窄门: m_Slots 是 CCBUIPanel.h:55 声明的
+    #   CCBPanelSlot 数组成员(对象非指针)——其余 v2[N] 等指针下标值转换
+    #   为合法形态,不纳入(泛化有误伤实证: 215 处形态各异)。
+    code = re.sub(
+        r'\((int|unsigned)\)(this->m_Slots\[[^\]]+\])',
+        r'(\1)&\2', code)
+
     # P-A13 (2026-11-10) placement 构造展开合并——Hex-Rays 把
     #   `p = (T *)operator new(size); if (p) { p->T::T(); }` 渲染为
     #   错归属双 cast 链(v42=(gbVFileSystem*)new / v43=(gbGeomNode*)v42 /
