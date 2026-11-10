@@ -1402,6 +1402,12 @@ def _run_inner(code, ctx):
         'LODWORD(this->m_time) = this->m_needscriptdel;',
         'LODWORD(this->m_time) = (unsigned long)this->m_needscriptdel;')
 
+    # P-A17 (2026-11-10) 全局结构体多余解引用——`*stru_XXXX` 传引用时多余 `*`
+    #   stru_ 是全局结构对象(非指针), Hex-Rays 对按引用传参误加了解引用 → C2100。
+    #   修: 剥 `*` 保留对象本身(引用绑定 ✓)。同时覆盖 stru_ 出现在所有调用实参的形态。
+    code = re.sub(r'\*stru_([0-9A-Fa-f]{4,})\b', r'stru_\1', code)
+    code = re.sub(r'\*stru_([A-Za-z0-9_]+)\b', r'stru_\1', code)
+
     # P-A15 (2026-11-10) D3DX 函数的 float 槽实参显式 cast——Hex-Rays 把
     #   D3DXVECTOR3 栈实参拆成连续 dword 槽(反编译器结构限制,签名已对无法
     #   自愈: d3dx9math.h 原型正确, lvars 栈合并是 IDA 交互态)。
