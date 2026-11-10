@@ -1366,6 +1366,16 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
+    #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
+    #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
+    #   gbVec3D 按值拷贝缓冲,头 Object3D.h:71 static 声明取证)。
+    #   根修=IDB 0x47D440 签名应用验证(Object3D.json methods 已有,下次
+    #   全量 export 观察 Hex-Rays 是否自愈——用户理论实验场)。
+    code = re.sub(
+        r'\(\(\(Object3D \*\)([\w.]+)\)\)->Object3D::RenderObjectScene\(',
+        r'Object3D::RenderObjectScene(\1, ', code)
+
     # P-A11 (2026-11-10) 占位字段的基类限定剥除——CEffSParticle/CEffAction 等
     #   `m_pEM->CEffObj::_tail_000[4]` 形态: m_pEM 静态类型 CEffMgr* 不含 CEffObj
     #   基类 → C2039 'CEffObj' is not a member of 'CEffMgr' (39 错实证)。
