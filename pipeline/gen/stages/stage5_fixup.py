@@ -1366,6 +1366,15 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A11 (2026-11-10) 占位字段的基类限定剥除——CEffSParticle/CEffAction 等
+    #   `m_pEM->CEffObj::_tail_000[4]` 形态: m_pEM 静态类型 CEffMgr* 不含 CEffObj
+    #   基类 → C2039 'CEffObj' is not a member of 'CEffMgr' (39 错实证)。
+    #   占位字段(_tail_/_gap_/_pad_/_todo_)均从宿主 +0 起始——剥限定后偏移不变
+    #   (CEffMgr._tail_000[43312]@+0x0 与 CEffObj._tail_000@+0x0 对账实证)。
+    code = re.sub(
+        r'->([A-Z]\w*)::((?:_tail_|_gap_|_pad_|_todo_)[A-Za-z0-9_]*(?:\[[^\]]*\])?)',
+        r'->\2', code)
+
     # P-A10 (2026-11-09) Hex-Rays delete 展开形态合并——虚析构 thunk 错归属 +
     #   operator delete 双语句 → C++ delete 单语句。
     #   病灶(CCBStage L1560): `(((j_j_codecvt_base *)v10))->j_j_codecvt_base::

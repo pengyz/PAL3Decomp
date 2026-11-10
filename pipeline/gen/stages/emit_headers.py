@@ -4263,6 +4263,7 @@ def generate_globals():
     # undef 消杀/抑制结构性失效,163 条重复 extern 地雷)。globals.h 写盘后
     # 从成品重扫刷新,并同步 pal3/src 副本(globals.h 也发到 pal3/src 侧由
     # 上游管线负责——此处刷新进程内 store 即可, cpp 阶段消费进程内状态)。
+    from data import store as _store_g  # Top1-③修正: generate_globals 作用域无 store 名(同 P-A5h 教训)
     import re as _re_g
     _gl_decl = set()
     _gl_path = OUTPUT_DIR / "globals.h"
@@ -4271,7 +4272,7 @@ def generate_globals():
             _mg = _re_g.search(r'extern\s+\S.*?\b(\w+)\s*(?:\[|;)', _ln)
             if _mg:
                 _gl_decl.add(_mg.group(1))
-    store.declared_globals = _gl_decl
+    _store_g.declared_globals = _gl_decl
     print("  declared_globals refreshed post-emit: %d" % len(_gl_decl))
 
     print("  Globals: %d in globals.h" % (len(h_lines) - 6))
