@@ -1367,6 +1367,41 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A16 (2026-11-10) 单点歼灭批次——13 个 1 错单元(影响面排序)
+    # ①CEffModel: placement ctor return 变体(P-A13 return 形态)
+    code = code.replace(
+        'return v0->CEffModel::CEffModel();',
+        'return new ((void *)v0) CEffModel();')
+    # ②NavFaceLayer: thunk jmp 0x452570(5B) 的 Hex-Rays 虚方法调用错归属
+    #   汇编: e9 0b000000 jmp 0x452570 = 尾跳到 0x452570(下一函数)
+    #   修复: 删非法非静态调用(thunk 的 eax 链传递返回值)
+    code = code.replace('  UITitle_BBTY::_nearby_452570();\n', '')
+    # ③PalScriptFadeInTimer: this[16] 对象下标==0 比较
+    #   → 偏移读: 类尺寸×16 处的字节是否为0(BOOL检查)
+    code = code.replace(
+        'return this[16] == 0;',
+        'return (*(unsigned char *)((char *)this + 16 * sizeof(*this))) == 0;')
+    # ④MiniGame1: v4 = this[2] → this+2*sizeof = 地址算术(decomp 用 v4 做 vtable 分发)
+    code = code.replace(
+        'v4 = this[2];\n  if ( v4 )',
+        'v4 = *(int *)((char *)this + 2 * sizeof(MiniGame1));\n  if ( v4 )')
+    # ⑤CGameData: int *v10 声明类型错位(CCBUI* 赋值)
+    code = code.replace(
+        'int *v10; // esi',
+        'void *v10; // esi  [P-A16: 声明类型对齐赋值(CCBUI*)]')
+    # ⑥UICursor: v11 声明类型错位(Iostream_init* vs int 赋值)
+    code = code.replace(
+        'Iostream_init *v11; // eax',
+        'int v11; // eax  [P-A16: 声明类型对齐(int)v10]')
+    # ⑦RenderTarget: nVal 类型对齐
+    code = code.replace(
+        'const char **nVal; // [esp+0x14] [ebp-0x104]',
+        'int nVal; // [esp+0x14] [ebp-0x104]  [P-A16: 类型对齐(int)&off]')
+    # ⑧RoleCameraCtrl: LODWORD 对 float 成员赋 int 值——m_needscriptdel 的 BOOL→DWORD 位转换
+    code = code.replace(
+        'LODWORD(this->m_time) = this->m_needscriptdel;',
+        'LODWORD(this->m_time) = (unsigned long)this->m_needscriptdel;')
+
     # P-A15 (2026-11-10) D3DX 函数的 float 槽实参显式 cast——Hex-Rays 把
     #   D3DXVECTOR3 栈实参拆成连续 dword 槽(反编译器结构限制,签名已对无法
     #   自愈: d3dx9math.h 原型正确, lvars 栈合并是 IDA 交互态)。
