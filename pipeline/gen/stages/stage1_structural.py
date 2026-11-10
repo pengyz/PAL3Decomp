@@ -149,16 +149,8 @@ def run(code, ctx):
     # body may still reference `retstr` — such functions are queued for
     # Phase-2 manual by-value translation (body rewrites are not mechanical).
     if '__return_ptr' in code.split('{', 1)[0]:
-        code = re.sub(
-            r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?',
-            ' ', code, count=1)
-        code = re.sub(r'\(\s*,', '(', code, count=1)
-        code = re.sub(r',\s*\)', ')', code, count=1)
-        p0 = code.find('(')
-        if p0 > 0:
-            j = code[:p0].rstrip().rfind('*')
-            if j != -1:
-                code = code[:j] + code[j+1:]
+        from pipeline.gen.normalization import strip_return_ptr as _srp
+        code = _srp(code)  # 单点律收编(治理 2026-11-10)
         # a `Cls *this` param in sret defs duplicates the implicit this — drop it
         code = re.sub(r'(\([^)]*?),\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*this(\s*\))',
                       r'\1\2', code, count=1)

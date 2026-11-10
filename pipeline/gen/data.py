@@ -79,9 +79,7 @@ class DataStore:
         self.routed_free_by_name = {}    # name -> (cls, method, nparams) 转写器消费
         self._decomp_text_parts = []     # G6 值引用扫描语料（load 期临时，决策后清空）
         self.exe_data = b''         # raw exe for .rdata string lookup
-        self.skip_classes = set()   # classes to not generate
         self.global_addrs = {}      # name -> base_address (from ida_structs.json _globals)
-        self.scalar_dtor_classes = set()  # classes that had _scalar_dtor filtered
         self.struct_vtables = {}    # "ClassName" -> {slot_index: method_name} (from annotations)
         self.skip_globals = {}      # {name: addr} — annotation-skipped globals
         self.skip_funcs = set()     # function names from skip_functions.json (non-thunk)
@@ -407,18 +405,6 @@ class DataStore:
         _decomp_dir = self.project_root / "asm" / "pal3" / "decomp"
         if _decomp_dir.exists():
             # Pre-scan for _scalar_dtor classes (needed before header generation)
-            for _df in sorted(_decomp_dir.glob("*.json")):
-                try:
-                    _dd = json.load(open(_df, encoding='utf-8'))
-                except Exception as _e:
-                    print("  [data-ERR] %s: %s" % (_df.name, _e))
-                    continue
-                _name = _dd.get('name', '')
-                if '::' in _name:
-                    _cls = _name.split('::')[0]
-                    _method = _name.split('::', 1)[1].split('(')[0]
-                    if '_scalar_dtor' in _method or _method == '_sdtor':
-                        self.scalar_dtor_classes.add(_cls)
             import re as _re2
             _IDA_MACROS = {'Func', 'JUMPOUT', 'NAN', 'LOBYTE', 'HIBYTE',
                            'LOWORD', 'HIWORD', 'LODWORD', 'HIDWORD'}
@@ -438,18 +424,13 @@ class DataStore:
                 # ⇒ **不排除成员函数**；N1 的正确闭合在调用形转写（rewrite_unqualified_member_call）。
                 # Normalize IDA __hidden this marker (apply_annotations writes
                 # method types as `Cls *__hidden this`; consume as `Cls *this`)
-                _sig = _re2.sub(r'\b__hidden\s+', '', _sig)
+                from pipeline.gen.normalization import strip_hidden as _sh
+                _sig = _sh(_sig)  # 单点律收编
                 # Normalize Hex-Rays struct-return sret param (not a real param);
                 # the sret spelling means by-value return, so drop one '*' from ret
                 if '__return_ptr' in _sig:
-                    _sig = _re2.sub(r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?', ' ', _sig)
-                    _sig = _re2.sub(r'\(\s*,', '(', _sig)
-                    _sig = _re2.sub(r',\s*\)', ')', _sig)
-                    _p0 = _sig.find('(')
-                    if _p0 > 0:
-                        _j = _sig[:_p0].rstrip().rfind('*')
-                        if _j != -1:
-                            _sig = _sig[:_j] + _sig[_j+1:]
+                    from pipeline.gen.normalization import strip_return_ptr as _srp
+                    _sig = _srp(_sig)  # 单点律收编(治理 2026-11-10)
                 if not _name or not _sig:
                     continue
                 if '::' in _name:
@@ -575,7 +556,8 @@ class DataStore:
                     continue
                 # Parse signature — 两格式统一交 free_sig_decl（T1 修 2026-10-28 二诊：
                 # 原判据仅 __cdecl/__stdcall——__fastcall 同空档二演 ⇒ 补洞并 DRY 收敛）
-                _sig_n = re.sub(r'\b__hidden\s+', '', _sig)
+                from pipeline.gen.normalization import strip_hidden as _sh2
+                _sig_n = _sh2(_sig)  # 单点律收编
                 _decl = free_sig_decl(_name, _sig_n)
                 if _decl is not None:
                     self.free_func_sigs[_name] = _decl

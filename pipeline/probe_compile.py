@@ -108,10 +108,14 @@ def probe_unit(unit, probe_src, tag):
     """unit: repo-relative source path (or header rel for S1).
     probe_src: None → compile unit directly; else text of a synthetic TU."""
     src_abs = os.path.join(REPO, unit)
-    obj = os.path.join(OBJ_DIR, '%s_%s.obj' % (tag, abs(hash(unit)) % 10**8))
+    # Top2-⑤ (2026-11-10): hash(unit) 受 PYTHONHASHSEED 影响(架构审计 D2 残余)
+    # → md5 摘要编址(进程无关,碰撞率同量级但跨进程稳定)
+    import hashlib as _hl
+    _unit_key = _hl.md5(unit.encode('utf-8')).hexdigest()[:10]
+    obj = os.path.join(OBJ_DIR, '%s_%s.obj' % (tag, _unit_key))
     args = ['/Fo' + wpath(obj)]
     if probe_src is not None:
-        pfile = os.path.join(OBJ_DIR, '%s_%s.cpp' % (tag, abs(hash(unit)) % 10**8))
+        pfile = os.path.join(OBJ_DIR, '%s_%s.cpp' % (tag, _unit_key))
         with open(pfile, 'w') as f:
             f.write(probe_src)
         src_for_cl = wpath(pfile)

@@ -173,7 +173,8 @@ def _get_scalar_dtor_classes_scan_impl():
         #   ⇒ `match` 匹配不到该符号 ⇒ **该类的 L1（字节全同函数）丢失**。
         # 实例：`UIStatic`（其 vtable 槽 5 = 0x004407A0 `` UIStatic::`scalar deleting destructor' ``；
         #   生成头里却是 `~UIStatic();` 非虚 ⇒ 无 `??_G`）。
-        method = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', method)
+        from pipeline.gen.normalization import normalize_dtor_name as _ndn_h
+        method = _ndn_h(method)  # 单点律收编
         method = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', method).strip()
         if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
             _scalar_dtor_classes.add(cls)
@@ -862,10 +863,9 @@ def parse_signature(sig):
     # Normalize Hex-Rays struct-return sret param: `Cls *__return_ptr retstr`
     # (VC6 struct returns use the hidden pointer implicitly — the sret spelling
     # is an IDA type-system artifact, not a real parameter).
+    from pipeline.gen.normalization import strip_return_ptr as _srp_h
     if '__return_ptr' in sig:
-        sig = re.sub(r'\s*,?\s*[A-Za-z_][\w:]*(?:\s*\*+)?\s*__return_ptr\s+\w+\s*,?', ' ', sig)
-        sig = re.sub(r'\(\s*,', '(', sig)
-        sig = re.sub(r',\s*\)', ')', sig)
+        sig = _srp_h(sig)  # 单点律收编
         # The sret spelling means the function returns `Cls` BY VALUE:
         # Hex-Rays shows the return as `Cls *` pointing at the sret buffer.
         # Drop exactly one '*' from the return type (segment before first '(').

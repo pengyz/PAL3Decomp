@@ -225,10 +225,8 @@ def collect_functions(decomp_dir=None):
         # ⚠️ 注解侧本就把该地址记为 `_scalar_dtor`（`source: vtable_migrated`）
         # ⇒ 两处命名本就不一致，此处是**归一化**，不是新造信息。
         if method:
-            _norm = method
-            _norm = re.sub(r'`?\s*scalar deleting destructor\s*\'?', '_scalar_dtor', _norm)
-            _norm = re.sub(r'`?\s*vector deleting destructor\s*\'?', '_vector_dtor', _norm)
-            _norm = _norm.strip()
+            from pipeline.gen.normalization import normalize_dtor_name as _ndn
+            _norm = _ndn(method)  # 单点律收编
             if _norm and _norm != method:
                 code = re.sub(r'\b%s\b' % re.escape(method), _norm, code)
                 method = _norm
@@ -242,8 +240,9 @@ def collect_functions(decomp_dir=None):
             # generates them automatically from 'virtual ~ClassName()' declarations.
             # 【2026-09-15】`_vector_dtor` 同属编译器生成物，一并跳过
             # （其名字由上面的规范化产生，见 `` `vector deleting destructor' `` → `_vector_dtor`）。
+            # [债 2026-11-10] scalar_dtor_classes 是 DEAD 集(零读者——真实现=
+            # emit_headers 的 header_facts 缓存)。continue 行为保留(跳过发射)。
             if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
-                store.scalar_dtor_classes.add(cls)
                 continue
 
             # Strip _misattrib_ prefix: put function back under the original class

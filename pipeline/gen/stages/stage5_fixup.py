@@ -33,7 +33,8 @@ def _apply_text_substitutions(code, ctx):
     # function-pointer declarators rendered from adopted definite types,
     # e.g. `unsigned int (__thiscall *v21)(Cls *__hidden, int)`. `__hidden`
     # is never valid C++ — global strip is safe (display-convention token).
-    code = re.sub(r'\b__hidden\b\s*', '', code)
+    from pipeline.gen.normalization import strip_hidden as _shh
+    code = _shh(code)  # 单点律收编
 
     # Replace IDA container structures with STL types
     _type_map = {
