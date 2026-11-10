@@ -3896,7 +3896,7 @@ def _read_c_string(exe_data, addr):
         elif 0x20 <= b < 0x7F:
             out.append(chr(b))
         else:
-            out.append('\\x%02X' % b)
+            out.append('\\%o' % b)  # P-A9c: 八进制转义(VC6 \x 十六进制贪婪,\x846X 实证 C2022)
     return ''.join(out)
 
 
@@ -4192,6 +4192,15 @@ def generate_globals():
 
         # Emit extern declaration with correct C syntax
         # Split array type: "unsigned __int8[768]" -> base="unsigned __int8", arr="[768]"
+
+        # P-A9 (2026-11-09): char 数组 extern 无界化——IDA 尺寸注解未计 NUL
+        # (extern char byte_583A1C[3] vs 定义 " %s"=4字节 → C2117 ×11 实证)。
+        # extern 数组声明不分配存储,无界 [] 合法;sizeof 依赖全树零命中(已验证)。
+        _marr = re.match(r'^(char\s*)\[[^\]]*\](.*)$', typ)
+        if _marr:
+            typ = _marr.group(1) + '[]' + _marr.group(2)
+            g = dict(g, type=typ)
+
         arr_match = re.match(r'^([\w\s]+?)((?:\[[^\]]*\])+)$', typ)
         ptr_arr_match = re.match(r'^(.+\*)\s*(\[\d+\])$', typ)
 
@@ -4502,9 +4511,17 @@ def generate_globals_cpp():
             # ——与下方 POD 路径（:3797）同款拆分对齐。
             _am = _re.match(r'(.+?)((?:\[[^\]]*\])+)$', tp)
             if _am:
-                lines.append(f'{_am.group(1).strip()} {nm}{_am.group(2)};')
+                _cq9 = 'const ' if _am.group(1).strip().startswith('const') else ''
+                # P-A9b: const 数组无初始化 = C2734(SrcStr 实证);非 const tentative
+                # C++ 亦非法但 VC6 容忍——统一补 {0}(零填充=未初始化数据段语义)
+                lines.append('%s %s%s = {0};' % (_am.group(1).strip(), nm, _am.group(2)) if _cq9 else '%s %s%s;' % (_am.group(1).strip(), nm, _am.group(2)))
             else:
-                lines.append(f'{tp} {nm};')
+                # P-A9b-2: const 标量无初始化 = C2734(SrcStr/WCHAR 实证——
+                # WCHAR 非 POD 走此分支,_am 不匹配标量形态)
+                if tp.strip().startswith('const'):
+                    lines.append(f'{tp} {nm} = {{0}};')
+                else:
+                    lines.append(f'{tp} {nm};')
             inc += 1
             continue
 
