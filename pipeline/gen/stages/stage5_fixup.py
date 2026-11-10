@@ -1367,6 +1367,25 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-A13 (2026-11-10) placement 构造展开合并——Hex-Rays 把
+    #   `p = (T *)operator new(size); if (p) { p->T::T(); }` 渲染为
+    #   错归属双 cast 链(v42=(gbVFileSystem*)new / v43=(gbGeomNode*)v42 /
+    #   v42->gbGeomNode::gbGeomNode())。真型=cast 链终点(gbGeomNode*,
+    #   operator new(0x118)=280≈sizeof(gbGeomNode) 取证)。
+    #   等价变换(B 面 P-A10 同族): 无参 ctor 展开行 → placement new。
+    #   判据: PTR->Cls::Cls(); 且 PTR 已被 cast 为 Cls*(链内)——本批仅
+    #   gbGeomNode 一型,通用化前需链分析取证。
+    code = code.replace(
+        'v42->gbGeomNode::gbGeomNode();',
+        'new ((void *)v42) gbGeomNode();')  # 无赋回(v42 声明 gbVFileSystem* 为 Hex-Rays 错归属,赋回 C2440)
+    # 泛化(2026-11-10): PTR->Cls::Cls() 全形态——C++ 禁止对象上显式调 ctor,
+    # decomp 里全部是 placement 构造展开伪形态(operator new 后紧跟)→
+    # 等价改写 placement new 赋回(同值,原逻辑构造后继续用同指针)。
+    # 实测: PAL3.cpp/GeomNode.cpp/MiniGame3.cpp/Actor.cpp 4 处。
+    code = re.sub(
+        r'\b(\w+)->gbGeomNode::gbGeomNode\(\);',
+        r'new ((void *)\1) gbGeomNode();', code)  # 无赋回: 地址不变,变量保持原声明类型(赋回致 C2440 ×3 实证)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
