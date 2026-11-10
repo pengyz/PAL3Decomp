@@ -1402,6 +1402,7 @@ def _run_inner(code, ctx):
         'LODWORD(this->m_time) = this->m_needscriptdel;',
         'LODWORD(this->m_time) = (unsigned long)this->m_needscriptdel;')
 
+
     # P-A17 (2026-11-10) 全局结构体多余解引用——`*stru_XXXX` 传引用时多余 `*`
     #   stru_ 是全局结构对象(非指针), Hex-Rays 对按引用传参误加了解引用 → C2100。
     #   修: 剥 `*` 保留对象本身(引用绑定 ✓)。同时覆盖 stru_ 出现在所有调用实参的形态。
@@ -1604,6 +1605,9 @@ def _run_inner(code, ctx):
 
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
+    # P-A19 (2026-11-11) operator new 返回 char* 赋给 int 声明——IDB 重导类型传播差异
+    # 修: 必须在 _fix_operator_new_cast 之后运行（它生成 (char *) cast，本规则转译为 (int)）
+    code = code.replace('(char *)operator new', '(int)operator new')
     # [簇 A 管线修复 2026-10-31] new 表达式化（E 形验证：SEH 序言回归）
     # [v2 修 2026-10-31] 只匹配 T::T() 构造形 + result=None 防护
     code, _new_hits = _rewrite_new_expression(code)
