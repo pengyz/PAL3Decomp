@@ -2463,5 +2463,15 @@
   "alt_name": "Update_1F70",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+ },
+ "0x004E10E0": {
+  "name": "CloseDialog",
+  "signature": "int __cdecl(HWND, UINT, WPARAM, LPARAM)",
+  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非CCBUI成员"
+ },
+ "0x004E5800": {
+  "name": "PartySetupDialogProc",
+  "signature": "int __cdecl(HWND, UINT, WPARAM, LPARAM)",
+  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非PAL_GDB成员"
  }
 }

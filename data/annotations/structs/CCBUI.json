@@ -696,13 +696,6 @@
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E10E0": {
-   "name": "CloseDialog",
-   "signature": "static int __cdecl CCBUI::CloseDialog(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
-   "evidence_level": "unverified",
-   "name_source": " | 2026-11-10 static化",
-   "name_note": " | static化: decomp body this使用=0次(纯dlgproc语义), 非静态成员 cast DLGPROC 非法(thiscall≠stdcall)→C2440 from '' 级联源(CCBStage 102错)"
-  },
   "0x004E1160": {
    "name": "DlgProcEffect",
    "signature": "int __thiscall CCBUI::DlgProcEffect(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
