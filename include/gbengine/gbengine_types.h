@@ -203,8 +203,8 @@ struct GBAPI gbRay {
 };
 
 struct GBAPI gbAABBox {
-    gbVec3D vMin;
-    gbVec3D vMax;
+    gbVec3D min;  // [治理 2026-11-10] vMin→min 对齐 ida_structs 权威名(pal3/src 零 vMin/vMax 引用,零影响面)
+    gbVec3D max;  // 同上
 
     // Methods (auto-generated)
     gbAABBox();

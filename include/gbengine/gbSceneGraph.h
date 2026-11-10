@@ -76,6 +76,8 @@ struct gbRenderInfoObj {
 // gbLightObj - light object with virtual methods
 // Members inherited from gbVolumeModifier
 // ============================================================================
+class gbAABBox;
+class gbGfxManager;
 class GBAPI gbLightObj : public gbVolumeModifier {
 public:
     enum LIGHT_TYPE {
@@ -95,6 +97,12 @@ public:
     virtual const gbSphere* GetBoundSphere(void);
     gbLight* GetSysLight(void);
     gbLightObj& operator=(const gbLightObj& other);
+
+    // PAL3-side methods (defined in pal3/src/Misc/gbLightObj.cpp — 非 dll 导出)
+    BOOL IsIdle();  // 0x0042BEE0
+    void GetAABBox(gbAABBox *p);  // 0x0042C6A0
+    gbGfxManager * GetGfxManager(int nVal1);  // 0x0042C6E0
+    int GetCGEntry(char a2);  // 0x0042C8D0
 };
 
 // ============================================================================
