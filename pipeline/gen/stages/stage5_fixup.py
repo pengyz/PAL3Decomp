@@ -1376,6 +1376,24 @@ def _run_inner(code, ctx):
         r'D3DXVec3Normalize\(&([\w.]+),\s*&([\w.]+)\)',
         r'D3DXVec3Normalize((D3DXVECTOR3 *)&\1, (D3DXVECTOR3 *)&\2)', code)
 
+    # P-A15b (2026-11-10) 成员函数指针复用形态展开——Hex-Rays 把系列成员调用
+    #   提取公共方法地址到变量(v5 = gbVFileSystem::Read; ... v5(args);)。
+    #   VC6 成员函数指针调用需 ->* 语法+精确类型——生成物无法承载。
+    #   修: 赋值行删除, 调用点展开为完整限定调用(与 L1163 已编译形态同款)。
+    #   实测: PtrArray.cpp Read×2+赋值×2, free_functions.cpp Init×2。
+    code = code.replace(
+        "      v5 = gbVFileSystem::Read;\n", "")
+    code = code.replace(
+        'v5(g_pVFileSys, &v4[68], 4u, (gbVFile *)this->m_pData);',
+        '(((gbVFileSystem *)g_pVFileSys))->gbVFileSystem::Read(g_pVFileSys, &v4[68], 4u, (gbVFile *)this->m_pData);')
+    code = code.replace(
+        'v5(g_pVFileSys, v15, v16, (gbVFile *)this->m_pData);',
+        '(((gbVFileSystem *)g_pVFileSys))->gbVFileSystem::Read(g_pVFileSys, v15, v16, (gbVFile *)this->m_pData);')
+    code = code.replace("    v0 = gbVFileSystem::Init;\n", "")
+    code = code.replace(
+        'return v0((gbVFileSystem *)&dword_60BDC8, 0);',
+        'return (((gbVFileSystem *)&g_BaseVFileSystem))->gbVFileSystem::Init((gbVFileSystem *)&dword_60BDC8, 0);')
+
     # P-A14 (2026-11-10) 数组成员的对象→int cast 补地址符——
     #   `(int)this->m_Slots[20]`(CCBPanelSlot 对象)缺 `&` → C2440 ×27
     #   (CCBUIPanel 单文件)。判据窄门: m_Slots 是 CCBUIPanel.h:55 声明的
