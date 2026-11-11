@@ -1,70 +1,74 @@
 {
-  "name": "UIGameOver",
-  "binary_size": 232,
-  "known_members": {
-    "72": {
-      "name": "m_pbktex",
-      "type": "gbTexture *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "76": {
-      "name": "m_Blood",
-      "type": "UIStatic",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "228": {
-      "name": "m_fTime",
-      "type": "float",
-      "source": "PAL3patch_verified",
-      "evidence_level": "unverified"
-    }
+ "name": "UIGameOver",
+ "binary_size": 232,
+ "known_members": {
+  "72": {
+   "name": "m_pbktex",
+   "type": "gbTexture *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x004500F0": {
-      "name": "Create",
-      "signature": "void __thiscall UIGameOver::Create()",
-      "evidence_level": "unverified"
-    },
-    "0x0044D470": {
-      "name": "InitParticle",
-      "signature": "int __thiscall UIGameOver::InitParticle(int nIndex)",
-      "evidence_level": "unverified"
-    },
-    "0x0044D580": {
-      "name": "RandomizeEffects",
-      "signature": "int __thiscall(int nVal)",
-      "evidence_level": "unverified"
-    },
-    "0x0044D680": {
-      "name": "InitParticle2",
-      "signature": "int __thiscall UIGameOver::InitParticle2(int nIndex)",
-      "evidence_level": "unverified"
-    },
-    "0x0052E500": {
-      "name": "SetupDisplay",
-      "signature": "void __thiscall UIGameOver::SetupDisplay(int nVal)",
-      "evidence_level": "unverified"
-    },
-    "0x00530570": {
-      "name": "ClearState",
-      "signature": "int __thiscall UIGameOver::ClearState()",
-      "_misattrib_evidence": "max_offset=780>class_size=232",
-      "evidence_level": "unverified"
-    },
-    "0x005305A0": {
-      "name": "ResetState",
-      "signature": "int __thiscall UIGameOver::ResetState()",
-      "_misattrib_evidence": "max_offset=724>class_size=184",
-      "evidence_level": "unverified"
-    }
+  "76": {
+   "name": "m_Blood",
+   "type": "UIStatic",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 72,
-  "bases": [
-    {
-      "name": "UIFrameWnd",
-      "offset": 0
-    }
-  ]
+  "228": {
+   "name": "m_fTime",
+   "type": "float",
+   "source": "PAL3patch_verified",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x004500F0": {
+   "name": "Create",
+   "signature": "void __thiscall UIGameOver::Create()",
+   "evidence_level": "unverified"
+  },
+  "0x0044D470": {
+   "name": "InitParticle",
+   "signature": "int __thiscall UIGameOver::InitParticle(int nIndex)",
+   "evidence_level": "unverified"
+  },
+  "0x0044D580": {
+   "name": "RandomizeEffects",
+   "signature": "int __thiscall(int nVal)",
+   "evidence_level": "unverified"
+  },
+  "0x0044D680": {
+   "name": "InitParticle2",
+   "signature": "int __thiscall UIGameOver::InitParticle2(int nIndex)",
+   "evidence_level": "unverified"
+  },
+  "0x0052E500": {
+   "name": "SetupDisplay",
+   "signature": "void __thiscall UIGameOver::SetupDisplay(int nVal)",
+   "evidence_level": "unverified",
+   "lvars": {
+    "v21": "char *"
+   },
+   "lvars_source": " | L-VAR 2026-11-12: (uint)v21 - (char*)m_textx 指针差语境(C2113), v21 系 char* 槽"
+  },
+  "0x00530570": {
+   "name": "ClearState",
+   "signature": "int __thiscall UIGameOver::ClearState()",
+   "_misattrib_evidence": "max_offset=780>class_size=232",
+   "evidence_level": "unverified"
+  },
+  "0x005305A0": {
+   "name": "ResetState",
+   "signature": "int __thiscall UIGameOver::ResetState()",
+   "_misattrib_evidence": "max_offset=724>class_size=184",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 72,
+ "bases": [
+  {
+   "name": "UIFrameWnd",
+   "offset": 0
+  }
+ ]
 }

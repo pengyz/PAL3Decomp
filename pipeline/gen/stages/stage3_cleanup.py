@@ -1817,7 +1817,10 @@ def run(code, ctx):
     # RenderTarget2::AdjustThisCall@0x4C2850，1 错卡整个单元 S2 +1）。
     # 护位符保护 → 剥除 → 还原（等价变换：仅对非 fnptr 位剥除）。
     _fp_saves = []
-    for _m in re.finditer(r'\(\s*__thiscall\s*\*\s*\w+\s*\)\s*\([^()]*\)', code):
+    # [L-VAR 2026-11-12] 保护正则扩双星——`(__thiscall **v18)(_DWORD)` 局部声明
+    #   (fn-ptr-ptr, TaskBookUI_RefreshElements 实证)原被剥 __thiscall =>
+    #   `(**v18)(_DWORD)` 残渣 => C2059/C2146 级联(free_functions 31错宿主链头)。
+    for _m in re.finditer(r'\(\s*__thiscall\s*\*+\s*\w+\s*\)\s*\([^()]*\)', code):
         _fp_saves.append(_m.group(0))
     if _fp_saves:
         for _i in range(len(_fp_saves) - 1, -1, -1):

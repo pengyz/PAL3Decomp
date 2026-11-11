@@ -88,13 +88,27 @@ enum LIGHT_TYPE {
     LIGHT_DIRECTIONAL = 3
 };
 
+/* [L-VAR 2026-11-12] LGT_ light-type family hoisted (enums.json 521-523:
+   LGT_OMNI=0/LGT_SPOT=1/LGT_DIRECT=2, distinct from gbengine LIGHT_TYPE).
+   decomp references unqualified (CCBCamControl Init(LGT_OMNI)); enums have
+   no storage -- hoisting is ABI-neutral, same law as LIGHT_TYPE. */
+enum LGT_TYPE {
+    LGT_OMNI = 0,
+    LGT_SPOT = 1,
+    LGT_DIRECT = 2
+};
+
 class GBAPI gbLightObj : public gbVolumeModifier {
 public:
 
     gbLightObj(void);
     gbLightObj(const gbLightObj& other);
     virtual ~gbLightObj(void);
-    void Init(enum LIGHT_TYPE type);
+    /* [L-VAR 2026-11-12] param type corrected: registry mangled name says
+       "LIGHT_TYPE" but all 5 call sites pass LGT_* family values (0/1/2,
+       enums.json 521-523) and zero LIGHT_* (1/2/3) -- IDB enum naming
+       inertia. True family = LGT_TYPE (hoisted above). */
+    void Init(enum LGT_TYPE type);
     void ComputeBoundSphere(void);
     virtual float GetEffectOnPoint(const gbVec3D& point, int useAttenuation);
     virtual void Compute(gbVolModNode* volmod);

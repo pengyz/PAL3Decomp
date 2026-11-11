@@ -1,17 +1,21 @@
 {
-  "name": "MiniGame1",
-  "pdb_size": 4,
-  "known_members": {},
-  "binary_size": 4,
-  "methods": {
-    "0x0052B860": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    }
-  },
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
-  },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MiniGame1@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
+ "name": "MiniGame1",
+ "pdb_size": 4,
+ "known_members": {},
+ "binary_size": 4,
+ "methods": {
+  "0x0052B860": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified",
+   "lvars": {
+    "v4": "int"
+   },
+   "lvars_source": " | L-VAR 2026-11-12: v4=this+2*sizeof 存的 vtable 槽基址(P-A16④ 意图), 对象值槽致 C2451; int 后 *(void(**)(...))(*(_DWORD*)&v4+16) 调用合法"
+  }
+ },
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MiniGame1@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
 }

@@ -1,18 +1,22 @@
 {
-  "name": "VideoPlayer",
-  "known_members": {},
-  "methods": {
-    "0x0053B720": {
-      "name": "SetRegion",
-      "signature": "void __cdecl VideoPlayer::SetRegion(int nX, int nY)",
-      "static": true,
-      "evidence_level": "unverified"
-    }
-  },
-  "binary_size": 4,
-  "note": "binary_size estimated at 4 for IDB struct compat",
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
-  },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@VideoPlayer@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
+ "name": "VideoPlayer",
+ "known_members": {},
+ "methods": {
+  "0x0053B720": {
+   "name": "SetRegion",
+   "signature": "void __cdecl VideoPlayer::SetRegion(int nX, int nY)",
+   "static": true,
+   "evidence_level": "unverified",
+   "lvars": {
+    "v5": "char *"
+   },
+   "lvars_source": " | L-VAR 2026-11-12: v5=(int)operator new(656*n) 赋值(char*声明), C2440——int cast 系 Hex-Rays 位视图, 真=缓冲指针"
+  }
+ },
+ "binary_size": 4,
+ "note": "binary_size estimated at 4 for IDB struct compat",
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@VideoPlayer@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
 }
