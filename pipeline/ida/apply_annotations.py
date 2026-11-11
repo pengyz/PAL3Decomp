@@ -1958,6 +1958,12 @@ _GB_IMPORT_SIGS = {
         "void __thiscall(gbDynVertBuf *, gbGeomQuad *, int, gbRenderEffect *, gbTextureArray *);",
     "??4gbMatrix4@@QAEXABU0@@Z":
         "void __thiscall(gbMatrix4 *, const gbMatrix4 &);",
+    # [L-VAR 2026-11-12] gbVec3D ctor——IAT 0x57C068(导入表取证: hint/name
+    # 0x56A3C8, registry 0x10001F20)。IDB 无类型 => Hex-Rays 把 this 槽当首参
+    # 渲染 4 参形态(gbVec3D::gbVec3D(&dst,x,y,z)) => 全树 C2661 链头
+    # (CCBStage C2661 x7 + 下游宿主级联)。
+    "??0gbVec3D@@QAE@MMM@Z":
+        "void __thiscall(gbVec3D *, float, float, float);",
     "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
         "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
     "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":

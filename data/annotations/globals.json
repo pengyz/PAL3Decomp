@@ -8687,5 +8687,12 @@
   "type": "char[39]",
   "evidence_level": "A",
   "source": " | L-VAR 2026-11-11f exe 字节直读: 'new failed at create stage cam control' 字符串常量; ida 原 ? 系字符串池 Logger 误标家族(批E同族扫尾)"
+ },
+ "0x0057C068": {
+  "name": "__imp__gbVec3D_ctor_MMM",
+  "type": "void (__thiscall *)(void *, float, float, float)",
+  "category": "iat_fnptr",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-12: gbengine.dll ??0gbVec3D@@QAE@MMM@Z 的 IAT 槽(导入表 hint/name 0x56A3C8, registry 0x10001F20 铁证); IDB 无类型 => Hex-Rays 把 this 槽当首参渲染 4 参形态(全树 C2661 链头)"
  }
 }

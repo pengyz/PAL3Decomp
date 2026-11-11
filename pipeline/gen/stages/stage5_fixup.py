@@ -1570,6 +1570,16 @@ def _run_inner(code, ctx):
         r'= \(unsigned long\)\((?:unsigned int|void) \( \*\)\(CCBStage \*, int\)\)(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
         r'= (unsigned long)&\1', code)
 
+    # P-A13e (2026-11-12·窄门版) 指针算术接收者就地构造——
+    #   `v3 - 1->gbVec3D::gbVec3D(0,0,0)` (游标指针数组逐元素构造, CCBStage:6892 实证;
+    #   C++无显式ctor语法 ⇒ C2653/C2059 链头)。
+    #   等价: placement `new ((void *)(EXPR)) Cls(args);`
+    #   [首版宽正则教训: `\w+::\w+` 匹配面失控, 152/755->147/1231 全树误伤,
+    #   已 git checkout 停损。窄门: 仅 gbVec3D + `vN - K` 接收者形态。]
+    code = re.sub(
+        r'\b(v\d+\s*-\s*\d+)\->gbVec3D::gbVec3D\(([^;()]+)\);',
+        r'new ((void *)(\1)) gbVec3D(\2);', code)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
