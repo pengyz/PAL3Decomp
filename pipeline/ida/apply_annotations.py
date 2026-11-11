@@ -3342,6 +3342,90 @@ def apply_annotations():
 
     log("[9] Lvars: %d/%d applied (fail=%d)" % (lvar_ok, lvar_total, lvar_fail))
 
+    # --- 9b. Annotation lvars overrides (L-VAR 2026-11-11, 技术方案经
+    #     test_lvar_apply.py T0-T4b 全 PASS 后生产化) ---
+    #   数据: functions.json[addr].lvars + structs/<Cls>.json methods[addr].lvars
+    #   (load_annotations 已把 struct methods 整 dict 并入 funcs, lvars 字段随迁)
+    #   形态 {var_name: honest_C_type}。语义 = IDA user lvar type 覆盖
+    #   (set_lvar_type + save_user_lvar_settings, 与 Section 9 同款持久化)。
+    #   与 Section 9 (export 的 local_vars 元数据) 的关系: 本节后跑, 注解覆盖优先。
+    #   价值: IDB 设真型后, Hex-Rays 重反编译按真类型重渲染**整个函数体**
+    #   (声明+cast+成员访问+实参)——codegen 侧声明行改写不具备的传播能力;
+    #   双生命期变量由 Hex-Rays 数据流视图自洽渲染(⑦ 族主战场)。
+    lvb_ok = 0
+    lvb_fail = 0
+    lvb_total = 0
+    for addr_str, info in funcs.items():
+        lv_ann = info.get("lvars") if isinstance(info, dict) else None
+        if not isinstance(lv_ann, dict) or not lv_ann:
+            continue
+        lvb_total += len(lv_ann)
+        try:
+            addr = int(addr_str, 16)
+        except (ValueError, TypeError):
+            lvb_fail += len(lv_ann)
+            continue
+        func = ida_funcs.get_func(addr)
+        if not func:
+            log("[9b] WARN %s: 无函数, 跳过 %d 条" % (addr_str, len(lv_ann)))
+            lvb_fail += len(lv_ann)
+            continue
+        try:
+            cfunc = ida_hexrays.decompile(func)
+        except Exception:
+            try:
+                ida_hexrays.del_heap_decomp(addr)
+                cfunc = ida_hexrays.decompile(func)
+            except Exception:
+                lvb_fail += len(lv_ann)
+                continue
+        if not cfunc:
+            lvb_fail += len(lv_ann)
+            continue
+        modified = False
+        _names = {lv.name for lv in cfunc.lvars}
+        for var_name, new_type in lv_ann.items():
+            if var_name not in _names:
+                log("[9b] WARN %s.%s: 函数体内无此 lvar(名字漂移?)" % (addr_str, var_name))
+                lvb_fail += 1
+                continue
+            tif = _resolve_member_type(str(new_type), ida_typeinf.get_idati())
+            if tif is None:
+                log("[9b] WARN %s.%s: 类型 %r 解析失败" % (addr_str, var_name, new_type))
+                lvb_fail += 1
+                continue
+            for lvar in cfunc.lvars:
+                if lvar.name == var_name:
+                    try:
+                        lvar.set_lvar_type(tif)
+                        modified = True
+                        lvb_ok += 1
+                    except Exception as _e:
+                        log("[9b] WARN %s.%s: set_lvar_type %s" % (addr_str, var_name, str(_e)[:60]))
+                        lvb_fail += 1
+                    break
+        if modified:
+            try:
+                uvec = ida_hexrays.lvar_uservec_t()
+                uvec.lvvec = ida_hexrays.lvar_saved_infos_t()
+                for lv in cfunc.lvars:
+                    si = ida_hexrays.lvar_saved_info_t()
+                    ll = ida_hexrays.lvar_locator_t()
+                    ll.defea = cfunc.entry_ea
+                    si.ll = ll
+                    si.name = lv.name
+                    try:
+                        _t = lv.type
+                        if _t is not None and hasattr(_t, "is_correct") and _t.is_correct():
+                            si.type = _t
+                    except Exception:
+                        pass
+                    uvec.lvvec.push_back(si)
+                ida_hexrays.save_user_lvar_settings(addr, uvec)
+            except Exception as _e:
+                log("[9b] lvar save failed %s: %s" % (addr_str, str(_e)[:80]))
+    log("[9b] Annotation lvars: %d/%d applied (fail=%d)" % (lvb_ok, lvb_total, lvb_fail))
+
     # --- 10. Final un-name pass (type propagation in step 7 may re-name functions) ---
     _unnamed2 = 0
     for ea in idautils.Functions(0x00401000, 0x00560000):

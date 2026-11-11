@@ -94,7 +94,9 @@ def main():
     for lv_i in cfunc.lvars:
         si = ida_hexrays.lvar_saved_info_t()
         ll = ida_hexrays.lvar_locator_t()
-        ll.defea = cfunc.entry_ea
+        # [修 2026-11-11] locator.defea 用 lvar 真实定义地址——entry_ea 使
+        #   重新反编译时键匹配失败 => settings 被忽略(跨进程不生效实证)
+        ll.defea = getattr(lv_i, 'defea', cfunc.entry_ea)
         si.ll = ll
         si.name = lv_i.name
         try:
