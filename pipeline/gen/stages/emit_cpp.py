@@ -648,6 +648,7 @@ def _apply_lvar_overrides(code, addr):
 
 
 _VOID_RET_CALLS = None
+_GBENGINE_DEF_TYPES = None
 
 def _void_ret_calls():
     """[L-VOIDCAST 数据源] 全树 void*-返回函数集合 {(cls_lower_or_empty, name)}。
@@ -782,6 +783,36 @@ def generate_class_cpp(cls_name, methods):
             lines.append('#include "%s/%s.h"' % (_c_subdir, c))
         else:
             lines.append('#include "%s.h"' % c)
+
+    # [L-INC 2026-11-11] gbengine 聚合头类型探测——类定义可能住在
+    # include/gbengine/*.h 聚合头（如 gbOBBox 全量定义在 gbengine_types.h:217
+    # 且类无自有头）⇒ 现有启发式（per-class 头存在性 / X:: / (X*) / 类名字面量）
+    # 全部按 header_dir 找 per-class 头，聚合头类型漏掉 ⇒ 定义不可见
+    # （gbOBBox.cpp 44 错实证）。词 token 命中 gbengine 定义 ⇒ include 该头。
+    global _GBENGINE_DEF_TYPES
+    if _GBENGINE_DEF_TYPES is None:
+        _GBENGINE_DEF_TYPES = {}
+        import glob as _glob
+        for _p in _glob.glob(str(store.project_root / 'include' / 'gbengine' / '*.h')):
+            try:
+                _txt = open(_p, encoding='utf-8', errors='ignore').read()
+            except Exception:
+                continue
+            _hn = os.path.basename(_p)
+            for _m2 in re.finditer(r'^[ \t]*(?:struct|class)\s+(?:GBAPI\s+)?(\w+)', _txt, re.M):
+                _GBENGINE_DEF_TYPES.setdefault(_m2.group(1), _hn)
+    _all_code_gi = '\n'.join(m['code'] for m in methods)
+    _gb_inc = set()
+    for _m2 in re.finditer(r'\b([A-Za-z_]\w+)\b', _all_code_gi):
+        _h = _GBENGINE_DEF_TYPES.get(_m2.group(1))
+        if _h:
+            _gb_inc.add(_h)
+    _already = set(lines)
+    for _h in sorted(_gb_inc):
+        _inc = '#include "gbengine/%s"' % _h
+        if _inc not in _already:
+            lines.append(_inc)
+            _already.add(_inc)
 
     # Include free_functions.h if any free function is called or referenced
     free_func_h = header_dir / "free_functions.h"

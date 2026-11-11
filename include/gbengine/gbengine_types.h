@@ -228,6 +228,12 @@ struct GBAPI gbOBBox {
     void GetSphere(struct gbSphere & p0);
     int IsColOBB(struct gbOBBox * p0);
     int IsColPoint(struct gbVec3D & p0);
+    /* [L-VAR 2026-11-11] GetBBox decl add: decomp gbOBBox::GetBBox(0x52F6C0),
+       non-exported internal method (absent from def lib). Signature from decomp
+       text (OBBox alias normalized to gbOBBox by L-TYPEALIAS). [DBCS-safe: ASCII
+       line endings -- GBK lead-byte at EOL would swallow the newline and splice
+       the NEXT line into the comment, silently deleting this declaration.] */
+    gbOBBox * GetBBox(gbOBBox * thisa);
 };
 
 struct gbSphere {

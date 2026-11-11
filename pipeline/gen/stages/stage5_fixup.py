@@ -26,6 +26,38 @@ from data import store
 # Type alias substitution (text-level, STL/GB engine patterns)
 # ============================================================
 
+_TYPEALIAS_CACHE = None
+
+def _type_alias_map():
+    """[L-TYPEALIAS 2026-11-11] IDB 类型名↔诚实类名别名表（annotation 驱动）。
+
+    数据: structs/<basename>.json 的 name 字段 ≠ basename ⇒ 同一布局两个名字
+    （basename=IDB 侧类型名如 OBBox，name=诚实类名如 gbOBBox——OBBox.json
+    name=gbOBBox 实证）。decomp 文本带 IDB 名 ⇒ include 探测（找 gbOBBox）
+    与编译（OBBox 未定义）双落空（gbOBBox.cpp 44 错实证）。
+
+    安全性: 重写只在本 token 实际出现处触发，而该 token 当前是未定义类型
+    （编译错误面）——重写为已定义类名只能消错。SDK 句柄对（HBRUSH_→HBRUSH__）
+    在代码体中不出现（decomp 用 HBRUSH），落空即无操作。
+    """
+    global _TYPEALIAS_CACHE
+    if _TYPEALIAS_CACHE is None:
+        m = {}
+        try:
+            import annotation_view as _av
+            import os as _os
+            for p, sd in _av.iter_structs(None):
+                base = _os.path.splitext(_os.path.basename(p))[0]
+                n = (sd.get('name') or '').strip()
+                if n and n != base and re.match(r'^[A-Za-z_]\w*$', base) \
+                        and re.match(r'^[A-Za-z_][\w<>:]*$', n):
+                    m[base] = n
+        except Exception as _e:
+            print('[L-TYPEALIAS] WARN: %s' % str(_e)[:80])
+        _TYPEALIAS_CACHE = m
+    return _TYPEALIAS_CACHE
+
+
 def _apply_text_substitutions(code, ctx):
     """Apply text-level substitutions: type aliases, suffixes, thunk classes."""
 
@@ -35,6 +67,10 @@ def _apply_text_substitutions(code, ctx):
     # is never valid C++ — global strip is safe (display-convention token).
     from pipeline.gen.normalization import strip_hidden as _shh
     code = _shh(code)  # 单点律收编
+
+    # [L-TYPEALIAS] IDB 类型名→诚实类名（annotation basename≠name 对）
+    for _tok, _name in _type_alias_map().items():
+        code = re.sub(r'\b%s\b' % _tok, _name, code)
 
     # Replace IDA container structures with STL types
     _type_map = {
