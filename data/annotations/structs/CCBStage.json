@@ -1297,8 +1297,8 @@
   },
   "0x0050A180": {
    "name": "Grab",
-   "signature": "int(int dwStageTaskID, bool bNormal)",
-   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width",
+   "signature": "bool __thiscall(CCBStage *this, int dwStageTaskID)",
+   "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width | L-VAR 2026-11-12 asm槽位记账定谳: 入口mov esi,ecx(thiscall)+栈读集合仅{esp+4}+ret 4 x2 = 单栈参成员函数; 原 static int Grab(int,bool) 的bool bNormal 系幻影(调用点CCBStage:7248渲染1实参渲染吻合)",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "Grab_A180",
