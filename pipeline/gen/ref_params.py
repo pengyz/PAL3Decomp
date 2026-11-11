@@ -338,7 +338,15 @@ def _fix_ref_params(code, ctx=None):
                     if depth == 0:
                         arg = code[arg_start:i]
                         if arg_idx in ref_positions:
-                            arg = _fix_single_ref_arg(arg, vt, ref_type=_GB_REF_PARAM_TYPES.get((func_name, arg_idx)))
+                            # [L-VAR 2026-11-11] ref_type 查表加裸名回退——
+                            # _GB_REF_PARAM_TYPES 键为裸名 ('Rotate',1)（AAU/ABU 证据
+                            # 记录在方法本体，与调用点限定与否无关）；限定名
+                            # 'gbMatrixStack::Rotate' 直接 get 落空 ⇒ ref_type=None
+                            # ⇒ F81b 全局对象分支被跳过 ⇒ 保守加 * ⇒ stru_ 结构对象
+                            # 解引用 C2100（CEffCylinder/CEffGrid/CEffect Rotate 族实证）。
+                            _rt = (_GB_REF_PARAM_TYPES.get((func_name, arg_idx))
+                                   or _GB_REF_PARAM_TYPES.get((func_name.split('::')[-1], arg_idx)))
+                            arg = _fix_single_ref_arg(arg, vt, ref_type=_rt)
                         result.append(arg)
                         result.append(')')
                         break

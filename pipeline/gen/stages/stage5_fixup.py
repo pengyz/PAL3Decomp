@@ -1385,10 +1385,13 @@ def _run_inner(code, ctx):
     code = code.replace(
         'v4 = this[2];\n  if ( v4 )',
         'v4 = *(int *)((char *)this + 2 * sizeof(MiniGame1));\n  if ( v4 )')
-    # ⑤CGameData: int *v10 声明类型错位(CCBUI* 赋值)
-    code = code.replace(
-        'int *v10; // esi',
-        'void *v10; // esi  [P-A16: 声明类型对齐赋值(CCBUI*)]')
+    # ⑤[退役 2026-11-11] CGameData v10 对齐替换——全局裸文本 replace 误伤面实证:
+    #   decomp 原文两处均为自洽 `int *v10`(CCBUI:0x4AB2B0 全 int* 指针赋值;
+    #   CGameData:0x44F8D0 赋值带 (CCBUI*) cast), 硬替换把 CCBUI 的 v10
+    #   推成 void* ⇒ 解引用 C2100 ×3(474-476)。CGameData 的真实需求由
+    #   lvars 注解承接(methods[0x0044F8D0].lvars = {v10: CCBUI *})——
+    #   数据驱动、按地址、带证据, 替代全局文本猜改。
+    # ⑤' int *v10 声明类型错位(CCBUI* 赋值)' 原文保留于 git 历史 (42c1a2540 之前)
     # ⑥UICursor: v11 声明类型错位(Iostream_init* vs int 赋值)
     code = code.replace(
         'Iostream_init *v11; // eax',

@@ -7929,9 +7929,11 @@
   "name": "g_pszSceneSlot1"
  },
  "0x0058619C": {
-  "type": "skip",
+  "type": "char *",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": " | L-VAR 2026-11-11c: strlen(pszRoleDir)+&pszRoleDir[v11] char 指针语境实证(PAL_GDB_LoadSkillData); psz_ 前缀=IDA 语义命名; 原类型=skip 退役(无前缀回退产物)",
+  "name": "pszRoleDir",
+  "evidence_level": "use_site_majority"
  },
  "0x005B1E74": {
   "type": "skip",
