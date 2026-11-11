@@ -1551,7 +1551,7 @@ def _run_inner(code, ctx):
     #   (PMF 赋值站 `*(PMF)&slot = Cls::M;` MSVC6 接受无&成员名, 不在射程)
     code = re.sub(
         r'(==|!=)\s*(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
-        r'\1 &\2', code)
+        r'\1 (unsigned long)&\2', code)
 
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
