@@ -92,7 +92,7 @@ struct gbGfxDriverInfo {
     int refreshrate;
     char winname[0x80];
     unsigned int hinst;     // HINSTANCE
-    unsigned int hgfxwnd;   // HWND
+    HWND hgfxwnd;           // [L-VAR 2026-11-11] uint 系 IDB 占位, 真型 HWND(InitGFX 赋 HWND 槽+ShowWindow/UpdateWindow 实参链)
     int newwindow;
     int waitforverticalblank;
 };

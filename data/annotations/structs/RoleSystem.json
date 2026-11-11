@@ -1121,7 +1121,11 @@
   "0x00412A90": {
    "name": "MoveToTile",
    "signature": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "pTargetPos": "void *"
+   },
+   "lvars_source": " | L-VAR 2026-11-11 双生命期放开试点(IDB通路): decomp pTargetPos=0.0f(float初始化)+((UIWnd*)pTargetPos[1])指针数组读——IDB user type void* 后 Hex-Rays 按真类型自洽重渲染(数据流视图唯一全知者); 纯赢门在 IDB 通路下放开"
   },
   "0x00413420": {
    "name": "StepAlongPath",
