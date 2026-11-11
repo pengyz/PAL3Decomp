@@ -544,10 +544,10 @@
   "source": " | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账）"
  },
  "0x00583A9C": {
-  "name": "dir",
+  "name": "aFivemagic",
   "type": "char[256]",
   "category": "string_literal",
-  "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
+  "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入 | L-CHURN 2026-11-11f: exe 字节直读 0x583A9C = 'fivemagic\\0default\\0%d\\0%s_%s\\0z27\\0q01\\0PAL3_TimeNoteFile.note...' 串池首串; 旧名 dir 与 0x58B44C('role') 的 IDB 名 dir 冲突 -> IDA 实落 dir_0 而 globals.h 发 dir => 33 单元 C2065/C2109/C2102 级联; 改唯一名 aFivemagic"
  },
  "0x00586154": {
   "name": "g_nPtrArray_586154",
