@@ -4056,10 +4056,16 @@ def generate_globals():
             # 'void'→'char*' ×12（8 表，2026-10-25 普查）。skip 型走 orig_type
             # 复活路径（W3，无需此处）；仅非 skip 且 category=ptr_table 且
             # 注解显式 type 时覆盖（0x005707D0 const char * 策展形场景）。
-            if _ann_entry.get('category') == 'ptr_table':
+            if _ann_entry.get('category') == 'ptr_table' or \
+                    _ann_entry.get('evidence_level') == 'use_site_majority':
                 # 统一取型：orig_type（墓碑）优先；非 skip 的策展 type 次之；
                 # 注解 skip 但 export 非 skip（兜底 void* 形）也用 orig_type 覆盖
                 # （两域 skip 不同源：export 的 void* ≠ 注解 skip 语义，0x0056C548 实证）
+                # [L-VAR 2026-11-11] 证据门控扩容：evidence_level=use_site_majority
+                # （全树使用点语境取证定谳，extract_lvar_candidates.py 取证流程产物）
+                # 与 ptr_table 同级放行——原政策门"but not type - too risky"保留
+                # 对无证据条目的拦截，有证据条目不再被静默丢弃
+                # （nIndex int / off_56B97C const char* 两实证）
                 _t93 = _ann_entry.get('orig_type') or (
                     _ann_entry.get('type') if _ann_entry.get('type') != 'skip' else None)
                 if _t93:
@@ -4553,6 +4559,14 @@ def generate_globals_cpp():
         # → C2371/链接断(globals 三链名字同步的最后一条)。
         if (ann_info or {}).get('name'):
             nm = ann_info['name']
+        # [L-VAR 2026-11-11] 证据门控类型覆盖（与头链 :4059 同门同源）——
+        # 头/定义两侧必须同源解析（W3），否则 extern int vs 定义 char[] = C2040。
+        if (ann_info or {}).get('category') == 'ptr_table' or \
+                (ann_info or {}).get('evidence_level') == 'use_site_majority':
+            _t_lv = (ann_info or {}).get('orig_type') or (
+                (ann_info or {}).get('type') if (ann_info or {}).get('type') != 'skip' else None)
+            if _t_lv:
+                tp = _t_lv
 
         if not nm or not tp:
             continue
