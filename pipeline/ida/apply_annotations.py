@@ -3391,6 +3391,15 @@ def apply_annotations():
                 continue
             tif = _resolve_member_type(str(new_type), ida_typeinf.get_idati())
             if tif is None:
+                # [L-DLGPROC 2026-11-11] PMF 等复杂型回退 parse_decl(PT_SIL)
+                #   (成员函数指针 unsigned int (Cls::*)(int) 实证: _resolve_member_type
+                #   不支持, parse_decl 可解析)
+                _tif = ida_typeinf.tinfo_t()
+                if ida_typeinf.parse_decl(_tif, ida_typeinf.get_idati(),
+                                          '%s __lv_ann;' % str(new_type),
+                                          ida_typeinf.PT_SIL):
+                    tif = _tif
+            if tif is None:
                 log("[9b] WARN %s.%s: 类型 %r 解析失败" % (addr_str, var_name, new_type))
                 lvb_fail += 1
                 continue

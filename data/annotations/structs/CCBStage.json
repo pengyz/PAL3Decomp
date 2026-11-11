@@ -568,7 +568,11 @@
   "0x004FCA80": {
    "name": "GetTask",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "v9": "unsigned int (CCBStage::*)(int)"
+   },
+   "lvars_source": " | L-VAR 2026-11-11 任务表成员fn-ptr: 正确站点形态 unsigned int (CCBStage::**)(int) 佐证thiscall成员指针表; 错误站点cdecl渲染系IDB局部类型推断混淆; PMF型经IDB通路由Hex-Rays重渲染对齐"
   },
   "0x004FCBD0": {
    "name": "GetTaskID",
@@ -1823,7 +1827,11 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetupCombatAction_15c0",
-   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
+   "lvars": {
+    "v21": "unsigned int (CCBStage::*)(int)"
+   },
+   "lvars_source": " | L-VAR 2026-11-11 任务表成员fn-ptr: 正确站点形态 unsigned int (CCBStage::**)(int) 佐证thiscall成员指针表; 错误站点cdecl渲染系IDB局部类型推断混淆; PMF型经IDB通路由Hex-Rays重渲染对齐"
   },
   "0x00501CF0": {
    "name": "TaskReturnToIdle",
