@@ -210,7 +210,11 @@
   "0x004E9F70": {
    "name": "CalculateFOV",
    "signature": "void __thiscall(HWND hDlg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "v7": "HWND"
+   },
+   "lvars_source": " | L-VAR 2026-11-11h: EditBoxGetFloat(HWND) 实参(签名0x4E5430 __cdecl(HWND) 直读), v7 系 void* 占位槽"
   },
   "0x004EA2E0": {
    "name": "UpdateTransition",
