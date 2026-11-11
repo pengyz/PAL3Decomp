@@ -353,6 +353,33 @@ def _fix_ref_params(code, ctx=None):
                 i += 1
             pos = i + 1
         code = ''.join(result)
-    # [TOS 2026-10-28] _tail_000 兼容折叠（stage3:2248 原件随迁；对无 _tail_000 输入幂等）
-    code = re.sub(r'(\w+)->_tail_000\b(?!\[)', r'*(void**)(\1)', code)
+    # [退役 2026-11-11] _tail_000 兼容折叠（stage3:2248 原件随迁）已删除。
+    #   垫片生命周期考证: 2026-10-28 落地时 blob 头尚未声明 _tail_000 成员 ⇒
+    #   `X->_tail_000` 是 C2039，折叠成 `*(void**)(X)` 裸解引用救编译。
+    #   如今 ida_structs 的 blob 结构(RT 4292/CEffMgr 43312 等唯一成员
+    #   `_BYTE _tail_000[N]@+0`)已由 emit_headers 原生发射进头文件，
+    #   `X->_tail_000` 数组衰减原生可编译且忠实 Hex-Rays 本意；
+    #   折叠反而 ①制造 C2440 void*（strcpy ×15 实证）②把"传缓冲地址(衰减)"
+    #   腐蚀成"传偏移0处指针值(解引用)"——语义级破坏。97 站点全部有原生等价
+    #   (`*(_DWORD *)X->_tail_000` 衰减+显式cast 同语义原生合法)，
+    #   故按"annotation 标对了就不需要变换"原则消灭本垫片。
+    #
+    # [L-TAILADDR 2026-11-11] _tail_000 无名区取址律（替代已退役的 *(void**) 解引用折叠）。
+    #   _tail_000 是 Hex-Rays 对"偏移 0 无名字节区"的 token，两种存在形态：
+    #   ① blob 结构(RT 4292/CEffMgr 43312)：ida_structs 已声明 `_BYTE _tail_000[N]@+0`，
+    #     `X->_tail_000` 无下标=数组衰减=对象地址；头文件已原生发射，编译自洽。
+    #   ② vptr 类(gbGfxManager ×42 实证)：偏移 0 是编译器隐式 vptr 槽，C++ 对象模型
+    #     无成员名可声明（声明偏移 0 成员会推移全布局，annotation 不可修——与
+    #     P-A21 `__vftable` 同族的已证不可约性）。
+    #   两形态下 `X->_tail_000`（无下标取址形态）的值恒等 `(char *)X`：
+    #   ①=缓冲首址(=对象首址)，②=vptr 槽地址(=对象首址)。
+    #   修: 渲染为 `((char *)X)`——①与原生衰减逐位等价，②取 vptr 槽地址。
+    #   旧折叠 `*(void**)(X)` 是解引用（读偏移 0 的值），与 Hex-Rays 取址本意相反，
+    #   且制造 C2440 void* ×15（strcpy 族实证）——2026-11-11 退役。
+    #   边界安全普查(asm/pal3/decomp 3675 文件全量): 无 `&X->_tail_000` 无下标
+    #   取址上下文(0 站)、无 sizeof 上下文(0 站)；带下标形态(1090+252 站)不触发
+    #   本律、走头文件原生成员访问；dot 无下标 5 站由 L-TAILADDR-DOT 兄弟律覆盖。
+    code = re.sub(r'\b((?:this->)?[A-Za-z_]\w*(?:\.\w+)*)->_tail_000\b(?!\[)', r'((char *)\1)', code)
+    # [L-TAILADDR-DOT] 值对象形态 `obj._tail_000`(无下标)——成员地址=对象地址。
+    code = re.sub(r'\b([A-Za-z_]\w*(?:\.\w+)*)\._tail_000\b(?!\[)', r'((char *)&\1)', code)
     return code
