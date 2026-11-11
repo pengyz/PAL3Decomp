@@ -615,7 +615,11 @@
    "name": "InitGame",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "游戏初始化入口（全套子系统）",
-   "signature": "void __cdecl(HINSTANCE hInstance)"
+   "signature": "void __cdecl(HINSTANCE hInstance)",
+   "lvars": {
+    "hgfxwnd": "HWND"
+   },
+   "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位"
   }
  }
 }

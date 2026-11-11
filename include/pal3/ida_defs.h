@@ -188,7 +188,7 @@ void * __cdecl gbLoadLightFile(const char *szFilename);
 // [T10] 形参实证：PAL3::InitGFX@0x404FF0 调用点 `0x40500e push 0xbfd6c8` 后 
 // `0x405013 call [0x56a1fc]`（gbengine 导入）——0xbfd6c8 = &g_DrvInfo（globals.json
 // 结构体全局，含 display/window 参数）⇒ 实参是结构体指针，`int mode` 为占位误标。 
-void * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo *pDriverInfo);
+gbGfxManager * __cdecl gbCreateGraphManager(struct gbGfxDriverInfo *pDriverInfo); /* [L-VAR 2026-11-11d] return retyped: factory, sole call site assigns to gbGfxManager* */
 
 // [T18] _TEB 最小定义：IDA 伪代码 `NtCurrentTeb()->NtTib.ExceptionList` 引用
 // Windows SDK 的 _TEB（winnt.h 只前向声明、winternl.h 未引入 ⇒ C2027/C2227/C2228

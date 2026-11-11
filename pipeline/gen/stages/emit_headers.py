@@ -2895,21 +2895,25 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # (Hex-Rays decomp JSON 永远报 __thiscall 因为 IDA 归属到类; 但纯 dlgproc 等
             #  this=0 的函数实际是 static——annotation 层已修正, 头/体需跟随)
             try:
-                import json as _json
-                import os as _os
-                _sp = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))), 'data', 'annotations', 'structs', cls_name + '.json')
-                if _os.path.exists(_sp):
-                    _sj = _json.loads(open(_sp, encoding='utf-8').read())
-                    _au = str(addr).upper().replace('0X', '0x')
-                    _am = None
-                    for _mk, _mv in (_sj.get('methods', {}) or {}).items():
-                        if str(_mk).upper() == _au:
-                            _am = _mv; break
-                    if _am and 'static' in str(_am.get('signature', '')):
-                        is_static = True
-                        is_thiscall = False
-            except Exception:
-                pass
+                # [L-DLGPROC 路径修 2026-11-11] 原 dirname^3 拼 PROJECT/pipeline/data/...
+                #   (少一层)——路径恒不存在, static 覆盖静默失效。修: annotation_view
+                #   单点读(R98 单点律, 同文件 P-A5h 先例)。
+                import annotation_view as _av16
+                from data import store as _store16
+                _s16 = _av16.struct_by_class(cls_name, store=_store16)
+                _au = str(addr).upper().replace('0X', '0x')
+                _am = None
+                if _s16:
+                    _am = (_s16.get('methods', {}) or {}).get(_au)
+                    if _am is None:
+                        for _mk, _mv in (_s16.get('methods', {}) or {}).items():
+                            if str(_mk).upper() == _au:
+                                _am = _mv; break
+                if _am and 'static' in str(_am.get('signature', '')):
+                    is_static = True
+                    is_thiscall = False
+            except Exception as _e16:
+                print('[P-A16-EXC] %s %s: %s' % (cls_name, addr, str(_e16)[:80])[:120])
 
             # Strip register annotations
             # ★ vtable 槽位方法必须 virtual（2026-09-25）

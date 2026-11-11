@@ -629,8 +629,9 @@
   },
   "0x004E1F70": {
    "name": "SettingsDialogProc",
-   "signature": "int __thiscall CCBUI::SettingsDialogProc(HWND hDlg, unsigned int dwVal, WPARAM pData, LPARAM a5)",
-   "evidence_level": "unverified"
+   "signature": "static int __stdcall CCBUI::SettingsDialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
+   "evidence_level": "A",
+   "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性"
   },
   "0x004E24C0": {
    "name": "CommandEditDialogProc",
@@ -713,8 +714,9 @@
   },
   "0x004E2430": {
    "name": "HandleWindowMessage",
-   "signature": "int __thiscall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
-   "evidence_level": "unverified"
+   "signature": "static int __stdcall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
+   "evidence_level": "A",
+   "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性"
   },
   "0x004E2490": {
    "name": "DlgProcMain",
