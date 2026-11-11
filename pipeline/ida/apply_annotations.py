@@ -3406,9 +3406,13 @@ def apply_annotations():
             for lvar in cfunc.lvars:
                 if lvar.name == var_name:
                     try:
-                        lvar.set_lvar_type(tif)
-                        modified = True
-                        lvb_ok += 1
+                        if not lvar.set_lvar_type(tif):
+                            # 拒收(如 PMF 型于寄存器 lvar)——如实计 fail, 不虚报 applied
+                            log("[9b] WARN %s.%s: set_lvar_type 被拒(%s)" % (addr_str, var_name, str(new_type)[:40]))
+                            lvb_fail += 1
+                        else:
+                            modified = True
+                            lvb_ok += 1
                     except Exception as _e:
                         log("[9b] WARN %s.%s: set_lvar_type %s" % (addr_str, var_name, str(_e)[:60]))
                         lvb_fail += 1

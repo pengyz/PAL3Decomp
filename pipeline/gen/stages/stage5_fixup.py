@@ -1545,6 +1545,14 @@ def _run_inner(code, ctx):
         r'\*\((\w+) \*\*\)\(([^;]+)\)->\1::\1\(\);',
         r'new ((void *)(*(\1 **)(\2))) \1();', code)
 
+    # P-A13c (2026-11-12) PMF 比较站 & 前缀——VC6 成员函数指针比较需取址形
+    #   (`v9 == CCBStage::ProcX` → `v9 == &CCBStage::ProcX`; C2446/C2040 实证)。
+    #   窄门: ==/!= 后跟 Cls::成员名 且非调用(后随非'(')——任务表比较族形态。
+    #   (PMF 赋值站 `*(PMF)&slot = Cls::M;` MSVC6 接受无&成员名, 不在射程)
+    code = re.sub(
+        r'(==|!=)\s*(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
+        r'\1 &\2', code)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
