@@ -3498,6 +3498,14 @@ def apply_annotations():
             f.write('\n'.join(log_lines))
         idc.qexit(4)
 
+    # [L-VAR 修 2026-11-11] 显式保存数据库——hexrays user lvar settings 的
+    #   存储节点与 SetType 的自动保存路径不同, qexit 不保证 flush
+    #   (实证: apply 进程内 set_lvar_type+save 成功, 新进程 fresh decompile
+    #   仍是旧类型; SetType 函数签名同场景持久化正常)。
+    import ida_loader
+    ida_loader.save_database(None, 0)
+    log("[save] database flushed (user lvar settings 持久化)")
+
     idc.qexit(0)
 
 

@@ -329,6 +329,37 @@ def main():
             except Exception as _e:
                 log("[!] lvar annotations load failed: %s" % _e)
 
+        # [L-VAR 2026-11-11] 注解 lvars 双源并入(共享标注层函数注解字段)——
+        #   本层原设计读 lvars.json(从未创建, 机制空转)。真值源现为:
+        #   functions.json[addr].lvars + structs/<Cls>.json methods[addr].lvars
+        #   (双管线共享标注律: 标注层持有真值, export 渲染前应用=决定论消费)。
+        #   形态转换: {var: type} → [{'name': var, 'type': type}] (name 匹配分支)。
+        try:
+            import glob as _glob
+            _ann_funcs_path = os.path.join(PROJECT_ROOT, 'data', 'annotations', 'functions.json')
+            if os.path.exists(_ann_funcs_path):
+                with open(_ann_funcs_path, encoding='utf-8') as _af:
+                    _af_data = json.load(open(_ann_funcs_path, encoding='utf-8'))
+                for _a, _e in _af_data.items():
+                    _lv = _e.get('lvars') if isinstance(_e, dict) else None
+                    if isinstance(_lv, dict) and _lv:
+                        _key = '0x%08X' % int(_a, 16)
+                        _LVAR_ANN.setdefault(_key, [])
+                        _LVAR_ANN[_key] = [{'name': _vn, 'type': _vt} for _vn, _vt in _lv.items()]
+            for _sp in _glob.glob(os.path.join(PROJECT_ROOT, 'data', 'annotations', 'structs', '*.json')):
+                try:
+                    _sd = json.load(open(_sp, encoding='utf-8'))
+                except Exception:
+                    continue
+                for _a, _me in (_sd.get('methods') or {}).items():
+                    _lv = _me.get('lvars') if isinstance(_me, dict) else None
+                    if isinstance(_lv, dict) and _lv:
+                        _key = '0x%08X' % int(_a, 16)
+                        _LVAR_ANN[_key] = [{'name': _vn, 'type': _vt} for _vn, _vt in _lv.items()]
+            log("[*] lvar annotations(函数注解lvars字段): %d functions" % len(_LVAR_ANN))
+        except Exception as _e:
+            log("[!] annotation lvars merge failed: %s" % _e)
+
         # Load skip list
         # [t4-DECLARED-EXCEPTION] skip_functions.json → skip_addrs(1955)；
         # apply 会为这些地址 add_func（apply:1686-1687）但**不留 skip 标记**，

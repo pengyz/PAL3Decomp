@@ -1,1 +1,5 @@
-'v7 = (float *)&this->m_pTarget[13]._tail_000[24];'
+float *v7; // eax
+v7 = (float *)&this->m_pTarget[13]._tail_000[24];
+v7[1] = v12;
+*v7 = m_fLerpPosX;
+v7[2] = m_fLerpPosZ;
