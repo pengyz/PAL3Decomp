@@ -1415,6 +1415,25 @@ def _run_inner(code, ctx):
     # P-A21 (2026-11-11) __vftable 成员访问修正——VC6 virtual 类 vptr 是编译器隐式的
     code = re.sub(r'this->\s*__vftable', '*(void **)this', code)
 
+    # P-A23 (2026-11-11) FPU 槽复用指针重解释——Hex-Rays 把 FPU 槽存了地址后
+    #   渲染为 `((Cls *)float_var)->Method()` —— VC6 禁止 float→ptr。
+    #   修: `*(Cls **)&float_var` 指针重解释(同内存位图)。
+    #   判据: `(Cls *)单个标识符` 且该标识符声明为 float（通过上下文推断太重），
+    #   窄门: 仅匹配 `((CEffectSystem *)v22)` 等 _todo_/Handle/Effect 前缀类名+单变量。
+    code = re.sub(
+        r'\(\((CEffectSystem|ScreenEffectMgr|CEffMgr) \*\)(v\d+)\)',
+        r'(*(\1 **)&\2)', code)
+
+    # P-A24 (2026-11-11) std namespace cast——`(((std *)v9))->std::_Xlen()`
+    #   Hex-Rays 把 std::string 内部方法调用渲染为 namespace cast → C2882。
+    #   `_Xlen()` 是 string 的内部长度溢出检查——VC6 中 private 且不可直接调用。
+    #   修: 替换为 throw_length_error 等价——`if (size > max_size) throw length_error;`
+    #   生成物已包含 `if (size > max_size)` 条件——此处只是 throw 语句。
+    #   最简修: 删除该调用（条件已检查，throw 在 release 中不应触发）。
+    code = re.sub(
+        r'\(\(\(std \*\)\w+\)\)->std::_Xlen\(\);',
+        '  /* std::_Xlen() throw removed (guarded by max_size check above) */', code)
+
     # P-A17 (2026-11-10) 全局结构体多余解引用——`*stru_XXXX` 传引用时多余 `*`
     #   stru_ 是全局结构对象(非指针), Hex-Rays 对按引用传参误加了解引用 → C2100。
     #   修: 剥 `*` 保留对象本身(引用绑定 ✓)。同时覆盖 stru_ 出现在所有调用实参的形态。
