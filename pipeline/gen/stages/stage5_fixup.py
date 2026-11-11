@@ -1552,6 +1552,23 @@ def _run_inner(code, ctx):
     code = re.sub(
         r'(==|!=)\s*(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
         r'\1 (unsigned long)&\2', code)
+    # P-A13c-2 (2026-11-12) 表读取赋 unsigned long 槽——外层显式 cast
+    #   (`v9 = *(__cdecl **)(v8-64);` fn-ptr=>ulong 隐式非法 C2440 实证)
+    code = re.sub(
+        r'\b(v\d+) = \*\((?:unsigned int|void) \( \*\*\)\(CCBStage \*, int\)\)\(([^;]+)\);',
+        r'\1 = (unsigned long)*(unsigned int ( **)(CCBStage *, int))(\2);', code)
+    # P-A13c-3 (2026-11-12) 赋值站 cdecl-cast 成员名——成员fn不可转平fn-ptr
+    #   (`v21 = (unsigned int ( *)(CCBStage *, int))CCBStage::ProcX;` C2440 实证)
+    #   → `(unsigned long)&Cls::M` (MSVC 合法: 成员fn地址reinterpret整数)
+    code = re.sub(
+        r'= \((?:unsigned int|void) \( \*\)\(CCBStage \*, int\)\)(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
+        r'= (unsigned long)&\1', code)
+    # P-A13c-3b: 已带 (unsigned long) 前缀的 cdecl-cast 链 strip
+    #   (`(unsigned long)(unsigned int ( *)(CCBStage *, int))Cls::M` —— 成员fn
+    #   经 cdecl fn-ptr 中转仍 C2440(成员fn不可转平fn-ptr), 直落 (ulong)&M)
+    code = re.sub(
+        r'= \(unsigned long\)\((?:unsigned int|void) \( \*\)\(CCBStage \*, int\)\)(CCBStage::(?:Proc\w+|HandleKeyCtrl|ProcessCommand))\b(?!\s*\()',
+        r'= (unsigned long)&\1', code)
 
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
