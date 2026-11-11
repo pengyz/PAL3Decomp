@@ -144,6 +144,38 @@ def skip_functions(store=None):
     return d if isinstance(d, dict) else {}
 
 
+_LVAR_OVERRIDES_CACHE = None
+
+def lvar_overrides(addr, store=None):
+    """[L-VAR 2026-11-11] 函数内 lvar 类型覆盖（annotation 层，无新文件）。
+
+    数据源（两处，均为**现有函数注解的扩充字段** `lvars`）：
+      ① functions.json[addr].lvars           —— 自由函数
+      ② structs/<Cls>.json.methods[addr].lvars —— 类方法
+    字段形态: {"v22": "CEffectSystem *", "nIndex": "int"}（变量名→诚实 C 类型）。
+
+    取证纪律: 每条覆盖必须有编译器/使用点证据（错误消息 demanded-type、
+    全部使用点形态一致），禁止猜测填充。
+
+    返回 {var: type}；该函数无覆盖返回 {}（与 skip_functions 同语义）。
+    """
+    global _LVAR_OVERRIDES_CACHE
+    if _LVAR_OVERRIDES_CACHE is None:
+        merged = {}
+        # ① 自由函数
+        fns = load_annotation_json('functions.json', store=store) or {}
+        for a, e in fns.items():
+            if isinstance(e, dict) and isinstance(e.get('lvars'), dict):
+                merged[a] = e['lvars']
+        # ② 类方法（iter_structs 单点遍历）
+        for _p, sd in iter_structs(None, store=store):
+            for a, me in (sd.get('methods') or {}).items():
+                if isinstance(me, dict) and isinstance(me.get('lvars'), dict):
+                    merged[a] = me['lvars']
+        _LVAR_OVERRIDES_CACHE = merged
+    return _LVAR_OVERRIDES_CACHE.get(addr) or {}
+
+
 
 def struct_path(cls_name, store=None):
     """`structs/<cls_name>.json` 的路径。"""

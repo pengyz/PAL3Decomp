@@ -604,6 +604,49 @@ _STRING_PRIVATE_HACK = (
     '#undef private\n\n')
 
 
+_LVAR_OV_WARNED = set()
+
+def _apply_lvar_overrides(code, addr):
+    """[L-VAR 2026-11-11] 函数内 lvar 类型覆盖（annotation 层）。
+
+    数据: 函数注解内的 `lvars` 字段（functions.json[addr].lvars /
+    structs/<Cls>.json.methods[addr].lvars），形态 {var: "诚实 C 类型"}。
+    每条覆盖必须带编译器/使用点证据，禁止猜测填充（annotation_view.lvar_overrides）。
+
+    本函数只改写声明行。 Minority-life（另一类型生命期）的使用点适配**不在此做**
+    ——纯赢覆盖先行（声明改对后全部使用点自洽的），带双生命期的变量等 census
+    逐族取证后再决定适配形态，避免 P-A23 式"换血不消错"。
+    """
+    if not addr:
+        return code
+    try:
+        import annotation_view as _av
+        ov = _av.lvar_overrides(addr)
+    except Exception as _e:
+        key = ('reader', str(_e)[:40])
+        if key not in _LVAR_OV_WARNED:
+            _LVAR_OV_WARNED.add(key)
+            print('[L-VAR] WARN: reader 失效 %s' % str(_e)[:80])
+        return code
+    if not ov:
+        return code
+    for var, newtype in ov.items():
+        if not isinstance(newtype, str) or not newtype.strip():
+            continue
+        pat = re.compile(r'(?m)^(\s*)([\w ]+\**)\s*' + re.escape(var) + r'\s*;([^\n]*)$')
+        m = pat.search(code)
+        if not m:
+            key = ('nodecl', addr, var)
+            if key not in _LVAR_OV_WARNED:
+                _LVAR_OV_WARNED.add(key)
+                print('[L-VAR] WARN: %s 覆盖 %s 但函数体内无声明行（参数变量？）' % (addr, var))
+            continue
+        old_decl = m.group(2).strip()
+        code = pat.sub(lambda mm: mm.group(1) + newtype + ' ' + var + ';' + mm.group(3),
+                       code, count=1)
+    return code
+
+
 def generate_class_cpp(cls_name, methods):
     """Generate .cpp content for a class."""
     lines = []
@@ -619,7 +662,8 @@ def generate_class_cpp(cls_name, methods):
     for m in methods:
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
                            stub_registry=_stub_reg)
-        code = run_transforms(m['code'].strip(), ctx)
+        code = _apply_lvar_overrides(m['code'].strip(), m['addr'])
+        code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
@@ -759,7 +803,8 @@ def generate_free_funcs_cpp(funcs):
     for f in funcs:
         ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True,
                            stub_registry=_stub_reg)
-        code = run_transforms(f['code'].strip(), ctx)
+        code = _apply_lvar_overrides(f['code'].strip(), f['addr'])
+        code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         transformed.append((f['addr'], code))
 

@@ -8610,5 +8610,12 @@
   "category": "anchor_object",
   "source": "IDA语义分析 2026-11-10 反汇编三证",
   "name_note": "CEffectSystem 单例对象 BSS 存储(懒初始化包装: 首次调用构造+atexit 注册析构+返回地址)。全二进制仅 3 处引用(0x4c641e/0x4c643d/0x4c6450, 全在 0x4c6410)。真型 CEffectSystem*——CEffectSystem.cpp L125 返回单例地址(GetInstance 语义)。类型修正后 C2440 int→int* 自愈。"
+ },
+ "0x0058B770": {
+  "name": "nIndex",
+  "type": "int",
+  "category": "pending",
+  "source": " | L-VAR 2026-11-11: 类型定谳 int——全树使用点全 int 语境(循环上界/追加式 SetAt 首参/-1 算术), 与 g_pScriptObjArray 配对=count",
+  "evidence_level": "use_site_majority"
  }
 }
