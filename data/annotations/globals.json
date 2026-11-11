@@ -8622,5 +8622,35 @@
   "category": "pending",
   "source": " | L-VAR 2026-11-11: 类型定谳 int——全树使用点全 int 语境(循环上界/追加式 SetAt 首参/-1 算术), 与 g_pScriptObjArray 配对=count",
   "evidence_level": "use_site_majority"
+ },
+ "0x00580AFC": {
+  "name": "aBasedataSystem",
+  "type": "char[28]",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-11e exe 字节直读: b\"Basedata system init failed.\\x00\" 28 字节字符串常量; 发射器 Logger 型系 Hex-Rays 调用语境混淆传播"
+ },
+ "0x0058378C": {
+  "type": "char[38]",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-11e exe 字节直读: b'Could not allocate memory for EffMgr' 字符串常量; ida _globals Logger 型系同区误标(批E家族)",
+  "name": "aCouldNotAlloca_0"
+ },
+ "0x005837B4": {
+  "type": "char[45]",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-11e exe 字节直读: b'Could not allocate memory for combat' 字符串常量; ida _globals Logger 型系同区误标(批E家族)",
+  "name": "aCouldNotAlloca"
+ },
+ "0x00583950": {
+  "type": "char[21]",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-11e exe 字节直读: b'Window create failed' 字符串常量; ida _globals Logger 型系同区误标(批E家族)",
+  "name": "aWindowCreateFa"
+ },
+ "0x005839AC": {
+  "type": "char[22]",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-11e exe 字节直读: b'RegisterClass Failed.' 字符串常量; ida _globals Logger 型系同区误标(批E家族)",
+  "name": "aRegisterclassF"
  }
 }

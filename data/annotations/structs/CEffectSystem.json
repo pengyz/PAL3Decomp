@@ -153,9 +153,9 @@
   },
   "0x004C65F0": {
    "name": "HandleViewMove",
-   "signature": "void(float x, float y)",
-   "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "signature": "void __thiscall(CEffectSystem *this, float fVal)",
+   "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11e 反汇编反转: 入口 push esi; mov esi,ecx 读 [esi+4]/[esi+5] = thiscall; 栈访问仅 [esp+8] 一参; 调方 v22->HandleViewMove(v2) 一实参——旧 static(float,float) 双错",
+   "evidence_level": "A"
   },
   "0x004C6670": {
    "name": "Update",
