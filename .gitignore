@@ -75,6 +75,10 @@ build_*/
 # 形成"被跟踪文件落在被忽略路径"的不一致。收窄为只忽略 vendor 载荷。
 # 结论：**无需任何 git 历史重写**（zip 与解压目录本就不在历史里）。
 tools/ghidra/ghidra_11.2.1_PUBLIC*
+# 2026-11-11: 两个 Ghidra 发行包实体移到 tools/ghidra/venv/（该名字被 compileall/pytest 默认跳过），
+# 根目录同名条目改成了指向 venv/ 的符号链接；两者都不入库。
+tools/ghidra/venv/
+tools/ghidra/ghidra_12.1.2_PUBLIC
 tools/mingw/
 tools/tcc/
 tools/tcc.zip
@@ -193,7 +197,6 @@ phase2/base/
 ghidra_track/out/
 ghidra_track/ghidra_proj/
 ghidra_track/**/__pycache__/
-tools/ghidra/ghidra_12.1.2_PUBLIC/
 tools/ghidra/*.zip
 ghidra_track/config/parser-errors.log
 ghidra_track/**/parser-errors.log

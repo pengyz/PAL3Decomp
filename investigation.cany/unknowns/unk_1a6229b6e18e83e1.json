@@ -1,0 +1,15 @@
+{
+  "id": "unk_1a6229b6e18e83e1",
+  "revision": 1,
+  "question": "IDB 中 0x58B44C（字节为 \"role\\0...datascript\\scene.txt\"）的名称何时/为何从旧头文件里的 aRole 漂移成 dir？这正是与 0x583A9C 撞名的来源。",
+  "severity": "low",
+  "domain": "pal3-annotations",
+  "status": "open",
+  "probes": [
+    "对比历史导出 ida_structs.json 中该地址的 name（若留档）",
+    "检查 apply 的全局重命名/IDA 自动命名步骤日志",
+    "在 IDB 中查该地址的 xref 与命名来源"
+  ],
+  "evidence_for": [],
+  "evidence_against": []
+}

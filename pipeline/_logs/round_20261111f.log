@@ -1,0 +1,326 @@
+=== START 2026-11-11 15:30:58 ===
+APPLY: updating annotations in PAL3.exe.i64 ...
+
+-> ERROR: apply FAILED (apply_annotations.py exited non-zero).
+   Check pipeline/ida/_logs/apply_annotations_log.txt ([3] Structs line).
+   NOTE: _logs/apply_status.json is written by a separate script
+   (pipeline/ida/_archive/check_apply_status.py；2026-10-16 归档定谳) and can be a stale value.
+   Refusing to report success; the gate chain stops here.
+APPlY_RC=1
+ABORT_APPLY
+=== RESUME 2026-11-11 15:34:34 ===
+导出产物 vs 注解 一致性校验（[t4-DECLARED-EXCEPTION] 的透传字段）
+========================================================================
+  两侧都有 struct: 861   仅导出侧: 311   仅注解侧: 64
+  vtables  不一致: 0
+  methods  不一致: 0
+  _variants 键不一致: 744  （**仅提示**：两侧表示不同，不参与失败判定）
+    [_variants] ARC_ArcBrief, ARC_ArcHeader, ARC_ArcLocaleRole, ARC_ArcMsic, ARC_ComboAttack, ARC_FightItem, ARC_FightSkill, ARC_Inventory, ARC_MonsterStar, ARC_OutFile …
+
+✅ 一致：导出产物中这些字段与注解**逐字段等值**（与 export_full.py 头部自述的 761/761 相符）
+EXPORT: decompiling to decomp/ ...
+-> OK: decomp JSON exported
+
+[Consistency] 校验导出产物与注解的透传字段（vtables / methods）...
+
+[Invariants] advisory 模式（只报告计数，不影响退出码）...
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **7 个**
+    CCBStageCam              size=6272     无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffAudioNode             size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffBinkNode              size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    EffMultiPassNode         size=32       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptFadeOutTimer    size=20       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptProgressTimer   size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
+    PalScriptWaitTimer       size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
+[A] PASS：没有任何 code 位置的 __vftable
+[B] PASS：117 个 sub_ 符号的声明/调用形参数全部一致（另 104 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+
+[ADVISORY] 非门禁报告：以下计数不影响任何退出码
+编译阻塞项 7；潜伏项 0  => ADVISORY-ONLY（不阻断）
+[ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
+
+Next: python pipeline/cli.py codegen all
+EXPORT_RC=0
+[emit] CCBTaskSlot: member at +0x18 is behind bookkeeping (start_off=0x1A, +0x2) — 不跳过，交由布局审计裁决
+[emit] CGameData: member at +0x8B4 is behind bookkeeping (start_off=0x8E0, +0x2C) — 不跳过，交由布局审计裁决
+[emit] Logger: member at +0x1230 is behind bookkeeping (start_off=0x1294, +0x64) — 不跳过，交由布局审计裁决
+[emit] SceneMgr: member at +0x2B54 is behind bookkeeping (start_off=0x33C0, +0x86C) — 不跳过，交由布局审计裁决
+[emit] UIGameFrm: member at +0x164 is behind bookkeeping (start_off=0x25C, +0xF8) — 不跳过，交由布局审计裁决
+  Cleaned: /home/peng/workspace/PAL3Decomp/pal3/src/
+[clean] Done
+  [R91] 重归属路由 17 条（scope=batch0）: ClearActionArrays, ClearActionFlags, ClearAllActions, ClearAllocBuffers, ClearPathBuffer, FastInit ...
+[C2011] ns-decls: 16 unique blocks, 4 byval-inc, 5 fwd-decls -> _ns_udts.h
+Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
+  With annotation layout: 1167
+  With methods: 234
+  Enums: 0
+  Template stubs: 0
+  Phantom globals skipped: 25 (arr, unk_C0A40E, dword_C10A08, dword_C11760, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00, dword_D8BC10, dword_D8BC30)
+    ... and 15 more
+  Annotation-skipped globals: 79
+  declared_globals refreshed post-emit: 2766
+  Globals: 2885 in globals.h
+
+[WARN] Header generation found 36 annotation conflicts (deduplicated):
+  DUPLICATE METHOD: CCBRoleState::UpdatePanel(BOOL) (addr=0x004dc250)
+  DUPLICATE METHOD: CCBRoleState::AddCommand(int, BOOL, int) (addr=0x004f2c70)
+  DUPLICATE METHOD: CEffect::sub_4D1300() (addr=0x004d1300)
+  DUPLICATE METHOD: CEffect::sub_4D17D0() (addr=0x004d17d0)
+  DUPLICATE METHOD: CEffect::sub_4D3DC0() (addr=0x004d3dc0)
+  DUPLICATE METHOD: CEffect::sub_4D4110() (addr=0x004d4110)
+  DUPLICATE METHOD: Object::Update(int) (addr=0x4af760)
+  DUPLICATE METHOD: RoleStatePanel::RenderThrottled() (addr=0x004a5930)
+  DUPLICATE METHOD: RoleStatePanel::UpdateCaptions() (addr=0x004a5b30)
+  DUPLICATE METHOD: RoleStatePanel::InitUI() (addr=0x004a1e40)
+  DUPLICATE METHOD: RoleStatePanel::~RoleStatePanel() (addr=0x004a2450)
+  DUPLICATE METHOD: RoleStatePanel::SetItemData(int, unsigned int) (addr=0x004a3900)
+  DUPLICATE METHOD: RoleStatePanel::HandleDeviceLostB() (addr=0x004a4780)
+  DUPLICATE METHOD: RoleStatePanel::Render() (addr=0x004a4820)
+  DUPLICATE METHOD: RoleStatePanel::GetSelected() (addr=0x004a4890)
+  DUPLICATE METHOD: RoleStatePanel::InitSlots(int) (addr=0x004a48b0)
+  DUPLICATE METHOD: RoleStatePanel::InitLayout(int) (addr=0x004a4960)
+  DUPLICATE METHOD: RoleStatePanel::CreateWidgets(int) (addr=0x004a4a10)
+  DUPLICATE METHOD: RoleStatePanel::SetSelectedData(int) (addr=0x004a4ac0)
+  DUPLICATE METHOD: RoleStatePanel::Init(int) (addr=0x004a4b70)
+  DUPLICATE METHOD: RoleStatePanel::Create() (addr=0x004a4c20)
+  DUPLICATE METHOD: RoleStatePanel::SetEquipSlotData() (addr=0x004a4fc0)
+  DUPLICATE METHOD: RoleStatePanel::LayoutHandleNav() (addr=0x004a5a80)
+  DUPLICATE METHOD: SaleUI::~SaleUI() (addr=0x0045ae60)
+  DUPLICATE METHOD: SaleUI::LoadState(const void *) (addr=0x0045b7a0)
+  DUPLICATE METHOD: SaleUI::InitCombatUI(int) (addr=0x0045b990)
+  DUPLICATE METHOD: SaleUI::UpdateSkillPanel() (addr=0x00460a90)
+  DUPLICATE METHOD: SaleUI::InitMode(int) (addr=0x00461c50)
+  DUPLICATE METHOD: SaleUI::CreatePanelElements(CCBUIPanel *) (addr=0x004623a0)
+  DUPLICATE METHOD: SaleUI::SetupPlayerDisplay(int) (addr=0x00469d90)
+  DUPLICATE METHOD: SaleUI::HandleInput(int, int, int) (addr=0x00469eb0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot1(unsigned __int8) (addr=0x004712d0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot4(unsigned __int8) (addr=0x004714e0)
+  DUPLICATE METHOD: ScriptVM::ExecuteBlock() (addr=0x00424c20)
+  DUPLICATE METHOD: StateUI::sub_4850E0() (addr=0x004850e0)
+  DUPLICATE METHOD: UIListBox::CreateChild() (addr=0x0043f560)
+  Globals: 2783 in globals.cpp
+  Globals: 2783 in globals.cpp
+Traceback (most recent call last):
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 214, in <module>
+    main()
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 180, in main
+    cmd_cpp(filter_classes=filter_classes or None)
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 117, in cmd_cpp
+    from stages.emit_cpp import run_cpp_generation
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/stages/emit_cpp.py", line 11, in <module>
+    from stages.transform import run_transforms, make_context
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/stages/transform.py", line 12, in <module>
+    from stages import stage1_structural, stage2_semantic, stage3_cleanup
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/stages/stage1_structural.py", line 11, in <module>
+    import tree_sitter_cpp as tscpp
+ModuleNotFoundError: No module named 'tree_sitter_cpp'
+CODEGEN_RC=1
+S2 cpp: 0/1 ok | own-fail 1 | imported-only 0  (0s)
+Top root-cause headers (files blocked):
+report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-11T15:37:56.309243
+
+📊 摘要:
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 6
+
+✅ 未检测到回归。
+[vanished] 78 个失败单元从 census 蒸发(回归门视同回归):
+  pal3/src/Misc/UIEmote.cpp
+  pal3/src/Script/ScriptSystem.cpp
+  pal3/src/Misc/UIScenePanel.cpp
+  pal3/src/Combat/CCBStageScene.cpp
+  pal3/src/Misc/CG_Entry.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
+  pal3/src/Misc/PalScriptFadeInTimer.cpp
+  pal3/src/Script/PalScript.cpp
+  pal3/src/Effect/CEffect.cpp
+  pal3/src/UI/UIManager.cpp
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-11T15:37:56.341831
+
+📊 摘要:
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 6
+
+✅ 未检测到回归。
+[vanished] 78 个失败单元从 census 蒸发(回归门视同回归):
+  pal3/src/Render/RenderTarget.cpp
+  pal3/src/Misc/UIScenePanel.cpp
+  pal3/src/Combat/CCBRoleState.cpp
+  pal3/src/Data/CGameData.cpp
+  pal3/src/Effect/CEffCylinder.cpp
+  pal3/src/Misc/UIBigMap.cpp
+  pal3/src/Misc/CG_Entry.cpp
+  pal3/src/Misc/gbLightObj.cpp
+  pal3/src/Misc/UIGameOver.cpp
+  pal3/src/MiniGame/MiniGame1.cpp
+
+[Regression] diff vs latest baseline:
+
+[Baseline] NOT refreshing: regressions detected (exit 1).
+        The baseline is intentionally left unchanged so the regression stays visible on the next run.
+        Evidence saved under pipeline/_logs/regression_detection/
+        After confirming the regressions are understood, refresh deliberately with:
+          python3 tools/regression_detector.py --save-baseline
+PROBE_RC=1
+=== END 2026-11-11 15:37:56 ===
+=== CODEGEN RETRY 2026-11-11 15:38:21 ===
+[emit] CCBTaskSlot: member at +0x18 is behind bookkeeping (start_off=0x1A, +0x2) — 不跳过，交由布局审计裁决
+[emit] CGameData: member at +0x8B4 is behind bookkeeping (start_off=0x8E0, +0x2C) — 不跳过，交由布局审计裁决
+[emit] Logger: member at +0x1230 is behind bookkeeping (start_off=0x1294, +0x64) — 不跳过，交由布局审计裁决
+[emit] SceneMgr: member at +0x2B54 is behind bookkeeping (start_off=0x33C0, +0x86C) — 不跳过，交由布局审计裁决
+[emit] UIGameFrm: member at +0x164 is behind bookkeeping (start_off=0x25C, +0xF8) — 不跳过，交由布局审计裁决
+[ret-N evidence] 指令级(asm) 3484 / 裸扫描回退 434 / 无证据 15
+  Cleaned: /home/peng/workspace/PAL3Decomp/pal3/src/
+[clean] Done
+  [R91] 重归属路由 17 条（scope=batch0）: ClearActionArrays, ClearActionFlags, ClearAllActions, ClearAllocBuffers, ClearPathBuffer, FastInit ...
+[C2011] ns-decls: 16 unique blocks, 4 byval-inc, 5 fwd-decls -> _ns_udts.h
+Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
+  With annotation layout: 1167
+  With methods: 234
+  Enums: 0
+  Template stubs: 0
+  Phantom globals skipped: 25 (arr, unk_C0A40E, dword_C10A08, dword_C11760, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00, dword_D8BC10, dword_D8BC30)
+    ... and 15 more
+  Annotation-skipped globals: 79
+  declared_globals refreshed post-emit: 2766
+  Globals: 2885 in globals.h
+
+[WARN] Header generation found 36 annotation conflicts (deduplicated):
+  DUPLICATE METHOD: CCBRoleState::UpdatePanel(BOOL) (addr=0x004dc250)
+  DUPLICATE METHOD: CCBRoleState::AddCommand(int, BOOL, int) (addr=0x004f2c70)
+  DUPLICATE METHOD: CEffect::sub_4D1300() (addr=0x004d1300)
+  DUPLICATE METHOD: CEffect::sub_4D17D0() (addr=0x004d17d0)
+  DUPLICATE METHOD: CEffect::sub_4D3DC0() (addr=0x004d3dc0)
+  DUPLICATE METHOD: CEffect::sub_4D4110() (addr=0x004d4110)
+  DUPLICATE METHOD: Object::Update(int) (addr=0x4af760)
+  DUPLICATE METHOD: RoleStatePanel::RenderThrottled() (addr=0x004a5930)
+  DUPLICATE METHOD: RoleStatePanel::UpdateCaptions() (addr=0x004a5b30)
+  DUPLICATE METHOD: RoleStatePanel::InitUI() (addr=0x004a1e40)
+  DUPLICATE METHOD: RoleStatePanel::~RoleStatePanel() (addr=0x004a2450)
+  DUPLICATE METHOD: RoleStatePanel::SetItemData(int, unsigned int) (addr=0x004a3900)
+  DUPLICATE METHOD: RoleStatePanel::HandleDeviceLostB() (addr=0x004a4780)
+  DUPLICATE METHOD: RoleStatePanel::Render() (addr=0x004a4820)
+  DUPLICATE METHOD: RoleStatePanel::GetSelected() (addr=0x004a4890)
+  DUPLICATE METHOD: RoleStatePanel::InitSlots(int) (addr=0x004a48b0)
+  DUPLICATE METHOD: RoleStatePanel::InitLayout(int) (addr=0x004a4960)
+  DUPLICATE METHOD: RoleStatePanel::CreateWidgets(int) (addr=0x004a4a10)
+  DUPLICATE METHOD: RoleStatePanel::SetSelectedData(int) (addr=0x004a4ac0)
+  DUPLICATE METHOD: RoleStatePanel::Init(int) (addr=0x004a4b70)
+  DUPLICATE METHOD: RoleStatePanel::Create() (addr=0x004a4c20)
+  DUPLICATE METHOD: RoleStatePanel::SetEquipSlotData() (addr=0x004a4fc0)
+  DUPLICATE METHOD: RoleStatePanel::LayoutHandleNav() (addr=0x004a5a80)
+  DUPLICATE METHOD: SaleUI::~SaleUI() (addr=0x0045ae60)
+  DUPLICATE METHOD: SaleUI::LoadState(const void *) (addr=0x0045b7a0)
+  DUPLICATE METHOD: SaleUI::InitCombatUI(int) (addr=0x0045b990)
+  DUPLICATE METHOD: SaleUI::UpdateSkillPanel() (addr=0x00460a90)
+  DUPLICATE METHOD: SaleUI::InitMode(int) (addr=0x00461c50)
+  DUPLICATE METHOD: SaleUI::CreatePanelElements(CCBUIPanel *) (addr=0x004623a0)
+  DUPLICATE METHOD: SaleUI::SetupPlayerDisplay(int) (addr=0x00469d90)
+  DUPLICATE METHOD: SaleUI::HandleInput(int, int, int) (addr=0x00469eb0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot1(unsigned __int8) (addr=0x004712d0)
+  DUPLICATE METHOD: SaleUI::ToggleSlot4(unsigned __int8) (addr=0x004714e0)
+  DUPLICATE METHOD: ScriptVM::ExecuteBlock() (addr=0x00424c20)
+  DUPLICATE METHOD: StateUI::sub_4850E0() (addr=0x004850e0)
+  DUPLICATE METHOD: UIListBox::CreateChild() (addr=0x0043f560)
+  Globals: 2783 in globals.cpp
+  Globals: 2783 in globals.cpp
+Collecting functions from decomp...
+  Classes with methods: 213
+  Free functions: 367
+Traceback (most recent call last):
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 214, in <module>
+    main()
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 180, in main
+    cmd_cpp(filter_classes=filter_classes or None)
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/codegen.py", line 118, in cmd_cpp
+    run_cpp_generation(filter_classes=filter_classes)
+  File "/home/peng/workspace/PAL3Decomp/pipeline/gen/stages/emit_cpp.py", line 1051, in run_cpp_generation
+    with open(out_path, 'w', encoding='utf-8') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/peng/workspace/PAL3Decomp/pal3/src/Misc/UIPushButton.cpp'
+CODEGEN_RC=1
+S2 cpp: 0/0 ok | own-fail 0 | imported-only 0  (0s)
+Top root-cause headers (files blocked):
+report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-11T15:40:42.815825
+
+📊 摘要:
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 5
+
+✅ 未检测到回归。
+[vanished] 78 个失败单元从 census 蒸发(回归门视同回归):
+  pal3/src/Misc/sg_emission_control.cpp
+  pal3/src/Role/RoleSystem.cpp
+  pal3/src/Misc/UIGameOver.cpp
+  pal3/src/Misc/UIEmote.cpp
+  pal3/src/Scene/SceneObj.cpp
+  pal3/src/GameBase/GRPinput.cpp
+  pal3/src/Effect/CEffMgr.cpp
+  pal3/src/Misc/JusticeBookUI.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
+  pal3/src/Misc/SceneVisNode.cpp
+================================================================================
+编译回归检测报告
+================================================================================
+基线: 20261110_112449
+基线时间: 2026-11-10T11:24:49.522074
+检测时间: 2026-11-11T15:40:42.848104
+
+📊 摘要:
+  总文件数: 998
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 5
+
+✅ 未检测到回归。
+[vanished] 78 个失败单元从 census 蒸发(回归门视同回归):
+  pal3/src/Misc/CG_Entry.cpp
+  pal3/src/Misc/PalScriptFadeInTimer.cpp
+  pal3/src/Misc/scAsmDecoder.cpp
+  pal3/src/UI/UIScene.cpp
+  pal3/src/Misc/Array.cpp
+  pal3/src/Misc/String.cpp
+  pal3/src/GameBase/GRPinput.cpp
+  pal3/src/Misc/UITitle_YXXX.cpp
+  pal3/src/Combat/CCBUI.cpp
+  pal3/src/GameBase/PAL3.cpp
+
+[Regression] diff vs latest baseline:
+
+[Baseline] NOT refreshing: regressions detected (exit 1).
+        The baseline is intentionally left unchanged so the regression stays visible on the next run.
+        Evidence saved under pipeline/_logs/regression_detection/
+        After confirming the regressions are understood, refresh deliberately with:
+          python3 tools/regression_detector.py --save-baseline
+PROBE_RC=1
+=== END 2026-11-11 15:40:42 ===

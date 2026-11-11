@@ -12,9 +12,9 @@
 |---|---|
 | 导出产物 | `asm/pal3/ida_structs.json` |
 | 注解目录 | `data/annotations/structs`（942 个 JSON） |
-| export 时间戳 | 2026-11-05 13:19:33 +0800（epoch 1793855973.776982） |
-| 注解最新改动 | 2026-11-04 10:04:56 +0800（epoch 1793757896.757505） |
-| 注解最新改动文件 | `data/annotations/structs/UIListBox.json` |
+| export 时间戳 | 2026-11-11 15:37:18 +0800（epoch 1794382638.735266） |
+| 注解最新改动 | 2026-11-11 15:09:27 +0800（epoch 1794380967.967630） |
+| 注解最新改动文件 | `data/annotations/structs/CEffectSystem.json` |
 | 陈旧判定 | FRESH（export 不早于注解最新改动） |
 
 ## 1. 量化统计
@@ -22,9 +22,9 @@
 | 指标 | 值 |
 |---|---|
 | 结构：双侧共有 / 仅导出 / 仅注解 | 861 / 311 / 64 |
-| 成员全同（type 串全同） | 7749 |
+| 成员全同（type 串全同） | 7750 |
 | 成员拼写归一（语义等价，不计差异） | 1083 |
-| **类型差异（语义不等）** | **34** |
+| **类型差异（语义不等）** | **33** |
 | **成员缺失（注解有 · 导出缺，真缺口）** | **0** |
 | **成员新增（导出有 · 注解缺）** | **109** |
 | └ 其中 export 合成补尾 `_tail_*` | 109 |
@@ -34,7 +34,7 @@
 | 结构 sizeof 不一致 | 0 |
 | `_inline_*` 引用 / 定义 / 引用无定义 / 定义未引用 | 26 / 27 / 0 / 1 |
 
-**多少类不一致？** 398 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 85 个已解释不计缺口）。
+**多少类不一致？** 397 个结构存在任一差异（成员数/偏移/类型），见 §8；**多少成员缺失？** 真缺口 0 个，见 §2（另 85 个已解释不计缺口）。
 
 ## 2. 成员缺失（注解有 · 导出缺）
 
@@ -300,7 +300,6 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | RoleTaskPool | 0 | m_TaskData | `std::vector<RoleTask,std::allocator<RoleTask> >` | `char[16]` |
 | RoleTaskPool | 16 | m_TaskLine | `std::vector<RoleTaskLine,std::allocator<RoleTaskLine> >` | `char[16]` |
 | SceneObj | 1708 | m_common | `std::queue<SceneObj::Common_State,std::deque<SceneObj::Common_State,std::allocator<SceneObj::Common_State> > >` | `char[48]` |
-| ScriptVM | 796 | m_pCmdList | `RoleSystem **` | `RoleSystem *` |
 | SoundMgr | 8 | m_szScriptMusic | `std::basic_string<char,std::char_traits<char>,std::allocator<char> >` | `char[16]` |
 | SoundMgr | 828 | m_cbbuf | `std::vector<SoundItem,std::allocator<SoundItem> >` | `char[16]` |
 | UITabBtn | 0 | m_BtnAndID | `std::vector<_Btn_BtnID,std::allocator<_Btn_BtnID> >` | `char[16]` |
@@ -903,7 +902,6 @@ export 侧合成补尾 `_tail_*`（109 个，合成填充非注解声明）：
 | ScriptObj | 0/1 | 0 | 0 | 0 | 0 | 1 |
 | ScriptPoolPage | 5/5 | 4 | 0 | 0 | 0 | 0 |
 | ScriptSystemData | 216/216 | 37 | 0 | 8 | 0 | 0 |
-| ScriptVM | 26/26 | 0 | 1 | 0 | 0 | 0 |
 | SkyboxEff | 24/24 | 1 | 0 | 0 | 0 | 0 |
 | SoundAttachObj | 3/3 | 1 | 0 | 0 | 0 | 0 |
 | SoundContext | 0/1 | 0 | 0 | 0 | 0 | 1 |

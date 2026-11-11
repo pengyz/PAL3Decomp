@@ -2,6 +2,15 @@
 
 This directory contains Ghidra scripts for exporting PAL3.exe function data to JSON format for decompilation.
 
+## Layout (2026-11-11)
+
+The two Ghidra distributions are stored under `venv/` and exposed at their usual paths by symlinks:
+
+- `ghidra_11.2.1_PUBLIC` -> `venv/ghidra_11.2.1_PUBLIC`
+- `ghidra_12.1.2_PUBLIC` -> `venv/ghidra_12.1.2_PUBLIC`
+
+`venv/` is a name that both `compileall` and `pytest` skip by default, so Craft Anything's build check does not byte-compile Ghidra's bundled Python 2 / Jython sources. Keep the symlinks when re-extracting a distribution.
+
 ## Files
 
 - **export_functions.py** - Ghidra Python script to export all functions to JSON
