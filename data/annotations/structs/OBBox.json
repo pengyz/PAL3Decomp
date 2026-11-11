@@ -1,41 +1,42 @@
 {
-  "name": "gbOBBox",
-  "binary_size": 76,
-  "known_members": {
-    "0": {
-      "name": "trans",
-      "type": "Matrix4",
-      "size": 64,
-      "source": "gbOBBox layout: gbMatrix4 trans at +0",
-      "evidence_level": "unverified"
-    },
-    "64": {
-      "name": "xlen",
-      "type": "float",
-      "size": 4,
-      "source": "gbOBBox::xlen at +64",
-      "evidence_level": "unverified"
-    },
-    "68": {
-      "name": "ylen",
-      "type": "float",
-      "size": 4,
-      "source": "gbOBBox::ylen at +68",
-      "evidence_level": "unverified"
-    },
-    "72": {
-      "name": "zlen",
-      "type": "float",
-      "size": 4,
-      "source": "gbOBBox::zlen at +72",
-      "evidence_level": "unverified"
-    }
+ "name": "gbOBBox",
+ "binary_size": 76,
+ "known_members": {
+  "0": {
+   "name": "trans",
+   "type": "Matrix4",
+   "size": 64,
+   "source": "gbOBBox layout: gbMatrix4 trans at +0",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0052F6C0": {
-      "name": "GetBBox",
-      "signature": "struct OBBox *__thiscall(struct OBBox *this)",
-      "evidence_level": "unverified"
-    }
+  "64": {
+   "name": "xlen",
+   "type": "float",
+   "size": 4,
+   "source": "gbOBBox::xlen at +64",
+   "evidence_level": "unverified"
+  },
+  "68": {
+   "name": "ylen",
+   "type": "float",
+   "size": 4,
+   "source": "gbOBBox::ylen at +68",
+   "evidence_level": "unverified"
+  },
+  "72": {
+   "name": "zlen",
+   "type": "float",
+   "size": 4,
+   "source": "gbOBBox::zlen at +72",
+   "evidence_level": "unverified"
   }
+ },
+ "methods": {
+  "0x0052F6C0": {
+   "name": "GetBBox",
+   "signature": "struct OBBox *__thiscall(struct OBBox *this)",
+   "evidence_level": "unverified",
+   "source": " | 双管线迁移账 2026-11-11: 该方法声明必须存在于gbOBBox 类定义(A面已入gbengine_types.h; B面解冻时头渲染需含methods声明)"
+  }
+ }
 }

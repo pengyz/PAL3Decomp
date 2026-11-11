@@ -935,5 +935,15 @@
    "CD_NUM": "7"
   },
   "source": "[apply 41-failure 修 2026-10-16 analyzer] 悬挂类型定义补全（root cause=FATAL 族成员类型引用未定义枚举/结构 ⇒ add_udt 推入失败 ⇒ 空壳 UDT）——PDB 形 B 级参考（PAL3A 值形；语义常量非地址/偏移，PAL3 值差异风险低，值形需访问点复核标挂账）"
+ },
+ "_light_type_semantic": {
+  "values": {
+   "LIGHT_POINT": 1,
+   "LIGHT_SPOT": 2,
+   "LIGHT_DIRECTIONAL": 3
+  },
+  "scope": "global",
+  "evidence": "decomp三TU非限定引用LIGHT_SPOT(PAL3/RoleAtt/CScreenMode); enums全局GBLIGHT_SPOT=2对照; 枚举无存储ABI中性",
+  "source": " | L-VAR 2026-11-11 双管线迁移账: A面头已按此实现, B面解冻时同构实现"
  }
 }
