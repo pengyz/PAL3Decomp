@@ -1534,6 +1534,17 @@ def _run_inner(code, ctx):
         r'\b(\w+)->gbGeomNode::gbGeomNode\(\);',
         r'new ((void *)\1) gbGeomNode();', code)  # 无赋回: 地址不变,变量保持原声明类型(赋回致 C2440 ×3 实证)
 
+    # P-A13b (2026-11-11) cast-deref 接收者形态——CCBStageCam:1368 实证:
+    #   `*(CEffMgr **)(*(_DWORD *)pfVal + 44)->CEffMgr::CEffMgr();`
+    #   (ast_transform 显式this改写把 `Cls::Cls(*(Cls**)EXPR)` 绞成
+    #   `*(Cls**)EXPR->Cls::Cls()`——前置解引用被 `->` 绑定, 优先级非法
+    #   ⇒ C2059/C2653 级联)。语义: slot+44 存的指针 P = placement 构造地址。
+    #   修: `*(Cls **)(EXPR)->Cls::Cls();` → `new ((void *)(*(Cls **)(EXPR))) Cls();`
+    #   (P-A13 同族: C++ 无显式 ctor 调用语法, decomp 恒为 placement 伪形态)
+    code = re.sub(
+        r'\*\((\w+) \*\*\)\(([^;]+)\)->\1::\1\(\);',
+        r'new ((void *)(*(\1 **)(\2))) \1();', code)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
