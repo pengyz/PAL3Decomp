@@ -1403,6 +1403,18 @@ def _run_inner(code, ctx):
         'LODWORD(this->m_time) = (unsigned long)this->m_needscriptdel;')
 
 
+    # P-A21 (2026-11-11) __vftable 成员访问修正——VC6 virtual 类 vptr 是编译器隐式的，
+    #   Hex-Rays 渲染的 this->__vftable 需要转译为 *(void**)this
+    code = re.sub(r'\bthis->\s*__vftable\b', '*(void **)this', code)
+    code = re.sub(r'\bthis->\s*__vftable\b', '*(void **)this', code)  # 可能双次
+
+    # P-A22 (2026-11-11) pVolMod→m_pModObj 成员名对齐（gbengine_internal.h 已改，此处兼容旧生成物引用）
+    code = code.replace('.pVolMod', '.m_pModObj')
+    code = code.replace('->pVolMod', '->m_pModObj')
+
+    # P-A21 (2026-11-11) __vftable 成员访问修正——VC6 virtual 类 vptr 是编译器隐式的
+    code = re.sub(r'this->\s*__vftable', '*(void **)this', code)
+
     # P-A17 (2026-11-10) 全局结构体多余解引用——`*stru_XXXX` 传引用时多余 `*`
     #   stru_ 是全局结构对象(非指针), Hex-Rays 对按引用传参误加了解引用 → C2100。
     #   修: 剥 `*` 保留对象本身(引用绑定 ✓)。同时覆盖 stru_ 出现在所有调用实参的形态。

@@ -210,7 +210,7 @@ public:
     char _base_visnode[0x54];       // base class data (after vfptr: chain+nbtree+visnode fields)
     gbMatrix4 localMatrix;          // +0x58: local transform matrix
     gbMatrix4 worldMatrix;          // +0x98: world transform matrix
-    gbVolumeModifier* pVolMod;      // +0xD8: gbVolumeModifier pointer (ref-counted)
+    gbVolumeModifier* m_pModObj;    // +0xD8: [P-A22 2026-11-11] pVolMod→m_pModObj 对齐 ida_structs 权威名(C2039实证)
 
 public:
     gbVolModNode(class gbVolModNode const & p0);

@@ -1,31 +1,31 @@
 {
-  "name": "gbOBBox",
-  "binary_size": 76,
-  "known_members": {
-    "0": {
-      "name": "trans",
-      "type": "gbMatrix4",
-      "source": "annotation | ⑤型补强 2026-10-16（verifier A 级）：C2228×16 根因：`Matrix4` 为幽灵类型名（include/ 无定义，仅 Matrix4x4/gbMatrix4）；A 级：0x52F6C0 `this[22].trans.m[0][2]`/`this[47].trans.m[2][3]` 需 m[4][4] ⇒ gbMatrix4（pal3_structs.h:220 union 含 float m[4][4] ✓ 唯一匹配）",
-      "evidence_level": "A"
-    },
-    "64": {
-      "name": "xlen",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "68": {
-      "name": "ylen",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "72": {
-      "name": "zlen",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbOBBox",
+ "binary_size": 76,
+ "known_members": {
+  "0": {
+   "name": "trans",
+   "type": "gbMatrix4",
+   "source": "annotation | ⑤型补强 2026-10-16（verifier A 级）：C2228×16 根因：`Matrix4` 为幽灵类型名（include/ 无定义，仅 Matrix4x4/gbMatrix4）；A 级：0x52F6C0 `this[22].trans.m[0][2]`/`this[47].trans.m[2][3]` 需 m[4][4] ⇒ gbMatrix4（pal3_structs.h:220 union 含 float m[4][4] ✓ 唯一匹配）",
+   "evidence_level": "A"
   },
-  "methods": {}
+  "64": {
+   "name": "xlen",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "68": {
+   "name": "ylen",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "72": {
+   "name": "zlen",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {}
 }

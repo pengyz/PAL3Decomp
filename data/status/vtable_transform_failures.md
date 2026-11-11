@@ -757,3 +757,4 @@
 | `::SingletonThunk_00404590` | inline | `IDirectInput8` | 8 | no_vtables_declaration | `(*(void ( **)(IDirectInput8 *))(*(_DWORD *)g_Input.m_lpDI + 8))(g_Input.m_lpDI)` |
 | `::UIAnimateCtrlEX_Render` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)(v1 + 748) + 4))(v1 + 748)` |
 | `::$E68` | inline | `_DWORD` | 12 | non_class_hint | `(*(void ( **)(_DWORD))(*(_DWORD *)*v3 + 12))(*v3)` |
+| `RenderTarget::RenderToTexture` | inline | `float` | 260 | self_arg_mismatch | `(*(void ( **)(float, _DWORD, _DWORD))(*(_DWORD *)LODWORD(xy) + 260))( _pal3_coerce_f32(LODWORD(xy)), 0, *(_DWORD *)(*((_DWORD *)&v1[1814].m_nTodo_028 + *((_DWORD *)v48 + 87)) + 84)` |
