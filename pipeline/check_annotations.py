@@ -833,8 +833,104 @@ def _run_vtable_check(structs):
     spec.loader.exec_module(mod)
     return mod.check(structs=structs)
 
+def check_name_drift():
+    """[L-CHK 2026-11-11] 名字漂移检查——decomp 引用标识符 vs 注解名/IDB 名对照。
+
+    病史(复发3次): 新旧导出代名漂移(unk_5D8A3C→off_5D8A3C, unk_5D8808→byte_5D8808),
+    每次都到 C2065 才显形。管线职责=检查报错指向标注修复(双管线共享标注律)。
+
+    判据:
+    E1 ERROR  注解名≠IDB名 且 IDB名被decomp引用 且 注解type=skip
+              —— skip 条目不进 globals_map 改名链(data.py:163-167),
+                 body 引用悬空 ⇒ C2065(off_5D8A3C 实证)
+    W2 WARN   注解名≠IDB名 且 IDB名被decomp引用(非skip)——可见性提示
+    W3 WARN   decomp 引用了地址后缀型标识符但 ida _globals 与注解均无此条
+              —— 字符串池余部病(0x5D8E98 族实证)
+    返回 (errors, warnings)
+    """
+    import re as _re
+    import glob as _glob
+    errors, warnings = [], []
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # 1. ida _globals: addr -> idb name
+    isj = os.path.join(root, 'asm', 'pal3', 'ida_structs.json')
+    if not os.path.exists(isj):
+        return ['name_drift skipped: ida_structs.json missing'], []
+    isd = json.load(open(isj, encoding='utf-8'))
+    idb_by_addr = {}
+    idb_names = set()
+    for k, v in (isd.get('_globals') or {}).items():
+        try:
+            idb_by_addr[int(k, 16)] = str(v.get('name', ''))
+            idb_names.add(str(v.get('name', '')))
+        except (ValueError, TypeError):
+            continue
+
+    # 2. decomp 引用标识符集合(词token一次扫描)
+    toks = set()
+    tok_re = _re.compile(r'\b[a-zA-Z_]\w*\b')
+    for f in _glob.glob(os.path.join(root, 'asm', 'pal3', 'decomp', '*.json')):
+        try:
+            c = json.load(open(f, encoding='utf-8')).get('decompiled_c', '')
+        except Exception:
+            continue
+        toks.update(tok_re.findall(c))
+
+    # 3. 注解 globals 对照
+    ann = load_annotations().get('globals', {})
+    addr_re = _re.compile(r'^(?:byte|word|dword|qword|off|flt|dbl|stru|unk)_([0-9A-Fa-f]{6,8})$')
+    for k, e in ann.items():
+        if not isinstance(e, dict):
+            continue
+        ann_name = str(e.get('name', ''))
+        try:
+            addr = int(k, 16)
+        except (ValueError, TypeError):
+            continue
+        idb_name = idb_by_addr.get(addr, '')
+        # 空名条目=占位(非漂移): revival 路径按 IDB 名/orig_type 处理(pEnd/asc_ 族编译通过为证)
+        if ann_name and idb_name and ann_name != idb_name and idb_name in toks:
+            if e.get('type') == 'skip':
+                errors.append(
+                    "name_drift: globals[%s] 注解名'%s' != IDB名'%s'(decomp引用中) 且 type=skip"
+                    " —— skip 不进 globals_map 改名链, body 引用悬空 ⇒ 对齐注解名" % (k, ann_name, idb_name))
+            else:
+                warnings.append(
+                    "name_drift: globals[%s] 注解名'%s' != IDB名'%s'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)"
+                    % (k, ann_name, idb_name))
+
+    # 4. W3: decomp 引用了地址后缀型标识符, ida _globals 与注解均无
+    ann_names = {str(e.get('name', '')) for e in ann.values() if isinstance(e, dict)}
+    ida_addr_keyed = set()
+    for n in idb_names:
+        m2 = addr_re.match(n)
+        if m2:
+            ida_addr_keyed.add(n)
+    orphan = []
+    for t in toks:
+        if t in idb_names or t in ann_names:
+            continue
+        m2 = addr_re.match(t)
+        if m2 and ('0x%08X' % int(m2.group(1), 16)) not in ann:
+            orphan.append(t)
+    if orphan:
+        warnings.append(
+            "name_drift: %d 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — "
+            "字节直读取证后补 globals.json 条目: %s" % (len(orphan), ', '.join(sorted(orphan)[:8])))
+    return errors, warnings
+
+
 if __name__ == '__main__':
     errors, warnings = check()
+
+    # [L-CHK 2026-11-11] 名字漂移检查(decomp 引用 vs 注解名/IDB 名)
+    try:
+        _nd_errors, _nd_warnings = check_name_drift()
+        errors.extend(_nd_errors)
+        warnings.extend(_nd_warnings)
+    except Exception as _nd_err:
+        warnings.append(f'name_drift check skipped: {_nd_err}')
 
     # vtable 闭环验证门禁（2026-09-25）：基线对比模式
     # ⚠️ 必须在打印循环之前：否则 errors.append 的项只计数不显示，
