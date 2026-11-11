@@ -647,6 +647,88 @@ def _apply_lvar_overrides(code, addr):
     return code
 
 
+_VOID_RET_CALLS = None
+
+def _void_ret_calls():
+    """[L-VOIDCAST 数据源] 全树 void*-返回函数集合 {(cls_lower_or_empty, name)}。
+
+    从函数注解 signature 直读（decomp 真值），按类限定防裸名撞类。
+    """
+    global _VOID_RET_CALLS
+    if _VOID_RET_CALLS is None:
+        s = set()
+        try:
+            import annotation_view as _av
+            for _p, sd in _av.iter_structs(None):
+                sd_name = (sd.get('name') or '')
+                for _a, m in (sd.get('methods') or {}).items():
+                    sig = (m.get('signature') or '')
+                    cn = (m.get('name') or '')
+                    if not cn or not sig:
+                        continue
+                    if sig.startswith('void *') or sig.startswith('void*'):
+                        cls = cn.split('::')[0] if '::' in cn else sd_name
+                        s.add((cls.lower(), cn.split('::')[-1]))
+            fns = _av.load_annotation_json('functions.json') or {}
+            for _a, e in fns.items():
+                sig = e.get('signature', '')
+                nm = e.get('name', '')
+                if nm and (sig.startswith('void *') or sig.startswith('void*')):
+                    s.add(('', nm))
+        except Exception as _e:
+            print('[L-VOIDCAST] WARN: 数据源失效 %s' % str(_e)[:80])
+        _VOID_RET_CALLS = s
+    return _VOID_RET_CALLS
+
+_LV_PTR_DECL = re.compile(r'(?m)^\s*([\w ]+\*)\s*([A-Za-z_]\w*)\s*;')
+_LV_ASSIGN = re.compile(r'\b([A-Za-z_]\w*)\s*=\s*([^;\n]+);')
+
+def _apply_voidstar_casts(code):
+    """[L-VOIDCAST 2026-11-11] void* 返回值显式 cast 律（用户裁决 2026-11-11 认可）。
+
+    根因链（已逐站点枚举 68 处并分类，见 census 复盘）:
+      callee 诚实泛型签名（void*，decomp 真值，GetAt/GetSceneObject 等）
+      + VC6 禁 void*→T* 隐式下转（C++ 语言律，原源码必有显式 cast）
+      + Hex-Rays 位视图剥除冗余 cast ⇒ 生成物炸 C2440。
+    callee 注解无法编码 caller cast（重载=捏造、改返回型别=说谎）⇒
+    annotation 不可修已证，用户裁决授权本律。
+
+    形式: 赋值语句 `vN = EXPR;` 且 EXPR 含 void*-返回调用 →
+          插入 (LHS 声明类型) 显式 C-cast（ptr→ptr 显式 cast 恒合法、位等价）。
+    匹配按类限定（Cls::Name 与自由名双形态），防裸名撞类。
+    幂等: RHS 已以同型 cast 开头则跳过。
+    """
+    decls = {}
+    for m in _LV_PTR_DECL.finditer(code):
+        decls.setdefault(m.group(2), m.group(1).strip())
+    if not decls:
+        return code
+    vset = _void_ret_calls()
+    if not vset:
+        return code
+    repl = []
+    for m in _LV_ASSIGN.finditer(code):
+        var, rhs = m.group(1), m.group(2)
+        T = decls.get(var)
+        if not T or '*' not in T or T.strip() == 'void *':
+            continue  # void*←void* 本就合法（跳过噪声包装）
+        rl = rhs.lstrip()
+        if rl.startswith('(') and rl.startswith(T):
+            continue  # 已是同型 cast 开头（幂等）
+        hit = False
+        for cm in re.finditer(r'(?:(\w+)::)?(\w+)\s*\(', rhs):
+            cls = (cm.group(1) or '').lower()
+            if (cls, cm.group(2)) in vset or (cls and ('', cm.group(2)) in vset):
+                hit = True
+                break
+        if not hit:
+            continue
+        repl.append((m.start(), m.end(), '%s = (%s)(%s);' % (var, T, rhs)))
+    for s_, e_, rep in reversed(repl):
+        code = code[:s_] + rep + code[e_:]
+    return code
+
+
 def generate_class_cpp(cls_name, methods):
     """Generate .cpp content for a class."""
     lines = []
@@ -665,6 +747,7 @@ def generate_class_cpp(cls_name, methods):
         code = _apply_lvar_overrides(m['code'].strip(), m['addr'])
         code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
+        code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
 
@@ -806,6 +889,7 @@ def generate_free_funcs_cpp(funcs):
         code = _apply_lvar_overrides(f['code'].strip(), f['addr'])
         code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
+        code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
         transformed.append((f['addr'], code))
 
     # Forward declarations

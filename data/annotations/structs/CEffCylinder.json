@@ -346,7 +346,11 @@
    "name_note": "增量计算（float delta = new - old）",
    "adjudication": "confirmed",
    "evidence_level": "A",
-   "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_pEM（adjudicate_multiclaim 2026-11-03）"
+   "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_pEM（adjudicate_multiclaim 2026-11-03）",
+   "lvars": {
+    "v2": "CEffMgr *"
+   },
+   "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): 唯一指针语境 this->m_pEM=((CEffMgr*)v2); *(float*)&v2 位读 retype 后仍合法"
   },
   "0x004C2620": {
    "name": "ProcessData",
