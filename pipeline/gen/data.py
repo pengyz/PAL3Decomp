@@ -462,8 +462,12 @@ class DataStore:
                     _first = _sig[_pm + 1:].split(',')[0] if _pm >= 0 else ''
                     _is_this = bool(_re2.search(r'\*+\s*(this|_this)\s*$', _first)) \
                         or bool(_re2.search(r'\b(this|_this)\s*$', _first.strip()))
+                    # [L-DLGPROC 2026-11-11] 判据四段: + '__stdcall'——DLGPROC 族
+                    #   (对话框过程, Windows API 契约 stdcall) 的 IDB 导出签名即
+                    #   __stdcall, 无 this; 漏判 ⇒ 显式this改写吃掉 arg1 真参
+                    #   (DlgProcCameraEdit C2660 实证)。_is_this 守卫继续防误判。
                     if '__thiscall' not in _sig and not _is_this \
-                            and ('__cdecl' in _sig or '...' in _sig):
+                            and ('__cdecl' in _sig or '...' in _sig or '__stdcall' in _sig):
                         self.static_methods.add(_name.split('(')[0])
                 else:
                     # Free function: build forward declaration

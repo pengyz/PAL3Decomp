@@ -229,9 +229,10 @@
   },
   "0x004EA590": {
    "name": "DlgProc",
-   "signature": "BOOL __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
+   "signature": "static int __stdcall CCBStageCam::DlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": " | L-VAR 2026-11-11h 反汇编定谳: 入口栈读参[esp+8/0xc/0x10]无ecx-this(ecx后从全局0x17A94E0装); 用作CreateDialogParamA DLGPROC(API契约stdcall); 原 thiscall 系 IDB 归属惯性"
   },
   "0x00504060": {
    "name": "~CCBStageCam",
