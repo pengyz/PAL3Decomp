@@ -78,13 +78,18 @@ struct gbRenderInfoObj {
 // ============================================================================
 class gbAABBox;
 class gbGfxManager;
+/* [L-VAR 2026-11-11g] LIGHT_TYPE hoisted to global scope: decomp references
+   LIGHT_SPOT unqualified at global scope (PAL3/RoleAtt/CScreenMode, 3 TUs);
+   enums.json annotation has the family as global GBLIGHT_* constants. Enums
+   have no storage -- hoisting is ABI-neutral, name-visible per decomp shape. */
+enum LIGHT_TYPE {
+    LIGHT_POINT = 1,
+    LIGHT_SPOT = 2,
+    LIGHT_DIRECTIONAL = 3
+};
+
 class GBAPI gbLightObj : public gbVolumeModifier {
 public:
-    enum LIGHT_TYPE {
-        LIGHT_POINT = 1,
-        LIGHT_SPOT = 2,
-        LIGHT_DIRECTIONAL = 3
-    };
 
     gbLightObj(void);
     gbLightObj(const gbLightObj& other);
