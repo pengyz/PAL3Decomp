@@ -4260,6 +4260,17 @@ def generate_globals():
         # 正确形态: `extern int (*off_6090A8)();`
         # P-A18 v3: fn-ptr 全面处理——所有形态归一为 `ret (*name)(args)` 或 `ret (*name[N])(args)`
         # 判据: typ 含 `(*)` 或 `(__cdecl *)` 或 `(__noreturn *`
+        # [L-VAR 2026-11-12] IAT 数据槽函数型归一——apply 的 IAT 白名单把槽型
+        #   存为裸函数型(IDA 规范化剥指针层, 'void __thiscall(void*,...)' 实证),
+        #   extern 数据声明直接贴 = C2062 全树。归一: `RET __thiscall(ARGS)`(无*)
+        #   => `extern RET (__thiscall** )NAME(ARGS);` —— 槽=fn-ptr 的指针, VC6
+        #   合法(约定保持由 IDB 侧消费, 头侧只需合法形)。
+        _mfn = re.match(r'^(.*?)\s*__(thiscall|stdcall|cdecl)\((.*)\)$', typ)
+        if _mfn and '*' not in _mfn.group(1):
+            _cc = _mfn.group(2)
+            _r = _mfn.group(1).strip() or 'void'
+            typ = '%s (%s** )(%s)' % (_r, _cc, _mfn.group(3))
+            g = dict(g, type=typ)
         if re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ) or re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\w*\s*\)', typ):
             _ret = re.match(r'^(.*?)\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ)
             _ret_clean = re.sub(r'\b(__noreturn|__cdecl)\b\s*', '', _ret.group(1)).strip() if _ret else ''

@@ -1981,6 +1981,81 @@ _GB_IMPORT_SIGS = {
         "void __thiscall(CPK *, enum ECPKMode);",
 }
 
+def _build_func_tinfo(til, ret, args, cc_code):
+    """[L-VAR 2026-11-12] 程序化函数型构造器——绕 parse_decl(til 带参函数型
+    全拒: int(int,int) False 环境事实, probe_parse_health 实证)。
+
+    路径: 基本型(BTF)直接构造; 类名 get_named_type; 指针 create_ptr;
+    引用 create_ref; 函数型 create_func(func_type_data_t)。失败返回 None。
+    """
+    _BTF = {'void': ida_typeinf.BTF_VOID, 'int': ida_typeinf.BTF_INT,
+            'char': ida_typeinf.BTF_CHAR, 'float': ida_typeinf.BTF_FLOAT,
+            'double': ida_typeinf.BTF_DOUBLE, 'bool': ida_typeinf.BTF_BOOL,
+            'unsigned int': ida_typeinf.BTF_UINT, 'unsigned long': ida_typeinf.BTF_ULONG,
+            'unsigned char': ida_typeinf.BTF_UCHAR, 'unsigned short': ida_typeinf.BTF_USHORT,
+            'short': ida_typeinf.BTF_SHORT, 'long': ida_typeinf.BTF_LONG,
+            '__int64': ida_typeinf.BTF_INT64, 'unsigned __int64': ida_typeinf.BTF_UINT64}
+
+    def _one_type(tstr):
+        tstr = tstr.strip()
+        if not tstr:
+            return None
+        t = ida_typeinf.tinfo_t()
+        ptr_depth = 0
+        work = tstr
+        while work.endswith('*'):
+            ptr_depth += 1
+            work = work[:-1].rstrip()
+        work = work.replace('const ', '').replace('struct ', '').replace('class ', '').strip()
+        is_ref = False
+        if work.endswith('&'):
+            is_ref = True
+            work = work[:-1].rstrip()
+        if work in _BTF:
+            if not t.set_btf(_BTF[work]):
+                return None
+        else:
+            if not t.get_named_type(til, work):
+                return None
+        for _ in range(ptr_depth):
+            p = ida_typeinf.tinfo_t()
+            if not p.create_ptr(t):
+                return None
+            t = p
+        if is_ref:
+            p = ida_typeinf.tinfo_t()
+            if not p.create_ref(t):
+                return None
+            t = p
+        return t
+
+    try:
+        ret_t = _one_type(ret)
+        if ret_t is None:
+            return None
+        fdata = ida_typeinf.func_type_data_t()
+        fdata.rettype = ret_t
+        fdata.cc = cc_code
+        for a in args:
+            at = _one_type(a)
+            if at is None:
+                return None
+            fa = ida_typeinf.funcarg_t()
+            fa.type = at
+            fdata.push_back(fa)
+        ftif = ida_typeinf.tinfo_t()
+        if not ftif.create_func(fdata):
+            return None
+        return ftif
+    except Exception:
+        return None
+
+
+_CC_THISCALL = getattr(ida_typeinf, 'CM_CC_THISCALL', 4)
+_CC_CDECL = getattr(ida_typeinf, 'CM_CC_CDECL', 2)
+_CC_STDCALL = getattr(ida_typeinf, 'CM_CC_STDCALL', 3)
+
+
 
 def import_gbengine_types():
     """Import gbengine struct/enum definitions into IDA TIL.
@@ -2063,9 +2138,37 @@ def import_gbengine_types():
                 sig = _GB_IMPORT_SIGS[name]
                 decl = sig.rstrip(';') + ';'
                 ftif = ida_typeinf.tinfo_t()
-                if not ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL):
-                    log("  [!] gb import sig parse failed: %s -> %s" % (name, decl))
-                    return True
+                try:
+                    _ok_pd = ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL)
+                except Exception as _pd_exc:
+                    log("  [!] parse_decl EXC %s: %s" % (name, str(_pd_exc)[:60]))
+                    _ok_pd = False
+                if not _ok_pd:
+                    # [L-VAR 2026-11-12] parse_decl 兜底(til 带参函数型全拒,
+                    # 环境事实) => 程序化构造器(_build_func_tinfo, probe 实证)
+                    try:
+                        import re as _re_sig
+                        _m = _re_sig.match(r'^(.+?)\s*__thiscall\((.*)\)$', sig.rstrip(';'))
+                        _cc = _CC_THISCALL
+                        if not _m:
+                            _m = _re_sig.match(r'^(.+?)\s*__stdcall\((.*)\)$', sig.rstrip(';'))
+                            _cc = _CC_STDCALL if _m else _CC_CDECL
+                        if not _m:
+                            _m = _re_sig.match(r'^(.+?)\s*\((.*)\)$', sig.rstrip(';'))
+                            _cc = _CC_CDECL
+                            if _m:
+                                _ret = _m.group(1).strip()
+                                _args = [a.strip() for a in _m.group(2).split(',')] if _m.group(2).strip() else []
+                                ftif = _build_func_tinfo(til, _ret, _args, _cc)
+                                if ftif is None:
+                                    log("  [!] gb import sig build failed: %s -> %s" % (name, sig))
+                                    return True
+                            else:
+                                log("  [!] gb import sig parse failed: %s -> %s" % (name, decl))
+                                return True
+                    except Exception as _b_exc:
+                        log("  [!] build EXC %s: %s" % (name, str(_b_exc)[:80]))
+                        return True
                 ptr = ida_typeinf.tinfo_t()
                 ptr.create_ptr(ftif)
                 if ida_nalt.set_tinfo(ea, ptr):

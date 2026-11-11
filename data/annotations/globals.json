@@ -8689,10 +8689,11 @@
   "source": " | L-VAR 2026-11-11f exe 字节直读: 'new failed at create stage cam control' 字符串常量; ida 原 ? 系字符串池 Logger 误标家族(批E同族扫尾)"
  },
  "0x0057C068": {
-  "name": "__imp__gbVec3D_ctor_MMM",
-  "type": "void (__thiscall *)(void *, float, float, float)",
-  "category": "iat_fnptr",
+  "name": "gbVec3D_ctor",
+  "type": "skip",
+  "category": "ptr_table",
   "evidence_level": "A",
-  "source": " | L-VAR 2026-11-12: gbengine.dll ??0gbVec3D@@QAE@MMM@Z 的 IAT 槽(导入表 hint/name 0x56A3C8, registry 0x10001F20 铁证); IDB 无类型 => Hex-Rays 把 this 槽当首参渲染 4 参形态(全树 C2661 链头)"
+  "source": " | L-VAR 2026-11-12: gbengine.dll ??0gbVec3D@@QAE@MMM@Z 的 IAT 槽(导入表 hint/name 0x56A3C8, registry 0x10001F20 铁证); IDB 无类型 => Hex-Rays 把 this 槽当首参渲染 4 参形态(全树 C2661 链头) | 修 2026-11-12: 上一版 type 少一层指针致发射非法声明(C2062 x215 全树); IAT 槽是\"指向函数指针的槽\", 正确型 = fn-ptr 的指针 | 再修: IAT槽extern发射器只吃(__cdecl*)形态(P-A18 v3判据); 槽本体的真约定(__thiscall)由 apply 的 IAT 白名单在 IDB 侧承载(19/19 set), 头侧只需合法 fn-ptr-ptr 变量声明 | 通用修复 2026-11-12: 函数值槽的注解家是 functions.json(真签名已落)+apply IAT 白名单(IDB 真型已 19/19); globals 数据条目 系我的架构错误(函数值不当数据型)——skip+orig_type=W3 通用墓碑律: 未引用不发射(decomp 引用的是 ctor 伪名, P-A13d 已改写, 槽名零残留), 复活时 orig_type 经 P-A18 既有归一为合法 fn-ptr extern",
+  "orig_type": "void (__cdecl *)(void *, float, float, float)"
  }
 }
