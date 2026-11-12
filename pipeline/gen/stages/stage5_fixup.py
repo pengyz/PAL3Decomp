@@ -1580,6 +1580,24 @@ def _run_inner(code, ctx):
         r'\b(v\d+\s*-\s*\d+)\->gbVec3D::gbVec3D\(([^;()]+)\);',
         r'new ((void *)(\1)) gbVec3D(\2);', code)
 
+    # P-A13d (2026-11-12·复刻自丢失版) 就地构造统一律——
+    #   `Cls::Cls(&obj, args...)` 显式调用(C++ 无此语法 ⇒ C2661 n-args)。
+    #   等价: obj = Cls(args) (ctor+赋值, 同内存位图; VC6 合法形态)。
+    #   (CCBStage L5509/5565/5605 三站 gbVec3D 复活实证; 上版随 git checkout
+    #   停损误删, 本版为复刻。)
+    code = re.sub(
+        r'\b([A-Za-z_][\w]*)::\1\(&([A-Za-z_][\w]*)(?:\[\d*\])?,\s*([^;()]+?)\);',
+        r'\2 = \1(\3);', code)
+    # P-A13e (2026-11-12·窄门版) 指针算术接收者就地构造——
+    #   `v3 - 1->gbVec3D::gbVec3D(0,0,0)` (游标指针数组逐元素构造, CCBStage:6892
+    #   实证; C++ 无显式 ctor 语法 ⇒ C2653/C2059 链头)。
+    #   等价: placement `new ((void *)(EXPR)) Cls(args);`
+    #   [首版宽正则教训: `\w+::\w+` 匹配面失控 147/1231 全树误伤已 git checkout
+    #   停损。窄门: 仅 gbVec3D + `vN - K` 接收者形态。]
+    code = re.sub(
+        r'\b(v\d+\s*-\s*\d+)\->gbVec3D::gbVec3D\(([^;()]+)\);',
+        r'new ((void *)(\1)) gbVec3D(\2);', code)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
