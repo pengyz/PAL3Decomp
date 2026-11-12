@@ -1964,6 +1964,11 @@ _GB_IMPORT_SIGS = {
     # (CCBStage C2661 x7 + 下游宿主级联)。
     "??0gbVec3D@@QAE@MMM@Z":
         "void __thiscall(gbVec3D *, float, float, float);",
+    # [L-VAR 2026-11-12] gbOBBox::GetCenter(void)——IAT 取证(registry 0x10027C00,
+    # mangled ?GetCenter@@QBE?AUgbVec3D@@XZ 返回 gbVec3D, const thiscall)。
+    # CCBStage:7820 fn-ptr cast 泄漏 __return_ptr __struct_ptr(C2061/C2146 链头)。
+    "?GetCenter@gbOBBox@@QBE?AUgbVec3D@@XZ":
+        "gbVec3D *__thiscall(gbOBBox *, gbVec3D *__return_ptr);",
     # [L-VAR 2026-11-12] gbVec3D::Normalize(void)——IAT 0x57C1EC(导入表取证,
     # registry 0x100250A0)。RoleSystem 0x413CD0 宿主 13 错链头(C2660 1参渲染)。
     "?Normalize@gbVec3D@@QAEXXZ":

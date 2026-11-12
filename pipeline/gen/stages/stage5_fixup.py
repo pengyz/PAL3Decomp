@@ -1598,6 +1598,15 @@ def _run_inner(code, ctx):
         r'\b(v\d+\s*-\s*\d+)\->gbVec3D::gbVec3D\(([^;()]+)\);',
         r'new ((void *)(\1)) gbVec3D(\2);', code)
 
+    # P-A30 (2026-11-12) fn-ptr cast 形参表 sret 标记剥除——
+    #   IAT 白名单 SetType 后 fn-ptr 型里 IDA 的 __return_ptr __struct_ptr 标记
+    #   仍保留(GB OBBox GetCenter 实证: `gbVec3D *(__thiscall *)(gbVec3D
+    #   *__return_ptr __struct_ptr, gbOBBox *)`)。VC6 无此语法 ⇒ C2061/C2146。
+    #   P-A18 归一化只处理签名/头文件; 体内 fn-ptr cast 形参表是漏网形态。
+    code = re.sub(
+        r'\(__return_ptr\s+__struct_ptr,', '(', code)
+    code = re.sub(r'__return_ptr\s+__struct_ptr,', '', code)
+
     # P-A12 (2026-11-10) static 方法 this-cast 误渲染——Hex-Rays 把按值实参
     #   构造缓冲(gbVec3D v8)误读为 this：`(((Object3D *)v8))->RenderObjectScene(v10)`
     #   真实语义 = static 直调 `Object3D::RenderObjectScene(v8, v10)`(第一参
