@@ -1209,7 +1209,7 @@ def _fix_c2440_casts(code, ctx):
 
 def _fix_ulong_uint_cast(code):
     """Add explicit casts for unsigned long* → unsigned int* conversions.
-    
+
     x86 safe: both are 32-bit, but MSVC6 requires explicit cast. Fixes IDA
     function pointer type inference errors.
     """
@@ -1219,6 +1219,42 @@ def _fix_ulong_uint_cast(code):
     for old, new in _fixes.items():
         code = code.replace(old, new)
     return code
+
+
+_INT_DECL_RE = re.compile(
+    r'^\s+(?:unsigned\s+|signed\s+)?(?:__int32|long|_DWORD|int)\s+(\w+)\s*;',
+    re.MULTILINE)
+
+
+def _p19_decl_aware_new_cast(code):
+    """[P-A19 v2 2026-11-12] operator new cast 声明感知转译。
+
+    前史: P-A19(2026-11-11) 曾是全局 replace `(char *)operator new` →
+    `(int)operator new`。今日定谳其双重人格:
+      - 承重面: bare render + 整型声明(decomp 全库 121 站点, 实测
+        PAL3_FullInit v15 `int v15;` + `v15 = operator new(...)`)
+        —— _fix_operator_new_cast 的指针表查不到 int 声明, fallback 发
+        `(char *)`, 靠本规则转 `(int)` 才能编译。
+      - 破坏面: Section 9b lvars 落库后 IDB 重导出对 char* lvar 渲染
+        诚实形态 `(char *)operator new`(12 站点)——全局 replace 全数
+        打坏成 (int) ⇒ C2440 int→char*(census 实证 5 错)。
+
+    v2: 声明感知——只当赋值目标 var 声明为整型族时转译 (int);
+    指针声明的诚实 (char *) 保真(annotation 完备性铁律: 标注对了,
+    变换不得倒行)。测试: tools/test_operator_new_honest_cast.py。
+    """
+    int_vars = set(_INT_DECL_RE.findall(code))
+    if not int_vars:
+        return code
+
+    def _repl(m):
+        prefix, var = m.group(1), m.group(2)
+        if var in int_vars:
+            return '%s(int)operator new(' % (prefix,)
+        return m.group(0)
+
+    return re.sub(r'(\s+(\w+)\s*=\s*)\(char \*\)operator new\(',
+                  _repl, code)
 
 
 # [指针算术优先级修 2026-11-01] 已停用（对抗审核 F1 BLOCKER）
@@ -1748,9 +1784,9 @@ def _run_inner(code, ctx):
 
     # operator new return value cast (MSVC6 requires explicit void* → T*)
     code = _fix_operator_new_cast(code)
-    # P-A19 (2026-11-11) operator new 返回 char* 赋给 int 声明——IDB 重导类型传播差异
-    # 修: 必须在 _fix_operator_new_cast 之后运行（它生成 (char *) cast，本规则转译为 (int)）
-    code = code.replace('(char *)operator new', '(int)operator new')
+    # P-A19 v2 (2026-11-12) 声明感知转译——原全局 replace 拆除(破坏面/承重面
+    # 双重人格定谳见 _p19_decl_aware_new_cast docstring)
+    code = _p19_decl_aware_new_cast(code)
     # [簇 A 管线修复 2026-10-31] new 表达式化（E 形验证：SEH 序言回归）
     # [v2 修 2026-10-31] 只匹配 T::T() 构造形 + result=None 防护
     code, _new_hits = _rewrite_new_expression(code)
