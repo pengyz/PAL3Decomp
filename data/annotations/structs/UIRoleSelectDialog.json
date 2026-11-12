@@ -98,7 +98,11 @@
    "name": "HandleInput",
    "signature": "double __thiscall(double st6_0, double result, int arg0, int arg0a)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "v10": "BOOL (__stdcall *)(const RECT *, POINT)"
+   },
+   "lvars_source": "v10=PtInRect死存(×2站)持函数地址无读用; 与PtInRect型恒等; v10=0对指针型合法(null常量) | [修 2026-11-13] 文本对齐 PtInRect 恒等型(BOOL/RECT/POINT), 消除与 IDB 解析形的 codegen 侧互踩"
   },
   "0x00529770": {
    "name": "_scalar_dtor_9770",

@@ -8709,5 +8709,16 @@
   "category": "ptr_table",
   "evidence_level": "A",
   "source": " | L-VAR 2026-11-12 通用墓碑律(与 0x57C068 ctor 同族): 函数值槽(gbengine.dll 0x100250A0 Normalize, IAT 0x57C1EC 导入表取证)——真签名住 functions.json+IAT 白名单(IDB 已 set), globals 数据 extern 不需要(decomp 引用 gbVec3D::Normalize 伪名, P-A13d 族已改写, 槽名零引用); skip+orig_type=W3 律: 未引用不发射, 复活走 P-A18 归一"
+ },
+ "0x005D550C": {
+  "name": "stru_5D550C",
+  "type": "Logger",
+  "category": "data",
+  "source": "[钉回基线 2026-11-13] 恢复 IDB 既有 Logger 型+原名(char[6360] 实验已回退——字符串池区块 retyp 引发全树重渲净亏34错; 本条仅钉回实验前状态, 非新标注)",
+  "audit": {
+   "level": "unverified",
+   "note": "baseline-pinned, 见 fix_neargreen_types_20261112.py 回退记录",
+   "timestamp": "2026-11-13"
+  }
  }
 }

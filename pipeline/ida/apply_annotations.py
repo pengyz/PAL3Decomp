@@ -1997,12 +1997,14 @@ def _build_func_tinfo(til, ret, args, cc_code):
     路径: 基本型(BTF)直接构造; 类名 get_named_type; 指针 create_ptr;
     引用 create_ref; 函数型 create_func(func_type_data_t)。失败返回 None。
     """
+    # [修 2026-11-12] IDA 9.1 无 BTF_LONG/BTF_ULONG/BTF_SHORT/BTF_USHORT
+    # (实测 dir(ida_typeinf))——按宽度映射: long=32位→BTF_INT32, short=16位→BTF_INT16。
     _BTF = {'void': ida_typeinf.BTF_VOID, 'int': ida_typeinf.BTF_INT,
             'char': ida_typeinf.BTF_CHAR, 'float': ida_typeinf.BTF_FLOAT,
             'double': ida_typeinf.BTF_DOUBLE, 'bool': ida_typeinf.BTF_BOOL,
-            'unsigned int': ida_typeinf.BTF_UINT, 'unsigned long': ida_typeinf.BTF_ULONG,
-            'unsigned char': ida_typeinf.BTF_UCHAR, 'unsigned short': ida_typeinf.BTF_USHORT,
-            'short': ida_typeinf.BTF_SHORT, 'long': ida_typeinf.BTF_LONG,
+            'unsigned int': ida_typeinf.BTF_UINT, 'unsigned long': ida_typeinf.BTF_UINT32,
+            'unsigned char': ida_typeinf.BTF_UCHAR, 'unsigned short': ida_typeinf.BTF_UINT16,
+            'short': ida_typeinf.BTF_INT16, 'long': ida_typeinf.BTF_INT32,
             '__int64': ida_typeinf.BTF_INT64, 'unsigned __int64': ida_typeinf.BTF_UINT64}
 
     def _one_type(tstr):
@@ -3173,6 +3175,86 @@ def apply_annotations():
     if sig_fail:
         for _addr_s, _fname_s, _err_s in sig_fail[:20]:
             log("  [!] %s: %s → %s" % (_addr_s, _fname_s[:40], _err_s[:60]))
+
+    # --- [thunk→槽 型传播 2026-11-12] ---
+    # 病灶: 序号导入的 DLL(d3dx8 实测)不在 get_import_module_qty 枚举里
+    # ⇒ 白名单路径永远碰不到其 IAT 槽。函数注解 sig 落在 6 字节 thunk
+    # (`jmp <数据地址>`)上, 而 Hex-Rays 渲染 `call ds:槽` 读的是**槽**的
+    # 类型(实证: D3DXVec3Normalize 槽 off_6090C4 = int(__stdcall*)(_DWORD,_DWORD)
+    # 猜测 ⇒ 调用点渲染 (int) casts ⇒ C2664, free_functions.h 的诚实声明
+    # 无法救编译)。
+    # 规则(通用, 非特例): 注解函数 sig 存在 + 函数体 = `FF 25 <槽abs地址>`
+    # (间接绝对跳) ⇒ 用注解 sig 铸 fn-ptr 落到槽(与白名单同款 set_tinfo)。
+    import ida_segment as _ida_seg_th
+    import ida_nalt as _ida_nalt_th
+    _thunk_ok = 0
+    _thunk_try = 0
+    for _taddr, _tinfo_entry in funcs.items():
+        if not isinstance(_tinfo_entry, dict):
+            continue
+        _tsig = _tinfo_entry.get('signature')
+        if not _tsig:
+            continue
+        try:
+            _tea = int(_taddr, 16)
+        except (ValueError, TypeError):
+            continue
+        _f = ida_funcs.get_func(_tea)
+        if not _f or _f.start_ea != _tea:
+            continue
+        _bytes = ida_bytes.get_bytes(_tea, 6) or b''
+        if len(_bytes) < 6 or _bytes[0] != 0xFF or _bytes[1] != 0x25:
+            continue  # 仅间接绝对跳(槽形态); E9 直跳是函数→函数, 不涉槽
+        _slot = int.from_bytes(_bytes[2:6], 'little')
+        _seg = _ida_seg_th.getseg(_slot)
+        if _seg is None or not (_ida_seg_th.segtype(_slot) == _ida_seg_th.SEG_DATA):
+            continue
+        _thunk_try += 1
+        _tdecl = _tsig.rstrip(';') + ';'
+        _ttif = ida_typeinf.tinfo_t()
+        _tok = False
+        try:
+            _tok = bool(ida_typeinf.parse_decl(_ttif, til, _tdecl, ida_typeinf.PT_SIL))
+        except Exception:
+            _tok = False
+        if not _tok:
+            _cc_th = (ida_typeinf.CM_CC_STDCALL if '__stdcall' in _tsig
+                      else ida_typeinf.CM_CC_THISCALL if '__thiscall' in _tsig
+                      else ida_typeinf.CM_CC_CDECL)
+            # 参数名剥离(与 [3a] 槽铸型同款约定: 尾标识符 token 是名不是型)
+            _th_args = []
+            for _p in _tsig[_tsig.index('(') + 1:_tsig.rindex(')')].split(','):
+                _p = _p.strip()
+                if not _p:
+                    continue
+                # [修 2026-11-13] 先星号归一('*pOut'→'* pOut')再剥名——否则
+                # 胶连星号随名一起被剥掉, 参数由指针变传值(实测 sg_emission 恶化)
+                _p = _p.replace('*', '* ')
+                _ptoks = _p.split()
+                if len(_ptoks) >= 2 and _ptoks[-1] not in ('const', '*'):
+                    _th_args.append(' '.join(_ptoks[:-1]))
+                else:
+                    _th_args.append(_p)
+            _ttif = _build_func_tinfo(til, _tsig.split('(')[0].strip()
+                                      .replace('__stdcall', '').replace('__cdecl', '')
+                                      .replace('__thiscall', '').strip(),
+                                      _th_args,
+                                      _cc_th)
+            if _ttif is None:
+                log("  [!] thunk→slot build failed: %s (%s)" % (_taddr, _tsig[:50]))
+                continue
+        _tptr = ida_typeinf.tinfo_t()
+        if not _tptr.create_ptr(_ttif):
+            continue
+        if _ida_nalt_th.set_tinfo(_slot, _tptr):
+            _thunk_ok += 1
+            # thunk 本体型同步: thunk 陈旧猜测(int __stdcall(int,int))是
+            # Hex-Rays 渲染调用实参的依据(实测)——不落则槽型白铸
+            if not _ida_nalt_th.set_tinfo(_tea, _ttif):
+                log("  [!] thunk 自体型落置失败: %x" % _tea)
+        else:
+            log("  [!] thunk→slot set_tinfo failed: %s -> slot %x" % (_taddr, _slot))
+    log("[thunk→slot] types propagated: %d/%d" % (_thunk_ok, _thunk_try))
 
     # --- 6b. Global types (after structs so struct types are resolved) ---
     g_typed = 0

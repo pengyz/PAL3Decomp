@@ -633,6 +633,25 @@ def _apply_lvar_overrides(code, addr):
     for var, newtype in ov.items():
         if not isinstance(newtype, str) or not newtype.strip():
             continue
+        # [L-VAR fn-ptr 形 2026-11-13] fn-ptr 声明(`RET (__stdcall *var)(params);`)
+        # 不匹配下方 `Type *var;` 形——标注型即完整 fn-ptr 文本, 整行替换。
+        # 动机: UIRoleSelectDialog v10 = PtInRect —— IDB 诚实渲染 fn-ptr decl
+        # 后, 下游变换剥 `__stdcall` ⇒ 与 PtInRect 型失配 C2440(实证×2站)。
+        fnpat = re.compile(r'(?m)^(\s*)([^\n]*\([^()]*\*\s*' + re.escape(var) +
+                           r'\s*\)\s*\([^;]*\))(\s*;)([^\n]*)$')
+        mfn = fnpat.search(code)
+        if mfn:
+            tail = mfn.group(4) if mfn.group(4).lstrip().startswith('//') else ''
+            # fn-ptr 变量声明: 星号必须连同 var 留在括号内
+            # `BOOL (__stdcall *)(...)` → `BOOL (__stdcall *v10)(...)`
+            # (2026-11-13: 首版产出 `TYPE(...) var;` 非法语法 C2059 实证)
+            decl_text = re.sub(r'\*\s*\)', '*' + var + ')', newtype, count=1)
+            if decl_text == newtype:  # 标注型非 fn-ptr 空括号形态 → 兜底
+                decl_text = newtype + ' *' + var
+            code = fnpat.sub(
+                lambda mm: mm.group(1) + decl_text + ';' + tail,
+                code, count=1)
+            continue
         pat = re.compile(r'(?m)^(\s*)([\w ]+\**)\s*' + re.escape(var) + r'\s*;([^\n]*)$')
         m = pat.search(code)
         if not m:
