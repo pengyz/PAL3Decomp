@@ -1,86 +1,86 @@
 {
-  "name": "CG_Entry",
-  "binary_size": 204,
-  "known_members": {
-    "0": {
-      "name": "bOpt",
-      "type": "BYTE",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1": {
-      "name": "m_bUIActive",
-      "type": "BYTE",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "m_pScene",
-      "type": "CG_Scene *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "m_pUI",
-      "type": "CG_UI *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "m_pEdit",
-      "type": "CG_Edit *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "16": {
-      "name": "m_LEVELPARAM",
-      "type": "LEVELPARAM[5]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "56": {
-      "name": "m_EntryFrame",
-      "type": "PAL3_FRAME",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "60": {
-      "name": "m_EntryRolePos",
-      "type": "gbVec3D",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "72": {
-      "name": "m_EntryCityName",
-      "type": "char[64]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "136": {
-      "name": "m_EntryName",
-      "type": "char[64]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "200": {
-      "name": "b_NoteJumpFree",
-      "type": "BYTE",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "CG_Entry",
+ "binary_size": 204,
+ "known_members": {
+  "0": {
+   "name": "bOpt",
+   "type": "BYTE",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0042C920": {
-      "name": "GetCGEntry",
-      "signature": "[thunk]:class GetCGEntry `public: static class GetCGEntry * ()",
-      "source": "pdb",
-      "evidence_level": "unverified"
-    },
-    "0x00430180": {
-      "name": "InitSceneScriptLoader",
-      "signature": "_BYTE *__thiscall CG_Entry::InitSceneScriptLoader()",
-      "source": "| A 级归属（2026-10-24 对抗复核员手工核实，asm 72625 起）：ESI=ECX 后不复位；实际访问偏移 {0,1,4,8,0xC}（引擎漏记 [esi] 无位移形态）；写两字节标志 + 三指针槽（new 0x30 对象挂 [esi+4]，自链表化），与 CG_Entry 的 bOpt/m_bUIActive/m_pScene/m_pUI/m_pEdit 完全吻合。附注：CG_Entry 成员 evidence_level 均 unverified，UNAMBIGUOUS 为相对唯一覆盖 | ⚠️ 冲突并录（2026-10-24）：functions.json 同地址条目有 10-17 五面台账——彼时结论'类归属待定·PalScriptMgr 候选最强但谱撞 200+ 唯一性不足'，且体读出 PalScript* 构造/使用。本条 A 级偏移证据（this 偏移 {0,1,4,8,0xC} 唯一精确命中 CG_Entry 成员起始）与其不矛盾（体调 PalScript* 与挂 CG_Entry 状态可并存），但定谳需仲裁：两证据类型不同（偏移匹配 vs 调用图/体形），挂 reattribution 队列",
-      "evidence_level": "A(偏移)/待仲裁(归属)"
-    }
+  "1": {
+   "name": "m_bUIActive",
+   "type": "BYTE",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "4": {
+   "name": "m_pScene",
+   "type": "CG_Scene *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "8": {
+   "name": "m_pUI",
+   "type": "CG_UI *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "m_pEdit",
+   "type": "CG_Edit *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "m_LEVELPARAM",
+   "type": "LEVELPARAM[5]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "56": {
+   "name": "m_EntryFrame",
+   "type": "PAL3_FRAME",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "60": {
+   "name": "m_EntryRolePos",
+   "type": "gbVec3D",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "72": {
+   "name": "m_EntryCityName",
+   "type": "char[64]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "136": {
+   "name": "m_EntryName",
+   "type": "char[64]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "200": {
+   "name": "b_NoteJumpFree",
+   "type": "BYTE",
+   "source": "annotation",
+   "evidence_level": "unverified"
   }
+ },
+ "methods": {
+  "0x0042C920": {
+   "name": "GetCGEntry",
+   "signature": "CG_Entry *__thiscall(CG_Entry *this)",
+   "source": "pdb | L-VAR 2026-11-12 反汇编: push ebx+mov ebx,ecx(thiscall)+ret(无参栈)+lea esi,[ebx+0xc]+rep stosd×0x13(76B清零)=构造/初始化返回eax=ebx=this",
+   "evidence_level": "A"
+  },
+  "0x00430180": {
+   "name": "InitSceneScriptLoader",
+   "signature": "_BYTE *__thiscall CG_Entry::InitSceneScriptLoader()",
+   "source": "| A 级归属（2026-10-24 对抗复核员手工核实，asm 72625 起）：ESI=ECX 后不复位；实际访问偏移 {0,1,4,8,0xC}（引擎漏记 [esi] 无位移形态）；写两字节标志 + 三指针槽（new 0x30 对象挂 [esi+4]，自链表化），与 CG_Entry 的 bOpt/m_bUIActive/m_pScene/m_pUI/m_pEdit 完全吻合。附注：CG_Entry 成员 evidence_level 均 unverified，UNAMBIGUOUS 为相对唯一覆盖 | ⚠️ 冲突并录（2026-10-24）：functions.json 同地址条目有 10-17 五面台账——彼时结论'类归属待定·PalScriptMgr 候选最强但谱撞 200+ 唯一性不足'，且体读出 PalScript* 构造/使用。本条 A 级偏移证据（this 偏移 {0,1,4,8,0xC} 唯一精确命中 CG_Entry 成员起始）与其不矛盾（体调 PalScript* 与挂 CG_Entry 状态可并存），但定谳需仲裁：两证据类型不同（偏移匹配 vs 调用图/体形），挂 reattribution 队列",
+   "evidence_level": "A(偏移)/待仲裁(归属)"
+  }
+ }
 }
