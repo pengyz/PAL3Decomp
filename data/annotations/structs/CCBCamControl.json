@@ -334,9 +334,9 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "lvars": {
-    "v4": "gbVolumeModifier *"
+    "v4": "float *"
    },
-   "lvars_source": " | L-VAR 2026-11-12: v4 = m_pModObj+7 指针偏移(float* 声明系 Hex-Rays 退化), 真型=同元素指针"
+   "lvars_source": " | L-VAR 2026-11-12: v4 = m_pModObj+7 指针偏移(float* 声明系 Hex-Rays 退化), 真型=同元素指针 | 修正 2026-11-12: 反汇编0x508690定谳 v4 写 float 数组(*v4=-0.25/v4[1..3]), float* 是二进制真值(前标 gbVolumeModifier* 系 m_pModObj 同型猜测, C2679 x4 实证错误)"
   },
   "0x00508880": {
    "name": "KeepCurCam",
