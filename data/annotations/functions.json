@@ -1560,7 +1560,11 @@
   "name": "TaskBookUI_RefreshElements",
   "signature": "int __cdecl(int nVal)",
   "type": "skip",
-  "reason": "misattributed in struct, removed"
+  "reason": "misattributed in struct, removed",
+  "lvars": {
+   "v3": "UIScene *"
+  },
+  "lvars_source": " | L-VAR 2026-11-12 反汇编定谳: v3 表基址 = g_CScreenMode+1244(探针 0x17B41E8 无关——修正: 0x455790 内 v1+1252 => CScreenMode::m_nPageCounter@1244 UIScene(344B)); 步进 0x98 系子区域游标; 25 虚分派调用 = 元素 UIScene vtable 槽(0x445E70 ShowClipped/0x43CDF0 Render, decomp 文件名铁证)——lvars UIScene* 后 Hex-Rays 全函数体重渲染(双生命期纯赢门已放开)。原提案 v18/v20 (_DWORD)(_DWORD) 残渣系 __thiscall 保护扩大前产物, 本条覆盖"
  },
  "0x00455A20": {
   "name": "TaskBookUI_ScrollUp",
