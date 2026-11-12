@@ -71,7 +71,8 @@ def main():
                 demanded_base = demanded.replace('struct ', '').replace('class ', '').strip()
                 if demanded_base and actual_base and demanded_base != actual_base:
                     # [修] 跳过取址传参 &(expr.member) —— &取引用不改变类型
-                    if re.search(r'&\s*\(?[\w.\-]*\.' + re.escape(mem_name), line):
+                    #   宽匹配: & 后面到 .member 之间可以有任意 cast(如 (const int *))
+                    if '&' in line and (mem_name + ')') in line:
                         consistent += 1
                     else:
                         contradictions.append({

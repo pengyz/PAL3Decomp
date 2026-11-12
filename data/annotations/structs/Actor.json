@@ -590,8 +590,8 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 15,
-    "sites_consistent": 1,
-    "sites_contradicted": 7,
+    "sites_consistent": 2,
+    "sites_contradicted": 6,
     "contradictions": [
      {
       "file": "free_functions.cpp",
@@ -615,15 +615,15 @@
       "detail": "cast 型别不一致"
      },
      {
-      "file": "Role/Actor.cpp",
-      "line": 2552,
+      "file": "Misc/Array.cpp",
+      "line": 909,
       "expected": "float",
-      "actual": "gbVec3D",
+      "actual": "_DWORD",
       "detail": "cast 型别不一致"
      },
      {
       "file": "Misc/Array.cpp",
-      "line": 909,
+      "line": 930,
       "expected": "float",
       "actual": "_DWORD",
       "detail": "cast 型别不一致"
@@ -641,8 +641,8 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 11,
-    "sites_consistent": 1,
-    "sites_contradicted": 7,
+    "sites_consistent": 2,
+    "sites_contradicted": 6,
     "contradictions": [
      {
       "file": "free_functions.cpp",
@@ -666,15 +666,15 @@
       "detail": "cast 型别不一致"
      },
      {
-      "file": "UI/StateUI.cpp",
-      "line": 1489,
+      "file": "Misc/Array.cpp",
+      "line": 912,
       "expected": "unsigned char",
       "actual": "_DWORD",
       "detail": "cast 型别不一致"
      },
      {
       "file": "Misc/Array.cpp",
-      "line": 912,
+      "line": 934,
       "expected": "unsigned char",
       "actual": "_DWORD",
       "detail": "cast 型别不一致"
@@ -1320,40 +1320,40 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 73,
-    "sites_consistent": 7,
-    "sites_contradicted": 5,
+    "sites_consistent": 0,
+    "sites_contradicted": 12,
     "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 15309,
+      "expected": "RoleAtt *[3]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/EquipUI.cpp",
+      "line": 230,
+      "expected": "RoleAtt *[3]",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/EquipUI.cpp",
+      "line": 237,
+      "expected": "RoleAtt *[3]",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/EquipUI.cpp",
+      "line": 238,
+      "expected": "RoleAtt *[3]",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
      {
       "file": "UI/EquipUI.cpp",
       "line": 240,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Combat/CCBRoleState.cpp",
-      "line": 4139,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/MainEquipUI.cpp",
-      "line": 1887,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/SaleUI.cpp",
-      "line": 2045,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/SaleUI.cpp",
-      "line": 2104,
       "expected": "RoleAtt *[3]",
       "actual": "RoleAtt",
       "detail": "cast 型别不一致"
@@ -1371,40 +1371,40 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 95,
-    "sites_consistent": 24,
-    "sites_contradicted": 11,
+    "sites_consistent": 0,
+    "sites_contradicted": 35,
     "contradictions": [
      {
-      "file": "UI/EquipUI.cpp",
-      "line": 311,
+      "file": "free_functions.cpp",
+      "line": 15314,
+      "expected": "RoleAtt *[3]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 15319,
+      "expected": "RoleAtt *[3]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2630,
       "expected": "RoleAtt *[3]",
       "actual": "RoleAtt",
       "detail": "cast 型别不一致"
      },
      {
-      "file": "UI/EquipUI.cpp",
-      "line": 343,
+      "file": "Script/PalScript.cpp",
+      "line": 2657,
       "expected": "RoleAtt *[3]",
       "actual": "RoleAtt",
       "detail": "cast 型别不一致"
      },
      {
-      "file": "UI/EquipUI.cpp",
-      "line": 375,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/MainEquipUI.cpp",
-      "line": 1892,
-      "expected": "RoleAtt *[3]",
-      "actual": "RoleAtt",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/MainEquipUI.cpp",
-      "line": 1897,
+      "file": "Script/PalScript.cpp",
+      "line": 2684,
       "expected": "RoleAtt *[3]",
       "actual": "RoleAtt",
       "detail": "cast 型别不一致"
@@ -1451,9 +1451,30 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 44,
-    "sites_consistent": 26,
-    "sites_contradicted": 4,
+    "sites_consistent": 4,
+    "sites_contradicted": 26,
     "contradictions": [
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 1422,
+      "expected": "void",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 1427,
+      "expected": "void",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 1430,
+      "expected": "void",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
      {
       "file": "Data/PAL_GDB.cpp",
       "line": 1460,
@@ -1464,20 +1485,6 @@
      {
       "file": "Script/PalScript.cpp",
       "line": 2414,
-      "expected": "void",
-      "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Script/PalScript.cpp",
-      "line": 2418,
-      "expected": "void",
-      "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Misc/SystemUI.cpp",
-      "line": 1045,
       "expected": "void",
       "actual": "_DWORD",
       "detail": "cast 型别不一致"

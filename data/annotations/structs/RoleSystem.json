@@ -502,42 +502,42 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 1086,
-    "sites_consistent": 333,
-    "sites_contradicted": 22,
+    "sites_consistent": 0,
+    "sites_contradicted": 355,
     "contradictions": [
      {
-      "file": "Data/PAL_GDB.cpp",
-      "line": 1460,
+      "file": "free_functions.cpp",
+      "line": 556,
+      "expected": "Actor",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 589,
+      "expected": "Actor",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 595,
+      "expected": "Actor",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1263,
+      "expected": "Actor",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1435,
       "expected": "Actor",
       "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Script/PalScript.cpp",
-      "line": 2411,
-      "expected": "Actor",
-      "actual": "void",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Script/PalScript.cpp",
-      "line": 2414,
-      "expected": "Actor",
-      "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "Script/PalScript.cpp",
-      "line": 2418,
-      "expected": "Actor",
-      "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "UI/StateUI.cpp",
-      "line": 1491,
-      "expected": "Actor",
-      "actual": "void",
       "detail": "cast 型别不一致"
      }
     ],
@@ -901,16 +901,9 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 7,
-    "sites_consistent": 0,
-    "sites_contradicted": 4,
+    "sites_consistent": 1,
+    "sites_contradicted": 3,
     "contradictions": [
-     {
-      "file": "GameBase/PAL3.cpp",
-      "line": 2703,
-      "expected": "int",
-      "actual": "RoleSystem",
-      "detail": "cast 型别不一致"
-     },
      {
       "file": "GameBase/PAL3.cpp",
       "line": 2706,

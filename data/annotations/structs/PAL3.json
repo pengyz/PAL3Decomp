@@ -68,8 +68,8 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 96,
-    "sites_consistent": 0,
-    "sites_contradicted": 96,
+    "sites_consistent": 30,
+    "sites_contradicted": 66,
     "contradictions": [
      {
       "file": "free_functions.cpp",
@@ -385,9 +385,30 @@
     "level": "contradicted",
     "method": "use_site_enumeration",
     "sites_checked": 35,
-    "sites_consistent": 20,
-    "sites_contradicted": 5,
+    "sites_consistent": 7,
+    "sites_contradicted": 18,
     "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1580,
+      "expected": "gbRenderEffect",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1581,
+      "expected": "gbRenderEffect",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1585,
+      "expected": "gbRenderEffect",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
      {
       "file": "GameBase/PAL3.cpp",
       "line": 1586,
@@ -397,30 +418,9 @@
      },
      {
       "file": "GameBase/PAL3.cpp",
-      "line": 1634,
+      "line": 1602,
       "expected": "gbRenderEffect",
-      "actual": "char",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "GameBase/PAL3.cpp",
-      "line": 1647,
-      "expected": "gbRenderEffect",
-      "actual": "char",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "GameBase/PAL3.cpp",
-      "line": 1648,
-      "expected": "gbRenderEffect",
-      "actual": "char",
-      "detail": "cast 型别不一致"
-     },
-     {
-      "file": "GameBase/PAL3.cpp",
-      "line": 1654,
-      "expected": "gbRenderEffect",
-      "actual": "gbRefObject",
+      "actual": "unsigned int",
       "detail": "cast 型别不一致"
      }
     ],
