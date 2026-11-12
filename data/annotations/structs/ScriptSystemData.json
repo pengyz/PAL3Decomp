@@ -426,7 +426,24 @@
    "name": "m_String",
    "type": "char[96]",
    "source": "globals_merge | layout_fix:span_mismatch",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 6,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 2598,
+      "expected": "char[96]",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "3828": {
    "name": "m_nCmdParamCount",
@@ -559,13 +576,75 @@
    "type": "PalScript *",
    "source": "binary:32x abs refs, malloc(48)+store pattern (0xF98) | type_fix:int→void*(malloc store) | L-VAR 2026-11-11: 指向类型定谳 PalScript*——5 使用点全 PalScript* 语境(PalScript.cpp:602/772/809/882/913 与 (PalScript*)vN 比较+ v6->m_nState 访问); 原 char* 为 IDB-compat 占位(只证堆指针未证指向)",
    "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "use_site_majority"
+   "evidence_level": "use_site_majority",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 19,
+    "sites_consistent": 2,
+    "sites_contradicted": 5,
+    "contradictions": [
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 757,
+      "expected": "PalScript",
+      "actual": "scScriptInstance",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 843,
+      "expected": "PalScript",
+      "actual": "scScriptInstance",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 949,
+      "expected": "PalScript",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 969,
+      "expected": "PalScript",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 982,
+      "expected": "PalScript",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4000": {
    "name": "m_nCmdFA0",
    "type": "short",
    "source": "binary:4x abs refs (0xFA0)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 4,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "Script/PalScriptMgr.cpp",
+      "line": 3198,
+      "expected": "short",
+      "actual": "GRPinput",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4004": {
    "name": "m_nScriptState",
@@ -590,13 +669,75 @@
    "name": "m_nTodo_FB0",
    "type": "char[32]",
    "source": "CRT:ctor_0x434470_confirmed_subobj_0x20 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：corpus 全无用法（数据域走查族）——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 0,
+    "sites_contradicted": 3,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 2626,
+      "expected": "char[32]",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 1513,
+      "expected": "char[32]",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScriptMgr.cpp",
+      "line": 3220,
+      "expected": "char[32]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4048": {
    "name": "m_nCmdFD0",
    "type": "short",
    "source": "binary:4x abs refs (0xFD0)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 0,
+    "sites_contradicted": 3,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 2616,
+      "expected": "short",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 1504,
+      "expected": "short",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScriptMgr.cpp",
+      "line": 3224,
+      "expected": "short",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4052": {
    "name": "m_nCmdParam19",
@@ -657,7 +798,24 @@
    "name": "m_nTodo_1008",
    "type": "int",
    "source": "binary:3x abs refs, 4-byte access | [批4 诚实化 2026-10-16] A偏移形：m_nCmd1008⇒m_nTodo_1008（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：corpus 全无用法（数据域走查族）——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 2711,
+      "expected": "int",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4108": {
    "name": "m_bScriptFlag",

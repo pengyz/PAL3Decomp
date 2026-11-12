@@ -1,72 +1,90 @@
 {
-  "name": "gbRenderInfoObj",
-  "binary_size": 112,
-  "known_members": {
-    "0": {
-      "name": "pNode",
-      "type": "gbVisNode *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "Z",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "Param",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "pEffect",
-      "type": "gbRenderEffect *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "16": {
-      "name": "pTexArray",
-      "type": "gbTextureArray *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "20": {
-      "name": "Priority",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "24": {
-      "name": "Flags",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "28": {
-      "name": "EffectFlag",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "32": {
-      "name": "ViewMat",
-      "type": "gbMatrix4",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "96": {
-      "name": "pAllLight",
-      "type": "gbVolModNode *[2]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "104": {
-      "name": "pAllFog",
-      "type": "gbVolModNode *[2]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbRenderInfoObj",
+ "binary_size": 112,
+ "known_members": {
+  "0": {
+   "name": "pNode",
+   "type": "gbVisNode *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "4": {
+   "name": "Z",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 3,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "8": {
+   "name": "Param",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 3,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "12": {
+   "name": "pEffect",
+   "type": "gbRenderEffect *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "pTexArray",
+   "type": "gbTextureArray *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "20": {
+   "name": "Priority",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "Flags",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "28": {
+   "name": "EffectFlag",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "32": {
+   "name": "ViewMat",
+   "type": "gbMatrix4",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "96": {
+   "name": "pAllLight",
+   "type": "gbVolModNode *[2]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "104": {
+   "name": "pAllFog",
+   "type": "gbVolModNode *[2]",
+   "source": "annotation",
+   "evidence_level": "unverified"
   }
+ }
 }

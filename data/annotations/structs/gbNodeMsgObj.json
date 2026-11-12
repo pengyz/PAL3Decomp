@@ -1,24 +1,41 @@
 {
-  "name": "gbNodeMsgObj",
-  "binary_size": 16,
-  "known_members": {
-    "0": {
-      "name": "msgid",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "param",
-      "type": "unsigned int[2]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "pfrom",
-      "type": "gbVisNode *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbNodeMsgObj",
+ "binary_size": 16,
+ "known_members": {
+  "0": {
+   "name": "msgid",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "4": {
+   "name": "param",
+   "type": "unsigned int[2]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "pfrom",
+   "type": "gbVisNode *",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "Role/Object3D.cpp",
+      "line": 659,
+      "expected": "gbVisNode",
+      "actual": "gbNodeMsgObj",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   }
+ }
 }

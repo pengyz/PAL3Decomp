@@ -1,103 +1,151 @@
 {
-  "name": "_PlugInfo",
-  "binary_size": 584,
-  "known_members": {
-    "0": {
-      "name": "filepos",
-      "type": "long",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "name",
-      "type": "char[256]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "260": {
-      "name": "crc",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "264": {
-      "name": "left",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "268": {
-      "name": "top",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "272": {
-      "name": "width",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "276": {
-      "name": "height",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "280": {
-      "name": "srcWidth",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "284": {
-      "name": "srcHeight",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "288": {
-      "name": "libName",
-      "type": "char[256]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "544": {
-      "name": "libWidth",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "548": {
-      "name": "libHeight",
-      "type": "UINT",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "552": {
-      "name": "_tex_uvLT",
-      "type": "_Texture_uv",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "560": {
-      "name": "_tex_uvLB",
-      "type": "_Texture_uv",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "568": {
-      "name": "_tex_uvRB",
-      "type": "_Texture_uv",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "576": {
-      "name": "_tex_uvRT",
-      "type": "_Texture_uv",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "_PlugInfo",
+ "binary_size": 584,
+ "known_members": {
+  "0": {
+   "name": "filepos",
+   "type": "long",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {}
+  "4": {
+   "name": "name",
+   "type": "char[256]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "260": {
+   "name": "crc",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "264": {
+   "name": "left",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 516,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "Misc/UITextArea.cpp",
+      "line": 275,
+      "expected": "UINT",
+      "actual": "_PlugInfo",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "268": {
+   "name": "top",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 400,
+    "sites_consistent": 0,
+    "sites_contradicted": 3,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 23176,
+      "expected": "UINT",
+      "actual": "UIPushButton",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 23177,
+      "expected": "UINT",
+      "actual": "CCBUI",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 23178,
+      "expected": "UINT",
+      "actual": "CCBUI",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "272": {
+   "name": "width",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "276": {
+   "name": "height",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "280": {
+   "name": "srcWidth",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "284": {
+   "name": "srcHeight",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "288": {
+   "name": "libName",
+   "type": "char[256]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "544": {
+   "name": "libWidth",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "548": {
+   "name": "libHeight",
+   "type": "UINT",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "552": {
+   "name": "_tex_uvLT",
+   "type": "_Texture_uv",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "560": {
+   "name": "_tex_uvLB",
+   "type": "_Texture_uv",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "568": {
+   "name": "_tex_uvRB",
+   "type": "_Texture_uv",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "576": {
+   "name": "_tex_uvRT",
+   "type": "_Texture_uv",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {}
 }

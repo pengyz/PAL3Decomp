@@ -1,255 +1,291 @@
 {
-  "name": "gbLightObj",
-  "binary_size": 216,
-  "known_members": {
-    "8": {
-      "name": "m_LightType",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "m_Color",
-      "type": "gbColorFlt",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "28": {
-      "name": "m_Ambient",
-      "type": "gbColorFlt",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "44": {
-      "name": "m_UseDiffuse",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "48": {
-      "name": "m_UseSpecular",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "52": {
-      "name": "m_NearStart",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "56": {
-      "name": "m_NearEnd",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "60": {
-      "name": "m_FarStart",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "64": {
-      "name": "m_FarEnd",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "68": {
-      "name": "m_DecayType",
-      "type": "int",
-      "source": "annotation",
-      "note": "was gbLightObj::DECAY_TYPE (unnamed enum)",
-      "evidence_level": "unverified"
-    },
-    "72": {
-      "name": "m_DecayRadius",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "76": {
-      "name": "m_LightShape",
-      "type": "int",
-      "source": "annotation",
-      "note": "was gbLightObj::LIGHT_SHAPE (unnamed enum)",
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "m_HotSize",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "84": {
-      "name": "m_Falloff",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "88": {
-      "name": "m_Aspect",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "92": {
-      "name": "m_BoundSphere",
-      "type": "gbSphere",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "108": {
-      "name": "m_SysLight",
-      "type": "gbLight",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "212": {
-      "name": "m_BakedLight",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbLightObj",
+ "binary_size": 216,
+ "known_members": {
+  "8": {
+   "name": "m_LightType",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0042C6A0": {
-      "name": "GetAABBox",
-      "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
-      "ordinal": 0,
-      "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
-      "evidence_level": "A"
-    },
-    "0x0042BEE0": {
-      "name": "IsIdle",
-      "signature": "BOOL __thiscall gbLightObj::IsIdle()",
-      "ordinal": 4,
-      "evidence_level": "unverified"
-    },
-    "0x0042C6E0": {
-      "name": "GetGfxManager",
-      "signature": "gbGfxManager *__thiscall(int nVal1)",
-      "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-      "ordinal": 1,
-      "evidence_level": "unverified"
-    },
-    "0x0042C8D0": {
-      "name": "GetCGEntry",
-      "signature": "int __thiscall(char)",
-      "source": "vtable_migrated+pdb_correct",
-      "ordinal": 2,
-      "evidence_level": "unverified"
-    },
-    "0x004AF760": {
-      "name": "Update",
-      "signature": "int __thiscall(int)",
-      "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x00423860": {
-      "name": "~gbLightObj",
-      "signature": "void __thiscall()",
-      "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=gbLightObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AB34,0x56AB28）",
-      "evidence_level": "A"
-    },
-    "0x00405310": {
-      "name": "_scalar_dtor",
-      "signature": "void *__thiscall(gbLightObj *Block, char pFlag)",
-      "source": "| 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbLightObj@@UAE@XZ + delete ⇒ 类自证 gbLightObj；制式名 _scalar_dtor（制式即语义免五面）| confidence: high",
-      "evidence_level": "A"
-    }
+  "12": {
+   "name": "m_Color",
+   "type": "gbColorFlt",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
+  "28": {
+   "name": "m_Ambient",
+   "type": "gbColorFlt",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "44": {
+   "name": "m_UseDiffuse",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 2,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "48": {
+   "name": "m_UseSpecular",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 2,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "52": {
+   "name": "m_NearStart",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "56": {
+   "name": "m_NearEnd",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "60": {
+   "name": "m_FarStart",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 2,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "64": {
+   "name": "m_FarEnd",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 2,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "68": {
+   "name": "m_DecayType",
+   "type": "int",
+   "source": "annotation",
+   "note": "was gbLightObj::DECAY_TYPE (unnamed enum)",
+   "evidence_level": "unverified"
+  },
+  "72": {
+   "name": "m_DecayRadius",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "76": {
+   "name": "m_LightShape",
+   "type": "int",
+   "source": "annotation",
+   "note": "was gbLightObj::LIGHT_SHAPE (unnamed enum)",
+   "evidence_level": "unverified"
+  },
+  "80": {
+   "name": "m_HotSize",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "84": {
+   "name": "m_Falloff",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "88": {
+   "name": "m_Aspect",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "92": {
+   "name": "m_BoundSphere",
+   "type": "gbSphere",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "108": {
+   "name": "m_SysLight",
+   "type": "gbLight",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "212": {
+   "name": "m_BakedLight",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x0042C6A0": {
+   "name": "GetAABBox",
+   "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
+   "ordinal": 0,
+   "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
+   "evidence_level": "A"
+  },
+  "0x0042BEE0": {
+   "name": "IsIdle",
+   "signature": "BOOL __thiscall gbLightObj::IsIdle()",
+   "ordinal": 4,
+   "evidence_level": "unverified"
+  },
+  "0x0042C6E0": {
+   "name": "GetGfxManager",
+   "signature": "gbGfxManager *__thiscall(int nVal1)",
+   "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+   "ordinal": 1,
+   "evidence_level": "unverified"
+  },
+  "0x0042C8D0": {
+   "name": "GetCGEntry",
+   "signature": "int __thiscall(char)",
+   "source": "vtable_migrated+pdb_correct",
+   "ordinal": 2,
+   "evidence_level": "unverified"
+  },
+  "0x004AF760": {
+   "name": "Update",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x00423860": {
+   "name": "~gbLightObj",
+   "signature": "void __thiscall()",
+   "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=gbLightObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AB34,0x56AB28）",
+   "evidence_level": "A"
+  },
+  "0x00405310": {
+   "name": "_scalar_dtor",
+   "signature": "void *__thiscall(gbLightObj *Block, char pFlag)",
+   "source": "| 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbLightObj@@UAE@XZ + delete ⇒ 类自证 gbLightObj；制式名 _scalar_dtor（制式即语义免五面）| confidence: high",
+   "evidence_level": "A"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "external",
+   "external": true,
+   "slots": [
     {
-      "addr": "external",
-      "external": true,
-      "slots": [
-        {
-          "addr": "0x0042C6A0",
-          "from": null
-        },
-        {
-          "addr": "0x0042C6E0",
-          "from": null
-        },
-        {
-          "addr": "0x0042C8D0",
-          "from": null
-        },
-        {
-          "addr": "0x00423860",
-          "from": null
-        },
-        {
-          "addr": "0x0042BEE0",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        }
-      ],
-      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+     "addr": "0x0042C6A0",
+     "from": null
     },
     {
-      "addr": "0x0056AB28",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x0042C6A0",
-          "from": null
-        },
-        {
-          "addr": "0x0042C6E0",
-          "from": null
-        },
-        {
-          "addr": "0x0042C8D0",
-          "from": null
-        },
-        {
-          "addr": "0x00423860",
-          "from": null
-        },
-        {
-          "addr": "0x0042BEE0",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        }
-      ],
-      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x423880+31 双写（与 0x56AB34 相邻 6B=MI 对）+BINK::Reset+289/295；槽 gbLightObj 族名；ctor 注册名账（ScriptVM::ProcessFrame 误名）待正名"
+     "addr": "0x0042C6E0",
+     "from": null
     },
     {
-      "addr": "0x0056AB34",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00423860",
-          "from": null
-        },
-        {
-          "addr": "0x0042BEE0",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": null
-        }
-      ],
-      "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：同 0x56AB28 MI 对（+37/+31 相邻双写）；尾并合视图"
-    }
-  ],
-  "base_size": 4,
-  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x0056AB28 实为**游戏类 MI 第二 vptr**：A 级 objdump 0x4237f1/0x4237f7 `movl $0x56ab34,(%esi); movl $0x56ab28,0x8(%esi)` = 主 vptr 0x56AB34@+0 + 子对象 vptr 0x56AB28@+8 的 MI 构造器（类体 ≥0x36C，未归属区 0x4237xx）；gb* 外部库类不拥有映像内 vtable ⇒ 误挂。真主=该 MI 游戏类（构造器未归属，挂账）",
-  "bases": [
+     "addr": "0x0042C8D0",
+     "from": null
+    },
     {
-      "name": "gbVolumeModifier",
-      "offset": 0
+     "addr": "0x00423860",
+     "from": null
+    },
+    {
+     "addr": "0x0042BEE0",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
     }
-  ]
+   ],
+   "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+  },
+  {
+   "addr": "0x0056AB28",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x0042C6A0",
+     "from": null
+    },
+    {
+     "addr": "0x0042C6E0",
+     "from": null
+    },
+    {
+     "addr": "0x0042C8D0",
+     "from": null
+    },
+    {
+     "addr": "0x00423860",
+     "from": null
+    },
+    {
+     "addr": "0x0042BEE0",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    }
+   ],
+   "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x423880+31 双写（与 0x56AB34 相邻 6B=MI 对）+BINK::Reset+289/295；槽 gbLightObj 族名；ctor 注册名账（ScriptVM::ProcessFrame 误名）待正名"
+  },
+  {
+   "addr": "0x0056AB34",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00423860",
+     "from": null
+    },
+    {
+     "addr": "0x0042BEE0",
+     "from": null
+    },
+    {
+     "addr": "0x004AF760",
+     "from": null
+    }
+   ],
+   "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：同 0x56AB28 MI 对（+37/+31 相邻双写）；尾并合视图"
+  }
+ ],
+ "base_size": 4,
+ "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x0056AB28 实为**游戏类 MI 第二 vptr**：A 级 objdump 0x4237f1/0x4237f7 `movl $0x56ab34,(%esi); movl $0x56ab28,0x8(%esi)` = 主 vptr 0x56AB34@+0 + 子对象 vptr 0x56AB28@+8 的 MI 构造器（类体 ≥0x36C，未归属区 0x4237xx）；gb* 外部库类不拥有映像内 vtable ⇒ 误挂。真主=该 MI 游戏类（构造器未归属，挂账）",
+ "bases": [
+  {
+   "name": "gbVolumeModifier",
+   "offset": 0
+  }
+ ]
 }

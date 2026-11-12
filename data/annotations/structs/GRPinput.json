@@ -186,7 +186,52 @@
    "name": "MouseState",
    "type": "char[20]",
    "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 16,
+    "sites_consistent": 0,
+    "sites_contradicted": 12,
+    "contradictions": [
+     {
+      "file": "Scene/CameraCtrl.cpp",
+      "line": 662,
+      "expected": "char[20]",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Scene/CameraCtrl.cpp",
+      "line": 663,
+      "expected": "char[20]",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Render/CScreenMode.cpp",
+      "line": 354,
+      "expected": "char[20]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Render/CScreenMode.cpp",
+      "line": 355,
+      "expected": "char[20]",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Render/CScreenMode.cpp",
+      "line": 357,
+      "expected": "char[20]",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "5188": {
    "name": "charTOscan",

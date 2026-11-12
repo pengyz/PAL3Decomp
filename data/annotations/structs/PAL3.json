@@ -12,19 +12,140 @@
    "name": "m_Image2D",
    "type": "gbImage2D",
    "source": "CRT:IAT_0x56A520=gbengine.dll!gbImage2D::gbImage2D()|verified:ctor_this=PAL3+0x20",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 62,
+    "sites_consistent": 4,
+    "sites_contradicted": 42,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 616,
+      "expected": "gbImage2D",
+      "actual": "unsigned __int16",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1493,
+      "expected": "gbImage2D",
+      "actual": "_WORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1494,
+      "expected": "gbImage2D",
+      "actual": "_WORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1495,
+      "expected": "gbImage2D",
+      "actual": "_WORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1496,
+      "expected": "gbImage2D",
+      "actual": "_WORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "320": {
    "name": "m_nTodo_140",
    "type": "_DWORD[4]",
    "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 96,
+    "sites_consistent": 0,
+    "sites_contradicted": 96,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 1385,
+      "expected": "_DWORD[4]",
+      "actual": "PalScript",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1393,
+      "expected": "_DWORD[4]",
+      "actual": "PalScript",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1400,
+      "expected": "_DWORD[4]",
+      "actual": "PalScript",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 10947,
+      "expected": "_DWORD[4]",
+      "actual": "PalScript",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 10948,
+      "expected": "_DWORD[4]",
+      "actual": "PalScript",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "336": {
    "name": "m_nTodo_150",
    "type": "_DWORD[4]",
    "source": "CRT:ctor_0x434470_confirmed_gap_0xE8-0x19C",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 0,
+    "sites_contradicted": 3,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 247,
+      "expected": "_DWORD[4]",
+      "actual": "PAL_GDB",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 3613,
+      "expected": "_DWORD[4]",
+      "actual": "DealData",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 3614,
+      "expected": "_DWORD[4]",
+      "actual": "PAL_GDB",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "412": {
    "name": "s_gamestate",
@@ -84,7 +205,31 @@
    "name": "m_gametime",
    "type": "double",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 9,
+    "sites_consistent": 0,
+    "sites_contradicted": 2,
+    "contradictions": [
+     {
+      "file": "Effect/ScreenEffectMgr.cpp",
+      "line": 341,
+      "expected": "double",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Effect/ScreenEffectMgr.cpp",
+      "line": 342,
+      "expected": "double",
+      "actual": "ScreenEffect",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1736": {
    "name": "m_nTodo_6C8",
@@ -162,7 +307,24 @@
    "name": "m_nTodo_F9C",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 5,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3918,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4": {
    "name": "m_pScnFrameTex",
@@ -174,13 +336,96 @@
    "name": "m_pAdditiveEffect",
    "type": "gbRenderEffect *",
    "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 11,
+    "sites_consistent": 0,
+    "sites_contradicted": 4,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1591,
+      "expected": "gbRenderEffect",
+      "actual": "GRPinput",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1602,
+      "expected": "gbRenderEffect",
+      "actual": "SceneObj",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1622,
+      "expected": "gbRenderEffect",
+      "actual": "SceneObj",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1651,
+      "expected": "gbRenderEffect",
+      "actual": "SceneObj",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "12": {
    "name": "m_pAdditiveEffect2",
    "type": "gbRenderEffect *",
    "source": "A:decomp LODWORD=gbEffectMgr::NewRenderEffect() ret(gbRenderEffect*) in 0x004C58C0; Release()+set_0 in 0x004C0400",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 35,
+    "sites_consistent": 20,
+    "sites_contradicted": 5,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1586,
+      "expected": "gbRenderEffect",
+      "actual": "gbRefObject",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1634,
+      "expected": "gbRenderEffect",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1647,
+      "expected": "gbRenderEffect",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1648,
+      "expected": "gbRenderEffect",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 1654,
+      "expected": "gbRenderEffect",
+      "actual": "gbRefObject",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1696": {
    "name": "m_nTodo_6A0",

@@ -148,7 +148,24 @@
    "name": "m_fPosX",
    "type": "float",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 51,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 5526,
+      "expected": "float",
+      "actual": "gbVec3D",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "164": {
    "name": "m_fPosY",
@@ -480,7 +497,52 @@
    "name": "m_partyActor",
    "type": "Actor",
    "source": "A+:decomp Actor::DispatchAction((Actor*)&this->_todo_1A8) embedded_Actor + member_access(.m_pSelfAtt,.m_pEquipAtt*,.m_dwMatMsg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 1086,
+    "sites_consistent": 333,
+    "sites_contradicted": 22,
+    "contradictions": [
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 1460,
+      "expected": "Actor",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2411,
+      "expected": "Actor",
+      "actual": "void",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2414,
+      "expected": "Actor",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2418,
+      "expected": "Actor",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/StateUI.cpp",
+      "line": 1491,
+      "expected": "Actor",
+      "actual": "void",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1244": {
    "name": "m_fPathTargetY",
@@ -504,7 +566,52 @@
    "name": "m_fPathSpeed",
    "type": "float",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 42,
+    "sites_consistent": 12,
+    "sites_contradicted": 7,
+    "contradictions": [
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 790,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 816,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 842,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 868,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Data/PAL_GDB.cpp",
+      "line": 894,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1260": {
    "name": "m_nPrevMoveMode",
@@ -576,7 +683,38 @@
    "name": "m_fRotAxisZ",
    "type": "float",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 83,
+    "sites_consistent": 10,
+    "sites_contradicted": 3,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 1062,
+      "expected": "float",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/UIListBox.cpp",
+      "line": 1516,
+      "expected": "float",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Role/NPC.cpp",
+      "line": 413,
+      "expected": "float",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1308": {
    "name": "m_nMovement",
@@ -594,7 +732,52 @@
    "name": "m_FrameA",
    "type": "UIFrameWnd",
    "source": "decomp:ctor_UIFrameWnd_shared_init(was_m_fPathDirX_float_WRONG) | [embed overlap 声明 2026-10-16] 补 overlap（尺寸修正下游暴露：m_FrameA(UIFrameWnd)@1316 ends@1468 > m_nActiveRole@1388）⚠️ 1388 疑为 UIFrameWnd 子对象内员（偏移 72）被外层误挂——真值待 idapro 访问形核实",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 209,
+    "sites_consistent": 0,
+    "sites_contradicted": 6,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 1061,
+      "expected": "UIFrameWnd",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1320,
+      "expected": "UIFrameWnd",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 1323,
+      "expected": "UIFrameWnd",
+      "actual": "PtrArray",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2707,
+      "expected": "UIFrameWnd",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Role/NPC.cpp",
+      "line": 412,
+      "expected": "UIFrameWnd",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1388": {
    "name": "m_nActiveRole",
@@ -618,19 +801,140 @@
    "name": "m_nAnimCopy1",
    "type": "int",
    "source": "ida_decomp:UpdateAnimation = v19, copied to role+1268, 3 refs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 11,
+    "sites_consistent": 0,
+    "sites_contradicted": 8,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3485,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3486,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3487,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3490,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "UI/StateUI.cpp",
+      "line": 678,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1404": {
    "name": "m_nAnimCopy2",
    "type": "int",
    "source": "ida_decomp:UpdateAnimation = v18[321], 3 refs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 10,
+    "sites_consistent": 0,
+    "sites_contradicted": 4,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3488,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3489,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 1985,
+      "expected": "int",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2003,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1408": {
    "name": "m_nAnimCopy3",
    "type": "int",
    "source": "ida_decomp:UpdateAnimation = v18[2172], UpdateMovement param, 3 refs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 7,
+    "sites_consistent": 0,
+    "sites_contradicted": 4,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2703,
+      "expected": "int",
+      "actual": "RoleSystem",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2706,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2711,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2715,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1412": {
    "name": "m_pLinkedRole",
@@ -824,7 +1128,24 @@
    "name": "m_configData",
    "type": "int[96]",
    "source": "binary_scan:3refs|FullInit: array access indices 0-32, gap 384 bytes to _todo_1198",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 7,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3125,
+      "expected": "int[96]",
+      "actual": "RoleSystem",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4484": {
    "name": "m_nTodo_1184",
@@ -890,7 +1211,52 @@
    "name": "m_teamData3",
    "type": "int[29]",
    "source": "decomp ref C2039",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 136,
+    "sites_consistent": 0,
+    "sites_contradicted": 40,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 605,
+      "expected": "int[29]",
+      "actual": "int",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 799,
+      "expected": "int[29]",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 861,
+      "expected": "int[29]",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 968,
+      "expected": "int[29]",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 21696,
+      "expected": "int[29]",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "1676": {
    "name": "m_nTodo_68C",
@@ -915,13 +1281,103 @@
     ]
    },
    "source": "binary_scan:5refs|FullInit: array access indices 94-190",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 37,
+    "sites_consistent": 0,
+    "sites_contradicted": 16,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2718,
+      "expected": "{'union': [{'type': 'tagTeamSlotsBOverlay', 'name': 'combat'}]}",
+      "actual": "_QWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2888,
+      "expected": "{'union': [{'type': 'tagTeamSlotsBOverlay', 'name': 'combat'}]}",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2889,
+      "expected": "{'union': [{'type': 'tagTeamSlotsBOverlay', 'name': 'combat'}]}",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2890,
+      "expected": "{'union': [{'type': 'tagTeamSlotsBOverlay', 'name': 'combat'}]}",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2891,
+      "expected": "{'union': [{'type': 'tagTeamSlotsBOverlay', 'name': 'combat'}]}",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "6504": {
    "name": "dword_17AA450",
    "type": "int",
    "source": "[task-9 阶段 1 2026-10-19] 幻影成员还原（全局落在 g_RoleSystemCombat+6504 大对象内 ⇒ 偏移访问非独立全局 ✓ 系统性审伪结论）· 原全局名 dword_17AA450 · 型=int 占位（真型待 idapro 访问形）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 539,
+    "sites_consistent": 2,
+    "sites_contradicted": 64,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 4723,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 4725,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 4727,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 4729,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "free_functions.cpp",
+      "line": 4731,
+      "expected": "int",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   }
  },
  "binary_size": 7600,

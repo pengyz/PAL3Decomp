@@ -635,7 +635,16 @@
    "name": "m_fSceneTileSize",
    "type": "float",
    "source": "binary: 70 refs, fstp/fdiv/fmul flt_C1109C in RoleSystem::MoveToTile/MoveRole/UpdateRole/UpdateActionState (movement interpolation); accessor_00411760 returns it; semantic name from prior globals.json annotation g_fSceneTileSize (scene tile size feeding tile-step math)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 66,
+    "sites_consistent": 66,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
   },
   "1892": {
    "name": "_todo_764",
@@ -674,7 +683,24 @@
    "name": "m_WaitObjList",
    "type": "PtrArray",
    "source": "内嵌 PtrArray 值位面（`m_WaitObjList.capacity` 实证） | ⚠️ C1 variant 撤销 2026-10-16（verifier 当场读抓获误伤）：PtrArray=非平凡型（带 ctor）入匿名 union ⇒ C2620 全树崩（S2 0/205，每 TU L84）——MSVC6 union 禁非平凡成员；PAL3 L3195 `=0` 位面失配（C2679）改期他法（overlap 标注/值位面 POD 替身）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 0,
+    "sites_contradicted": 1,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 3422,
+      "expected": "PtrArray",
+      "actual": "_DWORD",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   }
  },
  "methods": {

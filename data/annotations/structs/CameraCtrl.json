@@ -490,13 +490,31 @@
    "name": "m_bBlendActive",
    "type": "unsigned char",
    "source": "ida_decomp:UpdateBlendWeight set 1, 5 refs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 3,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
   },
   "3337": {
    "name": "m_bBlendPause",
    "type": "unsigned char",
    "source": "ida_decomp:UpdateBlendWeight set 0, 5 refs",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 4,
+    "sites_consistent": 4,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
   },
   "3340": {
    "name": "m_nTickCount",

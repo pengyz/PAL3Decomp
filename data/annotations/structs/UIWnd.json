@@ -36,7 +36,45 @@
    "name": "m_childs",
    "type": "PtrArray",
    "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 849,
+    "sites_consistent": 2,
+    "sites_contradicted": 4,
+    "contradictions": [
+     {
+      "file": "free_functions.cpp",
+      "line": 1061,
+      "expected": "PtrArray",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2707,
+      "expected": "PtrArray",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Role/NPC.cpp",
+      "line": 412,
+      "expected": "PtrArray",
+      "actual": "_BYTE",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Misc/MUIDialog.cpp",
+      "line": 28,
+      "expected": "PtrArray",
+      "actual": "unsigned __int8",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "52": {
    "name": "m_bcreateok",

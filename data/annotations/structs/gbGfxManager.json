@@ -1,247 +1,256 @@
 {
-  "name": "gbGfxManager",
-  "binary_size": 1520,
-  "known_members": {
-    "8": {
-      "name": "hGfxWnd",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "DrvInfo",
-      "type": "gbGfxDriverInfo",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "196": {
-      "name": "pVertPoolMgr",
-      "type": "gbVertPoolMgr *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "200": {
-      "name": "pEffectMgr",
-      "type": "gbEffectMgr *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "204": {
-      "name": "pTexResMgr",
-      "type": "gbResManager *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "208": {
-      "name": "pFontMgr",
-      "type": "gbPrintFontMgr *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "212": {
-      "name": "pMatrixStack",
-      "type": "gbMatrixStack *[4]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "228": {
-      "name": "ViewMatrix",
-      "type": "gbMatrix4",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "292": {
-      "name": "InvViewMatrix",
-      "type": "gbMatrix4",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "356": {
-      "name": "WorldMatrix",
-      "type": "gbMatrix4",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "420": {
-      "name": "CurZBias",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "424": {
-      "name": "bWireMode",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "428": {
-      "name": "AmbientLight",
-      "type": "gbColorFlt",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "444": {
-      "name": "fSelfIllum",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "448": {
-      "name": "pSceneGraph",
-      "type": "gbSceneGraph *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "452": {
-      "name": "Viewport",
-      "type": "gbViewPort",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "476": {
-      "name": "ClearParam",
-      "type": "gbClearParam",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "496": {
-      "name": "LastTime",
-      "type": "double",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "504": {
-      "name": "CurTime",
-      "type": "double",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "512": {
-      "name": "LastTick",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "516": {
-      "name": "CurTick",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "520": {
-      "name": "Stat",
-      "type": "gbGfxStatistic",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "568": {
-      "name": "AllLight",
-      "type": "gbLight[8]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1400": {
-      "name": "LightEnable",
-      "type": "int[8]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1432": {
-      "name": "FogParam",
-      "type": "gbFogParam",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1484": {
-      "name": "m_pCurTexture",
-      "type": "gbTexture *[8]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbGfxManager",
+ "binary_size": 1520,
+ "known_members": {
+  "8": {
+   "name": "hGfxWnd",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 4,
-  "methods": {
-    "0x00010002": {
-      "name": "NewTexture",
-      "ordinal": 2,
-      "signature": "gbTexture *__thiscall(const char *name)",
-      "evidence_level": "unverified"
-    },
-    "0x00010001": {
-      "name": "MsgProc",
-      "ordinal": 1,
-      "evidence_level": "unverified"
-    },
-    "0x00010003": {
-      "name": "NewMesh",
-      "ordinal": 3,
-      "evidence_level": "unverified"
-    },
-    "0x00010004": {
-      "name": "NewVertexPool",
-      "ordinal": 4,
-      "evidence_level": "unverified"
-    },
-    "0x00010005": {
-      "name": "NewIndexPool",
-      "ordinal": 5,
-      "evidence_level": "unverified"
-    },
-    "0x00010006": {
-      "name": "NewDynVertBuf",
-      "ordinal": 6,
-      "evidence_level": "unverified"
-    },
-    "0x00010000": {
-      "name": "_todo_010000",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 数据误检标记（vptr_installs 假阳——非码值）+ declaration_only",
-      "evidence_level": "unverified"
-    }
+  "12": {
+   "name": "DrvInfo",
+   "type": "gbGfxDriverInfo",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
+  "196": {
+   "name": "pVertPoolMgr",
+   "type": "gbVertPoolMgr *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "200": {
+   "name": "pEffectMgr",
+   "type": "gbEffectMgr *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "204": {
+   "name": "pTexResMgr",
+   "type": "gbResManager *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "208": {
+   "name": "pFontMgr",
+   "type": "gbPrintFontMgr *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "212": {
+   "name": "pMatrixStack",
+   "type": "gbMatrixStack *[4]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "228": {
+   "name": "ViewMatrix",
+   "type": "gbMatrix4",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "292": {
+   "name": "InvViewMatrix",
+   "type": "gbMatrix4",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "356": {
+   "name": "WorldMatrix",
+   "type": "gbMatrix4",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "420": {
+   "name": "CurZBias",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "424": {
+   "name": "bWireMode",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "428": {
+   "name": "AmbientLight",
+   "type": "gbColorFlt",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "444": {
+   "name": "fSelfIllum",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 6,
+    "sites_consistent": 6,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "448": {
+   "name": "pSceneGraph",
+   "type": "gbSceneGraph *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "452": {
+   "name": "Viewport",
+   "type": "gbViewPort",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "476": {
+   "name": "ClearParam",
+   "type": "gbClearParam",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "496": {
+   "name": "LastTime",
+   "type": "double",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "504": {
+   "name": "CurTime",
+   "type": "double",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "512": {
+   "name": "LastTick",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "516": {
+   "name": "CurTick",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "520": {
+   "name": "Stat",
+   "type": "gbGfxStatistic",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "568": {
+   "name": "AllLight",
+   "type": "gbLight[8]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1400": {
+   "name": "LightEnable",
+   "type": "int[8]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1432": {
+   "name": "FogParam",
+   "type": "gbFogParam",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1484": {
+   "name": "m_pCurTexture",
+   "type": "gbTexture *[8]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 4,
+ "methods": {
+  "0x00010002": {
+   "name": "NewTexture",
+   "ordinal": 2,
+   "signature": "gbTexture *__thiscall(const char *name)",
+   "evidence_level": "unverified"
+  },
+  "0x00010001": {
+   "name": "MsgProc",
+   "ordinal": 1,
+   "evidence_level": "unverified"
+  },
+  "0x00010003": {
+   "name": "NewMesh",
+   "ordinal": 3,
+   "evidence_level": "unverified"
+  },
+  "0x00010004": {
+   "name": "NewVertexPool",
+   "ordinal": 4,
+   "evidence_level": "unverified"
+  },
+  "0x00010005": {
+   "name": "NewIndexPool",
+   "ordinal": 5,
+   "evidence_level": "unverified"
+  },
+  "0x00010006": {
+   "name": "NewDynVertBuf",
+   "ordinal": 6,
+   "evidence_level": "unverified"
+  },
+  "0x00010000": {
+   "name": "_todo_010000",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: 数据误检标记（vptr_installs 假阳——非码值）+ declaration_only",
+   "evidence_level": "unverified"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "external",
+   "external": true,
+   "slots": [
     {
-      "addr": "external",
-      "external": true,
-      "slots": [
-        {
-          "addr": "0x00010000",
-          "from": null
-        },
-        {
-          "addr": "0x00010001",
-          "from": null
-        },
-        {
-          "addr": "0x00010002",
-          "from": null
-        },
-        {
-          "addr": "0x00010003",
-          "from": null
-        },
-        {
-          "addr": "0x00010004",
-          "from": null
-        },
-        {
-          "addr": "0x00010005",
-          "from": null
-        },
-        {
-          "addr": "0x00010006",
-          "from": null
-        }
-      ],
-      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 include/gbengine/gbGfxManager.h:144-153 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
-    }
-  ],
-  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x00010000 非任何映像地址（PAL3 映像界 0x401000-0x189C3CA；0x10000<0x401000）⇒ 垃圾值。gb*（gbengine.dll 外部库）类的 vtable 不在 PAL3 映像 ⇒ 认领即编造",
-  "bases": [
+     "addr": "0x00010000",
+     "from": null
+    },
     {
-      "name": "gbSingleton_gbGfxManager",
-      "offset": 0
+     "addr": "0x00010001",
+     "from": null
+    },
+    {
+     "addr": "0x00010002",
+     "from": null
+    },
+    {
+     "addr": "0x00010003",
+     "from": null
+    },
+    {
+     "addr": "0x00010004",
+     "from": null
+    },
+    {
+     "addr": "0x00010005",
+     "from": null
+    },
+    {
+     "addr": "0x00010006",
+     "from": null
     }
-  ]
+   ],
+   "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 include/gbengine/gbGfxManager.h:144-153 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+  }
+ ],
+ "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x00010000 非任何映像地址（PAL3 映像界 0x401000-0x189C3CA；0x10000<0x401000）⇒ 垃圾值。gb*（gbengine.dll 外部库）类的 vtable 不在 PAL3 映像 ⇒ 认领即编造",
+ "bases": [
+  {
+   "name": "gbSingleton_gbGfxManager",
+   "offset": 0
+  }
+ ]
 }

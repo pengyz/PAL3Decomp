@@ -6,7 +6,31 @@
    "name": "m_pDataStart",
    "type": "int",
    "source": "binary: first field in Array struct, not vfptr (non-virtual class) | iter2_field_rename | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4A69B0 `LOBYTE(m_pDataStart)=0` 字节位面（判据③） | evidence: 详前文 A 级形证",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "audit": {
+    "level": "contradicted",
+    "method": "use_site_enumeration",
+    "sites_checked": 7,
+    "sites_consistent": 0,
+    "sites_contradicted": 2,
+    "contradictions": [
+     {
+      "file": "GameBase/PAL3.cpp",
+      "line": 2611,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     },
+     {
+      "file": "Script/PalScript.cpp",
+      "line": 2436,
+      "expected": "int",
+      "actual": "char",
+      "detail": "cast 型别不一致"
+     }
+    ],
+    "timestamp": "2026-11-12"
+   }
   },
   "4": {
    "name": "m_nSize",
