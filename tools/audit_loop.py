@@ -8,7 +8,7 @@
 
 进度文件: data/status/audit_loop_progress.json
 """
-import json, os, sys, subprocess, time
+import json, os, sys, subprocess, time, re
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
