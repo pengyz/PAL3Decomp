@@ -1123,9 +1123,9 @@
    "signature": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)",
    "evidence_level": "unverified",
    "lvars": {
-    "pTargetPos": "void *"
+    "pTargetPos": "struct gbVec3D"
    },
-   "lvars_source": " | L-VAR 2026-11-11 双生命期放开试点(IDB通路): decomp pTargetPos=0.0f(float初始化)+((UIWnd*)pTargetPos[1])指针数组读——IDB user type void* 后 Hex-Rays 按真类型自洽重渲染(数据流视图唯一全知者); 纯赢门在 IDB 通路下放开"
+   "lvars_source": " | L-VAR 2026-11-11 双生命期放开试点(IDB通路): decomp pTargetPos=0.0f(float初始化)+((UIWnd*)pTargetPos[1])指针数组读——IDB user type void* 后 Hex-Rays 按真类型自洽重渲染(数据流视图唯一全知者); 纯赢门在 IDB 通路下放开 | L-VAR 2026-11-12 真值修正(反汇编0x412A90): 槽=3相邻栈字(0x0c/0x10/0x14), 前8字节mov 0双写+fstp float位写+lea 传址 SetMoveTarget——gbVec3D BYREF(x/y/z), 原 void* 系猜测(重渲染出 0.0 double 位写炸 VC6)"
   },
   "0x00413420": {
    "name": "StepAlongPath",
