@@ -1,85 +1,87 @@
 {
-  "name": "ComposeUI",
-  "binary_size": 3896,
-  "known_members": {
-    "72": {
-      "name": "m_CurRender",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "76": {
-      "name": "m_isCreatable",
-      "type": "unsigned char",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "m_TopFrame",
-      "type": "UIStatic",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "240": {
-      "name": "m_BottomFrame",
-      "type": "UIStatic",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "400": {
-      "name": "m_MiddleFrame",
-      "type": "UIStatic[3]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "880": {
-      "name": "m_Talk",
-      "type": "UIButton",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1224": {
-      "name": "m_Compose",
-      "type": "UIButton",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1568": {
-      "name": "m_Exit",
-      "type": "UIButton",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "1912": {
-      "name": "m_SelBtn",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "ComposeUI",
+ "binary_size": 3896,
+ "known_members": {
+  "72": {
+   "name": "m_CurRender",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0047E190": {
-      "name": "ProcessFrame",
-      "signature": "void __thiscall ComposeUI::ProcessFrame(int nVal)",
-      "_misattrib_evidence": "max_offset=2912>class_size=152",
-      "evidence_level": "unverified"
-    },
-    "0x0047E030": {
-      "name": "RefreshRecipeList",
-      "signature": "int __thiscall ComposeUI::RefreshRecipeList(int arg0)",
-      "evidence_level": "unverified"
-    },
-    "0x004A3730": {
-      "name": "ProcessChildItem",
-      "signature": "int __thiscall ComposeUI::ProcessChildItem(int arg0, int *p_DWORD)",
-      "evidence_level": "unverified"
-    }
+  "76": {
+   "name": "m_isCreatable",
+   "type": "unsigned char",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 72,
-  "bases": [
-    {
-      "name": "UIFrameWnd",
-      "offset": 0
-    }
-  ]
+  "80": {
+   "name": "m_TopFrame",
+   "type": "UIStatic",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "240": {
+   "name": "m_BottomFrame",
+   "type": "UIStatic",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "400": {
+   "name": "m_MiddleFrame",
+   "type": "UIStatic[3]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "880": {
+   "name": "m_Talk",
+   "type": "UIButton",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1224": {
+   "name": "m_Compose",
+   "type": "UIButton",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1568": {
+   "name": "m_Exit",
+   "type": "UIButton",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "1912": {
+   "name": "m_SelBtn",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x0047E190": {
+   "name": "ComposeUI::ProcessFrame",
+   "signature": "int __thiscall ComposeUI::ProcessFrame(int nVal)",
+   "_misattrib_evidence": "max_offset=2912>class_size=152",
+   "evidence_level": "unverified",
+   "source": "member_attribution_20261113: 调用点2个(UITitle_YXXX.cpp:408外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
+   "owner": "ComposeUI"
+  },
+  "0x0047E030": {
+   "name": "RefreshRecipeList",
+   "signature": "int __thiscall ComposeUI::RefreshRecipeList(int arg0)",
+   "evidence_level": "unverified"
+  },
+  "0x004A3730": {
+   "name": "ProcessChildItem",
+   "signature": "int __thiscall ComposeUI::ProcessChildItem(int arg0, int *p_DWORD)",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 72,
+ "bases": [
+  {
+   "name": "UIFrameWnd",
+   "offset": 0
+  }
+ ]
 }

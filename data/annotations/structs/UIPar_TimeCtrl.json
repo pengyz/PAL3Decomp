@@ -1,25 +1,25 @@
 {
-  "name": "UIPar_TimeCtrl",
-  "binary_size": 12,
-  "known_members": {
-    "0": {
-      "name": "newtick",
-      "type": "DWORD",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "oldtick",
-      "type": "DWORD",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "bNote",
-      "type": "BYTE",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "UIPar_TimeCtrl",
+ "binary_size": 12,
+ "known_members": {
+  "0": {
+   "name": "newtick",
+   "type": "DWORD",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {}
+  "4": {
+   "name": "oldtick",
+   "type": "unsigned int",
+   "source": "annotation | [修 2026-11-13] DWORD→unsigned int: MagicUI 8站 &oldtick 传 (unsigned int*,int) fn-ptr param1, VC6 严格 long*/int* 失配; 语义=32位tick计数",
+   "evidence_level": "unverified"
+  },
+  "8": {
+   "name": "bNote",
+   "type": "BYTE",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {}
 }

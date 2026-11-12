@@ -9739,5 +9739,10 @@
   "note": "0x401820 落在 0x401810 ArraySort 函数体指令中间(mov ebp,[esp+10h] 第4字节)——非独立函数。functions.json 同址 skip 结案(2026-11-04 A级字节证据)联动至此: codegen 消费本文件",
   "type": "skip",
   "declaration_only": true
+ },
+ "0x00551C66": {
+  "name": "MagicUI::InitComItem",
+  "reason": "vc6_unsupported_intrinsic",
+  "skip_reason": "3DNow!/MMX intrinsic (_m_femms/_mm_cvtsi32_si64/_m_pfmul) VC6 编译器无此内置 (VS2003+/AMD SDK 才有); decomp 实证 MagicUI_InitComItemint_00551c66 全函数 __m64 语义"
  }
 }

@@ -158,10 +158,12 @@
    "evidence_level": "unverified"
   },
   "0x0048E950": {
-   "name": "UpdateState",
-   "signature": "char __thiscall CEffect::UpdateState(int nVal)",
+   "name": "CEffect::UpdateState",
+   "signature": "int __thiscall CEffect::UpdateState(int nVal)",
    "_misattrib_evidence": "max_offset=4672>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "member_attribution_20261113: 体内v1//ecx未初始化即用(16*nVal+v1数组基址); 调用点3个全在free_functions内部(CEffect_UpdateCallback族) | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
+   "owner": "CEffect"
   },
   "0x004BB190": {
    "name": "SetRenderParam",

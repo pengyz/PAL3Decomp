@@ -299,10 +299,12 @@
    "evidence_level": "unverified"
   },
   "0x00455790": {
-   "name": "RefreshElements",
-   "signature": "int *__thiscall TaskBookUI::RefreshElements()",
+   "name": "TaskBookUI::RefreshElements",
+   "signature": "int __thiscall TaskBookUI::RefreshElements(int nVal)",
    "_misattrib_evidence": "max_offset=130348>class_size=1012",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "member_attribution_20261113: 体内v1//ecx未初始化即用(v1+1252偏移在类内143672); vtable形态虚调用;调用点2个(free_functions内部5288/5470) | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
+   "owner": "TaskBookUI"
   },
   "0x00455A20": {
    "name": "ScrollUp",
