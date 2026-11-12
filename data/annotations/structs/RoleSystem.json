@@ -1116,7 +1116,8 @@
   "0x00411E00": {
    "name": "ApplyMoveStep",
    "signature": "void __thiscall RoleSystem::ApplyMoveStep(double fInput, int nVal, float fVal, char bCollide)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars_source": " | L-VAR 2026-11-12 R2类(asm寄存器别名): reg_EAX = (ulong)(&reg_ESI[..].m_fSpeed + 2) 取址惯例存地址, 下标写 [1]/[2]=元素——真值指针槽(unsigned long*), C2109/C2106 x9 消 | 移除 2026-11-12: 重导出后 Hex-Rays 已自洽(reg_EAX 零出现, gbVec3D pB 真型出现)——F83 reg_ 族系 codegen stage5 注入伪名,属留批 F 深水区, 非 lvars 可修"
   },
   "0x00412A90": {
    "name": "MoveToTile",

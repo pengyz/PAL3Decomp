@@ -8701,5 +8701,13 @@
   "type": "char[6]",
   "evidence_level": "A",
   "source": " | L-VAR 2026-11-12: exe 字节直读 b'2.pol' 字符串常量; IDB 0x590648 a2Pol(探针定位), IAT传播重导出新渲染引用(L-CHK W3族)——补条目"
+ },
+ "0x0057C1EC": {
+  "name": "gbVec3D_Normalize",
+  "type": "skip",
+  "orig_type": "void (__cdecl *)(gbVec3D *)",
+  "category": "ptr_table",
+  "evidence_level": "A",
+  "source": " | L-VAR 2026-11-12 通用墓碑律(与 0x57C068 ctor 同族): 函数值槽(gbengine.dll 0x100250A0 Normalize, IAT 0x57C1EC 导入表取证)——真签名住 functions.json+IAT 白名单(IDB 已 set), globals 数据 extern 不需要(decomp 引用 gbVec3D::Normalize 伪名, P-A13d 族已改写, 槽名零引用); skip+orig_type=W3 律: 未引用不发射, 复活走 P-A18 归一"
  }
 }

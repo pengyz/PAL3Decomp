@@ -1964,6 +1964,10 @@ _GB_IMPORT_SIGS = {
     # (CCBStage C2661 x7 + 下游宿主级联)。
     "??0gbVec3D@@QAE@MMM@Z":
         "void __thiscall(gbVec3D *, float, float, float);",
+    # [L-VAR 2026-11-12] gbVec3D::Normalize(void)——IAT 0x57C1EC(导入表取证,
+    # registry 0x100250A0)。RoleSystem 0x413CD0 宿主 13 错链头(C2660 1参渲染)。
+    "?Normalize@gbVec3D@@QAEXXZ":
+        "void __thiscall(gbVec3D *);",
     "?LoadFromFile@gbGeomNode@@QAEHPBD0P6AXHH@Z@Z":
         "int __thiscall(gbGeomNode *, const char *, const char *, void (__cdecl *)(int, int));",
     "?GetTotalOBBox@gbGeomNode@@QAEPAUgbOBBox@@PAU2@@Z":
