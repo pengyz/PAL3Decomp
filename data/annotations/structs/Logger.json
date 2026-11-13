@@ -96,8 +96,9 @@
   },
   "0x0053CC10": {
    "name": "RegisterCallback",
-   "signature": "int __thiscall(void (*f)(), char *name, char *desc)",
-   "evidence_level": "unverified"
+   "signature": "int __thiscall(int *f, char *name, char *desc)",
+   "evidence_level": "unverified",
+   "source": "[修 2026-11-13] void(*f)()→int*: 函数体 v6->pfn=(int*)f 存储真值(int*), 实参含thiscall成员函数指针(WriteRoleNames), 原始源码用泛型指针存回调"
   },
   "0x0053CE90": {
    "name": "RegisterCallbacks",
