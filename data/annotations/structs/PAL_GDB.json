@@ -109,7 +109,12 @@
   "0x0049C660": {
    "name": "SelectBestTarget",
    "signature": "int __thiscall PAL_GDB::SelectBestTarget(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "v25": "unsigned long *",
+    "v27": "unsigned long *"
+   },
+   "lvars_source": "[C2440修 2026-11-13] v25/v27 = pOut(unsigned long[5]) 数组地址赋给int变量 ⇒ 重型为指针(数组退化为指针)"
   },
   "0x00457F00": {
    "name": "RefreshSkillNumbers",

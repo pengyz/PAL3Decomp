@@ -6315,9 +6315,9 @@
   "skip_reason": "linker_generated"
  },
  "0x005420FC": {
-  "name": "?AttachSelf@gbVisNode@@UAEXPAVgbRenderEffect@@@Z",
-  "reason": "crt_runtime",
-  "skip_reason": "linker_generated"
+  "name": "SceneVisNode_adjthunk_20FC",
+  "reason": "compiler_thunk",
+  "skip_reason": "MI adjustor thunk"
  },
  "0x00542108": {
   "name": "?Render@gbParticleEffect@@UAEXPAUgbRenderInfoObj@@@Z",
@@ -9614,16 +9614,14 @@
   "skip_reason": "dual_def_workaround"
  },
  "0x00542102": {
-  "name": "?RenderShadowVolume@gbVisNode@@UAEXPAUgbRenderInfoObj@@@Z",
-  "reason": "between_std_methods",
-  "source": "批0 复位 2026-10-06：单源清误删 skip 侧=意外解禁（C2556/2373 ×144 爆）——skip=体排除语义与声明收编不同源，check 指引须区分",
-  "skip_reason": "linker_generated"
+  "name": "SceneVisNode_adjthunk_2102",
+  "reason": "compiler_thunk",
+  "skip_reason": "MI adjustor thunk"
  },
  "0x00542114": {
-  "name": "?Reset@gbVisNode@@UAEXM@Z",
-  "reason": "between_std_methods",
-  "source": "批0 复位 2026-10-06：单源清误删 skip 侧=意外解禁（C2556/2373 ×144 爆）——skip=体排除语义与声明收编不同源，check 指引须区分",
-  "skip_reason": "linker_generated"
+  "name": "SceneVisNode_adjthunk_2114",
+  "reason": "compiler_thunk",
+  "skip_reason": "MI adjustor thunk"
  },
  "0x0054211A": {
   "name": "?Update@gbVisNode@@UAEXXZ",
@@ -9744,5 +9742,10 @@
   "name": "MagicUI::InitComItem",
   "reason": "vc6_unsupported_intrinsic",
   "skip_reason": "3DNow!/MMX intrinsic (_m_femms/_mm_cvtsi32_si64/_m_pfmul) VC6 编译器无此内置 (VS2003+/AMD SDK 才有); decomp 实证 MagicUI_InitComItemint_00551c66 全函数 __m64 语义"
+ },
+ "0x0054210E": {
+  "name": "SceneVisNode_adjthunk_210E",
+  "reason": "compiler_thunk",
+  "skip_reason": "MI adjustor thunk"
  }
 }
