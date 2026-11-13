@@ -682,7 +682,12 @@
     }
    ],
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "lvars": {
+    "pSceneName": "char *",
+    "pNewBuffer": "char *"
+   },
+   "lvars_source": "[C2036修 2026-11-13] void*→char*: ++pSceneName/&pSceneName[v131+1] 字符串遍历语义"
   },
   "0x004118D0": {
    "name": "UpdateSubsystems",
