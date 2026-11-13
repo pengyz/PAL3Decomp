@@ -470,5 +470,14 @@
   "actor_actarray_collision": "Actor.json @0 m_actarray_type(unsigned char)/@4 begin/@8 end/@12 capacity_end 与 Actor vtables(表归属未定谳)冲突——@0 是 vptr 位或 actarray 首字段二选一; Actor.cpp:527/559 的 cap_end->m_actarray_type+v5 = 数组尾算术渲染",
   "site_evidence": "CCBUI.cpp:5037 fn-ptr 调用实参 &this[1].m_Task[15].bValid 与 &g_PlayerAttBuffer._todo_074[140] 混合(容器成员+全局池)",
   "next_session": "①Actor vtables 表归属定谳(决定 @0 语义) ②m_actarray_* 族归属裁决 (容器类 or Actor 尾字段) ③之后才可裁决 uchar/char 66站点的声明侧修正"
+ },
+ "verdict_actor_20261113": {
+  "conclusion": "Actor 多态实锤(vptr@0), m_actarray_* @0/4/8/12 族=错归属(非uchar声明问题)",
+  "evidence": [
+   "表0x56AAC4槽0=?_scalar_dtor_F340@Actor@@(mangled类名明示)",
+   "表引用者全是Actor方法: SortAnimData@0x41f32f/OnEvent@0x41f360/ReleasePath",
+   "MSVC标准布局: 虚析构占槽0(表被Actor方法读=派发用)"
+  ],
+  "implication": "66站点 uchar 修正改为: m_actarray_*族迁出Actor.json(归属真实容器,容器类身份待下轮取证——名字actarray=action数组提示战斗动作容器), 迁移后站点自然消解; 同时表0x56A6D0混入CheckSceneCollision@RoleSystem槽=表归属乱象再证(五件套①清算范围+1)"
  }
 }
