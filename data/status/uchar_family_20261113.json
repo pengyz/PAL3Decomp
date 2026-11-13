@@ -465,5 +465,10 @@
    "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from",
    "text": "v99);"
   }
- ]
+ ],
+ "findings_20261113": {
+  "actor_actarray_collision": "Actor.json @0 m_actarray_type(unsigned char)/@4 begin/@8 end/@12 capacity_end 与 Actor vtables(表归属未定谳)冲突——@0 是 vptr 位或 actarray 首字段二选一; Actor.cpp:527/559 的 cap_end->m_actarray_type+v5 = 数组尾算术渲染",
+  "site_evidence": "CCBUI.cpp:5037 fn-ptr 调用实参 &this[1].m_Task[15].bValid 与 &g_PlayerAttBuffer._todo_074[140] 混合(容器成员+全局池)",
+  "next_session": "①Actor vtables 表归属定谳(决定 @0 语义) ②m_actarray_* 族归属裁决 (容器类 or Actor 尾字段) ③之后才可裁决 uchar/char 66站点的声明侧修正"
+ }
 }
