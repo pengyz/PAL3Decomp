@@ -24,7 +24,7 @@
   },
   "0x00434D20": {
    "name": "IsBlendComplete",
-   "signature": "int __thiscall()",
+   "signature": "int __thiscall PalScriptBlendTimer::IsBlendComplete()",
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`return m_fElapsed(+8) < m_fDuration(+12)` 混合完成判",
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -32,7 +32,7 @@
   },
   "0x00434D40": {
    "name": "AccumulateTime",
-   "signature": "void __thiscall(float)",
+   "signature": "void __thiscall PalScriptBlendTimer::AccumulateTime(float)",
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`m_fElapsed(+8) += fDelta` 累加",
    "evidence_level": "A"
   }

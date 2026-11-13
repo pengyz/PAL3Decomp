@@ -23,13 +23,13 @@
   },
   "0x00438100": {
    "name": "IsWaitDone",
-   "signature": "void __thiscall(float)",
+   "signature": "void __thiscall PalScriptWaitTimer::IsWaitDone(float)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）",
    "evidence_level": "unverified"
   },
   "0x004382A0": {
    "name": "UpdateIdleTimer",
-   "signature": "void __thiscall(float)",
+   "signature": "void __thiscall PalScriptWaitTimer::UpdateIdleTimer(float)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer） | multiclaim 裁决 2026-11-03: 败于 PalScript（uniq=5）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
