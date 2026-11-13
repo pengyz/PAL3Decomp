@@ -519,5 +519,11 @@
   "cluster": "CCBControlWindow Create ×3 C2664",
   "root_cause": "C++标准禁止 UIButton** 隐式转 UIWnd**(双指针跨继承层级无隐式转换); 原源码必在调用点有显式 cast;",
   "fix_layer": "管线调用点变换(非注解层)——挂账"
+ },
+ "m_nAnimState_verdict": {
+  "member": "RoleSystem::m_nAnimState @174 : char",
+  "verdict": "STAY char (1字节) — strcpy站是跨成员复用",
+  "evidence": "IDB UDT真值: @174 char / @175 m_bActionPause / @176 m_szModelName — 空间仅1B不可能存场景名; 6个strcpy/strcmpi站=从174开始覆盖后续成员的lazy复用(原始源码可能有union或注释区复用)",
+  "conclusion": "改char[N]会挤掉@175/@176致布局崩坏——禁止。strcpy站=别名复用挂账"
  }
 }
