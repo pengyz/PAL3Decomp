@@ -225,6 +225,46 @@ def _apply_text_substitutions(code, ctx):
         _out84.append(code[_pos:_m]); _pos = _m
     code = ''.join(_out84)
 
+    # [F84-ext 2026-11-13] 槽位数组形态 (*vN[k])(args)——find('(**') 扫描射程
+    # 不含(UITitle_JDHY_UpdateButtonStates 12错/TaskBookUI vtable族实证)。
+    # 机理同 F84: 声明参数表与实参表元数一致 ⇒ 逐实参补声明类型 cast。
+    _pos2 = 0
+    _out2 = []
+    _vt2 = None
+    _pat_slot = re.compile(r'\(\*\s*(\w+)\s*\[\s*(\w+)\s*\]\s*\)\s*\(')
+    while True:
+        _m2 = _pat_slot.search(code, _pos2)
+        if not _m2:
+            _out2.append(code[_pos2:])
+            break
+        _var2 = _m2.group(1)
+        if _vt2 is None:
+            _vt2 = _build_var_types(code, ctx)
+        _vi2 = _vt2.get(_var2) or {}
+        _pm2 = None
+        if _vi2.get('kind') == 'fnptr':
+            _pm2 = re.match(r'^(.*)$', _vi2.get('params') or '')
+        _a_open2 = _m2.end() - 1
+        _d2 = 1; _m2b = _a_open2 + 1
+        while _m2b < len(code) and _d2 > 0:
+            if code[_m2b] == '(': _d2 += 1
+            elif code[_m2b] == ')': _d2 -= 1
+            _m2b += 1
+        _args2 = code[_a_open2 + 1:_m2b - 1]
+        _alist2 = _split_toplevel(_args2)
+        if _pm2:
+            _plist2 = [x.strip() for x in _pm2.group(1).split(',') if x.strip()]
+            if len(_plist2) == len(_alist2):
+                _new2 = ', '.join(
+                    '(%s)(%s)' % (_plist2[i], a.strip()) if a.strip() else a
+                    for i, a in enumerate(_alist2))
+                _out2.append(code[_pos2:_a_open2 + 1])
+                _out2.append(_new2)
+                _pos2 = _m2b - 1
+                continue
+        _out2.append(code[_pos2:_m2b]); _pos2 = _m2b
+    code = ''.join(_out2)
+
     return code
 
 

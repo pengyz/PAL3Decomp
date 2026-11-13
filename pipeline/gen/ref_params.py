@@ -131,7 +131,10 @@ def _build_var_types(code, ctx):
     不按别的函数的声明裁决本函数表达式）。"""
     vt = {}
     # fnptr locals:  int ( **v12)(CEffect *, int);
-    for m in re.finditer(r'^\s+([A-Za-z_]\w*)\s*\(\s*(\*+)\s*(\w+)\s*\)\s*\(([^()]*)\)\s*;',
+    # [F84扩 2026-11-13] 容调用约定词: void (__thiscall ***v5)(_DWORD, _DWORD)
+    # (free_functions 16处/StateUI/LineupComp 主战场声明形态, 旧正则 NO MATCH
+    # ⇒ F84 在最多错的单元静默失效——对抗复核 Q5 定谳)
+    for m in re.finditer(r'^\s+([A-Za-z_]\w*)\s*\(\s*(?:(?:__thiscall|__cdecl|__stdcall|__fastcall)\s+)?(\*+)\s*(\w+)\s*\)\s*\(([^()]*)\)\s*;',
                          code, re.M):
         vt[m.group(3)] = {'kind': 'fnptr', 'ret': m.group(1).strip(),
                           'params': m.group(4), 'stars': len(m.group(2))}
