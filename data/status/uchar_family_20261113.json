@@ -490,5 +490,18 @@
   "composition": "C2036×3(__vftable void*算术——第四件缺口的精确显现) + 其余2",
   "mechanism_status": "auto-injection已入apply_annotations(用户裁决转自动), 49类UDT已含typed vptr",
   "next": "C2036×3修复(stage3 __vftable算术形态变换扩展 或 vtbl_结构发射)后即净赢"
+ },
+ "pilot_mIs_verdict": {
+  "member": "MainEquipUI::m_Is @361 unsigned char[5]",
+  "verdict": "STAY unsigned char",
+  "use_sites": {
+   "byte_flag": 12,
+   "raw_dword": 3,
+   "embed_subobj": 7,
+   "string_buffer": 1
+  },
+  "majority": "byte_flag (52%) — char 需求仅 4%",
+  "conclusion": "ProcessString L2595 是别名复用(标志区临时当字符串缓冲), 原源码有 cast。改声明打坏12个flag用点=净亏。声明不改。",
+  "lesson": "uchar家族不能批量改——每条必须use_site_majority审计后才可裁决"
  }
 }
