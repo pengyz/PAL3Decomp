@@ -106,9 +106,10 @@
   },
   "0x0053CE20": {
    "name": "WriteRoleNames",
-   "signature": "char *__cdecl(char *pszBuf)",
+   "signature": "char *__thiscall(char *pszBuf)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留"
   },
   "0x0053CB10": {
    "name": "WinProc_HWND_InputLine",
