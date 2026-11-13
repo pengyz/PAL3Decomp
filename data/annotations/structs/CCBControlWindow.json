@@ -89,8 +89,8 @@
   },
   "0x0051AA20": {
    "name": "Create",
-   "signature": "bool __thiscall(UIWnd **ppChild, int nCtrlID, tagRECT *rc, int nDataIdx)",
-   "source": "annotation_fix",
+   "signature": "bool __thiscall(UIButton **ppChild, int nCtrlID, tagRECT *rc, int nDataIdx)",
+   "source": "annotation_fix | [sig修 2026-11-14] UIWnd**→UIButton**: 函数体 operator new(0xF8)=248B=UIPushButton::binary_size 构造后存入*ppChild ⇒ 原源码参数类型=UIButton**(IDA渲染猜成UIWnd**)",
    "evidence_level": "unverified"
   },
   "0x0051AB60": {
