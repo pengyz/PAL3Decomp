@@ -23,13 +23,13 @@
   },
   "0x00438100": {
    "name": "IsAnimDone",
-   "signature": "void __thiscall(float)",
+   "signature": "void __thiscall PalScriptAnimTimer::IsAnimDone(float fVal)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词） | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓",
    "evidence_level": "unverified"
   },
   "0x00438E30": {
    "name": "UpdateAnimTimer",
-   "signature": "void __thiscall(float)",
+   "signature": "void __thiscall PalScriptAnimTimer::UpdateAnimTimer(float fVal)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=filebuf::AccumulateTime+NPC::UpdateAnim] 交互面[计时累积+动画推进] 判定 ✅名实相符（UpdateAnimTimer）",
    "evidence_level": "A",
    "adjudication": "confirmed",
