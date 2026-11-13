@@ -8769,5 +8769,33 @@
    "sites_consistent": 1,
    "timestamp": "2026-11-13"
   }
+ },
+ "0x00592DDC": {
+  "name": "aSystemScriptLo",
+  "type": "char[27]",
+  "category": "const_data",
+  "evidence_level": "use_site_majority",
+  "source": "[字符串池pilot 2026-11-13] IDB item=27B 内容\"System script load failed.\\0init.sce\\0...\"(IDA a前缀字符串名, MCP readback实测); 全树 10+ 用点皆字符串语义(SetAppName/LoadScriptFile/strcmp/InsertAt/FormatException); SetAppName(char*) ×25 簇根因——Logger误标致 .m_callbacks[1] 结构体渲染",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 10,
+   "sites_consistent": 10,
+   "timestamp": "2026-11-13"
+  }
+ },
+ "0x00592E04": {
+  "name": "aScriptSysInitF",
+  "type": "char[24]",
+  "category": "const_data",
+  "evidence_level": "use_site_majority",
+  "source": "[字符串池pilot#2 2026-11-13] IDB item=24B \"Script sys init failed.\\0\"(a前缀字符串名, MCP readback); 全树用点皆字符串语义(SetAppName ×15 CCBRoleState/strcmp族); 池扫描唯一残留Logger误标(0x592000-0x59A000 实测)",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 15,
+   "sites_consistent": 15,
+   "timestamp": "2026-11-13"
+  }
  }
 }
