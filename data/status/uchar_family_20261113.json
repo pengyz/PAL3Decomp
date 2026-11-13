@@ -525,5 +525,12 @@
   "verdict": "STAY char (1字节) — strcpy站是跨成员复用",
   "evidence": "IDB UDT真值: @174 char / @175 m_bActionPause / @176 m_szModelName — 空间仅1B不可能存场景名; 6个strcpy/strcmpi站=从174开始覆盖后续成员的lazy复用(原始源码可能有union或注释区复用)",
   "conclusion": "改char[N]会挤掉@175/@176致布局崩坏——禁止。strcpy站=别名复用挂账"
+ },
+ "saleui_sortdata_cluster": {
+  "cluster": "SaleUI C2440 RoleAtt*→SaleUI_SortData ×10 + C2440/C2664/C2668 ×17",
+  "target": "m_sort : SaleUI_SortData[299][5] @+18100 (IDB UDT 与注解一致, 元素4B)",
+  "source": "实参 g_RoleSlotBuf.dword_17AA450+偏移 被Hex-Rays渲为 RoleAtt*",
+  "diagnosis": "目标侧(m_sort注解/IDB)正确; 错误在源端渲染变量类型——Hex-Rays对 g_RoleSlotBuf 指针算术的猜型(RoleAtt*)不正确, 实际存储的是排序索引int值",
+  "fix": "宿主函数 lvars 或源端全局区段类型修正——逐函数取证"
  }
 }
