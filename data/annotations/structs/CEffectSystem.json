@@ -206,7 +206,7 @@
   },
   "0x004C5E80": {
    "name": "ProcessEffects",
-   "signature": "int __thiscall(double time)",
+   "signature": "int __thiscall CEffectSystem::ProcessEffects(double time)",
    "source": "vtable_migrated | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "ordinal": 5,
    "evidence_level": "unverified",
@@ -221,14 +221,14 @@
   },
   "0x004C6030": {
    "name": "UpdateEffectState",
-   "signature": "int __thiscall(int nVal)",
+   "signature": "int __thiscall CEffectSystem::UpdateEffectState(int nVal)",
    "source": "vtable_migrated",
    "ordinal": 7,
    "evidence_level": "unverified"
   },
   "0x004C5E70": {
    "name": "nullsub",
-   "signature": "int __thiscall(int, int)",
+   "signature": "int __thiscall CEffectSystem::nullsub(int, int)",
    "source": "vtable_evidence",
    "ordinal": 4,
    "evidence_level": "unverified"
@@ -244,14 +244,14 @@
   },
   "0x004C5DB0": {
    "name": "Activate",
-   "signature": "int __thiscall()",
+   "signature": "int __thiscall CEffectSystem::Activate()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
   },
   "0x004C5DE0": {
    "name": "ReleaseTextures",
-   "signature": "void __thiscall()",
+   "signature": "void __thiscall CEffectSystem::ReleaseTextures()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=2）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
