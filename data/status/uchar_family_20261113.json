@@ -484,5 +484,11 @@
   "conclusion": "二进制=标准MSVC编译器虚机制(子代理V1-V3推翻\"手工写表\"误判): .rdata无WRITE权限+1177槽文件镜像静态满表=运行时写表物理不可能; InitVtable实为25字节编译器构造器stub(vptr写入无槽填充); 47/100表引用者含ctor/dtor形态(我方??0正则被注解改名伪象误导)",
   "implication": "虚声明路线=唯一正确路线(??_G/L1匹配/vptr布局同构的必要条件); 硬约束不变: 声明序=二进制槽序(dtor在二进制槽位)、双dtor槽定谳、339 LNK2001需声明槽全部有定义(归属名修正到声明类)",
   "evidence_files": "/tmp/vtable_verify_A.json(V1段权限+静态内容+41万指令普查) /tmp/vtable_verify_B.json(V1样本全反汇编)"
+ },
+ "autovptr_round_20261113": {
+  "result": "153/603 (+5错, 绿数稳定153)",
+  "composition": "C2036×3(__vftable void*算术——第四件缺口的精确显现) + 其余2",
+  "mechanism_status": "auto-injection已入apply_annotations(用户裁决转自动), 49类UDT已含typed vptr",
+  "next": "C2036×3修复(stage3 __vftable算术形态变换扩展 或 vtbl_结构发射)后即净赢"
  }
 }

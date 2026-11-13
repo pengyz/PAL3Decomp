@@ -2,12 +2,6 @@
  "name": "PalScript",
  "binary_size": 2176,
  "known_members": {
-  "0": {
-   "name": "__vftable",
-   "type": "void *",
-   "source": "[vptr 正名 2026-10-20·A 级] 原 m_bLoadSceneScript 误挂 +0x0（占 vptr 位）。objdump ctor `movl $0x56ac4c,(%esi)` = vptr 初始化（0x56AC4C=PalScript vtable）⇒ +0x0 是 vptr。audit 判 2/90 伪冲突却漏此 ⇒ objdump 优先于 audit。",
-   "evidence_level": "A"
-  },
   "4": {
    "name": "m_pinst",
    "type": "scScriptInstance *",

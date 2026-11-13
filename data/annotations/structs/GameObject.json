@@ -1,68 +1,61 @@
 {
-  "name": "GameObject",
-  "binary_size": 4,
-  "known_members": {
-    "0": {
-      "name": "__vftable",
-      "type": "void *",
-      "source": "[vtable 100 认领续 2026-10-17] A 级：vptr 槽位 0x56A9C0；根接口仅虚表位，成员面随 MI 链（Role/ScriptObj 域）另账 | [vptr 正名 2026-10-20·A 级] `vfptr`(无下划线前缀) 不在 emit 的 _VPTR_MEMBER_NAMES 识别表（__vftable/_vftable/__vfptr/_vfptr）⇒ 发普通指针非 vptr 成员。改 `__vftable`（canonical 形，见 emit_headers.py:1366 注释「注解用 __vftable」）。证据 A 级：emit 判据代码 + 该类 vtables 字段非空 + audit 冲突实测。",
-      "evidence_level": "A"
-    }
+ "name": "GameObject",
+ "binary_size": 4,
+ "known_members": {},
+ "methods": {
+  "0x00411BB0": {
+   "name": "_reset_vfptr",
+   "signature": "void __thiscall()",
+   "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] A 级：`c7 01 c0 a9 56 00 c3`=写表 0x56A9C0 回基桩（teardown reset） | 修复 2026-10-17: 同址多类注册补标 declaration_only",
+   "declaration_only": true,
+   "evidence_level": "A"
   },
-  "methods": {
-    "0x00411BB0": {
-      "name": "_reset_vfptr",
-      "signature": "void __thiscall()",
-      "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] A 级：`c7 01 c0 a9 56 00 c3`=写表 0x56A9C0 回基桩（teardown reset） | 修复 2026-10-17: 同址多类注册补标 declaration_only",
-      "declaration_only": true,
-      "evidence_level": "A"
-    },
-    "0x00411B80": {
-      "name": "_reset_vfptr_alt",
-      "signature": "void __thiscall()",
-      "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] A 级：同形写表桩（0x411B80 域） | 修复 2026-10-17: 同址多类注册补标 declaration_only",
-      "declaration_only": true,
-      "evidence_level": "A"
-    },
-    "0x0041CBA0": {
-      "name": "~GameObject",
-      "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41CBC0 写 vptr 0x56A9C0",
-      "evidence_level": "A"
-    },
-    "0x00434D50": {
-      "name": "_scalar_dtor_4D50",
-      "signature": "void __thiscall()",
-      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x411BA0 写 vptr 0x56A9C0",
-      "evidence_level": "A",
-      "declaration_only": true
-    }
+  "0x00411B80": {
+   "name": "_reset_vfptr_alt",
+   "signature": "void __thiscall()",
+   "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] A 级：同形写表桩（0x411B80 域） | 修复 2026-10-17: 同址多类注册补标 declaration_only",
+   "declaration_only": true,
+   "evidence_level": "A"
   },
-  "vtables": [
+  "0x0041CBA0": {
+   "name": "~GameObject",
+   "signature": "void __thiscall()",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41CBC0 写 vptr 0x56A9C0",
+   "evidence_level": "A"
+  },
+  "0x00434D50": {
+   "name": "_scalar_dtor_4D50",
+   "signature": "void __thiscall()",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x411BA0 写 vptr 0x56A9C0",
+   "evidence_level": "A",
+   "declaration_only": true
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056A9C0",
+   "base": null,
+   "slots": [
     {
-      "addr": "0x0056A9C0",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00411BB0",
-          "from": null
-        },
-        {
-          "addr": "0x0055434F",
-          "from": "EffObjectPool"
-        },
-        {
-          "addr": "0x004AF760",
-          "from": "CEffSParticle"
-        },
-        {
-          "addr": "0x00411B80",
-          "from": null
-        }
-      ],
-      "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=Role ctor +114/+672/+697 三写（MI 链第三子对象=根）②被调用者面=Object::Update(0x4AF760 共享)/FatalExit 桩 ③成员访问面=写表回基桩 0x411BB0/0x411B80 ④类归属面=Role 层级根基（0x56A9A4 Role/0x56A9B0 ScriptObj:base/0x56A9C0 根）⑤交互模式面=MI 构造链根初始化 ⇒ **游戏对象根基**（虚 Update/终止接口）；evidence=[Role ctor 三写,槽 0x4AF760 共享 Object::Update,回基桩体字节] confidence=85"
+     "addr": "0x00411BB0",
+     "from": null
+    },
+    {
+     "addr": "0x0055434F",
+     "from": "EffObjectPool"
+    },
+    {
+     "addr": "0x004AF760",
+     "from": "CEffSParticle"
+    },
+    {
+     "addr": "0x00411B80",
+     "from": null
     }
-  ],
-  "_naming": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 再创作命名 GameObject（根接口语义：虚 Update+终止+回基 reset；Role 层级根）",
-  "_size_note": "bs=4 几何最小界（根 vptr 位）；MI 根实际占位随宿主布局，真身锚挂账"
+   ],
+   "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=Role ctor +114/+672/+697 三写（MI 链第三子对象=根）②被调用者面=Object::Update(0x4AF760 共享)/FatalExit 桩 ③成员访问面=写表回基桩 0x411BB0/0x411B80 ④类归属面=Role 层级根基（0x56A9A4 Role/0x56A9B0 ScriptObj:base/0x56A9C0 根）⑤交互模式面=MI 构造链根初始化 ⇒ **游戏对象根基**（虚 Update/终止接口）；evidence=[Role ctor 三写,槽 0x4AF760 共享 Object::Update,回基桩体字节] confidence=85"
+  }
+ ],
+ "_naming": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 再创作命名 GameObject（根接口语义：虚 Update+终止+回基 reset；Role 层级根）",
+ "_size_note": "bs=4 几何最小界（根 vptr 位）；MI 根实际占位随宿主布局，真身锚挂账"
 }

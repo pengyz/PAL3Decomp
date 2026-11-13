@@ -1,357 +1,350 @@
 {
-  "name": "WeatherEffectNode",
-  "binary_size": 8,
-  "known_members": {
-    "0": {
-      "name": "vfptr",
-      "type": "void *",
-      "source": "[IMPOSSIBLE 族 2026-10-17] A 级：主 vptr 槽位 0x56A66C；MI 多 vptr 区（+0/C/…随宿主）真身锚挂账",
-      "evidence_level": "A"
-    }
+ "name": "WeatherEffectNode",
+ "binary_size": 8,
+ "known_members": {},
+ "methods": {
+  "0x00404D40": {
+   "name": "_scalar_dtor_full",
+   "signature": "void __thiscall()",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构三段式（包装 IAT 基 dtor）；21 槽全类视图",
+   "evidence_level": "A",
+   "declaration_only": true
   },
-  "methods": {
-    "0x00404D40": {
-      "name": "_scalar_dtor_full",
-      "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构三段式（包装 IAT 基 dtor）；21 槽全类视图",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00405310": {
-      "name": "_scalar_dtor_light",
-      "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00405580": {
-      "name": "_scalar_dtor_weather",
-      "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（6 槽尾视图）",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x00405560": {
-      "name": "_scalar_dtor_rain",
-      "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（3 槽尾视图=gbRain/gbSnow 基）",
-      "evidence_level": "A",
-      "declaration_only": true
-    },
-    "0x005420C0": {
-      "name": "SnowDraw",
-      "signature": "void __thiscall()",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbSnow::Draw` thunk（__imp_?Draw@gbSnow@@EAEXXZ 转发） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true,
-      "evidence_level": "A"
-    },
-    "0x005420D2": {
-      "name": "RainUpdate",
-      "signature": "void __thiscall(float)",
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbRain::Update` thunk | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-      "declaration_only": true,
-      "evidence_level": "A"
-    },
-    "0x00542072": {
-      "name": "WeatherEffectNode_adjthunk1",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x00542078": {
-      "name": "WeatherEffectNode_adjthunk2",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x0054207E": {
-      "name": "WeatherEffectNode_adjthunk3",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x00542084": {
-      "name": "WeatherEffectNode_adjthunk4",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x0054208A": {
-      "name": "WeatherEffectNode_adjthunk5",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x00542090": {
-      "name": "WeatherEffectNode_adjthunk6",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x00542096": {
-      "name": "WeatherEffectNode_adjthunk7",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x0054209C": {
-      "name": "WeatherEffectNode_adjthunk8",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420A2": {
-      "name": "WeatherEffectNode_adjthunk9",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420A8": {
-      "name": "WeatherEffectNode_adjthunk10",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420AE": {
-      "name": "WeatherEffectNode_adjthunk11",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420B4": {
-      "name": "WeatherEffectNode_adjthunk12",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420BA": {
-      "name": "WeatherEffectNode_adjthunk13",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420C6": {
-      "name": "WeatherEffectNode_adjthunk14",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    },
-    "0x005420CC": {
-      "name": "WeatherEffectNode_adjthunk15",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
-      "evidence_level": "unverified"
-    }
+  "0x00405310": {
+   "name": "_scalar_dtor_light",
+   "signature": "void __thiscall()",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）",
+   "evidence_level": "A",
+   "declaration_only": true
   },
-  "vtables": [
+  "0x00405580": {
+   "name": "_scalar_dtor_weather",
+   "signature": "void __thiscall()",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（6 槽尾视图）",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x00405560": {
+   "name": "_scalar_dtor_rain",
+   "signature": "void __thiscall()",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（3 槽尾视图=gbRain/gbSnow 基）",
+   "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x005420C0": {
+   "name": "SnowDraw",
+   "signature": "void __thiscall()",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbSnow::Draw` thunk（__imp_?Draw@gbSnow@@EAEXXZ 转发） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+   "declaration_only": true,
+   "evidence_level": "A"
+  },
+  "0x005420D2": {
+   "name": "RainUpdate",
+   "signature": "void __thiscall(float)",
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级 IDA：`gbRain::Update` thunk | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+   "declaration_only": true,
+   "evidence_level": "A"
+  },
+  "0x00542072": {
+   "name": "WeatherEffectNode_adjthunk1",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x00542078": {
+   "name": "WeatherEffectNode_adjthunk2",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x0054207E": {
+   "name": "WeatherEffectNode_adjthunk3",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x00542084": {
+   "name": "WeatherEffectNode_adjthunk4",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x0054208A": {
+   "name": "WeatherEffectNode_adjthunk5",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x00542090": {
+   "name": "WeatherEffectNode_adjthunk6",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x00542096": {
+   "name": "WeatherEffectNode_adjthunk7",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x0054209C": {
+   "name": "WeatherEffectNode_adjthunk8",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420A2": {
+   "name": "WeatherEffectNode_adjthunk9",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420A8": {
+   "name": "WeatherEffectNode_adjthunk10",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420AE": {
+   "name": "WeatherEffectNode_adjthunk11",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420B4": {
+   "name": "WeatherEffectNode_adjthunk12",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420BA": {
+   "name": "WeatherEffectNode_adjthunk13",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420C6": {
+   "name": "WeatherEffectNode_adjthunk14",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  },
+  "0x005420CC": {
+   "name": "WeatherEffectNode_adjthunk15",
+   "signature": "void __thiscall()",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only（消双注）",
+   "evidence_level": "unverified"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056A66C",
+   "base": null,
+   "slots": [
     {
-      "addr": "0x0056A66C",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x00404D40",
-          "from": null
-        },
-        {
-          "addr": "0x005420A2",
-          "from": null
-        },
-        {
-          "addr": "0x0054209C",
-          "from": null
-        },
-        {
-          "addr": "0x00542096",
-          "from": null
-        },
-        {
-          "addr": "0x00542090",
-          "from": null
-        },
-        {
-          "addr": "0x0054208A",
-          "from": null
-        },
-        {
-          "addr": "0x00542084",
-          "from": null
-        },
-        {
-          "addr": "0x0054207E",
-          "from": null
-        },
-        {
-          "addr": "0x00542078",
-          "from": null
-        },
-        {
-          "addr": "0x00542072",
-          "from": null
-        },
-        {
-          "addr": "0x00405310",
-          "from": null
-        },
-        {
-          "addr": "0x005420BA",
-          "from": null
-        },
-        {
-          "addr": "0x005420B4",
-          "from": null
-        },
-        {
-          "addr": "0x005420AE",
-          "from": null
-        },
-        {
-          "addr": "0x005420A8",
-          "from": null
-        },
-        {
-          "addr": "0x00405580",
-          "from": null
-        },
-        {
-          "addr": "0x005420D2",
-          "from": null
-        },
-        {
-          "addr": "0x005420CC",
-          "from": null
-        },
-        {
-          "addr": "0x00405560",
-          "from": null
-        },
-        {
-          "addr": "0x005420C6",
-          "from": null
-        },
-        {
-          "addr": "0x005420C0",
-          "from": null
-        }
-      ],
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；21 槽全类 MI 视图（gbGeomNode+gbLightObj+gbRain/gbSnow 界面拼合）"
+     "addr": "0x00404D40",
+     "from": null
     },
     {
-      "addr": "0x0056A694",
-      "base": "gbLightObj",
-      "slots": [
-        {
-          "addr": "0x00405310",
-          "from": null
-        },
-        {
-          "addr": "0x005420BA",
-          "from": null
-        },
-        {
-          "addr": "0x005420B4",
-          "from": null
-        },
-        {
-          "addr": "0x005420AE",
-          "from": null
-        },
-        {
-          "addr": "0x005420A8",
-          "from": null
-        },
-        {
-          "addr": "0x00405580",
-          "from": null
-        },
-        {
-          "addr": "0x005420D2",
-          "from": null
-        },
-        {
-          "addr": "0x005420CC",
-          "from": null
-        },
-        {
-          "addr": "0x00405560",
-          "from": null
-        },
-        {
-          "addr": "0x005420C6",
-          "from": null
-        },
-        {
-          "addr": "0x005420C0",
-          "from": null
-        }
-      ],
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；11 槽尾视图==slots[10..20] 精确尾并合"
+     "addr": "0x005420A2",
+     "from": null
     },
     {
-      "addr": "0x0056A6A8",
-      "base": "gbRain",
-      "slots": [
-        {
-          "addr": "0x00405580",
-          "from": null
-        },
-        {
-          "addr": "0x005420D2",
-          "from": null
-        },
-        {
-          "addr": "0x005420CC",
-          "from": null
-        },
-        {
-          "addr": "0x00405560",
-          "from": null
-        },
-        {
-          "addr": "0x005420C6",
-          "from": null
-        },
-        {
-          "addr": "0x005420C0",
-          "from": null
-        }
-      ],
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；6 槽尾视图==slots[15..20]"
+     "addr": "0x0054209C",
+     "from": null
     },
     {
-      "addr": "0x0056A6B4",
-      "base": "gbSnow",
-      "slots": [
-        {
-          "addr": "0x00405560",
-          "from": null
-        },
-        {
-          "addr": "0x005420C6",
-          "from": null
-        },
-        {
-          "addr": "0x005420C0",
-          "from": null
-        }
-      ],
-      "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；3 槽尾视图==slots[18..20]"
+     "addr": "0x00542096",
+     "from": null
+    },
+    {
+     "addr": "0x00542090",
+     "from": null
+    },
+    {
+     "addr": "0x0054208A",
+     "from": null
+    },
+    {
+     "addr": "0x00542084",
+     "from": null
+    },
+    {
+     "addr": "0x0054207E",
+     "from": null
+    },
+    {
+     "addr": "0x00542078",
+     "from": null
+    },
+    {
+     "addr": "0x00542072",
+     "from": null
+    },
+    {
+     "addr": "0x00405310",
+     "from": null
+    },
+    {
+     "addr": "0x005420BA",
+     "from": null
+    },
+    {
+     "addr": "0x005420B4",
+     "from": null
+    },
+    {
+     "addr": "0x005420AE",
+     "from": null
+    },
+    {
+     "addr": "0x005420A8",
+     "from": null
+    },
+    {
+     "addr": "0x00405580",
+     "from": null
+    },
+    {
+     "addr": "0x005420D2",
+     "from": null
+    },
+    {
+     "addr": "0x005420CC",
+     "from": null
+    },
+    {
+     "addr": "0x00405560",
+     "from": null
+    },
+    {
+     "addr": "0x005420C6",
+     "from": null
+    },
+    {
+     "addr": "0x005420C0",
+     "from": null
     }
-  ],
-  "_naming": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 再创作命名 WeatherEffectNode（MI 界面族：gbGeomNode+gbLightObj+gbRain/gbSnow 导入转发）",
-  "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账"
+   ],
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；21 槽全类 MI 视图（gbGeomNode+gbLightObj+gbRain/gbSnow 界面拼合）"
+  },
+  {
+   "addr": "0x0056A694",
+   "base": "gbLightObj",
+   "slots": [
+    {
+     "addr": "0x00405310",
+     "from": null
+    },
+    {
+     "addr": "0x005420BA",
+     "from": null
+    },
+    {
+     "addr": "0x005420B4",
+     "from": null
+    },
+    {
+     "addr": "0x005420AE",
+     "from": null
+    },
+    {
+     "addr": "0x005420A8",
+     "from": null
+    },
+    {
+     "addr": "0x00405580",
+     "from": null
+    },
+    {
+     "addr": "0x005420D2",
+     "from": null
+    },
+    {
+     "addr": "0x005420CC",
+     "from": null
+    },
+    {
+     "addr": "0x00405560",
+     "from": null
+    },
+    {
+     "addr": "0x005420C6",
+     "from": null
+    },
+    {
+     "addr": "0x005420C0",
+     "from": null
+    }
+   ],
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；11 槽尾视图==slots[10..20] 精确尾并合"
+  },
+  {
+   "addr": "0x0056A6A8",
+   "base": "gbRain",
+   "slots": [
+    {
+     "addr": "0x00405580",
+     "from": null
+    },
+    {
+     "addr": "0x005420D2",
+     "from": null
+    },
+    {
+     "addr": "0x005420CC",
+     "from": null
+    },
+    {
+     "addr": "0x00405560",
+     "from": null
+    },
+    {
+     "addr": "0x005420C6",
+     "from": null
+    },
+    {
+     "addr": "0x005420C0",
+     "from": null
+    }
+   ],
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；6 槽尾视图==slots[15..20]"
+  },
+  {
+   "addr": "0x0056A6B4",
+   "base": "gbSnow",
+   "slots": [
+    {
+     "addr": "0x00405560",
+     "from": null
+    },
+    {
+     "addr": "0x005420C6",
+     "from": null
+    },
+    {
+     "addr": "0x005420C0",
+     "from": null
+    }
+   ],
+   "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；3 槽尾视图==slots[18..20]"
+  }
+ ],
+ "_naming": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 再创作命名 WeatherEffectNode（MI 界面族：gbGeomNode+gbLightObj+gbRain/gbSnow 导入转发）",
+ "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账"
 }

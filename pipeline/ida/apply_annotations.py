@@ -477,8 +477,25 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
         own_vtable_addr = struct_info["vtables"][0].get("addr", "")
         virtual_methods = struct_info["vtables"][0].get("slots", [])
 
+    # [auto vptr 2026-11-13 用户裁决] 手动 offset0 条目退役 ⇒ 自动推导:
+    # 有vtables ∧ offset0空闲(首成员偏移>0) ⇒ 自动注入 typed __vftable。
+    # 依据: MSVC ABI 律(多态类 +0 必为 vptr)——编译期恒真推导, 非编造信息。
+    _auto_vptr = False
+    if not base_class and struct_info and struct_info.get("vtables"):
+        _first_off = None
+        for _o, _ in sorted_members:
+            _first_off = _o
+            break
+        if _first_off is None or _first_off >= 4:
+            _auto_vptr = True
+
     lines = []
     cursor = base_size
+
+    # [auto vptr] 注入点: offset0 空闲 + 有vtables ⇒ 头插 typed __vftable
+    if _auto_vptr and own_vtable_addr:
+        lines.append("    %s *__vftable;" % ("vtbl_%s" % own_vtable_addr[2:]))
+        cursor = 4
 
     for offset, info in sorted_members:
         mname = info["name"]
