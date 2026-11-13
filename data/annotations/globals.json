@@ -1012,10 +1012,17 @@
  },
  "0x005B0950": {
   "name": "off_5B0950",
-  "reason": "function/vtable pointer table in .data section; runtime-initialized",
-  "type": "skip",
+  "type": "char **",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "evidence_level": "use_site_majority",
+  "source": "[补标 2026-11-13] 前两项 0x5A0AC4/0x5A0AB0 字符串指针(IDB readback); TaskBookUI_CreateEntry off_5B0950[0] 传char*参数; R93 ptr_table门 | [修] 去 const: CreateFromTemplate(void*) 拒 const char*→void*(VC6 C2664)",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 1,
+   "sites_consistent": 1,
+   "timestamp": "2026-11-13"
+  }
  },
  "0x005B0958": {
   "name": "g_bEffectEnabled",
@@ -8718,6 +8725,48 @@
   "audit": {
    "level": "unverified",
    "note": "baseline-pinned, 见 fix_neargreen_types_20261112.py 回退记录",
+   "timestamp": "2026-11-13"
+  }
+ },
+ "0x0056B24C": {
+  "name": "off_56B24C",
+  "type": "char **",
+  "category": "ptr_table",
+  "source": "[补标 2026-11-13] LPCSTR字符串指针表(IDB现名/型 const LPCSTR 实测); TaskBookUI_SaveData 4站点 (&off_56B24C)[v] 传 CreateFromTemplate; globals无条目 ⇒ 名字被剥成裸立即数(0x56B24C)[v] ⇒ C2109/C2036 | [R93门] category=ptr_table: off_*表正是该类目原生场景(off_*表兜void*标量普查) | [修] 去 const: CreateFromTemplate(void*) 拒 const char*→void*(VC6 C2664)",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 4,
+   "sites_consistent": 4,
+   "timestamp": "2026-11-13"
+  },
+  "evidence_level": "use_site_majority"
+ },
+ "0x0056B260": {
+  "name": "off_56B260",
+  "type": "char **",
+  "category": "ptr_table",
+  "source": "[补标 2026-11-13] 同off_56B24C: LPCSTR指针表, TaskBookUI_SaveData 配对表 | [R93门] category=ptr_table: off_*表正是该类目原生场景(off_*表兜void*标量普查) | [修] 去 const: CreateFromTemplate(void*) 拒 const char*→void*(VC6 C2664)",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 4,
+   "sites_consistent": 4,
+   "timestamp": "2026-11-13"
+  },
+  "evidence_level": "use_site_majority"
+ },
+ "0x0056B754": {
+  "name": "off_56B754",
+  "type": "char **",
+  "category": "ptr_table",
+  "evidence_level": "use_site_majority",
+  "source": "[补标 2026-11-13] LPCSTR指针表(全指针 0x5B6Fx 区, IDB readback); TaskBookUI_SaveData off_56B754[v3/4] 传 CreateFromTemplate | [修] 去 const: CreateFromTemplate(void*) 拒 const char*→void*(VC6 C2664)",
+  "audit": {
+   "level": "audited",
+   "method": "idb_readback+use_site_enumeration",
+   "sites_checked": 1,
+   "sites_consistent": 1,
    "timestamp": "2026-11-13"
   }
  }
