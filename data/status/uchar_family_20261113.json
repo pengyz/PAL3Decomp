@@ -514,5 +514,10 @@
   "result": "155/590 (+4错净亏) → 回退",
   "analysis": "修复RoleAtt -2✓ 但全树保留__thiscall引发新C2440 +5——因为部分fn-ptr cast所在的函数是真__cdecl(非thiscall), 保留__thiscall反而制造新失配",
   "conclusion": "CC剥离是全局规范化(多数情况正确), 单点修复会打破全局一致性。正确解=逐函数证据裁决哪些fn-ptr需要__thiscall——与签名诚实化同属长线"
+ },
+ "double_ptr_inheritance_c2440": {
+  "cluster": "CCBControlWindow Create ×3 C2664",
+  "root_cause": "C++标准禁止 UIButton** 隐式转 UIWnd**(双指针跨继承层级无隐式转换); 原源码必在调用点有显式 cast;",
+  "fix_layer": "管线调用点变换(非注解层)——挂账"
  }
 }
