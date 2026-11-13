@@ -560,5 +560,11 @@
   },
   "actor_final": "Actor表0x56AAC4槽0=Actor标量析构(mangled@Actor@@) = 多态实锤(上轮定谳保持)",
   "implication": "17类@0数据成员声明全部待重归属——这是虚声明收益解锁的前置,且每类需先定谳\"该成员真实归属\"(可能属于其它类或偏移错)"
+ },
+ "wr_disasm_proof_20261114": {
+  "decisive_evidence": "CCBStage Initialize(0x51dd43)/ShowWindow(0x51ddbd) 反汇编: mov dword ptr [esi], offset stru_5705D0 = 编译器vptr存储标准形态",
+  "discovery": "延迟初始化双态字段模式: ctor写 @0=m_pCBSystem(数据), Initialize/ShowWindow 重写 [esi]=vtable(转多态) —— 对象生命周期两阶段@0语义不同, IDB UDT只能表达单一布局",
+  "implication": "17类冲突的@0成员不全是错归属——至少CCBStage是双态字段, 声明正确且vptr写入也存在。修正方案需按类分治: (a)标准多态(ctor写vptr)→@0数据成员=错归属 (b)延迟初始化(Initialize写vptr)→@0=双态字段, 需union表达或保持现状",
+  "next": "对其余WRITE确认类跑同款反汇编验证, 分(a)(b)两类"
  }
 }
