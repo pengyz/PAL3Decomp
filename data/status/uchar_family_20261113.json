@@ -509,5 +509,10 @@
   "evidence": "Bisect确认: 输入含__thiscall的fn-ptr cast在s1输出中即被剥掉;L131/L395-399三条CC剥离正则设计意图=函数签名行,但波及函数体",
   "impact": "vtable fn-ptr cast丢__thiscall ⇒ VC6默认__cdecl ⇒ 与声明侧__thiscall失配 ⇒ C2440",
   "fix": "CC剥离正则需限定只作用于签名行(不波及函数体内fn-ptr cast)"
+ },
+ "cc_strip_fix_attempt": {
+  "result": "155/590 (+4错净亏) → 回退",
+  "analysis": "修复RoleAtt -2✓ 但全树保留__thiscall引发新C2440 +5——因为部分fn-ptr cast所在的函数是真__cdecl(非thiscall), 保留__thiscall反而制造新失配",
+  "conclusion": "CC剥离是全局规范化(多数情况正确), 单点修复会打破全局一致性。正确解=逐函数证据裁决哪些fn-ptr需要__thiscall——与签名诚实化同属长线"
  }
 }
