@@ -581,17 +581,33 @@ def _read_vtable_from_binary(vt_addr, max_slots=64):
     if isinstance(vt_addr, str):
         vt_addr = int(vt_addr, 16)
     slots = []
+    # [表边界修复 2026-11-14 复核裁决#3] 旧实现沿内存邻接走表 ⇒ 跨表串读
+    # (CEffObj.h/CEffQuake.h 28槽乱序头、RenderTarget2 99槽mega表同源病灶)。
+    # 边界二证据: ①ctor写表起点集(true_vtable_map, phase2已验证) ②非对齐目标截断。
+    _known_starts = None
+    try:
+        import json as _json2
+        _tvm = os.path.join(_d, '..', '..', '..', 'data', 'status', 'true_vtable_map_20261114.json')
+        _tvm = os.path.normpath(_tvm)
+        if os.path.exists(_tvm):
+            _known_starts = set(int(r['table'], 16) for r in _json2.load(open(_tvm, encoding='utf-8')))
+    except Exception:
+        _known_starts = None
+    slots = []
     try:
         with open(_bin, 'rb') as f:
             f.seek(_va2off(vt_addr))
             for i in range(max_slots):
+                cur = vt_addr + 4 * i
+                if i > 0 and _known_starts and cur in _known_starts:
+                    break  # cur 即下一张已知表起点 = 本表边界
                 data = f.read(4)
                 if len(data) < 4: break
                 a = struct.unpack('<I', data)[0]
                 if 0x401000 <= a < 0x56A000:
                     slots.append((hex(a), None))
                 else:
-                    break
+                    break  # .text 外 = 表尾(0x41400000类数据; 0x55434F奇地址槽=_purecall折叠, 真实存在须保留)
     except Exception:
         pass
     return slots
