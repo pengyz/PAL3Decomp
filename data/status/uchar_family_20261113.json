@@ -588,5 +588,10 @@
  "grpinput_remap": {
   "discovery": "GRPinput ctor 写数据成员在 +8/+0C/+10/+14, vptr@0. IDB UDT: m_lpDI@0(冲突!), m_lpDIDKeyboard@4, m_lpDIDMouse@8, m_mouseSensitivity@12... 但ctor写+0C(=12)/+10(=16)/+14(=20) 与IDB成员+12/+16/+20对不上 ⇒ 全部成员真实偏移=vptr后+4起, 注解偏移系统性-4(当作无vptr布局导致). 需要全成员偏移重映射",
   "generalization": "这解释了所有(a)类错归属: 注解建立时把vptr占的4B当作数据空间, 导致整个布局-4偏移. 重归属=全成员偏移+4(在vptr后重排)"
+ },
+ "grpinput_rev2_20261114": {
+  "verdict": "IDB布局@0=m_lpDI(COM接口)+@+8=m_lpDIDMouse 正确——Create函数体反汇编: mov eax,[esi]读@0得COM指针, lea edi,[esi+8]传址CreateDevice ⇒ GRPinput @0 不是vptr! SetMousePos里mov [eax],offset stru_56A620 的 eax 是别的对象(可能新分配的子对象)",
+  "correction": "撤销GRPinput (a)标准多态定谳 → GRPinput @0数据成员正确, vtable 0x56A620 归属需重新定谳(引用者可能不是GRPinput的ctor)",
+  "lesson": "ctor形态函数返回类型=类指针(QIEPAU)暗示\"工厂函数\"而非成员——SetMousePos 的 \"QIEPAUGRPinput\" 返回类型可疑(鼠标位置设置不该返回类指针)"
  }
 }
