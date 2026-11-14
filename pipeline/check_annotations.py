@@ -833,6 +833,67 @@ def _run_vtable_check(structs):
     spec.loader.exec_module(mod)
     return mod.check(structs=structs)
 
+def check_canonical_contract():
+    """[canonical 契约断言 2026-11-14 用户裁定'加断言明确数据非法']
+
+    棘轮模式(claim_gate 同款): 存量违规 grandfather 进 baseline, 新增=硬红。
+    四条非法态:
+      C1 vtables槽(i>0)缺 name/sig 字段 —— 正名账未覆盖(数据不完整)
+      C2 from 指向不存在的类或无vtables类 —— 悬空引用
+      C3 non_virtual=true 条目的sig带 'virtual ' —— 自相矛盾
+      C4 槽addr非8位长形hex —— 数据卫生
+    返回 (errors, warnings)
+    """
+    import glob as _glob
+    errors, warnings = [], []
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    _KNOWN_VT_CLASSES = set()
+    for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        try:
+            if json.load(open(fp, encoding='utf-8')).get('vtables'):
+                _KNOWN_VT_CLASSES.add(os.path.basename(fp)[:-5])
+        except Exception:
+            pass
+    base_path = os.path.join(root, 'data', 'status', 'canonical_contract_baseline.json')
+    base = set()
+    if os.path.exists(base_path):
+        base = set(json.load(open(base_path, encoding='utf-8')).get('grandfathered', []))
+    cur_viol = {}   # key → 描述
+
+    for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        cls = os.path.basename(fp)[:-5]
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        for vi, vt in enumerate(d.get('vtables') or []):
+            slots = vt.get('slots') or []
+            _miss = sum(1 for i, s in enumerate(slots)
+                        if (i > 0 or True) and (not s.get('name') or not s.get('sig')))
+            if slots and _miss:
+                cur_viol['C1:%s:v%d' % (cls, vi)] = '%s v%d: %d/%d 槽缺name/sig' % (cls, vi, _miss, len(slots))
+            for s in slots:
+                frm = s.get('from')
+                if frm and frm not in _KNOWN_VT_CLASSES:
+                    cur_viol['C2:%s:%s' % (cls, frm)] = '%s from悬空→%s' % (cls, frm)
+                a = s.get('addr') or ''
+                if a and not re.match(r'^0x[0-9A-Fa-f]{8}$', str(a)):
+                    cur_viol['C4:%s:%s' % (cls, a)] = '%s addr非长形: %s' % (cls, a)
+        for a, m in (d.get('methods') or {}).items():
+            if m.get('non_virtual') and 'virtual' in str(m.get('signature', '')).lower():
+                cur_viol['C3:%s:%s' % (cls, a)] = '%s %s non_virtual但sig带virtual' % (cls, m.get('name'))
+
+    for k, desc in sorted(cur_viol.items()):
+        if k not in base:
+            errors.append('CANON:%s %s' % (k, desc))
+    if cur_viol and not os.path.exists(base_path):
+        json.dump({'grandfathered': sorted(cur_viol.keys()),
+                   'note': '存量grandfather; 新增违规=硬红 (canonical_slot_names_20261114契约)'},
+                  open(base_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        print('[canonical] 基线自举: %d 违规键冻结 (存量grandfather, 新增=硬红)' % len(cur_viol))
+    return errors, warnings
+
+
 def check_name_drift():
     """[L-CHK 2026-11-11] 名字漂移检查——decomp 引用标识符 vs 注解名/IDB 名对照。
 
@@ -923,6 +984,14 @@ def check_name_drift():
 
 if __name__ == '__main__':
     errors, warnings = check()
+
+    # [canonical 契约断言 2026-11-14] 四条非法态棘轮
+    try:
+        _cc_errors, _cc_warnings = check_canonical_contract()
+        errors.extend(_cc_errors)
+        warnings.extend(_cc_warnings)
+    except Exception as _cc_err:
+        warnings.append(f'canonical contract check skipped: {_cc_err}')
 
     # [L-CHK 2026-11-11] 名字漂移检查(decomp 引用 vs 注解名/IDB 名)
     try:

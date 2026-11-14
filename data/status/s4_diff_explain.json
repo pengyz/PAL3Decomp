@@ -1,13 +1,13 @@
 {
  "generated_by": "tools/byte_diff_explain.py",
- "partials": 892,
+ "partials": 886,
  "cause_histogram": {
-  "opcode/flow differs": 332,
-  "register choice differs": 247,
-  "immediate/const differs": 139,
-  "this/member disp differs": 114,
+  "opcode/flow differs": 342,
+  "register choice differs": 246,
+  "immediate/const differs": 143,
+  "this/member disp differs": 94,
   "operand shape differs": 49,
-  "this-register differs (this in a different reg)": 5,
+  "this-register differs (this in a different reg)": 6,
   "cond-jump signedness differs (annotation type)": 5,
   "(symbol missing in obj)": 1,
   "adjustor-thunk (add ecx,0x68 before tail jump)": 1
@@ -28,60 +28,6 @@
     "orig": "jmp 0xffff44b0",
     "ours_addr": "0x0",
     "ours": "call {R}",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffModel.cpp",
-   "name": "CEffModel::GetRenderNode(int)",
-   "va": "0x004D0390",
-   "size": 21,
-   "n_diff": 1,
-   "first_diff": 2,
-   "compiled_len": 21,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d0390",
-    "orig": "mov ecx, dword ptr [ecx + 0x30]",
-    "ours_addr": "0x0",
-    "ours": "mov ecx, dword ptr [ecx + 0x34]",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffQuake.cpp",
-   "name": "CEffQuake::ResetIdle",
-   "va": "0x004D33A0",
-   "size": 7,
-   "n_diff": 1,
-   "first_diff": 2,
-   "compiled_len": 7,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d33a0",
-    "orig": "mov byte ptr [ecx + 8], 0",
-    "ours_addr": "0x0",
-    "ours": "mov byte ptr [ecx + 0xc], 0",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::GetEffect(int)",
-   "va": "0x004C8E80",
-   "size": 16,
-   "n_diff": 1,
-   "first_diff": 2,
-   "compiled_len": 16,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c8e80",
-    "orig": "mov eax, dword ptr [ecx + 0x30]",
-    "ours_addr": "0x0",
-    "ours": "mov eax, dword ptr [ecx + 0x34]",
     "tag": "replace"
    }
   },
@@ -262,24 +208,6 @@
     "orig": "jmp 0x10",
     "ours_addr": "0x0",
     "ours": "push ecx",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Misc/CEffAction.cpp",
-   "name": "CEffAction::ResetState(int,int,int,int)",
-   "va": "0x004C0640",
-   "size": 14,
-   "n_diff": 2,
-   "first_diff": 2,
-   "compiled_len": 14,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c0640",
-    "orig": "mov byte ptr [ecx + 8], 0",
-    "ours_addr": "0x0",
-    "ours": "mov byte ptr [ecx + 0xc], 0",
     "tag": "replace"
    }
   },
@@ -1328,21 +1256,21 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffModel.cpp",
-   "name": "CEffModel::_sdtor_38",
-   "va": "0x004D0CA0",
-   "size": 8,
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "name": "CEffQuad::SetQuad(int)",
+   "va": "0x004D1CA0",
+   "size": 428,
    "n_diff": 8,
-   "first_diff": 0,
-   "compiled_len": 8,
+   "first_diff": 420,
+   "compiled_len": 428,
    "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4d0ca0",
-    "orig": "sub ecx, 0xc",
-    "ours_addr": "0x0",
-    "ours": "mov al, byte ptr [esp + 4]",
-    "tag": "replace"
+    "orig_addr": "0x4d1e44",
+    "orig": "mov dword ptr [eax + ecx + 0x3c], ebx",
+    "ours_addr": "0x1a4",
+    "ours": "xor edx, edx",
+    "tag": "insert"
    }
   },
   {
@@ -1760,20 +1688,20 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::RenderEffectTexture(void)",
-   "va": "0x004C8E10",
-   "size": 102,
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::GetEditorTaskDescription(int)",
+   "va": "0x004D3280",
+   "size": 58,
    "n_diff": 11,
-   "first_diff": 5,
-   "compiled_len": 102,
-   "cause": "this/member disp differs",
+   "first_diff": 37,
+   "compiled_len": 48,
+   "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4c8e13",
-    "orig": "mov al, byte ptr [esi + 8]",
-    "ours_addr": "0x3",
-    "ours": "mov al, byte ptr [esi + 0xc]",
+    "orig_addr": "0x4d32a5",
+    "orig": "mov dword ptr [eax + 0xc], 0x56fac4",
+    "ours_addr": "0x25",
+    "ours": "ret 4",
     "tag": "replace"
    }
   },
@@ -2606,6 +2534,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::DestroyEffect(void)",
+   "va": "0x004D0A60",
+   "size": 25,
+   "n_diff": 17,
+   "first_diff": 4,
+   "compiled_len": 25,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d0a63",
+    "orig": "mov ecx, dword ptr [esi + 0x30]",
+    "ours_addr": "0x3",
+    "ours": "mov eax, dword ptr [esi + 0x30]",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Scene/CameraCtrl.cpp",
    "name": "CameraCtrl::IsAngleBelowTarget(void)",
    "va": "0x0041CBD0",
@@ -2765,24 +2711,6 @@
     "ours_addr": "0x8",
     "ours": "push esi",
     "tag": "insert"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::DestroyEffect(void)",
-   "va": "0x004D0A60",
-   "size": 25,
-   "n_diff": 18,
-   "first_diff": 4,
-   "compiled_len": 25,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d0a63",
-    "orig": "mov ecx, dword ptr [esi + 0x30]",
-    "ours_addr": "0x3",
-    "ours": "mov eax, dword ptr [esi + 0x34]",
-    "tag": "replace"
    }
   },
   {
@@ -2949,7 +2877,7 @@
   },
   {
    "file": "pal3/src/Effect/CEffQuake.cpp",
-   "name": "CEffQuake::Destroy(void)",
+   "name": "CEffQuake::slot_7(void)",
    "va": "0x004D32C0",
    "size": 24,
    "n_diff": 19,
@@ -3142,24 +3070,6 @@
     "orig": "push -1",
     "ours_addr": "0x0",
     "ours": "push ecx",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffShock.cpp",
-   "name": "CEffShock::GetEditorTaskDescription(int)",
-   "va": "0x004D3280",
-   "size": 58,
-   "n_diff": 21,
-   "first_diff": 9,
-   "compiled_len": 48,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d3287",
-    "orig": "mov dword ptr [eax + 4], ecx",
-    "ours_addr": "0x7",
-    "ours": "mov dword ptr [eax + 8], ecx",
     "tag": "replace"
    }
   },
@@ -3615,7 +3525,7 @@
   },
   {
    "file": "pal3/src/Combat/CCBSkillWindow.cpp",
-   "name": "CCBSkillWindow::Destroy(void)",
+   "name": "CCBSkillWindow::Destroy_13",
    "va": "0x0051BBE0",
    "size": 30,
    "n_diff": 23,
@@ -3773,6 +3683,24 @@
     "ours_addr": "0x0",
     "ours": "push esi",
     "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Misc/CEffCustomShape.cpp",
+   "name": "CEffCustomShape::CreateEffect(int,int,float,float,float)",
+   "va": "0x004CFE20",
+   "size": 132,
+   "n_diff": 24,
+   "first_diff": 18,
+   "compiled_len": 132,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cfe30",
+    "orig": "fadd dword ptr [eax + 0xb8]",
+    "ours_addr": "0x10",
+    "ours": "fadd dword ptr [eax + 0xc0]",
+    "tag": "replace"
    }
   },
   {
@@ -4097,6 +4025,24 @@
     "ours_addr": "0x8",
     "ours": "jg 0xe",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::Render(void)",
+   "va": "0x004C88D0",
+   "size": 82,
+   "n_diff": 27,
+   "first_diff": 37,
+   "compiled_len": 64,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c88f5",
+    "orig": "mov dword ptr [eax + 0xc], 0x56f908",
+    "ours_addr": "0x25",
+    "ours": "mov dword ptr [eax + 0x30], ecx",
+    "tag": "delete"
    }
   },
   {
@@ -4586,24 +4532,6 @@
    }
   },
   {
-   "file": "pal3/src/Misc/CEffCustomShape.cpp",
-   "name": "CEffCustomShape::CreateEffect(int,int,float,float,float)",
-   "va": "0x004CFE20",
-   "size": 132,
-   "n_diff": 32,
-   "first_diff": 12,
-   "compiled_len": 132,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4cfe2a",
-    "orig": "mov byte ptr [ecx + 8], dl",
-    "ours_addr": "0xa",
-    "ours": "mov byte ptr [ecx + 0xc], dl",
-    "tag": "replace"
-   }
-  },
-  {
    "file": "pal3/src/Misc/CG_Entry.cpp",
    "name": "CG_Entry::GetCGEntry(void)",
    "va": "0x0042C920",
@@ -4784,6 +4712,24 @@
    }
   },
   {
+   "file": "pal3/src/Misc/ArraySlots.cpp",
+   "name": "ArraySlots::ArraySlots(void)",
+   "va": "0x0044A790",
+   "size": 50,
+   "n_diff": 35,
+   "first_diff": 3,
+   "compiled_len": 48,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x44a793",
+    "orig": "call 0xffffb310",
+    "ours_addr": "0x3",
+    "ours": "mov {R}",
+    "tag": "insert"
+   }
+  },
+  {
    "file": "pal3/src/Misc/SystemUI.cpp",
    "name": "SystemUI::Close(void)",
    "va": "0x0041F800",
@@ -4928,24 +4874,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::Render(void)",
-   "va": "0x004C88D0",
-   "size": 82,
-   "n_diff": 37,
-   "first_diff": 9,
-   "compiled_len": 64,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c88d7",
-    "orig": "mov dword ptr [eax + 4], ecx",
-    "ours_addr": "0x7",
-    "ours": "mov dword ptr [eax + 8], ecx",
-    "tag": "replace"
-   }
-  },
-  {
    "file": "pal3/src/Combat/CUtil.cpp",
    "name": "CUtil::DispatchCommand(int *)",
    "va": "0x00523E80",
@@ -5086,24 +5014,6 @@
     "orig": "jne 0x40",
     "ours_addr": "0xb",
     "ours": "jne 0x45",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffQuad.cpp",
-   "name": "CEffQuad::SetQuad(int)",
-   "va": "0x004D1CA0",
-   "size": 428,
-   "n_diff": 38,
-   "first_diff": 6,
-   "compiled_len": 428,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d1ca4",
-    "orig": "mov edx, dword ptr [ecx + 0x9c]",
-    "ours_addr": "0x4",
-    "ours": "mov edx, dword ptr [ecx + 0xa0]",
     "tag": "replace"
    }
   },
@@ -5576,6 +5486,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "name": "CEffQuad::ProcessDestroyPass(int)",
+   "va": "0x004D2E10",
+   "size": 188,
+   "n_diff": 47,
+   "first_diff": 46,
+   "compiled_len": 188,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d2e3e",
+    "orig": "je 0x41",
+    "ours_addr": "0x2e",
+    "ours": "jne 0x36",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
    "name": "UILoadingFrm::UILoadingFrm(void)",
    "va": "0x00450710",
@@ -5987,24 +5915,6 @@
     "ours_addr": "0xb",
     "ours": "mov edi, ebx",
     "tag": "insert"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffQuad.cpp",
-   "name": "CEffQuad::ProcessDestroyPass(int)",
-   "va": "0x004D2E10",
-   "size": 188,
-   "n_diff": 56,
-   "first_diff": 7,
-   "compiled_len": 188,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d2e15",
-    "orig": "mov eax, dword ptr [esi + 0x1c]",
-    "ours_addr": "0x5",
-    "ours": "mov eax, dword ptr [esi + 0x20]",
-    "tag": "replace"
    }
   },
   {
@@ -6638,6 +6548,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffModel.cpp",
+   "name": "CEffModel::CEffModel(void)",
+   "va": "0x004CFC70",
+   "size": 138,
+   "n_diff": 68,
+   "first_diff": 23,
+   "compiled_len": 112,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cfc86",
+    "orig": "mov dword ptr [eax + 0x1c], edx",
+    "ours_addr": "0x16",
+    "ours": "mov dword ptr [eax + 0x24], ecx",
+    "tag": "delete"
+   }
+  },
+  {
    "file": "pal3/src/UI/UIListBox.cpp",
    "name": "UIListBox::ctor(void)",
    "va": "0x00527950",
@@ -6670,24 +6598,6 @@
     "orig": "fcomp dword ptr [0x56a644]",
     "ours_addr": "0x4",
     "ours": "fcomp {R}",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffModel.cpp",
-   "name": "CEffModel::CEffModel(void)",
-   "va": "0x004CFC70",
-   "size": 138,
-   "n_diff": 70,
-   "first_diff": 9,
-   "compiled_len": 112,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4cfc77",
-    "orig": "mov dword ptr [eax + 4], ecx",
-    "ours_addr": "0x7",
-    "ours": "mov dword ptr [eax + 8], ecx",
     "tag": "replace"
    }
   },
@@ -6962,6 +6872,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::slot_2(int,float,float,float)",
+   "va": "0x004C8B80",
+   "size": 103,
+   "n_diff": 75,
+   "first_diff": 15,
+   "compiled_len": 103,
+   "cause": "this-register differs (this in a different reg)",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c8b8e",
+    "orig": "mov ecx, dword ptr [esi + 0x30]",
+    "ours_addr": "0xe",
+    "ours": "mov eax, dword ptr [edi + 0xc8]",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Scene/CameraCtrl.cpp",
    "name": "CameraCtrl::SmoothTransition(int,int,int,int,int *,int)",
    "va": "0x0041D070",
@@ -7049,24 +6977,6 @@
     "ours_addr": "0x0",
     "ours": "sub esp, 0x10",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::slot_2(int,float,float,float)",
-   "va": "0x004C8B80",
-   "size": 103,
-   "n_diff": 76,
-   "first_diff": 13,
-   "compiled_len": 103,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c8b8b",
-    "orig": "mov byte ptr [esi + 8], bl",
-    "ours_addr": "0xb",
-    "ours": "mov byte ptr [esi + 0xc], bl",
-    "tag": "replace"
    }
   },
   {
@@ -7340,6 +7250,24 @@
    }
   },
   {
+   "file": "pal3/src/Misc/CEffAction.cpp",
+   "name": "CEffAction::UpdateParticles(void)",
+   "va": "0x004C15D0",
+   "size": 102,
+   "n_diff": 81,
+   "first_diff": 9,
+   "compiled_len": 102,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c15d8",
+    "orig": "jle 0x64",
+    "ours_addr": "0x8",
+    "ours": "jle 0x62",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Role/Role.cpp",
    "name": "Role::CalcLongKuiInit(int,int)",
    "va": "0x00408D80",
@@ -7354,24 +7282,6 @@
     "orig": "push ebp",
     "ours_addr": "0x0",
     "ours": "fild dword ptr [esp + 8]",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Misc/CEffAction.cpp",
-   "name": "CEffAction::UpdateParticles(void)",
-   "va": "0x004C15D0",
-   "size": 102,
-   "n_diff": 82,
-   "first_diff": 2,
-   "compiled_len": 102,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c15d0",
-    "orig": "mov eax, dword ptr [ecx + 0x28]",
-    "ours_addr": "0x0",
-    "ours": "mov eax, dword ptr [ecx + 0x2c]",
     "tag": "replace"
    }
   },
@@ -8402,24 +8312,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffSParticle.cpp",
-   "name": "CEffSParticle::GetEditorTaskDescription(int)",
-   "va": "0x004D58D0",
-   "size": 127,
-   "n_diff": 104,
-   "first_diff": 0,
-   "compiled_len": 127,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d58d0",
-    "orig": "mov edx, dword ptr [esp + 4]",
-    "ours_addr": "0x0",
-    "ours": "push ecx",
-    "tag": "replace"
-   }
-  },
-  {
    "file": "pal3/src/MiniGame/MiniGame1.cpp",
    "name": "MiniGame1::Render(void)",
    "va": "0x0052B860",
@@ -8435,6 +8327,60 @@
     "ours_addr": "0x0",
     "ours": "mov {R}",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffSParticle.cpp",
+   "name": "CEffSParticle::GetEditorTaskDescription(int)",
+   "va": "0x004D58D0",
+   "size": 127,
+   "n_diff": 105,
+   "first_diff": 0,
+   "compiled_len": 127,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d58d0",
+    "orig": "mov edx, dword ptr [esp + 4]",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffSParticle.cpp",
+   "name": "CEffSParticle::SetTimeScale(CEffSParticle *,char)",
+   "va": "0x004D5790",
+   "size": 129,
+   "n_diff": 105,
+   "first_diff": 6,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d5796",
+    "orig": "mov dword ptr [esi], 0x56fb70",
+    "ours_addr": "0x6",
+    "ours": "test eax, eax",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::_scalar_deleting_destructor_(CEffgbParticle *,char)",
+   "va": "0x004C87A0",
+   "size": 129,
+   "n_diff": 105,
+   "first_diff": 6,
+   "compiled_len": 128,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c87a6",
+    "orig": "mov dword ptr [esi], 0x56f8b4",
+    "ours_addr": "0x6",
+    "ours": "test eax, eax",
+    "tag": "delete"
    }
   },
   {
@@ -8525,42 +8471,6 @@
     "ours_addr": "0x0",
     "ours": "push esi",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffSParticle.cpp",
-   "name": "CEffSParticle::SetTimeScale(CEffSParticle *,char)",
-   "va": "0x004D5790",
-   "size": 129,
-   "n_diff": 106,
-   "first_diff": 5,
-   "compiled_len": 128,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d5793",
-    "orig": "mov eax, dword ptr [esi + 0x1c]",
-    "ours_addr": "0x3",
-    "ours": "mov eax, dword ptr [esi + 0x20]",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::_scalar_deleting_destructor_(CEffgbParticle *,char)",
-   "va": "0x004C87A0",
-   "size": 129,
-   "n_diff": 106,
-   "first_diff": 5,
-   "compiled_len": 128,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c87a3",
-    "orig": "mov eax, dword ptr [esi + 0x1c]",
-    "ours_addr": "0x3",
-    "ours": "mov eax, dword ptr [esi + 0x20]",
-    "tag": "replace"
    }
   },
   {
@@ -10202,24 +10112,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::Init_3C90(void)",
-   "va": "0x004C3C90",
-   "size": 246,
-   "n_diff": 143,
-   "first_diff": 9,
-   "compiled_len": 176,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c3c97",
-    "orig": "mov dword ptr [eax + 4], ecx",
-    "ours_addr": "0x7",
-    "ours": "mov dword ptr [eax + 8], ecx",
-    "tag": "replace"
-   }
-  },
-  {
    "file": "pal3/src/GameBase/InputSystem.cpp",
    "name": "InputSystem::ProcessMouse(int)",
    "va": "0x0041C540",
@@ -10289,6 +10181,24 @@
     "ours_addr": "0x2",
     "ours": "push {R}",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffCylinder.cpp",
+   "name": "CEffCylinder::Init_3C90(void)",
+   "va": "0x004C3C90",
+   "size": 246,
+   "n_diff": 144,
+   "first_diff": 10,
+   "compiled_len": 176,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c3c9a",
+    "orig": "mov byte ptr [eax + 8], cl",
+    "ours_addr": "0xa",
+    "ours": "mov dword ptr [eax + 0x1c], edx",
+    "tag": "insert"
    }
   },
   {
@@ -10742,6 +10652,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "name": "CEffQuad::DestroyOneQuad(void const *)",
+   "va": "0x004D1BE0",
+   "size": 180,
+   "n_diff": 162,
+   "first_diff": 6,
+   "compiled_len": 180,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d1be5",
+    "orig": "mov ecx, dword ptr [ebx + 0x44]",
+    "ours_addr": "0x5",
+    "ours": "mov esi, dword ptr [ebx + 0x44]",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UITitle_ArcSave.cpp",
    "name": "UITitle_ArcSave::UITitle_ArcSave(void)",
    "va": "0x0047BBF0",
@@ -10810,24 +10738,6 @@
     "orig": "sub esp, 0x50",
     "ours_addr": "0x0",
     "ours": "sub esp, 0x54",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffQuad.cpp",
-   "name": "CEffQuad::DestroyOneQuad(void const *)",
-   "va": "0x004D1BE0",
-   "size": 180,
-   "n_diff": 164,
-   "first_diff": 6,
-   "compiled_len": 180,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d1be5",
-    "orig": "mov ecx, dword ptr [ebx + 0x44]",
-    "ours_addr": "0x5",
-    "ours": "mov esi, dword ptr [ebx + 0x48]",
     "tag": "replace"
    }
   },
@@ -10922,6 +10832,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "name": "CEffGrid::Init(float *,float,float,float)",
+   "va": "0x004C9750",
+   "size": 408,
+   "n_diff": 168,
+   "first_diff": 119,
+   "compiled_len": 400,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c97c7",
+    "orig": "mov eax, dword ptr [edi + 0xcc]",
+    "ours_addr": "0x77",
+    "ours": "fld dword ptr [edi + 0xcc]",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Combat/CUtil.cpp",
    "name": "CUtil::RenderFrameY(PalScript *,int)",
    "va": "0x005236E0",
@@ -10954,6 +10882,24 @@
     "orig": "mov edx, dword ptr [ecx + 0x4c]",
     "ours_addr": "0x6",
     "ours": "push esi",
+    "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffCylinder.cpp",
+   "name": "CEffCylinder::Destroy(void)",
+   "va": "0x004C4370",
+   "size": 512,
+   "n_diff": 172,
+   "first_diff": 2,
+   "compiled_len": 464,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c4370",
+    "orig": "sub esp, 0x20",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 8",
     "tag": "replace"
    }
   },
@@ -11009,24 +10955,6 @@
     "ours_addr": "0x0",
     "ours": "push ebx",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::Destroy(void)",
-   "va": "0x004C4370",
-   "size": 512,
-   "n_diff": 175,
-   "first_diff": 2,
-   "compiled_len": 464,
-   "cause": "immediate/const differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c4370",
-    "orig": "sub esp, 0x20",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 8",
-    "tag": "replace"
    }
   },
   {
@@ -11192,20 +11120,20 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffGrid.cpp",
-   "name": "CEffGrid::Init(float *,float,float,float)",
-   "va": "0x004C9750",
-   "size": 408,
+   "file": "pal3/src/Effect/CEffCylinder.cpp",
+   "name": "CEffCylinder::Init_3EC0(float *,float,float,float)",
+   "va": "0x004C3EC0",
+   "size": 412,
    "n_diff": 179,
-   "first_diff": 17,
-   "compiled_len": 400,
-   "cause": "this/member disp differs",
+   "first_diff": 119,
+   "compiled_len": 412,
+   "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4c975f",
-    "orig": "mov byte ptr [esi + 8], bl",
-    "ours_addr": "0xf",
-    "ours": "mov byte ptr [esi + 0xc], bl",
+    "orig_addr": "0x4c3f37",
+    "orig": "mov eax, dword ptr [edi + 0xcc]",
+    "ours_addr": "0x77",
+    "ours": "fld dword ptr [edi + 0xcc]",
     "tag": "replace"
    }
   },
@@ -11300,6 +11228,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffSParticle.cpp",
+   "name": "CEffSParticle::Render(int,int,int,int *,int,int)",
+   "va": "0x004D56B0",
+   "size": 213,
+   "n_diff": 183,
+   "first_diff": 6,
+   "compiled_len": 213,
+   "cause": "this/member disp differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d56b5",
+    "orig": "mov ecx, dword ptr [ebx + 0x20]",
+    "ours_addr": "0x5",
+    "ours": "mov edx, dword ptr [ebx + 0x20]",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Render/RenderTarget2.cpp",
    "name": "RenderTarget2::ProcessVideoPass(int)",
    "va": "0x004C24B0",
@@ -11315,24 +11261,6 @@
     "ours_addr": "0x0",
     "ours": "push ebx",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffSParticle.cpp",
-   "name": "CEffSParticle::Render(int,int,int,int *,int,int)",
-   "va": "0x004D56B0",
-   "size": 213,
-   "n_diff": 184,
-   "first_diff": 6,
-   "compiled_len": 213,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d56b5",
-    "orig": "mov ecx, dword ptr [ebx + 0x20]",
-    "ours_addr": "0x5",
-    "ours": "mov edx, dword ptr [ebx + 0x24]",
-    "tag": "replace"
    }
   },
   {
@@ -11354,6 +11282,24 @@
    }
   },
   {
+   "file": "pal3/src/Misc/CEffAction.cpp",
+   "name": "CEffAction::AllocSegments(int)",
+   "va": "0x004C0650",
+   "size": 225,
+   "n_diff": 187,
+   "first_diff": 26,
+   "compiled_len": 225,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c066a",
+    "orig": "je 0x94",
+    "ours_addr": "0x1a",
+    "ours": "je 0xe1",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UIRoleSelect.cpp",
    "name": "UIRoleSelect::SetByte(char)",
    "va": "0x004A1530",
@@ -11368,24 +11314,6 @@
     "orig": "sub eax, ebx",
     "ours_addr": "0x16",
     "ours": "cmp eax, ebx",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Misc/CEffAction.cpp",
-   "name": "CEffAction::AllocSegments(int)",
-   "va": "0x004C0650",
-   "size": 225,
-   "n_diff": 188,
-   "first_diff": 25,
-   "compiled_len": 225,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c0667",
-    "orig": "mov dword ptr [esi + 0x18], eax",
-    "ours_addr": "0x17",
-    "ours": "mov dword ptr [esi + 0x1c], eax",
     "tag": "replace"
    }
   },
@@ -11422,24 +11350,6 @@
     "orig": "mov edi, 0x5d426c",
     "ours_addr": "0x7",
     "ours": "mov {R}",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::Init_3EC0(float *,float,float,float)",
-   "va": "0x004C3EC0",
-   "size": 412,
-   "n_diff": 190,
-   "first_diff": 17,
-   "compiled_len": 412,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c3ecf",
-    "orig": "mov byte ptr [esi + 8], bl",
-    "ours_addr": "0xf",
-    "ours": "mov byte ptr [esi + 0xc], bl",
     "tag": "replace"
    }
   },
@@ -11516,6 +11426,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::SetData(int,int,int,int *,int,int)",
+   "va": "0x004C8650",
+   "size": 213,
+   "n_diff": 191,
+   "first_diff": 0,
+   "compiled_len": 213,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c8650",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "delete"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
    "name": "UILoadingFrm::InitFullScreen(void)",
    "va": "0x004507F0",
@@ -11531,6 +11459,24 @@
     "ours_addr": "0x3",
     "ours": "mov {R}",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
+   "va": "0x004D4B50",
+   "size": 213,
+   "n_diff": 192,
+   "first_diff": 0,
+   "compiled_len": 213,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d4b50",
+    "orig": "push ebx",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "delete"
    }
   },
   {
@@ -11565,26 +11511,8 @@
     "orig_addr": "0x4ceb60",
     "orig": "mov eax, dword ptr fs:[0]",
     "ours_addr": "0x0",
-    "ours": "mov dl, byte ptr [ecx + 0x60]",
+    "ours": "mov dl, byte ptr [ecx + 0x58]",
     "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::SetData(int,int,int,int *,int,int)",
-   "va": "0x004C8650",
-   "size": 213,
-   "n_diff": 192,
-   "first_diff": 0,
-   "compiled_len": 213,
-   "cause": "register choice differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c8650",
-    "orig": "push ebx",
-    "ours_addr": "0x0",
-    "ours": "push ebp",
-    "tag": "delete"
    }
   },
   {
@@ -11639,24 +11567,6 @@
     "ours_addr": "0x1a",
     "ours": "je 0xee",
     "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffShock.cpp",
-   "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
-   "va": "0x004D4B50",
-   "size": 213,
-   "n_diff": 193,
-   "first_diff": 0,
-   "compiled_len": 213,
-   "cause": "register choice differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d4b50",
-    "orig": "push ebx",
-    "ours_addr": "0x0",
-    "ours": "push ebp",
-    "tag": "delete"
    }
   },
   {
@@ -11835,7 +11745,7 @@
     "orig_addr": "0x4cec80",
     "orig": "mov eax, dword ptr fs:[0]",
     "ours_addr": "0x0",
-    "ours": "mov dl, byte ptr [ecx + 0x5c]",
+    "ours": "mov dl, byte ptr [ecx + 0x58]",
     "tag": "replace"
    }
   },
@@ -12164,6 +12074,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "name": "CEffShock::StartShock(int)",
+   "va": "0x004D45D0",
+   "size": 301,
+   "n_diff": 230,
+   "first_diff": 17,
+   "compiled_len": 301,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d45df",
+    "orig": "jle 0xd9",
+    "ours_addr": "0xf",
+    "ours": "jle 0xd6",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UIPushButton.cpp",
    "name": "UIPushButton::CreateWithTextures(int,void *,UIWnd *,char const *,char)",
    "va": "0x00440810",
@@ -12178,24 +12106,6 @@
     "orig": "push 0x55fefb",
     "ours_addr": "0x2",
     "ours": "push {R}",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffShock.cpp",
-   "name": "CEffShock::StartShock(int)",
-   "va": "0x004D45D0",
-   "size": 301,
-   "n_diff": 231,
-   "first_diff": 9,
-   "compiled_len": 301,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d45d7",
-    "orig": "mov eax, dword ptr [esi + 0x1038]",
-    "ours_addr": "0x7",
-    "ours": "mov eax, dword ptr [esi + 0x103c]",
     "tag": "replace"
    }
   },
@@ -12830,6 +12740,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "name": "CEffMeteor::Init(float *,float,float,float)",
+   "va": "0x004CB5E0",
+   "size": 544,
+   "n_diff": 274,
+   "first_diff": 6,
+   "compiled_len": 544,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cb5e6",
+    "orig": "push edi",
+    "ours_addr": "0x6",
+    "ours": "mov esi, ecx",
+    "tag": "insert"
+   }
+  },
+  {
    "file": "pal3/src/Misc/PathObj.cpp",
    "name": "PathObj::GetPosition(float,float *,int *)",
    "va": "0x0041F120",
@@ -12989,24 +12917,6 @@
     "ours_addr": "0x2",
     "ours": "push {R}",
     "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffMeteor.cpp",
-   "name": "CEffMeteor::Init(float *,float,float,float)",
-   "va": "0x004CB5E0",
-   "size": 544,
-   "n_diff": 282,
-   "first_diff": 6,
-   "compiled_len": 544,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4cb5e6",
-    "orig": "push edi",
-    "ours_addr": "0x6",
-    "ours": "mov esi, ecx",
-    "tag": "insert"
    }
   },
   {
@@ -13262,6 +13172,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::Destroy(void)",
+   "va": "0x004C6F20",
+   "size": 506,
+   "n_diff": 299,
+   "first_diff": 0,
+   "compiled_len": 448,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c6f20",
+    "orig": "sub esp, 0x1c",
+    "ours_addr": "0x0",
+    "ours": "push ecx",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UIPushButton.cpp",
    "name": "UIPushButton::Update(float,int)",
    "va": "0x00440DD0",
@@ -13349,24 +13277,6 @@
     "ours_addr": "0x5",
     "ours": "xor ebx, ebx",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::Destroy(void)",
-   "va": "0x004C6F20",
-   "size": 506,
-   "n_diff": 313,
-   "first_diff": 0,
-   "compiled_len": 464,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c6f20",
-    "orig": "sub esp, 0x1c",
-    "ours_addr": "0x0",
-    "ours": "push ecx",
-    "tag": "replace"
    }
   },
   {
@@ -13586,6 +13496,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "name": "CEffGrid::slot_6(int,int)",
+   "va": "0x004C9CA0",
+   "size": 506,
+   "n_diff": 348,
+   "first_diff": 2,
+   "compiled_len": 496,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c9ca0",
+    "orig": "sub esp, 0x1c",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 8",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Misc/UIParticle.cpp",
    "name": "UIParticle::AutoScrollParticles(char *,int,TextureLibDataBase *,int)",
    "va": "0x004B4FE0",
@@ -13600,24 +13528,6 @@
     "orig": "sub esp, 0x44",
     "ours_addr": "0x0",
     "ours": "mov eax, dword ptr [esp + 4]",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffGrid.cpp",
-   "name": "CEffGrid::slot_6(int,int)",
-   "va": "0x004C9CA0",
-   "size": 506,
-   "n_diff": 351,
-   "first_diff": 2,
-   "compiled_len": 496,
-   "cause": "immediate/const differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c9ca0",
-    "orig": "sub esp, 0x1c",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 8",
     "tag": "replace"
    }
   },
@@ -13734,17 +13644,17 @@
    "name": "CEffAction::UpdateFrame(float)",
    "va": "0x004C0740",
    "size": 467,
-   "n_diff": 364,
-   "first_diff": 9,
+   "n_diff": 363,
+   "first_diff": 10,
    "compiled_len": 467,
-   "cause": "this/member disp differs",
+   "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4c0747",
-    "orig": "fsub dword ptr [ecx + 0x10]",
-    "ours_addr": "0x7",
-    "ours": "fsub dword ptr [ecx + 0x14]",
-    "tag": "replace"
+    "orig_addr": "0x4c074a",
+    "orig": "push esi",
+    "ours_addr": "0xa",
+    "ours": "mov eax, dword ptr [esp + 0xc]",
+    "tag": "insert"
    }
   },
   {
@@ -14054,6 +13964,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffSParticle.cpp",
+   "name": "CEffSParticle::Attach(int)",
+   "va": "0x004D53E0",
+   "size": 570,
+   "n_diff": 403,
+   "first_diff": 0,
+   "compiled_len": 570,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d53e0",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "delete"
+   }
+  },
+  {
    "file": "pal3/src/Misc/ChoseCompose.cpp",
    "name": "ChoseCompose::LayoutItems(int,int,int,int,int)",
    "va": "0x00455570",
@@ -14105,24 +14033,6 @@
     "ours_addr": "0x0",
     "ours": "sub esp, 0x40",
     "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffSParticle.cpp",
-   "name": "CEffSParticle::Attach(int)",
-   "va": "0x004D53E0",
-   "size": 570,
-   "n_diff": 406,
-   "first_diff": 0,
-   "compiled_len": 570,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d53e0",
-    "orig": "push ebp",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 0xc",
-    "tag": "delete"
    }
   },
   {
@@ -14274,17 +14184,17 @@
    "name": "CEffAudio::UpdateInternal(float)",
    "va": "0x004C29A0",
    "size": 508,
-   "n_diff": 434,
-   "first_diff": 9,
+   "n_diff": 432,
+   "first_diff": 10,
    "compiled_len": 508,
-   "cause": "this/member disp differs",
+   "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4c29a7",
-    "orig": "fsub dword ptr [ecx + 0x10]",
-    "ours_addr": "0x7",
-    "ours": "fsub dword ptr [ecx + 0x14]",
-    "tag": "replace"
+    "orig_addr": "0x4c29aa",
+    "orig": "push esi",
+    "ours_addr": "0xa",
+    "ours": "mov eax, dword ptr [esp + 0xc]",
+    "tag": "insert"
    }
   },
   {
@@ -14436,7 +14346,7 @@
    "name": "CEffSParticle::Create(float)",
    "va": "0x004D4FC0",
    "size": 488,
-   "n_diff": 461,
+   "n_diff": 460,
    "first_diff": 2,
    "compiled_len": 488,
    "cause": "immediate/const differs",
@@ -14447,6 +14357,42 @@
     "ours_addr": "0x0",
     "ours": "sub esp, 0xc",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuake.cpp",
+   "name": "CEffQuake::RenderEffectPass(int)",
+   "va": "0x004D33B0",
+   "size": 559,
+   "n_diff": 461,
+   "first_diff": 3,
+   "compiled_len": 559,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4d33b3",
+    "orig": "lea ebx, [ecx + 0xc]",
+    "ours_addr": "0x3",
+    "ours": "push esi",
+    "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::ProcCommonTask(float)",
+   "va": "0x004C8BF0",
+   "size": 533,
+   "n_diff": 461,
+   "first_diff": 22,
+   "compiled_len": 533,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c8c06",
+    "orig": "lea esi, [edi + 0xc]",
+    "ours_addr": "0x16",
+    "ours": "mov dword ptr [edi + 0x10], eax",
+    "tag": "insert"
    }
   },
   {
@@ -14483,24 +14429,6 @@
     "ours_addr": "0x0",
     "ours": "push ebx",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::ProcCommonTask(float)",
-   "va": "0x004C8BF0",
-   "size": 533,
-   "n_diff": 463,
-   "first_diff": 21,
-   "compiled_len": 533,
-   "cause": "this/member disp differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c8c03",
-    "orig": "fsub dword ptr [edi + 0x10]",
-    "ours_addr": "0x13",
-    "ours": "fsub dword ptr [edi + 0x14]",
-    "tag": "replace"
    }
   },
   {
@@ -14576,6 +14504,24 @@
    }
   },
   {
+   "file": "pal3/src/Misc/CEffCustomShape.cpp",
+   "name": "CEffCustomShape::UpdateEffect(int,float)",
+   "va": "0x004CFFB0",
+   "size": 524,
+   "n_diff": 468,
+   "first_diff": 2,
+   "compiled_len": 524,
+   "cause": "immediate/const differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cffb0",
+    "orig": "sub esp, 8",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Effect/CEffSParticle.cpp",
    "name": "CEffSParticle::Init(int *)",
    "va": "0x004D51B0",
@@ -14591,24 +14537,6 @@
     "ours_addr": "0x3",
     "ours": "push esi",
     "tag": "delete"
-   }
-  },
-  {
-   "file": "pal3/src/Misc/CEffCustomShape.cpp",
-   "name": "CEffCustomShape::UpdateEffect(int,float)",
-   "va": "0x004CFFB0",
-   "size": 524,
-   "n_diff": 470,
-   "first_diff": 2,
-   "compiled_len": 524,
-   "cause": "immediate/const differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4cffb0",
-    "orig": "sub esp, 8",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 0xc",
-    "tag": "replace"
    }
   },
   {
@@ -14643,7 +14571,7 @@
     "orig_addr": "0x4c8e91",
     "orig": "push ebx",
     "ours_addr": "0x1",
-    "ours": "mov edx, dword ptr [ecx + 0x2c]",
+    "ours": "mov edx, dword ptr [ecx + 0x28]",
     "tag": "insert"
    }
   },
@@ -14666,24 +14594,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffQuake.cpp",
-   "name": "CEffQuake::RenderEffectPass(int)",
-   "va": "0x004D33B0",
-   "size": 559,
-   "n_diff": 477,
-   "first_diff": 1,
-   "compiled_len": 559,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4d33b1",
-    "orig": "push ebx",
-    "ours_addr": "0x1",
-    "ours": "mov edx, dword ptr [ecx + 0x2c]",
-    "tag": "insert"
-   }
-  },
-  {
    "file": "pal3/src/Effect/CEffGrid.cpp",
    "name": "CEffGrid::RenderEffectPass(int)",
    "va": "0x004CA1D0",
@@ -14697,7 +14607,7 @@
     "orig_addr": "0x4ca1d1",
     "orig": "push ebx",
     "ours_addr": "0x1",
-    "ours": "mov edx, dword ptr [ecx + 0x2c]",
+    "ours": "mov edx, dword ptr [ecx + 0x28]",
     "tag": "insert"
    }
   },
@@ -14717,6 +14627,24 @@
     "ours_addr": "0x1",
     "ours": "mov ebx, dword ptr [esp + 8]",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffCylinder.cpp",
+   "name": "CEffCylinder::Create(tagEffObjType *)",
+   "va": "0x004C4060",
+   "size": 776,
+   "n_diff": 485,
+   "first_diff": 0,
+   "compiled_len": 672,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c4060",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x400",
+    "tag": "insert"
    }
   },
   {
@@ -14828,24 +14756,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::Create(tagEffObjType *)",
-   "va": "0x004C4060",
-   "size": 776,
-   "n_diff": 560,
-   "first_diff": 0,
-   "compiled_len": 672,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c4060",
-    "orig": "push ebp",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 0x400",
-    "tag": "insert"
-   }
-  },
-  {
    "file": "pal3/src/Misc/UITitle_XJTM.cpp",
    "name": "UITitle_XJTM::UpdateMonsterEntry2(int,int *)",
    "va": "0x004999D0",
@@ -14900,6 +14810,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "name": "CEffgbParticle::Create(tagEffObjType *)",
+   "va": "0x004C6C10",
+   "size": 774,
+   "n_diff": 575,
+   "first_diff": 0,
+   "compiled_len": 688,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c6c10",
+    "orig": "mov eax, dword ptr fs:[0]",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "replace"
+   }
+  },
+  {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
    "name": "ScreenEffectMgr::ProcessEffect(int)",
    "va": "0x004BE1A0",
@@ -14914,24 +14842,6 @@
     "orig": "sub esp, 0x10",
     "ours_addr": "0x4",
     "ours": "sub esp, 8",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "name": "CEffgbParticle::Create(tagEffObjType *)",
-   "va": "0x004C6C10",
-   "size": 774,
-   "n_diff": 593,
-   "first_diff": 0,
-   "compiled_len": 720,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c6c10",
-    "orig": "mov eax, dword ptr fs:[0]",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 0x404",
     "tag": "replace"
    }
   },
@@ -15008,6 +14918,24 @@
    }
   },
   {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "name": "CEffMeteor::CreateTask(int)",
+   "va": "0x004CBFC0",
+   "size": 717,
+   "n_diff": 617,
+   "first_diff": 0,
+   "compiled_len": 717,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cbfc0",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0xc",
+    "tag": "insert"
+   }
+  },
+  {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
    "name": "CCBUIPanel::InitScrollState(void)",
    "va": "0x004A3EC0",
@@ -15023,6 +14951,24 @@
     "ours_addr": "0x0",
     "ours": "push esi",
     "tag": "delete"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "name": "CEffGrid::Create(tagEffObjType *)",
+   "va": "0x004C98F0",
+   "size": 942,
+   "n_diff": 619,
+   "first_diff": 0,
+   "compiled_len": 768,
+   "cause": "register choice differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4c98f0",
+    "orig": "push -1",
+    "ours_addr": "0x0",
+    "ours": "push ebp",
+    "tag": "replace"
    }
   },
   {
@@ -15062,24 +15008,6 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffMeteor.cpp",
-   "name": "CEffMeteor::CreateTask(int)",
-   "va": "0x004CBFC0",
-   "size": 717,
-   "n_diff": 631,
-   "first_diff": 0,
-   "compiled_len": 717,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4cbfc0",
-    "orig": "push ebp",
-    "ours_addr": "0x0",
-    "ours": "fld dword ptr [esp + 4]",
-    "tag": "insert"
-   }
-  },
-  {
    "file": "pal3/src/Misc/UITitle_BBTY.cpp",
    "name": "UITitle_BBTY::UpdateFrame(double,int,int)",
    "va": "0x004520A0",
@@ -15094,24 +15022,6 @@
     "orig": "sub esp, 0x30",
     "ours_addr": "0x0",
     "ours": "sub esp, 0x34",
-    "tag": "replace"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffGrid.cpp",
-   "name": "CEffGrid::Create(tagEffObjType *)",
-   "va": "0x004C98F0",
-   "size": 942,
-   "n_diff": 640,
-   "first_diff": 0,
-   "compiled_len": 784,
-   "cause": "register choice differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c98f0",
-    "orig": "push -1",
-    "ours_addr": "0x0",
-    "ours": "push ebp",
     "tag": "replace"
    }
   },
@@ -15260,29 +15170,11 @@
    }
   },
   {
-   "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::CreateTask(float)",
-   "va": "0x004C45A0",
-   "size": 809,
-   "n_diff": 677,
-   "first_diff": 0,
-   "compiled_len": 809,
-   "cause": "opcode/flow differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c45a0",
-    "orig": "push ebp",
-    "ours_addr": "0x0",
-    "ours": "sub esp, 0x10",
-    "tag": "insert"
-   }
-  },
-  {
    "file": "pal3/src/Effect/CEffGrid.cpp",
    "name": "CEffGrid::slot_5(int)",
    "va": "0x004C9ED0",
    "size": 759,
-   "n_diff": 680,
+   "n_diff": 682,
    "first_diff": 0,
    "compiled_len": 759,
    "cause": "opcode/flow differs",
@@ -15297,37 +15189,19 @@
   },
   {
    "file": "pal3/src/Effect/CEffCylinder.cpp",
-   "name": "CEffCylinder::ProcCommonTask(void)",
-   "va": "0x004C7680",
-   "size": 994,
-   "n_diff": 735,
-   "first_diff": 3,
-   "compiled_len": 994,
-   "cause": "register choice differs",
-   "adjustor_thunk": false,
-   "site": {
-    "orig_addr": "0x4c7683",
-    "orig": "push ebp",
-    "ours_addr": "0x3",
-    "ours": "push ebx",
-    "tag": "insert"
-   }
-  },
-  {
-   "file": "pal3/src/Effect/CEffMeteor.cpp",
-   "name": "CEffMeteor::Create(tagEffObjType *)",
-   "va": "0x004CB800",
-   "size": 1095,
-   "n_diff": 750,
+   "name": "CEffCylinder::CreateTask(float)",
+   "va": "0x004C45A0",
+   "size": 809,
+   "n_diff": 689,
    "first_diff": 0,
-   "compiled_len": 960,
+   "compiled_len": 809,
    "cause": "opcode/flow differs",
    "adjustor_thunk": false,
    "site": {
-    "orig_addr": "0x4cb800",
+    "orig_addr": "0x4c45a0",
     "orig": "push ebp",
     "ours_addr": "0x0",
-    "ours": "sub esp, 0x404",
+    "ours": "sub esp, 0x10",
     "tag": "insert"
    }
   },
@@ -15383,6 +15257,24 @@
     "ours_addr": "0x0",
     "ours": "sub esp, 0x15c",
     "tag": "replace"
+   }
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "name": "CEffMeteor::Create(tagEffObjType *)",
+   "va": "0x004CB800",
+   "size": 1095,
+   "n_diff": 796,
+   "first_diff": 0,
+   "compiled_len": 960,
+   "cause": "opcode/flow differs",
+   "adjustor_thunk": false,
+   "site": {
+    "orig_addr": "0x4cb800",
+    "orig": "push ebp",
+    "ours_addr": "0x0",
+    "ours": "sub esp, 0x404",
+    "tag": "insert"
    }
   },
   {
@@ -15678,7 +15570,7 @@
    "name": "CEffCylinder::UpdateGeometry(int)",
    "va": "0x004CA450",
    "size": 1354,
-   "n_diff": 964,
+   "n_diff": 962,
    "first_diff": 3,
    "compiled_len": 1354,
    "cause": "register choice differs",

@@ -1,54 +1,230 @@
 {
- "name": "tagUIParam",
- "binary_size": 32,
- "known_members": {
-  "0": {
-   "name": "pUI",
-   "type": "UIWnd *",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "name": "UILoadingFrm",
+  "binary_size": 332,
+  "known_members": {
+    "72": {
+      "name": "m_LoadProgress",
+      "type": "UIProgressBar",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "316": {
+      "name": "m_anitime",
+      "type": "float",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "320": {
+      "name": "m_aniFlag",
+      "type": "int",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "324": {
+      "name": "m_MaxValue",
+      "type": "float",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    },
+    "328": {
+      "name": "m_isOverProgress",
+      "type": "unsigned char",
+      "source": "annotation",
+      "evidence_level": "unverified"
+    }
   },
-  "4": {
-   "name": "fFromX",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "methods": {
+    "0x00450710": {
+      "name": "UILoadingFrm",
+      "signature": "void __thiscall()",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UILoadingFrm（ctor 名形=类名）：A 级 refs ??0UIListBox@@QAE@XZ（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
+      "evidence_level": "A"
+    },
+    "0x00450790": {
+      "name": "~UILoadingFrm",
+      "signature": "void __thiscall()",
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UILoadingFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UILoadingFrm。refs: ??1UIButton@@QAE@XZ ??1UIListBox@@QAE@XZ",
+      "evidence_level": "A"
+    },
+    "0x00450770": {
+      "name": "_scalar_dtor_0770",
+      "signature": "void *__thiscall(UIWnd *Block, char pData)",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UILoadingFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B100）",
+      "evidence_level": "A",
+      "declaration_only": true
+    },
+    "0x00450990": {
+      "name": "OnMessage",
+      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+      "ordinal": 6,
+      "evidence_level": "unverified"
+    },
+    "0x00483300": {
+      "name": "DestroyFrames",
+      "signature": "void __thiscall UILoadingFrm::DestroyFrames()",
+      "evidence_level": "unverified"
+    },
+    "0x004507F0": {
+      "name": "InitFullScreen",
+      "signature": "void __thiscall UILoadingFrm::InitFullScreen()",
+      "evidence_level": "unverified"
+    },
+    "0x00450900": {
+      "name": "UpdateAnimation",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "ordinal": 2,
+      "evidence_level": "unverified"
+    },
+    "0x00483280": {
+      "name": "DestroyStatics",
+      "signature": "void __thiscall UILoadingFrm::DestroyStatics()",
+      "evidence_level": "unverified"
+    },
+    "0x0052DD60": {
+      "name": "ResetState",
+      "signature": "int __thiscall UIGameOver::ResetState()",
+      "evidence_level": "unverified"
+    },
+    "0x0052DE00": {
+      "name": "ResetAllState",
+      "signature": "int __thiscall UILoadingFrm::ResetAllState()",
+      "evidence_level": "unverified"
+    },
+    "0x0052E820": {
+      "name": "CheckProgress",
+      "signature": "char __thiscall UILoadingFrm::CheckProgress(int nVal)",
+      "evidence_level": "unverified"
+    },
+    "0x0043BBC0": {
+      "name": "Update",
+      "signature": "BOOL __thiscall(int nVal, int nVal2)",
+      "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
+    },
+    "0x0043DE40": {
+      "name": "CCBRoleState::Destroy",
+      "signature": "int __thiscall Destroy(int nMode)",
+      "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
+    },
+    "0x00451B40": {
+      "name": "ResizeToContent",
+      "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
+      "source": "vtable_gap_fill_v1(from UIListBox.json)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
+    },
+    "0x00451C10": {
+      "name": "IsVisible",
+      "signature": "int __thiscall UIListBox::IsVisible()",
+      "source": "vtable_gap_fill_v1(from UIListBox.json)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
+    },
+    "0x00524970": {
+      "name": "CCBRoleState::Render",
+      "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
+      "source": "vtable_gap_fill_v1(from CCBStage.json)",
+      "evidence_level": "unverified",
+      "adjudication": "shared_impl"
+    },
+    "0x004518E0": {
+      "name": "_scalar_dtor_18E0",
+      "signature": "void __thiscall()",
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UILoadingFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B178,0x56B16C）",
+      "evidence_level": "A",
+      "declaration_only": true
+    },
+    "0x00451AA0": {
+      "name": "OnMessage_1AA0",
+      "signature": "virtual int __thiscall(UILoadingFrm *this, int a2, int a3, int a4)",
+      "name_source": "IDA语义分析 2026-11-01 批7 + 2026-11-09 C2084消歧",
+      "name_note": "消息处理（1007=设颜色）；vtable[1] slot6 自有槽。原名 OnMessage 与 0x00450990(消息1000分派,OnMessage)撞名 → 消歧名"
+    }
   },
-  "8": {
-   "name": "fFromY",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "12": {
-   "name": "fEndX",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "16": {
-   "name": "fEndY",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "20": {
-   "name": "fSpeed",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "24": {
-   "name": "fEnergy",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "28": {
-   "name": "nTimes",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  }
- }
+  "vtables": [
+    {
+      "addr": "0x0056B100",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445E70",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00524970",
+          "from": null
+        },
+        {
+          "addr": "0x00450900",
+          "from": null
+        },
+        {
+          "addr": "0x0043DE40",
+          "from": null
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00450770",
+          "from": null
+        },
+        {
+          "addr": "0x00450990",
+          "from": null
+        }
+      ]
+    },
+    {
+      "addr": "0x0056B178",
+      "base": "UIFrameWnd",
+      "slots": [
+        {
+          "addr": "0x00451B40",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00451C10",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x0043BBC0",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00445C10",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x00445B90",
+          "from": "UIWnd"
+        },
+        {
+          "addr": "0x004518E0",
+          "from": "UILoadingFrm"
+        },
+        {
+          "addr": "0x00451AA0",
+          "from": "UILoadingFrm"
+        }
+      ],
+      "source": "[4 表裁决落地 2026-10-16] ✅ UILoadingFrm 的 **UIFrameWnd 基类子对象表**（A 级：deleting `??_GUILoadingFrm@@…_0` 副本后缀修饰名 + ctor 显式调 UIFrameWnd 基 ctor）——自 UIListBox 误挂迁入"
+    }
+  ],
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIFrameWnd",
+      "offset": 0
+    }
+  ]
 }

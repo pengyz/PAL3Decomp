@@ -46,20 +46,19 @@ def walk_table(va, maxn=64):
         out.append('0x%08X' % t)
     return out
 
-VT = {
-    'CEffQuake':      ('0x0056FA88', '0x0056FA7C'),
-    'CEffShock':      ('0x0056FADC', '0x0056FAD0'),
-    'CEffQuad':       ('0x0056FA30', '0x0056FA24'),
-    'CEffAction':     ('0x0056F5E4', '0x0056F5D8'),
-    'CEffgbParticle': ('0x0056F8CC', '0x0056F8C0'),
-    'CEffExplosive':  ('0x0056F878', '0x0056F86C'),
-    'CEffModel':      ('0x0056F9DC', '0x0056F9D0'),
-    'CEffCylinder':   ('0x0056F7C8', '0x0056F7BC'),
-    'CEffGrid':       ('0x0056F920', '0x0056F914'),
-    'CEffMeteor':     ('0x0056F978', '0x0056F96C'),
-    'CEffBink':       ('0x0056F674', '0x0056F668'),
-    'CEffCallBack':   ('0x0056F71C', '0x0056F710'),
-}
+# [动态化 2026-11-14] VT 取自注解自报表址(ctor裁决后已就位); 覆盖全家族
+import glob as _glob
+VT = {}
+for _fp in sorted(_glob.glob(os.path.join(ROOT, 'data/annotations/structs/CEff*.json'))):
+    _c = os.path.basename(_fp)[:-5]
+    if _c == 'CEffObj': continue
+    try:
+        _d = json.load(open(_fp, encoding='utf-8'))
+        _vts = _d.get('vtables') or []
+        if len(_vts) >= 1 and _vts[0].get('addr'):
+            VT[_c] = (_vts[0]['addr'], _vts[1]['addr'] if len(_vts) > 1 else _vts[0]['addr'])
+    except Exception:
+        pass
 
 obj = json.load(open(S('CEffObj'), encoding='utf-8'))
 obj_methods = obj.get('methods', {})
@@ -125,6 +124,13 @@ for cls, (t1, t2) in VT.items():
             added.append(a_hex)
             frm = None
         new_slots.append({'addr': a_hex, 'from': frm})
+    # [name/sig保持 2026-11-14] 重建不得覆写正名账字段(按位置继承既有name/sig)
+    _old_slots = (d.get('vtables') or [{}])[0].get('slots') or []
+    for _i, _ns in enumerate(new_slots):
+        if _i < len(_old_slots):
+            for _k in ('name', 'sig'):
+                if _k in _old_slots[_i]:
+                    _ns[_k] = _old_slots[_i][_k]
     d['vtables'] = [
         {'addr': t1, 'base': None, 'slots': new_slots,
          'source': 'binary:vtable_walk 20261114 (ctor写表三元组裁决)', 'evidence_level': 'binary_ctor_write'},
@@ -140,20 +146,6 @@ for cls, (t1, t2) in VT.items():
     if APPLY:
         json.dump(d, open(S(cls), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
-# ---- CEffObj: 同款 owner 判据重写槽位 (phase1 写的是 from=None) ----
-_obj_vt_addr = int(obj['vtables'][0]['addr'], 16)  # 以注解自报基表为准(裁决后=0x56F62C)
-slots_o = walk_table(_obj_vt_addr)
-ns_o = []
-for si, addr in enumerate(slots_o):
-    a2 = addr.lower()
-    if addr in obj_methods or a2 in obj_methods:
-        frm = None
-    else:
-        oc = _owner.get(addr) or _owner.get(a2)
-        frm = oc if (oc and oc != 'CEffObj') else None
-    ns_o.append({'addr': addr, 'from': frm})
-obj['vtables'][0]['slots'] = ns_o
-print('CEffObj        主表%d槽(from他类:%d)' % (len(ns_o), sum(1 for s in ns_o if s.get('from'))))
 
 if APPLY:
     json.dump(obj, open(S('CEffObj'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

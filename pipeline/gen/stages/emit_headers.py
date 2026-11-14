@@ -2813,6 +2813,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if _vt_slots_flat:
                 sys.stderr.write('  flat[1]=%r\n' % (_vt_slots_flat[1],))
         _slot_decls_emitted = True
+        # [签名类型前向声明 2026-11-14] 槽位签名引用的类类型若无声明 ⇒ C2061。
+        # 冗余前向声明合法C++ ⇒ 对全部指针参数类型无条件发射 class X;(排除内建/自身)。
+        _builtin_t = {'void','char','int','float','double','long','short','bool','unsigned','signed',
+                      'BYTE','WORD','DWORD','UINT','ULONG','BOOL','_BYTE','_WORD','_DWORD','size_t'}
+        _fwd_needed = []
+        for _sl0 in _vt_slots_flat:
+            for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sl0.get('sig') or ''):
+                if _t0 not in _builtin_t and _t0 != cls_name and _t0 not in _fwd_needed:
+                    _fwd_needed.append(_t0)
+        for _t0 in _fwd_needed:
+            lines.insert(0, '')
+            lines.insert(0, 'class %s;' % _t0)
         for _vi, _sn in enumerate(_all_vtable_slots_self):
             _slot_addr_hex = _sn[0]
             _sl = _vt_slots_flat[_vi] if _vi < len(_vt_slots_flat) else {}
@@ -2876,49 +2888,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _method_addrs.add(int(_ma, 16) if isinstance(_ma, str) else _ma)
             except (ValueError, TypeError):
                 pass
-        # ★ 按唯一地址生成占位（同一函数在多个槽位出现 = MSVC 析构对/继承别名）
-        _seen_slot_addrs = set()
-        for _vi, _sn in enumerate(_all_vtable_slots):
-            _slot_addr = int(_sn[0], 16)
-            if _slot_addr in _seen_slot_addrs:
-                continue  # 重复地址：同一函数的另一个槽位，不重复声明
-            _seen_slot_addrs.add(_slot_addr)
-            if _slot_addr not in _method_addrs:
-                # [每槽正名 2026-11-14] 占位符用槽位canonical名+签名(注解slots字段)
-                _c_name, _c_sig = f'slot_{_vi}', 'void __thiscall()'
-                try:
-                    _sl = _vt_slots_flat[_vi] if _vi < len(_vt_slots_flat) else {}
-                    if _sl.get('name'): _c_name = _sl['name']
-                    if _sl.get('sig'): _c_sig = _sl['sig']
-                except Exception:
-                    pass
-                methods.append((_c_name, _c_sig, hex(_slot_addr)))
-        # [每槽正名 2026-11-14] C++ override同名规则 ⇒ 基类/叶同槽必须同名声明。
-        # vtables slots 的 name 字段(正名裁决账 canonical_slot_names_20261114)优先;
-        # 重复地址(0x401800占slot3/4/6/13=同体异名虚函数前身)的非首槽位置
-        # 补独立声明(位置名), 否则位置塌缩⇒全表错位。
-        # [去越权 2026-11-14] export透传已验证逐字段等值(name/sig在ida_structs) ⇒ 读合法上游
-        _vt_slots_flat = []
-        for _vt in ((_ann_s or {}).get('vtables') or []):
-            _vt_slots_flat.extend(_vt.get('slots') or [])
-        if _vt_slots_flat:
-            _occ = {}
-            for _si, _sl in enumerate(_vt_slots_flat):
-                _a = (_sl.get('addr') or '').lower()
-                if _a:
-                    _occ.setdefault(_a, []).append((_si, _sl.get('name')))
-            _new_methods = []
-            for _mn, _ms, _ma in methods:
-                _al = _ma.lower() if isinstance(_ma, str) else hex(_ma)
-                occ = _occ.get(_al)
-                if occ and occ[0][1] and not re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _mn or ''):
-                    _mn = occ[0][1]  # 首槽正名覆盖(dtor形除外——dtor槽规则管slot0)
-                _new_methods.append((_mn, _ms, _ma))
-                for _si, _nm in (occ[1:] if occ else []):
-                    if not _nm:
-                        _nm = 'slot_%d' % _si  # 重复地址非首槽: 位置名独立声明
-                    _new_methods.append((_nm, 'void __thiscall()', _ma))
-            methods = _new_methods
+        # [每槽位置发射 2026-11-14] vtable槽声明由槽位块逐位发射(含占位),
+        # 旧 completion 占位机制整体退役(其产物被 _vt_covered 跳过=死代码)。
+        # 方法列表只含注解methods条目 —— 非虚表方法在此后循环发射。
 
         def _method_sort_key(item):
             _addr = int(item[2], 16) if isinstance(item[2], str) else item[2]
@@ -3068,10 +3040,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # 其 slot0 的删除式dtor方法(_sdtor_*/scalar_deleting/~X 形)改发**非虚**——
             # 否则双dtor位 ⇒ 全表+1错位(首轮复核风险#4实证, CEffQuake.h 13条对15槽)。
             # 无注入dtor的类(如抽象基 CEffObj)slot0 方法保持 virtual 占位。
-            _dtor_form_re = re.compile(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)')
-            def _is_dtor_form(name):
-                return bool(_dtor_form_re.match(name or ''))
-
             def _safe_method_name(name):
                 _MACRO_CONFLICTS = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
                                     'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
@@ -3095,12 +3063,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
-                    _dtor_slot0 = (_vtable_addr_order.get(_addr_int_vt) == 0
-                                   and _is_dtor_form(_mn) and (_will_inject_vptr or _has_dtor))
-                    if _dtor_slot0:
-                        _r0 = re.sub(r'\bvirtual\b', '', ret).strip()
-                        decl = "    %s %s(%s)%s; // [dtor槽规则] slot0=注入dtor所有, 本体非虚保留" % (_r0, _mn, params, ret_right)
-                    elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                    # [每槽位置发射 2026-11-14] vtable地址已由槽位块逐位声明,
+                    # 此分支仅余非虚表方法(ret_right形) — dtor槽规则已被注解non_virtual取代
+                    if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                         decl = "    virtual %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                     else:
                         decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
@@ -3109,13 +3074,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
-                # ★ vtable 方法强制 virtual（编译器 vptr 分发）
-                _dtor_slot0 = (_vtable_addr_order.get(_addr_int_vt) == 0
-                               and _is_dtor_form(_mn) and (_will_inject_vptr or _has_dtor))
-                if _dtor_slot0:
-                    _r0 = re.sub(r'\bvirtual\b', '', ret).strip()
-                    decl = "    %s %s(%s); // [dtor槽规则] slot0=注入dtor所有, 本体非虚保留" % (_r0, _mn, params)
-                elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                # vtable 方法强制 virtual（编译器 vptr 分发）——slot0 dtor 由槽位块/注解non_virtual处理
+                if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                     decl = "    virtual %s %s(%s);" % (ret, _mn, params)
                 else:
                     decl = "    %s %s(%s);" % (ret, _mn, params)
