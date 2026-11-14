@@ -584,5 +584,9 @@
   "Camera": "ctor vptr写@+224, @0=m_pTodo_0(void*)未见写入 ⇒ (a)标准多态, m_pTodo_0=错归属",
   "ScreenEffectMgr": "ctor vptr写@+161, @0=m_pVtable(void*)未写入 ⇒ (a)标准多态, m_pVtable=错归属(名字暗示vtable但位置错)",
   "note": "ctor尾部写vptr是标准MSVC行为(所有成员构造完后最后装vptr)。判定关键=ctor体中@0是否有数据写入, 而非vptr写入位置。"
+ },
+ "grpinput_remap": {
+  "discovery": "GRPinput ctor 写数据成员在 +8/+0C/+10/+14, vptr@0. IDB UDT: m_lpDI@0(冲突!), m_lpDIDKeyboard@4, m_lpDIDMouse@8, m_mouseSensitivity@12... 但ctor写+0C(=12)/+10(=16)/+14(=20) 与IDB成员+12/+16/+20对不上 ⇒ 全部成员真实偏移=vptr后+4起, 注解偏移系统性-4(当作无vptr布局导致). 需要全成员偏移重映射",
+  "generalization": "这解释了所有(a)类错归属: 注解建立时把vptr占的4B当作数据空间, 导致整个布局-4偏移. 重归属=全成员偏移+4(在vptr后重排)"
  }
 }
