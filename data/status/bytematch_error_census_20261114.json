@@ -1,43 +1,121 @@
 {
-  "generated": "2026-11-14",
-  "method": "s4_diff_explain.py 刷新(893 partial 首分歧) + disp_diff_ledger(95例) + 继承链建模审计 + idalib UDT readback",
-  "truth": {"symbols": 1456, "L1": 157, "semantic": 20, "partial": 895, "unmatched": 323,
-            "partial缺字节": 21089,
-            "首分歧字节账": {"immediate/const": 8242, "register choice": 6150, "opcode/flow": 5419,
-                        "member disp": 925, "operand shape": 353}},
-  "families": {
-    "F1_重复vptr": {
-      "根因": "派生类声明virtual + 链下非多态基类含手工_gap_000[4](或显式m_pVtable成员) => MSVC插隐藏vptr在0, 推后全部基类成员+4",
-      "铁证": "CEffQuake::ResetIdle: 原始c6 41 08 00([ecx+8], 注解evidence自引) vs 编译[ecx+0xc]; 导出头CEffObj.h m_bIdle@8正确; mangled名@@UAEX=按虚编译",
-      "类": {"gap基族": ["CEffObj链: CEffQuake/CEffAction/CEffModel/CEffgbParticle/CEffQuad/CEffSParticle/CEffCylinder/CEffShock/CEffGrid/CEffAudio/CEffCustomShape", "RoleStatePanel(_gap_000[96])", "UIAnimateCtrlEX(基UIAnimateCtrl无虚)"],
-             "显式vptr成员族": ["ScreenEffectMgr(m_pVtable@0)", "RoleCameraCtrl(m_pVtable@8)", "CameraCtrl"]},
-      "disp证据": "Δ+4族54例首分歧; ScreenEffectMgr 0x8→Δ+4, 0x94→Δ+16(叠加更深错位)",
-      "修复层": "管线emit_headers: 统一虚建模——虚链根去gap化, 显式vptr成员退役转虚声明(编译器隐式vfptr)"
-    },
-    "F2_无虚绝对偏移": {
-      "根因": "类有vtable但头文件只发注释不发virtual => 无vptr => 全体成员-4",
-      "证据": "CGameData.h: '// vtable (5 methods...)'注释 + int m_nRoleCount;//+0x4 绝对偏移",
-      "修复层": "管线emit_headers: 有vtable必发virtual声明"
-    },
-    "F3_ctor_dtor无vptr写入": {
-      "根因": "生成代码无虚机制 => VC6不生成vptr初始化; 原始每个多态类ctor/dtor都写mov [esi],vtable_addr",
-      "铁证": "CCBResultWindow::ctor: orig mov dword ptr [esi], 0x56ae10 vs ours mov dword ptr [esi+0x90], 0x15",
-      "规模": "45/45 ctor/dtor全部有差异(553B直差+连锁)",
-      "修复层": "依赖F1/F2统一后VC6自动生成, 无需单独修"
-    },
-    "F4_尾调用形态": {"证据": "orig jmp 0xffff44b0 vs ours call {R}(CCBUIPanel::Destroy族); jmp 0x10 vs push ecx",
-      "规模": "17例首分歧", "修复层": "管线codegen: return f(x) 尾调用重整形"},
-    "F5_esp签名族": {"根因": "esp相对位移差=参数个数/序错", "规模": "23例",
-      "清单": {"TextureLibDataBase": ["GetTextureInfoByIndex Δ-16", "GetTextureInfo Δ-8", "GetLibInfo Δ-16", "_GetItemNum Δ-8", "_CheckItem Δ-8"],
-               "单例": ["CCBAI::GetTargetRole Δ-4", "BINK::SetVideoRect Δ-4", "LineupComp::DispatchSlotMethod Δ-4", "CCBControl::SetParam Δ+4", "Camera::CheckCollision1 Δ+24", "CameraCtrl::SmoothTransition Δ+20"]},
-      "修复层": "annotation签名逐个修正(小批量≤10)"},
-    "F6_深层标注漂移": {"证据": "CGameData Δ+44(0x38cc层), SceneMgr Δ+1756, PalScriptFadeInTimer Δ+304(0x10→0x140), s_RoleState Δ-8; CGameData UDT 32→52有20B洞",
-      "修复层": "annotation成员补全(disp差反推缺失字节数)"},
-    "F7_rsite函数归属错": {"证据": "CCBFiveNimbusWindow::~dtor编译进了orig UIFrameWnd::_UIFrameWnd_ovl地址; CEffGroupNode::~dtor进了Actor::ProcessChain地址",
-      "修复层": "归属/槽序修正"}
+ "generated": "2026-11-14",
+ "method": "s4_diff_explain.py 刷新(893 partial 首分歧) + disp_diff_ledger(95例) + 继承链建模审计 + idalib UDT readback",
+ "truth": {
+  "symbols": 1456,
+  "L1": 157,
+  "semantic": 20,
+  "partial": 895,
+  "unmatched": 323,
+  "partial缺字节": 21089,
+  "首分歧字节账": {
+   "immediate/const": 8242,
+   "register choice": 6150,
+   "opcode/flow": 5419,
+   "member disp": 925,
+   "operand shape": 353
+  }
+ },
+ "families": {
+  "F1_重复vptr": {
+   "根因": "派生类声明virtual + 链下非多态基类含手工_gap_000[4](或显式m_pVtable成员) => MSVC插隐藏vptr在0, 推后全部基类成员+4",
+   "铁证": "CEffQuake::ResetIdle: 原始c6 41 08 00([ecx+8], 注解evidence自引) vs 编译[ecx+0xc]; 导出头CEffObj.h m_bIdle@8正确; mangled名@@UAEX=按虚编译",
+   "类": {
+    "gap基族": [
+     "CEffObj链: CEffQuake/CEffAction/CEffModel/CEffgbParticle/CEffQuad/CEffSParticle/CEffCylinder/CEffShock/CEffGrid/CEffAudio/CEffCustomShape",
+     "RoleStatePanel(_gap_000[96])",
+     "UIAnimateCtrlEX(基UIAnimateCtrl无虚)"
+    ],
+    "显式vptr成员族": [
+     "ScreenEffectMgr(m_pVtable@0)",
+     "RoleCameraCtrl(m_pVtable@8)",
+     "CameraCtrl"
+    ]
+   },
+   "disp证据": "Δ+4族54例首分歧; ScreenEffectMgr 0x8→Δ+4, 0x94→Δ+16(叠加更深错位)",
+   "修复层": "管线emit_headers: 统一虚建模——虚链根去gap化, 显式vptr成员退役转虚声明(编译器隐式vfptr)"
   },
-  "L1参照": {"CameraCtrl": 12, "UIListBox": 10, "CCBFiveNimbusWindow": 9, "AStarPathFinder": 7, "CCBAI": 6,
-           "注": "同类内纯计算函数L1+成员访问函数partial=位移只影响成员访问"},
-  "正确建模参照": "UIWnd形: 虚析构+虚槽+顺序成员(无gap无显式vptr成员) => 隐式vptr填0, UIWnd/UISceneMap/CCBWindow族全链正确",
-  "下一步": "全树783头链式建模普查(定A/B/C/OK) → emit_headers统一规则 → 重建测读数(字节级对账)"
+  "F2_无虚绝对偏移": {
+   "根因": "类有vtable但头文件只发注释不发virtual => 无vptr => 全体成员-4",
+   "证据": "CGameData.h: '// vtable (5 methods...)'注释 + int m_nRoleCount;//+0x4 绝对偏移",
+   "修复层": "管线emit_headers: 有vtable必发virtual声明"
+  },
+  "F3_ctor_dtor无vptr写入": {
+   "根因": "生成代码无虚机制 => VC6不生成vptr初始化; 原始每个多态类ctor/dtor都写mov [esi],vtable_addr",
+   "铁证": "CCBResultWindow::ctor: orig mov dword ptr [esi], 0x56ae10 vs ours mov dword ptr [esi+0x90], 0x15",
+   "规模": "45/45 ctor/dtor全部有差异(553B直差+连锁)",
+   "修复层": "依赖F1/F2统一后VC6自动生成, 无需单独修"
+  },
+  "F4_尾调用形态": {
+   "证据": "orig jmp 0xffff44b0 vs ours call {R}(CCBUIPanel::Destroy族); jmp 0x10 vs push ecx",
+   "规模": "17例首分歧",
+   "修复层": "管线codegen: return f(x) 尾调用重整形"
+  },
+  "F5_esp签名族": {
+   "根因": "esp相对位移差=参数个数/序错",
+   "规模": "23例",
+   "清单": {
+    "TextureLibDataBase": [
+     "GetTextureInfoByIndex Δ-16",
+     "GetTextureInfo Δ-8",
+     "GetLibInfo Δ-16",
+     "_GetItemNum Δ-8",
+     "_CheckItem Δ-8"
+    ],
+    "单例": [
+     "CCBAI::GetTargetRole Δ-4",
+     "BINK::SetVideoRect Δ-4",
+     "LineupComp::DispatchSlotMethod Δ-4",
+     "CCBControl::SetParam Δ+4",
+     "Camera::CheckCollision1 Δ+24",
+     "CameraCtrl::SmoothTransition Δ+20"
+    ]
+   },
+   "修复层": "annotation签名逐个修正(小批量≤10)"
+  },
+  "F6_深层标注漂移": {
+   "证据": "CGameData Δ+44(0x38cc层), SceneMgr Δ+1756, PalScriptFadeInTimer Δ+304(0x10→0x140), s_RoleState Δ-8; CGameData UDT 32→52有20B洞",
+   "修复层": "annotation成员补全(disp差反推缺失字节数)"
+  },
+  "F7_rsite函数归属错": {
+   "证据": "CCBFiveNimbusWindow::~dtor编译进了orig UIFrameWnd::_UIFrameWnd_ovl地址; CEffGroupNode::~dtor进了Actor::ProcessChain地址",
+   "修复层": "归属/槽序修正"
+  }
+ },
+ "L1参照": {
+  "CameraCtrl": 12,
+  "UIListBox": 10,
+  "CCBFiveNimbusWindow": 9,
+  "AStarPathFinder": 7,
+  "CCBAI": 6,
+  "注": "同类内纯计算函数L1+成员访问函数partial=位移只影响成员访问"
+ },
+ "正确建模参照": "UIWnd形: 虚析构+虚槽+顺序成员(无gap无显式vptr成员) => 隐式vptr填0, UIWnd/UISceneMap/CCBWindow族全链正确",
+ "下一步": "全树783头链式建模普查(定A/B/C/OK) → emit_headers统一规则 → 重建测读数(字节级对账)",
+ "adversarial_verdict_20261114": {
+  "confirmed": {
+   "msvc_hidden_vptr_rule": "派生首次虚+非多态基 => vptr@0推后全部; CEffQuake布局逐字节推导验证(CEffObj多态根化后CTaskTpl回0xC, 总量回0x10B0)",
+   "A_family_leverage": "Δ+4 54/95例, 29.7%首分歧指令, 19%缺字节, 277/892函数"
+  },
+  "falsified": {
+   "A-vptrm判据": "Camera/GlowObj=已修复误报; GRPinput vtable=误归属(m_lpDI@0真实数据, 修法=撤virtual); CCBStage +0=ctor写参数(真实成员) ⇒ 按原方案剥离=引入新错误; UIAnimateCtrlEX=多态根下无+4机制",
+   "A-purenovt方向": "Role/UICaption实为B型-4(缺ScriptObj vptr), 修复对象=PalScriptWaitObj/ScriptObj(后者8B vs 二进制4B)",
+   "CGameData漏报": "头09:51已重生成带7 virtual, F2证据为过时快照; B族7类清单完整无漏"
+  },
+  "new_findings": {
+   "CTaskTpl漏判": "18个模板实例头二进制多态实锤(ctor双写表@0xC + sub ecx,0xC adjustor thunk 0x4D3860)",
+   "CEffObj为A族根": "emission被if methods:短路(2823) + 剥gap门控class_vtable_slots依赖槽名解析(methods空=>[]) => 永不触发; 须换_get_vtable_addr/_read_vtable_from_binary",
+   "vtable内容未建模": "CEffQuake二进制4表(15/3/18/3, 注解漏B表截C表); 运行时换装(ctor写idle表0x56FADC, Update换active 0x56FA88)头文件不可表达; UIWnd注解把相邻派生表摊平~20槽, 二进制dtor在槽5非槽0",
+   "B族收益": "7类在s4中0函数条目 => 实测收益≈0, 证据质量未验(CCBStageCam单槽表可疑)",
+   "单点保真杠杆": "CCBUIPanel::InitPanel 2135B缺失=全库10%, 与vptr无关"
+  },
+  "实施序": [
+   "dtor槽位规则定谳(双dtor位vs二进制单槽)",
+   "emit_headers门控换二进制读表+拆除if methods:短路",
+   "槽定义合成通道(防LNK2001扩大, 0x401800槽发_purecall)",
+   "CEffObj链翻转+CTaskTpl延伸",
+   "A-vptrm/A-purenovt逐类ctor写表@0二进制裁决后才动"
+  ],
+  "风险清单规模": 10
+ }
 }
