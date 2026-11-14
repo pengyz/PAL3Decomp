@@ -593,5 +593,17 @@
   "verdict": "IDB布局@0=m_lpDI(COM接口)+@+8=m_lpDIDMouse 正确——Create函数体反汇编: mov eax,[esi]读@0得COM指针, lea edi,[esi+8]传址CreateDevice ⇒ GRPinput @0 不是vptr! SetMousePos里mov [eax],offset stru_56A620 的 eax 是别的对象(可能新分配的子对象)",
   "correction": "撤销GRPinput (a)标准多态定谳 → GRPinput @0数据成员正确, vtable 0x56A620 归属需重新定谳(引用者可能不是GRPinput的ctor)",
   "lesson": "ctor形态函数返回类型=类指针(QIEPAU)暗示\"工厂函数\"而非成员——SetMousePos 的 \"QIEPAUGRPinput\" 返回类型可疑(鼠标位置设置不该返回类指针)"
+ },
+ "neargreen_remaining_verdicts_20261114": {
+  "SceneObj": {
+   "L278 C2446/C2230": "_SaveTaskInfo.m_bCVDOver(uchar@+8) 与(_BYTE*)v3 比较——char*/uchar* 拼写碰撞(同族已定性, 不可批量改)",
+   "L489 C2113": "p_m_bCVDOver 被Hex-Rays错误关联到无关指针——类型混淆非归属问题, 挂账"
+  },
+  "EquipUI": {
+   "L1694 C2227/C2653": "Array::HandleItemPage @0x49CF80 已归属Array.json但sig=__fastcall(错)——真实调用是thiscall成员(((int*)this))->Array::HandleItemPage, sig修正为__thiscall+类限定即可",
+   "L2595 C2664": "ProcessString param3 uchar→char(m_Is同m_Is pilot案, 别名复用, 不改)",
+   "L3038 C2664": "fn-ptr参数型别——待查"
+  },
+  "fix_available": "Array::HandleItemPage sig修正(1条, 预期-2错 EquipUI+Array)"
  }
 }

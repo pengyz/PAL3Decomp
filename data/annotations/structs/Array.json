@@ -79,12 +79,13 @@
   },
   "0x0049CF80": {
    "name": "HandleItemPage",
-   "signature": "double __fastcall(int *pnVal, int nVal, int elem)",
+   "signature": "double __thiscall Array::HandleItemPage(int nVal, int nVal2, int elem)",
    "evidence_level": "unverified",
    "lvars": {
     "v111": "NPC *"
    },
-   "lvars_source": " | L-VAR 2026-11-12 R1提案人工复核纯赢: 19 使用点全 NPC* 语境(->m_AnimWndA/m_wndDialog/m_AnimWndB 成员访问 + (NPC*)cast 调用 + *(DWORD*)v111 dword 读——IDB user type 后 Hex-Rays 自渲染); 提案器 R1 4 证据一致"
+   "lvars_source": " | L-VAR 2026-11-12 R1提案人工复核纯赢: 19 使用点全 NPC* 语境(->m_AnimWndA/m_wndDialog/m_AnimWndB 成员访问 + (NPC*)cast 调用 + *(DWORD*)v111 dword 读——IDB user type 后 Hex-Rays 自渲染); 提案器 R1 4 证据一致",
+   "source": "[修 2026-11-14] __fastcall(int*,int,int)→__thiscall Array::HandleItemPage(int,int,int): EquipUI L1694 调用(((int*)this))->Array::HandleItemPage(3参)——thiscall成员非fastcall"
   },
   "0x00410960": {
    "name": "Free",
