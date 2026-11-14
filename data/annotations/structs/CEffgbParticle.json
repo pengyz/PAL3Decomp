@@ -81,7 +81,7 @@
   },
   "0x004C8930": {
    "name": "SetTimeScale",
-   "signature": "CEffgbParticle *__thiscall()",
+   "signature": "void* __thiscall()",
    "ordinal": 7,
    "evidence_level": "unverified"
   },
@@ -92,13 +92,13 @@
   },
   "0x004C8A40": {
    "name": "CreateTask",
-   "signature": "char __thiscall(tagEffTaskParam *p)",
+   "signature": "char __thiscall(tagEffObjType *)",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
   "0x004C8BF0": {
    "name": "ProcCommonTask",
-   "signature": "void __thiscall(float dwParam)",
+   "signature": "void __thiscall(float)",
    "ordinal": 5,
    "evidence_level": "unverified"
   },
@@ -127,14 +127,14 @@
   },
   "0x004D0A60": {
    "name": "DestroyEffect",
-   "signature": "void __thiscall CEffgbParticle::DestroyEffect()",
+   "signature": "void __thiscall()",
    "ordinal": 3,
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=CEffCustomShape::DestroyEffect/LoadFromNode 链 ②被调=m_pEffect 释放 ③成员 m_pEffect×2 ④CEffgbParticle 效果对象 ⑤销毁生命周期 ⇒ 名 DestroyEffect 语义对",
    "evidence_level": "unverified"
   },
   "0x004C8B80": {
    "name": "slot_2",
-   "signature": "int __thiscall(int, float, float, float)",
+   "signature": "void __thiscall(int, int, int, int)",
    "source": "vtable_migrated",
    "ordinal": 2,
    "evidence_level": "unverified"
@@ -148,14 +148,14 @@
   },
   "0x004C8E90": {
    "name": "RenderEffectPass",
-   "signature": "int __thiscall(int a2)",
+   "signature": "void __thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 12,
    "evidence_level": "unverified"
   },
   "0x004C9260": {
    "name": "GetParticleType",
-   "signature": "int __thiscall(int)",
+   "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 14,
    "evidence_level": "unverified"

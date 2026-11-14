@@ -208,7 +208,7 @@
   },
   "0x004D3910": {
    "name": "CEffShock",
-   "signature": "CEffShock *__thiscall(CEffShock *__hidden this)",
+   "signature": "void* __thiscall()",
    "source": "vtable_evidence+pdb_correct",
    "ordinal": 7,
    "evidence_level": "unverified"
@@ -222,7 +222,7 @@
   },
   "0x004D3DC0": {
    "name": "Initialize",
-   "signature": "int __thiscall(CEffect *this)",
+   "signature": "void __thiscall(float)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -230,7 +230,7 @@
   },
   "0x004D4110": {
    "name": "Render",
-   "signature": "int __thiscall(CEffect *this)",
+   "signature": "void __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -249,6 +249,36 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
+  },
+  "0x004d3ad0": {
+   "name": "Create",
+   "signature": "char __thiscall(tagEffObjType *)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d3a50": {
+   "name": "ResetState",
+   "signature": "void __thiscall(int, int, int, int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d4840": {
+   "name": "GetEditorObjDescription",
+   "signature": "const char *__thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d4340": {
+   "name": "RenderEffectPass",
+   "signature": "void __thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d4700": {
+   "name": "GetEditorTaskDescription",
+   "signature": "const char *__thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "base_size": 16,

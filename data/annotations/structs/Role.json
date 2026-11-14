@@ -442,27 +442,6 @@
    "_misattrib_evidence": "max_offset=8700>class_size=596",
    "evidence_level": "unverified"
   },
-  "0x0041B640": {
-   "name": "UpdateBoundingBox",
-   "signature": "void __thiscall Role::UpdateBoundingBox(struct gbAABBox *pBox)",
-   "ordinal": 0,
-   "evidence_level": "unverified"
-  },
-  "0x0041B6A0": {
-   "name": "GetGfxManager",
-   "signature": "gbGfxManager *__thiscall(int nVal1)",
-   "source": "manual_fix_vtable+canonical_rename | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "ordinal": 1,
-   "evidence_level": "unverified"
-  },
-  "0x0041BE30": {
-   "name": "_sdtor_22",
-   "signature": "ScriptObj *__thiscall(char a2)",
-   "source": "vtable_gap_fill_v1(from ScriptObj.json)",
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "adjudication": "confirmed"
-  },
   "0x0041b640": {
    "name": "UpdateBoundingBox",
    "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",

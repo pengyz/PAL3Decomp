@@ -225,18 +225,18 @@
   },
   "0x004c6f20": {
    "name": "Destroy",
-   "signature": "int __thiscall(int, int, int)",
+   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "Destroy"
   },
   "0x004c7a70": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int nIndex)",
+   "signature": "const char *__thiscall(int)",
    "evidence_level": "unverified"
   },
   "0x004c7b70": {
    "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int nIndex)",
+   "signature": "const char *__thiscall(int)",
    "evidence_level": "unverified"
   },
   "0x004c6960": {
@@ -246,6 +246,30 @@
    "evidence_level": "A",
    "declaration_only": true,
    "semantic_name": "_scalar_dtor_6960"
+  },
+  "0x004c6a70": {
+   "name": "ResetState",
+   "signature": "void __thiscall(int, int, int, int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004c7150": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(float)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004c6940": {
+   "name": "AllocEffect",
+   "signature": "void* __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004c7450": {
+   "name": "RenderEffectPass",
+   "signature": "void __thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "base_size": 16,

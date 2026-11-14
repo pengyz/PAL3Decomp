@@ -145,17 +145,9 @@
    "signature": "int __thiscall CEffQuad::ProcessDestroyPass(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004D0D90": {
-   "name": "_scalar_dtor_0d90",
-   "signature": "void __thiscall(int nVal1)",
-   "source": "vtable_gap_fill_v1(IDB:_sdtor_39) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "adjudication": "shared_impl"
-  },
   "0x004D1300": {
    "name": "Render",
-   "signature": "virtual int __thiscall(CEffect *this)",
+   "signature": "void __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -163,7 +155,7 @@
   },
   "0x004D17D0": {
    "name": "Cleanup",
-   "signature": "virtual int __thiscall(CEffect *this)",
+   "signature": "void __thiscall(float)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -183,6 +175,36 @@
    "evidence_level": "A",
    "declaration_only": true,
    "semantic_name": "_scalar_dtor_0D90"
+  },
+  "0x004d1090": {
+   "name": "Create",
+   "signature": "char __thiscall(tagEffObjType *)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d0ec0": {
+   "name": "ResetState",
+   "signature": "void __thiscall(int, int, int, int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d0d70": {
+   "name": "AllocEffect",
+   "signature": "void* __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d2080": {
+   "name": "RenderEffectPass",
+   "signature": "void __thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004d2ed0": {
+   "name": "GetEditorTaskDescription",
+   "signature": "const char *__thiscall(int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "base_size": 16,

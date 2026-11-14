@@ -77,7 +77,7 @@
   },
   "0x004CFEB0": {
    "name": "LoadFromNode",
-   "signature": "bool __thiscall CEffModel::LoadFromNode(int nVal)",
+   "signature": "char __thiscall(tagEffObjType *)",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
@@ -100,14 +100,14 @@
   },
   "0x004CFD00": {
    "name": "CreateEffModel",
-   "signature": "CEffModel * __cdecl()",
+   "signature": "void* __thiscall()",
    "source": "vtable_migrated | [T19] return-type retype int->CEffModel *: A 级 objdump 0x40CFD00 内 4cfd00 push 0x68/call new、4cfd0a test eax,eax、4cfd0e mov ecx,eax 跳 ctor —— 返回值=operator new 分配体（EAX 直通）；体 `return v0;` 指针语义实证",
    "static": true,
    "evidence_level": "A"
   },
   "0x004D0390": {
    "name": "GetRenderNode",
-   "signature": "void __thiscall(int)",
+   "signature": "int __thiscall(int)",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 11,
    "evidence_level": "unverified"
@@ -121,7 +121,7 @@
   },
   "0x004D0850": {
    "name": "GetModelType",
-   "signature": "int __thiscall(int nVal)",
+   "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 14,
    "evidence_level": "unverified"
@@ -158,6 +158,18 @@
    "signature": "",
    "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056F9D0'] 槽指向本函数 ⇒ 归属 CEffModel。shape=adjustor · body_head=83 e9 0c e9 18 f3 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
    "evidence_level": "A"
+  },
+  "0x004cfe20": {
+   "name": "ResetState",
+   "signature": "void __thiscall(int, int, int, int)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004cffb0": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(float)",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [

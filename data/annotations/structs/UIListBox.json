@@ -467,18 +467,6 @@
    "signature": "int __thiscall UIListBox::UIListBox_Init()",
    "evidence_level": "unverified"
   },
-  "0x00451B40": {
-   "name": "ResizeToContent",
-   "signature": "int __thiscall UIListBox::ResizeToContent(int bResize)",
-   "_misattrib_evidence": "max_offset=1296>class_size=332",
-   "evidence_level": "unverified"
-  },
-  "0x00451C10": {
-   "name": "IsVisible",
-   "signature": "int __thiscall UIListBox::IsVisible()",
-   "_misattrib_evidence": "max_offset=1468>class_size=332",
-   "evidence_level": "unverified"
-  },
   "0x0049CF20": {
    "name": "GetSkillSlotLevel",
    "signature": "int __thiscall UIListBox::GetSkillSlotLevel(int nVal, int nVal2)",
@@ -555,13 +543,6 @@
    "source": "sig_evidence_A(ret-N arity) | [rsite 根治 2026-10-16] 归属迁移 UIListBox⇒UILoadingFrm + 名 DestroyContent⇒~UILoadingFrm：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [停车场清理 2026-10-16 回改] A级 idapro d9a0f50c+objdump：0x451850 基类 call 0x43bb70（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 于子对象 + UITextArea::InitAfterClear ⇒ 0x4518xx=独立类（UIFrameWnd 系+UIListBox/UITextArea 成员）；UILoadingFrm=0x4507xx 簇（m_LoadProgress+m_MaxValue=100 语义吻合）⇒ 上轮 ~UILoadingFrm 误迁回改，真名待 0x4518xx 簇裁决",
    "evidence_level": "A"
   },
-  "0x004518E0": {
-   "name": "_sdtor_28",
-   "signature": "void *__thiscall(char a2)",
-   "source": "[0x4518xx 收口 2026-10-16] registry 归属裁决：删析构与完整析构=ABI 配对体（decomp 体 `UIListBox::DestroyContent((UIListBox *)this); if (Block & 1) operator delete; return` 铁证）⇒ 配对归同单元 UIListBox；签名正名 flags 真型 char+this 隐式（弃显式 this 旧建模）；三源统一：注解 _sdtor_28 / decomp DestroyContent / 编译后同单元渲染名",
-   "evidence_level": "unverified",
-   "declaration_only": true
-  },
   "0x00451C70": {
    "name": "_sdtor_28_adjthunk",
    "signature": "void __thiscall()",
@@ -596,6 +577,12 @@
    "signature": "virtual int __thiscall(UILoadingFrm *this, int a2, int a3, int a4)",
    "name_source": "IDA语义分析 2026-11-01 批7 + 2026-11-09 C2084消歧",
    "name_note": "消息处理（1007=设颜色）；vtable[1] slot6 自有槽。原名 OnMessage 与 0x00450990(消息1000分派,OnMessage)撞名 → 消歧名"
+  },
+  "0x0043d7a0": {
+   "name": "ForwardOnMessage(int,int,int)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [
@@ -605,7 +592,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043E8A0",
@@ -621,7 +608,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0043E100",
@@ -643,7 +630,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -655,11 +642,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0043DCF0",
@@ -678,7 +665,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x004526F0",
@@ -690,11 +677,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x004525E0",
@@ -742,7 +729,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x004518E0",

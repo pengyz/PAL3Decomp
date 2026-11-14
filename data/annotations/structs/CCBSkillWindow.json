@@ -22,11 +22,6 @@
   }
  },
  "methods": {
-  "0x0051BBE0": {
-   "name": "Destroy",
-   "ordinal": 5,
-   "evidence_level": "unverified"
-  },
   "0x0051BC00": {
    "name": "~CCBSkillWindow",
    "signature": "void __thiscall()",
@@ -43,16 +38,6 @@
    "signature": "bool __thiscall(int *pRect, int parent)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A"
-  },
-  "0x0051C1B0": {
-   "name": "SetActivePage",
-   "signature": "BOOL __thiscall(int n, int nVal)",
-   "evidence_level": "unverified"
-  },
-  "0x0051B860": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "evidence_level": "unverified"
   },
   "0x0051b860": {
    "name": "OnMessage",
@@ -89,7 +74,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -105,7 +90,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051BBE0",
@@ -133,7 +118,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051C260",

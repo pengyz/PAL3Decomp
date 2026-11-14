@@ -1195,13 +1195,6 @@
    "name_evidence": "名字沿用原注解的 LoadFullConfig，不做臆造：该函数确为一个配置加载器（读 datascript/cbCam.ini，逐段 ReadSection/ReadLine 后写入 CCBStage 的转动/相机一族字段）。现有名字未被证据推翻，改名不是本次目的。",
    "evidence_level": "unverified"
   },
-  "0x0051F0A0": {
-   "name": "OnCommand",
-   "signature": "int __thiscall(int nVal, int nVal2)",
-   "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
-   "evidence_level": "unverified",
-   "adjudication": "confirmed"
-  },
   "0x0051DD80": {
    "name": "~CCBStage",
    "signature": "void __thiscall(int)",
@@ -2014,7 +2007,8 @@
    "name": "OnCommand",
    "signature": "BOOL __thiscall(int, int)",
    "evidence_level": "unverified",
-   "semantic_name": "OnCommand"
+   "semantic_name": "OnCommand",
+   "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)"
   }
  },
  "vtables": [
@@ -2024,7 +2018,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00524970",
@@ -2036,11 +2030,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051DD80",

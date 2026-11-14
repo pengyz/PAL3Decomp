@@ -92,6 +92,12 @@
    "source": "vtable_migrated | ret int->void: VA=0x44B460 body is exactly jmp ?Render@UITitle_BBTY@@QAEXXZ (fold/thunk to void Render; EAX never set)",
    "ordinal": 1,
    "evidence_level": "unverified"
+  },
+  "0x004a14c0": {
+   "name": "HideAll(void)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [
@@ -101,7 +107,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0044B460",
@@ -117,7 +123,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0044ACC0",

@@ -851,19 +851,6 @@
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断"
   },
-  "0x0051B940": {
-   "name": "_todo_B940",
-   "signature": "void __thiscall()",
-   "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x005704C8 认领连带注册",
-   "evidence_level": "unverified"
-  },
-  "0x0051B670": {
-   "name": "_scalar_dtor_B670",
-   "signature": "void __thiscall()",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500,0x57051C,0x570538,0x570554）",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
   "0x0051B9C0": {
    "name": "_todo_51B9C0",
    "signature": "void __thiscall()",
@@ -891,15 +878,6 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
-  },
-  "0x00526A40": {
-   "name": "Update_6A40",
-   "signature": "virtual void __thiscall(CCBUI *this)",
-   "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断",
-   "adjudication": "confirmed",
-   "evidence_level": "A",
-   "evidence": "成员实访独占证据 uniq=2: m_Task,m_pRoleStateDefenceDec（adjudicate_multiclaim 2026-11-03）"
   },
   "0x004E0A60": {
    "name": "DlgProcEditorMain",
@@ -931,7 +909,8 @@
   "0x0051b670": {
    "name": "CreateButtons",
    "signature": "UIWnd *__thiscall(CCBItemWindow *Block, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500,0x57051C,0x570538,0x570554）"
   },
   "0x0051b810": {
    "name": "~CCBParabolaWindow",
@@ -949,6 +928,18 @@
    "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] int this 假参残留清除（首参 `int this`=伪 this 机械残留；OnMessage 合法重载账） | multiclaim 裁决 2026-11-03: 败于 CCBUI（uniq=2）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
+  },
+  "0x0051b570": {
+   "name": "HandleInput(int,int)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x0051b4b0": {
+   "name": "Destroy(void)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "base_size": 72,
@@ -959,7 +950,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -975,7 +966,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x00519360",
@@ -987,7 +978,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1003,7 +994,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：CCBUI::CCBUI ctor@+44 写 + Release@+29 复写（CCBUI 子对象 1/4）"
@@ -1014,7 +1005,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1030,7 +1021,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x00519B40",
@@ -1042,7 +1033,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1058,7 +1049,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor+44/dtor+29 对（子对象 2/4；写点域 UIListBox::InitAndRender=组装域）"
@@ -1069,7 +1060,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1085,7 +1076,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051A390",
@@ -1097,7 +1088,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1113,7 +1104,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor+44/dtor+29 对（子对象 3/4；ChangeNumTxt 组装域）"
@@ -1124,7 +1115,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -1140,7 +1131,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051AC90",
@@ -1168,7 +1159,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor+44/dtor+29 对（子对象 4/4；CCBControlWindow::DefaultKey 组装域）"
@@ -1195,7 +1186,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051B670",
@@ -1207,7 +1198,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     }
    ],
    "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor CCBItemWindow::Update+44 / CCBMagicWindow 删际+29 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
@@ -1218,7 +1209,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00526660",
@@ -1230,11 +1221,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x00525520",

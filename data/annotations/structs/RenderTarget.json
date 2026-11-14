@@ -459,20 +459,6 @@
    "_misattrib_evidence": "max_offset=249476>class_size=200",
    "evidence_level": "unverified"
   },
-  "0x0048EB40": {
-   "name": "RenderWithEffects",
-   "signature": "char __thiscall ()",
-   "source": "vtable_gap_fill_v1(from MainPropUI.json)",
-   "evidence_level": "unverified",
-   "adjudication": "confirmed"
-  },
-  "0x0048EF80": {
-   "name": "ValidateDevice",
-   "signature": "BOOL __thiscall ()",
-   "source": "vtable_gap_fill_v1(from CameraCtrl.json)",
-   "evidence_level": "unverified",
-   "adjudication": "confirmed"
-  },
   "0x004B4830": {
    "name": "IsVisible",
    "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
@@ -484,14 +470,16 @@
    "signature": "BOOL __thiscall(int, int)",
    "_misattrib_evidence": "max_offset=209892>class_size=200",
    "evidence_level": "unverified",
-   "semantic_name": "ValidateDevice"
+   "semantic_name": "ValidateDevice",
+   "source": "vtable_gap_fill_v1(from CameraCtrl.json)"
   },
   "0x0048eb40": {
    "name": "RenderWithEffects",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=307040>class_size=200",
    "evidence_level": "unverified",
-   "semantic_name": "RenderWithEffects"
+   "semantic_name": "RenderWithEffects",
+   "source": "vtable_gap_fill_v1(from MainPropUI.json)"
   }
  },
  "vtables": [
@@ -501,7 +489,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0048EB40",
@@ -513,11 +501,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x00486D00",

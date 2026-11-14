@@ -884,6 +884,29 @@ def check_canonical_contract():
         for a, m in (d.get('methods') or {}).items():
             if m.get('non_virtual') and 'virtual' in str(m.get('signature', '')).lower():
                 cur_viol['C3:%s:%s' % (cls, a)] = '%s %s non_virtual但sig带virtual' % (cls, m.get('name'))
+        # [C6 2026-11-15 用户裁定'套用器不应存在'] slot.sig=裁决真值, methods条目必须一致
+        # (同类内分歧=数据非法; 棘轮: 存量grandfather, 新增=硬红)
+        # [多槽豁免 2026-11-15] 一地址多槽(同址多槽ICF折叠)=多契约共享一个IDB载体:
+        #   条目sig=载体定谳(二进制retn语义), 槽位sig=各槽契约 — 两者本质不同, 不构成C6
+        _slot_addr_count = {}
+        for _vt6 in (d.get('vtables') or []):
+            for _s6 in (_vt6.get('slots') or []):
+                _a6 = str(_s6.get('addr') or '').lower()
+                if _a6: _slot_addr_count[_a6] = _slot_addr_count.get(_a6, 0) + 1
+        for vt in d.get('vtables') or []:
+            for s in (vt.get('slots') or []):
+                if not s.get('sig'):
+                    continue
+                if _slot_addr_count.get(str(s.get('addr') or '').lower(), 0) > 1:
+                    continue  # 多槽地址豁免
+                _ma = str(s.get('addr') or '')
+                _m6 = (d.get('methods') or {}).get(_ma) or (d.get('methods') or {}).get(_ma.lower())
+                if _m6 and _m6.get('signature'):
+                    import re as _re6
+                    _n6 = lambda x: _re6.sub(r'\s+', ' ', re.sub(r'\b(this|a\d+|nVal\d*|p\w+|f\w+)\b(?![\w*])', '', str(x).strip())).strip()
+                    if _n6(_m6['signature']) != _n6(s['sig']):
+                        cur_viol['C6:%s:%s' % (cls, _ma)] = '%s %s: 条目sig %r != 槽位裁决 %r' % (
+                            cls, s.get('name'), _m6['signature'][:40], s['sig'][:40])
 
     for k, desc in sorted(cur_viol.items()):
         if k not in base:

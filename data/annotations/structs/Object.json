@@ -34,13 +34,6 @@
   }
  },
  "methods": {
-  "0x411bd0": {
-   "name": "_scalar_dtor_1bd0",
-   "signature": "void __thiscall(int nVal1)",
-   "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
-   "declaration_only": true
-  },
   "0x00411bd0": {
    "name": "_scalar_dtor_1BD0",
    "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
@@ -48,6 +41,18 @@
    "evidence_level": "A",
    "declaration_only": true,
    "semantic_name": "_scalar_dtor_1BD0"
+  },
+  "0x00411bb0": {
+   "name": "slot_1",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x00411b80": {
+   "name": "slot_4",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [

@@ -51,6 +51,18 @@
    "signature": "void __thiscall scScriptInstance::~scScriptInstance()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified"
+  },
+  "0x0044e980": {
+   "name": "OnVisible(int,int)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x0044e5c0": {
+   "name": "slot_5",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [
@@ -60,7 +72,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445CD0",
@@ -76,7 +88,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0044E5C0",

@@ -437,20 +437,6 @@
    "signature": "int __thiscall SaleUI::ResetGridState()",
    "evidence_level": "unverified"
   },
-  "0x0045AE40": {
-   "name": "_scalar_dtor_AE40",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SaleUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B5CC）",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
-  "0x0046B4B0": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
-   "evidence_level": "A",
-   "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=13: AttackNum,buf,dwWeaponWU,m_Icon,m_ListEquipTitleRc（adjudicate_multiclaim 2026-11-03）"
-  },
   "0x00462220": {
    "name": "GetValue",
    "signature": "int __thiscall(unsigned char nIndex)",
@@ -580,6 +566,12 @@
    "evidence_level": "A",
    "adjudication": "rejected",
    "semantic_name": "_todo_0046B4B0"
+  },
+  "0x0043ddf0": {
+   "name": "Render(void)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [
@@ -589,7 +581,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -601,11 +593,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0045AE40",

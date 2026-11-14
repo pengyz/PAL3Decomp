@@ -101,7 +101,7 @@ def check(cls_name=None, structs=None, verbose=False):
                     # 在基类 methods 或基类的 vtable slots 中查找
                     base_vts = base_d.get('vtables') or []
                     base_found = False
-                    for key in (addr_hex, hex(addr_int), str(addr_int)):
+                    for key in (addr_hex, '0x%08x' % addr_int, hex(addr_int), str(addr_int)):
                         if key in base_methods:
                             base_found = True; break
                     if not base_found:
@@ -120,7 +120,7 @@ def check(cls_name=None, structs=None, verbose=False):
                 else:
                     # 自有槽：必须在当前类 methods 表中，且函数地址精确匹配
                     found_method = None
-                    for key in (addr_hex, hex(addr_int), str(addr_int)):
+                    for key in (addr_hex, '0x%08x' % addr_int, hex(addr_int), str(addr_int)):
                         if key in methods:
                             found_method = methods[key]
                             break

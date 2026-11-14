@@ -146,15 +146,6 @@
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified"
   },
-  "0x0044A7D0": {
-   "name": "_scalar_dtor_A7D0",
-   "signature": "void *__thiscall(void *Block, char a2)",
-   "type": "skip",
-   "reason": "compiler-generated scalar deleting destructor for UIWnd",
-   "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AFB0→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x44A7F0 写 vptr 0x56AFB0",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
   "0x00451730": {
    "name": "GetState",
    "signature": "int __thiscall(UIWnd *this)",
@@ -168,13 +159,6 @@
    "declaration_only": true,
    "evidence_level": "A",
    "adjudication": "confirmed"
-  },
-  "0x004431B0": {
-   "name": "_scalar_dtor_31B0",
-   "signature": "void __thiscall()",
-   "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4431D0 写 vptr 0x56AE2C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AE2C→UIWnd（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4431D0 写 vptr 0x56AE2C",
-   "evidence_level": "A",
-   "declaration_only": true
   },
   "0x00445D20": {
    "name": "MoveToAbsolute",
@@ -212,7 +196,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00442E90",
@@ -228,7 +212,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil",
+     "from": "CCBParabolaWindow",
      "name": "Create",
      "sig": "int __thiscall RenderTarget::Stop __thiscall(int)"
     },

@@ -12,7 +12,7 @@
  "methods": {
   "0x004C0740": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float fVal)",
+   "signature": "void __thiscall(float)",
    "ordinal": 5,
    "source": "manual_fix_vtable",
    "evidence_level": "A",
@@ -22,7 +22,7 @@
   },
   "0x004C0640": {
    "name": "ResetState",
-   "signature": "void __thiscall CEffAction::ResetState(int nVal1, int nVal2, int nVal3, int nVal4)",
+   "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T44] 复补 4 参（2026-10-06 回滚复议）：A 级 objdump 0x4c064b `c2 10 00` = `ret 0x10`（弹 16 字节=4 个 DWORD 实参，thiscall 的 this 在 ECX 不占栈）⇒ 定义侧 ABI 实参 4 无疑；旧回滚「渲染丢参族」论据不覆盖定义侧 ret。L1 目标：n_diff=1（byte 12=ret 立即数 0x04→0x10）",
    "evidence_level": "A",
@@ -30,17 +30,9 @@
    "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_nController（adjudicate_multiclaim 2026-11-03）",
    "semantic_name": "ResetState"
   },
-  "0x00408BD0": {
-   "name": "slot_3",
-   "signature": "void __thiscall (void *pData)",
-   "source": "vtable_migrated",
-   "ordinal": 3,
-   "evidence_level": "unverified",
-   "semantic_name": "NullCallback"
-  },
   "0x004C0520": {
    "name": "AllocEffect",
-   "signature": "void __thiscall()",
+   "signature": "void* __thiscall()",
    "source": "manual_fix_vtable+manual_ida_body",
    "ordinal": 7,
    "evidence_level": "unverified",
@@ -48,7 +40,7 @@
   },
   "0x004C0920": {
    "name": "Update",
-   "signature": "void __thiscall()",
+   "signature": "int __thiscall(int)",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 9,
    "evidence_level": "unverified",
@@ -71,23 +63,15 @@
   },
   "0x004C0650": {
    "name": "slot_1",
-   "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
+   "signature": "char __thiscall(tagEffObjType *)",
    "source": "vtable_gap_fill_v1(from CEffQuake.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
    "semantic_name": "AllocSegments"
   },
-  "0x004C15D0": {
-   "name": "UpdateParticles",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl",
-   "semantic_name": "UpdateParticles"
-  },
   "0x004C1270": {
    "name": "slot_14",
-   "signature": "virtual int __thiscall(CEffAction *this)",
+   "signature": "const char *__thiscall(int)",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（sub_4C1270）",
    "alt_name": "sub_4C1270",
@@ -97,13 +81,14 @@
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "int __thiscall(int, int, int)",
+   "signature": "void __thiscall()",
    "evidence_level": "unverified",
-   "semantic_name": "UpdateParticles"
+   "semantic_name": "UpdateParticles",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
   },
   "0x00408bd0": {
    "name": "NullCallback",
-   "signature": "int __thiscall(int, int, int)",
+   "signature": "void __thiscall()",
    "source": "vtable_gap_fill_v1(from CEffAction.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",

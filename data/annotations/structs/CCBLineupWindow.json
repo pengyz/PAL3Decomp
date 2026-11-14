@@ -122,13 +122,6 @@
    "signature": "CCBProtectWindow *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0051B570": {
-   "name": "HandleInput",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x0051b160": {
    "name": "_scalar_dtor",
    "signature": "void * __thiscall(UIWnd *Block, char)",
@@ -150,7 +143,8 @@
    "name": "HandleInput",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 16,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "vtable_gap_fill_v1(from CCBItemWindow.json)"
   },
   "0x0051c9b0": {
    "name": "CCBFiveNimbusWindow::OnMessage",
@@ -184,7 +178,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051B160",

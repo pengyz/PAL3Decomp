@@ -197,29 +197,33 @@
    "signature": "int __thiscall CUtil::DispatchCommand(int *pCmd)",
    "evidence_level": "unverified"
   },
-  "0x00523B90": {
-   "name": "OnMessage",
-   "owner": "CUtil",
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-   "source": "vtable_migrated",
-   "ordinal": 6,
-   "evidence_level": "A",
-   "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
-   "alt_name": "sub_523B90",
-   "alt_signature": "int __thiscall(CUtil *this)",
-   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
-   "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=6: m_nListIndex,m_nUpdateCounter,m_pBattleSystem,m_pScreenMode,m_szLogPath（adjudicate_multiclaim 2026-11-03）"
-  },
   "0x00523b90": {
    "name": "sub_523B90",
    "signature": "int __thiscall(int, int, int)",
    "source": "vtable_gap_fill_v1(IDB:?sub_523B90@CUtil@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12) | multiclaim 裁决 2026-11-03: 败于 CUtil（uniq=6）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
+  },
+  "0x00445e70": {
+   "name": "ShowClipped(int)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x0043de40": {
+   "name": "slot_3",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x00445b90": {
+   "name": "Create(int,tagRECT *,UIWnd *)",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
- "vtables": [
+ "vtables_retired": [
   {
    "addr": "0x005705F4",
    "base": "UIWnd",
@@ -254,5 +258,6 @@
     }
    ]
   }
- ]
+ ],
+ "vtables_retired_reason": "复核裁决书A.3(2): 0x5705F4=混装UIWnd族与Parabola族地址的数据表, 非vtable; bases=None无ctor写表证据 — 去越权轮退役"
 }

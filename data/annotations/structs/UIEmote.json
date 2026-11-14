@@ -58,7 +58,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x00445CD0",
@@ -74,7 +74,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0044E5C0",
@@ -125,6 +125,12 @@
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "可见性处理（m_bvisible 检查+offset 19）",
    "semantic_name": "OnVisible"
+  },
+  "0x0044ab00": {
+   "name": "slot_1",
+   "signature": "void __thiscall()",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "base_size": 76,

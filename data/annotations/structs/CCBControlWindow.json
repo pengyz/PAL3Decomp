@@ -109,12 +109,6 @@
    "signature": "UIListBox * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0051AC90": {
-   "name": "HandleEnable",
-   "signature": "UIWnd *__thiscall(CCBControlWindow *Block, char dir)",
-   "ordinal": 5,
-   "evidence_level": "unverified"
-  },
   "0x0051ACB0": {
    "name": "~CCBControlWindow",
    "signature": "void __thiscall()",
@@ -149,29 +143,6 @@
    "name": "CreateButton",
    "signature": "UIListBox * __thiscall()",
    "evidence_level": "unverified"
-  },
-  "0x0051B5D0": {
-   "name": "UpdateDescriptionPage",
-   "signature": "int __thiscall(CCBItemWindow *__hidden this, unsigned int a2, unsigned int, unsigned int)",
-   "source": "| [T115] 同名消歧：@0x51B5D0 全函数体（654 字符）成员簇=m_nActivePage/m_pDescription + 调用 CCBPanelSlot::ShowWindow（活动页+描述更新）⇒ 语义名 UpdateDescriptionPage（禁伪语义 ✓ 成员/调用簇证据）；@0x51B030 OnMessage 保留 | multiclaim 裁决 2026-11-03: 败于 CCBItemWindow（uniq=2）",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  },
-  "0x0051B030": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int, int a2, int a3)",
-   "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
-   "evidence_level": "unverified"
-  },
-  "0x0043DDF0": {
-   "name": "CCBControlWindow::Render",
-   "owner": "CCBControlWindow",
-   "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-   "evidence_level": "unverified",
-   "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
-   "alt_name": "CCBControlWindow_Render",
-   "alt_signature": "void __thiscall(CCBControlWindow *this)",
-   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
   },
   "0x0051b030": {
    "name": "OnMessage",
@@ -211,7 +182,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CUtil"
+     "from": "UITitle_JDHY"
     },
     {
      "addr": "0x0043DDF0",
@@ -227,7 +198,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CUtil"
+     "from": "CCBParabolaWindow"
     },
     {
      "addr": "0x0051AC90",
