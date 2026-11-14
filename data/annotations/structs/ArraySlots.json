@@ -1,80 +1,54 @@
 {
-  "name": "ArraySlots",
-  "binary_size": 88,
-  "known_members": {
-    "72": {
-      "name": "m_aSlotPtrs",
-      "type": "int[3]",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[18..20]=0（+72..+80） | 修复 2026-10-17: int[4]→int[3]（A 级 this[18..20]=+72..+80 三点证）",
-      "evidence_level": "A"
-    },
-    "84": {
-      "name": "m_bActive",
-      "type": "int",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[21]=1（+84）",
-      "evidence_level": "A"
-    }
+ "name": "tagUIParam",
+ "binary_size": 32,
+ "known_members": {
+  "0": {
+   "name": "pUI",
+   "type": "UIWnd *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0044A790": {
-      "name": "ArraySlots",
-      "signature": "void __thiscall()",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();槽清零;return this（ctor 形）",
-      "evidence_level": "A"
-    },
-    "0x0044AB00": {
-      "name": "_todo_0044AB00",
-      "signature": "",
-      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=other:8b 41 f4 c3 · body_head=8b 41 f4 c3 90 90 90 90 90 90 90 90。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
-      "evidence_level": "A"
-    },
-    "0x0044AB40": {
-      "name": "_todo_0044AB40",
-      "signature": "",
-      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=adjustor · body_head=83 e9 44 e9 88 fc ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
-      "evidence_level": "A"
-    }
+  "4": {
+   "name": "fFromX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
-    {
-      "addr": "0x0056AFA4",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x0044AB40",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x0044AB00",
-          "from": "UIEmote"
-        },
-        {
-          "addr": "0x004AF760",
-          "from": "CEffSParticle"
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "CCBPanelSlot"
-        },
-        {
-          "addr": "0x0044A870",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0044A820",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043D920",
-          "from": "UIPushButton"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        }
-      ],
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor 0x44A790+32 写表+UIWnd_RenderText+17 复位写 ②ClearSubArraySlot() ③+72..+84 槽区 ④独立小容器类 ⑤构造/复位返回 this ⇒ 子数组槽容器；confidence=82"
-    }
-  ],
-  "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 ArraySlots（ClearSubArraySlot + 槽指针数组语义）"
+  "8": {
+   "name": "fFromY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "fEndX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "fEndY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "20": {
+   "name": "fSpeed",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "fEnergy",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "28": {
+   "name": "nTimes",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ }
 }

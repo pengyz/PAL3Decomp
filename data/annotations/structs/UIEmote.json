@@ -1,146 +1,54 @@
 {
-  "name": "UIEmote",
-  "binary_size": 2272,
-  "known_members": {
-    "76": {
-      "name": "m_cur",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "m_ani",
-      "type": "UIAnimateCtrl[13]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "68": {
-      "name": "baseclass2",
-      "type": "PalScriptWaitObj",
-      "source": "PAL3patch:multi_inheritance_as_embed",
-      "evidence_level": "unverified"
-    },
-    "2212": {
-      "name": "m_role",
-      "type": "Role *",
-      "source": "PDB_verified",
-      "evidence_level": "unverified"
-    },
-    "2216": {
-      "name": "m_loopcount",
-      "type": "int",
-      "source": "PDB_verified",
-      "evidence_level": "unverified"
-    },
-    "2220": {
-      "name": "m_nLoop",
-      "type": "int[13]",
-      "source": "PAL3patch_verified(13_not_14)",
-      "evidence_level": "unverified"
-    }
+ "name": "tagUIParam",
+ "binary_size": 32,
+ "known_members": {
+  "0": {
+   "name": "pUI",
+   "type": "UIWnd *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
-    {
-      "addr": "0x0056B044",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x0044EB40",
-          "from": null
-        },
-        {
-          "addr": "0x0044AB00",
-          "from": null
-        },
-        {
-          "addr": "0x004AF760",
-          "from": "CEffSParticle"
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "CCBPanelSlot"
-        },
-        {
-          "addr": "0x00445CD0",
-          "from": "UITitle_BBTY"
-        },
-        {
-          "addr": "0x0044E980",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x00445C10",
-          "from": "SceneObj"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0044E5C0",
-          "from": "scScriptInstance"
-        },
-        {
-          "addr": "0x00445D10",
-          "from": "UIWnd"
-        }
-      ],
-      "source": "[100 表认领 2026-10-16 重落] UIEmote 主表 A 级：写入点 ctor+101 + 析构族+39 双自证；UIWnd 接口形 + 0x44E5C0 删除析构在槽 | 槽名债清毕 2026-10-16：0x55434F 双注册摘除（CRT amsg_exit(0x19) T145 族）/UNREG 槽天然 slot_<i>/共享名 verified"
-    }
-  ],
-  "methods": {
-    "0x0044E530": {
-      "name": "UIEmote",
-      "signature": "void __thiscall UIEmote::UIEmote()",
-      "evidence_level": "unverified"
-    },
-    "0x00529870": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0044D0B0": {
-      "name": "InitParticleSlots",
-      "signature": "int __thiscall UIEmote::InitParticleSlots()",
-      "_misattrib_evidence": "max_offset=10048>class_size=2272",
-      "evidence_level": "unverified"
-    },
-    "0x0044AB00": {
-      "name": "GetType",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "偏移访问器（this-3）",
-      "signature": "virtual int __thiscall(_DWORD *this)"
-    },
-    "0x00541F13": {
-      "name": "_todo_541F13",
-      "signature": "void __thiscall()",
-      "declaration_only": true,
-      "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-      "evidence_level": "unverified"
-    },
-    "0x0044EB40": {
-      "name": "Reset",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "空覆盖虚方法",
-      "signature": "virtual void __thiscall(UIEmote *this)"
-    },
-    "0x0044AB40": {
-      "name": "OnEvent",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "空覆盖虚方法",
-      "signature": "virtual void __stdcall(int a1)"
-    }
+  "4": {
+   "name": "fFromX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 76,
-  "bases": [
-    {
-      "name": "UIWnd",
-      "offset": 0
-    },
-    {
-      "name": "PalScriptWaitObj",
-      "offset": 68
-    }
-  ],
-  "bases_source": "A+C 两路线一致（纯二进制）：路线A=注解 ctor UIEmote 的 vfptr 安装序列；路线C=本类被注解函数里的非零位移安装。工具 tools/mi_base_offsets.py 可复现。"
+  "8": {
+   "name": "fFromY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "fEndX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "fEndY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "20": {
+   "name": "fSpeed",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "fEnergy",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "28": {
+   "name": "nTimes",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ }
 }

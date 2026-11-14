@@ -266,6 +266,7 @@
  "vtables": [
   {
    "addr": "0x0056F824",
+   "base": null,
    "slots": [
     {
      "addr": "0x004C5D50",
@@ -298,51 +299,17 @@
     {
      "addr": "0x004C6030",
      "from": null
-    },
-    {
-     "addr": "0x004C6260",
-     "from": null
     }
-   ]
+   ],
+   "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
+   "evidence_level": "binary_ctor_write"
   },
   {
    "addr": "0x0056F844",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004C6260",
-     "from": null
-    },
-    {
-     "addr": "0x004C5D80",
-     "from": null
-    },
-    {
-     "addr": "0x004C5DB0",
-     "from": null
-    },
-    {
-     "addr": "0x004C5DE0",
-     "from": null
-    },
-    {
-     "addr": "0x004C5E70",
-     "from": null
-    },
-    {
-     "addr": "0x004C5E80",
-     "from": null
-    },
-    {
-     "addr": "0x004C5E20",
-     "from": null
-    },
-    {
-     "addr": "0x004C6030",
-     "from": null
-    }
-   ],
-   "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 域 CEffectSystem::_todo_0+13 写表 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+   "base": "CTaskTpl",
+   "slots": [],
+   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
+   "evidence_level": "binary_ctor_write"
   }
  ],
  "_rebuild_note": "2026-09-25: 补 __vftable@0（vptr 缺失 ⇒ 14/14 全冲突 + sizeof +8 = vptr4+double_align4）；所有成员 +4",

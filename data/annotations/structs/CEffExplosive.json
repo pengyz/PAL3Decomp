@@ -1,310 +1,54 @@
 {
- "name": "CEffExplosive",
- "binary_size": 4288,
+ "name": "tagUIParam",
+ "binary_size": 32,
  "known_members": {
-  "48": {
-   "name": "m_pGeomQuad",
-   "type": "gbGeomQuad *",
+  "0": {
+   "name": "pUI",
+   "type": "UIWnd *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
-   "name": "m_pExplosive",
-   "type": "tagExplosive *",
+  "4": {
+   "name": "fFromX",
+   "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
-   "name": "m_pTexture",
-   "type": "gbTexture *",
+  "8": {
+   "name": "fFromY",
+   "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
-   "name": "m_pTextureArray",
-   "type": "gbTextureArray *",
+  "12": {
+   "name": "fEndX",
+   "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
-   "name": "m_bVisible",
-   "type": "unsigned char",
+  "16": {
+   "name": "fEndY",
+   "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "65": {
-   "name": "m_bAdditiveBlend",
-   "type": "unsigned char",
+  "20": {
+   "name": "fSpeed",
+   "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "66": {
-   "name": "m_bNoZTest",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "67": {
-   "name": "m_byMaxFrame",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "68": {
-   "name": "m_nRequireLoops",
+  "24": {
+   "name": "fEnergy",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
-   "name": "m_nLoops",
+  "28": {
+   "name": "nTimes",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "76": {
-   "name": "m_fCurFrame",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "80": {
-   "name": "m_dwStartColor",
-   "type": "unsigned int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "84": {
-   "name": "m_fAlpha",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "88": {
-   "name": "m_fRed",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "92": {
-   "name": "m_fGreen",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "96": {
-   "name": "m_fBlue",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "100": {
-   "name": "m_fXSize",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "104": {
-   "name": "m_fZSize",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "108": {
-   "name": "m_nXDivision",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "112": {
-   "name": "m_nZDivision",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "116": {
-   "name": "m_fGridSize",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "120": {
-   "name": "m_nQuad",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "124": {
-   "name": "m_fMaxExplosivePower",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "128": {
-   "name": "m_fMinExplosivePower",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "132": {
-   "name": "m_vecExplosiveDir",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "144": {
-   "name": "m_fPowerDec",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "148": {
-   "name": "m_fFramePerSec",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "152": {
-   "name": "m_vecRot",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "164": {
-   "name": "m_vecPos",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "176": {
-   "name": "m_vecOffsetPos",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "188": {
-   "name": "m_fResistance",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "192": {
-   "name": "m_DefaultUVSet",
-   "type": "tagUV[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   }
- },
- "methods": {
-  "0x004C7C00": {
-   "name": "InitDefaultUVSet",
-   "signature": "void __thiscall(int nFramePerRow, int nFramePerCol)",
-   "evidence_level": "unverified"
-  },
-  "0x004C7CB0": {
-   "name": "LoadTexture",
-   "signature": "int *__thiscall(char *pFileName)",
-   "evidence_level": "unverified"
-  },
-  "0x004C7D40": {
-   "name": "CreateGeom",
-   "signature": "void __thiscall()",
-   "source": "pdb_ret",
-   "evidence_level": "unverified"
-  },
-  "0x004C8370": {
-   "name": "UpdateExplosive",
-   "signature": "void __thiscall(float fDeltaTime, int fTime)",
-   "source": "pdb_ret",
-   "evidence_level": "unverified"
-  }
- },
- "base_size": 16,
- "bases": [
-  {
-   "name": "CEffObj",
-   "offset": 0
-  },
-  {
-   "name": "CTaskTpl_tagEffTaskParam_CEffExplosive",
-   "offset": 12
-  }
- ],
- "vtables": [
-  {
-   "addr": "0x0056F878",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004C6960",
-     "from": "CEffgbParticle"
-    },
-    {
-     "addr": "0x004C6C10",
-     "from": "CEffgbParticle"
-    },
-    {
-     "addr": "0x004C6A70",
-     "from": "CEffect"
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": "CEffAction"
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": "CEffAction"
-    },
-    {
-     "addr": "0x004C7150",
-     "from": "CEffect"
-    },
-    {
-     "addr": "0x004C6F20",
-     "from": "CEffgbParticle"
-    },
-    {
-     "addr": "0x004C6940",
-     "from": "CEffect"
-    },
-    {
-     "addr": "0x004C0500",
-     "from": "CEffObj"
-    },
-    {
-     "addr": "0x004AF760",
-     "from": "CEffObj"
-    },
-    {
-     "addr": "0x004C7B70",
-     "from": "CEffgbParticle"
-    },
-    {
-     "addr": "0x004AF760",
-     "from": "CEffAction"
-    },
-    {
-     "addr": "0x004C7450",
-     "from": "CEffect"
-    },
-    {
-     "addr": "0x004C15D0",
-     "from": "CEffAction"
-    },
-    {
-     "addr": "0x004C7A70",
-     "from": "CEffgbParticle"
-    }
-   ],
-   "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
-   "evidence_level": "binary_ctor_write"
-  },
-  {
-   "addr": "0x0056F86C",
-   "base": "CTaskTpl",
-   "slots": [],
-   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
-   "evidence_level": "binary_ctor_write"
-  }
- ]
+ }
 }

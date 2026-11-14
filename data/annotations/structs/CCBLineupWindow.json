@@ -1,188 +1,54 @@
 {
-  "name": "CCBLineupWindow",
-  "binary_size": 124,
-  "known_members": {
-    "72": {
-      "name": "m_nInitRoleFaceLineup",
-      "type": "int[5]",
-      "offset": 72,
-      "evidence_level": "unverified"
-    },
-    "92": {
-      "name": "m_pBack",
-      "type": "UIStatic *",
-      "offset": 92,
-      "evidence_level": "unverified"
-    },
-    "96": {
-      "name": "m_pFace",
-      "type": "UIStatic *[5]",
-      "offset": 96,
-      "evidence_level": "unverified"
-    },
-    "116": {
-      "name": "m_nSelected",
-      "type": "int",
-      "offset": 116,
-      "evidence_level": "unverified"
-    },
-    "120": {
-      "name": "m_pUI",
-      "type": "CCBUI *",
-      "offset": 120,
-      "evidence_level": "unverified"
-    }
+ "name": "tagUIParam",
+ "binary_size": 32,
+ "known_members": {
+  "0": {
+   "name": "pUI",
+   "type": "UIWnd *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0051B180": {
-      "name": "_scalar_dtor",
-      "signature": "void __thiscall()",
-      "type": "skip",
-      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-      "evidence_level": "unverified"
-    },
-    "0x0051CFB0": {
-      "name": "CCBLineupWindow",
-      "signature": "void __thiscall(CCBControlWindow **a2)",
-      "evidence_level": "unverified"
-    },
-    "0x0051D070": {
-      "name": "Update",
-      "signature": "void __thiscall(CCBLineupWindow *this, CCBItemWindow **a2)",
-      "name_source": "IDA语义分析 2026-11-01 批16",
-      "name_note": "从 decomp 推断"
-    },
-    "0x0051D120": {
-      "name": "Reset",
-      "signature": "void __thiscall(CCBMagicWindow **a2)",
-      "source": "pdb_ret",
-      "evidence_level": "unverified"
-    },
-    "0x0051D1D0": {
-      "name": "Create",
-      "signature": "bool(tagRECT *rc, UIWnd *pFather)",
-      "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-      "evidence_level": "unverified"
-    },
-    "0x0051D290": {
-      "name": "Destroy",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051D340": {
-      "name": "OnMessage",
-      "signature": "char __thiscall(int *msg)",
-      "evidence_level": "unverified"
-    },
-    "0x0051D3F0": {
-      "name": "Update",
-      "signature": "char __thiscall(int *deltatime)",
-      "evidence_level": "unverified"
-    },
-    "0x0051D4A0": {
-      "name": "Render",
-      "signature": "char __thiscall(int *p_DWORD)",
-      "evidence_level": "unverified"
-    },
-    "0x0051D580": {
-      "name": "IsPtOnFace",
-      "signature": "int __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051D590": {
-      "name": "Method",
-      "signature": "int __thiscall(CCBLineupWindow *this)",
-      "name_source": "IDA语义分析 2026-11-01 批16",
-      "name_note": "从 decomp 推断"
-    },
-    "0x0051D5A0": {
-      "name": "IsPtOnInitPos",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051D5B0": {
-      "name": "Initialize",
-      "signature": "void __thiscall(CCBLineupWindow *this)",
-      "name_source": "IDA语义分析 2026-11-01 批16",
-      "name_note": "从 decomp 推断"
-    },
-    "0x0051D5F0": {
-      "name": "IsFaceOnInitPos",
-      "signature": "char __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051D610": {
-      "name": "SetFaceLineup",
-      "signature": "char __cdecl(int nVal, int nFaceIndex, int nPosIndex, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6, int *p_DWORD)",
-      "static": true,
-      "evidence_level": "unverified"
-    },
-    "0x0051D6D0": {
-      "name": "RefreshFacePos",
-      "signature": "CCBProtectWindow *__thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051B570": {
-      "name": "HandleInput",
-      "signature": "BOOL __thiscall(int nVal, int nVal2)",
-      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0043DDF0": {
-      "name": "CCBControlWindow::Render",
-      "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-      "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
-      "evidence_level": "unverified"
-    },
-    "0x0051B940": {
-      "name": "ForwardShowClipped",
-      "signature": "void __thiscall(CCBLineupWindow *this, int nFlags)",
-      "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
-      "evidence_level": "A"
-    }
+  "4": {
+   "name": "fFromX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "vtables": [
-    {
-      "addr": "0x00570538",
-      "base": "CCBItemWindow",
-      "slots": [
-        {
-          "addr": "0x0051B5D0",
-          "from": "CCBItemWindow"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "CCBItemWindow"
-        },
-        {
-          "addr": "0x0051B570",
-          "from": null
-        },
-        {
-          "addr": "0x0051B4B0",
-          "from": "CCBItemWindow"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0051B160",
-          "from": "CCBItemWindow"
-        },
-        {
-          "addr": "0x0051C9B0",
-          "from": "CCBSkillWindow"
-        }
-      ]
-    }
-  ],
-  "base_size": 72,
-  "bases": [
-    {
-      "name": "UIFrameWnd",
-      "offset": 0
-    }
-  ]
+  "8": {
+   "name": "fFromY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "fEndX",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "fEndY",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "20": {
+   "name": "fSpeed",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "fEnergy",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "28": {
+   "name": "nTimes",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ }
 }

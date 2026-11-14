@@ -566,51 +566,10 @@ def _get_vtable_addr(cls_name):
     return None
 
 def _read_vtable_from_binary(vt_addr, max_slots=64):
-    """直接从二进制读 vtable 槽位（不依赖 annotation/IDB 完整性）。
-    返回 [(addr_hex, name_or_None), ...]。"""
-    import struct
-    _d = os.path.dirname(os.path.abspath(__file__))
-    _bin = os.path.join(_d, '..', '..', '..', 'original', 'PAL3.exe')
-    _bin = os.path.normpath(_bin)
-    if not os.path.exists(_bin):
-        return []
-    def _va2off(va):
-        if va >= 0x56A000: return va - 0x56A000 + 0x16A000
-        if va >= 0x401000: return va - 0x401000 + 0x1000
-        return va
-    if isinstance(vt_addr, str):
-        vt_addr = int(vt_addr, 16)
-    slots = []
-    # [表边界修复 2026-11-14 复核裁决#3] 旧实现沿内存邻接走表 ⇒ 跨表串读
-    # (CEffObj.h/CEffQuake.h 28槽乱序头、RenderTarget2 99槽mega表同源病灶)。
-    # 边界二证据: ①ctor写表起点集(true_vtable_map, phase2已验证) ②非对齐目标截断。
-    _known_starts = None
-    try:
-        import json as _json2
-        _tvm = os.path.join(_d, '..', '..', '..', 'data', 'status', 'true_vtable_map_20261114.json')
-        _tvm = os.path.normpath(_tvm)
-        if os.path.exists(_tvm):
-            _known_starts = set(int(r['table'], 16) for r in _json2.load(open(_tvm, encoding='utf-8')))
-    except Exception:
-        _known_starts = None
-    slots = []
-    try:
-        with open(_bin, 'rb') as f:
-            f.seek(_va2off(vt_addr))
-            for i in range(max_slots):
-                cur = vt_addr + 4 * i
-                if i > 0 and _known_starts and cur in _known_starts:
-                    break  # cur 即下一张已知表起点 = 本表边界
-                data = f.read(4)
-                if len(data) < 4: break
-                a = struct.unpack('<I', data)[0]
-                if 0x401000 <= a < 0x56A000:
-                    slots.append((hex(a), None))
-                else:
-                    break  # .text 外 = 表尾(0x41400000类数据; 0x55434F奇地址槽=_purecall折叠, 真实存在须保留)
-    except Exception:
-        pass
-    return slots
+    # [退役 2026-11-14 用户裁定] 管线读二进制=越权(双管线共享标注律)。
+    # vtable槽位唯一数据源 = 注解vtables(经export透传至ida_structs)。
+    # 二进制读取仅存在于审计工具(tools/vtable_mapper等, 其职责=对照二进制验证注解)。
+    raise NotImplementedError('pipeline must not read the binary; use annotation vtables via ida_structs')
 
 
 def _class_decl_name(line):
@@ -2827,6 +2786,62 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append("    virtual ~%s() {}" % cls_name)
         lines.append("")
 
+    # [每槽位置发射 2026-11-14] vtable声明按槽位顺序逐位发射——C++槽位=声明序,
+    # 同址多槽(0x401800×4/0x4AF760×4)必须逐位独立声明, methods列表排序无法表达。
+    # 名字/签名 = 注解vtables slots的canonical字段(正名账); 回退 methods名/slot_{位置}。
+    # 叶slot0(删除式dtor)由注入~X或dtor槽规则接管, 此处跳过。
+    try:
+        # [去越权 2026-11-14] 数据源 = ida_structs(export透传注解vtables, 合法上游)。
+        # 退役 _read_vtable_from_binary(管线读二进制=越权) 与 true_vtable_map 依赖:
+        # 注解 slots 有序列表本身就是表边界(15条=15槽), 无需任何走读。
+        _is_vts = ((_ann_s or {}).get('vtables') or [])
+        _vt_slots_flat = []
+        for _vt0 in _is_vts:
+            _vt_slots_flat.extend(_vt0.get('slots') or [])
+        def _norm_addr(_a):
+            _a = str(_a)
+            return '0x%08x' % int(_a, 16) if _a.lower().startswith('0x') else _a
+        _all_vtable_slots_self = [(_norm_addr(_s0['addr']), None)
+                                  for _s0 in _vt_slots_flat if _s0.get('addr')]
+        _methods_by_addr = {}
+        for _mn0, _ms0, _ma0 in (methods or []):
+            _k0 = _ma0.lower() if isinstance(_ma0, str) else hex(_ma0)
+            _methods_by_addr.setdefault(_k0, {'name': _mn0, 'signature': _ms0})
+        if os.environ.get('PAL3_DEBUG_SLOT'):
+            sys.stderr.write('DEBUG_SLOT %s: methods=%d flat=%d vtslots=%d\n' % (
+                cls_name, len(methods or []), len(_vt_slots_flat), len(_all_vtable_slots_self)))
+            if _vt_slots_flat:
+                sys.stderr.write('  flat[1]=%r\n' % (_vt_slots_flat[1],))
+        _slot_decls_emitted = True
+        for _vi, _sn in enumerate(_all_vtable_slots_self):
+            _slot_addr_hex = _sn[0]
+            _sl = _vt_slots_flat[_vi] if _vi < len(_vt_slots_flat) else {}
+            _nm = _sl.get('name')
+            _sg = _sl.get('sig') or ''
+            _m0 = _methods_by_addr.get(_slot_addr_hex.lower())
+            if not _nm:
+                _nm = (_m0 or {}).get('name') or ('slot_%d' % _vi)
+            if not _sg:
+                _sg = (_m0 or {}).get('signature') or 'void __thiscall()'
+            _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
+            if _vi == 0 and (_dtor_form0 or (_will_inject_vptr and _nm == '~' + cls_name)):
+                continue  # slot0=dtor位: 注入~X已占位, 删除式dtor本体走dtor槽规则
+            _ret0, _cc0, _par0, _ret_right0 = parse_signature(_sg)
+            _ret0 = re.sub(r'\bvirtual\b', '', _ret0).strip()
+            # [this泄漏规范化 2026-11-14] Hex-Rays 泄漏的显式 this 形态两种:
+            #   '(this, int a2)' 裸this / '(class UIWnd *this, tagRECT *...)' 带类型this
+            # 通用规范化 = 剥第一个参数(当其为 this 形: 以 *this 结尾), 与P-A系同职责
+            if _par0 and re.match(r'^\s*[\w:]\w*[\s\*&]+this\s*,?\s*', _par0):
+                _par0 = re.sub(r'^\s*[\w:]\w*[\s\*&]+this\s*,?\s*', '', _par0)
+            else:
+                _par0 = re.sub(r'(^|\()\s*this\s*,\s*', r'\1', _par0)
+            lines.append("    virtual %s %s(%s)%s; // slot%d %s" % (
+                _ret0, _nm, _par0, _ret_right0 or '', _vi, _slot_addr_hex))
+        lines.append("")
+    except Exception as _e_slot:
+        import traceback; traceback.print_exc()
+        _slot_decls_emitted = False
+
     # Methods (deduplicate by name+params to avoid C2535)
     # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
     _is_opaque = False
@@ -2839,11 +2854,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     if methods:
         # Sort: vtable methods first (in slot order by address), then non-vtable by addr
         _vtable_addr_order = {}
-        # ★ 用二进制完整 vtable 替代 annotation 记录（annotation 可能不完整）
-        _vt_addr = _get_vtable_addr(cls_name)
-        if _vt_addr:
-            _all_vtable_slots = _read_vtable_from_binary(_vt_addr)
-        else:
+        # [去越权 2026-11-14] 数据源 = export透传的注解vtables(逐字段等值纪律)。
+        # 退役二进制读取——"annotation可能不完整"的时代已结束(正名账落地, 每槽addr/name/sig齐备)。
+        _is_vts_main = ((_ann_s or {}).get('vtables') or [])
+        _all_vtable_slots = []
+        for _vt1 in _is_vts_main:
+            for _s1 in (_vt1.get('slots') or []):
+                if _s1.get('addr'):
+                    _all_vtable_slots.append((_norm_addr(_s1['addr']), _s1.get('name')))
+        if not _all_vtable_slots:
             _all_vtable_slots = class_vtable_slots(cls_name, with_addr=True)
         for _vi, _sn in enumerate(_all_vtable_slots):
             _vtable_addr_order[int(_sn[0], 16)] = _vi
@@ -2865,12 +2884,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 continue  # 重复地址：同一函数的另一个槽位，不重复声明
             _seen_slot_addrs.add(_slot_addr)
             if _slot_addr not in _method_addrs:
-                methods.append(
-                    (f'slot_{_vi}', 'void __thiscall()', hex(_slot_addr)))
+                # [每槽正名 2026-11-14] 占位符用槽位canonical名+签名(注解slots字段)
+                _c_name, _c_sig = f'slot_{_vi}', 'void __thiscall()'
+                try:
+                    _sl = _vt_slots_flat[_vi] if _vi < len(_vt_slots_flat) else {}
+                    if _sl.get('name'): _c_name = _sl['name']
+                    if _sl.get('sig'): _c_sig = _sl['sig']
+                except Exception:
+                    pass
+                methods.append((_c_name, _c_sig, hex(_slot_addr)))
         # [每槽正名 2026-11-14] C++ override同名规则 ⇒ 基类/叶同槽必须同名声明。
         # vtables slots 的 name 字段(正名裁决账 canonical_slot_names_20261114)优先;
         # 重复地址(0x401800占slot3/4/6/13=同体异名虚函数前身)的非首槽位置
         # 补独立声明(位置名), 否则位置塌缩⇒全表错位。
+        # [去越权 2026-11-14] export透传已验证逐字段等值(name/sig在ida_structs) ⇒ 读合法上游
         _vt_slots_flat = []
         for _vt in ((_ann_s or {}).get('vtables') or []):
             _vt_slots_flat.extend(_vt.get('slots') or [])
@@ -2884,7 +2911,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             for _mn, _ms, _ma in methods:
                 _al = _ma.lower() if isinstance(_ma, str) else hex(_ma)
                 occ = _occ.get(_al)
-                if occ and occ[0][1] and not _is_dtor_form(_mn):
+                if occ and occ[0][1] and not re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _mn or ''):
                     _mn = occ[0][1]  # 首槽正名覆盖(dtor形除外——dtor槽规则管slot0)
                 _new_methods.append((_mn, _ms, _ma))
                 for _si, _nm in (occ[1:] if occ else []):
@@ -2914,7 +2941,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 lines.insert(1, _ul)
 
         seen_methods = set()
+        # [hex归一化 2026-11-14] hex()产短形(0x4c0620)而方法条目长形(0x004c0620) ⇒ 集合永不匹配 ⇒ 跳过失效
+        _vt_covered = set(('%08x' % int(_sn[0], 16)) for _sn in (_all_vtable_slots or []) if _sn[0]) if _slot_decls_emitted else set()
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
+            try:
+                _al0 = ('%08x' % int(addr, 16)) if isinstance(addr, str) else ('%08x' % addr)
+            except (ValueError, TypeError):
+                _al0 = str(addr).lower()
+            if _al0 in _vt_covered:
+                continue  # [每槽位置发射] vtable地址已逐位声明, 此处只发非虚表方法
             # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
             sig = re.sub(r'@<\w+>', '', sig)
             sig = re.sub(r'\s*__userpurge\s*', ' ', sig)

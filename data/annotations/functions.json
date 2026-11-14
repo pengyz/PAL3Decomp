@@ -305,11 +305,6 @@
   "name": "_sdtor_39",
   "signature": "char *__thiscall(char *this, char a2)"
  },
- "0x004D33A0": {
-  "name": "ResetIdle",
-  "signature": "virtual void __thiscall(CEffQuake *this, int a2, int a3, int a4, int a5)",
-  "source": "this-type:_BYTE*→CEffQuake* 2026-10-14 | A级 objdump 0x4D33A0 `c6 41 08 00` = CEffObj::m_bIdle@+8 BYTE 存（CEffQuake : public CEffObj）| 原 _BYTE* this 使 Hex-Rays 出 this[8]（scale 1）而 codegen 定 this=CEffQuake*(4272B) ⇒ this[8] scale 4272 全错 + C2679 | 修法=给 IDB 正确 this 型让 Hex-Rays 出 this->m_bIdle | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_4D33A0 ⇒ ResetIdle：同址 structs/EffTargetPool 侧已名 ResetIdle（三证法面+本侧体证 113B store×1）⇒ functions.json 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 this->m_bIdle=0（具名成员 ✓ 空闲标志清）⇒ 5/5 ——保留命名 ✓"
- },
  "0x004D4DF0": {
   "name": "_sdtor_40",
   "signature": "char *__thiscall(char *this, char a2)"
@@ -1982,11 +1977,6 @@
   "source_note": "[试点 2026-10-20·五面证据] ②被调用者=CreateMonsterUI/CreateScriptAndCamera/CreateFromTemplate/LoadModel/AllocObject（场景实体创建族 ✓）③成员访问=m_vecPos/m_vecRot/m_nRoleState0/m_szText/m_nTransform（位姿+状态 ✓）④类归属=Actor（11 命中 0 未解析）⑤交互模式=字面量 `UI\\GameMainUI\\Equip\\SelRole0` / `Item\\%s\\%s.pol`（UI+模型资源路径）；返回值=void",
   "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 CreateSceneEntities 为准（注解名 _todo_00496190 对齐）；类化签名供 apply 定型 | [归属撤销 2026-10-25·体证据否决] offset-match 实测：38 偏移中 26 个越 Actor 边界 820（最大 0x35A68），仅 7 命中且伴大量越界 ⇒ this 非 820 字节 Actor；原\"六连簇证\"为偏移相似性（弱形态）被体证据压制。撤 Actor 归属挂队列重裁"
  },
- "0x004B7D30": {
-  "name": "_todo_004B7D30",
-  "signature": "virtual void __thiscall(Actor *this, int nParam)",
-  "source_note": "[试点 2026-10-20·证据记录·conf<60 冻结] ②被调用者=LoadTexture/LoadFromFile/NewRenderEffect/GenerateRingMesh/OpenBaseFile（资源加载族）+ m_fInterpStart/End/Speed（插值域）③22 成员命中 ④Actor。**不正名**：操作并列（资源加载+插值+几何生成）无单一主导 ⇒ 五面不足以定语义名。待补 ①调用者面。"
- },
  "0x0051DFD0": {
   "name": "Update",
   "signature": "void __thiscall(Actor *this, int nPanelId)",
@@ -2007,12 +1997,6 @@
   "name": "ClearActionFlags",
   "signature": "int __thiscall(Actor *this)",
   "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
- },
- "0x004D37A0": {
-  "name": "Remove",
-  "signature": "virtual void __thiscall(Actor *this, unsigned int nDelFlags)",
-  "name_source": "IDA语义分析 2026-11-01 批15",
-  "name_note": "从 decomp 推断"
  },
  "0x005363A0": {
   "name": "ResetDefaultState",
@@ -2070,11 +2054,6 @@
   "signature": "int __thiscall(Actor *this)",
   "source_note": "[五面证据] ①调用者=UIScenePanel::CreateSettingsUI（**调用面存疑**：与粒子初始化语境不符，疑为该调用者自身命名失真）②被调用者=RoleSystem_InitDefaultPositions、UIPushButton::CreateFromTemplate（逐元素创建）、rand（`%0x12`=18 取纹理索引 / `%255` / `%10+10` 再 `*0.1`）、RoleCamera::InitParticles(this)（尾部 `return` 上抛）③成员访问=m_pParticleData(+0x200=512，取址作 208B 步长数组基)、m_bDirFlag(+0x2AC=684，取址作另一 208B 步长数组基)（2 命中 0 未解析）④类归属=**存疑**：数组基 +512 起以 208B 步长迭代 22 个元素（off_59DD18..off_59DD70 边界），512 + 22*208 ≫ 820（Actor binary_size）⇒ 不是单个 Actor；且 +684 处又一个 208B 数组与之重叠 ⑤交互模式=off_59DD18 / 59DD60 / 59DD70（.data BSS 数组边界，运行期填充，非静态字符串表）、128×128 RECT、rand() 随机化。返回值=int（`return RoleCamera::InitParticles((RoleCamera*)this)`，asm `retn` = 0 个栈参）。名 InitParticles 与「m_pParticleData 域 + 随机参数逐元素初始化 + 尾部 RoleCamera::InitParticles」相符，但调用面/布局面存疑 ⇒ 未达 60，按铁律**不升为正名**（保留原名、conf<60）。"
  },
- "0x004B7560": {
-  "name": "_todo_004B7560",
-  "signature": "virtual int __thiscall(Actor *this, int nArg)",
-  "source_note": "[归属存疑 2026-10-20·块2 自查] **疑非 Actor 成员**：[五面证据] ①调用者=asm 全图 0 个直接 call（仅 vtable 槽）②被调用者=两处虚调用：`child->vtable[4](child, 0)`（child 取自 +0xF0=240）与 `this->vtable[3](this, 0)`（vptr 取自 +0）③成员访问=m_actarray_type(+0，作 vptr 解引用 `*(this)+12`)、m_fMatrixParamB(+0xF0=240，作子对象指针)（2 命中 0 未解析）④类归属=**存疑**：A 级 `DATA XREF: .rdata:0056F414` ⇒ vtable 0x56F404 槽 4；该 vtable 槽 0 = UI3DModelNode::_scalar_dtor_74F0、槽 10 = ReleaseAllTextures ⇒ 该 vtable 属 UI3DModelN ⇒ 按 CLAUDE.md「禁仅凭 signature this 判归属」暂不归属，冻结待 IDA vtable/xref 复核。"
- },
  "0x004BA230": {
   "name": "_todo_004BA230",
   "signature": "void __thiscall(Actor *this)",
@@ -2111,11 +2090,6 @@
   "signature": "double __thiscall(Actor *this, double fVal)",
   "source_note": "[A 级汇编 2026-10-21·重核] retn 8（5361ed c2 08 00）=2 dword 槽 = **1 double**。调用点 53555f/535560 push %edi;push %ebx = double 分解双 push ✓。另 535451/535456 push $0x3fc... = double 位型常量对同证。**体零参数读**（参数未在函数体内使用）。⚠️ 原 `int nVal, int nVal2` **错**（double 被拆两 int）· 原 source 引用 IDA stack_frame=循环证据，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
   "evidence_level": "B"
- },
- "0x004B7650": {
-  "name": "_todo_004B7650",
-  "signature": "virtual void __thiscall(Actor *this, int nFlag)",
-  "source_note": "[五面·conf<60 冻结] ①调用者=待补 ②被调用者=GetDynVertBuf/GetTop/LoadIdentity/LoadMatrix（渲染矩阵族）+ BYTE1/BYTE2/LOBYTE/LODWORD（位操作）③成员访问=m_fMatrixE/m_fMatrixParamA/m_szText/m_vecTargetPos（矩阵+文本+目标位）④类归属=Actor（4 命中 0 未解析）⑤交互模式=矩阵栈LoadIdentity+LoadMatrix。ret=void。**virtual**。**不正名**：矩阵设置与位操作混合，无单一主导（conf 55）。"
  },
  "0x00536AC0": {
   "name": "SetMaterialName",
@@ -2156,12 +2130,6 @@
   "name": "InsertAnimFrame",
   "signature": "char *__thiscall(Actor *this, float fTime)",
   "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
- },
- "0x004CB280": {
-  "name": "Remove",
-  "signature": "virtual void __thiscall(Actor *this, int nFlags)",
-  "name_source": "IDA语义分析 2026-11-01 批15",
-  "name_note": "从 decomp 推断"
  },
  "0x004DFAA0": {
   "name": "InitRound",

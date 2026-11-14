@@ -309,8 +309,17 @@ def main():
                         if _key not in _addr_to_class:
                             _addr_to_class[_key] = _cls
                             _method_attributed += 1
-            log("[*] Loaded %d virtual methods, %d class-attributable addresses (methods=%d)" % (
-                len(_virtual_addrs), len(_addr_to_class), _method_attributed))
+            # [non_virtual 尊重 2026-11-14] 注解 methods 的 non_virtual 字段旁挂表
+            _ann_methods_by_addr = {}
+            for _sf_nv, _sd_nv in _strict_struct_entries(_structs_dir):
+                for _a_nv, _m_nv in (_sd_nv.get('methods') or {}).items():
+                    if isinstance(_m_nv, dict) and _m_nv.get('non_virtual'):
+                        try:
+                            _ann_methods_by_addr[int(_a_nv, 16)] = _m_nv
+                        except (ValueError, TypeError):
+                            pass
+            log("[*] Loaded %d virtual methods, %d class-attributable addresses (methods=%d, non_virtual=%d)" % (
+                len(_virtual_addrs), len(_addr_to_class), _method_attributed, len(_ann_methods_by_addr)))
 
         # lvar 注解层（2026-09-25）：data/annotations/lvars.json — 函数 VA → lvar 规格
         # （栈变量按 stkoff 定位、寄存器变量按 reg 定位；name/type 可选）。export 在
@@ -652,7 +661,10 @@ def main():
                     for _v in _ecx_vars:
                         if not re.search(r'\b' + re.escape(_v) + r'\s*=', code):
                             code = re.sub(r'\b' + re.escape(_v) + r'\b', 'this', code)
-                if ea in _virtual_addrs and not sig.startswith('virtual '):
+                # [注解真值尊重 2026-11-14] non_virtual 字段=注解裁定该槽位函数为
+                # 编译器机器码形态(删除式dtor等), 非虚成员 —— 不强写 virtual。
+                _ann_m = (_ann_methods_by_addr or {}).get(ea) or {}
+                if ea in _virtual_addrs and not _ann_m.get('non_virtual') and not sig.startswith('virtual '):
                     sig = 'virtual ' + sig
                 demangled = idc.demangle_name(name, idc.get_inf_attr(idc.INF_SHORT_DN))
                 display_name = demangled if demangled else name
