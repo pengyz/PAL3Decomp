@@ -792,10 +792,11 @@
   },
   "0x0041C9A0": {
    "name": "SetCameraTransition",
-   "signature": "int __thiscall(InputSystem *this, int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)",
+   "signature": "int __thiscall(int nMode, int nStart, int nTarget, int nPosX, int nPosY, int nPosZ, int bTargetCoord)",
    "name_source": "归属修正 2026-10-31（InputSystem→CCBSystem，偏移重叠证据）",
    "name_note": "相机过渡（访问 m_bPause/m_eState/m_eResult CCBSystem 成员）",
-   "attribution_evidence": "7/19 offsets overlap CCBSystem members (m_bQuitFlag/m_bPause/m_eState/m_eResult/m_bFiveNimbus)"
+   "attribution_evidence": "7/19 offsets overlap CCBSystem members (m_bQuitFlag/m_bPause/m_eState/m_eResult/m_bFiveNimbus)",
+   "source": "[C2660: 调用点8参(去掉多余的InputSystem*this参数——thiscall隐式)]"
   }
  }
 }
