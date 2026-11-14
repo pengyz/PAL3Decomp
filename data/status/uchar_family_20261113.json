@@ -566,5 +566,10 @@
   "discovery": "延迟初始化双态字段模式: ctor写 @0=m_pCBSystem(数据), Initialize/ShowWindow 重写 [esi]=vtable(转多态) —— 对象生命周期两阶段@0语义不同, IDB UDT只能表达单一布局",
   "implication": "17类冲突的@0成员不全是错归属——至少CCBStage是双态字段, 声明正确且vptr写入也存在。修正方案需按类分治: (a)标准多态(ctor写vptr)→@0数据成员=错归属 (b)延迟初始化(Initialize写vptr)→@0=双态字段, 需union表达或保持现状",
   "next": "对其余WRITE确认类跑同款反汇编验证, 分(a)(b)两类"
+ },
+ "ccbchain_analysis_20261114": {
+  "discovery": "CCBStage/CCBAttackSequen 都有 @0=m_pCBSystem(CCBSystem*)——这是 CCB 系列类的公共首成员模式. CCBAttackSequen 无vtables(纯数据类) ⇒ 其 @0=m_pCBSystem 无冲突. 冲突只存在于有 vtables 的类.",
+  "ccbstage_contradiction_resolved": "CCBStage: ctor写@0=pCBSystem, Initialize写@0=vtable. 12个m_pCBSystem读用点全树在用. 唯一自洽解释: m_pCBSystem 真实偏移≠0, 注解@0错位; 或 vtable 写的是另一个 esi 上下文(0x51dd43的esi被验证未重赋值)——需要IDA IDB的 CCBStage UDT readback 看 m_pCBSystem 的IDB偏移",
+  "idb_udt_pending": "CCBStage IDB UDT @0 是什么(m_pCBSystem还是vptr) 待查——注解写错位时 IDB UDT 会跟随错"
  }
 }
