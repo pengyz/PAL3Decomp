@@ -1,39 +1,784 @@
 {
-  "adjudicated": [
-    {
-      "addr": "0x0044F4C0",
-      "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x004B7AF0",
-      "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x004BEF50",
-      "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x004C5B90",
-      "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x00535930",
-      "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x0041C710",
-      "answer": "归属修正 2026-10-31：InputSystem→CCBSystem（偏移重叠证据 7/19+3/10）",
-      "adjudicated": true
-    },
-    {
-      "addr": "0x0041C9A0",
-      "answer": "归属修正 2026-10-31：InputSystem→CCBSystem（偏移重叠证据 7/19+3/10）",
-      "adjudicated": true
-    }
-  ]
+ "adjudicated": [
+  {
+   "addr": "0x0044F4C0",
+   "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004B7AF0",
+   "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004BEF50",
+   "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C5B90",
+   "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00535930",
+   "answer": "从 functions.json 迁入 structs 2026-10-31，规则执行",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0041C710",
+   "answer": "归属修正 2026-10-31：InputSystem→CCBSystem（偏移重叠证据 7/19+3/10）",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0041C9A0",
+   "answer": "归属修正 2026-10-31：InputSystem→CCBSystem（偏移重叠证据 7/19+3/10）",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00401800",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffObjectPool,RenderTarget2); 命名owner=EffObjectPool::nullsub; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00408BD0",
+   "answer": "ICF共享实现: 同一函数被 22 个类vtable槽引用(CEffAction,CEffBink,CEffCallBack,CEffCylinder); 命名owner=CEffAction::NullCallback; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00411B80",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(GameObject,Role); 命名owner=GameObject::_reset_vfptr_alt; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00411BB0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(GameObject,Role); 命名owner=GameObject::_reset_vfptr; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0041CBA0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CameraCtrl,ScreenEffectMgr); 命名owner=CameraCtrl::_scalar_dtor; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00434D50",
+   "answer": "ICF共享实现: 同一函数被 6 个类vtable槽引用(PalScript,PalScriptBlendTimer,PalScriptFadeInTimer,PalScriptFadeOutTimer); 命名owner=PalScript::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00438100",
+   "answer": "ICF共享实现: 同一函数被 4 个类vtable槽引用(PalScript,PalScriptAnimTimer,PalScriptProgressTimer,PalScriptWaitTimer); 命名owner=PalScript::CheckFlag0C; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00438110",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(PalScript,PalScriptProgressTimer); 命名owner=PalScript::UpdateWaitTimer; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00438190",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(PalScript,PalScriptProgressTimer); 命名owner=PalScript::_scalar_dtor_8190; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004382A0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(PalScript,PalScriptWaitTimer); 命名owner=PalScript::UpdateIdleTimer; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00438530",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(PalScriptFadeInTimer,PalScriptFadeOutTimer); 命名owner=PalScriptFadeInTimer::IsFadeDone; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043A870",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UICaption,UIScenePanel); 命名owner=UICaption::CreateChildWidget; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043AB00",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UICaption,UIScenePanel); 命名owner=UICaption::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043AD40",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UICaption,UIScenePanel); 命名owner=UICaption::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043BBC0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(UIFrameWnd,UIListBox,UILoadingFrm); 命名owner=UIFrameWnd::ProcessMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043D7A0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CCBProtectWindow,UIListBox,UIScene); 命名owner=UIListBox::ForwardOnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043D920",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(ArraySlots,UI3DCtrl,UIWnd); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043DDF0",
+   "answer": "ICF共享实现: 同一函数被 12 个类vtable槽引用(CCBControlWindow,CCBFiveNimbusWindow,CCBItemWindow,CCBLineupWindow); 命名owner=CCBControlWindow::CCBControlWindow::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0043DE40",
+   "answer": "ICF共享实现: 同一函数被 24 个类vtable槽引用(CCBRoleState,CCBStage,CCBUI,CCBUIPanel); 命名owner=CCBRoleState::CCBRoleState::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00442420",
+   "answer": "ICF共享实现: 同一函数被 5 个类vtable槽引用(CCBResultWindow,UIFrameContainer,UIFrameWnd,UIPushButton); 命名owner=UIFrameWnd::Destroy_2420; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00442890",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIFrameContainer,UIPushButton); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00442AD0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIFrameContainer,UIPushButton); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00442FF0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CCBPanelSlot,UIFrameWnd,UIWnd); 命名owner=CCBPanelSlot::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00443200",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBPanelSlot,UIWnd); 命名owner=CCBPanelSlot::CCBPanelSlot::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445B90",
+   "answer": "ICF共享实现: 同一函数被 58 个类vtable槽引用(ArraySlots,CCBControlWindow,CCBFiveNimbusWindow,CCBItemWindow); 命名owner=CCBUI::_todo_445B90; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445C10",
+   "answer": "ICF共享实现: 同一函数被 9 个类vtable槽引用(RoleCameraCtrl,SceneObj,UIAnimateCtrlEX,UIEmote); 命名owner=SceneObj::HideAll; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445C60",
+   "answer": "ICF共享实现: 同一函数被 4 个类vtable槽引用(SceneObj,UI3DCtrl,UIListBox,UIWnd); 命名owner=SceneObj::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445CD0",
+   "answer": "ICF共享实现: 同一函数被 6 个类vtable槽引用(RoleCameraCtrl,UIEmote,UIFrameWnd,UITitle_BBTY); 命名owner=UITitle_BBTY::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445D10",
+   "answer": "ICF共享实现: 同一函数被 18 个类vtable槽引用(CCBRoleState,CGameData,PalScript,SceneObj); 命名owner=CGameData::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00445E70",
+   "answer": "ICF共享实现: 同一函数被 55 个类vtable槽引用(ArraySlots,CCBControlWindow,CCBFiveNimbusWindow,CCBItemWindow); 命名owner=CCBPanelSlot::ShowClipped; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0044A820",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(ArraySlots,UIWnd); 命名owner=UIWnd::GetUIElements; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0044A870",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(ArraySlots,UIWnd); 命名owner=UIWnd::RenderText; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0044AB00",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(ArraySlots,UIEmote); 命名owner=ArraySlots::_todo_0044AB00; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0044E5C0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIEmote,scScriptInstance); 命名owner=scScriptInstance::_scalar_dtor_E5C0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0044E980",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIEmote,scScriptInstance); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004503C0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UICaption,UIListBox); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00450E90",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::_scalar_dtor_0E90; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004512F0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00451320",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004515A0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004515E0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::HandleInput; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00451740",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(RoleAtt,UISceneMap); 命名owner=RoleAtt::ShowWindow; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004518E0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIListBox,UILoadingFrm); 命名owner=UIListBox::_sdtor_28; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00451AA0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIListBox,UILoadingFrm); 命名owner=UILoadingFrm::OnMessage_1AA0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00451B40",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIListBox,UILoadingFrm); 命名owner=UIListBox::ResizeToContent; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00451C10",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIListBox,UILoadingFrm); 命名owner=UIListBox::IsVisible; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004A14C0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(UIRoleDialog,UITitle); 命名owner=UITitle::HideAll; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004AF760",
+   "answer": "ICF共享实现: 同一函数被 26 个类vtable槽引用(ArraySlots,CEffAction,CEffBink,CEffCallBack); 命名owner=CEffAction::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004B7F70",
+   "answer": "ICF共享实现: 同一函数被 5 个类vtable槽引用(CEffGroupNode,ParticleEffect,RenderTargetNode,ScreenEffectNode); 命名owner=CEffGroupNode::nullsub; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004BD850",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(ParticleEffect,RenderTargetNode); 命名owner=RenderTargetNode::_scalar_dtor_D850; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004BE060",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(ScreenEffect,ScreenEffectMgr); 命名owner=ScreenEffect::Reset; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0500",
+   "answer": "ICF共享实现: 同一函数被 14 个类vtable槽引用(CEffAction,CEffBink,CEffCylinder,CEffExplosive); 命名owner=CEffAction::OnTest; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0510",
+   "answer": "ICF共享实现: 同一函数被 10 个类vtable槽引用(CEffAction,CEffBink,CEffCallBack,CEffModel); 命名owner=CEffAction::Method_0510; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0520",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::AllocRenderTarget; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0540",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::~CEffAction; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0600",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffObjectPool,RenderTarget2); 命名owner=EffObjectPool::StubReturn0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0610",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffObjectPool,RenderTarget2); 命名owner=EffObjectPool::nullsub_75_override; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0620",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffObjectPool,RenderTarget2); 命名owner=EffObjectPool::_scalar_dtor; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0640",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::ResetState; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0650",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffAction,CEffCallBack,CEffObj,CEffQuake); 命名owner=CEffAction::AllocSegments; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0740",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::UpdateFrame; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C0920",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::PrepareEffect; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C09E0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::RenderScene; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1270",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffAction,RenderTarget2); 命名owner=CEffAction::Method_1270; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1490",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffObjectPool,RenderTarget2); 命名owner=EffObjectPool::ReleaseObjects152; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C15B0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CEffBink,EffAudioNode,RenderTarget2); 命名owner=RenderTarget2::CreateEffAudio; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C15D0",
+   "answer": "ICF共享实现: 同一函数被 15 个类vtable槽引用(CEffAction,CEffBink,CEffCallBack,CEffCylinder); 命名owner=CEffAction::UpdateParticles; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1640",
+   "answer": "ICF共享实现: 同一函数被 4 个类vtable槽引用(CEffBink,EffAudioNode,EffTargetPool,RenderTarget2); 命名owner=EffTargetPool::_scalar_dtor; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1700",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffBink,RenderTarget2); 命名owner=RenderTarget2::LoadResourcesByIndex; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C18D0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffBink,RenderTarget2); 命名owner=RenderTarget2::CreateSoundTarget; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1DD0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffBink,RenderTarget2); 命名owner=RenderTarget2::GetEffAudioTemplate; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C1F70",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffBinkNode,RenderTarget2); 命名owner=RenderTarget2::DestroyEffAudio; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2030",
+   "answer": "ICF共享实现: 同一函数被 4 个类vtable槽引用(EffBinkNode,EffMultiPassNode,EffTargetPool,RenderTarget2); 命名owner=EffTargetPool::_adjustor_c; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2040",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffTargetPool,RenderTarget2); 命名owner=EffTargetPool::_scalar_dtor_EffTargetNode; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2090",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffBinkNode,RenderTarget2); 命名owner=RenderTarget2::CreateEffBink; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C20B0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffBinkNode,RenderTarget2); 命名owner=RenderTarget2::_scalar_dtor_DestroyEffBink; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2170",
+   "answer": "ICF共享实现: 同一函数被 5 个类vtable槽引用(CEffBink,EffAudioNode,EffBinkNode,EffTargetPool); 命名owner=EffTargetPool::AllocTargets; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2600",
+   "answer": "ICF共享实现: 同一函数被 6 个类vtable槽引用(CEffSParticle,EffBinkNode,EffCallBackNode,EffMultiPassNode); 命名owner=EffObjectPool::CalcDeltaTime; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2700",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffMultiPassNode,RenderTarget2); 命名owner=RenderTarget2::BeginNextPass; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C27C0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffBinkNode,RenderTarget2); 命名owner=RenderTarget2::DestroyEffWithBink; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2820",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CEffCallBack,EffMultiPassNode,RenderTarget2); 命名owner=RenderTarget2::CreateDeactivated; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2840",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCallBack,RenderTarget2); 命名owner=RenderTarget2::do_always_noconv; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2850",
+   "answer": "ICF共享实现: 同一函数被 5 个类vtable槽引用(CEffSParticle,EffBinkNode,EffMultiPassNode,EffTargetPool); 命名owner=EffTargetPool::AdjustThisCall; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2870",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CEffCallBack,EffMultiPassNode,RenderTarget2); 命名owner=RenderTarget2::~RenderTarget2; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2930",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CEffCallBack,EffMultiPassNode,RenderTarget2); 命名owner=RenderTarget2::InitTargetPos; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C29A0",
+   "answer": "ICF共享实现: 同一函数被 9 个类vtable槽引用(CEffBink,CEffCallBack,CEffObj,CEffQuake); 命名owner=CEffObj::UpdateInternal; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2BA0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCallBack,RenderTarget2); 命名owner=RenderTarget2::RenderFromParams; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C2D00",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCallBack,RenderTarget2); 命名owner=RenderTarget2::CreateEffectTarget; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3160",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCallBack,RenderTarget2); 命名owner=RenderTarget2::GetCallbackTable; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3340",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffCallBackNode,RenderTarget2); 命名owner=RenderTarget2::_scalar_dtor_Bink; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3400",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffMultiPassNode,RenderTarget2); 命名owner=RenderTarget2::BeginMultiPassRender; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3490",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffCallBackNode,RenderTarget2); 命名owner=RenderTarget2::CreateEffCallBack; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C34B0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffCallBackNode,RenderTarget2); 命名owner=EffCallBackNode::~EffCallBackNode; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3570",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(EffCallBackNode,RenderTarget2); 命名owner=RenderTarget2::UpdatePost; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3D90",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::AllocEffect; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3DB0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::_scalar_dtor_3DB0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C3EC0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::Init_3EC0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C4060",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::Create; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C4370",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C45A0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::CreateTask; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C48D0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::ProcInitTask; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C5010",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::GetEditorTaskDescription; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004C5150",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffCylinder,RenderTarget2); 命名owner=CEffCylinder::GetEditorObjDescription; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004D32C0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffObj,CEffQuake); 命名owner=CEffObj::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004D32E0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffObj,CEffQuake); 命名owner=CEffQuake::~CEffQuake; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004D33A0",
+   "answer": "ICF共享实现: 同一函数被 9 个类vtable槽引用(CEffBink,CEffObj,CEffQuake,CEffSParticle); 命名owner=CEffObj::ResetFlags; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004D33B0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffObj,CEffQuake); 命名owner=CEffObj::RenderEffectPass; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x004D3660",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CEffObj,CEffQuake); 命名owner=CEffObj::GetQuakeType; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519360",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBResultWindow,CCBUI); 命名owner=CCBResultWindow::ShowLineupWindow; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519510",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBResultWindow,CCBUI); 命名owner=CCBResultWindow::Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x005195E0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBResultWindow,CCBUI); 命名owner=CCBResultWindow::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519660",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBResultWindow,CCBUI); 命名owner=CCBResultWindow::IsImbibeNimbusNotFinish; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519B40",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBFiveNimbusWindow,CCBUI); 命名owner=CCBFiveNimbusWindow::GetNimbusColor; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519F50",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBFiveNimbusWindow,CCBUI); 命名owner=CCBUI::Destroy_9F50; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00519FE0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBFiveNimbusWindow,CCBUI); 命名owner=CCBFiveNimbusWindow::HandleInput; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051A090",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBFiveNimbusWindow,CCBUI); 命名owner=CCBFiveNimbusWindow::AddResultWindowAni; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051A390",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBItemWindow,CCBUI); 命名owner=CCBItemWindow::DoTask; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051A880",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBItemWindow,CCBUI); 命名owner=CCBItemWindow::CCBItemWindow_Destroy; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051A930",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBItemWindow,CCBUI); 命名owner=CCBItemWindow::HandleMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051AB00",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBItemWindow,CCBUI); 命名owner=CCBUI::CheckMagicKeyPress; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051AC90",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBControlWindow,CCBUI); 命名owner=CCBControlWindow::HandleEnable; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051AFE0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBControlWindow,CCBUI); 命名owner=CCBControlWindow::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B030",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBControlWindow,CCBUI); 命名owner=CCBControlWindow::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B0B0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBControlWindow,CCBUI); 命名owner=CCBControlWindow::MoveButtons; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B4B0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBLineupWindow,CCBUI); 命名owner=(slot占位); 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B570",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBLineupWindow,CCBUI); 命名owner=CCBLineupWindow::HandleInput; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B5D0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CCBControlWindow,CCBLineupWindow,CCBUI); 命名owner=CCBControlWindow::UpdateDescriptionPage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051B860",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBSkillWindow,CCBUI); 命名owner=CCBSkillWindow::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051C260",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBParabolaWindow::`scalar deleting destructor'; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051C880",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBParabolaWindow::Cleanup; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051C9B0",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CCBLineupWindow,CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBSkillWindow::CCBFiveNimbusWindow::OnMessage; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051C9F0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBParabolaWindow::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051CA50",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBParabolaWindow::ToggleSlots; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0051CAA0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CCBParabolaWindow,CCBSkillWindow); 命名owner=CCBParabolaWindow::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00524970",
+   "answer": "ICF共享实现: 同一函数被 7 个类vtable槽引用(CCBRoleState,CCBStage,CScreenMode,RoleSystem); 命名owner=CCBStage::CCBRoleState::Render; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x005420D8",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,ParticleVisNode); 命名owner=ScreenEffectMgr::EnableShadow; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x005420DE",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,ParticleVisNode); 命名owner=ScreenEffectMgr::GetAABBox; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x005420FC",
+   "answer": "ICF共享实现: 同一函数被 3 个类vtable槽引用(CScreenModeNode,ParticleVisNode,SceneVisNode); 命名owner=CScreenModeNode::CScreenModeNode_adjthunk_20FC; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00542102",
+   "answer": "ICF共享实现: 同一函数被 10 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,ParticleEffect); 命名owner=SceneVisNode::SceneVisNode_adjthunk_2102; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0054210E",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,RenderTargetNode); 命名owner=SceneVisNode::SceneVisNode_adjthunk_210E; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00542114",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,RenderTargetNode); 命名owner=SceneVisNode::SceneVisNode_adjthunk_2114; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0054211A",
+   "answer": "ICF共享实现: 同一函数被 8 个类vtable槽引用(CEffGroupNode,CScreenModeNode,PAL3VisNode,RenderTargetNode); 命名owner=SceneVisNode::VisUpdate; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x00542120",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(CScreenModeNode,SceneVisNode); 命名owner=CScreenModeNode::CScreenModeNode_adjthunk_2120; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x0055434F",
+   "answer": "ICF共享实现: 同一函数被 12 个类vtable槽引用(CEffSParticle,EffBinkNode,EffCallBackNode,EffMultiPassNode); 命名owner=EffObjectPool::_amsg_exit_stub; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x411b80",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(Object,ScriptObj); 命名owner=Object::_scalar_dtor_1b80; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x411bb0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(Object,ScriptObj); 命名owner=Object::_scalar_dtor_1bb0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x411bd0",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(Object,ScriptObj); 命名owner=Object::_scalar_dtor_1bd0; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x4af760",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(Object,ScriptObj); 命名owner=Object::Update; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  },
+  {
+   "addr": "0x55434f",
+   "answer": "ICF共享实现: 同一函数被 2 个类vtable槽引用(Object,ScriptObj); 命名owner=Object::FatalExit; 槽位共享非重复归属 — vtable_walk 20261114",
+   "adjudicated": true
+  }
+ ]
 }

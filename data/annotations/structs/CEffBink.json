@@ -1,30 +1,107 @@
 {
-  "name": "CEffBink",
-  "binary_size": 304,
-  "known_members": {
-    "48": {
-      "name": "m_szBinkNamePrefix",
-      "type": "char[128]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "176": {
-      "name": "m_szBinkName",
-      "type": "char[128]",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "CEffBink",
+ "binary_size": 304,
+ "known_members": {
+  "48": {
+   "name": "m_szBinkNamePrefix",
+   "type": "char[128]",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {},
-  "base_size": 52,
-  "bases": [
+  "176": {
+   "name": "m_szBinkName",
+   "type": "char[128]",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {},
+ "base_size": 52,
+ "bases": [
+  {
+   "name": "CEffObj",
+   "offset": 0
+  },
+  {
+   "name": "CTaskTpl_tagEffTaskParam_CEffBink",
+   "offset": 12
+  }
+ ],
+ "vtables": [
+  {
+   "addr": "0x0056F674",
+   "base": null,
+   "slots": [
     {
-      "name": "CEffObj",
-      "offset": 0
+     "addr": "0x004C1640",
+     "from": "EffObjectPool"
     },
     {
-      "name": "CTaskTpl_tagEffTaskParam_CEffBink",
-      "offset": 12
+     "addr": "0x004C2170",
+     "from": "EffTargetPool"
+    },
+    {
+     "addr": "0x004D33A0",
+     "from": "CEffObj"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C29A0",
+     "from": "CEffAudio"
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C15B0",
+     "from": "RenderTarget2"
+    },
+    {
+     "addr": "0x004C0500",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C1700",
+     "from": "RenderTarget2"
+    },
+    {
+     "addr": "0x004C0510",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004AF760",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C18D0",
+     "from": "RenderTarget2"
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C1DD0",
+     "from": "RenderTarget2"
     }
-  ]
+   ],
+   "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
+   "evidence_level": "binary_ctor_write"
+  },
+  {
+   "addr": "0x0056F668",
+   "base": "CTaskTpl",
+   "slots": [],
+   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
+   "evidence_level": "binary_ctor_write"
+  }
+ ]
 }

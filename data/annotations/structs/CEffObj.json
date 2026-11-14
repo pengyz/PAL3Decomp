@@ -17,44 +17,141 @@
  },
  "vtables": [
   {
-   "addr": "0x0056F62C",
+   "addr": "0x0056FA88",
    "base": null,
    "slots": [
     {
-     "addr": "0x004C0620",
-     "from": "EffObjectPool"
+     "addr": "0x004D32E0",
+     "from": "CEffQuake"
     },
     {
-     "addr": "0x004C0600",
-     "from": "EffObjectPool"
+     "addr": "0x004C0650",
+     "from": null
     },
     {
-     "addr": "0x004C0610",
-     "from": "EffObjectPool"
+     "addr": "0x004D33A0",
+     "from": null
     },
     {
-     "addr": "0x00401800",
-     "from": "EffObjectPool"
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
     },
     {
-     "addr": "0x00401800",
-     "from": "EffObjectPool"
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004C29A0",
+     "from": null
+    },
+    {
+     "addr": "0x00408BD0",
+     "from": "CEffAction"
+    },
+    {
+     "addr": "0x004D32C0",
+     "from": null
+    },
+    {
+     "addr": "0x004C0500",
+     "from": null
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
-     "addr": "0x00401800",
-     "from": "EffObjectPool"
+     "addr": "0x004C0510",
+     "from": null
     },
     {
-     "addr": "0x0055434F",
-     "from": "EffObjectPool"
+     "addr": "0x004AF760",
+     "from": null
+    },
+    {
+     "addr": "0x004D33B0",
+     "from": null
+    },
+    {
+     "addr": "0x004C15D0",
+     "from": null
+    },
+    {
+     "addr": "0x004D3660",
+     "from": null
     }
    ],
-   "source": " | [100 表认领 2026-10-16 analyzer 重落] A 级：基类析构尾形 c7 01 2c f6 56 00 c3（[ecx]=0x56F62C）+ 全 CEff 族析构一致写此表（类体系根基类定案）"
+   "source": "binary:ctor 0x4D3280 [@0]=0x56FA88 终值写(三段式第2段); CEffObj多态抽象基永不实例化, CEffQuake主链零覆写故共享start; 裁决=ceff_family_adjudication_20261114",
+   "evidence_level": "binary_ctor_write"
   }
  ],
- "methods": {}
+ "methods": {
+  "0x004D32C0": {
+   "name": "Destroy",
+   "signature": "int *__thiscall()",
+   "ordinal": 7,
+   "evidence_level": "unverified",
+   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交"
+  },
+  "0x004D33A0": {
+   "name": "ResetFlags",
+   "signature": "int __thiscall(int, int, int, int)",
+   "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "ordinal": 2,
+   "evidence_level": "unverified"
+  },
+  "0x004D33B0": {
+   "name": "RenderEffectPass",
+   "signature": "int __thiscall(int a2)",
+   "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "ordinal": 12,
+   "evidence_level": "unverified"
+  },
+  "0x004D3660": {
+   "name": "GetQuakeType",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "ordinal": 14,
+   "evidence_level": "unverified"
+  },
+  "0x004C0650": {
+   "name": "AllocSegments",
+   "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
+   "evidence_level": "unverified",
+   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交"
+  },
+  "0x004C29A0": {
+   "name": "UpdateInternal",
+   "signature": "void __thiscall(float fVal)",
+   "evidence_level": "unverified",
+   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交"
+  },
+  "0x004C0500": {
+   "name": "OnTest",
+   "signature": "int()",
+   "source": "vtable_gap_fill_v1(from CEffAction.json) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x004C15D0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x004C0510": {
+   "name": "sub_4C0510",
+   "signature": "int __thiscall(int)",
+   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl"
+  },
+  "0x004AF760": {
+   "name": "_todo_004AF760",
+   "signature": "void __thiscall(int nVal1)",
+   "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找） | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交",
+   "evidence_level": "A"
+  }
+ }
 }

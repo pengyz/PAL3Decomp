@@ -192,7 +192,7 @@
  "vtables": [
   {
    "addr": "0x0056FA30",
-   "base": "CEffQuad",
+   "base": null,
    "slots": [
     {
      "addr": "0x004D0D90",
@@ -228,19 +228,19 @@
     },
     {
      "addr": "0x004C0500",
-     "from": "CEffSParticle"
+     "from": "CEffAction"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffSParticle"
+     "from": "CEffAction"
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffSParticle"
+     "from": "CEffAction"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffSParticle"
+     "from": "CEffAction"
     },
     {
      "addr": "0x004D2080",
@@ -248,14 +248,22 @@
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffSParticle"
+     "from": "CEffAction"
     },
     {
      "addr": "0x004D2ED0",
      "from": "CEffect"
     }
    ],
-   "source": "A级：slot[0]=0x4D0D90 CEffQuad 删析构 + 写入点 0x4d0d1b/0x4d0dd3（CEffQuad 簇 movl $0x56fa30,(%reg) +0）⇒ CEffQuad 的表，自 CEffect.json 迁出（停车场清理 2026-10-16）"
+   "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
+   "evidence_level": "binary_ctor_write"
+  },
+  {
+   "addr": "0x0056FA24",
+   "base": "CTaskTpl",
+   "slots": [],
+   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
+   "evidence_level": "binary_ctor_write"
   }
  ]
 }

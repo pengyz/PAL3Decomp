@@ -171,7 +171,16 @@
      "addr": "0x004C1270",
      "from": null
     }
-   ]
+   ],
+   "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
+   "evidence_level": "binary_ctor_write"
+  },
+  {
+   "addr": "0x0056F5D8",
+   "base": "CTaskTpl",
+   "slots": [],
+   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
+   "evidence_level": "binary_ctor_write"
   }
  ],
  "base_size": 52,
