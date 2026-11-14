@@ -88,6 +88,13 @@ for cls_name, vt_list in sorted(cls_vtables.items()):
                 mn = minfo["name"]
                 if mn != "__vftable" and ("vftable" in mn.lower() or "vtbl" in mn.lower()):
                     # Match VfTable/vftable, but NOT substring like FVF
+                    # [注解真值尊重 2026-11-14] 注解为该次级 vptr 字段显式裁定非 vtbl 型
+                    # (如 m_pVfTable=char*, 'IDB struct compat' 注记) ⇒ 尊重注解跳过 vtbl 化。
+                    # 顶律: 注解=唯一真值; vtbl 型渲染 member-form callshape 而发射器不产
+                    # vtbl 结构声明(vtable=编译器内部机制定谳) ⇒ C2228 (CCBUIPanel 实证)。
+                    ann_t = str(minfo.get("type") or "")
+                    if ann_t and "vtbl" not in ann_t and "__vftable" not in ann_t:
+                        continue
                     target_name = mn
                     break
         
