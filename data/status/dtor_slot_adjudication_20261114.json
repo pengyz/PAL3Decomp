@@ -1,0 +1,36 @@
+{
+  "generated": "2026-11-14",
+  "method": "ctor/dtor写表证据(字节模式扫描C7全形态156表409写点) + 序言反汇编 + xref唯一性裁决",
+  "dtor_slot_rule": {
+    "rule": "MSVC: scalar deleting dtor占主表slot0(唯一dtor槽); complete dtor不在vtable内; dtor序言重写自身类表址=标准行为非换装",
+    "evidence": "0x4D32E0与0x4D3930均为标准删除式形态(push esi;mov esi,ecx;call complete_dtor;test byte[esp+8],1;call 0x541d10 delete;ret 4)"
+  },
+  "class_table_verdict_ceff": {
+    "48B类(注解缺失的中间类)": {
+      "layout": "CEffObj(12B)+CTaskTpl(36B)=48B无附加成员, 是CEffAction(52B)的直接基",
+      "ctor": "0x4D3280 (写主表0x56FA88+第二基0x56FAC4)",
+      "new_stub": "0x4D32C0 (push 0x30; call new; jmp ctor) — 注解误名CEffQuake::Destroy",
+      "complete_dtor": "0x4D3300 (xref唯一=仅del-dtor调用; 注解误名CEffQuake::Update)",
+      "del_dtor": "0x4D32E0",
+      "tables": {"primary": "0x56FA88(15槽,slot0=0x4D32E0)", "second": "0x56FA7C(3槽终值; ctor阶段写0x56FAC4)"}
+    },
+    "CEffQuake": {
+      "size": "0x10B0=4272B(ctor+new-wrapper双证)",
+      "ctor": "0x4D3870 (终值主表0x56FADC+第二基0x56FAD0; CTaskTpl base阶段写0x56FB18)",
+      "new_wrapper": "0x4D3910 (push 0x10B0)",
+      "complete_dtor": "0x4D3950 (序言写0x56FADC+0x56FAD0)",
+      "del_dtor": "0x4D3930",
+      "tables": {"primary": "0x56FADC(15槽,slot0=0x4D3930)", "second": "0x56FAD0(3槽)", "ctasktpl_base_stage": "0x56FB18(4槽)"}
+    }
+  },
+  "verdicts": {
+    "运行时换装结论作废": "0x4D3300不是Update而是48B类complete dtor; 其写表=dtor序言标准行为; 不存在任何vtable换装",
+    "注解vtable地址错归属": "CEffQuake.json vtables addr=0x56FA88 是48B类的表 ✗ 真表0x56FADC; 头文件槽序(0x4D32E0/0x4C0650/ResetIdle...)全是48B类的槽",
+    "方法归属错位": "ResetIdle 0x4D33A0/RenderEffectPass 0x4D33B0/GetQuakeType 0x4D3660 在0x56FA88槽内=属48B类非CEffQuake; CEffQuake真方法全在0x56FADC槽内(未命名)",
+    "根因": "注解链缺48B中间类 ⇒ 两类塌缩: CEffQuake的vtable/methods把48B类内容全部吞并",
+    "双dtor位错误": "头文件virtual ~X(){}+_sdtor_call_dtor双dtor位 vs 二进制单槽(删除式在slot0); 头文件只应有一个dtor位"
+  },
+  "tool": "true_vtable_map_20261114.json (156表×写者, C7全形态含mod0/SIB/abs)",
+  "cascade": "CEff族12类的vtables地址+槽名+方法归属全部需按ctor写表证据重定谳; UIWnd真表0x56AEC8(46槽,UIWnd::ctor+0x1D写)需同步复核(复核agent的0x56AE10/7槽结论受bisect误名影响)",
+  "next": "实施序②: emit_headers门控换_ctor写表证据(不依赖槽名/注解vtables地址)"
+}
