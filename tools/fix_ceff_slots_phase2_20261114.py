@@ -113,6 +113,8 @@ for cls, (t1, t2) in VT.items():
         oc = _owner.get(a_hex) or _owner.get(a_alt)
         if own:
             frm = None
+        elif (a_hex in obj_methods or a_alt in obj_methods) and cls != 'CEffObj':
+            frm = 'CEffObj'  # 基表实现优先(叶值==基值=真继承)
         elif oc and oc != cls:
             frm = oc
         else:

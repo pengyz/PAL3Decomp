@@ -17,7 +17,7 @@
  },
  "vtables": [
   {
-   "addr": "0x0056FA88",
+   "addr": "0x0056F62C",
    "base": null,
    "slots": [
     {
@@ -26,11 +26,11 @@
     },
     {
      "addr": "0x004C0650",
-     "from": null
+     "from": "CEffAction"
     },
     {
      "addr": "0x004D33A0",
-     "from": null
+     "from": "CEffQuake"
     },
     {
      "addr": "0x00408BD0",
@@ -42,7 +42,7 @@
     },
     {
      "addr": "0x004C29A0",
-     "from": null
+     "from": "CEffAudio"
     },
     {
      "addr": "0x00408BD0",
@@ -74,63 +74,66 @@
     },
     {
      "addr": "0x004C15D0",
-     "from": null
+     "from": "CEffAction"
     },
     {
      "addr": "0x004D3660",
      "from": "CEffQuake"
     }
    ],
-   "source": "binary:ctor 0x4D3280 [@0]=0x56FA88 终值写(三段式第2段); CEffObj多态抽象基永不实例化, CEffQuake主链零覆写故共享start; 裁决=ceff_family_adjudication_20261114",
-   "evidence_level": "binary_ctor_write"
+   "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
+   "evidence_level": "binary_dtor_epilogue"
   }
  ],
  "methods": {
-  "0x004D33A0": {
-   "name": "slot_2",
-   "signature": "void __thiscall()",
-   "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名ResetFlags为分析命名待Round-2归属正名)",
-   "ordinal": 2,
-   "evidence_level": "unverified"
-  },
-  "0x004C0650": {
-   "name": "slot_1",
-   "signature": "void __thiscall()",
-   "evidence_level": "unverified",
-   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名AllocSegments为分析命名待Round-2归属正名)"
-  },
-  "0x004C29A0": {
-   "name": "slot_5",
-   "signature": "void __thiscall()",
-   "evidence_level": "unverified",
-   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名UpdateInternal为分析命名待Round-2归属正名)"
-  },
   "0x004C0500": {
    "name": "slot_8",
    "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffAction.json) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名OnTest为分析命名待Round-2归属正名)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C15D0": {
-   "name": "slot_13",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名UpdateParticles为分析命名待Round-2归属正名)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
+   "evidence_level": "binary_vtable_slot"
   },
   "0x004C0510": {
    "name": "slot_10",
    "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名sub_4C0510为分析命名待Round-2归属正名)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
+   "evidence_level": "binary_vtable_slot"
   },
   "0x004AF760": {
-   "name": "slot_9",
+   "name": "slot_5",
    "signature": "void __thiscall()",
-   "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x4AF760 单指令 `c2 04 00`（ret $0x4）= 零体 thiscall 1 栈参（空桩，13 槽 COMDAT 折叠形）；语义未定 ⇒ _todo_ 占位（禁伪语义命名）。vtable_mapper 口径：21 槽/3 唯一地址/5 类×地址条目（per-class methods 查找） | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名_todo_004AF760为分析命名待Round-2归属正名)",
-   "evidence_level": "A"
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址)",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004C0600": {
+   "name": "slot_1",
+   "signature": "void __thiscall()",
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004C0610": {
+   "name": "slot_2",
+   "signature": "void __thiscall()",
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x00401800": {
+   "name": "slot_13",
+   "signature": "void __thiscall()",
+   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)",
+   "evidence_level": "binary_vtable_slot"
+  },
+  "0x004C0620": {
+   "name": "slot_0",
+   "signature": "void __thiscall()",
+   "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
+   "evidence_level": "binary_vtable_slot",
+   "declaration_only": true
+  },
+  "0x0055434F": {
+   "name": "slot_7",
+   "signature": "void __thiscall()",
+   "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
+   "evidence_level": "binary_vtable_slot"
   }
  }
 }
