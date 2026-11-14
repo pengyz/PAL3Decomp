@@ -1991,27 +1991,30 @@
    "slots": [
     {
      "addr": "0x00438190",
-     "from": "PalScriptProgressTimer"
+     "from": null
     },
     {
      "addr": "0x00438100",
-     "from": "PalScriptWaitTimer"
+     "from": null
     },
     {
      "addr": "0x00438110",
-     "from": "PalScriptProgressTimer"
+     "from": null
     },
     {
      "addr": "0x00434D50",
-     "from": "PalScriptWaitTimer"
+     "from": null
     },
     {
      "addr": "0x00438100",
-     "from": "PalScriptWaitTimer"
+     "from": null,
+     "name": "IsDone",
+     "sig": "BOOL __thiscall()",
+     "semantic_verdict": "体证据 this[12]==0=done标志; 与slot1 IsAnimDone同体异名(原始源码两名一体的ICF折叠); slot1=动画域名(slot1叶覆写AnimTimer族), slot4=状态域名"
     },
     {
      "addr": "0x004382A0",
-     "from": "PalScriptWaitTimer"
+     "from": null
     }
    ]
   },
@@ -2021,7 +2024,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UITitle_JDHY"
+     "from": "CCBPanelSlot"
     },
     {
      "addr": "0x0043A270",
@@ -2037,7 +2040,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow"
+     "from": "CCBStage"
     },
     {
      "addr": "0x0043A1D0",
@@ -2045,7 +2048,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd"
+     "from": "CGameData"
     }
    ]
   }

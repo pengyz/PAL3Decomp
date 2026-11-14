@@ -63,27 +63,27 @@
     },
     {
      "addr": "0x00542102",
-     "from": "CScreenModeNode"
+     "from": "ParticleVisNode"
     },
     {
      "addr": "0x005420FC",
-     "from": "CScreenModeNode"
+     "from": "ParticleVisNode"
     },
     {
      "addr": "0x00542120",
-     "from": "CScreenModeNode"
+     "from": null
     },
     {
      "addr": "0x0054211A",
-     "from": "CScreenModeNode"
+     "from": "RenderTargetNode"
     },
     {
      "addr": "0x00542114",
-     "from": "CScreenModeNode"
+     "from": "RenderTargetNode"
     },
     {
      "addr": "0x0054210E",
-     "from": "CScreenModeNode"
+     "from": "RenderTargetNode"
     }
    ],
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 写点 `PalScript::LoadVisNode+309`/CCBStageScene_CreateCamera+977（VisNode 构造域）②被调用者面=thunk IDA 名 **gbVisNode::Render/Attach**（__imp_ 导入转发）+ UIRoleDialog::Update(gbVisNode*) ③成员访问面=thunk 转发形 ④类归属面=gbVisNode 界面实现 ⑤交互模式面=场景/相机装载构造 ⇒ **场景可视节点**；evidence=[thunk decompile×3,xref,ctor 写点] confidence=85"

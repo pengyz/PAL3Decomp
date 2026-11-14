@@ -196,33 +196,33 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UITitle_JDHY"
+     "from": null
     },
     {
      "addr": "0x00442E90",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00442FF0",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00442420",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow",
+     "from": null,
      "name": "Create",
-     "sig": "int __thiscall RenderTarget::Stop __thiscall(int)"
+     "sig": "int __thiscall(int, tagRECT *, UIWnd *)"
     },
     {
      "addr": "0x00442E60",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd",
+     "from": null,
      "name": "OnMessage",
      "sig": "int __thiscall(int, int, int)"
     }
@@ -238,5 +238,13 @@
    "address": "0x00445D10",
    "source": "manual:vtable slot 6, C2039 fix for 31 hits"
   }
- }
+ },
+ "_adjudicated_tables": [
+  {
+   "addr": "0x0056AEC8",
+   "verdict": "TRUE7",
+   "evidence": "ctor 0x445B40单写[esi]=0x56AEC8; 0x445xxx簇=UIWnd自有代码区; 7槽全own(from=None)",
+   "date": "2026-11-15"
+  }
+ ]
 }

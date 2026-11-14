@@ -53,11 +53,11 @@
    "slots": [
     {
      "addr": "0x004C2600",
-     "from": "CEffSParticle"
+     "from": "EffBinkNode"
     },
     {
      "addr": "0x0055434F",
-     "from": "CEffSParticle"
+     "from": "CEffObj"
     },
     {
      "addr": "0x004C2700",
@@ -65,11 +65,11 @@
     },
     {
      "addr": "0x004C2030",
-     "from": null
+     "from": "EffBinkNode"
     },
     {
      "addr": "0x004C2850",
-     "from": "CEffSParticle"
+     "from": "EffBinkNode"
     },
     {
      "addr": "0x004C3400",
@@ -81,7 +81,7 @@
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle"
+     "from": "EffCallBackNode"
     }
    ],
    "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor/dtor 对写点（RenderTarget2::Reset/ResetSurface/Deactivate/ResetTargets 域 +31..+50）②被调用者面=独有槽 IDA：**0x4C2700 `BeginNextPass` + 0x4C2930 `InitTargetPos` + 0x4C2820 `CreateDeactivated`** + CEffAction::AllocSegment(0x4C0650)；三表嵌套窗（删际 0x4C2870 锚）；写点 ResetSurface+37/Deactivate+37..+50 ③成员访问面=池节点（EffTargetPool/EffObjectPool 既有 impl 共享槽）④类归属面=删际锚+嵌套窗结构 ⑤交互模式面=RenderTarget2 表面/目标管理生命周期；confidence=85"
@@ -92,11 +92,11 @@
    "slots": [
     {
      "addr": "0x004C2030",
-     "from": null
+     "from": "EffBinkNode"
     },
     {
      "addr": "0x004C2850",
-     "from": "CEffSParticle"
+     "from": "EffBinkNode"
     },
     {
      "addr": "0x004C3400",
@@ -108,7 +108,7 @@
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle"
+     "from": "EffCallBackNode"
     },
     {
      "addr": "0x004C2930",
@@ -116,11 +116,11 @@
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle"
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle"
+     "from": "EffAudioNode"
     }
    ],
    "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor/dtor 对写点（RenderTarget2::Reset/ResetSurface/Deactivate/ResetTargets 域 +31..+50）②被调用者面=独有槽 IDA：**0x4C2700 `BeginNextPass` + 0x4C2930 `InitTargetPos` + 0x4C2820 `CreateDeactivated`** + CEffAction::AllocSegment(0x4C0650)；三表嵌套窗（删际 0x4C2870 锚）；写点 ResetSurface+37/Deactivate+37..+50 ③成员访问面=池节点（EffTargetPool/EffObjectPool 既有 impl 共享槽）④类归属面=删际锚+嵌套窗结构 ⑤交互模式面=RenderTarget2 表面/目标管理生命周期；confidence=85"
@@ -135,7 +135,7 @@
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle"
+     "from": "EffCallBackNode"
     },
     {
      "addr": "0x004C2930",
@@ -143,19 +143,19 @@
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle"
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle"
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x004C29A0",
-     "from": null
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle"
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x004C2820",

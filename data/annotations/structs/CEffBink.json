@@ -79,53 +79,53 @@
    "slots": [
     {
      "addr": "0x004C1640",
-     "from": null
+     "from": "EffAudioNode"
     },
     {
      "addr": "0x004C2170",
-     "from": null,
+     "from": "EffAudioNode",
      "name": "Create",
      "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004D33A0",
-     "from": "CEffSParticle",
+     "from": "EffAudioNode",
      "name": "ResetState",
      "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle",
+     "from": "EffAudioNode",
      "name": "DestroyEffect",
      "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle",
+     "from": "EffAudioNode",
      "name": "RenderScenePass",
      "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C29A0",
-     "from": "EffMultiPassNode",
+     "from": "EffAudioNode",
      "name": "UpdateFrame",
      "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffSParticle",
+     "from": "EffAudioNode",
      "name": "Destroy",
      "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C15B0",
-     "from": null,
+     "from": "EffAudioNode",
      "name": "AllocEffect",
      "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C0500",
-     "from": "CEffSParticle",
+     "from": "CEffObj",
      "name": "OnTest",
      "sig": "char __thiscall()"
     },
@@ -137,13 +137,13 @@
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffSParticle",
+     "from": "CEffObj",
      "name": "GetEditorObjDescription",
      "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffSParticle",
+     "from": "CEffObj",
      "name": "GetEffect",
      "sig": "int __thiscall(int)"
     },
@@ -155,7 +155,7 @@
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffSParticle",
+     "from": "CEffAction",
      "name": "UpdateParticles",
      "sig": "void __thiscall()"
     },

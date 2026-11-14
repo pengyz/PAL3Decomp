@@ -54,7 +54,7 @@
      "addr": "0x004AF760",
      "name": "UpdateFrame",
      "sig": "void __thiscall(float)",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x00401800",
@@ -66,37 +66,37 @@
      "addr": "0x0055434F",
      "name": "AllocEffect",
      "sig": "void* __thiscall() = 0",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x004C0500",
      "name": "OnTest",
      "sig": "char __thiscall()",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x004AF760",
      "name": "Update",
      "sig": "int __thiscall(int)",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x004C0510",
      "name": "GetEditorObjDescription",
      "sig": "const char *__thiscall(int)",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x004AF760",
      "name": "GetEffect",
      "sig": "int __thiscall(int)",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x004AF760",
      "name": "RenderEffectPass",
      "sig": "void __thiscall(int)",
-     "from": "CEffSParticle"
+     "from": null
     },
     {
      "addr": "0x00401800",
@@ -108,7 +108,7 @@
      "addr": "0x004C0510",
      "name": "GetEditorTaskDescription",
      "sig": "const char *__thiscall(int)",
-     "from": "CEffSParticle"
+     "from": null
     }
    ],
    "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
@@ -168,5 +168,13 @@
    "evidence_level": "binary_vtable_slot",
    "declaration_only": true
   }
- }
+ },
+ "_adjudicated_tables": [
+  {
+   "addr": "0x0056F62C",
+   "verdict": "15槽正名契约",
+   "evidence": "全族叶dtor尾写0x56F62C(24处); slot7=_purecall抽象佐证; 复核定谳",
+   "date": "2026-11-15"
+  }
+ ]
 }

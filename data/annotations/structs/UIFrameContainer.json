@@ -56,7 +56,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UITitle_JDHY"
+     "from": "CCBPanelSlot"
     },
     {
      "addr": "0x00442890",
@@ -68,11 +68,11 @@
     },
     {
      "addr": "0x00442420",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow"
+     "from": "CCBStage"
     },
     {
      "addr": "0x00442370",
@@ -80,7 +80,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd"
+     "from": "CGameData"
     }
    ],
    "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor/复位 0x4422E0+82 写表+dtor 0x442390+29 写表 ②ClearSubArraySlot()+UIFrameWnd::Destroy 链 ③+96/+100-128/this[1].m_rect ④UIFrameWnd 派生（删际 0x442370 在槽）⑤构造-复位-析构三点 ⇒ UIFrameWnd 派生容器窗；confidence=88"

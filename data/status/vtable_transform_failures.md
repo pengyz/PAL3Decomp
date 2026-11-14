@@ -904,3 +904,5 @@
 | `UIScenePanel::ProcessMessage` | inline | `UIWnd` | 24 | name_not_declared_for_class | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
 | `UIWnd::HitTest` | inline | `UIWnd` | 24 | name_not_declared_for_class | `(*(void ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
 | `UIWnd::SetRect` | inline | `UIWnd` | 24 | name_not_declared_for_class | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `ArraySlots::RenderText` | inline | `ArraySlots` | 12 | no_vtables_declaration | `(*(void ( **)(ArraySlots *))(*(_DWORD *)this + 12))(this)` |
+| `EffAudioNode::?UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v1 + 4))( v1, *(_DWORD *)(*v3 + v5), *(_DWORD *)(*v3 + v5 + 4), 0)` |

@@ -240,7 +240,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UITitle_JDHY"
+     "from": "CCBPanelSlot"
     },
     {
      "addr": "0x00440F30",
@@ -256,7 +256,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow"
+     "from": "CCBStage"
     },
     {
      "addr": "0x004407A0",
@@ -264,7 +264,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd"
+     "from": "CGameData"
     },
     {
      "addr": "0x00440810",
@@ -277,7 +277,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UITitle_JDHY"
+     "from": "CCBPanelSlot"
     },
     {
      "addr": "0x004433D0",
@@ -289,11 +289,11 @@
     },
     {
      "addr": "0x00442420",
-     "from": "UIFrameWnd"
+     "from": "UIFrameContainer"
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow"
+     "from": "CCBStage"
     },
     {
      "addr": "0x004433A0",
@@ -301,7 +301,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd"
+     "from": "CGameData"
     }
    ]
   },
@@ -323,11 +323,11 @@
     },
     {
      "addr": "0x00442420",
-     "from": "UIFrameWnd"
+     "from": "UIFrameContainer"
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBParabolaWindow"
+     "from": "CCBStage"
     },
     {
      "addr": "0x00442D20",
@@ -335,7 +335,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIFrameWnd"
+     "from": "CGameData"
     }
    ],
    "source": "[表认领+槽注册合并批 2026-10-16 analyzer] 认领 A 级：写入点 0x442D08（UIPushButton::CtorWithFlag+8）+ 0x442D40（UIFrameWnd 族+0 复写）双自证；槽=UIFrameWnd 族（CalculateLayout/Update/Destroy/删除析构）+ UIWnd 共享 ⇒ UIPushButton:base(UIFrameWnd) 子对象表"

@@ -18,6 +18,26 @@ APPLY = '--apply' in sys.argv
 # owner map: 全部类表声明, 声明序首占
 owner = {}
 classes = [os.path.basename(f)[:-5] for f in glob.glob('data/annotations/structs/*.json')]
+# [拓扑序 2026-11-15 复核裁决C节] 首占必须按继承深度(基类先占) —
+# 字母序/glob序让派生类抢走基类槽(UIWnd 0x445E70被68张表引用的案例)
+_depth = {}
+def _dep(c, seen=None):
+    if c in _depth: return _depth[c]
+    if seen is None: seen = set()
+    if c in seen: return 0
+    seen.add(c)
+    try:
+        d = json.load(open(S % c, encoding='utf-8'))
+        bs = d.get('bases') or []
+    except Exception:
+        bs = []
+    if not bs:
+        _depth[c] = 0
+    else:
+        _depth[c] = 1 + max((_dep(b.get('name') if isinstance(b, dict) else b, seen) for b in bs), default=0)
+    return _depth[c]
+for c in classes: _dep(c)
+classes.sort(key=lambda c: (_depth.get(c, 0), c))
 tables = {}
 for cls in classes:
     d = json.load(open(S % cls, encoding='utf-8'))
@@ -32,9 +52,14 @@ for cls in classes:
 n = 0
 for cls, vts in tables.items():
     d = json.load(open(S % cls, encoding='utf-8'))  # ★每类独立load(v2铁律)
-    vts = d.get('vtables') or []  # ★★重绑到新load对象(v2.1: 修tables缓存旧引用——修改必须落在被dump的对象上)
+    vts = d.get('vtables') or []  # ★★重绑到新load对象(v2.1)
+    # [裁决保护 2026-11-15] _adjudicated_tables 标记的表 = ctor写表二进制裁决过的真表,
+    # 其 from 不被 owner 首占覆盖(首占模型的派生表同址引用会推翻基类自有裁决)
+    _adj = {(t.get('addr') or '').lower() for t in (d.get('_adjudicated_tables') or [])}
     changed = False
     for vt in vts:
+        if (vt.get('addr') or '').lower() in _adj:
+            continue  # 裁决表: from已定谳, 不动
         for s in (vt.get('slots') or []):
             a = s.get('addr')
             if not a: continue
