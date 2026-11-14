@@ -141,7 +141,8 @@ for cls, (t1, t2) in VT.items():
         json.dump(d, open(S(cls), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 # ---- CEffObj: 同款 owner 判据重写槽位 (phase1 写的是 from=None) ----
-slots_o = walk_table(0x56FA88)
+_obj_vt_addr = int(obj['vtables'][0]['addr'], 16)  # 以注解自报基表为准(裁决后=0x56F62C)
+slots_o = walk_table(_obj_vt_addr)
 ns_o = []
 for si, addr in enumerate(slots_o):
     a2 = addr.lower()
