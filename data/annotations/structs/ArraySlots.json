@@ -1,80 +1,135 @@
 {
-  "name": "ArraySlots",
-  "binary_size": 88,
-  "known_members": {
-    "72": {
-      "name": "m_aSlotPtrs",
-      "type": "int[3]",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[18..20]=0（+72..+80） | 修复 2026-10-17: int[4]→int[3]（A 级 this[18..20]=+72..+80 三点证）",
-      "evidence_level": "A"
-    },
-    "84": {
-      "name": "m_bActive",
-      "type": "int",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[21]=1（+84）",
-      "evidence_level": "A"
-    }
+ "name": "ArraySlots",
+ "binary_size": 88,
+ "known_members": {
+  "72": {
+   "name": "m_aSlotPtrs",
+   "type": "int[3]",
+   "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[18..20]=0（+72..+80） | 修复 2026-10-17: int[4]→int[3]（A 级 this[18..20]=+72..+80 三点证）",
+   "evidence_level": "A"
   },
-  "methods": {
-    "0x0044A790": {
-      "name": "ArraySlots",
-      "signature": "void __thiscall()",
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();槽清零;return this（ctor 形）",
-      "evidence_level": "A"
-    },
-    "0x0044AB00": {
-      "name": "_todo_0044AB00",
-      "signature": "",
-      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=other:8b 41 f4 c3 · body_head=8b 41 f4 c3 90 90 90 90 90 90 90 90。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
-      "evidence_level": "A"
-    },
-    "0x0044AB40": {
-      "name": "_todo_0044AB40",
-      "signature": "",
-      "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=adjustor · body_head=83 e9 44 e9 88 fc ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
-      "evidence_level": "A"
-    }
+  "84": {
+   "name": "m_bActive",
+   "type": "int",
+   "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[21]=1（+84）",
+   "evidence_level": "A"
+  }
+ },
+ "methods": {
+  "0x0044A790": {
+   "name": "ArraySlots",
+   "signature": "void __thiscall()",
+   "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();槽清零;return this（ctor 形）",
+   "evidence_level": "A"
   },
-  "vtables": [
+  "0x0044AB00": {
+   "name": "_todo_0044AB00",
+   "signature": "",
+   "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=other:8b 41 f4 c3 · body_head=8b 41 f4 c3 90 90 90 90 90 90 90 90。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
+   "evidence_level": "A"
+  },
+  "0x0044AB40": {
+   "name": "_todo_0044AB40",
+   "signature": "",
+   "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=adjustor · body_head=83 e9 44 e9 88 fc ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
+   "evidence_level": "A"
+  },
+  "0x00445e70": {
+   "name": "ShowClipped",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(from UIWnd.json) | [T115] 同名消歧：@0x445E70 全函数体（395 字符）成员簇=m_nClipB/m_nClipL2（裁剪态）+ vtable+24 调用 ⇒ 语义名 ShowClipped（禁伪语义 ✓ 成员证据）",
+   "evidence_level": "A",
+   "adjudication": "confirmed",
+   "evidence": "成员实访独占证据 uniq=2: m_nClipB,m_nClipL2（adjudicate_multiclaim 2026-11-03）",
+   "semantic_name": "ShowClipped"
+  },
+  "0x0043d920": {
+   "name": "Destroy",
+   "signature": "int __thiscall(int, int, int)",
+   "name_source": "IDA语义分析 2026-10-31 批4",
+   "name_note": "释放 m_pWHFace 资源",
+   "semantic_name": "Destroy"
+  },
+  "0x0044a820": {
+   "name": "GetUIElements",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "vtable_gap_fill_v1(from UIWnd.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "GetUIElements"
+  },
+  "0x0044a870": {
+   "name": "RenderText",
+   "signature": "int __thiscall RenderTarget::Stop __thiscall(int)",
+   "source": "vtable_gap_fill_v1(from UIWnd.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "RenderText"
+  },
+  "0x0044ab40": {
+   "name": "_sdtor_14_adjthunk",
+   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+   "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0044A7D0）⇒ 目标名 _sdtor_14 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+   "evidence_level": "A",
+   "declaration_only": true,
+   "semantic_name": "_sdtor_14_adjthunk"
+  },
+  "0x00445b90": {
+   "name": "_todo_445B90",
+   "signature": "int __thiscall(CCBItemWindow *__hidden, unsigned int, unsigned, unsigned)",
+   "declaration_only": true,
+   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
+   "evidence_level": "unverified",
+   "semantic_name": "_todo_445B90"
+  },
+  "0x0044ab00": {
+   "name": "GetType",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "偏移访问器（this-3）",
+   "signature": "int __thiscall()",
+   "semantic_name": "GetType"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056AFA4",
+   "base": null,
+   "slots": [
     {
-      "addr": "0x0056AFA4",
-      "base": null,
-      "slots": [
-        {
-          "addr": "0x0044AB40",
-          "from": "CCBProtectWindow"
-        },
-        {
-          "addr": "0x0044AB00",
-          "from": "UIEmote"
-        },
-        {
-          "addr": "0x004AF760",
-          "from": "CEffSParticle"
-        },
-        {
-          "addr": "0x00445E70",
-          "from": "CCBPanelSlot"
-        },
-        {
-          "addr": "0x0044A870",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0044A820",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043D920",
-          "from": "UIPushButton"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        }
-      ],
-      "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor 0x44A790+32 写表+UIWnd_RenderText+17 复位写 ②ClearSubArraySlot() ③+72..+84 槽区 ④独立小容器类 ⑤构造/复位返回 this ⇒ 子数组槽容器；confidence=82"
+     "addr": "0x0044AB40",
+     "from": null
+    },
+    {
+     "addr": "0x0044AB00",
+     "from": "UIEmote"
+    },
+    {
+     "addr": "0x004AF760",
+     "from": "CEffSParticle"
+    },
+    {
+     "addr": "0x00445E70",
+     "from": "CUtil"
+    },
+    {
+     "addr": "0x0044A870",
+     "from": null
+    },
+    {
+     "addr": "0x0044A820",
+     "from": null
+    },
+    {
+     "addr": "0x0043D920",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "CUtil"
     }
-  ],
-  "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 ArraySlots（ClearSubArraySlot + 槽指针数组语义）"
+   ],
+   "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①ctor 0x44A790+32 写表+UIWnd_RenderText+17 复位写 ②ClearSubArraySlot() ③+72..+84 槽区 ④独立小容器类 ⑤构造/复位返回 this ⇒ 子数组槽容器；confidence=82"
+  }
+ ],
+ "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 ArraySlots（ClearSubArraySlot + 槽指针数组语义）"
 }

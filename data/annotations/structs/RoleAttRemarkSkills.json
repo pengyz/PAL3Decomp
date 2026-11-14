@@ -1,28 +1,28 @@
 {
-  "name": "RoleAttRemarkSkills",
-  "binary_size": 298,
-  "known_members": {
-    "290": {
-      "name": "skillCount",
-      "type": {
-        "struct": [
-          {
-            "offset": 0,
-            "name": "nSkillCount1",
-            "type": "int"
-          },
-          {
-            "offset": 4,
-            "name": "nSkillCount2",
-            "type": "int"
-          }
-        ]
-      },
-      "source": "[P3 变体层复原 2026-10-19] 具名顶替把 union 变体展平为散员 ✗✗（引用侧 `X.skillCount` 找不到 ⇒ C2039 ×400）⇒ **复原变体层**（CLAUDE.md inline struct 语法 ✓ 变体名保留）· 等价变换（同布局 ✓ 变体层是名非位）",
-      "evidence_level": "unverified"
-    }
-  },
-  "methods": {},
-  "vtables": [],
-  "_origin": "_inline_ 类型去 inline 化（治本：annotation 层标注名）原合成名 _inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675"
+ "name": "RoleAttRemarkSkills",
+ "binary_size": 298,
+ "known_members": {
+  "290": {
+   "name": "skillCount",
+   "type": {
+    "struct": [
+     {
+      "offset": 0,
+      "name": "nSkillCount1",
+      "type": "int"
+     },
+     {
+      "offset": 4,
+      "name": "nSkillCount2",
+      "type": "int"
+     }
+    ]
+   },
+   "source": "[P3 变体层复原 2026-10-19] 具名顶替把 union 变体展平为散员 ✗✗（引用侧 `X.skillCount` 找不到 ⇒ C2039 ×400）⇒ **复原变体层**（CLAUDE.md inline struct 语法 ✓ 变体名保留）· 等价变换（同布局 ✓ 变体层是名非位）",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {},
+ "vtables": [],
+ "_origin": "_inline_ 类型去 inline 化（治本：annotation 层标注名）原合成名 _inline_RoleAtt_Remark::$101B5358F90B67F92EE483560EB2675"
 }

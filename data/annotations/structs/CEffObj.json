@@ -21,79 +21,94 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004D32E0",
-     "from": "CEffQuake",
-     "name": "slot_0"
+     "addr": "0x004C0620",
+     "name": "slot_0",
+     "sig": null,
+     "from": null
     },
     {
-     "addr": "0x004C0650",
-     "from": "CEffAction",
-     "name": "slot_1"
+     "addr": "0x004C0600",
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)",
+     "from": null
     },
     {
-     "addr": "0x004D33A0",
-     "from": "CEffQuake",
-     "name": "ResetState"
+     "addr": "0x004C0610",
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)",
+     "from": null
     },
     {
-     "addr": "0x00408BD0",
-     "from": "CEffAction",
-     "name": "slot_3"
+     "addr": "0x00401800",
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()",
+     "from": null
     },
     {
-     "addr": "0x00408BD0",
-     "from": "CEffAction",
-     "name": "slot_4"
+     "addr": "0x00401800",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()",
+     "from": null
     },
     {
-     "addr": "0x004C29A0",
-     "from": "CEffAudio",
-     "name": "UpdateFrame"
+     "addr": "0x004AF760",
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)",
+     "from": "CEffSParticle"
     },
     {
-     "addr": "0x00408BD0",
-     "from": "CEffAction",
-     "name": "slot_6"
+     "addr": "0x00401800",
+     "name": "Destroy",
+     "sig": "void __thiscall()",
+     "from": null
     },
     {
-     "addr": "0x004D32C0",
-     "from": "CEffQuake",
-     "name": "AllocEffect"
+     "addr": "0x0055434F",
+     "name": "AllocEffect",
+     "sig": "void* __thiscall() = 0",
+     "from": "CEffSParticle"
     },
     {
      "addr": "0x004C0500",
-     "from": null,
-     "name": "OnTest"
+     "name": "OnTest",
+     "sig": "char __thiscall()",
+     "from": "CEffSParticle"
     },
     {
      "addr": "0x004AF760",
-     "from": null,
-     "name": "Update"
+     "name": "Update",
+     "sig": "int __thiscall(int)",
+     "from": "CEffSParticle"
     },
     {
      "addr": "0x004C0510",
-     "from": null,
-     "name": "slot_10"
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)",
+     "from": "CEffSParticle"
     },
     {
      "addr": "0x004AF760",
-     "from": null,
-     "name": "slot_11"
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)",
+     "from": "CEffSParticle"
     },
     {
-     "addr": "0x004D33B0",
-     "from": "CEffQuake",
-     "name": "RenderEffectPass"
+     "addr": "0x004AF760",
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)",
+     "from": "CEffSParticle"
     },
     {
-     "addr": "0x004C15D0",
-     "from": "CEffAction",
-     "name": "UpdateParticles"
+     "addr": "0x00401800",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()",
+     "from": null
     },
     {
-     "addr": "0x004D3660",
-     "from": "CEffQuake",
-     "name": "slot_14"
+     "addr": "0x004C0510",
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)",
+     "from": "CEffSParticle"
     }
    ],
    "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
@@ -108,34 +123,36 @@
    "evidence_level": "binary_vtable_slot"
   },
   "0x004C0510": {
-   "name": "slot_10",
+   "name": "GetEditorObjDescription",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot"
   },
   "0x004AF760": {
-   "name": "Update",
+   "name": "UpdateFrame",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "Update"
   },
   "0x004C0600": {
-   "name": "slot_1",
+   "name": "Create",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
    "evidence_level": "binary_vtable_slot"
   },
   "0x004C0610": {
-   "name": "slot_2",
+   "name": "ResetState",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
    "evidence_level": "binary_vtable_slot"
   },
   "0x00401800": {
-   "name": "slot_13",
-   "signature": "void __thiscall()",
+   "name": "DestroyEffect",
+   "signature": "int __thiscall(int, int, int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "DestroyEffect"
   },
   "0x004C0620": {
    "name": "slot_0",
@@ -145,10 +162,11 @@
    "declaration_only": true
   },
   "0x0055434F": {
-   "name": "slot_7",
+   "name": "AllocEffect",
    "signature": "void __thiscall()",
    "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "declaration_only": true
   }
  }
 }

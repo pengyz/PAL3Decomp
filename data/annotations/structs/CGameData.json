@@ -770,11 +770,6 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=8: m_bSceneActive,m_bSceneLoaded,m_nPrevSceneState,m_nRender,m_nSceneLoadParam（adjudicate_multiclaim 2026-11-03）"
   },
-  "0x00445D10": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-   "evidence_level": "unverified"
-  },
   "0x0044F8D0": {
    "name": "_init_44f8d0",
    "signature": "CCBUI *__thiscall(int this, int a2)",
@@ -784,6 +779,14 @@
     "v10": "CCBUI *"
    },
    "lvars_source": " | L-VAR 2026-11-11c(P-A16⑤退役承接): decomp v10=(CCBUI*)v9 赋值 cast 即类型意图, result=v10 返回链同型; 全局文本替换(全局裸 replace)误伤 CCBUI 同形声明, 改由本注解按地址承接"
+  },
+  "0x0044f4c0": {
+   "name": "SceneUpdate",
+   "signature": "BOOL __thiscall(int, int)",
+   "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+   "adjudication": "rejected",
+   "source": " | multiclaim 裁决 2026-11-03: 败于 CGameData（uniq=8）",
+   "semantic_name": "SceneUpdate"
   }
  },
  "vtables": [
@@ -793,7 +796,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0044F5B0",
@@ -809,7 +812,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0044F030",
@@ -817,7 +820,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIWnd"
+     "from": "UIFrameWnd"
     }
    ]
   }

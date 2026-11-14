@@ -1,22 +1,22 @@
 {
-  "name": "OpenSceneFile",
-  "pdb_size": 4,
-  "known_members": {},
-  "binary_size": 4,
-  "methods": {
-    "0x00401DF0": {
-      "name": "OpenSceneFile",
-      "signature": "void __thiscall(char *pszPath)",
-      "evidence_level": "unverified"
-    },
-    "0x00401F40": {
-      "name": "~OpenSceneFile",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    }
+ "name": "OpenSceneFile",
+ "pdb_size": 4,
+ "known_members": {},
+ "binary_size": 4,
+ "methods": {
+  "0x00401DF0": {
+   "name": "OpenSceneFile",
+   "signature": "void __thiscall(char *pszPath)",
+   "evidence_level": "unverified"
   },
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂（函数名）"
-  },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`OpenSceneFile`=**函数名**（动宾形）被 gap-fill 名解析误收为类名 · mangled 零命中"
+  "0x00401F40": {
+   "name": "~OpenSceneFile",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified"
+  }
+ },
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂（函数名）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`OpenSceneFile`=**函数名**（动宾形）被 gap-fill 名解析误收为类名 · mangled 零命中"
 }

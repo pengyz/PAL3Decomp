@@ -1,25 +1,25 @@
 {
-  "name": "Archive",
-  "binary_size": 48,
-  "known_members": {
-    "0": {
-      "name": "m_scene",
-      "type": "std::vector<ArcScene,std::allocator<ArcScene> >",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "16": {
-      "name": "m_past",
-      "type": "std::vector<ArcPastScene,std::allocator<ArcPastScene> >",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "32": {
-      "name": "m_objNotLoad",
-      "type": "std::vector<unsigned int,std::allocator<unsigned int> >",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "Archive",
+ "binary_size": 48,
+ "known_members": {
+  "0": {
+   "name": "m_scene",
+   "type": "std::vector<ArcScene,std::allocator<ArcScene> >",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {}
+  "16": {
+   "name": "m_past",
+   "type": "std::vector<ArcPastScene,std::allocator<ArcPastScene> >",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "32": {
+   "name": "m_objNotLoad",
+   "type": "std::vector<unsigned int,std::allocator<unsigned int> >",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {}
 }

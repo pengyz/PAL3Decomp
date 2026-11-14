@@ -1,43 +1,43 @@
 {
-  "name": "PalScriptIdleObj",
-  "binary_size": 16,
-  "known_members": {
-    "8": {
-      "name": "m_nTodo_008",
-      "type": "int",
-      "source": "gap_fill:ida_decomp_access",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "m_passedtime",
-      "type": "float",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "PalScriptIdleObj",
+ "binary_size": 16,
+ "known_members": {
+  "8": {
+   "name": "m_nTodo_008",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x00453C00": {
-      "name": "UpdateWait",
-      "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)",
-      "evidence_level": "unverified"
-    },
-    "0x00535600": {
-      "name": "ResetTimers",
-      "signature": "UISceneFrm * __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0044A970": {
-      "name": "LoadScriptTexture",
-      "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(int nTexID, int nParam)",
-      "_misattrib_evidence": "max_offset=92>class_size=16",
-      "evidence_level": "unverified"
-    }
+  "12": {
+   "name": "m_passedtime",
+   "type": "float",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x00453C00": {
+   "name": "UpdateWait",
+   "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)",
+   "evidence_level": "unverified"
   },
-  "base_size": 8,
-  "bases": [
-    {
-      "name": "PalScriptWaitObj",
-      "offset": 0
-    }
-  ]
+  "0x00535600": {
+   "name": "ResetTimers",
+   "signature": "UISceneFrm * __thiscall()",
+   "evidence_level": "unverified"
+  },
+  "0x0044A970": {
+   "name": "LoadScriptTexture",
+   "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(int nTexID, int nParam)",
+   "_misattrib_evidence": "max_offset=92>class_size=16",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 8,
+ "bases": [
+  {
+   "name": "PalScriptWaitObj",
+   "offset": 0
+  }
+ ]
 }

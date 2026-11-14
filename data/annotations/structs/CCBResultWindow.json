@@ -152,46 +152,63 @@
   },
   "0x00519360": {
    "name": "ShowLineupWindow",
-   "signature": "void __thiscall(BOOL bShow)",
-   "evidence_level": "unverified"
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "evidence_level": "unverified",
+   "semantic_name": "ShowLineupWindow"
   },
   "0x00519510": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
+   "signature": "int __thiscall()",
    "evidence_level": "A",
    "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=10: m_pBack,m_pDouble,m_pEXP,m_pEarth,m_pFace（adjudicate_multiclaim 2026-11-03）"
+   "evidence": "成员实访独占证据 uniq=10: m_pBack,m_pDouble,m_pEXP,m_pEarth,m_pFace（adjudicate_multiclaim 2026-11-03）",
+   "semantic_name": "Destroy"
   },
   "0x005195E0": {
    "name": "OnMessage",
    "signature": "int __thiscall(int pt, unsigned int area, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  },
-  "0x00524970": {
-   "name": "CCBRoleState::Render",
-   "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-   "source": "vtable_gap_fill_v1(from CCBStage.json)",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  },
-  "0x0051B940": {
-   "name": "ForwardShowClipped",
-   "signature": "void __thiscall(CCBResultWindow *this, int nFlags)",
-   "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
-   "evidence_level": "A"
-  },
   "0x00444AA0": {
    "name": "_scalar_dtor_4AA0",
    "signature": "void __thiscall()",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBResultWindow（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x444AC0 写 vptr 0x56AE84",
    "evidence_level": "A",
+   "declaration_only": true
+  },
+  "0x005195e0": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int, int, int)",
+   "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
+   "evidence_level": "unverified",
+   "adjudication": "confirmed",
+   "semantic_name": "OnMessage"
+  },
+  "0x00442420": {
+   "name": "Destroy_2420",
+   "signature": "void __thiscall()",
+   "ordinal": 3,
+   "evidence_level": "unverified"
+  },
+  "0x00444d30": {
+   "name": "ProcessInput",
+   "signature": "BOOL __thiscall UIFrameWnd::ProcessInput(int nVal, int nVal2)",
+   "ordinal": 31,
+   "evidence_level": "unverified"
+  },
+  "0x00444ad0": {
+   "name": "RenderAll",
+   "signature": "int __thiscall()",
+   "ordinal": 30,
+   "evidence_level": "unverified",
+   "semantic_name": "RenderAll"
+  },
+  "0x00444aa0": {
+   "name": "_sdtor_full",
+   "signature": "int __thiscall(void *Block, char)",
+   "source": "vtable_migrated",
+   "ordinal": 34,
+   "evidence_level": "unverified",
    "declaration_only": true
   }
  },
@@ -201,35 +218,35 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043DDF0",
-     "from": "CCBUI"
+     "from": "SaleUI"
     },
     {
      "addr": "0x00519660",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00519510",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00519360",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x005195E0",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     }
    ]
   },
@@ -239,15 +256,15 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "from": "CUtil"
     },
     {
      "addr": "0x00444AD0",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00444D30",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00442420",
@@ -255,11 +272,11 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00444AA0",
-     "from": "UIFrameWnd"
+     "from": null
     }
    ],
    "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `CCBResultWindow::CCBResultWindow+45` 写表 ②被调用者面=UIFrameWnd 基族（RenderAll/ProcessInput/Destroy impl）③成员访问面=UIFrameWnd 派生布局 ④类归属面=CCBResultWindow（ctor 域双自证+析构族 0x444AA0 在槽）⑤交互模式面=ctor/dtor 对；evidence=[写点 0x4430xx+45,槽行 UIFrameWnd 族,删际析构 0x444AA0] confidence=92"

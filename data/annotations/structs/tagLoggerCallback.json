@@ -1,32 +1,32 @@
 {
-  "name": "tagLoggerCallback",
-  "binary_size": 136,
-  "known_members": {
-    "0": {
-      "name": "szName",
-      "type": "char[32]",
-      "source": "A:decomp Logger::RegisterCallback strncpy(v6, name, 0x20)",
-      "evidence_level": "unverified"
-    },
-    "32": {
-      "name": "szDesc",
-      "type": "char[100]",
-      "source": "A:decomp Logger::RegisterCallback strncpy(v6+32, desc, 0x64)",
-      "evidence_level": "unverified"
-    },
-    "132": {
-      "name": "pfn",
-      "type": "int *",
-      "source": "A:decomp Logger::RegisterCallback v6[33] = f — function pointer type",
-      "note": "was int (*)() - explicit calling convention",
-      "evidence_level": "unverified"
-    }
+ "name": "tagLoggerCallback",
+ "binary_size": 136,
+ "known_members": {
+  "0": {
+   "name": "szName",
+   "type": "char[32]",
+   "source": "A:decomp Logger::RegisterCallback strncpy(v6, name, 0x20)",
+   "evidence_level": "unverified"
   },
-  "known_methods": {
-    "operator_subscript": {
-      "name": "operator[]",
-      "signature": "int& __thiscall operator[](tagLoggerCallback *this, int i)",
-      "source": "fix:C2676:pfn_array_access_via_subscript"
-    }
+  "32": {
+   "name": "szDesc",
+   "type": "char[100]",
+   "source": "A:decomp Logger::RegisterCallback strncpy(v6+32, desc, 0x64)",
+   "evidence_level": "unverified"
+  },
+  "132": {
+   "name": "pfn",
+   "type": "int *",
+   "source": "A:decomp Logger::RegisterCallback v6[33] = f — function pointer type",
+   "note": "was int (*)() - explicit calling convention",
+   "evidence_level": "unverified"
   }
+ },
+ "known_methods": {
+  "operator_subscript": {
+   "name": "operator[]",
+   "signature": "int& __thiscall operator[](tagLoggerCallback *this, int i)",
+   "source": "fix:C2676:pfn_array_access_via_subscript"
+  }
+ }
 }

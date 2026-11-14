@@ -1,56 +1,56 @@
 {
-  "name": "gbVertexPool",
-  "binary_size": 60,
-  "known_members": {
-    "8": {
-      "name": "pGfxMgr",
-      "type": "gbGfxManager *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "pMemBuf",
-      "type": "char *",
-      "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)",
-      "evidence_level": "unverified"
-    },
-    "16": {
-      "name": "VertNum",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "20": {
-      "name": "VertType",
-      "type": "unsigned int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "24": {
-      "name": "Stride",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "28": {
-      "name": "FreeVertBub",
-      "type": "gbChain1D",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "44": {
-      "name": "UsedVertBub",
-      "type": "gbChain1D",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbVertexPool",
+ "binary_size": 60,
+ "known_members": {
+  "8": {
+   "name": "pGfxMgr",
+   "type": "gbGfxManager *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 8,
-  "bases": [
-    {
-      "name": "gbChain1DNode",
-      "offset": 0
-    }
-  ]
+  "12": {
+   "name": "pMemBuf",
+   "type": "char *",
+   "source": "annotation",
+   "note": "replaced void* with char* (IDB struct compat)",
+   "evidence_level": "unverified"
+  },
+  "16": {
+   "name": "VertNum",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "20": {
+   "name": "VertType",
+   "type": "unsigned int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "Stride",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "28": {
+   "name": "FreeVertBub",
+   "type": "gbChain1D",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "44": {
+   "name": "UsedVertBub",
+   "type": "gbChain1D",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 8,
+ "bases": [
+  {
+   "name": "gbChain1DNode",
+   "offset": 0
+  }
+ ]
 }

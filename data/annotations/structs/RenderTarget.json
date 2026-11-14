@@ -401,31 +401,6 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x004BD880": {
-   "name": "CreateParticleEffect",
-   "signature": "gbParticleEffect *__thiscall(int nVal)",
-   "evidence_level": "unverified"
-  },
-  "0x004BD900": {
-   "name": "UpdateParticleEffect",
-   "signature": "struct gbParticleGroup *__thiscall(int nVal)",
-   "evidence_level": "unverified"
-  },
-  "0x004BD950": {
-   "name": "Stop",
-   "signature": "int __thiscall RenderTarget::Stop(int nVal)",
-   "evidence_level": "unverified"
-  },
-  "0x004BD970": {
-   "name": "ReleaseDefault",
-   "signature": "int __thiscall()",
-   "evidence_level": "unverified"
-  },
-  "0x004BD990": {
-   "name": "SetPathMode",
-   "signature": "void __thiscall(int nVal)",
-   "evidence_level": "unverified"
-  },
   "0x004BD9C0": {
    "name": "SetDefaultParams",
    "signature": "int __thiscall(int nVal)",
@@ -484,13 +459,6 @@
    "_misattrib_evidence": "max_offset=249476>class_size=200",
    "evidence_level": "unverified"
   },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x0048EB40": {
    "name": "RenderWithEffects",
    "signature": "char __thiscall ()",
@@ -510,6 +478,20 @@
    "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
    "source": "[函数归属 2026-10-17·余 8] RenderTarget——②`IsVisible(RenderTarget *this)` 类名直证 ✓ + ①31 站（MainEquipUI::Render 族）③return m_bVisible ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
    "evidence_level": "unverified"
+  },
+  "0x0048ef80": {
+   "name": "ValidateDevice",
+   "signature": "BOOL __thiscall(int, int)",
+   "_misattrib_evidence": "max_offset=209892>class_size=200",
+   "evidence_level": "unverified",
+   "semantic_name": "ValidateDevice"
+  },
+  "0x0048eb40": {
+   "name": "RenderWithEffects",
+   "signature": "int __thiscall()",
+   "_misattrib_evidence": "max_offset=307040>class_size=200",
+   "evidence_level": "unverified",
+   "semantic_name": "RenderWithEffects"
   }
  },
  "vtables": [
@@ -519,7 +501,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0048EB40",
@@ -531,11 +513,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": null
+     "from": "CUtil"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00486D00",

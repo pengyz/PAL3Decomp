@@ -129,13 +129,6 @@
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0051B030": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int, int a2, int a3)",
-   "source": "vtable_migrated+pdb_name",
-   "ordinal": 20,
-   "evidence_level": "unverified"
-  },
   "0x0051A090": {
    "name": "AddResultWindowAni",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
@@ -151,52 +144,28 @@
    "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00443530": {
-   "name": "_sdtor",
-   "signature": "int __thiscall(void *Block, char)",
-   "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
-   "evidence_level": "unverified",
-   "declaration_only": true
-  },
-  "0x004438F0": {
-   "name": "Destroy",
-   "signature": "virtual void __thiscall(CCBFiveNimbusWindow *this)",
-   "name_source": "IDA语义分析 2026-11-01 批7",
-   "name_note": "释放 nimbus 资源"
-  },
-  "0x00443950": {
-   "name": "Render",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
-   "evidence_level": "unverified"
-  },
-  "0x00443970": {
-   "name": "UpdateIfVisible",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
+  "0x00519b40": {
+   "name": "_scalar_dtor_9B40",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4）",
    "evidence_level": "A",
+   "declaration_only": true,
    "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=3: m_benable,m_bvisible,m_nimbus,m_nimbusStep,m_state（adjudicate_multiclaim 2026-11-03）"
+   "semantic_name": "_scalar_dtor_9B40"
   },
-  "0x00450E90": {
-   "name": "_sdtor_27",
-   "signature": "UIWnd *__thiscall(UIWnd *Block, char a2)",
-   "source": "vtable_gap_fill_v1(from UIWnd.json)",
+  "0x0051a090": {
+   "name": "AddResultWindowAni",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
    "evidence_level": "unverified",
-   "declaration_only": true
+   "adjudication": "confirmed"
   },
-  "0x00451800": {
-   "name": "_sdtor_27_adjthunk",
-   "signature": "void __thiscall()",
-   "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450E90）⇒ 目标名 _sdtor_27 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
-  "0x0051B940": {
-   "name": "ForwardShowClipped",
-   "signature": "void __thiscall(CCBFiveNimbusWindow *this, int nFlags)",
-   "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
-   "evidence_level": "A"
+  "0x00519f50": {
+   "name": "Destroy_9F50",
+   "signature": "int __thiscall()",
+   "name_source": "same-name消歧 + 2026-11-09 复核",
+   "name_note": "CCBUI自有虚槽×2(双vtable引用);B面: dtor族逻辑。与CCBFiveNimbusWindow:0x004438F0同族消歧",
+   "semantic_name": "Destroy_9F50"
   }
  },
  "vtables": [
@@ -205,27 +174,27 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043DDF0",
-     "from": "CCBUI"
+     "from": "SaleUI"
     },
     {
      "addr": "0x0051A090",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00519F50",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00519B40",
-     "from": "CCBUI"
+     "from": null
     },
     {
      "addr": "0x00519FE0",
@@ -233,7 +202,7 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     }
    ]
   }

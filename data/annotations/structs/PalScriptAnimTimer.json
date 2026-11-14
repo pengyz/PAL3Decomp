@@ -21,12 +21,6 @@
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 256B dtor 形] 交互面[析构生命周期] 判定 ✅制式名对（_scalar_dtor） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PalScriptAnimTimer（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AC08）",
    "evidence_level": "A"
   },
-  "0x00438100": {
-   "name": "IsAnimDone",
-   "signature": "void __thiscall PalScriptAnimTimer::IsAnimDone(float fVal)",
-   "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 Accu | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词） | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓",
-   "evidence_level": "unverified"
-  },
   "0x00438E30": {
    "name": "UpdateAnimTimer",
    "signature": "void __thiscall PalScriptAnimTimer::UpdateAnimTimer(float fVal)",
@@ -34,6 +28,24 @@
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=2: m_bDone,m_fTime（adjudicate_multiclaim 2026-11-03）"
+  },
+  "0x00438e90": {
+   "name": "_scalar_dtor",
+   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+   "type": "skip",
+   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+   "ordinal": 0,
+   "evidence_level": "unverified",
+   "semantic_name": "_scalar_dtor"
+  },
+  "0x00438e30": {
+   "name": "AccumulateTime",
+   "signature": "BOOL __thiscall(int, int)",
+   "ordinal": 2,
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "source": " | multiclaim 裁决 2026-11-03: 败于 PalScriptAnimTimer（uniq=2）",
+   "semantic_name": "AccumulateTime"
   }
  },
  "vtables": [
@@ -47,7 +59,7 @@
     },
     {
      "addr": "0x00438100",
-     "from": null
+     "from": "PalScriptWaitTimer"
     },
     {
      "addr": "0x00438E30",

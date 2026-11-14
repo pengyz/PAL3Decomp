@@ -1,37 +1,37 @@
 {
-  "name": "GRP_KEYREG",
-  "binary_size": 16,
-  "known_members": {
-    "0": {
-      "name": "Data",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "HoldTime",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "CountMode",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "12": {
-      "name": "PressTime",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "GRP_KEYREG",
+ "binary_size": 16,
+ "known_members": {
+  "0": {
+   "name": "Data",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "known_methods": {
-    "operator_int": {
-      "name": "operator int",
-      "signature": "int __thiscall operator int(GRP_KEYREG *this)",
-      "source": "fix:C2679:implicit_conversion_to_int_for_KeyInfo_assignment"
-    }
+  "4": {
+   "name": "HoldTime",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "8": {
+   "name": "CountMode",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "12": {
+   "name": "PressTime",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   }
+ },
+ "known_methods": {
+  "operator_int": {
+   "name": "operator int",
+   "signature": "int __thiscall operator int(GRP_KEYREG *this)",
+   "source": "fix:C2679:implicit_conversion_to_int_for_KeyInfo_assignment"
+  }
+ }
 }

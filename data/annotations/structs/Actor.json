@@ -2247,12 +2247,6 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "链式节点处理（gbChain1DNode）"
   },
-  "0x004503C0": {
-   "name": "OnEvent",
-   "name_source": "IDA语义分析 2026-10-31 批3-6",
-   "name_note": "空覆盖虚方法",
-   "signature": "virtual void __thiscall(Actor *this, int a2)"
-  },
   "0x004BA230": {
    "name": "CheckState",
    "signature": "void __thiscall(Actor *this)",
@@ -2355,58 +2349,10 @@
    "name_note": "A* 路径释放",
    "signature": "void __thiscall(Actor *this, int a2)"
   },
-  "0x004B7560": {
-   "name": "ResetMatrix",
-   "signature": "virtual int __thiscall(Actor *this, int nArg)",
-   "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "矩阵重置（虚调用链）"
-  },
-  "0x004B7590": {
-   "name": "RenderActorTransform2",
-   "signature": "void __thiscall(int)",
-   "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,100,104,168,232] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorTransform2（原 _todo_004B7590）",
-   "evidence_level": "A"
-  },
-  "0x004B7650": {
-   "name": "Render",
-   "signature": "virtual void __thiscall(Actor *this, int nFlag)",
-   "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "渲染（MatrixStack+GeomQuad+DynVertBuf）"
-  },
-  "0x004B7980": {
-   "name": "LoadActorVisual",
-   "signature": "void __thiscall(int)",
-   "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[100,104] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 LoadActorVisual（原 _todo_004B7980）",
-   "evidence_level": "A"
-  },
   "0x004B73E0": {
    "name": "_todo_004B73E0",
    "signature": "void __thiscall(int)",
    "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,96,100,104,108] Actor 多偏移证（ctor 装配实证表）",
-   "evidence_level": "A"
-  },
-  "0x004B7D30": {
-   "name": "LoadTexture",
-   "signature": "virtual void __thiscall(Actor *this, int nParam)",
-   "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "纹理加载（gbTexture+gbGeomNode+OpenBaseFile）"
-  },
-  "0x004B80C0": {
-   "name": "RenderActorTransform",
-   "signature": "void __thiscall(int)",
-   "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[92,96,168] Actor 证 | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorTransform（原 _todo_004B80C0）",
-   "evidence_level": "A"
-  },
-  "0x004B8030": {
-   "name": "UpdateRenderInfo",
-   "signature": "virtual void __thiscall(Actor *this, int a2)",
-   "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "渲染信息更新（RenderInfoObj+Matrix4）"
-  },
-  "0x0053D5D0": {
-   "name": "RenderActorGeometry",
-   "signature": "void __thiscall(int)",
-   "source": "深证批4 2026-10-06：A 级 vtable 槽+偏移[88,112,116,120] Actor×3 非低偏移证（净判别力筛） | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorGeometry（原 _todo_0053D5D0）",
    "evidence_level": "A"
   },
   "0x0041F340": {
@@ -2435,6 +2381,11 @@
    "signature": "int __thiscall()",
    "source": "[函数归属 2026-10-17·主攻点 2 终] Actor——面卡④类=Actor（LoadActorModel/DoSceneTransition ✓）（五面卡类归属面 ✓ decomp member access 证）",
    "evidence_level": "unverified"
+  },
+  "0x004083e0": {
+   "name": "CheckSceneCollision",
+   "signature": "BOOL __thiscall(int *nFlag, int nVal)",
+   "evidence_level": "unverified"
   }
  },
  "vtables": [
@@ -2459,7 +2410,7 @@
     },
     {
      "addr": "0x004083E0",
-     "from": "RoleSystem"
+     "from": null
     },
     {
      "addr": "0x00408410",

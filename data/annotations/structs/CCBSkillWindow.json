@@ -1,182 +1,167 @@
 {
-  "name": "CCBSkillWindow",
-  "binary_size": 84,
-  "known_members": {
-    "72": {
-      "name": "m_pBack",
-      "type": "UIStatic *",
-      "offset": 72,
-      "evidence_level": "unverified"
-    },
-    "76": {
-      "name": "m_pDescription",
-      "type": "UIStatic *",
-      "offset": 76,
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "m_pSkillList",
-      "type": "UIListBox *[1]",
-      "offset": 80,
-      "evidence_level": "unverified"
-    }
+ "name": "CCBSkillWindow",
+ "binary_size": 84,
+ "known_members": {
+  "72": {
+   "name": "m_pBack",
+   "type": "UIStatic *",
+   "offset": 72,
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x0051BBE0": {
-      "name": "Destroy",
-      "ordinal": 5,
-      "evidence_level": "unverified"
-    },
-    "0x0051BC00": {
-      "name": "~CCBSkillWindow",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x0051C2D0": {
-      "name": "Reset",
-      "signature": "void __thiscall()",
-      "source": "pdb_ret",
-      "evidence_level": "unverified"
-    },
-    "0x0051C330": {
-      "name": "Create",
-      "signature": "bool __thiscall(int *pRect, int parent)",
-      "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
-      "evidence_level": "A"
-    },
-    "0x0051C1B0": {
-      "name": "SetActivePage",
-      "signature": "BOOL __thiscall(int n, int nVal)",
-      "evidence_level": "unverified"
-    },
-    "0x0051B860": {
-      "name": "OnMessage",
-      "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-      "evidence_level": "unverified"
-    },
-    "0x0051C260": {
-      "name": "`scalar deleting destructor'",
-      "signature": "UIWnd *__thiscall(CCBSkillWindow *Block, char pData)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
-      "evidence_level": "A",
-      "adjudication": "shared_impl"
-    },
-    "0x0051C880": {
-      "name": "Destroy_c880",
-      "signature": "int __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0051C9B0": {
-      "name": "CCBFiveNimbusWindow::OnMessage",
-      "signature": "int __thiscall(CCBSkillWindow *__hidden this, unsigned int, unsigned int a2, unsigned int)",
-      "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0051C9F0": {
-      "name": "Update",
-      "signature": "BOOL __thiscall(int deltatime, int haveinput)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0051CA50": {
-      "name": "ToggleSlots",
-      "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    },
-    "0x0051CAA0": {
-      "name": "Render",
-      "signature": "void __thiscall()",
-      "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-      "evidence_level": "unverified",
-      "adjudication": "shared_impl"
-    }
+  "76": {
+   "name": "m_pDescription",
+   "type": "UIStatic *",
+   "offset": 76,
+   "evidence_level": "unverified"
   },
-  "vtables": [
+  "80": {
+   "name": "m_pSkillList",
+   "type": "UIListBox *[1]",
+   "offset": 80,
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {
+  "0x0051BBE0": {
+   "name": "Destroy",
+   "ordinal": 5,
+   "evidence_level": "unverified"
+  },
+  "0x0051BC00": {
+   "name": "~CCBSkillWindow",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified"
+  },
+  "0x0051C2D0": {
+   "name": "Reset",
+   "signature": "void __thiscall()",
+   "source": "pdb_ret",
+   "evidence_level": "unverified"
+  },
+  "0x0051C330": {
+   "name": "Create",
+   "signature": "bool __thiscall(int *pRect, int parent)",
+   "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
+   "evidence_level": "A"
+  },
+  "0x0051C1B0": {
+   "name": "SetActivePage",
+   "signature": "BOOL __thiscall(int n, int nVal)",
+   "evidence_level": "unverified"
+  },
+  "0x0051B860": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "evidence_level": "unverified"
+  },
+  "0x0051b860": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+   "evidence_level": "unverified"
+  },
+  "0x0051c110": {
+   "name": "Destroy",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+   "evidence_level": "unverified",
+   "semantic_name": "Destroy"
+  },
+  "0x0051c1b0": {
+   "name": "SetActivePage",
+   "signature": "BOOL __thiscall(int n, int nVal)",
+   "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
+   "evidence_level": "unverified"
+  },
+  "0x0051bbe0": {
+   "name": "_scalar_dtor_BBE0",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500,0x57051C,0x570538,0x570554,0x570570）",
+   "evidence_level": "A",
+   "declaration_only": true,
+   "semantic_name": "_scalar_dtor_BBE0"
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x00570570",
+   "base": "UIWnd",
+   "slots": [
     {
-      "addr": "0x00570570",
-      "base": "UIWnd",
-      "slots": [
-        {
-          "addr": "0x00445E70",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0043DDF0",
-          "from": "CCBMagicWindow"
-        },
-        {
-          "addr": "0x0051C1B0",
-          "from": "CCBMagicWindow"
-        },
-        {
-          "addr": "0x0051C110",
-          "from": "CCBMagicWindow"
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0051BBE0",
-          "from": null
-        },
-        {
-          "addr": "0x0051B860",
-          "from": "CCBMagicWindow"
-        },
-        {
-          "addr": "0x0051CA50",
-          "from": null
-        },
-        {
-          "addr": "0x0051CAA0",
-          "from": null
-        },
-        {
-          "addr": "0x0051C9F0",
-          "from": null
-        },
-        {
-          "addr": "0x0051C880",
-          "from": null
-        },
-        {
-          "addr": "0x00445B90",
-          "from": "UIWnd"
-        },
-        {
-          "addr": "0x0051C260",
-          "from": null
-        },
-        {
-          "addr": "0x0051C9B0",
-          "from": null
-        }
-      ]
-    }
-  ],
-  "base_size": 72,
-  "_attribution_migrations": [
+     "addr": "0x00445E70",
+     "from": "CUtil"
+    },
     {
-      "0x0051C110": {
-        "name": "Destroy",
-        "signature": "void __thiscall()",
-        "source": " | [T102] 归属迁移：0x0051C110 decomp 类归属=CCBMagicWindow（成员访问证据双证）——本类误挂条目移除"
-      },
-      "from": "CCBSkillWindow",
-      "to": "CCBMagicWindow"
-    }
-  ],
-  "bases": [
+     "addr": "0x0043DDF0",
+     "from": "SaleUI"
+    },
     {
-      "name": "UIFrameWnd",
-      "offset": 0
+     "addr": "0x0051C1B0",
+     "from": null
+    },
+    {
+     "addr": "0x0051C110",
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "CUtil"
+    },
+    {
+     "addr": "0x0051BBE0",
+     "from": null
+    },
+    {
+     "addr": "0x0051B860",
+     "from": null
+    },
+    {
+     "addr": "0x0051CA50",
+     "from": "CCBParabolaWindow"
+    },
+    {
+     "addr": "0x0051CAA0",
+     "from": "CCBParabolaWindow"
+    },
+    {
+     "addr": "0x0051C9F0",
+     "from": "CCBParabolaWindow"
+    },
+    {
+     "addr": "0x0051C880",
+     "from": "CCBParabolaWindow"
+    },
+    {
+     "addr": "0x00445B90",
+     "from": "CUtil"
+    },
+    {
+     "addr": "0x0051C260",
+     "from": "CCBParabolaWindow"
+    },
+    {
+     "addr": "0x0051C9B0",
+     "from": "CCBParabolaWindow"
     }
-  ]
+   ]
+  }
+ ],
+ "base_size": 72,
+ "_attribution_migrations": [
+  {
+   "0x0051C110": {
+    "name": "Destroy",
+    "signature": "void __thiscall()",
+    "source": " | [T102] 归属迁移：0x0051C110 decomp 类归属=CCBMagicWindow（成员访问证据双证）——本类误挂条目移除"
+   },
+   "from": "CCBSkillWindow",
+   "to": "CCBMagicWindow"
+  }
+ ],
+ "bases": [
+  {
+   "name": "UIFrameWnd",
+   "offset": 0
+  }
+ ]
 }

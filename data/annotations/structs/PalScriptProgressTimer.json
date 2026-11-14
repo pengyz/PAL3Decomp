@@ -14,27 +14,7 @@
    "evidence_level": "A"
   }
  },
- "methods": {
-  "0x00438190": {
-   "name": "_scalar_dtor",
-   "signature": "void __thiscall()",
-   "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=PalScript::ClearFloatParams] 交互面[浮点参数清理] 判定 ✅名实相符（_scalar_dtor 伴生清理）",
-   "evidence_level": "unverified"
-  },
-  "0x00438100": {
-   "name": "IsProgressDone",
-   "signature": "void __thiscall(float)",
-   "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词 ret] 交互面[完成谓词] 判定 ✅名实相符（Is*Done 三名共址=合法共槽谓词）",
-   "evidence_level": "unverified"
-  },
-  "0x00438110": {
-   "name": "UpdateProgress",
-   "signature": "void __thiscall(float)",
-   "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateWaitTimer 域 | store×2 | 体 695B] 交互面[进度推进（链 wait 计时）] 判定 ✅名实相符（UpdateProgress） | multiclaim 裁决 2026-11-03: 败于 PalScript（成员实访独占 uniq=5）",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  }
- },
+ "methods": {},
  "vtables": [
   {
    "addr": "0x0056ABD4",
@@ -46,7 +26,7 @@
     },
     {
      "addr": "0x00438100",
-     "from": null
+     "from": "PalScriptWaitTimer"
     },
     {
      "addr": "0x00438110",

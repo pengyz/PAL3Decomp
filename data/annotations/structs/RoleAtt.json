@@ -229,9 +229,10 @@
   },
   "0x00451320": {
    "name": "Destroy",
-   "signature": "void __thiscall RoleAtt::Destroy()",
+   "signature": "int __thiscall()",
    "ordinal": 3,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Destroy"
   },
   "0x005310C0": {
    "name": "UpdateTimedBuff",
@@ -242,11 +243,6 @@
    "name": "~RoleAtt",
    "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)",
    "source": "| 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）",
-   "evidence_level": "unverified"
-  },
-  "0x00450F80": {
-   "name": "IsValid",
-   "signature": "BOOL __thiscall RoleAtt::IsValid()",
    "evidence_level": "unverified"
   },
   "0x004515A0": {
@@ -267,10 +263,11 @@
   },
   "0x00451740": {
    "name": "ShowWindow",
-   "signature": "void __thiscall RoleAtt::ShowWindow(int)",
+   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "ShowWindow"
   },
   "0x00457F90": {
    "name": "FormatAttributeText",
@@ -372,6 +369,14 @@
    "signature": "void __thiscall()",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 RoleAtt::_sub_4531F0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 RoleAtt 方法面",
    "evidence_level": "A"
+  },
+  "0x00450e90": {
+   "name": "_sdtor_27",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "vtable_gap_fill_v1(from UIWnd.json)",
+   "evidence_level": "unverified",
+   "declaration_only": true,
+   "semantic_name": "_sdtor_27"
   }
  },
  "vtables": [
@@ -381,31 +386,31 @@
    "slots": [
     {
      "addr": "0x00451740",
-     "from": null
+     "from": "UISceneMap"
     },
     {
      "addr": "0x004512F0",
-     "from": null
+     "from": "UISceneMap"
     },
     {
      "addr": "0x004515E0",
-     "from": null
+     "from": "UISceneMap"
     },
     {
      "addr": "0x00451320",
-     "from": null
+     "from": "UISceneMap"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00450E90",
-     "from": "CCBFiveNimbusWindow"
+     "from": "UISceneMap"
     },
     {
      "addr": "0x004515A0",
-     "from": null
+     "from": "UISceneMap"
     }
    ]
   }

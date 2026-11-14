@@ -429,8 +429,9 @@
   },
   "0x00454550": {
    "name": "RenderIfUnlocked",
-   "signature": "char __thiscall CCBUIPanel::RenderIfUnlocked()",
-   "evidence_level": "unverified"
+   "signature": "int __thiscall()",
+   "evidence_level": "unverified",
+   "semantic_name": "RenderIfUnlocked"
   },
   "0x00454560": {
    "name": "ProcessInputIfUnlocked",
@@ -490,16 +491,33 @@
   },
   "0x00449990": {
    "name": "Destroy",
-   "signature": "void __thiscall(CCBUIPanel *this, int nVal)",
+   "signature": "int __thiscall()",
    "source": "vtable_migrated | [C2511修 2026-11-13] this型 UIListBox**→CCBUIPanel*: 函数在CCBUIPanel.json=该类方法, this类型应为宿主类指针; C2511重载不新覆盖=同名异型冲突",
    "ordinal": 3,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Destroy"
   },
   "0x00449C20": {
    "name": "InitMagicWindows",
    "signature": "virtual void __thiscall(CCBUIPanel *this)",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "魔法窗口初始化（CCBMagicWindow 数组遍历）"
+  },
+  "0x00453e50": {
+   "name": "_scalar_dtor_3E50",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+   "evidence_level": "unverified",
+   "declaration_only": true,
+   "adjudication": "rejected"
+  },
+  "0x00454590": {
+   "name": "OnMessage_4590",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "name_note": " | 2026-11-09 消歧: 与B面命名OnMessage_4590趋同(thiscall mov ecx,this实证)"
   }
  },
  "vtables": [
@@ -509,7 +527,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00449C20",
@@ -525,7 +543,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x004461D0",
@@ -543,31 +561,31 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00454550",
-     "from": "UIListBox"
+     "from": null
     },
     {
      "addr": "0x00454560",
-     "from": "UIListBox"
+     "from": null
     },
     {
      "addr": "0x0043DE40",
-     "from": "UIListBox"
+     "from": "CUtil"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00453E50",
-     "from": "UIListBox"
+     "from": null
     },
     {
      "addr": "0x00454590",
-     "from": "UIListBox"
+     "from": null
     }
    ]
   }

@@ -83,12 +83,6 @@
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F404 认领（ctor UI3DModelNode@0x4B74A0+27 + ~UI3DMo）连带",
    "evidence_level": "A"
   },
-  "0x004B7F70": {
-   "name": "nullsub",
-   "signature": "void __thiscall()",
-   "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=nullsub-retN；表 0x0056F404 认领（ctor UI3DModelNode@0x4B74A0+27 + ~UI3DMo）连带",
-   "evidence_level": "A"
-  },
   "0x004B7AF0": {
    "name": "ReleaseAllTextures",
    "signature": "void __thiscall UI3DModelNode::ReleaseAllTextures(UI3DModelNode *this)",
@@ -96,6 +90,42 @@
    "adjudication": "confirmed",
    "evidence_level": "A",
    "evidence": "成员实访独占证据 uniq=4: m_nTodo_064,m_nTodo_068,m_nTodo_0EC,m_nTodo_0F0（adjudicate_multiclaim 2026-11-03）"
+  },
+  "0x004b7560": {
+   "name": "ResetMatrix",
+   "signature": "int __thiscall RenderTarget::Stop __thiscall(int)",
+   "name_source": "IDA语义分析 2026-11-01 批8",
+   "name_note": "矩阵重置（虚调用链）",
+   "semantic_name": "ResetMatrix"
+  },
+  "0x004b7590": {
+   "name": "RenderActorTransform2",
+   "signature": "int __thiscall()",
+   "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,100,104,168,232] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorTransform2（原 _todo_004B7590）",
+   "evidence_level": "A",
+   "semantic_name": "RenderActorTransform2"
+  },
+  "0x004b7650": {
+   "name": "Render",
+   "signature": "int __thiscall()",
+   "name_source": "IDA语义分析 2026-11-01 批8",
+   "name_note": "渲染（MatrixStack+GeomQuad+DynVertBuf）",
+   "semantic_name": "Render"
+  },
+  "0x004b7980": {
+   "name": "LoadActorVisual",
+   "signature": "gbParticleEffect * __thiscall(int)",
+   "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[100,104] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 LoadActorVisual（原 _todo_004B7980）",
+   "evidence_level": "A",
+   "semantic_name": "LoadActorVisual"
+  },
+  "0x004b7af0": {
+   "name": "ReleaseAllTextures",
+   "signature": "int __thiscall()",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "source": " | multiclaim 裁决 2026-11-03: 败于 UI3DModelNode（uniq=4）",
+   "semantic_name": "ReleaseAllTextures"
   }
  },
  "base_size": 88,
@@ -110,47 +140,47 @@
     },
     {
      "addr": "0x004B7650",
-     "from": "Actor"
+     "from": null
     },
     {
      "addr": "0x00542102",
-     "from": "UIRoleDialog"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x004B7590",
-     "from": "Actor"
+     "from": null
     },
     {
      "addr": "0x004B7560",
-     "from": "Actor"
+     "from": null
     },
     {
      "addr": "0x0054211A",
-     "from": "UIRoleDialog"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x00542114",
-     "from": "UIRoleDialog"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x0054210E",
-     "from": "gbVisNode"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x005420DE",
-     "from": "gbVisNode"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x005420D8",
-     "from": "gbVisNode"
+     "from": "CScreenModeNode"
     },
     {
      "addr": "0x004B7980",
-     "from": "Actor"
+     "from": null
     },
     {
      "addr": "0x004B7AF0",
-     "from": "UITextArea"
+     "from": null
     },
     {
      "addr": "0x004B7B60",
@@ -158,7 +188,7 @@
     },
     {
      "addr": "0x004B7F70",
-     "from": null
+     "from": "CEffGroupNode"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor UI3DModelNode@0x4B74A0+27 + ~UI3DModelNode@0x4B7510+29 双自证"

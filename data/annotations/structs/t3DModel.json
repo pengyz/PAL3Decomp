@@ -1,31 +1,31 @@
 {
-  "name": "t3DModel",
-  "binary_size": 40,
-  "known_members": {
-    "0": {
-      "name": "numOfObjects",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "numOfMaterials",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "8": {
-      "name": "pMaterials",
-      "type": "std::vector<tMaterialInfo,std::allocator<tMaterialInfo> >",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "24": {
-      "name": "pObject",
-      "type": "std::vector<t3DObject,std::allocator<t3DObject> >",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "t3DModel",
+ "binary_size": 40,
+ "known_members": {
+  "0": {
+   "name": "numOfObjects",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {}
+  "4": {
+   "name": "numOfMaterials",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "8": {
+   "name": "pMaterials",
+   "type": "std::vector<tMaterialInfo,std::allocator<tMaterialInfo> >",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "24": {
+   "name": "pObject",
+   "type": "std::vector<t3DObject,std::allocator<t3DObject> >",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "methods": {}
 }

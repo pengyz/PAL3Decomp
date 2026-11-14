@@ -1692,11 +1692,6 @@
    "signature": "int __thiscall RoleSystem::ExecScriptDataIdx(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004083E0": {
-   "name": "CheckSceneCollision",
-   "signature": "BOOL __thiscall(int *nFlag, int nVal)",
-   "evidence_level": "unverified"
-  },
   "0x00410430": {
    "name": "RenderMainRole",
    "signature": "void __cdecl RoleSystem::RenderMainRole(void *pMatrixStack)",
@@ -1874,11 +1869,6 @@
   "0x004164E0": {
    "name": "IsPathMoving",
    "signature": "BOOL __thiscall()",
-   "evidence_level": "unverified"
-  },
-  "0x00416500": {
-   "name": "IsActionBlocked",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
   "0x00416BC0": {
@@ -2218,20 +2208,6 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_fontcolor,m_id,m_wndcolor（adjudicate_multiclaim 2026-11-03）"
   },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x00524970": {
-   "name": "CCBRoleState::Render",
-   "signature": "void __thiscall(UIListBox *__hidden this, const char *, struct tagRECT *, int, int, bool)",
-   "source": "vtable_gap_fill_v1(from CCBStage.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x00420910": {
    "name": "_scalar_dtor_0910",
    "signature": "void __thiscall(int)",
@@ -2248,10 +2224,11 @@
   },
   "0x00420430": {
    "name": "_scalar_dtor_0430",
-   "signature": "void *__thiscall(char a2)",
+   "signature": "BOOL __thiscall(int, int)",
    "source": "[5表重落收尾 2026-10-16] 补登记（槽名债清毕后重落缺口）：A 级 decomp 快照 RoleSystem_sdtor_2_00420430.json——体 `sub_420450(Block); if (a2 & 1) operator delete(Block); return Block` = 删析构形（flags 条件 delete+return Block），flags 真型 char、this 隐式（弃 (void *Block, char a2) 显式 this 旧建模） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AAD8,0x56AAE4）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_name": "_scalar_dtor_0430"
   },
   "0x00420270": {
    "name": "_scalar_dtor_0270",
@@ -2272,6 +2249,27 @@
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 gbRenderEffect（成员实访独占 uniq=3）"
+  },
+  "0x004202a0": {
+   "name": "AllocSlotData",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(from RoleSystem.json) | multiclaim 裁决 2026-11-03: 败于 RoleSystem（uniq=3）",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "AllocSlotData"
+  },
+  "0x004208a0": {
+   "name": "Reset",
+   "signature": "void __thiscall()",
+   "source": "vtable_gap_fill_v1(from RoleSystem.json) | multiclaim 裁决 2026-11-03: 败于 RoleSystem（uniq=4）",
+   "evidence_level": "unverified",
+   "adjudication": "rejected"
+  },
+  "0x004209e0": {
+   "name": "ResetState",
+   "signature": "void __thiscall RoleSystem::ResetState(int nVal1)",
+   "source": "vtable_gap_fill_v1(from RoleSystem.json) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+   "evidence_level": "unverified"
   }
  },
  "vtables": [
@@ -2281,11 +2279,11 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00524970",
-     "from": null
+     "from": "UILoadingFrm"
     },
     {
      "addr": "0x00532710",
@@ -2293,11 +2291,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": null
+     "from": "CUtil"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00531E50",
@@ -2315,31 +2313,31 @@
    "slots": [
     {
      "addr": "0x004202F0",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x004202A0",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x00420270",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x004208A0",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x004202A0",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x00420430",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x004209E0",
-     "from": "gbRenderEffect"
+     "from": null
     },
     {
      "addr": "0x004202A0",

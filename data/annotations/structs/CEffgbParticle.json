@@ -52,26 +52,6 @@
   }
  },
  "methods": {
-  "0x004C6C10": {
-   "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *pType)",
-   "evidence_level": "unverified"
-  },
-  "0x004C6F20": {
-   "name": "Destroy",
-   "signature": "void __thiscall()",
-   "evidence_level": "unverified"
-  },
-  "0x004C7A70": {
-   "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int nIndex)",
-   "evidence_level": "unverified"
-  },
-  "0x004C7B70": {
-   "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int nIndex)",
-   "evidence_level": "unverified"
-  },
   "0x004C8650": {
    "name": "SetData",
    "signature": "void __thiscall(CEffgbParticle *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
@@ -180,34 +160,6 @@
    "ordinal": 14,
    "evidence_level": "unverified"
   },
-  "0x004AF760": {
-   "name": "Update",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C0500": {
-   "name": "OnTest",
-   "signature": "int()",
-   "source": "vtable_gap_fill_v1(from CEffAction.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C15D0": {
-   "name": "UpdateParticles",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C0510": {
-   "name": "sub_4C0510",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(IDB:?sub_4C0510@CEffSParticle@@QAEHXZ) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x004C8950": {
    "name": "_scalar_dtor_8950",
    "signature": "char *__thiscall(char)",
@@ -225,13 +177,6 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x004C6960": {
-   "name": "_scalar_dtor_6960",
-   "signature": "void __thiscall()",
-   "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F86C 认领（ctor 域 CEffectSystem::FillDefaultUVSet@0）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F878 认领（ctor 域 +116/+35（同 ctor 双写 MI 形，与 0x56F86）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffgbParticle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F878,0x56F86C）",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
   "0x004C88B0": {
    "name": "_todo_88B0",
    "signature": "void __thiscall()",
@@ -243,13 +188,6 @@
    "name": "ProcCommonTask_adjthunk",
    "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004C8BF0）⇒ 目标名 ProcCommonTask 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
-   "evidence_level": "A",
-   "declaration_only": true
-  },
-  "0x004C9630": {
-   "name": "_scalar_dtor_9630",
-   "signature": "void __thiscall()",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffgbParticle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F8B4,0x56F878,0x56F86C,0x56F908,0x56F8CC,0x56F8C0,0x56F920,0x56F914）",
    "evidence_level": "A",
    "declaration_only": true
   },
@@ -278,59 +216,87 @@
     },
     {
      "addr": "0x004C8A40",
-     "from": null
+     "from": null,
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004C8B80",
-     "from": null
+     "from": null,
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x004D0A60",
-     "from": null
+     "from": null,
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C8BF0",
-     "from": null
+     "from": null,
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x004C8E10",
-     "from": null
+     "from": null,
+     "name": "Destroy",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C8930",
-     "from": null
+     "from": null,
+     "name": "AllocEffect",
+     "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C0500",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "OnTest",
+     "sig": "char __thiscall()"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "Update",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C0510",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004C8E80",
-     "from": null
+     "from": null,
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C8E90",
-     "from": null
+     "from": null,
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)"
     },
     {
      "addr": "0x004C15D0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C9260",
-     "from": null
+     "from": null,
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

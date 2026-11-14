@@ -1,30 +1,30 @@
 {
-  "name": "CIniFile",
-  "binary_size": 8,
-  "known_members": {
-    "0": {
-      "name": "m_fp",
-      "type": "gbVFile *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "m_bRead",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "CIniFile",
+ "binary_size": 8,
+ "known_members": {
+  "0": {
+   "name": "m_fp",
+   "type": "gbVFile *",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "methods": {
-    "0x004EC700": {
-      "name": "LoadData",
-      "signature": "char __thiscall CIniFile::LoadData()",
-      "evidence_level": "unverified"
-    },
-    "0x00504130": {
-      "name": "LoadStructuredConfig",
-      "signature": "void __thiscall CIniFile::LoadStructuredConfig()",
-      "evidence_level": "unverified"
-    }
+  "4": {
+   "name": "m_bRead",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   }
+ },
+ "methods": {
+  "0x004EC700": {
+   "name": "LoadData",
+   "signature": "char __thiscall CIniFile::LoadData()",
+   "evidence_level": "unverified"
+  },
+  "0x00504130": {
+   "name": "LoadStructuredConfig",
+   "signature": "void __thiscall CIniFile::LoadStructuredConfig()",
+   "evidence_level": "unverified"
+  }
+ }
 }

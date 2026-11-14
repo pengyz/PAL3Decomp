@@ -46,17 +46,9 @@
    "evidence_level": "unverified",
    "semantic_name": "AllocRenderTarget"
   },
-  "0x004C0500": {
-   "name": "OnTest",
-   "signature": "bool()",
-   "source": "vtable_migrated | [T47] 返型 int→bool：A 级 objdump 0x4c0500 `32 c0 c3`（xor al,al+ret 仅清 AL ⇒ **1 字节返型**）——bool/char 对编译字节等价（同 xor al,al），按谓词语义（OnTest）取 bool；L1 目标 n_diff=3（[0,1,2]=整函数）",
-   "ordinal": 8,
-   "evidence_level": "A",
-   "semantic_name": "OnTest"
-  },
   "0x004C0920": {
    "name": "Update",
-   "signature": "void __thiscall(int)",
+   "signature": "void __thiscall()",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 9,
    "evidence_level": "unverified",
@@ -77,14 +69,6 @@
    "evidence_level": "A",
    "semantic_name": "~CEffAction"
   },
-  "0x004AF760": {
-   "name": "slot_11",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl",
-   "semantic_name": "Update"
-  },
   "0x004C0650": {
    "name": "slot_1",
    "signature": "char __thiscall CEffAction::AllocSegments(int nVal)",
@@ -101,13 +85,6 @@
    "adjudication": "shared_impl",
    "semantic_name": "UpdateParticles"
   },
-  "0x004C0510": {
-   "name": "slot_10",
-   "signature": "virtual int __thiscall(CEffSParticle *this)",
-   "name_source": "IDA语义分析 2026-11-01 批14",
-   "name_note": "从 decomp 推断（sub_4C0510）",
-   "semantic_name": "Method_0510"
-  },
   "0x004C1270": {
    "name": "slot_14",
    "signature": "virtual int __thiscall(CEffAction *this)",
@@ -117,6 +94,20 @@
    "alt_signature": "int __thiscall(CEffAction *this)",
    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
    "semantic_name": "Method_1270"
+  },
+  "0x004c15d0": {
+   "name": "UpdateParticles",
+   "signature": "int __thiscall(int, int, int)",
+   "evidence_level": "unverified",
+   "semantic_name": "UpdateParticles"
+  },
+  "0x00408bd0": {
+   "name": "NullCallback",
+   "signature": "int __thiscall(int, int, int)",
+   "source": "vtable_gap_fill_v1(from CEffAction.json)",
+   "evidence_level": "unverified",
+   "adjudication": "shared_impl",
+   "semantic_name": "NullCallback"
   }
  },
  "vtables": [
@@ -130,63 +121,87 @@
     },
     {
      "addr": "0x004C0650",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004C0640",
-     "from": null
+     "from": null,
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x00408BD0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C0740",
-     "from": null
+     "from": null,
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x00408BD0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "Destroy",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C0520",
-     "from": null
+     "from": null,
+     "name": "AllocEffect",
+     "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C0500",
-     "from": null,
-     "name": "OnTest"
+     "from": "CEffSParticle",
+     "name": "OnTest",
+     "sig": "char __thiscall()"
     },
     {
      "addr": "0x004C0920",
-     "from": null
+     "from": null,
+     "name": "Update",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C0510",
-     "from": null,
-     "name": "slot_10"
+     "from": "CEffSParticle",
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004AF760",
-     "from": null,
-     "name": "slot_11"
+     "from": "CEffSParticle",
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C09E0",
-     "from": null
+     "from": null,
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)"
     },
     {
      "addr": "0x004C15D0",
-     "from": null,
-     "name": "UpdateParticles"
+     "from": "CEffSParticle",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C1270",
-     "from": null
+     "from": null,
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

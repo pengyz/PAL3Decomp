@@ -1,24 +1,24 @@
 {
-  "name": "scVARIANT_data",
-  "is_union": true,
-  "binary_size": 4,
-  "known_members": {
-    "0": {
-      "name": "as_int",
-      "type": "float",
-      "source": "script_system_int_ops|fix:pointer_level:char *",
-      "note": "type corrected from int (was int, should be pointer based on IDB)",
-      "evidence_level": "unverified"
-    },
-    "0_1": {
-      "name": "as_float",
-      "type": "float",
-      "source": "script_system_float_ops",
-      "evidence_level": "unverified"
-    }
+ "name": "scVARIANT_data",
+ "is_union": true,
+ "binary_size": 4,
+ "known_members": {
+  "0": {
+   "name": "as_int",
+   "type": "float",
+   "source": "script_system_int_ops|fix:pointer_level:char *",
+   "note": "type corrected from int (was int, should be pointer based on IDB)",
+   "evidence_level": "unverified"
   },
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂（变量名）"
-  },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`scVARIANT_data`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
+  "0_1": {
+   "name": "as_float",
+   "type": "float",
+   "source": "script_system_float_ops",
+   "evidence_level": "unverified"
+  }
+ },
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂（变量名）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`scVARIANT_data`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
 }

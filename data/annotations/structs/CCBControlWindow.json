@@ -163,12 +163,6 @@
    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
    "evidence_level": "unverified"
   },
-  "0x0051B940": {
-   "name": "ForwardShowClipped",
-   "signature": "void __thiscall(CCBControlWindow *this, int nFlags)",
-   "source": "| 97族注册续 2026-10-17（verifier·证据账目制 symbol+addr）：注册 evidence：体 `push nFlags; call CCBPanelSlot::ShowClipped(this); ret 4`（转发形）| 五面：①调用者=五窗 UI 域 ②被调=CCBPanelSlot::ShowClipped ③转发体无成员 ④五窗共享槽 ⑤UI 显隐转发 | confidence: high | 原 IDB 名 _todo_B940（伪语义）⇒ 再创作命名 ForwardShowClipped",
-   "evidence_level": "A"
-  },
   "0x0043DDF0": {
    "name": "CCBControlWindow::Render",
    "owner": "CCBControlWindow",
@@ -178,6 +172,37 @@
    "alt_name": "CCBControlWindow_Render",
    "alt_signature": "void __thiscall(CCBControlWindow *this)",
    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  },
+  "0x0051b030": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int, int a2, int a3)",
+   "source": "vtable_migrated+pdb_name",
+   "ordinal": 20,
+   "evidence_level": "unverified"
+  },
+  "0x0051b5d0": {
+   "name": "OnMessage",
+   "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures __thiscall(int, void *pRect, UIWnd *parent, const char *pszName, char)",
+   "source": "vtable_gap_fill_v1(from CCBControlWindow.json)",
+   "evidence_level": "A",
+   "adjudication": "confirmed",
+   "evidence": "成员实访独占证据 uniq=2: m_nActivePage,m_pDescription（adjudicate_multiclaim 2026-11-03）",
+   "semantic_name": "OnMessage"
+  },
+  "0x0043ddf0": {
+   "name": "CCBControlWindow::Render",
+   "signature": "int __thiscall()",
+   "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
+   "evidence_level": "unverified",
+   "semantic_name": "CCBControlWindow::Render"
+  },
+  "0x0051ac90": {
+   "name": "_scalar_dtor_AC90",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500,0x57051C）",
+   "evidence_level": "A",
+   "declaration_only": true,
+   "semantic_name": "_scalar_dtor_AC90"
   }
  },
  "vtables": [
@@ -186,11 +211,11 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043DDF0",
-     "from": null
+     "from": "SaleUI"
     },
     {
      "addr": "0x0051B0B0",
@@ -202,7 +227,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0051AC90",
@@ -214,7 +239,7 @@
     },
     {
      "addr": "0x0051B5D0",
-     "from": "CCBItemWindow"
+     "from": null
     }
    ]
   }

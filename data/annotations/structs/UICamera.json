@@ -1,131 +1,131 @@
 {
-  "name": "UICamera",
-  "pdb_size": 4,
-  "known_members": {
-    "128": {
-      "name": "m_nCamState",
-      "type": "int",
-      "source": "binary_scan:1refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "152": {
-      "name": "m_nViewMode",
-      "type": "int",
-      "source": "binary_scan:2refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "160": {
-      "name": "m_fCamAngle",
-      "type": "float",
-      "source": "binary_scan:5refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "164": {
-      "name": "m_fCoordU",
-      "type": "float",
-      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
-      "evidence_level": "unverified"
-    },
-    "168": {
-      "name": "m_fCoordV",
-      "type": "float",
-      "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
-      "evidence_level": "unverified"
-    },
-    "220": {
-      "name": "m_nBuffer",
-      "type": "int",
-      "source": "A:4x_mov_[ebp+0DCh]_load_pattern",
-      "evidence_level": "unverified"
-    },
-    "224": {
-      "name": "m_hTarget",
-      "type": "int",
-      "source": "binary_scan:1refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "272": {
-      "name": "m_pCameraData",
-      "type": "int",
-      "source": "binary_scan:2refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "460": {
-      "name": "m_nStateFlags",
-      "type": "int",
-      "source": "binary_scan:1refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "464": {
-      "name": "m_nParam",
-      "type": "int",
-      "source": "A:4x_mov_[esi+1D0h]_load_pattern",
-      "evidence_level": "unverified"
-    },
-    "492": {
-      "name": "m_fVecX",
-      "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
-      "evidence_level": "unverified"
-    },
-    "496": {
-      "name": "m_fVecY",
-      "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
-      "evidence_level": "unverified"
-    },
-    "500": {
-      "name": "m_fVecZ",
-      "type": "float",
-      "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
-      "evidence_level": "unverified"
-    },
-    "628": {
-      "name": "m_hCameraHandle",
-      "type": "int",
-      "source": "binary_scan:2refs | ida_xref2",
-      "evidence_level": "unverified"
-    },
-    "632": {
-      "name": "m_nTodo_278",
-      "type": "int",
-      "source": "binary_scan:1refs",
-      "evidence_level": "unverified"
-    }
+ "name": "UICamera",
+ "pdb_size": 4,
+ "known_members": {
+  "128": {
+   "name": "m_nCamState",
+   "type": "int",
+   "source": "binary_scan:1refs | ida_xref2",
+   "evidence_level": "unverified"
   },
-  "binary_size": 636,
-  "methods": {
-    "0x0041A070": {
-      "name": "IsPointVisible",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "相机视锥可见性检测",
-      "signature": "BOOL __thiscall(UICamera *this, float *pfTargetPos, char bNearVisible)"
-    },
-    "0x00420CD0": {
-      "name": "FindNearest",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "相机/目标查找",
-      "signature": "int __cdecl(int nVal)"
-    },
-    "0x00420E50": {
-      "name": "FindVisible",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "可见性过滤搜索",
-      "signature": "float *__cdecl(float *pMat)"
-    },
-    "0x004230D0": {
-      "name": "FindNearestTarget",
-      "name_source": "IDA语义分析 2026-10-31 批3-6",
-      "name_note": "相机最近目标查找",
-      "signature": "int __thiscall(UICamera *this)"
-    }
+  "152": {
+   "name": "m_nViewMode",
+   "type": "int",
+   "source": "binary_scan:2refs | ida_xref2",
+   "evidence_level": "unverified"
   },
-  "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。",
-  "bases": [
-    {
-      "name": "UIWnd",
-      "offset": 0
-    }
-  ],
-  "_analysis_20261026": "非 phantom：体访问 UICamera known_members 偏移（m_nBuffer@220 m_pCameraData@272），类真实存在；__cdecl 是 Hex-Rays 对 unnamed class 的默认渲染"
+  "160": {
+   "name": "m_fCamAngle",
+   "type": "float",
+   "source": "binary_scan:5refs | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "164": {
+   "name": "m_fCoordU",
+   "type": "float",
+   "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
+   "evidence_level": "unverified"
+  },
+  "168": {
+   "name": "m_fCoordV",
+   "type": "float",
+   "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
+   "evidence_level": "unverified"
+  },
+  "220": {
+   "name": "m_nBuffer",
+   "type": "int",
+   "source": "A:4x_mov_[ebp+0DCh]_load_pattern",
+   "evidence_level": "unverified"
+  },
+  "224": {
+   "name": "m_hTarget",
+   "type": "int",
+   "source": "binary_scan:1refs | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "272": {
+   "name": "m_pCameraData",
+   "type": "int",
+   "source": "binary_scan:2refs | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "460": {
+   "name": "m_nStateFlags",
+   "type": "int",
+   "source": "binary_scan:1refs | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "464": {
+   "name": "m_nParam",
+   "type": "int",
+   "source": "A:4x_mov_[esi+1D0h]_load_pattern",
+   "evidence_level": "unverified"
+  },
+  "492": {
+   "name": "m_fVecX",
+   "type": "float",
+   "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+   "evidence_level": "unverified"
+  },
+  "496": {
+   "name": "m_fVecY",
+   "type": "float",
+   "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+   "evidence_level": "unverified"
+  },
+  "500": {
+   "name": "m_fVecZ",
+   "type": "float",
+   "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
+   "evidence_level": "unverified"
+  },
+  "628": {
+   "name": "m_hCameraHandle",
+   "type": "int",
+   "source": "binary_scan:2refs | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "632": {
+   "name": "m_nTodo_278",
+   "type": "int",
+   "source": "binary_scan:1refs",
+   "evidence_level": "unverified"
+  }
+ },
+ "binary_size": 636,
+ "methods": {
+  "0x0041A070": {
+   "name": "IsPointVisible",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "相机视锥可见性检测",
+   "signature": "BOOL __thiscall(UICamera *this, float *pfTargetPos, char bNearVisible)"
+  },
+  "0x00420CD0": {
+   "name": "FindNearest",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "相机/目标查找",
+   "signature": "int __cdecl(int nVal)"
+  },
+  "0x00420E50": {
+   "name": "FindVisible",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "可见性过滤搜索",
+   "signature": "float *__cdecl(float *pMat)"
+  },
+  "0x004230D0": {
+   "name": "FindNearestTarget",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "相机最近目标查找",
+   "signature": "int __thiscall(UICamera *this)"
+  }
+ },
+ "_analysis_20261025": "Phantom class：原始二进制无 UICamera 符号。5 方法序言全不用 ECX（非 __thiscall），全为自由函数被 Hex-Rays 错误归属。methods 已清空；free_functions.cpp 的对应函数将按自由函数发射（正确形态）。known_members 保留（布局可能有独立参考价值）。asm 取证 2026-10-25：5/5 prologue 无 ECX。",
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  }
+ ],
+ "_analysis_20261026": "非 phantom：体访问 UICamera known_members 偏移（m_nBuffer@220 m_pCameraData@272），类真实存在；__cdecl 是 Hex-Rays 对 unnamed class 的默认渲染"
 }

@@ -307,23 +307,6 @@
    "signature": "int __thiscall CEffCylinder::UpdateGeometry(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004AF760": {
-   "name": "Update",
-   "signature": "int __thiscall(int)",
-   "evidence_level": "unverified"
-  },
-  "0x004C15D0": {
-   "name": "UpdateParticles",
-   "signature": "void __thiscall()",
-   "evidence_level": "unverified"
-  },
-  "0x004C0500": {
-   "name": "OnTest",
-   "signature": "int()",
-   "source": "vtable_gap_fill_v1(from CEffAction.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x004C5810": {
    "name": "_sdtor",
    "signature": "char *__thiscall(char pData)",
@@ -338,19 +321,6 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "shared_impl"
-  },
-  "0x004C2600": {
-   "name": "UpdateDelta",
-   "signature": "virtual void __thiscall(CEffCylinder *this)",
-   "name_source": "IDA语义分析 2026-11-01 批9",
-   "name_note": "增量计算（float delta = new - old）",
-   "adjudication": "confirmed",
-   "evidence_level": "A",
-   "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_pEM（adjudicate_multiclaim 2026-11-03）",
-   "lvars": {
-    "v2": "CEffMgr *"
-   },
-   "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): 唯一指针语境 this->m_pEM=((CEffMgr*)v2); *(float*)&v2 位读 retype 后仍合法"
   },
   "0x004C2620": {
    "name": "ProcessData",
@@ -379,13 +349,6 @@
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
   },
-  "0x0055434F": {
-   "name": "CEffCylinder_adjthunk_434F",
-   "signature": "void __thiscall()",
-   "declaration_only": true,
-   "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
-   "evidence_level": "unverified"
-  },
   "0x004C3BB0": {
    "name": "CheckState",
    "signature": "virtual void __thiscall(CEffCylinder *this)",
@@ -397,12 +360,6 @@
    "signature": "virtual void __thiscall(CEffCylinder *this)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "CreateTask 包装（this-12 调整）"
-  },
-  "0x004C2850": {
-   "name": "Method",
-   "signature": "virtual void __thiscall(CEffCylinder *this)",
-   "name_source": "IDA语义分析 2026-11-01 批14",
-   "name_note": "从 decomp 推断（_todo_4C2850）"
   }
  },
  "vtables": [
@@ -416,59 +373,87 @@
     },
     {
      "addr": "0x004C4060",
-     "from": null
+     "from": null,
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004C3EC0",
-     "from": null
+     "from": null,
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C45A0",
-     "from": null
+     "from": null,
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x004C4370",
-     "from": null
+     "from": null,
+     "name": "Destroy",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C3D90",
-     "from": null
+     "from": null,
+     "name": "AllocEffect",
+     "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C0500",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "OnTest",
+     "sig": "char __thiscall()"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "Update",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C5150",
-     "from": null
+     "from": null,
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C48D0",
-     "from": null
+     "from": null,
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)"
     },
     {
      "addr": "0x004C15D0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C5010",
-     "from": null
+     "from": null,
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

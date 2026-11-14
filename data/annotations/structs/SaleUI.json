@@ -399,13 +399,6 @@
    "signature": "int __thiscall SaleUI::InitUI()",
    "evidence_level": "unverified"
   },
-  "0x00526A40": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(UIWnd *a2, char *nMsg, int wParam)",
-   "source": "| [撞名 28 组四分账裁决 2026-10-16 analyzer] int this 假参残留清除（首参 `int this`=伪 this 机械残留；OnMessage 合法重载账） | multiclaim 裁决 2026-11-03: 败于 CCBUI（uniq=2）",
-   "evidence_level": "unverified",
-   "adjudication": "rejected"
-  },
   "0x0045A7B0": {
    "name": "SaleUI",
    "signature": "void __thiscall()",
@@ -573,11 +566,20 @@
    "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods",
    "evidence_level": "unverified"
   },
-  "0x0043DDF0": {
-   "name": "CCBControlWindow::Render",
-   "signature": "virtual void __thiscall(CCBMagicWindow *this)",
-   "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
-   "evidence_level": "unverified"
+  "0x0045ae40": {
+   "name": "_scalar_dtor_AE40",
+   "signature": "void *__thiscall(UIWnd *Block, char pData)",
+   "source": "vtable_gap_fill_v1(from SaleUI.json)",
+   "evidence_level": "unverified",
+   "declaration_only": true
+  },
+  "0x0046b4b0": {
+   "name": "_todo_0046B4B0",
+   "signature": "int __thiscall(int, int, int)",
+   "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox） | multiclaim 裁决 2026-11-03: 败于 SaleUI（uniq=13）",
+   "evidence_level": "A",
+   "adjudication": "rejected",
+   "semantic_name": "_todo_0046B4B0"
   }
  },
  "vtables": [
@@ -587,11 +589,11 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043DDF0",
-     "from": "UIListBox"
+     "from": null
     },
     {
      "addr": "0x0046B040",
@@ -599,19 +601,19 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": "UIListBox"
+     "from": "CUtil"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0045AE40",
-     "from": "UIBigMap"
+     "from": null
     },
     {
      "addr": "0x0046B4B0",
-     "from": "UIListBox"
+     "from": null
     }
    ]
   }

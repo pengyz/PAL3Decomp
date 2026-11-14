@@ -1,21 +1,21 @@
 {
-  "name": "tagEffClass",
-  "binary_size": 4,
-  "known_members": {},
-  "known_methods": {
-    "operator_int": {
-      "name": "operator int",
-      "signature": "int __thiscall operator int(tagEffClass *this)",
-      "source": "fix:C2679:implicit_conversion_to_int"
-    },
-    "operator_assign_int": {
-      "name": "operator=",
-      "signature": "void __thiscall operator=(tagEffClass *this, int v)",
-      "source": "fix:C2679:assign_int_to_struct"
-    }
+ "name": "tagEffClass",
+ "binary_size": 4,
+ "known_members": {},
+ "known_methods": {
+  "operator_int": {
+   "name": "operator int",
+   "signature": "int __thiscall operator int(tagEffClass *this)",
+   "source": "fix:C2679:implicit_conversion_to_int"
   },
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂（变量名）"
-  },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`tagEffClass`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
+  "operator_assign_int": {
+   "name": "operator=",
+   "signature": "void __thiscall operator=(tagEffClass *this, int v)",
+   "source": "fix:C2679:assign_int_to_struct"
+  }
+ },
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂（变量名）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`tagEffClass`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
 }

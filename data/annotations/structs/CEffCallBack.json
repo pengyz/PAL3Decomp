@@ -46,63 +46,91 @@
    "slots": [
     {
      "addr": "0x004C2870",
-     "from": "EffObjectPool"
+     "from": "EffMultiPassNode"
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004C2930",
-     "from": "RenderTarget2"
+     "from": "EffMultiPassNode",
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C29A0",
-     "from": "CEffAudio"
+     "from": "EffMultiPassNode",
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "Destroy",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C2820",
-     "from": "RenderTarget2"
+     "from": "EffMultiPassNode",
+     "name": "AllocEffect",
+     "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C2840",
-     "from": "RenderTarget2"
+     "from": null,
+     "name": "OnTest",
+     "sig": "char __thiscall()"
     },
     {
      "addr": "0x004C2BA0",
-     "from": "RenderTarget2"
+     "from": null,
+     "name": "Update",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffObj"
+     "from": "CEffSParticle",
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffObj"
+     "from": "CEffSParticle",
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004C2D00",
-     "from": "RenderTarget2"
+     "from": null,
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)"
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C3160",
-     "from": "RenderTarget2"
+     "from": null,
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

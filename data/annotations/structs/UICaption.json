@@ -60,18 +60,6 @@
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified"
   },
-  "0x0043B4B0": {
-   "name": "_sdtor_5",
-   "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
-   "evidence_level": "unverified",
-   "declaration_only": true
-  },
-  "0x0044BE00": {
-   "name": "_sdtor_24",
-   "signature": "UICaption *__thiscall(UICaption *Block, char a2)",
-   "evidence_level": "unverified",
-   "declaration_only": true
-  },
   "0x0043AD40": {
    "name": "Render",
    "signature": "void __thiscall()",
@@ -126,6 +114,64 @@
    "alt_name": "Destroy_39",
    "alt_signature": "int __thiscall(UICaption *this)",
    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  },
+  "0x004503c0": {
+   "name": "OnEvent",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "空覆盖虚方法",
+   "signature": "virtual void __thiscall(Actor *this, int a2)"
+  },
+  "0x00450560": {
+   "name": "IsOnScreen",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "source": "ida_xref:sub_fix_from_decomp_this_type",
+   "evidence_level": "unverified"
+  },
+  "0x0043a7f0": {
+   "name": "_sdtor",
+   "signature": "void * __thiscall(UIWnd *Block, char)",
+   "source": "vtable_gap_fill_v1(from UICaption.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "_sdtor"
+  },
+  "0x0043ab00": {
+   "name": "Destroy",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(from UICaption.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "Destroy"
+  },
+  "0x0043ab20": {
+   "name": "Update2",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "source": "vtable_gap_fill_v1(from UICaption.json)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected"
+  },
+  "0x0043a870": {
+   "name": "CreateChildWidget",
+   "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures __thiscall(int, void *pRect, UIWnd *parent, const char *pszName, char)",
+   "source": "vtable_gap_fill_v1(from UICaption.json) | multiclaim 裁决 2026-11-03: 败于 UICaption（uniq=2）",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "CreateChildWidget"
+  },
+  "0x0043ad40": {
+   "name": "Render_AD40",
+   "signature": "int __thiscall()",
+   "source": "vtable_gap_fill_v1(from UICaption.json) | multiclaim 裁决 2026-11-03: 败于 UICaption（uniq=3）",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "semantic_name": "Render_AD40"
+  },
+  "0x00450440": {
+   "name": "RenderContent",
+   "signature": "int __thiscall()",
+   "source": "ida_xref:sub_fix_from_decomp_this_type",
+   "evidence_level": "unverified",
+   "semantic_name": "RenderContent"
   }
  },
  "vtables": [
@@ -134,31 +180,31 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043AD40",
-     "from": "UIScenePanel"
+     "from": null
     },
     {
      "addr": "0x0043AB20",
-     "from": "UIScene"
+     "from": null
     },
     {
      "addr": "0x0043AB00",
-     "from": "UIScenePanel"
+     "from": null
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0043A7F0",
-     "from": "UIScene"
+     "from": null
     },
     {
      "addr": "0x00445D10",
-     "from": "UIWnd"
+     "from": "UIFrameWnd"
     },
     {
      "addr": "0x0043A870",
@@ -172,15 +218,15 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "from": "CUtil"
     },
     {
      "addr": "0x00450440",
-     "from": "UIWnd"
+     "from": null
     },
     {
      "addr": "0x00450560",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00450670",
@@ -188,7 +234,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00450370",
@@ -196,7 +242,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIWnd"
+     "from": "UIFrameWnd"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor 域 UICaption::LayoutDefault@+29 写（+35 相邻=MI 对）+UIWnd::DelegateRender+9 复写"
@@ -211,7 +257,7 @@
     },
     {
      "addr": "0x004503C0",
-     "from": "Actor"
+     "from": null
     },
     {
      "addr": "0x004AF760",
@@ -219,15 +265,15 @@
     },
     {
      "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "from": "CUtil"
     },
     {
      "addr": "0x00450440",
-     "from": "UIWnd"
+     "from": null
     },
     {
      "addr": "0x00450560",
-     "from": "UIFrameWnd"
+     "from": null
     },
     {
      "addr": "0x00450670",
@@ -235,7 +281,7 @@
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00450370",
@@ -243,7 +289,7 @@
     },
     {
      "addr": "0x00445D10",
-     "from": "UIWnd"
+     "from": "UIFrameWnd"
     }
    ],
    "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：MI 对（LayoutDefault+35/+29 相邻双写）+DelegateRender+17 复写"

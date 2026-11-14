@@ -1,93 +1,93 @@
 {
-  "name": "gbTexture",
-  "binary_size": 84,
-  "known_members": {
-    "24": {
-      "name": "Width",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "28": {
-      "name": "Height",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "32": {
-      "name": "pTexImage",
-      "type": "gbImage2D *",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "36": {
-      "name": "InFmt",
-      "type": "gbPixelFormat",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    },
-    "80": {
-      "name": "nLevels",
-      "type": "int",
-      "source": "annotation",
-      "evidence_level": "unverified"
-    }
+ "name": "gbTexture",
+ "binary_size": 84,
+ "known_members": {
+  "24": {
+   "name": "Width",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "base_size": 24,
-  "vtables": [
-    {
-      "addr": "external",
-      "external": true,
-      "slots": [
-        {
-          "addr": "0x1001BD30",
-          "from": null
-        },
-        {
-          "addr": "0x1001BEA0",
-          "from": null
-        },
-        {
-          "addr": "0x1001BF80",
-          "from": null
-        },
-        {
-          "addr": "0x1001C010",
-          "from": null
-        }
-      ],
-      "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
-    }
-  ],
-  "methods": {
-    "0x1001BD30": {
-      "name": "CreateFromMemory",
-      "signature": "void __thiscall gbTexture::CreateFromMemory(int,int,gbPixelFmtType,int,gbPixelFmtType,void *)",
-      "evidence_level": "unverified"
-    },
-    "0x1001BEA0": {
-      "name": "UpdateTexture",
-      "signature": "void __thiscall gbTexture::UpdateTexture(gbImage2D *pImage)",
-      "source": "asm 导入声明 + 重整名（A 级证据 2026-09-21）",
-      "note": "真实签名由二进制确定：`original/PAL3.exe.asm:534569-534570` 的 extrn 声明及其重整名 `?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z` ⇒ `QAE`=__thiscall 公有 · `X`=返回 void · `PAVgbImage2D@@`=gbImage2D*（1 参）；且两处调用点（asm:244390 / loc_4A6EDC）**均不使用 eax** ✓ ⇒ 原注解的 6 参 `(int,int,int,int,gbPixelFmtType,void*)` 全错 ✗。修此 ⇒ Hex-Rays 应产出正确调用。",
-      "evidence_level": "A"
-    },
-    "0x1001BF80": {
-      "name": "CreateForRenderTarget",
-      "signature": "int __thiscall gbTexture::CreateForRenderTarget(int,int,gbPixelFmtType)",
-      "evidence_level": "unverified"
-    },
-    "0x1001C010": {
-      "name": "CreateFromFileMemory",
-      "signature": "void __thiscall gbTexture::CreateFromFileMemory(void *,int)",
-      "evidence_level": "unverified"
-    }
+  "28": {
+   "name": "Height",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
   },
-  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x100F57E8 越映像界（>0x189C3CA）⇒ 运行时地址非映像 vtable ⇒ 编造",
-  "bases": [
+  "32": {
+   "name": "pTexImage",
+   "type": "gbImage2D *",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "36": {
+   "name": "InFmt",
+   "type": "gbPixelFormat",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "80": {
+   "name": "nLevels",
+   "type": "int",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 24,
+ "vtables": [
+  {
+   "addr": "external",
+   "external": true,
+   "slots": [
     {
-      "name": "gbResource",
-      "offset": 0
+     "addr": "0x1001BD30",
+     "from": null
+    },
+    {
+     "addr": "0x1001BEA0",
+     "from": null
+    },
+    {
+     "addr": "0x1001BF80",
+     "from": null
+    },
+    {
+     "addr": "0x1001C010",
+     "from": null
     }
-  ]
+   ],
+   "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
+  }
+ ],
+ "methods": {
+  "0x1001BD30": {
+   "name": "CreateFromMemory",
+   "signature": "void __thiscall gbTexture::CreateFromMemory(int,int,gbPixelFmtType,int,gbPixelFmtType,void *)",
+   "evidence_level": "unverified"
+  },
+  "0x1001BEA0": {
+   "name": "UpdateTexture",
+   "signature": "void __thiscall gbTexture::UpdateTexture(gbImage2D *pImage)",
+   "source": "asm 导入声明 + 重整名（A 级证据 2026-09-21）",
+   "note": "真实签名由二进制确定：`original/PAL3.exe.asm:534569-534570` 的 extrn 声明及其重整名 `?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z` ⇒ `QAE`=__thiscall 公有 · `X`=返回 void · `PAVgbImage2D@@`=gbImage2D*（1 参）；且两处调用点（asm:244390 / loc_4A6EDC）**均不使用 eax** ✓ ⇒ 原注解的 6 参 `(int,int,int,int,gbPixelFmtType,void*)` 全错 ✗。修此 ⇒ Hex-Rays 应产出正确调用。",
+   "evidence_level": "A"
+  },
+  "0x1001BF80": {
+   "name": "CreateForRenderTarget",
+   "signature": "int __thiscall gbTexture::CreateForRenderTarget(int,int,gbPixelFmtType)",
+   "evidence_level": "unverified"
+  },
+  "0x1001C010": {
+   "name": "CreateFromFileMemory",
+   "signature": "void __thiscall gbTexture::CreateFromFileMemory(void *,int)",
+   "evidence_level": "unverified"
+  }
+ },
+ "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x100F57E8 越映像界（>0x189C3CA）⇒ 运行时地址非映像 vtable ⇒ 编造",
+ "bases": [
+  {
+   "name": "gbResource",
+   "offset": 0
+  }
+ ]
 }

@@ -253,27 +253,6 @@
    "ordinal": 12,
    "evidence_level": "unverified"
   },
-  "0x004AF760": {
-   "name": "Update",
-   "signature": "int __thiscall(int)",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C0500": {
-   "name": "OnTest",
-   "signature": "int()",
-   "source": "vtable_gap_fill_v1(from CEffAction.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
-  "0x004C15D0": {
-   "name": "UpdateParticles",
-   "signature": "void __thiscall()",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x004C9630": {
    "name": "_scalar_dtor_9630",
    "signature": "void __thiscall(int nVal1)",
@@ -295,6 +274,14 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
+  },
+  "0x004c9630": {
+   "name": "_scalar_dtor_9630",
+   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffgbParticle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F8B4,0x56F878,0x56F86C,0x56F908,0x56F8CC,0x56F8C0,0x56F920,0x56F914）",
+   "evidence_level": "A",
+   "declaration_only": true,
+   "semantic_name": "_scalar_dtor_9630"
   }
  },
  "vtables": [
@@ -308,59 +295,87 @@
     },
     {
      "addr": "0x004C98F0",
-     "from": null
+     "from": null,
+     "name": "Create",
+     "sig": "char __thiscall(tagEffObjType *)"
     },
     {
      "addr": "0x004C9750",
-     "from": null
+     "from": null,
+     "name": "ResetState",
+     "sig": "void __thiscall(int, int, int, int)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "DestroyEffect",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffSParticle",
+     "name": "RenderScenePass",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C9ED0",
-     "from": null
+     "from": null,
+     "name": "UpdateFrame",
+     "sig": "void __thiscall(float)"
     },
     {
      "addr": "0x004C9CA0",
-     "from": null
+     "from": null,
+     "name": "Destroy",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004C9610",
-     "from": null
+     "from": null,
+     "name": "AllocEffect",
+     "sig": "void* __thiscall()"
     },
     {
      "addr": "0x004C0500",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "OnTest",
+     "sig": "char __thiscall()"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "Update",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004CAAB0",
-     "from": null
+     "from": null,
+     "name": "GetEditorObjDescription",
+     "sig": "const char *__thiscall(int)"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "GetEffect",
+     "sig": "int __thiscall(int)"
     },
     {
      "addr": "0x004CA1D0",
-     "from": null
+     "from": null,
+     "name": "RenderEffectPass",
+     "sig": "void __thiscall(int)"
     },
     {
      "addr": "0x004C15D0",
-     "from": null
+     "from": "CEffSParticle",
+     "name": "UpdateParticles",
+     "sig": "void __thiscall()"
     },
     {
      "addr": "0x004CA9A0",
-     "from": null
+     "from": null,
+     "name": "GetEditorTaskDescription",
+     "sig": "const char *__thiscall(int)"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

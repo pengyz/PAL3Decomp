@@ -872,3 +872,6 @@
 | `UIScenePanel::ProcessMessage` | inline | `UIWnd` | 24 | slot_out_of_range | `(*(void ( **)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
 | `UIScenePanel::Destroy` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1)` |
 | `UIWnd::RenderText` | inline | `UIWnd` | 12 | name_not_declared_for_class | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
+| `::RenderText` | inline | `UIWnd` | 12 | name_not_declared_for_class | `(*(void ( **)(UIWnd *))(*(_DWORD *)_this + 12))(_this)` |
+| `ArraySlots::RenderText` | inline | `UIWnd` | 12 | name_not_declared_for_class | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
+| `CCBLineupWindow::Destroy` | inline | `CCBUI` | 20 | self_arg_mismatch | `(*(int ( **)(CCBUI *, int))(*(_DWORD *)&m_pUI->UIWnd + 20))(m_pUI, 1)` |

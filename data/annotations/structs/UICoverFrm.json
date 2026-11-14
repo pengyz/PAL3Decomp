@@ -392,13 +392,6 @@
    "signature": "char __thiscall UICoverFrm::LoadFromFile(char *pszFileName)",
    "evidence_level": "unverified"
   },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl"
-  },
   "0x005279D0": {
    "name": "_scalar_dtor_79D0",
    "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)",
@@ -427,6 +420,19 @@
    "ordinal": 6,
    "source": "| [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）",
    "evidence_level": "unverified"
+  },
+  "0x00527dc0": {
+   "name": "ProcessInput",
+   "signature": "int __thiscall UIListBox::ProcessInput(int nVal, int nVal2)",
+   "evidence_level": "unverified",
+   "adjudication": "rejected",
+   "source": " | multiclaim 裁决 2026-11-03: 败于 UICoverFrm（uniq=2）"
+  },
+  "0x005279d0": {
+   "name": "_scalar_dtor_79d0",
+   "signature": "UIListBox *__thiscall(UIListBox *Block, char a2)",
+   "evidence_level": "unverified",
+   "declaration_only": true
   }
  },
  "vtables": [
@@ -436,7 +442,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0052C450",
@@ -448,11 +454,11 @@
     },
     {
      "addr": "0x0043DE40",
-     "from": null
+     "from": "CUtil"
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x0052BBB0",
@@ -470,7 +476,7 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x00527D80",
@@ -478,19 +484,19 @@
     },
     {
      "addr": "0x00527DC0",
-     "from": "UICoverFrm"
-    },
-    {
-     "addr": "0x0043DE40",
      "from": null
     },
     {
+     "addr": "0x0043DE40",
+     "from": "CUtil"
+    },
+    {
      "addr": "0x00445B90",
-     "from": "UIWnd"
+     "from": "CUtil"
     },
     {
      "addr": "0x005279D0",
-     "from": "UICoverFrm"
+     "from": null
     },
     {
      "addr": "0x00527EA0",

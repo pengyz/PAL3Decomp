@@ -1,26 +1,26 @@
 {
-  "name": "MatrixStack",
-  "binary_size": 4,
-  "methods": {
-    "0x00530350": {
-      "name": "RenderScenePass",
-      "signature": "void __thiscall()",
-      "evidence_level": "unverified"
-    },
-    "0x00530C70": {
-      "name": "BeginSceneWithRotation",
-      "signature": "void __thiscall()",
-      "_misattrib_evidence": "max_offset=784>class_size=4",
-      "evidence_level": "unverified"
-    },
-    "0x0052FC60": {
-      "name": "BeginScene",
-      "signature": "void __thiscall(MatrixStack *this)",
-      "evidence_level": "unverified"
-    }
+ "name": "MatrixStack",
+ "binary_size": 4,
+ "methods": {
+  "0x00530350": {
+   "name": "RenderScenePass",
+   "signature": "void __thiscall()",
+   "evidence_level": "unverified"
   },
-  "_verdicts": {
-    "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
+  "0x00530C70": {
+   "name": "BeginSceneWithRotation",
+   "signature": "void __thiscall()",
+   "_misattrib_evidence": "max_offset=784>class_size=4",
+   "evidence_level": "unverified"
   },
-  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MatrixStack@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
+  "0x0052FC60": {
+   "name": "BeginScene",
+   "signature": "void __thiscall(MatrixStack *this)",
+   "evidence_level": "unverified"
+  }
+ },
+ "_verdicts": {
+  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
+ },
+ "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MatrixStack@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声"
 }

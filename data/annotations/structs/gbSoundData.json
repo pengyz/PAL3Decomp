@@ -1,20 +1,20 @@
 {
-  "name": "gbSoundData",
-  "binary_size": 28,
-  "known_members": {
-    "24": {
-      "name": "pimage",
-      "type": "char *",
-      "source": "annotation",
-      "note": "replaced void* with char* (IDB struct compat)",
-      "evidence_level": "unverified"
-    }
-  },
-  "base_size": 24,
-  "bases": [
-    {
-      "name": "gbResource",
-      "offset": 0
-    }
-  ]
+ "name": "gbSoundData",
+ "binary_size": 28,
+ "known_members": {
+  "24": {
+   "name": "pimage",
+   "type": "char *",
+   "source": "annotation",
+   "note": "replaced void* with char* (IDB struct compat)",
+   "evidence_level": "unverified"
+  }
+ },
+ "base_size": 24,
+ "bases": [
+  {
+   "name": "gbResource",
+   "offset": 0
+  }
+ ]
 }

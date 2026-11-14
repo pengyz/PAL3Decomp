@@ -165,13 +165,6 @@
    "signature": "void __thiscall UIBigMap::UpdateElement(int element, int visible)",
    "evidence_level": "unverified"
   },
-  "0x00490E70": {
-   "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
-  },
   "0x00490E90": {
    "name": "UIBigMap",
    "signature": "void __thiscall UIBigMap::UIBigMap()",
@@ -181,11 +174,6 @@
    "name": "~UIBigMap",
    "signature": "void __thiscall UIBigMap::~UIBigMap()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
-  },
-  "0x00496FA0": {
-   "name": "Render",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
   "0x00418260": {
@@ -241,11 +229,6 @@
    "signature": "int __thiscall UIBigMap::ProcessChildItem(int arg0, int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x004971E0": {
-   "name": "ProcessInput",
-   "signature": "BOOL __thiscall UIBigMap::ProcessInput(int nVal, int nVal2)",
-   "evidence_level": "unverified"
-  },
   "0x00497450": {
    "name": "UpdateNPCAnimations",
    "signature": "int __thiscall(int nVal, int nVal2)",
@@ -271,24 +254,6 @@
    "signature": "int __thiscall UIBigMap::SetEntryVisible(int nIndex, unsigned __int8 bParam)",
    "class": "UIWnd",
    "evidence_level": "unverified"
-  },
-  "0x004974A0": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(UIBigMap *this, int nVal, char *pszBuf, int nItemID)",
-   "evidence_level": "unverified"
-  },
-  "0x0043DE40": {
-   "name": "CCBRoleState::Destroy",
-   "signature": "int __thiscall Destroy(int nMode)",
-   "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified"
-  },
-  "0x0045AE40": {
-   "name": "_scalar_dtor_AE40",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
-   "source": "vtable_gap_fill_v1(from SaleUI.json)",
-   "evidence_level": "unverified",
-   "declaration_only": true
   }
  },
  "base_size": 72,

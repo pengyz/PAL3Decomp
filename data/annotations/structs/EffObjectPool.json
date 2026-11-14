@@ -29,35 +29,6 @@
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_nCount,m_nCount2,m_pObjects（adjudicate_multiclaim 2026-11-03）"
-  },
-  "0x004C0620": {
-   "name": "_scalar_dtor",
-   "signature": "void __thiscall()",
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 284B dtor 形] 交互面[析构生命周期] 判定 ✅制式名对（_scalar_dtor） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
-   "evidence_level": "unverified"
-  },
-  "0x004C0600": {
-   "name": "StubReturn0",
-   "signature": "int __thiscall EffObjectPool::StubReturn0()",
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 102B ret] 交互面[空实现桩] 判定 ✅制式名对（StubReturn0）",
-   "evidence_level": "unverified"
-  },
-  "0x004C0610": {
-   "name": "nullsub_75_override",
-   "signature": "void __thiscall EffObjectPool::nullsub_75_override()",
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 158B] 交互面[空实现覆盖] 判定 ✅制式名对（nullsub_75_override）",
-   "type": "skip",
-   "reason": "external/CRT or empty stub",
-   "evidence_level": "unverified"
-  },
-  "0x00401800": {
-   "name": "nullsub",
-   "signature": "void __thiscall EffObjectPool::nullsub()",
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str",
-   "type": "skip",
-   "reason": "external/CRT or empty stub",
-   "evidence_level": "unverified"
   }
  },
  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C1490 全文体=释放循环 `operator delete(ptr); v6+=152`（152B 步长对象数组释放）——IDB 名 BeginRenderPass=误名；上下文语义=**对象池管理**（时间步 CalcDeltaTime + 数组释放 + 删际析构归 0x56F5D8 主表）⇒ EffRenderPassNode→EffObjectPool",

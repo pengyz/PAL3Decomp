@@ -1,19 +1,19 @@
 {
-  "name": "CCBUI_funcptr_t",
-  "binary_size": 16,
-  "known_members": {
-    "0": {
-      "name": "fp",
-      "type": "char *",
-      "source": "PAL3patch_verified",
-      "note": "replaced void* with char* (IDB struct compat)",
-      "evidence_level": "unverified"
-    },
-    "4": {
-      "name": "fp_data",
-      "type": "DWORD[3]",
-      "source": "PAL3patch_verified",
-      "evidence_level": "unverified"
-    }
+ "name": "CCBUI_funcptr_t",
+ "binary_size": 16,
+ "known_members": {
+  "0": {
+   "name": "fp",
+   "type": "char *",
+   "source": "PAL3patch_verified",
+   "note": "replaced void* with char* (IDB struct compat)",
+   "evidence_level": "unverified"
+  },
+  "4": {
+   "name": "fp_data",
+   "type": "DWORD[3]",
+   "source": "PAL3patch_verified",
+   "evidence_level": "unverified"
   }
+ }
 }
