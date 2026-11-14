@@ -3002,6 +3002,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # Build declaration, wrapping method name in () when it conflicts
             # with a Windows function-like macro (e.g. CreateDialog) to prevent
             # preprocessor expansion. Wrap in a separate function for clarity.
+            # [dtor槽规则 2026-11-14] MSVC: virtual ~X() 占 vtable slot0; 二进制 slot0
+            # = 删除式dtor(定谳 dtor_slot_adjudication_20261114)。注入dtor存在的类,
+            # 其 slot0 的删除式dtor方法(_sdtor_*/scalar_deleting/~X 形)改发**非虚**——
+            # 否则双dtor位 ⇒ 全表+1错位(首轮复核风险#4实证, CEffQuake.h 13条对15槽)。
+            # 无注入dtor的类(如抽象基 CEffObj)slot0 方法保持 virtual 占位。
+            _dtor_form_re = re.compile(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)')
+            def _is_dtor_form(name):
+                return bool(_dtor_form_re.match(name or ''))
+
             def _safe_method_name(name):
                 _MACRO_CONFLICTS = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
                                     'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
@@ -3025,7 +3034,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
-                    if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                    _dtor_slot0 = (_vtable_addr_order.get(_addr_int_vt) == 0
+                                   and _is_dtor_form(_mn) and (_will_inject_vptr or _has_dtor))
+                    if _dtor_slot0:
+                        _r0 = re.sub(r'\bvirtual\b', '', ret).strip()
+                        decl = "    %s %s(%s)%s; // [dtor槽规则] slot0=注入dtor所有, 本体非虚保留" % (_r0, _mn, params, ret_right)
+                    elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                         decl = "    virtual %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                     else:
                         decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
@@ -3035,7 +3049,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 # ★ vtable 方法强制 virtual（编译器 vptr 分发）
-                if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                _dtor_slot0 = (_vtable_addr_order.get(_addr_int_vt) == 0
+                               and _is_dtor_form(_mn) and (_will_inject_vptr or _has_dtor))
+                if _dtor_slot0:
+                    _r0 = re.sub(r'\bvirtual\b', '', ret).strip()
+                    decl = "    %s %s(%s); // [dtor槽规则] slot0=注入dtor所有, 本体非虚保留" % (_r0, _mn, params)
+                elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                     decl = "    virtual %s %s(%s);" % (ret, _mn, params)
                 else:
                     decl = "    %s %s(%s);" % (ret, _mn, params)
