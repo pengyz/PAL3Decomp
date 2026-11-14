@@ -2867,6 +2867,32 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if _slot_addr not in _method_addrs:
                 methods.append(
                     (f'slot_{_vi}', 'void __thiscall()', hex(_slot_addr)))
+        # [每槽正名 2026-11-14] C++ override同名规则 ⇒ 基类/叶同槽必须同名声明。
+        # vtables slots 的 name 字段(正名裁决账 canonical_slot_names_20261114)优先;
+        # 重复地址(0x401800占slot3/4/6/13=同体异名虚函数前身)的非首槽位置
+        # 补独立声明(位置名), 否则位置塌缩⇒全表错位。
+        _vt_slots_flat = []
+        for _vt in ((_ann_s or {}).get('vtables') or []):
+            _vt_slots_flat.extend(_vt.get('slots') or [])
+        if _vt_slots_flat:
+            _occ = {}
+            for _si, _sl in enumerate(_vt_slots_flat):
+                _a = (_sl.get('addr') or '').lower()
+                if _a:
+                    _occ.setdefault(_a, []).append((_si, _sl.get('name')))
+            _new_methods = []
+            for _mn, _ms, _ma in methods:
+                _al = _ma.lower() if isinstance(_ma, str) else hex(_ma)
+                occ = _occ.get(_al)
+                if occ and occ[0][1] and not _is_dtor_form(_mn):
+                    _mn = occ[0][1]  # 首槽正名覆盖(dtor形除外——dtor槽规则管slot0)
+                _new_methods.append((_mn, _ms, _ma))
+                for _si, _nm in (occ[1:] if occ else []):
+                    if not _nm:
+                        _nm = 'slot_%d' % _si  # 重复地址非首槽: 位置名独立声明
+                    _new_methods.append((_nm, 'void __thiscall()', _ma))
+            methods = _new_methods
+
         def _method_sort_key(item):
             _addr = int(item[2], 16) if isinstance(item[2], str) else item[2]
             if _addr in _vtable_addr_order:

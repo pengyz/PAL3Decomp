@@ -22,63 +22,78 @@
    "slots": [
     {
      "addr": "0x004D32E0",
-     "from": "CEffQuake"
+     "from": "CEffQuake",
+     "name": "slot_0"
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffAction"
+     "from": "CEffAction",
+     "name": "slot_1"
     },
     {
      "addr": "0x004D33A0",
-     "from": "CEffQuake"
+     "from": "CEffQuake",
+     "name": "ResetState"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffAction",
+     "name": "slot_3"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffAction",
+     "name": "slot_4"
     },
     {
      "addr": "0x004C29A0",
-     "from": "CEffAudio"
+     "from": "CEffAudio",
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00408BD0",
-     "from": "CEffAction"
+     "from": "CEffAction",
+     "name": "slot_6"
     },
     {
      "addr": "0x004D32C0",
-     "from": "CEffQuake"
+     "from": "CEffQuake",
+     "name": "AllocEffect"
     },
     {
      "addr": "0x004C0500",
-     "from": null
+     "from": null,
+     "name": "OnTest"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": null,
+     "name": "Update"
     },
     {
      "addr": "0x004C0510",
-     "from": null
+     "from": null,
+     "name": "slot_10"
     },
     {
      "addr": "0x004AF760",
-     "from": null
+     "from": null,
+     "name": "slot_11"
     },
     {
      "addr": "0x004D33B0",
-     "from": "CEffQuake"
+     "from": "CEffQuake",
+     "name": "RenderEffectPass"
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffAction"
+     "from": "CEffAction",
+     "name": "UpdateParticles"
     },
     {
      "addr": "0x004D3660",
-     "from": "CEffQuake"
+     "from": "CEffQuake",
+     "name": "slot_14"
     }
    ],
    "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
@@ -87,7 +102,7 @@
  ],
  "methods": {
   "0x004C0500": {
-   "name": "slot_8",
+   "name": "OnTest",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot"
@@ -99,7 +114,7 @@
    "evidence_level": "binary_vtable_slot"
   },
   "0x004AF760": {
-   "name": "slot_5",
+   "name": "Update",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址)",
    "evidence_level": "binary_vtable_slot"

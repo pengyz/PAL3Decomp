@@ -1,0 +1,23 @@
+{
+  "generated": "2026-11-14",
+  "design": "每槽一个正名(canonical): C++ override同名规则⇒基类/叶必须同名声明同槽; 原始源码本就每槽一名(override结构性事实), 分析的每函数异名(ResetIdle/ResetState)违背原始结构=证据记录非名字复原",
+  "rules": "正名=证据最强的分析名(基实现语义>叶覆写语义>泛化); 无证据⇒slot_{位置}诚实占位; 多槽同址⇒每槽独立正名(C++原始形态=多个同体异名虚函数)",
+  "slots": {
+    "slot0": {"addr": "0x004C0620", "name": "slot_0", "why": "删除式dtor; 基类decl-only, 叶经~X注入占位"},
+    "slot1": {"addr": "0x004C0600", "name": "slot_1", "why": "基实现xor al,al;retn 4 无语义"},
+    "slot2": {"addr": "0x004C0610", "name": "ResetState", "why": "叶覆写ResetIdle(Quake)/ResetState(Action) reset语义; 取Action名(泛)"},
+    "slot3": {"addr": "0x00401800", "name": "slot_3", "why": "空实现retn; 与slot4/6/13同址=4个同体异名虚函数(ICF折叠前身)"},
+    "slot4": {"addr": "0x00401800", "name": "slot_4", "why": "同上, 独立正名"},
+    "slot5": {"addr": "0x004AF760", "name": "UpdateFrame", "why": "Action叶覆写0x4C0740=UpdateFrame(A级证据)"},
+    "slot6": {"addr": "0x00401800", "name": "slot_6", "why": "空实现"},
+    "slot7": {"addr": "0x0055434F", "name": "AllocEffect", "why": "虚工厂(各叶slot7=各自alloc wrapper铁证); Action名AllocRenderTarget泛化"},
+    "slot8": {"addr": "0x004C0500", "name": "OnTest", "why": "基=叶同址, 分析名OnTest(bool返型T47证据)"},
+    "slot9": {"addr": "0x004AF760", "name": "Update", "why": "基=叶同址(slot9/11), 分析名Object::Update"},
+    "slot10": {"addr": "0x004C0510", "name": "slot_10", "why": "基实现无语义(sub_4C0510)"},
+    "slot11": {"addr": "0x004AF760", "name": "slot_11", "why": "与slot9同址, 正名必须异于Update"},
+    "slot12": {"addr": "0x004C0510", "name": "RenderEffectPass", "why": "叶覆写Quake RenderEffectPass/Action RenderScene, Render语义取CEff域名"},
+    "slot13": {"addr": "0x004C15D0", "name": "UpdateParticles", "why": "15/15叶同址折叠, 分析名UpdateParticles"},
+    "slot14": {"addr": "0x004C0510", "name": "slot_14", "why": "与slot10同址名必须异; Quake覆写GetQuakeType降为semantic_name"}
+  },
+  "semantic_name_preservation": "C++声明层=正名; 注解methods.semantic_name/头注释/IDB名/registry/ledger=分析名完整保留; s4按地址匹配零影响"
+}
