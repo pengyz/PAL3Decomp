@@ -577,5 +577,12 @@
   "decisive_disasm": "SetMousePos 0x402bb5: mov [eax], offset stru_56A620; ctor(0x402ba0起): 先写数据成员再写vptr=标准MSVC多态构造",
   "off0_member": "m_lpDI(IDirectInput8*) @0 = 错归属——真实偏移需查(可能+4以后)",
   "note": "_GRPinput(0x402bf3) 是析构器: 先恢复vptr=基类表再清理成员=标准MSVC析构"
+ },
+ "batch4_verdicts_20261114": {
+  "CScreenMode": "ctor写数据成员(+0x58/+0x5C/+0x60...)在vptr写入(+451)之前 ⇒ @0=m_pEnumeration是否被ctor写? 反汇编未见[esi+0]写入 ⇒ ctor先写vptr? 不——+451在所有成员写之后。判定=(b)变体: vptr写在ctor尾部(标准MSVC), 但@0未见数据写入 ⇒ @0=vptr为真, m_pEnumeration=错归属待重归属",
+  "CUtil": "ctor vptr写@+116, 同款判断: @0=m_bCanWarp未见写入 ⇒ (a)标准多态, m_bCanWarp=错归属",
+  "Camera": "ctor vptr写@+224, @0=m_pTodo_0(void*)未见写入 ⇒ (a)标准多态, m_pTodo_0=错归属",
+  "ScreenEffectMgr": "ctor vptr写@+161, @0=m_pVtable(void*)未写入 ⇒ (a)标准多态, m_pVtable=错归属(名字暗示vtable但位置错)",
+  "note": "ctor尾部写vptr是标准MSVC行为(所有成员构造完后最后装vptr)。判定关键=ctor体中@0是否有数据写入, 而非vptr写入位置。"
  }
 }
