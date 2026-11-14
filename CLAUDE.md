@@ -427,3 +427,44 @@ annotation 的**布局/类型/名字/归属审计**（DAG 序、三形态证据�
 | 「无证据/无冲突」类否定结论 | `audit_member_semantics --class <Cls>` 权威批量扫描 | `audit_attribution_evidence.py`（只看 contradiction） | 否定结论 `add`（authority=B，3+ 交叉确认） |
 | 函数语义命名 / 改名 | `tools/misattribution_ledger.py` A/B/C 分桶 | 伪语义命名禁令（`_todo_` 保底） | 桶内逐条裁决，禁止批量跳过 C 桶 |
 | 新会话冷启动 | `cli.py status` + `query --status open` | 复用优先，禁止重复考古 | — |
+
+## 函数签名修正判据（2026-11-13 定谳，逐条执行，不可批量）
+
+C2660（元数）/ C2671（static this）/ C2511（重载冲突）错误的修法流程：
+**先查函数体（decomp JSON 的 `decompiled_c`），再改 sig。** 不可跳过函数体分析直接改。
+
+### 七类判据（按优先级排序，命中即定谳）
+
+| 判据 | 证据来源 | 案例锚点 |
+|---|---|---|
+| ① binary_size 边界 | 参数偏移落在类 binary_size 内 ⇒ 参数=ECX(this) | Logger::Write: fmt+6356 落在 size=6360 内 |
+| ② 调用点实参计数 | 全部调用点传 N 参 ⇒ 实际栈参数= N | SetVisible/CreateTrack/BringWindowToTop |
+| ③ 函数体 this 引用 | `this->X()` 存在 ⇒ __thiscall 成员 | WriteRoleNames |
+| ④ Windows API 原型 | Win32 API 是 0 参 ⇒ 注解多余参数=IDA 推断错 | BringWindowToTop(HWND) |
+| ⑤ operator new 尺寸 ↔ 类尺寸 | `operator new(0xF8)` = 248B = 类 binary_size ⇒ 参数类型铁证 | CCBControlWindow Create(UIButton**) |
+| ⑥ IDB UDT readback | `ida_typeinf.udt_type_data_t` 读回真实偏移/类型 | m_ComSkill @72 ≠ 注解 @114 |
+| ⑦ 反汇编 vptr 写入 | `mov [esi], offset stru_XXXX` = vptr 存储标准形态 | CCBStage/GRPinput/Actor |
+
+### 纪律
+
+- **不可批量改**：pilot 签名批量(-2绿)、vptr 批量(-38绿) 两轮实证——ecx-leak 单证据假阳性（Actor::CopyConstruct 反例）
+- **三方一致才落**：泄漏参数 ↔ decomp 参数 ↔ 体内用点全部一致才改 sig
+- **写回后必须文件真值复核**：内存改 sd 未 dump = 假成功（19 条首轮空转教训）
+- **回退后必须补 IDA 轮**：checkout 标注不撤销已落库 IDB 型/名——漏跑=读数假持平
+
+### 常见陷阱速查
+
+| 陷阱 | 教训 |
+|---|---|
+| known_members 键 `'0x72'` | `int(x,0)` 解析为 114 ≠ IDB 真偏移 72——修前必读 IDB UDT |
+| 注解改名链毒化审计 | `Cls::Cls_M`→短名后 mangled 正则判据失效——工具必须跟随改名链更新 |
+| functions.json 旧条目占坑 | structs merge 被 owner 门静默丢弃——归属修复必须 owner+删旧条目双管 |
+| DWORD vs unsigned int | VC6 严格失配 `long*`≠`int*`——tick 字段等标 unsigned int |
+| 构造器/析构器 skip+methods 共存 | 必须标 `declaration_only: true` |
+| 标注回退 ≠ IDB 回退 | git checkout 不撤销已落库 IDB 型/名——需显式钉回 |
+
+### IDA 通路
+
+**唯一可用**：`tools/run_apply_export_idalib.py`（idalib 库模式直跑，apply+export ~6 分钟）
+**不可用**：idat 直跑（TVision 崩）、IDA MCP HTTP（90s 看门狗断连）
+**MCP 短查询可用**：idb_open/py_eval(xrefs_to/UDT检查)——关会话后才能跑 idalib（文件锁互斥）
