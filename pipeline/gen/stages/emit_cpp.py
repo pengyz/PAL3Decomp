@@ -1005,9 +1005,18 @@ def _emit_free_functions_header(store, header_dir):
         for t in sorted(fwd_types):
             h_lines.append('class %s;' % t)
         h_lines.append('')
+    # [作用域限定声明守卫 2026-11-14] `Class::Method(...)` 形的类外成员声明
+    # = 非法C++(C2653/C2039) —— free_functions.h 只发真自由函数。
+    # 限定名函数 = 方法错归属(collect按显示名路由, sig类域泄漏) → 跳过+计数。
+    _scoped_skipped = 0
     for fname, decl in sorted(store.free_func_sigs.items()):
+        if re.search(r'\b\w+::\w+\s*\(', str(decl)) and not str(decl).strip().startswith('//'):
+            _scoped_skipped += 1
+            continue
         h_lines.append('%s;' % decl)
     h_lines.append('')
+    if _scoped_skipped:
+        print('[free_functions.h] 跳过作用域限定声明 %d 条(方法错归属, C2653守卫)' % _scoped_skipped)
     content = '\n'.join(h_lines)
     canonical = store.project_root / 'pal3' / 'src' / 'free_functions.h'
     targets = [canonical]

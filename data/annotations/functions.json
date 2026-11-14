@@ -1846,8 +1846,8 @@
   "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
  },
  "0x00401800": {
-  "name": "j_j_codecvt_base",
-  "signature": "void __cdecl()",
+  "name": "CEffObj::DestroyEffect",
+  "signature": "void __thiscall()",
   "declaration_only": true,
   "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
  },
@@ -2417,5 +2417,750 @@
   "signature": "void __thiscall(gbVec3D *this)",
   "source": " | L-VAR 2026-11-12: gbengine.dll 0x100250A0 Normalize(?Normalize@gbVec3D@@QAEXXZ) 经 IAT 0x57C1EC 导入(导入表 hint/name 链取证)",
   "evidence_level": "A"
+ },
+ "0x004c0500": {
+  "name": "CEffObj::OnTest",
+  "signature": "char __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0510": {
+  "name": "CEffObj::GetEditorObjDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004af760": {
+  "name": "CEffObj::UpdateFrame",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0600": {
+  "name": "CEffObj::Create",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0610": {
+  "name": "CEffObj::ResetState",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0620": {
+  "name": "CEffObj::slot_0",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x0055434f": {
+  "name": "CEffObj::AllocEffect",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3300": {
+  "name": "CEffQuake::Update",
+  "signature": "int __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3860": {
+  "name": "CEffQuake::_sdtor",
+  "signature": "CEffQuake *__thiscall(char pData)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d32e0": {
+  "name": "CEffQuake::~CEffQuake",
+  "signature": "void __thiscall(int nVal1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4de0": {
+  "name": "CEffShock::sub_4D3DC0_adjthunk",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4df0": {
+  "name": "CEffShock::_todo_4D4DF0",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d32c0": {
+  "name": "CEffQuake::AllocEffect",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d33b0": {
+  "name": "CEffQuake::RenderEffectPass",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3660": {
+  "name": "CEffQuake::slot_14",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d45d0": {
+  "name": "CEffShock::StartShock",
+  "signature": "void __thiscall(int nRequireLoops)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d49f0": {
+  "name": "CEffShock::CreateGeom",
+  "signature": "void __thiscall(int nVal, int nVal2)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4b50": {
+  "name": "CEffShock::LoadTexture",
+  "signature": "void __thiscall(int pFileName, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4570": {
+  "name": "CEffShock::UpdateSegment",
+  "signature": "int __thiscall(int nVal)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3280": {
+  "name": "CEffShock::GetEditorTaskDescription",
+  "signature": "const char *__thiscall(int nIndex)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3910": {
+  "name": "CEffShock::CEffShock",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3930": {
+  "name": "CEffShock::~CEffShock",
+  "signature": "void __thiscall(int nVal1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3dc0": {
+  "name": "CEffShock::Initialize",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4110": {
+  "name": "CEffShock::Render",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d1be0": {
+  "name": "CEffQuad::DestroyOneQuad",
+  "signature": "void __thiscall(const void *n)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d1ca0": {
+  "name": "CEffQuad::SetQuad",
+  "signature": "bool __thiscall(int n)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d1e50": {
+  "name": "CEffQuad::DestroyAllQuad",
+  "signature": "int *__thiscall(int nVal)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d1f30": {
+  "name": "CEffQuad::ToNextFrame",
+  "signature": "int *__thiscall(int nQuad)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d2e10": {
+  "name": "CEffQuad::ProcessDestroyPass",
+  "signature": "int __thiscall CEffQuad::ProcessDestroyPass(int nVal)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0d90": {
+  "name": "CEffQuad::_scalar_dtor_0D90",
+  "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d1300": {
+  "name": "CEffQuad::Render",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d17d0": {
+  "name": "CEffQuad::Cleanup",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3220": {
+  "name": "CEffModel::_sdtor_adj",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0740": {
+  "name": "CEffAction::UpdateFrame",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0640": {
+  "name": "CEffAction::ResetState",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x00408bd0": {
+  "name": "CEffAction::NullCallback",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0520": {
+  "name": "CEffAction::AllocEffect",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0920": {
+  "name": "CEffAction::Update",
+  "signature": "int __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c09e0": {
+  "name": "CEffAction::RenderEffectPass",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0540": {
+  "name": "CEffAction::~CEffAction",
+  "signature": "char *__thiscall(char a2)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c0650": {
+  "name": "CEffAction::slot_1",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c15d0": {
+  "name": "CEffAction::UpdateParticles",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c1270": {
+  "name": "CEffAction::slot_14",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8650": {
+  "name": "CEffgbParticle::SetData",
+  "signature": "void __thiscall(CEffgbParticle *this, int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c87a0": {
+  "name": "CEffgbParticle::`scalar deleting destructor'",
+  "signature": "void *__thiscall(CEffgbParticle *Block, char pType)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8830": {
+  "name": "CEffgbParticle::Init",
+  "signature": "int __thiscall(int pType)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c88c0": {
+  "name": "CEffgbParticle::Attach",
+  "signature": "char *__thiscall(char pData)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c88d0": {
+  "name": "CEffgbParticle::Render",
+  "signature": "int *__thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8930": {
+  "name": "CEffgbParticle::SetTimeScale",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8970": {
+  "name": "CEffgbParticle::Destroy__fastcall",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8a40": {
+  "name": "CEffgbParticle::CreateTask",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8bf0": {
+  "name": "CEffgbParticle::ProcCommonTask",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8e10": {
+  "name": "CEffgbParticle::RenderEffectTexture",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9540": {
+  "name": "CEffgbParticle::~CEffgbParticle",
+  "signature": "char *__thiscall(char pData)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004ceb60": {
+  "name": "CEffgbParticle::CreateInstance",
+  "signature": "int __thiscall CEffgbParticle::CreateInstance(CEffgbParticle *pSrc, int nVal, CEffgbParticle *pParam)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c6980": {
+  "name": "CEffgbParticle::ReleaseEffect",
+  "signature": "void __fastcall(CEffgbParticle *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0a60": {
+  "name": "CEffgbParticle::DestroyEffect",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8b80": {
+  "name": "CEffgbParticle::slot_2",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8e80": {
+  "name": "CEffgbParticle::GetEffect",
+  "signature": "int __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8e90": {
+  "name": "CEffgbParticle::RenderEffectPass",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9260": {
+  "name": "CEffgbParticle::GetParticleType",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8950": {
+  "name": "CEffgbParticle::_scalar_dtor_8950",
+  "signature": "char *__thiscall(char)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb340": {
+  "name": "CEffGrid::slot_5_adjthunk",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c88b0": {
+  "name": "CEffgbParticle::_todo_88B0",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9530": {
+  "name": "CEffgbParticle::ProcCommonTask_adjthunk",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb350": {
+  "name": "CEffGrid::_todo_4CB350",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cfd40": {
+  "name": "CEffgbParticle::DestroyEffect_FD40",
+  "signature": "int __fastcall(CEffgbParticle *a1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c7c00": {
+  "name": "CEffExplosive::InitDefaultUVSet",
+  "signature": "void __thiscall(int nFramePerRow, int nFramePerCol)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c7cb0": {
+  "name": "CEffExplosive::LoadTexture",
+  "signature": "int *__thiscall(char *pFileName)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c7d40": {
+  "name": "CEffExplosive::CreateGeom",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c8370": {
+  "name": "CEffExplosive::UpdateExplosive",
+  "signature": "void __thiscall(float fDeltaTime, int fTime)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c6c10": {
+  "name": "CEffExplosive::Create",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c6f20": {
+  "name": "CEffExplosive::Destroy",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c7a70": {
+  "name": "CEffExplosive::GetEditorTaskDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c7b70": {
+  "name": "CEffExplosive::GetEditorObjDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c6960": {
+  "name": "CEffExplosive::_scalar_dtor_6960",
+  "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cffa0": {
+  "name": "CEffModel::DestroyEffect",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0ce0": {
+  "name": "CEffModel::Reset",
+  "signature": "int *__thiscall CEffModel::Reset()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cec80": {
+  "name": "CEffModel::CreateInstance",
+  "signature": "int __thiscall CEffModel::CreateInstance(CEffModel *pSrc, int nVal, CEffModel *pParam)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cfeb0": {
+  "name": "CEffModel::LoadFromNode",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d01c0": {
+  "name": "CEffModel::RenderScenePass",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cfc70": {
+  "name": "CEffModel::CEffModel",
+  "signature": "CEffModel *__thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0bd0": {
+  "name": "CEffModel::UpdateDuration",
+  "signature": "void __thiscall(int nVal1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cfd00": {
+  "name": "CEffModel::CreateEffModel",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0390": {
+  "name": "CEffModel::GetRenderNode",
+  "signature": "int __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d03b0": {
+  "name": "CEffModel::RenderModel",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0850": {
+  "name": "CEffModel::GetModelType",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d0ca0": {
+  "name": "CEffModel::_scalar_dtor1",
+  "signature": "char *__thiscall(char a2)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d3230": {
+  "name": "CEffModel::_scalar_dtor2",
+  "signature": "char *__thiscall(char a2)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cfd20": {
+  "name": "CEffModel::~CEffModel",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3c90": {
+  "name": "CEffCylinder::Init_3C90",
+  "signature": "CEffCylinder **__thiscall CEffCylinder::Init()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3d90": {
+  "name": "CEffCylinder::AllocEffect",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3dd0": {
+  "name": "CEffCylinder::_scalar_dtor_3DD0",
+  "signature": "void __fastcall(CEffCylinder *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3eb0": {
+  "name": "CEffCylinder::~CEffCylinder",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3ec0": {
+  "name": "CEffCylinder::Init_3EC0",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c4060": {
+  "name": "CEffCylinder::Create",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c4370": {
+  "name": "CEffCylinder::Destroy",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c45a0": {
+  "name": "CEffCylinder::CreateTask",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c48d0": {
+  "name": "CEffCylinder::ProcInitTask",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c5010": {
+  "name": "CEffCylinder::GetEditorTaskDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c5150": {
+  "name": "CEffCylinder::GetEditorObjDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c5210": {
+  "name": "CEffCylinder::InitDefaultUVSet",
+  "signature": "void __thiscall(int nFramePerRow, int nFramePerCol)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c52c0": {
+  "name": "CEffCylinder::LoadTexture",
+  "signature": "int *__thiscall(char *pFileName)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004ca450": {
+  "name": "CEffCylinder::UpdateGeometry",
+  "signature": "int __thiscall CEffCylinder::UpdateGeometry(int nVal)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c5810": {
+  "name": "CEffCylinder::_sdtor",
+  "signature": "char *__thiscall(char pData)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3db0": {
+  "name": "CEffCylinder::_scalar_dtor_3DB0",
+  "signature": "void __thiscall(int nVal1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2620": {
+  "name": "CEffCylinder::ProcessData",
+  "signature": "void __thiscall(CEffCylinder *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2640": {
+  "name": "CEffCylinder::_todo_4C2640",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2660": {
+  "name": "CEffCylinder::_todo_4C2660",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2680": {
+  "name": "CEffCylinder::_todo_4C2680",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c3bb0": {
+  "name": "CEffCylinder::CheckState",
+  "signature": "virtual void __thiscall(CEffCylinder *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c5800": {
+  "name": "CEffCylinder::CreateTaskWrapper",
+  "signature": "virtual void __thiscall(CEffCylinder *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9610": {
+  "name": "CEffGrid::CEffGrid",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9650": {
+  "name": "CEffGrid::~CEffGrid",
+  "signature": "void __fastcall(CEffGrid *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c98f0": {
+  "name": "CEffGrid::Create",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004ca9a0": {
+  "name": "CEffGrid::GetEditorObjDescription",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9750": {
+  "name": "CEffGrid::Init",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9ed0": {
+  "name": "CEffGrid::slot_5",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9ca0": {
+  "name": "CEffGrid::slot_6",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004caab0": {
+  "name": "CEffGrid::DispatchByType",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004ca1d0": {
+  "name": "CEffGrid::RenderEffectPass",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c9630": {
+  "name": "CEffGrid::_scalar_dtor_9630",
+  "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb480": {
+  "name": "CEffMeteor::CEffMeteor",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb4c0": {
+  "name": "CEffMeteor::~CEffMeteor",
+  "signature": "void __fastcall(CEffMeteor *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb5e0": {
+  "name": "CEffMeteor::Init",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb800": {
+  "name": "CEffMeteor::Create",
+  "signature": "char __thiscall(tagEffObjType *)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cbfc0": {
+  "name": "CEffMeteor::CreateTask",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cc290": {
+  "name": "CEffMeteor::CreateTarget",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cbc50": {
+  "name": "CEffMeteor::slot_6",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004ccba0": {
+  "name": "CEffMeteor::DispatchByType",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cca90": {
+  "name": "CEffMeteor::GetEffectType",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cb4a0": {
+  "name": "CEffMeteor::_scalar_dtor_B4A0",
+  "signature": "void __thiscall(int nVal1)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cd9f0": {
+  "name": "CEffMeteor::CreateTask_adjthunk",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004cda00": {
+  "name": "CEffMeteor::_todo_4CDA00",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d33a0": {
+  "name": "CEffBink::ResetState",
+  "signature": "void __thiscall(int, int, int, int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4ee0": {
+  "name": "CEffSParticle::CEffSParticle",
+  "signature": "void* __thiscall() = 0",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4f20": {
+  "name": "CEffSParticle::~CEffSParticle",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4fc0": {
+  "name": "CEffSParticle::Create",
+  "signature": "void __thiscall(float)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d51b0": {
+  "name": "CEffSParticle::Init",
+  "signature": "void __thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d53e0": {
+  "name": "CEffSParticle::Attach",
+  "signature": "int __thiscall(int nVal)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d5620": {
+  "name": "CEffSParticle::GetEffTypeData",
+  "signature": "const char *__thiscall(int)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d56b0": {
+  "name": "CEffSParticle::Render",
+  "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d5790": {
+  "name": "CEffSParticle::SetTimeScale",
+  "signature": "void *__thiscall(CEffSParticle *Block, char fTimeScale)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d5860": {
+  "name": "CEffSParticle::CreateTask",
+  "signature": "char *__thiscall(char p)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d58d0": {
+  "name": "CEffSParticle::GetEditorTaskDescription",
+  "signature": "const char *__thiscall(int nIndex)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d4f00": {
+  "name": "CEffSParticle::_scalar_dtor_4F00",
+  "signature": "char *__thiscall(char)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004d5850": {
+  "name": "CEffSParticle::Create_adjthunk",
+  "signature": "void __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2600": {
+  "name": "CEffSParticle::UpdateDelta",
+  "signature": "virtual void __thiscall(CEffCylinder *this)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
+ },
+ "0x004c2850": {
+  "name": "CEffSParticle::Method",
+  "signature": "int __thiscall()",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)"
  }
 }

@@ -3019,6 +3019,50 @@ def apply_annotations():
     ida_auto.auto_wait()
     ida_hexrays.clear_cached_cfuncs()
 
+    # --- 5b. Struct-method function types (类函数类型走类JSON — 设计统一 2026-11-15) ---
+    # [架构裁定 2026-11-15 用户] 类函数类型流从类JSON(归属=类型同源), functions.json 只管自由函数。
+    # 旧模型(类方法类型需 functions.json 双列) = 归属搬移切断类型流的根因(C2556族)。
+    # 前提不变量: 每地址唯一归属(owner收敛工具维护); 多归属地址跳过+告警。
+    # pure/'= 0' 条目: 剥除后应用(纯虚=无函数体类型契约, 由叶覆写实现)。
+    import collections as _collections2
+    _owner_cnt = _collections2.Counter()
+    _owner_sig = {}
+    for _sf5, _sd5 in _strict_struct_entries(os.path.join(ANNOTATIONS_DIR, "structs")):
+        for _a5, _m5 in (_sd5.get('methods') or {}).items():
+            try:
+                _au5 = '0x%08x' % int(_a5, 16)
+            except (ValueError, TypeError):
+                continue
+            _owner_cnt[_au5] += 1
+            if _m5.get('signature'):
+                _owner_sig.setdefault(_au5, (_m5['signature'], _m5.get('non_virtual'), _sd5.get('name', '')))
+    _sm_ok = _sm_skip = _sm_fail = 0
+    for _au5, (_sig5, _nv5, _cls5) in sorted(_owner_sig.items()):
+        if _owner_cnt[_au5] > 1:
+            _sm_skip += 1
+            continue
+        if _nv5:
+            _sm_skip += 1
+            continue
+        _addr5 = int(_au5, 16)
+        if _addr5 in skip_funcs:
+            continue
+        _s5 = str(_sig5).replace('= 0', '').strip().rstrip(';').strip()
+        if not _s5 or '(...)' in _s5:
+            continue
+        try:
+            if idc.SetType(_addr5, _s5):
+                _sm_ok += 1
+            else:
+                _tif5 = _make_vtable_method_type(_s5, 'm', til, _cls5)
+                if _tif5 is not None and ida_typeinf.apply_tinfo(_addr5, _tif5, ida_typeinf.TINFO_DEFINITE):
+                    _sm_ok += 1
+                else:
+                    _sm_fail += 1
+        except Exception as _e5:
+            _sm_fail += 1
+    log("[5b] Struct-method types: ok=%d skip=%d(multi-claim/non_virtual) fail=%d" % (_sm_ok, _sm_skip, _sm_fail))
+
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
     sig_ok = 0

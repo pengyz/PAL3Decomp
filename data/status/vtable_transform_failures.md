@@ -875,3 +875,6 @@
 | `::RenderText` | inline | `UIWnd` | 12 | name_not_declared_for_class | `(*(void ( **)(UIWnd *))(*(_DWORD *)_this + 12))(_this)` |
 | `ArraySlots::RenderText` | inline | `UIWnd` | 12 | name_not_declared_for_class | `(*(void ( **)(UIWnd *))(*(_DWORD *)this + 12))(this)` |
 | `CCBLineupWindow::Destroy` | inline | `CCBUI` | 20 | self_arg_mismatch | `(*(int ( **)(CCBUI *, int))(*(_DWORD *)&m_pUI->UIWnd + 20))(m_pUI, 1)` |
+| `CEffQuad::Cleanup` | inline | `CTaskTpl_tagEffTaskParam_CEffQuad` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffQuad *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4->_tail_000 + 4))( v4, *(_DWORD *)(*(_DWORD *)v13 + v14), *(_DWORD *)(*(_DWORD *)v13 + v14 ` |
+| `CEffShock::Initialize` | inline | `CTaskTpl_tagEffTaskParam_CEffShock` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffShock *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v5), *(_DWORD *)(*v4 + v5 + 4), 0)` |
+| `ArraySlots::RenderText` | inline | `ArraySlots` | 12 | name_not_declared_for_class | `(*(void ( **)(ArraySlots *))(*(_DWORD *)this + 12))(this)` |

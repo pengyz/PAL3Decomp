@@ -2795,9 +2795,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # 退役 _read_vtable_from_binary(管线读二进制=越权) 与 true_vtable_map 依赖:
         # 注解 slots 有序列表本身就是表边界(15条=15槽), 无需任何走读。
         _is_vts = ((_ann_s or {}).get('vtables') or [])
+        # [只发主表 2026-11-14] vtables[0]=主表槽契约; 第二基表槽位=adjustor/
+        # 第二链机制(B2路线parked) —— 逐位发射第二表 = 与主表同名声明C2535
+        # (RoleSystem::AllocSlotData 主表+第二表双声明实证) ⇒ 只发 vts[0]。
         _vt_slots_flat = []
-        for _vt0 in _is_vts:
-            _vt_slots_flat.extend(_vt0.get('slots') or [])
+        if _is_vts:
+            _vt_slots_flat.extend(_is_vts[0].get('slots') or [])
         def _norm_addr(_a):
             _a = str(_a)
             return '0x%08x' % int(_a, 16) if _a.lower().startswith('0x') else _a
@@ -2833,6 +2836,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _m0 = _methods_by_addr.get(_slot_addr_hex.lower())
             if not _nm:
                 _nm = (_m0 or {}).get('name') or ('slot_%d' % _vi)
+            # [合法标识符守卫 2026-11-14] 槽名带作用域前缀(旧普查'CCBPanelSlot::X'形)
+            # = 非法C++标识符 ⇒ 剥前缀取尾段; 剥后非标识符 ⇒ 回退slot_{位置}
+            if '::' in str(_nm):
+                _nm = str(_nm).split('::')[-1]
+            if not re.match(r'^[A-Za-z_]\w*$', str(_nm)):
+                _nm = 'slot_%d' % _vi
             if not _sg:
                 _sg = (_m0 or {}).get('signature') or 'void __thiscall()'
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')

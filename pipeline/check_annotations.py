@@ -868,10 +868,12 @@ def check_canonical_contract():
             continue
         for vi, vt in enumerate(d.get('vtables') or []):
             slots = vt.get('slots') or []
+            # [sig降维 2026-11-14 用户质问修正] 槽位sig=冗余拷贝(一地址一签名,
+            # methods条目=真值) —— 契约只要求name; 签名一致性走地址级统一
             _miss = sum(1 for i, s in enumerate(slots)
-                        if (i > 0 or True) and (not s.get('name') or not s.get('sig')))
+                        if not s.get('name'))
             if slots and _miss:
-                cur_viol['C1:%s:v%d' % (cls, vi)] = '%s v%d: %d/%d 槽缺name/sig' % (cls, vi, _miss, len(slots))
+                cur_viol['C1:%s:v%d' % (cls, vi)] = '%s v%d: %d/%d 槽缺name' % (cls, vi, _miss, len(slots))
             for s in slots:
                 frm = s.get('from')
                 if frm and frm not in _KNOWN_VT_CLASSES:
