@@ -4,9 +4,10 @@
  "tool": "data/status/ceff_alloc_map_20261114.json (alloc→ctor→table 三元组扫描)",
  "family_truth": {
   "hierarchy": "全部CEff*类 = [vptr@0][CEffObj 8B: m_pEM@4,m_bIdle@8][CTaskTpl<X> 36B@12: 第二vptr@12+成员@16] + 自有成员",
-  "ceff_obj": "非多态8B数据基(ctor无写表); 注解12B+_gap_000[4]=把派生vptr槽误当成基类空间 ✗",
+  "ceff_obj": "12B多态抽象基(vptr@0 + m_pEM@4 + m_bIdle@8) — 【20261115改判】早前\"8B非多态\"被二进制证伪: CEffAction完整dtor(0x4C0560)两条出口路径均mov [ebp],0x56F62C(根表还原)+0x4C0620=CEffObj自身删除式dtor(先装0x56F62C再条件delete); 25写点吻合; 若按8B改布局CTaskTpl偏移会从+12错移+8与thunk sub=12矛盾(完备性裁决书D节)",
   "ctasktpl": "第二基多态(每ctor三段写第二段=CTaskTpl自身表); 18个模板实例头需多态化",
-  "ctor_pattern": "[@+0xC]=CTaskTpl初始表 → [@+0x0]=派生最终主表 → [@+0xC]=派生最终第二表"
+  "ctor_pattern": "[@+0xC]=CTaskTpl初始表 → [@+0x0]=派生最终主表 → [@+0xC]=派生最终第二表",
+  "ceff_obj_note": "永不实例化(无ctor写表), 真基表0x56F62C由叶dtor尾部还原(dtor_slot_adjudication_20261114+复核定谳维持)"
  },
  "class_table_verdict": {
   "CEffQuake(48)": {
@@ -137,5 +138,5 @@
   "new": "CEffObj降8B非多态(成员重基去gap) + 派生类已声明虚(保留) + CTaskTpl模板头多态化 + 双vptr由MSVC原生布局: [vptr@0][m_pEM@4][m_bIdle@8][CTaskTpl vptr@12][成员@16..] 与二进制逐字节吻合"
  },
  "identity_notes": "RenderTarget(200B)=PDB真实类; RenderTarget2(4292=CEffCylinder尺寸,pdb_size=4)=疑似CEffCylinder造名, 96 methods归属未裁决; EffTargetPool/EffObjectPool(32B)=虚构池类待退役评估",
- "authority_note": "权威序: 二进制证据 > 分析命名链 > PDB(仅参考, 版本不对应)。层级扁平性已由ctor三段写序列独立证实(见dtor_slot_adjudication.hierarchy_binary_evidence)。PDB尺寸/基类仅用于候选清单与交叉校验。"
+ "authority_note": "权威序: 二进制证据 > 分析命名链 > PDB(仅参考, 版本不对应)。层级扁平性已由ctor三段写序列独立证实(见dtor_slot_adjudication.hierarchy_binary_evidence)。PDB尺寸/基类仅用于候选清单与交叉校验。 | 【20261115完备性复核后归一】CEffObj=12B多态根(8B非多态结论作废)"
 }
