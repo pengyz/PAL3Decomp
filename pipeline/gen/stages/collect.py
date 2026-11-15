@@ -278,6 +278,8 @@ def collect_functions(decomp_dir=None):
                 _an5 = _anm5.get('name') if isinstance(_anm5, dict) else None
                 # [正名对齐 2026-11-15] 注解名存在即覆盖(注解=唯一真值, G1b根因:
                 # 旧条件仅thunk类条目吃注解名 → 正名条目的cpp定义名残留decomp旧名 → 头体漂移C2039/C2673)
+                # ⚠️ 安全权衡记录: 注解名错时由此前"编译失败暴露"变为"静默传播"——
+                #    对冲 = check_annotations 名漂移检查(W2 warn 可见) + 正名条目均有 evidence 记录
                 if _an5 and _an5 != method:
                     # 体文本定义行同步改名(stage1 重建按 ctx.method 搜定义行——
                     # 不同步则搜不到 → 保留旧名 → C2084 复活)
