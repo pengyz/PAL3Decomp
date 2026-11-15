@@ -1010,10 +1010,12 @@ def check_canonical_contract():
                     cur_viol['N3s:%s:%s' % (cls, s.get('addr'))] = '%s slot name含作用域: %s' % (cls, nm[:50])
 
     for k, desc in sorted(cur_viol.items()):
-        if k not in base:
+        # [C7不可豁免] 编译错误级键跳过grandfather检查, 直接硬红
+        if k.startswith('C7') or k not in base:
             errors.append('CANON:%s %s' % (k, desc))
     if cur_viol and not os.path.exists(base_path):
-        json.dump({'grandfathered': sorted(cur_viol.keys()),
+        # [C7不可豁免 2026-11-15 用户裁定] 编译错误级键(C7)禁入grandfather
+        json.dump({'grandfathered': sorted(k for k in cur_viol.keys() if not k.startswith('C7')),
                    'note': '存量grandfather; 新增违规=硬红 (canonical_slot_names_20261114契约)'},
                   open(base_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         print('[canonical] 基线自举: %d 违规键冻结 (存量grandfather, 新增=硬红)' % len(cur_viol))
