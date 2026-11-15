@@ -193,6 +193,12 @@
    "signature": "int __thiscall(int, tagRECT *, UIWnd *)",
    "evidence_level": "A",
    "source": "binary:UIWnd真表slot4(Create), registry名吻合"
+  },
+  "0x00445D10": {
+   "name": "OnMessage",
+   "signature": "int __thiscall(int, int, int)",
+   "source": "binary:UIWnd真表slot6(0x445D10=OnMessage, 头声明槽契约已有); cpp定义在CCBRoleState.cpp(继承实现, 体属UIWnd)",
+   "evidence_level": "binary_vtable_slot"
   }
  },
  "vtables": [
