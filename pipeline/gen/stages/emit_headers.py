@@ -3302,6 +3302,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _rewritten.append(_l)
             lines = _rewritten
 
+    # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
+    lines = [l for l in lines if '[G1b non-slot]' not in l]
     return '\n'.join(lines)
 
 
