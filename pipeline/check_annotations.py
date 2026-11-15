@@ -1005,6 +1005,19 @@ def check_canonical_contract():
                 cur_viol['N8:%s:%s' % (cls, a)] = '%s 双调用约定: %s' % (cls, sig[:50])
             if not sig and not m.get('declaration_only') and m.get('evidence_level') in ('A', 'B'):
                 cur_viol['N6b:%s:%s' % (cls, a)] = '%s %s: A/B级证据但sig为空' % (cls, nm[:40])
+            # [N10 2026-11-15 用户裁定"格式规则加入门禁"] methods键格式非法
+            try:
+                int(a, 16)
+            except (ValueError, TypeError):
+                cur_viol['N10:%s:%s' % (cls, a)] = '%s methods键非hex: %s' % (cls, a)
+        # [N10b 2026-11-15] 键归一化检查: 必须为 0x%08x 形(8位小写)
+        for a in (d.get('methods') or {}).keys():
+            try:
+                canonical = '0x%08x' % int(a, 16)
+                if a != canonical:
+                    cur_viol['N10b:%s:%s' % (cls, a)] = '%s methods键非规范形: %s (应=%s)' % (cls, a, canonical)
+            except (ValueError, TypeError):
+                pass
         for vt in d.get('vtables') or []:
             for s in (vt.get('slots') or []):
                 nm = str(s.get('name') or '')
@@ -1012,6 +1025,12 @@ def check_canonical_contract():
                     cur_viol['N1s:%s:%s' % (cls, s.get('addr'))] = '%s slot name含括号: %s' % (cls, nm[:50])
                 if '::' in nm:
                     cur_viol['N3s:%s:%s' % (cls, s.get('addr'))] = '%s slot name含作用域: %s' % (cls, nm[:50])
+                # [N10s 2026-11-15] slot addr格式
+                try:
+                    int(str(s.get('addr') or ''), 16)
+                except (ValueError, TypeError):
+                    if s.get('addr'):
+                        cur_viol['N10s:%s:%s' % (cls, s.get('addr'))] = '%s slot addr非hex: %s' % (cls, s.get('addr'))
 
     for k, desc in sorted(cur_viol.items()):
         # [C7不可豁免] 编译错误级键跳过grandfather检查, 直接硬红
