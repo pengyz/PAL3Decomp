@@ -35,7 +35,8 @@
    "level": "HARD",
    "scope": "slots.from",
    "rule": "from指向不存在的类文件 — 悬空引用",
-   "action": "修复=owner重算"
+   "action": "修复=owner重算",
+   "note": "C2/C7 = 编译错误级, 不可grandfather豁免(20261115用户裁定)"
   },
   {
    "id": "R-N2a",
@@ -78,6 +79,14 @@
    "scope": "methods.signature",
    "rule": "sig为空且evidence_level=A/B — 有证据必有签名(A级objdump连字节都记了)",
    "action": "修复=补签名"
+  },
+  {
+   "id": "R-C7",
+   "level": "HARD-NOEXEMPT",
+   "scope": "vtables slots vs methods",
+   "rule": "自有槽(from=null)地址必须在methods有条目; 继承槽地址必须在from类methods/表有声明 — 违反=定义路由断链→C2039/C2673编译错; 不可grandfather豁免",
+   "action": "修复=回填methods条目(name+sig=槽位契约)或修正from指向",
+   "note": "20261115用户裁定: '会导致编译错误的问题一律不准入'"
   }
  ],
  "现存统计": {
