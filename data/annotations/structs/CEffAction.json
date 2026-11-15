@@ -92,7 +92,7 @@
    "source": "vtable_gap_fill_v1(from CEffAction.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "NullCallback"
+   "semantic_name": "DestroyEffect(槽3语义) / RenderScenePass(槽4语义) / Destroy(槽6语义) — 三槽同址ICF"
   }
  },
  "vtables": [
@@ -119,14 +119,16 @@
     {
      "addr": "0x00408BD0",
      "from": "EffAudioNode",
-     "name": "DestroyEffect",
-     "sig": "void __thiscall()"
+     "name": "NullCallback",
+     "sig": "void __thiscall()",
+     "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x00408BD0",
      "from": "EffAudioNode",
-     "name": "RenderScenePass",
-     "sig": "void __thiscall()"
+     "name": "NullCallback",
+     "sig": "void __thiscall()",
+     "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x004C0740",
@@ -137,8 +139,9 @@
     {
      "addr": "0x00408BD0",
      "from": "EffAudioNode",
-     "name": "Destroy",
-     "sig": "void __thiscall()"
+     "name": "NullCallback",
+     "sig": "void __thiscall()",
+     "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x004C0520",

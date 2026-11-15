@@ -818,10 +818,11 @@
    "evidence_level": "unverified"
   },
   "0x004ea6d0": {
-   "name": "DlgProcEffect",
+   "name": "DlgProcEffect_a6d0",
    "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批10",
-   "name_note": "特效对话框过程（EffSlot+Dialog 操作）"
+   "name_note": "特效对话框过程（EffSlot+Dialog 操作）",
+   "semantic_name": "DlgProcEffect"
   },
   "0x004eac10": {
    "name": "DlgProcInput",
@@ -918,9 +919,10 @@
    "evidence_level": "unverified"
   },
   "0x0051b920": {
-   "name": "Destroy",
+   "name": "DestroyUIResources",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Destroy(体语义=UI资源释放)"
   },
   "0x00526a40": {
    "name": "OnMessage",

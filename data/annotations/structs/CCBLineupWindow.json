@@ -35,11 +35,12 @@
  },
  "methods": {
   "0x0051b180": {
-   "name": "_scalar_dtor",
+   "name": "_scalar_dtor_b180",
    "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "_scalar_dtor"
   },
   "0x0051cfb0": {
    "name": "CCBLineupWindow",
@@ -72,14 +73,16 @@
    "source": " | 正名20261115: 双Destroy同名同参不同址(0x51B4B0虚槽int + 0x51D290非虚void), 体证据区分UI资源释放路径"
   },
   "0x0051d340": {
-   "name": "OnMessage",
+   "name": "OnMessage_d340",
    "signature": "char __thiscall(int *msg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "OnMessage"
   },
   "0x0051d3f0": {
-   "name": "Update",
+   "name": "Update_d3f0",
    "signature": "char __thiscall(int *deltatime)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Update"
   },
   "0x0051d4a0": {
    "name": "Render",

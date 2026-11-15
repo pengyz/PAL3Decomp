@@ -947,6 +947,31 @@ def check_canonical_contract():
                         cur_viol['C6:%s:%s' % (cls, _ma)] = '%s %s: 条目sig %r != 槽位裁决 %r' % (
                             cls, s.get('name'), _m6['signature'][:40], s['sig'][:40])
 
+    # [C8 2026-11-15 用户裁定] 同类 methods 条目同名冲突
+    # C++ 不允许同类内两个成员方法同名同参(重载需参数不同)
+    # 同名双地址 = annotation 命名冲突(数据错误), 必须报错不可豁免
+    for fp2 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        cls8 = os.path.basename(fp2)[:-5]
+        try:
+            d8 = json.load(open(fp2, encoding='utf-8'))
+        except Exception:
+            continue
+        ms8 = d8.get('methods') or {}
+        if not ms8: continue
+        _seen_nm = {}
+        for a8, m8 in ms8.items():
+            nm8 = str(m8.get('name') or '')
+            if not nm8: continue
+            # 剥类限定名(CCBUI::Destroy → Destroy)
+            bare = nm8.split('::')[-1] if '::' in nm8 else nm8
+            if bare in _seen_nm:
+                prev_a = _seen_nm[bare]
+                cur_viol['C8:%s:%s:%s:%s' % (cls8, bare, prev_a, a8)] = (
+                    '%s 同名方法双地址: %s@%s vs %s@%s — 同类内同名同址冲突' % (
+                        cls8, bare, prev_a[-8:], bare, a8[-8:]))
+            else:
+                _seen_nm[bare] = a8
+
     # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
     # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。
     # V1(硬红): 表数 > 1 + 多态基数(CTaskTpl_*与PalScriptWaitObj/GlowObj按二进制实证计多态)

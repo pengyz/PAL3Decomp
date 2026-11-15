@@ -152,9 +152,9 @@
    "evidence_level": "unverified"
   },
   "0x0051b5d0": {
-   "name": "OnMessage",
+   "name": "CreateWithTextures",
    "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures (int, void *pRect, UIWnd *parent, const char *pszName, char)",
-   "source": "vtable_gap_fill_v1(from CCBControlWindow.json)",
+   "source": "vtable_gap_fill_v1(from CCBControlWindow.json) | C8修正20261115: 名称误归属(真体=CreateWithTextures非OnMessage)",
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=2: m_nActivePage,m_pDescription（adjudicate_multiclaim 2026-11-03）",

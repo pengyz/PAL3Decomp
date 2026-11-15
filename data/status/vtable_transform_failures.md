@@ -911,3 +911,19 @@
 | `::RenderText` | inline | `int` | 12 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)_this + 12))(_this)` |
 | `CEffSParticle::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffSParticle` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffSParticle *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
 | `EffAudioNode::UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `AStarPathFinder::TryExpand` | inline | `AStarPathFinder` | 4 | name_not_declared_for_class | `(*(int ( **)(AStarPathFinder *, int, int))(*(_DWORD *)this + 4))(this, nTileX, nTileY)` |
+| `AStarPathFinder::TryExpand` | inline | `AStarPathFinder` | 8 | name_not_declared_for_class | `(*(void ( **)(AStarPathFinder *, int, int))(*(_DWORD *)this + 8))(this, nTileX, nTileY)` |
+| `AStarPathFinder::UpdateNeighbors` | inline | `AStarPathFinder` | 8 | name_not_declared_for_class | `(*(unsigned __int8 ( **)(AStarPathFinder *, _DWORD, _DWORD))(*(_DWORD *)this + 8))( this, *(_DWORD *)(v4 + 12), *(_DWORD *)(v4 + 16))` |
+| `CameraCtrl::CreateCameraUI` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, int *, void **, CameraCtrl *))(*(_DWORD *)&v17->UIWnd + 16))( v17, &byte_A00001, &this[13].m_nViewBase + 6, this)` |
+| `CameraCtrl::CreateCameraUI` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int *, int *, CameraCtrl *))(*(_DWORD *)&v35->UIWnd + 16))( v35, &byte_A00001, &v93, this)` |
+| `CameraCtrl::CreateCameraUI` | vftable_local | `char` | 28 | non_class_hint | `(*(void ( **)(char *, int *, _DWORD *, CameraCtrl *, char *, int, int))(v40 + 28))( &this[58].m_szCamPath[196], &byte_A00226, v65, this, aUiGamemainuiMa_9, 1, v41)` |
+| `UI3DCtrl::LoadModel` | inline | `float` | 40 | self_arg_mismatch | `(*(void ( **)(float, int))(*(_DWORD *)LODWORD(v4) + 40))(_pal3_coerce_f32(LODWORD(v4)), 3)` |
+| `UIAnimateCtrlEX::Render` | inline | `UITextArea` | 4 | self_arg_mismatch | `(*(void ( **)(UITextArea *))(*(_DWORD *)&this->m_TextArea.UIWnd + 4))(&this->m_TextArea)` |
+| `UITitle_BBTY::CreateFromScript` | vftable_local | `char` | 16 | non_class_hint | `(*(void ( **)(char *, _DWORD, tagRECT *, UITitle_BBTY *))(v4 + 16))(&this->buf[208], 0, &pRect, this)` |
+| `UITitle_BBTY::CreateFromScript` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, _DWORD, tagRECT *, UITitle_BBTY *))(*(_DWORD *)&v9->UIWnd + 16))( v9, 0, &pRect, this)` |
+| `UITitle_JDHY::HandleNavigation` | inline | `UITitle_JDHY` | 24 | self_arg_mismatch | `(*(int ( **)(UITitle_JDHY *, int, int *, _DWORD))(*(_DWORD *)&this->UIWnd + 24))( this, 1001, &byte_A00704, 0)` |
+| `CCBUI::DestroyUIResources` | inline | `UIStatic` | 4 | self_arg_mismatch | `(*(void ( **)(UIStatic *))(*(_DWORD *)&v2->UIWnd + 4))(v2)` |
+| `CCCTData::Create_8770` | inline | `_BYTE` | 28 | non_class_hint | `(*(int ( **)(_BYTE *, int *, int *, CCCTData *, _DWORD, int, int))(*(_DWORD *)&this->m_Pool[1929].bLineMove + 28))( &this->m_Pool[1929].bLineMove, &byte_A00532, &p_DWORD, this, 0, ` |
+| `CCCTData::Create_8770` | inline | `float` | 16 | non_class_hint | `(*(void ( **)(float *, __int16 *, int *, CCCTData *))(*(_DWORD *)p_fSwingFre + 16))( p_fSwingFre, &word_A00552, &v77, this)` |
+| `CCCTData::Create_8770` | vftable_local | `_BYTE` | 28 | non_class_hint | `(*(void ( **)(_BYTE *, int *, _DWORD *, CCCTData *, char *, _DWORD, int))(v24 + 28))( &this->m_Pool[1881].bStartCamValid, &byte_A00560, v67, this, aUiGamemainuiEq_1, 0, v25)` |
+| `LineupUI::OnMessage_7bb0` | inline | `LineupUI` | 24 | self_arg_mismatch | `(*(void ( **)(LineupUI *, int, int, int))(*(_DWORD *)&this->UIWnd + 24))( this, 1007, 773, this->m_TimeMoney.m_bfocus)` |

@@ -3304,6 +3304,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
+    # [G1b 声明去重 2026-11-15] 同名方法声明只保留第一条(防C2535/C2084)
+    _seen_decl = set()
+    _deduped = []
+    for _l in lines:
+        _dm = re.match(r'\s+(?:virtual\s+)?[\w:\*&]+\s+(\w+)\s*\(', _l)
+        if _dm and _dm.group(1) not in ('if', 'for', 'while', 'switch'):
+            _key = _dm.group(1)
+            if _key in _seen_decl:
+                continue  # 重复同名声明, 跳过
+            _seen_decl.add(_key)
+        _deduped.append(_l)
+    lines = _deduped
+    # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
+    lines = [l for l in lines if '[G1b non-slot]' not in l]
     return '\n'.join(lines)
 
 
