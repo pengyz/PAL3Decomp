@@ -4,16 +4,16 @@
 [C2011] ns-decls: 16 unique blocks, 4 byval-inc, 5 fwd-decls -> _ns_udts.h
 Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   With annotation layout: 1167
-  With methods: 236
+  With methods: 237
   Enums: 0
   Template stubs: 0
   Phantom globals skipped: 25 (arr, unk_C0A40E, dword_C10A08, dword_C11760, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00, dword_D8BC10, dword_D8BC30)
     ... and 15 more
   Annotation-skipped globals: 75
   declared_globals refreshed post-emit: 2824
-  Globals: 2947 in globals.h
+  Globals: 2949 in globals.h
 
-[WARN] Header generation found 60 annotation conflicts (deduplicated):
+[WARN] Header generation found 57 annotation conflicts (deduplicated):
   DUPLICATE METHOD: ArraySlots::Destroy(int, int, int) (addr=0x0043d920)
   DUPLICATE METHOD: ArraySlots::ShowClipped() (addr=0x00445e70)
   DUPLICATE METHOD: ArraySlots::GetType() (addr=0x0044ab00)
@@ -26,9 +26,6 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   DUPLICATE METHOD: EffCallBackNode::slot_2() (addr=0x004c3340)
   DUPLICATE METHOD: EffCallBackNode::UpdatePost(float) (addr=0x004c3570)
   DUPLICATE METHOD: EffMultiPassNode::BeginNextPass(void *, char) (addr=0x004c2700)
-  DUPLICATE METHOD: EffMultiPassNode::slot_6() (addr=0x004c2870)
-  DUPLICATE METHOD: EffMultiPassNode::InitTargetPos(float *, float, float, float) (addr=0x004c2930)
-  DUPLICATE METHOD: EffMultiPassNode::UpdateInternal(float) (addr=0x004c29a0)
   DUPLICATE METHOD: EffMultiPassNode::BeginMultiPassRender(char) (addr=0x004c3400)
   DUPLICATE METHOD: Role::UpdateBoundingBox(int) (addr=0x0041b640)
   DUPLICATE METHOD: Role::GetGfxManager() (addr=0x0041b6a0)
@@ -77,24 +74,24 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   Globals: 2841 in globals.cpp
   Globals: 2841 in globals.cpp
 Collecting functions from decomp...
-  Classes with methods: 216
+  Classes with methods: 218
   Free functions: 357
 [L-VAR] WARN: 0x004515E0 覆盖 v9 但函数体内无声明行（参数变量？）
 
-Generated 217 .cpp files (3535 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 219 .cpp files (3537 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 2 files
   Effect/: 18 files
   GameBase/: 6 files
   MiniGame/: 2 files
-  Misc/: 126 files
+  Misc/: 128 files
   Render/: 5 files
   Role/: 6 files
   Scene/: 6 files
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 132/218 ok | own-fail 83 | imported-only 3  (21s)
+S2 cpp: 134/220 ok | own-fail 83 | imported-only 3  (19s)
 Top root-cause headers (files blocked):
   pal3/src/Effect/CEffSParticle.h               blocks   9 cpp
   pal3/src/Misc/LineupUI.h                      blocks   6 cpp
@@ -108,243 +105,167 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261114_175959
 基线时间: 2026-11-14T17:59:59.395850
-检测时间: 2026-11-15T12:03:42.566929
+检测时间: 2026-11-15T13:40:50.446433
 
 📊 摘要:
-  总文件数: 1005
+  总文件数: 1006
   新失败: 30
-  新错误(真新增 (code,msg)): 22
+  新错误(真新增 (code,msg)): 23
   已修复: 4
-  错误收敛(消失 (code,msg)): 4
+  错误收敛(消失 (code,msg)): 5
   持续失败: 57
-  ⚠️ C1003 截断单元(逐码增减不可测): 2
+  ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2440    +142  ⚠️ 增加
-  C2039    +92  ⚠️ 增加
+  C2440    +143  ⚠️ 增加
+  C2039    +98  ⚠️ 增加
   C2673    +90  ⚠️ 增加
   C2227    +75  ⚠️ 增加
+  C2664    +21  ⚠️ 增加
   C2535    +20  ⚠️ 增加
   C2228    +19  ⚠️ 增加
   C2653    +16  ⚠️ 增加
+  C2143    +14  ⚠️ 增加
   C2109    +12  ⚠️ 增加
   C2106    +8  ⚠️ 增加
-  C2143    +8  ⚠️ 增加
-  C2664    +7  ⚠️ 增加
   C2059    +7  ⚠️ 增加
   C2084    +6  ⚠️ 增加
+  C2248    -4
   C2100    +4  ⚠️ 增加
-  C2065    +3  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C1903, C2039, C2059, C2065, C2084, C2100, C2106, C2109, C2143, C2226, C2227, C2228, C2355, C2440, C2447, C2501, C2509, C2511, C2523, C2535, C2600, C2631, C2653, C2660, C2664, C2673 —— 即使总错误数在下降也要逐条归因
+  ⚠️ 注意: 以下错误码**净增** C1903, C2039, C2059, C2065, C2084, C2100, C2106, C2109, C2143, C2226, C2227, C2228, C2355, C2440, C2447, C2451, C2501, C2509, C2523, C2535, C2600, C2631, C2653, C2660, C2664, C2673 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Misc/CScreenModeNode.cpp
-    L28: C2084 - function '__thiscall CScreenModeNode::~CScreenModeNode(void)
-  pal3/src/Misc/UISceneMap.cpp
-    L158: C2664 - '_init_4530c0' : cannot convert parameter 1 from 'char' to '
-  pal3/src/Render/RenderTarget2.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
-    L812: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 12 个错误
-  pal3/src/Effect/CEffMeteor.cpp
-    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L129: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L136: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 8 个错误
-  pal3/src/Effect/CEffShock.cpp
-    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
-    L59: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L65: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
-    ... 还有 44 个错误
-  pal3/src/Effect/CEffQuake.cpp
-    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
-    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
-    L32: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    ... 还有 3 个错误
-  pal3/src/Combat/CCBAI.cpp
-    L1309: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
-    L1581: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
-    L1629: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
-    ... 还有 19 个错误
-  pal3/src/Effect/CEffModel.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L115: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
-    ... 还有 2 个错误
-  pal3/src/UI/UISystem.cpp
-    L35: C2065 - 'Reset_24' : undeclared identifier
-  pal3/src/Effect/CEffgbParticle.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L136: C2501 - 'v4' : missing storage-class or type specifiers
-    L136: C2355 - 'this' : can only be referenced inside non-static member fun
-    ... 还有 12 个错误
-  pal3/src/Misc/ParticleVisNode.cpp
-    L25: C2226 - syntax error : unexpected type 'CScreenModeNode'
-    L26: C2143 - syntax error : missing ';' before '{'
-    L26: C2447 - missing function header (old-style formal list?)
-  pal3/src/Combat/CUtil.cpp
-    L199: C2039 - 'UIScene_InitScriptScene' : is not a member of 'CUtil'
-    L202: C2039 - 'LineupUI_InitListView' : is not a member of 'CUtil'
-  pal3/src/Misc/PlayerAtt.cpp
-    L13: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-  pal3/src/Misc/UIFrameContainer.cpp
-    L154: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
+  pal3/src/Effect/ScreenEffectMgr.cpp
+    L756: C2440 - '=' : cannot convert from 'const float' to 'void *'
   pal3/src/Misc/ExternalStatistics.cpp
     L64: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     L64: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     L66: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     ... 还有 1 个错误
-  pal3/src/Effect/ScreenEffectMgr.cpp
-    L756: C2440 - '=' : cannot convert from 'const float' to 'void *'
-  pal3/src/Effect/CEffSParticle.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L21: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
-    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
-    ... 还有 30 个错误
-  pal3/src/Misc/CEffObj.cpp
-    L9: C2511 - 'UpdateFrame' : overloaded member function 'int (int)' not f
-  pal3/src/Effect/CEffCylinder.cpp
-    L212: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L219: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L226: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 15 个错误
-  pal3/src/Misc/EffCallBackNode.cpp
-    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
-  pal3/src/Effect/CEffExplosive.cpp
-    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L67: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L74: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 2 个错误
-  pal3/src/Effect/CEffectSystem.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L51: C2039 - 'sub_4C5910' : is not a member of 'CEffectSystem'
-    L589: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-  pal3/src/Misc/ArraySlots.cpp
-    L65: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
-  pal3/src/Effect/CEffGrid.cpp
-    L40: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L119: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L126: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 4 个错误
-  pal3/src/Misc/UI3DModelNode.cpp
-    L59: C2440 - '=' : cannot convert from 'const float' to 'void *'
-    L246: C2440 - '=' : cannot convert from 'char' to 'char *'
-  pal3/src/Misc/CEffAction.cpp
-    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
-    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
-    ... 还有 5 个错误
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L49: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
-    L191: C2440 - '=' : cannot convert from 'const float' to 'void *'
-  pal3/src/Misc/PAL3VisNode.cpp
-    L17: C2084 - function '__thiscall PAL3VisNode::~PAL3VisNode(void)' alread
+  pal3/src/Data/CGameData.cpp
+    L722: C2440 - 'type cast' : cannot convert from 'class MiniGame1' to 'clas
+    L743: C2440 - 'type cast' : cannot convert from 'class MiniGame3' to 'clas
+    L756: C2451 - conditional expression of type 'class MiniGame3' is illegal
+    ... 还有 1 个错误
   pal3/src/Misc/UICoverFrm.cpp
     L179: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
     L185: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
     L185: C2227 - left of '->UISceneMap' must point to class/struct/union
     ... 还有 45 个错误
+  pal3/src/Effect/CEffgbParticle.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L136: C2501 - 'v4' : missing storage-class or type specifiers
+    L136: C2355 - 'this' : can only be referenced inside non-static member fun
+    ... 还有 12 个错误
+  pal3/src/Misc/CEffAction.cpp
+    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
+    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
+    ... 还有 5 个错误
   pal3/src/Effect/CEffQuad.cpp
     L63: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L70: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L77: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     ... 还有 2 个错误
+  pal3/src/Effect/CEffSParticle.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L21: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
+    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
+    ... 还有 30 个错误
+  pal3/src/Misc/EffCallBackNode.cpp
+    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
+  pal3/src/Effect/CEffMeteor.cpp
+    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L129: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L136: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 8 个错误
+  pal3/src/Effect/CEffCylinder.cpp
+    L212: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L219: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L226: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 15 个错误
+  pal3/src/Combat/CUtil.cpp
+    L183: C2039 - 'UIScene_InitScriptScene' : is not a member of 'CUtil'
+    L186: C2039 - 'LineupUI_InitListView' : is not a member of 'CUtil'
+  pal3/src/Misc/ArraySlots.cpp
+    L65: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
+  pal3/src/UI/UISystem.cpp
+    L35: C2065 - 'Reset_24' : undeclared identifier
+  pal3/src/Misc/PAL3VisNode.cpp
+    L17: C2084 - function '__thiscall PAL3VisNode::~PAL3VisNode(void)' alread
+  pal3/src/Render/RenderTarget2.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
+    L812: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 12 个错误
+  pal3/src/Misc/UI3DModelNode.cpp
+    L59: C2440 - '=' : cannot convert from 'const float' to 'void *'
+    L246: C2440 - '=' : cannot convert from 'char' to 'char *'
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L49: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
+    L191: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Effect/CEffModel.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L115: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
+    ... 还有 2 个错误
+  pal3/src/Misc/PlayerAtt.cpp
+    L13: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+  pal3/src/Effect/CEffQuake.cpp
+    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
+    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
+    L32: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    ... 还有 3 个错误
+  pal3/src/Effect/CEffGrid.cpp
+    L40: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L119: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L126: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 4 个错误
+  pal3/src/Misc/UIFrameContainer.cpp
+    L154: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
+  pal3/src/Effect/CEffExplosive.cpp
+    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L67: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L74: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 2 个错误
+  pal3/src/Misc/ParticleVisNode.cpp
+    L25: C2226 - syntax error : unexpected type 'CScreenModeNode'
+    L26: C2143 - syntax error : missing ';' before '{'
+    L26: C2447 - missing function header (old-style formal list?)
+  pal3/src/Effect/CEffShock.cpp
+    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
+    L59: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L65: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
+    ... 还有 44 个错误
+  pal3/src/Combat/CCBAI.cpp
+    L1309: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
+    L1581: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
+    L1629: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
+    ... 还有 19 个错误
+  pal3/src/Misc/UISceneMap.cpp
+    L158: C2664 - '_init_4530c0' : cannot convert parameter 1 from 'char' to '
+  pal3/src/Effect/CEffectSystem.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L51: C2039 - 'sub_4C5910' : is not a member of 'CEffectSystem'
+    L589: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+  pal3/src/Misc/CScreenModeNode.cpp
+    L28: C2084 - function '__thiscall CScreenModeNode::~CScreenModeNode(void)
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 8 -> 10  真新增 2 {'C2535': 1, 'C2084': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-    新增 L934: C2084 - function 'int __thiscall LineupUI::OnMessage(int,int,int)' already has
-  pal3/src/UI/PropUI.cpp
-    错误数: 4 -> 5  真新增 1 {'C2039': 1}
-    新增 L61: C2039 - 'UITitle_BBTY_CreateFromScript' : is not a member of 'PropUI'
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 5 -> 6  真新增 1 {'C2039': 1}
-    新增 L794: C2039 - 'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 2 -> 5  真新增 3 {'C2535': 1, 'C2440': 1, 'C2600': 1}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L1881: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L1957: C2600 - 'CCBStageCam::~CCBStageCam' : cannot define a compiler-generated speci
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 40 -> 49  真新增 9 {'C2039': 8, 'C2065': 1}
-    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1434: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/UI/StateUI.cpp
-    错误数: 5 -> 6  真新增 1 {'C2535': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 12 -> 50  真新增 38 {'C2535': 1, 'C2039': 36, 'C2440': 1}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L1524: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1524: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1534: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1534: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Combat/CCBRoleState.cpp
-    错误数: 5 -> 95  真新增 90 {'C2664': 1, 'C2039': 3, 'C2673': 39, 'C2227': 36, 'C2653': 5, 'C2228': 6}
-    新增 L6678: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int (__thiscal
-    新增 L13092: C2039 - 'Destructor' : is not a member of 'CCBRoleState'
-    新增 L13094: C2673 - 'Destructor' : global functions do not have 'this' pointers
-    新增 L13094: C2227 - left of '->Actor' must point to class/struct/union
-    新增 L13094: C2653 - 'Actor' : is not a class or namespace name
-  pal3/src/Render/RenderTarget.cpp
-    错误数: 1 -> 2  真新增 1 {'C2535': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-  pal3/src/UI/EquipUI.cpp
-    错误数: 1 -> 5  真新增 4 {'C2535': 1, 'C2039': 3}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-    新增 L1895: C2039 - 'CameraCtrl_CreateCameraUI' : is not a member of 'EquipUI'
-    新增 L1898: C2039 - 'EquipUI_InitEquipUI' : is not a member of 'EquipUI'
-    新增 L1900: C2039 - 'UITitle_JDHY_PopulateContent' : is not a member of 'EquipUI'
-  pal3/src/Misc/ArcLocaleRole.cpp
-    错误数: 4 -> 10  真新增 6 {'C2039': 6}
-    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L468: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Effect/CEffect.cpp
-    错误数: 2 -> 1  真新增 1 {'C2440': 1}
-    新增 L243: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 24 {'C2535': 1, 'C2440': 23}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-    新增 L19431: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19449: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19467: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19485: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
   pal3/src/Render/CScreenMode.cpp
     错误数: 22 -> 24  真新增 2 {'C2039': 2}
     新增 L567: C2039 - 'LineupUI_InitListView' : is not a member of 'CScreenMode'
     新增 L1548: C2039 - 'RoleAtt_SetPageParam2' : is not a member of 'CScreenMode'
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 39 -> 54  真新增 15 {'C2039': 3, 'C2673': 5, 'C2227': 3, 'C2228': 2, 'C2660': 2}
-    新增 L6903: C2039 - 'AllocSlotData' : is not a member of 'RoleSystem'
-    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6914: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6914: C2227 - left of '->m_fontcolor' must point to class/struct/union
   pal3/src/Combat/CCBCamControl.cpp
     错误数: 1 -> 3  真新增 2 {'C2039': 2}
     新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 10 -> 58  真新增 48 {'C2535': 2, 'C2440': 46}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(int)' : me
-    新增 L105: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L118: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L131: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/Misc/MainEquipUI.cpp
-    错误数: 3 -> 4  真新增 1 {'C2535': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+  pal3/src/Effect/CEffect.cpp
+    错误数: 2 -> 1  真新增 1 {'C2440': 1}
+    新增 L243: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
   pal3/src/Combat/CCBUI.cpp
     错误数: 24 -> 54  真新增 34 {'C2535': 1, 'C2039': 6, 'C2440': 3, 'C2673': 9, 'C2227': 8, 'C2653': 3, 'C2228': 2, 'C2509': 1, 'C1903': 1}
     新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
@@ -352,15 +273,101 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L2005: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     新增 L2580: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
     新增 L2617: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/Misc/UIFrameWnd.cpp
-    错误数: 2 -> 5  真新增 3 {'C2523': 1, 'C2631': 1, 'C2084': 1}
-    新增 L481: C2523 - 'UIFrameWnd::~UIFrameWnd_Full' : destructor tag mismatch
-    新增 L482: C2631 - 'UIFrameWnd::~UIFrameWnd' : destructors not allowed a return type
-    新增 L482: C2084 - function '__thiscall UIFrameWnd::~UIFrameWnd(void)' already has a body
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 12 -> 50  真新增 38 {'C2535': 1, 'C2039': 36, 'C2440': 1}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L1541: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1541: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1551: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1551: C2039 - 'NullCallback' : is not a member of 'CEffAction'
   pal3/src/Combat/CCCTData.cpp
     错误数: 19 -> 21  真新增 2 {'C2039': 2}
     新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/UI/EquipUI.cpp
+    错误数: 1 -> 5  真新增 4 {'C2535': 1, 'C2039': 3}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+    新增 L1895: C2039 - 'CameraCtrl_CreateCameraUI' : is not a member of 'EquipUI'
+    新增 L1898: C2039 - 'EquipUI_InitEquipUI' : is not a member of 'EquipUI'
+    新增 L1900: C2039 - 'UITitle_JDHY_PopulateContent' : is not a member of 'EquipUI'
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 4  真新增 1 {'C2535': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 2 -> 5  真新增 3 {'C2535': 1, 'C2440': 1, 'C2600': 1}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L1881: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L1957: C2600 - 'CCBStageCam::~CCBStageCam' : cannot define a compiler-generated speci
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 40  真新增 28 {'C2039': 6, 'C2660': 1, 'C2664': 14, 'C2143': 6, 'C2447': 1}
+    新增 L1145: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1145: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1156: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1156: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1167: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 24 {'C2535': 1, 'C2440': 23}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+    新增 L19432: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19450: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19468: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19486: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 39 -> 54  真新增 14 {'C2039': 3, 'C2673': 5, 'C2227': 2, 'C2228': 2, 'C2660': 2}
+    新增 L6903: C2039 - 'AllocSlotData' : is not a member of 'RoleSystem'
+    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6914: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6914: C2227 - left of '->m_fontcolor' must point to class/struct/union
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 10 -> 58  真新增 48 {'C2535': 2, 'C2440': 46}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(int)' : me
+    新增 L105: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L118: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L131: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Misc/ArcLocaleRole.cpp
+    错误数: 4 -> 10  真新增 6 {'C2039': 6}
+    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L468: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 6  真新增 1 {'C2039': 1}
+    新增 L795: C2039 - 'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'
+  pal3/src/UI/StateUI.cpp
+    错误数: 5 -> 6  真新增 1 {'C2535': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+  pal3/src/Render/RenderTarget.cpp
+    错误数: 1 -> 2  真新增 1 {'C2535': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 40 -> 49  真新增 9 {'C2039': 8, 'C2065': 1}
+    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1434: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/UI/PropUI.cpp
+    错误数: 4 -> 5  真新增 1 {'C2039': 1}
+    新增 L60: C2039 - 'UITitle_BBTY_CreateFromScript' : is not a member of 'PropUI'
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 5 -> 95  真新增 90 {'C2664': 1, 'C2039': 3, 'C2673': 39, 'C2227': 36, 'C2653': 5, 'C2228': 6}
+    新增 L6678: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int (__thiscal
+    新增 L13092: C2039 - 'Destructor' : is not a member of 'CCBRoleState'
+    新增 L13094: C2673 - 'Destructor' : global functions do not have 'this' pointers
+    新增 L13094: C2227 - left of '->Actor' must point to class/struct/union
+    新增 L13094: C2653 - 'Actor' : is not a class or namespace name
+  pal3/src/Misc/UIFrameWnd.cpp
+    错误数: 2 -> 5  真新增 3 {'C2523': 1, 'C2631': 1, 'C2084': 1}
+    新增 L425: C2523 - 'UIFrameWnd::~UIFrameWnd_Full' : destructor tag mismatch
+    新增 L426: C2631 - 'UIFrameWnd::~UIFrameWnd' : destructors not allowed a return type
+    新增 L426: C2084 - function '__thiscall UIFrameWnd::~UIFrameWnd(void)' already has a body
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 8 -> 10  真新增 2 {'C2535': 1, 'C2084': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+    新增 L934: C2084 - function 'int __thiscall LineupUI::OnMessage(int,int,int)' already has
   pal3/src/Misc/UITitle_YXXX.cpp
     错误数: 1 -> 4  真新增 3 {'C2039': 1, 'C2673': 1, 'C2227': 1}
     新增 L260: C2039 - 'SetBlendMode' : is not a member of 'UITitle_YXXX'
@@ -373,43 +380,45 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Script/PalScript.cpp: 39 -> 37  (消失 2)
   pal3/src/Effect/CEffect.cpp: 2 -> 1  (消失 2)
-  pal3/src/free_functions.cpp: 101 -> 101  (消失 30)
   pal3/src/Combat/CCBUI.cpp: 24 -> 54  (消失 4)
+  pal3/src/Combat/CCBSystem.cpp: 18 -> 40  (消失 10)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 30)
+  pal3/src/Script/PalScript.cpp: 39 -> 37  (消失 2)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Misc/UIEmote.cpp
-  pal3/src/Misc/UIRoleDialog.cpp
   pal3/src/Misc/PalScriptAnimTimer.cpp
   pal3/src/Misc/RoleAtt.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
+  pal3/src/Misc/UIEmote.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/LineupUI.cpp: 8 → 10
-  pal3/src/UI/PropUI.cpp: 4 → 5
-  pal3/src/Misc/UIScenePanel.cpp: 5 → 6
-  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
-  pal3/src/GameBase/PAL3.cpp: 40 → 49
-  pal3/src/Role/Actor.cpp: 26 ↓ 22
-  pal3/src/UI/StateUI.cpp: 5 → 6
-  pal3/src/Combat/CCBSystem.cpp: 18 → 102
+  pal3/src/Render/CScreenMode.cpp: 22 → 24
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
+  pal3/src/Effect/CEffect.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBUI.cpp: 24 → 54
   pal3/src/Combat/CCBStage.cpp: 12 → 50
-  pal3/src/Combat/CCBRoleState.cpp: 5 → 95
-  pal3/src/Render/RenderTarget.cpp: 1 → 2
+  pal3/src/Combat/CCCTData.cpp: 19 → 21
   pal3/src/UI/EquipUI.cpp: 1 → 5
+  pal3/src/Misc/MainEquipUI.cpp: 3 → 4
+  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
+  pal3/src/Combat/CCBSystem.cpp: 18 → 40
+  pal3/src/Role/Actor.cpp: 26 ↓ 22
+  pal3/src/UI/UIScene.cpp: 102 ↓ 9
+  pal3/src/Role/RoleSystem.cpp: 39 → 54
+  pal3/src/Effect/CEffMgr.cpp: 10 → 58
   pal3/src/Misc/ArcLocaleRole.cpp: 4 → 10
   pal3/src/Script/PalScript.cpp: 39 ↓ 37
-  pal3/src/Effect/CEffect.cpp: 2 ↓ 1
-  pal3/src/Render/CScreenMode.cpp: 22 → 24
-  pal3/src/Role/RoleSystem.cpp: 39 → 54
-  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
-  pal3/src/Effect/CEffMgr.cpp: 10 → 58
-  pal3/src/Misc/MainEquipUI.cpp: 3 → 4
-  pal3/src/Combat/CCBUI.cpp: 24 → 54
+  pal3/src/Misc/UIScenePanel.cpp: 5 → 6
+  pal3/src/UI/StateUI.cpp: 5 → 6
+  pal3/src/Render/RenderTarget.cpp: 1 → 2
+  pal3/src/GameBase/PAL3.cpp: 40 → 49
+  pal3/src/UI/PropUI.cpp: 4 → 5
+  pal3/src/Combat/CCBRoleState.cpp: 5 → 95
   pal3/src/Misc/UIFrameWnd.cpp: 2 → 5
-  pal3/src/Combat/CCCTData.cpp: 19 → 21
+  pal3/src/Misc/LineupUI.cpp: 8 → 10
   pal3/src/Misc/UITitle_YXXX.cpp: 1 → 4
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
@@ -418,81 +427,84 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261114_175959
 基线时间: 2026-11-14T17:59:59.395850
-检测时间: 2026-11-15T12:03:42.613226
+检测时间: 2026-11-15T13:40:50.480889
 
 📊 摘要:
-  总文件数: 1005
+  总文件数: 1006
   新失败: 30
-  新错误(真新增 (code,msg)): 22
+  新错误(真新增 (code,msg)): 23
   已修复: 4
-  错误收敛(消失 (code,msg)): 4
+  错误收敛(消失 (code,msg)): 5
   持续失败: 57
-  ⚠️ C1003 截断单元(逐码增减不可测): 2
+  ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2440    +142  ⚠️ 增加
-  C2039    +92  ⚠️ 增加
+  C2440    +143  ⚠️ 增加
+  C2039    +98  ⚠️ 增加
   C2673    +90  ⚠️ 增加
   C2227    +75  ⚠️ 增加
+  C2664    +21  ⚠️ 增加
   C2535    +20  ⚠️ 增加
   C2228    +19  ⚠️ 增加
   C2653    +16  ⚠️ 增加
+  C2143    +14  ⚠️ 增加
   C2109    +12  ⚠️ 增加
-  C2143    +8  ⚠️ 增加
   C2106    +8  ⚠️ 增加
-  C2664    +7  ⚠️ 增加
   C2059    +7  ⚠️ 增加
   C2084    +6  ⚠️ 增加
-  C2100    +4  ⚠️ 增加
-  C2447    +3  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C1903, C2039, C2059, C2065, C2084, C2100, C2106, C2109, C2143, C2226, C2227, C2228, C2355, C2440, C2447, C2501, C2509, C2511, C2523, C2535, C2600, C2631, C2653, C2660, C2664, C2673 —— 即使总错误数在下降也要逐条归因
+  C2248    -4
+  C2447    +4  ⚠️ 增加
+  ⚠️ 注意: 以下错误码**净增** C1903, C2039, C2059, C2065, C2084, C2100, C2106, C2109, C2143, C2226, C2227, C2228, C2355, C2440, C2447, C2451, C2501, C2509, C2523, C2535, C2600, C2631, C2653, C2660, C2664, C2673 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Misc/ParticleVisNode.cpp
-    L25: C2226 - syntax error : unexpected type 'CScreenModeNode'
-    L26: C2143 - syntax error : missing ';' before '{'
-    L26: C2447 - missing function header (old-style formal list?)
-  pal3/src/Effect/CEffSParticle.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L21: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
-    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
-    ... 还有 30 个错误
-  pal3/src/Render/RenderTarget2.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
-    L812: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 12 个错误
   pal3/src/Effect/CEffCylinder.cpp
     L212: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L219: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L226: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     ... 还有 15 个错误
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L49: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
-    L191: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Misc/UICoverFrm.cpp
+    L179: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
+    L185: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
+    L185: C2227 - left of '->UISceneMap' must point to class/struct/union
+    ... 还有 45 个错误
+  pal3/src/Render/RenderTarget2.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
+    L812: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 12 个错误
   pal3/src/Misc/ExternalStatistics.cpp
     L64: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     L64: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     L66: C2039 - 'NullCallback' : is not a member of 'CEffAction'
     ... 还有 1 个错误
-  pal3/src/Misc/PlayerAtt.cpp
-    L13: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-  pal3/src/Misc/PAL3VisNode.cpp
-    L17: C2084 - function '__thiscall PAL3VisNode::~PAL3VisNode(void)' alread
-  pal3/src/Misc/EffCallBackNode.cpp
-    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
+  pal3/src/Effect/CEffQuake.cpp
+    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
+    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
+    L32: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    ... 还有 3 个错误
+  pal3/src/Effect/CEffSParticle.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L21: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
+    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
+    ... 还有 30 个错误
   pal3/src/Effect/CEffgbParticle.cpp
     L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
     L136: C2501 - 'v4' : missing storage-class or type specifiers
     L136: C2355 - 'this' : can only be referenced inside non-static member fun
     ... 还有 12 个错误
-  pal3/src/Effect/CEffExplosive.cpp
-    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L67: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L74: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 2 个错误
+  pal3/src/Misc/CScreenModeNode.cpp
+    L28: C2084 - function '__thiscall CScreenModeNode::~CScreenModeNode(void)
+  pal3/src/Effect/CEffectSystem.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L51: C2039 - 'sub_4C5910' : is not a member of 'CEffectSystem'
+    L589: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+  pal3/src/Effect/CEffGrid.cpp
+    L40: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L119: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L126: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 4 个错误
   pal3/src/Misc/ArraySlots.cpp
     L65: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
   pal3/src/Combat/CCBAI.cpp
@@ -500,113 +512,71 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     L1581: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
     L1629: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int 
     ... 还有 19 个错误
+  pal3/src/Data/CGameData.cpp
+    L722: C2440 - 'type cast' : cannot convert from 'class MiniGame1' to 'clas
+    L743: C2440 - 'type cast' : cannot convert from 'class MiniGame3' to 'clas
+    L756: C2451 - conditional expression of type 'class MiniGame3' is illegal
+    ... 还有 1 个错误
   pal3/src/Effect/CEffQuad.cpp
     L63: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L70: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     L77: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
     ... 还有 2 个错误
-  pal3/src/Misc/CEffAction.cpp
-    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
-    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
-    ... 还有 5 个错误
-  pal3/src/Misc/CScreenModeNode.cpp
-    L28: C2084 - function '__thiscall CScreenModeNode::~CScreenModeNode(void)
-  pal3/src/Effect/CEffMeteor.cpp
-    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L129: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L136: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 8 个错误
-  pal3/src/Effect/CEffQuake.cpp
-    L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
-    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
-    L32: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    ... 还有 3 个错误
-  pal3/src/Effect/CEffModel.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L115: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
-    ... 还有 2 个错误
-  pal3/src/Misc/UICoverFrm.cpp
-    L179: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
-    L185: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
-    L185: C2227 - left of '->UISceneMap' must point to class/struct/union
-    ... 还有 45 个错误
+  pal3/src/Misc/ParticleVisNode.cpp
+    L25: C2226 - syntax error : unexpected type 'CScreenModeNode'
+    L26: C2143 - syntax error : missing ';' before '{'
+    L26: C2447 - missing function header (old-style formal list?)
   pal3/src/Misc/UIFrameContainer.cpp
     L154: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
-  pal3/src/Misc/CEffObj.cpp
-    L9: C2511 - 'UpdateFrame' : overloaded member function 'int (int)' not f
-  pal3/src/Misc/UI3DModelNode.cpp
-    L59: C2440 - '=' : cannot convert from 'const float' to 'void *'
-    L246: C2440 - '=' : cannot convert from 'char' to 'char *'
-  pal3/src/Misc/UISceneMap.cpp
-    L158: C2664 - '_init_4530c0' : cannot convert parameter 1 from 'char' to '
-  pal3/src/Effect/CEffectSystem.cpp
-    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
-    L51: C2039 - 'sub_4C5910' : is not a member of 'CEffectSystem'
-    L589: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-  pal3/src/UI/UISystem.cpp
-    L35: C2065 - 'Reset_24' : undeclared identifier
-  pal3/src/Combat/CUtil.cpp
-    L199: C2039 - 'UIScene_InitScriptScene' : is not a member of 'CUtil'
-    L202: C2039 - 'LineupUI_InitListView' : is not a member of 'CUtil'
+  pal3/src/Misc/PAL3VisNode.cpp
+    L17: C2084 - function '__thiscall PAL3VisNode::~PAL3VisNode(void)' alread
+  pal3/src/Effect/CEffExplosive.cpp
+    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L67: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L74: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 2 个错误
   pal3/src/Effect/CEffShock.cpp
     L68: C2535 - 'const char *__thiscall CEffShock::GetEditorTaskDescription(
     L59: C2440 - 'return' : cannot convert from 'int' to 'void *'
     L65: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
     ... 还有 44 个错误
-  pal3/src/Effect/CEffGrid.cpp
-    L40: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L119: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    L126: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
-    ... 还有 4 个错误
+  pal3/src/Misc/EffCallBackNode.cpp
+    L13: C2535 - 'void __thiscall EffCallBackNode::CreateEffCallBack(void)' :
+  pal3/src/Misc/CEffAction.cpp
+    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
+    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
+    ... 还有 5 个错误
   pal3/src/Effect/ScreenEffectMgr.cpp
     L756: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Misc/UI3DModelNode.cpp
+    L59: C2440 - '=' : cannot convert from 'const float' to 'void *'
+    L246: C2440 - '=' : cannot convert from 'char' to 'char *'
+  pal3/src/Misc/UISceneMap.cpp
+    L158: C2664 - '_init_4530c0' : cannot convert parameter 1 from 'char' to '
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L49: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
+    L191: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Effect/CEffModel.cpp
+    L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescript
+    L60: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L115: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
+    ... 还有 2 个错误
+  pal3/src/Misc/PlayerAtt.cpp
+    L13: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+  pal3/src/UI/UISystem.cpp
+    L35: C2065 - 'Reset_24' : undeclared identifier
+  pal3/src/Effect/CEffMeteor.cpp
+    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L129: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    L136: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(vo
+    ... 还有 8 个错误
+  pal3/src/Combat/CUtil.cpp
+    L183: C2039 - 'UIScene_InitScriptScene' : is not a member of 'CUtil'
+    L186: C2039 - 'LineupUI_InitListView' : is not a member of 'CUtil'
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Effect/CEffect.cpp
-    错误数: 2 -> 1  真新增 1 {'C2440': 1}
-    新增 L243: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/Misc/UITitle_YXXX.cpp
-    错误数: 1 -> 4  真新增 3 {'C2039': 1, 'C2673': 1, 'C2227': 1}
-    新增 L260: C2039 - 'SetBlendMode' : is not a member of 'UITitle_YXXX'
-    新增 L262: C2673 - 'SetBlendMode' : global functions do not have 'this' pointers
-    新增 L262: C2227 - left of '->m_WordBk' must point to class/struct/union
-  pal3/src/Combat/CCCTData.cpp
-    错误数: 19 -> 21  真新增 2 {'C2039': 2}
-    新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 2 -> 5  真新增 3 {'C2535': 1, 'C2440': 1, 'C2600': 1}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L1881: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L1957: C2600 - 'CCBStageCam::~CCBStageCam' : cannot define a compiler-generated speci
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 39 -> 54  真新增 15 {'C2039': 3, 'C2673': 5, 'C2227': 3, 'C2228': 2, 'C2660': 2}
-    新增 L6903: C2039 - 'AllocSlotData' : is not a member of 'RoleSystem'
-    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6914: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
-    新增 L6914: C2227 - left of '->m_fontcolor' must point to class/struct/union
-  pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 24 {'C2535': 1, 'C2440': 23}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-    新增 L19431: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19449: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19467: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L19485: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/Combat/CCBUI.cpp
-    错误数: 24 -> 54  真新增 34 {'C2535': 1, 'C2039': 6, 'C2440': 3, 'C2673': 9, 'C2227': 8, 'C2653': 3, 'C2228': 2, 'C2509': 1, 'C1903': 1}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L2005: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L2005: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L2580: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-    新增 L2617: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 22 -> 24  真新增 2 {'C2039': 2}
-    新增 L567: C2039 - 'LineupUI_InitListView' : is not a member of 'CScreenMode'
-    新增 L1548: C2039 - 'RoleAtt_SetPageParam2' : is not a member of 'CScreenMode'
   pal3/src/UI/EquipUI.cpp
     错误数: 1 -> 5  真新增 4 {'C2535': 1, 'C2039': 3}
     新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
@@ -616,59 +586,38 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
   pal3/src/UI/StateUI.cpp
     错误数: 5 -> 6  真新增 1 {'C2535': 1}
     新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-  pal3/src/Misc/MainEquipUI.cpp
-    错误数: 3 -> 4  真新增 1 {'C2535': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 8 -> 10  真新增 2 {'C2535': 1, 'C2084': 1}
-    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-    新增 L934: C2084 - function 'int __thiscall LineupUI::OnMessage(int,int,int)' already has
-  pal3/src/Misc/ArcLocaleRole.cpp
-    错误数: 4 -> 10  真新增 6 {'C2039': 6}
-    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L468: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Combat/CCBRoleState.cpp
-    错误数: 5 -> 95  真新增 90 {'C2664': 1, 'C2039': 3, 'C2673': 39, 'C2227': 36, 'C2653': 5, 'C2228': 6}
-    新增 L6678: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int (__thiscal
-    新增 L13092: C2039 - 'Destructor' : is not a member of 'CCBRoleState'
-    新增 L13094: C2673 - 'Destructor' : global functions do not have 'this' pointers
-    新增 L13094: C2227 - left of '->Actor' must point to class/struct/union
-    新增 L13094: C2653 - 'Actor' : is not a class or namespace name
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 40 -> 49  真新增 9 {'C2039': 8, 'C2065': 1}
-    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1434: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/UI/PropUI.cpp
-    错误数: 4 -> 5  真新增 1 {'C2039': 1}
-    新增 L61: C2039 - 'UITitle_BBTY_CreateFromScript' : is not a member of 'PropUI'
-  pal3/src/Combat/CCBCamControl.cpp
-    错误数: 1 -> 3  真新增 2 {'C2039': 2}
-    新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 2 -> 5  真新增 3 {'C2535': 1, 'C2440': 1, 'C2600': 1}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L1881: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L1957: C2600 - 'CCBStageCam::~CCBStageCam' : cannot define a compiler-generated speci
+  pal3/src/Misc/UIFrameWnd.cpp
+    错误数: 2 -> 5  真新增 3 {'C2523': 1, 'C2631': 1, 'C2084': 1}
+    新增 L425: C2523 - 'UIFrameWnd::~UIFrameWnd_Full' : destructor tag mismatch
+    新增 L426: C2631 - 'UIFrameWnd::~UIFrameWnd' : destructors not allowed a return type
+    新增 L426: C2084 - function '__thiscall UIFrameWnd::~UIFrameWnd(void)' already has a body
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 40  真新增 28 {'C2039': 6, 'C2660': 1, 'C2664': 14, 'C2143': 6, 'C2447': 1}
+    新增 L1145: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1145: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1156: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1156: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1167: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Misc/UITitle_YXXX.cpp
+    错误数: 1 -> 4  真新增 3 {'C2039': 1, 'C2673': 1, 'C2227': 1}
+    新增 L260: C2039 - 'SetBlendMode' : is not a member of 'UITitle_YXXX'
+    新增 L262: C2673 - 'SetBlendMode' : global functions do not have 'this' pointers
+    新增 L262: C2227 - left of '->m_WordBk' must point to class/struct/union
   pal3/src/Render/RenderTarget.cpp
     错误数: 1 -> 2  真新增 1 {'C2535': 1}
     新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 12 -> 50  真新增 38 {'C2535': 1, 'C2039': 36, 'C2440': 1}
-    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
-    新增 L1524: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1524: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1534: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-    新增 L1534: C2039 - 'NullCallback' : is not a member of 'CEffAction'
-  pal3/src/Misc/UIFrameWnd.cpp
-    错误数: 2 -> 5  真新增 3 {'C2523': 1, 'C2631': 1, 'C2084': 1}
-    新增 L481: C2523 - 'UIFrameWnd::~UIFrameWnd_Full' : destructor tag mismatch
-    新增 L482: C2631 - 'UIFrameWnd::~UIFrameWnd' : destructors not allowed a return type
-    新增 L482: C2084 - function '__thiscall UIFrameWnd::~UIFrameWnd(void)' already has a body
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 5 -> 6  真新增 1 {'C2039': 1}
-    新增 L794: C2039 - 'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'
+  pal3/src/Effect/CEffect.cpp
+    错误数: 2 -> 1  真新增 1 {'C2440': 1}
+    新增 L243: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Combat/CCCTData.cpp
+    错误数: 19 -> 21  真新增 2 {'C2039': 2}
+    新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L2171: C2039 - 'NullCallback' : is not a member of 'CEffAction'
   pal3/src/Effect/CEffMgr.cpp
     错误数: 10 -> 58  真新增 48 {'C2535': 2, 'C2440': 46}
     新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
@@ -676,6 +625,76 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L105: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
     新增 L118: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
     新增 L131: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Combat/CCBCamControl.cpp
+    错误数: 1 -> 3  真新增 2 {'C2039': 2}
+    新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L858: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 8 -> 10  真新增 2 {'C2535': 1, 'C2084': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+    新增 L934: C2084 - function 'int __thiscall LineupUI::OnMessage(int,int,int)' already has
+  pal3/src/UI/PropUI.cpp
+    错误数: 4 -> 5  真新增 1 {'C2039': 1}
+    新增 L60: C2039 - 'UITitle_BBTY_CreateFromScript' : is not a member of 'PropUI'
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 24 {'C2535': 1, 'C2440': 23}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+    新增 L19432: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19450: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19468: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L19486: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 22 -> 24  真新增 2 {'C2039': 2}
+    新增 L567: C2039 - 'LineupUI_InitListView' : is not a member of 'CScreenMode'
+    新增 L1548: C2039 - 'RoleAtt_SetPageParam2' : is not a member of 'CScreenMode'
+  pal3/src/Misc/ArcLocaleRole.cpp
+    错误数: 4 -> 10  真新增 6 {'C2039': 6}
+    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L447: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L459: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L468: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 39 -> 54  真新增 14 {'C2039': 3, 'C2673': 5, 'C2227': 2, 'C2228': 2, 'C2660': 2}
+    新增 L6903: C2039 - 'AllocSlotData' : is not a member of 'RoleSystem'
+    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6912: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6914: C2673 - 'AllocSlotData' : global functions do not have 'this' pointers
+    新增 L6914: C2227 - left of '->m_fontcolor' must point to class/struct/union
+  pal3/src/Combat/CCBUI.cpp
+    错误数: 24 -> 54  真新增 34 {'C2535': 1, 'C2039': 6, 'C2440': 3, 'C2673': 9, 'C2227': 8, 'C2653': 3, 'C2228': 2, 'C2509': 1, 'C1903': 1}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L2005: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L2005: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L2580: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+    新增 L2617: C2440 - 'type cast' : cannot convert from '' to 'void (__cdecl *)(void)'
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 5 -> 95  真新增 90 {'C2664': 1, 'C2039': 3, 'C2673': 39, 'C2227': 36, 'C2653': 5, 'C2228': 6}
+    新增 L6678: C2664 - 'CreateProtectedObj' : cannot convert parameter 1 from 'int (__thiscal
+    新增 L13092: C2039 - 'Destructor' : is not a member of 'CCBRoleState'
+    新增 L13094: C2673 - 'Destructor' : global functions do not have 'this' pointers
+    新增 L13094: C2227 - left of '->Actor' must point to class/struct/union
+    新增 L13094: C2653 - 'Actor' : is not a class or namespace name
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 6  真新增 1 {'C2039': 1}
+    新增 L795: C2039 - 'TaskBookUI_CreateEntry' : is not a member of 'UIScenePanel'
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 40 -> 49  真新增 9 {'C2039': 8, 'C2065': 1}
+    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1219: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1330: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1434: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 4  真新增 1 {'C2535': 1}
+    新增 L143: C2535 - 'int __thiscall LineupUI::OnMessage(int,int,int)' : member function al
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 12 -> 50  真新增 38 {'C2535': 1, 'C2039': 36, 'C2440': 1}
+    新增 L49: C2535 - 'const char *__thiscall CEffSParticle::GetEditorTaskDescription(int)' 
+    新增 L1541: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1541: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1551: C2039 - 'NullCallback' : is not a member of 'CEffAction'
+    新增 L1551: C2039 - 'NullCallback' : is not a member of 'CEffAction'
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
@@ -683,44 +702,46 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
+  pal3/src/Combat/CCBSystem.cpp: 18 -> 40  (消失 10)
+  pal3/src/Script/PalScript.cpp: 39 -> 37  (消失 2)
   pal3/src/Effect/CEffect.cpp: 2 -> 1  (消失 2)
   pal3/src/free_functions.cpp: 101 -> 101  (消失 30)
   pal3/src/Combat/CCBUI.cpp: 24 -> 54  (消失 4)
-  pal3/src/Script/PalScript.cpp: 39 -> 37  (消失 2)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Misc/UIRoleDialog.cpp
+  pal3/src/Misc/RoleAtt.cpp
   pal3/src/Misc/UIEmote.cpp
   pal3/src/Misc/PalScriptAnimTimer.cpp
-  pal3/src/Misc/RoleAtt.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Effect/CEffect.cpp: 2 ↓ 1
-  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 4
-  pal3/src/Combat/CCCTData.cpp: 19 → 21
-  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
-  pal3/src/Role/RoleSystem.cpp: 39 → 54
-  pal3/src/Role/Actor.cpp: 26 ↓ 22
-  pal3/src/Combat/CCBUI.cpp: 24 → 54
-  pal3/src/Render/CScreenMode.cpp: 22 → 24
-  pal3/src/Combat/CCBSystem.cpp: 18 → 102
-  pal3/src/Script/PalScript.cpp: 39 ↓ 37
   pal3/src/UI/EquipUI.cpp: 1 → 5
   pal3/src/UI/StateUI.cpp: 5 → 6
-  pal3/src/Misc/MainEquipUI.cpp: 3 → 4
-  pal3/src/Misc/LineupUI.cpp: 8 → 10
-  pal3/src/Misc/ArcLocaleRole.cpp: 4 → 10
-  pal3/src/Combat/CCBRoleState.cpp: 5 → 95
-  pal3/src/GameBase/PAL3.cpp: 40 → 49
-  pal3/src/UI/PropUI.cpp: 4 → 5
-  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
-  pal3/src/Render/RenderTarget.cpp: 1 → 2
-  pal3/src/Combat/CCBStage.cpp: 12 → 50
+  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
   pal3/src/Misc/UIFrameWnd.cpp: 2 → 5
-  pal3/src/Misc/UIScenePanel.cpp: 5 → 6
+  pal3/src/Combat/CCBSystem.cpp: 18 → 40
+  pal3/src/Script/PalScript.cpp: 39 ↓ 37
+  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 4
+  pal3/src/Render/RenderTarget.cpp: 1 → 2
+  pal3/src/Effect/CEffect.cpp: 2 ↓ 1
+  pal3/src/Combat/CCCTData.cpp: 19 → 21
   pal3/src/Effect/CEffMgr.cpp: 10 → 58
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
+  pal3/src/Misc/LineupUI.cpp: 8 → 10
+  pal3/src/UI/PropUI.cpp: 4 → 5
+  pal3/src/Role/Actor.cpp: 26 ↓ 22
+  pal3/src/Render/CScreenMode.cpp: 22 → 24
+  pal3/src/Misc/ArcLocaleRole.cpp: 4 → 10
+  pal3/src/Role/RoleSystem.cpp: 39 → 54
+  pal3/src/Combat/CCBUI.cpp: 24 → 54
+  pal3/src/Combat/CCBRoleState.cpp: 5 → 95
+  pal3/src/Misc/UIScenePanel.cpp: 5 → 6
+  pal3/src/GameBase/PAL3.cpp: 40 → 49
+  pal3/src/Misc/MainEquipUI.cpp: 3 → 4
+  pal3/src/Combat/CCBStage.cpp: 12 → 50
+  pal3/src/UI/UIScene.cpp: 102 ↓ 9
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 
@@ -740,4 +761,4 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 [emit] Logger: member at +0x1230 is behind bookkeeping (start_off=0x1294, +0x64) — 不跳过，交由布局审计裁决
 [emit] SceneMgr: member at +0x2B54 is behind bookkeeping (start_off=0x33C0, +0x86C) — 不跳过，交由布局审计裁决
 [emit] UIGameFrm: member at +0x164 is behind bookkeeping (start_off=0x25C, +0xF8) — 不跳过，交由布局审计裁决
-[ret-N evidence] 指令级(asm) 3306 / 裸扫描回退 350 / 无证据 15
+[ret-N evidence] 指令级(asm) 3327 / 裸扫描回退 370 / 无证据 15
