@@ -545,40 +545,6 @@
      "from": null
     }
    ]
-  },
-  {
-   "addr": "0x0056B22C",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
-    },
-    {
-     "addr": "0x00454550",
-     "from": null
-    },
-    {
-     "addr": "0x00454560",
-     "from": null
-    },
-    {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
-    },
-    {
-     "addr": "0x00453E50",
-     "from": null
-    },
-    {
-     "addr": "0x00454590",
-     "from": null
-    }
-   ]
   }
  ],
  "_base_fix": "2026-09-25: base_class UIListBox→UIWnd。证据：CCBUIPanel vtable@0x56AF80 仅 7 槽，slot[7]=0x41400000(12.0f 数据非函数) ⇒ 非 UIListBox(8槽) 派生；槽[0]/[4] from=UIWnd ✓",

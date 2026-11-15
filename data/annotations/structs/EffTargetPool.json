@@ -25,55 +25,5 @@
   }
  },
  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C2170 全文体=分配循环 `operator new(0x4C0)` 头 + `operator new(0x2D0)`×N 元素（720B 目标元素池）+ 成员 +24 池指针/+28 计数 ⇒ 对象池语义铁证",
- "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账",
- "vtables_retired": [
-  {
-   "addr": "0x0056F668",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004C2030",
-     "from": null
-    },
-    {
-     "addr": "0x004C2850",
-     "from": null
-    },
-    {
-     "addr": "0x004C2040",
-     "from": null
-    },
-    {
-     "addr": "0x004C1640",
-     "from": null
-    },
-    {
-     "addr": "0x004C2170",
-     "from": null
-    },
-    {
-     "addr": "0x004D33A0",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    },
-    {
-     "addr": "0x004C29A0",
-     "from": null
-    },
-    {
-     "addr": "0x00408BD0",
-     "from": null
-    }
-   ],
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 认领+再创作命名（功能驱动；字节等价唯一判据）A 级三证：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase@RenderTarget2@@QAEPADD@Z`（mangled 域）代码引用 + m_bIdle-reset 被 4 表共享；方法语义面:AllocTargets=目标分配（`char __thiscall(int)` 本体分配循环）+ DestroyEffWithBase/DestroyEffBase 销毁族 + adjustor `sub ecx,0xc`（MI base@-0xC）；交互模式面:ctor 写点 RenderTarget2::Reset+50/DestroyEffBase+22"
-  }
- ],
- "vtables_retired_reason": "真表归位裁决(ceff_alloc_map): 这些表属CEffBink/CEffCallBack/CEffSParticle等真叶; 池类=分析造名32B, B2路线parked — 去越权轮退役"
+ "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

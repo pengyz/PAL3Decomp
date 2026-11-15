@@ -223,41 +223,13 @@
    "evidence_level": "binary_vtable_slot"
   }
  },
- "vtables_retired": [
+ "vtables": [
   {
    "addr": "0x005705F4",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": null
-    },
-    {
-     "addr": "0x00523670",
-     "from": null
-    },
-    {
-     "addr": "0x005236E0",
-     "from": null
-    },
-    {
-     "addr": "0x0043DE40",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": null
-    },
-    {
-     "addr": "0x005231D0",
-     "from": null
-    },
-    {
-     "addr": "0x00523B90",
-     "from": null
-    }
-   ]
+   "base": null,
+   "slots": [],
+   "source": "binary:CUtil::ctor 0x5231A0/0x52320A 写表×2实证(registrar_supplement 20261115)",
+   "evidence_level": "binary_ctor_write"
   }
- ],
- "vtables_retired_reason": "复核裁决书A.3(2): 0x5705F4=混装UIWnd族与Parabola族地址的数据表, 非vtable; bases=None无ctor写表证据 — 去越权轮退役"
+ ]
 }

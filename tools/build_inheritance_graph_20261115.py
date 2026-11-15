@@ -68,7 +68,7 @@ CTASKTPL = {c for c in classes if c.startswith('CTaskTpl_')}
 
 def binary_polymorphic(cls, seen=None):
     """递归: cls在二进制里是否多态(有自己的vtable或继承多态且被覆写/带thunk)。
-    [v2 20261115裁决书③] vtables_retired地址∈evidenced也算(表=真, 退役=归属待定谳, 多态性不因退役消失)。"""
+"""
     if seen is None: seen = set()
     if cls in seen: return False, []
     seen.add(cls)
@@ -83,13 +83,6 @@ def binary_polymorphic(cls, seen=None):
             ev.append('write_evidence@0x%08X' % a)
     if d.get('_adjudicated_tables'):
         ev.append('adjudicated_tables')
-    # 1b) 退役表地址 ∈ evidenced = 真表(归属待定谳) — 裁决书③CUtil/ArraySlots案例
-    for vt in (d.get('vtables_retired') or []):
-        try:
-            a = int(vt.get('addr') or '0', 16)
-        except: continue
-        if a in evidenced_tables:
-            ev.append('retired_but_evidenced@0x%08X' % a)
     # 2) CTaskTpl族
     if cls in CTASKTPL:
         ev.append('ctasktpl_poly_family')
@@ -134,7 +127,6 @@ for cls in classes:
         'evidence': ev,
         'gaps': gaps,
         'n_vtables': len(d.get('vtables') or []),
-        'n_vtables_retired': len(d.get('vtables_retired') or []),
     }
 
 # ---- thunk交叉验证 ----

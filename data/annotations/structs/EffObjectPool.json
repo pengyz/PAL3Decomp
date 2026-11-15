@@ -32,55 +32,5 @@
   }
  },
  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C1490 全文体=释放循环 `operator delete(ptr); v6+=152`（152B 步长对象数组释放）——IDB 名 BeginRenderPass=误名；上下文语义=**对象池管理**（时间步 CalcDeltaTime + 数组释放 + 删际析构归 0x56F5D8 主表）⇒ EffRenderPassNode→EffObjectPool",
- "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账",
- "vtables_retired": [
-  {
-   "addr": "0x0056F620",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004C2600",
-     "from": null
-    },
-    {
-     "addr": "0x0055434F",
-     "from": null
-    },
-    {
-     "addr": "0x004C1490",
-     "from": null
-    },
-    {
-     "addr": "0x004C0620",
-     "from": null
-    },
-    {
-     "addr": "0x004C0600",
-     "from": null
-    },
-    {
-     "addr": "0x004C0610",
-     "from": null
-    },
-    {
-     "addr": "0x00401800",
-     "from": null
-    },
-    {
-     "addr": "0x00401800",
-     "from": null
-    },
-    {
-     "addr": "0x004AF760",
-     "from": null
-    },
-    {
-     "addr": "0x00401800",
-     "from": null
-    }
-   ],
-   "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 认领+再创作命名（功能驱动；字节等价唯一判据）A 级三证：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 stru_56F5D8 主表（本类=0x56F5D8 家族视图）；方法语义面:CalcDeltaTime=`m_fTime 推进+delta 步` + BeginRenderPass=`通道状态检查` + StubReturn0/nullsub 生命周期桩；交互模式面:ctor 写点 RenderTarget2::ClearTarget+37/ExecutePasses+31/BeginRenderPass+6（渲染负载内构造）"
-  }
- ],
- "vtables_retired_reason": "真表归位裁决(ceff_alloc_map): 这些表属CEffBink/CEffCallBack/CEffSParticle等真叶; 池类=分析造名32B, B2路线parked — 去越权轮退役"
+ "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }
