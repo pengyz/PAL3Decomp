@@ -5,12 +5,10 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
 [A] PASS：没有任何 code 位置的 __vftable
-[B] FAIL：2 处 声明形参数 与 调用实参数 不一致（**可编译但语义可疑**；不等于 C2660 成因）
-    sub_4202F0  声明 0 参 vs 调用 1 实参            pal3/src/Role/RoleSystem.cpp:7035
-    sub_4202F0  声明 0 参 vs 调用 1 实参            pal3/src/Role/RoleSystem.cpp:7084
+[B] PASS：115 个 sub_ 符号的声明/调用形参数全部一致（另 99 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py export

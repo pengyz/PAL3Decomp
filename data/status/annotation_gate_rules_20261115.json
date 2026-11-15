@@ -1,0 +1,92 @@
+{
+ "generated": "2026-11-15",
+ "principle": "管线=纯消费端后, 语义全压标注层 — 门禁必须在数据入口拦截非法态",
+ "rules": [
+  {
+   "id": "R-N1",
+   "level": "HARD",
+   "scope": "methods.name + slots.name",
+   "rule": "name含'(' — 签名泄漏进名(非法C++标识符, 直接致C2061/C2535)",
+   "action": "修复=剥参数串入signature"
+  },
+  {
+   "id": "R-N3",
+   "level": "HARD",
+   "scope": "methods.name + slots.name",
+   "rule": "name含'::' — 类作用域泄漏(类methods条目应裸名)",
+   "action": "修复=剥前缀取尾段"
+  },
+  {
+   "id": "R-N7",
+   "level": "HARD",
+   "scope": "methods.signature + slots.sig",
+   "rule": "括号不平衡 — 签名畸形(发射即语法错)",
+   "action": "修复=按字节形态重裁"
+  },
+  {
+   "id": "R-N8",
+   "level": "HARD",
+   "scope": "methods.signature",
+   "rule": "双调用约定(__thiscall __thiscall形) — 非法声明",
+   "action": "修复=剥重复"
+  },
+  {
+   "id": "R-C2",
+   "level": "HARD",
+   "scope": "slots.from",
+   "rule": "from指向不存在的类文件 — 悬空引用",
+   "action": "修复=owner重算"
+  },
+  {
+   "id": "R-N2a",
+   "level": "HARD",
+   "scope": "methods.name",
+   "rule": "正名带16进制址后缀(Render_45AB形, 非dtor/todo惯例) — 疑冲突消解workaround",
+   "action": "人工语义裁决(IsDone/AllocBuffer先例模式); 破坏C2535/C2084风险源"
+  },
+  {
+   "id": "R-N2b",
+   "level": "WARN",
+   "scope": "methods.name",
+   "rule": "_scalar_dtor_XXX/_sdtorXXX址后缀 — dtor族址区分惯例(合法但建议slot_N化)",
+   "action": "记录, 不拦截"
+  },
+  {
+   "id": "R-N2c",
+   "level": "WARN",
+   "scope": "methods.name",
+   "rule": "_todo_/todo_占位 — 显式债务标记(合法, 但有A/B级证据却仍todo=该定名了)",
+   "action": "记录债务计数"
+  },
+  {
+   "id": "R-N9",
+   "level": "WARN",
+   "scope": "methods.name",
+   "rule": "_todo名但evidence_level=A/B — 有证据未定名(数据债)",
+   "action": "记录"
+  },
+  {
+   "id": "R-N6",
+   "level": "WARN",
+   "scope": "methods.signature",
+   "rule": "sig为空且非declaration_only — 发射将回退void()猜测",
+   "action": "记录"
+  },
+  {
+   "id": "R-N6b",
+   "level": "HARD",
+   "scope": "methods.signature",
+   "rule": "sig为空且evidence_level=A/B — 有证据必有签名(A级objdump连字节都记了)",
+   "action": "修复=补签名"
+  }
+ ],
+ "现存统计": {
+  "N1_name_paren": "已清零(22处修复)",
+  "N2严重级正名址后缀": "Render×13/sub×12/Update×9...",
+  "N3_scope": 9,
+  "N6_empty_sig": 10,
+  "N7_paren": 0,
+  "N8_double_cc": 32,
+  "N9_todo_with_AB_evidence": 19
+ }
+}

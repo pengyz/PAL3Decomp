@@ -945,6 +945,35 @@ def check_canonical_contract():
                 except (ValueError, TypeError): continue
                 if _ai not in _ev:
                     cur_viol['V2:%s:%s' % (cls, _a7)] = '%s 表%s 无写表证据且无裁决标记(普查产物嫌疑)' % (cls, _a7)
+    # [N系列 2026-11-15 数据质量门禁] 规则表: annotation_gate_rules_20261115.json
+    # HARD=立即非法(发射即编译错); WARN=债务可见性(不拦截)
+    for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        cls = os.path.basename(fp)[:-5]
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        for a, m in (d.get('methods') or {}).items():
+            nm = str(m.get('name') or '')
+            sig = str(m.get('signature') or '')
+            if '(' in nm:
+                cur_viol['N1:%s:%s' % (cls, a)] = '%s name含括号: %s' % (cls, nm[:50])
+            if '::' in nm:
+                cur_viol['N3:%s:%s' % (cls, a)] = '%s name含作用域: %s' % (cls, nm[:50])
+            if sig and sig.count('(') != sig.count(')'):
+                cur_viol['N7:%s:%s' % (cls, a)] = '%s sig括号不平衡: %s' % (cls, sig[:50])
+            if sig and re.search(r'__(thiscall|cdecl|stdcall|fastcall)\b[^()]*__(thiscall|cdecl|stdcall|fastcall)\b', sig):
+                cur_viol['N8:%s:%s' % (cls, a)] = '%s 双调用约定: %s' % (cls, sig[:50])
+            if not sig and not m.get('declaration_only') and m.get('evidence_level') in ('A', 'B'):
+                cur_viol['N6b:%s:%s' % (cls, a)] = '%s %s: A/B级证据但sig为空' % (cls, nm[:40])
+        for vt in d.get('vtables') or []:
+            for s in (vt.get('slots') or []):
+                nm = str(s.get('name') or '')
+                if '(' in nm:
+                    cur_viol['N1s:%s:%s' % (cls, s.get('addr'))] = '%s slot name含括号: %s' % (cls, nm[:50])
+                if '::' in nm:
+                    cur_viol['N3s:%s:%s' % (cls, s.get('addr'))] = '%s slot name含作用域: %s' % (cls, nm[:50])
+
     for k, desc in sorted(cur_viol.items()):
         if k not in base:
             errors.append('CANON:%s %s' % (k, desc))
