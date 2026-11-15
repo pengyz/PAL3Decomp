@@ -65,9 +65,11 @@
    "evidence_level": "unverified"
   },
   "0x0051D290": {
-   "name": "Destroy",
+   "name": "DestroyUI",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Destroy(体语义=UIFrameContainer资源释放, 与虚槽Destroy(int)槽数据释放区分)",
+   "source": " | 正名20261115: 双Destroy同名同参不同址(0x51B4B0虚槽int + 0x51D290非虚void), 体证据区分UI资源释放路径"
   },
   "0x0051D340": {
    "name": "OnMessage",

@@ -168,9 +168,11 @@
   },
   "0x004438f0": {
    "name": "Destroy",
-   "signature": "virtual void __thiscall(CCBFiveNimbusWindow *this)",
+   "signature": "void __thiscall(CCBFiveNimbusWindow *thisa)",
    "name_source": "IDA语义分析 2026-11-01 批7",
-   "name_note": "释放 nimbus 资源"
+   "name_note": "释放 nimbus 资源",
+   "non_virtual": true,
+   "source": " | non_virtual:0x4438F0不在真表7槽内(G1a组①ctor定谳), 非虚自有方法; virtual前缀=旧普查残留"
   },
   "0x0043bbc0": {
    "name": "Update",
@@ -207,22 +209,53 @@
  "vtables": [
   {
    "addr": "0x0056ACB8",
-   "base": "UIWnd",
+   "base": null,
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "name": null,
+     "sig": null,
+     "from": null
     },
     {
      "addr": "0x00445CD0",
-     "from": "scScriptInstance"
+     "name": null,
+     "sig": null,
+     "from": null
     },
     {
      "addr": "0x0043BBC0",
+     "name": null,
+     "sig": null,
+     "from": null
+    },
+    {
+     "addr": "0x00445C10",
+     "name": null,
+     "sig": null,
+     "from": null
+    },
+    {
+     "addr": "0x00445B90",
+     "name": null,
+     "sig": null,
+     "from": null
+    },
+    {
+     "addr": "0x0043BB90",
+     "name": "_scalar_dtor_BB90",
+     "sig": "void __thiscall()",
+     "from": null
+    },
+    {
+     "addr": "0x00445D10",
+     "name": null,
+     "sig": null,
      "from": null
     }
    ],
-   "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 主表认领五面卡：①调用者面=ctor 0x43BB70@+8 `c7 06 b8 ac 56 00` 直写（A 级字节）②被调用者面=UIWnd 基 ctor 链 ③成员访问面=m_pbktex@68 ④类归属面=UIFrameWnd（bs=72 几何定谳）⑤交互模式面=ctor/dtor 对；evidence=[0x43BB70 entry bytes,audit_type_layout UIFrameWnd] confidence=95"
+   "source": "binary:ctor 0x43BB70 单写[esi]=0x56ACB8(G1a组①定谳); 7槽=二进制raw",
+   "evidence_level": "binary_ctor_write"
   }
  ],
  "base_size": 68,
