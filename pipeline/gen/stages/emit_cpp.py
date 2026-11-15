@@ -762,6 +762,10 @@ def generate_class_cpp(cls_name, methods):
     # 本输出文件共享的 stub 去重集合（同一签名只发射一次定义，避免 C2084/C2371/C2556）
     _stub_reg = set()
     for m in methods:
+        # [declaration_only 尊重 2026-11-15] 体借用垃圾(collect已置空code) → 跳过定义发射,
+        # 头声明由 emit_headers 常规产出 (证据: 0x4C2640系4文件len全同=体借用实证)
+        if not (m.get('code') or '').strip():
+            continue
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
                            stub_registry=_stub_reg)
         code = _apply_lvar_overrides(m['code'].strip(), m['addr'])

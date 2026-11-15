@@ -261,6 +261,8 @@ def collect_functions(decomp_dir=None):
             # P-A5 (2026-11-09): structs annotation methods[addr].name 覆盖 decomp 名。
             # IDA 错名实证: UIListBox 0x43DE90(jmp 0x43dea0=AddColumn 的 5 字节 thunk)
             # 被命名为 Destroy,与真体 0x43E520(vtable 槽)同名 → C2084。
+
+            _decl_only5 = False
             try:
                 try:
                     import annotation_view as _av_p5
@@ -280,6 +282,10 @@ def collect_functions(decomp_dir=None):
                 # 旧条件仅thunk类条目吃注解名 → 正名条目的cpp定义名残留decomp旧名 → 头体漂移C2039/C2673)
                 # ⚠️ 安全权衡记录: 注解名错时由此前"编译失败暴露"变为"静默传播"——
                 #    对冲 = check_annotations 名漂移检查(W2 warn 可见) + 正名条目均有 evidence 记录
+                # [declaration_only 尊重 2026-11-15] 注解声明收编条目(体借用/ICF折叠垃圾):
+                # Hex-Rays 对非起点地址渲染出借用体(实证: 0x4C2640系4文件 len=1236 全同,
+                # 而二进制 4 址体互异) ⇒ cpp 不发射定义体, 头声明由 emit 常规产出
+                _decl_only5 = isinstance(_anm5, dict) and _anm5.get('declaration_only')
                 if _an5 and _an5 != method:
                     # 体文本定义行同步改名(stage1 重建按 ctx.method 搜定义行——
                     # 不同步则搜不到 → 保留旧名 → C2084 复活)
@@ -291,9 +297,10 @@ def collect_functions(decomp_dir=None):
             by_class[cls].append({
                 'name': '%s::%s' % (cls, method),
                 'method': method,
-                'code': code,
+                'code': '' if _decl_only5 else code,
                 'addr': addr,
                 'sig': sig,
+                '_declaration_only': bool(_decl_only5),
                 '_source_file': str(f),
             })
         else:
