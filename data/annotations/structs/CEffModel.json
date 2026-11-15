@@ -76,10 +76,11 @@
    "evidence_level": "unverified"
   },
   "0x004CFEB0": {
-   "name": "LoadFromNode",
+   "name": "Create",
    "signature": "char __thiscall(tagEffObjType *)",
    "ordinal": 1,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "LoadFromNode"
   },
   "0x004D01C0": {
    "name": "RenderScenePass",
@@ -99,32 +100,36 @@
    "evidence_level": "unverified"
   },
   "0x004CFD00": {
-   "name": "CreateEffModel",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "source": "vtable_migrated | [T19] return-type retype int->CEffModel *: A 级 objdump 0x40CFD00 内 4cfd00 push 0x68/call new、4cfd0a test eax,eax、4cfd0e mov ecx,eax 跳 ctor —— 返回值=operator new 分配体（EAX 直通）；体 `return v0;` 指针语义实证",
    "static": true,
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_name": "CreateEffModel"
   },
   "0x004D0390": {
-   "name": "GetRenderNode",
+   "name": "GetEffect",
    "signature": "int __thiscall(int)",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 11,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetRenderNode"
   },
   "0x004D03B0": {
-   "name": "RenderModel",
+   "name": "RenderEffectPass",
    "signature": "void __thiscall(int)",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 12,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "RenderModel"
   },
   "0x004D0850": {
-   "name": "GetModelType",
+   "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 14,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetModelType"
   },
   "0x004D3220": {
    "name": "_sdtor_adj",

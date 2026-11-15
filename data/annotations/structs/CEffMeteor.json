@@ -209,10 +209,11 @@
  },
  "methods": {
   "0x004CB480": {
-   "name": "CEffMeteor",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CEffMeteor"
   },
   "0x004CB4C0": {
    "name": "~CEffMeteor",
@@ -220,10 +221,11 @@
    "evidence_level": "unverified"
   },
   "0x004CB5E0": {
-   "name": "Init",
+   "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Init"
   },
   "0x004CB800": {
    "name": "Create",
@@ -232,37 +234,41 @@
    "evidence_level": "unverified"
   },
   "0x004CBFC0": {
-   "name": "CreateTask",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "ordinal": 5,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CreateTask"
   },
   "0x004CC290": {
-   "name": "CreateTarget",
+   "name": "RenderEffectPass",
    "signature": "void __thiscall(int)",
    "ordinal": 12,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CreateTarget"
   },
   "0x004CBC50": {
-   "name": "slot_6",
+   "name": "Destroy",
    "signature": "void __thiscall()",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified"
   },
   "0x004CCBA0": {
-   "name": "DispatchByType",
+   "name": "GetEditorObjDescription",
    "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 10,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "DispatchByType"
   },
   "0x004CCA90": {
-   "name": "GetEffectType",
+   "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 14,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetEffectType"
   },
   "0x004CB4A0": {
    "name": "_scalar_dtor_B4A0",

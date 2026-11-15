@@ -80,10 +80,11 @@
    "evidence_level": "unverified"
   },
   "0x004C8930": {
-   "name": "SetTimeScale",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "SetTimeScale"
   },
   "0x004C8970": {
    "name": "Destroy__fastcall",
@@ -91,23 +92,26 @@
    "evidence_level": "unverified"
   },
   "0x004C8A40": {
-   "name": "CreateTask",
+   "name": "Create",
    "signature": "char __thiscall(tagEffObjType *)",
    "ordinal": 1,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CreateTask"
   },
   "0x004C8BF0": {
-   "name": "ProcCommonTask",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "ordinal": 5,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "ProcCommonTask"
   },
   "0x004C8E10": {
-   "name": "RenderEffectTexture",
+   "name": "Destroy",
    "signature": "void __thiscall()",
    "ordinal": 6,
    "source": "| [T109] 语义偏离名修正：@0x4C8E10 全函数体=矩阵 Push/Translate + RenderTarget::RenderToTexture（粒子渲染到纹理）⇒ 语义名 RenderEffectTexture（禁伪语义 ✓ 全函数体证据）；@0x4C7A70 GetEditorTaskDescription 保留（nIndex 形描述 getter）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "RenderEffectTexture"
   },
   "0x004C9540": {
    "name": "~CEffgbParticle",
@@ -133,7 +137,7 @@
    "evidence_level": "unverified"
   },
   "0x004C8B80": {
-   "name": "slot_2",
+   "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "source": "vtable_migrated",
    "ordinal": 2,
@@ -154,11 +158,12 @@
    "evidence_level": "unverified"
   },
   "0x004C9260": {
-   "name": "GetParticleType",
+   "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 14,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetParticleType"
   },
   "0x004C8950": {
    "name": "_scalar_dtor_8950",

@@ -240,13 +240,14 @@
    "evidence_level": "unverified"
   },
   "0x004C3EC0": {
-   "name": "Init_3EC0",
+   "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=vtable 槽 0x56F768 ②被调=CEffMgr::Reset×4 ③成员 m_dwStartColor×5/m_vecPos/m_vecRot ④CEffCylinder ⑤参数化效果初始化（颜色/位置/旋转）⇒ 合法重载（与 0x4C3C90 同名异参）",
    "evidence_level": "A",
    "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=15: m_bIdle,m_bVisible,m_dwStartColor,m_fAlpha,m_fBlue（adjudicate_multiclaim 2026-11-03）"
+   "evidence": "成员实访独占证据 uniq=15: m_bIdle,m_bVisible,m_dwStartColor,m_fAlpha,m_fBlue（adjudicate_multiclaim 2026-11-03）",
+   "semantic_name": "Init_3EC0"
   },
   "0x004C4060": {
    "name": "Create",
@@ -265,16 +266,18 @@
    "evidence": "成员实访独占证据 uniq=14: m_bAdditiveBlend,m_bIdle,m_bNoZTest,m_bVisible,m_dwStartColor（adjudicate_multiclaim 2026-11-03）"
   },
   "0x004C45A0": {
-   "name": "CreateTask",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "ordinal": 5,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CreateTask"
   },
   "0x004C48D0": {
-   "name": "ProcInitTask",
+   "name": "RenderEffectPass",
    "signature": "void __thiscall(int)",
    "ordinal": 12,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "ProcInitTask"
   },
   "0x004C5010": {
    "name": "GetEditorTaskDescription",

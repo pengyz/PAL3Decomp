@@ -207,11 +207,12 @@
    "evidence_level": "unverified"
   },
   "0x004D3910": {
-   "name": "CEffShock",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "source": "vtable_evidence+pdb_correct",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CEffShock"
   },
   "0x004D3930": {
    "name": "~CEffShock",
@@ -221,20 +222,22 @@
    "adjudication": "shared_impl"
   },
   "0x004D3DC0": {
-   "name": "Initialize",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
-   "source": " | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=5）"
+   "source": " | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=5）",
+   "semantic_name": "Initialize"
   },
   "0x004D4110": {
-   "name": "Render",
+   "name": "Destroy",
    "signature": "void __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
-   "source": " | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）"
+   "source": " | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
+   "semantic_name": "Render"
   },
   "0x004D4DE0": {
    "name": "sub_4D3DC0_adjthunk",

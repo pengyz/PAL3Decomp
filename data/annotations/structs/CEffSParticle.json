@@ -71,10 +71,11 @@
  },
  "methods": {
   "0x004D4EE0": {
-   "name": "CEffSParticle",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CEffSParticle"
   },
   "0x004D4F20": {
    "name": "~CEffSParticle",
@@ -82,16 +83,18 @@
    "evidence_level": "unverified"
   },
   "0x004D4FC0": {
-   "name": "Create",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "ordinal": 5,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Create"
   },
   "0x004D51B0": {
-   "name": "Init",
+   "name": "RenderEffectPass",
    "signature": "void __thiscall(int)",
    "ordinal": 12,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Init"
   },
   "0x004D53E0": {
    "name": "Attach",
@@ -99,11 +102,12 @@
    "evidence_level": "unverified"
   },
   "0x004D5620": {
-   "name": "GetEffTypeData",
+   "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "ordinal": 14,
    "source": "| [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetEffTypeData"
   },
   "0x004D56B0": {
    "name": "Render",

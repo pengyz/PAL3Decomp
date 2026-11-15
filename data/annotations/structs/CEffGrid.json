@@ -197,10 +197,11 @@
  },
  "methods": {
   "0x004C9610": {
-   "name": "CEffGrid",
+   "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "CEffGrid"
   },
   "0x004C9650": {
    "name": "~CEffGrid",
@@ -214,37 +215,40 @@
    "evidence_level": "unverified"
   },
   "0x004CA9A0": {
-   "name": "GetEditorObjDescription",
+   "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "ordinal": 14,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GetEditorObjDescription"
   },
   "0x004C9750": {
-   "name": "Init",
+   "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Init"
   },
   "0x004C9ED0": {
-   "name": "slot_5",
+   "name": "UpdateFrame",
    "signature": "void __thiscall(float)",
    "source": "vtable_migrated",
    "ordinal": 5,
    "evidence_level": "unverified"
   },
   "0x004C9CA0": {
-   "name": "slot_6",
+   "name": "Destroy",
    "signature": "void __thiscall()",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified"
   },
   "0x004CAAB0": {
-   "name": "DispatchByType",
+   "name": "GetEditorObjDescription",
    "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 10,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "DispatchByType"
   },
   "0x004CA1D0": {
    "name": "RenderEffectPass",
