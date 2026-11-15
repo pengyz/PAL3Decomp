@@ -1,0 +1,31 @@
+{
+ "generated": "2026-11-15",
+ "method": "偏移→基类名定谳方法(完备性裁决书F.1要求成文)",
+ "steps": [
+  "1. sub=N给出基偏移(thunk扫描); 第二表起点=邻接区段族裁决表",
+  "2. 第二表slot1内容指纹: mov eax,[ecx-delta];ret 的delta锁定PSWO型基(3槽表=[thunk或直发, ICF取成员, 0x4AF760 Object::Update])",
+  "3. slot2=0x4AF760(Object::Update)出现=PSWO族确认",
+  "4. 族裁决书交叉(如CEff族CTaskTpl@12已定谳)",
+  "5. 写点xref(ctor写表双写=两基)",
+  "6. PDB仅参考(版本不对应)"
+ ],
+ "backfill_hard_requirements_10cls": [
+  "UICursor(假表退役后需真表重查)",
+  "Actor(0x56AAC4锚点可疑)",
+  "EffBinkNode",
+  "EffCallBackNode",
+  "EffMultiPassNode",
+  "WeatherEffectNode(1槽碎片伪象)",
+  "CEffectSystem",
+  "PalScript(2表)",
+  "ScreenEffectMgr(6表lump)",
+  "TextureLib(3表)"
+ ],
+ "bases_incomplete": [
+  "UISceneMap(缺PSWO@0x48)",
+  "UIListBox(同)",
+  "UITitle_YXXX(同)",
+  "gbLightObj(第二基@8待名)",
+  "UICaption(已改判reconcile)"
+ ]
+}
