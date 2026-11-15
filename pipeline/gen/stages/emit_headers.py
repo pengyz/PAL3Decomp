@@ -3318,6 +3318,60 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     lines = _deduped
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
+    # [G1b non-slot declaration] 非槽自有方法头声明
+    try:
+        _g1b_path = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), '..', '..', '..',
+            'data', 'annotations', 'structs', cls_name + '.json'))
+        if not os.path.exists(_g1b_path):
+            raise FileNotFoundError(_g1b_path)
+        _g1b_data = json.load(open(_g1b_path, encoding='utf-8'))
+        _g1b_ms = _g1b_data.get('methods') or {}
+        # 收集已在头中的方法名
+        _already = set()
+        for _l2 in lines:
+            _dm = re.match(r'\s+(?:virtual\s+)?[\w:\*&]+\s+(\w+)\s*\(', _l2)
+            if _dm:
+                _already.add(_dm.group(1))
+        # 遍历注解 methods, 补缺失的非槽方法声明
+        _g1b_ms_items = sorted(_g1b_ms.items())
+        _g1b_added = 0
+        for _ga, _gm in _g1b_ms_items:
+            _gn = str(_gm.get('name') or '')
+            _gs = str(_gm.get('signature') or '')
+            if not _gn or not _gs or _gm.get('declaration_only'):
+                continue
+            # 剥 virtual / cc / 类限定名
+            _gs = re.sub(r'\bvirtual\b', '', _gs).strip()
+            _gs = re.sub(r'\b__thiscall\b|\b__cdecl\b|\b__stdcall\b|\b__fastcall\b', '', _gs).strip()
+            _gs = re.sub(r'\w+::(\w+)', r'\1', _gs)
+            _pm = re.match(r'^(.*?)\((.*)\)\s*$', _gs)
+            if not _pm:
+                continue
+            _gr = _pm.group(1).strip()
+            _gp = _pm.group(2).strip()
+            # 剥 this 参数
+            _cp = re.escape(cls_name)
+            _gp = re.sub(r'^' + _cp + r'\s*\*\s*\w+\s*,\s*', '', _gp)
+            _gp = re.sub(r',\s*' + _cp + r'\s*\*\s*\w+\s*', '', _gp)
+            # 剥参数名
+            _pp = []
+            for _p in _gp.split(','):
+                _p = _p.strip()
+                if not _p: continue
+                _t = re.sub(r'\s+\w+$', '', _p).strip()
+                _pp.append(_t if _t else _p)
+            _decl = '{} {}({})'.format(_gr, _gn, ', '.join(_pp))
+            # 去重: 名字已在头中就跳过
+            if _gn in _already:
+                continue
+            lines.append('    {}; // [G1b] 0x{}'.format(_decl, _ga[-8:]))
+            _g1b_added += 1
+        if _g1b_added:
+            lines.append('')
+    except Exception as _e_g1b:
+        import traceback; traceback.print_exc()  # G1b 失败不阻塞头生成
+
     return '\n'.join(lines)
 
 

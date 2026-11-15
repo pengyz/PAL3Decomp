@@ -766,6 +766,21 @@ def generate_class_cpp(cls_name, methods):
         # 头声明由 emit_headers 常规产出 (证据: 0x4C2640系4文件len全同=体借用实证)
         if not (m.get('code') or '').strip():
             continue
+        # [declaration_only 2026-11-15] 注解标记不发cpp定义
+        if m.get('declaration_only'):
+            continue
+        # [declaration_only 2026-11-15] 查注解决定是否跳过cpp定义
+        _addr_key = m.get('addr', '')
+        if _addr_key:
+            try:
+                _ann_dp = os.path.normpath(os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)), '..', '..', '..',
+                    'data', 'annotations', 'structs', cls_name + '.json'))
+                _ann_do = json.load(open(_ann_dp, encoding='utf-8')).get('methods', {}).get(_addr_key, {}).get('declaration_only')
+                if _ann_do:
+                    continue
+            except Exception:
+                pass
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
                            stub_registry=_stub_reg)
         code = _apply_lvar_overrides(m['code'].strip(), m['addr'])
