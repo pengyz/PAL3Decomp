@@ -906,3 +906,5 @@
 | `UIWnd::SetRect` | inline | `UIWnd` | 24 | name_not_declared_for_class | `(*(int ( **)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
 | `ArraySlots::RenderText` | inline | `ArraySlots` | 12 | no_vtables_declaration | `(*(void ( **)(ArraySlots *))(*(_DWORD *)this + 12))(this)` |
 | `EffAudioNode::?UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v1 + 4))( v1, *(_DWORD *)(*v3 + v5), *(_DWORD *)(*v3 + v5 + 4), 0)` |
+| `EffCallBackNode::UpdatePost(float)` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v1 + 4))( v1, *(_DWORD *)(*v3 + v5), *(_DWORD *)(*v3 + v5 + 4), 0)` |
+| `EffMultiPassNode::UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |

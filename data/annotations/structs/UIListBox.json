@@ -579,9 +579,9 @@
    "name_note": "消息处理（1007=设颜色）；vtable[1] slot6 自有槽。原名 OnMessage 与 0x00450990(消息1000分派,OnMessage)撞名 → 消歧名"
   },
   "0x0043d7a0": {
-   "name": "ForwardOnMessage(int,int,int)",
-   "signature": "void __thiscall()",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+   "name": "ForwardOnMessage",
+   "signature": "void __thiscall(int, int, int)",
+   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目 | 修正: name误含参数串+sig误void(); 体语义=转发OnMessage三参",
    "evidence_level": "binary_vtable_slot"
   }
  },

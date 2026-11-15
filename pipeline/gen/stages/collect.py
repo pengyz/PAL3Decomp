@@ -276,7 +276,9 @@ def collect_functions(decomp_dir=None):
                             _anm5 = _v5
                             break
                 _an5 = _anm5.get('name') if isinstance(_anm5, dict) else None
-                if _an5 and _an5 != method and 'thunk' in str(_anm5.get('name_source', '')) + str(_anm5.get('name_note', '')):
+                # [正名对齐 2026-11-15] 注解名存在即覆盖(注解=唯一真值, G1b根因:
+                # 旧条件仅thunk类条目吃注解名 → 正名条目的cpp定义名残留decomp旧名 → 头体漂移C2039/C2673)
+                if _an5 and _an5 != method:
                     # 体文本定义行同步改名(stage1 重建按 ctx.method 搜定义行——
                     # 不同步则搜不到 → 保留旧名 → C2084 复活)
                     code = code.replace('%s::%s(' % (cls, method), '%s::%s(' % (cls, _an5), 1)
