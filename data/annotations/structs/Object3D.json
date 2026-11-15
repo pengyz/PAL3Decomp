@@ -208,99 +208,99 @@
   }
  },
  "methods": {
-  "0x0047CB70": {
+  "0x0047cb70": {
    "name": "Object3D",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0047CB90": {
+  "0x0047cb90": {
    "name": "Load",
    "signature": "OpenNULLFile *__thiscall(Object3D *this, const char *pszName, int actionIdx)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "3D 模型加载（gbGeomNode + Actor）"
   },
-  "0x0047CD70": {
+  "0x0047cd70": {
    "name": "LoadObject",
    "signature": "unsigned char __thiscall(const char *filename, int act)",
    "evidence_level": "unverified"
   },
-  "0x0047CEE0": {
+  "0x0047cee0": {
    "name": "LoadSubObject",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0047CF40": {
+  "0x0047cf40": {
    "name": "Destroy",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x0047CFB0": {
+  "0x0047cfb0": {
    "name": "IsOverCVD",
    "signature": "long double __thiscall(float fVal, float fVal2, float fVal3, float fVal4, float fVal5, float fVal6)",
    "evidence_level": "unverified"
   },
-  "0x0047D030": {
+  "0x0047d030": {
    "name": "VecAngle",
    "signature": "void __thiscall(float fVal, float fVal2, float fVal3)",
    "evidence_level": "unverified"
   },
-  "0x0047D130": {
+  "0x0047d130": {
    "name": "SetObjectPosition",
    "signature": "void __thiscall(float position, float fVal, float fVal2)",
    "evidence_level": "unverified"
   },
-  "0x0047D230": {
+  "0x0047d230": {
    "name": "SetCentrePos",
    "signature": "long double __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0047D320": {
+  "0x0047d320": {
    "name": "GetScreenDegree",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0047D440": {
+  "0x0047d440": {
    "name": "RenderObjectScene",
    "signature": "void(gbVec3D scrVec, gbMatrixStack *pMatrixStack)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）",
    "evidence_level": "unverified"
   },
-  "0x0047D690": {
+  "0x0047d690": {
    "name": "CaculateRelative",
    "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x0047D9D0": {
+  "0x0047d9d0": {
    "name": "SetupCamera",
    "signature": "void *__thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x0047DA60": {
+  "0x0047da60": {
    "name": "Update",
    "signature": "bool __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0047DB40": {
+  "0x0047db40": {
    "name": "GetMouseRay",
    "signature": "bool __thiscall(tagPOINT *pPOINT)",
    "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [C2660修 2026-11-14] gbRay* retstr是sret形参(return value pointer), 真实栈参只有tagPOINT*; 调用点1参",
    "evidence_level": "unverified"
   },
-  "0x0047DC60": {
+  "0x0047dc60": {
    "name": "CheckMouseLPressed",
    "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A"
   },
-  "0x0047DC70": {
+  "0x0047dc70": {
    "name": "CheckMousePressed",
    "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A"
   },
-  "0x00429EE0": {
+  "0x00429ee0": {
    "name": "SetTransform",
    "signature": "void __thiscall(gbMatrix4 *pMatrix)",
    "evidence_level": "unverified"
@@ -310,7 +310,7 @@
    "signature": "gbVisNode *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0042B1F0": {
+  "0x0042b1f0": {
    "name": "IsVisible",
    "signature": "BOOL __thiscall()",
    "evidence_level": "unverified"
@@ -320,12 +320,12 @@
    "signature": "int __thiscall(const char *pszMsgName)",
    "evidence_level": "unverified"
   },
-  "0x0042B2F0": {
+  "0x0042b2f0": {
    "name": "GetOrientedOBBox",
    "signature": "void __thiscall(gbOBBox *pOBBox)",
    "evidence_level": "unverified"
   },
-  "0x0047FD90": {
+  "0x0047fd90": {
    "name": "LoadActorModel",
    "signature": "void *__thiscall(int nParam)",
    "_misattrib_evidence": "max_offset=162708>class_size=152",

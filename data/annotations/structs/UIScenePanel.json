@@ -503,7 +503,7 @@
  },
  "binary_size": 14232,
  "methods": {
-  "0x0044BE80": {
+  "0x0044be80": {
    "name": "_scalar_dtor_BE80",
    "signature": "void __thiscall()",
    "type": "skip",
@@ -512,47 +512,47 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x0043B3E0": {
+  "0x0043b3e0": {
    "name": "_UIScenePanel",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=372>class_size=96",
    "evidence_level": "unverified"
   },
-  "0x0044BA60": {
+  "0x0044ba60": {
    "name": "UIScenePanel",
    "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
    "evidence_level": "unverified"
   },
-  "0x0044C120": {
+  "0x0044c120": {
    "name": "CreateSettingsUI",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0046DF10": {
+  "0x0046df10": {
    "name": "ValidateIndex",
    "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0052CAF0": {
+  "0x0052caf0": {
    "name": "ActivatePanel",
    "signature": "int __thiscall UIScenePanel::ActivatePanel(int id)",
    "evidence_level": "unverified",
    "lvars_source": " | L-VAR auto-R2 2026-11-11: UIScenePanel.cpp:1068 下标/解引用+同函数dword cast形态"
   },
-  "0x0052CD40": {
+  "0x0052cd40": {
    "name": "LayoutSlot",
    "signature": "int __thiscall UIScenePanel::LayoutSlot(int arg0, int nVal, int nVal2, int nVal3, int nVal4)",
    "evidence_level": "unverified"
   },
-  "0x0043B570": {
+  "0x0043b570": {
    "name": "CreateLabelWidget",
    "signature": "int __thiscall(int id, void *pRect, int parent, LPCSTR lpString, char)",
    "source": "vtable_migrated+pdb_correct",
    "ordinal": 8,
    "evidence_level": "unverified"
   },
-  "0x0043B4D0": {
+  "0x0043b4d0": {
    "name": "~UIScenePanel",
    "signature": "void __thiscall UIScenePanel::~UIScenePanel()",
    "source": "A-evidence: 本函数与 ctor 0x0043B3E0(已在本类 methods) 写同一个 vptr 0x0056AC90(本类 vtables[0])；析构 [this+0x158](=known_members[344] m_SlotData) 并清零；被 0x004461F0(UICaption::DestroyPanel, add ecx,0x60; jmp) 与 0x0043B4B0(??_GUICaption 标量删除析构) 调用。多继承下 UIScenePanel 子对象位于 UICaption(binary_size=96=0x60) 之后。",

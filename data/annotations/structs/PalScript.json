@@ -713,58 +713,58 @@
    "signature": "char *__thiscall(char *name)",
    "evidence_level": "unverified"
   },
-  "0x004318B0": {
+  "0x004318b0": {
    "name": "LoadFromFile",
    "signature": "void *__thiscall(char *filename)",
    "evidence_level": "unverified"
   },
-  "0x004319F0": {
+  "0x004319f0": {
    "name": "SetDirectory",
    "signature": "int __thiscall(char *dir)",
    "evidence_level": "unverified"
   },
-  "0x00431A60": {
+  "0x00431a60": {
    "name": "HasNext",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00431B60": {
+  "0x00431b60": {
    "name": "LoadNext",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00431D80": {
+  "0x00431d80": {
    "name": "_StaticInit",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00431F00": {
+  "0x00431f00": {
    "name": "AddWaitObj",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00431F10": {
+  "0x00431f10": {
    "name": "AddCamObj",
    "signature": "int __fastcall(PalScript *this)",
    "evidence_level": "unverified"
   },
-  "0x00431FA0": {
+  "0x00431fa0": {
    "name": "ClearAllWaitObj",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00431FB0": {
+  "0x00431fb0": {
    "name": "Update",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00434C00": {
+  "0x00434c00": {
    "name": "GetString",
    "signature": "char * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0043AA00": {
+  "0x0043aa00": {
    "name": "OpenScript",
    "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)",
    "evidence_level": "unverified"
@@ -774,24 +774,25 @@
    "signature": "void __thiscall PalScript::PalScript_Init()",
    "evidence_level": "unverified"
   },
-  "0x0043A160": {
+  "0x0043a160": {
    "name": "PalScript",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0043A1F0": {
+  "0x0043a1f0": {
    "name": "ctor",
    "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "declaration_only": true
   },
-  "0x004318A0": {
+  "0x004318a0": {
    "name": "Cleanup",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004353A0": {
+  "0x004353a0": {
    "name": "Op_InTeam",
    "signature": "void __thiscall PalScript::Op_InTeam()",
    "evidence_level": "unverified"
@@ -801,12 +802,12 @@
    "signature": "void __thiscall PalScript::Op_RoleActiveShort()",
    "evidence_level": "unverified"
   },
-  "0x004352D0": {
+  "0x004352d0": {
    "name": "Op_RoleScriptInitCam",
    "signature": "char *__thiscall PalScript::Op_RoleScriptInitCam()",
    "evidence_level": "unverified"
   },
-  "0x00431C10": {
+  "0x00431c10": {
    "name": "FindSaveStateString",
    "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)",
    "evidence_level": "unverified"
@@ -816,7 +817,7 @@
    "signature": "gbGeomNode *__thiscall PalScript::LoadModel(const char *szFilename, int nActionIdx)",
    "evidence_level": "unverified"
   },
-  "0x00421CA0": {
+  "0x00421ca0": {
    "name": "BindRolesToStage",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -826,22 +827,22 @@
    "signature": "void __thiscall PalScript::Op_GetDislike()",
    "evidence_level": "unverified"
   },
-  "0x004378E0": {
+  "0x004378e0": {
    "name": "Op_HaveItem",
    "signature": "void __thiscall PalScript::Op_HaveItem()",
    "evidence_level": "unverified"
   },
-  "0x004384B0": {
+  "0x004384b0": {
    "name": "Op_Dist",
    "signature": "void __thiscall PalScript::Op_Dist()",
    "evidence_level": "unverified"
   },
-  "0x00429D10": {
+  "0x00429d10": {
    "name": "GetCount",
    "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00538D60": {
+  "0x00538d60": {
    "name": "DestroyInstances",
    "signature": "void __thiscall PalScript::DestroyInstances(double nActionID, int *p_DWORD)",
    "evidence_level": "unverified"
@@ -851,7 +852,7 @@
    "signature": "PalScript *__thiscall PalScript::InitParticleSlht(PalScript *pPalScript)",
    "evidence_level": "unverified"
   },
-  "0x004309D0": {
+  "0x004309d0": {
    "name": "EvalExpression",
    "signature": "int *__thiscall PalScript::EvalExpression(int *p_DWORD, char *pszBuf)",
    "evidence_level": "unverified"
@@ -866,37 +867,37 @@
    "signature": "int *__thiscall PalScript::EvalExprTree(int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)",
    "evidence_level": "unverified"
   },
-  "0x00431D20": {
+  "0x00431d20": {
    "name": "CleanupInstances",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00434D70": {
+  "0x00434d70": {
    "name": "Op_ScriptRunMode",
    "signature": "void __thiscall PalScript::Op_ScriptRunMode()",
    "evidence_level": "unverified"
   },
-  "0x00434D90": {
+  "0x00434d90": {
    "name": "Op_RolePathOut",
    "signature": "void __thiscall PalScript::Op_RolePathOut()",
    "evidence_level": "unverified"
   },
-  "0x00434E50": {
+  "0x00434e50": {
    "name": "Op_RoleScript",
    "signature": "char * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00434E90": {
+  "0x00434e90": {
    "name": "Op_RoleCtrl",
    "signature": "char * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004350F0": {
+  "0x004350f0": {
    "name": "Op_RoleOverlap",
    "signature": "char * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004351A0": {
+  "0x004351a0": {
    "name": "Op_RoleActive",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -994,12 +995,12 @@
    ],
    "evidence_level": "unverified"
   },
-  "0x00435BF0": {
+  "0x00435bf0": {
    "name": "Op_LoseItem",
    "signature": "void __thiscall PalScript::Op_LoseItem()",
    "evidence_level": "unverified"
   },
-  "0x004360F0": {
+  "0x004360f0": {
    "name": "Op_RoleSpaceWalk",
    "signature": "void __thiscall PalScript::Op_RoleSpaceWalk()",
    "evidence_level": "unverified"
@@ -1024,17 +1025,17 @@
    "signature": "void __thiscall PalScript::Op_FavorAdd()",
    "evidence_level": "unverified"
   },
-  "0x004364E0": {
+  "0x004364e0": {
    "name": "Op_AddRoleAtt",
    "signature": "void __thiscall PalScript::Op_AddRoleAtt()",
    "evidence_level": "unverified"
   },
-  "0x004365A0": {
+  "0x004365a0": {
    "name": "Op_RoleSetFace",
    "signature": "void __thiscall PalScript::Op_RoleSetFace()",
    "evidence_level": "unverified"
   },
-  "0x004365B0": {
+  "0x004365b0": {
    "name": "Op_RoleTurnFace",
    "signature": "void __thiscall PalScript::Op_RoleTurnFace()",
    "evidence_level": "unverified"
@@ -1049,17 +1050,17 @@
    "signature": "void __thiscall PalScript::Op_RoleInput()",
    "evidence_level": "unverified"
   },
-  "0x00436A60": {
+  "0x00436a60": {
    "name": "Op_Sub",
    "signature": "void __thiscall PalScript::Op_Sub()",
    "evidence_level": "unverified"
   },
-  "0x00436AB0": {
+  "0x00436ab0": {
    "name": "Op_GetMoney",
    "signature": "void __thiscall PalScript::Op_GetMoney()",
    "evidence_level": "unverified"
   },
-  "0x00436C00": {
+  "0x00436c00": {
    "name": "Op_HY_Mode",
    "signature": "void __thiscall PalScript::Op_HY_Mode()",
    "evidence_level": "unverified"
@@ -1084,32 +1085,32 @@
    "signature": "void __thiscall PalScript::Op_GetDlgSel()",
    "evidence_level": "unverified"
   },
-  "0x004377F0": {
+  "0x004377f0": {
    "name": "Op_RoleEmote",
    "signature": "void __thiscall PalScript::Op_RoleEmote()",
    "evidence_level": "unverified"
   },
-  "0x00437AE0": {
+  "0x00437ae0": {
    "name": "Op_RoleSetLayerByObj",
    "signature": "char *__thiscall PalScript::Op_RoleSetLayerByObj()",
    "evidence_level": "unverified"
   },
-  "0x00437C40": {
+  "0x00437c40": {
    "name": "Op_Enable_JusticeBook",
    "signature": "void __thiscall PalScript::Op_Enable_JusticeBook()",
    "evidence_level": "unverified"
   },
-  "0x00437C50": {
+  "0x00437c50": {
    "name": "Op_Specify_Compos",
    "signature": "void __thiscall PalScript::Op_Specify_Compos()",
    "evidence_level": "unverified"
   },
-  "0x00437FF0": {
+  "0x00437ff0": {
    "name": "Op_Start_Wolf",
    "signature": "void __thiscall PalScript::Op_Start_Wolf()",
    "evidence_level": "unverified"
   },
-  "0x004381B0": {
+  "0x004381b0": {
    "name": "ClearFloatParams",
    "signature": "void __thiscall PalScript::ClearFloatParams()",
    "evidence_level": "unverified"
@@ -1129,37 +1130,37 @@
    "signature": "void __thiscall PalScript::Op_ScrEft()",
    "evidence_level": "unverified"
   },
-  "0x004389D0": {
+  "0x004389d0": {
    "name": "Op_Snow",
    "signature": "void __thiscall PalScript::Op_Snow()",
    "evidence_level": "unverified"
   },
-  "0x00438B00": {
+  "0x00438b00": {
    "name": "Op_EntrySmeltSys",
    "signature": "void __thiscall PalScript::Op_EntrySmeltSys()",
    "evidence_level": "unverified"
   },
-  "0x00438B60": {
+  "0x00438b60": {
    "name": "Op_CEft_Load",
    "signature": "void __thiscall PalScript::Op_CEft_Load()",
    "evidence_level": "unverified"
   },
-  "0x00438D00": {
+  "0x00438d00": {
    "name": "Op_Rain",
    "signature": "void __thiscall PalScript::Op_Rain()",
    "evidence_level": "unverified"
   },
-  "0x00438F10": {
+  "0x00438f10": {
    "name": "Op_FullTeamAtt",
    "signature": "void __thiscall PalScript::Op_FullTeamAtt()",
    "evidence_level": "unverified"
   },
-  "0x00438F30": {
+  "0x00438f30": {
    "name": "Op_BeeInsertFrame",
    "signature": "void __thiscall PalScript::Op_BeeInsertFrame()",
    "evidence_level": "unverified"
   },
-  "0x0043A1D0": {
+  "0x0043a1d0": {
    "name": "_scalar_dtor_A1D0",
    "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
@@ -1169,19 +1170,19 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x0043A270": {
+  "0x0043a270": {
    "name": "RenderUI",
    "signature": "int __thiscall PalScript::RenderUI()",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x0043A3E0": {
+  "0x0043a3e0": {
    "name": "UpdateTimer",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified"
   },
-  "0x0044B8A0": {
+  "0x0044b8a0": {
    "name": "SetDialogTemplate",
    "signature": "LPSTR __thiscall PalScript::SetDialogTemplate(CHAR *String1, CHAR *lpString2)",
    "evidence_level": "unverified"
@@ -1206,7 +1207,7 @@
    "signature": "void __thiscall PalScript::ReleaseFrame()",
    "evidence_level": "unverified"
   },
-  "0x004307D0": {
+  "0x004307d0": {
    "name": "InitScriptObj",
    "signature": "int __thiscall PalScript::InitScriptObj(int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)",
    "evidence_level": "unverified"
@@ -1221,12 +1222,12 @@
    "signature": "int *__thiscall PalScript::IteratorNext()",
    "evidence_level": "unverified"
   },
-  "0x004314A0": {
+  "0x004314a0": {
    "name": "IteratorPrev",
    "signature": "int *__thiscall PalScript::IteratorPrev()",
    "evidence_level": "unverified"
   },
-  "0x004314F0": {
+  "0x004314f0": {
    "name": "ConstructStringObj",
    "signature": "void __thiscall PalScript::ConstructStringObj(char *pszBuf)",
    "evidence_level": "unverified"
@@ -1241,27 +1242,27 @@
    "signature": "int __thiscall PalScript::CompareBuffer(int nDescriptor)",
    "evidence_level": "unverified"
   },
-  "0x004319C0": {
+  "0x004319c0": {
    "name": "FreeLoadBuffer",
    "signature": "void __thiscall PalScript::FreeLoadBuffer()",
    "evidence_level": "unverified"
   },
-  "0x00431C00": {
+  "0x00431c00": {
    "name": "SaveLoadState",
    "signature": "int __thiscall PalScript::SaveLoadState()",
    "evidence_level": "unverified"
   },
-  "0x00434CE0": {
+  "0x00434ce0": {
    "name": "Op_Idle",
    "signature": "void __thiscall PalScript::Op_Idle()",
    "evidence_level": "unverified"
   },
-  "0x00434ED0": {
+  "0x00434ed0": {
    "name": "Op_RolePathOutToTile",
    "signature": "void __thiscall PalScript::Op_RolePathOutToTile()",
    "evidence_level": "unverified"
   },
-  "0x00434F90": {
+  "0x00434f90": {
    "name": "Op_RolePathTo",
    "signature": "void __thiscall PalScript::Op_RolePathTo()",
    "evidence_level": "unverified"
@@ -1281,7 +1282,7 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004353F0": {
+  "0x004353f0": {
    "name": "Op_RoleSetLayer",
    "signature": "void __thiscall PalScript::Op_RoleSetLayer()",
    "evidence_level": "unverified"
@@ -1291,7 +1292,7 @@
    "signature": "void __thiscall PalScript::Op_RoleOverlapEx()",
    "evidence_level": "unverified"
   },
-  "0x004354F0": {
+  "0x004354f0": {
    "name": "Op_RoleCtrlEx",
    "signature": "void __thiscall PalScript::Op_RoleCtrlEx()",
    "evidence_level": "unverified"
@@ -1306,7 +1307,7 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004356C0": {
+  "0x004356c0": {
    "name": "Op_ShowActAutoStand",
    "signature": "void __thiscall PalScript::Op_ShowActAutoStand()",
    "evidence_level": "unverified"
@@ -1321,12 +1322,12 @@
    "signature": "void __thiscall PalScript::Op_TeamOpenA()",
    "evidence_level": "unverified"
   },
-  "0x004357B0": {
+  "0x004357b0": {
    "name": "Op_CameraPushState",
    "signature": "void __thiscall PalScript::Op_CameraPushState()",
    "evidence_level": "unverified"
   },
-  "0x004357E0": {
+  "0x004357e0": {
    "name": "Op_CameraFocusRole",
    "signature": "void __thiscall PalScript::Op_CameraFocusRole()",
    "evidence_level": "unverified"
@@ -1336,7 +1337,7 @@
    "signature": "float * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004362D0": {
+  "0x004362d0": {
    "name": "Op_ShowActAutoStandEx",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -1351,12 +1352,12 @@
    "signature": "void __thiscall PalScript::Op_Let()",
    "evidence_level": "unverified"
   },
-  "0x004363B0": {
+  "0x004363b0": {
    "name": "Op_AddEx",
    "signature": "void __thiscall PalScript::Op_AddEx()",
    "evidence_level": "unverified"
   },
-  "0x004363E0": {
+  "0x004363e0": {
    "name": "Op_GetSwitch",
    "signature": "void __thiscall PalScript::Op_GetSwitch()",
    "evidence_level": "unverified"
@@ -1381,17 +1382,17 @@
    "signature": "void __thiscall PalScript::Op_AddItem()",
    "evidence_level": "unverified"
   },
-  "0x004365C0": {
+  "0x004365c0": {
    "name": "Op_RoleFaceRoleEx",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004365D0": {
+  "0x004365d0": {
    "name": "Op_RoleTurnFaceAEx",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004365E0": {
+  "0x004365e0": {
    "name": "Op_TeamOpen",
    "signature": "void __thiscall PalScript::Op_TeamOpen()",
    "evidence_level": "unverified"
@@ -1411,12 +1412,12 @@
    "signature": "void __thiscall PalScript::Op_FOP()",
    "evidence_level": "unverified"
   },
-  "0x004367B0": {
+  "0x004367b0": {
    "name": "Op_GT",
    "signature": "void __thiscall PalScript::Op_GT()",
    "evidence_level": "unverified"
   },
-  "0x004367E0": {
+  "0x004367e0": {
    "name": "Op_LS",
    "signature": "void __thiscall PalScript::Op_LS()",
    "evidence_level": "unverified"
@@ -1436,12 +1437,12 @@
    "signature": "void __thiscall PalScript::Op_NEQ()",
    "evidence_level": "unverified"
   },
-  "0x004368C0": {
+  "0x004368c0": {
    "name": "Op_Music",
    "signature": "void __thiscall PalScript::Op_Music()",
    "evidence_level": "unverified"
   },
-  "0x004368E0": {
+  "0x004368e0": {
    "name": "Op_GEQ",
    "signature": "void __thiscall PalScript::Op_GEQ()",
    "evidence_level": "unverified"
@@ -1456,82 +1457,82 @@
    "signature": "void __thiscall PalScript::Op_RemoveItem()",
    "evidence_level": "unverified"
   },
-  "0x004369A0": {
+  "0x004369a0": {
    "name": "Op_AddMoney",
    "signature": "void __thiscall PalScript::Op_AddMoney()",
    "evidence_level": "unverified"
   },
-  "0x004369C0": {
+  "0x004369c0": {
    "name": "Op_Movie",
    "signature": "void __thiscall PalScript::Op_Movie()",
    "evidence_level": "unverified"
   },
-  "0x00436A10": {
+  "0x00436a10": {
    "name": "Op_CEft_Pos",
    "signature": "void __thiscall PalScript::Op_CEft_Pos()",
    "evidence_level": "unverified"
   },
-  "0x00436B40": {
+  "0x00436b40": {
    "name": "Op_TeamCloseAEx",
    "signature": "void __thiscall PalScript::Op_TeamCloseAEx()",
    "evidence_level": "unverified"
   },
-  "0x00436BD0": {
+  "0x00436bd0": {
    "name": "Op_GetHS_Period_type",
    "signature": "void __thiscall PalScript::Op_GetHS_Period_type()",
    "evidence_level": "unverified"
   },
-  "0x00436C60": {
+  "0x00436c60": {
    "name": "Op_FadeNormal",
    "signature": "void __thiscall PalScript::Op_FadeNormal()",
    "evidence_level": "unverified"
   },
-  "0x00436CB0": {
+  "0x00436cb0": {
    "name": "Op_HY_FLY",
    "signature": "void __thiscall PalScript::Op_HY_FLY()",
    "evidence_level": "unverified"
   },
-  "0x00436D30": {
+  "0x00436d30": {
    "name": "Op_SetRoleTexture",
    "signature": "void __thiscall PalScript::Op_SetRoleTexture()",
    "evidence_level": "unverified"
   },
-  "0x00436DB0": {
+  "0x00436db0": {
    "name": "Op_Rotate",
    "signature": "void __thiscall PalScript::Op_Rotate()",
    "evidence_level": "unverified"
   },
-  "0x00436E10": {
+  "0x00436e10": {
    "name": "Op_Quake",
    "signature": "void __thiscall PalScript::Op_Quake()",
    "evidence_level": "unverified"
   },
-  "0x00436E70": {
+  "0x00436e70": {
    "name": "Op_ShowChatRest",
    "signature": "void __thiscall PalScript::Op_ShowChatRest()",
    "evidence_level": "unverified"
   },
-  "0x00436ED0": {
+  "0x00436ed0": {
    "name": "Op_GetHS_UnHock_type",
    "signature": "void __thiscall PalScript::Op_GetHS_UnHock_type()",
    "evidence_level": "unverified"
   },
-  "0x00436F40": {
+  "0x00436f40": {
    "name": "Op_SetBigMapElement",
    "signature": "void __thiscall PalScript::Op_SetBigMapElement()",
    "evidence_level": "unverified"
   },
-  "0x00436F90": {
+  "0x00436f90": {
    "name": "Op_ObjectMove",
    "signature": "void __thiscall PalScript::Op_ObjectMove()",
    "evidence_level": "unverified"
   },
-  "0x00436FB0": {
+  "0x00436fb0": {
    "name": "Op_KF_Entry",
    "signature": "void __thiscall PalScript::Op_KF_Entry()",
    "evidence_level": "unverified"
   },
-  "0x00436FE0": {
+  "0x00436fe0": {
    "name": "Op_ENCAMP_Entry",
    "signature": "void __thiscall PalScript::Op_ENCAMP_Entry()",
    "evidence_level": "unverified"
@@ -1546,12 +1547,12 @@
    "signature": "void __thiscall PalScript::Op_Deal()",
    "evidence_level": "unverified"
   },
-  "0x004370C0": {
+  "0x004370c0": {
    "name": "Op_APPR_Entry",
    "signature": "void __thiscall PalScript::Op_APPR_Entry()",
    "evidence_level": "unverified"
   },
-  "0x004370E0": {
+  "0x004370e0": {
    "name": "Op_GetHSLv",
    "signature": "void __thiscall PalScript::Op_GetHSLv()",
    "evidence_level": "unverified"
@@ -1571,17 +1572,17 @@
    "signature": "void __thiscall PalScript::Op_AddSkill()",
    "evidence_level": "unverified"
   },
-  "0x004371B0": {
+  "0x004371b0": {
    "name": "Op_GetFavorite",
    "signature": "void __thiscall PalScript::Op_GetFavorite()",
    "evidence_level": "unverified"
   },
-  "0x004371D0": {
+  "0x004371d0": {
    "name": "Op_Note",
    "signature": "void __thiscall PalScript::Op_Note()",
    "evidence_level": "unverified"
   },
-  "0x004371F0": {
+  "0x004371f0": {
    "name": "Op_PlaySound",
    "signature": "void __thiscall PalScript::Op_PlaySound()",
    "evidence_level": "unverified"
@@ -1596,17 +1597,17 @@
    "signature": "void __thiscall PalScript::Op_DlgPos()",
    "evidence_level": "unverified"
   },
-  "0x004373A0": {
+  "0x004373a0": {
    "name": "Op_FadeOut",
    "signature": "void __thiscall PalScript::Op_FadeOut()",
    "evidence_level": "unverified"
   },
-  "0x004373C0": {
+  "0x004373c0": {
    "name": "Op_FadeIn",
    "signature": "void __thiscall PalScript::Op_FadeIn()",
    "evidence_level": "unverified"
   },
-  "0x004373D0": {
+  "0x004373d0": {
    "name": "Op_DlgFace",
    "signature": "void __thiscall PalScript::Op_DlgFace()",
    "evidence_level": "unverified"
@@ -1616,12 +1617,12 @@
    "signature": "void __thiscall PalScript::Op_DlgFont()",
    "evidence_level": "unverified"
   },
-  "0x004374A0": {
+  "0x004374a0": {
    "name": "Op_LoadScene",
    "signature": "void __thiscall PalScript::Op_LoadScene()",
    "evidence_level": "unverified"
   },
-  "0x004374E0": {
+  "0x004374e0": {
    "name": "Op_DlgHead",
    "signature": "void __thiscall PalScript::Op_DlgHead()",
    "evidence_level": "unverified"
@@ -1631,7 +1632,7 @@
    "signature": "void __thiscall PalScript::Op_DlgSel()",
    "evidence_level": "unverified"
   },
-  "0x004375E0": {
+  "0x004375e0": {
    "name": "Op_CameraWag",
    "signature": "void __thiscall PalScript::Op_CameraWag()",
    "evidence_level": "unverified"
@@ -1641,12 +1642,12 @@
    "signature": "void __thiscall PalScript::Op_CameraMove()",
    "evidence_level": "unverified"
   },
-  "0x004376A0": {
+  "0x004376a0": {
    "name": "Op_CameraTrans",
    "signature": "void __thiscall PalScript::Op_CameraTrans()",
    "evidence_level": "unverified"
   },
-  "0x004376F0": {
+  "0x004376f0": {
    "name": "Op_CameraDefault",
    "signature": "void __thiscall PalScript::Op_CameraDefault()",
    "evidence_level": "unverified"
@@ -1656,27 +1657,27 @@
    "signature": "void __thiscall PalScript::Op_RoleStop()",
    "evidence_level": "unverified"
   },
-  "0x00437A80": {
+  "0x00437a80": {
    "name": "Op_Climb",
    "signature": "void __thiscall PalScript::Op_Climb()",
    "evidence_level": "unverified"
   },
-  "0x00437AC0": {
+  "0x00437ac0": {
    "name": "Op_InTeamExecScript",
    "signature": "char *__thiscall PalScript::Op_InTeamExecScript()",
    "evidence_level": "unverified"
   },
-  "0x00437B20": {
+  "0x00437b20": {
    "name": "Op_Combat",
    "signature": "void __thiscall PalScript::Op_Combat()",
    "evidence_level": "unverified"
   },
-  "0x00437B90": {
+  "0x00437b90": {
    "name": "Op_DlgTime",
    "signature": "void __thiscall PalScript::Op_DlgTime()",
    "evidence_level": "unverified"
   },
-  "0x00437BB0": {
+  "0x00437bb0": {
    "name": "Op_GetTimeSel",
    "signature": "void __thiscall PalScript::Op_GetTimeSel()",
    "evidence_level": "unverified"
@@ -1694,7 +1695,7 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=5: m_CamObj,m_fBlendFactor,m_nFrameCount,m_nState,m_waitobj（adjudicate_multiclaim 2026-11-03）"
   },
-  "0x004381E0": {
+  "0x004381e0": {
    "name": "Op_Trigger",
    "signature": "void __thiscall PalScript::Op_Trigger()",
    "evidence_level": "unverified"
@@ -1719,27 +1720,27 @@
    "signature": "void __thiscall PalScript::Op_EntrySkee()",
    "evidence_level": "unverified"
   },
-  "0x004384D0": {
+  "0x004384d0": {
    "name": "Op_CombatNotGameOver",
    "signature": "void __thiscall PalScript::Op_CombatNotGameOver()",
    "evidence_level": "unverified"
   },
-  "0x004385A0": {
+  "0x004385a0": {
    "name": "Op_GetCombat",
    "signature": "void __thiscall PalScript::Op_GetCombat()",
    "evidence_level": "unverified"
   },
-  "0x004387B0": {
+  "0x004387b0": {
    "name": "Op_RoleFadeIn",
    "signature": "void __thiscall PalScript::Op_RoleFadeIn()",
    "evidence_level": "unverified"
   },
-  "0x004387D0": {
+  "0x004387d0": {
    "name": "Op_TeamOpenAStartMove",
    "signature": "void __thiscall PalScript::Op_TeamOpenAStartMove()",
    "evidence_level": "unverified"
   },
-  "0x004388C0": {
+  "0x004388c0": {
    "name": "Op_IfInTeam",
    "signature": "void __thiscall PalScript::Op_IfInTeam()",
    "evidence_level": "unverified"
@@ -1754,58 +1755,58 @@
    "signature": "void __thiscall PalScript::Op_CEft_Role()",
    "evidence_level": "unverified"
   },
-  "0x004389A0": {
+  "0x004389a0": {
    "name": "Op_FogH",
    "signature": "void __thiscall PalScript::Op_FogH()",
    "evidence_level": "unverified"
   },
-  "0x00438A30": {
+  "0x00438a30": {
    "name": "Op_AverageLv",
    "signature": "void __thiscall PalScript::Op_AverageLv()",
    "evidence_level": "unverified"
   },
-  "0x00438B40": {
+  "0x00438b40": {
    "name": "Op_Switch2Menu",
    "signature": "void __thiscall PalScript::Op_Switch2Menu()",
    "evidence_level": "unverified"
   },
-  "0x00438BA0": {
+  "0x00438ba0": {
    "name": "Op_LoadAct",
    "signature": "void __thiscall PalScript::Op_LoadAct()",
    "evidence_level": "unverified"
   },
-  "0x00438D20": {
+  "0x00438d20": {
    "name": "Op_WaterMagic",
    "signature": "void __thiscall PalScript::Op_WaterMagic()",
    "evidence_level": "unverified"
   },
-  "0x00438F50": {
+  "0x00438f50": {
    "name": "Op_CameraYaw",
    "signature": "void __thiscall PalScript::Op_CameraYaw()",
    "evidence_level": "unverified"
   },
-  "0x004391A0": {
+  "0x004391a0": {
    "name": "SetReady",
    "signature": "void __thiscall PalScript::SetReady()",
    "evidence_level": "unverified"
   },
-  "0x004391D0": {
+  "0x004391d0": {
    "name": "ReleaseStateResource",
    "signature": "void __thiscall PalScript::ReleaseStateResource()",
    "evidence_level": "unverified"
   },
-  "0x004393A0": {
+  "0x004393a0": {
    "name": "CheckAnimOver",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00445E10": {
+  "0x00445e10": {
    "name": "OffsetRect",
    "signature": "int *__thiscall(long *p_DWORD)",
    "source": "| sig-type-fix 2026-09-28: int*→long*（调用点全 &RECT.left 型 long*（CCBItemWindow:34 等 RECT 坐标族）——4B 同槽字节等价；证据: 多调用点 B 级）",
    "evidence_level": "unverified"
   },
-  "0x0052BE40": {
+  "0x0052be40": {
    "name": "LoadEncampConfig",
    "signature": "int __thiscall PalScript::LoadEncampConfig()",
    "evidence_level": "unverified"
@@ -1815,12 +1816,12 @@
    "signature": "int __thiscall PalScript::ResetAll()",
    "evidence_level": "unverified"
   },
-  "0x0042C700": {
+  "0x0042c700": {
    "name": "StopSound3D",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00439FE0": {
+  "0x00439fe0": {
    "name": "GetRayToScreen",
    "signature": "void *__thiscall(void *pRay, LPPOINT pResult)",
    "evidence_level": "unverified"
@@ -1850,27 +1851,27 @@
    "signature": "void __thiscall PalScript::Op_RoleMoveTo()",
    "evidence_level": "unverified"
   },
-  "0x004386C0": {
+  "0x004386c0": {
    "name": "Op_RoleFadeOut",
    "signature": "void __thiscall PalScript::Op_RoleFadeOut()",
    "evidence_level": "unverified"
   },
-  "0x00438A20": {
+  "0x00438a20": {
    "name": "Op_CEft",
    "signature": "void __thiscall PalScript::Op_CEft()",
    "evidence_level": "unverified"
   },
-  "0x00438B80": {
+  "0x00438b80": {
    "name": "Op_GiveCloth",
    "signature": "void __thiscall PalScript::Op_GiveCloth()",
    "evidence_level": "unverified"
   },
-  "0x00437C20": {
+  "0x00437c20": {
    "name": "Op_Get_Appr",
    "signature": "void __thiscall PalScript::Op_Get_Appr()",
    "evidence_level": "unverified"
   },
-  "0x00437C30": {
+  "0x00437c30": {
    "name": "Op_Enable_Sword",
    "signature": "void __thiscall PalScript::Op_Enable_Sword()",
    "evidence_level": "unverified"
@@ -1880,7 +1881,7 @@
    "signature": "void __thiscall PalScript::Op_Enable_SwordSkill()",
    "evidence_level": "unverified"
   },
-  "0x00433F90": {
+  "0x00433f90": {
    "name": "ProcessGBKString",
    "signature": "int __thiscall(PalScript *this)",
    "static": true,
@@ -1899,7 +1900,7 @@
    ],
    "evidence_level": "unverified"
   },
-  "0x00429D40": {
+  "0x00429d40": {
    "name": "SetIndex",
    "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
@@ -1921,19 +1922,19 @@
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x004573A0": {
+  "0x004573a0": {
    "name": "FreeScriptBuffers",
    "signature": "void __thiscall PalScript::FreeScriptBuffers()",
    "_misattrib_evidence": "max_offset=805416>class_size=1816",
    "evidence_level": "unverified"
   },
-  "0x00487B60": {
+  "0x00487b60": {
    "name": "InitMainUIScripts",
    "signature": "int __thiscall PalScript::InitMainUIScripts()",
    "_misattrib_evidence": "max_offset=54700>class_size=1816",
    "evidence_level": "unverified"
   },
-  "0x00411CA0": {
+  "0x00411ca0": {
    "name": "~PalScript",
    "note": "attribution-fix(member-access evidence): 该函数引用的成员 m_RoleArray/m_RoleSlotArray/m_bCreated/m_pActorData/m_pDialogData/m_nTaskIndex **全部属于 PalScript、且都不在 ScriptObj 里** ⇒ 归属应为 PalScript。原注解为 ScriptObj::~ScriptObj（且 decomp 是 __cdecl、this-> 出现 0 次）。",
    "evidence": "logic-based attribution: ① decomp 首个局部 `PalScript *v1; // ecx` —— MSVC __thiscall 把 this 放在 ecx ⇒ v1 就是 this（这解释了 this-> 计数为 0）；② 在 this 上调用具名方法 `PalScript::DestroyScript(v1)`；③ 访问的成员 m_bCreated/m_pDialogData/m_RoleArray/m_nTaskIndex 全属 PalScript；④ 语义=释放缓冲区+operator delete+NPC::FreeBuffer+PalScriptMgr::Get_result ⇒ 析构/资源释放。旁证：原注解自带 _misattrib_evidence=max_offset=140>class_size=4（不属于 ScriptObj）。",
@@ -1941,7 +1942,7 @@
    "source": "| 挂账③ F 案改名 2026-10-06：~PalScript→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（体=成员析构级联无标志参）",
    "evidence_level": "unverified"
   },
-  "0x00430C10": {
+  "0x00430c10": {
    "name": "CopyFrom",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "对象拷贝/赋值（vftable+m_pinst）",
@@ -1954,13 +1955,13 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x00523E70": {
+  "0x00523e70": {
    "name": "GetScriptBufferAddr",
    "signature": "int __thiscall()",
    "source": "[函数归属 2026-10-17·主攻点 2 终] PalScript——面卡④类=PalScript（Op_HY_FLY 族 ✓）（五面卡类归属面 ✓ decomp member access 证）",
    "evidence_level": "unverified"
   },
-  "0x0043A250": {
+  "0x0043a250": {
    "name": "MoveAndHide",
    "signature": "int __thiscall PalScript::MoveAndHide()",
    "ordinal": 3,

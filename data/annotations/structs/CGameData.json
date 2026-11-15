@@ -700,39 +700,39 @@
  },
  "binary_size": 28268,
  "methods": {
-  "0x0044ADE0": {
+  "0x0044ade0": {
    "name": "InitRoles",
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0044E660": {
+  "0x0044e660": {
    "name": "InitItems",
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0044F5B0": {
+  "0x0044f5b0": {
    "name": "ProcessDialog",
    "signature": "int __thiscall CGameData::ProcessDialog()",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x0044F8A0": {
+  "0x0044f8a0": {
    "name": "SetMode",
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0044F430": {
+  "0x0044f430": {
    "name": "Cleanup",
    "signature": "void __thiscall CGameData::Cleanup()",
    "ordinal": 3,
    "evidence_level": "unverified"
   },
-  "0x0044F610": {
+  "0x0044f610": {
    "name": "Load",
    "signature": "int __thiscall(CGameData *this, CUtil *pUtil)",
    "evidence_level": "unverified"
   },
-  "0x0044F050": {
+  "0x0044f050": {
    "name": "~CGameData",
    "signature": "void __thiscall()",
    "type": "skip",
@@ -740,12 +740,12 @@
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CGameData。refs: ?Cleanup@CGameData@@QAEXXZ ??1UITitle@@QAE@XZ ??1RoleAtt@@QAE@PAVUIWnd@@@Z ?DestroyContent",
    "evidence_level": "A"
   },
-  "0x0044FF60": {
+  "0x0044ff60": {
    "name": "GetMode",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0044F030": {
+  "0x0044f030": {
    "name": "_scalar_dtor_F030",
    "signature": "void __thiscall CGameData::_scalar_dtor(int nVal1)",
    "type": "skip",
@@ -755,12 +755,12 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x00445A60": {
+  "0x00445a60": {
    "name": "SetDefaultColors",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0044F8D0": {
+  "0x0044f8d0": {
    "name": "_init_44f8d0",
    "signature": "CCBUI *__thiscall(int this, int a2)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CGameData::_init_44f8d0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CGameData 方法面",

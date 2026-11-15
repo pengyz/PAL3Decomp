@@ -88,13 +88,13 @@
   }
  },
  "methods": {
-  "0x004C6240": {
+  "0x004c6240": {
    "name": "InitVertexBuffer",
    "signature": "int *__thiscall(CEffectSystem *this, int nVal)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "顶点缓冲初始化（sub_4C5D00+flag 设 1）"
   },
-  "0x004C6260": {
+  "0x004c6260": {
    "name": "_scalar_dtor_6260",
    "signature": "int *__thiscall(CEffectSystem *Block)",
    "ordinal": 8,
@@ -102,94 +102,94 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x004C6280": {
+  "0x004c6280": {
    "name": "Init",
    "signature": "__thiscall bool()",
    "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A"
   },
-  "0x004C6290": {
+  "0x004c6290": {
    "name": "Destroy",
    "signature": "void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
    "source": "| 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）",
    "evidence_level": "A"
   },
-  "0x004C6330": {
+  "0x004c6330": {
    "name": "GetEffectIndex",
    "signature": "CEffect *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004C6340": {
+  "0x004c6340": {
    "name": "CreateEffect_6340",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004C6350": {
+  "0x004c6350": {
    "name": "GetEffect",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004C6360": {
+  "0x004c6360": {
    "name": "DestroyEffect",
    "signature": "void __thiscall()",
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=0x4C6350（名 GetEffect 可疑=另账）②被调=自身转发 ③成员无 ④CEffectSystem 效果系统 ⑤系统级销毁 ⇒ 名 DestroyEffect 语义对",
    "evidence_level": "unverified"
   },
-  "0x004C6410": {
+  "0x004c6410": {
    "name": "DestroyAllEffect",
    "signature": "int *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004C6460": {
+  "0x004c6460": {
    "name": "IsVisible",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x004C65C0": {
+  "0x004c65c0": {
    "name": "SetVisible",
    "signature": "void __thiscall(float effect)",
    "evidence_level": "unverified"
   },
-  "0x004C65F0": {
+  "0x004c65f0": {
    "name": "HandleViewMove",
    "signature": "void __thiscall(CEffectSystem *this, float fVal)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11e 反汇编反转: 入口 push esi; mov esi,ecx 读 [esi+4]/[esi+5] = thiscall; 栈访问仅 [esp+8] 一参; 调方 v22->HandleViewMove(v2) 一实参——旧 static(float,float) 双错",
    "evidence_level": "A"
   },
-  "0x004C6670": {
+  "0x004c6670": {
    "name": "Update",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x004C6870": {
+  "0x004c6870": {
    "name": "FillDefaultUVSet",
    "signature": "int *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E1190": {
+  "0x004e1190": {
    "name": "CreateEffectChain",
    "signature": "int __thiscall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004CF580": {
+  "0x004cf580": {
    "name": "CreateEffect",
    "signature": "int __thiscall CEffectSystem::CreateEffect(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)",
    "evidence_level": "unverified"
   },
-  "0x004C5820": {
+  "0x004c5820": {
    "name": "Create",
    "signature": "CEffectSystem *__thiscall(int pGfxMgr)",
    "evidence_level": "unverified"
   },
-  "0x004C61A0": {
+  "0x004c61a0": {
    "name": "CEffectSystem",
    "signature": "int *__thiscall(int pDisplay)",
    "_misattrib_evidence": "max_offset=245796>class_size=344",
    "evidence_level": "unverified"
   },
-  "0x004C5D50": {
+  "0x004c5d50": {
    "name": "_scalar_dtor_5D50",
    "signature": "int __thiscall(void *Block, char)",
    "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4C5D70 写 vptr 0x56F824（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F824→CEffectSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4C5D70 写 vptr 0x56F824",
@@ -197,14 +197,14 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x004C5D80": {
+  "0x004c5d80": {
    "name": "slot_1",
    "signature": "int()",
    "source": "vtable_migrated",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x004C5E80": {
+  "0x004c5e80": {
    "name": "ProcessEffects",
    "signature": "int __thiscall CEffectSystem::ProcessEffects(double time)",
    "source": "vtable_migrated | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
@@ -212,28 +212,28 @@
    "evidence_level": "unverified",
    "adjudication": "rejected"
   },
-  "0x004C5E20": {
+  "0x004c5e20": {
    "name": "slot_6",
    "signature": "int()",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified"
   },
-  "0x004C6030": {
+  "0x004c6030": {
    "name": "UpdateEffectState",
    "signature": "int __thiscall CEffectSystem::UpdateEffectState(int nVal)",
    "source": "vtable_migrated",
    "ordinal": 7,
    "evidence_level": "unverified"
   },
-  "0x004C5E70": {
+  "0x004c5e70": {
    "name": "nullsub",
    "signature": "int __thiscall CEffectSystem::nullsub(int, int)",
    "source": "vtable_evidence",
    "ordinal": 4,
    "evidence_level": "unverified"
   },
-  "0x004C5B90": {
+  "0x004c5b90": {
    "name": "SetEffectVisible",
    "signature": "void __thiscall CEffectSystem::SetEffectVisible(int nIndex, unsigned char bVisible)",
    "source": "pdb",
@@ -242,21 +242,21 @@
    "signature_note": "set_signature: asm 行 290910-290924：`retn 8` ⇒ 2 个栈参数；第一参 `[esp+arg_0]` 作为索引传给 sub_4C5940 再用于 `[esi+eax*4+118h]`（取 m_pEffect[idx]）；第二参 `mov dl,[esp+4+arg_4]` 后 `mov [ecx+0Dh],dl` 是**字节存储**到 CEffect::m_bVisible ⇒ 第二参为字节、返回值为 void（函数未对 eax 作有效设置，调用方也不使用返回值）。搬移前该条带的是原类残留签名 `struct _Texture_uv & (_Texture_uv *)`，导致生成头把它发射成 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`（pal3/src/Effect/CEffectSystem.h:44）—— 与函数体、与所属类均不符，已证伪。 (was: struct _Texture_uv & (_Texture_uv *))",
    "evidence_level": "unverified"
   },
-  "0x004C5DB0": {
+  "0x004c5db0": {
    "name": "Activate",
    "signature": "int __thiscall CEffectSystem::Activate()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
   },
-  "0x004C5DE0": {
+  "0x004c5de0": {
    "name": "ReleaseTextures",
    "signature": "void __thiscall CEffectSystem::ReleaseTextures()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=2）",
    "evidence_level": "unverified",
    "adjudication": "rejected"
   },
-  "0x004C5840": {
+  "0x004c5840": {
    "name": "DestroyEffects",
    "signature": "void __thiscall()",
    "source": "批A 2026-10-06：0x4C5840=5 字节尾跳 thunk（jmp 0x4C5910）——渲染伪名 Destroy_5840（址尾）禁伪名改 _todo_ 形；体证=调用点 thiscall 形（g_pEffectSystem this）+尾跳目标 0x4C5910 | 语义名 2026-10-06（用户可读性令）：体证=[this+0x114] 计数+循环 destroy 调（0x4C5B30/0x4C5850/0x4C5B50）=销毁效应数组循环形——DestroyEffects 语义名（弃 _todo_ 伪名）",

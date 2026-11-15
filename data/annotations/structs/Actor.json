@@ -1800,87 +1800,87 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005363A0": {
+  "0x005363a0": {
    "name": "ResetDefaultState",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00536A40": {
+  "0x00536a40": {
    "name": "GetDefaultFOV2_thunk",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified"
   },
-  "0x00536A50": {
+  "0x00536a50": {
    "name": "SetDefaultFOV2",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified"
   },
-  "0x00536A60": {
+  "0x00536a60": {
    "name": "GetDefaultDist2_thunk",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified"
   },
-  "0x00536A70": {
+  "0x00536a70": {
    "name": "SetDefaultDist2",
    "signature": "void __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified"
   },
-  "0x00536A80": {
+  "0x00536a80": {
    "name": "FastInit",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00536C50": {
+  "0x00536c50": {
    "name": "CompareActionName",
    "signature": "int __thiscall(int actionIdx, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00536CC0": {
+  "0x00536cc0": {
    "name": "GetAnimDuration",
    "signature": "unsigned int __thiscall(int animId)",
    "evidence_level": "unverified"
   },
-  "0x00536CE0": {
+  "0x00536ce0": {
    "name": "EnableTransition",
    "signature": "void __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00536D00": {
+  "0x00536d00": {
    "name": "SetTimeScale",
    "signature": "void __thiscall(float scale)",
    "evidence_level": "unverified"
   },
-  "0x00536FB0": {
+  "0x00536fb0": {
    "name": "QueryState",
    "signature": "int __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x00536FC0": {
+  "0x00536fc0": {
    "name": "DispatchAction",
    "signature": "int __thiscall(int actionId)",
    "evidence_level": "unverified"
   },
-  "0x00536FD0": {
+  "0x00536fd0": {
    "name": "PlayAction",
    "signature": "int __thiscall(int actionId)",
    "evidence_level": "unverified"
   },
-  "0x00536FF0": {
+  "0x00536ff0": {
    "name": "UpdateAllActions",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005371B0": {
+  "0x005371b0": {
    "name": "SetVisible",
    "signature": "void __thiscall(int bVisible)",
    "evidence_level": "unverified"
   },
-  "0x00536AC0": {
+  "0x00536ac0": {
    "name": "SetMaterialName",
    "signature": "int __thiscall Actor::SetMaterialName(void *name, int a2)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params",
@@ -1891,27 +1891,27 @@
    "signature": "int __thiscall Actor::AddActionByName(const char *pszName, const char *pszName2, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0053A0C0": {
+  "0x0053a0c0": {
    "name": "InsertAction",
    "signature": "int __thiscall Actor::InsertAction(int *p_DWORD, char **nY)",
    "evidence_level": "unverified"
   },
-  "0x0053AF30": {
+  "0x0053af30": {
    "name": "FindMatchingEntry",
    "signature": "int __thiscall(int nY, int nVal, int nX)",
    "evidence_level": "unverified"
   },
-  "0x0053AF70": {
+  "0x0053af70": {
    "name": "SetVideoRegions",
    "signature": "void __thiscall(int nX, int nVal, int nY)",
    "evidence_level": "unverified"
   },
-  "0x0041B9F0": {
+  "0x0041b9f0": {
    "name": "GetInnerAnimDuration",
    "signature": "unsigned int __thiscall Actor::GetInnerAnimDuration(int animId)",
    "evidence_level": "unverified"
   },
-  "0x0050ACF0": {
+  "0x0050acf0": {
    "name": "GetAnimDurationByIndex",
    "signature": "unsigned int __thiscall(int nVal)",
    "evidence_level": "unverified"
@@ -1921,17 +1921,17 @@
    "signature": "void __thiscall(float arg0)",
    "evidence_level": "unverified"
   },
-  "0x00537A90": {
+  "0x00537a90": {
    "name": "DoSceneTransition",
    "signature": "FILE *__thiscall(double pData, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00539E70": {
+  "0x00539e70": {
    "name": "InsertAnimFrame",
    "signature": "char *__thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x0053B2A0": {
+  "0x0053b2a0": {
    "name": "SelectPointer",
    "signature": "int *__cdecl(int *pnVal, int *pnVal2, int *pnVal3)",
    "static": true,
@@ -1942,37 +1942,37 @@
    "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x0044CB30": {
+  "0x0044cb30": {
    "name": "InitParticles",
    "signature": "int __thiscall Actor::InitParticles()",
    "evidence_level": "unverified"
   },
-  "0x00456EE0": {
+  "0x00456ee0": {
    "name": "ApplyStateArray",
    "signature": "int __thiscall Actor::ApplyStateArray()",
    "evidence_level": "unverified"
   },
-  "0x00456F10": {
+  "0x00456f10": {
    "name": "SaveState",
    "signature": "char * __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005309A0": {
+  "0x005309a0": {
    "name": "ResetTransformState",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00530C00": {
+  "0x00530c00": {
    "name": "UpdateAnimState",
    "signature": "bool __thiscall(char pData)",
    "evidence_level": "unverified"
   },
-  "0x00530F70": {
+  "0x00530f70": {
    "name": "BlendAnimation",
    "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x005370E0": {
+  "0x005370e0": {
    "name": "ValidateInput",
    "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified"
@@ -1982,12 +1982,12 @@
    "signature": "void __thiscall(const char *pszName)",
    "evidence_level": "unverified"
   },
-  "0x005372B0": {
+  "0x005372b0": {
    "name": "GetArrayCount",
    "signature": "int __thiscall Actor::GetArrayCount()",
    "evidence_level": "unverified"
   },
-  "0x005372D0": {
+  "0x005372d0": {
    "name": "LoadActionSequence",
    "signature": "int *__thiscall(int *p_DWORD, unsigned int dwVal, int *p_DWORD2)",
    "evidence_level": "unverified"
@@ -1998,18 +1998,18 @@
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x005375B0": {
+  "0x005375b0": {
    "name": "ClearArrayEntry",
    "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "source": "[C2660: 调用点0参(thiscall this隐式)]"
   },
-  "0x005375F0": {
+  "0x005375f0": {
    "name": "ClearPathBuffer",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005376E0": {
+  "0x005376e0": {
    "name": "LoadSaveData",
    "signature": "int __thiscall Actor::LoadSaveData(char *pszSlotIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
@@ -2020,12 +2020,12 @@
    "signature": "int __thiscall Actor::LoadActions(FILE *Stream, int *pnVal)",
    "evidence_level": "unverified"
   },
-  "0x00537A30": {
+  "0x00537a30": {
    "name": "ClearAllocBuffers",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005381D0": {
+  "0x005381d0": {
    "name": "InitAnimSequence",
    "signature": "char *__thiscall()",
    "evidence_level": "unverified"
@@ -2040,23 +2040,23 @@
    "signature": "BOOL __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00538CE0": {
+  "0x00538ce0": {
    "name": "ClearActionFlags",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00538D20": {
+  "0x00538d20": {
    "name": "CompareModelName",
    "signature": "BOOL __cdecl(char *String1, char *String2)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x005392C0": {
+  "0x005392c0": {
    "name": "ActionEntry_Assign",
    "signature": "char *__thiscall Actor::ActionEntry_Assign(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x005394D0": {
+  "0x005394d0": {
    "name": "ClearActionArrays",
    "signature": "int *__thiscall()",
    "evidence_level": "unverified"
@@ -2066,118 +2066,118 @@
    "signature": "void __thiscall(void **Buffer, int Stream)",
    "evidence_level": "unverified"
   },
-  "0x005399E0": {
+  "0x005399e0": {
    "name": "IterateActiveActors",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00539A90": {
+  "0x00539a90": {
    "name": "SearchAnimByIndex",
    "signature": "char __thiscall(char *String1, char *pszBuf)",
    "evidence_level": "unverified"
   },
-  "0x00539AF0": {
+  "0x00539af0": {
    "name": "RegisterAnim",
    "signature": "void __thiscall Actor::RegisterAnim(char *pszName, char *pszBuf)",
    "evidence_level": "unverified"
   },
-  "0x00539D60": {
+  "0x00539d60": {
    "name": "ClearAllActions",
    "signature": "int *__thiscall Actor::ClearAllActions()",
    "evidence_level": "unverified"
   },
-  "0x0053A020": {
+  "0x0053a020": {
    "name": "IterateAllocBuffer",
    "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0053A060": {
+  "0x0053a060": {
    "name": "InitAction",
    "signature": "int *__thiscall Actor::InitAction(_BYTE *pActionType)",
    "evidence_level": "unverified"
   },
-  "0x0053A080": {
+  "0x0053a080": {
    "name": "GetActionArrayEnd",
    "signature": "_WORD *__thiscall(_WORD *p_WORD, short *pnVal)",
    "evidence_level": "unverified"
   },
-  "0x0053A2E0": {
+  "0x0053a2e0": {
    "name": "GetActionCount",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0053A310": {
+  "0x0053a310": {
    "name": "DestroyActionRange",
    "signature": "void __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x0053A670": {
+  "0x0053a670": {
    "name": "CopyActionData",
    "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0053AFA0": {
+  "0x0053afa0": {
    "name": "CopyBufferBlocks",
    "signature": "char *__thiscall Actor::CopyBufferBlocks(char *pszDst, char *pszSrc, char *pszBuf3)",
    "evidence_level": "unverified"
   },
-  "0x0053AFE0": {
+  "0x0053afe0": {
    "name": "CopyIfValid",
    "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, const void *pData)",
    "evidence_level": "unverified"
   },
-  "0x0053B230": {
+  "0x0053b230": {
    "name": "GetCount",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0053B260": {
+  "0x0053b260": {
    "name": "CompareBuffers",
    "signature": "char * __thiscall(char *pszBuf, char *pszBuf2, char *pszBuf3)",
    "evidence_level": "unverified"
   },
-  "0x0053B890": {
+  "0x0053b890": {
    "name": "SetCurrentAction",
    "signature": "char *__thiscall Actor::SetCurrentAction(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0053BAE0": {
+  "0x0053bae0": {
    "name": "ActArray_Assign",
    "signature": "int *__thiscall Actor::ActArray_Assign(int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x0053BD30": {
+  "0x0053bd30": {
    "name": "BoneIndexVec_Assign",
    "signature": "int *__thiscall Actor::BoneIndexVec_Assign(int *pnVal)",
    "evidence_level": "unverified"
   },
-  "0x0041BCA0": {
+  "0x0041bca0": {
    "name": "ExecuteAction",
    "signature": "int __thiscall(tagActionCommand *pCmd)",
    "evidence_level": "unverified"
   },
-  "0x00530F20": {
+  "0x00530f20": {
    "name": "GetBoundRadius",
    "signature": "bool __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00538FA0": {
+  "0x00538fa0": {
    "name": "BuildCollisionMesh",
    "signature": "void __thiscall(int *pOut)",
    "evidence_level": "unverified"
   },
-  "0x0053BEB0": {
+  "0x0053beb0": {
    "name": "GetActionCountEx",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005363E0": {
+  "0x005363e0": {
    "name": "SetActorAction",
    "signature": "void __thiscall(int actionId)",
    "_misattrib_evidence": "max_offset=3340>class_size=596",
    "evidence_level": "unverified"
   },
-  "0x005364B0": {
+  "0x005364b0": {
    "name": "InitActorComponents",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=3340>class_size=596",
@@ -2189,51 +2189,51 @@
    "_misattrib_evidence": "max_offset=3340>class_size=596",
    "evidence_level": "unverified"
   },
-  "0x0053A340": {
+  "0x0053a340": {
    "name": "ActVec_Insert_char",
    "signature": "void __thiscall(Actor *this, char *pszBuf, unsigned int dwVal, char *pszBuf2)",
    "evidence_level": "unverified"
   },
-  "0x0053A6C0": {
+  "0x0053a6c0": {
    "name": "ActVec_Insert_word",
    "signature": "_WORD *__thiscall(Actor *this, _WORD *p_WORD, unsigned int dwVal, _WORD *p_WORD2)",
    "evidence_level": "unverified"
   },
-  "0x0053A8D0": {
+  "0x0053a8d0": {
    "name": "ActVec_InsertN",
    "signature": "unsigned int __thiscall(Actor *this, char *pszBuf, unsigned int nX, char *nY)",
    "evidence_level": "unverified"
   },
-  "0x0053ACA0": {
+  "0x0053aca0": {
    "name": "ActVec_InsertRange",
    "signature": "char *__thiscall(Actor *this, char *pszBuf, unsigned int dwVal, const void *pData, unsigned int nSize)",
    "evidence_level": "unverified"
   },
-  "0x0053B6E0": {
+  "0x0053b6e0": {
    "name": "CopyConstruct_1C",
    "signature": "void __cdecl(void *pDst, const void *pSrc)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x0053B700": {
+  "0x0053b700": {
    "name": "CopyConstruct_290",
    "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x0053B870": {
+  "0x0053b870": {
    "name": "CopyConstruct",
    "signature": "void __cdecl(void *pDst, const void *pSrc, int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x00536D20": {
+  "0x00536d20": {
    "name": "LoadActionSequences",
    "signature": "void __thiscall(Actor *this, const char *a2, int a3)",
    "evidence_level": "unverified",
    "source": " | [G3 C1 2026-10-25] 名对齐 IDB 现名 LoadActionSequences（原 sub_536D20）"
   },
-  "0x0041F360": {
+  "0x0041f360": {
    "name": "OnEvent",
    "signature": "void __thiscall(int, int)",
    "source": "挂账④ 放量批1 2026-10-06：thiscall 序言(this=ebx)+偏移[4,64] Actor 多偏移证+调用点 2 push 元数",
@@ -2241,128 +2241,128 @@
    "name_source": "IDA语义分析 2026-10-31 批1-2",
    "name_note": "空覆盖虚方法"
   },
-  "0x004B7330": {
+  "0x004b7330": {
    "name": "ProcessChain",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "链式节点处理（gbChain1DNode）"
   },
-  "0x004BA230": {
+  "0x004ba230": {
    "name": "CheckState",
    "signature": "void __thiscall(Actor *this)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "状态检查（float 比较 + 缓存更新）"
   },
-  "0x004B72C0": {
+  "0x004b72c0": {
    "name": "_todo_004B72C0",
    "signature": "__thiscall void()",
    "source": "挂账④ 放量批4 2026-10-06：thiscall 序言+偏移[0,92,96,100,104,108,112] Actor 多偏移簇证（七偏移簇） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A"
   },
-  "0x004B72D0": {
+  "0x004b72d0": {
    "name": "SetDefaultSpeed",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "设默认速度 24.0"
   },
-  "0x004B7490": {
+  "0x004b7490": {
    "name": "SetDefaultRange",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "设默认范围 24.0"
   },
-  "0x0041F2D0": {
+  "0x0041f2d0": {
    "name": "SortAnimData",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "动画数组排序（55 次循环）",
    "signature": "void __thiscall(Actor *this, int a2)"
   },
-  "0x004B7260": {
+  "0x004b7260": {
    "name": "CleanupStatic",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "静态数据清理"
   },
-  "0x0051DFD0": {
+  "0x0051dfd0": {
    "name": "_todo_0051DFD0",
    "signature": "void __thiscall(int)",
    "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[72,76,80,84,88,92] Actor 六连簇证 | [归属体检 2026-10-25·SUSPECT] offset-match: 越界 55/65 (最大 0xA3BD0), 命中 8（越界比>30% 或弱命中——this 复用/多对象待裁，不撤不路由）",
    "evidence_level": "unverified"
   },
-  "0x0053DB10": {
+  "0x0053db10": {
    "name": "Method_DB10",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断"
   },
-  "0x00532A20": {
+  "0x00532a20": {
    "name": "_todo_00532A20",
    "signature": "__thiscall void()",
    "source": "挂账④ 放量批7 2026-10-06：thiscall 序言+深窗偏移[12,16,20,24,28,32] Actor 六连簇证 | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A"
   },
-  "0x004C9470": {
+  "0x004c9470": {
    "name": "_todo_004C9470",
    "signature": "void __thiscall(int)",
    "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
    "evidence_level": "unverified"
   },
-  "0x004CB280": {
+  "0x004cb280": {
    "name": "_todo_004CB280",
    "signature": "void __thiscall(int)",
    "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
    "evidence_level": "unverified"
   },
-  "0x004D3160": {
+  "0x004d3160": {
    "name": "Remove",
    "signature": "virtual void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断"
   },
-  "0x004D37A0": {
+  "0x004d37a0": {
    "name": "_todo_004D37A0",
    "signature": "void __thiscall(int)",
    "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
    "evidence_level": "unverified"
   },
-  "0x004D4CA0": {
+  "0x004d4ca0": {
    "name": "_todo_004D4CA0",
    "signature": "void __thiscall(int)",
    "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
    "evidence_level": "unverified"
   },
-  "0x004C5B50": {
+  "0x004c5b50": {
    "name": "FindByKey",
    "signature": "bool __thiscall(Actor *this, int nKey)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "按键查找（m_pActor 数组遍历）"
   },
-  "0x0053D390": {
+  "0x0053d390": {
    "name": "Method_D390",
    "signature": "void __thiscall(Actor *this, int a2)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断"
   },
-  "0x004083D0": {
+  "0x004083d0": {
    "name": "ReleasePath",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "A* 路径释放",
    "signature": "void __thiscall(Actor *this, int a2)"
   },
-  "0x004B73E0": {
+  "0x004b73e0": {
    "name": "_todo_004B73E0",
    "signature": "void __thiscall(int)",
    "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,96,100,104,108] Actor 多偏移证（ctor 装配实证表）",
    "evidence_level": "A"
   },
-  "0x0041F340": {
+  "0x0041f340": {
    "name": "_scalar_dtor_F340",
    "signature": "void __thiscall()",
    "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AAC4 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AAC4）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41F360 写 vptr 0x56AAC4（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAC4→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41F360 写 vptr 0x56AAC4",
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x004083B0": {
+  "0x004083b0": {
    "name": "_scalar_dtor_83B0",
    "signature": "void __thiscall()",
    "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0 已认领）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4083D0 写 vptr 0x56A6D0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A6D0→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4083D0 写 vptr 0x56A6D0",

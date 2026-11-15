@@ -285,7 +285,7 @@
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00452FD0": {
+  "0x00452fd0": {
    "name": "ctor",
    "signature": "int __thiscall()",
    "type": "skip",
@@ -298,7 +298,7 @@
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 SceneObj 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~SceneObj。refs: ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ",
    "evidence_level": "A"
   },
-  "0x00407B50": {
+  "0x00407b50": {
    "name": "UpdateAutoDelete",
    "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)",
    "evidence_level": "unverified"
@@ -313,19 +313,19 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x004530C0": {
+  "0x004530c0": {
    "name": "_init_4530c0",
    "signature": "void __thiscall(const char *pszName)",
    "declaration_only": true,
    "source": "归属修正 2026-10-14（同名消歧族·T142 判读模式）：原 skip_functions 名 `string::_init_4530c0`(reason=std_library) 误挂 std::string ⇒ UISceneMap.cpp:156 C2039 ×2『'_init_4530c0' is not a member of 'basic_string'』。A 级证据链：①同 TU 簇 ctor@0x452FD0 = call 0x445AA0(UIWnd ctor，vptr 0x56AEC8) + `movl $0x56B200,(%esi)`（vptr store）⇒ 该簇类=UIWnd 派生且 vtable=0x56B200（SceneObj.json vtables 唯一认领，GlowObj/PalScriptWaitObj 无 vtables 键=误命中）；②同接收者兄弟调用 0x4538E0=SceneObj::LoadData（UISceneMap::LoadCompass@0x451208 lea 0x250(%esi),%ebx → mov %ebx,%ecx; call 两次同对象）；③本体 this+0x44/+0x48/+0x4C 引用计数串形（refcount@ptr[-1]）与 0x4538E0 同形（SceneObj::LoadData 生成体对同偏移渲染 this->m_fTimerLimit 等已编译通过）⇒ SceneObj 成员，非 std::string（std::string Dinkumware 布局 {buf/ptr@0,size@8,res@12} 不符）。名 _init_4530c0 保留同名消歧族现状（CGameData::_init_44f8d0 同式）；真语义名（append 形）挂账。2026-10-14 收窄：体渲染实测 +3 错（std::_Eos 变参丢失 ×2 / RoleAtt::_sub_4531F0 实参错位——T 族既有病灶）⇒ 转声明收编形（批 12-13：skip=体排除 + declaration_only=声明收编），体渲染修复挂账",
    "evidence_level": "A"
   },
-  "0x0052F800": {
+  "0x0052f800": {
    "name": "LoadGeomFromFile",
    "signature": "gbVFileSystem *__thiscall(const char *pszName)",
    "evidence_level": "unverified"
   },
-  "0x0052FB70": {
+  "0x0052fb70": {
    "name": "LoadObstruction",
    "signature": "gbVFileSystem *__thiscall()",
    "evidence_level": "unverified"
@@ -340,12 +340,12 @@
    "signature": "gbGeomNode *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0053EE60": {
+  "0x0053ee60": {
    "name": "StringCopyReplace",
    "signature": "char *__thiscall SceneObj::StringCopyReplace(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)",
    "evidence_level": "unverified"
   },
-  "0x0053F060": {
+  "0x0053f060": {
    "name": "StringCopyCat",
    "signature": "void __thiscall SceneObj::StringCopyCat(SceneObj *pSceneObj, SceneObj *pSceneObj2)",
    "evidence_level": "unverified"
@@ -357,17 +357,17 @@
    "evidence_level": "unverified",
    "semantic_name": "ValidateState"
   },
-  "0x004538E0": {
+  "0x004538e0": {
    "name": "LoadData",
    "signature": "char __thiscall SceneObj::LoadData()",
    "evidence_level": "unverified"
   },
-  "0x00527D40": {
+  "0x00527d40": {
    "name": "GetVisibleFlag",
    "signature": "int __thiscall(_BYTE *p_BYTE)",
    "evidence_level": "unverified"
   },
-  "0x00527D60": {
+  "0x00527d60": {
    "name": "GetCommonData",
    "signature": "int __thiscall()",
    "source": "| rename:_todo_→fn_",
@@ -378,18 +378,18 @@
    "signature": "int __thiscall SceneObj::SetScriptDel(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0053EF60": {
+  "0x0053ef60": {
    "name": "LoadFromConfig",
    "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x00453A70": {
+  "0x00453a70": {
    "name": "InsertAt",
    "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)",
    "evidence_level": "unverified"
   },
-  "0x0053F4F0": {
+  "0x0053f4f0": {
    "name": "ProcessNearby",
    "signature": "void __thiscall(_DWORD *)",
    "evidence_level": "unverified"

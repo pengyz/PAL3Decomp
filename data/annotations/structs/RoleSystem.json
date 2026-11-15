@@ -1377,17 +1377,17 @@
  "base_size": 68,
  "note": " | binary_size set to 8704 (stride from binary, was 8908)",
  "methods": {
-  "0x0040BE50": {
+  "0x0040be50": {
    "name": "Init",
    "signature": "int *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0040BE80": {
+  "0x0040be80": {
    "name": "RecalcAggregatedStats",
    "signature": "int __thiscall(char pData)",
    "evidence_level": "unverified"
   },
-  "0x00410E40": {
+  "0x00410e40": {
    "name": "CheckVisible",
    "signature": "int __cdecl()",
    "static": true,
@@ -1403,7 +1403,7 @@
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00412E60": {
+  "0x00412e60": {
    "name": "MoveRole",
    "signature": "int __thiscall(float *pPos, int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified"
@@ -1413,7 +1413,7 @@
    "signature": "char __thiscall(float *pfVal, int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00414A30": {
+  "0x00414a30": {
    "name": "PathFind",
    "signature": "int __thiscall(float *pTarget)",
    "evidence_level": "unverified"
@@ -1423,32 +1423,32 @@
    "signature": "void __thiscall(float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x00416F10": {
+  "0x00416f10": {
    "name": "GetActiveRole",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00419A80": {
+  "0x00419a80": {
    "name": "GetDirection",
    "signature": "int __thiscall(float *pOut)",
    "evidence_level": "unverified"
   },
-  "0x0041BBE0": {
+  "0x0041bbe0": {
    "name": "GetCount",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00420F30": {
+  "0x00420f30": {
    "name": "GetRolePtr",
    "signature": "int __thiscall(int index)",
    "evidence_level": "unverified"
   },
-  "0x00412D90": {
+  "0x00412d90": {
    "name": "BindPartyToScene",
    "signature": "char __thiscall RoleSystem::BindPartyToScene(float *pfVal, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00531E70": {
+  "0x00531e70": {
    "name": "~RoleSystem",
    "signature": "void __thiscall()",
    "type": "skip",
@@ -1461,29 +1461,29 @@
    "signature": "void __thiscall(int this, float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x004142E0": {
+  "0x004142e0": {
    "name": "NotifyMoveComplete",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004181E0": {
+  "0x004181e0": {
    "name": "Notify",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00531D20": {
+  "0x00531d20": {
    "name": "SetData",
    "signature": "void __thiscall(RoleSystem *this)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断"
   },
-  "0x0042A010": {
+  "0x0042a010": {
    "name": "ProcessAction",
    "signature": "void __thiscall(RoleSystem *this)",
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x42A010 gbVec3D 局部 + RoleSystem 成员访问",
    "evidence_level": "A"
   },
-  "0x004122C0": {
+  "0x004122c0": {
    "name": "UpdatePosition",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -1505,7 +1505,7 @@
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x00412B60": {
+  "0x00412b60": {
    "name": "SetMoveTarget",
    "signature": "void __thiscall(float *pTargetPos, int nFlags)",
    "evidence_level": "unverified"
@@ -1520,7 +1520,7 @@
    "signature": "int __thiscall(float fDeltaTime, int nMode)",
    "evidence_level": "unverified"
   },
-  "0x00413CD0": {
+  "0x00413cd0": {
    "name": "PathFollowUpdate",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -1530,45 +1530,45 @@
    "signature": "void __thiscall(gbVec3D *pTarget)",
    "evidence_level": "unverified"
   },
-  "0x004125B0": {
+  "0x004125b0": {
    "name": "NotifySceneChange",
    "signature": "int __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x00414E30": {
+  "0x00414e30": {
    "name": "GetActionByIndex",
    "signature": "int __thiscall(int nParam)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x00412A50": {
+  "0x00412a50": {
    "name": "StartHalfSpeedMovement",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004178A0": {
+  "0x004178a0": {
    "name": "CheckVisibility",
    "signature": "BOOL __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0041ABE0": {
+  "0x0041abe0": {
    "name": "UpdateFollowVelocity",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0041AD40": {
+  "0x0041ad40": {
    "name": "UpdateFollowVelocityEx",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00411E00": {
+  "0x00411e00": {
    "name": "ApplyMoveStep",
    "signature": "void __thiscall RoleSystem::ApplyMoveStep(double fInput, int nVal, float fVal, char bCollide)",
    "evidence_level": "unverified",
    "lvars_source": " | L-VAR 2026-11-12 R2类(asm寄存器别名): reg_EAX = (ulong)(&reg_ESI[..].m_fSpeed + 2) 取址惯例存地址, 下标写 [1]/[2]=元素——真值指针槽(unsigned long*), C2109/C2106 x9 消 | 移除 2026-11-12: 重导出后 Hex-Rays 已自洽(reg_EAX 零出现, gbVec3D pB 真型出现)——F83 reg_ 族系 codegen stage5 注入伪名,属留批 F 深水区, 非 lvars 可修"
   },
-  "0x00412A90": {
+  "0x00412a90": {
    "name": "MoveToTile",
    "signature": "void __thiscall RoleSystem::MoveToTile(__int64 tileXY, int nMode)",
    "evidence_level": "unverified",
@@ -1592,17 +1592,17 @@
    "signature": "double __thiscall RoleSystem::UpdateMovement(double result, gbVec3D *pB)",
    "evidence_level": "unverified"
   },
-  "0x004150C0": {
+  "0x004150c0": {
    "name": "UpdateActionState",
    "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x00416FA0": {
+  "0x00416fa0": {
    "name": "InitPathTracking",
    "signature": "void __thiscall(float *nFlags)",
    "evidence_level": "unverified"
   },
-  "0x00416FE0": {
+  "0x00416fe0": {
    "name": "RestoreMoveMode",
    "signature": "void __thiscall(float *nFlags)",
    "evidence_level": "unverified"
@@ -1617,17 +1617,17 @@
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00417C50": {
+  "0x00417c50": {
    "name": "UpdateMoveSubMode",
    "signature": "double __thiscall RoleSystem::UpdateMoveSubMode(double result, float result_4)",
    "evidence_level": "unverified"
   },
-  "0x0041A1A0": {
+  "0x0041a1a0": {
    "name": "ScanMoveDirections",
    "signature": "void __thiscall RoleSystem::ScanMoveDirections(float fRadius)",
    "evidence_level": "unverified"
   },
-  "0x0041A450": {
+  "0x0041a450": {
    "name": "UpdateFollowerMovement",
    "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified"
@@ -1637,17 +1637,17 @@
    "signature": "int __thiscall(int *pnVal, char pData)",
    "evidence_level": "unverified"
   },
-  "0x00420A10": {
+  "0x00420a10": {
    "name": "IsTileInBounds",
    "signature": "int *__thiscall(int nVal, int nY, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00420A90": {
+  "0x00420a90": {
    "name": "SetRoleGridPosition",
    "signature": "void __thiscall(float fVal, int nVal, float fVal2, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00420FB0": {
+  "0x00420fb0": {
    "name": "CheckMoveCollision",
    "signature": "BOOL __thiscall(int *index, float *pfVal, int nVal)",
    "evidence_level": "unverified"
@@ -1657,37 +1657,37 @@
    "signature": "BOOL __thiscall RoleSystem::IsTilePassable(char nTileType, int nSceneIdx, int nX, int nY)",
    "evidence_level": "unverified"
   },
-  "0x004214B0": {
+  "0x004214b0": {
    "name": "ValidatePathIndex",
    "signature": "BOOL __thiscall(int index, int nY, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00421BF0": {
+  "0x00421bf0": {
    "name": "NotifyPathEnd",
    "signature": "char *__thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0042A950": {
+  "0x0042a950": {
    "name": "CheckScriptTrigger",
    "signature": "BOOL __thiscall RoleSystem::CheckScriptTrigger(struct gbVec3D *p)",
    "evidence_level": "unverified"
   },
-  "0x0042B510": {
+  "0x0042b510": {
    "name": "UpdateStateMode",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0042C0C0": {
+  "0x0042c0c0": {
    "name": "SetTileTypeVisible",
    "signature": "int *__thiscall RoleSystem::SetTileTypeVisible(int nTileType, int bVisible)",
    "evidence_level": "unverified"
   },
-  "0x0042D9F0": {
+  "0x0042d9f0": {
    "name": "ExecScriptDataCmd",
    "signature": "int __thiscall RoleSystem::ExecScriptDataCmd(int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x0042E870": {
+  "0x0042e870": {
    "name": "ExecScriptDataIdx",
    "signature": "int __thiscall RoleSystem::ExecScriptDataIdx(int nVal)",
    "evidence_level": "unverified"
@@ -1698,7 +1698,7 @@
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004132B0": {
+  "0x004132b0": {
    "name": "MoveToTileCheck",
    "signature": "char __thiscall RoleSystem::MoveToTileCheck(int nTileX, int nTileY, int nMode)",
    "evidence_level": "unverified"
@@ -1713,32 +1713,32 @@
    "signature": "void __thiscall RoleSystem::SetupMoveState(float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x00417BC0": {
+  "0x00417bc0": {
    "name": "StopAndResetPath",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004189C0": {
+  "0x004189c0": {
    "name": "StartPathMove",
    "signature": "int __thiscall RoleSystem::StartPathMove(char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)",
    "evidence_level": "unverified"
   },
-  "0x00419A20": {
+  "0x00419a20": {
    "name": "GetActorState",
    "signature": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified"
   },
-  "0x00419B30": {
+  "0x00419b30": {
    "name": "UpdateFollowBehavior",
    "signature": "void __thiscall RoleSystem::UpdateFollowBehavior(float fDelta)",
    "evidence_level": "unverified"
   },
-  "0x0041A150": {
+  "0x0041a150": {
    "name": "SetActorTexture",
    "signature": "void __thiscall(const char *pszName)",
    "evidence_level": "unverified"
   },
-  "0x0041B6C0": {
+  "0x0041b6c0": {
    "name": "ApproachTarget",
    "signature": "char __thiscall RoleSystem::ApproachTarget(int nVal)",
    "evidence_level": "unverified"
@@ -1759,7 +1759,7 @@
    "signature": "int __thiscall(RoleSystem *pRoleSystem, int index)",
    "evidence_level": "unverified"
   },
-  "0x00420F70": {
+  "0x00420f70": {
    "name": "IsRoleInRange",
    "signature": "BOOL __thiscall(int index, int *pnVal, int nVal)",
    "evidence_level": "unverified"
@@ -1769,7 +1769,7 @@
    "signature": "void __thiscall(int index, float *pfVal, int *pnVal, int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x004215B0": {
+  "0x004215b0": {
    "name": "AdvanceOnPath",
    "signature": "int __thiscall(int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)",
    "evidence_level": "unverified"
@@ -1779,42 +1779,42 @@
    "signature": "int __thiscall(int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)",
    "evidence_level": "unverified"
   },
-  "0x004218B0": {
+  "0x004218b0": {
    "name": "GetPathTarget",
    "signature": "BOOL __thiscall(int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)",
    "evidence_level": "unverified"
   },
-  "0x00421A90": {
+  "0x00421a90": {
    "name": "UpdatePathProgress",
    "signature": "int __thiscall(char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00421D10": {
+  "0x00421d10": {
    "name": "BuildPathSegment",
    "signature": "int *__thiscall(int *pnVal, char pData)",
    "evidence_level": "unverified"
   },
-  "0x00421EA0": {
+  "0x00421ea0": {
    "name": "ResetTransition",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0042DBD0": {
+  "0x0042dbd0": {
    "name": "ExecScriptDataA",
    "signature": "int __thiscall RoleSystem::ExecScriptDataA()",
    "evidence_level": "unverified"
   },
-  "0x0042DD80": {
+  "0x0042dd80": {
    "name": "ExecScriptDataB",
    "signature": "int __thiscall RoleSystem::ExecScriptDataB()",
    "evidence_level": "unverified"
   },
-  "0x0042EA30": {
+  "0x0042ea30": {
    "name": "ExecScriptDataC",
    "signature": "int __thiscall RoleSystem::ExecScriptDataC()",
    "evidence_level": "unverified"
   },
-  "0x00531E50": {
+  "0x00531e50": {
    "name": "_scalar_dtor_1E50",
    "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
@@ -1829,54 +1829,54 @@
    "signature": "int __thiscall(int index, float *pfVal, float *pfVal2, int nVal, char pData)",
    "evidence_level": "unverified"
   },
-  "0x0040C9A0": {
+  "0x0040c9a0": {
    "name": "ForceStopRole",
    "signature": "int __cdecl(int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004126D0": {
+  "0x004126d0": {
    "name": "GetAnimOffset",
    "signature": "int __cdecl RoleSystem::GetAnimOffset(int nType, unsigned __int8 nMode)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x00412C30": {
+  "0x00412c30": {
    "name": "SetPathWaypoint",
    "signature": "int __thiscall(float fVal)",
    "evidence_level": "unverified"
   },
-  "0x00413C00": {
+  "0x00413c00": {
    "name": "PlaceAtRegion",
    "signature": "int __thiscall RoleSystem::PlaceAtRegion(int nSceneIdx, int nRegion)",
    "evidence_level": "unverified"
   },
-  "0x004148C0": {
+  "0x004148c0": {
    "name": "UpdateMoveInterpolation",
    "signature": "float *__thiscall(float *pfVal, float *pfVal2)",
    "evidence_level": "unverified"
   },
-  "0x00414A10": {
+  "0x00414a10": {
    "name": "UpdateMoveTimer",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00414F90": {
+  "0x00414f90": {
    "name": "PlayAction",
    "signature": "int __thiscall RoleSystem::PlayAction(char *pszAction, int nMode)",
    "evidence_level": "unverified"
   },
-  "0x004164E0": {
+  "0x004164e0": {
    "name": "IsPathMoving",
    "signature": "BOOL __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00416BC0": {
+  "0x00416bc0": {
    "name": "ProcessInteraction",
    "signature": "void __thiscall RoleSystem::ProcessInteraction()",
    "evidence_level": "unverified"
   },
-  "0x004180B0": {
+  "0x004180b0": {
    "name": "CheckWidgetReady",
    "signature": "int __thiscall(gbRay *pRay)",
    "evidence_level": "unverified"
@@ -1886,12 +1886,12 @@
    "signature": "void __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00418D90": {
+  "0x00418d90": {
    "name": "IsInBounds",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x00418DC0": {
+  "0x00418dc0": {
    "name": "TryMoveToTarget",
    "signature": "char __thiscall RoleSystem::TryMoveToTarget(__int16 pData, int nVal)",
    "evidence_level": "unverified"
@@ -1906,102 +1906,102 @@
    "signature": "int __thiscall(int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x004198C0": {
+  "0x004198c0": {
    "name": "StartLinearMove",
    "signature": "void __thiscall RoleSystem::StartLinearMove(int *pTargetPos, int nMode)",
    "evidence_level": "unverified"
   },
-  "0x00419AE0": {
+  "0x00419ae0": {
    "name": "NotifyAndSetMode6",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00419B10": {
+  "0x00419b10": {
    "name": "SetCollisionRadius",
    "signature": "__int64 __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00419EF0": {
+  "0x00419ef0": {
    "name": "AdvancePathStep",
    "signature": "BOOL __thiscall RoleSystem::AdvancePathStep(float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x0041AEA0": {
+  "0x0041aea0": {
    "name": "SetBlendMode",
    "signature": "void __thiscall(float fAlpha)",
    "evidence_level": "unverified"
   },
-  "0x0041AEE0": {
+  "0x0041aee0": {
    "name": "SetTransform",
    "signature": "int __thiscall(int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x0041AF50": {
+  "0x0041af50": {
    "name": "AllocPathPage",
    "signature": "int __thiscall RoleSystem::AllocPathPage(int nVal, int nVal2)",
    "evidence_level": "unverified"
   },
-  "0x0041B120": {
+  "0x0041b120": {
    "name": "StopPathMovement",
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0041B420": {
+  "0x0041b420": {
    "name": "LoadWeaponModel",
    "signature": "void __thiscall(char *pszRoleName)",
    "evidence_level": "unverified"
   },
-  "0x0041BA10": {
+  "0x0041ba10": {
    "name": "InterpolateHeight",
    "signature": "BOOL __thiscall(float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x0041BAD0": {
+  "0x0041bad0": {
    "name": "InitDefaultState",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0041BC30": {
+  "0x0041bc30": {
    "name": "ExportRoleData",
    "signature": "int __thiscall(float *pfVal)",
    "evidence_level": "unverified"
   },
-  "0x0041BD40": {
+  "0x0041bd40": {
    "name": "ClearColors",
    "signature": "int *__thiscall(_BYTE *p_BYTE)",
    "evidence_level": "unverified"
   },
-  "0x0041C090": {
+  "0x0041c090": {
    "name": "FlushCommandQueue",
    "signature": "int __thiscall RoleSystem::FlushCommandQueue()",
    "evidence_level": "unverified"
   },
-  "0x0041C190": {
+  "0x0041c190": {
    "name": "SetInactive",
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0041D220": {
+  "0x0041d220": {
    "name": "AddCameraKeyframe",
    "signature": "int __thiscall RoleSystem::AddCameraKeyframe()",
    "evidence_level": "unverified"
   },
-  "0x00420F50": {
+  "0x00420f50": {
    "name": "GetMapNodePtr",
    "signature": "char *__thiscall RoleSystem::GetMapNodePtr(int nIndex)",
    "evidence_level": "unverified"
   },
-  "0x00421DD0": {
+  "0x00421dd0": {
    "name": "ClearWaypointBuffer",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)",
    "evidence_level": "unverified"
   },
-  "0x00421F20": {
+  "0x00421f20": {
    "name": "GetFontColor",
    "signature": "size_t __thiscall(FILE *Stream)",
    "evidence_level": "unverified"
   },
-  "0x00421F70": {
+  "0x00421f70": {
    "name": "ClearPathData",
    "signature": "char __thiscall(FILE *Buffer)",
    "evidence_level": "unverified"
@@ -2032,39 +2032,39 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004234A0": {
+  "0x004234a0": {
    "name": "SetCameraMode",
    "signature": "int __cdecl(int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x0042AD40": {
+  "0x0042ad40": {
    "name": "SetActionState",
    "signature": "int __thiscall(int nVal, char pData)",
    "evidence_level": "unverified"
   },
-  "0x0044B470": {
+  "0x0044b470": {
    "name": "ProcessWaypoint",
    "signature": "int __thiscall RoleSystem::ProcessWaypoint()",
    "evidence_level": "unverified"
   },
-  "0x0044CD90": {
+  "0x0044cd90": {
    "name": "InitUICtrlArray",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0044CEC0": {
+  "0x0044cec0": {
    "name": "InitDefaultPositions",
    "signature": "int __thiscall RoleSystem::InitDefaultPositions()",
    "_misattrib_evidence": "max_offset=4224>class_size=180",
    "evidence_level": "unverified"
   },
-  "0x0044D380": {
+  "0x0044d380": {
    "name": "InitRandomParticles",
    "signature": "int __thiscall RoleSystem::InitRandomParticles()",
    "evidence_level": "unverified"
   },
-  "0x00531F50": {
+  "0x00531f50": {
    "name": "InitAllSystems",
    "signature": "int __thiscall RoleSystem::InitAllSystems()",
    "_misattrib_evidence": "max_offset=7432>class_size=232",
@@ -2080,12 +2080,12 @@
    "signature": "int __thiscall(char pData)",
    "evidence_level": "unverified"
   },
-  "0x005326A0": {
+  "0x005326a0": {
    "name": "StartBlinkUI",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005326E0": {
+  "0x005326e0": {
    "name": "StopBlinkUI",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
@@ -2102,23 +2102,23 @@
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x005329A0": {
+  "0x005329a0": {
    "name": "HandleMsgDLL",
    "signature": "int __thiscall RoleSystem::HandleMsgDLL(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
    "ordinal": 6,
    "evidence_level": "unverified"
   },
-  "0x00532C80": {
+  "0x00532c80": {
    "name": "AdjustHeight",
    "signature": "void __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00532D30": {
+  "0x00532d30": {
    "name": "GetStateMode",
    "signature": "int __thiscall RoleSystem::GetStateMode()",
    "evidence_level": "unverified"
   },
-  "0x00532E10": {
+  "0x00532e10": {
    "name": "ResetPathState",
    "signature": "char __thiscall RoleSystem::ResetPathState(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
@@ -2129,38 +2129,38 @@
    "signature": "void __thiscall(float *pfDir)",
    "evidence_level": "unverified"
   },
-  "0x004161E0": {
+  "0x004161e0": {
    "name": "ScaleVector",
    "signature": "void __cdecl(float *pVec, float fScale)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004207D0": {
+  "0x004207d0": {
    "name": "LoadRoleImage",
    "signature": "unsigned char *__thiscall(int nIndex, const char *pszPath)",
    "evidence_level": "unverified"
   },
-  "0x004163B0": {
+  "0x004163b0": {
    "name": "CalcTileDistance",
    "signature": "int __thiscall(int nTileX, int nTileY)",
    "evidence_level": "unverified"
   },
-  "0x0041B300": {
+  "0x0041b300": {
    "name": "GetCurrentTile",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004203C0": {
+  "0x004203c0": {
    "name": "InitRoleImage",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00532D40": {
+  "0x00532d40": {
    "name": "NegateStateMode",
    "signature": "void __thiscall RoleSystem::NegateStateMode()",
    "evidence_level": "unverified"
   },
-  "0x0041BD70": {
+  "0x0041bd70": {
    "name": "GetRoleName",
    "signature": "const char *__thiscall(unsigned int nRoleIndex)",
    "evidence_level": "unverified"
@@ -2170,13 +2170,13 @@
    "signature": "void __thiscall(float *pOut, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00417AC0": {
+  "0x00417ac0": {
    "name": "SetState",
    "signature": "void __thiscall(int state)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x004209F0": {
+  "0x004209f0": {
    "name": "GetTile",
    "signature": "char __thiscall(int nX, int nY)",
    "evidence_level": "unverified"
@@ -2194,7 +2194,7 @@
    "declaration_only": true,
    "adjudication": "confirmed"
   },
-  "0x005110B0": {
+  "0x005110b0": {
    "name": "SetColor",
    "signature": "void __thiscall(int nColor)",
    "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批",
@@ -2215,7 +2215,7 @@
    "evidence_level": "A",
    "declaration_only": true
   },
-  "0x00532D50": {
+  "0x00532d50": {
    "name": "ClearStateMode",
    "signature": "void __thiscall RoleSystem::ClearStateMode(RoleSystem *this)",
    "source": "[函数归属 2026-10-17·余 8] RoleSystem——②`ClearStateMode(RoleSystem *this)` 类名直证 ✓ + ①ExternalStatistics::UpdateFromRole ③m_rect.right=0 ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",

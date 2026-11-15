@@ -150,27 +150,27 @@
   }
  },
  "methods": {
-  "0x0042C6A0": {
+  "0x0042c6a0": {
    "name": "GetAABBox",
    "signature": "void __thiscall(gbLightObj *this, struct gbAABBox *p)",
    "ordinal": 0,
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
    "evidence_level": "A"
   },
-  "0x0042BEE0": {
+  "0x0042bee0": {
    "name": "IsIdle",
    "signature": "BOOL __thiscall gbLightObj::IsIdle()",
    "ordinal": 4,
    "evidence_level": "unverified"
   },
-  "0x0042C6E0": {
+  "0x0042c6e0": {
    "name": "GetGfxManager",
    "signature": "gbGfxManager *__thiscall(int nVal1)",
    "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x0042C8D0": {
+  "0x0042c8d0": {
    "name": "GetCGEntry",
    "signature": "int __thiscall(char)",
    "source": "vtable_migrated+pdb_correct",

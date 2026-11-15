@@ -915,7 +915,11 @@ def check_canonical_contract():
                     # 自有槽: 本类 methods 须有条目(多槽地址豁免——同址多槽=多契约共载体)
                     if _slot_addr_count.get(au, 0) > 1:
                         continue
-                    if au not in {str(k).lower() for k in (d.get('methods') or {}).keys()}:
+                    _ms_int = set()
+                    for _k in (d.get('methods') or {}).keys():
+                        try: _ms_int.add(int(_k, 16))
+                        except (ValueError, TypeError): pass
+                    if int(au, 16) not in _ms_int:
                         cur_viol['C7:%s:%s:own' % (cls, au)] = (
                             '%s 自有槽 slot%d addr=%s 但本类 methods 无条目(定义路由断链→C2039)' % (
                                 cls, vi, au))

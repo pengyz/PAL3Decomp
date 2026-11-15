@@ -34,12 +34,12 @@
   }
  },
  "methods": {
-  "0x004427C0": {
+  "0x004427c0": {
    "name": "SetEnable",
    "signature": "void __thiscall(UICaption *this, int szName, int bEnable)",
    "evidence_level": "unverified"
   },
-  "0x004461F0": {
+  "0x004461f0": {
    "name": "DestroyPanel",
    "signature": "void __thiscall UICaption::DestroyPanel()",
    "evidence_level": "unverified"
@@ -49,12 +49,13 @@
    "signature": "void __thiscall UICaption::LayoutDefault()",
    "evidence_level": "unverified"
   },
-  "0x0043A810": {
+  "0x0043a810": {
    "name": "Destroy2",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "declaration_only": true
   },
-  "0x0044BDA0": {
+  "0x0044bda0": {
    "name": "DestroyAll",
    "signature": "void __thiscall()",
    "source": "batch:sub_fix_from_decomp_this_type",
@@ -73,7 +74,7 @@
    "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册",
    "evidence_level": "unverified"
   },
-  "0x004506C0": {
+  "0x004506c0": {
    "name": "~UICaption_adjthunk",
    "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",

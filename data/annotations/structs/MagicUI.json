@@ -466,13 +466,13 @@
   }
  },
  "methods": {
-  "0x0055CCE4": {
+  "0x0055cce4": {
    "name": "NextRole",
    "signature": "int (int *)",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "0x00551C66": {
+  "0x00551c66": {
    "name": "InitComItem",
    "signature": "void (int nVal1)",
    "source": "pdb | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [2026-11-13] +declaration_only: 体由 skip(0x00551C66, VC6无3DNow内置)排除, 条目保留声明收编",
@@ -485,7 +485,7 @@
    "_misattrib_evidence": "max_offset=215196>class_size=4280",
    "evidence_level": "unverified"
   },
-  "0x0048A010": {
+  "0x0048a010": {
    "name": "RefreshAndLayout",
    "signature": "int __thiscall MagicUI::RefreshAndLayout()",
    "_misattrib_evidence": "max_offset=205784>class_size=4088",
@@ -501,27 +501,27 @@
    "signature": "int __thiscall MagicUI::SelectBigMapTab4(char nTab)",
    "evidence_level": "unverified"
   },
-  "0x00484ED0": {
+  "0x00484ed0": {
    "name": "SelectTab3",
    "signature": "int __thiscall MagicUI::SelectTab3(unsigned __int8 nTab)",
    "evidence_level": "unverified"
   },
-  "0x00484EF0": {
+  "0x00484ef0": {
    "name": "SelectTab4",
    "signature": "int __thiscall MagicUI::SelectTab4(unsigned __int8 nTab)",
    "evidence_level": "unverified"
   },
-  "0x0048A350": {
+  "0x0048a350": {
    "name": "SelectSubTab3",
    "signature": "int __thiscall MagicUI::SelectSubTab3(unsigned __int8 nTab)",
    "evidence_level": "unverified"
   },
-  "0x0048A370": {
+  "0x0048a370": {
    "name": "SelectSubTab4",
    "signature": "int __thiscall MagicUI::SelectSubTab4(unsigned __int8 nTab)",
    "evidence_level": "unverified"
   },
-  "0x0048A390": {
+  "0x0048a390": {
    "name": "InitUILayout",
    "signature": "int __thiscall MagicUI::InitUILayout(int nVal)",
    "_misattrib_evidence": "max_offset=249552>class_size=4088",
@@ -529,18 +529,18 @@
    "source": "member_attribution_20261113: 调用点6个(RenderTarget.cpp:424/1246外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
    "owner": "MagicUI"
   },
-  "0x0048B8F0": {
+  "0x0048b8f0": {
    "name": "UpdateViewListItems",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=248268>class_size=4088",
    "evidence_level": "unverified"
   },
-  "0x0049E8A0": {
+  "0x0049e8a0": {
    "name": "SelectXJTMTab3",
    "signature": "int __thiscall MagicUI::SelectXJTMTab3(unsigned __int8 nTab)",
    "evidence_level": "unverified"
   },
-  "0x0049E8C0": {
+  "0x0049e8c0": {
    "name": "SelectXJTMTab4",
    "signature": "int __thiscall MagicUI::SelectXJTMTab4(unsigned __int8 nTab)",
    "evidence_level": "unverified"

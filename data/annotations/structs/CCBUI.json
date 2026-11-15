@@ -354,17 +354,17 @@
   }
  },
  "methods": {
-  "0x004E0740": {
+  "0x004e0740": {
    "name": "UpdateDisplay",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E0820": {
+  "0x004e0820": {
    "name": "UpdateAnimation",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E0980": {
+  "0x004e0980": {
    "name": "UpdateState",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
@@ -374,88 +374,88 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005177B0": {
+  "0x005177b0": {
    "name": "Reset",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00517B30": {
+  "0x00517b30": {
    "name": "CreateCombatPanel",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00517C10": {
+  "0x00517c10": {
    "name": "CreateAttackSequen",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00517C80": {
+  "0x00517c80": {
    "name": "CreateBattleFieldAttr",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00517D60": {
+  "0x00517d60": {
    "name": "CreateControlWindow",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00517DF0": {
+  "0x00517df0": {
    "name": "CreateItemWindow",
    "signature": "BOOL __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005181E0": {
+  "0x005181e0": {
    "name": "CreateParaWindow",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x005183C0": {
+  "0x005183c0": {
    "name": "CreateMagicWindow",
    "signature": "BOOL __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005184C0": {
+  "0x005184c0": {
    "name": "CreateSkillWindow",
    "signature": "bool __thiscall(char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518AF0": {
+  "0x00518af0": {
    "name": "CreateLineupWindow",
    "signature": "bool __thiscall(int nVal, char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518B20": {
+  "0x00518b20": {
    "name": "CreateProtectWindow",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518B30": {
+  "0x00518b30": {
    "name": "CreateResultWindow",
    "signature": "bool __thiscall(char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518D40": {
+  "0x00518d40": {
    "name": "CreateFiveNimbus",
    "signature": "bool __thiscall(char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518E60": {
+  "0x00518e60": {
    "name": "HideAll",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x00518FE0": {
+  "0x00518fe0": {
    "name": "ShowBattleFieldAttr",
    "signature": "void __thiscall(int attr)",
    "source": "pdb_ret",
@@ -484,7 +484,7 @@
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x005193D0": {
+  "0x005193d0": {
    "name": "ClearAttackSequence",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -494,57 +494,57 @@
    "signature": "void __thiscall(int nCount)",
    "evidence_level": "unverified"
   },
-  "0x005196C0": {
+  "0x005196c0": {
    "name": "SetNimbusToNimbusControl",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00519A10": {
+  "0x00519a10": {
    "name": "WriteNimbusToPlayerMgr",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00519BB0": {
+  "0x00519bb0": {
    "name": "Render",
    "signature": "void __thiscall()",
    "source": "manual_fix_vtable",
    "evidence_level": "unverified"
   },
-  "0x00519BD0": {
+  "0x00519bd0": {
    "name": "CreateButton",
    "signature": "bool __thiscall(CCBUI *this, int parent, int id, int rc, int picname, UIButton **a5)",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T26] sig 修正：A 级 objdump NPC@0x00517AC0 调用点 517adf lea ecx,[esp+0x8]（this）+ [esp+0xc/0x10/0x14/0x18/0x1c] 五槽（89/c7 系列写入）后 call 0x519bd0 ⇒ __thiscall(this, 5 实参)；原 sig 6 形参无 this（多一参）⇒ C2660 does not take 5 parameters",
    "evidence_level": "A"
   },
-  "0x0051A0F0": {
+  "0x0051a0f0": {
    "name": "ChangeSpecStateLum",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x0051A1D0": {
+  "0x0051a1d0": {
    "name": "LineMove",
    "signature": "BOOL __thiscall(POINT *pStart, POINT *pEnd)",
    "evidence_level": "unverified"
   },
-  "0x0051A2B0": {
+  "0x0051a2b0": {
    "name": "GravityDown",
    "signature": "unsigned long __thiscall(unsigned int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x0051A340": {
+  "0x0051a340": {
    "name": "ChangeNumTxt",
    "signature": "unsigned long __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified"
   },
-  "0x0051A430": {
+  "0x0051a430": {
    "name": "AddTask",
    "signature": "BOOL __thiscall(tagUITask *pTask, int nParam)",
    "evidence_level": "unverified"
   },
-  "0x004E04C0": {
+  "0x004e04c0": {
    "name": "StepFrame",
    "signature": "int __thiscall CCBUI::StepFrame()",
    "evidence_level": "unverified"
@@ -557,7 +557,7 @@
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ CCBUI（ctor 名形=类名）：A 级 refs ??0UIListBox + ClearAttackSequence@CCBUI（自类普通方法，非 ctor 调用）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
    "evidence_level": "A"
   },
-  "0x005160A0": {
+  "0x005160a0": {
    "name": "Method",
    "signature": "void __thiscall(CCBUI *this, int nVal)",
    "name_source": "IDA语义分析 2026-11-01 批16",
@@ -569,7 +569,7 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x004421F0": {
+  "0x004421f0": {
    "name": "SetCurPlayer",
    "signature": "void __thiscall(int nPlayer)",
    "evidence_level": "unverified"
@@ -585,7 +585,7 @@
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 3——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x004420B0": {
+  "0x004420b0": {
    "name": "VirtualCall",
    "signature": "int __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
@@ -601,64 +601,64 @@
    "signature": "void __thiscall(RECT *pRect)",
    "evidence_level": "unverified"
   },
-  "0x00469D00": {
+  "0x00469d00": {
    "name": "SetItemData",
    "signature": "int __thiscall(int nCol, int nRow, int nData, int nFlags)",
    "evidence_level": "unverified"
   },
-  "0x004E2AE0": {
+  "0x004e2ae0": {
    "name": "HandleRoleStateDialog",
    "signature": "LRESULT __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004DC220": {
+  "0x004dc220": {
    "name": "IsActive",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004413C0": {
+  "0x004413c0": {
    "name": "LoadTextureSequence",
    "signature": "gbVFileSystem *__thiscall CCBUI::LoadTextureSequence(gbVFileSystem *pPath, char bUseAtlas)",
    "_misattrib_evidence": "max_offset=260>class_size=76",
    "evidence_level": "unverified"
   },
-  "0x004E1A10": {
+  "0x004e1a10": {
    "name": "CombatDlgProcThunk",
    "signature": "int __stdcall CCBUI::CombatDlgProcThunk(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "unverified"
   },
-  "0x004E1F70": {
+  "0x004e1f70": {
    "name": "SettingsDialogProc",
    "signature": "static int __stdcall CCBUI::SettingsDialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性"
   },
-  "0x004E24C0": {
+  "0x004e24c0": {
    "name": "CommandEditDialogProc",
    "signature": "int __thiscall CCBUI::CommandEditDialogProc(int *p_DWORD, HWND hDlg, int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified"
   },
-  "0x004E3A20": {
+  "0x004e3a20": {
    "name": "InitUI",
    "signature": "LRESULT __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E3D90": {
+  "0x004e3d90": {
    "name": "InitUI_4E3D90",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E4A80": {
+  "0x004e4a80": {
    "name": "PopulateCommandList",
    "signature": "LRESULT __thiscall CCBUI::PopulateCommandList()",
    "evidence_level": "unverified"
   },
-  "0x004E4D70": {
+  "0x004e4d70": {
    "name": "ShowCommandDetails",
    "signature": "LRESULT __thiscall CCBUI::ShowCommandDetails()",
    "evidence_level": "unverified"
   },
-  "0x005184E0": {
+  "0x005184e0": {
    "name": "InitRoleDisplay",
    "signature": "int __thiscall(int a_128)",
    "evidence_level": "unverified"
@@ -677,85 +677,85 @@
    "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x00459F30": {
+  "0x00459f30": {
    "name": "ForwardToPlayerMgr",
    "signature": "short __thiscall(_WORD *p_WORD)",
    "evidence_level": "unverified"
   },
-  "0x00460A00": {
+  "0x00460a00": {
    "name": "RollProbability",
    "signature": "bool __thiscall CCBUI::RollProbability(float fProb)",
    "evidence_level": "unverified"
   },
-  "0x004DC610": {
+  "0x004dc610": {
    "name": "CountAttackSequences",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004E1160": {
+  "0x004e1160": {
    "name": "DlgProcEffect",
    "signature": "int __thiscall CCBUI::DlgProcEffect(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "unverified"
   },
-  "0x004E16F0": {
+  "0x004e16f0": {
    "name": "PopulateSceneList",
    "signature": "unsigned __int8 *__thiscall CCBUI::PopulateSceneList(HWND hDlg)",
    "evidence_level": "unverified"
   },
-  "0x004E1870": {
+  "0x004e1870": {
    "name": "LoadSceneByIndex",
    "signature": "unsigned __int8 *__thiscall CCBUI::LoadSceneByIndex(int nVal)",
    "evidence_level": "unverified"
   },
-  "0x004E2430": {
+  "0x004e2430": {
    "name": "HandleWindowMessage",
    "signature": "static int __stdcall CCBUI::HandleWindowMessage(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性"
   },
-  "0x004E2490": {
+  "0x004e2490": {
    "name": "DlgProcMain",
    "signature": "int __thiscall CCBUI::DlgProcMain(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "unverified"
   },
-  "0x004E3780": {
+  "0x004e3780": {
    "name": "UpdateDebugStatus",
    "signature": "char __thiscall CCBUI::UpdateDebugStatus()",
    "evidence_level": "unverified"
   },
-  "0x004E4D50": {
+  "0x004e4d50": {
    "name": "CloseCommandDialog",
    "signature": "BOOL __thiscall CCBUI::CloseCommandDialog()",
    "evidence_level": "unverified"
   },
-  "0x004E4F00": {
+  "0x004e4f00": {
    "name": "ApplyCommandEdit",
    "signature": "int __thiscall CCBUI::ApplyCommandEdit()",
    "evidence_level": "unverified"
   },
-  "0x004E5170": {
+  "0x004e5170": {
    "name": "ShowSkillDetails",
    "signature": "int __thiscall CCBUI::ShowSkillDetails()",
    "evidence_level": "unverified"
   },
-  "0x004E53C0": {
+  "0x004e53c0": {
    "name": "SendWindowMessage",
    "signature": "LRESULT __cdecl(HWND hWnd, LPARAM lParam)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004E53E0": {
+  "0x004e53e0": {
    "name": "FormatCombatBuffer",
    "signature": "LRESULT __cdecl(HWND hWnd, int nVal)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004E5490": {
+  "0x004e5490": {
    "name": "StartMagicThread",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x00516A30": {
+  "0x00516a30": {
    "name": "SetupAIWindow",
    "signature": "char __thiscall()",
    "_misattrib_evidence": "max_offset=1068>class_size=208",
@@ -766,18 +766,18 @@
    "signature": "int __thiscall CCBUI::Update(int deltatime, int haveinput)",
    "evidence_level": "unverified"
   },
-  "0x00469D40": {
+  "0x00469d40": {
    "name": "IsAddMode",
    "signature": "unsigned __int8 __thiscall()",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified"
   },
-  "0x004E0690": {
+  "0x004e0690": {
    "name": "ResetAllSlots",
    "signature": "char __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x005257B0": {
+  "0x005257b0": {
    "name": "InitSkillUI",
    "signature": "int *__thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=100572>class_size=2632",
@@ -793,7 +793,7 @@
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified"
   },
-  "0x005273D0": {
+  "0x005273d0": {
    "name": "PlayResultSound",
    "signature": "void __thiscall ()",
    "_misattrib_evidence": "max_offset=101028>class_size=2632",
@@ -817,55 +817,55 @@
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified"
   },
-  "0x004EA6D0": {
+  "0x004ea6d0": {
    "name": "DlgProcEffect",
    "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "特效对话框过程（EffSlot+Dialog 操作）"
   },
-  "0x004EAC10": {
+  "0x004eac10": {
    "name": "DlgProcInput",
    "signature": "char __thiscall(CCBUI *this, HWND hDlg, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "输入对话框过程（GetDlgItemText+EditBox）"
   },
-  "0x004EA4A0": {
+  "0x004ea4a0": {
    "name": "DlgProcEditor",
    "signature": "LRESULT __thiscall(CCBUI *this, HWND hDlg, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "编辑器对话框过程（GetDlgItem+Dialog 操作）"
   },
-  "0x004AA9C0": {
+  "0x004aa9c0": {
    "name": "CreatePanelUI",
    "signature": "void __thiscall(CCBUI *this)",
    "evidence_level": "unverified"
   },
-  "0x004AB2B0": {
+  "0x004ab2b0": {
    "name": "DestroyDynamic",
    "signature": "void __thiscall(CCBUI *this, int nVal)",
    "evidence_level": "unverified"
   },
-  "0x0051B8C0": {
+  "0x0051b8c0": {
    "name": "Update_B8C0",
    "signature": "virtual void __thiscall(CCBUI *this)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断"
   },
-  "0x0051B9C0": {
+  "0x0051b9c0": {
    "name": "_todo_51B9C0",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
   },
-  "0x0051BA40": {
+  "0x0051ba40": {
    "name": "_todo_51BA40",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
   },
-  "0x0051BAC0": {
+  "0x0051bac0": {
    "name": "_todo_51BAC0",
    "signature": "void __thiscall()",
    "declaration_only": true,
@@ -879,23 +879,23 @@
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified"
   },
-  "0x004E0A60": {
+  "0x004e0a60": {
    "name": "DlgProcEditorMain",
    "signature": "int __stdcall(CCBUI *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
   },
-  "0x004EA5C0": {
+  "0x004ea5c0": {
    "name": "DlgProcCameraEdit",
    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
   },
-  "0x004EB230": {
+  "0x004eb230": {
    "name": "DlgProcCameraConfigWrapper",
    "signature": "INT_PTR __stdcall(HWND hDlg, UINT a2, WPARAM a3, LPARAM a4)",
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "相机配置对话框包装（调 DlgProcCameraConfig）"
   },
-  "0x004EB260": {
+  "0x004eb260": {
    "name": "DlgProcCameraConfig",
    "signature": "int __stdcall(CCBCamControl *a1, HWND hDlg, UINT uMsg, WORD wParam, LPARAM lParam)",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"

@@ -84,7 +84,7 @@
    "name_note": "流读取数组初始化",
    "signature": "void __thiscall(PtrArray *this, int nInitSize, int nGrowBy, char bOwned)"
   },
-  "0x004341E0": {
+  "0x004341e0": {
    "name": "~PtrArray",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
@@ -94,13 +94,13 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004343B0": {
+  "0x004343b0": {
    "name": "SetAtGrow",
    "signature": "char *__cdecl(unsigned short pData, int *nIndex)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004343F0": {
+  "0x004343f0": {
    "name": "FindByName",
    "signature": "void __thiscall(const char *pszName)",
    "source": "| sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）",
@@ -111,23 +111,23 @@
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x004344F0": {
+  "0x004344f0": {
    "name": "InsertAt",
    "signature": "void __thiscall(const char *pszName)",
    "source": "| E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）",
    "evidence_level": "unverified"
   },
-  "0x0044BD60": {
+  "0x0044bd60": {
    "name": "PtrArray",
    "signature": "void __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0053D1A0": {
+  "0x0053d1a0": {
    "name": "SetResolution",
    "signature": "void __thiscall(int nVal, int arg4)",
    "evidence_level": "unverified"
   },
-  "0x004327B0": {
+  "0x004327b0": {
    "name": "RemoveAt",
    "signature": "int __thiscall PtrArray::RemoveAt(int nIndex, int nCount)",
    "evidence_level": "unverified"
@@ -137,22 +137,22 @@
    "signature": "void __thiscall(int nIndex, int newElement)",
    "evidence_level": "unverified"
   },
-  "0x0040D640": {
+  "0x0040d640": {
    "name": "GetAt",
    "signature": "void *__thiscall(void *pOut, unsigned int nIndex)",
    "evidence_level": "unverified"
   },
-  "0x0040D620": {
+  "0x0040d620": {
    "name": "GetSize",
    "signature": "int __thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0040D6B0": {
+  "0x0040d6b0": {
    "name": "Insert",
    "signature": "void *__thiscall(void *pItem)",
    "evidence_level": "unverified"
   },
-  "0x0040DBD0": {
+  "0x0040dbd0": {
    "name": "Find",
    "signature": "BOOL __thiscall(void *pKey, void *pResult)",
    "evidence_level": "unverified"
@@ -163,34 +163,34 @@
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004327F0": {
+  "0x004327f0": {
    "name": "FindFirst",
    "signature": "int __thiscall(void *pData)",
    "evidence_level": "unverified"
   },
-  "0x00433DC0": {
+  "0x00433dc0": {
    "name": "CopyRange",
    "signature": "int *__cdecl PtrArray::CopyRange(int *p_DWORD, int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x0053D0B0": {
+  "0x0053d0b0": {
    "name": "ClearBoth",
    "signature": "PtrArray *__thiscall()",
    "evidence_level": "unverified"
   },
-  "0x0040DCD0": {
+  "0x0040dcd0": {
    "name": "CompareValues",
    "signature": "BOOL __cdecl(int *p_DWORD, int *p_DWORD2)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x00431CB0": {
+  "0x00431cb0": {
    "name": "Reset",
    "signature": "int *__thiscall PtrArray::Reset()",
    "evidence_level": "unverified"
   },
-  "0x004325A0": {
+  "0x004325a0": {
    "name": "IsArrayReady",
    "signature": "int __cdecl()",
    "static": true,
@@ -201,18 +201,18 @@
    "signature": "int __thiscall PtrArray::DestroyAll()",
    "evidence_level": "unverified"
   },
-  "0x004348E0": {
+  "0x004348e0": {
    "name": "ReadFileSection",
    "signature": "struct gbVFile *__thiscall(int nSection)",
    "evidence_level": "unverified"
   },
-  "0x00433C50": {
+  "0x00433c50": {
    "name": "ReadFromVFile",
    "signature": "void __cdecl(unsigned short *pBuf, struct gbVFile *pFile)",
    "static": true,
    "evidence_level": "unverified"
   },
-  "0x004019B0": {
+  "0x004019b0": {
    "name": "ReleasePtrArray",
    "signature": "void *__thiscall()",
    "_misattrib_evidence": "max_offset=64>class_size=16",

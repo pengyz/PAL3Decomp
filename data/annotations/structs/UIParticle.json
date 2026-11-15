@@ -261,25 +261,25 @@
    "signature": "int *__fastcall(int *p_DWORD)",
    "evidence_level": "unverified"
   },
-  "0x004B5570": {
+  "0x004b5570": {
    "name": "Update",
    "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新（helix/diffuse）"
   },
-  "0x004B5830": {
+  "0x004b5830": {
    "name": "Update2",
    "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetLib）"
   },
-  "0x004B5BB0": {
+  "0x004b5bb0": {
    "name": "Update4",
    "signature": "__int64 __thiscall(UIParticle *this, int a2, int a3, TextureLibDataBase *a4, int a5)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetTop + 物理）"
   },
-  "0x004B4DC0": {
+  "0x004b4dc0": {
    "name": "Apply",
    "signature": "void __thiscall UIParticle::Apply(int mode)",
    "signature_note": "reattribute 同时改签名 (was: void __thiscall())",
@@ -287,7 +287,7 @@
    "name_evidence": "保留原名 Apply：该名本身语义合理（按 mode 分派执行），且 UIParticle 现无同名成员；按规则不无据改名。签名补上此前被丢掉的栈参 mode（retn 4 为证），类型 int（作为 switch 索引、调用方 push 字面量 8/0Ah/0Bh/0Ch）。",
    "evidence_level": "unverified"
   },
-  "0x004B4FE0": {
+  "0x004b4fe0": {
    "name": "AutoScrollParticles",
    "signature": "__int64 __thiscall UIParticle::AutoScrollParticles(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLib_Data::AutoScrollParticles(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2))",
@@ -295,7 +295,7 @@
    "name_evidence": "保留原名 AutoScrollParticles：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B51A0": {
+  "0x004b51a0": {
    "name": "AutoScrollParticlesEx",
    "signature": "__int64 __thiscall UIParticle::AutoScrollParticlesEx(char *pszBuf, TextureLibDataBase *pTextureLibDataBase, int nVal, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLib_Data::AutoScrollParticlesEx(char *pszBuf, TextureLibDataBase *pTextureLibDataBase, int nVal, int nVal2))",
@@ -303,7 +303,7 @@
    "name_evidence": "保留原名 AutoScrollParticlesEx：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B5380": {
+  "0x004b5380": {
    "name": "UpdateCircularMotion",
    "signature": "__int64 __thiscall UIParticle::UpdateCircularMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::UpdateCircularMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2))",
@@ -311,7 +311,7 @@
    "name_evidence": "保留原名 UpdateCircularMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B5450": {
+  "0x004b5450": {
    "name": "UpdateOrbitalMotion",
    "signature": "__int64 __thiscall UIParticle::UpdateOrbitalMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::UpdateOrbitalMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2))",
@@ -319,7 +319,7 @@
    "name_evidence": "保留原名 UpdateOrbitalMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B5750": {
+  "0x004b5750": {
    "name": "UpdateLinearMotion",
    "signature": "__int64 __thiscall UIParticle::UpdateLinearMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: __int64 __thiscall TextureLibDataBase::UpdateLinearMotion(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2))",
@@ -327,13 +327,13 @@
    "name_evidence": "保留原名 UpdateLinearMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B59B0": {
+  "0x004b59b0": {
    "name": "Update3",
    "signature": "__int64 __thiscall(UIParticle *this, char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（color quad）"
   },
-  "0x004B5D20": {
+  "0x004b5d20": {
    "name": "RenderFrame",
    "signature": "void __thiscall UIParticle::RenderFrame(int nVal, int nVal2, int nVal3, int nVal4)",
    "signature_note": "reattribute 同时改签名 (was: void __thiscall TextureLibDataBase::RenderFrame(int nVal, int nVal2, int nVal3, int nVal4))",
@@ -341,7 +341,7 @@
    "name_evidence": "保留原名 RenderFrame：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B5EE0": {
+  "0x004b5ee0": {
    "name": "LoadLibrary",
    "signature": "char __thiscall UIParticle::LoadLibrary(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)",
    "signature_note": "guard-fix: 原签名无类前缀 ⇒ 补 UIParticle::（否则会被发射成 static 自由函数） | name-fix: 原签名为无名原型，补上成员名 LoadLibrary",
@@ -349,7 +349,7 @@
    "name_evidence": "保留原名 LoadLibrary：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B60F0": {
+  "0x004b60f0": {
    "name": "UpdateByMode",
    "signature": "char __thiscall UIParticle::UpdateByMode(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)",
    "signature_note": "reattribute 同时改签名 (was: char __thiscall TextureLibDataBase::UpdateByMode(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2))",
@@ -357,7 +357,7 @@
    "name_evidence": "保留原名 UpdateByMode：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified"
   },
-  "0x004B6300": {
+  "0x004b6300": {
    "name": "GetTextureByName",
    "signature": "__int64 __thiscall UIParticle::GetTextureByName(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)",
    "signature_note": "guard-fix: 原签名无类前缀 ⇒ 补 UIParticle::（否则会被发射成 static 自由函数） | name-fix: 原签名为无名原型，补上成员名 GetTextureByName",

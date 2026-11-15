@@ -16,7 +16,7 @@
   }
  },
  "methods": {
-  "0x004590D0": {
+  "0x004590d0": {
    "name": "UISceneFrm",
    "signature": "void __thiscall()",
    "type": "skip",
@@ -30,7 +30,7 @@
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UISceneFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneFrm。refs: ?Destroy@UISceneFrm@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??",
    "evidence_level": "A"
   },
-  "0x0045A4F0": {
+  "0x0045a4f0": {
    "name": "fill",
    "signature": "void __thiscall(RoleTask *a1, RoleTask *a2, RoleTask *a3)",
    "ordinal": 2,
@@ -54,70 +54,70 @@
    "evidence_level": "unverified",
    "semantic_name": "Destroy"
   },
-  "0x0045A600": {
+  "0x0045a600": {
    "name": "_Construct",
    "signature": "void __thiscall(RoleTaskLine *a1, RoleTaskLine *a2)",
    "ordinal": 6,
    "source": "manual_fix_vtable+canonical_rename | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified"
   },
-  "0x0045A490": {
+  "0x0045a490": {
    "name": "Render",
    "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified"
   },
-  "0x004BB330": {
+  "0x004bb330": {
    "name": "InitGraph_Base",
    "signature": "int __thiscall UISceneFrm::InitGraph_Base()",
    "evidence_level": "unverified"
   },
-  "0x004BB4E0": {
+  "0x004bb4e0": {
    "name": "InitGraph_Rotation",
    "signature": "int __thiscall UISceneFrm::InitGraph_Rotation()",
    "evidence_level": "unverified"
   },
-  "0x004BB690": {
+  "0x004bb690": {
    "name": "InitGraph_VertexAlpha",
    "signature": "int __thiscall UISceneFrm::InitGraph_VertexAlpha()",
    "evidence_level": "unverified"
   },
-  "0x004BB830": {
+  "0x004bb830": {
    "name": "InitGraph_RGBColor",
    "signature": "int __thiscall UISceneFrm::InitGraph_RGBColor()",
    "evidence_level": "unverified"
   },
-  "0x004BBA50": {
+  "0x004bba50": {
    "name": "InitGraph_Direction",
    "signature": "int __thiscall UISceneFrm::InitGraph_Direction()",
    "evidence_level": "unverified"
   },
-  "0x004BBCA0": {
+  "0x004bbca0": {
    "name": "InitGraph_RandomVelocity",
    "signature": "int __thiscall UISceneFrm::InitGraph_RandomVelocity()",
    "evidence_level": "unverified"
   },
-  "0x004BBEB0": {
+  "0x004bbeb0": {
    "name": "InitGraph_EmissionRate",
    "signature": "int __thiscall UISceneFrm::InitGraph_EmissionRate()",
    "evidence_level": "unverified"
   },
-  "0x004BC0C0": {
+  "0x004bc0c0": {
    "name": "InitGraph_Lifetime",
    "signature": "int __thiscall UISceneFrm::InitGraph_Lifetime()",
    "evidence_level": "unverified"
   },
-  "0x004BC2D0": {
+  "0x004bc2d0": {
    "name": "InitGraph_SizeMultiplier",
    "signature": "int __thiscall UISceneFrm::InitGraph_SizeMultiplier()",
    "evidence_level": "unverified"
   },
-  "0x004BC4E0": {
+  "0x004bc4e0": {
    "name": "InitGraph_RotationMultiplier",
    "signature": "int __thiscall UISceneFrm::InitGraph_RotationMultiplier()",
    "evidence_level": "unverified"
   },
-  "0x00528CD0": {
+  "0x00528cd0": {
    "name": "CallFaceMethod",
    "signature": "int __thiscall(int nVal, unsigned char pData)",
    "evidence_level": "unverified"
@@ -138,7 +138,7 @@
    "signature": "void __thiscall UISceneFrm::LoadOverlayTexture(UISceneFrm *this)",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理"
   },
-  "0x004BB200": {
+  "0x004bb200": {
    "name": "ScreenToLocal",
    "signature": "void __thiscall(UISceneFrm *this, float *pOutX, float *pInX, float *pInY)",
    "evidence_level": "unverified",
