@@ -908,6 +908,43 @@ def check_canonical_contract():
                         cur_viol['C6:%s:%s' % (cls, _ma)] = '%s %s: 条目sig %r != 槽位裁决 %r' % (
                             cls, s.get('name'), _m6['signature'][:40], s['sig'][:40])
 
+    # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
+    # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。
+    # V1(硬红): 表数 > 1 + 多态基数(CTaskTpl_*与PalScriptWaitObj/GlowObj按二进制实证计多态)
+    # V2(warn): 多表类存在无写表证据且无裁决标记的表
+    for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        cls = os.path.basename(fp)[:-5]
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        vts = d.get('vtables') or []
+        if not vts:
+            continue
+        bases = [b.get('name') if isinstance(b, dict) else b for b in (d.get('bases') or [])]
+        poly = sum(1 for b in bases if b and (b.startswith('CTaskTpl_') or b in ('PalScriptWaitObj', 'GlowObj')))
+        poly = max(poly, sum(1 for b in bases if b and (json.load(open(os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % b), encoding='utf-8')).get('vtables') if os.path.exists(os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % b)) else None)))
+        if len(vts) > 1 + poly:
+            cur_viol['V1:%s:%d' % (cls, len(vts))] = '%s: %d表但多态基数%d(单链多表=邻接派生表误挂/普查产物, MSVC每多态子对象恰1表)' % (
+                cls, len(vts), poly)
+        if len(vts) >= 2:
+            _tvm = os.path.join(root, 'data', 'status', 'true_vtable_map_20261114.json')
+            _ev = set()
+            try:
+                for _r5 in json.load(open(_tvm, encoding='utf-8')):
+                    try: _ev.add(int(_r5['table'], 16))
+                    except (ValueError, TypeError): pass
+            except Exception:
+                pass
+            _adj_t = {str(t.get('addr') or '').lower() for t in (d.get('_adjudicated_tables') or [])}
+            for vt in vts:
+                _a7 = str(vt.get('addr') or '')
+                if _a7.lower() in _adj_t:
+                    continue
+                try: _ai = int(_a7, 16)
+                except (ValueError, TypeError): continue
+                if _ai not in _ev:
+                    cur_viol['V2:%s:%s' % (cls, _a7)] = '%s 表%s 无写表证据且无裁决标记(普查产物嫌疑)' % (cls, _a7)
     for k, desc in sorted(cur_viol.items()):
         if k not in base:
             errors.append('CANON:%s %s' % (k, desc))
