@@ -884,6 +884,41 @@ def check_canonical_contract():
         for a, m in (d.get('methods') or {}).items():
             if m.get('non_virtual') and 'virtual' in str(m.get('signature', '')).lower():
                 cur_viol['C3:%s:%s' % (cls, a)] = '%s %s non_virtual但sig带virtual' % (cls, m.get('name'))
+        # [C7 2026-11-15 用户裁定] 槽位-条目完备性: 表槽引用的地址必须有对应 methods 条目
+        #   自有槽(from=null) → 本类 methods 必须有条目(否则头声明无定义路由 → C2039/C2673)
+        #   继承槽(from≠null) → from 类 methods 或表槽必须有条目/声明
+        _slot_addr_count = {}  # 复用多槽计数
+        for _vt6 in (d.get('vtables') or []):
+            for _s6 in (_vt6.get('slots') or []):
+                _a6 = str(_s6.get('addr') or '').lower()
+                if _a6: _slot_addr_count[_a6] = _slot_addr_count.get(_a6, 0) + 1
+        for vi, vt in enumerate(d.get('vtables') or []):
+            for si, s in enumerate(vt.get('slots') or []):
+                au = str(s.get('addr') or '').lower()
+                if not au: continue
+                f = s.get('from')
+                if f:
+                    # 继承槽: from 类的 methods 或表槽须有该地址
+                    fpath = os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % f)
+                    if os.path.exists(fpath):
+                        fd = json.load(open(fpath, encoding='utf-8'))
+                        fkeys = {str(k).lower() for k in (fd.get('methods') or {}).keys()}
+                        fslot_addrs = set()
+                        for fvt in (fd.get('vtables') or []):
+                            for fs in (fvt.get('slots') or []):
+                                fa = str(fs.get('addr') or '').lower()
+                                if fa: fslot_addrs.add(fa)
+                        if au not in fkeys and au not in fslot_addrs:
+                            cur_viol['C7:%s:%s:inh:%s' % (cls, au, f)] = (
+                                '%s 继承槽 addr=%s from=%s 但 %s.methods/表均无此址' % (cls, au, f, f))
+                else:
+                    # 自有槽: 本类 methods 须有条目(多槽地址豁免——同址多槽=多契约共载体)
+                    if _slot_addr_count.get(au, 0) > 1:
+                        continue
+                    if au not in {str(k).lower() for k in (d.get('methods') or {}).keys()}:
+                        cur_viol['C7:%s:%s:own' % (cls, au)] = (
+                            '%s 自有槽 slot%d addr=%s 但本类 methods 无条目(定义路由断链→C2039)' % (
+                                cls, vi, au))
         # [C6 2026-11-15 用户裁定'套用器不应存在'] slot.sig=裁决真值, methods条目必须一致
         # (同类内分歧=数据非法; 棘轮: 存量grandfather, 新增=硬红)
         # [多槽豁免 2026-11-15] 一地址多槽(同址多槽ICF折叠)=多契约共享一个IDB载体:
