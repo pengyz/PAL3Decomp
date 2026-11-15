@@ -141,123 +141,18 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AC70",
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
-    },
-    {
-     "addr": "0x0043AD40",
-     "from": null
-    },
-    {
-     "addr": "0x0043AB20",
-     "from": null
-    },
-    {
-     "addr": "0x0043AB00",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
-    },
-    {
-     "addr": "0x0043A7F0",
-     "from": null
-    },
-    {
-     "addr": "0x00445D10",
-     "from": "CGameData"
-    },
-    {
-     "addr": "0x0043A870",
-     "from": null
-    }
-   ]
+   "addr": "0x0056AFB0",
+   "base": null,
+   "slots": [],
+   "source": "主表(reconcile:569权威源)",
+   "evidence_level": "binary_reconcile"
   },
   {
-   "addr": "0x0056B0E0",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
-    },
-    {
-     "addr": "0x00450440",
-     "from": null
-    },
-    {
-     "addr": "0x00450560",
-     "from": null
-    },
-    {
-     "addr": "0x00450670",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
-    },
-    {
-     "addr": "0x00450370",
-     "from": null
-    },
-    {
-     "addr": "0x00445D10",
-     "from": "CGameData"
-    }
-   ],
-   "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：ctor 域 UICaption::LayoutDefault@+29 写（+35 相邻=MI 对）+UIWnd::DelegateRender+9 复写"
-  },
-  {
-   "addr": "0x0056B0D4",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004506C0",
-     "from": null
-    },
-    {
-     "addr": "0x004503C0",
-     "from": null
-    },
-    {
-     "addr": "0x004AF760",
-     "from": "CEffObj"
-    },
-    {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
-    },
-    {
-     "addr": "0x00450440",
-     "from": null
-    },
-    {
-     "addr": "0x00450560",
-     "from": null
-    },
-    {
-     "addr": "0x00450670",
-     "from": null
-    },
-    {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
-    },
-    {
-     "addr": "0x00450370",
-     "from": null
-    },
-    {
-     "addr": "0x00445D10",
-     "from": "CGameData"
-    }
-   ],
-   "source": "[method 27 余量批 2026-10-16 analyzer] 认领 A 级：MI 对（LayoutDefault+35/+29 相邻双写）+DelegateRender+17 复写"
+   "addr": "0x0056AFA4",
+   "base": "PalScriptWaitObj",
+   "slots": [],
+   "source": "PSWO第二基表(reconcile:569权威源; 0x56B0D4的thunk sub=72@68矛盾排除)",
+   "evidence_level": "binary_reconcile"
   }
  ],
  "base_size": 76,

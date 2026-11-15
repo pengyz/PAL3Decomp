@@ -316,9 +316,11 @@
    "bases_ann": [],
    "polymorphic": false,
    "evidence": [],
-   "gaps": [],
-   "n_vtables": 3,
-   "n_vtables_retired": 0
+   "gaps": [
+    "no_bases_no_evidence"
+   ],
+   "n_vtables": 0,
+   "n_vtables_retired": 3
   },
   "AStarPathFinder": {
    "bases_ann": [],
@@ -2277,16 +2279,15 @@
    ],
    "polymorphic": true,
    "evidence": [
-    "write_evidence@0x0056AC70",
-    "write_evidence@0x0056B0E0",
-    "write_evidence@0x0056B0D4",
+    "write_evidence@0x0056AFB0",
+    "write_evidence@0x0056AFA4",
     "thunk_target_in_methods@0x004506C0 sub=72",
     "base:UIWnd:write_evidence@0x0056AEC8",
     "base:UIWnd:adjudicated_tables",
     "base:PalScriptWaitObj:adjudicated_tables"
    ],
    "gaps": [],
-   "n_vtables": 3,
+   "n_vtables": 2,
    "n_vtables_retired": 0
   },
   "CParticleSystem_ParticleUnit": {
