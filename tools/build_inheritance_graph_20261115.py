@@ -46,12 +46,18 @@ def fname(va):
 thunks = json.load(open(os.path.join(ROOT, 'data/status/adjustor_thunks_20261115.json'), encoding='utf-8'))
 # thunk→(sub偏移, 基实现target)
 
-# ---- 证据源2: 写表(true_vtable_map) ----
+# ---- 证据源2: 写表(true_vtable_map + registrar_supplement区段补扫) ----
 tvm = json.load(open(os.path.join(ROOT, 'data/status/true_vtable_map_20261114.json'), encoding='utf-8'))
 evidenced_tables = set()
 for r in tvm:
     try: evidenced_tables.add(int(r['table'], 16))
     except: pass
+# [registrar补扫 20261115] 区段0x5704C8-0x570A78强证据表(裁决书F.2: C7-only漏寄存器中介写)
+_supp_path = os.path.join(ROOT, 'data/status/registrar_supplement_20261115.json')
+if os.path.exists(_supp_path):
+    for _r in json.load(open(_supp_path, encoding='utf-8')):
+        try: evidenced_tables.add(int(_r['table'], 16))
+        except: pass
 
 # ---- 证据源3: 注解 ----
 classes = [os.path.basename(f)[:-5] for f in glob.glob(S % '*')]
@@ -61,7 +67,8 @@ ann = {c: json.load(open(S % c, encoding='utf-8')) for c in classes}
 CTASKTPL = {c for c in classes if c.startswith('CTaskTpl_')}
 
 def binary_polymorphic(cls, seen=None):
-    """递归: cls在二进制里是否多态(有自己的vtable或继承多态且被覆写/带thunk)。"""
+    """递归: cls在二进制里是否多态(有自己的vtable或继承多态且被覆写/带thunk)。
+    [v2 20261115裁决书③] vtables_retired地址∈evidenced也算(表=真, 退役=归属待定谳, 多态性不因退役消失)。"""
     if seen is None: seen = set()
     if cls in seen: return False, []
     seen.add(cls)
@@ -76,9 +83,27 @@ def binary_polymorphic(cls, seen=None):
             ev.append('write_evidence@0x%08X' % a)
     if d.get('_adjudicated_tables'):
         ev.append('adjudicated_tables')
+    # 1b) 退役表地址 ∈ evidenced = 真表(归属待定谳) — 裁决书③CUtil/ArraySlots案例
+    for vt in (d.get('vtables_retired') or []):
+        try:
+            a = int(vt.get('addr') or '0', 16)
+        except: continue
+        if a in evidenced_tables:
+            ev.append('retired_but_evidenced@0x%08X' % a)
     # 2) CTaskTpl族
     if cls in CTASKTPL:
         ev.append('ctasktpl_poly_family')
+    # 2b) thunk target ∈ 本类methods簇 — 权威源#1接入(裁决书C.4: thunk加载后未用)
+    _ms = d.get('methods') or {}
+    _ms_addrs = set()
+    for _k in _ms:
+        try: _ms_addrs.add(int(_k, 16))
+        except: pass
+    for _t in thunks:
+        try: _tt = int(_t['target'], 16)
+        except: continue
+        if _tt in _ms_addrs:
+            ev.append('thunk_target_in_methods@%s sub=%d' % (_t['thunk'], _t['sub']))
     # 3) 递归祖先
     any_base_poly = False
     for b in (d.get('bases') or []):
@@ -100,20 +125,19 @@ for cls in classes:
     poly, ev = binary_polymorphic(cls)
     gaps = []
     # 缺口: 有methods虚槽名或头virtual痕迹但无任何多态证据
-    if not poly:
-        has_virtualish = any(str(m.get('name','')).startswith('slot_') or '::' in str(m.get('name',''))
-                             for m in (d.get('methods') or {}).values())
-        if d.get('methods') and not (d.get('bases') or []):
-            gaps.append('no_bases_no_evidence')
+    # 缺口: 有methods虚槽名或头virtual痕迹但无任何多态证据
+    if not poly and not d.get('vtables') and (d.get('methods') or {}):
+        gaps.append('no_bases_no_evidence')
     graph[cls] = {
         'bases_ann': bases_ann,
         'polymorphic': poly,
         'evidence': ev,
         'gaps': gaps,
         'n_vtables': len(d.get('vtables') or []),
+        'n_vtables_retired': len(d.get('vtables_retired') or []),
     }
 
-# ---- thunk交叉验证: 每thunk的target应指向基类实现(递归owner) ----
+# ---- thunk交叉验证 ----
 out = {'classes': graph, 'thunks': thunks}
 json.dump(out, open(os.path.join(ROOT, 'data/status/inheritance_graph_20261115.json'), 'w'),
           ensure_ascii=False, indent=1)
