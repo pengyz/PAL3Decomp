@@ -456,46 +456,53 @@
  },
  "vtables": [
   {
-   "addr": "0x0056ACD8",
+   "addr": "0x0056AEC8",
    "base": "UIWnd",
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "CCBPanelSlot",
-     "name": "ShowClipped",
-     "name_source": " | L-VAR 2026-11-12: decomp 文件名 + 调用点(元素,0)实参形态裁决"
+     "from": "UIWnd",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x0043CDF0",
-     "from": null,
-     "name": "Render",
-     "name_source": " | L-VAR 2026-11-12: decomp 文件名 + 调用点(元素,0)实参形态裁决"
+     "addr": "0x00442E90",
+     "from": "UIWnd",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x0043D1A0",
-     "from": null
+     "addr": "0x00442FF0",
+     "from": "UIWnd",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x0043BE80",
-     "from": null
+     "addr": "0x00442420",
+     "from": "UIWnd",
+     "name": null,
+     "sig": null
     },
     {
      "addr": "0x00445B90",
-     "from": "CCBStage"
+     "from": "UIWnd",
+     "name": "Create",
+     "sig": "int __thiscall(int, tagRECT *, UIWnd *)"
     },
     {
-     "addr": "0x0043BE10",
-     "from": null
+     "addr": "0x00442E60",
+     "from": "UIWnd",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x0043D7A0",
-     "from": "UIListBox"
-    },
-    {
-     "addr": "0x0043C7B0",
-     "from": null
+     "addr": "0x00445D10",
+     "from": "UIWnd",
+     "name": "OnMessage",
+     "sig": "int __thiscall(int, int, int)"
     }
-   ]
+   ],
+   "source": "继承UIWnd真表(G1a定谳): UIScene自有方法全部非虚, 不产生新vtable"
   }
  ],
  "bases": [
