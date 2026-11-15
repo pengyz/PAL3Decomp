@@ -910,3 +910,4 @@
 | `EffMultiPassNode::UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
 | `::RenderText` | inline | `int` | 12 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)_this + 12))(_this)` |
 | `CEffSParticle::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffSParticle` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffSParticle *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `EffAudioNode::UpdateInternal` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |

@@ -2608,8 +2608,8 @@
  },
  "0x00BFDA78": {
   "name": "g_pSceneManager",
-  "source": "binary:12 decomp refs, A3=store eax, near gfxMgr/g_pCBSystem | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-  "type": "void *",
+  "source": "binary:12 decomp refs, A3=store eax, near gfxMgr/g_pCBSystem | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | type改判20261115: 二进制该addr的decomp调用形全为CEffMgr::Method(cast调用), 头含CEffMgr::Init/Render等完整链 → 类型=CEffMgr*(原void*致C2440×54级联)",
+  "type": "CEffMgr *",
   "category": "game_state"
  },
  "0x00BFDA7C": {
