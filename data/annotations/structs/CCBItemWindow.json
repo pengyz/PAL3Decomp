@@ -144,7 +144,7 @@
   },
   "0x0051a930": {
    "name": "OnMessage",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -168,31 +168,27 @@
    },
    "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)",
    "semantic_name": "CCBItemWindow::OnMessage",
-   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名HandleMessage=体读数命名"
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名HandleMessage=体读数命名 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nMsg, int wParam): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051ab00": {
    "name": "Update",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "CCBItemWindow::Update",
-   "name_note": "C9级联正名batch4-20261116: slot2位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Update; 原名CheckMagicKeyPress"
+   "name_note": "C9级联正名batch4-20261116: slot2位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Update; 原名CheckMagicKeyPress | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051a390": {
    "name": "_scalar_dtor_A390",
@@ -223,10 +219,10 @@
   "0x0051a880": {
    "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | multiclaim 裁决 2026-11-03: 败于 CCBItemWindow（uniq=4）",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "CCBItemWindow::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -240,7 +236,7 @@
   "0x0043ddf0": {
    "name": "Render",
    "semantic_name": "CCBControlWindow::Render(void)",
-   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
+   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -249,7 +245,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -260,22 +257,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0051ab00"
+     "addr": "0x0051ab00",
+     "name": "Update"
     },
     {
-     "addr": "0x0051a880"
+     "addr": "0x0051a880",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051a390"
+     "addr": "0x0051a390",
+     "name": "_scalar_dtor_A390"
     },
     {
-     "addr": "0x0051a930"
+     "addr": "0x0051a930",
+     "name": "OnMessage"
     },
     {
      "addr": "0x00445e70"

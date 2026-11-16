@@ -344,7 +344,7 @@
    "name": "HideAll",
    "source": "vtable_migrated",
    "ordinal": 24,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBLineupWindow::HideAll",
    "semantic_sig": "int",
    "sig_model": {
@@ -355,12 +355,12 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051b570": {
    "name": "Update",
    "ordinal": 16,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "source": "vtable_gap_fill_v1(from CCBItemWindow.json)",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -368,26 +368,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "CCBLineupWindow::Update",
-   "name_note": "C9级联正名batch4-20261116: slot2位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Update; 原名HandleInput"
+   "name_note": "C9级联正名batch4-20261116: slot2位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Update; 原名HandleInput | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051c9b0": {
    "name": "OnMessage",
    "source": "vtable_migrated",
    "ordinal": 20,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBFiveNimbusWindow::OnMessage",
    "semantic_sig": "int",
    "sig_model": {
@@ -399,7 +395,7 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -410,7 +406,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int, int)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051b5d0": {
    "name": "~CCBLineupWindow",
@@ -429,7 +426,7 @@
   "0x0043ddf0": {
    "name": "Render",
    "semantic_name": "Render",
-   "name_note": "G2条目补齐(CCBLineupWindow真表0x570538): slot1链名; farm折叠Render(void已定谳)",
+   "name_note": "G2条目补齐(CCBLineupWindow真表0x570538): slot1链名; farm折叠Render(void已定谳) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -438,7 +435,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -447,25 +445,31 @@
    "base": "CCBItemWindow",
    "slots": [
     {
-     "addr": "0x0051b5d0"
+     "addr": "0x0051b5d0",
+     "name": "~CCBLineupWindow"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0051b570"
+     "addr": "0x0051b570",
+     "name": "Update"
     },
     {
-     "addr": "0x0051b4b0"
+     "addr": "0x0051b4b0",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051b160"
+     "addr": "0x0051b160",
+     "name": "_scalar_dtor"
     },
     {
-     "addr": "0x0051c9b0"
+     "addr": "0x0051c9b0",
+     "name": "OnMessage"
     }
    ]
   }

@@ -230,7 +230,7 @@
   "0x004d17d0": {
    "name": "UpdateFrame",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "从 decomp 推断",
+   "name_note": "从 decomp 推断 | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "semantic_name": "Cleanup",
@@ -247,7 +247,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "evidence_level": "chain_unified"
   },
   "0x004d3220": {
    "name": "sub_4D17D0_adjthunk",
@@ -288,7 +289,7 @@
   "0x004d1090": {
    "name": "Create",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -302,7 +303,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004d0ec0": {
    "name": "ResetState",
@@ -352,21 +354,22 @@
   "0x004d2080": {
    "name": "RenderEffectPass",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004d2ed0": {
    "name": "GetEditorTaskDescription",
@@ -420,7 +423,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004d0d90"
+     "addr": "0x004d0d90",
+     "name": "_scalar_dtor_0D90"
     },
     {
      "addr": "0x004d1090",
@@ -490,7 +494,8 @@
    "addr": "0x0056fa24",
    "slots": [
     {
-     "addr": "0x004d3220"
+     "addr": "0x004d3220",
+     "name": "sub_4D17D0_adjthunk"
     },
     {
      "addr": "0x004c2850"

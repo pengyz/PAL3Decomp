@@ -1058,7 +1058,7 @@ def check_canonical_contract():
         #   同槽位: 基/派生名字应一致(override=C++同名规则), 签名应兼容(C2555判据)
         #   名字不一致=silent bug(折叠载体名≠链律名), 签名冲突=C2555
         #   双检全拦截 [用户裁定"名字对不上也是需要被检出的bug"]
-        _re9 = re.compile(r'_scalar_dtor|_sdtor|scalar_deleting')
+        _re9 = re.compile(r'_scalar_dtor|_sdtor|scalar_deleting|scalar deleting|`')
 
         def _anc_slot_chain(_cls, _slot_idx, _seen=None, _first=None):
             """沿祖先链找同一slot位的条目节点, 返回(祖先名, addr, node)或None

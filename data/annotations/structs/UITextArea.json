@@ -98,17 +98,18 @@
    "name": "Destroy",
    "ordinal": 3,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "Destroy",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd)"
   },
   "0x00444f60": {
    "name": "InitAfterClear",
@@ -149,7 +150,7 @@
    "name": "ProcessInput",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "ProcessInput",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -157,25 +158,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
   },
   "0x00445500": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "Render",
-   "name_note": "; C9定谳(中高): slot1链源级void——result=m_bvisible/m_nTodo成员态语义不通; 对齐基契约",
+   "name_note": "; C9定谳(中高): slot1链源级void——result=m_bvisible/m_nTodo成员态语义不通; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -190,12 +188,12 @@
    "name": "ShowWindow",
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "ShowWindow",
    "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
-    "return": "CCBAIWindow *__thiscall",
-    "cc": null,
+    "return": "void",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -205,7 +203,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "CCBAIWindow *__thiscall (int)"
+   "signature": "void __thiscall(int)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd)"
   },
   "0x00444ff0": {
    "name": "_sdtor_13",
@@ -240,22 +239,27 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445720"
+     "addr": "0x00445720",
+     "name": "ShowWindow"
     },
     {
-     "addr": "0x00445500"
+     "addr": "0x00445500",
+     "name": "Render"
     },
     {
-     "addr": "0x00445170"
+     "addr": "0x00445170",
+     "name": "ProcessInput"
     },
     {
-     "addr": "0x00445920"
+     "addr": "0x00445920",
+     "name": "Destroy"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00444ff0"
+     "addr": "0x00444ff0",
+     "name": "_sdtor_13"
     },
     {
      "addr": "0x00445d10"

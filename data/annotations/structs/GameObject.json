@@ -44,21 +44,17 @@
    "name": "UpdateFrame",
    "semantic_name": "UpdateFrame",
    "confidence": "中",
-   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→void __thiscall()(基=Object)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -67,16 +63,19 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00411bb0"
+     "addr": "0x00411bb0",
+     "name": "_scalar_dtor_1bb0"
     },
     {
      "addr": "0x0055434f"
     },
     {
-     "addr": "0x004af760"
+     "addr": "0x004af760",
+     "name": "UpdateFrame"
     },
     {
-     "addr": "0x00411b80"
+     "addr": "0x00411b80",
+     "name": "_scalar_dtor_1b80"
     }
    ],
    "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=Role ctor +114/+672/+697 三写（MI 链第三子对象=根）②被调用者面=Object::Update(0x4AF760 共享)/FatalExit 桩 ③成员访问面=写表回基桩 0x411BB0/0x411B80 ④类归属面=Role 层级根基（0x56A9A4 Role/0x56A9B0 ScriptObj:base/0x56A9C0 根）⑤交互模式面=MI 构造链根初始化 ⇒ **游戏对象根基**（虚 Update/终止接口）；evidence=[Role ctor 三写,槽 0x4AF760 共享 Object::Update,回基桩体字节] confidence=85"

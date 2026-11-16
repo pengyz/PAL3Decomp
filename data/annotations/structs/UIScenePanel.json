@@ -733,25 +733,22 @@
   },
   "0x0043b1e0": {
    "name": "Update",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0043b900": {
    "name": "ProcessMessage",
@@ -834,7 +831,7 @@
   "0x0044dfc0": {
    "name": "OnMessage",
    "source": "vtable_gap_fill_v1(from UIScenePanel.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_sig": "int",
    "sig_model": {
@@ -842,11 +839,11 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "UICursor *msg",
+      "type": "int",
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "wparam"
      },
      {
@@ -857,7 +854,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(UICursor *msg, int wparam, int lparam)"
+   "signature": "int __thiscall(int, unsigned int wparam, int lparam)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int wparam, int lparam): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0044be40": {
    "name": "_scalar_dtor_BE40",
@@ -882,7 +880,7 @@
    "name": "Render",
    "semantic_name": "Render",
    "confidence": "中",
-   "name_note": "G2批: slot1折叠Render(UICaption同址已定谳void链)",
+   "name_note": "G2批: slot1折叠Render(UICaption同址已定谳void链) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -891,7 +889,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -903,10 +902,12 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ad40"
+     "addr": "0x0043ad40",
+     "name": "Render"
     },
     {
-     "addr": "0x0043b1e0"
+     "addr": "0x0043b1e0",
+     "name": "Update"
     },
     {
      "addr": "0x0043ab00"
@@ -915,7 +916,8 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044be00"
+     "addr": "0x0044be00",
+     "name": "_sdtor_24"
     }
    ],
    "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `UIScenePanel::UIScenePanel` +306/+365/+424 三写（MI 子对象组装）②被调用者面=UICaption impl（Render/Destroy/删际 0x44BE00）③成员访问面=UICaption 子对象布局 ④类归属面=UIScenePanel:base(UICaption) ⑤交互模式面=MI 构造序；evidence=[ctor 三写偏移,槽行 UICaption 族,删际 0x44BE00] confidence=90"

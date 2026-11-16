@@ -138,31 +138,23 @@
   "0x004520a0": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "double",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": "result"
-     },
-     {
-      "type": "int",
-      "name": "arg0"
-     },
-     {
-      "type": "int",
-      "name": "arg0a"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(double, int, int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "UITitle_BBTY::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名UpdateFrame=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名UpdateFrame=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00451d80": {
    "name": "_scalar_dtor_1D80",
@@ -208,7 +200,7 @@
   "0x00452420": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -219,7 +211,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -230,7 +222,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004524b0": {
    "name": "SetRemarkTextures",
@@ -279,7 +272,8 @@
      "addr": "0x00445cd0"
     },
     {
-     "addr": "0x004520a0"
+     "addr": "0x004520a0",
+     "name": "Update"
     },
     {
      "addr": "0x00445c10"
@@ -288,10 +282,12 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00451d80"
+     "addr": "0x00451d80",
+     "name": "_scalar_dtor_1D80"
     },
     {
-     "addr": "0x00452420"
+     "addr": "0x00452420",
+     "name": "OnMessage"
     }
    ]
   }

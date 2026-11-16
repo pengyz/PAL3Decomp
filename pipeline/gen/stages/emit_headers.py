@@ -591,6 +591,15 @@ def _norm_ret_cmp(sig):
 
 
 def _family_slot_sig(cls_name, slot_name, slot_addr):
+    """发射槽声明用: 族投票→仅返回型token(参数从地址条目组合防污染)。"""
+    _fam_sig = _family_slot_sig_full(cls_name, slot_name, slot_addr)
+    if not _fam_sig:
+        return None
+    _m = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)', _fam_sig)
+    return _m.group(2) if _m else None
+
+
+def _family_slot_sig_full(cls_name, slot_name, slot_addr):
     """[方案D 2026-11-17] 槽声明签名=族内同名条目三档加权投票。
     折叠载体边界例外不做数据字段做派生规则: 签名键=(继承家族, 槽名)。
     桩位条目(地址==槽址/own_slot_backfill)禁票; 无票→None回退地址级(纯桩链零变更)。"""
@@ -618,18 +627,22 @@ def _family_slot_sig(cls_name, slot_name, slot_addr):
             votes.append((tier, sig, c))
     if not votes:
         return None
+    return _family_vote_sig(votes)
+
+
+def _family_vote_sig(votes):
+    """投票裁决: tier1优先, 返回型归一多数决(分歧=None门禁追债), 平票取排序首类。
+    [参数污染防线 2026-11-17] 返回完整获胜签名——调用方按需取返回token或全串
+    (发射槽声明=返回token×地址条目参数; 注解链统一=全串)。"""
     t1 = [v for v in votes if v[0] == 1]
     t2 = [v for v in votes if v[0] == 2]
     use = t1 if t1 else t2
     keys = {_norm_ret_cmp(s) for _t, s, _c in use}
     if len(keys) > 1:
-        return None  # 真体票分歧→None(门禁追债), 不猜
-    # [参数污染防线 2026-11-17] 投票只裁决返回型token——参数从地址条目(根类正名账)
-    # 组合, 防获胜成员的hexrays污染参数(CCBUI**实证)污染全族声明
+        return None  # 真体票分歧→门禁追债, 不猜
     for _t, s, _c in sorted(use, key=lambda x: x[2]):
         if _norm_ret_cmp(s) in keys:
-            _m = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)', s)
-            return _m.group(2) if _m else None
+            return s
     return None
 
 
@@ -3190,13 +3203,22 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         seen_methods = set()
         # [hex归一化 2026-11-14] hex()产短形(0x4c0620)而方法条目长形(0x004c0620) ⇒ 集合永不匹配 ⇒ 跳过失效
         _vt_covered = set(('%08x' % int(_sn[0], 16)) for _sn in (_all_vtable_slots or []) if _sn[0]) if _slot_decls_emitted else set()
+        # [折叠别名声明 2026-11-17] 槽址→槽名集: 折叠载体一址多名(NullCallback等址级
+        # 别名≠槽链名) → methods条目名不在槽名集=别名声明, 不跳过(C2039修复);
+        # 同名条目仍跳过(防C2535双声明)
+        _slot_names_by_addr = {}
+        for _sn0 in (_all_vtable_slots or []):
+            if _sn0[0]:
+                _k0 = '%08x' % int(_sn0[0], 16)
+                _slot_names_by_addr.setdefault(_k0, set()).add(str(_sn0[1] or '').split('::')[-1])
         for method_name, sig, addr in sorted(methods, key=_method_sort_key):
             try:
                 _al0 = ('%08x' % int(addr, 16)) if isinstance(addr, str) else ('%08x' % addr)
             except (ValueError, TypeError):
                 _al0 = str(addr).lower()
-            if _al0 in _vt_covered:
-                continue  # [每槽位置发射] vtable地址已逐位声明, 此处只发非虚表方法
+            if _al0 in _vt_covered and method_name in _slot_names_by_addr.get(_al0, ()):
+                continue  # [每槽位置发射+折叠别名豁免 2026-11-17] 同名槽址=已逐位声明;
+                # 异名条目(NullCallback等址级别名)=合法折叠别名声明, 放行
             # Strip Hex-Rays annotations before parsing: __userpurge/@<eax>/@<ecx>
             sig = re.sub(r'@<\w+>', '', sig)
             sig = re.sub(r'\s*__userpurge\s*', ' ', sig)

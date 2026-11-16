@@ -104,21 +104,30 @@
   },
   "0x0051cd90": {
    "name": "OnMessage",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIListBox **msg",
-      "name": null
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "unsigned int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(UIListBox **msg)"
+   "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int a2, unsigned int nVal, int nVal2): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051ce40": {
    "name": "Update",
@@ -137,11 +146,11 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051cf00": {
    "name": "ShowWindow",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -155,7 +164,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(CCBControlWindow **show)"
+   "signature": "char __thiscall(CCBControlWindow **show)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权)"
   }
  },
  "base_size": 72,

@@ -129,7 +129,7 @@
    "name": "Render",
    "_misattrib_evidence": "max_offset=1008>class_size=204",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -138,7 +138,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00441d50": {
    "name": "StepAnimation",
@@ -169,32 +170,28 @@
   "0x00452d30": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "UIAnimateCtrlEX::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ComputeStatBonus=体读数命名"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ComputeStatBonus=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00452da0": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -205,7 +202,7 @@
       "name": "msg"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "wparam"
      },
      {
@@ -216,9 +213,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int msg, int wparam, int lparam)",
+   "signature": "int __thiscall(int msg, unsigned int wparam, int lparam)",
    "semantic_name": "UIAnimateCtrlEX::OnMessage",
-   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnNotify=体读数命名"
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnNotify=体读数命名 | C9sig链统一20261117→int __thiscall(int msg, unsigned int wparam, int lparam): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00530990": {
    "name": "SetTextBottom",
@@ -281,10 +278,12 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00452aa0"
+     "addr": "0x00452aa0",
+     "name": "Render"
     },
     {
-     "addr": "0x00452d30"
+     "addr": "0x00452d30",
+     "name": "Update"
     },
     {
      "addr": "0x00445c10"
@@ -293,10 +292,12 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00452830"
+     "addr": "0x00452830",
+     "name": "_scalar_dtor_2830"
     },
     {
-     "addr": "0x00452da0"
+     "addr": "0x00452da0",
+     "name": "OnMessage"
     }
    ]
   }

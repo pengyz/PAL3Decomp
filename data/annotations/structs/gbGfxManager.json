@@ -271,25 +271,32 @@
    "external": true,
    "slots": [
     {
-     "addr": "0x00010000"
+     "addr": "0x00010000",
+     "name": "_todo_010000"
     },
     {
-     "addr": "0x00010001"
+     "addr": "0x00010001",
+     "name": "MsgProc"
     },
     {
-     "addr": "0x00010002"
+     "addr": "0x00010002",
+     "name": "NewTexture"
     },
     {
-     "addr": "0x00010003"
+     "addr": "0x00010003",
+     "name": "NewMesh"
     },
     {
-     "addr": "0x00010004"
+     "addr": "0x00010004",
+     "name": "NewVertexPool"
     },
     {
-     "addr": "0x00010005"
+     "addr": "0x00010005",
+     "name": "NewIndexPool"
     },
     {
-     "addr": "0x00010006"
+     "addr": "0x00010006",
+     "name": "NewDynVertBuf"
     }
    ],
    "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 include/gbengine/gbGfxManager.h:144-153 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"

@@ -2403,12 +2403,12 @@
    "signature": "int __thiscall(int roleIdx)"
   },
   "0x00457070": {
-   "name": "ctor",
+   "name": "OnMessage",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 6,
    "source": "+canonical_rename",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -2419,7 +2419,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -2430,7 +2430,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3)(基=UIWnd) | 角色归正补做20261117(修rebuild守卫漏网): slot6位(0x56B364表, OnMessage位) + ABI RET 12=3参与根契约一致 + 体ret 0xC; 原名ctor=N12占位(rebuild守卫name=='CCBRoleState'未匹配'ctor'静默跳过——'没找到≠不存在'教训复现)",
+   "semantic_name": "CCBRoleState::OnMessage(int, int, int)"
   },
   "0x00456b80": {
    "name": "_scalar_dtor_6B80",
@@ -3379,27 +3381,23 @@
   "0x00457020": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "CCBRoleState::Update(int, int)",
-   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数"
+   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0046d770": {
    "name": "LayoutSlotPanelA",
@@ -4624,10 +4622,10 @@
   "0x0043de40": {
    "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "CCBRoleState::HideAll(void)",
-   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -4641,10 +4639,10 @@
   "0x00524970": {
    "name": "Render",
    "source": "vtable_gap_fill_v1(from CCBStage.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "CCBRoleState::Render",
-   "name_note": "; C9定谳(高): 体=thunk→CCBControlWindow::Render, thunk契约随目标(void); 基slot1链void已定谳",
+   "name_note": "; C9定谳(高): 体=thunk→CCBControlWindow::Render, thunk契约随目标(void); 基slot1链void已定谳 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -4728,22 +4726,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00524970"
+     "addr": "0x00524970",
+     "name": "Render"
     },
     {
-     "addr": "0x00457020"
+     "addr": "0x00457020",
+     "name": "Update"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00456b60"
+     "addr": "0x00456b60",
+     "name": "~CCBRoleState"
     },
     {
-     "addr": "0x00457070"
+     "addr": "0x00457070",
+     "name": "OnMessage"
     }
    ],
    "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `CCBRoleState::_todo_456A+134` 写表 + `_scalar_dtor+29` 析构复写（ctor/dtor 对）②被调用者面=槽 0x524970 CCBRoleState 域 Render impl + 0x457020 ③成员访问面=CCBRoleState 布局 ④类归属面=CCBRoleState（ctor 域双自证）⑤交互模式面=构造/析构对；evidence=[写点 ctor/dtor 对,槽行域名] confidence=92"

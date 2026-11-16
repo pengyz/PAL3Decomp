@@ -43,25 +43,22 @@
   "0x0047c3a0": {
    "name": "ProcessPageAction",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct PalScript *p",
+      "type": "CCBUI **deltatime",
       "name": null
-     },
-     {
-      "type": "int",
-      "name": "nVal"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(struct PalScript *p, int nVal)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
   },
   "0x0047bd00": {
    "name": "_scalar_dtor_BD00",
@@ -93,7 +90,7 @@
   "0x0047bdf0": {
    "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -104,12 +101,12 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "UITitle_ArcSave::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0047c370": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -118,12 +115,13 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0047c430": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -134,7 +132,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -145,7 +143,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   }
  },
  "vtables": [
@@ -157,22 +156,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0047c370"
+     "addr": "0x0047c370",
+     "name": "Render"
     },
     {
-     "addr": "0x0047c3a0"
+     "addr": "0x0047c3a0",
+     "name": "ProcessPageAction"
     },
     {
-     "addr": "0x0047bdf0"
+     "addr": "0x0047bdf0",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0047bd00"
+     "addr": "0x0047bd00",
+     "name": "_scalar_dtor_BD00"
     },
     {
-     "addr": "0x0047c430"
+     "addr": "0x0047c430",
+     "name": "OnMessage"
     }
    ]
   }

@@ -14,7 +14,7 @@
    "name": "UpdateFrame",
    "ordinal": 5,
    "source": "manual_fix_vtable",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_bIdle,m_nController,m_pEM（adjudicate_multiclaim 2026-11-03）",
    "semantic_name": "UpdateFrame",
@@ -31,7 +31,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c0640": {
    "name": "ResetState",
@@ -92,25 +93,25 @@
    "semantic_name": "PrepareEffect",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "BOOL",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "signature": "void __thiscall(float)",
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c09e0": {
    "name": "RenderEffectPass",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 12,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "RenderScene",
    "semantic_sig": "void",
    "sig_model": {
@@ -118,14 +119,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c0540": {
    "name": "~CEffAction",
@@ -150,7 +152,7 @@
   "0x004c0650": {
    "name": "Create",
    "source": "vtable_gap_fill_v1(from CEffQuake.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_name": "AllocSegments",
    "semantic_sig": "char",
@@ -166,7 +168,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c1270": {
    "name": "GetEditorTaskDescription",
@@ -229,7 +232,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c0540"
+     "addr": "0x004c0540",
+     "name": "~CEffAction"
     },
     {
      "addr": "0x004c0650",
@@ -241,13 +245,13 @@
     },
     {
      "addr": "0x00408bd0",
-     "name": "DestroyEffect",
+     "name": "NullCallback",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)",
      "name_note": "槽名链律对齐20261116: 承CEffObj slot3根槽名(每槽一名)"
     },
     {
      "addr": "0x00408bd0",
-     "name": "RenderScenePass",
+     "name": "NullCallback",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)",
      "name_note": "槽名链律对齐20261116: 承CEffObj slot4根槽名(每槽一名)"
     },
@@ -257,7 +261,7 @@
     },
     {
      "addr": "0x00408bd0",
-     "name": "Destroy",
+     "name": "NullCallback",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)",
      "name_note": "槽名链律对齐20261116: 承CEffObj slot6根槽名(每槽一名)"
     },

@@ -135,7 +135,7 @@
   "0x00440560": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "Update",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -143,23 +143,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0043f9c0": {
    "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -170,12 +167,12 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "UIButton::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0043ff00": {
    "name": "Create",
    "ordinal": 4,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -186,24 +183,25 @@
       "name": "id"
      },
      {
-      "type": "int *pRect",
+      "type": "tagRECT *",
       "name": null
      },
      {
-      "type": "int",
+      "type": "UIWnd *",
       "name": "parent"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int id, int *pRect, int parent)"
+   "signature": "int __thiscall(int id, tagRECT *, UIWnd * parent)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int id, tagRECT *, UIWnd * parent)(基=UIWnd)"
   },
   "0x0043ff70": {
    "name": "Render",
    "ordinal": 1,
    "source": "+fix:sig_match_base",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -212,7 +210,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0043f950": {
    "name": "_scalar_dtor_F950",
@@ -249,19 +248,24 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ff70"
+     "addr": "0x0043ff70",
+     "name": "Render"
     },
     {
-     "addr": "0x00440560"
+     "addr": "0x00440560",
+     "name": "Update"
     },
     {
-     "addr": "0x0043f9c0"
+     "addr": "0x0043f9c0",
+     "name": "HideAll"
     },
     {
-     "addr": "0x0043ff00"
+     "addr": "0x0043ff00",
+     "name": "Create"
     },
     {
-     "addr": "0x0043f950"
+     "addr": "0x0043f950",
+     "name": "_scalar_dtor_F950"
     },
     {
      "addr": "0x00445d10"

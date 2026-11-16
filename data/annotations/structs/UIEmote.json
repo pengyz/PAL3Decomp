@@ -45,13 +45,16 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x0044eb40"
+     "addr": "0x0044eb40",
+     "name": "Reset"
     },
     {
-     "addr": "0x0044ab00"
+     "addr": "0x0044ab00",
+     "name": "GetType"
     },
     {
-     "addr": "0x004af760"
+     "addr": "0x004af760",
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00445e70"
@@ -60,7 +63,8 @@
      "addr": "0x00445cd0"
     },
     {
-     "addr": "0x0044e980"
+     "addr": "0x0044e980",
+     "name": "OnVisible"
     },
     {
      "addr": "0x00445c10"
@@ -69,7 +73,8 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044e5c0"
+     "addr": "0x0044e5c0",
+     "name": "_sdtor_25"
     },
     {
      "addr": "0x00445d10"
@@ -94,7 +99,7 @@
   },
   "0x00529870": {
    "name": "Render",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -103,7 +108,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0044d0b0": {
    "name": "InitParticleSlots",
@@ -122,16 +128,22 @@
   "0x0044eb40": {
    "name": "Reset",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
-   "name_note": "空覆盖虚方法",
+   "name_note": "空覆盖虚方法 | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall(int)",
+   "evidence_level": "chain_unified"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
@@ -161,7 +173,7 @@
   "0x0044e980": {
    "name": "OnVisible",
    "name_source": "IDA语义分析 2026-11-01 批11",
-   "name_note": "可见性处理（m_bvisible 检查+offset 19）",
+   "name_note": "可见性处理（m_bvisible 检查+offset 19） | C9sig基锚定20261117→void * __thiscall(int nVal1)(基=UIWnd)",
    "semantic_name": "OnVisible",
    "semantic_sig": "void *",
    "sig_model": {
@@ -169,18 +181,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nVal1"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   "signature": "void * __thiscall(int nVal1)",
+   "evidence_level": "chain_unified"
   },
   "0x0044ab00": {
    "name": "GetType",
@@ -202,21 +211,22 @@
    "name": "UpdateFrame",
    "semantic_name": "UpdateFrame",
    "confidence": "中",
-   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "evidence_level": "chain_unified"
   }
  },
  "base_size": 76,

@@ -27,27 +27,23 @@
   "0x0044e980": {
    "name": "Update",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "scScriptInstance::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
@@ -78,7 +74,8 @@
      "addr": "0x00445cd0"
     },
     {
-     "addr": "0x0044e980"
+     "addr": "0x0044e980",
+     "name": "Update"
     },
     {
      "addr": "0x00445c10"
@@ -87,7 +84,8 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044e5c0"
+     "addr": "0x0044e5c0",
+     "name": "_sdtor_25"
     },
     {
      "addr": "0x00445d10"

@@ -597,7 +597,7 @@
   "0x0047b200": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -606,7 +606,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004819a0": {
    "name": "LoadFromFile",
@@ -783,21 +784,27 @@
   "0x0047b3b0": {
    "name": "Render3DModel",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "CCBUI **deltatime",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
   },
   "0x0047b6c0": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -808,7 +815,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -819,7 +826,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0047ec00": {
    "name": "ClearState",
@@ -975,7 +983,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "MainEquipUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -985,7 +993,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -997,22 +1005,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0047b200"
+     "addr": "0x0047b200",
+     "name": "Render"
     },
     {
-     "addr": "0x0047b3b0"
+     "addr": "0x0047b3b0",
+     "name": "Render3DModel"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00479660"
+     "addr": "0x00479660",
+     "name": "_scalar_dtor_9660"
     },
     {
-     "addr": "0x0047b6c0"
+     "addr": "0x0047b6c0",
+     "name": "OnMessage"
     }
    ]
   }

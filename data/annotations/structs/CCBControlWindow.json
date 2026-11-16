@@ -225,7 +225,7 @@
    "name": "HideAll",
    "source": "vtable_migrated",
    "ordinal": 10,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -236,32 +236,28 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "CCBControlWindow::HideAll(void)",
-   "name_note": "C9链律正名20261116: slot3二进制位 + RET 0(0参ABI真相, census锚PASS) + 体不读a2/a3(hexrays伪影) + 体形态与HideAll族同构 (ReleaseTempStorage+释放3子控件经slot5(child,1)) + 根契约slot3=HideAll() 0参(UIWnd::HideAll体0参虚调子物件slot3); 原名Update(float,int)=调用点推测伪影 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束"
+   "name_note": "C9链律正名20261116: slot3二进制位 + RET 0(0参ABI真相, census锚PASS) + 体不读a2/a3(hexrays伪影) + 体形态与HideAll族同构 (ReleaseTempStorage+释放3子控件经slot5(child,1)) + 根契约slot3=HideAll() 0参(UIWnd::HideAll体0参虚调子物件slot3); 原名Update(float,int)=调用点推测伪影 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051b0b0": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "CCBControlWindow::Update(int, int)",
-   "name_note": "C9链律正名20261116: slot2二进制位(0x57051C+8) + RET 8(2参) + 体尾直调UIWnd::Update(this,nVal,nVal2) + 根契约Update(int,int)=BOOL; 原名MoveButtons=体读数命名, 违每槽一名override律"
+   "name_note": "C9链律正名20261116: slot2二进制位(0x57051C+8) + RET 8(2参) + 体尾直调UIWnd::Update(this,nVal,nVal2) + 根契约Update(int,int)=BOOL; 原名MoveButtons=体读数命名, 违每槽一名override律 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051b110": {
    "name": "CreateButton",
@@ -280,7 +276,7 @@
    "name": "OnMessage",
    "source": "vtable_migrated+pdb_name",
    "ordinal": 20,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -291,7 +287,7 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "a2"
      },
      {
@@ -302,7 +298,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int a2, int a3)"
+   "signature": "int __thiscall(int, unsigned int a2, int a3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int a2, int a3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051b5d0": {
    "name": "CreateWithTextures",
@@ -345,9 +342,9 @@
   "0x0043ddf0": {
    "name": "Render",
    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBControlWindow::Render",
-   "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪",
+   "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -392,25 +389,31 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0051b0b0"
+     "addr": "0x0051b0b0",
+     "name": "Update"
     },
     {
-     "addr": "0x0051afe0"
+     "addr": "0x0051afe0",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051ac90"
+     "addr": "0x0051ac90",
+     "name": "_scalar_dtor_AC90"
     },
     {
-     "addr": "0x0051b030"
+     "addr": "0x0051b030",
+     "name": "OnMessage"
     },
     {
-     "addr": "0x0051b5d0"
+     "addr": "0x0051b5d0",
+     "name": "CreateWithTextures"
     }
    ]
   }

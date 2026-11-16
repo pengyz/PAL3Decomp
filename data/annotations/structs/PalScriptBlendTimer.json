@@ -79,13 +79,16 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00434d50"
+     "addr": "0x00434d50",
+     "name": "~PalScriptBlendTimer"
     },
     {
-     "addr": "0x00434d20"
+     "addr": "0x00434d20",
+     "name": "IsBlendComplete"
     },
     {
-     "addr": "0x00434d40"
+     "addr": "0x00434d40",
+     "name": "AccumulateTime"
     }
    ],
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=xref 0x434D50@0x56abb8/0x56abc4 表内 ②被调用者面=del 链 ③成员访问面=+8/+12 浮点对 ④类归属面=独立小类（PalScript 族）⑤交互模式面=ctor 写点 Op_Idle+30（Op 域构造）⇒ **混合/过渡计时器**（Blend=混合进度语义：elapsed<duration 判 + 累加）evidence=[0x434D20/0x434D40 decompile,xrefs_to 0x434D50,writer Op_Idle+30] confidence=88"

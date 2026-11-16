@@ -111,7 +111,7 @@
   "0x0051c260": {
    "name": "`scalar deleting destructor'",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_name": "`scalar deleting destructor'",
    "semantic_sig": "void *",
@@ -120,26 +120,23 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "flags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   "signature": "void * __thiscall(int)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏)"
   },
   "0x0051c880": {
    "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_name": "CCBParabolaWindow::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -153,7 +150,7 @@
   "0x0051c9f0": {
    "name": "Update",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -161,28 +158,25 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int deltatime, int haveinput)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051ca50": {
    "name": "ShowClipped",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "void",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -192,14 +186,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
+   "signature": "void __thiscall(int nVal)",
    "semantic_name": "CCBParabolaWindow::ShowClipped",
-   "name_note": "C9级联正名20261116: slot0位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名ShowClipped(基类同槽); 原名ToggleSlots=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1})"
+   "name_note": "C9级联正名20261116: slot0位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名ShowClipped(基类同槽); 原名ToggleSlots=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(int nVal): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051caa0": {
    "name": "Render",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_name": "Render",
    "semantic_sig": "int",
@@ -210,35 +204,36 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "; C2555链对齐(结构化sweep): B: 真override返回漂移(基void); 置信度中高(史前+基形式多数证据)",
+   "name_note": "; C2555链对齐(结构化sweep): B: 真override返回漂移(基void); 置信度中高(史前+基形式多数证据) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "signature": "void __thiscall()"
   },
   "0x0051c9b0": {
    "name": "OnMessage",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "uint",
+      "type": "int",
       "name": null
      },
      {
-      "type": "uint",
+      "type": "unsigned int",
       "name": null
      },
      {
-      "type": "uint",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(uint, uint, uint)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权)"
   }
  },
  "vtables": [
@@ -247,25 +242,31 @@
    "base": "CCBSkillWindow",
    "slots": [
     {
-     "addr": "0x0051ca50"
+     "addr": "0x0051ca50",
+     "name": "ShowClipped"
     },
     {
-     "addr": "0x0051caa0"
+     "addr": "0x0051caa0",
+     "name": "Render"
     },
     {
-     "addr": "0x0051c9f0"
+     "addr": "0x0051c9f0",
+     "name": "Update"
     },
     {
-     "addr": "0x0051c880"
+     "addr": "0x0051c880",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051c260"
+     "addr": "0x0051c260",
+     "name": "`scalar deleting destructor'"
     },
     {
-     "addr": "0x0051c9b0"
+     "addr": "0x0051c9b0",
+     "name": "OnMessage"
     }
    ]
   }

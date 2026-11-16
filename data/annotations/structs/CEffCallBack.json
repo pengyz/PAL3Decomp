@@ -48,39 +48,40 @@
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "BOOL",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int)",
+   "signature": "void __thiscall(float)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c2d00": {
    "name": "RenderEffectPass",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c3160": {
    "name": "GetEditorTaskDescription",
@@ -179,7 +180,7 @@
   "0x004c29a0": {
    "name": "UpdateFrame",
    "semantic_name": "UpdateInternal",
-   "name_note": "G2条目补齐(CEff表): 同上折叠共享; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note",
+   "name_note": "G2条目补齐(CEff表): 同上折叠共享; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -193,7 +194,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "evidence_level": "chain_unified"
   },
   "0x004c0650": {
    "name": "AllocActionArray",
@@ -233,11 +235,12 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c2870"
+     "addr": "0x004c2870",
+     "name": "~CEffCallBack"
     },
     {
      "addr": "0x004c0650",
-     "name": "Create"
+     "name": "AllocActionArray"
     },
     {
      "addr": "0x004c2930",

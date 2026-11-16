@@ -146,37 +146,26 @@
   "0x00529e40": {
    "name": "HandleInput",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "lvars": {
     "v10": "BOOL (__stdcall *)(const RECT *, POINT)"
    },
    "lvars_source": "v10=PtInRect死存(×2站)持函数地址无读用; 与PtInRect型恒等; v10=0对指针型合法(null常量) | [修 2026-11-13] 文本对齐 PtInRect 恒等型(BOOL/RECT/POINT), 消除与 IDB 解析形的 codegen 侧互踩",
    "semantic_sig": "double",
    "sig_model": {
-    "return": "double",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": "st6_0"
-     },
-     {
-      "type": "double",
-      "name": "result"
-     },
-     {
-      "type": "int",
-      "name": "arg0"
-     },
-     {
-      "type": "int",
-      "name": "arg0a"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "double __thiscall(double st6_0, double result, int arg0, int arg0a)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
   },
   "0x00529770": {
    "name": "_scalar_dtor_9770",
@@ -208,7 +197,7 @@
   "0x00529cf0": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -217,7 +206,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0052bbd0": {
    "name": "DestroyStatics",
@@ -249,7 +239,7 @@
    "name": "OnMessage",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "lvars": {
     "v5": "char *"
    },
@@ -261,15 +251,23 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal1"
+      "name": "a2"
+     },
+     {
+      "type": "unsigned int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal1)",
+   "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
    "semantic_name": "UIRoleSelectDialog::OnMessage",
-   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名ProcessDialog=体读数命名"
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名ProcessDialog=体读数命名 | C9sig链统一20261117→int __thiscall(int a2, unsigned int nVal, int nVal2): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0052d200": {
    "name": "IsRoleSelectable",
@@ -292,7 +290,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "UIRoleSelectDialog::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -302,7 +300,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -314,22 +312,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00529cf0"
+     "addr": "0x00529cf0",
+     "name": "Render"
     },
     {
-     "addr": "0x00529e40"
+     "addr": "0x00529e40",
+     "name": "HandleInput"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00529770"
+     "addr": "0x00529770",
+     "name": "_scalar_dtor_9770"
     },
     {
-     "addr": "0x0052aab0"
+     "addr": "0x0052aab0",
+     "name": "OnMessage"
     }
    ]
   }

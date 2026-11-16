@@ -717,10 +717,10 @@
   "0x004a0370": {
    "name": "HandleEquipEvent",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -728,7 +728,7 @@
       "name": "nVal"
      },
      {
-      "type": "char *pszBuf",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -739,7 +739,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal, char *pszBuf, int nVal2)"
+   "signature": "int __thiscall(int nVal, unsigned int, int nVal2)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int, int nVal2)(基=UIWnd)"
   },
   "0x00484d20": {
    "name": "ShowPage",
@@ -803,7 +804,7 @@
    "name": "Render",
    "_misattrib_evidence": "max_offset=231140>class_size=1208",
    "ordinal": 1,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -814,7 +815,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "EquipUI::Render",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名"
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00484e70": {
    "name": "SelectTab0",
@@ -887,25 +888,22 @@
   "0x004a00b0": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004ab6b0": {
    "name": "InitEquipUI",
@@ -965,7 +963,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "EquipUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -975,7 +973,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -987,22 +985,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0049fe00"
+     "addr": "0x0049fe00",
+     "name": "Render"
     },
     {
-     "addr": "0x004a00b0"
+     "addr": "0x004a00b0",
+     "name": "Update"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00498c70"
+     "addr": "0x00498c70",
+     "name": "_scalar_dtor_8C70"
     },
     {
-     "addr": "0x004a0370"
+     "addr": "0x004a0370",
+     "name": "HandleEquipEvent"
     }
    ]
   }

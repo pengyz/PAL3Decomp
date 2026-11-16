@@ -189,7 +189,7 @@
   },
   "0x004a6120": {
    "name": "OnMessage",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -200,7 +200,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -211,7 +211,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004a6600": {
    "name": "Destroy",

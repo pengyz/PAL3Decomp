@@ -39,7 +39,7 @@
     },
     {
      "addr": "0x00401800",
-     "name": "RenderScenePass"
+     "name": "DestroyEffect"
     },
     {
      "addr": "0x004af760",
@@ -47,7 +47,7 @@
     },
     {
      "addr": "0x00401800",
-     "name": "Destroy"
+     "name": "DestroyEffect"
     },
     {
      "addr": "0x0055434f",
@@ -59,7 +59,7 @@
     },
     {
      "addr": "0x004af760",
-     "name": "Update"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x004c0510",
@@ -67,19 +67,19 @@
     },
     {
      "addr": "0x004af760",
-     "name": "GetEffect"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x004af760",
-     "name": "RenderEffectPass"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00401800",
-     "name": "UpdateParticles"
+     "name": "DestroyEffect"
     },
     {
      "addr": "0x004c0510",
-     "name": "GetEditorTaskDescription"
+     "name": "GetEditorObjDescription"
     }
    ],
    "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
@@ -124,28 +124,28 @@
   "0x004af760": {
    "name": "UpdateFrame",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址) | IDB类型载体定谳20261115: 一地址4槽4契约(UpdateFrame/Update/GetEffect/RenderEffectPass), IDB只能一个类型=retn 4字节语义(1栈参int); 头声明按槽位独立(emit逐位), 4个cpp定义共用此IDB类型(实施序③体合成)",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_name": "Update",
-   "name_note": "; C2511修正: 对齐cpp定义void(int)(体=空no-op无反证)",
+   "name_note": "; C2511修正: 对齐cpp定义void(int)(体=空no-op无反证) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)"
   },
   "0x004c0600": {
    "name": "Create",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -159,7 +159,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c0610": {
    "name": "ResetState",

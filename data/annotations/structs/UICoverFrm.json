@@ -374,33 +374,22 @@
   "0x0052c480": {
    "name": "UpdateStarAnimation",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "double",
    "sig_model": {
-    "return": "double",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "edi0"
-     },
-     {
-      "type": "double",
-      "name": "result"
-     },
-     {
-      "type": "int",
-      "name": "result_4"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "double __thiscall(int edi0, double result, int result_4, int nVal)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
   },
   "0x0044ff20": {
    "name": "FindActiveSlot",
@@ -445,7 +434,7 @@
   "0x0052c450": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -454,7 +443,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0044c840": {
    "name": "SetDefaultValues",
@@ -530,7 +520,7 @@
   "0x0052ca10": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -541,7 +531,7 @@
       "name": "nVal"
      },
      {
-      "type": "char *pszBuf",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -552,7 +542,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
+   "signature": "int __thiscall(int nVal, unsigned int, int nVal2)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int, int nVal2): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0052d7c0": {
    "name": "LoadFromFile",
@@ -666,7 +657,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "UICoverFrm::HideAll(void)",
-   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -676,7 +667,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -688,22 +679,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0052c450"
+     "addr": "0x0052c450",
+     "name": "Render"
     },
     {
-     "addr": "0x0052c480"
+     "addr": "0x0052c480",
+     "name": "UpdateStarAnimation"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0052bbb0"
+     "addr": "0x0052bbb0",
+     "name": "_scalar_dtor_BBB0"
     },
     {
-     "addr": "0x0052ca10"
+     "addr": "0x0052ca10",
+     "name": "OnMessage"
     }
    ]
   },
@@ -715,22 +711,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00527d80"
+     "addr": "0x00527d80",
+     "name": "RenderWithSceneMap"
     },
     {
-     "addr": "0x00527dc0"
+     "addr": "0x00527dc0",
+     "name": "ProcessInput"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x005279d0"
+     "addr": "0x005279d0",
+     "name": "_scalar_dtor_79d0"
     },
     {
-     "addr": "0x00527ea0"
+     "addr": "0x00527ea0",
+     "name": "OnMessageEx"
     }
    ],
    "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"

@@ -113,7 +113,7 @@
   "0x00440ba0": {
    "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -124,7 +124,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "UIPushButton::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名OnMessage=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1})"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名OnMessage=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004426b0": {
    "name": "CreateFromTemplate",
@@ -152,30 +152,27 @@
   "0x00440dd0": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(float deltatime, int haveinput)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00440f30": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -184,7 +181,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00440740": {
    "name": "UIPushButton",
@@ -555,25 +553,30 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00440f30"
+     "addr": "0x00440f30",
+     "name": "Render"
     },
     {
-     "addr": "0x00440dd0"
+     "addr": "0x00440dd0",
+     "name": "Update"
     },
     {
-     "addr": "0x00440ba0"
+     "addr": "0x00440ba0",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x004407a0"
+     "addr": "0x004407a0",
+     "name": "_scalar_dtor_07A0"
     },
     {
      "addr": "0x00445d10"
     },
     {
-     "addr": "0x00440810"
+     "addr": "0x00440810",
+     "name": "CreateWithTextures"
     }
    ]
   }

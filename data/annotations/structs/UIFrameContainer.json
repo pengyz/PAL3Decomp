@@ -72,27 +72,23 @@
   "0x00442ad0": {
    "name": "Update",
    "ordinal": 16,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "Update_2AD0",
-   "name_note": "剥壳定谳(验证pass): Update: GetCursorPos+SceneObj::Update链=逐帧更新实证",
+   "name_note": "剥壳定谳(验证pass): Update: GetCursorPos+SceneObj::Update链=逐帧更新实证 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)"
   },
   "0x00442890": {
    "name": "Render",
@@ -135,19 +131,23 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00442890"
+     "addr": "0x00442890",
+     "name": "Render"
     },
     {
-     "addr": "0x00442ad0"
+     "addr": "0x00442ad0",
+     "name": "Update"
     },
     {
-     "addr": "0x00442420"
+     "addr": "0x00442420",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00442370"
+     "addr": "0x00442370",
+     "name": "_scalar_dtor_2370"
     },
     {
      "addr": "0x00445d10"

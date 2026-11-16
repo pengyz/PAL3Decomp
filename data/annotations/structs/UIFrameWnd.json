@@ -303,17 +303,23 @@
   "0x0043bb90": {
    "name": "_scalar_dtor_BB90",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43BBB0 写 vptr 0x56ACB8",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "declaration_only": true,
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "void *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": "flags"
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void * __thiscall(int)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏)"
   },
   "0x0043bbb0": {
    "name": "BBB0",
@@ -367,7 +373,7 @@
   "0x0043bbc0": {
    "name": "Update",
    "source": "vtable_gap_fill_v1(from UIFrameWnd.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -375,18 +381,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)"
   },
   "0x00442ff0": {
    "name": "Update_2ff0",
@@ -430,7 +433,7 @@
     },
     {
      "addr": "0x0043bbc0",
-     "name": null,
+     "name": "Update",
      "sig": null
     },
     {

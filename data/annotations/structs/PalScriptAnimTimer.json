@@ -85,13 +85,16 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00438e90"
+     "addr": "0x00438e90",
+     "name": "_scalar_dtor"
     },
     {
-     "addr": "0x00438100"
+     "addr": "0x00438100",
+     "name": "IsAnimDone"
     },
     {
-     "addr": "0x00438e30"
+     "addr": "0x00438e30",
+     "name": "AccumulateTime"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 AccumulateTime=`m_time += fVal; if(>=4.0){done=1; clamp 4.0f}`（filebuf 案 A 级定谳迁移）+flag(this+0xC) 判；交互模式面:4 秒动画计时"

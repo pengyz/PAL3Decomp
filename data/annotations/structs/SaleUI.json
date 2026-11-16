@@ -438,42 +438,35 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)",
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0046b040": {
    "name": "ProcessCellAnimations",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int deltatime, int haveinput)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
   },
   "0x004ab5e0": {
    "name": "InitColumnWidths",
@@ -884,7 +877,7 @@
   "0x0046b4b0": {
    "name": "_todo_0046B4B0",
    "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox） | multiclaim 裁决 2026-11-03: 败于 SaleUI（uniq=13）",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "_todo_0046B4B0",
    "semantic_sig": "int",
@@ -897,7 +890,7 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -908,14 +901,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int, int)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
   },
   "0x0043ddf0": {
    "name": "Render",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_name": "void __thiscall(void)",
-   "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪",
+   "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -929,7 +923,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "SaleUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -939,7 +933,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -951,22 +945,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0046b040"
+     "addr": "0x0046b040",
+     "name": "ProcessCellAnimations"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0045ae40"
+     "addr": "0x0045ae40",
+     "name": "_scalar_dtor_AE40"
     },
     {
-     "addr": "0x0046b4b0"
+     "addr": "0x0046b4b0",
+     "name": "_todo_0046B4B0"
     }
    ]
   }

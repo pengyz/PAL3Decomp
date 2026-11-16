@@ -115,7 +115,7 @@
   "0x004cfeb0": {
    "name": "Create",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "LoadFromNode",
    "semantic_sig": "char",
    "sig_model": {
@@ -130,7 +130,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004d01c0": {
    "name": "RenderScenePass",
@@ -202,25 +203,25 @@
    "semantic_name": "GetRenderNode",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→int: CEffgbParticle体int_ish+基条目0x4af760 int(int)+override一致约束"
+   "signature": "void __thiscall(float)",
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→int: CEffgbParticle体int_ish+基条目0x4af760 int(int)+override一致约束 | C9sig链统一20261117→int __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→int __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004d03b0": {
    "name": "RenderEffectPass",
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 12,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "RenderModel",
    "semantic_sig": "void",
    "sig_model": {
@@ -228,14 +229,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004d0850": {
    "name": "GetEditorTaskDescription",
@@ -376,7 +378,7 @@
   "0x004cffb0": {
    "name": "UpdateFrame",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -390,7 +392,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
@@ -413,7 +416,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004cfd20"
+     "addr": "0x004cfd20",
+     "name": "~CEffModel"
     },
     {
      "addr": "0x004cfeb0",
@@ -481,13 +485,15 @@
    "addr": "0x0056f9d0",
    "slots": [
     {
-     "addr": "0x004d0c90"
+     "addr": "0x004d0c90",
+     "name": "_todo_004D0C90"
     },
     {
      "addr": "0x004c2850"
     },
     {
-     "addr": "0x004d0ca0"
+     "addr": "0x004d0ca0",
+     "name": "_scalar_dtor1"
     }
    ],
    "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"

@@ -196,7 +196,7 @@
   "0x0043d940": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -205,7 +205,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0052b050": {
    "name": "LoadEncampModel",
@@ -320,23 +321,18 @@
   "0x0043d920": {
    "name": "HideAll",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "void",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(void)",
+   "signature": "void __thiscall()",
    "semantic_name": "UI3DCtrl::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   }
  },
  "vtables": [
@@ -348,25 +344,29 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043d940"
+     "addr": "0x0043d940",
+     "name": "Render"
     },
     {
      "addr": "0x00445c60"
     },
     {
-     "addr": "0x0043d920"
+     "addr": "0x0043d920",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0043d860"
+     "addr": "0x0043d860",
+     "name": "_scalar_dtor_D860"
     },
     {
      "addr": "0x00445d10"
     },
     {
-     "addr": "0x0043d890"
+     "addr": "0x0043d890",
+     "name": "CreateWithTexture"
     }
    ]
   }

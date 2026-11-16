@@ -58,27 +58,23 @@
   "0x00450c90": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "RoleCameraCtrl::Update(int, int)",
-   "name_note": "C10重裁定20261116链律: slot2位(Update BOOL(int,int)契约) → 链律名Update; 原名UpdatePosition=体读数; 待解异常: 体访问+244/+264超出bin_size 76, 疑hexrays错型或折叠加挂, 留L-TAILADDR批次复核"
+   "name_note": "C10重裁定20261116链律: slot2位(Update BOOL(int,int)契约) → 链律名Update; 原名UpdatePosition=体读数; 待解异常: 体访问+244/+264超出bin_size 76, 疑hexrays错型或折叠加挂, 留L-TAILADDR批次复核 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00445910": {
    "name": "SetTargetDistance",
@@ -114,7 +110,7 @@
   "0x00450c60": {
    "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -125,7 +121,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -136,13 +132,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00450d00": {
    "name": "ShowClipped",
    "ordinal": 0,
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -158,7 +155,7 @@
    },
    "signature": "void __thiscall(int a1)",
    "semantic_name": "RoleCameraCtrl::ShowClipped(int)",
-   "name_note": "C10重裁定20261116链律: slot0位(UIWnd系ShowClipped位) + 体=剪裁态检查(+52)+slot6调OnMessage(1000,flags,0)=ShowClipped模式; 原名ShowWindow=体读数误名"
+   "name_note": "C10重裁定20261116链律: slot0位(UIWnd系ShowClipped位) + 体=剪裁态检查(+52)+slot6调OnMessage(1000,flags,0)=ShowClipped模式; 原名ShowWindow=体读数误名 | C9sig链统一20261117→void __thiscall(int a1): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051bb50": {
    "name": "InitViewSlots",
@@ -261,13 +258,15 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00450d00"
+     "addr": "0x00450d00",
+     "name": "ShowClipped"
     },
     {
      "addr": "0x00445cd0"
     },
     {
-     "addr": "0x00450c90"
+     "addr": "0x00450c90",
+     "name": "Update"
     },
     {
      "addr": "0x00445c10"
@@ -276,10 +275,12 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00450ab0"
+     "addr": "0x00450ab0",
+     "name": "_sdtor_26"
     },
     {
-     "addr": "0x00450c60"
+     "addr": "0x00450c60",
+     "name": "OnMessage"
     }
    ]
   }

@@ -68,7 +68,7 @@
   "0x004c2170": {
    "name": "Create",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -82,7 +82,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c15b0": {
    "name": "AllocEffect",
@@ -104,39 +105,40 @@
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "BOOL",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int)",
+   "signature": "void __thiscall(float)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c18d0": {
    "name": "RenderEffectPass",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c1dd0": {
    "name": "GetEditorTaskDescription",
@@ -175,7 +177,7 @@
    "name": "UpdateFrame",
    "semantic_name": "UpdateInternal",
    "confidence": "中高",
-   "name_note": "G2条目补齐: 体3987实证UpdateInternal(float); 同址CEffQuake/CEffCallBack族已落同证据; 链律修正: slot5链名=UpdateFrame",
+   "name_note": "G2条目补齐: 体3987实证UpdateInternal(float); 同址CEffQuake/CEffCallBack族已落同证据; 链律修正: slot5链名=UpdateFrame | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -189,7 +191,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "evidence_level": "chain_unified"
   }
  },
  "base_size": 52,
@@ -209,7 +212,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c1640"
+     "addr": "0x004c1640",
+     "name": "~CEffBink"
     },
     {
      "addr": "0x004c2170",

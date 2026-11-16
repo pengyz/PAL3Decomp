@@ -94,25 +94,22 @@
   "0x004c87a0": {
    "name": "`scalar deleting destructor'",
    "source": "| [T138] 语义偏离名修正：@0x4C87A0 全函数体（795 字符）= 自调用+flag+operator delete（**标量删除析构经典形**）⇒ 语义名 `scalar deleting destructor`（CCBParabolaWindow 模式——~<Cls> 会与 T128 的 ~CEffgbParticle 撞名，T135 教训）；@0x4C6C10 Create 保留（粒子创建实体）",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CEffgbParticle *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": "pType"
+      "type": "int",
+      "name": "flags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(CEffgbParticle *Block, char pType)"
+   "signature": "void * __thiscall(int)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏)"
   },
   "0x004c8830": {
    "name": "Init",
@@ -196,7 +193,7 @@
   "0x004c8a40": {
    "name": "Create",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CreateTask",
    "semantic_sig": "char",
    "sig_model": {
@@ -211,12 +208,13 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c8bf0": {
    "name": "UpdateFrame",
    "ordinal": 5,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "ProcCommonTask",
    "semantic_sig": "void",
    "sig_model": {
@@ -231,7 +229,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c8e10": {
    "name": "Destroy",
@@ -361,40 +360,41 @@
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int)",
+   "signature": "void __thiscall(float)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1})"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1}) | C9sig链统一20261117→int __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→int __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c8e90": {
    "name": "RenderEffectPass",
    "source": "vtable_migrated",
    "ordinal": 12,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004c9260": {
    "name": "GetEditorTaskDescription",
@@ -540,7 +540,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c8950"
+     "addr": "0x004c8950",
+     "name": "_scalar_dtor_8950"
     },
     {
      "addr": "0x004c8a40",
@@ -608,13 +609,15 @@
    "addr": "0x0056f8c0",
    "slots": [
     {
-     "addr": "0x004c9530"
+     "addr": "0x004c9530",
+     "name": "ProcCommonTask_adjthunk"
     },
     {
      "addr": "0x004c2850"
     },
     {
-     "addr": "0x004c9540"
+     "addr": "0x004c9540",
+     "name": "~CEffgbParticle"
     }
    ],
    "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"

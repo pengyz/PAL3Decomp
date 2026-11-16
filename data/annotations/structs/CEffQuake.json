@@ -11,13 +11,18 @@
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
+   "signature": "BOOL __thiscall(int)",
    "semantic_name": "int __thiscall()",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004d3860": {
    "name": "_sdtor",
@@ -110,7 +115,7 @@
    "name": "RenderEffectPass",
    "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名RenderEffectPass为分析命名待Round-2归属正名) | move-back:大体函数体在CEffQuake归属下Hex-Rays渲染正常(slot_12体v1[1]垃圾化实证); slot位次=共享表slot12/14",
    "ordinal": 12,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "RenderEffectPass",
    "semantic_sig": "void",
    "sig_model": {
@@ -118,14 +123,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004d3660": {
    "name": "GetEditorTaskDescription",
@@ -165,7 +171,7 @@
   "0x004c29a0": {
    "name": "UpdateFrame",
    "semantic_name": "UpdateInternal",
-   "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note",
+   "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -179,7 +185,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "evidence_level": "chain_unified"
   },
   "0x004d33a0": {
    "name": "ResetState",
@@ -239,11 +246,12 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004d32e0"
+     "addr": "0x004d32e0",
+     "name": "~CEffQuake"
     },
     {
      "addr": "0x004c0650",
-     "name": "Create"
+     "name": "AllocActionArray"
     },
     {
      "addr": "0x004d33a0",
@@ -316,7 +324,8 @@
      "addr": "0x004c2850"
     },
     {
-     "addr": "0x004d3860"
+     "addr": "0x004d3860",
+     "name": "_sdtor"
     }
    ],
    "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"

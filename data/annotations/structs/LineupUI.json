@@ -597,7 +597,7 @@
   "0x0047f880": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -608,7 +608,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "LineupUI::Render",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名"
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00482bb0": {
    "name": "ShowPage",
@@ -828,22 +828,28 @@
   "0x0047f970": {
    "name": "CleanupAndForwardInput",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "CCBUI **deltatime",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
   },
   "0x00480600": {
    "name": "OnMessage",
    "ordinal": 6,
    "source": "+canonical_rename",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_name": "OnMessage",
    "semantic_sig": "int",
    "sig_model": {
@@ -855,7 +861,7 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -866,7 +872,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int, int)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004826a0": {
    "name": "RebuildSystemPage",
@@ -1012,7 +1019,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "LineupUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -1022,7 +1029,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -1034,22 +1041,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0047f880"
+     "addr": "0x0047f880",
+     "name": "Render"
     },
     {
-     "addr": "0x0047f970"
+     "addr": "0x0047f970",
+     "name": "CleanupAndForwardInput"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0047e8f0"
+     "addr": "0x0047e8f0",
+     "name": "_scalar_dtor_E8F0"
     },
     {
-     "addr": "0x00480600"
+     "addr": "0x00480600",
+     "name": "OnMessage"
     }
    ]
   }

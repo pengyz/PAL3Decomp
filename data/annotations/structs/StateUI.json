@@ -693,7 +693,7 @@
    "name": "OnRender",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -701,13 +701,22 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal1"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal1)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
   },
   "0x0048a310": {
    "name": "SelectSubTab1",
@@ -912,23 +921,24 @@
    "name": "sub_4850E0",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "confirmed",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "evidence": "成员实访独占证据 uniq=6: m_DlgEx,m_Frame,m_LeaveHere,m_RoleState,m_par（adjudicate_multiclaim 2026-11-03）",
    "semantic_name": "sub_4850E0",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "void __thiscall()",
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIListBox)"
   },
   "0x00485230": {
    "name": "sub_485230",
    "source": "vtable_gap_fill_v1 + F4(b) 回落 2026-11-03（真名待证·StateUI::sub 污染名剥离）",
-   "evidence_level": "B",
+   "evidence_level": "chain_unified",
    "evidence": "vtable 槽成员资格 + decomp sig CScreenMode*this + 成员实访 m_nLayoutOffX",
    "semantic_name": "sub_485230",
    "semantic_sig": "BOOL",
@@ -937,23 +947,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
   },
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "StateUI::HideAll(void)",
-   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -963,7 +970,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -975,22 +982,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x004850e0"
+     "addr": "0x004850e0",
+     "name": "sub_4850E0"
     },
     {
-     "addr": "0x00485230"
+     "addr": "0x00485230",
+     "name": "sub_485230"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00483260"
+     "addr": "0x00483260",
+     "name": "~StateUI"
     },
     {
-     "addr": "0x00485df0"
+     "addr": "0x00485df0",
+     "name": "OnRender"
     }
    ]
   }

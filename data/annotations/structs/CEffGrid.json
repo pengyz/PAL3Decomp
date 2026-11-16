@@ -227,21 +227,22 @@
   "0x004c98f0": {
    "name": "Create",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "tagEffObjType *pType",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *pType)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004ca9a0": {
    "name": "GetEditorTaskDescription",
@@ -299,7 +300,7 @@
    "name": "UpdateFrame",
    "source": "vtable_migrated",
    "ordinal": 5,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -313,7 +314,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004c9ca0": {
    "name": "Destroy",
@@ -355,21 +357,22 @@
    "name": "RenderEffectPass",
    "source": "vtable_migrated",
    "ordinal": 12,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj)"
   },
   "0x004cb340": {
    "name": "slot_5_adjthunk",
@@ -443,7 +446,8 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c9630"
+     "addr": "0x004c9630",
+     "name": "_scalar_dtor_9630"
     },
     {
      "addr": "0x004c98f0",
@@ -519,7 +523,8 @@
      "addr": "0x004c2850"
     },
     {
-     "addr": "0x004cb350"
+     "addr": "0x004cb350",
+     "name": "_todo_4CB350"
     }
    ],
    "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"

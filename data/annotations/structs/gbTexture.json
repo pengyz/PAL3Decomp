@@ -40,16 +40,20 @@
    "external": true,
    "slots": [
     {
-     "addr": "0x1001bd30"
+     "addr": "0x1001bd30",
+     "name": "CreateFromMemory"
     },
     {
-     "addr": "0x1001bea0"
+     "addr": "0x1001bea0",
+     "name": "UpdateTexture"
     },
     {
-     "addr": "0x1001bf80"
+     "addr": "0x1001bf80",
+     "name": "CreateForRenderTarget"
     },
     {
-     "addr": "0x1001c010"
+     "addr": "0x1001c010",
+     "name": "CreateFromFileMemory"
     }
    ],
    "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"

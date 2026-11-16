@@ -466,25 +466,22 @@
   "0x004ad540": {
    "name": "UpdateSwordDisplay",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
   },
   "0x0041f6f0": {
    "name": "Reset",
@@ -544,7 +541,7 @@
   "0x004ad140": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -555,12 +552,12 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "SystemUI::Render",
-   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame"
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004adc30": {
    "name": "InitScreenUI",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -568,29 +565,22 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "UIWnd *pWnd",
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "char *pszBuf",
       "name": null
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
   },
   "0x00421a40": {
    "name": "GetNoteItemData",
@@ -753,7 +743,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "SystemUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -763,7 +753,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -775,22 +765,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x004ad140"
+     "addr": "0x004ad140",
+     "name": "Render"
     },
     {
-     "addr": "0x004ad540"
+     "addr": "0x004ad540",
+     "name": "UpdateSwordDisplay"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x004a7670"
+     "addr": "0x004a7670",
+     "name": "_scalar_dtor_7670"
     },
     {
-     "addr": "0x004adc30"
+     "addr": "0x004adc30",
+     "name": "InitScreenUI"
     }
    ]
   }

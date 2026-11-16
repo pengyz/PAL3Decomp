@@ -632,32 +632,28 @@
   "0x0046f620": {
    "name": "Update",
    "ordinal": 2,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "PropUI::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名HandleInput=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名HandleInput=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0046f650": {
    "name": "InitListUI",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -668,18 +664,19 @@
       "name": "arg0"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal"
      },
      {
-      "type": "unsigned int",
+      "type": "int",
       "name": "dwVal"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int arg0, int nVal, unsigned int dwVal)"
+   "signature": "int __thiscall(int arg0, unsigned int nVal, int dwVal)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int arg0, unsigned int nVal, int dwVal)(基=UIWnd)"
   },
   "0x0045b200": {
    "name": "ShowCategory0",
@@ -960,7 +957,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "PropUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -970,12 +967,12 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   },
   "0x0043ddf0": {
    "name": "Render",
    "semantic_name": "CCBControlWindow::Render(void)",
-   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
+   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -984,7 +981,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -996,22 +994,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0046f620"
+     "addr": "0x0046f620",
+     "name": "Update"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0046d4c0"
+     "addr": "0x0046d4c0",
+     "name": "_scalar_dtor_D4C0"
     },
     {
-     "addr": "0x0046f650"
+     "addr": "0x0046f650",
+     "name": "InitListUI"
     }
    ]
   }

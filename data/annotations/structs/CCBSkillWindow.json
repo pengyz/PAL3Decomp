@@ -75,7 +75,7 @@
   "0x0051b860": {
    "name": "OnMessage",
    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -86,7 +86,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -97,12 +97,13 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051c110": {
    "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBSkillWindow::HideAll",
    "semantic_sig": "int",
    "sig_model": {
@@ -113,32 +114,28 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051c1b0": {
    "name": "Update",
    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "n"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int n, int nVal)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "semantic_name": "CCBSkillWindow::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SetActivePage=体读数命名"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SetActivePage=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0051bbe0": {
    "name": "_scalar_dtor_BBE0",
@@ -168,7 +165,7 @@
   "0x0043ddf0": {
    "name": "Render",
    "semantic_name": "CCBControlWindow::Render(void)",
-   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
+   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -177,7 +174,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -189,22 +187,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043ddf0"
+     "addr": "0x0043ddf0",
+     "name": "Render"
     },
     {
-     "addr": "0x0051c1b0"
+     "addr": "0x0051c1b0",
+     "name": "Update"
     },
     {
-     "addr": "0x0051c110"
+     "addr": "0x0051c110",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051bbe0"
+     "addr": "0x0051bbe0",
+     "name": "_scalar_dtor_BBE0"
     },
     {
-     "addr": "0x0051b860"
+     "addr": "0x0051b860",
+     "name": "OnMessage"
     }
    ],
    "source": "; raw实证7槽farm周期(槽7-13=越读邻表), 截断"

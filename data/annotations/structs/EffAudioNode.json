@@ -99,28 +99,33 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004c1640"
+     "addr": "0x004c1640",
+     "name": "~EffAudioNode"
     },
     {
-     "addr": "0x004c2170"
+     "addr": "0x004c2170",
+     "name": "AllocTargets"
     },
     {
-     "addr": "0x004d33a0"
-    },
-    {
-     "addr": "0x00408bd0"
-    },
-    {
-     "addr": "0x00408bd0"
-    },
-    {
-     "addr": "0x004c29a0"
+     "addr": "0x004d33a0",
+     "name": "ResetIdle"
     },
     {
      "addr": "0x00408bd0"
     },
     {
-     "addr": "0x004c15b0"
+     "addr": "0x00408bd0"
+    },
+    {
+     "addr": "0x004c29a0",
+     "name": "UpdateFrame"
+    },
+    {
+     "addr": "0x00408bd0"
+    },
+    {
+     "addr": "0x004c15b0",
+     "name": "CreateEffAudio"
     }
    ],
    "source": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor/dtor 对写点（RenderTarget2::Reset/ResetSurface/Deactivate/ResetTargets 域 +31..+50）②被调用者面=独有槽 IDA：**0x4C15B0 `RenderTarget2::CreateEffAudio`（返回 CEffAudio\\*\\*）** + CEffAudio::UpdateInternal(0x4C29A0)；共享槽=EffTargetPool Alloc/adjust/del + CEffQuake m_bIdle-stub + nullsub；ctor/dtor 对=RenderTarget2::Reset+44/DestroyEffBase+11 写点 ③成员访问面=池节点（EffTargetPool/EffObjectPool 既有 impl 共享槽）④类归属面=删际锚+嵌套窗结构 ⑤交互模式面=RenderTarget2 表面/目标管理生命周期；confidence=85"

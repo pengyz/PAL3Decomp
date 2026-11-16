@@ -385,7 +385,7 @@
   "0x0044a540": {
    "name": "OnMessage",
    "name_source": "IDA语义分析 2026-11-01 批7",
-   "name_note": "剥壳定谳(验证pass): OnMessage: m_EmbedPlayerAtt+槽链名对齐实证",
+   "name_note": "剥壳定谳(验证pass): OnMessage: m_EmbedPlayerAtt+槽链名对齐实证 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权)",
    "semantic_name": "OnMessage_A540",
    "semantic_sig": "int",
    "sig_model": {
@@ -397,7 +397,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -408,7 +408,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "evidence_level": "chain_unified"
   },
   "0x00453d10": {
    "name": "Init",
@@ -511,23 +512,23 @@
    "name": "Update",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
+      "type": "CCBUI **deltatime",
       "name": "st7_0"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(double st7_0)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime st7_0)",
    "semantic_name": "CCBUIPanel::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessInput=体读数命名"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessInput=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00454550": {
    "name": "RenderIfUnlocked",
@@ -721,7 +722,7 @@
    "name": "HideAll",
    "source": "vtable_migrated | [C2511修 2026-11-13] this型 UIListBox**→CCBUIPanel*: 函数在CCBUIPanel.json=该类方法, this类型应为宿主类指针; C2511重载不新覆盖=同名异型冲突",
    "ordinal": 3,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBUIPanel::HideAll",
    "semantic_sig": "int",
    "sig_model": {
@@ -732,12 +733,12 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1})"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00449c20": {
    "name": "Render",
    "name_source": "IDA语义分析 2026-11-01 批11",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名InitMagicWindows=体读数命名",
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名InitMagicWindows=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -748,7 +749,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "CCBUIPanel::Render",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   },
   "0x00453e50": {
    "name": "_scalar_dtor_3E50",
@@ -814,22 +815,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00449c20"
+     "addr": "0x00449c20",
+     "name": "Render"
     },
     {
-     "addr": "0x0044a1b0"
+     "addr": "0x0044a1b0",
+     "name": "Update"
     },
     {
-     "addr": "0x00449990"
+     "addr": "0x00449990",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x004461d0"
+     "addr": "0x004461d0",
+     "name": "_scalar_dtor_61D0"
     },
     {
-     "addr": "0x0044a540"
+     "addr": "0x0044a540",
+     "name": "OnMessage"
     }
    ]
   }

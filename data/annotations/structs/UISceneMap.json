@@ -231,7 +231,7 @@
   "0x00450230": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_name": "UISceneMap::Render",
    "semantic_sig": "int",
    "sig_model": {
@@ -242,7 +242,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名Render_0230 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1})"
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名Render_0230 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00450dc0": {
    "name": "Init",
@@ -338,19 +338,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "fVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(float, int)",
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x00443ca0": {
    "name": "ProcessSceneChange",
@@ -408,10 +404,12 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x00450230"
+     "addr": "0x00450230",
+     "name": "Render"
     },
     {
-     "addr": "0x004501a0"
+     "addr": "0x004501a0",
+     "name": "Update"
     },
     {
      "addr": "0x00408bd0"
@@ -420,7 +418,8 @@
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x00450070"
+     "addr": "0x00450070",
+     "name": "_scalar_dtor_0070"
     },
     {
      "addr": "0x00445d10"

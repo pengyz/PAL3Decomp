@@ -327,7 +327,7 @@
   "0x004b2c70": {
    "name": "Render",
    "ordinal": 1,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -338,7 +338,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "UITitle_JDHY::Render",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderSlotEffects=体读数命名"
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderSlotEffects=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004b2d20": {
    "name": "HandleNavigation",
@@ -431,23 +431,23 @@
    "_misattrib_evidence": "max_offset=286376>class_size=4280",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": "nVal1"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime nVal1)",
    "semantic_name": "UITitle_JDHY::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ForwardHitTest=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ForwardHitTest=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime nVal1): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004b3270": {
    "name": "UpdateTextPosition",
@@ -468,7 +468,7 @@
    "_misattrib_evidence": "max_offset=289576>class_size=1208",
    "ordinal": 6,
    "source": "vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -479,7 +479,7 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -490,7 +490,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int, int)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x004b43e0": {
    "name": "InitPageState",
@@ -514,30 +515,27 @@
   "0x004b0520": {
    "name": "`scalar deleting destructor'",
    "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）",
-   "evidence_level": "A",
+   "evidence_level": "chain_unified",
    "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": "pData"
+      "type": "int",
+      "name": "flags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "signature": "void * __thiscall(int)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏)"
   },
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "UITitle_JDHY::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -547,7 +545,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "evidence_level": "verified"
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -559,22 +557,27 @@
      "addr": "0x00445e70"
     },
     {
-     "addr": "0x004b2c70"
+     "addr": "0x004b2c70",
+     "name": "Render"
     },
     {
-     "addr": "0x004b3100"
+     "addr": "0x004b3100",
+     "name": "Update"
     },
     {
-     "addr": "0x0043de40"
+     "addr": "0x0043de40",
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"
     },
     {
-     "addr": "0x004b0520"
+     "addr": "0x004b0520",
+     "name": "`scalar deleting destructor'"
     },
     {
-     "addr": "0x004b3470"
+     "addr": "0x004b3470",
+     "name": "OnMessage"
     }
    ]
   }
