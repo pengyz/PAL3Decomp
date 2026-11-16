@@ -90,7 +90,6 @@
  "methods": {
   "0x004c6240": {
    "name": "InitVertexBuffer",
-   "signature": "int *__thiscall(CEffectSystem *this, int nVal)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "顶点缓冲初始化（sub_4C5D00+flag 设 1）",
    "semantic_sig": "int *",
@@ -105,11 +104,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nVal)"
   },
   "0x004c6260": {
    "name": "~CEffectSystem",
-   "signature": "int *__thiscall(CEffectSystem *Block)",
    "ordinal": 8,
    "source": "剥多余第 2 参 2026-10-15（T146）：A 级=原函数 c2 04 00（ret 4=1 个 dword 栈参）+ 体中唯一参槽访问 [esp+0x8]=param1（push esi 后）；我方签名 2 参⇒c2 08 00（ret 8），n_diff=1。第 2 参 pData 体中零引用（decomp 零读）。标量删除析构体（call Init/test [esp+8],1/operator delete/mov eax,esi/ret 4）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F824,0x56F844）",
    "evidence_level": "A",
@@ -128,11 +127,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(CEffectSystem *Block)"
   },
   "0x004c6280": {
    "name": "Init",
-   "signature": "__thiscall bool()",
    "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -142,11 +141,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004c6290": {
    "name": "Destroy",
-   "signature": "void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
    "source": "| 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 void __thiscall(int nVal1) ⇒ void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -177,11 +176,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)"
   },
   "0x004c6330": {
    "name": "GetEffectIndex",
-   "signature": "CEffect *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "CEffect *",
    "sig_model": {
@@ -190,11 +189,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CEffect * __thiscall()"
   },
   "0x004c6340": {
    "name": "CreateEffect_6340",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -203,11 +202,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004c6350": {
    "name": "GetEffect",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -216,11 +215,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c6360": {
    "name": "DestroyEffect",
-   "signature": "void __thiscall()",
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 名对保留：①调用者=0x4C6350（名 GetEffect 可疑=另账）②被调=自身转发 ③成员无 ④CEffectSystem 效果系统 ⑤系统级销毁 ⇒ 名 DestroyEffect 语义对",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -230,11 +229,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c6410": {
    "name": "DestroyAllEffect",
-   "signature": "int *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -243,11 +242,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall()"
   },
   "0x004c6460": {
    "name": "IsVisible",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -257,11 +256,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004c65c0": {
    "name": "SetVisible",
-   "signature": "void __thiscall(float effect)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -275,11 +274,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float effect)"
   },
   "0x004c65f0": {
    "name": "HandleViewMove",
-   "signature": "void __thiscall(CEffectSystem *this, float fVal)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11e 反汇编反转: 入口 push esi; mov esi,ecx 读 [esi+4]/[esi+5] = thiscall; 栈访问仅 [esp+8] 一参; 调方 v22->HandleViewMove(v2) 一实参——旧 static(float,float) 双错",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -294,11 +293,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x004c6670": {
    "name": "Update",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -308,11 +307,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c6870": {
    "name": "FillDefaultUVSet",
-   "signature": "int *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -321,11 +320,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall()"
   },
   "0x004e1190": {
    "name": "CreateEffectChain",
-   "signature": "int __thiscall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -355,11 +354,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(CCBUI *pCBUI, HWND hDlg, unsigned int dwVal, int bReadOnly, int nVal)"
   },
   "0x004cf580": {
    "name": "CreateEffect",
-   "signature": "int __thiscall CEffectSystem::CreateEffect(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -381,11 +380,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(CEffectSystem *pSrc, int nVal, CEffectSystem *pParam)"
   },
   "0x004c5820": {
    "name": "Create",
-   "signature": "CEffectSystem *__thiscall(int pGfxMgr)",
    "evidence_level": "unverified",
    "semantic_sig": "CEffectSystem *",
    "sig_model": {
@@ -399,11 +398,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CEffectSystem * __thiscall(int pGfxMgr)"
   },
   "0x004c61a0": {
    "name": "CEffectSystem",
-   "signature": "int *__thiscall(int pDisplay)",
    "_misattrib_evidence": "max_offset=245796>class_size=344",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
@@ -418,11 +417,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int pDisplay)"
   },
   "0x004c5d50": {
    "name": "_scalar_dtor_5D50",
-   "signature": "int __thiscall(void *Block, char)",
    "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4C5D70 写 vptr 0x56F824（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F824→CEffectSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4C5D70 写 vptr 0x56F824",
    "ordinal": 0,
    "evidence_level": "A",
@@ -443,11 +442,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *Block, char)"
   },
   "0x004c5d80": {
    "name": "slot_1",
-   "signature": "int()",
    "source": "vtable_migrated",
    "ordinal": 1,
    "evidence_level": "unverified",
@@ -458,11 +457,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int ()"
   },
   "0x004c5e80": {
    "name": "ProcessEffects",
-   "signature": "int __thiscall CEffectSystem::ProcessEffects(double time)",
    "source": "vtable_migrated | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "ordinal": 5,
    "evidence_level": "unverified",
@@ -479,11 +478,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(double time)"
   },
   "0x004c5e20": {
    "name": "slot_6",
-   "signature": "int()",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified",
@@ -494,11 +493,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int ()"
   },
   "0x004c6030": {
    "name": "UpdateEffectState",
-   "signature": "int __thiscall CEffectSystem::UpdateEffectState(int nVal)",
    "source": "vtable_migrated",
    "ordinal": 7,
    "evidence_level": "unverified",
@@ -514,11 +513,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004c5e70": {
    "name": "nullsub",
-   "signature": "int __thiscall CEffectSystem::nullsub(int, int)",
    "source": "vtable_evidence",
    "ordinal": 4,
    "evidence_level": "unverified",
@@ -538,11 +537,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int)"
   },
   "0x004c5b90": {
    "name": "SetEffectVisible",
-   "signature": "void __thiscall CEffectSystem::SetEffectVisible(int nIndex, unsigned char bVisible)",
    "source": "pdb",
    "note": "reattribute: asm 行 290910-290924 本体：mov eax,[esp+arg_0]（索引）; mov esi,ecx; push eax; call sub_4C5940（索引规范化）; mov ecx,[esi+eax*4+118h]; mov dl,[esp+4+arg_4]; mov [ecx+0Dh],dl。链路两侧都是精确成员： (1) +0x118 在 CEffectSystem 里是 known_members['280'] = m_pEffect，类型 CEffect *[8] —— 与 `[esi+eax*4+118h]`（4 字节指针数组取第 eax 个元素）完全吻合； (2) 写入目标是 [ecx+0Dh]，而 CEffect 的 known_members['13'] = m_bVisible，类型 unsigned char —— 与 byte 存储（mov dl → mov [ecx+0Dh],dl）吻合。原类 _Texture_uv 只有 u@0 / v@4（size=8），既无 +0x118 也无任何指针数组 ⇒ 不可能是宿主。原名字 operator= 与函数体无关（它收 (int, char) 并写一个字节，不是赋值运算符），已证伪。",
    "name_evidence": "按函数逻辑定名：它按索引取出 CEffectSystem::m_pEffect[idx]，把该 effect 的 m_bVisible 置为传入字节 ⇒ SetEffectVisible。CEffectSystem 已有 IsVisible/SetVisible，为免重名用 SetEffectVisible。",
@@ -564,11 +563,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nIndex, unsigned char bVisible)"
   },
   "0x004c5db0": {
    "name": "Activate",
-   "signature": "int __thiscall CEffectSystem::Activate()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -579,11 +578,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004c5de0": {
    "name": "ReleaseTextures",
-   "signature": "void __thiscall CEffectSystem::ReleaseTextures()",
    "source": "vtable_gap_fill_v1(from CEffect.json) | multiclaim 裁决 2026-11-03: 败于 CEffect（uniq=2）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -594,11 +593,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c5840": {
    "name": "DestroyEffects",
-   "signature": "void __thiscall()",
    "source": "批A 2026-10-06：0x4C5840=5 字节尾跳 thunk（jmp 0x4C5910）——渲染伪名 Destroy_5840（址尾）禁伪名改 _todo_ 形；体证=调用点 thiscall 形（g_pEffectSystem this）+尾跳目标 0x4C5910 | 语义名 2026-10-06（用户可读性令）：体证=[this+0x114] 计数+循环 destroy 调（0x4C5B30/0x4C5850/0x4C5B50）=销毁效应数组循环形——DestroyEffects 语义名（弃 _todo_ 伪名）",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -608,7 +607,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

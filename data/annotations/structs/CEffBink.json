@@ -18,7 +18,6 @@
  "methods": {
   "0x004d33a0": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名ResetFlags为分析命名待Round-2归属正名) | 复核定谳:slot2=ICF折叠叶覆写(基表slot2=0x4C0610≠此址)非CEffObj实现; 归CEffQuake(晨间归属, 体仅触m_bIdle@8合法)",
    "ordinal": 2,
    "evidence_level": "unverified",
@@ -47,11 +46,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004c1640": {
    "name": "~CEffBink",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_0",
@@ -63,11 +62,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2170": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -82,11 +81,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *)"
   },
   "0x004c15b0": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void*",
@@ -96,11 +95,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004c1700": {
    "name": "Update",
-   "signature": "int __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "int",
@@ -115,11 +114,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int)"
   },
   "0x004c18d0": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -134,11 +133,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004c1dd0": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "const char *",
@@ -153,11 +152,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "semantic_name": "CEffAction::UpdateParticles(void)",
    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
    "semantic_sig": "void",
@@ -167,11 +166,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c29a0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "semantic_name": "UpdateInternal",
    "confidence": "中高",
    "name_note": "G2条目补齐: 体3987实证UpdateInternal(float); 同址CEffQuake/CEffCallBack族已落同证据; 链律修正: slot5链名=UpdateFrame",
@@ -187,7 +186,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   }
  },
  "base_size": 52,

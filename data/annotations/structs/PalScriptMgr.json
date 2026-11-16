@@ -1234,7 +1234,6 @@
  "methods": {
   "0x00431e60": {
    "name": "PalScriptMgr",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1243,11 +1242,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00431eb0": {
    "name": "OpenSCE",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1257,11 +1256,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004320a0": {
    "name": "Update",
-   "signature": "void __cdecl(const char *pszName)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1276,11 +1275,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __cdecl(const char *pszName)"
   },
   "0x00432170": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1289,11 +1288,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00432260": {
    "name": "_CON_State",
-   "signature": "const char **__cdecl(const char *pszName)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "const char **",
@@ -1308,11 +1307,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char ** __cdecl(const char *pszName)"
   },
   "0x004322a0": {
    "name": "IfAnyScriptRunning",
-   "signature": "bool __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -1327,11 +1326,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal)"
   },
   "0x004322c0": {
    "name": "IsScriptRuning",
-   "signature": "int __thiscall(int pal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1345,11 +1344,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int pal)"
   },
   "0x00432480": {
    "name": "_CON_ReLoadScript",
-   "signature": "void __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1359,11 +1358,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004324a0": {
    "name": "_CON_CloseScript",
-   "signature": "BOOL __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -1372,11 +1371,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x004324b0": {
    "name": "ClearAllScript",
-   "signature": "void __cdecl()",
    "source": "pdb_ret",
    "static": true,
    "evidence_level": "unverified",
@@ -1387,11 +1386,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __cdecl()"
   },
   "0x00432500": {
    "name": "FindScriptByDesc",
-   "signature": "int *__cdecl(const char *pszName, const char *desc)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int *",
@@ -1410,11 +1409,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __cdecl(const char *pszName, const char *desc)"
   },
   "0x00432550": {
    "name": "IfHaveScript",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1423,11 +1422,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434c40": {
    "name": "NotifyEvent",
-   "signature": "void __cdecl()",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1437,11 +1436,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __cdecl()"
   },
   "0x0042ebe0": {
    "name": "ExecuteOpcode",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1450,11 +1449,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00434ca0": {
    "name": "InitVtable",
-   "signature": "void __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1469,11 +1468,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x0041bde0": {
    "name": "Get_result",
-   "signature": "int *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -1482,11 +1481,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall()"
   },
   "0x0042af80": {
    "name": "GetScriptState",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1495,11 +1494,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0042b350": {
    "name": "ProcessRoleLoading",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1508,11 +1507,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0042bf90": {
    "name": "ExecuteScriptByID",
-   "signature": "PalScriptMgr *__thiscall PalScriptMgr::ExecuteScriptByID()",
    "evidence_level": "unverified",
    "semantic_sig": "PalScriptMgr *__thiscall",
    "sig_model": {
@@ -1521,11 +1520,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "PalScriptMgr *__thiscall ()"
   },
   "0x0042bfe0": {
    "name": "IsScriptReady",
-   "signature": "bool __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1534,11 +1533,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x0042e6c0": {
    "name": "CmdRoleMoveDirect",
-   "signature": "int __thiscall PalScriptMgr::CmdRoleMoveDirect(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1552,11 +1551,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0042fcc0": {
    "name": "PopScript",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1565,11 +1564,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00420b40": {
    "name": "CheckTileScript",
-   "signature": "void __thiscall PalScriptMgr::CheckTileScript(RoleSystem *pRole, float fVal, char bExecute)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1591,11 +1590,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(RoleSystem *pRole, float fVal, char bExecute)"
   },
   "0x00429db0": {
    "name": "BuildCmdTransform",
-   "signature": "void __thiscall PalScriptMgr::BuildCmdTransform(gbMatrix4 *pMatrix)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1609,11 +1608,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(gbMatrix4 *pMatrix)"
   },
   "0x0042b5b0": {
    "name": "UpdateScriptRoles",
-   "signature": "double __thiscall(double thisa, int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -1635,11 +1634,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall(double thisa, int nVal, int nVal2)"
   },
   "0x0042bef0": {
    "name": "HandleGetItem",
-   "signature": "void __cdecl PalScriptMgr::HandleGetItem(int nSkillGDBID)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1654,11 +1653,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __cdecl(int nSkillGDBID)"
   },
   "0x0042c280": {
    "name": "LoadSceneGeometry",
-   "signature": "struct gbVFileSystem *__thiscall PalScriptMgr::LoadSceneGeometry(char bNoPol)",
    "evidence_level": "unverified",
    "semantic_sig": "struct gbVFileSystem *__thiscall",
    "sig_model": {
@@ -1672,11 +1671,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "struct gbVFileSystem *__thiscall (char bNoPol)"
   },
   "0x0042cf60": {
    "name": "CmdPushCmd04",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd04(int nVal, unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1694,11 +1693,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned __int8 pData)"
   },
   "0x0042d130": {
    "name": "CmdPushCmd05",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd05(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1712,11 +1711,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0042d2f0": {
    "name": "CmdPushCmd07",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd07(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1730,11 +1729,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0042d830": {
    "name": "CmdPushCmd10",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd10(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1748,11 +1747,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0042f460": {
    "name": "ExecuteFrame",
-   "signature": "void __thiscall(float fVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1766,11 +1765,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x0042fb40": {
    "name": "SetBigMapState",
-   "signature": "char __thiscall PalScriptMgr::SetBigMapState(char nState)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1784,11 +1783,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char nState)"
   },
   "0x00450bc0": {
    "name": "ShowTextBox",
-   "signature": "int __thiscall PalScriptMgr::ShowTextBox(const char *pszText)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1802,11 +1801,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const char *pszText)"
   },
   "0x00410920": {
    "name": "LoadYlfScript",
-   "signature": "int *__thiscall PalScriptMgr::LoadYlfScript()",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -1815,11 +1814,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   },
   "0x0042aae0": {
    "name": "CheckTileCollision",
-   "signature": "BOOL __thiscall PalScriptMgr::CheckTileCollision(int *pnVal, int nVal, struct gbVec3D *p)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -1841,11 +1840,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int *pnVal, int nVal, struct gbVec3D *p)"
   },
   "0x0042bea0": {
    "name": "OnAnimFinish",
-   "signature": "void __thiscall PalScriptMgr::OnAnimFinish()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1854,11 +1853,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0042c030": {
    "name": "SetPauseState",
-   "signature": "void __thiscall PalScriptMgr::SetPauseState(int bPause)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1872,11 +1871,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int bPause)"
   },
   "0x0042df30": {
    "name": "CmdPushCmd14",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd14(int nVal, unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1894,11 +1893,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned __int8 pData)"
   },
   "0x0042e100": {
    "name": "CmdPushCmd15",
-   "signature": "int __thiscall PalScriptMgr::CmdPushCmd15(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1912,11 +1911,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0042e2c0": {
    "name": "CmdCameraOrbitPos",
-   "signature": "char *__thiscall PalScriptMgr::CmdCameraOrbitPos(int nVal, float fVal, float fVal2, unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -1942,11 +1941,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall (int nVal, float fVal, float fVal2, unsigned __int8 pData)"
   },
   "0x0042e4d0": {
    "name": "CmdRoleMoveSmooth",
-   "signature": "int __thiscall PalScriptMgr::CmdRoleMoveSmooth(int nVal, unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1964,11 +1963,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned __int8 pData)"
   },
   "0x00429d80": {
    "name": "InitControlBlock",
-   "signature": "int __thiscall PalScriptMgr::InitControlBlock()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1977,11 +1976,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00429f90": {
    "name": "BuildFullTransform",
-   "signature": "void __thiscall PalScriptMgr::BuildFullTransform(gbMatrix4 *pMatrix, struct gbVec3D *pPos)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1999,11 +1998,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(gbMatrix4 *pMatrix, struct gbVec3D *pPos)"
   },
   "0x0042ac80": {
    "name": "CmdUpdateRolePath",
-   "signature": "int __thiscall PalScriptMgr::CmdUpdateRolePath(float *pfVal, float *pfVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2021,11 +2020,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(float *pfVal, float *pfVal2)"
   },
   "0x0042afa0": {
    "name": "SaveExecutionState",
-   "signature": "int __thiscall PalScriptMgr::SaveExecutionState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2034,11 +2033,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0042b450": {
    "name": "IsPosInBounds",
-   "signature": "BOOL __thiscall PalScriptMgr::IsPosInBounds(float *pfPos)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -2052,11 +2051,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(float *pfPos)"
   },
   "0x0042c3a0": {
    "name": "IsInputBlocked",
-   "signature": "bool __thiscall PalScriptMgr::IsInputBlocked()",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -2065,11 +2064,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00434cc0": {
    "name": "IsWaitComplete",
-   "signature": "BOOL __thiscall PalScriptMgr::IsWaitComplete()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -2079,11 +2078,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x00434c80": {
    "name": "UpdateLoadProgress",
-   "signature": "void * __cdecl PalScriptMgr::UpdateLoadProgress()",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "void *",
@@ -2093,11 +2092,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __cdecl()"
   },
   "0x004100a0": {
    "name": "RunScript",
-   "signature": "int __cdecl(int nVal, int nVal2, int nVal3)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2120,11 +2119,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2, int nVal3)"
   },
   "0x0042c440": {
    "name": "RunCommand",
-   "signature": "void __thiscall(int a1)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -2139,11 +2138,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int a1)"
   },
   "0x00525080": {
    "name": "GetData",
-   "signature": "int __thiscall(PalScriptMgr *this)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "semantic_sig": "int",
@@ -2153,7 +2152,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  },
  "vtables": [

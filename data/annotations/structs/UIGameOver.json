@@ -24,7 +24,6 @@
  "methods": {
   "0x004500f0": {
    "name": "Create",
-   "signature": "void __thiscall UIGameOver::Create()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -33,11 +32,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044d470": {
    "name": "InitParticle",
-   "signature": "int __thiscall UIGameOver::InitParticle(int nIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -51,11 +50,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nIndex)"
   },
   "0x0044d580": {
    "name": "RandomizeEffects",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -69,11 +68,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0044d680": {
    "name": "InitParticle2",
-   "signature": "int __thiscall UIGameOver::InitParticle2(int nIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -87,11 +86,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nIndex)"
   },
   "0x0052e500": {
    "name": "SetupDisplay",
-   "signature": "void __thiscall UIGameOver::SetupDisplay(int nVal)",
    "evidence_level": "unverified",
    "lvars": {
     "v21": "char *"
@@ -109,11 +108,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00530570": {
    "name": "ClearState",
-   "signature": "int __thiscall UIGameOver::ClearState()",
    "_misattrib_evidence": "max_offset=780>class_size=232",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -123,11 +122,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005305a0": {
    "name": "ResetState",
-   "signature": "int __thiscall UIGameOver::ResetState()",
    "_misattrib_evidence": "max_offset=724>class_size=184",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -137,7 +136,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  },
  "base_size": 72,

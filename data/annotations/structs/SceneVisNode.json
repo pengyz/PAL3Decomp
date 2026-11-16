@@ -5,7 +5,6 @@
  "methods": {
   "0x00542126": {
    "name": "VisRender",
-   "signature": "int __thiscall()",
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisRender | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
    "evidence_level": "A",
@@ -17,11 +16,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -32,11 +31,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b9c0": {
    "name": "_todo_52B9C0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -47,11 +46,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -62,11 +61,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -77,11 +76,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b980": {
    "name": "Remove",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "semantic_name": "Remove",
@@ -98,11 +97,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x00542120": {
    "name": "CScreenModeNode_adjthunk_2120",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_4",
@@ -114,7 +113,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

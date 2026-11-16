@@ -104,7 +104,6 @@
    "name": "Init",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "UIMap 初始化（多组件构造）",
-   "signature": "void __thiscall(UIMap *this)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -112,11 +111,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004411d0": {
    "name": "UIMap",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "declaration_only": true,
    "semantic_sig": "void",
@@ -126,11 +125,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004411b0": {
    "name": "~UIMap",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -152,11 +151,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x004412c0": {
    "name": "Create",
-   "signature": "char *__thiscall UIMap::Create(int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)",
    "ordinal": 7,
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
@@ -191,11 +190,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall (int id, void *pRect, int parent, char *pszTexPath, int nVal, char bAtlas)"
   },
   "0x004414f0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -205,11 +204,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00441730": {
    "name": "ProcessHitTest",
-   "signature": "BOOL __thiscall(int, int)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_name": "ProcessHitTest",
@@ -229,11 +228,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x004420c0": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -256,11 +255,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004414d0": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "ordinal": 3,
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -274,7 +273,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

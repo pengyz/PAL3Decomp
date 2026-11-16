@@ -1444,6 +1444,16 @@ def load_annotations():
     }
 
 
+def _sig_str_of(m):
+    """[sig_model单源 2026-11-16 用户裁定] 方法条目签名串: sig_model结构优先渲染, 字符串回退(过渡)。"""
+    try:
+        from pipeline.sigmodel import node_of, render
+    except ImportError:
+        from sigmodel import node_of, render
+    n = node_of(m)
+    return render(n) if n else (m.get('signature') or '')
+
+
 def resolve_vtable_slots(struct_info, functions):
     """从 per-class vtables 重建有序 slot 列表。
 
@@ -3034,8 +3044,8 @@ def apply_annotations():
             except (ValueError, TypeError):
                 continue
             _owner_cnt[_au5] += 1
-            if _m5.get('signature'):
-                _owner_sig.setdefault(_au5, (_m5['signature'], _m5.get('non_virtual'), _sd5.get('name', '')))
+            if _sig_str_of(_m5):
+                _owner_sig.setdefault(_au5, (_sig_str_of(_m5), _m5.get('non_virtual'), _sd5.get('name', '')))
     _sm_ok = _sm_skip = _sm_fail = 0
     for _au5, (_sig5, _nv5, _cls5) in sorted(_owner_sig.items()):
         if _owner_cnt[_au5] > 1:

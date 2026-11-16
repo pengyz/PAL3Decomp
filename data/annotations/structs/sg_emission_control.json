@@ -90,7 +90,6 @@
  "methods": {
   "0x004ba800": {
    "name": "Emit",
-   "signature": "void __thiscall(sg_emission_control *this, int a2, int a3, int a4, int a5)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "粒子发射（sg_emitter+D3DXVECTOR3）",
    "semantic_sig": "void",
@@ -117,13 +116,13 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int a2, int a3, int a4, int a5)"
   },
   "0x004b8890": {
    "name": "Update",
-   "signature": "void __thiscall(sg_emission_control *this, int a2, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "发射控制更新（浮点计算）",
+   "name_note": "发射控制更新（浮点计算）; C2555链对齐(结构化sweep): C: 共享址双claim(与UIWnd Update_2ff0族)→定谳真值侧; 置信度中高(史前+基形式多数证据)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -131,16 +130,18 @@
     "params": [
      {
       "type": "int",
-      "name": "a2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "semantic_name": "void __thiscall(sg_emission_control *this, int a2, int a3)",
+   "signature": "void __thiscall(int, int)"
   }
  }
 }

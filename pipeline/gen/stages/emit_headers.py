@@ -2856,9 +2856,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # 冗余前向声明合法C++ ⇒ 对全部指针参数类型无条件发射 class X;(排除内建/自身)。
         _builtin_t = {'void','char','int','float','double','long','short','bool','unsigned','signed',
                       'BYTE','WORD','DWORD','UINT','ULONG','BOOL','_BYTE','_WORD','_DWORD','size_t'}
+        # [前向声明源修正 2026-11-16] 扫描源=已解析签名(methods条目, 产品层):
+        #   旧源=槽sig(sig降维已清→读空→前向声明全丢→UIItem C2143阻塞223单元)
         _fwd_needed = []
         for _sl0 in _vt_slots_flat:
-            for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sl0.get('sig') or ''):
+            _a0 = str(_sl0.get('addr') or '').lower()
+            # [槽签正名优先 2026-11-16] 扫描源并集: 注解裁决形(ida_structs methods.signature)
+            # + decomp 原始串 + 槽sig —— 前向声明是并集敏感(冗余合法), 非优先级敏感
+            _sig_src = '%s %s %s' % (
+                (((_ann_s or {}).get('methods') or {}).get(_a0) or {}).get('signature') or '',
+                (_methods_by_addr.get(_a0) or {}).get('signature') or '',
+                _sl0.get('sig') or '')
+            for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sig_src):
                 if _t0 not in _builtin_t and _t0 != cls_name and _t0 not in _fwd_needed:
                     _fwd_needed.append(_t0)
         for _t0 in _fwd_needed:
@@ -2916,7 +2925,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if not re.match(r'^[A-Za-z_]\w*$', str(_nm)):
                 _nm = 'slot_%d' % _vi
             if not _sg:
-                _sg = (_m0 or {}).get('signature') or 'void __thiscall()'
+                # [槽签正名优先 2026-11-16] 优先级链修正: 槽sig(槽位契约) → 注解裁决形
+                # (ida_structs methods.signature = 正名账 canonical render(sig_model))
+                # → decomp 原始串(Hex-Rays 未裁决形, 含垃圾返回型+this泄漏) → 占位符。
+                # 旧链槽sig→decomp 使 decomp 垃圾形压过注解裁决: UIWnd::Render
+                # decomp='virtual int __thiscall(RoleCameraCtrl *this)' vs 注解 void 双证
+                # ⇒ 基类发 int / 派生发 void = C2555×2955 断点环。无新字符串形态:
+                # 消费注解层已落盘的 signature 字符串本身。
+                _sg = (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
+                    or (_m0 or {}).get('signature') or 'void __thiscall()'
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
             if _vi == 0 and (_dtor_form0 or (_will_inject_vptr and _nm == '~' + cls_name)):
                 continue  # slot0=dtor位: 注入~X已占位, 删除式dtor本体走dtor槽规则

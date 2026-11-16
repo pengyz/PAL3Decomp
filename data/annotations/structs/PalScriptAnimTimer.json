@@ -17,7 +17,6 @@
  "methods": {
   "0x00438e90": {
    "name": "_scalar_dtor",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 0,
@@ -36,11 +35,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x00438e30": {
    "name": "AccumulateTime",
-   "signature": "BOOL __thiscall(int, int)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -62,11 +61,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x00438100": {
    "name": "IsAnimDone",
-   "signature": "BOOL __thiscall()",
    "semantic_name": "IsAnimDone",
    "name_note": "G2条目补齐(PalScript计时器族): 体证据: return this[12]==0(修饰名PalScriptAnimTimer::IsAnimDone)",
    "semantic_sig": "BOOL",
@@ -76,7 +75,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   }
  },
  "vtables": [

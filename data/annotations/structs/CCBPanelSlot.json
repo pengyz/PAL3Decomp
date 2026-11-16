@@ -128,21 +128,21 @@
    "name": "Render",
    "ordinal": 1,
    "owner": "CCBPanelSlot",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "CCBPanelSlot::Render",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)",
+   "signature": "void __thiscall()"
   },
   "0x00442ff0": {
    "name": "Update_2ff0",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_name": "Update_2ff0",
@@ -163,26 +163,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00445e70": {
    "name": "ShowClipped",
    "signature": "void __thiscall(int)",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
+   "semantic_name": "ShowClipped",
+   "name_note": "[恢复] owner-primacy删除过早: CCBPanelSlot bases未定谳, 派生豁免失效→C7; bases定谳后再清"
   }
  },
  "vtables": [

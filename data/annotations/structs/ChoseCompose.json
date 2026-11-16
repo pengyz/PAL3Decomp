@@ -78,7 +78,6 @@
  "methods": {
   "0x0044c970": {
    "name": "Init",
-   "signature": "void __thiscall ChoseCompose::Init(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -92,11 +91,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00454aa0": {
    "name": "~ChoseCompose",
-   "signature": "void __thiscall ChoseCompose::~ChoseCompose()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -106,11 +105,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004a22e0": {
    "name": "DestroySubWindows",
-   "signature": "void __thiscall ChoseCompose::DestroySubWindows()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -119,11 +118,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00455570": {
    "name": "LayoutItems",
-   "signature": "int __thiscall(int arg0, int nVal, int nVal2, int nVal3, int nVal4)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -153,11 +152,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004a2170": {
    "name": "InitCompose",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -166,11 +165,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004b19e0": {
    "name": "LayoutItem",
-   "signature": "int __thiscall ChoseCompose::LayoutItem(int arg0, int nVal, int nVal2, int nVal3, int nVal4)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -200,11 +199,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int arg0, int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004549a0": {
    "name": "DestroyScene",
-   "signature": "void __thiscall ChoseCompose::DestroyScene()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -213,7 +212,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "base_size": 80,

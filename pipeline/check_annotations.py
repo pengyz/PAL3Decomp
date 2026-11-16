@@ -15,6 +15,10 @@
 import json
 import os
 import re
+try:
+    from pipeline.sigmodel import parse_signature, node_of, c2555_conflict, render
+except ImportError:  # 脚本模式(sys.path[0]=pipeline/)兼容
+    from sigmodel import parse_signature, node_of, c2555_conflict, render
 
 import sys
 
@@ -894,7 +898,9 @@ def check_canonical_contract():
         _pre_entry[_c0] = {}
         for _k0, _v0 in (_d0.get('methods') or {}).items():
             try:
-                _pre_entry[_c0][int(_k0, 16)] = (str(_v0.get('name') or ''), str(_v0.get('signature') or ''))
+                _nd0 = node_of(_v0)
+                _nd0['name'] = str(_v0.get('name') or '')
+                _pre_entry[_c0][int(_k0, 16)] = _nd0
             except (ValueError, TypeError):
                 pass
 
@@ -1032,41 +1038,34 @@ def check_canonical_contract():
             else:
                 _seen_nm[bare] = a8
 
-        # [C9 2026-11-16 用户裁定"apply前提前报错"] override链签名一致性:
-        #   本类方法与祖先类同名(真override) ⇒ 签名必须与基类一致
-        #   (返回型/约定不匹配=C2555编译错误级 → 禁入grandfather)
+        # [C9 2026-11-16 v2 sigmodel结构判据·机制退役] override链签名一致性:
+        #   真override(同名异址) ⇒ c2555_conflict(参数契约一致+返回存在性不同)=硬错
+        #   判据=sigmodel结构节点(sig_model优先/字符串回退单点解析) — 字符串解析遗产链
+        #   (_sig_parts9三轮bug)整体退役 [用户裁定"旧机制整体退役"]
+        # 已知覆盖缺口(元复核发现, S3待补): 仅存在于槽名契约的override(UIFrameWnd::Render族,
+        #   无methods条目)不经此路径 — 待槽级sig_model全量落地后补槽通道
         _re9 = re.compile(r'_scalar_dtor|_sdtor|scalar_deleting')
-        def _sig_parts9(_s):
-            # (ret+cc, params) 拆解; 参数名剥离(末尾空格分隔词, 类型形才剥)
-            _s = str(_s or '').strip()
-            _m = re.match(r'^(.*?)\s*(__\w+)?\s*\((.*)\)\s*$', _s)
-            if not _m:
-                return _s, ''
-            _head = (_m.group(1) + ' ' + (_m.group(2) or '')).strip()
-            _ps = []
-            for _p in _m.group(3).split(','):
-                _p = _p.strip()
-                if not _p:
-                    continue
-                _w = _p.split()
-                if len(_w) >= 2 and re.match(r'^[A-Za-z_]\w*$', _w[-1]) and _w[-1] not in (
-                        'int', 'char', 'float', 'double', 'bool', 'void'):
-                    _p = ' '.join(_w[:-1])
-                _ps.append(re.sub(r'\s+', '', _p))
-            return _head, ','.join(_ps)  # head保留空格: presence判定用首token
-        def _anc_named9(_cls, _nm, _seen=None):
+
+        def _node_of_pre(_cls, _addr):
+            _ent = _pre_entry.get(_cls, {}).get(_addr)
+            if _ent is None:
+                return None
+            return _ent
+
+        def _anc_node9(_cls, _nm, _seen=None):
             _seen = _seen if _seen is not None else set()
             for _bn in _pre_bases.get(_cls, []):
                 if _bn in _seen:
                     continue
                 _seen.add(_bn)
-                for _a2, (_n2, _s2) in _pre_entry.get(_bn, {}).items():
-                    if _n2 == _nm:
-                        return _a2, _s2
-                _r9 = _anc_named9(_bn, _nm, _seen)
+                for _a2, _nd2 in _pre_entry.get(_bn, {}).items():
+                    if _nd2.get('name') == _nm:
+                        return _a2, _nd2
+                _r9 = _anc_node9(_bn, _nm, _seen)
                 if _r9:
                     return _r9
             return None
+
         for _a9, _m9 in ms8.items():
             _n9 = str(_m9.get('name') or '')
             if not _n9 or _n9.startswith('~') or _re9.search(_n9):
@@ -1075,24 +1074,17 @@ def check_canonical_contract():
                 _ai9 = int(_a9, 16)
             except (ValueError, TypeError):
                 continue
-            _hit9 = _anc_named9(cls8, _n9)
+            _hit9 = _anc_node9(cls8, _n9)
             if _hit9 and _hit9[0] != _ai9:
-                _r_me, _p_me = _sig_parts9(_m9.get('signature'))
-                _r_base, _p_base = _sig_parts9(_hit9[1])
-                # 基类条目无签名数据 → 证据不足不判
-                if not str(_hit9[1]).strip():
-                    continue
-                # [C9锚修正 2026-11-16 用户裁定] 可观测ABI契约=硬约束:
-                #   参数个数一致 + 返回存在性(void/非void)一致 —— 编译器强制
-                #   类型名差异(int/uint/ulong)=不可观测的分析层 → 不执法, 归name_note纪律
-                # presence判定: 原始空格head首token('void __thiscall X::Y'→'void')
-                _void_me = (_r_me.split() or [''])[0].lower() == 'void'
-                _void_base = (_r_base.split() or [''])[0].lower() == 'void'
-                if _p_me == _p_base and _void_me != _void_base:
+                _nd_me = node_of(_m9)
+                _nd_base = _hit9[1]
+                if _nd_me.get('pending') or _nd_base.get('pending'):
+                    continue  # 零证据诚实态不判(卷宗域)
+                if c2555_conflict(_nd_me, _nd_base):
                     cur_viol['C9:%s:%s' % (cls8, _a9)] = (
                         '%s %s 返回存在性与基类冲突(可观测ABI契约): 本=%s 基=%s → C2555前置; '
                         '取证=两侧函数体出口eax+调用点消费' % (
-                            cls8, _n9, _m9.get('signature'), _hit9[1]))
+                            cls8, _n9, render(_nd_me), render(_nd_base)))
 
     # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
     # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。

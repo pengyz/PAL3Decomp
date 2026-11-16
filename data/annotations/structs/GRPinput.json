@@ -291,7 +291,6 @@
  "methods": {
   "0x004022e0": {
    "name": "GetCursorPos",
-   "signature": "BOOL __thiscall(GRPinput *this, LPPOINT lpPoint)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -305,11 +304,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(LPPOINT lpPoint)"
   },
   "0x00402310": {
    "name": "AcquireDevices",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -318,11 +317,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00402380": {
    "name": "ReleaseDevices",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -331,11 +330,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00402400": {
    "name": "GRPinput",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -344,13 +343,13 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004024f0": {
    "name": "ProcessKeyEvent",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "按键状态追踪（press→drag→hold）",
-   "signature": "void __thiscall(GRPinput *this, int nVal, int nVal2)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -367,11 +366,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2)"
   },
   "0x00402570": {
    "name": "InitKeyMappings",
-   "signature": "int __thiscall GRPinput::InitKeyMappings()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -380,11 +379,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00402a90": {
    "name": "SetMouseAbs",
-   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -407,11 +406,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00402b00": {
    "name": "SetJoystickAbs",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -421,11 +420,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402b60": {
    "name": "RunJoystickControlPanel",
-   "signature": "__thiscall void()",
    "source": "| D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -435,11 +434,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402b70": {
    "name": "ClearKeyBuffer",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -449,11 +448,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402b90": {
    "name": "SetJoystickLimits",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -462,11 +461,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402ba0": {
    "name": "SetMousePos",
-   "signature": "GRPinput *__fastcall(GRPinput *this)",
    "evidence_level": "unverified",
    "semantic_sig": "GRPinput *",
    "sig_model": {
@@ -475,11 +474,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "GRPinput * __fastcall()"
   },
   "0x00402bf0": {
    "name": "~GRPinput",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] SetMouseFreePos ⇒ ~GRPinput：idapro 交叉复核（lead 确认）：名=Setter 语义实为**真析构**；objdump 402bf3 movl $0x56a620,(%esi) vptr 写 + 402bfc test %eax,%eax 删 flag = **scalar deleting destructor 形**",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -489,11 +488,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402c40": {
    "name": "SetJoystickPos",
-   "signature": "void __thiscall(const char *x, int y)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -512,11 +511,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const char *x, int y)"
   },
   "0x00402d00": {
    "name": "SetJoystickFreePos",
-   "signature": "void __thiscall(float x)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -531,11 +530,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float x)"
   },
   "0x00402d20": {
    "name": "SetMouseSensitivity",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -545,11 +544,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00402fa0": {
    "name": "GetMouseSensitivity",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -563,11 +562,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00403000": {
    "name": "PollInputState",
-   "signature": "_BYTE *__thiscall GRPinput::PollInputState(unsigned int key)",
    "evidence_level": "unverified",
    "semantic_sig": "_BYTE *__thiscall",
    "sig_model": {
@@ -581,11 +580,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "_BYTE *__thiscall (unsigned int key)"
   },
   "0x00403150": {
    "name": "GetMouseFreePos",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -595,11 +594,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403160": {
    "name": "GetMouseDeltas",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -608,11 +607,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403170": {
    "name": "GetJoystickPos",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -621,11 +620,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403180": {
    "name": "GetJoystickFreePos",
-   "signature": "BOOL __thiscall(int x, int y)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -643,11 +642,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int x, int y)"
   },
   "0x00403370": {
    "name": "AcquireMouse",
-   "signature": "GRPinput * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "GRPinput *",
    "sig_model": {
@@ -656,11 +655,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "GRPinput * __thiscall()"
   },
   "0x004033f0": {
    "name": "UnacquireMouse",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -669,11 +668,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403410": {
    "name": "AcquireJoystick",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -682,11 +681,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403470": {
    "name": "UnacquireJoystick",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -695,11 +694,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004034b0": {
    "name": "AcquireKeyboard",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -708,11 +707,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004034e0": {
    "name": "UnacquireKeyboard",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -721,11 +720,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403560": {
    "name": "Update",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -735,11 +734,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403640": {
    "name": "CheckKeyEvents",
-   "signature": "void __thiscall(const char *key)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -753,11 +752,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const char *key)"
   },
   "0x004038f0": {
    "name": "InitShiftedKeys",
-   "signature": "float *__cdecl(float *pfVal, int nVal)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "float *",
@@ -776,11 +775,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "float * __cdecl(float *pfVal, int nVal)"
   },
   "0x004039d0": {
    "name": "InitDIKToKEY",
-   "signature": "void __thiscall(unsigned short *pwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -794,11 +793,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(unsigned short *pwVal)"
   },
   "0x00404020": {
    "name": "GetKey",
-   "signature": "GRPinput *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "GRPinput *",
    "sig_model": {
@@ -807,11 +806,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "GRPinput * __thiscall()"
   },
   "0x00404060": {
    "name": "GetCharKey",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -820,11 +819,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00404150": {
    "name": "DecideKeyStatus",
-   "signature": "unsigned int __thiscall(gbRay *pRay, unsigned int cKey)",
    "source": "| param Time->gbRay*: decomp-inferred param type gbRay* a2; Time type not in til",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
@@ -843,11 +842,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(gbRay *pRay, unsigned int cKey)"
   },
   "0x004042d0": {
    "name": "IsAnyKeyPressed",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -857,11 +856,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00402270": {
    "name": "SetMouseLimits",
-   "signature": "void __thiscall(int a, int b, int c, int d)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -888,11 +887,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int a, int b, int c, int d)"
   },
   "0x004022f0": {
    "name": "GetMousePos",
-   "signature": "void __thiscall(void *pOut, void *pOut2)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -911,11 +910,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void *pOut, void *pOut2)"
   },
   "0x004021e0": {
    "name": "HandleDeviceInput",
-   "signature": "int __thiscall GRPinput::HandleDeviceInput(int nMouse, int nKeyboard, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -937,11 +936,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nMouse, int nKeyboard, int nVal3)"
   },
   "0x004022b0": {
    "name": "SetMode",
-   "signature": "int __thiscall(int mode)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -955,11 +954,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int mode)"
   },
   "0x004022c0": {
    "name": "GetKeyState",
-   "signature": "short __thiscall(unsigned short key)",
    "evidence_level": "unverified",
    "semantic_sig": "short",
    "sig_model": {
@@ -973,11 +972,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "short __thiscall(unsigned short key)"
   },
   "0x004020e0": {
    "name": "Create",
-   "signature": "int __thiscall(HINSTANCE *hInst, int hwnd, int flag)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -999,11 +998,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(HINSTANCE *hInst, int hwnd, int flag)"
   },
   "0x00402360": {
    "name": "_thunk_vtbl8",
-   "signature": "int __thiscall GRPinput::_thunk_vtbl8()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1012,11 +1011,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00402220": {
    "name": "Reset",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1025,11 +1024,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00403b80": {
    "name": "ProcessInputFrame",
-   "signature": "int __thiscall(char *pszBuf)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1043,11 +1042,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char *pszBuf)"
   },
   "0x00402290": {
    "name": "SetCursorPos",
-   "signature": "BOOL __thiscall GRPinput::SetCursorPos(int X, int Y)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -1065,11 +1064,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int X, int Y)"
   },
   "0x00402640": {
    "name": "BuildKeyMap",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1078,11 +1077,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0046f480": {
    "name": "ProcessMouseInput",
-   "signature": "void __thiscall GRPinput::ProcessMouseInput(float fVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1096,11 +1095,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x004031d0": {
    "name": "GetState",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1109,11 +1108,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0046aea0": {
    "name": "ProcessButtonHold",
-   "signature": "void __thiscall(GRPinput *this, float fDelta)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1127,11 +1126,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fDelta)"
   },
   "0x00402bd0": {
    "name": "_scalar_dtor_2BD0",
-   "signature": "void __thiscall()",
    "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x402BF0 写 vptr 0x56A620（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56A620→GRPinput（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GRPinput（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x402BF0 写 vptr 0x56A620",
    "evidence_level": "A",
    "declaration_only": true,
@@ -1142,11 +1141,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044ca70": {
    "name": "_Split",
-   "signature": "void __thiscall(GRPinput *this)",
    "source": "IDA语义分析 2026-11-11 C2039取证",
    "semantic_sig": "void",
    "sig_model": {
@@ -1155,7 +1154,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  }
 }

@@ -90,7 +90,6 @@
  "methods": {
   "0x004543c0": {
    "name": "SetVisible",
-   "signature": "int __thiscall(LineupComp *this, unsigned __int8 pData)",
    "source": "fix:C2660:inflation: decl 2 vs ret-N slots 1, phantom first param dropped",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -105,11 +104,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 pData)"
   },
   "0x0044b850": {
    "name": "LineupComp",
-   "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] C假this参+限定+返回型：int __thiscall LineupComp::LineupComp(int this) ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：idapro 26177ab7: 零真参(TxtFile::TxtFile((TxtFile*)this))+return (int)this ⇒ int this=假参",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -119,11 +118,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00483fa0": {
    "name": "ShowById",
-   "signature": "int __thiscall LineupComp::ShowById(int id)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -137,11 +136,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int id)"
   },
   "0x004841b0": {
    "name": "PositionAt",
-   "signature": "int __thiscall LineupComp::PositionAt(int arg0, int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -163,11 +162,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int arg0, int nVal, int nVal2)"
   },
   "0x00484e10": {
    "name": "DispatchSlotMethod",
-   "signature": "int __thiscall LineupComp::DispatchSlotMethod(int nIndex, unsigned int dwParam)",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -186,11 +185,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nIndex, unsigned int dwParam)"
   },
   "0x00484e30": {
    "name": "GetSlotWidget",
-   "signature": "int __thiscall(int nIndex, unsigned int dwParam)",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -209,11 +208,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nIndex, unsigned int dwParam)"
   },
   "0x00484140": {
    "name": "CallSlotMethod",
-   "signature": "int __thiscall(int nIndex, unsigned int dwParam)",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -232,7 +231,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nIndex, unsigned int dwParam)"
   }
  },
  "base_size": 68,

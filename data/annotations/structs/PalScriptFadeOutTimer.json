@@ -17,7 +17,6 @@
  "methods": {
   "0x00438540": {
    "name": "UpdateFadeOut",
-   "signature": "BOOL __thiscall(int, int)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=SetBlendMode+UpdateFadeOut 域 | store×2] 交互面[淡出混合更新] 判定 ✅名实相符（UpdateFadeOut） | multiclaim 裁决 2026-11-03: 败于 PalScript（成员实访独占 uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -38,11 +37,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x00438530": {
    "name": "IsFadeDone",
-   "signature": "BOOL __thiscall()",
    "semantic_name": "IsFadeDone",
    "name_note": "G2条目补齐(PalScript计时器族): 体证据: return this[16]==0(修饰名PalScriptFadeInTimer::IsFadeDone)",
    "semantic_sig": "BOOL",
@@ -52,11 +51,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x00434d50": {
    "name": "~PalScriptFadeOutTimer",
-   "signature": "void __thiscall()",
    "semantic_name": "~PalScriptFadeOutTimer",
    "name_note": "G2法证(dtor律): 表slot0=删除式dtor位(MSVC律), 27表族ICF折叠共享址0x408bd0/同族址; 零decomp不阻命名(位置律即证据)",
    "semantic_sig": "void",
@@ -66,7 +65,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

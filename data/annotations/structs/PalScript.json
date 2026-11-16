@@ -700,7 +700,6 @@
  "methods": {
   "0x00412680": {
    "name": "DestroyScript",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -709,11 +708,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00430290": {
    "name": "LoadScript",
-   "signature": "int __thiscall(int pathAddr)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -727,11 +726,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int pathAddr)"
   },
   "0x00430570": {
    "name": "SetAppName",
-   "signature": "char *__thiscall(char *name)",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -745,11 +744,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(char *name)"
   },
   "0x004318b0": {
    "name": "LoadFromFile",
-   "signature": "void *__thiscall(char *filename)",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
    "sig_model": {
@@ -763,11 +762,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(char *filename)"
   },
   "0x004319f0": {
    "name": "SetDirectory",
-   "signature": "int __thiscall(char *dir)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -781,11 +780,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char *dir)"
   },
   "0x00431a60": {
    "name": "HasNext",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -794,11 +793,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00431b60": {
    "name": "LoadNext",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -807,11 +806,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00431d80": {
    "name": "_StaticInit",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -820,11 +819,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00431f00": {
    "name": "AddWaitObj",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -834,11 +833,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00431f10": {
    "name": "AddCamObj",
-   "signature": "int __fastcall(PalScript *this)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -847,11 +846,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __fastcall()"
   },
   "0x00431fa0": {
    "name": "ClearAllWaitObj",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -860,11 +859,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00431fb0": {
    "name": "Update",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -873,11 +872,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434c00": {
    "name": "GetString",
-   "signature": "char * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -886,11 +885,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x0043aa00": {
    "name": "OpenScript",
-   "signature": "gbVFileSystem *__thiscall(PalScript *this, const char *pszName, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *",
    "sig_model": {
@@ -908,11 +907,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem * __thiscall(const char *pszName, char pData)"
   },
   "0x00439130": {
    "name": "Reset",
-   "signature": "void __thiscall PalScript::PalScript_Init()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -921,11 +920,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0043a160": {
    "name": "PalScript",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -934,11 +933,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0043a1f0": {
    "name": "ctor",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -950,11 +949,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004318a0": {
    "name": "Cleanup",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -963,11 +962,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004353a0": {
    "name": "Op_InTeam",
-   "signature": "void __thiscall PalScript::Op_InTeam()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -976,11 +975,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435320": {
    "name": "Op_RoleActiveShort",
-   "signature": "void __thiscall PalScript::Op_RoleActiveShort()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -989,11 +988,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004352d0": {
    "name": "Op_RoleScriptInitCam",
-   "signature": "char *__thiscall PalScript::Op_RoleScriptInitCam()",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -1002,11 +1001,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall ()"
   },
   "0x00431c10": {
    "name": "FindSaveStateString",
-   "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1032,11 +1031,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(PalScript *String1, char *String2, char *Destination, int nVal)"
   },
   "0x00439230": {
    "name": "LoadModel",
-   "signature": "gbGeomNode *__thiscall PalScript::LoadModel(const char *szFilename, int nActionIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "gbGeomNode *__thiscall",
    "sig_model": {
@@ -1054,11 +1053,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbGeomNode *__thiscall (const char *szFilename, int nActionIdx)"
   },
   "0x00421ca0": {
    "name": "BindRolesToStage",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1067,11 +1066,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435170": {
    "name": "Op_GetDislike",
-   "signature": "void __thiscall PalScript::Op_GetDislike()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1080,11 +1079,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004378e0": {
    "name": "Op_HaveItem",
-   "signature": "void __thiscall PalScript::Op_HaveItem()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1093,11 +1092,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004384b0": {
    "name": "Op_Dist",
-   "signature": "void __thiscall PalScript::Op_Dist()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1106,11 +1105,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00429d10": {
    "name": "GetCount",
-   "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -1124,11 +1123,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nVal)"
   },
   "0x00538d60": {
    "name": "DestroyInstances",
-   "signature": "void __thiscall PalScript::DestroyInstances(double nActionID, int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1146,11 +1145,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(double nActionID, int *p_DWORD)"
   },
   "0x00410840": {
    "name": "InitParticleSlht",
-   "signature": "PalScript *__thiscall PalScript::InitParticleSlht(PalScript *pPalScript)",
    "evidence_level": "unverified",
    "semantic_sig": "PalScript *__thiscall",
    "sig_model": {
@@ -1164,11 +1163,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "PalScript *__thiscall (PalScript *pPalScript)"
   },
   "0x004309d0": {
    "name": "EvalExpression",
-   "signature": "int *__thiscall PalScript::EvalExpression(int *p_DWORD, char *pszBuf)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -1186,11 +1185,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int *p_DWORD, char *pszBuf)"
   },
   "0x00431040": {
    "name": "GetVarRef",
-   "signature": "int *__thiscall PalScript::GetVarRef(int *pOut, int nIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -1208,11 +1207,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int *pOut, int nIdx)"
   },
   "0x00431100": {
    "name": "EvalExprTree",
-   "signature": "int *__thiscall PalScript::EvalExprTree(int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -1238,11 +1237,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int *p_DWORD, void *pData, int *p_DWORD2, char *pszBuf)"
   },
   "0x00431d20": {
    "name": "CleanupInstances",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1251,11 +1250,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434d70": {
    "name": "Op_ScriptRunMode",
-   "signature": "void __thiscall PalScript::Op_ScriptRunMode()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1264,11 +1263,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434d90": {
    "name": "Op_RolePathOut",
-   "signature": "void __thiscall PalScript::Op_RolePathOut()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1277,11 +1276,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434e50": {
    "name": "Op_RoleScript",
-   "signature": "char * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -1290,11 +1289,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x00434e90": {
    "name": "Op_RoleCtrl",
-   "signature": "char * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -1303,11 +1302,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x004350f0": {
    "name": "Op_RoleOverlap",
-   "signature": "char * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -1316,11 +1315,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x004351a0": {
    "name": "Op_RoleActive",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1329,11 +1328,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435830": {
    "name": "Op_CameraFocusPoint",
-   "signature": "void __thiscall PalScript::Op_CameraFocusPoint()",
    "local_vars": [
     {
      "name": "nNextEventID",
@@ -1430,11 +1429,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435bf0": {
    "name": "Op_LoseItem",
-   "signature": "void __thiscall PalScript::Op_LoseItem()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1443,11 +1442,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004360f0": {
    "name": "Op_RoleSpaceWalk",
-   "signature": "void __thiscall PalScript::Op_RoleSpaceWalk()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1456,11 +1455,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436130": {
    "name": "Op_RoleMoveBackEx",
-   "signature": "unsigned int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -1469,11 +1468,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x00436190": {
    "name": "Op_RoleShowAction",
-   "signature": "void __thiscall PalScript::Op_RoleShowAction()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1482,11 +1481,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436280": {
    "name": "Op_RoleEndAction",
-   "signature": "void __thiscall PalScript::Op_RoleEndAction()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1495,11 +1494,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436470": {
    "name": "Op_FavorAdd",
-   "signature": "void __thiscall PalScript::Op_FavorAdd()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1508,11 +1507,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004364e0": {
    "name": "Op_AddRoleAtt",
-   "signature": "void __thiscall PalScript::Op_AddRoleAtt()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1521,11 +1520,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004365a0": {
    "name": "Op_RoleSetFace",
-   "signature": "void __thiscall PalScript::Op_RoleSetFace()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1534,11 +1533,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004365b0": {
    "name": "Op_RoleTurnFace",
-   "signature": "void __thiscall PalScript::Op_RoleTurnFace()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1547,11 +1546,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436600": {
    "name": "Op_TeamClose",
-   "signature": "void __thiscall PalScript::Op_TeamClose()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1560,11 +1559,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436680": {
    "name": "Op_RoleInput",
-   "signature": "void __thiscall PalScript::Op_RoleInput()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1573,11 +1572,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436a60": {
    "name": "Op_Sub",
-   "signature": "void __thiscall PalScript::Op_Sub()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1586,11 +1585,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436ab0": {
    "name": "Op_GetMoney",
-   "signature": "void __thiscall PalScript::Op_GetMoney()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1599,11 +1598,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436c00": {
    "name": "Op_HY_Mode",
-   "signature": "void __thiscall PalScript::Op_HY_Mode()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1612,11 +1611,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437010": {
    "name": "Op_StopMusic",
-   "signature": "void __thiscall PalScript::Op_StopMusic()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1625,11 +1624,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437550": {
    "name": "Op_CameraSet",
-   "signature": "void __thiscall PalScript::Op_CameraSet()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1638,11 +1637,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437630": {
    "name": "Op_CameraRotate",
-   "signature": "void __thiscall PalScript::Op_CameraRotate()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1651,11 +1650,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437650": {
    "name": "Op_GetDlgSel",
-   "signature": "void __thiscall PalScript::Op_GetDlgSel()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1664,11 +1663,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004377f0": {
    "name": "Op_RoleEmote",
-   "signature": "void __thiscall PalScript::Op_RoleEmote()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1677,11 +1676,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437ae0": {
    "name": "Op_RoleSetLayerByObj",
-   "signature": "char *__thiscall PalScript::Op_RoleSetLayerByObj()",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -1690,11 +1689,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall ()"
   },
   "0x00437c40": {
    "name": "Op_Enable_JusticeBook",
-   "signature": "void __thiscall PalScript::Op_Enable_JusticeBook()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1703,11 +1702,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437c50": {
    "name": "Op_Specify_Compos",
-   "signature": "void __thiscall PalScript::Op_Specify_Compos()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1716,11 +1715,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437ff0": {
    "name": "Op_Start_Wolf",
-   "signature": "void __thiscall PalScript::Op_Start_Wolf()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1729,11 +1728,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004381b0": {
    "name": "ClearFloatParams",
-   "signature": "void __thiscall PalScript::ClearFloatParams()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1742,11 +1741,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438350": {
    "name": "Op_GetHS_ManageType",
-   "signature": "void __thiscall PalScript::Op_GetHS_ManageType()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1755,11 +1754,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438390": {
    "name": "Op_GetHS_Accrual_type",
-   "signature": "void __thiscall PalScript::Op_GetHS_Accrual_type()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1768,11 +1767,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438840": {
    "name": "Op_ScrEft",
-   "signature": "void __thiscall PalScript::Op_ScrEft()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1781,11 +1780,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004389d0": {
    "name": "Op_Snow",
-   "signature": "void __thiscall PalScript::Op_Snow()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1794,11 +1793,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438b00": {
    "name": "Op_EntrySmeltSys",
-   "signature": "void __thiscall PalScript::Op_EntrySmeltSys()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1807,11 +1806,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438b60": {
    "name": "Op_CEft_Load",
-   "signature": "void __thiscall PalScript::Op_CEft_Load()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1820,11 +1819,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438d00": {
    "name": "Op_Rain",
-   "signature": "void __thiscall PalScript::Op_Rain()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1833,11 +1832,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438f10": {
    "name": "Op_FullTeamAtt",
-   "signature": "void __thiscall PalScript::Op_FullTeamAtt()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1846,11 +1845,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438f30": {
    "name": "Op_BeeInsertFrame",
-   "signature": "void __thiscall PalScript::Op_BeeInsertFrame()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1859,11 +1858,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0043a1d0": {
    "name": "_scalar_dtor_A1D0",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -1886,11 +1885,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043a270": {
    "name": "RenderUI",
-   "signature": "int __thiscall PalScript::RenderUI()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1900,11 +1899,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0043a3e0": {
    "name": "UpdateTimer",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -1923,11 +1922,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x0044b8a0": {
    "name": "SetDialogTemplate",
-   "signature": "LPSTR __thiscall PalScript::SetDialogTemplate(CHAR *String1, CHAR *lpString2)",
    "evidence_level": "unverified",
    "semantic_sig": "LPSTR",
    "sig_model": {
@@ -1945,11 +1944,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LPSTR __thiscall(CHAR *String1, CHAR *lpString2)"
   },
   "0x00522130": {
    "name": "LoadSceneConfig",
-   "signature": "char __thiscall(char *filename)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1963,11 +1962,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char *filename)"
   },
   "0x00529440": {
    "name": "LoadResource",
-   "signature": "int __thiscall(char *filename)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1981,11 +1980,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char *filename)"
   },
   "0x00535710": {
    "name": "LoadVisNode",
-   "signature": "struct gbVFileSystem *__thiscall PalScript::LoadVisNode(double String2, char *pszBuf, char *pszBuf2)",
    "evidence_level": "unverified",
    "semantic_sig": "struct gbVFileSystem *__thiscall",
    "sig_model": {
@@ -2007,11 +2006,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "struct gbVFileSystem *__thiscall (double String2, char *pszBuf, char *pszBuf2)"
   },
   "0x00430500": {
    "name": "ReleaseFrame",
-   "signature": "void __thiscall PalScript::ReleaseFrame()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2020,11 +2019,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004307d0": {
    "name": "InitScriptObj",
-   "signature": "int __thiscall PalScript::InitScriptObj(int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2046,11 +2045,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *p_DWORD, unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x00431390": {
    "name": "ResolveScope",
-   "signature": "int *__thiscall PalScript::ResolveScope(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -2064,11 +2063,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int nVal)"
   },
   "0x00431440": {
    "name": "IteratorNext",
-   "signature": "int *__thiscall PalScript::IteratorNext()",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -2077,11 +2076,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   },
   "0x004314a0": {
    "name": "IteratorPrev",
-   "signature": "int *__thiscall PalScript::IteratorPrev()",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -2090,11 +2089,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   },
   "0x004314f0": {
    "name": "ConstructStringObj",
-   "signature": "void __thiscall PalScript::ConstructStringObj(char *pszBuf)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2108,11 +2107,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char *pszBuf)"
   },
   "0x00431640": {
    "name": "SetWaitRange",
-   "signature": "int __thiscall PalScript::SetWaitRange(unsigned int dwVal, unsigned int dwVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2130,11 +2129,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x00431780": {
    "name": "CompareBuffer",
-   "signature": "int __thiscall PalScript::CompareBuffer(int nDescriptor)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2148,11 +2147,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nDescriptor)"
   },
   "0x004319c0": {
    "name": "FreeLoadBuffer",
-   "signature": "void __thiscall PalScript::FreeLoadBuffer()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2161,11 +2160,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00431c00": {
    "name": "SaveLoadState",
-   "signature": "int __thiscall PalScript::SaveLoadState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2174,11 +2173,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00434ce0": {
    "name": "Op_Idle",
-   "signature": "void __thiscall PalScript::Op_Idle()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2187,11 +2186,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434ed0": {
    "name": "Op_RolePathOutToTile",
-   "signature": "void __thiscall PalScript::Op_RolePathOutToTile()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2200,11 +2199,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00434f90": {
    "name": "Op_RolePathTo",
-   "signature": "void __thiscall PalScript::Op_RolePathTo()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2213,11 +2212,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435010": {
    "name": "Op_TeamCloseA",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2226,11 +2225,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435080": {
    "name": "Op_RoleSetPos",
-   "signature": "void __thiscall PalScript::Op_RoleSetPos()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2239,11 +2238,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435130": {
    "name": "CmdGetSceneObject",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2252,11 +2251,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004353f0": {
    "name": "Op_RoleSetLayer",
-   "signature": "void __thiscall PalScript::Op_RoleSetLayer()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2265,11 +2264,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435470": {
    "name": "Op_RoleOverlapEx",
-   "signature": "void __thiscall PalScript::Op_RoleOverlapEx()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2278,11 +2277,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004354f0": {
    "name": "Op_RoleCtrlEx",
-   "signature": "void __thiscall PalScript::Op_RoleCtrlEx()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2291,11 +2290,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435570": {
    "name": "Op_RoleScale",
-   "signature": "void __thiscall PalScript::Op_RoleScale()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2304,11 +2303,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435600": {
    "name": "Op_CameraPush",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2317,11 +2316,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004356c0": {
    "name": "Op_ShowActAutoStand",
-   "signature": "void __thiscall PalScript::Op_ShowActAutoStand()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2330,11 +2329,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435730": {
    "name": "Op_RoleTurnFaceA",
-   "signature": "void __thiscall PalScript::Op_RoleTurnFaceA()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2343,11 +2342,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435770": {
    "name": "Op_TeamOpenA",
-   "signature": "void __thiscall PalScript::Op_TeamOpenA()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2356,11 +2355,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004357b0": {
    "name": "Op_CameraPushState",
-   "signature": "void __thiscall PalScript::Op_CameraPushState()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2369,11 +2368,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004357e0": {
    "name": "Op_CameraFocusRole",
-   "signature": "void __thiscall PalScript::Op_CameraFocusRole()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2382,11 +2381,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436240": {
    "name": "Op_RoleScaleEx",
-   "signature": "float * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "float *",
    "sig_model": {
@@ -2395,11 +2394,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "float * __thiscall()"
   },
   "0x004362d0": {
    "name": "Op_ShowActAutoStandEx",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2408,11 +2407,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436360": {
    "name": "Op_TestGoto",
-   "signature": "void __thiscall PalScript::Op_TestGoto()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2421,11 +2420,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436380": {
    "name": "Op_Let",
-   "signature": "void __thiscall PalScript::Op_Let()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2434,11 +2433,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004363b0": {
    "name": "Op_AddEx",
-   "signature": "void __thiscall PalScript::Op_AddEx()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2447,11 +2446,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004363e0": {
    "name": "Op_GetSwitch",
-   "signature": "void __thiscall PalScript::Op_GetSwitch()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2460,11 +2459,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436410": {
    "name": "Op_Call",
-   "signature": "void __thiscall PalScript::Op_Call()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2473,11 +2472,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436440": {
    "name": "Op_LK_Ghost",
-   "signature": "void __thiscall PalScript::Op_LK_Ghost()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2486,11 +2485,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436490": {
    "name": "Op_Team",
-   "signature": "void __thiscall PalScript::Op_Team()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2499,11 +2498,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436530": {
    "name": "Op_AddItem",
-   "signature": "void __thiscall PalScript::Op_AddItem()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2512,11 +2511,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004365c0": {
    "name": "Op_RoleFaceRoleEx",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2525,11 +2524,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004365d0": {
    "name": "Op_RoleTurnFaceAEx",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2538,11 +2537,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004365e0": {
    "name": "Op_TeamOpen",
-   "signature": "void __thiscall PalScript::Op_TeamOpen()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2551,11 +2550,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436710": {
    "name": "Op_GoTo",
-   "signature": "void __thiscall PalScript::Op_GoTo()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2564,11 +2563,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436760": {
    "name": "Op_FNOT",
-   "signature": "void __thiscall PalScript::Op_FNOT()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2577,11 +2576,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436780": {
    "name": "Op_FOP",
-   "signature": "void __thiscall PalScript::Op_FOP()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2590,11 +2589,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004367b0": {
    "name": "Op_GT",
-   "signature": "void __thiscall PalScript::Op_GT()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2603,11 +2602,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004367e0": {
    "name": "Op_LS",
-   "signature": "void __thiscall PalScript::Op_LS()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2616,11 +2615,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436810": {
    "name": "Op_Between",
-   "signature": "void __thiscall PalScript::Op_Between()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2629,11 +2628,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436860": {
    "name": "Op_EQ",
-   "signature": "void __thiscall PalScript::Op_EQ()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2642,11 +2641,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436890": {
    "name": "Op_NEQ",
-   "signature": "void __thiscall PalScript::Op_NEQ()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2655,11 +2654,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004368c0": {
    "name": "Op_Music",
-   "signature": "void __thiscall PalScript::Op_Music()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2668,11 +2667,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004368e0": {
    "name": "Op_GEQ",
-   "signature": "void __thiscall PalScript::Op_GEQ()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2681,11 +2680,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436910": {
    "name": "Op_LEQ",
-   "signature": "void __thiscall PalScript::Op_LEQ()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2694,11 +2693,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436940": {
    "name": "Op_RemoveItem",
-   "signature": "void __thiscall PalScript::Op_RemoveItem()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2707,11 +2706,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004369a0": {
    "name": "Op_AddMoney",
-   "signature": "void __thiscall PalScript::Op_AddMoney()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2720,11 +2719,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004369c0": {
    "name": "Op_Movie",
-   "signature": "void __thiscall PalScript::Op_Movie()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2733,11 +2732,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436a10": {
    "name": "Op_CEft_Pos",
-   "signature": "void __thiscall PalScript::Op_CEft_Pos()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2746,11 +2745,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436b40": {
    "name": "Op_TeamCloseAEx",
-   "signature": "void __thiscall PalScript::Op_TeamCloseAEx()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2759,11 +2758,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436bd0": {
    "name": "Op_GetHS_Period_type",
-   "signature": "void __thiscall PalScript::Op_GetHS_Period_type()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2772,11 +2771,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436c60": {
    "name": "Op_FadeNormal",
-   "signature": "void __thiscall PalScript::Op_FadeNormal()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2785,11 +2784,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436cb0": {
    "name": "Op_HY_FLY",
-   "signature": "void __thiscall PalScript::Op_HY_FLY()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2798,11 +2797,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436d30": {
    "name": "Op_SetRoleTexture",
-   "signature": "void __thiscall PalScript::Op_SetRoleTexture()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2811,11 +2810,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436db0": {
    "name": "Op_Rotate",
-   "signature": "void __thiscall PalScript::Op_Rotate()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2824,11 +2823,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436e10": {
    "name": "Op_Quake",
-   "signature": "void __thiscall PalScript::Op_Quake()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2837,11 +2836,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436e70": {
    "name": "Op_ShowChatRest",
-   "signature": "void __thiscall PalScript::Op_ShowChatRest()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2850,11 +2849,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436ed0": {
    "name": "Op_GetHS_UnHock_type",
-   "signature": "void __thiscall PalScript::Op_GetHS_UnHock_type()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2863,11 +2862,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436f40": {
    "name": "Op_SetBigMapElement",
-   "signature": "void __thiscall PalScript::Op_SetBigMapElement()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2876,11 +2875,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436f90": {
    "name": "Op_ObjectMove",
-   "signature": "void __thiscall PalScript::Op_ObjectMove()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2889,11 +2888,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436fb0": {
    "name": "Op_KF_Entry",
-   "signature": "void __thiscall PalScript::Op_KF_Entry()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2902,11 +2901,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436fe0": {
    "name": "Op_ENCAMP_Entry",
-   "signature": "void __thiscall PalScript::Op_ENCAMP_Entry()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2915,11 +2914,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437040": {
    "name": "Op_SKEE_Entry",
-   "signature": "void __thiscall PalScript::Op_SKEE_Entry()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2928,11 +2927,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437080": {
    "name": "Op_Deal",
-   "signature": "void __thiscall PalScript::Op_Deal()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2941,11 +2940,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004370c0": {
    "name": "Op_APPR_Entry",
-   "signature": "void __thiscall PalScript::Op_APPR_Entry()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2954,11 +2953,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004370e0": {
    "name": "Op_GetHSLv",
-   "signature": "void __thiscall PalScript::Op_GetHSLv()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2967,11 +2966,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437120": {
    "name": "Op_SwitchRS",
-   "signature": "void __thiscall PalScript::Op_SwitchRS()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2980,11 +2979,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437170": {
    "name": "Op_GetFavor",
-   "signature": "void __thiscall PalScript::Op_GetFavor()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2993,11 +2992,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437190": {
    "name": "Op_AddSkill",
-   "signature": "void __thiscall PalScript::Op_AddSkill()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3006,11 +3005,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004371b0": {
    "name": "Op_GetFavorite",
-   "signature": "void __thiscall PalScript::Op_GetFavorite()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3019,11 +3018,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004371d0": {
    "name": "Op_Note",
-   "signature": "void __thiscall PalScript::Op_Note()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3032,11 +3031,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004371f0": {
    "name": "Op_PlaySound",
-   "signature": "void __thiscall PalScript::Op_PlaySound()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3045,11 +3044,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437210": {
    "name": "Op_FullRoleAtt",
-   "signature": "void __thiscall PalScript::Op_FullRoleAtt()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3058,11 +3057,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437280": {
    "name": "Op_DlgPos",
-   "signature": "void __thiscall PalScript::Op_DlgPos()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3071,11 +3070,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004373a0": {
    "name": "Op_FadeOut",
-   "signature": "void __thiscall PalScript::Op_FadeOut()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3084,11 +3083,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004373c0": {
    "name": "Op_FadeIn",
-   "signature": "void __thiscall PalScript::Op_FadeIn()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3097,11 +3096,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004373d0": {
    "name": "Op_DlgFace",
-   "signature": "void __thiscall PalScript::Op_DlgFace()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3110,11 +3109,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437440": {
    "name": "Op_DlgFont",
-   "signature": "void __thiscall PalScript::Op_DlgFont()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3123,11 +3122,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004374a0": {
    "name": "Op_LoadScene",
-   "signature": "void __thiscall PalScript::Op_LoadScene()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3136,11 +3135,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004374e0": {
    "name": "Op_DlgHead",
-   "signature": "void __thiscall PalScript::Op_DlgHead()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3149,11 +3148,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437500": {
    "name": "Op_DlgSel",
-   "signature": "void __thiscall PalScript::Op_DlgSel()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3162,11 +3161,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004375e0": {
    "name": "Op_CameraWag",
-   "signature": "void __thiscall PalScript::Op_CameraWag()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3175,11 +3174,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437610": {
    "name": "Op_CameraMove",
-   "signature": "void __thiscall PalScript::Op_CameraMove()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3188,11 +3187,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004376a0": {
    "name": "Op_CameraTrans",
-   "signature": "void __thiscall PalScript::Op_CameraTrans()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3201,11 +3200,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004376f0": {
    "name": "Op_CameraDefault",
-   "signature": "void __thiscall PalScript::Op_CameraDefault()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3214,11 +3213,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437740": {
    "name": "Op_RoleStop",
-   "signature": "void __thiscall PalScript::Op_RoleStop()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3227,11 +3226,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437a80": {
    "name": "Op_Climb",
-   "signature": "void __thiscall PalScript::Op_Climb()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3240,11 +3239,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437ac0": {
    "name": "Op_InTeamExecScript",
-   "signature": "char *__thiscall PalScript::Op_InTeamExecScript()",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -3253,11 +3252,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall ()"
   },
   "0x00437b20": {
    "name": "Op_Combat",
-   "signature": "void __thiscall PalScript::Op_Combat()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3266,11 +3265,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437b90": {
    "name": "Op_DlgTime",
-   "signature": "void __thiscall PalScript::Op_DlgTime()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3279,11 +3278,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437bb0": {
    "name": "Op_GetTimeSel",
-   "signature": "void __thiscall PalScript::Op_GetTimeSel()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3292,11 +3291,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438030": {
    "name": "Op_Start_HideFight",
-   "signature": "void __thiscall PalScript::Op_Start_HideFight()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3305,11 +3304,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438110": {
    "name": "UpdateWaitTimer",
-   "signature": "void __thiscall PalScript::UpdateWaitTimer(float fVal)",
    "ordinal": 2,
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -3326,11 +3325,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x004381e0": {
    "name": "Op_Trigger",
-   "signature": "void __thiscall PalScript::Op_Trigger()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3339,11 +3338,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438310": {
    "name": "Op_JT_Exhibit",
-   "signature": "void __thiscall PalScript::Op_JT_Exhibit()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3352,11 +3351,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438440": {
    "name": "Op_EntryRow",
-   "signature": "void __thiscall PalScript::Op_EntryRow()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3365,11 +3364,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438450": {
    "name": "Op_RotateInv",
-   "signature": "void __thiscall PalScript::Op_RotateInv()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3378,11 +3377,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438470": {
    "name": "Op_EntrySkee",
-   "signature": "void __thiscall PalScript::Op_EntrySkee()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3391,11 +3390,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004384d0": {
    "name": "Op_CombatNotGameOver",
-   "signature": "void __thiscall PalScript::Op_CombatNotGameOver()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3404,11 +3403,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004385a0": {
    "name": "Op_GetCombat",
-   "signature": "void __thiscall PalScript::Op_GetCombat()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3417,11 +3416,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004387b0": {
    "name": "Op_RoleFadeIn",
-   "signature": "void __thiscall PalScript::Op_RoleFadeIn()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3430,11 +3429,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004387d0": {
    "name": "Op_TeamOpenAStartMove",
-   "signature": "void __thiscall PalScript::Op_TeamOpenAStartMove()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3443,11 +3442,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004388c0": {
    "name": "Op_IfInTeam",
-   "signature": "void __thiscall PalScript::Op_IfInTeam()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3456,11 +3455,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438910": {
    "name": "ClearIntParams",
-   "signature": "void __thiscall PalScript::ClearIntParams()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3469,11 +3468,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438980": {
    "name": "Op_CEft_Role",
-   "signature": "void __thiscall PalScript::Op_CEft_Role()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3482,11 +3481,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004389a0": {
    "name": "Op_FogH",
-   "signature": "void __thiscall PalScript::Op_FogH()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3495,11 +3494,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438a30": {
    "name": "Op_AverageLv",
-   "signature": "void __thiscall PalScript::Op_AverageLv()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3508,11 +3507,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438b40": {
    "name": "Op_Switch2Menu",
-   "signature": "void __thiscall PalScript::Op_Switch2Menu()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3521,11 +3520,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438ba0": {
    "name": "Op_LoadAct",
-   "signature": "void __thiscall PalScript::Op_LoadAct()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3534,11 +3533,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438d20": {
    "name": "Op_WaterMagic",
-   "signature": "void __thiscall PalScript::Op_WaterMagic()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3547,11 +3546,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438f50": {
    "name": "Op_CameraYaw",
-   "signature": "void __thiscall PalScript::Op_CameraYaw()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3560,11 +3559,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004391a0": {
    "name": "SetReady",
-   "signature": "void __thiscall PalScript::SetReady()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3573,11 +3572,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004391d0": {
    "name": "ReleaseStateResource",
-   "signature": "void __thiscall PalScript::ReleaseStateResource()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3586,11 +3585,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004393a0": {
    "name": "CheckAnimOver",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3599,11 +3598,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00445e10": {
    "name": "OffsetRect",
-   "signature": "int *__thiscall(long *p_DWORD)",
    "source": "| sig-type-fix 2026-09-28: int*→long*（调用点全 &RECT.left 型 long*（CCBItemWindow:34 等 RECT 坐标族）——4B 同槽字节等价；证据: 多调用点 B 级）",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
@@ -3618,11 +3617,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(long *p_DWORD)"
   },
   "0x0052be40": {
    "name": "LoadEncampConfig",
-   "signature": "int __thiscall PalScript::LoadEncampConfig()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3631,11 +3630,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00535010": {
    "name": "ResetAll",
-   "signature": "int __thiscall PalScript::ResetAll()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3644,11 +3643,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0042c700": {
    "name": "StopSound3D",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3657,11 +3656,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00439fe0": {
    "name": "GetRayToScreen",
-   "signature": "void *__thiscall(void *pRay, LPPOINT pResult)",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
    "sig_model": {
@@ -3679,11 +3678,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(void *pRay, LPPOINT pResult)"
   },
   "0x00436730": {
    "name": "Op_FCZero",
-   "signature": "void __thiscall PalScript::Op_FCZero()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3692,11 +3691,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436740": {
    "name": "Op_Rand",
-   "signature": "void __thiscall PalScript::Op_Rand()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3705,11 +3704,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435710": {
    "name": "Op_RoleMoveBack",
-   "signature": "void __thiscall PalScript::Op_RoleMoveBack()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3718,11 +3717,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00435720": {
    "name": "Op_RoleFaceRole",
-   "signature": "void __thiscall PalScript::Op_RoleFaceRole()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3731,11 +3730,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00436120": {
    "name": "Op_RoleMoveTo",
-   "signature": "void __thiscall PalScript::Op_RoleMoveTo()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3744,11 +3743,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004386c0": {
    "name": "Op_RoleFadeOut",
-   "signature": "void __thiscall PalScript::Op_RoleFadeOut()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3757,11 +3756,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438a20": {
    "name": "Op_CEft",
-   "signature": "void __thiscall PalScript::Op_CEft()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3770,11 +3769,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438b80": {
    "name": "Op_GiveCloth",
-   "signature": "void __thiscall PalScript::Op_GiveCloth()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3783,11 +3782,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437c20": {
    "name": "Op_Get_Appr",
-   "signature": "void __thiscall PalScript::Op_Get_Appr()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3796,11 +3795,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00437c30": {
    "name": "Op_Enable_Sword",
-   "signature": "void __thiscall PalScript::Op_Enable_Sword()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3809,11 +3808,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00438930": {
    "name": "Op_Enable_SwordSkill",
-   "signature": "void __thiscall PalScript::Op_Enable_SwordSkill()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3822,11 +3821,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00433f90": {
    "name": "ProcessGBKString",
-   "signature": "int __thiscall(PalScript *this)",
    "static": true,
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失（原 __cdecl 形）；A 级：0x433F90 链 m_nTodo_1050[i].mData（PalScript 成员）",
    "evidence_level": "A",
@@ -3837,11 +3836,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00421560": {
    "name": "SetAction",
-   "signature": "void __thiscall(int nRoleID)",
    "local_vars": [
     {
      "from_name": "p_m_RoleSlotArray",
@@ -3862,11 +3861,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleID)"
   },
   "0x00429d40": {
    "name": "SetIndex",
-   "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -3881,11 +3880,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00438190": {
    "name": "_scalar_dtor_8190",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PalScript（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ABD4）",
    "ordinal": 0,
    "evidence_level": "A",
@@ -3903,11 +3902,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x00438100": {
    "name": "CheckFlag0C",
-   "signature": "",
    "source": "vtable_migrated",
    "ordinal": 1,
    "evidence_level": "unverified",
@@ -3921,7 +3920,6 @@
   },
   "0x004573a0": {
    "name": "FreeScriptBuffers",
-   "signature": "void __thiscall PalScript::FreeScriptBuffers()",
    "_misattrib_evidence": "max_offset=805416>class_size=1816",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -3931,11 +3929,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00487b60": {
    "name": "InitMainUIScripts",
-   "signature": "int __thiscall PalScript::InitMainUIScripts()",
    "_misattrib_evidence": "max_offset=54700>class_size=1816",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -3945,7 +3943,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00411ca0": {
    "name": "~PalScript",
@@ -3966,7 +3965,6 @@
    "name": "CopyFrom",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "对象拷贝/赋值（vftable+m_pinst）",
-   "signature": "_BYTE *__thiscall(PalScript *this, _BYTE *thisa, _DWORD *a2, _BYTE *a3)",
    "semantic_sig": "_BYTE *",
    "sig_model": {
     "return": "_BYTE *",
@@ -3987,11 +3985,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "_BYTE * __thiscall(_BYTE *thisa, _DWORD *a2, _BYTE *a3)"
   },
   "0x00431760": {
    "name": "_sdtor_23",
-   "signature": "PalScript *__thiscall(PalScript *Block, char a2)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 PalScript::_sdtor_23（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 PalScript 方法面",
    "evidence_level": "A",
    "declaration_only": true,
@@ -4011,11 +4009,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "PalScript * __thiscall(PalScript *Block, char a2)"
   },
   "0x00523e70": {
    "name": "GetScriptBufferAddr",
-   "signature": "int __thiscall()",
    "source": "[函数归属 2026-10-17·主攻点 2 终] PalScript——面卡④类=PalScript（Op_HY_FLY 族 ✓）（五面卡类归属面 ✓ decomp member access 证）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -4025,11 +4023,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0043a250": {
    "name": "MoveAndHide",
-   "signature": "int __thiscall PalScript::MoveAndHide()",
    "ordinal": 3,
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -4043,11 +4041,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00434d50": {
    "name": "_scalar_dtor_4D50",
-   "signature": "void __thiscall()",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x411BA0 写 vptr 0x56A9C0",
    "evidence_level": "A",
    "declaration_only": true,
@@ -4058,11 +4056,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004382a0": {
    "name": "UpdateIdleTimer",
-   "signature": "void __thiscall PalScriptWaitTimer::UpdateIdleTimer(float)",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer） | multiclaim 裁决 2026-11-03: 败于 PalScript（uniq=5）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -4078,7 +4076,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   }
  },
  "vtables": [

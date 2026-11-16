@@ -24,7 +24,6 @@
  "methods": {
   "0x00458a20": {
    "name": "FormatDescription",
-   "signature": "CHAR *__cdecl()",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "CHAR *",
@@ -34,11 +33,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CHAR * __cdecl()"
   },
   "0x0049aaf0": {
    "name": "ResetEquipControls",
-   "signature": "void __thiscall ArcSceneObject::ResetEquipControls()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -47,11 +46,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005254c0": {
    "name": "InitFromConfig",
-   "signature": "ArcSceneObject * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "ArcSceneObject *",
    "sig_model": {
@@ -60,11 +59,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "ArcSceneObject * __thiscall()"
   },
   "0x00533f50": {
    "name": "UpdateOscillation",
-   "signature": "void __thiscall ArcSceneObject::UpdateOscillation(float fDelta)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -78,7 +77,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fDelta)"
   }
  }
 }

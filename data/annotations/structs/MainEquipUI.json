@@ -462,7 +462,6 @@
  "methods": {
   "0x00479680": {
    "name": "~MainEquipUI",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~MainEquipUI。refs: ?Reset@PalScript@@QAEXXZ ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?DeleteRow@UI",
@@ -474,11 +473,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00479300": {
    "name": "MainEquipUI",
-   "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UI3DCtrl/??0PalScript",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -488,11 +487,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004a5010": {
    "name": "HandleMessage",
-   "signature": "BOOL __thiscall(int a1)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -507,11 +506,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int a1)"
   },
   "0x0049aea0": {
    "name": "ShowWithCursor",
-   "signature": "void __thiscall MainEquipUI::ShowWithCursor(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -525,11 +524,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x0049b2e0": {
    "name": "SetupRoleList",
-   "signature": "void __thiscall(int arg0, char arg4)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -547,11 +546,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int arg0, char arg4)"
   },
   "0x00479660": {
    "name": "_scalar_dtor_9660",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -574,11 +573,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00479890": {
    "name": "InitMainEquipUI",
-   "signature": "int __thiscall(int arg0)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -592,11 +591,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int arg0)"
   },
   "0x0047b200": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -606,11 +605,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004819a0": {
    "name": "LoadFromFile",
-   "signature": "OpenNULLFile *__thiscall MainEquipUI::LoadFromFile(OpenNULLFile *pFile, int nVal)",
    "_misattrib_evidence": "max_offset=162724>class_size=152",
    "evidence_level": "unverified",
    "semantic_sig": "OpenNULLFile *__thiscall",
@@ -629,11 +628,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "OpenNULLFile *__thiscall (OpenNULLFile *pFile, int nVal)"
   },
   "0x00481cb0": {
    "name": "SelectWithSound",
-   "signature": "void __thiscall MainEquipUI::SelectWithSound(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -647,11 +646,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00481eb0": {
    "name": "ShowPanelsWithSound",
-   "signature": "void __thiscall MainEquipUI::ShowPanelsWithSound(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -669,11 +668,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2)"
   },
   "0x004930e0": {
    "name": "UpdateTooltip",
-   "signature": "void __thiscall MainEquipUI::UpdateTooltip(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -687,11 +686,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x0049f2e0": {
    "name": "CreateListPanel",
-   "signature": "void *__thiscall(MainEquipUI *this, int _FC)",
    "source": "fix:C2660:inflation: decl 2 vs ret-N slots 1, phantom first param dropped (param order provisional)",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
@@ -706,11 +705,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(int _FC)"
   },
   "0x004a4ed0": {
    "name": "ShowPage",
-   "signature": "int __thiscall MainEquipUI::ShowPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -719,11 +718,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047a580": {
    "name": "ValidateRoles",
-   "signature": "void __thiscall MainEquipUI::ValidateRoles()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -732,11 +731,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0047aab0": {
    "name": "UpdateLayout",
-   "signature": "int __thiscall MainEquipUI::UpdateLayout()",
    "_misattrib_evidence": "max_offset=173944>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -746,11 +745,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047adf0": {
    "name": "UpdateCompareLayout",
-   "signature": "int __thiscall MainEquipUI::UpdateCompareLayout()",
    "_misattrib_evidence": "max_offset=173944>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -760,11 +759,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047b140": {
    "name": "FormatItemPath",
-   "signature": "void __thiscall MainEquipUI::FormatItemPath(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -778,11 +777,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x0047b3b0": {
    "name": "Render3DModel",
-   "signature": "BOOL __thiscall MainEquipUI::Render3DModel()",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -792,11 +791,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x0047b6c0": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -819,11 +818,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x0047ec00": {
    "name": "ClearState",
-   "signature": "int __thiscall MainEquipUI::ClearState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -832,11 +831,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047ecb0": {
    "name": "CreateUI",
-   "signature": "int __thiscall MainEquipUI::CreateUI()",
    "_misattrib_evidence": "max_offset=162720>class_size=33228",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -846,11 +845,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00480530": {
    "name": "UpdateFadeAlpha",
-   "signature": "int *__thiscall MainEquipUI::UpdateFadeAlpha(float fVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -864,11 +863,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (float fVal)"
   },
   "0x00481ba0": {
    "name": "SetAdornVisible",
-   "signature": "unsigned __int8 __thiscall MainEquipUI::SetAdornVisible(unsigned __int8 pData)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned __int8",
    "sig_model": {
@@ -882,11 +881,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned __int8 __thiscall(unsigned __int8 pData)"
   },
   "0x00482140": {
    "name": "RenderEquipDetails",
-   "signature": "void __thiscall MainEquipUI::RenderEquipDetails(int arg0)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -900,11 +899,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int arg0)"
   },
   "0x004844a0": {
    "name": "CountVisibleStats",
-   "signature": "int __thiscall MainEquipUI::CountVisibleStats()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -913,11 +912,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0049c9f0": {
    "name": "SetSlotLabel",
-   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -939,11 +938,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x0049e670": {
    "name": "ResetControls",
-   "signature": "void __thiscall MainEquipUI::ResetControls()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -952,11 +951,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0049e8e0": {
    "name": "CreateFromData",
-   "signature": "int __thiscall MainEquipUI::CreateFromData(int *pBuffer)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -970,11 +969,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *pBuffer)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -984,7 +983,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

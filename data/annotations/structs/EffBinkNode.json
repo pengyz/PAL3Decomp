@@ -5,7 +5,6 @@
  "methods": {
   "0x004c1f70": {
    "name": "DestroyEffAudio",
-   "signature": "void __thiscall(void *,char)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -24,11 +23,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void *, char)"
   },
   "0x004c27c0": {
    "name": "slot_5",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -38,11 +37,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c20b0": {
    "name": "~EffBinkNode",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_6",
@@ -54,11 +53,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2090": {
    "name": "CreateEffBink",
-   "signature": "void __thiscall(void)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -73,7 +72,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void)"
   }
  },
  "vtables": [],

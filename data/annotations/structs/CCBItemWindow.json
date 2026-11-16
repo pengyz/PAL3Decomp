@@ -48,7 +48,6 @@
  "methods": {
   "0x0051a3b0": {
    "name": "~CCBItemWindow",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -57,11 +56,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051b1d0": {
    "name": "Reset",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -71,11 +70,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051b210": {
    "name": "Create",
-   "signature": "bool __thiscall(int *pRect, int parent)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -94,11 +93,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int *pRect, int parent)"
   },
   "0x0051b620": {
    "name": "Update",
-   "signature": "UIListBox * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "UIListBox *",
    "sig_model": {
@@ -107,11 +106,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "UIListBox * __thiscall()"
   },
   "0x004461b0": {
    "name": "CCBItemWindow",
-   "signature": "void __thiscall CCBItemWindow::CCBItemWindow()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -120,11 +119,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450650": {
    "name": "SetItemName",
-   "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -138,11 +137,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall (char *pszName)"
   },
   "0x0051a930": {
    "name": "HandleMessage",
-   "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -164,11 +163,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)"
   },
   "0x0051ab00": {
    "name": "CheckMagicKeyPress",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -186,11 +185,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x0051a390": {
    "name": "_scalar_dtor_A390",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -212,11 +211,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x0051a880": {
    "name": "Destroy",
-   "signature": "int __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | multiclaim 裁决 2026-11-03: 败于 CCBItemWindow（uniq=4）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -229,11 +228,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0043ddf0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBControlWindow::Render(void)",
    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
    "semantic_sig": "void",
@@ -243,7 +242,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

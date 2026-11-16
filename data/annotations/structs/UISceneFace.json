@@ -48,7 +48,6 @@
  "methods": {
   "0x0052d0d0": {
    "name": "ResetAllSlots",
-   "signature": "int __thiscall UISceneFace::ResetAllSlots()",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -58,11 +57,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052d010": {
    "name": "SetFaceVisible",
-   "signature": "int __thiscall UISceneFace::SetFaceVisible(int nVal, unsigned int dwVal)",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -81,11 +80,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned int dwVal)"
   },
   "0x0052d0f0": {
    "name": "UpdateFacePosition",
-   "signature": "int __thiscall()",
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -95,7 +94,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  },
  "base_size": 68,

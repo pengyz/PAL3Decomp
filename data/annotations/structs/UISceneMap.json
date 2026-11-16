@@ -42,7 +42,6 @@
  "methods": {
   "0x0044ffe0": {
    "name": "UISceneMap",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UISceneMap（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
@@ -54,11 +53,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004b47e0": {
    "name": "Destructor",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -69,11 +68,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450090": {
    "name": "~UISceneMap",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_90 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneMap。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -83,11 +82,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00535930": {
    "name": "LoadOverlayTexture",
-   "signature": "struct gbVFileSystem *__thiscall(double thisa, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "struct gbVFileSystem *",
    "sig_model": {
@@ -105,11 +104,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "struct gbVFileSystem * __thiscall(double thisa, int nVal)"
   },
   "0x00450070": {
    "name": "_scalar_dtor_0070",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -132,11 +131,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00451200": {
    "name": "LoadCompass",
-   "signature": "int __thiscall UISceneMap::LoadCompass(const char *arg0, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -154,11 +153,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const char *arg0, int nVal)"
   },
   "0x0046f2c0": {
    "name": "RenderWithUpdate",
-   "signature": "int __thiscall UISceneMap::RenderWithUpdate()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -167,11 +166,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b42f0": {
    "name": "ShowPage",
-   "signature": "int __thiscall UISceneMap::ShowPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -180,11 +179,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00527cd0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "Render_527cd0",
    "name_note": "剥壳定谳(验证pass): Render: UI族槽链名, 无反证",
@@ -195,11 +194,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00529c80": {
    "name": "Render_529c80",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -208,11 +207,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00449f70": {
    "name": "ValidateInput",
-   "signature": "unsigned int __thiscall(unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -226,11 +225,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(unsigned int dwVal)"
   },
   "0x00450230": {
    "name": "Render_0230",
-   "signature": "int __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_name": "Render_0230",
@@ -241,13 +240,13 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00450dc0": {
    "name": "Init",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "多组件构造链（UIFrameWnd/UITextArea/PalScript）",
-   "signature": "void __thiscall(UISceneMap *this)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -255,11 +254,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00523e60": {
    "name": "GetSceneInfo",
-   "signature": "int __thiscall()",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -269,11 +268,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052fba0": {
    "name": "SetCurrentMapID",
-   "signature": "int __thiscall UISceneMap::SetCurrentMapID(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -287,11 +286,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00535960": {
    "name": "SetColorIfValid",
-   "signature": "int __thiscall UISceneMap::SetColorIfValid(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -305,11 +304,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00535e50": {
    "name": "SetFieldIfValid",
-   "signature": "int __thiscall UISceneMap::SetFieldIfValid(int nVal)",
    "_misattrib_evidence": "max_offset=224>class_size=68",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -324,11 +323,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004501a0": {
    "name": "Update",
-   "signature": "double __thiscall(float fVal, int nVal)",
    "source": "vtable_migrated",
    "ordinal": 2,
    "evidence_level": "unverified",
@@ -348,11 +347,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall(float fVal, int nVal)"
   },
   "0x00443ca0": {
    "name": "ProcessSceneChange",
-   "signature": "char __thiscall(UISceneMap *this, float fVal)",
    "name_source": "IDA语义分析 2026-11-01 批6",
    "name_note": "场景切换处理（光标+场景信息）",
    "semantic_sig": "char",
@@ -367,11 +366,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(float fVal)"
   },
   "0x00451800": {
    "name": "_todo_00451800",
-   "signature": "",
    "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056B140'] 槽指向本函数 ⇒ 归属 UISceneMap。shape=adjustor · body_head=83 e9 48 e9 88 f6 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -385,7 +384,6 @@
   },
   "0x00450f80": {
    "name": "IsValid",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "IsValid",
    "semantic_sig": "int",
@@ -395,7 +393,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  },
  "vtables": [

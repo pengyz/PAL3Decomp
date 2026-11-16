@@ -108,7 +108,6 @@
  "methods": {
   "0x00451da0": {
    "name": "~UITitle_BBTY",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UITitle_BBTY。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIButton@@QAE@XZ ?_UIWnd@UIWnd@@QAEXXZ",
@@ -120,11 +119,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00451cc0": {
    "name": "UITitle_BBTY",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -133,11 +132,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004520a0": {
    "name": "UpdateFrame",
-   "signature": "double __thiscall UITitle_BBTY::UpdateFrame(double result, int arg0, int arg0a)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "double",
@@ -160,11 +159,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall(double result, int arg0, int arg0a)"
   },
   "0x00451d80": {
    "name": "_scalar_dtor_1D80",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -187,11 +186,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00451e50": {
    "name": "CreateFromScript",
-   "signature": "int __thiscall UITitle_BBTY::CreateFromScript()",
    "_misattrib_evidence": "max_offset=1172>class_size=308",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -201,11 +200,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00452420": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -228,11 +227,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004524b0": {
    "name": "SetRemarkTextures",
-   "signature": "void __thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=556>class_size=140",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -247,11 +246,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00452570": {
    "name": "_nearby_452570",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "| [①渲染错族治理 2026-10-16 analyzer] A 级本体判读+声明性注册（declaration_only 消渲染 C2039，非归属认定）：本体 `d9 05…dc c0 d9 1d…c3`=全局浮点计算桩（读 0x56B1B8 平方写 0xDC25B8）——**真身=自由函数**（渲染成成员调用=错族本体；声明性注册止血+自由函数挂账）",
    "evidence_level": "A",
@@ -262,7 +261,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

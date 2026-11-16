@@ -173,7 +173,6 @@
   "0x00010002": {
    "name": "NewTexture",
    "ordinal": 2,
-   "signature": "gbTexture *__thiscall(const char *name)",
    "evidence_level": "unverified",
    "semantic_sig": "gbTexture *",
    "sig_model": {
@@ -187,7 +186,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbTexture * __thiscall(const char *name)"
   },
   "0x00010001": {
    "name": "MsgProc",
@@ -251,7 +251,6 @@
   },
   "0x00010000": {
    "name": "_todo_010000",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 数据误检标记（vptr_installs 假阳——非码值）+ declaration_only",
    "evidence_level": "unverified",
@@ -262,7 +261,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

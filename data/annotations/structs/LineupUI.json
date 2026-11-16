@@ -396,7 +396,6 @@
  "methods": {
   "0x0047e910": {
    "name": "_scalar_dtor_E910",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_E910。refs: ?ReleaseResource@StateUI@@QAEHXZ ??1UIPushButton@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIF",
@@ -409,11 +408,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00470f40": {
    "name": "~LineupUI",
-   "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=124248>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -423,11 +422,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00477bb0": {
    "name": "OnMessage_7bb0",
-   "signature": "int __thiscall(int msg, int wparam, int lparam)",
    "evidence_level": "unverified",
    "semantic_name": "OnMessage",
    "semantic_sig": "int",
@@ -450,11 +449,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int msg, int wparam, int lparam)"
   },
   "0x00482ed0": {
    "name": "Save",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -463,11 +462,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047e5c0": {
    "name": "LineupUI",
-   "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIPushButton",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -477,11 +476,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00473b50": {
    "name": "InitItemList",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=121112>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -491,11 +490,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00473520": {
    "name": "Render3DModels",
-   "signature": "int __thiscall LineupUI::Render3DModels()",
    "_misattrib_evidence": "max_offset=124260>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -505,11 +504,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00474c50": {
    "name": "UpdateAndForward",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -527,11 +526,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x00475fc0": {
    "name": "RefreshDisplay",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=124248>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -541,11 +540,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004765f0": {
    "name": "SetItemDisplay",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=124076>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -555,11 +554,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00476ed0": {
    "name": "SetItemColors",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=124076>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -569,11 +568,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047e8f0": {
    "name": "_scalar_dtor_E8F0",
-   "signature": "void __thiscall LineupUI::_scalar_dtor(int nVal1)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -592,11 +591,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x0047f880": {
    "name": "RenderEffects",
-   "signature": "void __thiscall LineupUI::RenderEffects()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -606,11 +605,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00482bb0": {
    "name": "ShowPage",
-   "signature": "int __thiscall LineupUI::ShowPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -619,11 +618,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00483650": {
    "name": "CreatePreviewScene",
-   "signature": "void *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
    "sig_model": {
@@ -637,11 +636,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(int nVal)"
   },
   "0x004b1920": {
    "name": "UpdateProtectPanel",
-   "signature": "int *__thiscall LineupUI::UpdateProtectPanel(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -655,11 +654,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int nVal)"
   },
   "0x004b3da0": {
    "name": "RebuildMainPage",
-   "signature": "int __thiscall LineupUI::RebuildMainPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -668,11 +667,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00471590": {
    "name": "InitListView",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=124256>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -682,11 +681,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00472a80": {
    "name": "SetPageIndex",
-   "signature": "int __thiscall LineupUI::SetPageIndex(int nPage)",
    "_misattrib_evidence": "max_offset=124248>class_size=39240",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -701,11 +700,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nPage)"
   },
   "0x00472aa0": {
    "name": "RefreshListData",
-   "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=121112>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -715,11 +714,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004739f0": {
    "name": "BuildEquipList",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=121112>class_size=39240",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -729,11 +728,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00474ab0": {
    "name": "ProcessMouseInput",
-   "signature": "void __thiscall LineupUI::ProcessMouseInput(float fVal)",
    "_misattrib_evidence": "max_offset=121864>class_size=10584",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -748,11 +747,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x00474c80": {
    "name": "BuildListItems",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=124076>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -762,11 +761,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00476010": {
    "name": "PopulateList",
-   "signature": "int __thiscall LineupUI::PopulateList()",
    "_misattrib_evidence": "max_offset=124076>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -776,11 +775,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004765d0": {
    "name": "UpdateAllSlots",
-   "signature": "int __thiscall LineupUI::UpdateAllSlots()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -789,11 +788,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004777b0": {
    "name": "RefreshDisplayEx",
-   "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=123740>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -803,11 +802,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047b0e0": {
    "name": "CountVisibleItems",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -821,11 +820,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x0047f970": {
    "name": "CleanupAndForwardInput",
-   "signature": "int __thiscall LineupUI::CleanupAndForwardInput()",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -835,11 +834,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00480600": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
    "ordinal": 6,
    "source": "+canonical_rename",
    "evidence_level": "unverified",
@@ -864,11 +863,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x004826a0": {
    "name": "RebuildSystemPage",
-   "signature": "int __thiscall LineupUI::RebuildSystemPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -877,11 +876,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00484360": {
    "name": "GetSlotRect",
-   "signature": "int __thiscall LineupUI::GetSlotRect(int nVal, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -899,11 +898,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, unsigned int dwVal)"
   },
   "0x00484810": {
    "name": "RebuildNavPage",
-   "signature": "int __thiscall LineupUI::RebuildNavPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -912,11 +911,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00491630": {
    "name": "RebuildExitPage",
-   "signature": "int __thiscall LineupUI::RebuildExitPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -925,11 +924,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004993d0": {
    "name": "RebuildCaptionPage",
-   "signature": "int __thiscall LineupUI::RebuildCaptionPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -938,11 +937,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004a26d0": {
    "name": "RebuildFontPage",
-   "signature": "int __thiscall LineupUI::RebuildFontPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -951,11 +950,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00488de0": {
    "name": "LoadRoleData",
-   "signature": "void ()",
    "source": "pdb",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -965,11 +964,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void ()"
   },
   "0x00474990": {
    "name": "GetUpdateFlag",
-   "signature": "char __thiscall()",
    "source": "[函数归属判定 2026-10-17·主攻点 2] 迁入 LineupUI（①LineupUI::UpdateAndForward ✓ ③this[103789] ✓ ⑤更新状态查询 ✓——前批面证）——成员访问谱比对类布局 ✓ （禁止仅凭 signature this ✓ 本条为 decomp member access 证）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -979,11 +978,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00470f20": {
    "name": "_scalar_dtor_0f20",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -1005,11 +1004,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -1019,7 +1018,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

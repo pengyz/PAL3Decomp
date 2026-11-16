@@ -24,7 +24,6 @@
  "methods": {
   "0x0043dcb0": {
    "name": "~UILBColumn",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -33,11 +32,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0043dcc0": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -46,7 +45,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "methods_note": "2026-09-14: removed pseudo ctor@0x43DCA0 (11-byte accessor mislabeled by PDB drift); kept ~UILBColumn@0x43DCB0 (jmp Destroy = real dtor shape) and Destroy"

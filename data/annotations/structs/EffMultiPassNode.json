@@ -5,7 +5,6 @@
  "methods": {
   "0x004c2700": {
    "name": "BeginNextPass",
-   "signature": "void __thiscall(void *,char)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -24,11 +23,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void *, char)"
   },
   "0x004c2030": {
    "name": "_adjustor_c",
-   "signature": "void __thiscall(void)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -43,11 +42,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void)"
   },
   "0x004c3400": {
    "name": "BeginMultiPassRender",
-   "signature": "void __thiscall(char)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -62,11 +61,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char)"
   },
   "0x004c2870": {
    "name": "~EffMultiPassNode",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_6",
@@ -78,11 +77,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2930": {
    "name": "InitTargetPos",
-   "signature": "void __thiscall(float *,float,float,float)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -109,11 +108,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float *, float, float, float)"
   },
   "0x004c29a0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -130,11 +129,11 @@
     "pending": false
    },
    "semantic_name": "UpdateInternal",
-   "name_note": "; 链律修正: slot5链名=UpdateFrame"
+   "name_note": "; 链律修正: slot5链名=UpdateFrame",
+   "signature": "void __thiscall(float)"
   },
   "0x004c2820": {
    "name": "CreateDeactivated",
-   "signature": "void __thiscall(void)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -149,7 +148,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void)"
   }
  },
  "vtables": [],

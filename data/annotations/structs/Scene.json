@@ -116,7 +116,6 @@
  "methods": {
   "0x00456fc0": {
    "name": "GetNumObj",
-   "signature": "int ()",
    "source": "pdb",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -126,11 +125,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int ()"
   },
   "0x00410990": {
    "name": "AddRoleEntry",
-   "signature": "int __thiscall(const int pRoleTriple[3])",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -144,11 +143,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const int pRoleTriple[3])"
   },
   "0x00421230": {
    "name": "GetTileHeight",
-   "signature": "double __thiscall RoleSystem::GetTileHeight(int nSceneIdx, int nX, int nY, int *pFlags)",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -174,11 +173,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall(int nSceneIdx, int nX, int nY, int *pFlags)"
   },
   "0x0040c7d0": {
    "name": "Render2",
-   "signature": "void __thiscall()",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -188,13 +187,13 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00421870": {
    "name": "RemoveVisNode",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "场景图节点移除",
-   "signature": "void __thiscall(Scene *this)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -202,13 +201,13 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00421830": {
    "name": "AddVisNode",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "场景图节点注册",
-   "signature": "void __thiscall(struct gbVisNode **this)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -216,7 +215,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  }
 }

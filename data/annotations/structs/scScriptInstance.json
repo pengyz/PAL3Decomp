@@ -48,7 +48,6 @@
  "methods": {
   "0x0044e5e0": {
    "name": "~scScriptInstance",
-   "signature": "void __thiscall scScriptInstance::~scScriptInstance()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -58,11 +57,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044e980": {
    "name": "OnVisible",
-   "signature": "void __thiscall(int,int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -81,11 +80,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int)"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_5",
@@ -97,42 +96,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x00445cd0": {
-   "name": "Render",
-   "signature": "void __thiscall(void)",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "void",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00445c10": {
-   "name": "HideAll",
-   "signature": "void __thiscall()",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_3",
-   "name_note": "槽链传播: 同址语义名(HideAll)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

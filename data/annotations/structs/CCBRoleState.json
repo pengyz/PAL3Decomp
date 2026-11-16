@@ -647,7 +647,6 @@
  "methods": {
   "0x004ed010": {
    "name": "IsRoleAlive",
-   "signature": "char __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -661,11 +660,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004ed040": {
    "name": "IsActive",
-   "signature": "char __thiscall(int index)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -679,11 +678,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int index)"
   },
   "0x004ed060": {
    "name": "GetRoleType",
-   "signature": "char __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -697,11 +696,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004ed100": {
    "name": "GetForce",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -715,11 +714,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004edd60": {
    "name": "CCBRoleState",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -728,11 +727,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004ee430": {
    "name": "Reset",
-   "signature": "char *__thiscall(int nVal, char *pszBuf)",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -750,11 +749,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(int nVal, char *pszBuf)"
   },
   "0x004ee540": {
    "name": "Create",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -764,11 +763,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004ee760": {
    "name": "Destroy",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -778,11 +777,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004ee7c0": {
    "name": "Init",
-   "signature": "bool __thiscall(int nVal, char pData)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_name": "Init_E7C0",
@@ -803,11 +802,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal, char pData)"
   },
   "0x004ee870": {
    "name": "InitUI",
-   "signature": "tagRoleState *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "tagRoleState *",
    "sig_model": {
@@ -821,11 +820,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "tagRoleState * __thiscall(int nVal)"
   },
   "0x004ee890": {
    "name": "UpdateRoleMP",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| [T100] 同名消歧：@0x4EE890 体=GetRoleMP(this,roleIdx); return 0（decomp 证据）⇒ 语义名 UpdateRoleMP（与类内 GetRoleMP 命名族一致）；@0x4ECB00 保留 Update（全周期：CheckStatus/ProcessActions/UpdateEffects）——禁伪语义命名 ✓",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -840,11 +839,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004ee990": {
    "name": "VarianceRoundCounter",
-   "signature": "bool __thiscall(int *nRoleIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -858,11 +857,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int *nRoleIndex)"
   },
   "0x004eea70": {
    "name": "CheckVarianceRound",
-   "signature": "void __thiscall(int nRoleIndex, int nVal, int *pnVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -885,11 +884,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleIndex, int nVal, int *pnVal)"
   },
   "0x004eecb0": {
    "name": "CancelVariance",
-   "signature": "void __thiscall(int *nRoleIndex, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -907,11 +906,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int *nRoleIndex, unsigned int dwVal)"
   },
   "0x004eee60": {
    "name": "IsAlive",
-   "signature": "char __thiscall(int nIndex, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -929,11 +928,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nIndex, int nVal)"
   },
   "0x004ef4a0": {
    "name": "IsBoss",
-   "signature": "void __thiscall(int *arg0, unsigned int nRoleIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -951,11 +950,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int *arg0, unsigned int nRoleIndex)"
   },
   "0x004ef6a0": {
    "name": "IsAllWeDead",
-   "signature": "bool __thiscall(int bCheckHP)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -970,11 +969,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int bCheckHP)"
   },
   "0x004ef6c0": {
    "name": "IsAllEnemyDead",
-   "signature": "int *__thiscall(int bCheckHP, int *pnVal, int *pnVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -996,11 +995,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int bCheckHP, int *pnVal, int *pnVal2)"
   },
   "0x004ef710": {
    "name": "CanAction",
-   "signature": "bool __thiscall(int nIndex, int nVal, int nVal2)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -1023,11 +1022,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nIndex, int nVal, int nVal2)"
   },
   "0x004ef7e0": {
    "name": "SetCanAction",
-   "signature": "void __thiscall(unsigned int dmg, int roleIdx, int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1050,11 +1049,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(unsigned int dmg, int roleIdx, int nVal)"
   },
   "0x004ef8b0": {
    "name": "RandSetEnemyPos",
-   "signature": "void __thiscall(const void *arg0)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1068,11 +1067,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const void *arg0)"
   },
   "0x004ef980": {
    "name": "CalcHealAmount",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1086,11 +1085,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004efaf0": {
    "name": "WriteBackRoleData",
-   "signature": "void __thiscall(int nVal, int *p_DWORD, int *pnVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1113,11 +1112,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int *p_DWORD, int *pnVal)"
   },
   "0x004efd70": {
    "name": "WriteBackConfig",
-   "signature": "bool __thiscall(int roleIdx, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1135,11 +1134,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int roleIdx, int nVal)"
   },
   "0x004efe90": {
    "name": "ReviveAllFriendAtEnd",
-   "signature": "bool __thiscall(int roleIdx, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1157,11 +1156,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int roleIdx, int nVal)"
   },
   "0x004effc0": {
    "name": "IsRoleReady",
-   "signature": "bool __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1175,11 +1174,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int roleIdx)"
   },
   "0x004f0020": {
    "name": "SetEnemyBeImbibeNimbus",
-   "signature": "void __thiscall(char pData, char pData2)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1198,11 +1197,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char pData, char pData2)"
   },
   "0x004f0210": {
    "name": "CalSneakAttack",
-   "signature": "bool __thiscall(int nVal, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1220,11 +1219,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
   },
   "0x004f0360": {
    "name": "InitRoleFiveMagic",
-   "signature": "unsigned int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -1238,11 +1237,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int nVal)"
   },
   "0x004f05a0": {
    "name": "IsAllyTargetCmd",
-   "signature": "char __thiscall CCBRoleState::IsAllyTargetCmd(int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1256,11 +1255,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *p_DWORD)"
   },
   "0x004f0640": {
    "name": "InitRoleSpecEquipAttrib",
-   "signature": "void __thiscall(int nRoleIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1274,11 +1273,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleIndex)"
   },
   "0x004f0700": {
    "name": "UnloadWeaponModel",
-   "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1293,11 +1292,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x004f0750": {
    "name": "SetVisible",
-   "signature": "bool __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 2 params",
    "evidence_level": "unverified",
@@ -1308,11 +1307,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004f07d0": {
    "name": "IsRoleIndexEqual",
-   "signature": "char __thiscall(int nIndex, int nVal)",
    "source": "| [T109] 同名消歧：@0x4F07D0 全函数体=switch(nIndex) 各 case `nVal==nIndex` return 1（跳表形相等判定）⇒ 语义名 IsRoleIndexEqual（禁伪语义 ✓ 全函数体证据）；@0x4F2C30 GetRole 保留（对象 getter）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -1331,11 +1330,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nIndex, int nVal)"
   },
   "0x004f0830": {
    "name": "GetRoleNum",
-   "signature": "unsigned char __thiscall(int *pnVal)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned char",
    "sig_model": {
@@ -1349,11 +1348,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned char __thiscall(int *pnVal)"
   },
   "0x004f1070": {
    "name": "GetAliveRoleNumInForce",
-   "signature": "char __thiscall(struct tagCmdData *force)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1367,11 +1366,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(struct tagCmdData *force)"
   },
   "0x004f1420": {
    "name": "GetDeadRoleNumInForce",
-   "signature": "char __thiscall(int *force)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1385,11 +1384,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *force)"
   },
   "0x004f17c0": {
    "name": "GetFirstAliveRoleInForce",
-   "signature": "char __thiscall(int roleIdx, int arg4)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1407,11 +1406,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx, int arg4)"
   },
   "0x004f1a30": {
    "name": "GetCastFightSkillSuccess",
-   "signature": "bool __thiscall(int pCmd)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1426,11 +1425,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int pCmd)"
   },
   "0x004f1b20": {
    "name": "SetCoAttack",
-   "signature": "void __thiscall(unsigned int dwCoAttackID)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1445,11 +1444,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(unsigned int dwCoAttackID)"
   },
   "0x004f1cc0": {
    "name": "CanBeImbibeNimbus",
-   "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1468,11 +1467,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int dmg, unsigned int nRoleIndex)"
   },
   "0x004f1fa0": {
    "name": "CheckRoleValid",
-   "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1495,11 +1494,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nRoleIndex, unsigned int roleIdx, int nVal)"
   },
   "0x004f2310": {
    "name": "CheckRoleNimbus",
-   "signature": "char __thiscall(int nRoleIndex, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1517,11 +1516,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nRoleIndex, unsigned int dwVal)"
   },
   "0x004f2350": {
    "name": "CanBeSelect",
-   "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1540,11 +1539,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(tagCmdData *pCmd, unsigned int nDestRole)"
   },
   "0x004f2910": {
    "name": "SetRoleHP",
-   "signature": "int __thiscall(int roleIdx, int value)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1563,11 +1562,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx, int value)"
   },
   "0x004f2bb0": {
    "name": "SetRoleField",
-   "signature": "int __thiscall(int roleIdx, int value)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1585,11 +1584,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx, int value)"
   },
   "0x004f3020": {
    "name": "CalcAttackPower",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1603,11 +1602,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f31c0": {
    "name": "CalcDefensePower",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1621,11 +1620,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3380": {
    "name": "GetMaxHP",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1640,11 +1639,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f33d0": {
    "name": "GetMaxMP",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1659,11 +1658,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3420": {
    "name": "GetTotalRounds",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1672,11 +1671,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004f3430": {
    "name": "CheckBuff",
-   "signature": "char __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -1691,11 +1690,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004f34e0": {
    "name": "CanUseSkill",
-   "signature": "char __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -1710,11 +1709,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004f3570": {
    "name": "CalcMagicAttack",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1729,11 +1728,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3620": {
    "name": "CalcMPRegen",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1748,11 +1747,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f36d0": {
    "name": "CalcMagicDefense",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1767,11 +1766,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f37a0": {
    "name": "GetAttackBonus",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1785,11 +1784,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3820": {
    "name": "GetDefenseBonus",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1803,11 +1802,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f38a0": {
    "name": "GetRoleState",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1821,11 +1820,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3920": {
    "name": "GetSpeedBonus",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1839,11 +1838,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f39a0": {
    "name": "GetRoleLevel",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1858,11 +1857,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f39f0": {
    "name": "GetRoleExp",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1877,11 +1876,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3a30": {
    "name": "SetRoleFlag",
-   "signature": "char __thiscall(int roleIdx, char flag)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1899,11 +1898,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx, char flag)"
   },
   "0x004f3a50": {
    "name": "GetRoleAttr",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1917,11 +1916,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3ad0": {
    "name": "CalcMPCost",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1935,11 +1934,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3b90": {
    "name": "GetRoleMP",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1954,11 +1953,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f3c00": {
    "name": "IsForce1",
-   "signature": "int __thiscall(int force)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1972,11 +1971,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int force)"
   },
   "0x004f3c20": {
    "name": "IsPlayerTeam",
-   "signature": "char __thiscall(int force)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1990,11 +1989,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int force)"
   },
   "0x004f3cc0": {
    "name": "IsRoleInForce",
-   "signature": "bool __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -2008,11 +2007,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int roleIdx)"
   },
   "0x004f3d10": {
    "name": "CanRoleAct",
-   "signature": "char __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2026,11 +2025,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004f3d90": {
    "name": "GetRoleField",
-   "signature": "char __thiscall(int roleIdx, int fieldOff)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2048,11 +2047,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx, int fieldOff)"
   },
   "0x004f3e20": {
    "name": "ProcessRound",
-   "signature": "char *__thiscall(CCBRoleState *this, unsigned int dwVal, int, int, int)",
    "source": "fix:C2660:dual evidence: caller push x4 + callee retn 10h x5; mangled QAEDI is pollution; last 3 param types provisional",
    "evidence_level": "A",
    "semantic_sig": "char *",
@@ -2079,11 +2078,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(unsigned int dwVal, int, int, int)"
   },
   "0x004f4da0": {
    "name": "ProcessAttackResult",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2098,11 +2097,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f5070": {
    "name": "ProcessMagicResult",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2117,11 +2116,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f55d0": {
    "name": "CalcPhysicalDamage",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2136,11 +2135,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f57a0": {
    "name": "CalcMagicDamage",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2155,11 +2154,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f5970": {
    "name": "ProcessSkillEffect",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2174,11 +2173,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f5b70": {
    "name": "ProcessItemEffect",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 1——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2193,11 +2192,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f7500": {
    "name": "GetRoleAI",
-   "signature": "char __thiscall(void *pOut)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2211,11 +2210,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(void *pOut)"
   },
   "0x004f7880": {
    "name": "CheckStatus",
-   "signature": "unsigned int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -2224,11 +2223,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x004f7910": {
    "name": "ProcessActions",
-   "signature": "void *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
    "sig_model": {
@@ -2237,11 +2236,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall()"
   },
   "0x004f8480": {
    "name": "UpdateEffects",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2250,11 +2249,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004f98b0": {
    "name": "ApplyDamage",
-   "signature": "int __thiscall(int roleIdx, int dmg)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2272,11 +2271,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx, int dmg)"
   },
   "0x004fa540": {
    "name": "CheckRoleStatus",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2291,11 +2290,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004fa6a0": {
    "name": "CheckDeath",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2309,11 +2308,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004fa8b0": {
    "name": "Revive",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2327,11 +2326,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004fa930": {
    "name": "UpdateRoleMP_a930",
-   "signature": "char __thiscall(char arg0, int nVal)",
    "evidence_level": "unverified",
    "semantic_name": "UpdateRoleMP",
    "semantic_sig": "char",
@@ -2350,11 +2349,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char arg0, int nVal)"
   },
   "0x004ecb00": {
    "name": "Update",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2363,11 +2362,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004f3c70": {
    "name": "GetRoleForce",
-   "signature": "char __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2381,11 +2380,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x00456ab0": {
    "name": "Init_6AB0",
-   "signature": "void __thiscall(CCBRoleState *this)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "初始化（UIListBox ctor + 字段设值）",
    "semantic_sig": "void",
@@ -2395,11 +2394,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005020d0": {
    "name": "CalcTurnDelay",
-   "signature": "int __thiscall CCBRoleState::CalcTurnDelay(int nVal)",
    "_misattrib_evidence": "max_offset=164>class_size=4",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2414,11 +2413,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00503ae0": {
    "name": "GetRoleMPValue",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2440,11 +2439,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004f7fc0": {
    "name": "ProcessCombatDialog",
-   "signature": "void __thiscall CCBRoleState::ProcessCombatDialog(unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2458,11 +2457,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(unsigned int dwVal)"
   },
   "0x004f3dc0": {
    "name": "FindFirstEnemySlot",
-   "signature": "int __thiscall CCBRoleState::FindFirstEnemySlot(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2476,11 +2475,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x00457070": {
    "name": "ctor",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 6,
@@ -2506,11 +2505,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00456b80": {
    "name": "_scalar_dtor_6B80",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_6B80 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_6B80。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
    "declaration_only": true,
@@ -2521,11 +2520,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004f2c30": {
    "name": "GetRole",
-   "signature": "void *__thiscall(int index)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
@@ -2540,11 +2539,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(int index)"
   },
   "0x004dc720": {
    "name": "IsRoleShelved",
-   "signature": "BOOL __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [T104] 同名消歧：@0x4DC720 体=sCGSHELF[64*nVal1+43] 槽检查（decomp 成员访问证据：sCGSHELF 架子数组）⇒ 语义名 IsRoleShelved（禁伪语义 ✓）；@0x4EEE60 IsAlive 保留（m_pObjMsgBuffer 活性检查形）",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -2559,11 +2558,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal1)"
   },
   "0x004dc7a0": {
    "name": "InitCombatDialog",
-   "signature": "void __thiscall CCBRoleState::InitCombatDialog()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2572,11 +2571,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004ecb20": {
    "name": "ProcessCombatAction",
-   "signature": "char __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2590,11 +2589,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004eef20": {
    "name": "CalcCombatDamage",
-   "signature": "int __thiscall(const void *pData, unsigned int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2612,11 +2611,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const void *pData, unsigned int roleIdx)"
   },
   "0x004f2690": {
    "name": "CheckBoss",
-   "signature": "int __thiscall(int *arg0, int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2634,11 +2633,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *arg0, int roleIdx)"
   },
   "0x00456b60": {
    "name": "_scalar_dtor_6B60",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -2661,11 +2660,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x004dcf80": {
    "name": "HandleMagicMenu",
-   "signature": "int __thiscall CCBRoleState::HandleMagicMenu(int nState)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2679,11 +2678,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nState)"
   },
   "0x004ddc90": {
    "name": "EndRoundTasks",
-   "signature": "int __thiscall(int B4)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2697,11 +2696,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int B4)"
   },
   "0x004df3d0": {
    "name": "CheckSelfMP",
-   "signature": "char __thiscall()",
    "source": "| [T106] 同名消歧：0x004DF3D0 体=GetRoleMP(this->m_id,1)（m_id=自身角色槽）⇒ 自身 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckSelfMP（禁伪语义 ✓）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -2711,11 +2710,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e1a40": {
    "name": "CombatDialogProc",
-   "signature": "int __thiscall CCBRoleState::CombatDialogProc(int nVal, HWND hDlg, unsigned int uMsg, int wParam, int lParam)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2745,11 +2744,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, HWND hDlg, unsigned int uMsg, int wParam, int lParam)"
   },
   "0x004e2c10": {
    "name": "HandleDlgMessage",
-   "signature": "LRESULT __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -2758,11 +2757,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall()"
   },
   "0x004e30e0": {
    "name": "SyncRoleUIData",
-   "signature": "unsigned char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned char",
    "sig_model": {
@@ -2771,11 +2770,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned char __thiscall()"
   },
   "0x004e40b0": {
    "name": "UpdateDebugDialog",
-   "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugDialog()",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -2784,11 +2783,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall()"
   },
   "0x004ec910": {
    "name": "SetupCombatLayout",
-   "signature": "int __thiscall CCBRoleState::SetupCombatLayout()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2797,11 +2796,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004ed250": {
    "name": "LoadPartyData",
-   "signature": "int __fastcall CCBRoleState::LoadPartyData(CCBRoleState *this)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2810,11 +2809,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __fastcall()"
   },
   "0x004ed870": {
    "name": "SyncSkillCent",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2823,11 +2822,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ee910": {
    "name": "CheckRoleMP",
-   "signature": "int __thiscall(int roleIdx)",
    "source": "| [T106] 同名消歧：0x004EE910 体=GetRoleMP(this,roleIdx)（显式 roleIdx）⇒ 按角色 MP 检查（decomp 调用实参证据）⇒ 语义名 CheckRoleMP（禁伪语义 ✓）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2842,11 +2841,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004f0a10": {
    "name": "CalcCombatDamage_0a10",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_name": "CalcCombatDamage",
    "semantic_sig": "char",
@@ -2861,11 +2860,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x004f2390": {
    "name": "CheckRoundComplete",
-   "signature": "char __thiscall CCBRoleState::CheckRoundComplete()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2874,11 +2873,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004f2560": {
    "name": "ValidateSlotIndex",
-   "signature": "char __thiscall(unsigned int arg0, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2896,11 +2895,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(unsigned int arg0, unsigned int dwVal)"
   },
   "0x004f2660": {
    "name": "CheckTargetCombo",
-   "signature": "int __thiscall CCBRoleState::CheckTargetCombo(struct tagCmdData *p, unsigned int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2918,11 +2917,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(struct tagCmdData *p, unsigned int roleIdx)"
   },
   "0x004f27b0": {
    "name": "GetV4",
-   "signature": "int __thiscall(int *arg0, unsigned int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2940,11 +2939,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *arg0, unsigned int roleIdx)"
   },
   "0x004f27e0": {
    "name": "CalcComboDirect",
-   "signature": "int __thiscall CCBRoleState::CalcComboDirect(const void *pData, unsigned int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2962,11 +2961,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const void *pData, unsigned int roleIdx)"
   },
   "0x004f2800": {
    "name": "ApplyItemEffect",
-   "signature": "int __thiscall CCBRoleState::ApplyItemEffect(int nCmdData, int nParam)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2984,11 +2983,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nCmdData, int nParam)"
   },
   "0x004f48c0": {
    "name": "TickDebuffs",
-   "signature": "void __thiscall CCBRoleState::TickDebuffs(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3002,11 +3001,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int roleIdx)"
   },
   "0x004f4b90": {
    "name": "CalcSpellDamage",
-   "signature": "unsigned int __thiscall CCBRoleState::CalcMagicDamage(int roleIdx, int nMagicID)",
    "source": "| [T107] 同名消歧：0x004F4B90 体带 nMagicID 形参（法术 ID）⇒ 按法术伤害计算（调用实参/形参证据） ⇒ 语义名 CalcSpellDamage（禁伪语义 ✓）；@0x4F57A0 CalcMagicDamage 保留（无 nMagicID 形=通用魔法伤害）",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
@@ -3025,11 +3024,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int roleIdx, int nMagicID)"
   },
   "0x004f4c80": {
    "name": "CalcSkillDamage",
-   "signature": "unsigned int __thiscall CCBRoleState::CalcSkillDamage(int roleIdx, int nSkillID)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -3047,11 +3046,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int roleIdx, int nSkillID)"
   },
   "0x004f5330": {
    "name": "AISelectItem",
-   "signature": "int __thiscall CCBRoleState::AISelectItem(int roleIdx, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3069,11 +3068,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx, char pData)"
   },
   "0x004f5d00": {
    "name": "AISelectMagic",
-   "signature": "int __thiscall CCBRoleState::AISelectMagic(unsigned int roleIdx, char pData, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3095,11 +3094,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, char pData, int nVal)"
   },
   "0x004f6000": {
    "name": "AISelectHealItem",
-   "signature": "int __thiscall CCBRoleState::AISelectHealItem(unsigned int roleIdx, char pData, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3121,11 +3120,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, char pData, int nVal)"
   },
   "0x004f61d0": {
    "name": "AISelectTarget",
-   "signature": "int __thiscall CCBRoleState::AISelectTarget(unsigned int roleIdx, char pData, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3147,11 +3146,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, char pData, int nVal)"
   },
   "0x004f6370": {
    "name": "AISelectSkill",
-   "signature": "int __thiscall CCBRoleState::AISelectSkill(unsigned int roleIdx, int nVal, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3173,11 +3172,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, int nVal, char pData)"
   },
   "0x004f6690": {
    "name": "AISelectItemForSkill",
-   "signature": "int __thiscall CCBRoleState::AISelectItemForSkill(unsigned int roleIdx, int nSkillID, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3199,11 +3198,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, int nSkillID, char pData)"
   },
   "0x004f6860": {
    "name": "AISelectSkillTarget",
-   "signature": "int __thiscall CCBRoleState::AISelectSkillTarget(unsigned int roleIdx, int nSkillID, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3225,11 +3224,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int roleIdx, int nSkillID, char pData)"
   },
   "0x004f7200": {
    "name": "CheckEventCondition",
-   "signature": "char __thiscall CCBRoleState::CheckEventCondition(int pEvent)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3243,11 +3242,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int pEvent)"
   },
   "0x004f8af0": {
    "name": "ProcessControlInput",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3256,11 +3255,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004f8fa0": {
    "name": "LoadRoleModel",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3274,11 +3273,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x004f8fd0": {
    "name": "SpawnRandomEnemies",
-   "signature": "char __thiscall CCBRoleState::SpawnRandomEnemies(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3296,11 +3295,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal, int nVal2)"
   },
   "0x004f90f0": {
    "name": "CheckRoleCanAct",
-   "signature": "char *__thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -3314,11 +3313,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(int roleIdx)"
   },
   "0x004f91b0": {
    "name": "PopulateItemList",
-   "signature": "char *__thiscall CCBRoleState::PopulateItemList(int nSlot)",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -3332,11 +3331,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall (int nSlot)"
   },
   "0x004f9390": {
    "name": "PopulateMagicList",
-   "signature": "unsigned int __thiscall CCBRoleState::PopulateMagicList(int nSlot)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
    "sig_model": {
@@ -3350,11 +3349,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int nSlot)"
   },
   "0x004fb370": {
    "name": "CheckMPRequirement",
-   "signature": "int __thiscall CCBRoleState::CheckMPRequirement(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3368,11 +3367,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00449f00": {
    "name": "CalcSpringForce",
-   "signature": "__int64 __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "__int64",
    "sig_model": {
@@ -3390,11 +3389,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "__int64 __thiscall(int nVal, int nVal2)"
   },
   "0x00449fe0": {
    "name": "UpdateSpringAnim",
-   "signature": "int __thiscall CCBRoleState::UpdateSpringAnim(float fDelta)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3408,11 +3407,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(float fDelta)"
   },
   "0x0044a2e0": {
    "name": "UpdateFadeAlpha",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -3421,11 +3420,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044a3d0": {
    "name": "InitFadeAndSpring",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3434,11 +3433,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00456c20": {
    "name": "~CCBRoleState",
-   "signature": "void __thiscall CCBRoleState::~CCBRoleState()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -3448,11 +3447,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00457020": {
    "name": "PlayVideoIfReady",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -3471,11 +3470,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x0046d770": {
    "name": "LayoutSlotPanelA",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3489,11 +3488,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0046d890": {
    "name": "LayoutSlotPanelB",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3507,11 +3506,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0046d9b0": {
    "name": "LayoutSlotPanelC",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3525,11 +3524,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0046dad0": {
    "name": "LayoutSlotPanelD",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3543,11 +3542,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0046dbf0": {
    "name": "LayoutSlotPanelE",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3561,11 +3560,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0046f390": {
    "name": "NotifyStateChange",
-   "signature": "int __thiscall CCBRoleState::NotifyStateChange(unsigned __int8 nState)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3579,11 +3578,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nState)"
   },
   "0x004dc760": {
    "name": "GetCombatDialogPos",
-   "signature": "char __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3605,11 +3604,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)"
   },
   "0x004dcd00": {
    "name": "HandleItemMenu",
-   "signature": "int __thiscall CCBRoleState::HandleItemMenu(int nState)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3623,11 +3622,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nState)"
   },
   "0x004dd300": {
    "name": "HandleTargetMenu",
-   "signature": "int __thiscall CCBRoleState::HandleTargetMenu(int nState)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3641,11 +3640,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nState)"
   },
   "0x004dd650": {
    "name": "StartLineupPhase",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3659,11 +3658,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004de8c0": {
    "name": "InitSelectionUI",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3677,11 +3676,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004dee80": {
    "name": "DispatchCombatAction",
-   "signature": "int __thiscall CCBRoleState::DispatchCombatAction(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3695,11 +3694,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004df2f0": {
    "name": "ExecuteCombatCommand",
-   "signature": "int __thiscall CCBRoleState::ExecuteCombatCommand(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3713,11 +3712,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004df370": {
    "name": "GetActionPriority",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3731,11 +3730,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004df6d0": {
    "name": "ResetDialogSlots",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3744,11 +3743,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e28f0": {
    "name": "UpdateDebugTreeView",
-   "signature": "LRESULT __thiscall CCBRoleState::UpdateDebugTreeView()",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -3757,11 +3756,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall()"
   },
   "0x004e4570": {
    "name": "ApplyDebugEdits",
-   "signature": "char __thiscall CCBRoleState::ApplyDebugEdits()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3770,11 +3769,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ec680": {
    "name": "ClearAndSetGP",
-   "signature": "CCBRoleState * __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "CCBRoleState *",
    "sig_model": {
@@ -3788,11 +3787,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBRoleState * __thiscall(int nVal)"
   },
   "0x004ec7d0": {
    "name": "IterateMagicSlots",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3801,11 +3800,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ec830": {
    "name": "DestroyAndReinit",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3814,11 +3813,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ed0a0": {
    "name": "ApplyHitEffect",
-   "signature": "char __thiscall(char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3832,11 +3831,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char pData)"
   },
   "0x004ed170": {
    "name": "ShuffleSlots",
-   "signature": "char __thiscall CCBRoleState::ShuffleSlots()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3845,11 +3844,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ed680": {
    "name": "SavePartyData",
-   "signature": "char __thiscall CCBRoleState::SavePartyData()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3858,11 +3857,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004ed800": {
    "name": "UpdateDefenceStats",
-   "signature": "char *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -3871,11 +3870,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x004edc60": {
    "name": "RollInitiative",
-   "signature": "int __thiscall CCBRoleState::RollInitiative()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3884,11 +3883,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004eed60": {
    "name": "ForceRoleTaskByCond",
-   "signature": "char __thiscall CCBRoleState::ForceRoleTaskByCond(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3902,11 +3901,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int roleIdx)"
   },
   "0x004f2bf0": {
    "name": "GetRoleGPBak",
-   "signature": "int __thiscall(int nVal, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3924,11 +3923,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, char pData)"
   },
   "0x004f6da0": {
    "name": "ValidateCommandTarget",
-   "signature": "char __thiscall CCBRoleState::ValidateCommandTarget(int *pCmd)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3942,11 +3941,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *pCmd)"
   },
   "0x004f7480": {
    "name": "CheckMagicCost",
-   "signature": "char __thiscall(int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -3960,11 +3959,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *p_DWORD)"
   },
   "0x004f76c0": {
    "name": "GetSkillCostLevel",
-   "signature": "int __thiscall CCBRoleState::GetSkillCostLevel(unsigned int dwSlot, int nSkillID)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -3982,11 +3981,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int dwSlot, int nSkillID)"
   },
   "0x004f7820": {
    "name": "SumGPCost",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -4000,11 +3999,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x004f8bb0": {
    "name": "InitSlot",
-   "signature": "int __thiscall CCBRoleState::InitSlot(int idx, int nRoleID)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4022,11 +4021,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int idx, int nRoleID)"
   },
   "0x004f9340": {
    "name": "GetDialogSlot",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4044,11 +4043,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004f9590": {
    "name": "GetMagicSlotData",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4070,11 +4069,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004f95f0": {
    "name": "PopulateTargetList",
-   "signature": "int __thiscall CCBRoleState::PopulateTargetList(int nSlot, int nType)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4092,11 +4091,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nSlot, int nType)"
   },
   "0x004f9790": {
    "name": "UpdateCommandButtons",
-   "signature": "int __thiscall CCBRoleState::UpdateCommandButtons(int nSlot)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4110,11 +4109,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nSlot)"
   },
   "0x004fa210": {
    "name": "GetSlotState",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4132,11 +4131,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004fa280": {
    "name": "CalcSpeedByLevel",
-   "signature": "int __thiscall CCBRoleState::CalcSpeedByLevel(int nRole, int nLevel)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4154,11 +4153,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nRole, int nLevel)"
   },
   "0x004fa330": {
    "name": "GetActionTypeBySlot",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4176,11 +4175,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004fa3a0": {
    "name": "CalcDefenseByLevel",
-   "signature": "int __thiscall CCBRoleState::CalcDefenseByLevel(int nRole, int nLevel)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4198,11 +4197,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nRole, int nLevel)"
   },
   "0x004fa440": {
    "name": "CalcDamage",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4220,11 +4219,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004fa4e0": {
    "name": "FindSlotByHP",
-   "signature": "int __thiscall(unsigned int nVal, unsigned int dwVal)",
    "source": "| param a typed: decomp shows two unsigned int stack args (userpurge a2,a3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -4243,11 +4242,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int nVal, unsigned int dwVal)"
   },
   "0x004fa510": {
    "name": "GetRoleCount",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4261,11 +4260,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004fa560": {
    "name": "GetSlotActionType",
-   "signature": "int __thiscall(int nVal, char *Buffer)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4283,11 +4282,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, char *Buffer)"
   },
   "0x004fa5f0": {
    "name": "FindRoleByID",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4301,11 +4300,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004fa620": {
    "name": "CountValidSlots",
-   "signature": "int __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4331,11 +4330,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)"
   },
   "0x004fa700": {
    "name": "GetSlotType",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4349,11 +4348,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004fa760": {
    "name": "SwapEffectParams",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4367,11 +4366,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004fb6b0": {
    "name": "RandomizeSpecialSkill",
-   "signature": "int __thiscall CCBRoleState::RandomizeSpecialSkill(int nSkillId)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4385,11 +4384,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nSkillId)"
   },
   "0x005021c0": {
    "name": "FadeMusicIn",
-   "signature": "int __thiscall CCBRoleState::FadeMusicIn(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4403,11 +4402,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00502300": {
    "name": "FadeMusicOut",
-   "signature": "int __thiscall CCBRoleState::FadeMusicOut(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4421,11 +4420,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00502430": {
    "name": "GetCombatDialogEntry",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4439,11 +4438,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005025c0": {
    "name": "FormatSkillResultText",
-   "signature": "int __thiscall CCBRoleState::FormatSkillResultText(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4457,11 +4456,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005027e0": {
    "name": "FormatAttackResultText",
-   "signature": "int __thiscall CCBRoleState::FormatAttackResultText(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4475,11 +4474,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00502950": {
    "name": "FormatItemResultText",
-   "signature": "int __thiscall CCBRoleState::FormatItemResultText(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4493,11 +4492,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00502cc0": {
    "name": "FormatMagicResultText",
-   "signature": "int __thiscall CCBRoleState::FormatMagicResultText(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4511,11 +4510,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004ec6b0": {
    "name": "ClearRoleMemory",
-   "signature": "int __thiscall()",
    "class": "CCBRoleState",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -4525,11 +4524,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e5110": {
    "name": "GetTargetCommand",
-   "signature": "int __cdecl CCBRoleState::GetTargetCommand()",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -4539,11 +4538,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl()"
   },
   "0x004f3bc0": {
    "name": "GetRoleHP",
-   "signature": "int __thiscall(int roleIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4557,11 +4556,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int roleIdx)"
   },
   "0x004edf10": {
    "name": "UpdateRolePositions",
-   "signature": "char __thiscall()",
    "source": "ida_xref:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -4571,11 +4570,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004dc250": {
    "name": "UpdatePanel",
-   "signature": "int __thiscall(BOOL bRefresh)",
    "_misattrib_evidence": "round3: this=CCBRoleState (mov ecx,esi -> GetRoleField family); +0xC/+0x20 are CCBRoleState known_members; sole caller x12",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -4590,11 +4589,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(BOOL bRefresh)"
   },
   "0x004f2c70": {
    "name": "AddCommand",
-   "signature": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)",
    "_misattrib_evidence": "round3: this=CCBRoleState: GetRoleField/GetTotalRounds/CheckBuff all on own this; CCBSystem only reached via other objects; sole caller x12",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 3——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -4618,11 +4617,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nCmdType, BOOL bImmediate, int nParam)"
   },
   "0x004499a0": {
    "name": "HandleInput",
-   "signature": "char __thiscall(CCBRoleState *this, void *thisa, unsigned int a2, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "输入处理（虚调用链）",
    "semantic_sig": "char",
@@ -4645,11 +4644,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(void *thisa, unsigned int a2, int a3)"
   },
   "0x004a3360": {
    "name": "Init_3360",
-   "signature": "int __thiscall(CCBRoleState *this, CHAR *thisa, int a2, int *a3)",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（sub_4A3360）",
    "semantic_sig": "int",
@@ -4672,11 +4671,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(CHAR *thisa, int a2, int *a3)"
   },
   "0x00502000": {
    "name": "CCBRoleState_Func",
-   "signature": "int __thiscall(int nVal)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBRoleState::CCBRoleState_Func（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBRoleState 方法面",
    "evidence_level": "A",
    "semantic_sig": "int",
@@ -4691,11 +4690,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -4708,11 +4707,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00524970": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBStage.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -4725,37 +4724,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x00445d10": {
-   "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
-   "evidence_level": "unverified",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nMsg"
-     },
-     {
-      "type": "int",
-      "name": "wParam"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005362f0": {
    "name": "Destructor",
-   "signature": "SceneObj * __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "SceneObj *",
@@ -4770,11 +4743,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "SceneObj * __thiscall(int nVal1)"
   },
   "0x005363c0": {
    "name": "CleanupInternal",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -4783,11 +4756,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005368a0": {
    "name": "HandleEvent",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "_misattrib_evidence": "max_offset=3340>class_size=596",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -4806,7 +4779,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   }
  },
  "base_size": 1784,

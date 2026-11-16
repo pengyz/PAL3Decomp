@@ -4,7 +4,6 @@
  "methods": {
   "0x004dfd20": {
    "name": "LogMessage",
-   "signature": "char __thiscall(char *, int, char *format, ...)",
    "source": "manual_fix_from_call_sites",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -27,11 +26,11 @@
     ],
     "varargs": true,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char *, int, char *format, ...)"
   },
   "0x0040ccd0": {
    "name": "GetSlotCount",
-   "signature": "int __thiscall()",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -41,11 +40,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004cdb60": {
    "name": "ReleaseCompletedEffects",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -54,11 +53,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004f4820": {
    "name": "HandleControlCmd",
-   "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(int idx)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned __int8",
    "sig_model": {
@@ -72,7 +71,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned __int8 __thiscall(int idx)"
   }
  },
  "known_methods": {

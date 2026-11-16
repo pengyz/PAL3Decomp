@@ -61,7 +61,6 @@
  "methods": {
   "0x00504080": {
    "name": "_scalar_dtor",
-   "signature": "void *__thiscall(char flags)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -77,11 +76,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(char flags)"
   },
   "0x00504e70": {
    "name": "CCBStageCam",
-   "signature": "void __thiscall(CCBStageCam *Buffer)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -95,11 +94,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(CCBStageCam *Buffer)"
   },
   "0x00505060": {
    "name": "Reset",
-   "signature": "void __thiscall(int nVal, const void *pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -118,11 +117,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, const void *pData)"
   },
   "0x005050d0": {
    "name": "LoadEditorCam",
-   "signature": "void __thiscall(int nVal, int nVal2, const void *pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -145,11 +144,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, const void *pData)"
   },
   "0x00505180": {
    "name": "SaveEditorCam",
-   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -172,11 +171,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x005051e0": {
    "name": "AddCurCamToEditor",
-   "signature": "char __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -194,11 +193,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal, int nVal2)"
   },
   "0x00505250": {
    "name": "DelEditorCam",
-   "signature": "void __thiscall(int nCamIndex)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -213,11 +212,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nCamIndex)"
   },
   "0x00505290": {
    "name": "IsEditorCamValid",
-   "signature": "bool __thiscall(int nCamIndex)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -232,11 +231,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nCamIndex)"
   },
   "0x005052c0": {
    "name": "IsCamValid",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -246,11 +245,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00505410": {
    "name": "Create",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -260,11 +259,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00505490": {
    "name": "Destroy",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -274,11 +273,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x005054e0": {
    "name": "Update",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_name": "Update_54E0",
@@ -290,11 +289,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004e7350": {
    "name": "PopulateCameraListView",
-   "signature": "int __thiscall CCBStageCam::PopulateCameraListView()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -303,11 +302,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e6020": {
    "name": "UpdateEditorState",
-   "signature": "int __thiscall CCBStageCam::UpdateEditorState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -316,11 +315,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e7060": {
    "name": "ApplyShake",
-   "signature": "LRESULT __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -334,11 +333,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall(HWND hDlg)"
   },
   "0x004e7280": {
    "name": "UpdateSmooth",
-   "signature": "LRESULT __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -347,11 +346,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall()"
   },
   "0x004e74e0": {
    "name": "UpdateOrbit",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -360,11 +359,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004e75e0": {
    "name": "ClampViewAngle",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -373,11 +372,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e8480": {
    "name": "UpdateStageCamera",
-   "signature": "int __thiscall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -407,11 +406,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(float *pfVal, HWND hDlg, int nVal, int nVal2, int nVal3)"
   },
   "0x00504dd0": {
    "name": "ResetViewport",
-   "signature": "CCBStage * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "CCBStage *",
    "sig_model": {
@@ -420,11 +419,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBStage * __thiscall()"
   },
   "0x00504e60": {
    "name": "GetData",
-   "signature": "char __thiscall(CCBStageCam *this)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "semantic_sig": "char",
@@ -434,11 +433,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e7b50": {
    "name": "LerpToTarget",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -447,11 +446,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e8450": {
    "name": "StoreCurrentView",
-   "signature": "static int __stdcall CCBStageCam::StoreCurrentView(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性",
    "semantic_sig": "static int",
@@ -478,11 +477,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "static int __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x004e9890": {
    "name": "SetBlendWeight",
-   "signature": "LRESULT __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -496,11 +495,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall(HWND hDlg)"
   },
   "0x004e9950": {
    "name": "InterpolateAngle",
-   "signature": "LRESULT __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -514,11 +513,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall(HWND hDlg)"
   },
   "0x004e9a70": {
    "name": "UpdateFollowTarget",
-   "signature": "LRESULT __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -532,11 +531,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall(HWND hDlg)"
   },
   "0x004e9c50": {
    "name": "SetViewDistance",
-   "signature": "char __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -550,11 +549,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(HWND hDlg)"
   },
   "0x004e9f70": {
    "name": "CalculateFOV",
-   "signature": "void __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "lvars": {
     "v7": "HWND"
@@ -572,11 +571,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(HWND hDlg)"
   },
   "0x004ea2e0": {
    "name": "UpdateTransition",
-   "signature": "LRESULT __thiscall(HWND hDlg)",
    "evidence_level": "unverified",
    "semantic_sig": "LRESULT",
    "sig_model": {
@@ -590,11 +589,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "LRESULT __thiscall(HWND hDlg)"
   },
   "0x004e95a0": {
    "name": "Update_95A0",
-   "signature": "int __thiscall(CCBStageCam *this, HWND hDlg)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "semantic_sig": "int",
@@ -609,11 +608,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(HWND hDlg)"
   },
   "0x004ea590": {
    "name": "DlgProc",
-   "signature": "static int __stdcall CCBStageCam::DlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)",
    "static": true,
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11h 反汇编定谳: 入口栈读参[esp+8/0xc/0x10]无ecx-this(ecx后从全局0x17A94E0装); 用作CreateDialogParamA DLGPROC(API契约stdcall); 原 thiscall 系 IDB 归属惯性",
@@ -641,11 +640,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "static int __stdcall(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)"
   },
   "0x00504060": {
    "name": "~CCBStageCam",
-   "signature": "void __thiscall()",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056FD78 认领（删除析构 CCBStageCam@0x504080+29 写表（ctor 域 0）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBStageCam（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FD78）",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -655,7 +654,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "base_size": 692,

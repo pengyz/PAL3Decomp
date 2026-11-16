@@ -90,7 +90,6 @@
  "methods": {
   "0x004cd0a0": {
    "name": "~CMeteorChain",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CMeteorChain 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CMeteorChain。refs: ??3@YAXPAX@Z",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -100,11 +99,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004cd7e0": {
    "name": "Update",
-   "signature": "void __thiscall(int fCurTime, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -139,7 +138,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int fCurTime, int nVal, int nVal2, int *p_DWORD, int nVal3, int nVal4)"
   }
  }
 }

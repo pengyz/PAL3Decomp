@@ -84,7 +84,6 @@
  "methods": {
   "0x0051a700": {
    "name": "CCBControlWindow",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -93,11 +92,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051aa20": {
    "name": "Create",
-   "signature": "bool __thiscall(UIButton **ppChild, int nCtrlID, tagRECT *rc, int nDataIdx)",
    "source": "annotation_fix | [sig修 2026-11-14] UIWnd**→UIButton**: 函数体 operator new(0xF8)=248B=UIPushButton::binary_size 构造后存入*ppChild ⇒ 原源码参数类型=UIButton**(IDA渲染猜成UIWnd**)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -124,11 +123,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(UIButton **ppChild, int nCtrlID, tagRECT *rc, int nDataIdx)"
   },
   "0x0051ab60": {
    "name": "HandleInput",
-   "signature": "UIButton *__thiscall(UIButton *pButton)",
    "evidence_level": "unverified",
    "semantic_sig": "UIButton *",
    "sig_model": {
@@ -142,11 +141,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "UIButton * __thiscall(UIButton *pButton)"
   },
   "0x0051ac30": {
    "name": "KeyPressed",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -156,11 +155,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051ac40": {
    "name": "DefaultKey",
-   "signature": "UIListBox * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "UIListBox *",
    "sig_model": {
@@ -169,11 +168,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "UIListBox * __thiscall()"
   },
   "0x0051acb0": {
    "name": "~CCBControlWindow",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -182,11 +181,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051ad00": {
    "name": "CheckKeyInput",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -196,11 +195,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051ad10": {
    "name": "CreateControls",
-   "signature": "char __thiscall(int *pRect, int parent)",
    "source": "| [T112] 语义偏离名修正：@0x51AD10 全函数体（3859 字符）= UIStatic/UIButton/UIListBox 创建 + SetLockSel/GetSel/SetItemData 条目循环（控件构建+条目设置）+ 形参 (pRect,parent)=创建形 ⇒ 语义名 CreateControls（禁伪语义 ✓ 全函数体证据）；@0x51B030 OnMessage 保留（1006/1007 消息分发）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -219,11 +218,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int *pRect, int parent)"
   },
   "0x0051afe0": {
    "name": "Update",
-   "signature": "int __thiscall(CCBControlWindow *__hidden this, float, int)",
    "source": "vtable_migrated",
    "ordinal": 10,
    "evidence_level": "unverified",
@@ -243,11 +242,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(float, int)"
   },
   "0x0051b0b0": {
    "name": "MoveButtons",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -266,11 +265,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x0051b110": {
    "name": "CreateButton",
-   "signature": "UIListBox * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "UIListBox *",
    "sig_model": {
@@ -279,11 +278,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "UIListBox * __thiscall()"
   },
   "0x0051b030": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int a2, int a3)",
    "source": "vtable_migrated+pdb_name",
    "ordinal": 20,
    "evidence_level": "unverified",
@@ -307,11 +306,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int a2, int a3)"
   },
   "0x0051b5d0": {
    "name": "CreateWithTextures",
-   "signature": "gbVFileSystem *__thiscall UIPushButton::CreateWithTextures (int, void *pRect, UIWnd *parent, const char *pszName, char)",
    "source": "vtable_gap_fill_v1(from CCBControlWindow.json) | C8修正20261115: 名称误归属(真体=CreateWithTextures非OnMessage)",
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -345,11 +344,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem *__thiscall (int, void *pRect, UIWnd *parent, const char *pszName, char)"
   },
   "0x0043ddf0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
    "evidence_level": "unverified",
    "semantic_name": "CCBControlWindow::Render",
@@ -361,11 +360,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0051ac90": {
    "name": "_scalar_dtor_AC90",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5704C8,0x5704E4,0x570500,0x57051C）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -386,7 +385,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   }
  },
  "vtables": [

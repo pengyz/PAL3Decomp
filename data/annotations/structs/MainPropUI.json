@@ -486,7 +486,6 @@
  "methods": {
   "0x004909f0": {
    "name": "MainPropUI",
-   "signature": "int __thiscall MainPropUI::~MainPropUI()",
    "_misattrib_evidence": "max_offset=219676>class_size=10248",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~MainPropUI→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：构造函数误判重定谳（体=基类/成员构造级联——ctor 名形）",
    "evidence_level": "unverified",
@@ -497,11 +496,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0048c4a0": {
    "name": "SetPage",
-   "signature": "int __thiscall(unsigned char nPageIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -515,11 +514,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char nPageIdx)"
   },
   "0x00491b40": {
    "name": "ShowPage",
-   "signature": "int __thiscall MainPropUI::ShowPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -528,11 +527,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00492bb0": {
    "name": "ShowSubPanels",
-   "signature": "int __thiscall MainPropUI::ShowSubPanels(int nVal)",
    "_misattrib_evidence": "max_offset=212204>class_size=54024",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 调用点5个(EquipUI.cpp:501外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
@@ -549,11 +548,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00487650": {
    "name": "CreateCoverTemplate",
-   "signature": "int __thiscall ()",
    "_misattrib_evidence": "max_offset=205768>class_size=14952",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -563,11 +562,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00488660": {
    "name": "DisplayCaption",
-   "signature": "void __thiscall MainPropUI::DisplayCaption(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -581,11 +580,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x00489030": {
    "name": "CalcBarWidth",
-   "signature": "int __thiscall(int nVal, float fVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -603,11 +602,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, float fVal)"
   },
   "0x00489ed0": {
    "name": "InitNPCs",
-   "signature": "int *__thiscall MainPropUI::InitNPCs(int nVal, int arg4, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -629,11 +628,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int nVal, int arg4, int nVal2)"
   },
   "0x0048cee0": {
    "name": "FindValidSaveSlot",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -642,11 +641,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0048cf10": {
    "name": "SetCaption",
-   "signature": "void __thiscall MainPropUI::SetCaption(int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -668,11 +667,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004970b0": {
    "name": "HandleKeyInput",
-   "signature": "char __thiscall MainPropUI::HandleKeyInput()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -681,11 +680,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00497050": {
    "name": "ProcessSlotCounter",
-   "signature": "int __thiscall MainPropUI::ProcessSlotCounter(int *pCounter)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -699,11 +698,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *pCounter)"
   },
   "0x00497080": {
    "name": "FindNextValid",
-   "signature": "int __thiscall(int *pCounter)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -717,11 +716,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *pCounter)"
   },
   "0x00490e70": {
    "name": "_scalar_dtor",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -742,25 +741,26 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00496fa0": {
    "name": "Render",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "Render",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)",
+   "signature": "void __thiscall()"
   },
   "0x004971e0": {
    "name": "ProcessInput",
-   "signature": "BOOL __thiscall(int, int)",
    "evidence_level": "unverified",
    "semantic_name": "ProcessInput",
    "semantic_sig": "BOOL",
@@ -779,11 +779,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x004974a0": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
    "evidence_level": "unverified",
    "semantic_name": "OnMessage",
    "semantic_sig": "int",
@@ -806,11 +806,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -820,7 +820,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

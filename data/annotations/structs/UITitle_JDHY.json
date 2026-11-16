@@ -174,7 +174,6 @@
  "methods": {
   "0x004b01d0": {
    "name": "DestroyPages",
-   "signature": "int __thiscall UITitle_JDHY::DestroyPages()",
    "_misattrib_evidence": "max_offset=289120>class_size=1208",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -184,11 +183,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b0540": {
    "name": "~UITitle_JDHY",
-   "signature": "int __thiscall UITitle_JDHY::~UITitle_JDHY()",
    "_misattrib_evidence": "max_offset=289120>class_size=1208",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~UITitle_JDHY→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（pat ??1UITitle_JDHY 真析构符号证）",
    "evidence_level": "unverified",
@@ -199,11 +198,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0047c1c0": {
    "name": "HandleDeviceLostA",
-   "signature": "int __thiscall UITitle_JDHY::HandleDeviceLostA()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -212,11 +211,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b1580": {
    "name": "ResetAndRefresh",
-   "signature": "int __thiscall UITitle_JDHY::ResetAndRefresh(int nVal1)",
    "_misattrib_evidence": "max_offset=286368>class_size=4280",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -232,11 +231,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x004b1c50": {
    "name": "UpdateButtonStates",
-   "signature": "int __thiscall UITitle_JDHY::UpdateButtonStates()",
    "_misattrib_evidence": "max_offset=286364>class_size=39240",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -246,11 +245,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b1ea0": {
    "name": "ScrollDown",
-   "signature": "int __thiscall UITitle_JDHY::ScrollDown(int nVal1)",
    "_misattrib_evidence": "max_offset=286360>class_size=4280",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -266,11 +265,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x004b1fb0": {
    "name": "ScrollUp",
-   "signature": "int __thiscall UITitle_JDHY::ScrollUp(int nVal1)",
    "_misattrib_evidence": "max_offset=286360>class_size=4280",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -286,11 +285,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x004b20c0": {
    "name": "HandleInput",
-   "signature": "int __thiscall UITitle_JDHY::HandleInput()",
    "_misattrib_evidence": "max_offset=288208>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -300,11 +299,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b2750": {
    "name": "SaveData",
-   "signature": "FILE *__thiscall UITitle_JDHY::SaveData(double Data, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "FILE *__thiscall",
    "sig_model": {
@@ -322,11 +321,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "FILE *__thiscall (double Data, int nVal)"
   },
   "0x004b2c70": {
    "name": "RenderSlotEffects",
-   "signature": "void __thiscall UITitle_JDHY::RenderSlotEffects()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -336,11 +335,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004b2d20": {
    "name": "HandleNavigation",
-   "signature": "int __thiscall UITitle_JDHY::HandleNavigation()",
    "_misattrib_evidence": "max_offset=288208>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -350,11 +349,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0045e9f0": {
    "name": "LayoutCalcRects",
-   "signature": "void __thiscall UITitle_JDHY::LayoutCalcRects()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -363,11 +362,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004b0820": {
    "name": "PopulateContent",
-   "signature": "int __thiscall UITitle_JDHY::PopulateContent()",
    "_misattrib_evidence": "max_offset=289120>class_size=204",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -377,11 +376,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b15f0": {
    "name": "InitNoteItems",
-   "signature": "int __thiscall UITitle_JDHY::InitNoteItems()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -390,11 +389,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b1c00": {
    "name": "ResetNoteState",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -403,11 +402,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b2920": {
    "name": "LoadData",
-   "signature": "char __thiscall UITitle_JDHY::LoadData(int Data)",
    "source": "| [T127] 语义偏离名修正：@0x4B2920 全函数体（3922 字符）调用簇=Actor::LoadActorModel/LoadSaveData/ChoseCompose::LayoutItem/UIPushButton::CreateFromTemplate（**加载族**）⇒ 语义名 LoadData（禁伪语义 ✓ 调用簇证据）；@0x4B2750 SaveData 保留（DoSceneTransition/CGameData::Load+WriteRegistry 存档形）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -422,11 +421,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int Data)"
   },
   "0x004b3100": {
    "name": "ForwardHitTest",
-   "signature": "int __thiscall UITitle_JDHY::ForwardHitTest(int nVal1)",
    "_misattrib_evidence": "max_offset=286376>class_size=4280",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
@@ -443,11 +442,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x004b3270": {
    "name": "UpdateTextPosition",
-   "signature": "int __thiscall UITitle_JDHY::UpdateTextPosition()",
    "_misattrib_evidence": "max_offset=286368>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -457,11 +456,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004b3470": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
    "_misattrib_evidence": "max_offset=289576>class_size=1208",
    "ordinal": 6,
    "source": "vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12)",
@@ -486,11 +485,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x004b43e0": {
    "name": "InitPageState",
-   "signature": "int __thiscall UITitle_JDHY::InitPageState(int nPage)",
    "naming_note": "2026-09-27 归属证据：① 9 个调用点全在 UITitle_JDHY_OnMessage 的 switch(nVal) 分支内、UISceneMap::ShowPage/StateUI::SaveData 之前按页索引 0-8 调用；② 函数体 lea edx,[ecx+0x25B70] 偏移落在 UITitle_JDHY extent（377,700B）内；③ 函数地址 0x4B43E0 位于 UITitle_JDHY 方法块（0x4B3xxx 调用者邻接）。ret 4 = __thiscall 1 栈参，与调用点吻合。",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -505,11 +504,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nPage)"
   },
   "0x004b0520": {
    "name": "`scalar deleting destructor'",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）",
    "evidence_level": "A",
    "semantic_sig": "void *",
@@ -528,11 +527,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -542,7 +541,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

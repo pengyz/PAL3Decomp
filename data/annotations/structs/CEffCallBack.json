@@ -30,7 +30,6 @@
  "methods": {
   "0x004c2840": {
    "name": "OnTest",
-   "signature": "char __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -40,11 +39,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004c2ba0": {
    "name": "Update",
-   "signature": "int __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "int",
@@ -59,11 +58,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int)"
   },
   "0x004c2d00": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -78,11 +77,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004c3160": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "const char *",
@@ -97,11 +96,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c2870": {
    "name": "~CEffCallBack",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_0",
@@ -113,11 +112,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2930": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -144,11 +143,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004c2820": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void*",
@@ -158,11 +157,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "semantic_name": "CEffAction::UpdateParticles(void)",
    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
    "semantic_sig": "void",
@@ -172,11 +171,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c29a0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "semantic_name": "UpdateInternal",
    "name_note": "G2条目补齐(CEff表): 同上折叠共享; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note",
    "semantic_sig": "void",
@@ -191,11 +190,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   },
   "0x004c0650": {
    "name": "AllocActionArray",
-   "signature": "char __thiscall(tagEffObjType *)",
    "semantic_name": "slot_1",
    "confidence": "中高",
    "name_note": "C9批体证定谳: 同址ICF折叠共享, 同体证据",
@@ -211,7 +210,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *)"
   }
  },
  "base_size": 52,

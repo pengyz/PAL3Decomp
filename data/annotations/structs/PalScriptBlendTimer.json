@@ -18,7 +18,6 @@
  "methods": {
   "0x00434d20": {
    "name": "IsBlendComplete",
-   "signature": "int __thiscall()",
    "ordinal": 4,
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -31,11 +30,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00434d40": {
    "name": "AccumulateTime",
-   "signature": "BOOL __thiscall(int, int)",
    "ordinal": 5,
    "evidence_level": "unverified",
    "semantic_name": "AccumulateTime",
@@ -56,11 +55,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x00434d50": {
    "name": "~PalScriptBlendTimer",
-   "signature": "void __thiscall()",
    "semantic_name": "~PalScriptBlendTimer",
    "name_note": "G2条目补齐(PalScript计时器族): slot0删除式dtor位, ICF折叠入PalScript scalar dtor 0x434d50(体=Array清理)",
    "semantic_sig": "void",
@@ -70,7 +69,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

@@ -294,7 +294,6 @@
  "methods": {
   "0x005282e0": {
    "name": "JusticeBookUI",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ JusticeBookUI（ctor 名形=类名）：A 级 refs ??0UIListBox/??0TxtFile/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0TxtFile/??0UIRoleDialog",
@@ -306,11 +305,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005284e0": {
    "name": "~JusticeBookUI",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 JusticeBookUI 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~JusticeBookUI。refs: ??1UIRoleDialog@@QAE@XZ ?Cleanup@PalScript@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Reset@",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -320,11 +319,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044da30": {
    "name": "UpdateFadeAnim",
-   "signature": "char __thiscall JusticeBookUI::UpdateFadeAnim(float fDelta)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -338,11 +337,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(float fDelta)"
   },
   "0x005284c0": {
    "name": "_scalar_dtor_84C0",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -365,11 +364,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00528ed0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=35148>class_size=11404",
    "ordinal": 1,
    "evidence_level": "unverified",
@@ -380,11 +379,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00528f50": {
    "name": "ProcessInput",
-   "signature": "int __thiscall JusticeBookUI::ProcessInput(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -403,11 +402,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x00529120": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_name": "OnMessage",
@@ -431,11 +430,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -445,7 +444,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

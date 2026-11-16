@@ -83,7 +83,6 @@
  "methods": {
   "0x0049cec0": {
    "name": "GetPlayerAttField",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -101,11 +100,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004a1620": {
    "name": "InvokeCallback",
-   "signature": "char __thiscall()",
    "local_vars": [
     {
      "from_name": "v4",
@@ -121,11 +120,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00527130": {
    "name": "SetSlotCaption",
-   "signature": "void __thiscall (int nVal)",
    "_misattrib_evidence": "max_offset=15032>class_size=1288",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -140,7 +139,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   }
  },
  "base_size": 72,

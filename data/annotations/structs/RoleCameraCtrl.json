@@ -85,7 +85,6 @@
  "methods": {
   "0x00450a25": {
    "name": "~RoleCameraCtrl",
-   "signature": "void ()",
    "source": "pdb",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -95,11 +94,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void ()"
   },
   "0x00445860": {
    "name": "SetName",
-   "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -113,11 +112,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const char *pszName)"
   },
   "0x00450a60": {
    "name": "InitFrameUI",
-   "signature": "RoleCameraCtrl * __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "RoleCameraCtrl *",
    "sig_model": {
@@ -126,11 +125,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "RoleCameraCtrl * __thiscall()"
   },
   "0x00450c90": {
    "name": "UpdatePosition",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -149,11 +148,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00445910": {
    "name": "SetTargetDistance",
-   "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -167,11 +166,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00450ad0": {
    "name": "InitBaseWidget",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -180,11 +179,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450c60": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -207,11 +206,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00450d00": {
    "name": "ShowWindow",
-   "signature": "void __thiscall(int a1)",
    "ordinal": 0,
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
    "evidence_level": "unverified",
@@ -227,11 +226,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int a1)"
   },
   "0x0051bb50": {
    "name": "InitViewSlots",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -240,11 +239,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052dff0": {
    "name": "SetViewPosition",
-   "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -270,11 +269,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
   },
   "0x0052e080": {
    "name": "ComputeViewVector",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -296,11 +295,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00450ab0": {
    "name": "_sdtor_26",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
@@ -321,21 +320,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x00445cd0": {
-   "name": "Render",
-   "signature": "int __thiscall()",
-   "evidence_level": "unverified",
-   "semantic_name": "Render",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   }
  },
  "vtables": [

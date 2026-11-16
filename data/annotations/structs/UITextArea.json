@@ -96,7 +96,6 @@
  "methods": {
   "0x00445920": {
    "name": "Destroy",
-   "signature": "int __thiscall()",
    "ordinal": 3,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -108,11 +107,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00444f60": {
    "name": "InitAfterClear",
-   "signature": "int __thiscall UITextArea::InitAfterClear()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -121,11 +120,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00445760": {
    "name": "UpdateChildLayout",
-   "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -143,11 +142,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
   },
   "0x00445170": {
    "name": "ProcessInput",
-   "signature": "BOOL __thiscall(int, int)",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -168,11 +167,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x00445500": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_name": "Render",
@@ -184,11 +183,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00445720": {
    "name": "ShowWindow",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "unverified",
@@ -205,11 +204,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x00444ff0": {
    "name": "_sdtor_13",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "vtable_gap_fill_v1(from UITextArea.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
@@ -231,7 +230,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   }
  },
  "vtables": [

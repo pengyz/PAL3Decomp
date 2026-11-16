@@ -60,7 +60,6 @@
  "methods": {
   "0x0041c170": {
    "name": "SetActive",
-   "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -75,11 +74,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x0041c1e0": {
    "name": "ScriptPoolPage_Alloc",
-   "signature": "void __thiscall(_Console *this)",
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：迁归（A 级：this->m_cmd@4/_tail_000 访问证据= _Console）；A/B 隔离实验证 vtable 影响 ∅（38=他线并发）",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -89,7 +88,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  }
 }

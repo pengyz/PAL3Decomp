@@ -458,7 +458,6 @@
  "methods": {
   "0x004dfaa0": {
    "name": "InitRound",
-   "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)（A 级 ret-N 证据：ret $0x10 ⇒ 4 栈参；int 占位·nVal 序号惯例）",
    "evidence_level": "A",
    "semantic_sig": "int",
@@ -485,11 +484,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)"
   },
   "0x004dfe00": {
    "name": "AddTextLabel",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "_misattrib_evidence": "accesses 280*idx beyond 208-byte struct; callers pass CUtil-derived ptr chain via CCBUI.m_pUtil",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -508,11 +507,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004dfed0": {
    "name": "EndTurnAndAdvance",
-   "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)",
    "source": "| 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)（A 级 ret-N 证据：ret $0x14 ⇒ 5 栈参；int 占位·nVal 序号惯例）",
    "evidence_level": "A",
    "semantic_sig": "int",
@@ -543,11 +542,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)"
   },
   "0x004fb9a0": {
    "name": "CCBStage",
-   "signature": "CCBStage *__thiscall(CCBStage *this, int pCBSystem)",
    "evidence_level": "unverified",
    "source": "[R95 修 2026-10-23·A 级] objdump mov %ebx,%eax 返回 this（指针）",
    "semantic_sig": "CCBStage *",
@@ -562,11 +561,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBStage * __thiscall(int pCBSystem)"
   },
   "0x004fb9f0": {
    "name": "SetData",
-   "signature": "unsigned int __thiscall(CCBStage *this)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "semantic_sig": "unsigned int",
@@ -576,11 +575,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x004fbe50": {
    "name": "Create_be50",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_name": "Create",
@@ -591,11 +590,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004fbf90": {
    "name": "Destroy",
-   "signature": "bool __thiscall()",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -605,11 +604,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004fc150": {
    "name": "Update",
-   "signature": "int __thiscall(CCBStage *this)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证",
    "semantic_name": "Update_C150",
@@ -620,11 +619,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004fc3a0": {
    "name": "EditorUpdate",
-   "signature": "void(float fVal)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -639,11 +638,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void (float fVal)"
   },
   "0x004fc6f0": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
    "name_note": "; 签名格式归一(cc序畸形修正)",
@@ -654,11 +653,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004fc700": {
    "name": "GetRoleIndex",
-   "signature": "int __thiscall(int nameCrc, const void *pData, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -680,11 +679,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nameCrc, const void *pData, char pData)"
   },
   "0x004fc7d0": {
    "name": "GetRoleName",
-   "signature": "int __thiscall(int nameCrc, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5, int nVal6)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -726,11 +725,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nameCrc, int nVal, int nVal2, int nVal3, int nVal4, int *p_DWORD, int nVal5, int nVal6)"
   },
   "0x004fc8b0": {
    "name": "Procced",
-   "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -745,11 +744,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x004fc8f0": {
    "name": "GetStageRole",
-   "signature": "char __thiscall(int idx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -763,11 +762,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int idx)"
   },
   "0x004fc940": {
    "name": "GetStageRoleByIdx",
-   "signature": "char __thiscall(int idx)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -781,11 +780,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int idx)"
   },
   "0x004fc980": {
    "name": "IsDoTask",
-   "signature": "bool __thiscall(int eTask)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -800,11 +799,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int eTask)"
   },
   "0x004fc9a0": {
    "name": "EndTask",
-   "signature": "bool __thiscall(int nIndex)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -819,11 +818,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nIndex)"
   },
   "0x004fc9c0": {
    "name": "DelTask",
-   "signature": "char *__thiscall(int nIndex, _BYTE *p_BYTE, int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -845,11 +844,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(int nIndex, _BYTE *p_BYTE, int *p_DWORD)"
   },
   "0x004fca00": {
    "name": "ForceDelTask",
-   "signature": "bool __thiscall(int nIndex)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -864,11 +863,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nIndex)"
   },
   "0x004fca80": {
    "name": "GetTask",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "lvars": {
     "v9": "unsigned long"
@@ -881,11 +880,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004fcbd0": {
    "name": "GetTaskID",
-   "signature": "char __thiscall(int nIndex, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -903,11 +902,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nIndex, int nVal)"
   },
   "0x004fcc10": {
    "name": "GetTaskState",
-   "signature": "char(int nIndex, bool *bFinished, unsigned int *dwReturn)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -930,11 +929,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char (int nIndex, bool *bFinished, unsigned int *dwReturn)"
   },
   "0x004fcc50": {
    "name": "GetTaskState_cc50",
-   "signature": "char(int nIndex, ECBStageTaskState *State)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical",
    "evidence_level": "unverified",
    "semantic_name": "GetTaskState",
@@ -954,11 +953,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char (int nIndex, ECBStageTaskState *State)"
   },
   "0x004fcd00": {
    "name": "IsTaskFinished",
-   "signature": "bool __thiscall(int nIndex)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -973,11 +972,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nIndex)"
   },
   "0x004fcd50": {
    "name": "IsTaskValidButNotFinish",
-   "signature": "unsigned char *__stdcall(unsigned char *result, int eTask, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned char *",
    "sig_model": {
@@ -999,11 +998,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned char * __stdcall(unsigned char *result, int eTask, int nVal)"
   },
   "0x004fcda0": {
    "name": "IsTaskExist",
-   "signature": "bool __thiscall(unsigned int dwTaskID)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1018,11 +1017,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(unsigned int dwTaskID)"
   },
   "0x004fcde0": {
    "name": "DoTask",
-   "signature": "void __thiscall(int nVal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1037,11 +1036,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal)"
   },
   "0x004fce00": {
    "name": "StartSubTask",
-   "signature": "bool __thiscall(int n)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1056,11 +1055,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int n)"
   },
   "0x004fce70": {
    "name": "IsSubTaskFinished",
-   "signature": "bool(int n, int nSub)",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "lvars": {
@@ -1083,11 +1082,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool (int n, int nSub)"
   },
   "0x004fcfb0": {
    "name": "IsAllSubTaskFinished",
-   "signature": "bool __thiscall(int n)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1102,11 +1101,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int n)"
   },
   "0x004fd0b0": {
    "name": "IsTaskValid",
-   "signature": "bool __thiscall(int n)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1121,11 +1120,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int n)"
   },
   "0x004fd1a0": {
    "name": "IsSubTaskValid",
-   "signature": "bool(int n, int nSub)",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "lvars": {
@@ -1148,11 +1147,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool (int n, int nSub)"
   },
   "0x004fd3d0": {
    "name": "HasNormalAttackRole",
-   "signature": "bool __thiscall(int nRoleIndex)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1167,11 +1166,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nRoleIndex)"
   },
   "0x004fd880": {
    "name": "ClearRoleAllTask",
-   "signature": "void __thiscall(int nRoleIndex)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1186,11 +1185,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleIndex)"
   },
   "0x004fda10": {
    "name": "EndRoleAllTask",
-   "signature": "void __thiscall(int nRoleIndex)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1205,11 +1204,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleIndex)"
   },
   "0x004fdb10": {
    "name": "GetRoleTaskNum",
-   "signature": "int __thiscall(int nRoleIndex)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1223,11 +1222,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nRoleIndex)"
   },
   "0x004fdd90": {
    "name": "SelectRole",
-   "signature": "void __thiscall(int nRoleIndex)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1242,11 +1241,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nRoleIndex)"
   },
   "0x004fdfc0": {
    "name": "ProcWait",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1261,11 +1260,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004fe290": {
    "name": "ProcShowFiveLineup",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1280,11 +1279,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004fe540": {
    "name": "ProcShowEnemyFiveLineup",
-   "signature": "unsigned long __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1294,11 +1293,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall()"
   },
   "0x004fe550": {
    "name": "ProcFiveLienupFadeIn",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1313,11 +1312,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004fe600": {
    "name": "ProcFiveLienupFadeOut",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1332,11 +1331,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004fe660": {
    "name": "ProcShowSneakAttackState",
-   "signature": "unsigned long __thiscall(unsigned int _74)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1351,11 +1350,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(unsigned int _74)"
   },
   "0x004fece0": {
    "name": "HandleKeyCtrl",
-   "signature": "void __thiscall(int n)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1370,11 +1369,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int n)"
   },
   "0x004fee60": {
    "name": "HandleKeyFriend",
-   "signature": "bool __thiscall(int Selected)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -1389,11 +1388,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int Selected)"
   },
   "0x004fefb0": {
    "name": "ProcShowName",
-   "signature": "unsigned long __thiscall(unsigned int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1408,11 +1407,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(unsigned int __formal)"
   },
   "0x004ff1b0": {
    "name": "ProcShowItemName",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1427,11 +1426,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004ff3d0": {
    "name": "ProcShowDamage",
-   "signature": "unsigned long __thiscall(unsigned int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1446,11 +1445,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(unsigned int __formal)"
   },
   "0x004ff5c0": {
    "name": "ProcShowCost",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1465,11 +1464,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004ff740": {
    "name": "ProcShowCombatDialog",
-   "signature": "unsigned long __thiscall(int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1484,11 +1483,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(int __formal)"
   },
   "0x004ff840": {
    "name": "ProcGrabStageRole",
-   "signature": "unsigned long __thiscall(unsigned int __formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "unsigned long",
@@ -1503,11 +1502,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned long __thiscall(unsigned int __formal)"
   },
   "0x00503020": {
    "name": "ResetAll",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1516,11 +1515,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00503cf0": {
    "name": "UpdatePhysics",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1529,11 +1528,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0050e0d0": {
    "name": "ProcessCommand",
-   "signature": "int __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -1548,11 +1547,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x004fc0a0": {
    "name": "Update_C0A0",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1562,11 +1561,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004f4aa0": {
    "name": "GetRole",
-   "signature": "CCBStageRole *__thiscall(int index)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "CCBStageRole *",
@@ -1581,11 +1580,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBStageRole * __thiscall(int index)"
   },
   "0x004ff560": {
    "name": "ProcTaskSlot",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1599,11 +1598,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005024d0": {
    "name": "ProcessRoleEffect",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1617,11 +1616,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004df710": {
    "name": "ResetRoundState",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -1630,11 +1629,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004dfa10": {
    "name": "CountActiveActions",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1643,11 +1642,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e0010": {
    "name": "SetupCamControl",
-   "signature": "void __thiscall()",
    "source": "| param a dropped: decomp void __thiscall(CCBStage *this) shows zero stack args",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -1657,11 +1656,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004e0430": {
    "name": "CreatePreviewDialog",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1670,11 +1669,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00503680": {
    "name": "CalcSneakAttackVariance",
-   "signature": "int __thiscall CCBStage::CalcSneakAttackVariance()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1683,11 +1682,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00504440": {
    "name": "GetTurnSlotData",
-   "signature": "bool __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -1701,11 +1700,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal)"
   },
   "0x00504a80": {
    "name": "ScanTurnSlots",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1714,11 +1713,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0050eb00": {
    "name": "ProcessSlotAction",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1732,11 +1731,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050ef60": {
    "name": "UpdateActionTimers",
-   "signature": "int __thiscall(float fVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1750,11 +1749,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(float fVal)"
   },
   "0x0050f080": {
    "name": "AnimCallback_Attack",
-   "signature": "int __thiscall CCBStage::AnimCallback_Attack(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1768,11 +1767,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050f150": {
    "name": "AnimCallback_UseItem",
-   "signature": "int __thiscall CCBStage::AnimCallback_UseItem(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1786,11 +1785,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050f310": {
    "name": "AnimCallback_Throw",
-   "signature": "int __thiscall CCBStage::AnimCallback_Throw(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1808,11 +1807,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x0050f410": {
    "name": "AnimCallback_CastMagic",
-   "signature": "int __thiscall CCBStage::AnimCallback_CastMagic(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1826,11 +1825,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050f4c0": {
    "name": "AnimCallback_WaitCmd",
-   "signature": "int __thiscall CCBStage::AnimCallback_WaitCmd(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1844,11 +1843,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004c5c20": {
    "name": "GetReadyCount",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1857,11 +1856,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004d1ef0": {
    "name": "GetActiveTaskCount",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1870,11 +1869,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004d4d30": {
    "name": "GetTaskParam",
-   "signature": "int __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1892,11 +1891,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2)"
   },
   "0x004d4d70": {
    "name": "SetTaskState",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1910,11 +1909,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x004df6b0": {
    "name": "InitStage",
-   "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -1928,11 +1927,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nVal)"
   },
   "0x004df700": {
    "name": "IsInitialized",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -1941,11 +1940,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004dfb70": {
    "name": "UpdateTurnFlags",
-   "signature": "int __thiscall(const char *pszName, float fVal, float fVal2, float fVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -1971,11 +1970,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const char *pszName, float fVal, float fVal2, float fVal3)"
   },
   "0x004dfc40": {
    "name": "InitSlotFlags",
-   "signature": "int __thiscall(const char *pszName, int nVal, int nVal2, int nVal3)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2001,11 +2000,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(const char *pszName, int nVal, int nVal2, int nVal3)"
   },
   "0x004dff90": {
    "name": "AssignSlotData",
-   "signature": "int __thiscall(char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2019,11 +2018,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char pData)"
   },
   "0x004dfff0": {
    "name": "CalculateTurnOrder",
-   "signature": "__int64 __thiscall(float fVal, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "__int64",
    "sig_model": {
@@ -2041,11 +2040,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "__int64 __thiscall(float fVal, int nVal)"
   },
   "0x004e02f0": {
    "name": "ResetAndSetSystem",
-   "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -2059,11 +2058,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nVal)"
   },
   "0x004e0330": {
    "name": "ClearAll",
-   "signature": "int __thiscall CCBStage::Reset()",
    "source": "| [T99] 同名消歧：@0x4E0330 体=memset(this,0,0x2598)全对象清零（decomp 证据）⇒ 语义名 ClearAll；@0x40DD80 保留 Reset（成员级部分复位——m_pCamControl=-1/m_pRole[] 形）——禁伪语义命名（地址后缀禁用）✓",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -2073,11 +2072,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e0340": {
    "name": "ResetTurnSlots",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2086,11 +2085,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004e0380": {
    "name": "SyncTimeScale",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2099,11 +2098,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e03f0": {
    "name": "DestroyDialog",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2112,11 +2111,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004e0530": {
    "name": "ProcessAction",
-   "signature": "bool __thiscall(HWND pData)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -2130,11 +2129,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(HWND pData)"
   },
   "0x004e05b0": {
    "name": "CreatePreview",
-   "signature": "void __cdecl(float fVal)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -2149,11 +2148,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __cdecl(float fVal)"
   },
   "0x004e0650": {
    "name": "DestroyPreviewWindow",
-   "signature": "BOOL __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -2162,11 +2161,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x004f06c0": {
    "name": "FindThreadByParam",
-   "signature": "bool __thiscall(int nVal, unsigned int dwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -2184,11 +2183,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal, unsigned int dwVal)"
   },
   "0x004f6cd0": {
    "name": "CheckGDBTypeCompat",
-   "signature": "char __thiscall CCBStage::CheckGDBTypeCompat(unsigned int *pdwVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2202,11 +2201,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(unsigned int *pdwVal)"
   },
   "0x00500840": {
    "name": "ExecuteRoleTask",
-   "signature": "int __thiscall CCBStage::ExecuteRoleTask(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2220,11 +2219,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005009c0": {
    "name": "ClearTaskForRole",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2238,11 +2237,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00500ad0": {
    "name": "ClearTaskForRoleAll",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2256,11 +2255,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00503fa0": {
    "name": "ResetTurnData",
-   "signature": "int __thiscall(int **a2, struct gbGfxManager *p)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2278,11 +2277,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int **a2, struct gbGfxManager *p)"
   },
   "0x005040d0": {
    "name": "ResetTurnSystem",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2291,11 +2290,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00504420": {
    "name": "ClearTurnSlot",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2309,11 +2308,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00504460": {
    "name": "HasTurnChanged",
-   "signature": "bool __thiscall(float *pfVal)",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
    "sig_model": {
@@ -2327,11 +2326,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(float *pfVal)"
   },
   "0x005049f0": {
    "name": "GetNextActiveTask",
-   "signature": "int *__thiscall CCBStage::GetNextActiveTask()",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -2340,11 +2339,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   },
   "0x00504ab0": {
    "name": "ClearActionSlot",
-   "signature": "char __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2358,11 +2357,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x00504b50": {
    "name": "EnqueueCommand",
-   "signature": "char __thiscall CCBStage::EnqueueCommand(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2404,11 +2403,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, float fVal, const void *pData, const void *pData2)"
   },
   "0x00504c50": {
    "name": "ProcessQueuedCommand",
-   "signature": "int __thiscall CCBStage::ProcessQueuedCommand(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2422,11 +2421,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00504e30": {
    "name": "ResetAllData",
-   "signature": "int __thiscall()",
    "source": "| [T142] 同名消歧（真-clash：与 0x4E0330 同名同签名 ⇒ C2084 already has a body，本条为生成侧第二定义）：A 级 objdump 全函数体 sub_504E30 = rep stosd 清零 [this,+0x639C0) + 清零 m_EditDescBuf(char[2000]@0x639C0) + 填 m_nTodo_64190(int[5000]@0x64190) 为 -1（标志表初始化），调用点 sub_504DD0（清 2000 条 role/task 项后的整体重置例程）⇒ 语义名 ResetAllData（全量数据重置+标志初始化）；与 0x4E0330(memset 0x2598 头部清零，销毁路径 sub_515DF0 标量删除析构调用) 行为可分。禁地址后缀 ✓ ResetAllData 不与本类 215 名冲突（T135 撞名规避核）",
    "evidence_level": "A",
    "semantic_sig": "int",
@@ -2436,11 +2435,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0050e550": {
    "name": "ResolveActionEffect",
-   "signature": "int __thiscall CCBStage::ResolveActionEffect(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2454,11 +2453,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005045b0": {
    "name": "ProcessTurn",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -2467,11 +2466,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0050d440": {
    "name": "CheckAllDone",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2480,11 +2479,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0051d710": {
    "name": "Initialize",
-   "signature": "CCBProtectWindow *__thiscall(CCBStage *this)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "semantic_sig": "CCBProtectWindow *",
@@ -2494,11 +2493,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBProtectWindow * __thiscall()"
   },
   "0x0051dda0": {
    "name": "ShowWindow",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2507,11 +2506,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0050da90": {
    "name": "UpdateSlotTimer",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2525,11 +2524,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050f590": {
    "name": "AnimCallback_MoveTo",
-   "signature": "int __thiscall CCBStage::AnimCallback_MoveTo(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2543,11 +2542,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050e160": {
    "name": "UpdateTaskNormals",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2561,11 +2560,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050e360": {
    "name": "CalcFacingAngle",
-   "signature": "int __thiscall CCBStage::CalcFacingAngle(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2579,11 +2578,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0051f1b0": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int, int)",
    "name_source": "归属修正 2026-10-31（vtable 二进制证据）",
    "name_note": "CCBStage 虚方法（vtable 0x005705D0 +24 槽位），10KB 消息处理",
    "attribution_evidence": "vtable 0x005705D0 +24 槽位 + 构造器 0x0051D710 Create_d710 引用 + 偏移范围 628-671128 超出 CCBResultWindow 180B",
@@ -2611,11 +2610,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int, int)"
   },
   "0x00508930": {
    "name": "LoadTaskToEditor",
-   "signature": "void __thiscall(CCBStage *this, int nVal, int nVal2, int *p_DWORD)",
    "source": "| 析构名误挂改名 2026-09-29：~CCBStageRole→_todo_00508930（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形）",
    "evidence_level": "unverified",
    "semantic_name": "_todo_00508930",
@@ -2640,11 +2639,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2, int *p_DWORD)"
   },
   "0x00509130": {
    "name": "SetAlive",
-   "signature": "void __thiscall(CCBStage *this, bool bAlive)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2658,11 +2657,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(bool bAlive)"
   },
   "0x00509140": {
    "name": "SetMaxBlend",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -2672,11 +2671,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00509180": {
    "name": "SetVisible",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2685,11 +2684,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00509190": {
    "name": "SetPause",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -2699,11 +2698,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00509220": {
    "name": "OnPlayAction",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -2713,11 +2712,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00509270": {
    "name": "IsUnderMouse",
-   "signature": "bool __thiscall(CCBStage *this)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -2727,11 +2726,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00509280": {
    "name": "IsCollideRay",
-   "signature": "bool __thiscall(CCBStage *this)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -2741,11 +2740,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00509290": {
    "name": "GetRoleRadius",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2754,11 +2753,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00509410": {
    "name": "GetRotAngle",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2767,11 +2766,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00509540": {
    "name": "IsIdle",
-   "signature": "bool __thiscall(CCBStage *this, unsigned int dwVal)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -2786,11 +2785,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(unsigned int dwVal)"
   },
   "0x00509690": {
    "name": "IsAtInitPos",
-   "signature": "bool __thiscall(CCBStage *this)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "semantic_sig": "bool",
@@ -2800,11 +2799,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x00500220": {
    "name": "TaskExecSkill",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2818,11 +2817,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00500550": {
    "name": "TaskExecItem",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2836,11 +2835,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00522120": {
    "name": "CleanupScript",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -2849,11 +2848,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00501330": {
    "name": "TaskBlendToReady",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2867,11 +2866,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00501410": {
    "name": "TaskBlendToEnd",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2885,11 +2884,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00523090": {
    "name": "GetWeaponSlotPtr",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2903,11 +2902,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00504240": {
    "name": "LoadFullConfig",
-   "signature": "int __thiscall CIniFile::LoadFullConfig()",
    "note": "reattribute: asm 字节偏移逐个落在 CCBStage 的具名成员起始处（7/7 精确命中，工具 tools/attribution_offset_match.py）：0x1C4 m_fRotPitch(float)、0x1C8 m_fRotYaw(float)、0x1D0 m_fTimeAccum(float)、0x1EC m_ActionAngles(float)、0x1F0 m_fTurnDelay(float)、0x1F4 m_nActionTimer(int)、0x11E8 m_TurnBuffer(int)（original/PAL3.exe.asm 行 393091-393242）。次优候选 tagPAL3GameState 6/7、CameraCtrl 4/7，且都有一处落在空洞里。原类 CIniFile 只有 m_fp@0 与 m_bRead@4，上述成员一个都不存在 ⇒ 不可能是 CIniFile 的方法。注意 decomp 里的 `this + N` 不可当字节偏移（this 类型来自错误注解，会按错误元素尺寸缩放）：本函数 decomp 的 (float*)this+1147 = 字节 0x11EC，asm 已独立确认。",
    "name_evidence": "名字沿用原注解的 LoadFullConfig，不做臆造：该函数确为一个配置加载器（读 datascript/cbCam.ini，逐段 ReadSection/ReadLine 后写入 CCBStage 的转动/相机一族字段）。现有名字未被证据推翻，改名不是本次目的。",
    "evidence_level": "unverified",
@@ -2918,11 +2917,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0051dd80": {
    "name": "~CCBStage",
-   "signature": "void __thiscall(int)",
    "source": "vtable_gap_fill_v1(IDB:CCBProtectWindow_Destroy) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBStage（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5705D0）",
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -2938,11 +2937,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x00525090": {
    "name": "GetData",
-   "signature": "int __thiscall(CCBStage *this, void *thisa)",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "semantic_sig": "int",
@@ -2957,11 +2956,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *thisa)"
   },
   "0x00459f80": {
    "name": "IsStateFlagSet",
-   "signature": "int __thiscall CCBStage::IsStateFlagSet()",
    "source": "| [归属定谳 2026-10-25] 体读 this+153..156=m_nTodo_99/9A/9B+TaskCount 低字节（与 known_members 逐偏移吻合）+ 5 调用者共置 CCBStage 域（0x459FA0-0x45A1A0）+ 调用者传 this ×5",
    "evidence_level": "A",
    "semantic_sig": "int",
@@ -2971,11 +2970,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005090f0": {
    "name": "Proceed",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -2988,11 +2987,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005091d0": {
    "name": "OnChangeAction",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3005,11 +3004,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005091e0": {
    "name": "CheckAction",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "CheckAction_91E0",
@@ -3021,11 +3020,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005092a0": {
    "name": "GetRoleHeight",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetRoleHeight_92a0",
@@ -3037,11 +3036,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005092b0": {
    "name": "GetOBBox",
-   "signature": "CCBStage *__thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetOBBox_92b0",
@@ -3058,11 +3057,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBStage * __thiscall(int nVal)"
   },
   "0x005096d0": {
    "name": "IsAtProtectPos",
-   "signature": "bool __thiscall(CCBStage *this, int index, int nAttacker, int nVal)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3088,11 +3087,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int index, int nAttacker, int nVal)"
   },
   "0x005099a0": {
    "name": "ApplyTaskTimeScale",
-   "signature": "bool __thiscall(CCBStage *this, int nVal, BOOL fpTask)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族 | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsTaskFinished（0x509xxx 簇错挂）⇒ ApplyTaskTimeScale：五面：①调用者=CCBStage::Update() 帧链 ②被调=Actor::SetTimeScale+gbGeomNode::SetBladeTimeScale（时间/刀光缩放语义确凿）③成员 m_nActiveIdx/m_RoleSlots/m_nTodo_124 ④CCBStage ⑤Update 帧内 ⇒ 任务帧时间缩放处理（原名 IsTaskFinished 错挂）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3114,11 +3113,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal, BOOL fpTask)"
   },
   "0x00509b90": {
    "name": "RunActiveTask",
-   "signature": "void __thiscall(CCBStage *this, gbMatrixStack *fpTask)",
    "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 IsDoTask（0x509xxx 簇错挂）⇒ RunActiveTask：五面：①调用者=0x4FC480 update 域单链 ②被调=CCBRoleState::InitUI×6+gbMatrixStack Push/Pop+Actor::DispatchAction+子步 0x50A9B0 ③成员 m_nActiveIdx×14/m_pCBSystem×10/m_pRoleState×10/m_CamParams ④CCBStage 战斗舞台 ⑤主更新入口链 ⇒ 战斗任务主执行体（原名 IsDoTask 错挂——0x4FC980 才是真 IsDoTask 包装）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3136,11 +3135,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(gbMatrixStack *fpTask)"
   },
   "0x0050a180": {
    "name": "Grab",
-   "signature": "bool __thiscall(CCBStage *this, int dwStageTaskID)",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | ret char->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (returns stack arg in EAX, 4-byte); zero AL writes | ret bool->int: VA=0x50A180 body is exactly mov eax,[esp+arg_0]; retn 4 (4-byte EAX passthrough of the stack arg, zero AL writes) — pdb bool contradicted by binary width | L-VAR 2026-11-12 asm槽位记账定谳: 入口mov esi,ecx(thiscall)+栈读集合仅{esp+4}+ret 4 x2 = 单栈参成员函数; 原 static int Grab(int,bool) 的bool bNormal 系幻影(调用点CCBStage:7248渲染1实参渲染吻合)",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3158,11 +3157,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int dwStageTaskID)"
   },
   "0x0050a1a0": {
    "name": "Release",
-   "signature": "void __thiscall(CCBStage *this, char dwStageTaskID)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3180,11 +3179,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char dwStageTaskID)"
   },
   "0x0050a1b0": {
    "name": "TryRelease",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TryRelease_a1b0",
@@ -3196,11 +3195,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0050a1f0": {
    "name": "ForceRelease",
-   "signature": "void __thiscall(CCBStage *this, char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3218,11 +3217,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char pData)"
   },
   "0x0050a200": {
    "name": "DangerForceRelease",
-   "signature": "void __thiscall(CCBStage *this, char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3240,11 +3239,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char pData)"
   },
   "0x0050a210": {
    "name": "IsGrabedBy",
-   "signature": "bool __thiscall(CCBStage *this)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3257,11 +3256,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x0050a260": {
    "name": "GetPointerPos",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetPointerPos_a260",
@@ -3273,11 +3272,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0050a2b0": {
    "name": "SetBladeTime",
-   "signature": "void __thiscall(CCBStage *this, int fBladeTime)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetBladeTime_a2b0",
@@ -3294,11 +3293,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int fBladeTime)"
   },
   "0x0050a500": {
    "name": "LoadAction",
-   "signature": "bool __thiscall(CCBStage *this, gbRay nActIndex)",
    "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 2——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3316,11 +3315,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(gbRay nActIndex)"
   },
   "0x0050a520": {
    "name": "GetStatus",
-   "signature": "int __thiscall(CCBStage *this, int index)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetStatus_a520",
@@ -3337,11 +3336,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int index)"
   },
   "0x0050a560": {
    "name": "GetWorldPos",
-   "signature": "float *__thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetWorldPos_a560",
@@ -3353,11 +3352,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "float * __thiscall()"
   },
   "0x0050a5d0": {
    "name": "AddTask",
-   "signature": "double __thiscall(CCBStage *this, float *fp)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "AddTask_a5d0",
@@ -3374,11 +3373,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall(float *fp)"
   },
   "0x0050a6f0": {
    "name": "ForceDelTaskByPFN",
-   "signature": "bool __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ForceDelTaskByPFN_A6F0",
@@ -3390,11 +3389,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x0050a700": {
    "name": "ForceEndTaskByPFN",
-   "signature": "bool __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ForceEndTaskByPFN_a700",
@@ -3406,11 +3405,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x0050a770": {
    "name": "MoveToAbsolute",
-   "signature": "bool __thiscall(CCBStage *this, int fp, int dwTaskID)",
    "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 EndTask（0x509xxx 簇错挂）⇒ MoveToAbsolute：五面：①调用者=0x4EEEDC（状态域）②被调=gbVec3D::Normalize/Length+EndTask 转发 ③成员 m_fCurPosX/m_fCurPosY/m_pCBSystem ④CCBStage ⑤移动语义体 ⇒ 绝对位移处理（原名 EndTask 错挂）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3432,11 +3431,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int fp, int dwTaskID)"
   },
   "0x0050a8e0": {
    "name": "DelTask_a8e0",
-   "signature": "bool __thiscall(CCBStage *this, int nIndex)",
    "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：⚠️ 五面未满（调用者 CCBSystem::GetSameThreadNum 名可疑域）⇒ 挂账不赋名；体证=m_TurnBuffer+DelTask 转发（回合缓冲推进候选形）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3455,11 +3454,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nIndex)"
   },
   "0x0050a8f0": {
    "name": "DelAllTask",
-   "signature": "bool __thiscall(CCBStage *this, int nVal, char pData)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3481,11 +3480,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int nVal, char pData)"
   },
   "0x0050a920": {
    "name": "GetCurrentTask",
-   "signature": "char __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetCurrentTask_a920",
@@ -3502,11 +3501,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x0050a960": {
    "name": "GetCurrentTaskIndex",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetCurrentTaskIndex_a960",
@@ -3518,11 +3517,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0050a980": {
    "name": "IsReady",
-   "signature": "bool __thiscall(CCBStage *this, int idx)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "IsReady_A980",
@@ -3539,11 +3538,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int idx)"
   },
   "0x0050a9b0": {
    "name": "CalcTaskWorldMatrix",
-   "signature": "tagRoleState *__thiscall(CCBStage *this, gbVec3D *dwMsg)",
    "source": "| 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 DoTask（0x509xxx 簇错挂）⇒ CalcTaskWorldMatrix：五面：①调用者=0x509B90 主执行体内部步骤（语义明确）+EditorUpdate ②被调=CCBStage::GetWorldPos+gbMatrix4 ctor ③成员 m_CamParams/m_pRoleState ④CCBStage ⑤主执行体内坐标计算步 ⇒ 任务世界矩阵计算（原名 DoTask 错挂）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3561,11 +3560,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "tagRoleState * __thiscall(gbVec3D *dwMsg)"
   },
   "0x0050aa60": {
    "name": "ClearBadPushTask",
-   "signature": "void __thiscall(CCBStage *this, float fVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ClearBadPushTask_AA60",
@@ -3582,11 +3581,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float fVal)"
   },
   "0x0050aae0": {
    "name": "PushBackAllTask",
-   "signature": "double __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "PushBackAllTask_AAE0",
@@ -3598,11 +3597,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall()"
   },
   "0x0050ab10": {
    "name": "ClearAniMsg",
-   "signature": "void __thiscall(CCBStage *this, char pData, float fVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ClearAniMsg_AB10",
@@ -3623,11 +3622,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char pData, float fVal)"
   },
   "0x0050ac50": {
    "name": "SetParam",
-   "signature": "void __thiscall(CCBStage *this, int pParam, char dw1)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3649,11 +3648,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int pParam, char dw1)"
   },
   "0x0050ad30": {
    "name": "GetProperCurAction",
-   "signature": "char __thiscall(CCBStage *this, int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetProperCurAction_ad30",
@@ -3698,11 +3697,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int *pnVal, const void *pData, int nVal6)"
   },
   "0x0050b070": {
    "name": "ProcTransportRun",
-   "signature": "char __thiscall(CCBStage *this, unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ProcTransportRun_b070",
@@ -3743,11 +3742,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(unsigned int dwMsg, int nVal, int nVal2, int nVal3, int *pnVal, const void *pData, int nVal4)"
   },
   "0x0050b290": {
    "name": "SetForceFinishThrowingWeapon",
-   "signature": "void __thiscall(CCBStage *this, int bForce)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3765,11 +3764,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int bForce)"
   },
   "0x0050b360": {
    "name": "ProcCatchED",
-   "signature": "unsigned int __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3782,11 +3781,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x0050b580": {
    "name": "ProcPursueRole",
-   "signature": "char __thiscall(CCBStage *this, int formal, int nVal, char pData)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ProcPursueRole_b580",
@@ -3811,11 +3810,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int formal, int nVal, char pData)"
   },
   "0x0050bbd0": {
    "name": "ProcTurn",
-   "signature": "unsigned int __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3828,11 +3827,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x0050bcd0": {
    "name": "ProcTurnToRole",
-   "signature": "unsigned int __thiscall(CCBStage *this, int formal)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3850,11 +3849,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int formal)"
   },
   "0x0050c320": {
    "name": "ProcBlock",
-   "signature": "unsigned int __thiscall(CCBStage *this, int dwMsg)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3872,11 +3871,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(int dwMsg)"
   },
   "0x0050c970": {
    "name": "ProcMagic",
-   "signature": "unsigned int __thiscall(CCBStage *this, unsigned int dwMsg)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3894,11 +3893,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(unsigned int dwMsg)"
   },
   "0x0050cde0": {
    "name": "ProcUseRecoverItem",
-   "signature": "unsigned int __thiscall(CCBStage *this, float dwMsg)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3916,11 +3915,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall(float dwMsg)"
   },
   "0x0053e310": {
    "name": "PlaySound",
-   "signature": "void __thiscall(CCBStage *this, char *name, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "PlaySound_e310",
@@ -3941,11 +3940,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(char *name, int nVal)"
   },
   "0x0040ccf0": {
    "name": "GetAlive",
-   "signature": "char *__thiscall(CCBStage *this, int *pConfig)",
    "source": "fix:C2660:dual evidence: caller push x1 + callee retn 4 x5; mangled QAEPADHPAH is pollution",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -3964,11 +3963,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(int *pConfig)"
   },
   "0x0040dcf0": {
    "name": "GetByIndex",
-   "signature": "int *__thiscall(CCBStage *this, int *p_DWORD)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetByIndex_dcf0",
@@ -3985,11 +3984,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int *p_DWORD)"
   },
   "0x0040dd30": {
    "name": "Find",
-   "signature": "int __thiscall(CCBStage *this, char *String1)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "Find_DD30",
@@ -4006,11 +4005,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char *String1)"
   },
   "0x0040dd80": {
    "name": "Reset",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -4023,11 +4022,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0040cf60": {
    "name": "PassCmd",
-   "signature": "int __thiscall(CCBStage *this, void *p_DWORD)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "PassCmd_cf60",
@@ -4044,11 +4043,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *p_DWORD)"
   },
   "0x0040cc90": {
    "name": "Init",
-   "signature": "void __thiscall(CCBStage *this, int thisa)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "Init_cc90",
@@ -4065,11 +4064,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int thisa)"
   },
   "0x0040d010": {
    "name": "CheckValid",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "CheckValid_D010",
@@ -4086,11 +4085,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00521f30": {
    "name": "DispatchUpdateAll",
-   "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "DispatchUpdateAll_1F30",
@@ -4107,11 +4106,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nFlag)"
   },
   "0x00521e60": {
    "name": "DispatchUpdate",
-   "signature": "int __thiscall(CCBStage *this, unsigned __int8 nFlag)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "DispatchUpdate_1e60",
@@ -4128,11 +4127,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nFlag)"
   },
   "0x0050a4b0": {
    "name": "CheckViewTarget",
-   "signature": "bool __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "CheckViewTarget_a4b0",
@@ -4144,11 +4143,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall()"
   },
   "0x004e2c50": {
    "name": "InitUIByName",
-   "signature": "void __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "InitUIByName_2C50",
@@ -4160,11 +4159,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004ffa90": {
    "name": "TaskExecAttack",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskExecAttack_FA90",
@@ -4181,11 +4180,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004ffcb0": {
    "name": "TaskExecCommand",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskExecCommand_FCB0",
@@ -4202,11 +4201,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004fff60": {
    "name": "TaskExecMagicEffect",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskExecMagicEffect_FF60",
@@ -4223,11 +4222,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00500d50": {
    "name": "TaskResolveAction",
-   "signature": "int __thiscall(CCBStage *this, int nState)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskResolveAction_0d50",
@@ -4244,11 +4243,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nState)"
   },
   "0x0050b430": {
    "name": "FindFreeSlot",
-   "signature": "char __thiscall(CCBStage *this, int a2)",
    "source": "| fn-ptr return form was unparseable ([6] permanent fail); adopted decomp projection char(int). Return width needs caller confirmation — indirect dispatch tail call eax",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -4266,11 +4265,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int a2)"
   },
   "0x0050b4c0": {
    "name": "CountValidTasks",
-   "signature": "char __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "CountValidTasks_b4c0",
@@ -4282,11 +4281,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0050b4f0": {
    "name": "FindNextTask",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "FindNextTask_B4F0",
@@ -4298,11 +4297,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0050f200": {
    "name": "OnMagicHit",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "OnMagicHit_F200",
@@ -4319,11 +4318,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050fa20": {
    "name": "ClearTaskIfMatch",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ClearTaskIfMatch_FA20",
@@ -4340,11 +4339,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0044cff0": {
    "name": "RandomizePositions",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "RandomizePositions_CFF0",
@@ -4356,11 +4355,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004ffed0": {
    "name": "TaskResetToIdle",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskResetToIdle_FED0",
@@ -4377,11 +4376,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005004b0": {
    "name": "TaskWaitIdle",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskWaitIdle_04B0",
@@ -4398,11 +4397,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005007a0": {
    "name": "TaskForceEnd",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskForceEnd_07a0",
@@ -4419,11 +4418,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00500c20": {
    "name": "TaskExecAction",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskExecAction_0c20",
@@ -4440,11 +4439,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005011b0": {
    "name": "TaskMoveToStart",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskMoveToStart_11B0",
@@ -4461,11 +4460,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005014e0": {
    "name": "TaskEnterGuard",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskEnterGuard_14e0",
@@ -4482,11 +4481,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x005015c0": {
    "name": "SetupCombatAction",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetupCombatAction_15c0",
@@ -4507,11 +4506,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00501cf0": {
    "name": "TaskReturnToIdle",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskReturnToIdle_1cf0",
@@ -4528,11 +4527,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00501e60": {
    "name": "TaskShowLevelUp",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskShowLevelUp_1E60",
@@ -4549,11 +4548,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00501f30": {
    "name": "TaskShowSkillLearned",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "TaskShowSkillLearned_1f30",
@@ -4570,11 +4569,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050eda0": {
    "name": "CheckPushState",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "CheckPushState_eda0",
@@ -4591,11 +4590,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0050ee70": {
    "name": "OnPhysicalHit",
-   "signature": "int __thiscall(CCBStage *this, int nVal)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "OnPhysicalHit_ee70",
@@ -4612,11 +4611,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00518e10": {
    "name": "SetActionVisible",
-   "signature": "int __thiscall(CCBStage *this, char nActIndex)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetActionVisible_8E10",
@@ -4633,11 +4632,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char nActIndex)"
   },
   "0x00521a80": {
    "name": "CheckActionValid",
-   "signature": "bool __cdecl(int nVal)",
    "static": true,
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -4655,11 +4654,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __cdecl(int nVal)"
   },
   "0x005220e0": {
    "name": "ClearRoleState",
-   "signature": "int *__thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ClearRoleState_20e0",
@@ -4671,11 +4670,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall()"
   },
   "0x0053e9c0": {
    "name": "PauseSound",
-   "signature": "unsigned int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "PauseSound_E9C0",
@@ -4687,11 +4686,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x0053ea10": {
    "name": "ResumeSound",
-   "signature": "unsigned int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "ResumeSound_EA10",
@@ -4703,11 +4702,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __thiscall()"
   },
   "0x0050b530": {
    "name": "RefreshTaskTargetPos",
-   "signature": "void __thiscall(CCBStage *this)",
    "source": "pdb_ret | 挂账19续批2 2026-10-17（verifier·五面语义卡·A 级）：原名 GetTaskState（0x509xxx 簇错挂）⇒ RefreshTaskTargetPos：五面：①调用者=CCBStage::GetProperCurAction+ProcTransportRun（动作选取/传送链）②被调=GetTaskState 转发 ③成员 m_CamParams×2/m_TargetPos×2 ④CCBStage ⑤动作处理链 ⇒ 目标位置/相机参数刷新（原名 GetTaskState 错挂）",
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
@@ -4720,11 +4719,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0050b330": {
    "name": "GetCurrentState",
-   "signature": "char __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "GetCurrentState_B330",
@@ -4736,11 +4735,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0051f070": {
    "name": "UpdateWeaponSlots",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "UpdateWeaponSlots_F070",
@@ -4752,11 +4751,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0051f080": {
    "name": "SetWeaponSlotA",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetWeaponSlotA_f080",
@@ -4768,11 +4767,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0051f090": {
    "name": "SetWeaponSlotB",
-   "signature": "int __thiscall(CCBStage *this)",
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "SetWeaponSlotB_f090",
@@ -4784,11 +4783,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00459fa0": {
    "name": "ShowSlotPage0",
-   "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_00459fa0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批12",
@@ -4812,11 +4811,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int thisa, unsigned __int8 pData)"
   },
   "0x0045a020": {
    "name": "ShowSlotPage1",
-   "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a020（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批13",
@@ -4840,11 +4839,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int thisa, unsigned __int8 pData)"
   },
   "0x0045a0a0": {
    "name": "ShowSlotPage2",
-   "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a0a0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批13",
@@ -4868,11 +4867,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int thisa, unsigned __int8 pData)"
   },
   "0x0045a120": {
    "name": "ShowSlotPage3",
-   "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a120（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批13",
@@ -4896,11 +4895,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int thisa, unsigned __int8 pData)"
   },
   "0x0045a1a0": {
    "name": "ShowSlotPage4",
-   "signature": "char __thiscall(CCBStage *this, int thisa, unsigned __int8 pData)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_0045a1a0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批13",
@@ -4924,11 +4923,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int thisa, unsigned __int8 pData)"
   },
   "0x004feef0": {
    "name": "sub_4FEEF0",
-   "signature": "int __thiscall(CCBStage *this, void *thisa)",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 CCBStage::sub_4FEEF0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 CCBStage 方法面",
    "evidence_level": "A",
    "name_source": "IDA语义分析 2026-11-01 批15",
@@ -4947,11 +4946,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *thisa)"
   },
   "0x0051f0a0": {
    "name": "OnCommand",
-   "signature": "BOOL __thiscall(int, int)",
    "evidence_level": "unverified",
    "semantic_name": "OnCommand",
    "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
@@ -4971,11 +4970,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x00524970": {
    "name": "slot_1",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -4985,11 +4984,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
@@ -5000,34 +4999,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x00445b90": {
-   "name": "Create",
-   "signature": "void __thiscall(int,tagRECT *,UIWnd *)",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "tagRECT *",
-      "name": null
-     },
-     {
-      "type": "UIWnd *",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

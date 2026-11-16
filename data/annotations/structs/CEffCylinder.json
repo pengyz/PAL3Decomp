@@ -216,7 +216,6 @@
  "methods": {
   "0x004c3c90": {
    "name": "Init",
-   "signature": "CEffCylinder **__thiscall CEffCylinder::Init()",
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=AllocEffect+IsAllEffGroupStop（分配后初始化链）②被调=自身 ③成员 _tail_000×8/m_vecPos/m_vecRot ④CEffCylinder ⑤几何初始化 ⇒ 与 0x4C3EC0 参数异（几何 vs 参数化）=**合法重载**",
    "evidence_level": "unverified",
    "semantic_name": "Init_3C90",
@@ -228,11 +227,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CEffCylinder **__thiscall ()"
   },
   "0x004c3d90": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "source": "manual_fix_vtable+manual_ida_body",
    "ordinal": 7,
    "evidence_level": "unverified",
@@ -243,11 +242,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004c3dd0": {
    "name": "_scalar_dtor_3DD0",
-   "signature": "void __fastcall(CEffCylinder *this)",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CEffCylinder 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3DD0。refs: ??3@YAXPAX@Z ?Release@gbRefObject@@QAEXXZ",
    "evidence_level": "A",
    "declaration_only": true,
@@ -258,11 +257,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __fastcall()"
   },
   "0x004c3eb0": {
    "name": "~CEffCylinder",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -271,11 +270,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c3ec0": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
    "source": "| 挂账19续批2b 2026-10-17（verifier·DestroyEffect/散组四分账·五面语义卡）：✅ 合法重载保留：①调用者=vtable 槽 0x56F768 ②被调=CEffMgr::Reset×4 ③成员 m_dwStartColor×5/m_vecPos/m_vecRot ④CEffCylinder ⑤参数化效果初始化（颜色/位置/旋转）⇒ 合法重载（与 0x4C3C90 同名异参）",
    "evidence_level": "A",
@@ -306,11 +305,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004c4060": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *pType)",
    "ordinal": 1,
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -327,11 +326,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *pType)"
   },
   "0x004c4370": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "ordinal": 6,
    "evidence_level": "A",
    "adjudication": "confirmed",
@@ -343,11 +342,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c45a0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "ordinal": 5,
    "evidence_level": "unverified",
    "semantic_name": "CreateTask",
@@ -363,11 +362,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   },
   "0x004c48d0": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "ordinal": 12,
    "evidence_level": "unverified",
    "semantic_name": "ProcInitTask",
@@ -383,11 +382,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004c5010": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "ordinal": 14,
    "evidence_level": "unverified",
    "semantic_sig": "const char *",
@@ -402,11 +401,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c5150": {
    "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int)",
    "ordinal": 10,
    "evidence_level": "unverified",
    "semantic_sig": "const char *",
@@ -421,11 +420,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c5210": {
    "name": "InitDefaultUVSet",
-   "signature": "void __thiscall(int nFramePerRow, int nFramePerCol)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -443,11 +442,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nFramePerRow, int nFramePerCol)"
   },
   "0x004c52c0": {
    "name": "LoadTexture",
-   "signature": "int *__thiscall(char *pFileName)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -461,7 +460,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(char *pFileName)"
   },
   "0x004c7680": {
    "name": "ProcCommonTask",
@@ -476,7 +476,6 @@
   },
   "0x004ca450": {
    "name": "UpdateGeometry",
-   "signature": "int __thiscall CEffCylinder::UpdateGeometry(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -490,11 +489,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004c5810": {
    "name": "_sdtor",
-   "signature": "char *__thiscall(char pData)",
    "source": "vtable_gap_fill_v1(from RenderTarget2.json) | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系",
    "evidence_level": "A",
    "adjudication": "shared_impl",
@@ -510,11 +509,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(char pData)"
   },
   "0x004c3db0": {
    "name": "_scalar_dtor_3DB0",
-   "signature": "void __thiscall(int nVal1)",
    "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffCylinder（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F7B0,0x56F774,0x56F768,0x56F7C8,0x56F7BC）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -531,11 +530,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x004c2620": {
    "name": "ProcessData",
-   "signature": "void __thiscall(CEffCylinder *this)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "数据处理（DWORD 循环操作）",
    "semantic_sig": "void",
@@ -545,11 +544,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2640": {
    "name": "slot_4",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
    "evidence_level": "binary_vtable_slot",
@@ -560,11 +559,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2660": {
    "name": "ProcessData_2",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
    "evidence_level": "binary_vtable_slot",
@@ -577,11 +576,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2680": {
    "name": "ProcessData_3",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
    "evidence_level": "binary_vtable_slot",
@@ -594,11 +593,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c3bb0": {
    "name": "CheckState",
-   "signature": "virtual void __thiscall(CEffCylinder *this)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "状态检查（_tail_000[16] 判断+循环）",
    "semantic_sig": "void",
@@ -608,11 +607,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c5800": {
    "name": "CreateTaskWrapper",
-   "signature": "virtual void __thiscall(CEffCylinder *this)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "CreateTask 包装（this-12 调整）",
    "semantic_sig": "void",
@@ -622,11 +621,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "semantic_name": "CEffAction::UpdateParticles(void)",
    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
    "semantic_sig": "void",
@@ -636,7 +635,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

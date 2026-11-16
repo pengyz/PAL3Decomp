@@ -12,7 +12,6 @@
  "methods": {
   "0x004503d0": {
    "name": "Create",
-   "signature": "void __thiscall(int id, int x, int y, int parent, char *tex)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -42,11 +41,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int id, int x, int y, int parent, char *tex)"
   },
   "0x00450550": {
    "name": "Show",
-   "signature": "void __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -61,11 +60,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x00450b30": {
    "name": "Init",
-   "signature": "int __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -80,11 +79,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal1)"
   },
   "0x0052aef0": {
    "name": "ResetState",
-   "signature": "int *__thiscall UIDialog::ResetState()",
    "_misattrib_evidence": "max_offset=276>class_size=72",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
@@ -94,7 +93,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   }
  },
  "base_size": 68,

@@ -108,7 +108,6 @@
  "methods": {
   "0x0043be30": {
    "name": "~CCBResultWindow",
-   "signature": "void __thiscall CCBResultWindow::~CCBResultWindow()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -118,11 +117,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00442e10": {
    "name": "ctor",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -133,11 +132,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00443190": {
    "name": "Create",
-   "signature": "void __thiscall CCBResultWindow::Create()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -146,11 +145,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00444a20": {
    "name": "CCBResultWindow",
-   "signature": "void __thiscall CCBResultWindow::CCBResultWindow()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -159,11 +158,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00444d20": {
    "name": "SetDirty",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -172,11 +171,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00515ce0": {
    "name": "FindChildByID",
-   "signature": "int __thiscall UIWnd::FindChildByID(int nID)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -190,11 +189,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nID)"
   },
   "0x00444d10": {
    "name": "StartAnim",
-   "signature": "int __thiscall CCBResultWindow::StartAnim()",
    "class": "UIWnd",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -204,11 +203,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00519660": {
    "name": "IsImbibeNimbusNotFinish",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -226,11 +225,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00519360": {
    "name": "ShowLineupWindow",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "evidence_level": "unverified",
    "semantic_name": "ShowLineupWindow",
    "semantic_sig": "void *",
@@ -249,11 +248,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x00519510": {
    "name": "Destroy",
-   "signature": "int __thiscall()",
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=10: m_pBack,m_pDouble,m_pEXP,m_pEarth,m_pFace（adjudicate_multiclaim 2026-11-03）",
@@ -265,11 +264,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005195e0": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int, int, int)",
    "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "confirmed",
@@ -294,11 +293,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x00442420": {
    "name": "Destroy_2420",
-   "signature": "void __thiscall()",
    "ordinal": 3,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -308,11 +307,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00444d30": {
    "name": "ProcessInput",
-   "signature": "BOOL __thiscall UIFrameWnd::ProcessInput(int nVal, int nVal2)",
    "ordinal": 31,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -331,11 +330,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00444ad0": {
    "name": "RenderAll",
-   "signature": "int __thiscall()",
    "ordinal": 30,
    "evidence_level": "unverified",
    "semantic_name": "RenderAll",
@@ -346,11 +345,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00444aa0": {
    "name": "_sdtor_full",
-   "signature": "int __thiscall(void *Block, char)",
    "source": "vtable_migrated",
    "ordinal": 34,
    "evidence_level": "unverified",
@@ -371,7 +370,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *Block, char)"
   }
  },
  "vtables": [

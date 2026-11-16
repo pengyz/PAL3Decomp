@@ -126,7 +126,6 @@
  "methods": {
   "0x0052fa50": {
    "name": "LoadSkeletonModel",
-   "signature": "gbVFileSystem *__thiscall s_RoleState::LoadSkeletonModel()",
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *__thiscall",
    "sig_model": {
@@ -135,11 +134,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem *__thiscall ()"
   },
   "0x004a3a90": {
    "name": "LoadAndSetupRole",
-   "signature": "int __thiscall s_RoleState::LoadAndSetupRole()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -148,11 +147,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052fb00": {
    "name": "CopyRoleData",
-   "signature": "char __thiscall(int nVal, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -170,7 +169,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal, char pData)"
   }
  }
 }

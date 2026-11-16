@@ -315,7 +315,6 @@
  "methods": {
   "0x00408d10": {
    "name": "CalcXueJianInit",
-   "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -334,11 +333,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408d80": {
    "name": "CalcLongKuiInit",
-   "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -357,11 +356,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408e30": {
    "name": "CalcZiXuanInit",
-   "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -380,11 +379,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408e90": {
    "name": "CalcChangQingInit",
-   "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -403,11 +402,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00408f30": {
    "name": "CalcHuaYingInit",
-   "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -426,11 +425,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nVal, int nVal2)"
   },
   "0x00418170": {
    "name": "CheckOBBCollision",
-   "signature": "int __thiscall(struct gbOBBox *p)",
    "_misattrib_evidence": "max_offset=680>class_size=64",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -445,11 +444,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(struct gbOBBox *p)"
   },
   "0x00411900": {
    "name": "Role",
-   "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=8700>class_size=596",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -459,11 +458,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0041b640": {
    "name": "UpdateBoundingBox",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)",
    "evidence_level": "unverified",
    "semantic_name": "UpdateBoundingBox",
@@ -479,11 +478,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x0041b6a0": {
    "name": "GetGfxManager",
-   "signature": "int __thiscall()",
    "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_name": "GetGfxManager",
@@ -494,11 +493,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0041be30": {
    "name": "_sdtor_22",
-   "signature": "BOOL __thiscall(int, int)",
    "source": "vtable_owner_fix(Glow 层虚函数)",
    "evidence_level": "unverified",
    "declaration_only": true,
@@ -519,11 +518,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x0041be20": {
    "name": "_ScriptObj_adjthunk1",
-   "signature": "int __thiscall()",
    "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x38 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk1（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名） | thunk 形统一 2026-10-17（verifier A 级）：disasm 0x41BE20=`sub ecx,38h; jmp ScriptObj::~ScriptObj(int)`、0x41BE30=`sub ecx,40h; jmp 同` = 析构 adjustor thunk 实锤；原名 `~ScriptObj_adjthunkN` 语义对但**制式非法**（`~` 前缀非合法标识符 ⇒ 注解 `~`/生成 `_` 三源分叉）⇒ 统一制式 `_ScriptObj_adjthunkN`（与生成侧对齐）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -538,11 +537,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00416500": {
    "name": "IsActionBlocked",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -551,7 +550,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  },
  "base_size": 96

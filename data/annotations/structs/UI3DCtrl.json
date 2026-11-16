@@ -120,7 +120,6 @@
  "methods": {
   "0x0043d830": {
    "name": "UI3DCtrl",
-   "signature": "int *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -129,11 +128,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall()"
   },
   "0x0043d860": {
    "name": "_scalar_dtor_D860",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -156,11 +155,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043d890": {
    "name": "CreateWithTexture",
-   "signature": "gbVFileSystem *__thiscall UI3DCtrl::CreateWithTexture(int id, void *pRect, int nVal, unsigned int dwVal, int parent)",
    "ordinal": 7,
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *__thiscall",
@@ -191,11 +190,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem *__thiscall (int id, void *pRect, int nVal, unsigned int dwVal, int parent)"
   },
   "0x0043d940": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -205,11 +204,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b050": {
    "name": "LoadEncampModel",
-   "signature": "char __thiscall(const char *pszModelName, const char *pszName)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -227,11 +226,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(const char *pszModelName, const char *pszName)"
   },
   "0x0052e8c0": {
    "name": "UpdateRotation",
-   "signature": "double __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -240,11 +239,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall()"
   },
   "0x0052e940": {
    "name": "UpdateOscillation",
-   "signature": "double __thiscall UI3DCtrl::UpdateOscillation()",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -253,11 +252,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall()"
   },
   "0x0052e9c0": {
    "name": "UpdateOscillationX",
-   "signature": "double __thiscall UI3DCtrl::UpdateOscillationX()",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -266,11 +265,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall()"
   },
   "0x0052ea40": {
    "name": "UpdateOscillationY",
-   "signature": "double __thiscall UI3DCtrl::UpdateOscillationY()",
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
@@ -279,11 +278,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "double __thiscall()"
   },
   "0x0052eac0": {
    "name": "UpdateTransform",
-   "signature": "char __thiscall UI3DCtrl::UpdateTransform(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -297,11 +296,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x0052af20": {
    "name": "LoadModel",
-   "signature": "char __thiscall UI3DCtrl::LoadModel(const char *pszModelName)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -315,11 +314,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(const char *pszModelName)"
   },
   "0x0043d920": {
    "name": "Destroy",
-   "signature": "void __thiscall(void)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -334,7 +333,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(void)"
   }
  },
  "vtables": [

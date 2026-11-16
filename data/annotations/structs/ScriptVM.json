@@ -165,7 +165,6 @@
  "methods": {
   "0x0042cd90": {
    "name": "CallFunction",
-   "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -183,11 +182,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char nFuncID, int nArgCount)"
   },
   "0x004366c0": {
    "name": "GetObjectByID",
-   "signature": "int __cdecl(int nObjID)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -202,11 +201,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int nObjID)"
   },
   "0x0042c730": {
    "name": "OpenSceneScript",
-   "signature": "struct gbVFileSystem *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "struct gbVFileSystem *",
    "sig_model": {
@@ -215,11 +214,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "struct gbVFileSystem * __thiscall()"
   },
   "0x0042c810": {
    "name": "UpdatePauseState",
-   "signature": "char __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -228,11 +227,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0042c950": {
    "name": "ExecuteOpcode",
-   "signature": "int __thiscall(void *pData, unsigned char nType, int nCount, int)",
    "source": "sig_evidence_A(ret-N arity)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -259,11 +258,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(void *pData, unsigned char nType, int nCount, int)"
   },
   "0x0042d670": {
    "name": "GetRolePosition",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -277,11 +276,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x00423880": {
    "name": "ProcessFrame",
-   "signature": "void __thiscall ScriptVM::ProcessFrame()",
    "source": "| [名账正名 2026-10-16] idapro decompile：体=`BINK::Destroy(this)` + m_nPathStep 循环 + operator delete（??3）——**清理/析构形 ⇒ 非 ctor**（lead 疑「gbLightObj ctor」证否）· xref 零命中 ⇒ **禁猜挂账**（保留现名 ProcessFrame；清理语义明但真名待全形核）",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -291,11 +290,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0042d4b0": {
    "name": "SetRolePosition",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -309,11 +308,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x0042c1a0": {
    "name": "IsRunning",
-   "signature": "BOOL __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -322,11 +321,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall()"
   },
   "0x0042fb60": {
    "name": "GetString",
-   "signature": "char *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "char *",
    "sig_model": {
@@ -335,11 +334,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall()"
   },
   "0x00424c20": {
    "name": "ExecuteBlock",
-   "signature": "void __thiscall(ScriptVM *this)",
    "_misattrib_evidence": "round3: interpreter loop; ScriptVM::CallFunction/SetRolePosition on own this (mov ecx,esi); IsRunning(0x42C1A0) callers all inside this function",
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x424C20 ScriptVM 成员访问",
    "evidence_level": "A",
@@ -350,11 +349,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0042cb70": {
    "name": "FightInfo",
-   "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)",
    "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -377,7 +376,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1, int nVal2, int nVal3)"
   }
  },
  "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."

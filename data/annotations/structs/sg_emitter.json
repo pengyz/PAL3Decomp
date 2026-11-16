@@ -126,7 +126,6 @@
  "methods": {
   "0x004bae60": {
    "name": "Render",
-   "signature": "int __thiscall(sg_emitter *this, struct gbVFile *nVal)",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（sub_4BAE60）",
    "semantic_sig": "int",
@@ -141,7 +140,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(struct gbVFile *nVal)"
   }
  }
 }

@@ -553,7 +553,6 @@
  "methods": {
   "0x005137ef": {
    "name": "ControlDealBTWnd",
-   "signature": "void (uchar)",
    "source": "pdb",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -568,11 +567,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void (uchar)"
   },
   "0x004a4220": {
    "name": "Init",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -581,11 +580,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00498820": {
    "name": "EquipUI",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ EquipUI（ctor 名形=类名）：A 级 refs ??0UIListBox/??0UIRoleDialog/??0UI3DCtrl（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIRoleDialog/??0UI3DCtrl",
@@ -597,11 +596,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00499030": {
    "name": "~EquipUI",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 EquipUI 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~EquipUI。refs: ?Reset@PalScript@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ?DeleteRow@UIListBox@@QAEXXZ ?_UIFram",
@@ -613,11 +612,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00494040": {
    "name": "UpdateSlot",
-   "signature": "void __thiscall(int nSlotIdx, int nItemID, int nCount)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -639,11 +638,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nSlotIdx, int nItemID, int nCount)"
   },
   "0x00494d70": {
    "name": "HandleInput",
-   "signature": "void __thiscall(int nInputID, int nParam)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -661,11 +660,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nInputID, int nParam)"
   },
   "0x0049f9b0": {
    "name": "SetGroupVisible",
-   "signature": "int __thiscall(unsigned char bVisible)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -679,11 +678,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char bVisible)"
   },
   "0x0049fbe0": {
    "name": "UpdateDisplay",
-   "signature": "BOOL __thiscall(int nPage, int nSlot)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -701,11 +700,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nPage, int nSlot)"
   },
   "0x0049fa10": {
    "name": "InitParticleEffects",
-   "signature": "int __thiscall EquipUI::InitParticleEffects(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -719,11 +718,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004a0370": {
    "name": "HandleEquipEvent",
-   "signature": "void __thiscall(int nVal, char *pszBuf, int nVal2)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -746,11 +745,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, char *pszBuf, int nVal2)"
   },
   "0x00484d20": {
    "name": "ShowPage",
-   "signature": "int __thiscall EquipUI::ShowPage()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -759,11 +758,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004945c0": {
    "name": "SelectBigMapTab0",
-   "signature": "int __thiscall EquipUI::SelectBigMapTab0(char nTab)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -777,11 +776,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char nTab)"
   },
   "0x00498c70": {
    "name": "_scalar_dtor_8C70",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -804,11 +803,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0049fe00": {
    "name": "RenderEffects",
-   "signature": "void __thiscall EquipUI::RenderEffects()",
    "_misattrib_evidence": "max_offset=231140>class_size=1208",
    "ordinal": 1,
    "evidence_level": "unverified",
@@ -819,11 +818,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00484e70": {
    "name": "SelectTab0",
-   "signature": "int __thiscall EquipUI::SelectTab0(unsigned __int8 nTab)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -837,11 +836,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nTab)"
   },
   "0x0048a2f0": {
    "name": "SetSubTab",
-   "signature": "int __thiscall EquipUI::SetSubTab(unsigned __int8 nTab)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -855,11 +854,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nTab)"
   },
   "0x0049e840": {
    "name": "SetSubTab2",
-   "signature": "int __thiscall EquipUI::SetSubTab2(unsigned __int8 nTab)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -873,11 +872,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 nTab)"
   },
   "0x0049ff90": {
    "name": "NavigateSlots",
-   "signature": "char __thiscall EquipUI::NavigateSlots()",
    "source": "| [T129] 同名消歧：@0x49FF90 全函数体（2302 字符）调用簇=EquipUI::FindNextSlot/FindPrevSlot（槽位导航）+ 成员 m_EquipData ⇒ 语义名 NavigateSlots（禁伪语义 ✓ 调用簇证据）；@0x494D70 HandleInput 保留（18370 字符大形=输入处理）",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -887,11 +886,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004a00b0": {
    "name": "Update",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -910,11 +909,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x004ab6b0": {
    "name": "InitEquipUI",
-   "signature": "int __thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=401448>class_size=120116",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -929,11 +928,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0049ff30": {
    "name": "FindNextSlot",
-   "signature": "int __thiscall(int *pCounter)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -947,11 +946,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *pCounter)"
   },
   "0x0049ff60": {
    "name": "FindPrevSlot",
-   "signature": "int __thiscall(int *pCounter)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -965,11 +964,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *pCounter)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -979,7 +978,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

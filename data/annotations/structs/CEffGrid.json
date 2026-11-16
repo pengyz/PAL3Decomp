@@ -198,7 +198,6 @@
  "methods": {
   "0x004c9610": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "ordinal": 7,
    "evidence_level": "unverified",
    "semantic_name": "CEffGrid",
@@ -209,11 +208,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004c9650": {
    "name": "~CEffGrid",
-   "signature": "void __fastcall(CEffGrid *this)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -222,11 +221,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __fastcall()"
   },
   "0x004c98f0": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *pType)",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -241,11 +240,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *pType)"
   },
   "0x004ca9a0": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "ordinal": 14,
    "evidence_level": "unverified",
    "semantic_name": "GetEditorObjDescription",
@@ -261,11 +260,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c9750": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_name": "Init",
@@ -293,11 +292,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004c9ed0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "source": "vtable_migrated",
    "ordinal": 5,
    "evidence_level": "unverified",
@@ -313,11 +312,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   },
   "0x004c9ca0": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified",
@@ -328,11 +327,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004caab0": {
    "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 10,
    "evidence_level": "unverified",
@@ -349,11 +348,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004ca1d0": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "source": "vtable_migrated",
    "ordinal": 12,
    "evidence_level": "unverified",
@@ -369,11 +368,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004cb340": {
    "name": "slot_5_adjthunk",
-   "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004C9ED0）⇒ 目标名 slot_5 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -384,11 +383,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004cb350": {
    "name": "_todo_4CB350",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -399,11 +398,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c9630": {
    "name": "_scalar_dtor_9630",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffgbParticle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F8B4,0x56F878,0x56F86C,0x56F908,0x56F8CC,0x56F8C0,0x56F920,0x56F914）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -420,11 +419,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "semantic_name": "CEffAction::UpdateParticles(void)",
    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
    "semantic_sig": "void",
@@ -434,7 +433,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

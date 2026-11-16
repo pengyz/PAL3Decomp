@@ -5,7 +5,6 @@
  "methods": {
   "0x00410900": {
    "name": "ForwardToImport",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref 0x410900 仅表内（转发包装）+ 7 槽 `ff 25 [IAT]` 全导入转发；方法语义面:0x410900=I",
    "evidence_level": "unverified",
    "semantic_name": "ForwardToImport",
@@ -21,11 +20,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -36,11 +35,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b9c0": {
    "name": "_todo_52B9C0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -51,11 +50,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -66,11 +65,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -81,11 +80,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052ba20": {
    "name": "_todo_52BA20",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -96,11 +95,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00542108": {
    "name": "ParticleVisNode_adjthunk_2108",
-   "signature": "int __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
@@ -112,11 +111,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x005420f6": {
    "name": "ParticleVisNode_adjthunk_20F6",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
@@ -127,11 +126,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005420f0": {
    "name": "ParticleVisNode_adjthunk_20F0",
-   "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
@@ -142,11 +141,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005420e4": {
    "name": "TextureLib_adjthunk_20E4",
-   "signature": "int __thiscall(CCBItemWindow *__hidden, unsigned int, unsigned, unsigned)",
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
@@ -175,11 +174,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(CCBItemWindow *__hidden, unsigned int, unsigned, unsigned)"
   },
   "0x005420ea": {
    "name": "TextureLib_adjthunk_20EA",
-   "signature": "int __thiscall(int, int, int)",
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
@@ -204,11 +203,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x00542102": {
    "name": "SceneVisNode_adjthunk_2102",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_2",
@@ -220,11 +219,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005420fc": {
    "name": "ParticleVisNode_adjthunk_20FC",
-   "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_3",
@@ -236,11 +235,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x005420de": {
    "name": "GetAABBox",
-   "signature": "void __thiscall(gbAABBox *)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -255,11 +254,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(gbAABBox *)"
   },
   "0x005420d8": {
    "name": "EnableShadow",
-   "signature": "void __thiscall(int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -274,7 +273,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   }
  },
  "vtables": [

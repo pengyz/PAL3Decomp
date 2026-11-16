@@ -353,7 +353,6 @@
  "methods": {
   "0x00453e70": {
    "name": "_scalar_dtor_3E70",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL",
@@ -366,11 +365,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004460d0": {
    "name": "CCBUIPanel",
-   "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -380,11 +379,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0044a540": {
    "name": "OnMessage",
-   "signature": "virtual int __thiscall(CCBUIPanel *this, int nVal, int nVal2, int nVal3)",
    "name_source": "IDA语义分析 2026-11-01 批7",
    "name_note": "剥壳定谳(验证pass): OnMessage: m_EmbedPlayerAtt+槽链名对齐实证",
    "semantic_name": "OnMessage_A540",
@@ -408,11 +407,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00453d10": {
    "name": "Init",
-   "signature": "void __thiscall(CCBUIPanel *this)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "初始化（UIListBox ctor + ResetContainerState 链）",
    "semantic_sig": "void",
@@ -422,11 +421,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00446200": {
    "name": "~CCBUIPanel",
-   "signature": "void __thiscall()",
    "source": "| [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -436,11 +435,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00449980": {
    "name": "SetUserData",
-   "signature": "void __thiscall(int nVal1)",
    "_misattrib_evidence": "max_offset=364>class_size=96",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -456,11 +455,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x004461d0": {
    "name": "_scalar_dtor_61D0",
-   "signature": "void __thiscall CCBUIPanel::_scalar_dtor(int nVal1)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -479,11 +478,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal1)"
   },
   "0x004462c0": {
    "name": "InitPanel",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -492,11 +491,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00449b90": {
    "name": "FocusCurrentRole",
-   "signature": "char __thiscall CCBUIPanel::FocusCurrentRole()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -505,11 +504,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x0044a1b0": {
    "name": "ProcessInput",
-   "signature": "BOOL __thiscall CCBUIPanel::ProcessInput(double st7_0)",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
@@ -525,11 +524,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(double st7_0)"
   },
   "0x00454550": {
    "name": "RenderIfUnlocked",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "RenderIfUnlocked",
    "semantic_sig": "int",
@@ -539,11 +538,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00454560": {
    "name": "ProcessInputIfUnlocked",
-   "signature": "BOOL __thiscall CCBUIPanel::ProcessInputIfUnlocked(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -561,11 +560,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00449ab0": {
    "name": "CenterSlot",
-   "signature": "int __thiscall CCBUIPanel::CenterSlot(unsigned int nSlotIdx)",
    "_misattrib_evidence": "max_offset=18792>class_size=456",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -580,11 +579,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned int nSlotIdx)"
   },
   "0x00449c50": {
    "name": "UpdateSlotClipping",
-   "signature": "int __thiscall CCBUIPanel::UpdateSlotClipping()",
    "_misattrib_evidence": "max_offset=608>class_size=160",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -594,11 +593,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00449cf0": {
    "name": "UpdateSlotPositions",
-   "signature": "char __thiscall CCBUIPanel::UpdateSlotPositions(int nVal)",
    "_misattrib_evidence": "max_offset=18800>class_size=584",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -613,11 +612,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x00449e60": {
    "name": "EnsureSize",
-   "signature": "void __thiscall CCBUIPanel::EnsureSize(int nVal, int nVal2)",
    "_misattrib_evidence": "max_offset=18832>class_size=204",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -636,11 +635,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2)"
   },
   "0x0044a180": {
    "name": "SetAllSlotsVisible",
-   "signature": "int __thiscall CCBUIPanel::SetAllSlotsVisible(unsigned __int8 bVisible)",
    "_misattrib_evidence": "max_offset=608>class_size=160",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -655,11 +654,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned __int8 bVisible)"
   },
   "0x0044a4f0": {
    "name": "ActivateSlot",
-   "signature": "void __thiscall CCBUIPanel::ActivateSlot(unsigned int nSlotIdx)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -673,11 +672,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(unsigned int nSlotIdx)"
   },
   "0x004544f0": {
    "name": "UpdateButtonVisibility",
-   "signature": "int __thiscall CCBUIPanel::UpdateButtonVisibility()",
    "_misattrib_evidence": "max_offset=1416>class_size=352",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -687,11 +686,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0048a170": {
    "name": "InitSlots",
-   "signature": "int __thiscall CCBUIPanel::InitSlots()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -700,11 +699,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004a3ec0": {
    "name": "InitScrollState",
-   "signature": "int __thiscall CCBUIPanel::InitScrollState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -713,11 +712,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00449990": {
    "name": "Destroy",
-   "signature": "int __thiscall()",
    "source": "vtable_migrated | [C2511修 2026-11-13] this型 UIListBox**→CCBUIPanel*: 函数在CCBUIPanel.json=该类方法, this类型应为宿主类指针; C2511重载不新覆盖=同名异型冲突",
    "ordinal": 3,
    "evidence_level": "unverified",
@@ -729,11 +728,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00449c20": {
    "name": "InitMagicWindows",
-   "signature": "virtual void __thiscall(CCBUIPanel *this)",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "魔法窗口初始化（CCBMagicWindow 数组遍历）",
    "semantic_sig": "void",
@@ -743,11 +742,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00453e50": {
    "name": "_scalar_dtor_3E50",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
@@ -768,11 +767,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00454590": {
    "name": "OnMessage_4590",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -797,7 +796,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   }
  },
  "vtables": [

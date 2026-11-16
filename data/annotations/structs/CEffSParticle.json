@@ -72,7 +72,6 @@
  "methods": {
   "0x004d4ee0": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "ordinal": 7,
    "evidence_level": "unverified",
    "semantic_name": "CEffSParticle",
@@ -83,11 +82,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004d4f20": {
    "name": "~CEffSParticle",
-   "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -96,11 +95,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004d4fc0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "ordinal": 5,
    "evidence_level": "unverified",
    "semantic_name": "Create",
@@ -116,11 +115,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   },
   "0x004d51b0": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "ordinal": 12,
    "evidence_level": "unverified",
    "semantic_name": "Init",
@@ -136,11 +135,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004d53e0": {
    "name": "Attach",
-   "signature": "int __thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -154,11 +153,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004d5620": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "ordinal": 14,
    "source": "| [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
@@ -175,11 +174,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004d56b0": {
    "name": "Render",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -213,11 +212,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
   },
   "0x004d5790": {
    "name": "SetTimeScale",
-   "signature": "void *__thiscall(CEffSParticle *Block, char fTimeScale)",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
    "sig_model": {
@@ -235,11 +234,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(CEffSParticle *Block, char fTimeScale)"
   },
   "0x004d5860": {
    "name": "CreateTask",
-   "signature": "char *__thiscall(char p)",
    "evidence_level": "unverified",
    "declaration_only": true,
    "semantic_sig": "char *",
@@ -254,11 +253,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(char p)"
   },
   "0x004d58d0": {
    "name": "GetEditorTaskDescription_58d0",
-   "signature": "const char *__thiscall(int nIndex)",
    "evidence_level": "unverified",
    "semantic_name": "GetEditorTaskDescription",
    "semantic_sig": "const char *",
@@ -273,11 +272,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int nIndex)"
   },
   "0x004d4f00": {
    "name": "_scalar_dtor_4F00",
-   "signature": "char *__thiscall(char)",
    "source": "vtable_gap_fill_v1(IDB:?CreateTask@CEffSParticle@@QAEPADD@Z) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffSParticle（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FB34,0x56FB28）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -294,11 +293,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char * __thiscall(char)"
   },
   "0x004d5850": {
    "name": "Create_adjthunk",
-   "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004D4FC0）⇒ 目标名 Create 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -309,11 +308,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2600": {
    "name": "UpdateDelta",
-   "signature": "virtual void __thiscall(CEffCylinder *this)",
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "增量计算（float delta = new - old）",
    "adjudication": "confirmed",
@@ -330,11 +329,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c2850": {
    "name": "Method",
-   "signature": "int __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（_todo_4C2850）",
    "semantic_name": "Method",
@@ -345,11 +344,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004c0650": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -364,11 +363,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *)"
   },
   "0x004d33a0": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -395,11 +394,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x00408bd0": {
    "name": "DestroyEffect",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -409,11 +408,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c0500": {
    "name": "OnTest",
-   "signature": "char __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -423,11 +422,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004af760": {
    "name": "Update",
-   "signature": "int __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "int",
@@ -442,11 +441,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int)"
   },
   "0x004c0510": {
    "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "const char *",
@@ -461,11 +460,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -475,11 +474,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0055434f": {
    "name": "v2_slot_1",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -489,7 +488,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

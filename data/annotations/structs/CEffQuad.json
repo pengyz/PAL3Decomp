@@ -120,7 +120,6 @@
  "methods": {
   "0x004d1be0": {
    "name": "DestroyOneQuad",
-   "signature": "void __thiscall(const void *n)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -135,11 +134,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const void *n)"
   },
   "0x004d1ca0": {
    "name": "SetQuad",
-   "signature": "bool __thiscall(int n)",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "bool",
@@ -154,11 +153,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int n)"
   },
   "0x004d1e50": {
    "name": "DestroyAllQuad",
-   "signature": "int *__thiscall(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -172,11 +171,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nVal)"
   },
   "0x004d1f30": {
    "name": "ToNextFrame",
-   "signature": "int *__thiscall(int nQuad)",
    "evidence_level": "unverified",
    "semantic_sig": "int *",
    "sig_model": {
@@ -190,11 +189,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int * __thiscall(int nQuad)"
   },
   "0x004d2e10": {
    "name": "ProcessDestroyPass",
-   "signature": "int __thiscall CEffQuad::ProcessDestroyPass(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -208,11 +207,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x004d1300": {
    "name": "Destroy",
-   "signature": "void __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -225,11 +224,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004d17d0": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(float)",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "adjudication": "rejected",
@@ -247,11 +246,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(float)"
   },
   "0x004d3220": {
    "name": "sub_4D17D0_adjthunk",
-   "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004D17D0）⇒ 目标名 sub_4D17D0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -262,11 +261,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004d0d90": {
    "name": "_scalar_dtor_0D90",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA18,0x56F9DC,0x56F9D0,0x56FA30,0x56FA24）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -283,11 +282,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int)"
   },
   "0x004d1090": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -302,11 +301,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *)"
   },
   "0x004d0ec0": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -333,11 +332,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004d0d70": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void*",
@@ -347,11 +346,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void* __thiscall()"
   },
   "0x004d2080": {
    "name": "RenderEffectPass",
-   "signature": "void __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -366,11 +365,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004d2ed0": {
    "name": "GetEditorTaskDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "const char *",
@@ -385,11 +384,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
-   "signature": "void __thiscall()",
    "semantic_name": "CEffAction::UpdateParticles(void)",
    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
    "semantic_sig": "void",
@@ -399,7 +398,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "base_size": 16,

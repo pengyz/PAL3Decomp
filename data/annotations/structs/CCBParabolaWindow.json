@@ -24,7 +24,6 @@
  "methods": {
   "0x0051b710": {
    "name": "CCBParabolaWindow",
-   "signature": "void __thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -42,11 +41,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int *pnVal, int nVal)"
   },
   "0x0051b950": {
    "name": "OnMessage_b950",
-   "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)",
    "evidence_level": "unverified",
    "semantic_name": "OnMessage",
    "semantic_sig": "bool",
@@ -69,11 +68,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)"
   },
   "0x0051c280": {
    "name": "_scalar_dtor",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -84,11 +83,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00440be0": {
    "name": "LoadResourceEx",
-   "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *",
    "sig_model": {
@@ -106,11 +105,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem * __thiscall(const char *pszName, char pData)"
   },
   "0x0051c260": {
    "name": "`scalar deleting destructor'",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
    "evidence_level": "A",
    "adjudication": "shared_impl",
@@ -131,11 +130,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x0051c880": {
    "name": "Destroy",
-   "signature": "int __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
@@ -148,11 +147,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0051c9f0": {
    "name": "Update",
-   "signature": "BOOL __thiscall(int deltatime, int haveinput)",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
@@ -172,11 +171,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int deltatime, int haveinput)"
   },
   "0x0051ca50": {
    "name": "ToggleSlots",
-   "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
@@ -192,27 +191,28 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "CCBAIWindow *__thiscall (int nVal)"
   },
   "0x0051caa0": {
    "name": "Render",
-   "signature": "int __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
    "semantic_name": "Render",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": "; C2555链对齐(结构化sweep): B: 真override返回漂移(基void); 置信度中高(史前+基形式多数证据)",
+   "signature": "void __thiscall()"
   },
   "0x0051c9b0": {
    "name": "OnMessage",
-   "signature": "void __thiscall(uint,uint,uint)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -235,7 +235,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(uint, uint, uint)"
   }
  },
  "vtables": [

@@ -36,7 +36,6 @@
  "methods": {
   "0x00450710": {
    "name": "UILoadingFrm",
-   "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UILoadingFrm（ctor 名形=类名）：A 级 refs ??0UIListBox@@QAE@XZ（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
@@ -48,11 +47,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450790": {
    "name": "~UILoadingFrm",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UILoadingFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UILoadingFrm。refs: ??1UIButton@@QAE@XZ ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -62,11 +61,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450770": {
    "name": "_scalar_dtor_0770",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -89,11 +88,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x00450990": {
    "name": "OnMessage",
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -116,11 +115,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00483300": {
    "name": "DestroyFrames",
-   "signature": "void __thiscall UILoadingFrm::DestroyFrames()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -129,11 +128,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004507f0": {
    "name": "InitFullScreen",
-   "signature": "void __thiscall UILoadingFrm::InitFullScreen()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -142,11 +141,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00450900": {
    "name": "UpdateAnimation",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -165,11 +164,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int nVal, int nVal2)"
   },
   "0x00483280": {
    "name": "DestroyStatics",
-   "signature": "void __thiscall UILoadingFrm::DestroyStatics()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -178,11 +177,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0052dd60": {
    "name": "ResetState",
-   "signature": "int __thiscall UIGameOver::ResetState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -191,11 +190,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052de00": {
    "name": "ResetAllState",
-   "signature": "int __thiscall UILoadingFrm::ResetAllState()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -204,11 +203,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x0052e820": {
    "name": "CheckProgress",
-   "signature": "char __thiscall UILoadingFrm::CheckProgress(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -222,11 +221,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(int nVal)"
   },
   "0x00524970": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "slot_1",
@@ -238,11 +237,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00451b40": {
    "name": "UIListBox_ResizeToContent",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -252,11 +251,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00451c10": {
    "name": "UIListBox_IsVisible",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -266,11 +265,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004518e0": {
    "name": "~UIListBox",
-   "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "v1_slot_5",
@@ -282,11 +281,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00451aa0": {
    "name": "OnMessage_1AA0",
-   "signature": "void __thiscall(int,int,int)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -309,11 +308,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -323,7 +322,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [

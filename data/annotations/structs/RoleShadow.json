@@ -72,7 +72,6 @@
  "methods": {
   "0x0044d290": {
    "name": "InitParticles",
-   "signature": "int __thiscall RoleShadow::InitParticles()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -81,11 +80,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00453fa0": {
    "name": "InitFromTemplate",
-   "signature": "int __thiscall RoleShadow::InitFromTemplate(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -99,11 +98,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00454420": {
    "name": "CreateFromTemplate",
-   "signature": "int __thiscall(unsigned char pData)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -117,11 +116,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(unsigned char pData)"
   },
   "0x00524e00": {
    "name": "LoadQuadData",
-   "signature": "int __thiscall RoleShadow::LoadQuadData(int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -135,11 +134,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int *p_DWORD)"
   },
   "0x00524f90": {
    "name": "UpdateShadow",
-   "signature": "int __thiscall RoleShadow::UpdateShadow()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -148,7 +147,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   }
  }
 }

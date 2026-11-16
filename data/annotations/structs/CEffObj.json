@@ -103,7 +103,6 @@
  "methods": {
   "0x004c0500": {
    "name": "OnTest",
-   "signature": "char __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -113,11 +112,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x004c0510": {
    "name": "GetEditorObjDescription",
-   "signature": "const char *__thiscall(int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "GetEditorObjDescription",
@@ -133,11 +132,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "const char * __thiscall(int)"
   },
   "0x004af760": {
    "name": "UpdateFrame",
-   "signature": "void __thiscall(int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址) | IDB类型载体定谳20261115: 一地址4槽4契约(UpdateFrame/Update/GetEffect/RenderEffectPass), IDB只能一个类型=retn 4字节语义(1栈参int); 头声明按槽位独立(emit逐位), 4个cpp定义共用此IDB类型(实施序③体合成)",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "Update",
@@ -154,11 +153,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int)"
   },
   "0x004c0600": {
    "name": "Create",
-   "signature": "char __thiscall(tagEffObjType *)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "char",
@@ -173,11 +172,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(tagEffObjType *)"
   },
   "0x004c0610": {
    "name": "ResetState",
-   "signature": "void __thiscall(int, int, int, int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -204,11 +203,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int, int, int, int)"
   },
   "0x00401800": {
    "name": "DestroyEffect",
-   "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)",
    "evidence_level": "binary_vtable_slot",
    "semantic_name": "DestroyEffect",
@@ -219,11 +218,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004c0620": {
    "name": "slot_0",
-   "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
    "evidence_level": "binary_vtable_slot",
    "declaration_only": true,
@@ -234,21 +233,23 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x0055434f": {
    "name": "AllocEffect",
-   "signature": "void* __thiscall() = 0",
    "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
    "evidence_level": "binary_vtable_slot",
    "declaration_only": true,
    "sig_model": {
-    "return": null,
-    "cc": null,
-    "params": null,
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [],
     "varargs": false,
-    "pending": true
-   }
+    "pending": false
+   },
+   "signature": "void * __thiscall()",
+   "name_note": "; Fix3 purecall槽签回填: 13派生AllocEffect(void*)一致+G2 purecall定谳; 原pending→结构化(纯语义以cpp定义过渡, 正式pure标记待发射器支持)"
   }
  },
  "_adjudicated_tables": [
@@ -265,5 +266,5 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): CEff族基类; 表slot2继承Object UpdateFrame(0x4af760); G2审计恢复"
+ "bases_note": "[对抗核验降级 2026-11-16] bases→Object证据降级: 声称的slot2指纹不存在(CEffObj slot2=0x4c0610自有ResetState; 0x4af760在slot5/9/11=跨层级大折叠no-op共享址, 非位置继承证据); CEffObj真实基类待考古(0x56F62C写者归属+纯虚slot7语义)。保留bases=低置信工作假设, 门禁不受影响(推导按地址集)"
 }

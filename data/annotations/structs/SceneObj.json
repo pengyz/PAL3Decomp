@@ -282,7 +282,6 @@
  "methods": {
   "0x00536260": {
    "name": "CreateUI",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -291,11 +290,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00452fd0": {
    "name": "ctor",
-   "signature": "int __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -306,11 +305,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00453030": {
    "name": "~SceneObj",
-   "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 SceneObj 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~SceneObj。refs: ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ",
    "evidence_level": "A",
    "semantic_sig": "void",
@@ -320,11 +319,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00407b50": {
    "name": "UpdateAutoDelete",
-   "signature": "char __thiscall(SceneObj *this, unsigned int deltatime)",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -338,11 +337,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(unsigned int deltatime)"
   },
   "0x00453010": {
    "name": "_scalar_dtor_3010",
-   "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -365,11 +364,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x004530c0": {
    "name": "_init_4530c0",
-   "signature": "void __thiscall(const char *pszName)",
    "declaration_only": true,
    "source": "归属修正 2026-10-14（同名消歧族·T142 判读模式）：原 skip_functions 名 `string::_init_4530c0`(reason=std_library) 误挂 std::string ⇒ UISceneMap.cpp:156 C2039 ×2『'_init_4530c0' is not a member of 'basic_string'』。A 级证据链：①同 TU 簇 ctor@0x452FD0 = call 0x445AA0(UIWnd ctor，vptr 0x56AEC8) + `movl $0x56B200,(%esi)`（vptr store）⇒ 该簇类=UIWnd 派生且 vtable=0x56B200（SceneObj.json vtables 唯一认领，GlowObj/PalScriptWaitObj 无 vtables 键=误命中）；②同接收者兄弟调用 0x4538E0=SceneObj::LoadData（UISceneMap::LoadCompass@0x451208 lea 0x250(%esi),%ebx → mov %ebx,%ecx; call 两次同对象）；③本体 this+0x44/+0x48/+0x4C 引用计数串形（refcount@ptr[-1]）与 0x4538E0 同形（SceneObj::LoadData 生成体对同偏移渲染 this->m_fTimerLimit 等已编译通过）⇒ SceneObj 成员，非 std::string（std::string Dinkumware 布局 {buf/ptr@0,size@8,res@12} 不符）。名 _init_4530c0 保留同名消歧族现状（CGameData::_init_44f8d0 同式）；真语义名（append 形）挂账。2026-10-14 收窄：体渲染实测 +3 错（std::_Eos 变参丢失 ×2 / RoleAtt::_sub_4531F0 实参错位——T 族既有病灶）⇒ 转声明收编形（批 12-13：skip=体排除 + declaration_only=声明收编），体渲染修复挂账",
    "evidence_level": "A",
@@ -385,11 +384,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(const char *pszName)"
   },
   "0x0052f800": {
    "name": "LoadGeomFromFile",
-   "signature": "gbVFileSystem *__thiscall(const char *pszName)",
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *",
    "sig_model": {
@@ -403,11 +402,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem * __thiscall(const char *pszName)"
   },
   "0x0052fb70": {
    "name": "LoadObstruction",
-   "signature": "gbVFileSystem *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "gbVFileSystem *",
    "sig_model": {
@@ -416,11 +415,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbVFileSystem * __thiscall()"
   },
   "0x00530280": {
    "name": "LoadGeomNode",
-   "signature": "gbGeomNode *__thiscall(const char *pszFilename)",
    "evidence_level": "unverified",
    "semantic_sig": "gbGeomNode *",
    "sig_model": {
@@ -434,11 +433,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbGeomNode * __thiscall(const char *pszFilename)"
   },
   "0x00530330": {
    "name": "LoadDefaultModel",
-   "signature": "gbGeomNode *__thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "gbGeomNode *",
    "sig_model": {
@@ -447,11 +446,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "gbGeomNode * __thiscall()"
   },
   "0x0053ee60": {
    "name": "StringCopyReplace",
-   "signature": "char *__thiscall SceneObj::StringCopyReplace(SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)",
    "evidence_level": "unverified",
    "semantic_sig": "char *__thiscall",
    "sig_model": {
@@ -473,11 +472,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char *__thiscall (SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
   },
   "0x0053f060": {
    "name": "StringCopyCat",
-   "signature": "void __thiscall SceneObj::StringCopyCat(SceneObj *pSceneObj, SceneObj *pSceneObj2)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -495,11 +494,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
   },
   "0x00453200": {
    "name": "ValidateState",
-   "signature": "int __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
    "semantic_name": "ValidateState",
@@ -510,11 +509,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004538e0": {
    "name": "LoadData",
-   "signature": "char __thiscall SceneObj::LoadData()",
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
@@ -523,11 +522,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall()"
   },
   "0x00527d40": {
    "name": "GetVisibleFlag",
-   "signature": "int __thiscall(_BYTE *p_BYTE)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -541,11 +540,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(_BYTE *p_BYTE)"
   },
   "0x00527d60": {
    "name": "GetCommonData",
-   "signature": "int __thiscall()",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -555,11 +554,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00530340": {
    "name": "SetScriptDel",
-   "signature": "int __thiscall SceneObj::SetScriptDel(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -573,11 +572,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x0053ef60": {
    "name": "LoadFromConfig",
-   "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -600,11 +599,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
   },
   "0x00453a70": {
    "name": "InsertAt",
-   "signature": "SceneObj *__thiscall SceneObj::InsertAt(SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "SceneObj *__thiscall",
    "sig_model": {
@@ -626,11 +625,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "SceneObj *__thiscall (SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
   },
   "0x0053f4f0": {
    "name": "ProcessNearby",
-   "signature": "void __thiscall(_DWORD *)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -644,32 +643,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x00445c60": {
-   "name": "Update",
-   "signature": "BOOL __thiscall(int, int)",
-   "source": "vtable_gap_fill_v1(from SceneObj.json)",
-   "evidence_level": "unverified",
-   "adjudication": "shared_impl",
-   "semantic_name": "Update",
-   "semantic_sig": "BOOL",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "signature": "void __thiscall(_DWORD *)"
   }
  },
  "vtables": [

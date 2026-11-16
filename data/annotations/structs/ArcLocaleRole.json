@@ -36,7 +36,6 @@
  "methods": {
   "0x004afb60": {
    "name": "CalcPosition",
-   "signature": "int *__thiscall ArcLocaleRole::CalcPosition(int *p_DWORD)",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
    "sig_model": {
@@ -50,11 +49,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall (int *p_DWORD)"
   },
   "0x005350c0": {
    "name": "GetScreenLeft",
-   "signature": "void __thiscall(double thisa)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -68,11 +67,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(double thisa)"
   },
   "0x0047f930": {
    "name": "HandleKeyInput",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -81,11 +80,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004a6c70": {
    "name": "Release",
-   "signature": "int __thiscall ArcLocaleRole::Release()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -94,11 +93,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004af410": {
    "name": "IterateColors",
-   "signature": "int __thiscall ArcLocaleRole::IterateColors()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -107,11 +106,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004afd80": {
    "name": "ParseLocaleData",
-   "signature": "unsigned int __cdecl ArcLocaleRole::ParseLocaleData(char *pszBuf, char *pszBuf2, int nVal)",
    "static": true,
    "evidence_level": "unverified",
    "semantic_sig": "unsigned int",
@@ -134,11 +133,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "unsigned int __cdecl(char *pszBuf, char *pszBuf2, int nVal)"
   },
   "0x005303c0": {
    "name": "DispatchActive",
-   "signature": "int __thiscall ArcLocaleRole::DispatchActive(int nVal)",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -152,11 +151,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00535030": {
    "name": "Destroy",
-   "signature": "int __thiscall ArcLocaleRole::Destroy()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -165,11 +164,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00535fd0": {
    "name": "TransformPoint",
-   "signature": "void *__thiscall (float *pfVal, float fVal, float fVal2, float fVal3)",
    "_misattrib_evidence": "max_offset=88>class_size=28",
    "evidence_level": "unverified",
    "semantic_sig": "void *",
@@ -196,7 +195,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(float *pfVal, float fVal, float fVal2, float fVal3)"
   }
  }
 }

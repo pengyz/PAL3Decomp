@@ -606,7 +606,6 @@
  "methods": {
   "0x004236d0": {
    "name": "Reset",
-   "signature": "void __thiscall BINK::Reset()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -615,11 +614,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004243e0": {
    "name": "Destroy",
-   "signature": "void __thiscall BINK::Destroy()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -628,11 +627,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004517a0": {
    "name": "SetVideoRect",
-   "signature": "int __thiscall(char pData)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -647,7 +646,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(char pData)"
   }
  }
 }

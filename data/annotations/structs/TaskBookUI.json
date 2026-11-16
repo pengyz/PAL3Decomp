@@ -282,7 +282,6 @@
  "methods": {
   "0x00454830": {
    "name": "~TaskBookUI",
-   "signature": "void __thiscall()",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -292,11 +291,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00454ca0": {
    "name": "CreateEntry",
-   "signature": "void *__thiscall TaskBookUI::CreateEntry(int nVal, int nVal2, int nVal3, int nVal4)",
    "_misattrib_evidence": "max_offset=133100>class_size=204",
    "evidence_level": "unverified",
    "semantic_sig": "void *__thiscall",
@@ -323,11 +322,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void *__thiscall (int nVal, int nVal2, int nVal3, int nVal4)"
   },
   "0x004554d0": {
    "name": "AdvancePage",
-   "signature": "int *__thiscall TaskBookUI::AdvancePage()",
    "_misattrib_evidence": "max_offset=130344>class_size=39240",
    "evidence_level": "unverified",
    "semantic_sig": "int *__thiscall",
@@ -337,11 +336,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int *__thiscall ()"
   },
   "0x00455790": {
    "name": "RefreshElements",
-   "signature": "int __thiscall TaskBookUI::RefreshElements(int nVal)",
    "_misattrib_evidence": "max_offset=130348>class_size=1012",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 体内v1//ecx未初始化即用(v1+1252偏移在类内143672); vtable形态虚调用;调用点2个(free_functions内部5288/5470) | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
@@ -358,11 +357,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int nVal)"
   },
   "0x00455a20": {
    "name": "ScrollUp",
-   "signature": "char __thiscall TaskBookUI::ScrollUp(char pData)",
    "_misattrib_evidence": "max_offset=130348>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -377,11 +376,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char pData)"
   },
   "0x00455b30": {
    "name": "ScrollDown",
-   "signature": "char __thiscall TaskBookUI::ScrollDown(char pData)",
    "_misattrib_evidence": "max_offset=130348>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "char",
@@ -396,11 +395,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "char __thiscall(char pData)"
   },
   "0x00455c40": {
    "name": "HandleInput",
-   "signature": "void __thiscall TaskBookUI::HandleInput()",
    "_misattrib_evidence": "max_offset=132188>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "void",
@@ -410,11 +409,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00456220": {
    "name": "Reset",
-   "signature": "int __thiscall(TaskBookUI *this)",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "重置（SetProgress + memset + 字段清零）",
    "semantic_sig": "int",
@@ -424,11 +423,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004562c0": {
    "name": "HandleNavigation",
-   "signature": "void __thiscall TaskBookUI::HandleNavigation()",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -437,11 +436,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x004551a0": {
    "name": "RefreshTaskList",
-   "signature": "int __thiscall TaskBookUI::RefreshTaskList()",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -450,11 +449,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00455f20": {
    "name": "SaveData",
-   "signature": "int __thiscall TaskBookUI::SaveData()",
    "_misattrib_evidence": "max_offset=3084>class_size=852",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -464,11 +463,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x004566c0": {
    "name": "ValidateEntries",
-   "signature": "int __thiscall TaskBookUI::ValidateEntries()",
    "_misattrib_evidence": "max_offset=130356>class_size=4280",
    "evidence_level": "unverified",
    "semantic_sig": "int",
@@ -478,11 +477,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall()"
   },
   "0x00477a90": {
    "name": "SetEntryCaption",
-   "signature": "void __thiscall TaskBookUI::SetEntryCaption(int nVal, int nVal2)",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -500,11 +499,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall(int nVal, int nVal2)"
   },
   "0x00454980": {
    "name": "_scalar_dtor_4980",
-   "signature": "void * __thiscall(UIWnd *Block, char)",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TaskBookUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B274）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -525,11 +524,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x00454ba0": {
    "name": "Destroy",
-   "signature": "void __thiscall(TaskBookUI *this)",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（_TaskBookUI_4ba0）",
    "semantic_sig": "void",
@@ -539,11 +538,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00456500": {
    "name": "OnMsgHandleNav",
-   "signature": "BOOL __thiscall(int, int)",
    "source": "vtable_gap_fill_v1(from LineupUI.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -564,11 +563,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x004568c0": {
    "name": "OnMsgSaveData",
-   "signature": "int __thiscall(int, int, int)",
    "source": "vtable_gap_fill_v1(from UITitle_QCYM.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
@@ -593,11 +592,11 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "int __thiscall(int, int, int)"
   },
   "0x0043de40": {
    "name": "ReleaseTempStorage",
-   "signature": "void __thiscall()",
    "semantic_name": "CCBStage::slot_3(void)",
    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
    "semantic_sig": "void",
@@ -607,11 +606,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   },
   "0x00524970": {
    "name": "Render",
-   "signature": "void __thiscall()",
    "semantic_name": "Render",
    "confidence": "中",
    "name_note": "G2批: thunk→CCBControlWindow::Render, 契约随目标void(链已定谳)",
@@ -622,7 +621,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "signature": "void __thiscall()"
   }
  },
  "vtables": [
