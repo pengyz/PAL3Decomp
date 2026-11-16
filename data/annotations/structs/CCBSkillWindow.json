@@ -2,19 +2,19 @@
  "name": "CCBSkillWindow",
  "binary_size": 84,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_pBack",
    "type": "UIStatic *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pDescription",
    "type": "UIStatic *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_pSkillList",
    "type": "UIListBox *[1]",
    "offset": 80,
@@ -100,10 +100,10 @@
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x0051c110": {
-   "name": "Destroy",
+   "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
-   "evidence_level": "unverified",
-   "semantic_name": "Destroy",
+   "evidence_level": "verified",
+   "semantic_name": "CCBSkillWindow::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -112,12 +112,13 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   },
   "0x0051c1b0": {
-   "name": "SetActivePage",
+   "name": "Update",
    "source": "vtable_gap_fill_v1(from CCBSkillWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -135,7 +136,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int n, int nVal)"
+   "signature": "BOOL __thiscall(int n, int nVal)",
+   "semantic_name": "CCBSkillWindow::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SetActivePage=体读数命名"
   },
   "0x0051bbe0": {
    "name": "_scalar_dtor_BBE0",
@@ -183,25 +186,25 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x0051C1B0"
+     "addr": "0x0051c1b0"
     },
     {
-     "addr": "0x0051C110"
+     "addr": "0x0051c110"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051BBE0"
+     "addr": "0x0051bbe0"
     },
     {
-     "addr": "0x0051B860"
+     "addr": "0x0051b860"
     }
    ],
    "source": "; raw实证7槽farm周期(槽7-13=越读邻表), 截断"

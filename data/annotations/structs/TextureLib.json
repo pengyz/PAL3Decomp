@@ -2,242 +2,242 @@
  "name": "TextureLib",
  "pdb_size": 4,
  "known_members": {
-  "128": {
+  "0x80": {
    "name": "m_bAlphaChannel",
    "type": "unsigned char",
    "source": "binary:disp32_17hits_13funcs",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_fTexParam",
    "type": "float",
    "source": "binary:disp32_14hits_13funcs | ida_xref",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_fAngle",
    "type": "float",
    "source": "binary:disp32_57hits_12funcs",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_fColorModR",
    "type": "float",
    "source": "binary:disp32_38hits_12funcs",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_fColorModG",
    "type": "float",
    "source": "binary:disp32_25hits_7funcs",
    "evidence_level": "unverified"
   },
-  "148": {
+  "0x94": {
    "name": "m_fColorModB",
    "type": "float",
    "source": "binary:disp32_32hits_7funcs",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_fColorModA",
    "type": "float",
    "source": "binary:disp32_12hits_6funcs",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_fColorAdd",
    "type": "float",
    "source": "reverted_auto_semantic:6x_access",
    "evidence_level": "unverified"
   },
-  "416": {
+  "0x1a0": {
    "name": "m_nDataEnd",
    "type": "int",
    "source": "A:decomp_(todo_1A0-todo_19C)/24_stride",
    "evidence_level": "unverified"
   },
-  "524": {
+  "0x20c": {
    "name": "m_szText",
    "type": "int",
    "source": "binary:disp32_13hits_1funcs",
    "evidence_level": "unverified"
   },
-  "528": {
+  "0x210": {
    "name": "m_pTexture",
    "type": "char *",
    "source": "binary:disp32_13hits_2funcs | type_fix:int→void*(naming m_p + high ref pointer semantics)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nTextureId",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "36": {
+  "0x24": {
    "name": "m_szPath",
    "type": "int",
    "source": "A+:SetPath_lstrcpyA(&this->field,path)+lstrcatA+lstrlenA",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_fTexCoordU",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "52": {
+  "0x34": {
    "name": "m_fTexCoordV",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "60": {
+  "0x3c": {
    "name": "m_fTexScale",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "64": {
+  "0x40": {
    "name": "m_bTexFilter",
    "type": "unsigned char",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "68": {
+  "0x44": {
    "name": "m_nTexParam1",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "72": {
+  "0x48": {
    "name": "m_nTexParam2",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nTexParam3",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "80": {
+  "0x50": {
    "name": "m_bTexClamp",
    "type": "unsigned char",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "127": {
+  "0x7f": {
    "name": "m_bMipMap",
    "type": "unsigned char",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "0": {
+  "0x0": {
    "name": "m_pResultTex",
    "type": "gbTexture *",
    "source": "decomp:CreateFromFile_return_value",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_szPathBuf",
    "type": "int",
    "source": "decomp:lstrcpyA_target",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_nTexWidth",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "188": {
+  "0xbc": {
    "name": "m_nTexHeight",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "204": {
+  "0xcc": {
    "name": "m_Image",
    "type": "char[48]",
    "source": "decomp:LoadTexture_gbImage2D_Release+LoadImageFile",
    "evidence_level": "unverified"
   },
-  "252": {
+  "0xfc": {
    "name": "m_nImageOffset",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_nImageSize",
    "type": "int",
    "source": "binary_scan:2refs",
    "evidence_level": "unverified"
   },
-  "304": {
+  "0x130": {
    "name": "m_nColorKey",
    "type": "int",
    "source": "binary_scan:3refs",
    "evidence_level": "unverified"
   },
-  "332": {
+  "0x14c": {
    "name": "m_nStride",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "336": {
+  "0x150": {
    "name": "m_nDataSize",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "344": {
+  "0x158": {
    "name": "m_nTexFormat",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "384": {
+  "0x180": {
    "name": "m_nBPP",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "388": {
+  "0x184": {
    "name": "m_nDataOffset",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "408": {
+  "0x198": {
    "name": "m_pPalette",
    "type": "void *",
    "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌/放置 UITitle_YXXX 对象——`CreateTitle((UITitle_YXXX *)&v2->m_pPalette, ...)`（CreateFromFile@0x4A6960）&field=对象地址",
    "evidence_level": "A"
   },
-  "412": {
+  "0x19c": {
    "name": "m_nDataStart",
    "type": "int",
    "source": "A:decomp_(todo_1A0-todo_19C)/24_stride",
    "evidence_level": "unverified"
   },
-  "424": {
+  "0x1a8": {
    "name": "m_bLoaded",
    "type": "unsigned char",
    "source": "A:mov_byte_1_0+LOBYTE_load_if_check",
    "evidence_level": "unverified"
   },
-  "460": {
+  "0x1cc": {
    "name": "m_nPaletteSize",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "488": {
+  "0x1e8": {
    "name": "m_nTexFlags",
    "type": "int",
    "source": "binary_scan:1refs",
@@ -487,58 +487,44 @@
  },
  "vtables": [
   {
-   "addr": "0x00570A60",
-   "base": null,
+   "addr": "0x00570a58",
    "slots": [
     {
-     "addr": "0x0053F680"
+     "addr": "0x0055434f"
     },
     {
-     "addr": "0x0053F5C0"
-    }
-   ]
-  },
-  {
-   "addr": "0x00570A54",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x0053DC30"
+     "addr": "0x0053f4d0"
     },
     {
-     "addr": "0x0055434F"
+     "addr": "0x0053f680"
     },
     {
-     "addr": "0x0053F4D0"
-    },
-    {
-     "addr": "0x0053F680"
-    },
-    {
-     "addr": "0x0053F5C0"
+     "addr": "0x0053f5c0"
     }
    ],
-   "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①ctor CPK::Init+121/CScreenMode::CleanupSoundList+32 对；槽=TextureLib::AddEntryFromCo/~TextureLib/删际 _sdtor_20 域②被调用者面=域共享 impl③成员访问面=池/库节点布局④类归属面=ctor/dtor 域双自证⑤交互模式面=管理生命周期；confidence=80"
-  },
-  {
-   "addr": "0x00570A58",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x0055434F"
-    },
-    {
-     "addr": "0x0053F4D0"
-    },
-    {
-     "addr": "0x0053F680"
-    },
-    {
-     "addr": "0x0053F5C0"
-    }
-   ],
-   "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①ctor _nearby_53f4c0+2/_nearby_53f4f0+0 对；槽=TextureLib 族同 0x570A54 尾邻②被调用者面=域共享 impl③成员访问面=池/库节点布局④类归属面=ctor/dtor 域双自证⑤交互模式面=管理生命周期；confidence=80"
+   "note": "复核回滚20261116: complete dtor 0x53F4F0机器码写本表(P0-2实证); slot0=55434F purecall"
   }
  ],
- "table_adjudication_pending": "3表中0x570A54=CScreenModeNode ctor双写实证(误挂); 其余2张待TextureLib ctor定位"
+ "table_adjudication_pending": "3表中0x570A54=CScreenModeNode ctor双写实证(误挂); 其余2张待TextureLib ctor定位",
+ "_phantom_tables_removed": [
+  {
+   "addr": "0x00570A58",
+   "keep": "00570a54",
+   "date": "2026-11-16",
+   "evidence": "最全视图+slot1=55434f(purecall抽象标志)"
+  },
+  {
+   "addr": "0x00570A60",
+   "keep": "00570a54",
+   "date": "2026-11-16",
+   "evidence": "后缀视图"
+  }
+ ],
+ "_purge_reverted": [
+  {
+   "addr": "0x00570A54/0x00570A60",
+   "date": "2026-11-16",
+   "reason": "对抗复核P0-2: 0x570A54=CScreenModeNode误挂(2026-10-17旧裁决在案); 0x570A60=后缀视图; 真表=0x570A58(dtor委托写实证)"
+  }
+ ]
 }

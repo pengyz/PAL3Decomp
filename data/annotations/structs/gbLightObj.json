@@ -2,25 +2,25 @@
  "name": "gbLightObj",
  "binary_size": 216,
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_LightType",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_Color",
    "type": "gbColorFlt",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_Ambient",
    "type": "gbColorFlt",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_UseDiffuse",
    "type": "int",
    "source": "annotation",
@@ -35,7 +35,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "48": {
+  "0x30": {
    "name": "m_UseSpecular",
    "type": "int",
    "source": "annotation",
@@ -50,19 +50,19 @@
     "timestamp": "2026-11-12"
    }
   },
-  "52": {
+  "0x34": {
    "name": "m_NearStart",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_NearEnd",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_FarStart",
    "type": "float",
    "source": "annotation",
@@ -77,7 +77,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "64": {
+  "0x40": {
    "name": "m_FarEnd",
    "type": "float",
    "source": "annotation",
@@ -92,57 +92,57 @@
     "timestamp": "2026-11-12"
    }
   },
-  "68": {
+  "0x44": {
    "name": "m_DecayType",
    "type": "int",
    "source": "annotation",
    "note": "was gbLightObj::DECAY_TYPE (unnamed enum)",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_DecayRadius",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_LightShape",
    "type": "int",
    "source": "annotation",
    "note": "was gbLightObj::LIGHT_SHAPE (unnamed enum)",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_HotSize",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_Falloff",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_Aspect",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_BoundSphere",
    "type": "gbSphere",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_SysLight",
    "type": "gbLight",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "212": {
+  "0xd4": {
    "name": "m_BakedLight",
    "type": "int",
    "source": "annotation",
@@ -245,63 +245,63 @@
    "external": true,
    "slots": [
     {
-     "addr": "0x0042C6A0"
+     "addr": "0x0042c6a0"
     },
     {
-     "addr": "0x0042C6E0"
+     "addr": "0x0042c6e0"
     },
     {
-     "addr": "0x0042C8D0"
+     "addr": "0x0042c8d0"
     },
     {
      "addr": "0x00423860"
     },
     {
-     "addr": "0x0042BEE0"
+     "addr": "0x0042bee0"
     },
     {
-     "addr": "0x004AF760"
+     "addr": "0x004af760"
     }
    ],
    "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
   },
   {
-   "addr": "0x0056AB28",
+   "addr": "0x0056ab28",
    "base": null,
    "slots": [
     {
-     "addr": "0x0042C6A0"
+     "addr": "0x0042c6a0"
     },
     {
-     "addr": "0x0042C6E0"
+     "addr": "0x0042c6e0"
     },
     {
-     "addr": "0x0042C8D0"
+     "addr": "0x0042c8d0"
     },
     {
      "addr": "0x00423860"
     },
     {
-     "addr": "0x0042BEE0"
+     "addr": "0x0042bee0"
     },
     {
-     "addr": "0x004AF760"
+     "addr": "0x004af760"
     }
    ],
    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x423880+31 双写（与 0x56AB34 相邻 6B=MI 对）+BINK::Reset+289/295；槽 gbLightObj 族名；ctor 注册名账（ScriptVM::ProcessFrame 误名）待正名"
   },
   {
-   "addr": "0x0056AB34",
+   "addr": "0x0056ab34",
    "base": null,
    "slots": [
     {
      "addr": "0x00423860"
     },
     {
-     "addr": "0x0042BEE0"
+     "addr": "0x0042bee0"
     },
     {
-     "addr": "0x004AF760"
+     "addr": "0x004af760"
     }
    ],
    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：同 0x56AB28 MI 对（+37/+31 相邻双写）；尾并合视图"

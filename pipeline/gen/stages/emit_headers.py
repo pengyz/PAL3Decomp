@@ -447,12 +447,28 @@ _GLOBALS_PRIMITIVES = {
     'BYTE', 'WORD', 'DWORD', 'QWORD', 'UINT', 'ULONG', 'BOOL',
     'INT8', 'INT16', 'INT32', 'INT64', 'UINT8', 'UINT16', 'UINT32', 'UINT64',
     'DOUBLE', 'FLOAT', 'LONG', 'SHORT', 'CHAR', 'VOID',
+    # [Windows typedef族 2026-11-16] 定义在<windows.h>(globals.h L5已include)
+    #   → 编译器已知, 无需class前置声明/extern类型声明
+    #   缺失后果: HANDLE/HWND等路由进fwd_classes → class HANDLE; 与typedef冲突(C2040/C2371)
+    'HANDLE', 'HCURSOR', 'HINSTANCE', 'HMODULE', 'HDC', 'HGDIOBJ',
+    'HWND', 'IID', 'LCID', 'LPCSTR', 'LPCTSTR', 'LPVOID', 'LPTSTR',
+    'LPTOP_LEVEL_EXCEPTION_FILTER', 'LRESULT', 'WPARAM', 'LPARAM', 'ATOM',
+    'HGLOBAL', 'HLOCAL', 'HACCEL', 'HMENU', 'HICON', 'HBITMAP', 'HBRUSH',
+    'HPEN', 'HFONT', 'HRGN', 'HKL', 'HRAWINPUT', 'HRSRC', 'HWINEVENTHOOK',
+    'COLORREF', 'SCROLLINFO', 'WINDOWPOS', 'MSG',
+    # [系统头类型 2026-11-16] ida_types.h/windows.h定义, 编译器已知
+    'size_t', 'time_t', 'uintptr_t', 'intptr_t', 'va_list',
 }
 
 
 def _ann_struct_path(name):
-    """Check if a struct exists in ida_structs.json (export output)."""
-    return _get_ida_structs().get(name, None)
+    """[修正 2026-11-16] 检查注解struct文件存在性(data/annotations/structs/X.json)。
+    旧实现查 ida_structs.json 名字集——名字错配时(RoleCameraCtrl vs RoleCamera)
+    误判不存在 → include/fwd 双缺 → C2146。[消失分支根因修复]"""
+    import os as _os
+    _p = _os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                       '..', '..', 'data', 'annotations', 'structs', '%s.json' % name)
+    return _p if _os.path.exists(_p) else None
 
 
 # 2026-09-20 审计（P1-5 收尾）：此处原有 `load_annotations_data()` —— 一道
@@ -1471,7 +1487,7 @@ def _vfptr_slot_marked(cls_name):
             'data', 'annotations', 'structs', cls_name + '.json')
         ann = json.load(open(_p, encoding='utf-8'))
         for k, v in (ann.get('known_members') or {}).items():
-            if int(k, 0) == 0 and isinstance(v, dict) and v.get('vfptr_slot'):
+            if int(k, 16) == 0 and isinstance(v, dict) and v.get('vfptr_slot'):
                 return True
     except Exception:
         pass
@@ -4454,6 +4470,14 @@ def generate_globals():
             continue
 
         base_typ = extract_base_type(typ)
+        if base_typ == 'RoleCameraCtrl':
+            import sys as _s_dbg
+            _hh = any((gen_header_dir / d / ("%s.h" % base_typ)).exists()
+                      for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
+                                'Role', 'GameBase', 'Render', 'Data', 'MiniGame', 'Script'))
+            _hs = _ann_struct_path(base_typ) is not None
+            print('[DEBUG-INC] %s typ=%r has_header=%s has_struct=%s pointer_only=%s' % (
+                name, typ, _hh, _hs, is_pointer_only if 'is_pointer_only' in dir() else '?'), file=_s_dbg.stderr)
         is_pointer_only = '*' in typ and '[' not in typ
         has_header = any((gen_header_dir / d / ("%s.h" % base_typ)).exists()
                          for d in ('', 'Misc', 'Combat', 'UI', 'Effect', 'Scene',
@@ -4463,14 +4487,26 @@ def generate_globals():
         # Track types needing full definition vs forward declaration
         # Skip primitive types — they cannot be forward-declared as class
         if not (base_typ in _GLOBALS_PRIMITIVES):
-            if has_struct and not is_pointer_only:
-                if has_header:
-                    includes_needed.add(base_typ)
-                else:
-                    fwd_classes.add(base_typ)
-            elif has_struct and is_pointer_only:
-                if base_typ not in includes_needed:
-                    fwd_classes.add(base_typ)
+            # [严格模式 2026-11-16 用户裁定"ann_struct_path不存在→明确停止并报具体错误"]
+            #   四分支: include(头+注解齐) / 硬停(头有但export缺=撕裂快照) /
+            #   fwd声明兜底(其余) / [头也无]=纯外部类型, fwd声明
+            if has_header and has_struct and not is_pointer_only:
+                includes_needed.add(base_typ)
+            elif has_header and not has_struct and not is_pointer_only:
+                # 严格模式硬停: 头文件在但export无此struct=撕裂快照/export漏导出
+                import sys as _sys_sm
+                _err = ('[STRICT-MODE] globals条目 %s (addr=%s): 头文件 %s/%s.h 存在 '
+                        '但 ida_structs 无 "%s" 条目 → export 不完整/名字错配 → 中止。'
+                        '修复: 重跑 export 或补齐注解↔IDA struct 名字映射'
+                        % (name, addr_str, gen_header_dir, base_typ, base_typ))
+                print(_err, file=_sys_sm.stderr)
+                raise SystemExit(_err)
+            elif has_struct:
+                # 有注解struct但无头文件 → cpp生成失败/跳过 → 前向声明兜底
+                fwd_classes.add(base_typ)
+            else:
+                # 头与注解均无 → 纯外部类型(非本项目类), 前向声明
+                fwd_classes.add(base_typ)
 
         # Emit extern declaration with correct C syntax
         # Split array type: "unsigned __int8[768]" -> base="unsigned __int8", arr="[768]"
@@ -4550,11 +4586,25 @@ def generate_globals():
         h_lines.insert(insert_pos, '')
         insert_pos += 1
     # Insert forward declarations for pointer-only types
+    # [类型别名/畸形名排除 2026-11-16] fwd_classes三类排除:
+    #   a) ida_types.h已知类型别名(WCHAR/_BYTE/_DWORD等) — 编译器已有typedef, class前置=重定义C2371
+    #   b) 非法类名(含空格/括号的畸形抽取形) — 非C++标识符
+    #   c) Windows typedef族(HANDLE/HWND等, 已在_GLOBALS_PRIMITIVES排除)
+    import re as _re_fwd
+    _IDA_TYPE_ALIASES = {'WCHAR', '_BYTE', '_WORD', '_DWORD', '_QWORD', '_PVFV',
+                         '_UNKNOWN', '_CF_?', '_WORD16', 'char const', 'int const'}
+    _fwd_emitted = []
     if fwd_classes:
         for cls in sorted(fwd_classes):
+            if not _re_fwd.match(r'^[A-Za-z_]\w*$', cls) or ' ' in cls:
+                continue  # 非法类名(畸形抽取形), 跳过
+            if cls in _IDA_TYPE_ALIASES:
+                continue  # ida_types.h已知别名, 编译器已有typedef
             h_lines.insert(insert_pos, 'class %s;' % cls)
+            _fwd_emitted.append(cls)
             insert_pos += 1
-        h_lines.insert(insert_pos, '')
+        if _fwd_emitted:
+            h_lines.insert(insert_pos, '')
 
     globals_h = OUTPUT_DIR / "globals.h"
     with open(globals_h, 'w', encoding='utf-8') as f:

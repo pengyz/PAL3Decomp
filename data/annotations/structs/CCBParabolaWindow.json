@@ -2,19 +2,19 @@
  "name": "CCBParabolaWindow",
  "binary_size": 84,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_pBack",
    "type": "UIStatic *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pDescription",
    "type": "UIStatic *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_pItemList",
    "type": "UIListBox *",
    "offset": 80,
@@ -134,12 +134,12 @@
    "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x0051c880": {
-   "name": "Destroy",
+   "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "adjudication": "shared_impl",
-   "semantic_name": "Destroy_c880",
-   "name_note": "剥壳定谳(验证pass): Destroy: 释放子控件(m_pBack/m_pDescription)+委托slot_3清理=析构语义实证",
+   "semantic_name": "CCBParabolaWindow::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -175,9 +175,9 @@
    "signature": "BOOL __thiscall(int deltatime, int haveinput)"
   },
   "0x0051ca50": {
-   "name": "ToggleSlots",
+   "name": "ShowClipped",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "adjudication": "shared_impl",
    "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
@@ -192,7 +192,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "CCBAIWindow *__thiscall (int nVal)"
+   "signature": "CCBAIWindow *__thiscall (int nVal)",
+   "semantic_name": "CCBParabolaWindow::ShowClipped",
+   "name_note": "C9级联正名20261116: slot0位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名ShowClipped(基类同槽); 原名ToggleSlots=体读数命名"
   },
   "0x0051caa0": {
    "name": "Render",
@@ -241,29 +243,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0057058C",
+   "addr": "0x0057058c",
    "base": "CCBSkillWindow",
    "slots": [
     {
-     "addr": "0x0051CA50"
+     "addr": "0x0051ca50"
     },
     {
-     "addr": "0x0051CAA0"
+     "addr": "0x0051caa0"
     },
     {
-     "addr": "0x0051C9F0"
+     "addr": "0x0051c9f0"
     },
     {
-     "addr": "0x0051C880"
+     "addr": "0x0051c880"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051C260"
+     "addr": "0x0051c260"
     },
     {
-     "addr": "0x0051C9B0"
+     "addr": "0x0051c9b0"
     }
    ]
   }

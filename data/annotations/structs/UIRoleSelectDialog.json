@@ -2,67 +2,67 @@
  "name": "UIRoleSelectDialog",
  "binary_size": 2292,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_state",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_bk",
    "type": "UIStaticFlex",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "268": {
+  "0x10c": {
    "name": "m_ani",
    "type": "UIAnimateCtrl",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "432": {
+  "0x1b0": {
    "name": "m_face",
    "type": "UIStaticFlip",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "596": {
+  "0x254": {
    "name": "m_static",
    "type": "UITextArea",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "788": {
+  "0x314": {
    "name": "m_texth",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "792": {
+  "0x318": {
    "name": "m_list",
    "type": "UIListBox",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2080": {
+  "0x820": {
    "name": "m_maxlen",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2084": {
+  "0x824": {
    "name": "m_last",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2088": {
+  "0x828": {
    "name": "m_sel",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2092": {
+  "0x82c": {
    "name": "m_mode",
    "type": "int",
    "source": "annotation",
@@ -246,10 +246,10 @@
    "signature": "void __thiscall()"
   },
   "0x0052aab0": {
-   "name": "ProcessDialog",
+   "name": "OnMessage",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "lvars": {
     "v5": "char *"
    },
@@ -267,7 +267,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal1)"
+   "signature": "int __thiscall(int nVal1)",
+   "semantic_name": "UIRoleSelectDialog::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名ProcessDialog=体读数命名"
   },
   "0x0052d200": {
    "name": "IsRoleSelectable",
@@ -288,9 +290,9 @@
    "signature": "char __thiscall(int nVal)"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "UIRoleSelectDialog::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -299,34 +301,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0057076C",
+   "addr": "0x0057076c",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00529CF0"
+     "addr": "0x00529cf0"
     },
     {
-     "addr": "0x00529E40"
+     "addr": "0x00529e40"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00529770"
     },
     {
-     "addr": "0x0052AAB0"
+     "addr": "0x0052aab0"
     }
    ]
   }

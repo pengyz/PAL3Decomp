@@ -3,347 +3,347 @@
  "binary_size": 22112,
  "base_size": 1208,
  "known_members": {
-  "21556": {
+  "0x5434": {
    "name": "m_Data",
    "type": "char[512]",
    "size": 512,
    "source": "ctor: sub_431870(this+5394), memset 0x200",
    "evidence_level": "unverified"
   },
-  "1344": {
+  "0x540": {
    "name": "m_nPanelOffsetX",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref | fix:rename",
    "evidence_level": "unverified"
   },
-  "1348": {
+  "0x544": {
    "name": "m_nPanelOffsetY",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref | fix:rename",
    "evidence_level": "unverified"
   },
-  "1468": {
+  "0x5bc": {
    "name": "m_nPanelX",
    "type": "int",
    "source": "A:InitPanel: mov [esi+5BCh], 354h (852)",
    "evidence_level": "unverified"
   },
-  "1472": {
+  "0x5c0": {
    "name": "m_nPanelY",
    "type": "int",
    "source": "A:InitPanel: mov [esi+5C0h], 239h (569)",
    "evidence_level": "unverified"
   },
-  "1476": {
+  "0x5c4": {
    "name": "m_nChildX",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1480": {
+  "0x5c8": {
    "name": "m_nChildY",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1484": {
+  "0x5cc": {
    "name": "m_nChildW",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1488": {
+  "0x5d0": {
    "name": "m_nChildH",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1492": {
+  "0x5d4": {
    "name": "m_nBorderL",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1496": {
+  "0x5d8": {
    "name": "m_nBorderR",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1500": {
+  "0x5dc": {
    "name": "m_fPanelW",
    "type": "float",
    "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)",
    "evidence_level": "unverified"
   },
-  "1504": {
+  "0x5e0": {
    "name": "m_fPanelH",
    "type": "float",
    "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)",
    "evidence_level": "unverified"
   },
-  "1508": {
+  "0x5e4": {
    "name": "m_nGridX",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1512": {
+  "0x5e8": {
    "name": "m_nGridY",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1516": {
+  "0x5ec": {
    "name": "m_nGridW",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1520": {
+  "0x5f0": {
    "name": "m_nGridH",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1524": {
+  "0x5f4": {
    "name": "m_nItemW",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1528": {
+  "0x5f8": {
    "name": "m_nItemH",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1532": {
+  "0x5fc": {
    "name": "m_nSpacingX",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1536": {
+  "0x600": {
    "name": "m_nSpacingY",
    "type": "int",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "1540": {
+  "0x604": {
    "name": "m_nItemNum",
    "type": "int",
    "evidence_level": "unverified"
   },
-  "1544": {
+  "0x608": {
    "name": "m_nMaxItemNum",
    "type": "int",
    "evidence_level": "unverified"
   },
-  "1560": {
+  "0x618": {
    "name": "m_pVfTable",
    "type": "char *",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "1792": {
+  "0x700": {
    "name": "m_nTodo_1792",
    "type": "UIScene",
    "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_1792⇒m_nTodo_1792（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "2136": {
+  "0x858": {
    "name": "m_Static_2136",
    "type": "UIStatic",
    "source": "dtor:ctor_3E70",
    "evidence_level": "unverified"
   },
-  "2288": {
+  "0x8f0": {
    "name": "m_Static_2288",
    "type": "UIStatic",
    "source": "dtor:ctor_3E70",
    "evidence_level": "unverified"
   },
-  "2440": {
+  "0x988": {
    "name": "m_Static_2440",
    "type": "UIStatic",
    "source": "dtor:ctor_3E70",
    "evidence_level": "unverified"
   },
-  "2592": {
+  "0xa20": {
    "name": "m_Static_2592",
    "type": "UIStatic",
    "source": "dtor:ctor_3E70",
    "evidence_level": "unverified"
   },
-  "2744": {
+  "0xab8": {
    "name": "m_Static_2744",
    "type": "UIStatic",
    "source": "dtor:ctor_3E70",
    "evidence_level": "unverified"
   },
-  "2896": {
+  "0xb50": {
    "name": "m_nTodo_2896",
    "type": "UIScene",
    "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_2896⇒m_nTodo_2896（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "3240": {
+  "0xca8": {
    "name": "m_nTodo_3240",
    "type": "UIScene",
    "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3240⇒m_nTodo_3240（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "3584": {
+  "0xe00": {
    "name": "m_nTodo_3584",
    "type": "UIScene",
    "source": "dtor:ctor_3E70 | [批4 诚实化 2026-10-16] A偏移形：m_Scene_3584⇒m_nTodo_3584（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "3928": {
+  "0xf58": {
    "name": "m_nTodo_3928",
    "type": "UIItem",
    "source": "ctor:ARC_PlayerAtt::Refresh(UIItem*) | [批4 诚实化 2026-10-16] A偏移形：m_Item_3928⇒m_nTodo_3928（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "4316": {
+  "0x10dc": {
    "name": "m_bActive",
    "type": "unsigned char",
    "evidence_level": "unverified"
   },
-  "20560": {
+  "0x5050": {
    "name": "m_nTodo_5050",
    "type": "int",
    "source": "binary_discovery:2refs",
    "evidence_level": "unverified"
   },
-  "20564": {
+  "0x5054": {
    "name": "m_nTodo_5054",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "20664": {
+  "0x50b8": {
    "name": "m_EmbedCaption",
    "type": "void *",
    "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 UICaption 子对象——`SetEnable((UICaption *)&this->m_EmbedCaption)`（OnMessage_a540@0x44A540）&field 即对象地址",
    "evidence_level": "A"
   },
-  "4324": {
+  "0x10e4": {
    "name": "m_Slots",
    "type": "CCBPanelSlot[30]",
    "source": "InitPanel:stride476_vtable+92_30pure_slots",
    "evidence_level": "unverified"
   },
-  "18604": {
+  "0x48ac": {
    "name": "m_nTodo_48AC",
    "type": "int",
    "source": "ida_gap_5refs",
    "evidence_level": "unverified"
   },
-  "18608": {
+  "0x48b0": {
    "name": "m_nTodo_48B0",
    "type": "int",
    "source": "ida_gap_3refs",
    "evidence_level": "unverified"
   },
-  "18612": {
+  "0x48b4": {
    "name": "m_nTodo_48B4",
    "type": "int",
    "source": "ida_gap_3refs",
    "evidence_level": "unverified"
   },
-  "18616": {
+  "0x48b8": {
    "name": "m_EmbedPalScript",
    "type": "int",
    "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern",
    "evidence_level": "unverified"
   },
-  "18780": {
+  "0x495c": {
    "name": "m_nTodo_495C",
    "type": "int",
    "source": "ida_gap_7refs",
    "evidence_level": "unverified"
   },
-  "18784": {
+  "0x4960": {
    "name": "m_nTodo_4960",
    "type": "int",
    "source": "ida_gap_7refs",
    "evidence_level": "unverified"
   },
-  "18788": {
+  "0x4964": {
    "name": "m_nTodo_4964",
    "type": "int",
    "source": "ida_gap_5refs",
    "evidence_level": "unverified"
   },
-  "18792": {
+  "0x4968": {
    "name": "m_nTodo_4968",
    "type": "int",
    "source": "ida_gap_7refs",
    "evidence_level": "unverified"
   },
-  "18796": {
+  "0x496c": {
    "name": "m_nTodo_496C",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "18800": {
+  "0x4970": {
    "name": "m_nTodo_4970",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "18804": {
+  "0x4974": {
    "name": "m_nTodo_4974",
    "type": "int",
    "source": "ida_gap_3refs",
    "evidence_level": "unverified"
   },
-  "18808": {
+  "0x4978": {
    "name": "m_nTodo_4978",
    "type": "int",
    "source": "ida_gap_3refs",
    "evidence_level": "unverified"
   },
-  "18824": {
+  "0x4988": {
    "name": "m_nTodo_4988",
    "type": "int",
    "source": "ida_gap_6refs",
    "evidence_level": "unverified"
   },
-  "18828": {
+  "0x498c": {
    "name": "m_nTodo_498C",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "18832": {
+  "0x4990": {
    "name": "m_nTodo_4990",
    "type": "int",
    "source": "ida_gap_3refs",
    "evidence_level": "unverified"
   },
-  "18836": {
+  "0x4994": {
    "name": "m_nTodo_4994",
    "type": "int",
    "source": "ida_gap_6refs",
    "evidence_level": "unverified"
   },
-  "18840": {
+  "0x4998": {
    "name": "m_EmbedPlayerAtt",
    "type": "int",
    "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern",
    "evidence_level": "unverified"
   },
-  "19296": {
+  "0x4b60": {
    "name": "m_nTodo_4B60",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "20208": {
+  "0x4ef0": {
    "name": "m_nPlayerAttOverlay",
    "type": "int",
    "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj",
@@ -508,10 +508,10 @@
    "signature": "char __thiscall()"
   },
   "0x0044a1b0": {
-   "name": "ProcessInput",
+   "name": "Update",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -525,7 +525,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(double st7_0)"
+   "signature": "BOOL __thiscall(double st7_0)",
+   "semantic_name": "CCBUIPanel::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessInput=体读数命名"
   },
   "0x00454550": {
    "name": "RenderIfUnlocked",
@@ -716,11 +718,11 @@
    "signature": "int __thiscall()"
   },
   "0x00449990": {
-   "name": "Destroy",
+   "name": "HideAll",
    "source": "vtable_migrated | [C2511修 2026-11-13] this型 UIListBox**→CCBUIPanel*: 函数在CCBUIPanel.json=该类方法, this类型应为宿主类指针; C2511重载不新覆盖=同名异型冲突",
    "ordinal": 3,
-   "evidence_level": "unverified",
-   "semantic_name": "Destroy",
+   "evidence_level": "verified",
+   "semantic_name": "CCBUIPanel::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -729,12 +731,13 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   },
   "0x00449c20": {
-   "name": "InitMagicWindows",
+   "name": "Render",
    "name_source": "IDA语义分析 2026-11-01 批11",
-   "name_note": "魔法窗口初始化（CCBMagicWindow 数组遍历）",
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名InitMagicWindows=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -743,7 +746,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBUIPanel::Render",
+   "evidence_level": "verified"
   },
   "0x00453e50": {
    "name": "_scalar_dtor_3E50",
@@ -802,29 +807,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AF80",
+   "addr": "0x0056af80",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00449C20"
+     "addr": "0x00449c20"
     },
     {
-     "addr": "0x0044A1B0"
+     "addr": "0x0044a1b0"
     },
     {
      "addr": "0x00449990"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x004461D0"
+     "addr": "0x004461d0"
     },
     {
-     "addr": "0x0044A540"
+     "addr": "0x0044a540"
     }
    ]
   }

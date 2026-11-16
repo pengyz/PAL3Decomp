@@ -2,91 +2,91 @@
  "name": "PalScript",
  "binary_size": 2176,
  "known_members": {
-  "4": {
+  "0x4": {
    "name": "m_pinst",
    "type": "scScriptInstance *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_waitobj",
    "type": "PtrArray *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_CamObj",
    "type": "PtrArray *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_fBlendFactor",
    "type": "float",
    "source": "ida_decomp:_sub_430500 = 0, _nearby_438110 (1-v3)*this",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nState",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nFrameCount",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_fScriptTimer",
    "type": "float",
    "source": "A:decomp PalScript::ReleaseFrame/SetReady =0.0; RenderUI m_nFrameCount comparison, used as script timing float",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_bEnabled",
    "type": "int",
    "source": "B:naming_m_b+alignment+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "m_nRoleCount",
    "type": "int",
    "source": "binary:0x421560 mov esi,[ecx+0xDC] loop count; array starts at [ecx+0xE0] stride 896, each element has vtable",
    "evidence_level": "unverified"
   },
-  "236": {
+  "0xec": {
    "name": "m_nScriptState",
    "type": "int",
    "source": "decomp:compared_to_1_and_2(state_enum)",
    "evidence_level": "unverified"
   },
-  "240": {
+  "0xf0": {
    "name": "m_bCamActive",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_disp32_in_class_method",
    "evidence_level": "unverified"
   },
-  "248": {
+  "0xf8": {
    "name": "m_fCamScale",
    "type": "float",
    "source": "binary:5x access | annotate_todo",
    "evidence_level": "unverified"
   },
-  "252": {
+  "0xfc": {
    "name": "m_fScaleX",
    "type": "float",
    "source": "ida_decomp:_nearby_439410 gbMatrixStack::Scale(v2,this,...)",
    "evidence_level": "unverified"
   },
-  "292": {
+  "0x124": {
    "name": "m_fInterval",
    "type": "float",
    "source": "binary:sub_43A3E0 fld[ecx+0x44];fcomp 5e-5(active?);ctor=10.0; timer period",
    "evidence_level": "unverified"
   },
-  "1300": {
+  "0x514": {
    "name": "m_szDialog1",
    "type": {
     "union": [
@@ -122,55 +122,55 @@
    "source": "binary:1x access | annotate_todo",
    "evidence_level": "unverified"
   },
-  "1556": {
+  "0x614": {
    "name": "m_szDialog2",
    "type": "char[256]",
    "source": "binary:1x access | annotate_todo",
    "evidence_level": "unverified"
   },
-  "1812": {
+  "0x714": {
    "name": "m_DialogSub",
    "type": "unsigned char",
    "source": "binary:1x access",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_nTodo_024",
    "type": "unsigned char",
    "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "m_fScaleY",
    "type": "float",
    "source": "A+:gbMatrixStack::Scale(stack,this+276,this+280,this+284)_2nd_param=Y",
    "evidence_level": "unverified"
   },
-  "296": {
+  "0x128": {
    "name": "m_fElapsed",
    "type": "float",
    "source": "binary:sub_43A3E0 fadd[ecx+0x48];fst(accum); reset to 0 on trigger",
    "evidence_level": "unverified"
   },
-  "368": {
+  "0x170": {
    "name": "m_nRepeatCount",
    "type": "int",
    "source": "binary:sub_43A3E0 inc[ecx+0x90] on trigger; cmp with [ecx+0x94]; reset to 0",
    "evidence_level": "unverified"
   },
-  "372": {
+  "0x174": {
    "name": "m_nMaxRepeats",
    "type": "int",
    "source": "binary:sub_43A3E0 cmp[ecx+0x90],[ecx+0x94]; bounds repeat count",
    "evidence_level": "unverified"
   },
-  "380": {
+  "0x17c": {
    "name": "m_nMaxCycles",
    "type": "int",
    "source": "binary:sub_43A3E0 cmp[ecx+0x98],[ecx+0x9C]; ctor=-1(infinite); cycle limit",
    "evidence_level": "unverified"
   },
-  "396": {
+  "0x18c": {
    "name": "m_RoleSlotArray",
    "type": {
     "union": [
@@ -432,200 +432,200 @@
    "source": "union views: role-slot array (slot), flat overlay (overlay), and script-state (script_state): +0x354 m_pCurrentScript (10 refs: PAL3::FullInit, ScriptSystem::Render, ScriptUpdate, Actor::LoadActorModel); +0x358 formation-ready (SetupPartyFormation x5, ScriptUpdate); +0x359 scene-transition param (StartCombatFromNPC, DoSceneTransition); +0x360 script-VM state (x59: scAsmDecoder::Execute, ScriptSystem_ProcessScriptEvent, Array::HandleItemPage); +0x368 fade timer (ScriptUpdate, DoSceneTransition); +0x3d0 scene-UI text buffer (300 refs: EquipUI, MainEquipUI, UIBigMap, CCBStage, PAL_GDB_ResetAllData). g_palScript is a STANDALONE instance (not in the 0xC04730 array: delta 0xC238); absolute refs in its span are script-state only; role-slot view lives in array instances via this+off.",
    "evidence_level": "unverified"
   },
-  "312": {
+  "0x138": {
    "name": "m_nTodo_138",
    "type": "int",
    "source": "reverted_auto_semantic:2x_access",
    "evidence_level": "unverified"
   },
-  "284": {
+  "0x11c": {
    "name": "m_fScaleZ",
    "type": "float",
    "source": "A+:gbMatrixStack::Scale(stack,this+276,this+280,this+284)_3rd_param=Z",
    "evidence_level": "unverified"
   },
-  "376": {
+  "0x178": {
    "name": "m_nCycleCount",
    "type": "int",
    "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_bCreated",
    "type": "int",
    "source": "decomp:Create_sets_1,CheckRayHitRole_checks",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_bInitialized",
    "type": "unsigned char",
    "source": "decomp:Create_sets_1,checked_as_bool",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_fTimerLimit",
    "type": "float",
    "source": "reverted_auto_semantic:18x_access;A:decomp_batch_rename_usage_pattern | [型确认 2026-10-20·A 级] objdump `movl $0x41200000` = 10.0f 位型常量 ⇒ float 确认。",
    "evidence_level": "A"
   },
-  "72": {
+  "0x48": {
    "name": "m_fTimerAccum",
    "type": "float",
    "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_nTodo_02C",
    "type": "int",
    "source": "binary_scan:21_accesses(store:18, load:3)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nTodo_04C",
    "type": "_BYTE[68]",
    "source": "[型订正 2026-10-20·A 级] 原 float ✗。objdump `lea 0x4c(%esi),%ecx; call 0x445ea0`（ZeroInitSelf68）⇒ 68 字节内嵌子对象基址。子对象真型待补，暂 _BYTE[68]（诚实占位）。",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "A"
   },
-  "40": {
+  "0x28": {
    "name": "m_nTodo_28",
    "type": "int",
    "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_nTodo_30",
    "type": "int",
    "source": "binary_scan:3_accesses(store:2, load:1);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_nTodo_34",
    "type": "int",
    "source": "reverted_auto_semantic:2x;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_34⇒m_nTodo_34（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_pActorData",
    "type": "gbRenderEffect *",
    "source": "decomp:passed_to_Actor_method | [F-HDR#1 2026-10-15] unsigned char→gbRenderEffect*：A 级 import 修饰名铁证 GBENGINE.DLL `?RenderUIQuad@gbDynVertBuf@@QAEXPAUgbUIQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z`（IAT 0x17d930 hint 797）参数3=PAVgbRenderEffect@@⇒gbRenderEffect* 无歧义，与手写头 gbMesh.h:426/gbengine_api.h:483 一致；实参 dword_C11760=unk_C11720+0x40=本成员。名字泄漏核查：全 decomp 仅 1 使用点且为取址形 `&v2->m_pActorData`（ScriptObj_ScriptObj@0x411ca0）⇒ 类型无关、改型安全 ✓。同根连带 L127（同全局被赋 gbRenderEffect* 值）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "A"
   },
-  "148": {
+  "0x94": {
    "name": "m_pTaskPtr",
    "type": "void*",
    "source": "binary_scan:3refs; type_fix:m_p*_int_to_void*",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_nTimerCount",
    "type": "int",
    "source": "UpdateTimer:incremented_each_tick",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_nWaitTimer",
    "type": "int",
    "source": "binary_scan:5refs",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_nAnimState",
    "type": "int",
    "source": "binary_scan:3refs",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_nSnowParticles",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_nItemCheck",
    "type": "int",
    "source": "binary_scan:2refs",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_RoleEmoteData",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "196": {
+  "0xc4": {
    "name": "m_pTexture",
    "type": "gbTexture *",
    "source": "OpenScript:gfxMgr_texture_create",
    "evidence_level": "unverified"
   },
-  "200": {
+  "0xc8": {
    "name": "m_pTextureInfo",
    "type": "_PlugInfo *",
    "source": "OpenScript:TextureLib_Data::Parent_Data",
    "evidence_level": "unverified"
   },
-  "212": {
+  "0xd4": {
    "name": "m_RoleEmoteSub",
    "type": "int",
    "source": "binary_scan:2refs",
    "evidence_level": "unverified"
   },
-  "216": {
+  "0xd8": {
    "name": "m_nTodo_0D8",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "m_bSoundType",
    "type": "unsigned char",
    "source": "binary:ida_refs",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_nUpdateState",
    "type": "int",
    "source": "binary_scan:6refs",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "m_fRenderScaleX",
    "type": "float",
    "source": "Render:gbMatrixStack::Scale_X_component",
    "evidence_level": "unverified"
   },
-  "332": {
+  "0x14c": {
    "name": "m_nScriptCount",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "352": {
+  "0x160": {
    "name": "m_EncampConfig",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "1296": {
+  "0x510": {
    "name": "m_nTodo_510",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "1832": {
+  "0x728": {
    "name": "_todo_730",
    "type": "float",
    "source": "binary: fstp flt_C11098 in Array::_nearby_411780 — float store",
    "evidence_level": "unverified"
   },
-  "1844": {
+  "0x734": {
    "name": "m_fSceneTileSize",
    "type": "float",
    "source": "binary: 70 refs, fstp/fdiv/fmul flt_C1109C in RoleSystem::MoveToTile/MoveRole/UpdateRole/UpdateActionState (movement interpolation); accessor_00411760 returns it; semantic name from prior globals.json annotation g_fSceneTileSize (scene tile size feeding tile-step math)",
@@ -640,40 +640,40 @@
     "timestamp": "2026-11-12"
    }
   },
-  "1892": {
+  "0x764": {
    "name": "_todo_764",
    "type": "int",
    "source": "binary: mov dword_C110CC in Role_Role ctor",
    "evidence_level": "unverified"
   },
-  "1896": {
+  "0x768": {
    "name": "_todo_768",
    "type": "int",
    "source": "binary: mov dword_C110D0 in RoleSystem::PlayAction/UpdateActionState",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_pCurrentTask",
    "type": "int",
    "union": true,
    "source": "int 位面（`=0`/`+1`/`(int)` 比较实证；C2679 站 RHS 标量） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
    "evidence_level": "A"
   },
-  "144_1": {
+  "0x90_1": {
    "name": "m_pCurrentTask_f",
    "type": "float",
    "union": true,
    "source": "float 别名视图（RenderUI@0x43A270 `(double)(int)`+乘法 st6 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
    "evidence_level": "A"
   },
-  "144_2": {
+  "0x90_2": {
    "name": "m_pCurrentTask_p",
    "type": "char *",
    "union": true,
    "source": "指针步进视图（UpdateTimer@0x43A3E0 `(char*)...;+1` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
    "evidence_level": "A"
   },
-  "260": {
+  "0x104": {
    "name": "m_WaitObjList",
    "type": "PtrArray",
    "source": "内嵌 PtrArray 值位面（`m_WaitObjList.capacity` 实证） | ⚠️ C1 variant 撤销 2026-10-16（verifier 当场读抓获误伤）：PtrArray=非平凡型（带 ctor）入匿名 union ⇒ C2620 全树崩（S2 0/205，每 TU L84）——MSVC6 union 禁非平凡成员；PAL3 L3195 `=0` 位面失配（C2679）改期他法（overlap 标注/值位面 POD 替身）",
@@ -863,7 +863,7 @@
    "signature": "void __thiscall()"
   },
   "0x00431fb0": {
-   "name": "Update",
+   "name": "ReLoadScript",
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
@@ -873,7 +873,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "PalScript::ReLoadScript",
+   "name_note": "语义裁定20261116: 体=_CON_ReLoadScript+1KB异常缓冲 → 脚本重载; 原名Update=误名"
   },
   "0x00434c00": {
    "name": "GetString",
@@ -1889,9 +1891,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043a270": {
-   "name": "RenderUI",
+   "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -1900,12 +1902,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "semantic_name": "PalScript::Render",
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderUI=体读数命名"
   },
   "0x0043a3e0": {
-   "name": "UpdateTimer",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -1923,7 +1927,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "PalScript::Update",
+   "name_note": "C9级联正名batch4-20261116: slot2位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Update; 原名UpdateTimer"
   },
   "0x0044b8a0": {
    "name": "SetDialogTemplate",
@@ -4027,9 +4033,9 @@
    "signature": "int __thiscall()"
   },
   "0x0043a250": {
-   "name": "MoveAndHide",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "MoveAndHide_a250",
    "alt_signature": "int __thiscall(PalScript *this)",
@@ -4042,7 +4048,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "semantic_name": "PalScript::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名MoveAndHide=体读数命名"
   },
   "0x00434d50": {
    "name": "_scalar_dtor_4D50",
@@ -4082,29 +4090,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AC4C",
+   "addr": "0x0056ac4c",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043A270"
+     "addr": "0x0043a270"
     },
     {
-     "addr": "0x0043A3E0"
+     "addr": "0x0043a3e0"
     },
     {
-     "addr": "0x0043A250"
+     "addr": "0x0043a250"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0043A1D0"
+     "addr": "0x0043a1d0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

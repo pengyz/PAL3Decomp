@@ -2,78 +2,78 @@
  "name": "CEffect",
  "binary_size": 245800,
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_eKind",
    "type": "EEffect",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_bActive",
    "type": "unsigned char",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "13": {
+  "0xd": {
    "name": "m_bVisible",
    "type": "unsigned char",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_DeltaTime",
    "type": "double",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nPartical",
    "type": "int",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_Partical",
    "type": "tagPartical[2048]",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "98332": {
+  "0x1801c": {
    "name": "m_nQuad",
    "type": "int",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "98336": {
+  "0x18020": {
    "name": "m_QuadBuffer",
    "type": "gbGeomQuad[2048]",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "237600": {
+  "0x3a020": {
    "name": "m_nQ2PIndex",
    "type": "int[2048]",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "245792": {
+  "0x3c020": {
    "name": "m_pTexture",
    "type": "gbTexture *",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "245796": {
+  "0x3c024": {
    "name": "m_pTextureArray",
    "type": "gbTextureArray *",
    "source": "annotation | [R94c-v2 否决记录 2026-10-25] 曾短暂试行 as_data（未经审批）——被用户否决并全面清除，永不落地。| [R94d 2026-10-25] 偏移回滚 +4（vtables 字段整删后编译器无 vptr，原版绝对偏移直接成立）",
    "evidence_level": "unverified"
   },
-  "0": {
+  "0x0": {
    "name": "m_pDispatchTable",
    "type": "void *",
    "source": "| [R94c-v3 2026-10-25·手工表指针定性] ctor sub_4C6240 mov [esi]=0x56F844：表 7 槽全 CEffect/CEffectSystem 方法但**零 vcall 引用**（全二进制无 [x+0] 间接调用指向该表的证据）⇒ 非 C++ virtual 机制，按普通数据成员发射；as_data v2 已使编译器不插 vptr，本成员占 @0（不占额外字节）"
   },
-  "4": {
+  "0x4": {
    "name": "_field_004",
    "type": "int",
    "source": "| [gap 字段 2026-10-25] 原版 @4 有 4 字节（ctor mov [esi+8],1 直写证明 @8=m_eKind，@0 表+@8 eKind 之间必有 4B）——语义未知，占位保证 m_eKind@8 落位"

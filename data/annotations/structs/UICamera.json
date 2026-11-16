@@ -2,91 +2,91 @@
  "name": "UICamera",
  "pdb_size": 4,
  "known_members": {
-  "128": {
+  "0x80": {
    "name": "m_nCamState",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_nViewMode",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_fCamAngle",
    "type": "float",
    "source": "binary_scan:5refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_fCoordU",
    "type": "float",
    "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_fCoordV",
    "type": "float",
    "source": "A:FPU_fld_2x_[eax+0A4h/0A8h]_pair_pattern",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "m_nBuffer",
    "type": "int",
    "source": "A:4x_mov_[ebp+0DCh]_load_pattern",
    "evidence_level": "unverified"
   },
-  "224": {
+  "0xe0": {
    "name": "m_hTarget",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "m_pCameraData",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "460": {
+  "0x1cc": {
    "name": "m_nStateFlags",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "464": {
+  "0x1d0": {
    "name": "m_nParam",
    "type": "int",
    "source": "A:4x_mov_[esi+1D0h]_load_pattern",
    "evidence_level": "unverified"
   },
-  "492": {
+  "0x1ec": {
    "name": "m_fVecX",
    "type": "float",
    "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
    "evidence_level": "unverified"
   },
-  "496": {
+  "0x1f0": {
    "name": "m_fVecY",
    "type": "float",
    "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
    "evidence_level": "unverified"
   },
-  "500": {
+  "0x1f4": {
    "name": "m_fVecZ",
    "type": "float",
    "source": "A:FPU_fld_3x_[eax+1ECh/1F0h/1F4h]_vector_pattern",
    "evidence_level": "unverified"
   },
-  "628": {
+  "0x274": {
    "name": "m_hCameraHandle",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref2",
    "evidence_level": "unverified"
   },
-  "632": {
+  "0x278": {
    "name": "m_nTodo_278",
    "type": "int",
    "source": "binary_scan:1refs",

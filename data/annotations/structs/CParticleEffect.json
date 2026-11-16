@@ -2,49 +2,49 @@
  "name": "CParticleEffect",
  "binary_size": 56,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "_bPlay",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "_fTimeScale",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "_tBlendType",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "_fTime",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "_ParticleSystems",
    "type": "char[16]",
    "source": "annotation|fix:pointer_level:std::vector<CParticleSystem *,std::allocator<CParticleSystem *> >[4]",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "_pRenderEffect",
    "type": "gbRenderEffect *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "_pGfxMgr",
    "type": "gbGfxManager *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "_dwReserved",
    "type": "unsigned int[4]",
    "source": "annotation",

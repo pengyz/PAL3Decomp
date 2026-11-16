@@ -2,25 +2,25 @@
  "name": "UIListBox",
  "binary_size": 1208,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_selcolor",
    "type": "gbColorQuad",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_showGrayBk",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_hasKeyCtrl",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_scrollbar",
    "type": "UIScrollBar",
    "source": "annotation",
@@ -43,121 +43,121 @@
     "timestamp": "2026-11-12"
    }
   },
-  "432": {
+  "0x1b0": {
    "name": "m_numcol",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "436": {
+  "0x1b4": {
    "name": "m_column",
    "type": "UILBColumn[8]",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1108": {
+  "0x454": {
    "name": "m_itemheight",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1112": {
+  "0x458": {
    "name": "m_fontsize",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1116": {
+  "0x45c": {
    "name": "m_firstshow",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1120": {
+  "0x460": {
    "name": "m_onsel",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1124": {
+  "0x464": {
    "name": "m_locksel",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1128": {
+  "0x468": {
    "name": "m_scrollRc",
    "type": "tagRECT",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1144": {
+  "0x478": {
    "name": "m_pbkpic",
    "type": "gbTexture *",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1148": {
+  "0x47c": {
    "name": "m_pbkpicInfo",
    "type": "_PlugInfo *",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1152": {
+  "0x480": {
    "name": "m_selpic",
    "type": "gbTexture *",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1156": {
+  "0x484": {
    "name": "m_selpicInfo",
    "type": "_PlugInfo *",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1160": {
+  "0x488": {
    "name": "m_seloffset",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1164": {
+  "0x48c": {
    "name": "m_seloffsetL",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1168": {
+  "0x490": {
    "name": "m_seloffsetR",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1172": {
+  "0x494": {
    "name": "m_scrollW",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1176": {
+  "0x498": {
    "name": "m_seltexcolor",
    "type": "gbColorQuad",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1180": {
+  "0x49c": {
    "name": "m_itemoffset",
    "type": "tagPOINT",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1188": {
+  "0x4a4": {
    "name": "m_movesel",
    "type": "int",
    "source": "PDB+PAL3_offset_adjusted",
    "evidence_level": "unverified"
   },
-  "1192": {
+  "0x4a8": {
    "name": "m_rowenable",
    "type": "unsigned char[16]",
    "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换",
@@ -1410,33 +1410,6 @@
    },
    "signature": "int __thiscall(int a2, int a3, int a4)"
   },
-  "0x0043d7a0": {
-   "name": "ForwardOnMessage",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目 | 修正: name误含参数串+sig误void(); 体语义=转发OnMessage三参",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(int, int, int)"
-  },
   "0x0043ddf0": {
    "name": "Render",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
@@ -1454,9 +1427,9 @@
    "signature": "void __thiscall()"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "UIListBox::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -1465,34 +1438,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056AD20",
+   "addr": "0x0056ad20",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x00445C60"
+     "addr": "0x00445c60"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0043DCF0"
+     "addr": "0x0043dcf0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ],
    "source": "[停车场清理 2026-10-16 证据注记] 写入点 0x43dcd8/0x43dd2d（0x43DCxx 簇）；ctor 0x43DCD0=UIWnd 基(0x445AA0)+m_selcolor；dtor 0x43DD10=Destroy+UIWnd::_UIWnd，**无 m_rowenable/scrollbar 清理** ⇒ 非 UIListBox 本体，真名待裁（候选=简单 UIWnd 派生控件族） | [4 表裁决落地 2026-10-16] ✅ UIListBox 的 **UIWnd 基类子对象表**（A 级：ctor 双写 0x56AD20+0x56AD40=MI 双表形 + deleting ?_scalar_deleting_destructor_@UIListBox@@ 修饰名）"

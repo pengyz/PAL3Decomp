@@ -2,7 +2,7 @@
  "name": "CCBRoleState",
  "binary_size": 22224,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_sCombatDialog",
    "type": {
     "union": [
@@ -19,361 +19,361 @@
    "source": "[A 级值位面 union 2026-10-21·fixer] m_sCombatDialog = **union**（三判据①值位面 ✓ 值证实录）· **fstps/fmuls 0x0(%ebp)** 值证 ✓ A 级实录 · MIXED（char[4]+float 同存储多解释）· checklist 5 问全过 ✓ · 原 type=char[4]",
    "evidence_level": "A"
   },
-  "360": {
+  "0x168": {
    "name": "m_nTodo_168",
    "type": "UIFrameWnd",
    "source": "A+:decomp_ctor_at_this+360,span=152=binary_size | [批4 诚实化 2026-10-16] A偏移形：_embed_UIFrameWnd_168⇒m_nTodo_168（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "21960": {
+  "0x55c8": {
    "name": "m_bScrollEnableA",
    "type": "unsigned char",
    "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs",
    "evidence_level": "unverified"
   },
-  "21961": {
+  "0x55c9": {
    "name": "m_bScrollEnableB",
    "type": "unsigned char",
    "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs",
    "evidence_level": "unverified"
   },
-  "21964": {
+  "0x55cc": {
    "name": "m_nScrollOffset",
    "type": "int",
    "source": "ida_decomp:_method_44a2e0 += 10, 10 refs",
    "evidence_level": "unverified"
   },
-  "21968": {
+  "0x55d0": {
    "name": "m_nScrollTarget",
    "type": "int",
    "source": "ida_decomp:_method_44a2e0 compared/assigned, 4 refs",
    "evidence_level": "unverified"
   },
-  "18700": {
+  "0x490c": {
    "name": "m_fLerpCurX",
    "type": "float",
    "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
    "evidence_level": "unverified"
   },
-  "18704": {
+  "0x4910": {
    "name": "m_fLerpCurY",
    "type": "float",
    "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
    "evidence_level": "unverified"
   },
-  "18708": {
+  "0x4914": {
    "name": "m_nLerpTargetX",
    "type": "int",
    "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
    "evidence_level": "unverified"
   },
-  "18712": {
+  "0x4918": {
    "name": "m_nLerpTargetY",
    "type": "int",
    "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
    "evidence_level": "unverified"
   },
-  "18716": {
+  "0x491c": {
    "name": "m_nLerpDestX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "18720": {
+  "0x4920": {
    "name": "m_nLerpDestY",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "18732": {
+  "0x492c": {
    "name": "m_nLerpDir",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "18745": {
+  "0x4939": {
    "name": "m_bLerpDone",
    "type": "unsigned char",
    "source": "ida_decomp:_method_449fe0 set 0 start, 1 finish, 3 refs",
    "evidence_level": "unverified"
   },
-  "18748": {
+  "0x493c": {
    "name": "m_fLerpSpeed",
    "type": "float",
    "source": "ida_decomp:_method_449fe0 a2*this*dir = delta, 4 refs",
    "evidence_level": "unverified"
   },
-  "7676": {
+  "0x1dfc": {
    "name": "m_byteFlags",
    "type": "unsigned char",
    "source": "A:byte_array_+1821_stride",
    "evidence_level": "unverified"
   },
-  "10352": {
+  "0x2870": {
    "name": "m_nTodo_2870",
    "type": "unsigned char",
    "source": "A:LOBYTE_access | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2870⇒m_nTodo_2870（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "10364": {
+  "0x287c": {
    "name": "m_BufferData",
    "type": "char[1628]",
    "source": "A:memset_0x2654_bytes",
    "note": "2026-09-13: was char[0x2654] (9812B gap-absorbing blob from an early pass) — swallowed m_RoleXor(tagRoleState[11]@11992) and the spring-physics member family (18780-18800) via the emitter overlap-drop. Export truth _BYTE[1628] ends exactly at m_RoleXor@11992.",
    "evidence_level": "unverified"
   },
-  "18616": {
+  "0x48b8": {
    "name": "m_SlotUIWnd",
    "type": "UIWnd",
    "source": "A:UIWnd_GetRect_call_this+48B8",
    "evidence_level": "unverified"
   },
-  "18780": {
+  "0x495c": {
    "name": "m_fSpringPosX",
    "type": "float",
    "source": "decomp:spring_animation_position_X(+=dt*speed*dir)",
    "evidence_level": "unverified"
   },
-  "18784": {
+  "0x4960": {
    "name": "m_fSpringPosY",
    "type": "float",
    "source": "decomp:spring_animation_position_Y",
    "evidence_level": "unverified"
   },
-  "18788": {
+  "0x4964": {
    "name": "m_fSpringTargX",
    "type": "float",
    "source": "decomp:copied_from_PosX_at_frame_end",
    "evidence_level": "unverified"
   },
-  "18792": {
+  "0x4968": {
    "name": "m_fSpringTargY",
    "type": "float",
    "source": "decomp:spring_target_Y",
    "evidence_level": "unverified"
   },
-  "18796": {
+  "0x496c": {
    "name": "m_fSpringPrevX",
    "type": "float",
    "source": "decomp:spring_previous_X",
    "evidence_level": "unverified"
   },
-  "18800": {
+  "0x4970": {
    "name": "m_fSpringPrevY",
    "type": "float",
    "source": "decomp:spring_previous_Y",
    "evidence_level": "unverified"
   },
-  "18812": {
+  "0x497c": {
    "name": "m_nSpringDir",
    "type": "int",
    "source": "decomp:spring_direction(multiplied_by_speed)",
    "evidence_level": "unverified"
   },
-  "18828": {
+  "0x498c": {
    "name": "m_fSpringSpeed",
    "type": "float",
    "source": "decomp:spring_speed(multiplied_by_deltaTime)",
    "evidence_level": "unverified"
   },
-  "19056": {
+  "0x4a70": {
    "name": "m_SlotWidgets",
    "type": "UIWnd",
    "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]",
    "evidence_level": "unverified"
   },
-  "19664": {
+  "0x4cd0": {
    "name": "m_SlotRects",
    "type": "int",
    "source": "decomp:_method_46d770_RECT_array_for_5_slots(4*idx+38/39/40)",
    "evidence_level": "unverified"
   },
-  "19828": {
+  "0x4d74": {
    "name": "m_SlotRightEdge",
    "type": "int",
    "source": "decomp:_method_46d770_right_edge_array[5]",
    "evidence_level": "unverified"
   },
-  "19896": {
+  "0x4db8": {
    "name": "m_nSlotStartY",
    "type": "int",
    "source": "decomp:_method_46d770_Y_start_position",
    "evidence_level": "unverified"
   },
-  "19900": {
+  "0x4dbc": {
    "name": "m_nSlotSpacing",
    "type": "int",
    "source": "decomp:_method_46d770_X_spacing_between_slots",
    "evidence_level": "unverified"
   },
-  "19904": {
+  "0x4dc0": {
    "name": "m_nSlotHeight",
    "type": "int",
    "source": "decomp:_method_46d770_height_offset_per_slot",
    "evidence_level": "unverified"
   },
-  "19908": {
+  "0x4dc4": {
    "name": "m_nSlotWidth",
    "type": "int",
    "source": "decomp:_method_46d770_width_per_slot",
    "evidence_level": "unverified"
   },
-  "19912": {
+  "0x4dc8": {
    "name": "m_bySlotVisible",
    "type": "unsigned char",
    "source": "decomp:_method_46d770_BYTE_array_5slots_visibility",
    "evidence_level": "unverified"
   },
-  "20064": {
+  "0x4e60": {
    "name": "m_pScene",
    "type": "UIScene *",
    "source": "ctor:UIScene::_UIScene | 主攻点2续 2026-10-17（verifier·A 级逐条）：型 UIScene ⇒ UIScene * | evidence: A 级：0x4FF452 `&this->m_pScene->m_vecInitFiveLineup[v9]`——**`->` 指针解引用实证** ⇒ 值型错挂 | confidence: high",
    "evidence_level": "A"
   },
-  "20408": {
+  "0x4fb8": {
    "name": "m_Static_20408",
    "type": "UIStatic",
    "source": "ctor:UIStatic::_UIStatic",
    "evidence_level": "unverified"
   },
-  "20560": {
+  "0x5050": {
    "name": "m_bVideoPlayed",
    "type": "unsigned char",
    "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo",
    "evidence_level": "unverified"
   },
-  "20564": {
+  "0x5054": {
    "name": "m_nVideoState",
    "type": "int",
    "evidence_level": "unverified"
   },
-  "20576": {
+  "0x5060": {
    "name": "m_nCurrentTaskID",
    "type": "int",
    "source": "decomp:CCBStage::EndTask_result+FindThreadByID_param",
    "evidence_level": "unverified"
   },
-  "20580": {
+  "0x5064": {
    "name": "m_nEffCurA",
    "type": "int",
    "source": "decomp:effect_param_pair_A_current(swapped_with_507C)",
    "evidence_level": "unverified"
   },
-  "20584": {
+  "0x5068": {
    "name": "m_nEffCurB",
    "type": "int",
    "source": "decomp:effect_param_pair_B(swapped_with_5080)",
    "evidence_level": "unverified"
   },
-  "20592": {
+  "0x5070": {
    "name": "m_nEffTarget1",
    "type": "int",
    "source": "decomp:loaded_from_g_EffMgr",
    "evidence_level": "unverified"
   },
-  "20596": {
+  "0x5074": {
    "name": "m_nEffTarget2",
    "type": "int",
    "source": "decomp:loaded_from_g_EffMgr",
    "evidence_level": "unverified"
   },
-  "20600": {
+  "0x5078": {
    "name": "m_nEffTransFrames",
    "type": "int",
    "source": "decomp:set_6(transition_frame_count)",
    "evidence_level": "unverified"
   },
-  "20604": {
+  "0x507c": {
    "name": "m_nEffSwapA",
    "type": "int",
    "source": "decomp:effect_swap_target_A(swapped_with_5064)",
    "evidence_level": "unverified"
   },
-  "20608": {
+  "0x5080": {
    "name": "m_nEffSwapB",
    "type": "int",
    "source": "decomp:effect_swap_target_B(swapped_with_5068)",
    "evidence_level": "unverified"
   },
-  "20616": {
+  "0x5088": {
    "name": "m_nEffCurC",
    "type": "int",
    "source": "decomp:effect_param_C(swapped_with_508C)",
    "evidence_level": "unverified"
   },
-  "20620": {
+  "0x508c": {
    "name": "m_nEffSwapC",
    "type": "int",
    "source": "decomp:swap_target_C",
    "evidence_level": "unverified"
   },
-  "20624": {
+  "0x5090": {
    "name": "m_nEffCurD",
    "type": "int",
    "source": "decomp:effect_param_D(swapped_with_5094)",
    "evidence_level": "unverified"
   },
-  "20628": {
+  "0x5094": {
    "name": "m_nEffTransFrames2",
    "type": "int",
    "source": "decomp:set_6(transition_frames_2nd_group)",
    "evidence_level": "unverified"
   },
-  "20632": {
+  "0x5098": {
    "name": "m_nEffCurE",
    "type": "int",
    "source": "decomp:effect_param_E(swapped_with_509C)",
    "evidence_level": "unverified"
   },
-  "20636": {
+  "0x509c": {
    "name": "m_nEffSwapE",
    "type": "int",
    "source": "decomp:swap_target_E",
    "evidence_level": "unverified"
   },
-  "20640": {
+  "0x50a0": {
    "name": "m_fTimeFund",
    "type": "float",
    "source": "A:decomp this->_todo_50A0 = v6->m_fTimeFund",
    "evidence_level": "unverified"
   },
-  "22100": {
+  "0x5654": {
    "name": "m_nFadeFlags",
    "type": "int",
    "source": "decomp:_method_44a2e0_LOBYTE+BYTE1_fade_direction_bools",
    "evidence_level": "unverified"
   },
-  "22104": {
+  "0x5658": {
    "name": "m_nFadeAlpha",
    "type": "int",
    "source": "decomp:_method_44a2e0_+=10/-=10_range_0-255_gbColorQuad_alpha",
    "evidence_level": "unverified"
   },
-  "22108": {
+  "0x565c": {
    "name": "m_nFadeTimer",
    "type": "int",
    "source": "decomp:_method_44a2e0_countdown_<=0_check",
    "evidence_level": "unverified"
   },
-  "22220": {
+  "0x56cc": {
    "name": "m_BattleFlags",
    "type": "int",
    "source": "decomp:24x_BYTE+20_check(battle_state_flags)",
    "evidence_level": "unverified"
   },
-  "18816": {
+  "0x4980": {
    "name": "m_fSpringAccelX",
    "type": "float",
    "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
    "evidence_level": "unverified"
   },
-  "18820": {
+  "0x4984": {
    "name": "m_fSpringAccelY",
    "type": "float",
    "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
    "evidence_level": "unverified"
   },
-  "18824": {
+  "0x4988": {
    "name": "m_bSpringDoneX",
    "type": "unsigned char",
    "source": "decomp:_method_44a3d0_BYTE_set_0",
@@ -388,7 +388,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "18825": {
+  "0x4989": {
    "name": "m_bSpringDoneY",
    "type": "unsigned char",
    "source": "decomp:_method_44a3d0_BYTE_set_1",
@@ -403,240 +403,240 @@
     "timestamp": "2026-11-12"
    }
   },
-  "512": {
+  "0x200": {
    "name": "m_fLastDialogTime",
    "type": "float",
    "offset": 512,
    "evidence_level": "unverified"
   },
-  "516": {
+  "0x204": {
    "name": "m_bCombatDialog",
    "type": "unsigned char",
    "offset": 516,
    "evidence_level": "unverified"
   },
-  "520": {
+  "0x208": {
    "name": "m_pCBSystem",
    "type": "CCBSystem *",
    "offset": 520,
    "evidence_level": "unverified"
   },
-  "524": {
+  "0x20c": {
    "name": "m_pStage",
    "type": "CCBStage *",
    "offset": 524,
    "evidence_level": "unverified"
   },
-  "528": {
+  "0x210": {
    "name": "m_pUI",
    "type": "CCBUI *",
    "offset": 528,
    "evidence_level": "unverified"
   },
-  "532": {
+  "0x214": {
    "name": "m_pUtil",
    "type": "CUtil *",
    "offset": 532,
    "evidence_level": "unverified"
   },
-  "536": {
+  "0x218": {
    "name": "m_bWeSneakAttackEnemy",
    "type": "unsigned char",
    "offset": 536,
    "evidence_level": "unverified"
   },
-  "537": {
+  "0x219": {
    "name": "m_bEnemySneakAttackUs",
    "type": "unsigned char",
    "offset": 537,
    "evidence_level": "unverified"
   },
-  "540": {
+  "0x21c": {
    "name": "m_nMaxRound",
    "type": "int",
    "offset": 540,
    "evidence_level": "unverified"
   },
-  "544": {
+  "0x220": {
    "name": "m_nBossRound",
    "type": "int",
    "offset": 544,
    "evidence_level": "unverified"
   },
-  "548": {
+  "0x224": {
    "name": "m_bMustFail",
    "type": "unsigned char",
    "offset": 548,
    "evidence_level": "unverified"
   },
-  "549": {
+  "0x225": {
    "name": "m_bFleeAlwaysSuccess",
    "type": "unsigned char",
    "offset": 549,
    "evidence_level": "unverified"
   },
-  "550": {
+  "0x226": {
    "name": "m_bCreatedNewRole",
    "type": "unsigned char",
    "offset": 550,
    "evidence_level": "unverified"
   },
-  "552": {
+  "0x228": {
    "name": "m_Role",
    "type": "tagRoleState[11]",
    "offset": 552,
    "evidence_level": "unverified"
   },
-  "11992": {
+  "0x2ed8": {
    "name": "m_RoleXor",
    "type": "tagRoleState[11]",
    "offset": 11992,
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_nRoundCounter",
    "type": "int",
    "source": "ida_gap_13refs | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 4, 'evidence': '40101a:\\t89 46 04 \\tmov %eax,0x4(%esi)'}, {'form': 'float', 'count': 3, 'evidence': '40111d:\\td9 57 04 \\tfsts 0x4(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = MIXED（assign 61 + float 2 + cmp 1）= **位面复用**非单形 ⇒ 改型破坏 int 用法 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float",
    "_rename_evidence": "decomp:ProcessRound/VarianceRoundCounter 递增/比较 ⇒ 回合计数",
    "evidence_level": "A"
   },
-  "8": {
+  "0x8": {
    "name": "m_nCurrentRound",
    "type": "int",
    "source": "ida_gap_3refs",
    "_rename_evidence": "decomp:GetTotalRounds 返回当前回合值",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nActiveRoleIdx",
    "type": "int",
    "source": "ida_gap_6refs",
    "_rename_evidence": "decomp:ProcessCombatAction 首参数=当前行动角色索引",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nPhase",
    "type": "int",
    "source": "ida_gap_3refs",
    "_rename_evidence": "decomp:UpdateSpringAnim 检查相位状态",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nState_014",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nState_018",
    "type": "int",
    "source": "ida_gap_11refs",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nState_020",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_nState_030",
    "type": "gbRefObject *",
    "source": "ida_gap_2refs; corrected from int to gbRefObject*",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_nState_040",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nState_044",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nState_04C",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_nState_060",
    "type": "int",
    "source": "ida_gap_1refs",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_nCombatResult",
    "type": "int",
    "source": "ida_gap_10refs",
    "_rename_evidence": "decomp:CalcCombatDamage 返回值存储",
    "evidence_level": "unverified"
   },
-  "148": {
+  "0x94": {
    "name": "m_nTargetRoleIdx",
    "type": "int",
    "source": "ida_gap_10refs",
    "_rename_evidence": "decomp:AISelectTarget 返回目标角色索引",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_nSelectedAction",
    "type": "int",
    "source": "ida_gap_16refs",
    "_rename_evidence": "decomp:DispatchCombatAction 按此分发命令类型",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_nSelectedTarget",
    "type": "int",
    "source": "ida_gap_10refs",
    "_rename_evidence": "decomp:PopulateTargetList 填充目标列表索引",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_nSelectedItem",
    "type": "int",
    "source": "ida_gap_11refs",
    "_rename_evidence": "decomp:AISelectItem 选择物品索引",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "m_nDamageThisRound",
    "type": "int",
    "source": "ida_gap_9refs",
    "_rename_evidence": "decomp:ApplyDamage/CalcDamage 累计伤害",
    "evidence_level": "unverified"
   },
-  "18804": {
+  "0x4974": {
    "name": "m_nSpringTargetX",
    "type": "int",
    "source": "2026-09-14: CCBRoleState::UpdateEffects writes 800 to this+0x4974 (slot-2 vtable-override family)",
    "evidence_level": "unverified"
   },
-  "18808": {
+  "0x4978": {
    "name": "m_nSpringTargetY",
    "type": "int",
    "source": "2026-09-14: UpdateEffects writes 600 to this+0x4978",
    "evidence_level": "unverified"
   },
-  "288": {
+  "0x120": {
    "name": "m_nState3",
    "type": "int[18]",
    "source": "[伪语义批 3 折叠 2026-10-16] 簇4 288..356 ×13 纯 int（步距 4/8/16 连跑） → int[18]@288（13 散名 → 1 声明）。证据等级：数组语义=命名来历推断（m_nState_ 偏移编码族同前缀+纯 int 连跑）+布局等价（常量下标折叠）；**无索引访问证据**（批 1/2 全图 disp 谱制式）。名=族基名+组序（去地址后缀伪语义形 ✓ 禁伪语义命名条款）；组语义仅布局连续性推断。 | [T56 修正] 名 m_nState2→m_nState3（与拆分件 @168 撞名消歧；组序=偏移序 132/168/288）",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_nState",
    "type": "int[4]",
    "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 原 int[35]@132 **越界**（132..272 内含他名员 m_nTargetRoleIdx@148 等 4 员——前缀聚类漏交错面，check overlap 抓获）⇒ 拆双数组避开：本件 132..148 int[4]（m_nState_084.._090 4 散名）。证据等级：命名来历推断+布局等价（常量下标折叠）；无索引访问证据",
    "repro_pointer": "ptr:offset@132..148|fold-20261016 m_nState 簇3 拆分件 int[4]（T56 越界修正证）",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_nState2",
    "type": "int[26]",
    "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 168..272 int[26]（m_nState_0A8.._10C 15 散名 → 1；含空槽）。证据等级同 m_nState",
@@ -2353,7 +2353,7 @@
    "signature": "char __thiscall(char arg0, int nVal)"
   },
   "0x004ecb00": {
-   "name": "Update",
+   "name": "ProcessState",
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
@@ -2363,7 +2363,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "semantic_name": "CCBRoleState::ProcessState",
+   "name_note": "语义裁定20261116: 体=CheckStatus+ProcessActions+UpdateEffects三连调度, 0参int返回, 非槽 → 状态处理编排; 原名Update=误名"
   },
   "0x004f3c70": {
    "name": "GetRoleForce",
@@ -3451,9 +3453,9 @@
    "signature": "void __thiscall()"
   },
   "0x00457020": {
-   "name": "PlayVideoIfReady",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -3471,7 +3473,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "CCBRoleState::Update(int, int)",
+   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数"
   },
   "0x0046d770": {
    "name": "LayoutSlotPanelA",
@@ -4694,12 +4698,12 @@
    "signature": "int __thiscall(int nVal)"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
+   "name": "HideAll",
    "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "adjudication": "rejected",
-   "semantic_name": "SceneObj族析构链共享槽(体=Release[this+0x44], 链根无名)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_name": "CCBRoleState::HideAll(void)",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -4793,11 +4797,11 @@
  "_rename_note": "2026-09-25: 10 个 m_nState_XXX 通过 decomp 方法调用链证据重命名",
  "vtables": [
   {
-   "addr": "0x0056B364",
+   "addr": "0x0056b364",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
@@ -4806,13 +4810,13 @@
      "addr": "0x00457020"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00456B60"
+     "addr": "0x00456b60"
     },
     {
      "addr": "0x00457070"
@@ -4821,29 +4825,29 @@
    "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `CCBRoleState::_todo_456A+134` 写表 + `_scalar_dtor+29` 析构复写（ctor/dtor 对）②被调用者面=槽 0x524970 CCBRoleState 域 Render impl + 0x457020 ③成员访问面=CCBRoleState 布局 ④类归属面=CCBRoleState（ctor 域双自证）⑤交互模式面=构造/析构对；evidence=[写点 ctor/dtor 对,槽行域名] confidence=92"
   },
   {
-   "addr": "0x005708E8",
+   "addr": "0x005708e8",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
     },
     {
-     "addr": "0x005368A0"
+     "addr": "0x005368a0"
     },
     {
-     "addr": "0x005363C0"
+     "addr": "0x005363c0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x005362F0"
+     "addr": "0x005362f0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ],
    "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor SceneObj::CreateUI+108 / Actor::DestroyInternal+29 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"

@@ -2,25 +2,25 @@
  "name": "tagScriptCmd",
  "binary_size": 16,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "cmd_id",
    "type": "short",
    "source": "binary:stride16_ScriptSystemData_cmdtable",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "handler",
    "type": "int",
    "source": "binary:stride16_ScriptSystemData_cmdtable",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "param",
    "type": "int",
    "source": "binary:stride16_ScriptSystemData_cmdtable",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "flags",
    "type": "int",
    "source": "binary:stride16_ScriptSystemData_cmdtable",

@@ -2,103 +2,103 @@
  "name": "CCBResultWindow",
  "binary_size": 180,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_pBack",
    "type": "UIStatic *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pWind",
    "type": "UIStatic *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_pThunder",
    "type": "UIStatic *",
    "offset": 80,
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_pWater",
    "type": "UIStatic *",
    "offset": 84,
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_pFire",
    "type": "UIStatic *",
    "offset": 88,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_pEarth",
    "type": "UIStatic *",
    "offset": 92,
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_pDouble",
    "type": "UIStatic *",
    "offset": 96,
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_pEXP",
    "type": "UIStatic *",
    "offset": 100,
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_pLevel",
    "type": "UIStatic *",
    "offset": 104,
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_pFace",
    "type": "UIStatic *[11]",
    "offset": 108,
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_pHGM",
    "type": "UIStatic *",
    "offset": 152,
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_pHP",
    "type": "UIProgressBar *",
    "offset": 156,
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_pGP",
    "type": "UIProgressBar *",
    "offset": 160,
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_pMP",
    "type": "UIProgressBar *",
    "offset": 164,
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_pUI",
    "type": "CCBUI *",
    "offset": 168,
    "evidence_level": "unverified"
   },
-  "172": {
+  "0xac": {
    "name": "m_nIndex",
    "type": "int",
    "offset": 172,
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_bClosed",
    "type": "unsigned char",
    "offset": 176,
@@ -106,20 +106,6 @@
   }
  },
  "methods": {
-  "0x0043be30": {
-   "name": "~CCBResultWindow",
-   "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
   "0x00442e10": {
    "name": "ctor",
    "type": "skip",
@@ -206,28 +192,6 @@
    },
    "signature": "int __thiscall()"
   },
-  "0x00519660": {
-   "name": "IsImbibeNimbusNotFinish",
-   "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
-  },
   "0x00519360": {
    "name": "ShowLineupWindow",
    "evidence_level": "unverified",
@@ -250,22 +214,6 @@
     "pending": false
    },
    "signature": "void * __thiscall(UIWnd *Block, char)"
-  },
-  "0x00519510": {
-   "name": "Destroy",
-   "evidence_level": "A",
-   "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=10: m_pBack,m_pDouble,m_pEXP,m_pEarth,m_pFace（adjudicate_multiclaim 2026-11-03）",
-   "semantic_name": "Destroy",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall()"
   },
   "0x005195e0": {
    "name": "OnMessage",
@@ -297,9 +245,9 @@
    "signature": "int __thiscall(int, int, int)"
   },
   "0x00442420": {
-   "name": "Destroy_2420",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -308,12 +256,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBResultWindow::HideAll(void)",
+   "name_note": "C9血统修复20261116: slot3位 + RET 0(0参ABI) + 体=Release纹理引用 (与CCBPanelSlot/未知类0x56ae10三处同址=ICF折叠载体) → 链律名HideAll; 原名Destroy_2420=N12地址后缀形; 返回型void vs 根int漂移→L-TAILADDR队列"
   },
   "0x00444d30": {
-   "name": "ProcessInput",
+   "name": "Update",
    "ordinal": 31,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -331,13 +281,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "CCBResultWindow::Update(int, int)",
+   "name_note": "C9血统修复20261116: slot2位(Update BOOL(int,int)契约, 同0x442ff0折叠载体契约) → 链律名Update; 原名ProcessInput=体读数"
   },
   "0x00444ad0": {
-   "name": "RenderAll",
+   "name": "Render",
    "ordinal": 30,
-   "evidence_level": "unverified",
-   "semantic_name": "RenderAll",
+   "evidence_level": "verified",
+   "semantic_name": "CCBResultWindow::Render(void)",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -346,7 +298,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "name_note": "C9血统修复20261116: slot1位(Render, UIWnd骨架slot1=0x445cd0) → 链律名Render; 原名RenderAll=体读数; 返回型int vs 根void漂移→L-TAILADDR队列"
   },
   "0x00444aa0": {
    "name": "_sdtor_full",
@@ -372,30 +325,48 @@
     "pending": false
    },
    "signature": "int __thiscall(void *Block, char)"
+  },
+  "0x00444ac0": {
+   "name": "~CCBResultWindow",
+   "ordinal": 35,
+   "evidence_level": "verified",
+   "semantic_name": "CCBResultWindow::~CCBResultWindow(complete)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "signature": "void __thiscall()",
+   "name_note": "归真20261116: 写0x56AE84(=本类表, 机器码[esi]=imm实证) → 本类complete dtor; UIFrameWnd.json冒领名~UIFrameWnd_Full待用户确认后移除(挂账dossier)"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056AE84",
+   "addr": "0x0056ae84",
    "base": "UIFrameWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00444AD0"
+     "addr": "0x00444ad0"
     },
     {
-     "addr": "0x00444D30"
+     "addr": "0x00444d30"
     },
     {
      "addr": "0x00442420"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00444AA0"
+     "addr": "0x00444aa0"
+    },
+    {
+     "addr": "0x00445d10"
     }
    ],
    "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor `CCBResultWindow::CCBResultWindow+45` 写表 ②被调用者面=UIFrameWnd 基族（RenderAll/ProcessInput/Destroy impl）③成员访问面=UIFrameWnd 派生布局 ④类归属面=CCBResultWindow（ctor 域双自证+析构族 0x444AA0 在槽）⑤交互模式面=ctor/dtor 对；evidence=[写点 0x4430xx+45,槽行 UIFrameWnd 族,删际析构 0x444AA0] confidence=92"

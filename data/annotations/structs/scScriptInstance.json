@@ -2,43 +2,43 @@
  "name": "scScriptInstance",
  "binary_size": 84,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "pblock",
    "type": "scScriptBlock *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "runmode",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "5": {
+  "0x5": {
    "name": "pause",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "pcaller",
    "type": "scScriptInstance *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "codeptr",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "reg",
    "type": "scVARIANT[8]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "uservar",
    "type": "scVARIANT *",
    "source": "annotation",
@@ -61,9 +61,9 @@
    "signature": "void __thiscall()"
   },
   "0x0044e980": {
-   "name": "OnVisible",
+   "name": "Update",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -81,7 +81,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int, int)"
+   "signature": "void __thiscall(int, int)",
+   "semantic_name": "scScriptInstance::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
@@ -102,29 +104,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056B050",
+   "addr": "0x0056b050",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00445CD0"
+     "addr": "0x00445cd0"
     },
     {
-     "addr": "0x0044E980"
+     "addr": "0x0044e980"
     },
     {
-     "addr": "0x00445C10"
+     "addr": "0x00445c10"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044E5C0"
+     "addr": "0x0044e5c0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

@@ -2,169 +2,169 @@
  "name": "UITitle_JDHY",
  "binary_size": 377700,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "rc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "buf",
    "type": "char[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "344": {
+  "0x158": {
    "name": "m_OutFrameT",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "504": {
+  "0x1f8": {
    "name": "m_OutFrameR",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "664": {
+  "0x298": {
    "name": "m_OutFrameL",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "824": {
+  "0x338": {
    "name": "m_OutFrameB",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "984": {
+  "0x3d8": {
    "name": "m_background",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1144": {
+  "0x478": {
    "name": "m_exit",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1488": {
+  "0x5d0": {
    "name": "m_isItemShow",
    "type": "unsigned char[99]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1588": {
+  "0x634": {
    "name": "m_NoteItem",
    "type": "Note_Item[99]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "370660": {
+  "0x5a7e4": {
    "name": "m_Title_JDHY",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "370820": {
+  "0x5a884": {
    "name": "m_TopBar",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "370980": {
+  "0x5a924": {
    "name": "m_BottomBar",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "371140": {
+  "0x5a9c4": {
    "name": "m_BackBar",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "371300": {
+  "0x5aa64": {
    "name": "m_BackBar2",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "371460": {
+  "0x5ab04": {
    "name": "m_pbPage",
    "type": "UIPushButton[10]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "373980": {
+  "0x5b4dc": {
    "name": "m_Scroll",
    "type": "UIScrollBar",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374348": {
+  "0x5b64c": {
    "name": "m_CurScrollPos",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374352": {
+  "0x5b650": {
    "name": "m_ItemH",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374356": {
+  "0x5b654": {
    "name": "m_ItemW",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374360": {
+  "0x5b658": {
    "name": "m_firstItem",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374364": {
+  "0x5b65c": {
    "name": "m_selItem",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374368": {
+  "0x5b660": {
    "name": "m_getNote",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374372": {
+  "0x5b664": {
    "name": "m_loading",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374376": {
+  "0x5b668": {
    "name": "m_passtime",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374380": {
+  "0x5b66c": {
    "name": "m_LoadBtn",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "374724": {
+  "0x5b7c4": {
    "name": "m_DeleteBtn",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "375068": {
+  "0x5b91c": {
    "name": "m_noteState",
    "type": "NOTE_STATE",
    "source": "annotation",
@@ -325,9 +325,9 @@
    "signature": "FILE *__thiscall (double Data, int nVal)"
   },
   "0x004b2c70": {
-   "name": "RenderSlotEffects",
+   "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -336,7 +336,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "UITitle_JDHY::Render",
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderSlotEffects=体读数命名"
   },
   "0x004b2d20": {
    "name": "HandleNavigation",
@@ -425,11 +427,11 @@
    "signature": "char __thiscall(int Data)"
   },
   "0x004b3100": {
-   "name": "ForwardHitTest",
+   "name": "Update",
    "_misattrib_evidence": "max_offset=286376>class_size=4280",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -443,7 +445,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal1)"
+   "signature": "int __thiscall(int nVal1)",
+   "semantic_name": "UITitle_JDHY::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ForwardHitTest=体读数命名"
   },
   "0x004b3270": {
    "name": "UpdateTextPosition",
@@ -531,9 +535,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "UITitle_JDHY::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -542,34 +546,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056F33C",
+   "addr": "0x0056f33c",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x004B2C70"
+     "addr": "0x004b2c70"
     },
     {
-     "addr": "0x004B3100"
+     "addr": "0x004b3100"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x004B0520"
+     "addr": "0x004b0520"
     },
     {
-     "addr": "0x004B3470"
+     "addr": "0x004b3470"
     }
    ]
   }

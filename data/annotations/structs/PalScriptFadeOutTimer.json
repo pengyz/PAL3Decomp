@@ -1,13 +1,13 @@
 {
  "name": "PalScriptFadeOutTimer",
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_fElapsed",
    "type": "float",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438540 累加域",
    "evidence_level": "A"
   },
-  "16": {
+  "0x10": {
    "name": "m_bDone",
    "type": "char",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438530 `this[16]==0` 判",
@@ -71,11 +71,11 @@
  },
  "vtables": [
   {
-   "addr": "0x0056ABEC",
+   "addr": "0x0056abec",
    "base": null,
    "slots": [
     {
-     "addr": "0x00434D50"
+     "addr": "0x00434d50"
     },
     {
      "addr": "0x00438530"
@@ -84,7 +84,7 @@
      "addr": "0x00438540"
     },
     {
-     "addr": "0x00434D50"
+     "addr": "0x00434d50"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 +flag(this+0x10)==0 判；交互模式面:淡出过渡等待"

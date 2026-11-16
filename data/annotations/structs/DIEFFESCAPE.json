@@ -2,39 +2,39 @@
  "name": "DIEFFESCAPE",
  "binary_size": 24,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "dwSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "dwCommand",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "lpvInBuffer",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "cbInBuffer",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "lpvOutBuffer",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "cbOutBuffer",
    "type": "DWORD",
    "source": "annotation",

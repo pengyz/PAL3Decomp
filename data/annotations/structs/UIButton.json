@@ -2,103 +2,103 @@
  "name": "UIButton",
  "binary_size": 344,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_hasDBclk",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_ratiow",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_state",
    "type": "UIButton_UIBUTTON_STATE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_canctrl",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "81": {
+  "0x51": {
    "name": "m_bLockUpdate",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_offsetx",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_offsety",
    "type": "float",
    "source": "A:FPU_disp8_in_class_method",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_bBigFont",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_texarray",
    "type": "UITextureArray",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_texarrayInfo",
    "type": "_PlugInfo *[3]",
    "source": "pdb_fill_incomplete",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_disablepic",
    "type": "gbTexture *",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "m_disablepicInfo",
    "type": "_PlugInfo *",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_mouseoff",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "185": {
+  "0xb9": {
    "name": "m_mouseon",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "188": {
+  "0xbc": {
    "name": "m_alignmode",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "192": {
+  "0xc0": {
    "name": "m_caption",
    "type": "char[128]",
    "source": "pdb_fill_incomplete",
    "evidence_level": "unverified"
   },
-  "320": {
+  "0x140": {
    "name": "m_benable_snd",
    "type": "BYTE",
    "source": "gen_headers_9.2",
@@ -157,9 +157,9 @@
    "signature": "BOOL __thiscall(int, int)"
   },
   "0x0043f9c0": {
-   "name": "Destroy",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -168,7 +168,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "UIButton::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   },
   "0x0043ff00": {
    "name": "Create",
@@ -240,29 +242,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AD64",
+   "addr": "0x0056ad64",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043FF70"
+     "addr": "0x0043ff70"
     },
     {
      "addr": "0x00440560"
     },
     {
-     "addr": "0x0043F9C0"
+     "addr": "0x0043f9c0"
     },
     {
-     "addr": "0x0043FF00"
+     "addr": "0x0043ff00"
     },
     {
-     "addr": "0x0043F950"
+     "addr": "0x0043f950"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

@@ -2,91 +2,91 @@
  "name": "UITextArea",
  "binary_size": 192,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_nTodo_44",
    "type": "float",
    "source": "binary:disasm@0x444FD4 (movl $0x3f000000 = float 0.5) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_44⇒m_nTodo_44（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "A"
   },
-  "72": {
+  "0x48": {
    "name": "m_nTodo_48",
    "type": "BYTE",
    "source": "binary:disasm@0x444F8F (mov %al,0x48(%esi)) | [批4 诚实化 2026-10-16] A偏移形：m_bTodo_48⇒m_nTodo_48（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nTodo_4C",
    "type": "int",
    "source": "binary:disasm@0x444F92 (dword 写（xor edi,edi 归零）)",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_nTodo_50",
    "type": "int",
    "source": "binary:disasm@0x444F95 (dword 写)",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_nTodo_54",
    "type": "int",
    "source": "binary:disasm@0x444F98 (dword 写)",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_nTodo_58",
    "type": "int",
    "source": "binary:disasm@0x445500 (Render 高频读)",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_nTodo_5C",
    "type": "int",
    "source": "binary:disasm@0x445135 (_sdtor 内有 incl（计数器）)",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_nTodo_60",
    "type": "int",
    "source": "binary:disasm@0x445500 (写/读)",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_nTodo_64",
    "type": "int",
    "source": "binary:disasm@0x445500 (读写最多)",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_todo_68",
    "type": "char[68]",
    "source": "binary:disasm@0x444F9B (lea 0x68(%esi)->call 0x445EA0 ⇒ 取址传参的子对象；内部布局未知 ⇒ 占位)",
    "evidence_level": "unverified"
   },
-  "172": {
+  "0xac": {
    "name": "m_nTodo_AC",
    "type": "int",
    "source": "binary:disasm@0x445194 (ProcessInput 读写)",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_nTodo_B0",
    "type": "float",
    "source": "binary:disasm@0x4451AE (fadds/fsts ⇒ 浮点) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_B0⇒m_nTodo_B0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "m_nTodo_B4",
    "type": "int",
    "source": "binary:disasm@0x4456F9 (Render 读)",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_nTodo_B8",
    "type": "int",
    "source": "binary:disasm@0x445519 (Render 写)",
    "evidence_level": "unverified"
   },
-  "188": {
+  "0xbc": {
    "name": "m_nTodo_BC",
    "type": "int",
    "source": "binary:disasm@0x445201 (ProcessInput cmp)",
@@ -236,7 +236,7 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AEA4",
+   "addr": "0x0056aea4",
    "base": "UIWnd",
    "slots": [
     {
@@ -252,13 +252,13 @@
      "addr": "0x00445920"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00444FF0"
+     "addr": "0x00444ff0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

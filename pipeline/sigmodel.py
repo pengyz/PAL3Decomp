@@ -141,6 +141,45 @@ def c2555_conflict(derived, base):
     return params_equal(derived, base) and returns_absent(derived) != returns_absent(base)
 
 
+def _norm_type(t):
+    """类型串归一: 折叠空白 + 补*/&前空格(仅排版差异, 不做语义等价改写)。
+    'void*' vs 'void *' 同型实证(CEffAction AllocEffect假阳性20261116)。"""
+    s = ' '.join(str(t or '').split())
+    s = s.replace('*', ' * ').replace('&', ' & ')
+    return ' '.join(s.split())
+
+
+def override_check(derived, base):
+    """[重载正确性判定 2026-11-16] C++ virtual override 签名一致性判定。
+
+    派生虚函数 override 基类同名虚函数 ⟺ cc相同 + 参数类型序列相同(参数名不参与,
+    C2555不看名字) + 返回型相同 + varargs相同。逐维度报告结构化差异, 不做协变放宽
+    (MSVC6本工程无协变返回实例, 放宽=伪造兼容)。
+    返回 {'compatible': bool, 'mismatches': [str]}; 任一节点pending → {'pending': True}。
+    """
+    if derived.get('pending') or base.get('pending'):
+        return {'pending': True}
+    mm = []
+    if (derived.get('cc') or None) != (base.get('cc') or None):
+        mm.append('cc: %s vs %s' % (derived.get('cc'), base.get('cc')))
+    dr = _norm_type(derived.get('return'))
+    br = _norm_type(base.get('return'))
+    if dr != br:
+        mm.append('return_type: %s vs %s' % (dr, br))
+    dp = derived.get('params') or []
+    bp = base.get('params') or []
+    if len(dp) != len(bp):
+        mm.append('param_count: %d vs %d' % (len(dp), len(bp)))
+    else:
+        for i, (a, b) in enumerate(zip(dp, bp)):
+            ta, tb = _norm_type(a.get('type')), _norm_type(b.get('type'))
+            if ta != tb:
+                mm.append('param[%d]: %s vs %s' % (i, ta, tb))
+    if bool(derived.get('varargs')) != bool(base.get('varargs')):
+        mm.append('varargs: %s vs %s' % (derived.get('varargs'), base.get('varargs')))
+    return {'compatible': not mm, 'mismatches': mm}
+
+
 # ── [S2 消费装载器/迁移 2026-11-16 TDD] ──
 
 def pending_node():

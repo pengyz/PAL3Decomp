@@ -2,103 +2,103 @@
  "name": "UITitle_BBTY",
  "binary_size": 5252,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "rc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "bkWndX",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "bkWndY",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "i",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "j",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "buf",
    "type": "char[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "360": {
+  "0x168": {
    "name": "m_background",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "520": {
+  "0x208": {
    "name": "m_remark",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "680": {
+  "0x2a8": {
    "name": "m_btn",
    "type": "UIButtonEXA[3]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1808": {
+  "0x710": {
    "name": "m_exit",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2152": {
+  "0x868": {
    "name": "m_Name",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2312": {
+  "0x908": {
    "name": "m_Left",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2472": {
+  "0x9a8": {
    "name": "m_Right",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2632": {
+  "0xa48": {
    "name": "m_FlagT",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2792": {
+  "0xae8": {
    "name": "m_FlagB",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2952": {
+  "0xb88": {
    "name": "m_Start",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "3296": {
+  "0xce0": {
    "name": "m_Notes",
    "type": "UIButton",
    "source": "annotation",
@@ -136,9 +136,9 @@
    "signature": "int __thiscall()"
   },
   "0x004520a0": {
-   "name": "UpdateFrame",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "double",
    "sig_model": {
     "return": "double",
@@ -160,7 +160,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "double __thiscall(double result, int arg0, int arg0a)"
+   "signature": "double __thiscall(double result, int arg0, int arg0a)",
+   "semantic_name": "UITitle_BBTY::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名UpdateFrame=体读数命名"
   },
   "0x00451d80": {
    "name": "_scalar_dtor_1D80",
@@ -267,26 +269,26 @@
  },
  "vtables": [
   {
-   "addr": "0x0056B19C",
+   "addr": "0x0056b19c",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00445CD0"
+     "addr": "0x00445cd0"
     },
     {
-     "addr": "0x004520A0"
+     "addr": "0x004520a0"
     },
     {
-     "addr": "0x00445C10"
+     "addr": "0x00445c10"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00451D80"
+     "addr": "0x00451d80"
     },
     {
      "addr": "0x00452420"

@@ -2,37 +2,37 @@
  "name": "CEffGroupNode",
  "binary_size": 116,
  "known_members": {
-  "92": {
+  "0x5c": {
    "name": "m_nTodo_05C",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+23)",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_nTodo_060",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+24)",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_nTodo_064",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+25)",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_nTodo_068",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+26)",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_nTodo_06C",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+27)",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_nTodo_070",
    "type": "int",
    "source": "binary: ctor sets to 0; *(this+28)",
@@ -123,24 +123,17 @@
  "base_size": 88,
  "vtables": [
   {
-   "addr": "0x0056F3C0",
+   "addr": "0x0056f3c0",
    "base": null,
    "slots": [
     {
-     "addr": "0x004B7310"
+     "addr": "0x004b7310"
     },
     {
-     "addr": "0x004B7F70"
+     "addr": "0x004b7f70"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
-   "evidence_level": "binary_ctor_write"
-  },
-  {
-   "addr": "0x0056F3C0",
-   "base": "CTaskTpl",
-   "slots": [],
-   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
    "evidence_level": "binary_ctor_write"
   }
  ],
@@ -148,6 +141,14 @@
   {
    "name": "PAL3VisNode",
    "offset": 0
+  }
+ ],
+ "_phantom_tables_removed": [
+  {
+   "addr": "__DEDUP__",
+   "keep": "0056f3c0",
+   "date": "2026-11-16",
+   "evidence": "0距离完全重复"
   }
  ]
 }

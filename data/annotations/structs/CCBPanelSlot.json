@@ -2,121 +2,121 @@
  "name": "CCBPanelSlot",
  "binary_size": 476,
  "known_members": {
-  "4": {
+  "0x4": {
    "name": "m_nDimH",
    "type": "int",
    "source": "InitPanel",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_nEdgeR",
    "type": "int",
    "source": "InitPanel:computed",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nEdgeB",
    "type": "int",
    "source": "InitPanel:computed",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nMarginX2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nDimH2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nEdgeR2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_nEdgeB2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_fMarginX",
    "type": "float",
    "source": "InitPanel:IEEE754",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_fDimH",
    "type": "float",
    "source": "InitPanel:IEEE754",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "m_nClipL",
    "type": "int",
    "source": "InitPanel:clip",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_nClipT",
    "type": "int",
    "source": "InitPanel:clip",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_nClipR",
    "type": "int",
    "source": "InitPanel:clip",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_nClipB",
    "type": "int",
    "source": "InitPanel:clip",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_nClipL2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_nClipT2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_nClipR2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nClipB2",
    "type": "int",
    "source": "InitPanel:copy",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_nPosX",
    "type": "int",
    "source": "InitPanel:position",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nPosY",
    "type": "int",
    "source": "InitPanel:position",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_Widget",
    "type": "char[384]",
    "source": "vtable+32_called_UIWnd_compatible",
@@ -171,23 +171,77 @@
    "signature": "void __thiscall(int)",
    "semantic_name": "ShowClipped",
    "name_note": "[恢复] owner-primacy删除过早: CCBPanelSlot bases未定谳, 派生豁免失效→C7; bases定谳后再清"
+  },
+  "0x00442420": {
+   "name": "HideAll",
+   "ordinal": 4,
+   "evidence_level": "verified",
+   "semantic_name": "CCBPanelSlot::HideAll(void)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "signature": "void __thiscall()",
+   "name_note": "C9血统修复20261116: slot3位(UIWnd骨架) + RET 0(0参ABI=census) + 体=Release纹理引用(m_pFace[1]/[5]置空, 面板隐藏即释放) → 链律名HideAll; 原名Destroy_2420=体读数命名(N12地址后缀); 返回型void vs 根int漂移→L-TAILADDR队列"
+  },
+  "0x004431b0": {
+   "name": "~CCBPanelSlot",
+   "ordinal": 5,
+   "evidence_level": "verified",
+   "semantic_name": "CCBPanelSlot::~CCBPanelSlot(del)",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "flags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "signature": "void * __thiscall(int)",
+   "name_note": "slot5删除式dtor位定谳20261116(??_G型, ABI RET 4=1参flags, 体=调complete dtor+条件operator delete); 名取类dtor语义形(_scalar_dtor_XXXX为N12禁形不入新条目); UIWnd.json冒领条目_sdtor_call_dtor待用户确认后移除"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056AE2C",
+   "addr": "0x0056ae2c",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00443200"
     },
     {
-     "addr": "0x00442FF0"
+     "addr": "0x00442ff0"
+    },
+    {
+     "addr": "0x00442420"
+    },
+    {
+     "addr": "0x00445b90"
+    },
+    {
+     "addr": "0x004431b0"
+    },
+    {
+     "addr": "0x00445d10"
     }
-   ]
+   ],
+   "note": "7槽骨架20261116定谳: slot0/4/6与UIWnd同值(继承), slot1/2/3/5覆写; slot5=删除式dtor位(本二进制虚dtor按声明序分配非slot0)"
+  }
+ ],
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
   }
  ]
 }

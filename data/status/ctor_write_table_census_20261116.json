@@ -1,0 +1,2025 @@
+{
+ "date": "2026-11-16",
+ "judgement": "表归属=ctor/dtor机器码写表(.rdata立即数存储); CONFIRMED⊆写集",
+ "stats": {
+  "CONFIRMED": 61,
+  "EXTRA": 5,
+  "NO_TABLES": 40,
+  "NO_EVIDENCE": 39,
+  "PARTIAL": 7
+ },
+ "shared_tables": {
+  "0x0056a9bc": [
+   "PalScript",
+   "Role"
+  ],
+  "0x0056a9c0": [
+   "GameObject",
+   "PalScript",
+   "UITitle_YXXX",
+   "filebuf",
+   "scScriptInstance"
+  ],
+  "0x0056a9cc": [
+   "GameObject",
+   "PalScript",
+   "Role"
+  ],
+  "0x0056b050": [
+   "UIEmote",
+   "scScriptInstance"
+  ],
+  "0x0056f580": [
+   "ScreenEffectMgr",
+   "UIRoleDialog"
+  ],
+  "0x0056f62c": [
+   "CEffCylinder",
+   "CEffGrid",
+   "CEffMeteor",
+   "CEffSParticle",
+   "CEffect"
+  ],
+  "0x0056f7c8": [
+   "CEffCylinder",
+   "RenderTarget2"
+  ],
+  "0x0056f920": [
+   "CEffGrid",
+   "CEffgbParticle"
+  ],
+  "0x0056f95c": [
+   "Actor",
+   "CEffGrid"
+  ],
+  "0x0056f9b4": [
+   "CEffMeteor",
+   "SceneMgr"
+  ],
+  "0x0056fadc": [
+   "CEffQuake",
+   "CEffect"
+  ],
+  "0x0056fb18": [
+   "Actor",
+   "CEffect"
+  ]
+ },
+ "classes": {
+  "AStarPathFinder": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056a600": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056a600"
+   ],
+   "written": [
+    "0x0056a600"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "Actor": {
+   "verdict": "EXTRA",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a6d0"
+   ],
+   "written": [
+    "0x0056f908",
+    "0x0056f95c",
+    "0x0056fac4",
+    "0x0056fb18"
+   ],
+   "extra": [
+    "0x0056f908",
+    "0x0056f95c",
+    "0x0056fac4",
+    "0x0056fb18"
+   ],
+   "missing": [
+    "0x0056a6d0"
+   ]
+  },
+  "ArraySlots": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056afb0"
+   ],
+   "extra": [
+    "0x0056afb0"
+   ],
+   "missing": []
+  },
+  "C2DSpark": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "C3DSpark": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBAI": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBCamControl": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBControlWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0057051c": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0057051c"
+   ],
+   "written": [
+    "0x0057051c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBFiveNimbusWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x005704e4": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x005704e4"
+   ],
+   "written": [
+    "0x005704e4"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBItemWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570500": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x00570500"
+   ],
+   "written": [
+    "0x00570500"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBLineupWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570538": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x00570538"
+   ],
+   "written": [
+    "0x00570538"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBMagicWindow": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x00570554"
+   ],
+   "extra": [
+    "0x00570554"
+   ],
+   "missing": []
+  },
+  "CCBPanelSlot": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ae2c"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ae2c"
+   ]
+  },
+  "CCBParabolaWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0057058c": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0057058c"
+   ],
+   "written": [
+    "0x0057058c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBProtectWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x005704a8": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x005704a8"
+   ],
+   "written": [
+    "0x005704a8"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBResultWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056ae84": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056ae84"
+   ],
+   "written": [
+    "0x0056ae84"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBRoleState": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {
+    "0x0056b364": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b364",
+    "0x005708e8"
+   ],
+   "written": [
+    "0x0056b364"
+   ],
+   "extra": [],
+   "missing": [
+    "0x005708e8"
+   ]
+  },
+  "CCBSkillWindow": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570570": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x00570570"
+   ],
+   "written": [
+    "0x00570570"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBStage": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x005705d0"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x005705d0"
+   ]
+  },
+  "CCBStageCam": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056fd78": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056fd78"
+   ],
+   "written": [
+    "0x0056fd78"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBStageEffect": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBStageRole": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBStageScene": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBStageShadow": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBSystem": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CCBUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x005704c8": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x005704c8"
+   ],
+   "written": [
+    "0x005704c8"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CCBUIPanel": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056af80": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056af80"
+   ],
+   "written": [
+    "0x0056af80",
+    "0x0056b22c"
+   ],
+   "extra": [
+    "0x0056b22c"
+   ],
+   "missing": []
+  },
+  "CCCTData": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CEffAction": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f5d8",
+    "0x0056f5e4"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f5d8",
+    "0x0056f5e4"
+   ]
+  },
+  "CEffBink": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f668",
+    "0x0056f674"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f668",
+    "0x0056f674"
+   ]
+  },
+  "CEffCallBack": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f710",
+    "0x0056f71c"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f710",
+    "0x0056f71c"
+   ]
+  },
+  "CEffCylinder": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f7bc",
+    "0x0056f7c8"
+   ],
+   "written": [
+    "0x0056f62c",
+    "0x0056f7c8",
+    "0x0056f804"
+   ],
+   "extra": [
+    "0x0056f62c",
+    "0x0056f804"
+   ],
+   "missing": [
+    "0x0056f7bc"
+   ]
+  },
+  "CEffExplosive": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f86c",
+    "0x0056f878"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f86c",
+    "0x0056f878"
+   ]
+  },
+  "CEffGrid": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f914",
+    "0x0056f920"
+   ],
+   "written": [
+    "0x0056f62c",
+    "0x0056f920",
+    "0x0056f95c"
+   ],
+   "extra": [
+    "0x0056f62c",
+    "0x0056f95c"
+   ],
+   "missing": [
+    "0x0056f914"
+   ]
+  },
+  "CEffGroupNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f3c0": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f3c0"
+   ],
+   "written": [
+    "0x0056f3c0"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CEffMeteor": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f96c",
+    "0x0056f978"
+   ],
+   "written": [
+    "0x0056f62c",
+    "0x0056f978",
+    "0x0056f9b4"
+   ],
+   "extra": [
+    "0x0056f62c",
+    "0x0056f9b4"
+   ],
+   "missing": [
+    "0x0056f96c"
+   ]
+  },
+  "CEffMgr": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CEffModel": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {
+    "0x0056f9d0": "disp0xc写(ctor)",
+    "0x0056f9dc": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f9d0",
+    "0x0056f9dc"
+   ],
+   "written": [
+    "0x0056f9dc"
+   ],
+   "extra": [],
+   "missing": [
+    "0x0056f9d0"
+   ]
+  },
+  "CEffObj": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f62c"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f62c"
+   ]
+  },
+  "CEffQuad": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056fa24",
+    "0x0056fa30"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056fa24",
+    "0x0056fa30"
+   ]
+  },
+  "CEffQuake": {
+   "verdict": "EXTRA",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056fa7c",
+    "0x0056fa88"
+   ],
+   "written": [
+    "0x0056fadc"
+   ],
+   "extra": [
+    "0x0056fadc"
+   ],
+   "missing": [
+    "0x0056fa7c",
+    "0x0056fa88"
+   ]
+  },
+  "CEffSParticle": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056fb28",
+    "0x0056fb34",
+    "0x0056fb70"
+   ],
+   "written": [
+    "0x0056f62c",
+    "0x0056fb34",
+    "0x0056fb70"
+   ],
+   "extra": [
+    "0x0056f62c"
+   ],
+   "missing": [
+    "0x0056fb28"
+   ]
+  },
+  "CEffShock": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056fad0",
+    "0x0056fadc"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056fad0",
+    "0x0056fadc"
+   ]
+  },
+  "CEffect": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056f62c",
+    "0x0056fadc",
+    "0x0056fb18"
+   ],
+   "extra": [
+    "0x0056f62c",
+    "0x0056fadc",
+    "0x0056fb18"
+   ],
+   "missing": []
+  },
+  "CEffectSystem": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f824",
+    "0x0056f844"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f824",
+    "0x0056f844"
+   ]
+  },
+  "CEffgbParticle": {
+   "verdict": "EXTRA",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f8c0",
+    "0x0056f8cc"
+   ],
+   "written": [
+    "0x0056f920"
+   ],
+   "extra": [
+    "0x0056f920"
+   ],
+   "missing": [
+    "0x0056f8c0",
+    "0x0056f8cc"
+   ]
+  },
+  "CGameData": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b094": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b094"
+   ],
+   "written": [
+    "0x0056b094"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CMeteorChain": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "CPK": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x00570a04"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x00570a04"
+   ]
+  },
+  "CScreenMode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570630": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x00570630"
+   ],
+   "written": [
+    "0x00570630"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CScreenModeNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570a24": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x00570a24"
+   ],
+   "written": [
+    "0x00570a24"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CUtil": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x005705f4": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x005705f4"
+   ],
+   "written": [
+    "0x005705f4"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "Camera": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056aa84": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056aa84"
+   ],
+   "written": [
+    "0x0056aa84"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "CameraCtrl": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056aa90"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056aa90"
+   ]
+  },
+  "ChoseCompose": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "DealData": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "EffAudioNode": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f674"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f674"
+   ]
+  },
+  "EffBinkNode": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "EffCallBackNode": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "EffMultiPassNode": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "EffTargetPool": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056f6c8"
+   ],
+   "extra": [
+    "0x0056f6c8"
+   ],
+   "missing": []
+  },
+  "EquipUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056e170": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056e170"
+   ],
+   "written": [
+    "0x0056e170"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "GRPinput": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056a620": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056a620"
+   ],
+   "written": [
+    "0x0056a620"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "GameObject": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056a9c0": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056a9c0"
+   ],
+   "written": [
+    "0x0056a9c0",
+    "0x0056a9cc"
+   ],
+   "extra": [
+    "0x0056a9cc"
+   ],
+   "missing": []
+  },
+  "Iostream_init": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "JusticeBookUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x00570728": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x00570728"
+   ],
+   "written": [
+    "0x00570728"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "LineupComp": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "LineupUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b90c": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056b90c"
+   ],
+   "written": [
+    "0x0056b794",
+    "0x0056b90c"
+   ],
+   "extra": [
+    "0x0056b794"
+   ],
+   "missing": []
+  },
+  "MainEquipUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b820": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056b820"
+   ],
+   "written": [
+    "0x0056b820"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "MainPropUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056d618": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056d618"
+   ],
+   "written": [
+    "0x0056d618"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "Object": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a9bc"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056a9bc"
+   ]
+  },
+  "Object3D": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "ObjectCamera": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "OpenBaseFile": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "OpenNULLFile": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "OpenSceneFile": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "PAL3": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "PAL3VisNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f37c": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f37c"
+   ],
+   "written": [
+    "0x0056f37c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "PAL_GDB": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "PalScript": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056ac4c": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056ac4c"
+   ],
+   "written": [
+    "0x0056a9bc",
+    "0x0056a9c0",
+    "0x0056a9cc",
+    "0x0056ac4c"
+   ],
+   "extra": [
+    "0x0056a9bc",
+    "0x0056a9c0",
+    "0x0056a9cc"
+   ],
+   "missing": []
+  },
+  "PalScriptAnimTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ac08"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ac08"
+   ]
+  },
+  "PalScriptBlendTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abc4"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abc4"
+   ]
+  },
+  "PalScriptFadeInTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abf8"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abf8"
+   ]
+  },
+  "PalScriptFadeOutTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abec"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abec"
+   ]
+  },
+  "PalScriptMgr": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abb8"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abb8"
+   ]
+  },
+  "PalScriptProgressTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abd4"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abd4"
+   ]
+  },
+  "PalScriptWaitTimer": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056abe0"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056abe0"
+   ]
+  },
+  "ParticleEffect": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f4a0": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f4a0"
+   ],
+   "written": [
+    "0x0056f4a0"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "ParticleVisNode": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a784"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056a784"
+   ]
+  },
+  "PropUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b688": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b688"
+   ],
+   "written": [
+    "0x0056b688"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "PtrArray": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ab9c"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ab9c"
+   ]
+  },
+  "RenderTarget": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056c590"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056c590"
+   ]
+  },
+  "RenderTarget2": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056f7c8"
+   ],
+   "extra": [
+    "0x0056f7c8"
+   ],
+   "missing": []
+  },
+  "RenderTarget3": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f36c"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f36c"
+   ]
+  },
+  "RenderTargetNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f4b0": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f4b0"
+   ],
+   "written": [
+    "0x0056f4b0"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "Role": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a9cc"
+   ],
+   "written": [
+    "0x0056a9bc",
+    "0x0056a9cc"
+   ],
+   "extra": [
+    "0x0056a9bc"
+   ],
+   "missing": []
+  },
+  "RoleAtt": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056b140"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056b140"
+   ]
+  },
+  "RoleCameraCtrl": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056b120"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056b120"
+   ]
+  },
+  "RoleStatePanel": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f040": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056f040"
+   ],
+   "written": [
+    "0x0056f040"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "RoleSystem": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056aad8": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056aad8"
+   ],
+   "written": [
+    "0x0056aad8"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "SaleUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b5cc": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b5cc"
+   ],
+   "written": [
+    "0x0056b5cc"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "SceneMgr": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056f9b4"
+   ],
+   "extra": [
+    "0x0056f9b4"
+   ],
+   "missing": []
+  },
+  "SceneObj": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b200": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b200"
+   ],
+   "written": [
+    "0x0056b200"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "SceneObjParam": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x005708cc"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x005708cc"
+   ]
+  },
+  "SceneVisNode": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x00570794"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x00570794"
+   ]
+  },
+  "ScreenEffect": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f508": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f508"
+   ],
+   "written": [
+    "0x0056f508"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "ScreenEffectMgr": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f580": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f580"
+   ],
+   "written": [
+    "0x0056f580"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "ScreenEffectNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f450": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f450"
+   ],
+   "written": [
+    "0x0056f450"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "ScriptObj": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a9bc"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056a9bc"
+   ]
+  },
+  "StateUI": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ba30"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ba30"
+   ]
+  },
+  "SystemUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f29c": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056f29c"
+   ],
+   "written": [
+    "0x0056f29c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "TaskBookUI": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b274": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b274"
+   ],
+   "written": [
+    "0x0056b274"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "TextureLib": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x00570a58"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x00570a58"
+   ]
+  },
+  "TxtFile": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UI3DCtrl": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056acfc": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056acfc"
+   ],
+   "written": [
+    "0x0056acfc"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UI3DModelNode": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f404": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056f404"
+   ],
+   "written": [
+    "0x0056f404"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIAnimateCtrlEX": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b1dc": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b1dc"
+   ],
+   "written": [
+    "0x0056b1dc"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIBigMap": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UIButton": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056ad64": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056ad64"
+   ],
+   "written": [
+    "0x0056ad64"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UICaption": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056afa4",
+    "0x0056afb0"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056afa4",
+    "0x0056afb0"
+   ]
+  },
+  "UICoverFrm": {
+   "verdict": "PARTIAL",
+   "sec_evidence": {
+    "0x00570830": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x005706ec",
+    "0x00570830"
+   ],
+   "written": [
+    "0x00570830"
+   ],
+   "extra": [],
+   "missing": [
+    "0x005706ec"
+   ]
+  },
+  "UICursor": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UIEmote": {
+   "verdict": "EXTRA",
+   "sec_evidence": {
+    "0x0056b044": "disp0x44写(ctor)"
+   },
+   "annotated": [
+    "0x0056b044"
+   ],
+   "written": [
+    "0x0056b050"
+   ],
+   "extra": [
+    "0x0056b050"
+   ],
+   "missing": [
+    "0x0056b044"
+   ]
+  },
+  "UIFrameContainer": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056add0": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056add0"
+   ],
+   "written": [
+    "0x0056add0"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIFrameWnd": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056acb8": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056acb8"
+   ],
+   "written": [
+    "0x0056acb8"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIGameFrm": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UILBColumn": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UIListBox": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056ad20": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056ad20"
+   ],
+   "written": [
+    "0x0056ad20",
+    "0x0056b1bc",
+    "0x005706ec"
+   ],
+   "extra": [
+    "0x0056b1bc",
+    "0x005706ec"
+   ],
+   "missing": []
+  },
+  "UILoadingFrm": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b100": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b100"
+   ],
+   "written": [
+    "0x0056b100"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIMap": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056adac": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056adac"
+   ],
+   "written": [
+    "0x0056adac"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIProgressBar": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ac20"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ac20"
+   ]
+  },
+  "UIPushButton": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056ad88": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056ad88"
+   ],
+   "written": [
+    "0x0056ad88"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIRenderObj": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "UIRoleDialog": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056e190": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056e190"
+   ],
+   "written": [
+    "0x0056e190",
+    "0x0056f580"
+   ],
+   "extra": [
+    "0x0056f580"
+   ],
+   "missing": []
+  },
+  "UIRoleSelectDialog": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0057076c": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0057076c"
+   ],
+   "written": [
+    "0x0057076c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIScene": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056acb8",
+    "0x0056acd8"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056acb8",
+    "0x0056acd8"
+   ]
+  },
+  "UISceneFrm": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b394": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b394"
+   ],
+   "written": [
+    "0x0056b394"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UISceneMap": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b0b4": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b0b4"
+   ],
+   "written": [
+    "0x0056b0b4"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UIScenePanel": {
+   "verdict": "EXTRA",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056b018"
+   ],
+   "written": [
+    "0x0056ac90",
+    "0x0056affc"
+   ],
+   "extra": [
+    "0x0056ac90",
+    "0x0056affc"
+   ],
+   "missing": [
+    "0x0056b018"
+   ]
+  },
+  "UITextArea": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056aea4"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056aea4"
+   ]
+  },
+  "UITitle": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056afd4": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056afd4"
+   ],
+   "written": [
+    "0x0056afd4"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UITitle_ArcSave": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b850": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056b850"
+   ],
+   "written": [
+    "0x0056b850"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UITitle_BBTY": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056b19c": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056b19c"
+   ],
+   "written": [
+    "0x0056b19c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UITitle_JDHY": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056f33c": "disp0x0写(dtor)"
+   },
+   "annotated": [
+    "0x0056f33c"
+   ],
+   "written": [
+    "0x0056f33c"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "UITitle_YXXX": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056b8a4"
+   ],
+   "written": [
+    "0x0056a9c0",
+    "0x0056b8a4"
+   ],
+   "extra": [
+    "0x0056a9c0"
+   ],
+   "missing": []
+  },
+  "UIWnd": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {
+    "0x0056aec8": "disp0x0写(ctor)"
+   },
+   "annotated": [
+    "0x0056aec8"
+   ],
+   "written": [
+    "0x0056aec8"
+   ],
+   "extra": [],
+   "missing": []
+  },
+  "WeatherEffectNode": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056a66c",
+    "0x0056a694",
+    "0x0056a6a8",
+    "0x0056a6b4"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056a66c",
+    "0x0056a694",
+    "0x0056a6a8",
+    "0x0056a6b4"
+   ]
+  },
+  "exception": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [],
+   "extra": [],
+   "missing": []
+  },
+  "filebuf": {
+   "verdict": "NO_TABLES",
+   "sec_evidence": {},
+   "annotated": [],
+   "written": [
+    "0x0056a9c0",
+    "0x0056ac08"
+   ],
+   "extra": [
+    "0x0056a9c0",
+    "0x0056ac08"
+   ],
+   "missing": []
+  },
+  "gbChain1DNode": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056f3b8"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056f3b8"
+   ]
+  },
+  "gbLightObj": {
+   "verdict": "NO_EVIDENCE",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056ab28",
+    "0x0056ab34"
+   ],
+   "written": [],
+   "extra": [],
+   "missing": [
+    "0x0056ab28",
+    "0x0056ab34"
+   ]
+  },
+  "scScriptInstance": {
+   "verdict": "CONFIRMED",
+   "sec_evidence": {},
+   "annotated": [
+    "0x0056b050"
+   ],
+   "written": [
+    "0x0056a9c0",
+    "0x0056b050"
+   ],
+   "extra": [
+    "0x0056a9c0"
+   ],
+   "missing": []
+  }
+ }
+}

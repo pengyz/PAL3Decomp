@@ -2,115 +2,115 @@
  "name": "UI3DCtrl",
  "binary_size": 308,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_numobj",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_obj",
    "type": "UI3DObj[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "232": {
+  "0xe8": {
    "name": "m_orthosize",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "236": {
+  "0xec": {
    "name": "m_rotatemode",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "240": {
+  "0xf0": {
    "name": "m_isrotateto",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "m_speed",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "248": {
+  "0xf8": {
    "name": "m_rotate",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "252": {
+  "0xfc": {
    "name": "m_rotatetarget",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_rotx",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "260": {
+  "0x104": {
    "name": "m_rotz",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "264": {
+  "0x108": {
    "name": "m_dropx",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "268": {
+  "0x10c": {
    "name": "m_dropy",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "m_dropz",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "m_scalex",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "m_scaley",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "284": {
+  "0x11c": {
    "name": "m_scalez",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "288": {
+  "0x120": {
    "name": "m_lightobj",
    "type": "gbLightObj *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "292": {
+  "0x124": {
    "name": "m_camera",
    "type": "gbCamera *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "296": {
+  "0x128": {
    "name": "m_raydir",
    "type": "gbVec3D",
    "source": "annotation",
@@ -318,9 +318,9 @@
    "signature": "char __thiscall(const char *pszModelName)"
   },
   "0x0043d920": {
-   "name": "Destroy",
+   "name": "HideAll",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -334,37 +334,39 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(void)"
+   "signature": "void __thiscall(void)",
+   "semantic_name": "UI3DCtrl::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056ACFC",
+   "addr": "0x0056acfc",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043D940"
+     "addr": "0x0043d940"
     },
     {
-     "addr": "0x00445C60"
+     "addr": "0x00445c60"
     },
     {
-     "addr": "0x0043D920"
+     "addr": "0x0043d920"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0043D860"
+     "addr": "0x0043d860"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     },
     {
-     "addr": "0x0043D890"
+     "addr": "0x0043d890"
     }
    ]
   }

@@ -2,13 +2,13 @@
  "name": "UIPushButton",
  "binary_size": 248,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_isDown",
    "type": "unsigned char",
    "source": "pdb+asm写域",
    "evidence_level": "unverified"
   },
-  "69": {
+  "0x45": {
    "name": "m_isCtrl",
    "type": "unsigned char",
    "source": "pdb+asm写域",
@@ -23,73 +23,73 @@
     "timestamp": "2026-11-12"
    }
   },
-  "70": {
+  "0x46": {
    "name": "m_mouseoff",
    "type": "unsigned char",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_fontcolor",
    "type": "gbColorQuad",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_fonttype",
    "type": "gbFontType",
    "source": "pdb+asm(写整数1@0x4C)",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_state",
    "type": "UIPUSHBUTTON_STATE",
    "source": "pdb+asm(清0@0x50)",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_texarray",
    "type": "gbTexture *[2]",
    "source": "pdb+asm(清2个dword@0x54/0x58)",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_texarrayInfo",
    "type": "_PlugInfo *[2]",
    "source": "pdb+asm(清2个dword@0x5C/0x60)",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_bOn",
    "type": "unsigned char",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_pOnpic",
    "type": "gbTexture *",
    "source": "pdb(四指针之一)",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_pOnpicInfo",
    "type": "_PlugInfo *",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_pDownpic",
    "type": "gbTexture *",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "116": {
+  "0x74": {
    "name": "m_pDownpicInfo",
    "type": "_PlugInfo *",
    "source": "pdb",
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "m_caption",
    "type": "char[128]",
    "source": "pdb+asm(rep stosd 0x20 自 0x78 = 128 字节)",
@@ -111,9 +111,9 @@
    "signature": "void __thiscall()"
   },
   "0x00440ba0": {
-   "name": "OnMessage",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -122,7 +122,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "semantic_name": "UIPushButton::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名OnMessage=体读数命名"
   },
   "0x004426b0": {
    "name": "CreateFromTemplate",
@@ -546,29 +548,29 @@
  "base_size": 68,
  "vtables": [
   {
-   "addr": "0x0056AD88",
+   "addr": "0x0056ad88",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00440F30"
+     "addr": "0x00440f30"
     },
     {
-     "addr": "0x00440DD0"
+     "addr": "0x00440dd0"
     },
     {
-     "addr": "0x00440BA0"
+     "addr": "0x00440ba0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x004407A0"
+     "addr": "0x004407a0"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     },
     {
      "addr": "0x00440810"

@@ -2,31 +2,31 @@
  "name": "UILoadingFrm",
  "binary_size": 332,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_LoadProgress",
    "type": "UIProgressBar",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "316": {
+  "0x13c": {
    "name": "m_anitime",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "320": {
+  "0x140": {
    "name": "m_aniFlag",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "324": {
+  "0x144": {
    "name": "m_MaxValue",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "328": {
+  "0x148": {
    "name": "m_isOverProgress",
    "type": "unsigned char",
    "source": "annotation",
@@ -145,9 +145,9 @@
    "signature": "void __thiscall()"
   },
   "0x00450900": {
-   "name": "UpdateAnimation",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -165,7 +165,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "UILoadingFrm::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名UpdateAnimation=体读数命名"
   },
   "0x00483280": {
    "name": "DestroyStatics",
@@ -312,9 +314,9 @@
    "signature": "void __thiscall(int, int, int)"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "UILoadingFrm::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -323,16 +325,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056B100",
+   "addr": "0x0056b100",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
@@ -341,10 +344,10 @@
      "addr": "0x00450900"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00450770"

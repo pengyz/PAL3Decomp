@@ -2,115 +2,115 @@
  "name": "CEffQuad",
  "binary_size": 4272,
  "known_members": {
-  "48": {
+  "0x30": {
    "name": "m_bActive",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "49": {
+  "0x31": {
    "name": "m_bVisible",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "50": {
+  "0x32": {
    "name": "m_bAniFrame",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "51": {
+  "0x33": {
    "name": "m_bBillBoard",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_bAdditiveBlend",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "53": {
+  "0x35": {
    "name": "m_bNoZTest",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "54": {
+  "0x36": {
    "name": "m_byMaxFrame",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_nRequireLoops",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_nQuadNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_nGeomQuadNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nMaxQuad",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_nLastCreatedQuad",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_StartQuad",
    "type": "tagQuad",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_pQuad",
    "type": "tagQuad *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_pGeomQuad",
    "type": "gbGeomQuad *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_pnG2Q",
    "type": "int *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_DefaultUVSet",
    "type": "tagUV[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4264": {
+  "0x10a8": {
    "name": "m_pTexture",
    "type": "gbTexture *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4268": {
+  "0x10ac": {
    "name": "m_pTextureArray",
    "type": "gbTextureArray *",
    "source": "annotation",
@@ -416,66 +416,70 @@
  "bases_source": "[T15] A 级 objdump：0x004D17D0 内 4d17e6 lea esi,[edi+0xc] —— &this->CTaskTpl_tagEffTaskParam_CEffQuad 的 lea 基址+0xC ⇒ 子对象偏移 12（reg+disp32 直证，逐类独立取证；CEffObj@0=首基类结构确定）；与 base_size(16)=12+尾段自洽",
  "vtables": [
   {
-   "addr": "0x0056FA30",
+   "addr": "0x0056fa30",
    "base": null,
    "slots": [
     {
-     "addr": "0x004D0D90"
+     "addr": "0x004d0d90"
     },
     {
-     "addr": "0x004D1090",
+     "addr": "0x004d1090",
      "name": "Create"
     },
     {
-     "addr": "0x004D0EC0",
+     "addr": "0x004d0ec0",
      "name": "ResetState"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "DestroyEffect",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot3根槽名(每槽一名)"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "RenderScenePass",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot4根槽名(每槽一名)"
     },
     {
-     "addr": "0x004D17D0",
+     "addr": "0x004d17d0",
      "name": "UpdateFrame"
     },
     {
-     "addr": "0x004D1300",
+     "addr": "0x004d1300",
      "name": "Destroy"
     },
     {
-     "addr": "0x004D0D70",
+     "addr": "0x004d0d70",
      "name": "AllocEffect"
     },
     {
-     "addr": "0x004C0500",
+     "addr": "0x004c0500",
      "name": "OnTest"
     },
     {
-     "addr": "0x004AF760",
-     "name": "Update"
+     "addr": "0x004af760",
+     "name": "Update",
+     "name_note": "槽名修正20261116: 复核P1-3回滚按址误植, 承CEffObj slot9根槽名"
     },
     {
-     "addr": "0x004C0510",
+     "addr": "0x004c0510",
      "name": "GetEditorObjDescription"
     },
     {
-     "addr": "0x004AF760",
-     "name": "GetEffect"
+     "addr": "0x004af760",
+     "name": "GetEffect",
+     "name_note": "槽名修正20261116: 复核P1-3回滚按址误植, 承CEffObj slot11根槽名"
     },
     {
-     "addr": "0x004D2080",
+     "addr": "0x004d2080",
      "name": "RenderEffectPass"
     },
     {
-     "addr": "0x004C15D0",
+     "addr": "0x004c15d0",
      "name": "UpdateParticles"
     },
     {
-     "addr": "0x004D2ED0",
+     "addr": "0x004d2ed0",
      "name": "GetEditorTaskDescription"
     }
    ],
@@ -483,11 +487,34 @@
    "evidence_level": "binary_ctor_write"
   },
   {
+   "addr": "0x0056fa24",
+   "slots": [
+    {
+     "addr": "0x004d3220"
+    },
+    {
+     "addr": "0x004c2850"
+    },
+    {
+     "addr": "0x004d3230"
+    }
+   ],
+   "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"
+  }
+ ],
+ "_phantom_tables_removed": [
+  {
    "addr": "0x0056FA24",
-   "base": "CTaskTpl",
-   "slots": [],
-   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
-   "evidence_level": "binary_ctor_write"
+   "keep": "0056fa30",
+   "date": "2026-11-16",
+   "evidence": "移位视图+ctor写后址(census)"
+  }
+ ],
+ "_purge_reverted": [
+  {
+   "addr": "0x0056FA24",
+   "date": "2026-11-16",
+   "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
  ]
 }

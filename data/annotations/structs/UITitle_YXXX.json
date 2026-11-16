@@ -2,67 +2,67 @@
  "name": "UITitle_YXXX",
  "binary_size": 3832,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "rc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_OutFrameT",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "248": {
+  "0xf8": {
    "name": "m_OutFrameR",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "408": {
+  "0x198": {
    "name": "m_OutFrameL",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "568": {
+  "0x238": {
    "name": "m_OutFrameB",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "728": {
+  "0x2d8": {
    "name": "m_background",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "888": {
+  "0x378": {
    "name": "m_title",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1048": {
+  "0x418": {
    "name": "m_exit",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1392": {
+  "0x570": {
    "name": "m_ZZRY",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "1736": {
+  "0x6c8": {
    "name": "m_XGWZ",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2080": {
+  "0x820": {
    "name": "m_WordBk",
    "type": "UIStatic",
    "source": "annotation",
@@ -256,9 +256,9 @@
    "signature": "int __thiscall()"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "UITitle_YXXX::HideAll(void)",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -267,7 +267,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   },
   "0x004af760": {
    "name": "UpdateFrame",
@@ -288,72 +289,50 @@
     "pending": false
    },
    "signature": "void __thiscall(int)"
+  },
+  "0x00524970": {
+   "name": "Render",
+   "ordinal": 1,
+   "evidence_level": "verified",
+   "semantic_name": "UITitle_YXXX::Render(void)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "signature": "void __thiscall()",
+   "name_note": "C7补条目20261116: 表0x56B8A4 slot1(Render位, 幻表0x56B898摘除后暴露) + ABI 0参(census) + 体=thunk转发CCBControlWindow::Render → 链律名Render; decomp名CCBStage::slot_1=N12占位(hexrays错型)"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056B8A4",
+   "addr": "0x0056b8a4",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
     },
     {
-     "addr": "0x0047E3E0"
+     "addr": "0x0047e3e0"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0047DD70"
+     "addr": "0x0047dd70"
     },
     {
-     "addr": "0x0047E4E0"
+     "addr": "0x0047e4e0"
     }
    ]
-  },
-  {
-   "addr": "0x0056B898",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x0047E570"
-    },
-    {
-     "addr": "0x0047DD60"
-    },
-    {
-     "addr": "0x004AF760"
-    },
-    {
-     "addr": "0x00445E70"
-    },
-    {
-     "addr": "0x00524970"
-    },
-    {
-     "addr": "0x0047E3E0"
-    },
-    {
-     "addr": "0x0043DE40"
-    },
-    {
-     "addr": "0x00445B90"
-    },
-    {
-     "addr": "0x0047DD70"
-    },
-    {
-     "addr": "0x0047E4E0"
-    }
-   ],
-   "source": "[vtable 余 49 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=`UITitle_YXXX::Create+168` 写表 + `~UITitle_YXXX+39` 析构复写 ②被调用者面=Object3D::SetBound(0x47DD60)/Object::Update 共享 + 0x47E570 域槽 ③成员访问面=UITitle 布局 ④类归属面=UITitle_YXXX（ctor 域双自证）⑤交互模式面=Create/析构对；evidence=[写点 ctor/dtor 对,槽行域名] confidence=90"
   }
  ],
  "base_size": 72,
@@ -362,6 +341,13 @@
   {
    "name": "UIFrameWnd",
    "offset": 0
+  }
+ ],
+ "_phantom_tables_removed": [
+  {
+   "addr": "0x0056B898",
+   "date": "2026-11-16",
+   "evidence": "真表0x56B8A4-12字节视图; 二进制[0..2]=47e570/47dd60/4af760=前邻接数据非UIWnd骨架(445e70首槽); 无ctor写证据(普查G1a双表伪影)"
   }
  ]
 }

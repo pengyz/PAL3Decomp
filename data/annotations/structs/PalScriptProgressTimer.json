@@ -1,13 +1,13 @@
 {
  "name": "PalScriptProgressTimer",
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_fElapsed",
    "type": "float",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438110 `m_time(=+8) *= rate` 缩放累加域",
    "evidence_level": "A"
   },
-  "12": {
+  "0xc": {
    "name": "m_bDone",
    "type": "char",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判",
@@ -79,7 +79,7 @@
  },
  "vtables": [
   {
-   "addr": "0x0056ABD4",
+   "addr": "0x0056abd4",
    "base": null,
    "slots": [
     {
@@ -92,7 +92,7 @@
      "addr": "0x00438110"
     },
     {
-     "addr": "0x00434D50"
+     "addr": "0x00434d50"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate; fmul [0x56A744] 全局速率缩放` 累加器 +flag(this+0xC) 判 + 删际析构 0x438190；交互模式面:进度/速率计时"

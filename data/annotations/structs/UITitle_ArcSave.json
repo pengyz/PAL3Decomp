@@ -2,7 +2,7 @@
  "name": "UITitle_ArcSave",
  "binary_size": 4004,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_YesNo",
    "type": "MUIDialog",
    "source": "annotation",
@@ -91,9 +91,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0047bdf0": {
-   "name": "Destroy",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -102,7 +102,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "UITitle_ArcSave::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   },
   "0x0047c370": {
    "name": "Render",
@@ -148,29 +150,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056B850",
+   "addr": "0x0056b850",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0047C370"
+     "addr": "0x0047c370"
     },
     {
-     "addr": "0x0047C3A0"
+     "addr": "0x0047c3a0"
     },
     {
-     "addr": "0x0047BDF0"
+     "addr": "0x0047bdf0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0047BD00"
+     "addr": "0x0047bd00"
     },
     {
-     "addr": "0x0047C430"
+     "addr": "0x0047c430"
     }
    ]
   }

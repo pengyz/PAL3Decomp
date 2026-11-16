@@ -2,31 +2,31 @@
  "name": "gbTexture",
  "binary_size": 84,
  "known_members": {
-  "24": {
+  "0x18": {
    "name": "Width",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "Height",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "pTexImage",
    "type": "gbImage2D *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "InFmt",
    "type": "gbPixelFormat",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "nLevels",
    "type": "int",
    "source": "annotation",
@@ -40,16 +40,16 @@
    "external": true,
    "slots": [
     {
-     "addr": "0x1001BD30"
+     "addr": "0x1001bd30"
     },
     {
-     "addr": "0x1001BEA0"
+     "addr": "0x1001bea0"
     },
     {
-     "addr": "0x1001BF80"
+     "addr": "0x1001bf80"
     },
     {
-     "addr": "0x1001C010"
+     "addr": "0x1001c010"
     }
    ],
    "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"

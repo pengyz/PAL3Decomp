@@ -2,37 +2,37 @@
  "name": "UICursor",
  "binary_size": 64,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_dwID",
    "type": "unsigned int[3]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_active",
    "type": "CameraCtrl *",
    "source": "binary:C2440 assignment from CameraCtrl*",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_tex",
    "type": "gbTexture *[3]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_bShow",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "29": {
+  "0x1d": {
    "name": "m_bSoftMode",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_pData",
    "type": "unsigned long",
    "source": "2026-09-14: decomp writes at this+0x2C*4 (44 bytes) | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4323E7 `*(UIListBox**)&m_pData[4*v3]`/`*(DWORD*)&...=0` **数组基走查+槽位搬**（判据②）⇒ 位面复用 | evidence: 详前文 A 级形证",

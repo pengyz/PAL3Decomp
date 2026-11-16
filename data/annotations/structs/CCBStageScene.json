@@ -2,368 +2,368 @@
  "name": "CCBStageScene",
  "binary_size": 1012,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_pStage",
    "type": "CCBStage *",
    "offset": 0,
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_pUtil",
    "type": "CUtil *",
    "offset": 4,
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_vecFiveLineup",
    "type": "gbVec3D[7]",
    "offset": 8,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_vecInitFiveLineup",
    "type": "gbVec3D[3]",
    "offset": 92,
    "source": "+fix:overlap_correct_count | verified:2026-10-15 A:gap36=3x12 gbVec3D[3]恰好相邻无重叠,修正正确",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_vecEnemyLineup",
    "type": "gbVec3D[7]",
    "offset": 176,
    "evidence_level": "unverified"
   },
-  "260": {
+  "0x104": {
    "name": "m_vecInitEnemyLineup",
    "type": "gbVec3D[7]",
    "offset": 260,
    "evidence_level": "unverified"
   },
-  "344": {
+  "0x158": {
    "name": "m_bLoaded",
    "type": "unsigned char",
    "offset": 344,
    "evidence_level": "unverified"
   },
-  "345": {
+  "0x159": {
    "name": "m_sLastScene",
    "type": "char[256]",
    "offset": 345,
    "evidence_level": "unverified"
   },
-  "604": {
+  "0x25c": {
    "name": "m_pGeomNode",
    "type": "gbGeomNode *",
    "offset": 604,
    "evidence_level": "unverified"
   },
-  "608": {
+  "0x260": {
    "name": "m_pCvd",
    "type": "gbGeomNode *",
    "offset": 608,
    "evidence_level": "unverified"
   },
-  "612": {
+  "0x264": {
    "name": "m_pLights",
    "type": "gbVisNode *",
    "offset": 612,
    "evidence_level": "unverified"
   },
-  "616": {
+  "0x268": {
    "name": "m_pPointer",
    "type": "gbGeomNode *",
    "offset": 616,
    "evidence_level": "unverified"
   },
-  "620": {
+  "0x26c": {
    "name": "m_pCorpse",
    "type": "gbGeomNode *[11]",
    "offset": 620,
    "evidence_level": "unverified"
   },
-  "664": {
+  "0x298": {
    "name": "m_pFling",
    "type": "gbGeomNode *",
    "offset": 664,
    "evidence_level": "unverified"
   },
-  "668": {
+  "0x29c": {
    "name": "m_vecFling",
    "type": "float",
    "offset": 668,
    "evidence_level": "unverified"
   },
-  "680": {
+  "0x2a8": {
    "name": "m_rotFling",
    "type": "float",
    "offset": 680,
    "evidence_level": "unverified"
   },
-  "692": {
+  "0x2b4": {
    "name": "m_bShowFling",
    "type": "unsigned char",
    "offset": 692,
    "evidence_level": "unverified"
   },
-  "696": {
+  "0x2b8": {
    "name": "m_pFiveLineupEffect",
    "type": "gbRenderEffect *",
    "offset": 696,
    "evidence_level": "unverified"
   },
-  "700": {
+  "0x2bc": {
    "name": "m_pFiveLineupTexture",
    "type": "gbTexture *",
    "offset": 700,
    "evidence_level": "unverified"
   },
-  "704": {
+  "0x2c0": {
    "name": "m_pFiveLineupTextureArray",
    "type": "gbTextureArray *",
    "offset": 704,
    "evidence_level": "unverified"
   },
-  "708": {
+  "0x2c4": {
    "name": "m_pFiveLineupCenterTexture",
    "type": "gbTexture *",
    "offset": 708,
    "evidence_level": "unverified"
   },
-  "712": {
+  "0x2c8": {
    "name": "m_pFiveLineupCenterTextureArray",
    "type": "gbTextureArray *",
    "offset": 712,
    "evidence_level": "unverified"
   },
-  "716": {
+  "0x2cc": {
    "name": "m_FiveLineupQuad",
    "type": "gbGeomQuad *",
    "offset": 716,
    "evidence_level": "unverified"
   },
-  "784": {
+  "0x310": {
    "name": "m_FiveLineupCenterQuad",
    "type": "gbGeomQuad *",
    "offset": 784,
    "evidence_level": "unverified"
   },
-  "852": {
+  "0x354": {
    "name": "m_EnemyFiveLineupQuad",
    "type": "gbGeomQuad *",
    "offset": 852,
    "evidence_level": "unverified"
   },
-  "920": {
+  "0x398": {
    "name": "m_vecFiveLineupPos",
    "type": "gbVec3D",
    "offset": 920,
    "evidence_level": "unverified"
   },
-  "932": {
+  "0x3a4": {
    "name": "m_vecFiveLineupInitPos",
    "type": "gbVec3D",
    "offset": 932,
    "evidence_level": "unverified"
   },
-  "944": {
+  "0x3b0": {
    "name": "m_fFiveLineupRadius",
    "type": "float",
    "offset": 944,
    "evidence_level": "unverified"
   },
-  "948": {
+  "0x3b4": {
    "name": "m_fFiveLineupInitRadius",
    "type": "float",
    "offset": 948,
    "evidence_level": "unverified"
   },
-  "952": {
+  "0x3b8": {
    "name": "m_fFiveLineupRoll",
    "type": "float",
    "offset": 952,
    "evidence_level": "unverified"
   },
-  "956": {
+  "0x3bc": {
    "name": "m_fFiveLineupInitRoll",
    "type": "float",
    "offset": 956,
    "evidence_level": "unverified"
   },
-  "960": {
+  "0x3c0": {
    "name": "m_vecEnemyFiveLineupPos",
    "type": "gbVec3D",
    "offset": 960,
    "evidence_level": "unverified"
   },
-  "972": {
+  "0x3cc": {
    "name": "m_fEnemyFiveLineupRadius",
    "type": "float",
    "offset": 972,
    "evidence_level": "unverified"
   },
-  "976": {
+  "0x3d0": {
    "name": "m_fEnemyFiveLineupRoll",
    "type": "float",
    "offset": 976,
    "evidence_level": "unverified"
   },
-  "980": {
+  "0x3d4": {
    "name": "m_vecPointerPos",
    "type": "gbVec3D",
    "offset": 980,
    "evidence_level": "unverified"
   },
-  "992": {
+  "0x3e0": {
    "name": "m_bShowPointer",
    "type": "unsigned char",
    "offset": 992,
    "evidence_level": "unverified"
   },
-  "993": {
+  "0x3e1": {
    "name": "m_bShowAxis",
    "type": "unsigned char",
    "offset": 993,
    "evidence_level": "unverified"
   },
-  "994": {
+  "0x3e2": {
    "name": "m_bShowRoleIndex",
    "type": "unsigned char",
    "offset": 994,
    "evidence_level": "unverified"
   },
-  "995": {
+  "0x3e3": {
    "name": "m_bShowFiveLineup",
    "type": "unsigned char",
    "offset": 995,
    "evidence_level": "unverified"
   },
-  "996": {
+  "0x3e4": {
    "name": "m_bFiveLineupSelected",
    "type": "unsigned char",
    "offset": 996,
    "evidence_level": "unverified"
   },
-  "1000": {
+  "0x3e8": {
    "name": "m_eSceneFiveMagicAttrib",
    "type": "ECBFiveMagic",
    "offset": 1000,
    "evidence_level": "unverified"
   },
-  "1004": {
+  "0x3ec": {
    "name": "m_eBattleFieldAttr",
    "type": "ECBBattleFieldAttr",
    "offset": 1004,
    "evidence_level": "unverified"
   },
-  "1008": {
+  "0x3f0": {
    "name": "m_eBFAForce",
    "type": "ECBForce",
    "offset": 1008,
    "evidence_level": "unverified"
   },
-  "732": {
+  "0x2dc": {
    "name": "m_fBlendRectAX",
    "type": "float",
    "source": "ida_decomp:Update =0, group of 4 with 1.0f pattern",
    "evidence_level": "unverified"
   },
-  "736": {
+  "0x2e0": {
    "name": "m_fBlendRectAY",
    "type": "float",
    "source": "ida_decomp:Update =0",
    "evidence_level": "unverified"
   },
-  "740": {
+  "0x2e4": {
    "name": "m_fBlendRectAW",
    "type": "float",
    "source": "ida_decomp:Update =1.0f(0x3F800000)",
    "evidence_level": "unverified"
   },
-  "744": {
+  "0x2e8": {
    "name": "m_fBlendRectAH",
    "type": "float",
    "source": "ida_decomp:Update =1.0f(0x3F800000)",
    "evidence_level": "unverified"
   },
-  "800": {
+  "0x320": {
    "name": "m_fBlendRectBX",
    "type": "float",
    "source": "ida_decomp:Update =0, same pattern as +732",
    "evidence_level": "unverified"
   },
-  "804": {
+  "0x324": {
    "name": "m_fBlendRectBY",
    "type": "float",
    "source": "ida_decomp:Update =0",
    "evidence_level": "unverified"
   },
-  "808": {
+  "0x328": {
    "name": "m_fBlendRectBW",
    "type": "float",
    "source": "ida_decomp:Update =1.0f",
    "evidence_level": "unverified"
   },
-  "812": {
+  "0x32c": {
    "name": "m_fBlendRectBH",
    "type": "float",
    "source": "ida_decomp:Update =1.0f",
    "evidence_level": "unverified"
   },
-  "752": {
+  "0x2f0": {
    "name": "m_nInit",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "756": {
+  "0x2f4": {
    "name": "m_nCamState",
    "type": "int",
    "source": "decomp:Init_set_0",
    "evidence_level": "unverified"
   },
-  "760": {
+  "0x2f8": {
    "name": "m_fCamPosX",
    "type": "float",
    "source": "decomp:Init_position_pair_with_764",
    "evidence_level": "unverified"
   },
-  "764": {
+  "0x2fc": {
    "name": "m_fCamPosZ",
    "type": "float",
    "source": "decomp:Init_position_pair_with_760",
    "evidence_level": "unverified"
   },
-  "768": {
+  "0x300": {
    "name": "m_fInit",
    "type": "float",
    "source": "binary:gap_r2",
    "evidence_level": "unverified"
   },
-  "772": {
+  "0x304": {
    "name": "m_fCamTargX",
    "type": "float",
    "source": "decomp:Init_position_pair_with_776",
    "evidence_level": "unverified"
   },
-  "776": {
+  "0x308": {
    "name": "m_fCamTargZ",
    "type": "float",
    "source": "decomp:Init_position_pair_with_772",
    "evidence_level": "unverified"
   },
-  "780": {
+  "0x30c": {
    "name": "m_fInitBlend",
    "type": "float",
    "source": "binary:gap_r2 | name_fix:=0.0_in_Init",
    "evidence_level": "unverified"
   },
-  "820": {
+  "0x334": {
    "name": "m_fDirSinC",
    "type": "float",
    "source": "decomp:rotation_formula_paired_with_828",
    "evidence_level": "unverified"
   },
-  "824": {
+  "0x338": {
    "name": "m_fBlendC",
    "type": "float",
    "source": "binary:gap_r2 | type_fix:float→int_raw_decomp | name_fix:=0.0_then_=0.5_blend_factor",
@@ -378,19 +378,19 @@
     "timestamp": "2026-11-12"
    }
   },
-  "828": {
+  "0x33c": {
    "name": "m_fDirCosC",
    "type": "float",
    "source": "decomp:rotation_formula_cos_component",
    "evidence_level": "unverified"
   },
-  "832": {
+  "0x340": {
    "name": "m_fDirSinD",
    "type": "float",
    "source": "decomp:rotation_formula_paired_with_840",
    "evidence_level": "unverified"
   },
-  "836": {
+  "0x344": {
    "name": "m_fBlendD",
    "type": "float",
    "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor",
@@ -405,19 +405,19 @@
     "timestamp": "2026-11-12"
    }
   },
-  "840": {
+  "0x348": {
    "name": "m_fDirCosD",
    "type": "float",
    "source": "decomp:rotation_formula_cos_component",
    "evidence_level": "unverified"
   },
-  "844": {
+  "0x34c": {
    "name": "m_fDirSinE",
    "type": "float",
    "source": "decomp:rotation_formula_paired_with_EnemyFiveLineupQuad",
    "evidence_level": "unverified"
   },
-  "848": {
+  "0x350": {
    "name": "m_fBlendE",
    "type": "float",
    "source": "binary:gap_r2 | name_fix:=0.0_then_=0.5_blend_factor",
@@ -432,103 +432,103 @@
     "timestamp": "2026-11-12"
    }
   },
-  "748": {
+  "0x2ec": {
    "name": "m_bLoadPointer",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "749": {
+  "0x2ed": {
    "name": "m_nPointerIndex1",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs | annotate_todo",
    "evidence_level": "unverified"
   },
-  "750": {
+  "0x2ee": {
    "name": "m_nPointerIndex2",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs | annotate_todo",
    "evidence_level": "unverified"
   },
-  "751": {
+  "0x2ef": {
    "name": "m_nPointerData",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs | annotate_todo",
    "evidence_level": "unverified"
   },
-  "816": {
+  "0x330": {
    "name": "m_nReset",
    "type": "int",
    "source": "binary:disp32_5hits_1funcs",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_nRender",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_fLineupCamY",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(assigned_to_vecFiveLineup[N].y_in_Reset)",
    "evidence_level": "B"
   },
-  "136": {
+  "0x88": {
    "name": "m_fLineupCamZ",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z_in_Reset",
    "evidence_level": "B"
   },
-  "140": {
+  "0x8c": {
    "name": "m_fRender",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "144": {
+  "0x90": {
    "name": "m_fLineupPrevY",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[N].y)",
    "evidence_level": "B"
   },
-  "148": {
+  "0x94": {
    "name": "m_fLineupPrevZ",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[N].z,=_todo_088_in_Render",
    "evidence_level": "B"
   },
-  "164": {
+  "0xa4": {
    "name": "m_fLineupExtraX",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | name_fix:assigned_to_vecFiveLineup[6].x_in_Reset",
    "evidence_level": "B"
   },
-  "168": {
+  "0xa8": {
    "name": "m_fLineupExtraY",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].y)",
    "evidence_level": "B"
   },
-  "172": {
+  "0xac": {
    "name": "m_fLineupExtraZ",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[6].z)",
    "evidence_level": "B"
   },
-  "672": {
+  "0x2a0": {
    "name": "m_nLoadPointer",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "684": {
+  "0x2ac": {
    "name": "m_fDirSinA",
    "type": "float",
    "source": "decomp:rotation_formula_sin_component",
    "evidence_level": "unverified"
   },
-  "688": {
+  "0x2b0": {
    "name": "m_fBlendA",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor",
@@ -543,13 +543,13 @@
     "timestamp": "2026-11-12"
    }
   },
-  "720": {
+  "0x2d0": {
    "name": "m_fDirSinB",
    "type": "float",
    "source": "decomp:rotation_formula_sin_component",
    "evidence_level": "unverified"
   },
-  "724": {
+  "0x2d4": {
    "name": "m_fBlendB",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast | name_fix:=0.0_then_=0.5_blend_factor",
@@ -564,61 +564,61 @@
     "timestamp": "2026-11-12"
    }
   },
-  "728": {
+  "0x2d8": {
    "name": "m_fDirCosB",
    "type": "float",
    "source": "decomp:rotation_formula_cos_component",
    "evidence_level": "unverified"
   },
-  "788": {
+  "0x314": {
    "name": "m_fBlendTime",
    "type": "float",
    "source": "decomp:Init_time_value",
    "evidence_level": "unverified"
   },
-  "792": {
+  "0x318": {
    "name": "m_nBlendState",
    "type": "int",
    "source": "decomp:Init_set_0_state",
    "evidence_level": "unverified"
   },
-  "796": {
+  "0x31c": {
    "name": "m_fBlendSpeed",
    "type": "float",
    "source": "decomp:Init_speed_value",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_fLineupDefaultX",
    "type": "float",
    "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].x)",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_fLineupDefaultY",
    "type": "float",
    "source": "gap_fill:ida_decomp_access | type_fix:int→float(LODWORD_assign_to_vecFiveLineup[1-5].y)",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_fLineupDefaultZ",
    "type": "float",
    "source": "gap_fill:ida_decomp_access | name_fix:assigned_to_vecFiveLineup[1-5].z",
    "evidence_level": "unverified"
   },
-  "676": {
+  "0x2a4": {
    "name": "m_nFlingState",
    "type": "int",
    "source": "decomp:assigned_from_int_ptr_deref",
    "evidence_level": "unverified"
   },
-  "856": {
+  "0x358": {
    "name": "m_fDirSinF",
    "type": "float",
    "source": "decomp:Init_sin/cos_4th_quad_vertex",
    "evidence_level": "unverified"
   },
-  "860": {
+  "0x35c": {
    "name": "m_fBlendF",
    "type": "float",
    "source": "decomp:Init_set_0_then_0.5(blend_factor)",
@@ -633,79 +633,79 @@
     "timestamp": "2026-11-12"
    }
   },
-  "864": {
+  "0x360": {
    "name": "m_fDirCosF",
    "type": "float",
    "source": "decomp:Init_sin/cos_4th_quad_vertex",
    "evidence_level": "unverified"
   },
-  "868": {
+  "0x364": {
    "name": "m_fBlendWeight0",
    "type": "float",
    "source": "decomp:Update_set_0(float_init)",
    "evidence_level": "unverified"
   },
-  "872": {
+  "0x368": {
    "name": "m_fBlendWeight1",
    "type": "float",
    "source": "decomp:Update_set_0(float_init)",
    "evidence_level": "unverified"
   },
-  "876": {
+  "0x36c": {
    "name": "m_fBlendWeight2",
    "type": "float",
    "source": "decomp:Update_set_1.0f(0x3F800000_IEEE754)",
    "evidence_level": "unverified"
   },
-  "880": {
+  "0x370": {
    "name": "m_fBlendWeight3",
    "type": "float",
    "source": "decomp:Update_set_1.0f(0x3F800000_IEEE754)",
    "evidence_level": "unverified"
   },
-  "888": {
+  "0x378": {
    "name": "m_fCurAxisX",
    "type": "float",
    "source": "decomp:ShowAxis_copied_from_InitAxis+SetFlingRotX",
    "evidence_level": "unverified"
   },
-  "892": {
+  "0x37c": {
    "name": "m_fCurAxisY",
    "type": "float",
    "source": "decomp:ShowAxis_copied_from_388",
    "evidence_level": "unverified"
   },
-  "896": {
+  "0x380": {
    "name": "m_fCurAxisZ",
    "type": "float",
    "source": "decomp:ShowAxis_copied_from_38C",
    "evidence_level": "unverified"
   },
-  "900": {
+  "0x384": {
    "name": "m_fInitAxisX",
    "type": "float",
    "source": "decomp:ShowAxis_CIniFile_ReadLine_float",
    "evidence_level": "unverified"
   },
-  "904": {
+  "0x388": {
    "name": "m_fInitAxisY",
    "type": "float",
    "source": "decomp:ShowAxis_CIniFile_ReadLine_float",
    "evidence_level": "unverified"
   },
-  "908": {
+  "0x38c": {
    "name": "m_fInitAxisZ",
    "type": "float",
    "source": "decomp:ShowAxis_CIniFile_ReadLine_float",
    "evidence_level": "unverified"
   },
-  "912": {
+  "0x390": {
    "name": "m_fCurRotParam",
    "type": "float",
    "source": "decomp:SetFlingRotX_copied_from_394+ShowAxis",
    "evidence_level": "unverified"
   },
-  "916": {
+  "0x394": {
    "name": "m_fInitRotParam",
    "type": "float",
    "source": "decomp:ShowAxis_CIniFile_ReadLine_float",

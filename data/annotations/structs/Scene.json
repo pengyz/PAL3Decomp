@@ -2,111 +2,111 @@
  "name": "Scene",
  "binary_size": 493156,
  "known_members": {
-  "132": {
+  "0x84": {
    "name": "m_geomnode",
    "type": "gbGeomNode *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_lights",
    "type": "gbVisNode *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_aabb",
    "type": "gbAABBox",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_bbArray",
    "type": "PtrArray",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "m_objmap",
    "type": "SceneMapObj[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "m_numobj",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_pDataBegin",
    "type": "char *",
    "source": "fix_scene_struct",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_pDataEnd",
    "type": "char *",
    "source": "fix_scene_struct",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_pCapacity",
    "type": "char *[29]",
    "source": "fix_scene_struct | fix:[30]->[29] span=116, 29*4=116",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_nReset",
    "type": "int",
    "source": "binary:disp32_26hits_6funcs",
    "evidence_level": "unverified"
   },
-  "57568": {
+  "0xe0e0": {
    "name": "m_nTodo_e0e0",
    "type": "int",
    "source": "ctor 0x0041F6F0: mov [esi+0E0E0h],0",
    "evidence_level": "unverified"
   },
-  "493136": {
+  "0x78650": {
    "name": "m_nTodo_78650",
    "type": "int",
    "source": "ctor 0x0041F6F0: mov [esi+78650h],0；sub_41F8C0 对其做虚调用",
    "evidence_level": "unverified"
   },
-  "493140": {
+  "0x78654": {
    "name": "m_nTodo_78654",
    "type": "int",
    "source": "ctor 0x0041F6F0: mov [esi+78654h],0",
    "evidence_level": "unverified"
   },
-  "493144": {
+  "0x78658": {
    "name": "m_nTodo_78658",
    "type": "int",
    "source": "sub_421870: mov ecx,[esi+78658h] / mov dword ptr [esi+78658h],0",
    "evidence_level": "unverified"
   },
-  "493148": {
+  "0x7865c": {
    "name": "m_nTodo_7865c",
    "type": "BYTE",
    "source": "ctor 0x0041F6F0: mov byte ptr [esi+7865Ch],0FFh",
    "evidence_level": "unverified"
   },
-  "493152": {
+  "0x78660": {
    "name": "m_nTodo_78660",
    "type": "int",
    "source": "ctor 0x0041F6F0: mov [esi+78660h],0",
    "evidence_level": "unverified"
   },
-  "224": {
+  "0xe0": {
    "name": "m_roleSlots",
    "type": "tagRoleSlot[64]",
    "source": "[A 级双证 2026-10-21·R65/R66] IDA Scene data_members **m_roleSlots@+224** 实录 · tagRoleSlot binary_size=896（annotation+IDA 双证）· span +224..+57572（57348B ≈ 64×896+4，尾 4B 待核）· ⚠️ R62「896B=Actor」/R64「896B=UIManager」**均撤回**（元素尺寸≠宿主类尺寸教训）· 真数组=Scene.m_roleSlots tagRoleSlot[64]（57344B）",
    "evidence_level": "A"
   },
-  "57572": {
+  "0xe0e4": {
    "name": "m_roles",
    "type": "Role[50]",
    "source": "ctor 0x0041F6F0: ??_L(esi+0E0E4h, 0x2200, 0x32, sub_411900=Role, sub_411CA0) ⇒ 50×Role(8704)；末端 0xE0E4+0x6A400=0x784E4 与紧随的子对象构造精确衔接",

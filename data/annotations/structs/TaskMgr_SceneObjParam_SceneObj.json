@@ -2,7 +2,7 @@
  "name": "TaskMgr_SceneObjParam_SceneObj",
  "binary_size": 40,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_nTodo_000",
    "type": "void *",
    "source": "usage_evidence | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：33 处 `= (gbRefObject *)1` / `= 0` / `if (!…m_nTodo_000)`（1/0 flag 存取）⇒ 布尔槽 | [void* 语义化撤销 2026-10-16 analyzer] ⚠️ 名字串扰反证：m_nTodo_000 通用偏移名多类同名，33 命中散在他类字段；且既有 note 判对象指针槽与 flag 形矛盾 ⇒ 保留 void *",

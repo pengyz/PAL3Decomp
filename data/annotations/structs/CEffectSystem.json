@@ -2,85 +2,85 @@
  "name": "CEffectSystem",
  "binary_size": 360,
  "known_members": {
-  "4": {
+  "0x4": {
    "name": "m_pDisplay",
    "type": "gbGfxManager *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_pVertexBuffer",
    "type": "gbDynVertBuf *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_pAdditiveBlend",
    "type": "gbRenderEffect *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_pAlphaBlend",
    "type": "gbRenderEffect *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_DefaultUVSet",
    "type": "tagUVSet[16]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "m_bInitialized",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "m_nEffect",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "284": {
+  "0x11c": {
    "name": "m_pEffect",
    "type": "CEffect *[8]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "316": {
+  "0x13c": {
    "name": "m_dDeltaTime",
    "type": "double",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "324": {
+  "0x144": {
    "name": "m_dTimeFund",
    "type": "double",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "332": {
+  "0x14c": {
    "name": "m_fTimeFund",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "336": {
+  "0x150": {
    "name": "m_fTimeScale",
    "type": "int",
    "source": "annotation | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4DDC08 `LOBYTE(m_fTimeScale)=1` 字节位面（判据③） | evidence: 详前文 A 级形证",
    "evidence_level": "A"
   },
-  "340": {
+  "0x154": {
    "name": "m_fWindDirection",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "344": {
+  "0x158": {
    "name": "m_fWindSpeed",
    "type": "int",
    "source": "annotation",
@@ -613,39 +613,39 @@
  },
  "vtables": [
   {
-   "addr": "0x0056F824",
+   "addr": "0x0056f824",
    "base": null,
    "slots": [
     {
-     "addr": "0x004C5D50"
+     "addr": "0x004c5d50"
     },
     {
-     "addr": "0x004C5D80"
+     "addr": "0x004c5d80"
     },
     {
-     "addr": "0x004C5DB0"
+     "addr": "0x004c5db0"
     },
     {
-     "addr": "0x004C5DE0"
+     "addr": "0x004c5de0"
     },
     {
-     "addr": "0x004C5E70"
+     "addr": "0x004c5e70"
     },
     {
-     "addr": "0x004C5E80"
+     "addr": "0x004c5e80"
     },
     {
-     "addr": "0x004C5E20"
+     "addr": "0x004c5e20"
     },
     {
-     "addr": "0x004C6030"
+     "addr": "0x004c6030"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",
    "evidence_level": "binary_ctor_write"
   },
   {
-   "addr": "0x0056F844",
+   "addr": "0x0056f844",
    "base": "CTaskTpl",
    "slots": [],
    "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",

@@ -2,91 +2,91 @@
  "name": "tagEffSParticleSys",
  "binary_size": 808,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_nEffCount",
    "type": "int",
    "source": "semantic: count of active sparticle effects",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_vSpawnPos",
    "type": "float[2]",
    "source": "binary: spawn position XY",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_vSpawnOffset",
    "type": "float[2]",
    "source": "binary: random offset for spawn pos",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nSpawnFlags",
    "type": "int",
    "source": "binary: spawn control flags",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_nSpawnCount",
    "type": "int",
    "source": "binary: number of particles to spawn",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_fSpawnSize",
    "type": "float",
    "source": "binary: particle spawn size",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_nSpawnLife",
    "type": "int",
    "source": "binary: particle life duration",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "m_fSpawnBright",
    "type": "float",
    "source": "binary: particle brightness",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_nSpawnEffect",
    "type": "int",
    "source": "binary: particle effect type",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_bSpawnActive",
    "type": "unsigned char",
    "source": "binary: spawn active flag",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_vSpawn2Pos",
    "type": "float[2]",
    "source": "binary: group2 spawn position",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_nSpawn2Flags",
    "type": "int",
    "source": "binary: group2 spawn flags",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nSpawn2Count",
    "type": "int",
    "source": "binary: group2 particle count",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_fSpawn2Size",
    "type": "float",
    "source": "binary: group2 particle size",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nSpawn2Color",
    "type": "int",
    "source": "binary: group2 color param",
@@ -109,7 +109,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "80": {
+  "0x50": {
    "name": "m_nSpawn2Life",
    "type": "int",
    "source": "binary: group2 lifetime",
@@ -132,85 +132,85 @@
     "timestamp": "2026-11-12"
    }
   },
-  "84": {
+  "0x54": {
    "name": "m_nSpawn2Bright",
    "type": "int",
    "source": "binary: group2 brightness",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_nSpawn2Effect",
    "type": "int",
    "source": "binary: group2 effect type",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_nSpawn2Rand",
    "type": "int",
    "source": "binary: group2 random param",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_bSpawn2Active",
    "type": "unsigned char",
    "source": "binary: group2 active flag",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_vSpawn3Pos",
    "type": "float[2]",
    "source": "binary: group3 spawn position",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_vSpawn3Rand",
    "type": "float[2]",
    "source": "binary: group3 random offset",
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "m_nSpawn3Flags",
    "type": "int",
    "source": "binary: group3 flags",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "m_nSpawn3Count",
    "type": "int",
    "source": "binary: group3 count",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_fSpawn3Size",
    "type": "float",
    "source": "binary: group3 size",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_nSpawn3Color",
    "type": "int",
    "source": "binary: group3 color",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_fSpawn3Bright",
    "type": "float",
    "source": "binary: group3 brightness",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_nSpawn3Life",
    "type": "int",
    "source": "binary: group3 lifetime",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_bSpawn3Active",
    "type": "unsigned char",
    "source": "binary: group3 active",
    "evidence_level": "unverified"
   },
-  "800": {
+  "0x320": {
    "name": "m_ptLastSpawn",
    "type": "int[2]",
    "source": "binary: last spawn position for dedup",

@@ -2,453 +2,453 @@
  "name": "CCBStage",
  "binary_size": 673988,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_pCBSystem",
    "type": "CCBSystem *",
    "offset": 0,
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_pRoleState",
    "type": "CCBRoleState *",
    "offset": 4,
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_pEditor",
    "type": "CCBEditor *",
    "offset": 8,
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_pCam",
    "type": "CCBStageCam *",
    "offset": 12,
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_pCamControl",
    "type": "CCBCamControl *",
    "offset": 16,
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_pScene",
    "type": "CCBStageScene *",
    "offset": 20,
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_pRole",
    "type": "CCBStageRole *[11]",
    "offset": 24,
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_TempStorageNGH",
    "type": "Actor *",
    "offset": 68,
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_NGHVariance",
    "type": "Actor *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_TempStorageWPX",
    "type": "Actor *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_WPXVariance",
    "type": "Actor *",
    "offset": 80,
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_pDisplayChain",
    "type": "CCBDisplayChain *",
    "offset": 84,
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_pShadow",
    "type": "CCBStageShadow *",
    "offset": 88,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_pEffect",
    "type": "CCBStageEffect *",
    "offset": 92,
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_BFARole",
    "type": "int",
    "offset": 96,
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_BFARound",
    "type": "int",
    "offset": 100,
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_ptMousePos",
    "type": "tagPOINT",
    "offset": 104,
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_nSelectedRole",
    "type": "int",
    "offset": 112,
    "evidence_level": "unverified"
   },
-  "116": {
+  "0x74": {
    "name": "m_bRoleSelected",
    "type": "unsigned char[11]",
    "offset": 116,
    "evidence_level": "unverified"
   },
-  "127": {
+  "0x7f": {
    "name": "m_bHideSceneAndRole",
    "type": "unsigned char",
    "offset": 127,
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_fDamageNumPosY",
    "type": "float[5]",
    "offset": 128,
    "source": "+fix:overlap_correct_count | verified:2026-10-15 A:gap20=5x4 float[5]恰好相邻无重叠,修正正确",
    "evidence_level": "unverified"
   },
-  "148": {
+  "0x94": {
    "name": "m_nTodo_094",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_nStageStatus",
    "type": "unsigned char",
    "source": "binary:raw_Update_check",
    "evidence_level": "unverified"
   },
-  "153": {
+  "0x99": {
    "name": "m_nTodo_99",
    "type": "unsigned char",
    "source": "binary:byte_after_status | [批4 诚实化 2026-10-16] A偏移形：m_bFlag99⇒m_nTodo_99（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "154": {
+  "0x9a": {
    "name": "m_nTodo_9A",
    "type": "unsigned char",
    "source": "binary:byte_flag | [批4 诚实化 2026-10-16] A偏移形：m_bFlag9A⇒m_nTodo_9A（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "155": {
+  "0x9b": {
    "name": "m_nTodo_9B",
    "type": "unsigned char",
    "source": "binary:byte_flag | [批4 诚实化 2026-10-16] A偏移形：m_bFlag9B⇒m_nTodo_9B（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_nTaskCount",
    "type": "int",
    "source": "ida_decomp:GetStageRole --this, GetActiveTaskCount used, 3 refs",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_nClearRoleAllTask",
    "type": "int",
    "source": "binary:gap_clean",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_nRoleSlot",
    "type": "int",
    "source": "ida_decomp:ProcTaskSlot 80*this, ProcessRoleEffect 20*this, 6 refs",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_nForceDelTask",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_in_class_method",
    "evidence_level": "unverified"
   },
-  "172": {
+  "0xac": {
    "name": "m_fMusicVolume",
    "type": "float",
    "offset": 172,
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_bPaused",
    "type": "unsigned char",
    "offset": 176,
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "m_nTask",
    "type": "int",
    "offset": 180,
    "evidence_level": "unverified"
   },
-  "2752": {
+  "0xac0": {
    "name": "m_TaskQueue",
    "type": "int",
    "source": "decomp:10x_compared_to_270(task_type_check)",
    "evidence_level": "unverified"
   },
-  "2756": {
+  "0xac4": {
    "name": "m_TaskState",
    "type": "int",
    "source": "decomp:7x_indexed_state_value",
    "evidence_level": "unverified"
   },
-  "2760": {
+  "0xac8": {
    "name": "m_nTaskExist",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "2764": {
+  "0xacc": {
    "name": "m_DamageData",
    "type": "int",
    "source": "decomp:11x_indexed_float_cast+BYTE+5",
    "evidence_level": "unverified"
   },
-  "2796": {
+  "0xaec": {
    "name": "m_nTaskState",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_disp32_in_class_method",
    "evidence_level": "unverified"
   },
-  "4504": {
+  "0x1198": {
    "name": "m_nTodo_1198",
    "type": "void *",
    "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot;batch_fix:int_to_v*_LEA_embed | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：`memset(&this->m_nTodo_1198, 0, 0x50u)`（地址清 80B 块）⇒ 嵌入字节块 | **overlap**：80B memset 块覆盖 4504..4584，内含 m_nSlotCounter@4508 等命名视图（同区）——check 语义 source 含 overlap ⇒ 跳过（2026-10-16 verifier 补标，与 Logger/CGameData 同型） | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议",
    "evidence_level": "unverified"
   },
-  "4508": {
+  "0x119c": {
    "name": "m_nSlotCounter",
    "type": "int",
    "source": "gap_fill:ida_decomp_access;A:decomp_batch_rename_usage_pattern",
    "evidence_level": "unverified"
   },
-  "4584": {
+  "0x11e8": {
    "name": "m_TurnBuffer",
    "type": "int",
    "source": "decomp:4x_memset_0x600(turn_data_buffer)",
    "evidence_level": "unverified"
   },
-  "6568": {
+  "0x19a8": {
    "name": "m_nAllDone",
    "type": "int",
    "source": "binary:disp32_24hits_12funcs",
    "evidence_level": "unverified"
   },
-  "6584": {
+  "0x19b8": {
    "name": "m_fCurPosX",
    "type": "float",
    "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6608, 16 refs",
    "evidence_level": "unverified"
   },
-  "6588": {
+  "0x19bc": {
    "name": "m_fCurPosY",
    "type": "float",
    "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6612, 13 refs",
    "evidence_level": "unverified"
   },
-  "6592": {
+  "0x19c0": {
    "name": "m_fCurPosZ",
    "type": "float",
    "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6616, 14 refs",
    "evidence_level": "unverified"
   },
-  "6608": {
+  "0x19d0": {
    "name": "m_fTargetPosX",
    "type": "float",
    "source": "ida_decomp:CheckAllDone from array[idx]+432, 18 refs",
    "evidence_level": "unverified"
   },
-  "6612": {
+  "0x19d4": {
    "name": "m_fTargetPosY",
    "type": "float",
    "source": "ida_decomp:CheckAllDone from array[idx]+436, 17 refs",
    "evidence_level": "unverified"
   },
-  "6616": {
+  "0x19d8": {
    "name": "m_fTargetPosZ",
    "type": "float",
    "source": "ida_decomp:CheckAllDone from array[idx]+440, 17 refs",
    "evidence_level": "unverified"
   },
-  "6620": {
+  "0x19dc": {
    "name": "m_fVelX",
    "type": "float",
    "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
    "evidence_level": "unverified"
   },
-  "6624": {
+  "0x19e0": {
    "name": "m_fVelY",
    "type": "float",
    "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
    "evidence_level": "unverified"
   },
-  "6628": {
+  "0x19e4": {
    "name": "m_fVelZ",
    "type": "float",
    "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
    "evidence_level": "unverified"
   },
-  "6632": {
+  "0x19e8": {
    "name": "m_fAngleDegrees",
    "type": "float",
    "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)",
    "evidence_level": "unverified"
   },
-  "6636": {
+  "0x19ec": {
    "name": "m_fCombatAnimY",
    "type": "float",
    "source": "A:FPU_binary_evidence | ida_xref2",
    "evidence_level": "unverified"
   },
-  "6644": {
+  "0x19f4": {
    "name": "m_nBattleResult",
    "type": "int",
    "source": "decomp:8x_compared_for_victory_check",
    "evidence_level": "unverified"
   },
-  "6648": {
+  "0x19f8": {
    "name": "m_nActionFilterA",
    "type": "int",
    "source": "A:cmp_[esi+19F8h]_edi_ResolveActionEffect|naming:action_id_filter",
    "evidence_level": "unverified"
   },
-  "6652": {
+  "0x19fc": {
    "name": "m_nActionFilterB",
    "type": "int",
    "source": "A:cmp_[esi+19FCh]_edi_x3_ResolveActionEffect|naming:action_id_filter",
    "evidence_level": "unverified"
   },
-  "6664": {
+  "0x1a08": {
    "name": "m_nDoneCount",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs | ida_xref",
    "evidence_level": "unverified"
   },
-  "6668": {
+  "0x1a0c": {
    "name": "m_nTotalCount",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs | ida_xref",
    "evidence_level": "unverified"
   },
-  "8052": {
+  "0x1f74": {
    "name": "m_fTurnTimer",
    "type": "float",
    "source": "decomp:_nearby_4e0340_set_NAN(float_sentinel_invalid)",
    "evidence_level": "unverified"
   },
-  "8056": {
+  "0x1f78": {
    "name": "m_nTurnSlot0",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1(invalid_slot_index)",
    "evidence_level": "unverified"
   },
-  "8060": {
+  "0x1f7c": {
    "name": "m_nTurnSlot1",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "8064": {
+  "0x1f80": {
    "name": "m_nTurnSlot2",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "8068": {
+  "0x1f84": {
    "name": "m_nTurnSlot3",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "8072": {
+  "0x1f88": {
    "name": "m_nTurnSlot4",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "8076": {
+  "0x1f8c": {
    "name": "m_nTurnSlot5",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "9616": {
+  "0x2590": {
    "name": "m_nResultSlot0",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "9620": {
+  "0x2594": {
    "name": "m_nResultSlot1",
    "type": "int",
    "source": "decomp:_nearby_4e0340_set_-1",
    "evidence_level": "unverified"
   },
-  "408000": {
+  "0x639c0": {
    "name": "m_EditDescBuf",
    "type": "char[2000]",
    "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll;A:decomp_batch_rename_usage_pattern",
    "evidence_level": "unverified"
   },
-  "410000": {
+  "0x64190": {
    "name": "m_nTodo_64190",
    "type": "void *",
    "source": "binary:disp32_1hits_1funcs;batch_fix:int_to_v*_LEA | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：`memset(&this->m_nTodo_64190, 0xFFu, 0x4E20u)`（清 20000B）+ `&…+24368` 指针算术 + DWORD 存写 ⇒ 嵌入大字节块 | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议",
    "evidence_level": "unverified"
   },
-  "673960": {
+  "0xa48a8": {
    "name": "m_nTodo_A48A8",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "673984": {
+  "0xa48c0": {
    "name": "m_dwAniFlagOver",
    "type": "unsigned int",
    "offset": 673984,
    "source": "|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_TaskSlots",
    "type": "_BYTE[96]",
    "source": "[B1b 结构改造 2026-10-20] +184..+2744 区段原有 46 个伪成员（m_nCurTask/m_RoleSlots/m_CmdQueue/m_TurnFlags/m_nCurSubTask/m_Task/m_CamParams/m_ActionCmds/m_TargetPos …）实为同一 80B 结构体数组的字段。数组基 +184 · 步进 80 · 索引 m_nRoleSlot(+164) · 元素数 32（184+32×80=2744 ≈ m_TaskQueue@2752）。证据：objdump 指令级 80 步进 30 次 · memset(v13,0,0x50) 确认元素 80 字节 · 生成源 CCBStage.cpp:2044-2052/3428 位面复用实证。 | [R91 修 2026-10-23·8 errors] IDA _BYTE[96]（原 CCBTaskSlot[32] 2560 太大）",
    "evidence_level": "A"
   },
-  "5240": {
+  "0x1478": {
    "name": "m_TaskArrA",
    "type": "_BYTE[1328]",
    "source": "[A 级 opcode 2026-10-21·verifier 全量 231 方法] 区段 **+0x1478=+5240** 至 +0x1A40=+6720（1480B/208=7.12⇒**~8 元素**）· stride 208 = `add $0xd0,%esi/edi`@0x44d00b/0x44d0cb 指针步进实锤 · 元素内字段：+0x14/+0x18 int 对 · +0x60-0x74 float ×6（x87 d8/d9）· +0x50 计数器 · +0x00/+0xB8 子对象 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **16 元素** · arrA_208 @ +0x1478 · **16 元素**（`mov ecx,0x32`@44d006 循环计数实录）· `add esi,0xd0`@44d00b 步进 · `lea esi,[edi+0x1478]`@44cffa 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[50] → CCBTaskSlot208[16] · arrA @ +0x1478 · **16 元素**（`mov ebx,0x10` + `dec ebx; jne` 循环计数形实录）· ⚠️ R53「16 元素」**撤回**（`mov ecx,0x32` 是 **idiv 除数** rand%50 非数组大小）· span 0x1478..0x2178（16×0xD0 精确）· **相接铁证**：arrA 终点=arrB 起点 | [R91 修 2026-10-23·8 errors] IDA _BYTE[1328]（原 CCBTaskSlot208[16] 3328 太大）",
    "evidence_level": "A"
   },
-  "8568": {
+  "0x2178": {
    "name": "m_TaskArrB",
    "type": "_BYTE[1048]",
    "source": "[A 级 opcode 2026-10-21·verifier] 区段 **+0x2178=+8568** 至 +0x2740=+10048（同 span/stride）· ~8 元素 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **10 元素** · arrB_208 @ +0x2178 · **10 元素**（`mov ecx,0x64`@44d0c6 循环计数实录）· `add edi,0xd0`@44d0cb 步进 · `lea edi,[esi+0x2178]`@44d0ba 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[100] → CCBTaskSlot208[10] · arrB @ +0x2178 · **10 元素**（`mov ebx,0xa` + `dec ebx; jne`）· span 0x2178..0x29A8（10×0xD0）· ⚠️ R53「10 元素」**撤回**（同 idiv 除数误读） | [R91 修 2026-10-23·8 errors] IDA _BYTE[1048]（原 CCBTaskSlot208[10] 2080 太大）",
    "evidence_level": "A"
   },
-  "280": {
+  "0x118": {
    "name": "m_TaskArrC",
    "type": "CCBTaskSlot280[1]",
    "source": "[A 级 2026-10-21·analyzer R58 定案] arrC_280 **base=0**（@+280 说**撤回**）· B 段 elem[i]+0x14（无 inc）+ A 段 elem[i+1]+4..16（inc=Advance）自洽 ⇒ **base=0 唯一解**（base=280 使 B 段 f=-260 矛盾）· count@+0x114（紧贴首元素前 4B）· 元素数待 count@+0x114 实证（几何约束 ≤18）· ⚠️ 0x118 = **bitplane_reuse**（R58 判定：float 2.0f 位型写 @4108af + 指针写 @439091 = 同槽双用法，三判据①值位面 + ③重解释）· ⚠️ 数组元素型访问形=比例变址（P0-8 scanner 已扩展支持）",
@@ -640,21 +640,6 @@
     "pending": false
    },
    "signature": "void (float fVal)"
-  },
-  "0x004fc6f0": {
-   "name": "Render",
-   "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
-   "evidence_level": "A",
-   "name_note": "; 签名格式归一(cc序畸形修正)",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
   },
   "0x004fc700": {
    "name": "GetRoleIndex",
@@ -4974,7 +4959,7 @@
    "signature": "BOOL __thiscall(int, int)"
   },
   "0x00524970": {
-   "name": "slot_1",
+   "name": "Render",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "void",
@@ -4985,13 +4970,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::Render(void)",
+   "name_note": "N12占位正名20261116: 0x524970=slot1(Render位)thunk转发CCBControlWindow::Render, ABI 0参 → 链律名Render; 原名slot_1=N12占位"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
+   "name": "HideAll",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "evidence_level": "verified",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -5000,34 +4987,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::HideAll(void)"
   }
  },
  "vtables": [
   {
-   "addr": "0x005705D0",
+   "addr": "0x005705d0",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
     },
     {
-     "addr": "0x0051F0A0"
+     "addr": "0x0051f0a0"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051DD80"
+     "addr": "0x0051dd80"
     },
     {
-     "addr": "0x0051F1B0"
+     "addr": "0x0051f1b0"
     }
    ]
   }

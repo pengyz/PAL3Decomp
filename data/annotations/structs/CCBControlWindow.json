@@ -2,79 +2,79 @@
  "name": "CCBControlWindow",
  "binary_size": 196,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_pBack",
    "type": "UIStatic *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pButtonAttack",
    "type": "UIButton *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_pButtonSkill",
    "type": "UIButton *",
    "offset": 80,
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_pButtonMagic",
    "type": "UIButton *",
    "offset": 84,
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_pButtonItem",
    "type": "UIButton *",
    "offset": 88,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_pButtonDefence",
    "type": "UIButton *",
    "offset": 92,
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_pButtonLineup",
    "type": "UIButton *",
    "offset": 96,
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_pButtonAI",
    "type": "UIButton *",
    "offset": 100,
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_pButtonFlee",
    "type": "UIButton *",
    "offset": 104,
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_pButtonProtect",
    "type": "UIButton *",
    "offset": 108,
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_CurCtrl",
    "type": "UIWnd *",
    "offset": 112,
    "evidence_level": "unverified"
   },
-  "116": {
+  "0x74": {
    "name": "m_CurCtrl_1",
    "type": "UIWnd *",
    "offset": 116,
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "m_CurCtrl_2",
    "type": "UIWnd *",
    "offset": 120,
@@ -222,33 +222,26 @@
    "signature": "char __thiscall(int *pRect, int parent)"
   },
   "0x0051afe0": {
-   "name": "Update",
+   "name": "HideAll",
    "source": "vtable_migrated",
    "ordinal": 10,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(float, int)"
+   "signature": "int __thiscall()",
+   "semantic_name": "CCBControlWindow::HideAll(void)",
+   "name_note": "C9链律正名20261116: slot3二进制位 + RET 0(0参ABI真相, census锚PASS) + 体不读a2/a3(hexrays伪影) + 体形态与HideAll族同构 (ReleaseTempStorage+释放3子控件经slot5(child,1)) + 根契约slot3=HideAll() 0参(UIWnd::HideAll体0参虚调子物件slot3); 原名Update(float,int)=调用点推测伪影"
   },
   "0x0051b0b0": {
-   "name": "MoveButtons",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -266,7 +259,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "CCBControlWindow::Update(int, int)",
+   "name_note": "C9链律正名20261116: slot2二进制位(0x57051C+8) + RET 8(2参) + 体尾直调UIWnd::Update(this,nVal,nVal2) + 根契约Update(int,int)=BOOL; 原名MoveButtons=体读数命名, 违每槽一名override律"
   },
   "0x0051b110": {
    "name": "CreateButton",
@@ -391,31 +386,31 @@
  },
  "vtables": [
   {
-   "addr": "0x0057051C",
+   "addr": "0x0057051c",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x0051B0B0"
+     "addr": "0x0051b0b0"
     },
     {
-     "addr": "0x0051AFE0"
+     "addr": "0x0051afe0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0051AC90"
+     "addr": "0x0051ac90"
     },
     {
-     "addr": "0x0051B030"
+     "addr": "0x0051b030"
     },
     {
-     "addr": "0x0051B5D0"
+     "addr": "0x0051b5d0"
     }
    ]
   }

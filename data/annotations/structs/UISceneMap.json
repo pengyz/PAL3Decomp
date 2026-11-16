@@ -2,37 +2,37 @@
  "name": "UISceneMap",
  "binary_size": 1012,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_probe",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "412": {
+  "0x19c": {
    "name": "m_base",
    "type": "UIStatic",
    "source": "PAL3patch_verified",
    "evidence_level": "unverified"
   },
-  "564": {
+  "0x234": {
    "name": "m_compass",
    "type": "UIStaticEX",
    "source": "PAL3patch_verified",
    "evidence_level": "unverified"
   },
-  "748": {
+  "0x2ec": {
    "name": "m_mapbk",
    "type": "UIStaticFlex",
    "source": "PAL3patch_verified",
    "evidence_level": "unverified"
   },
-  "940": {
+  "0x3ac": {
    "name": "m_icons",
    "type": "UITextureArray",
    "source": "PAL3patch_verified",
    "evidence_level": "unverified"
   },
-  "1008": {
+  "0x3f0": {
    "name": "m_state",
    "type": "int",
    "source": "PAL3patch_verified",
@@ -183,10 +183,10 @@
    "signature": "int __thiscall()"
   },
   "0x00527cd0": {
-   "name": "Render",
+   "name": "CheckCompassDir",
    "evidence_level": "unverified",
-   "semantic_name": "Render_527cd0",
-   "name_note": "剥壳定谳(验证pass): Render: UI族槽链名, 无反证",
+   "semantic_name": "UISceneMap::CheckCompassDir(void)",
+   "name_note": "语义裁定20261116: 体=2行罗盘方向检查(m_compass.m_rotdir判空→todo_540d20) 非渲染 → 让位slot1真Render(0x450230 alpha混色); 原名Render=误名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -229,10 +229,10 @@
    "signature": "unsigned int __thiscall(unsigned int dwVal)"
   },
   "0x00450230": {
-   "name": "Render_0230",
+   "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
-   "semantic_name": "Render_0230",
+   "evidence_level": "verified",
+   "semantic_name": "UISceneMap::Render",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -241,7 +241,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名Render_0230"
   },
   "0x00450dc0": {
    "name": "Init",
@@ -399,29 +400,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056B0B4",
+   "addr": "0x0056b0b4",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00450230"
     },
     {
-     "addr": "0x004501A0"
+     "addr": "0x004501a0"
     },
     {
-     "addr": "0x00408BD0"
+     "addr": "0x00408bd0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00450070"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

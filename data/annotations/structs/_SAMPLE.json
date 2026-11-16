@@ -2,301 +2,301 @@
  "name": "_SAMPLE",
  "binary_size": 652,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "tag",
    "type": "char[4]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "driver",
    "type": "_DIG_DRIVER *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "status",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "start",
    "type": "char *[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "len",
    "type": "unsigned int[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "pos",
    "type": "unsigned int[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "done",
    "type": "unsigned int[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "reset_ASI",
    "type": "long[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "src_fract",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "left_val",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "right_val",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "current_buffer",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "last_buffer",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "starved",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "loop_count",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "loop_start",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "loop_end",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "format",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "flags",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "playback_rate",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "volume",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "pan",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "left_scale",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "right_scale",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "116": {
+  "0x74": {
    "name": "service_type",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "SOB",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "EOB",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "EOS",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "user_data",
    "type": "long[8]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "system_data",
    "type": "long[8]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "196": {
+  "0xc4": {
    "name": "adpcm",
    "type": "_ADPCMDATATAG",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "268": {
+  "0x10c": {
    "name": "SOB_IsWin32s",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "EOB_IsWin32s",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "EOS_IsWin32s",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "secondary_buffer",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "284": {
+  "0x11c": {
    "name": "service_interval",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "288": {
+  "0x120": {
    "name": "service_tick",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "292": {
+  "0x124": {
    "name": "buffer_segment_size",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "296": {
+  "0x128": {
    "name": "prev_segment",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "300": {
+  "0x12c": {
    "name": "prev_cursor",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "304": {
+  "0x130": {
    "name": "bytes_remaining",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "308": {
+  "0x134": {
    "name": "direct_control",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "312": {
+  "0x138": {
    "name": "doeob",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "316": {
+  "0x13c": {
    "name": "dosob",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "320": {
+  "0x140": {
    "name": "doeos",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "324": {
+  "0x144": {
    "name": "pipeline",
    "type": "DPINFO[3]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "636": {
+  "0x27c": {
    "name": "reverb_level",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "640": {
+  "0x280": {
    "name": "reverb_reflect_time",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "644": {
+  "0x284": {
    "name": "reverb_decay_time",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "648": {
+  "0x288": {
    "name": "base_scale",
    "type": "long",
    "source": "annotation",

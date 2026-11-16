@@ -2,224 +2,224 @@
  "name": "CCBCamControl",
  "binary_size": 430256,
  "known_members": {
-  "430000": {
+  "0x68fb0": {
    "name": "m_pStage",
    "type": "CCBStage *",
    "offset": 430000,
    "evidence_level": "unverified"
   },
-  "430004": {
+  "0x68fb4": {
    "name": "m_pCam",
    "type": "CCBStageCam *",
    "offset": 430004,
    "evidence_level": "unverified"
   },
-  "430008": {
+  "0x68fb8": {
    "name": "m_pUtil",
    "type": "CUtil *",
    "offset": 430008,
    "evidence_level": "unverified"
   },
-  "430012": {
+  "0x68fbc": {
    "name": "m_bRunning",
    "type": "unsigned char",
    "offset": 430012,
    "evidence_level": "unverified"
   },
-  "430016": {
+  "0x68fc0": {
    "name": "m_fp",
    "type": "char *",
    "offset": 430016,
    "source": "|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "430032": {
+  "0x68fd0": {
    "name": "m_nCurList",
    "type": "int",
    "offset": 430032,
    "evidence_level": "unverified"
   },
-  "430036": {
+  "0x68fd4": {
    "name": "m_nCurTask",
    "type": "int",
    "offset": 430036,
    "evidence_level": "unverified"
   },
-  "430040": {
+  "0x68fd8": {
    "name": "m_fStartSpeed",
    "type": "float",
    "offset": 430040,
    "evidence_level": "unverified"
   },
-  "430044": {
+  "0x68fdc": {
    "name": "m_fNextSpeed",
    "type": "float",
    "offset": 430044,
    "evidence_level": "unverified"
   },
-  "430048": {
+  "0x68fe0": {
    "name": "m_vecSpeed",
    "type": "gbVec3D",
    "offset": 430048,
    "evidence_level": "unverified"
   },
-  "430060": {
+  "0x68fec": {
    "name": "m_vecNextSpeed",
    "type": "gbVec3D",
    "offset": 430060,
    "evidence_level": "unverified"
   },
-  "430072": {
+  "0x68ff8": {
    "name": "m_fDistance",
    "type": "float",
    "offset": 430072,
    "evidence_level": "unverified"
   },
-  "430076": {
+  "0x68ffc": {
    "name": "m_fQuake",
    "type": "float",
    "offset": 430076,
    "evidence_level": "unverified"
   },
-  "430080": {
+  "0x69000": {
    "name": "m_fQuakeDec",
    "type": "float",
    "offset": 430080,
    "evidence_level": "unverified"
   },
-  "430084": {
+  "0x69004": {
    "name": "m_fQuakeFre",
    "type": "float",
    "offset": 430084,
    "evidence_level": "unverified"
   },
-  "430088": {
+  "0x69008": {
    "name": "m_StartPos",
    "type": "tagCam",
    "offset": 430088,
    "evidence_level": "unverified"
   },
-  "430112": {
+  "0x69020": {
    "name": "m_CurPos",
    "type": "tagCam",
    "offset": 430112,
    "evidence_level": "unverified"
   },
-  "430136": {
+  "0x69038": {
    "name": "m_vecCurPos",
    "type": "gbVec3D",
    "offset": 430136,
    "evidence_level": "unverified"
   },
-  "430148": {
+  "0x69044": {
    "name": "m_OBBox",
    "type": "gbOBBox",
    "offset": 430148,
    "evidence_level": "unverified"
   },
-  "430224": {
+  "0x69090": {
    "name": "m_pPointer",
    "type": "gbGeomNode *",
    "offset": 430224,
    "evidence_level": "unverified"
   },
-  "430228": {
+  "0x69094": {
    "name": "m_vecCircleCenter",
    "type": "gbVec3D",
    "offset": 430228,
    "evidence_level": "unverified"
   },
-  "430240": {
+  "0x690a0": {
    "name": "m_vecCircleEnd",
    "type": "gbVec3D",
    "offset": 430240,
    "evidence_level": "unverified"
   },
-  "430252": {
+  "0x690ac": {
    "name": "m_bShowCircleSet",
    "type": "unsigned char",
    "offset": 430252,
    "evidence_level": "unverified"
   },
-  "430253": {
+  "0x690ad": {
    "name": "m_bCircleCenterSelected",
    "type": "unsigned char",
    "offset": 430253,
    "evidence_level": "unverified"
   },
-  "430254": {
+  "0x690ae": {
    "name": "m_bCircleEndSelected",
    "type": "unsigned char",
    "offset": 430254,
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_pvecCenter",
    "type": "gbVec3D *",
    "source": "A+:decomp_assigned_from_param_pvecCenter",
    "evidence_level": "unverified"
   },
-  "2436": {
+  "0x984": {
    "name": "m_nList",
    "type": "gbRefObject *",
    "source": "decomp_offset+codegen_infer",
    "evidence_level": "unverified"
   },
-  "2440": {
+  "0x988": {
    "name": "m_nPointerUnderMouse",
    "type": "int",
    "source": "decomp_offset",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nTodo_00C",
    "type": "float",
    "source": "A:FPU_disp8_in_class_method",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nTodo_010",
    "type": "gbVolModNode *",
    "source": "reverted_auto_semantic:2x_access",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_fCamBlendA",
    "type": "float",
    "source": "decomp:LoadPointer_set_0.0(camera_blend_param)",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_fCamBlendB",
    "type": "float",
    "source": "decomp:LoadPointer_set_0.0(camera_blend_param)",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_CamCtrlData",
    "type": "int",
    "source": "decomp:LoadPointer_16byte_clear+_auto_4ff360_base_for_dword_index_25/26/124",
    "evidence_level": "unverified"
   },
-  "236": {
+  "0xec": {
    "name": "m_nTodo_EC",
    "type": "gbVolModNode",
    "source": "A:LEA_ecx_[esi+0ECh]_2refs_confirm_embed,binary_size=220,no_overlap | [批4 诚实化 2026-10-16] A偏移形：_embed_gbVolModNode_EC⇒m_nTodo_EC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "2444": {
+  "0x98c": {
    "name": "m_CamEntries",
    "type": "int[1794]",
    "source": "A+:ida_decomp stride=15*4(60bytes), 119 entries, pattern: for(i=&this->field; *i!=pCam; i+=15)",
    "evidence_level": "unverified"
   },
-  "9620": {
+  "0x2594": {
    "name": "m_nCurCamIdx",
    "type": "int",
    "source": "A+:decomp_cmp_-1+index_into_cam_array_5refs",
    "evidence_level": "unverified"
   },
-  "608": {
+  "0x260": {
    "name": "m_PanelSlots",
    "type": "CCBPanelSlot",
    "count": 38,

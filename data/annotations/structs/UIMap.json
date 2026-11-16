@@ -2,97 +2,97 @@
  "name": "UIMap",
  "binary_size": 152,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_mapwidth",
    "type": "int",
    "source": "pdb_merge",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_screenWidth",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_screenHeight",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_xMapNum",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_yMapNum",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_MapNum",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_pSubMap",
    "type": "_SUBMAP *",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_moveSpeed",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_isMoving",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_offsetx",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_offsety",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_moveoffsetx",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "116": {
+  "0x74": {
    "name": "m_moveoffsety",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "m_bCreate",
    "type": "BYTE",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "timescale",
    "type": "float",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_bLock",
    "type": "BYTE",
    "source": "gen_headers_9.2",
@@ -208,10 +208,10 @@
    "signature": "void __thiscall()"
   },
   "0x00441730": {
-   "name": "ProcessHitTest",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
-   "semantic_name": "ProcessHitTest",
+   "evidence_level": "verified",
+   "semantic_name": "UIMap::Update",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -229,7 +229,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(int, int)",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessHitTest=体读数命名"
   },
   "0x004420c0": {
    "name": "OnMessage",
@@ -259,9 +260,9 @@
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x004414d0": {
-   "name": "Destroy",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_name": "Destroy_36",
    "alt_signature": "int __thiscall(UIMap *this)",
@@ -274,37 +275,39 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "UIMap::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056ADAC",
+   "addr": "0x0056adac",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x004414F0"
+     "addr": "0x004414f0"
     },
     {
      "addr": "0x00441730"
     },
     {
-     "addr": "0x004414D0"
+     "addr": "0x004414d0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x004411B0"
+     "addr": "0x004411b0"
     },
     {
-     "addr": "0x004420C0"
+     "addr": "0x004420c0"
     },
     {
-     "addr": "0x004412C0"
+     "addr": "0x004412c0"
     }
    ]
   }

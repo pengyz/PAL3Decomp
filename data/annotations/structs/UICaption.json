@@ -2,31 +2,31 @@
  "name": "UICaption",
  "binary_size": 344,
  "known_members": {
-  "76": {
+  "0x4c": {
    "name": "m_tex",
    "type": "gbTexture *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_numline",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_lineheight",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_curline",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_linetime",
    "type": "float",
    "source": "annotation",
@@ -333,18 +333,26 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AFB0",
+   "addr": "0x0056afb0",
    "base": null,
    "slots": [],
    "source": "主表(reconcile:569权威源)",
    "evidence_level": "binary_reconcile"
   },
   {
-   "addr": "0x0056AFA4",
-   "base": "PalScriptWaitObj",
-   "slots": [],
-   "source": "PSWO第二基表(reconcile:569权威源; 0x56B0D4的thunk sub=72@68矛盾排除)",
-   "evidence_level": "binary_reconcile"
+   "addr": "0x0056afa4",
+   "slots": [
+    {
+     "addr": "0x0044ab40"
+    },
+    {
+     "addr": "0x0044ab00"
+    },
+    {
+     "addr": "0x004af760"
+    }
+   ],
+   "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"
   }
  ],
  "base_size": 76,
@@ -367,5 +375,20 @@
   },
   "note": "现注解3表址(0x56AC70/0x56B0E0/0x56B0D4)全错; 0x56B0D4的thunk sub=72与声明PSWO@68矛盾; V1误报除名样本",
   "date": "2026-11-15"
- }
+ },
+ "_phantom_tables_removed": [
+  {
+   "addr": "0x0056AFA4",
+   "keep": "0056afb0",
+   "date": "2026-11-16",
+   "evidence": "后址=UIWnd七槽骨架(445e70/445b90/445d10)"
+  }
+ ],
+ "_purge_reverted": [
+  {
+   "addr": "0x0056AFA4",
+   "date": "2026-11-16",
+   "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
+  }
+ ]
 }

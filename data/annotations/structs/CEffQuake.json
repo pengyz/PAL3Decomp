@@ -9,13 +9,15 @@
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "int __thiscall()",
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
   },
   "0x004d3860": {
    "name": "_sdtor",
@@ -233,66 +235,71 @@
  },
  "vtables": [
   {
-   "addr": "0x0056FA88",
+   "addr": "0x0056fa88",
    "base": null,
    "slots": [
     {
-     "addr": "0x004D32E0"
+     "addr": "0x004d32e0"
     },
     {
-     "addr": "0x004C0650",
+     "addr": "0x004c0650",
      "name": "Create"
     },
     {
-     "addr": "0x004D33A0",
+     "addr": "0x004d33a0",
      "name": "ResetState"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "DestroyEffect",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot3根槽名(每槽一名)"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "RenderScenePass",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot4根槽名(每槽一名)"
     },
     {
-     "addr": "0x004C29A0",
+     "addr": "0x004c29a0",
      "name": "UpdateFrame"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "Destroy",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot6根槽名(每槽一名)"
     },
     {
-     "addr": "0x004D32C0",
+     "addr": "0x004d32c0",
      "name": "AllocEffect"
     },
     {
-     "addr": "0x004C0500",
+     "addr": "0x004c0500",
      "name": "OnTest"
     },
     {
-     "addr": "0x004AF760",
-     "name": "Update"
+     "addr": "0x004af760",
+     "name": "Update",
+     "name_note": "槽名修正20261116: 复核P1-3回滚按址误植, 承CEffObj slot9根槽名"
     },
     {
-     "addr": "0x004C0510",
+     "addr": "0x004c0510",
      "name": "GetEditorObjDescription"
     },
     {
-     "addr": "0x004AF760",
-     "name": "GetEffect"
+     "addr": "0x004af760",
+     "name": "GetEffect",
+     "name_note": "槽名修正20261116: 复核P1-3回滚按址误植, 承CEffObj slot11根槽名"
     },
     {
-     "addr": "0x004D33B0",
+     "addr": "0x004d33b0",
      "name": "RenderEffectPass"
     },
     {
-     "addr": "0x004C15D0",
+     "addr": "0x004c15d0",
      "name": "UpdateParticles"
     },
     {
-     "addr": "0x004D3660",
+     "addr": "0x004d3660",
      "name": "GetEditorTaskDescription"
     }
    ],
@@ -300,11 +307,19 @@
    "evidence_level": "binary_ctor_write"
   },
   {
-   "addr": "0x0056FA7C",
-   "base": "CTaskTpl",
-   "slots": [],
-   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
-   "evidence_level": "binary_ctor_write"
+   "addr": "0x0056fa7c",
+   "slots": [
+    {
+     "addr": "0x004c2030"
+    },
+    {
+     "addr": "0x004c2850"
+    },
+    {
+     "addr": "0x004d3860"
+    }
+   ],
+   "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"
   }
  ],
  "base_size": 12,
@@ -328,6 +343,21 @@
    },
    "from": "CEffQuake",
    "to": "Object"
+  }
+ ],
+ "_phantom_tables_removed": [
+  {
+   "addr": "0x0056FA7C",
+   "keep": "0056fa88",
+   "date": "2026-11-16",
+   "evidence": "移位视图+ctor写后址(census)"
+  }
+ ],
+ "_purge_reverted": [
+  {
+   "addr": "0x0056FA7C",
+   "date": "2026-11-16",
+   "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
  ]
 }

@@ -2,37 +2,37 @@
  "name": "UIAnimateCtrlEX",
  "binary_size": 1012,
  "known_members": {
-  "68": {
+  "0x44": {
    "name": "m_Scene",
    "type": "UIScene",
    "source": "ctor_embed_evidence",
    "evidence_level": "unverified"
   },
-  "412": {
+  "0x19c": {
    "name": "m_Frame",
    "type": "UIStatic",
    "source": "ctor_embed_evidence",
    "evidence_level": "unverified"
   },
-  "564": {
+  "0x234": {
    "name": "m_ResultWnd",
    "type": "CCBResultWindow",
    "source": "ctor_embed_evidence",
    "evidence_level": "unverified"
   },
-  "748": {
+  "0x2ec": {
    "name": "m_TextArea",
    "type": "UITextArea",
    "source": "ctor_embed_evidence",
    "evidence_level": "unverified"
   },
-  "940": {
+  "0x3ac": {
    "name": "m_ChildWnd",
    "type": "UIWnd",
    "source": "ctor_embed_evidence",
    "evidence_level": "unverified"
   },
-  "1008": {
+  "0x3f0": {
    "name": "m_bAnimFlag",
    "type": "unsigned char",
    "source": "A:toggle_0_1_byte_flag | ida_xref2",
@@ -167,9 +167,9 @@
    "signature": "int __thiscall()"
   },
   "0x00452d30": {
-   "name": "ComputeStatBonus",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -187,12 +187,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "UIAnimateCtrlEX::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ComputeStatBonus=体读数命名"
   },
   "0x00452da0": {
-   "name": "OnNotify",
+   "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -214,7 +216,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int msg, int wparam, int lparam)"
+   "signature": "int __thiscall(int msg, int wparam, int lparam)",
+   "semantic_name": "UIAnimateCtrlEX::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnNotify=体读数命名"
   },
   "0x00530990": {
    "name": "SetTextBottom",
@@ -270,29 +274,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056B1DC",
+   "addr": "0x0056b1dc",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x00452AA0"
+     "addr": "0x00452aa0"
     },
     {
-     "addr": "0x00452D30"
+     "addr": "0x00452d30"
     },
     {
-     "addr": "0x00445C10"
+     "addr": "0x00445c10"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00452830"
     },
     {
-     "addr": "0x00452DA0"
+     "addr": "0x00452da0"
     }
    ]
   }

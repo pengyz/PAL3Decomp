@@ -2,37 +2,37 @@
  "name": "CCBTaskSlot",
  "binary_size": 80,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "_todo_0",
    "type": "int",
    "source": "v13[0] = nVal（CCBStage.cpp:2050）；伪成员 m_nCurTask@elem0+0 / m_CmdQueue@elem5+0",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "_todo_4",
    "type": "int",
    "source": "+4 = 2（CCBStage.cpp:2046）",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "_gap_8",
    "type": "int",
    "source": "未见直接访问，按布局补",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "_todo_12",
    "type": "int",
    "source": "伪成员 m_RoleSlots@elem0+12（CCBStage.cpp:2050 nVal4 写位）",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "_gap_16",
    "type": "int",
    "source": "未见直接访问",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "_ovl_20",
    "type": {
     "union": [
@@ -67,13 +67,13 @@
    "source": "位面复用：v13[5]=ProcProtect()（:2051）· +21 字面量访问 · +22 = 伪成员 m_TurnFlags@elem5+22（short）",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "_gap_24",
    "type": "int",
    "source": "未见直接访问",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "_ovl_28",
    "type": {
     "union": [
@@ -103,7 +103,7 @@
    "source": "位面复用：v13[7]=nVal5（:2052）· *((_BYTE*)&m_RoleSlots + .. +28)=1 / +29=0（:2044-2045）",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "_gap_32",
    "type": "_BYTE[48]",
    "source": "元素尾部，未见访问",

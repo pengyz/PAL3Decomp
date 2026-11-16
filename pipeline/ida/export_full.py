@@ -1037,7 +1037,7 @@ def export_structs(log):
             # get_udt_details 读回失败（带成员函数 UDT 合法失败 / [i]-form）⇒ annotation 成员面权威回退
             for _k, _v in _ann_cur['known_members'].items():
                 try:
-                    _off = int(str(_k).split('_')[0])
+                    _off = int(str(_k).split('_')[0], 16)  # [键形归一 2026-11-16] 强制十进制已ban
                 except Exception:
                     continue
                 _t = _v.get('type', 'int')

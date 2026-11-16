@@ -16,9 +16,9 @@ import json
 import os
 import re
 try:
-    from pipeline.sigmodel import parse_signature, node_of, c2555_conflict, render
+    from pipeline.sigmodel import parse_signature, node_of, override_check, render
 except ImportError:  # 脚本模式(sys.path[0]=pipeline/)兼容
-    from sigmodel import parse_signature, node_of, c2555_conflict, render
+    from sigmodel import parse_signature, node_of, override_check, render
 
 import sys
 
@@ -537,7 +537,7 @@ def check(struct_dir=None):
             if _hollow:
                 _suffix = _hollow.group(1)
                 try:
-                    _off_dec = int(off.split('_')[0], 0)
+                    _off_dec = int(off.split('_')[0], 16)
                 except ValueError:
                     _off_dec = None
                 _matches_hex = _off_dec is not None and (
@@ -557,7 +557,7 @@ def check(struct_dir=None):
         if is_union:
             binary_sz = sinfo.get('binary_size', 0)
             for off, m in members.items():
-                real_off = int(off.split('_')[0], 0)
+                real_off = int(off.split('_')[0], 16)
                 if real_off != 0:
                     errors.append(f"union[{sname}]: member '{m.get('name')}' at +{real_off} (must be 0)")
                 # Each union member size must fit within binary_size
@@ -870,6 +870,8 @@ def check_canonical_contract():
     # slot sig冗余→vtables_retired→from) ⇒ 字段全树清除, 消费方全部改推导。
     _pre_slots = {}   # cls -> set(int addr)
     _pre_bases = {}   # cls -> [base names]
+    _pre_slot_addrs_by_idx = {}   # cls -> [int addr按槽序] 主表槽地址序列 [C9槽位匹配 2026-11-16]
+    _pre_slot_names = {}   # cls -> {slot_idx: 槽名} 每槽一名链律载体 [C9槽名比较 2026-11-16]
     _pre_entry = {}   # cls -> {int addr: (name, sig)}  [C9 override链签名门 2026-11-16]
     # [卷宗挂账通道] 在册零证据槽集
     _dossier_keys = set()
@@ -886,7 +888,21 @@ def check_canonical_contract():
             continue
         _c0 = os.path.basename(_fp0)[:-5]
         _pre_slots[_c0] = set()
-        for _vt0 in (_d0.get('vtables') or []):
+        _vts0 = _d0.get('vtables') or []
+        # 主表=首张vtable(MSVC每多态子对象恰1表; 槽位匹配按主表序)
+        if _vts0:
+            _lst0 = []
+            _nm0 = {}
+            for _i0, _s0 in enumerate(_vts0[0].get('slots') or []):
+                try:
+                    _lst0.append(int(_s0.get('addr') or 'x', 16))
+                except (ValueError, TypeError):
+                    _lst0.append(None)  # 槽位占位保持序号对齐
+                if _s0.get('name'):
+                    _nm0[_i0] = str(_s0.get('name'))
+            _pre_slot_addrs_by_idx[_c0] = _lst0
+            _pre_slot_names[_c0] = _nm0
+        for _vt0 in _vts0:
             for _s0 in (_vt0.get('slots') or []):
                 try:
                     _pre_slots[_c0].add(int(_s0.get('addr') or 'x', 16))
@@ -1004,7 +1020,7 @@ def check_canonical_contract():
                 if _slot_addr_count.get(str(s.get('addr') or '').lower(), 0) > 1:
                     continue  # 多槽地址豁免
                 _ma = str(s.get('addr') or '')
-                _m6 = (d.get('methods') or {}).get(_ma) or (d.get('methods') or {}).get(_ma.lower())
+                _m6 = (d.get('methods') or {}).get(_ma)  # [键形归一后精确查找 2026-11-16, 双形态容忍已拆]
                 if _m6 and _m6.get('signature'):
                     import re as _re6
                     _n6 = lambda x: _re6.sub(r'\s+', ' ', re.sub(r'\b(this|a\d+|nVal\d*|p\w+|f\w+)\b(?![\w*])', '', str(x).strip())).strip()
@@ -1038,33 +1054,51 @@ def check_canonical_contract():
             else:
                 _seen_nm[bare] = a8
 
-        # [C9 2026-11-16 v2 sigmodel结构判据·机制退役] override链签名一致性:
-        #   真override(同名异址) ⇒ c2555_conflict(参数契约一致+返回存在性不同)=硬错
-        #   判据=sigmodel结构节点(sig_model优先/字符串回退单点解析) — 字符串解析遗产链
-        #   (_sig_parts9三轮bug)整体退役 [用户裁定"旧机制整体退役"]
-        # 已知覆盖缺口(元复核发现, S3待补): 仅存在于槽名契约的override(UIFrameWnd::Render族,
-        #   无methods条目)不经此路径 — 待槽级sig_model全量落地后补槽通道
+        # [C9 2026-11-16 v3 槽位感知·名字+签名双检] override链一致性:
+        #   同槽位: 基/派生名字应一致(override=C++同名规则), 签名应兼容(C2555判据)
+        #   名字不一致=silent bug(折叠载体名≠链律名), 签名冲突=C2555
+        #   双检全拦截 [用户裁定"名字对不上也是需要被检出的bug"]
         _re9 = re.compile(r'_scalar_dtor|_sdtor|scalar_deleting')
 
-        def _node_of_pre(_cls, _addr):
-            _ent = _pre_entry.get(_cls, {}).get(_addr)
-            if _ent is None:
-                return None
-            return _ent
-
-        def _anc_node9(_cls, _nm, _seen=None):
+        def _anc_slot_chain(_cls, _slot_idx, _seen=None, _first=None):
+            """沿祖先链找同一slot位的条目节点, 返回(祖先名, addr, node)或None
+            [MI双基链 2026-11-16] _first=首跳基覆盖(tidx>=1次表↔bases[tidx]链,
+            后续跳仍沿各祖先bases[0]链, 每祖先取其主表vtables[0])"""
             _seen = _seen if _seen is not None else set()
-            for _bn in _pre_bases.get(_cls, []):
+            for _bn in (_first if _first is not None else _pre_bases.get(_cls, [])):
                 if _bn in _seen:
                     continue
                 _seen.add(_bn)
-                for _a2, _nd2 in _pre_entry.get(_bn, {}).items():
-                    if _nd2.get('name') == _nm:
-                        return _a2, _nd2
-                _r9 = _anc_node9(_bn, _nm, _seen)
-                if _r9:
-                    return _r9
+                # 预扫的按序槽地址列表(None占位=该槽无地址, 视为链断)
+                _bslot_addrs = _pre_slot_addrs_by_idx.get(_bn)
+                if _bslot_addrs and _slot_idx < len(_bslot_addrs):
+                    _baddr_int = _bslot_addrs[_slot_idx]
+                    _bnode = _pre_entry.get(_bn, {}).get(_baddr_int) if _baddr_int is not None else None
+                    if _bnode is not None:
+                        return _bn, _baddr_int, _bnode
+                _r = _anc_slot_chain(_bn, _slot_idx, _seen)
+                if _r:
+                    return _r
             return None
+
+        # 本类vtable slot_idx→addr映射(用于找methods条目的slot位置)
+        # [MI双基链建模 2026-11-16] addr→(表序tidx, 槽序sidx); tidx=k比较沿bases[k]链
+        # (复核P0-1实证: tables[k]↔bases[k], 后续跳沿祖先bases[0]链取主表)
+        _my_slot_by_addr = {}
+        _mi_pending = set()
+        _my_slot_names = {}
+        _my_vts_me = d8.get('vtables') or []
+        for _ti_me, _vt_me in enumerate(_my_vts_me):
+            for _si_me, _sl_me in enumerate(_vt_me.get('slots') or []):
+                try:
+                    _a_me = int(_sl_me.get('addr'), 16)
+                    _my_slot_by_addr[_a_me] = (_ti_me, _si_me)
+                except (ValueError, TypeError):
+                    pass
+        if _my_vts_me:
+            for _si_me, _sl_me in enumerate(_my_vts_me[0].get('slots') or []):
+                if _sl_me.get('name'):
+                    _my_slot_names[_si_me] = str(_sl_me.get('name'))
 
         for _a9, _m9 in ms8.items():
             _n9 = str(_m9.get('name') or '')
@@ -1074,17 +1108,44 @@ def check_canonical_contract():
                 _ai9 = int(_a9, 16)
             except (ValueError, TypeError):
                 continue
-            _hit9 = _anc_node9(cls8, _n9)
-            if _hit9 and _hit9[0] != _ai9:
+            _tinfo = _my_slot_by_addr.get(_ai9)
+            if _tinfo is None:
+                continue  # 非槽函数(不在任何vtable slot位), 不判
+            _tidx9, _si9 = _tinfo
+            _first9 = None
+            if _tidx9 >= 1:
+                _bl9 = _pre_bases.get(cls8, [])
+                if _tidx9 >= len(_bl9):
+                    _mi_pending.add(_ai9)
+                    continue  # 次表无对应基声明, 不判(MI待补)
+                _first9 = [_bl9[_tidx9]]
+            # 槽位匹配祖先链查找
+            _hit = _anc_slot_chain(cls8, _si9, None, _first9)
+            if _hit:
+                _bn, _baddr_int, _bnode = _hit
                 _nd_me = node_of(_m9)
-                _nd_base = _hit9[1]
+                _nd_base = _bnode
                 if _nd_me.get('pending') or _nd_base.get('pending'):
-                    continue  # 零证据诚实态不判(卷宗域)
-                if c2555_conflict(_nd_me, _nd_base):
-                    cur_viol['C9:%s:%s' % (cls8, _a9)] = (
-                        '%s %s 返回存在性与基类冲突(可观测ABI契约): 本=%s 基=%s → C2555前置; '
+                    continue  # 零证据诚实态不判
+                # 检1: 名字一致性(override=C++同名规则, 名字不一致=silent bug)
+                # [槽名优先 2026-11-16] 每槽一名: 折叠载体一址多槽名时, 槽名(vtable slot
+                # name字段)=链律真承载, methods名(址级语义名)仅回退 — CEffObj 0x401800
+                # 四槽四名(DestroyEffect/RenderScenePass/Destroy/UpdateParticles)实证
+                _my_slotnm = (_my_slot_names.get(_si9) or '') or _n9
+                _base_nm = (_pre_slot_names.get(_bn, {}).get(_si9) or '') or (_nd_base.get('name') or '')
+                _my_nm = _my_slotnm
+                if _my_nm != _base_nm:
+                    cur_viol['C9:%s:%s:name' % (cls8, _a9)] = (
+                        '%s slot%d 名字与基类不一致: 本=%s(%s) 基=%s(%s) → 折叠载体名≠链律名, 语义名需定谳' % (
+                            cls8, _si9, _my_nm, _a9[-8:], _base_nm, '%08x' % _baddr_int))
+                # 检2: 签名一致性(重载正确性判定 2026-11-16: cc+参数序列+返回型+varargs逐维报告)
+                _oc = override_check(_nd_me, _nd_base)
+                if not _oc.get('pending') and not _oc['compatible']:
+                    cur_viol['C9:%s:%s:sig' % (cls8, _a9)] = (
+                        '%s %s 签名与基类不一致: %s; 本=%s 基=%s → C2555前置; '
                         '取证=两侧函数体出口eax+调用点消费' % (
-                            cls8, _n9, render(_nd_me), render(_nd_base)))
+                            cls8, _n9, '; '.join(_oc['mismatches']),
+                            render(_nd_me), render(_nd_base)))
 
     # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
     # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。
@@ -1212,6 +1273,121 @@ def check_canonical_contract():
         if not (isinstance(_da, str) and re.match(r'^0x[0-9a-f]{8}$', _da)):
             errors.append('DATA:N11:decomp:%s address非规范形(须0x+8位小写hex): %r'
                           % (os.path.basename(_dp), _da))
+    # [C10 2026-11-16 用户裁定] 布局一致性门禁: 内存计算规则
+    #   尺寸表: 标量(int/BOOL/DWORD/float=4, BYTE/char/bool=1, WORD/short=2, double=8);
+    #   指针=4; 数组T[N]=size(T)*N; 类类型=该类注解binary_size(递归, 未知=诚实跳过)。
+    #   C10a 基区重叠: bases声明的基类子对象区[offset, offset+S_B)内不得有known_member
+    #     (RoleCameraCtrl实证: bases=[UIWnd@0,S=68]但成员@+8起 → apply推68字节基对象
+    #      压毁UDT → get_size=-1 → CG_Scene跨引用断链)
+    #   C10b 越界: 成员末端 > binary_size
+    #   C10c 成员互叠: 非union类内可计算尺寸成员互相重叠 (union类豁免)
+    _SCALAR10 = {'int': 4, 'unsigned int': 4, 'bool': 1, 'BOOL': 4, 'long': 4,
+                 'unsigned long': 4, 'DWORD': 4, 'LONG': 4, 'UINT': 4, 'float': 4,
+                 'BYTE': 1, 'char': 1, 'unsigned char': 1, 'WORD': 2, 'short': 2,
+                 'unsigned short': 2, 'double': 8, 'HANDLE': 4, 'HWND': 4,
+                 'HINSTANCE': 4, 'HCURSOR': 4}
+    _sizes10 = {}
+    for _fp10 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        try:
+            _d10 = json.load(open(_fp10, encoding='utf-8'))
+        except Exception:
+            continue
+        _bs10 = _d10.get('binary_size')
+        if isinstance(_bs10, int) and _bs10 > 0:
+            _sizes10[os.path.basename(_fp10)[:-5]] = _bs10
+
+    def _tsize10(t, _depth=0):
+        if _depth > 6 or not t:
+            return None
+        t = str(t).strip()
+        if t.endswith('*'):
+            return 4
+        _m10 = re.match(r'^(.+?)\[(\d+)\]$', t)
+        if _m10:
+            _e10 = _tsize10(_m10.group(1).strip(), _depth + 1)
+            return _e10 * int(_m10.group(2)) if _e10 is not None else None
+        if t in _SCALAR10:
+            return _SCALAR10[t]
+        return _sizes10.get(t)
+
+    for _fp10 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        _cls10 = os.path.basename(_fp10)[:-5]
+        try:
+            _d10 = json.load(open(_fp10, encoding='utf-8'))
+        except Exception:
+            continue
+        _km10 = _d10.get('known_members') or {}
+        _mem10 = []
+        for _k10, _v10 in _km10.items():
+            try:
+                _o10 = int(str(_k10).split('_')[0], 16)
+            except (ValueError, TypeError):
+                continue
+            _mem10.append((_o10, _v10.get('name'), _v10.get('type')))
+        _mem10.sort()
+        # C10a
+        for _b10 in (_d10.get('bases') or []):
+            _bn10 = _b10.get('name') if isinstance(_b10, dict) else _b10
+            _bo10 = _b10.get('offset', 0) if isinstance(_b10, dict) else 0
+            _sb10 = _sizes10.get(_bn10)
+            if _sb10 is None:
+                continue
+            for _o10, _nm10, _t10 in _mem10:
+                if _bo10 <= _o10 < _bo10 + _sb10:
+                    errors.append('CANON:C10:%s:%s:a %s.%s@+%d 落入基类%s子对象区[%d,%d) — 布局冲突'
+                                  % (_cls10, _nm10, _cls10, _nm10, _o10, _bn10, _bo10, _bo10 + _sb10))
+        _bs10c = _d10.get('binary_size')
+        if not (isinstance(_bs10c, int) and _bs10c > 0):
+            continue
+        # C10b
+        for _o10, _nm10, _t10 in _mem10:
+            _sz10 = _tsize10(_t10)
+            if _sz10 is not None and _o10 + _sz10 > _bs10c:
+                errors.append('CANON:C10:%s:%s:b %s.%s@+%d(size %d) 末端%d > binary_size %d — 越界'
+                              % (_cls10, _nm10, _cls10, _nm10, _o10, _sz10, _o10 + _sz10, _bs10c))
+        # C10c (union豁免)
+        if _d10.get('is_union'):
+            continue
+        _prev10 = None
+        for _o10, _nm10, _t10 in _mem10:
+            _sz10 = _tsize10(_t10)
+            if _sz10 is None:
+                continue
+            if _prev10 and _o10 < _prev10[0] + _prev10[1]:
+                errors.append('CANON:C10:%s:%s:c %s.%s@+%d 与 %s@+%d(size %d) 重叠(非union) — 布局冲突'
+                              % (_cls10, _nm10, _cls10, _nm10, _o10, _prev10[2], _prev10[0], _prev10[1]))
+            _prev10 = (_o10, _sz10, _nm10)
+    # [N11s 2026-11-16 用户裁定] structs注解键形门禁: 不合法十六进制全ban。
+    #   地址键 ^0x[0-9a-f]{8}$ 小写8位(external+external:true=合法豁免);
+    #   known_members键 ^0x[0-9a-f]+(_N)?$ 偏移小写hex。
+    #   病灶: 大小写/短形/0X前缀混用531+处, apply字符串查找静默miss
+    #   (RoleCameraCtrl空壳断链实证); 门禁与消费方地址相等语义必须一致。
+    _re_addr8 = re.compile(r'^0x[0-9a-f]{8}$')
+    _re_offhex = re.compile(r'^0x[0-9a-f]+(_[0-9]+)?$')
+    for _fp11s in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        _cls11s = os.path.basename(_fp11s)[:-5]
+        try:
+            _d11s = json.load(open(_fp11s, encoding='utf-8'))
+        except Exception:
+            continue
+        for _k11s in (_d11s.get('methods') or {}):
+            if not _re_addr8.match(_k11s):
+                errors.append('DATA:N11s:%s methods键非规范形(须0x+8位小写hex): %r'
+                              % (_cls11s, _k11s))
+        for _vt11s in (_d11s.get('vtables') or []):
+            _a11s = _vt11s.get('addr')
+            if (_a11s and _a11s != 'external'
+                    and not _re_addr8.match(str(_a11s))):
+                errors.append('DATA:N11s:%s vtable表址非规范形: %r' % (_cls11s, _a11s))
+            for _s11s in (_vt11s.get('slots') or []):
+                _sa11s = _s11s.get('addr')
+                if (_sa11s and _sa11s != 'external'
+                        and not _re_addr8.match(str(_sa11s))):
+                    errors.append('DATA:N11s:%s 槽址非规范形: %r' % (_cls11s, _sa11s))
+        for _k11s in (_d11s.get('known_members') or {}):
+            if not _re_offhex.match(str(_k11s)):
+                errors.append('DATA:N11s:%s known_members键非规范hex形: %r'
+                              % (_cls11s, _k11s))
     # [N12自基线] 独立ratchet: 冻结存量非语义名债, 新增=硬错 (命名铁律2026-11-15)
     _n12_base = os.path.join(root, 'data', 'status', 'n12_grandfathered.json')
     _n12_viol = {k: v for k, v in cur_viol.items() if k.startswith('N12:')}
@@ -1321,12 +1497,12 @@ if __name__ == '__main__':
     errors, warnings = check()
 
     # [canonical 契约断言 2026-11-14] 四条非法态棘轮
-    try:
-        _cc_errors, _cc_warnings = check_canonical_contract()
-        errors.extend(_cc_errors)
-        warnings.extend(_cc_warnings)
-    except Exception as _cc_err:
-        warnings.append(f'canonical contract check skipped: {_cc_err}')
+    # [2026-11-16 吞异常拆除] except→warning曾把C9块NameError静默成PASS
+    #   (门禁写了没跑过一次实证); 文件级加载错误已在块内各自守卫,
+    #   此处异常=门禁自身bug, 必须炸出而非降级。
+    _cc_errors, _cc_warnings = check_canonical_contract()
+    errors.extend(_cc_errors)
+    warnings.extend(_cc_warnings)
 
     # [L-CHK 2026-11-11] 名字漂移检查(decomp 引用 vs 注解名/IDB 名)
     try:

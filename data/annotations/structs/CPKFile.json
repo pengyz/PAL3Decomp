@@ -2,76 +2,76 @@
  "name": "CPKFile",
  "binary_size": 48,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "bValid",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "dwCRC",
    "type": "unsigned int",
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "dwFatherCRC",
    "type": "unsigned int",
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "nTableIndex",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "lpMapAddress",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "lpStartAddress",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "dwOffset",
    "type": "unsigned int",
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "bCompressed",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "lpRealData",
    "type": "char *",
    "source": "annotation",
    "note": "renamed to match gbengine header",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "dwFileSize",
    "type": "unsigned int",
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "dwPointer",
    "type": "unsigned int",
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "pTableItem",
    "type": "tagCPKTable *",
    "source": "annotation",

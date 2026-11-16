@@ -2,391 +2,391 @@
  "name": "SaleUI",
  "binary_size": 105912,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "bkWidth",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "bkHeight",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "buf",
    "type": "char[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "336": {
+  "0x150": {
    "name": "remarkbuf",
    "type": "char[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "592": {
+  "0x250": {
    "name": "m_SelNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "596": {
+  "0x254": {
    "name": "m_data",
    "type": "st_Manager",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "18100": {
+  "0x46b4": {
    "name": "m_sort",
    "type": "SaleUI_SortData[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "30060": {
+  "0x756c": {
    "name": "m_ListSelNum",
    "type": "int[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36040": {
+  "0x8cc8": {
    "name": "m_Max",
    "type": "int[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "42020": {
+  "0xa424": {
    "name": "m_Sum",
    "type": "int[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "42040": {
+  "0xa438": {
    "name": "_isCreatable",
    "type": "unsigned char",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "42044": {
+  "0xa43c": {
    "name": "m_SaleData",
    "type": "PlayerItem[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "59984": {
+  "0xea50": {
    "name": "m_TempData",
    "type": "PlayerItem[158]",
    "source": "span-fix: IDB 偏移序列给出真实跨度 = m_bNGHS@0xF1B8 − m_TempData@0xEA50 = 1896；sizeof(PlayerItem)=12 ⇒ 1896/12=158 整除。原 `PlayerItem[299][5]`(=17940B) 超出跨度 9.5×，导致发射器 start_off 越过 0xF1B8，把 m_bNGHS/m_bWPXS 静默吞掉（71 条 C2039）。",
    "evidence_level": "unverified"
   },
-  "77924": {
+  "0x13064": {
    "name": "m_NotesNull",
    "type": "int[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "83904": {
+  "0x147c0": {
    "name": "m_IsEquip",
    "type": "unsigned char[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "85399": {
+  "0x14d97": {
    "name": "m_TempIsEquip",
    "type": "unsigned char[299][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "86896": {
+  "0x15370": {
    "name": "x",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "86900": {
+  "0x15374": {
    "name": "rc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "86916": {
+  "0x15384": {
    "name": "m_Frame",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87076": {
+  "0x15424": {
    "name": "m_FrameBar",
    "type": "UIFlexBar",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87160": {
+  "0x15478": {
    "name": "m_Flag",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87320": {
+  "0x15518": {
    "name": "m_OutFrameT",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87480": {
+  "0x155b8": {
    "name": "m_OutFrameR",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87640": {
+  "0x15658": {
    "name": "m_OutFrameL",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87800": {
+  "0x156f8": {
    "name": "m_OutFrameB",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "87960": {
+  "0x15798": {
    "name": "mb_Exit",
    "type": "UIButton",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88304": {
+  "0x158f0": {
    "name": "m_ExitRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88320": {
+  "0x15900": {
    "name": "m_ani",
    "type": "UIAnimateCtrl",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88484": {
+  "0x159a4": {
    "name": "m_Role",
    "type": "UIStatic[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89284": {
+  "0x15cc4": {
    "name": "m_RoleRc",
    "type": "tagRECT[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89364": {
+  "0x15d14": {
    "name": "RoleX",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89368": {
+  "0x15d18": {
    "name": "RoleY",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89372": {
+  "0x15d1c": {
    "name": "HeadW",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89376": {
+  "0x15d20": {
    "name": "HeadH",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89380": {
+  "0x15d24": {
    "name": "m_Is",
    "type": "unsigned char[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89388": {
+  "0x15d2c": {
    "name": "m_Msg",
    "type": "MUIDialog",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "90772": {
+  "0x16294": {
    "name": "m_3DObj",
    "type": "UI3DCtrl",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91080": {
+  "0x163c8": {
    "name": "m_FlagRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91096": {
+  "0x163d8": {
    "name": "m_TalkFrame",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91256": {
+  "0x16478": {
    "name": "m_Ready",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91416": {
+  "0x16518": {
    "name": "m_ReadyRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91432": {
+  "0x16528": {
    "name": "m_entryTalk",
    "type": "char[256]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "91688": {
+  "0x16628": {
    "name": "m_btn",
    "type": "UIButton[5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "93408": {
+  "0x16ce0": {
    "name": "m_TabRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "93424": {
+  "0x16cf0": {
    "name": "m_ListSaleTitle",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "93584": {
+  "0x16d90": {
    "name": "m_ListEquipTitleRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "93600": {
+  "0x16da0": {
    "name": "m_Icon",
    "type": "UIStaticRM[5][5]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "98300": {
+  "0x17ffc": {
    "name": "m_ListFrame",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "98460": {
+  "0x1809c": {
    "name": "m_ScrollHB",
    "type": "UIStatic",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "98620": {
+  "0x1813c": {
    "name": "m_ListGrid",
    "type": "UIStatic[14]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "100860": {
+  "0x189fc": {
    "name": "m_ListRc",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "100876": {
+  "0x18a0c": {
    "name": "ml_ResumeList",
    "type": "UIListBox",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "102164": {
+  "0x18f14": {
    "name": "ResumeNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "102168": {
+  "0x18f18": {
    "name": "ml_TreasureList",
    "type": "UIListBox",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "103456": {
+  "0x19420": {
    "name": "TreasureNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "103460": {
+  "0x19424": {
    "name": "ml_AttackList",
    "type": "UIListBox",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "104748": {
+  "0x1992c": {
    "name": "AttackNum",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_underctrl",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_bStartNGHEffect",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nHuaYingMode",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "1160": {
+  "0x488": {
    "name": "m_inventory",
    "type": "Inventory",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "1200": {
+  "0x4b0": {
    "name": "m_reoccupy",
    "type": "Reoccupy",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "1216": {
+  "0x4c0": {
    "name": "dwWeaponWU",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "61880": {
+  "0xf1b8": {
    "name": "m_bNGHS",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "61884": {
+  "0xf1bc": {
    "name": "m_bWPXS",
    "type": "int",
    "source": "gen_headers_9.2",
@@ -944,9 +944,9 @@
    "signature": "void __thiscall()"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "SaleUI::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -955,34 +955,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056B5CC",
+   "addr": "0x0056b5cc",
    "base": "UIListBox",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x0046B040"
+     "addr": "0x0046b040"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0045AE40"
+     "addr": "0x0045ae40"
     },
     {
-     "addr": "0x0046B4B0"
+     "addr": "0x0046b4b0"
     }
    ]
   }

@@ -2,121 +2,121 @@
  "name": "BINKIO",
  "binary_size": 204,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "ReadHeader",
    "type": "char *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "ReadFrame",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "GetBufferSize",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "SetInfo",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "Idle",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "Close",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "bink",
    "type": "BINK *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "ReadError",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "DoingARead",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "BytesRead",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "Working",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "TotalTime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "ForegroundTime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "IdleTime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "ThreadTime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "BufSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "BufHighUsed",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "CurBufSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "CurBufUsed",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "iodata",
    "type": "unsigned char[128]",
    "source": "annotation",

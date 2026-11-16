@@ -2,13 +2,13 @@
  "name": "PtrArray",
  "binary_size": 16,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_pData",
    "type": "char *",
    "source": "annotation|fix:pointer_level:char **",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "capacity",
    "type": "int",
    "source": "annotation",
@@ -59,13 +59,13 @@
     "timestamp": "2026-11-12"
    }
   },
-  "8": {
+  "0x8": {
    "name": "m_nSize",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_needscriptdel",
    "type": "int",
    "source": "annotation",
@@ -602,7 +602,7 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AB9C",
+   "addr": "0x0056ab9c",
    "base": null,
    "slots": [
     {

@@ -352,11 +352,15 @@ def cmd_apply():
     # [2026-11-16 用户裁定"数据有问题不允许进apply"] apply内置check门禁:
     # 注解违规(含C9 override签名/C7槽完备/N11地址形/N12非语义名/C8同名)硬错中止,
     # 污染数据进不了IDB——apply是数据进入产线的闸口, 闸口前必检
-    _rc = subprocess.run([sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'), 'check'])
-    if _rc.returncode != 0:
-        print("[ERROR] annotation check FAIL (exit %d) — 违规数据不允许进apply。" % _rc.returncode)
-        print("        修复 data/annotations 后重试; 存量冻结债务见 check 输出。")
-        sys.exit(_rc.returncode if _rc.returncode > 0 else 1)
+    # [TEMP-GATE-OFF 2026-11-16] 用户令临时禁用跑管线观察效果(181存量C9债在裁定期);
+    # 观察完必须恢复! 搜索 TEMP-GATE-OFF 还原。
+    import os as _os
+    if not _os.environ.get('APPLY_GATE_OFF'):
+        _rc = subprocess.run([sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'), 'check'])
+        if _rc.returncode != 0:
+            print("[ERROR] annotation check FAIL (exit %d) — 违规数据不允许进apply。" % _rc.returncode)
+            print("        修复 data/annotations 后重试; 存量冻结债务见 check 输出。")
+            sys.exit(_rc.returncode if _rc.returncode > 0 else 1)
     _check_ida()
     if not cfg.idb_work.exists():
         print("[ERROR] Work IDB not found: %s" % cfg.idb_work)

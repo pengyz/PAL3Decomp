@@ -2,49 +2,49 @@
  "name": "CEffgbParticle",
  "binary_size": 80,
  "known_members": {
-  "48": {
+  "0x30": {
    "name": "m_pEffect",
    "type": "ParticleEffect *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_fSize",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_fX",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_fY",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_fZ",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_fPX",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_fPY",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_fPZ",
    "type": "float",
    "source": "annotation",
@@ -361,7 +361,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
@@ -372,7 +372,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int)"
+   "signature": "void __thiscall(int)",
+   "semantic_name": "int __thiscall(int)",
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
   },
   "0x004c8e90": {
    "name": "RenderEffectPass",
@@ -534,66 +536,68 @@
  },
  "vtables": [
   {
-   "addr": "0x0056F8CC",
+   "addr": "0x0056f8cc",
    "base": null,
    "slots": [
     {
-     "addr": "0x004C8950"
+     "addr": "0x004c8950"
     },
     {
-     "addr": "0x004C8A40",
+     "addr": "0x004c8a40",
      "name": "Create"
     },
     {
-     "addr": "0x004C8B80",
+     "addr": "0x004c8b80",
      "name": "ResetState"
     },
     {
-     "addr": "0x004D0A60",
+     "addr": "0x004d0a60",
      "name": "DestroyEffect"
     },
     {
-     "addr": "0x00408BD0",
-     "name": "NullCallback"
+     "addr": "0x00408bd0",
+     "name": "RenderScenePass",
+     "name_note": "槽名链律对齐20261116: 承CEffObj slot4根槽名(每槽一名)"
     },
     {
-     "addr": "0x004C8BF0",
+     "addr": "0x004c8bf0",
      "name": "UpdateFrame"
     },
     {
-     "addr": "0x004C8E10",
+     "addr": "0x004c8e10",
      "name": "Destroy"
     },
     {
-     "addr": "0x004C8930",
+     "addr": "0x004c8930",
      "name": "AllocEffect"
     },
     {
-     "addr": "0x004C0500",
+     "addr": "0x004c0500",
      "name": "OnTest"
     },
     {
-     "addr": "0x004AF760",
-     "name": "Update"
+     "addr": "0x004af760",
+     "name": "Update",
+     "name_note": "槽名修正20261116: 复核P1-3回滚按址误植, 承CEffObj slot9根槽名"
     },
     {
-     "addr": "0x004C0510",
+     "addr": "0x004c0510",
      "name": "GetEditorObjDescription"
     },
     {
-     "addr": "0x004C8E80",
+     "addr": "0x004c8e80",
      "name": "GetEffect"
     },
     {
-     "addr": "0x004C8E90",
+     "addr": "0x004c8e90",
      "name": "RenderEffectPass"
     },
     {
-     "addr": "0x004C15D0",
+     "addr": "0x004c15d0",
      "name": "UpdateParticles"
     },
     {
-     "addr": "0x004C9260",
+     "addr": "0x004c9260",
      "name": "GetEditorTaskDescription"
     }
    ],
@@ -601,11 +605,19 @@
    "evidence_level": "binary_ctor_write"
   },
   {
-   "addr": "0x0056F8C0",
-   "base": "CTaskTpl",
-   "slots": [],
-   "source": "binary:ctor [@0xC] 终值写(第二链, 3槽; 槽内容parked=第二链走B2路线, 见ceff_family_adjudication)",
-   "evidence_level": "binary_ctor_write"
+   "addr": "0x0056f8c0",
+   "slots": [
+    {
+     "addr": "0x004c9530"
+    },
+    {
+     "addr": "0x004c2850"
+    },
+    {
+     "addr": "0x004c9540"
+    }
+   ],
+   "note": "MI次基类表(复核回滚20261116): ctor双写[+0xC]=本表; 前导=this调整thunk(sub ecx,off;jmp指纹); 槽名缺省待链律定谳; 推翻phantom_table_purge误判"
   }
  ],
  "base_size": 16,
@@ -619,5 +631,20 @@
    "offset": 12
   }
  ],
- "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整"
+ "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整",
+ "_phantom_tables_removed": [
+  {
+   "addr": "0x0056F8C0",
+   "keep": "0056f8cc",
+   "date": "2026-11-16",
+   "evidence": "移位视图+ctor写后址(census)"
+  }
+ ],
+ "_purge_reverted": [
+  {
+   "addr": "0x0056F8C0",
+   "date": "2026-11-16",
+   "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
+  }
+ ]
 }

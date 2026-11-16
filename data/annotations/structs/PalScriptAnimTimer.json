@@ -1,13 +1,13 @@
 {
  "name": "PalScriptAnimTimer",
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_fTime",
    "type": "float",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438E30 `+8 float 累加 >=4.0 clamp`（filebuf 案定谳）",
    "evidence_level": "A"
   },
-  "12": {
+  "0xc": {
    "name": "m_bDone",
    "type": "char",
    "source": "[批 3 阶段 2 补形 2026-10-17 analyzer] A 级：0x438100 判 + 0x438E30 done 置位",
@@ -81,17 +81,17 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AC08",
+   "addr": "0x0056ac08",
    "base": null,
    "slots": [
     {
-     "addr": "0x00438E90"
+     "addr": "0x00438e90"
     },
     {
      "addr": "0x00438100"
     },
     {
-     "addr": "0x00438E30"
+     "addr": "0x00438e30"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 PalScript::Op_WaterMagic+66（Op 域）；方法语义面:0x438E30 AccumulateTime=`m_time += fVal; if(>=4.0){done=1; clamp 4.0f}`（filebuf 案 A 级定谳迁移）+flag(this+0xC) 判；交互模式面:4 秒动画计时"

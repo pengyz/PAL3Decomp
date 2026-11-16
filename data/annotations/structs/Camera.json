@@ -2,293 +2,293 @@
  "name": "Camera",
  "pdb_size": 4,
  "known_members": {
-  "128": {
+  "0x80": {
    "name": "m_fFov",
    "type": "float",
    "source": "A:FPU_binary_evidence | ida_xref",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_fZoomTarget",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_fAspect",
    "type": "float",
    "source": "A:FPU_binary_evidence | ida_xref",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_nShakeAmplitude",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_nShakeDuration",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_nShakeType",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_fShakeFrequency",
    "type": "float",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_fZoomSpeed",
    "type": "float",
    "source": "binary:disp32_1hits_1funcs | ida_xref",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_fShakeOffset",
    "type": "float",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "m_nPosition",
    "type": "int",
    "source": "binary:disp32_4hits_2funcs",
    "evidence_level": "unverified"
   },
-  "232": {
+  "0xe8": {
    "name": "m_fFovTan",
    "type": "float",
    "source": "binary:disp32_4hits_2funcs",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "m_nFollowMode",
    "type": "int",
    "source": "binary:disp32_2hits_2funcs",
    "evidence_level": "unverified"
   },
-  "292": {
+  "0x124": {
    "name": "m_pCamera",
    "type": "gbCamera *",
    "source": "A+:decomp *(gbCamera**)(this+292)",
    "evidence_level": "unverified"
   },
-  "296": {
+  "0x128": {
    "name": "m_vRayDir",
    "type": "gbVec3D",
    "source": "A+:ida_decomp vec3d_ops: =(x,y,z), -=(v.x,v.y,v.z), gbVec3D::Normalize(this+296)",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_fCameraEyePosition",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "8": {
+  "0x8": {
    "name": "m_fCameraAtPosition",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "12": {
+  "0xc": {
    "name": "m_fCameraUpPosition",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "16": {
+  "0x10": {
    "name": "m_nStepRotate",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nCameraAtPosition",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "24": {
+  "0x18": {
    "name": "m_nStepDirection",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "52": {
+  "0x34": {
    "name": "m_fStepRotate",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "64": {
+  "0x40": {
    "name": "m_fLookAtStart",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "68": {
+  "0x44": {
    "name": "m_fLookAtEnd",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "72": {
+  "0x48": {
    "name": "m_fLookAtProgress",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "104": {
+  "0x68": {
    "name": "m_fCameraHeight",
    "type": "float",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "116": {
+  "0x74": {
    "name": "m_nTargetRole",
    "type": "int",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "120": {
+  "0x78": {
    "name": "m_bCreate",
    "type": "unsigned char",
    "source": "raw_decomp:Hex-Rays_type_cast",
    "evidence_level": "B"
   },
-  "0": {
+  "0x0": {
    "name": "m_pTodo_0",
    "type": "void *",
    "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
    "note": "原名 m_pVtbl 降级(未证语义名,CLAUDE.md 禁伪语义)",
    "evidence_level": "unverified"
   },
-  "380": {
+  "0x17c": {
    "name": "m_nCameraTick",
    "type": "int",
    "source": "reverted_auto_semantic:1x",
    "evidence_level": "unverified"
   },
-  "384": {
+  "0x180": {
    "name": "m_nPrevCameraTick",
    "type": "int",
    "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "388": {
+  "0x184": {
    "name": "m_fCameraTimer",
    "type": "float",
    "source": "reverted_auto_semantic:1x",
    "evidence_level": "unverified"
   },
-  "392": {
+  "0x188": {
    "name": "m_fLerpSpeed",
    "type": "float",
    "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "396": {
+  "0x18c": {
    "name": "m_fLerpProgress",
    "type": "float",
    "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "400": {
+  "0x190": {
    "name": "m_bLerpActive",
    "type": "unsigned char",
    "source": "A+:raw_idb VA=0x41BEC0 *((_BYTE*)this+400)=(_BYTE)a2",
    "evidence_level": "unverified"
   },
-  "404": {
+  "0x194": {
    "name": "m_ScriptResult",
    "type": "int",
    "source": "decomp:34x_PalScriptMgr_Get_result_address_taken",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_fStepDuration",
    "type": "float",
    "source": "binary_scan:7_accesses(load:5, fild_int:2)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_nTodo_02C",
    "type": "int",
    "source": "binary_scan:6_accesses(load:5, store:1)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_fTransitionTime",
    "type": "float",
    "source": "binary_scan:4_accesses(load:3, fld_float:1)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nTransitionState",
    "type": "int",
    "source": "binary_scan:2_accesses(load:2)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "m_nTodo_28",
    "type": "int",
    "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_nTodo_30",
    "type": "int",
    "source": "binary_scan:2_accesses(load:2);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_nTransitionStep",
    "type": "int",
    "source": "binary_scan:4_accesses(load:4)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_nTransitionFlags",
    "type": "int",
    "source": "binary_scan:2_accesses(load:2)",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pLookAtData",
    "type": "char *",
    "source": "binary_scan:20_accesses(lea:18, store:2)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "m_nCollisionFlags",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "332": {
+  "0x14c": {
    "name": "m_pCollisionMesh",
    "type": "void *",
    "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed",
    "evidence_level": "unverified"
   },
-  "348": {
+  "0x15c": {
    "name": "m_pRayHitPoint",
    "type": "void *",
    "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed",
@@ -298,11 +298,11 @@
  "binary_size": 544,
  "vtables": [
   {
-   "addr": "0x0056AA84",
+   "addr": "0x0056aa84",
    "base": null,
    "slots": [
     {
-     "addr": "0x0041BFC0"
+     "addr": "0x0041bfc0"
     }
    ],
    "source": "[100 表认领 2026-10-16 analyzer 重落] A 级：ctor 0x41BE80@+224 `c7 06 84 aa 56 00`（disp0=主表）+ 0x41C090 reinit 复写 + 槽0 0x41BFC0 删际析构形"

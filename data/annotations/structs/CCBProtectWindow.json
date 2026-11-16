@@ -2,37 +2,37 @@
  "name": "CCBProtectWindow",
  "binary_size": 2632,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_pBack",
    "type": "UIStatic *",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_pWHFace",
    "type": "UIPushButton *",
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_pWPXFace",
    "type": "UIPushButton *",
    "offset": 80,
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_pWHLove",
    "type": "UIProgressBar *",
    "offset": 84,
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_pWPXLove",
    "type": "UIProgressBar *",
    "offset": 88,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_pOk",
    "type": "UIButton *",
    "offset": 92,
@@ -95,9 +95,9 @@
    "signature": "void __thiscall()"
   },
   "0x00518e30": {
-   "name": "ShowAndNotify",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -115,7 +115,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "CCBProtectWindow::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ShowAndNotify=体读数命名"
   },
   "0x00449be0": {
    "name": "ValidateSlot",
@@ -161,9 +163,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x0043d7a0": {
-   "name": "ForwardOnMessage",
+   "name": "OnMessage",
    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "adjudication": "rejected",
    "semantic_sig": "int",
    "sig_model": {
@@ -186,7 +188,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)"
+   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+   "semantic_name": "CCBProtectWindow::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名ForwardOnMessage=体读数命名"
   },
   "0x005164d0": {
    "name": "Destroy",
@@ -220,29 +224,29 @@
  },
  "vtables": [
   {
-   "addr": "0x005704A8",
+   "addr": "0x005704a8",
    "base": "CCBUI",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x00518E30"
+     "addr": "0x00518e30"
     },
     {
-     "addr": "0x005164D0"
+     "addr": "0x005164d0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00516100"
     },
     {
-     "addr": "0x0043D7A0"
+     "addr": "0x0043d7a0"
     }
    ]
   }

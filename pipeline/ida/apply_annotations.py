@@ -458,8 +458,8 @@ def build_struct_decl(name, struct_info, all_structs=None, vtables=None):
     # 复核 5560c6c5 P1：键可带 N_N 数组后缀 —— int('50814_0',0)=508140（Py 下划线
     # 数字分隔符语义）会把键读成 508140 ⇒ 先 split('_')[0] 再解析（与 :986 同款）。
     sorted_members = sorted(
-        [(int(str(off).split('_')[0], 0), info) for off, info in members.items()
-         if int(str(off).split('_')[0], 0) >= base_size],
+        [(int(str(off).split('_')[0], 16), info) for off, info in members.items()
+         if int(str(off).split('_')[0], 16) >= base_size],
         key=lambda x: x[0]
     )
 
@@ -657,7 +657,7 @@ def create_fixed_struct_diff(name, struct_info, til):
     for k, v in struct_info.get("known_members", {}).items():
         # 复核 75f6709b C3 同批：键可 hex/N_N（键谱系 dec 9745/hex 51/N_N 4）——
         # split('_')[0] 去数组后缀 + base=0 认 hex（旧 int(...)=十进制强制，hex 键 ValueError）
-        overrides[int(str(k).split('_')[0], 0)] = v
+        overrides[int(str(k).split('_')[0], 16)] = v
     is_union = struct_info.get("is_union", False)
 
     # 加载 PDB struct
@@ -1297,15 +1297,12 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
             "   (NOTE: -1 is NOT the failure cause here — see the ordering comment above)"
             if _size_is_dash_one else ""))
 
-        # [方案 A 2026-10-16] FATAL 路径沿用权威回退：get_udt_details==False **单因**
-        # （空壳形=两级继承 UDT 读回失败族）⇒ 沿用 [i] 组 binary_size 权威回退，
-        # 并**保留 last-mile 核**（_verify_named_udt——SceneObj 事故收口处不跳过）。
-        if _should_authoritative_fallback(_reason_codes, binary_size):
-            log("  [i] %s: get_udt_details()==False (empty-shell / two-level-inheritance "
-                "readback family) — FATAL 路径沿用权威回退: using binary_size=%d as "
-                "authoritative size; 保留 last-mile _verify_named_udt" % (name, binary_size))
-            return _verify_named_udt(result_tinfo, name, til, binary_size=binary_size,
-                                     has_methods=bool(len(method_udms) > 0))
+        # [方案A退役 2026-11-16 用户裁定"apply返回-1应该直接assert拒绝执行"]
+        # 原 binary_size 权威回退拆除: 它把非法 UDT(RoleCameraCtrl 布局冲突实证:
+        # bases声明68字节基对象压住+8起own成员)当"已知正常形态"放行落TIL,
+        # 带病条目下游炸跨引用(CG_Scene -1实证)。布局冲突由 C10 门禁在注解层
+        # 拦截(见check_annotations); 数据修复前 apply 在此 assert 拒绝落库。
+        # 显式登记的 OVERRIDE 通道(逐结构裁定+tracking)保留, 走下方默认拒绝后的注册检查。
 
         # 逐 struct 留痕覆盖开关（默认拒绝）。覆盖面必须显式登记，见
         # data/annotations/_incomplete_udt_overrides.json。

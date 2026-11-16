@@ -2,38 +2,38 @@
  "name": "gbIndexPool",
  "binary_size": 56,
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "Type",
    "type": "gbPoolType",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "EleSize",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "pMemBuf",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "TotalIndex",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "FreeIndexBub",
    "type": "gbChain1D",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "UsedIndexBub",
    "type": "gbChain1D",
    "source": "annotation",

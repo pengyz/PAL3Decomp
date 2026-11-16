@@ -2,55 +2,55 @@
  "name": "CCBFiveNimbusWindow",
  "binary_size": 160,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "pCtrlButton",
    "type": "UIButtonEX *[5]",
    "offset": 72,
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "pMiddle",
    "type": "UIButtonEX *",
    "offset": 92,
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_OpenWindow",
    "type": "OpenFNWindow",
    "offset": 96,
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_nimbus",
    "type": "int[5]",
    "offset": 108,
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_state",
    "type": "int[5]",
    "offset": 128,
    "evidence_level": "unverified"
   },
-  "148": {
+  "0x94": {
    "name": "m_nimbusStep",
    "type": "int",
    "offset": 148,
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_bShow",
    "type": "unsigned char",
    "offset": 152,
    "evidence_level": "unverified"
   },
-  "153": {
+  "0x99": {
    "name": "m_bLock",
    "type": "unsigned char",
    "offset": 153,
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_counter",
    "type": "int",
    "offset": 156,
@@ -306,8 +306,8 @@
    "signature": "int __thiscall(int nVal)"
   },
   "0x00519fe0": {
-   "name": "HandleInput",
-   "evidence_level": "unverified",
+   "name": "OnMessage",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -329,7 +329,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)"
+   "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
+   "semantic_name": "CCBFiveNimbusWindow::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名HandleInput=体读数命名"
   },
   "0x00519b40": {
    "name": "_scalar_dtor_9B40",
@@ -358,9 +360,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x0051a090": {
-   "name": "AddResultWindowAni",
+   "name": "Update",
    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "adjudication": "confirmed",
    "semantic_sig": "BOOL",
    "sig_model": {
@@ -379,13 +381,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "CCBFiveNimbusWindow::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名AddResultWindowAni=体读数命名"
   },
   "0x00519f50": {
-   "name": "Destroy",
+   "name": "HideAll",
    "name_source": "same-name消歧 + 2026-11-09 复核",
-   "name_note": "剥壳定谳(验证pass): Destroy: 委托slot_3+m_OpenWindow实证",
-   "semantic_name": "Destroy_9F50",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名",
+   "semantic_name": "CCBFiveNimbusWindow::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -394,7 +398,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "evidence_level": "verified"
   },
   "0x0043ddf0": {
    "name": "Render",
@@ -413,31 +418,31 @@
  },
  "vtables": [
   {
-   "addr": "0x005704E4",
+   "addr": "0x005704e4",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0043DDF0"
+     "addr": "0x0043ddf0"
     },
     {
-     "addr": "0x0051A090"
+     "addr": "0x0051a090"
     },
     {
-     "addr": "0x00519F50"
+     "addr": "0x00519f50"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00519B40"
+     "addr": "0x00519b40"
     },
     {
-     "addr": "0x00519FE0"
+     "addr": "0x00519fe0"
     },
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     }
    ]
   }

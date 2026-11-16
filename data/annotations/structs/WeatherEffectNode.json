@@ -334,17 +334,17 @@
  },
  "vtables": [
   {
-   "addr": "0x0056A66C",
+   "addr": "0x0056a66c",
    "base": null,
    "slots": [
     {
-     "addr": "0x00404D40"
+     "addr": "0x00404d40"
     },
     {
-     "addr": "0x005420A2"
+     "addr": "0x005420a2"
     },
     {
-     "addr": "0x0054209C"
+     "addr": "0x0054209c"
     },
     {
      "addr": "0x00542096"
@@ -353,13 +353,13 @@
      "addr": "0x00542090"
     },
     {
-     "addr": "0x0054208A"
+     "addr": "0x0054208a"
     },
     {
      "addr": "0x00542084"
     },
     {
-     "addr": "0x0054207E"
+     "addr": "0x0054207e"
     },
     {
      "addr": "0x00542078"
@@ -371,115 +371,115 @@
      "addr": "0x00405310"
     },
     {
-     "addr": "0x005420BA"
+     "addr": "0x005420ba"
     },
     {
-     "addr": "0x005420B4"
+     "addr": "0x005420b4"
     },
     {
-     "addr": "0x005420AE"
+     "addr": "0x005420ae"
     },
     {
-     "addr": "0x005420A8"
+     "addr": "0x005420a8"
     },
     {
      "addr": "0x00405580"
     },
     {
-     "addr": "0x005420D2"
+     "addr": "0x005420d2"
     },
     {
-     "addr": "0x005420CC"
+     "addr": "0x005420cc"
     },
     {
      "addr": "0x00405560"
     },
     {
-     "addr": "0x005420C6"
+     "addr": "0x005420c6"
     },
     {
-     "addr": "0x005420C0"
+     "addr": "0x005420c0"
     }
    ],
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；21 槽全类 MI 视图（gbGeomNode+gbLightObj+gbRain/gbSnow 界面拼合）"
   },
   {
-   "addr": "0x0056A694",
+   "addr": "0x0056a694",
    "base": "gbLightObj",
    "slots": [
     {
      "addr": "0x00405310"
     },
     {
-     "addr": "0x005420BA"
+     "addr": "0x005420ba"
     },
     {
-     "addr": "0x005420B4"
+     "addr": "0x005420b4"
     },
     {
-     "addr": "0x005420AE"
+     "addr": "0x005420ae"
     },
     {
-     "addr": "0x005420A8"
+     "addr": "0x005420a8"
     },
     {
      "addr": "0x00405580"
     },
     {
-     "addr": "0x005420D2"
+     "addr": "0x005420d2"
     },
     {
-     "addr": "0x005420CC"
+     "addr": "0x005420cc"
     },
     {
      "addr": "0x00405560"
     },
     {
-     "addr": "0x005420C6"
+     "addr": "0x005420c6"
     },
     {
-     "addr": "0x005420C0"
+     "addr": "0x005420c0"
     }
    ],
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；11 槽尾视图==slots[10..20] 精确尾并合"
   },
   {
-   "addr": "0x0056A6A8",
+   "addr": "0x0056a6a8",
    "base": "gbRain",
    "slots": [
     {
      "addr": "0x00405580"
     },
     {
-     "addr": "0x005420D2"
+     "addr": "0x005420d2"
     },
     {
-     "addr": "0x005420CC"
+     "addr": "0x005420cc"
     },
     {
      "addr": "0x00405560"
     },
     {
-     "addr": "0x005420C6"
+     "addr": "0x005420c6"
     },
     {
-     "addr": "0x005420C0"
+     "addr": "0x005420c0"
     }
    ],
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；6 槽尾视图==slots[15..20]"
   },
   {
-   "addr": "0x0056A6B4",
+   "addr": "0x0056a6b4",
    "base": "gbSnow",
    "slots": [
     {
      "addr": "0x00405560"
     },
     {
-     "addr": "0x005420C6"
+     "addr": "0x005420c6"
     },
     {
-     "addr": "0x005420C0"
+     "addr": "0x005420c0"
     }
    ],
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=xref 仅表内 slot（虚派发）+ctor 写点深偏移（sub_404800/PAL3::InitGFX 组装域）②被调用者面=thunk 族 IDA 名 **gbGeomNode::Render/AttachSelf/Update/GetBoundSphere/EnableShadow + gbLightObj::GetType/GetEffectOnPoint + gbRain::Update + gbSnow::Draw**（导入转发）③成员访问面=删际析构形（基 dtor 导入链，无自有成员访问观测）④类归属面=MI 界面族四视图嵌套尾并合链 ⑤交互模式面=大 init 域构造 ⇒ **天气效果节点**（雨/雪+光照+几何节点）；evidence=[xrefs_to 4 删际,decompile 0x542072-0x5420D2 thunk×8,槽行尾并合核验] confidence=82；3 槽尾视图==slots[18..20]"

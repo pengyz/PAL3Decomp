@@ -2,32 +2,32 @@
  "name": "CLoad3DS",
  "binary_size": 36,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_FilePointer",
    "type": "gbVFile *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_pBuffer",
    "type": "char[20]",
    "source": "annotation",
    "note": "shrunk from char[256] to eliminate overlap",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nTodo_018",
    "type": "int",
    "source": "decomp ref C2039",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_nTodo_01C",
    "type": "int",
    "source": "decomp ref C2039",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nTodo_020",
    "type": "int",
    "source": "decomp ref C2039",

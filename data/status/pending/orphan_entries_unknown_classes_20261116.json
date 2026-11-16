@@ -1,0 +1,407 @@
+{
+ "date": "2026-11-16",
+ "note": "未知类条目保全(0x56ae10/0x56acd8类无标注文件, ctor间接构造无直调; 身份定谳后按证据归建类文件)",
+ "unknown_class_0x56ae10": {
+  "evidence": "表[445e70,442e90,442ff0,442420,445b90,442e60,445d10] UIWnd骨架; ctor=0x4423df(成员清零+[esi]=表); complete dtor 0x442e80机器码写本表",
+  "entries": {
+   "0x00444ac0": {
+    "from_class": "UIFrameWnd",
+    "was_name": "~UIFrameWnd_Full",
+    "entry": {
+     "name": "~UIFrameWnd_Full",
+     "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+     "evidence_level": "unverified",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "CCBResultWindow已落真条目"
+   },
+   "0x00442e80": {
+    "from_class": "UIFrameWnd",
+    "was_name": "~UIFrameWnd",
+    "entry": {
+     "name": "~UIFrameWnd",
+     "type": "skip",
+     "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+     "source": "| [ctor/dtor 错位改名 2026-10-16] ctor ⇒ ~UIFrameWnd：idapro 交叉复核（lead 确认）：ctor 名语义实为**真析构**（叶析构无 ??1/??3 家族调用=机械判据盲区，人工裁决补） | [C2084 归因消解 2026-10-16] 名 ~UIFrameWnd 与 _todo_442E80@0x00442390 撞名（ctor/dtor 双体 C2084）：A 级：0x442E80 movl $0x56ae10,(%ecx);jmp = vptr 写+尾跳（删除析构 thunk 形）；0x442390 SEH 全体析构保留；真析构已 idapro 确认待细分 | [T56 自抓#3 2026-10-16] 名 _todo_442E80 -> ~UIFrameWnd：0x442E80 = movl vptr->ecx + jmp 尾跳= 析构委托 thunk 形 ✓（与 ctor 0x442390 名对调——消歧对修正）",
+     "evidence_level": "A",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "orphan:0x56ae10"
+   },
+   "0x00442e60": {
+    "from_class": "UIWnd",
+    "was_name": "_scalar_dtor_2E60",
+    "entry": {
+     "name": "_scalar_dtor_2E60",
+     "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+     "evidence_level": "binary_vtable_slot",
+     "semantic_name": "slot_5",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "orphan:0x56ae10"
+   },
+   "0x00442e90": {
+    "from_class": "UIWnd",
+    "was_name": "RenderWithTexture",
+    "entry": {
+     "name": "RenderWithTexture",
+     "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+     "evidence_level": "binary_vtable_slot",
+     "semantic_name": "slot_1",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "orphan:0x56ae10"
+   },
+   "0x00443530": {
+    "from_class": "UIFrameWnd",
+    "was_name": "_scalar_dtor_3530",
+    "entry": {
+     "name": "_scalar_dtor_3530",
+     "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIFrameWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AE10,0x56AE2C,0x56AE48,0x56AE64）",
+     "ordinal": 26,
+     "evidence_level": "A",
+     "declaration_only": true,
+     "semantic_sig": "int",
+     "sig_model": {
+      "return": "int",
+      "cc": "thiscall",
+      "params": [
+       {
+        "type": "void *Block",
+        "name": null
+       },
+       {
+        "type": "char",
+        "name": null
+       }
+      ],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "int __thiscall(void *Block, char)"
+    },
+    "dest": "orphan:0x56ae10簇"
+   },
+   "0x00442420": {
+    "from_class": "UIWnd",
+    "was_name": "Destroy_2420",
+    "entry": {
+     "name": "Destroy_2420",
+     "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+     "evidence_level": "binary_vtable_slot",
+     "semantic_name": "Destroy_2420",
+     "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "摘除(表内无此址)"
+   },
+   "0x004431b0": {
+    "from_class": "UIWnd",
+    "was_name": "_sdtor_call_dtor",
+    "entry": {
+     "name": "_sdtor_call_dtor",
+     "source": "vtable_migrated",
+     "ordinal": 12,
+     "evidence_level": "unverified",
+     "declaration_only": true,
+     "semantic_sig": "int",
+     "sig_model": {
+      "return": "int",
+      "cc": "thiscall",
+      "params": [
+       {
+        "type": "void *Block",
+        "name": null
+       },
+       {
+        "type": "char",
+        "name": null
+       }
+      ],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "int __thiscall(void *Block, char)"
+    },
+    "dest": "CCBPanelSlot已落真条目"
+   }
+  }
+ },
+ "unknown_class_0x56acd8": {
+  "evidence": "表邻接UIFrameWnd(0x56acb8+0x20); complete dtor 0x43be30机器码写本表",
+  "entries": {
+   "0x0043be30": {
+    "from_class": "CCBResultWindow",
+    "was_name": "~CCBResultWindow",
+    "entry": {
+     "name": "~CCBResultWindow",
+     "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+     "evidence_level": "unverified",
+     "semantic_sig": "void",
+     "sig_model": {
+      "return": "void",
+      "cc": "thiscall",
+      "params": [],
+      "varargs": false,
+      "pending": false
+     },
+     "signature": "void __thiscall()"
+    },
+    "dest": "orphan:0x56acd8"
+   }
+  }
+ },
+ "fold_family_0x43de40_refs": {
+  "CCBUI": {
+   "was_name": "ReleaseTempStorage",
+   "entry": {
+    "name": "ReleaseTempStorage",
+    "semantic_name": "CCBStage::slot_3(void)",
+    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "自有slot3 HideAll=0x519510, 双HideAll同签将触发C8"
+  },
+  "CUtil": {
+   "was_name": "ReleaseTempStorage",
+   "entry": {
+    "name": "ReleaseTempStorage",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "无表类, 地址属折叠族非其成员"
+  }
+ },
+ "fold_family_0x43d920_refs": {
+  "ArraySlots": {
+   "was_name": "Destroy",
+   "entry": {
+    "name": "Destroy",
+    "name_source": "IDA语义分析 2026-10-31 批4",
+    "name_note": "释放 m_pWHFace 资源",
+    "semantic_name": "Destroy",
+    "semantic_sig": "int",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "int __thiscall(int, int, int)"
+   },
+   "reason": "地址=UI3DCtrl表slot3(HideAll位)折叠; ArraySlots无表无链"
+  }
+ },
+ "decomp_name_infection_refs": {
+  "CCBResultWindow": {
+   "addr": "0x00519510",
+   "was_name": "Destroy",
+   "entry": {
+    "name": "Destroy",
+    "evidence_level": "A",
+    "adjudication": "confirmed",
+    "evidence": "成员实访独占证据 uniq=10: m_pBack,m_pDouble,m_pEXP,m_pEarth,m_pFace（adjudicate_multiclaim 2026-11-03）",
+    "semantic_name": "Destroy",
+    "semantic_sig": "int",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "int __thiscall()"
+   },
+   "reason": "地址=CCBUI表0x5704c8 slot3(HideAll, 已裁定); 本条=decomp名传染伪影(hexrays错型CCBResultWindow::Destroy被普查照抄)"
+  },
+  "CCBResultWindow:0x00519660": {
+   "addr": "0x00519660",
+   "was_name": "IsImbibeNimbusNotFinish",
+   "entry": {
+    "name": "IsImbibeNimbusNotFinish",
+    "evidence_level": "unverified",
+    "semantic_sig": "BOOL",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "nVal"
+      },
+      {
+       "type": "int",
+       "name": "nVal2"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   },
+   "reason": "地址=CCBUI表slot2(Update已裁定); decomp名传染伪影"
+  },
+  "CCBUI:0x0051b570": {
+   "addr": "0x0051b570",
+   "was_name": "HandleInput",
+   "entry": {
+    "name": "HandleInput",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall(int, int)"
+   },
+   "reason": "地址=CCBLineupWindow表slot2(Update已裁定); decomp名传染伪影"
+  }
+ },
+ "fold_family_0x43d7a0_refs": {
+  "UIListBox": {
+   "was_name": "OnMessage",
+   "entry": {
+    "name": "OnMessage",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目 | 修正: name误含参数串+sig误void(); 体语义=转发OnMessage三参",
+    "evidence_level": "verified",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall(int, int, int)",
+    "semantic_name": "UIListBox::OnMessage",
+    "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用)"
+   },
+   "reason": "纯蹦床(UIWnd::OnMessage转发); UIListBox自有slot6 OnMessage继承, 引用重复"
+  }
+ },
+ "n12_placeholder_renames": {
+  "CCBStage:0x00524970": {
+   "was_name": "slot_1",
+   "entry_sig": "void __thiscall()"
+  }
+ },
+ "thunk_duplicate_refs": {
+  "CCBStage:0x004fc6f0": {
+   "was_name": "Render",
+   "entry": {
+    "name": "Render",
+    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
+    "evidence_level": "A",
+    "name_note": "; 签名格式归一(cc序畸形修正)",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "jmp 0x4fca80 thunk; GetTask真身已有同签认主, thunk引用重复"
+  }
+ }
+}

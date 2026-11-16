@@ -1,530 +1,530 @@
 {
  "name": "CScreenMode",
  "known_members": {
-  "4": {
+  "0x4": {
    "name": "m_bRenderAlt",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_in_class_method | ida_xref",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_nScreenFlags",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nTodo_0C",
    "type": "int",
    "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error) | [批4 诚实化 2026-10-16] A偏移形：m_nField0C⇒m_nTodo_0C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_fFadeStart",
    "type": "float",
    "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_fFadeTarget",
    "type": "float",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nFadeState",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_nPosY",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "m_nBarTotalSize",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "m_nArrayCapacity",
    "type": "int",
    "source": "ida_decomp:_init_52ed30 = 62, new(4*this), 3 refs",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "m_pArrayData",
    "type": "char *",
    "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "0": {
+  "0x0": {
    "name": "m_pEnumeration",
    "type": "char *",
    "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_nProgressPos",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_nProgress",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_nBarWidth",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_nBarHeight",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_nBarPosX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "148": {
+  "0x94": {
    "name": "m_nBarPosY",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "m_fProgressRatio",
    "type": "float",
    "source": "ida_decomp:SetProgress = a2/v3, 5 refs",
    "evidence_level": "unverified"
   },
-  "224": {
+  "0xe0": {
    "name": "m_fProgressMax",
    "type": "float",
    "source": "ida_decomp:SetProgress divisor, 8 refs",
    "evidence_level": "unverified"
   },
-  "232": {
+  "0xe8": {
    "name": "m_fProgress",
    "type": "float",
    "source": "reverted:fild_alone_insufficient(m_f_prefix_confirms_float)",
    "evidence_level": "unverified"
   },
-  "268": {
+  "0x10c": {
    "name": "m_nBarParam",
    "type": "int",
    "source": "ida_decomp:SetProgress loaded twice, 2 refs",
    "evidence_level": "unverified"
   },
-  "1244": {
+  "0x4dc": {
    "name": "m_nPageCounter",
    "type": "UIScene",
    "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nPosX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "212": {
+  "0xd4": {
    "name": "m_szTooltip",
    "type": "char[8]",
    "source": "fix:span=8_next_hits=5",
    "evidence_level": "unverified"
   },
-  "236": {
+  "0xec": {
    "name": "m_fProgressParam",
    "type": "float",
    "source": "binary:disp32_8hits_1funcs",
    "evidence_level": "unverified"
   },
-  "248": {
+  "0xf8": {
    "name": "m_fBarOffsetX",
    "type": "float",
    "source": "ida_decomp:SetProgress added to layout calc, 2 refs",
    "evidence_level": "unverified"
   },
-  "252": {
+  "0xfc": {
    "name": "m_fBarOffsetY",
    "type": "float",
    "source": "ida_decomp:SetProgress added to layout calc, 2 refs",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_fBarOffsetW",
    "type": "float",
    "source": "ida_decomp:SetProgress added to layout calc, 2 refs",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_fFadeAlpha",
    "type": "float",
    "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_fFadeSpeed",
    "type": "float",
    "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "m_fCountdown",
    "type": "float",
    "source": "ida_decomp:_init_533250 -= 0.5, 8 refs",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_fFadeParam",
    "type": "float",
    "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_fFadeProgress",
    "type": "float",
    "source": "reverted_auto_semantic:2x_access",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_VolMod",
    "type": "int",
    "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_bFadeActive",
    "type": "unsigned char",
    "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_fScreenTimer",
    "type": "float",
    "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_nLayoutParam",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_nUIState",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_nUIMode",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_nScreenWidth",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_nScreenHeight",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "m_nProgressBase",
    "type": "int",
    "source": "ida_decomp:SetProgress loaded, 10 refs",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_nLayoutState",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "104": {
+  "0x68": {
    "name": "m_nLayoutOffX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_nLayoutOffY",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "120": {
+  "0x78": {
    "name": "m_nProgressValA",
    "type": "int",
    "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "m_nProgressValB",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "152": {
+  "0x98": {
    "name": "m_bCameraInit",
    "type": "int",
    "source": "decomp:InitCamera_set_0,_init_set_1",
    "evidence_level": "unverified"
   },
-  "164": {
+  "0xa4": {
    "name": "m_wndAssistA",
    "type": "float",
    "source": "A:FPU_disp32_0x52c513",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_fFadeMaxAlpha",
    "type": "float",
    "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "113": {
+  "0x71": {
    "name": "m_bLoadFlag",
    "type": "unsigned char",
    "source": "decomp:LoadScreenScene_if(!x)+set_0",
    "evidence_level": "unverified"
   },
-  "3876": {
+  "0xf24": {
    "name": "m_RoleDialog",
    "type": "UIRoleDialog",
    "source": "ctor/dtor:ARC_PlayerAtt::Refresh+UIRoleDialog::_UIRoleDialog",
    "evidence_level": "unverified"
   },
-  "2620": {
+  "0xa3c": {
    "name": "m_ScenePanel",
    "type": "UIScene",
    "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344",
    "evidence_level": "unverified"
   },
-  "2964": {
+  "0xb94": {
    "name": "m_ScenePanelB",
    "type": "UIScene",
    "source": "A:binary_ctor lea+call UIScene::Destroy2 stride=344",
    "evidence_level": "unverified"
   },
-  "3308": {
+  "0xcec": {
    "name": "m_ScenePanelC",
    "type": "UIScene",
    "source": "reverted_auto_semantic:4x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "636": {
+  "0x27c": {
    "type": "UIFrameWnd",
    "name": "_embed_UIFrameWnd_816",
    "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init | [embed overlap 声明 2026-10-16] 补 overlap（CLAUDE.md 位面/范围复用定谳）——⚠️ 本冲突系 UIFrameWnd 尺寸修正 72→152（26 站 new-ctor 三元组证）的**下游暴露**：双嵌入 @636/@728 间隔 92B < 152B 对象 ⇒ 二者之一嵌入位/型存疑（真值待 idapro decompile 访问形核实）；暂以 overlap 声明解锁检查面 + 挂账真值待裁",
    "evidence_level": "A"
   },
-  "728": {
+  "0x2d8": {
    "type": "UIFrameWnd",
    "name": "_embed_UIFrameWnd_968",
    "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init | [embed overlap 声明 2026-10-16] 补 overlap（CLAUDE.md 位面/范围复用定谳）——⚠️ 本冲突系 UIFrameWnd 尺寸修正 72→152（26 站 new-ctor 三元组证）的**下游暴露**：双嵌入 @636/@728 间隔 92B < 152B 对象 ⇒ 二者之一嵌入位/型存疑（真值待 idapro decompile 访问形核实）；暂以 overlap 声明解锁检查面 + 挂账真值待裁",
    "evidence_level": "A"
   },
-  "32": {
+  "0x20": {
    "name": "m_nFadeCounter",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_fVolume",
    "type": "float",
    "source": "binary_scan:3refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "168": {
+  "0xa8": {
    "name": "m_nAudioHandle",
    "type": "int",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "172": {
+  "0xac": {
    "name": "m_pfnPlayVideo",
    "type": "int",
    "source": "binary_scan:6refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_nAudioState",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "m_fAudioVolume",
    "type": "float",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_nAudioFileId",
    "type": "int",
    "source": "binary_scan:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "192": {
+  "0xc0": {
    "name": "m_nVideoState",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "196": {
+  "0xc4": {
    "name": "m_fSceneVolume",
    "type": "float",
    "source": "binary_scan:2refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "204": {
+  "0xcc": {
    "name": "m_fPan",
    "type": "float",
    "source": "binary_scan:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "208": {
+  "0xd0": {
    "name": "m_fProgressD",
    "type": "float",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "228": {
+  "0xe4": {
    "name": "m_fProgressCur",
    "type": "float",
    "source": "decomp:SetProgress_divided_by_max",
    "evidence_level": "unverified"
   },
-  "240": {
+  "0xf0": {
    "name": "m_fProgressNorm",
    "type": "float",
    "source": "decomp:SetProgress_normalized",
    "evidence_level": "unverified"
   },
-  "260": {
+  "0x104": {
    "name": "m_fAccum",
    "type": "float",
    "source": "A:FPU_fadd_2x_[esi+104h]_confirmed_float",
    "evidence_level": "unverified"
   },
-  "264": {
+  "0x108": {
    "name": "m_nProgressTimer",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "280": {
+  "0x118": {
    "name": "m_FrameB",
    "type": "UIStatic",
    "source": "decomp:_init_47be20_CreateFromTemplate+vtable16",
    "evidence_level": "unverified"
   },
-  "432": {
+  "0x1b0": {
    "name": "m_StaticArray",
    "type": "UIStatic",
    "source": "decomp:_init_47be20_loop_ptr+=152(UIStatic_array_start)",
    "evidence_level": "unverified"
   },
-  "616": {
+  "0x268": {
    "name": "m_nVolNode0",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "620": {
+  "0x26c": {
    "name": "m_nVolNode1",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "624": {
+  "0x270": {
    "name": "m_nVolNode2",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "628": {
+  "0x274": {
    "name": "m_nVolNode3",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "632": {
+  "0x278": {
    "name": "m_nVolNode4",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "808": {
+  "0x328": {
    "name": "m_pAudioMgr",
    "type": "gbAudioManager *",
    "source": "decomp:Restore_dtor_call",
    "evidence_level": "unverified"
   },
-  "812": {
+  "0x32c": {
    "name": "m_pSoundStream",
    "type": "void *",
    "source": "binary_scan:1refs;batch_fix:int_or_float_to_v*_LEA",
    "evidence_level": "unverified"
   },
-  "816": {
+  "0x330": {
    "name": "m_Static_816",
    "type": "UIStatic",
    "source": "ctor:UIStatic::_UIStatic",
    "evidence_level": "unverified"
   },
-  "2260": {
+  "0x8d4": {
    "name": "m_BtnTooltipC",
    "type": "UIButton",
    "source": "decomp:_init_4593c0_same_pattern(+344_from_1916)",
    "evidence_level": "unverified"
   },
-  "2608": {
+  "0xa30": {
    "name": "m_pGameUI",
    "type": "void *",
    "source": "binary_scan:2refs;batch_fix:int_to_v*_LEA_embed | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：混杂——fnptr 槽 +7 间接调（InitGameUI@0x4593C0）+ `&field` 作 CScreenMode*（SetTooltipText）+ `sub_446010(&field)` ⇒ &field=对象/槽区（非独立指针）",
    "evidence_level": "A"
   },
-  "3868": {
+  "0xf1c": {
    "name": "m_bActive",
    "type": "unsigned char",
    "source": "A:byte_toggle_1_0_in_ctor",
    "evidence_level": "unverified"
   },
-  "3872": {
+  "0xf20": {
    "name": "m_nScreenActive",
    "type": "int",
    "source": "binary_scan:1refs",
    "evidence_level": "unverified"
   },
-  "3688": {
+  "0xe68": {
    "name": "m_SceneBlock",
    "type": "int",
    "source": "decomp:BYTE+560_DWORD+141",
    "evidence_level": "unverified"
   },
-  "3660": {
+  "0xe4c": {
    "name": "m_nAssistMode",
    "type": "int",
    "source": "decomp:+4_BYTE_CreateFromTemplate",
@@ -767,10 +767,10 @@
    "signature": "void __thiscall()"
   },
   "0x00524980": {
-   "name": "ForwardMessage",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
-   "semantic_name": "ForwardMessage",
+   "evidence_level": "verified",
+   "semantic_name": "CScreenMode::Update",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -788,13 +788,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(int, int)",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ForwardMessage=体读数命名"
   },
   "0x005249a0": {
-   "name": "OnRenderAlt",
+   "name": "OnMessage",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -808,7 +809,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal1)"
+   "signature": "int __thiscall(int nVal1)",
+   "semantic_name": "CScreenMode::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnRenderAlt=体读数命名"
   },
   "0x00527f50": {
    "name": "InitSceneAudio",
@@ -1775,9 +1778,9 @@
    "signature": "bool __thiscall(int thisa)"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "CScreenMode::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -1786,7 +1789,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   },
   "0x00524970": {
    "name": "Render",
@@ -1810,7 +1814,7 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
      "addr": "0x00524970"
@@ -1819,16 +1823,16 @@
      "addr": "0x00524980"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
      "addr": "0x00524110"
     },
     {
-     "addr": "0x005249A0"
+     "addr": "0x005249a0"
     }
    ]
   }

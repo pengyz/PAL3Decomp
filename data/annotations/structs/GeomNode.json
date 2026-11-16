@@ -2,49 +2,49 @@
  "name": "GeomNode",
  "binary_size": 288,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "pNext",
    "type": "GeomNode *",
    "size": 4,
    "source": "gbChain1DNode::pNext at +0",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "pParent",
    "type": "GeomNode *",
    "size": 4,
    "source": "gbNBTreeNode::pParent at +4",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "children",
    "type": "char[16]",
    "size": 16,
    "source": "gbNBTreeNode::children (gbChain1D) at +8",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "worldTransform",
    "type": "Matrix4",
    "size": 64,
    "source": "gbGeomNode::worldTransform at +0x5C",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "staticTransform",
    "type": "Matrix4",
    "size": 64,
    "source": "gbGeomNode::staticTransform at +0x9C",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "mesh",
    "type": "int",
    "size": 4,
    "source": "gbGeomNode::mesh (gbStaticMesh*) at +0x108",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_nTodo_100",
    "type": "int",
    "source": "binary_scan:1refs",

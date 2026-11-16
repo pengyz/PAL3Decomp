@@ -2,550 +2,550 @@
  "name": "BINK",
  "binary_size": 932,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "Width",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "Height",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "Frames",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "FrameNum",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "LastFrameNum",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "FrameRate",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "FrameRateDiv",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "ReadError",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "OpenFlags",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "BinkType",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "Size",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "FrameSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "SndSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "FrameRects",
    "type": "BINKRECT[8]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "180": {
+  "0xb4": {
    "name": "NumRects",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "PlaneNum",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "188": {
+  "0xbc": {
    "name": "YPlane",
    "type": "char *[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "196": {
+  "0xc4": {
    "name": "APlane",
    "type": "char *[2]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "204": {
+  "0xcc": {
    "name": "YWidth",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "208": {
+  "0xd0": {
    "name": "YHeight",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "212": {
+  "0xd4": {
    "name": "UVWidth",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "216": {
+  "0xd8": {
    "name": "UVHeight",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "MaskPlane",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "224": {
+  "0xe0": {
    "name": "MaskPitch",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "228": {
+  "0xe4": {
    "name": "MaskLength",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "232": {
+  "0xe8": {
    "name": "LargestFrameSize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "236": {
+  "0xec": {
    "name": "InternalFrames",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "240": {
+  "0xf0": {
    "name": "NumTracks",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "Highest1SecRate",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "248": {
+  "0xf8": {
    "name": "Highest1SecFrame",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "252": {
+  "0xfc": {
    "name": "Paused",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "BackgroundThread",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "260": {
+  "0x104": {
    "name": "compframe",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "264": {
+  "0x108": {
    "name": "preloadptr",
    "type": "char *",
    "source": "annotation",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "268": {
+  "0x10c": {
    "name": "frameoffsets",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "272": {
+  "0x110": {
    "name": "bio",
    "type": "BINKIO",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "476": {
+  "0x1dc": {
    "name": "ioptr",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "480": {
+  "0x1e0": {
    "name": "iosize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "484": {
+  "0x1e4": {
    "name": "decompwidth",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "488": {
+  "0x1e8": {
    "name": "decompheight",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "492": {
+  "0x1ec": {
    "name": "trackindex",
    "type": "long",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "496": {
+  "0x1f0": {
    "name": "tracksizes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "500": {
+  "0x1f4": {
    "name": "tracktypes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "504": {
+  "0x1f8": {
    "name": "trackIDs",
    "type": "int *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "508": {
+  "0x1fc": {
    "name": "numrects",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "512": {
+  "0x200": {
    "name": "playedframes",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "516": {
+  "0x204": {
    "name": "firstframetime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "520": {
+  "0x208": {
    "name": "startframetime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "524": {
+  "0x20c": {
    "name": "startblittime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "528": {
+  "0x210": {
    "name": "startsynctime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "532": {
+  "0x214": {
    "name": "startsyncframe",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "536": {
+  "0x218": {
    "name": "twoframestime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "540": {
+  "0x21c": {
    "name": "entireframetime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "544": {
+  "0x220": {
    "name": "slowestframetime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "548": {
+  "0x224": {
    "name": "slowestframe",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "552": {
+  "0x228": {
    "name": "slowest2frametime",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "556": {
+  "0x22c": {
    "name": "slowest2frame",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "560": {
+  "0x230": {
    "name": "soundon",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "564": {
+  "0x234": {
    "name": "videoon",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "568": {
+  "0x238": {
    "name": "totalmem",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "572": {
+  "0x23c": {
    "name": "timevdecomp",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "576": {
+  "0x240": {
    "name": "timeadecomp",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "580": {
+  "0x244": {
    "name": "timeblit",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "584": {
+  "0x248": {
    "name": "timeopen",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "588": {
+  "0x24c": {
    "name": "fileframerate",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "592": {
+  "0x250": {
    "name": "fileframeratediv",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "596": {
+  "0x254": {
    "name": "threadcontrol",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "600": {
+  "0x258": {
    "name": "runtimeframes",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "604": {
+  "0x25c": {
    "name": "runtimemoveamt",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "608": {
+  "0x260": {
    "name": "rtframetimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "612": {
+  "0x264": {
    "name": "rtadecomptimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "616": {
+  "0x268": {
    "name": "rtvdecomptimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "620": {
+  "0x26c": {
    "name": "rtblittimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "624": {
+  "0x270": {
    "name": "rtreadtimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "628": {
+  "0x274": {
    "name": "rtidlereadtimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "632": {
+  "0x278": {
    "name": "rtthreadreadtimes",
    "type": "DWORD *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "636": {
+  "0x27c": {
    "name": "lastblitflags",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "640": {
+  "0x280": {
    "name": "lastdecompframe",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "644": {
+  "0x284": {
    "name": "sndbufsize",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "648": {
+  "0x288": {
    "name": "sndbuf",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "652": {
+  "0x28c": {
    "name": "sndend",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "656": {
+  "0x290": {
    "name": "sndwritepos",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "660": {
+  "0x294": {
    "name": "sndreadpos",
    "type": "BYTE *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "664": {
+  "0x298": {
    "name": "sndcomp",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "668": {
+  "0x29c": {
    "name": "sndamt",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "672": {
+  "0x2a0": {
    "name": "sndreenter",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "676": {
+  "0x2a4": {
    "name": "sndconvert8",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "680": {
+  "0x2a8": {
    "name": "bsnd",
    "type": "BINKSND",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "872": {
+  "0x368": {
    "name": "skippedlastblit",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "876": {
+  "0x36c": {
    "name": "skippedblits",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "880": {
+  "0x370": {
    "name": "soundskips",
    "type": "DWORD",
    "source": "annotation",
@@ -560,7 +560,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "884": {
+  "0x374": {
    "name": "sndendframe",
    "type": "DWORD",
    "source": "annotation",
@@ -575,7 +575,7 @@
     "timestamp": "2026-11-12"
    }
   },
-  "888": {
+  "0x378": {
    "name": "sndprime",
    "type": "DWORD",
    "source": "annotation",
@@ -590,13 +590,13 @@
     "timestamp": "2026-11-12"
    }
   },
-  "892": {
+  "0x37c": {
    "name": "sndpad",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "896": {
+  "0x380": {
    "name": "bunp",
    "type": "BUNDLEPOINTERS",
    "source": "annotation",

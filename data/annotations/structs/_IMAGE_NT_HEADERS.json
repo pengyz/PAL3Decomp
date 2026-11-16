@@ -2,19 +2,19 @@
  "name": "_IMAGE_NT_HEADERS",
  "binary_size": 248,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "Signature",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "FileHeader",
    "type": "_IMAGE_FILE_HEADER",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "OptionalHeader",
    "type": "_IMAGE_OPTIONAL_HEADER",
    "source": "annotation",

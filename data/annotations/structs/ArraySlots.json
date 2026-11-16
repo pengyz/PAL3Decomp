@@ -2,13 +2,13 @@
  "name": "ArraySlots",
  "binary_size": 88,
  "known_members": {
-  "72": {
+  "0x48": {
    "name": "m_aSlotPtrs",
    "type": "int[3]",
    "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[18..20]=0（+72..+80） | 修复 2026-10-17: int[4]→int[3]（A 级 this[18..20]=+72..+80 三点证）",
    "evidence_level": "A"
   },
-  "84": {
+  "0x54": {
    "name": "m_bActive",
    "type": "int",
    "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级：0x44A790 this[21]=1（+84）",
@@ -29,34 +29,6 @@
     "pending": false
    },
    "signature": "void __thiscall()"
-  },
-  "0x0043d920": {
-   "name": "Destroy",
-   "name_source": "IDA语义分析 2026-10-31 批4",
-   "name_note": "释放 m_pWHFace 资源",
-   "semantic_name": "Destroy",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall(int, int, int)"
   },
   "0x0044a820": {
    "name": "GetUIElements",

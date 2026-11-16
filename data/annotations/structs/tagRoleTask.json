@@ -2,13 +2,13 @@
  "name": "tagRoleTask",
  "binary_size": 96,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "fp",
    "type": "char *[4]",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "vec1",
    "type": {
     "union": [
@@ -61,49 +61,49 @@
    "source": "overlay:LODWORD(vec1.x)->LayoutSlotPanelA, LODWORD(vec1.y)->ToggleSlot0 in CCBStageRole",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "cmd",
    "type": "tagCmdData",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "fTemp",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "fTemp2",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "dwID",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "eMode",
    "type": "ECBRoleTaskMode",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "bValid",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "89": {
+  "0x59": {
    "name": "bFinished",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "90": {
+  "0x5a": {
    "name": "bExecuted",
    "type": "BYTE",
    "source": "annotation",

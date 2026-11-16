@@ -2,696 +2,696 @@
  "name": "CGameData",
  "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "_vftable",
    "type": "void *",
    "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)",
    "evidence_level": "unverified"
   },
-  "14528": {
+  "0x38c0": {
    "name": "m_pDialog",
    "type": "char *",
    "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "14532": {
+  "0x38c4": {
    "name": "m_pSceneObjRef",
    "type": "SceneObj *",
    "source": "binary:Render+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "14536": {
+  "0x38c8": {
    "name": "m_nPrevSceneState",
    "type": "int",
    "source": "binary:Render+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "260": {
+  "0x104": {
    "name": "m_nInit",
    "type": "UIWnd *",
    "source": "gen_headers_9.2+codegen_infer",
    "evidence_level": "unverified"
   },
-  "276": {
+  "0x114": {
    "name": "m_nInitRoles",
    "type": "UIWnd *",
    "source": "gen_headers_9.2+codegen_infer",
    "evidence_level": "unverified"
   },
-  "884": {
+  "0x374": {
    "name": "m_RoleDataA",
    "type": "CScreenMode *",
    "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "1228": {
+  "0x4cc": {
    "name": "m_RoleDataB",
    "type": "CScreenMode *",
    "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "1572": {
+  "0x624": {
    "name": "m_RoleDataC",
    "type": "CScreenMode *",
    "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "2228": {
+  "0x8b4": {
    "name": "m_nInitItems",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "2232": {
+  "0x8b8": {
    "name": "m_nItemCount2",
    "type": "int",
    "source": "reverted_auto_semantic:1x",
    "evidence_level": "unverified"
   },
-  "2248": {
+  "0x8c8": {
    "name": "m_nEquipCount",
    "type": "int",
    "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "2260": {
+  "0x8d4": {
    "name": "m_nConsumableCount",
    "type": "int",
    "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "3288": {
+  "0xcd8": {
    "name": "m_nTodo_CD8",
    "type": "int",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "3904": {
+  "0xf40": {
    "name": "m_nRender",
    "type": "int",
    "source": "gen_headers_9.2",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_pItemData",
    "type": "char *",
    "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_pMagicData",
    "type": "char *",
    "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "256": {
+  "0x100": {
    "name": "m_nStartPos",
    "type": "short",
    "source": "binary:raw_batch",
    "evidence_level": "unverified"
   },
-  "640": {
+  "0x280": {
    "name": "m_nTodo_280",
    "type": "unsigned char",
    "source": "binary:5x abs refs, byte access (0x280) | [批4 诚实化 2026-10-16] A偏移形：m_bFlag280⇒m_nTodo_280（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "641": {
+  "0x281": {
    "name": "m_nTodo_281",
    "type": "unsigned char",
    "source": "binary:6x abs refs, byte access (0x281) | [批4 诚实化 2026-10-16] A偏移形：m_bFlag281⇒m_nTodo_281（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "642": {
+  "0x282": {
    "name": "m_nTodo_282",
    "type": "unsigned char",
    "source": "binary:6x abs refs, byte access (0x282) | [批4 诚实化 2026-10-16] A偏移形：m_bFlag282⇒m_nTodo_282（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "3284": {
+  "0xcd4": {
    "name": "m_bInitRoles",
    "type": "unsigned char",
    "source": "binary:raw_batch",
    "evidence_level": "unverified"
   },
-  "3304": {
+  "0xce8": {
    "name": "m_nTodo_CE8",
    "type": "unsigned char",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "3305": {
+  "0xce9": {
    "name": "m_nTodo_CE9",
    "type": "unsigned char",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "7412": {
+  "0x1cf4": {
    "name": "m_nScriptResult",
    "type": "int",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "7416": {
+  "0x1cf8": {
    "name": "m_bScriptActive",
    "type": "unsigned char",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)",
    "evidence_level": "unverified"
   },
-  "9488": {
+  "0x2510": {
    "name": "m_nScriptHandleA",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9492": {
+  "0x2514": {
    "name": "m_nScriptHandleB",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9496": {
+  "0x2518": {
    "name": "m_nScriptHandleC",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9500": {
+  "0x251c": {
    "name": "m_nScriptHandleD",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9504": {
+  "0x2520": {
    "name": "m_nScriptHandleE",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9508": {
+  "0x2524": {
    "name": "m_nScriptHandleF",
    "type": "int",
    "source": "ida_decomp:InitRoles = 0",
    "evidence_level": "unverified"
   },
-  "9512": {
+  "0x2528": {
    "name": "m_bScriptRunning",
    "type": "unsigned char",
    "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
-  "28176": {
+  "0x6e10": {
    "name": "m_pGameObj",
    "type": "char *",
    "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "28180": {
+  "0x6e14": {
    "name": "m_nMode",
    "type": "int",
    "source": "binary:raw_batch",
    "evidence_level": "unverified"
   },
-  "28184": {
+  "0x6e18": {
    "name": "m_pGameObjB",
    "type": "char *",
    "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_nField_044",
    "type": "int",
    "source": "binary:gap_r2",
    "evidence_level": "unverified"
   },
-  "244": {
+  "0xf4": {
    "name": "m_pStartScene",
    "type": "UIScene *",
    "source": "binary:gap_r2",
    "evidence_level": "unverified"
   },
-  "356": {
+  "0x164": {
    "name": "m_nSaveSlot",
    "type": "int",
    "source": "binary:10x abs refs (0x164)",
    "evidence_level": "unverified"
   },
-  "656": {
+  "0x290": {
    "name": "m_nGameMode",
    "type": "int",
    "source": "binary:17x abs refs (0x290)",
    "evidence_level": "unverified"
   },
-  "1916": {
+  "0x77c": {
    "name": "m_ItemSlotA",
    "type": "UIItem",
    "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "2220": {
+  "0x8ac": {
    "name": "m_pItemArray",
    "type": "int[13]",
    "source": "| inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）",
    "evidence_level": "A"
   },
-  "3308": {
+  "0xcec": {
    "name": "m_ItemSlotB",
    "type": "UIItem",
    "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "4676": {
+  "0x1244": {
    "name": "m_ItemSlotC",
    "type": "UIItem",
    "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "5012": {
+  "0x1394": {
    "name": "m_UITitle",
    "type": "int",
    "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs",
    "evidence_level": "unverified"
   },
-  "6044": {
+  "0x179c": {
    "name": "m_ItemSlotD",
    "type": "UIItem",
    "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
    "evidence_level": "unverified"
   },
-  "14544": {
+  "0x38d0": {
    "name": "m_aItemData",
    "type": "int",
    "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs",
    "evidence_level": "unverified"
   },
-  "328": {
+  "0x148": {
    "name": "m_nField_148",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "624": {
+  "0x270": {
    "name": "m_nPlayerMoney",
    "type": "int",
    "source": "binary:3x abs refs, store/load eax(dword)",
    "evidence_level": "unverified"
   },
-  "628": {
+  "0x274": {
    "name": "m_nMoneyAdd",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "632": {
+  "0x278": {
    "name": "m_nMoneySub",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "636": {
+  "0x27c": {
    "name": "m_nStorePriceMod",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "644": {
+  "0x284": {
    "name": "m_nReputation",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "648": {
+  "0x288": {
    "name": "m_nSceneLoadParam",
    "type": "int",
    "source": "binary:gamedata_gap+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "652": {
+  "0x28c": {
    "name": "m_bSceneLoaded",
    "type": "char",
    "source": "manual_fix:shrink_to_gap | ida_xref",
    "evidence_level": "unverified"
   },
-  "653": {
+  "0x28d": {
    "name": "m_bSceneActive",
    "type": "unsigned char",
    "source": "binary:gamedata_gap | ida_xref",
    "evidence_level": "unverified"
   },
-  "728": {
+  "0x2d8": {
    "name": "m_nBattleResult",
    "type": "int",
    "source": "binary:5x abs refs (0x2D8)",
    "evidence_level": "unverified"
   },
-  "736": {
+  "0x2e0": {
    "name": "m_nMissionState",
    "type": "int",
    "source": "binary:4x abs refs, dword access in PalScriptMgr",
    "evidence_level": "unverified"
   },
-  "3976": {
+  "0xf88": {
    "name": "m_nUIFlags",
    "type": "int",
    "source": "binary:4x abs refs, A1(load eax) + others",
    "evidence_level": "unverified"
   },
-  "14524": {
+  "0x38bc": {
    "name": "m_nGameFlags",
    "type": "int",
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_nRoleCount",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_nItemCount",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nMagicCount",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nSceneCount",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nStateFlags",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_bDataLoaded",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_nLoadResult",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_nGameTick",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_nDataCRC",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "1744": {
+  "0x6d0": {
    "name": "m_fAnimTimer",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "1748": {
+  "0x6d4": {
    "name": "m_fAnimSpeed",
    "type": "float",
    "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B",
    "evidence_level": "unverified"
   },
-  "1788": {
+  "0x6fc": {
    "name": "m_bAnimPaused",
    "type": "unsigned char",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "1840": {
+  "0x730": {
    "name": "m_bAnimLoop",
    "type": "unsigned char",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "2480": {
+  "0x9b0": {
    "name": "m_fBGMVolume",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "2484": {
+  "0x9b4": {
    "name": "m_nBGMState",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "3796": {
+  "0xed4": {
    "name": "m_nUIDialogId",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "4448": {
+  "0x1160": {
    "name": "m_fUIColorR",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "4452": {
+  "0x1164": {
    "name": "m_nUIColorMode",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "5104": {
+  "0x13f0": {
    "name": "m_fUITransition",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "5760": {
+  "0x1680": {
    "name": "m_fUIFadeAlpha",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "5764": {
+  "0x1684": {
    "name": "m_nUIFadeState",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "6416": {
+  "0x1910": {
    "name": "m_fSceneTimer",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "6420": {
+  "0x1914": {
    "name": "m_nSceneState",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "7728": {
+  "0x1e30": {
    "name": "m_fEffectTimer",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "7732": {
+  "0x1e34": {
    "name": "m_nEffectState",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "10352": {
+  "0x2870": {
    "name": "m_fScriptTimer",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "10364": {
+  "0x287c": {
    "name": "m_nScriptPhase",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "11008": {
+  "0x2b00": {
    "name": "m_fDialogTimer",
    "type": "float",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "11012": {
+  "0x2b04": {
    "name": "m_nDialogState",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "17104": {
+  "0x42d0": {
    "name": "m_nPostGame",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
   },
-  "14540": {
+  "0x38cc": {
    "name": "m_nSceneTransition",
    "type": "int",
    "source": "gap_fill:ida_decomp_access+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nDataVersion",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "408": {
+  "0x198": {
    "name": "m_nSceneTransFlag",
    "type": "int",
    "source": "binary_discovery:1refs+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "768": {
+  "0x300": {
    "name": "m_nBattleCount",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "1024": {
+  "0x400": {
    "name": "m_nWinCount",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "1280": {
+  "0x500": {
    "name": "m_nLossCount",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "1536": {
+  "0x600": {
    "name": "m_nEscapeCount",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "2304": {
+  "0x900": {
    "name": "m_nKeyItemCount",
    "type": "int",
    "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
-  "3829": {
+  "0xef5": {
    "name": "m_bDialogActive",
    "type": "unsigned char",
    "source": "binary_discovery:1refs | ida_xref",
    "evidence_level": "unverified"
   },
-  "12992": {
+  "0x32c0": {
    "name": "m_fUIColorParam",
    "type": "float",
    "source": "auto:overlap_g_GameData_at_+0x32C0",
    "evidence_level": "unverified"
   },
-  "16424": {
+  "0x4028": {
    "name": "m_bGameUpdating",
    "type": "unsigned char",
    "source": "auto:overlap_g_GameData_at_+0x4028",
    "evidence_level": "unverified"
   },
-  "7072": {
+  "0x1ba0": {
    "name": "m_fTimerC",
    "type": "float",
    "source": "auto:extern_overlap_g_GameData_at_+0x1BA0",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_rcWindow",
    "type": "tagRECT",
    "source": "| normalize_key: 0x4C -> 76",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_rcWidgetRect",
    "type": "tagRECT",
    "source": "| normalize_key: 0x5C -> 92",
    "evidence_level": "unverified"
   },
-  "108": {
+  "0x6c": {
    "name": "m_nTodo_06C",
    "type": "int",
    "source": "| normalize_key: 0x6C -> 108",
    "evidence_level": "unverified"
   },
-  "112": {
+  "0x70": {
    "name": "m_nTodo_070",
    "type": "int",
    "source": "| normalize_key: 0x70 -> 112",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "m_nTodo_07C",
    "type": "UIWnd *",
    "source": "| normalize_key: 0x7C -> 124",
    "evidence_level": "unverified"
   },
-  "988": {
+  "0x3dc": {
    "name": "m_nTodo_3DC",
    "type": "int",
    "source": "| normalize_key: 0x3DC -> 988",
    "evidence_level": "unverified"
   },
-  "992": {
+  "0x3e0": {
    "name": "m_nTodo_3E0",
    "type": "int",
    "source": "| normalize_key: 0x3E0 -> 992",
    "evidence_level": "unverified"
   },
-  "1332": {
+  "0x534": {
    "name": "m_nTodo_534",
    "type": "int",
    "source": "| normalize_key: 0x534 -> 1332",
    "evidence_level": "unverified"
   },
-  "1336": {
+  "0x538": {
    "name": "m_nTodo_538",
    "type": "int",
    "source": "| normalize_key: 0x538 -> 1336",
    "evidence_level": "unverified"
   },
-  "1676": {
+  "0x68c": {
    "name": "m_nTodo_68C",
    "type": "int",
    "source": "| normalize_key: 0x68C -> 1676",
    "evidence_level": "unverified"
   },
-  "1680": {
+  "0x690": {
    "name": "m_nTodo_690",
    "type": "int",
    "source": "| normalize_key: 0x690 -> 1680",
    "evidence_level": "unverified"
   },
-  "428": {
+  "0x1ac": {
    "name": "m_subObjA",
    "type": "UIStatic",
    "source": "| normalize_key: 0x1AC -> 428",
    "evidence_level": "unverified"
   },
-  "220": {
+  "0xdc": {
    "name": "g_pSceneTransitionEnd",
    "type": "unchar *",
    "source": "region-audit: interior extern @0xDBA0AC",
@@ -737,9 +737,9 @@
    "signature": "int __thiscall(int nVal)"
   },
   "0x0044f5b0": {
-   "name": "ProcessDialog",
+   "name": "Render",
    "ordinal": 1,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -748,7 +748,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "int __thiscall()",
+   "semantic_name": "CGameData::Render",
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名ProcessDialog=体读数命名"
   },
   "0x0044f8a0": {
    "name": "SetMode",
@@ -769,9 +771,9 @@
    "signature": "int __thiscall(int nVal)"
   },
   "0x0044f430": {
-   "name": "Cleanup",
+   "name": "HideAll",
    "ordinal": 3,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -780,7 +782,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "semantic_name": "CGameData::HideAll",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Cleanup=体读数命名"
   },
   "0x0044f610": {
    "name": "Load",
@@ -889,11 +893,11 @@
    "signature": "CCBUI * __thiscall(int a2)"
   },
   "0x0044f4c0": {
-   "name": "SceneUpdate",
+   "name": "Update",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 CGameData（uniq=8）",
-   "semantic_name": "SceneUpdate",
+   "semantic_name": "CGameData::Update",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -911,34 +915,36 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "signature": "BOOL __thiscall(int, int)",
+   "evidence_level": "verified",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SceneUpdate=体读数命名"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056B094",
+   "addr": "0x0056b094",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0044F5B0"
+     "addr": "0x0044f5b0"
     },
     {
-     "addr": "0x0044F4C0"
+     "addr": "0x0044f4c0"
     },
     {
-     "addr": "0x0044F430"
+     "addr": "0x0044f430"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044F030"
+     "addr": "0x0044f030"
     },
     {
-     "addr": "0x00445D10"
+     "addr": "0x00445d10"
     }
    ]
   }

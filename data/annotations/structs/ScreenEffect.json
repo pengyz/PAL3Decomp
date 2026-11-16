@@ -2,25 +2,25 @@
  "name": "ScreenEffect",
  "binary_size": 24,
  "known_members": {
-  "8": {
+  "0x8": {
    "name": "m_nType",
    "type": "int",
    "source": "binary:first_member",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_life",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_age",
    "type": "float",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_hold",
    "type": "BYTE",
    "source": "annotation",
@@ -85,11 +85,11 @@
  "base_size": 8,
  "vtables": [
   {
-   "addr": "0x0056F508",
+   "addr": "0x0056f508",
    "base": null,
    "slots": [
     {
-     "addr": "0x004BE060"
+     "addr": "0x004be060"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor ScreenEffect@0x4BDFB0+142 + ClearAllEffects@0x4BE080+29 析构族复写"

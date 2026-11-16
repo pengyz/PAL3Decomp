@@ -48,7 +48,9 @@ def collect_violations(entries):
             by_rule[k].append(e)
     for a, es in by_addr.items():
         if len(es) > 1:
-            v.add('same_addr:0x%X:%s' % (a, '|'.join(sorted(x['name'] for x in es))))
+            _es_struct = [x for x in es if x.get('src') != 'functions']
+            if len(_es_struct) >= 2:
+                v.add('same_addr:0x%X:%s' % (a, '|'.join(sorted(x['name'] for x in _es_struct))))
     for (cls, nm), es in by_name.items():
         if len(es) > 1:
             # [2026-11-02 G2] 同名异签=合法重载 ⇒ 闸②签名感知（仅同签双址=违规）
@@ -70,10 +72,14 @@ def load_entries():
             if isinstance(m, dict) and m.get('name'):
                 entries.append({'addr': addr, 'class': cls, 'name': m['name'],
                                 'sig': m.get('signature') or ''})
+    # [same_addr执法域收缩 2026-11-16] functions.json(IDB状态)=apply的修正域:
+    #   IDB名字滞后于注解=apply未跑的正常态, 计入same_addr=check永久FAIL→apply死锁
+    #   (0x445B90四名误报实证)。same_addr执法域=structs层(注解claim=数据真值)。
+    #   functions.json仍装载(其他规则消费), 仅不参与same_addr。
     for addr, m in json.load(open(ROOT / 'data/annotations/functions.json', encoding='utf-8')).items():
         if isinstance(m, dict) and m.get('name'):
             entries.append({'addr': addr, 'class': '', 'name': m['name'],
-                            'sig': m.get('signature') or ''})
+                            'sig': m.get('signature') or '', 'src': 'functions'})
     return entries
 
 

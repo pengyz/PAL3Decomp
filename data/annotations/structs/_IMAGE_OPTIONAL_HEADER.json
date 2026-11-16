@@ -2,187 +2,187 @@
  "name": "_IMAGE_OPTIONAL_HEADER",
  "binary_size": 224,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "Magic",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "2": {
+  "0x2": {
    "name": "MajorLinkerVersion",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "3": {
+  "0x3": {
    "name": "MinorLinkerVersion",
    "type": "BYTE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "SizeOfCode",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "SizeOfInitializedData",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "SizeOfUninitializedData",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "AddressOfEntryPoint",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "BaseOfCode",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "BaseOfData",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "ImageBase",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "SectionAlignment",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "FileAlignment",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "MajorOperatingSystemVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "42": {
+  "0x2a": {
    "name": "MinorOperatingSystemVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "MajorImageVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "46": {
+  "0x2e": {
    "name": "MinorImageVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "MajorSubsystemVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "50": {
+  "0x32": {
    "name": "MinorSubsystemVersion",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "Win32VersionValue",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "SizeOfImage",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "SizeOfHeaders",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "CheckSum",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "Subsystem",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "70": {
+  "0x46": {
    "name": "DllCharacteristics",
    "type": "WORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "SizeOfStackReserve",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "SizeOfStackCommit",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "SizeOfHeapReserve",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "SizeOfHeapCommit",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "LoaderFlags",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "NumberOfRvaAndSizes",
    "type": "DWORD",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "96": {
+  "0x60": {
    "name": "DataDirectory",
    "type": "_IMAGE_DATA_DIRECTORY[16]",
    "source": "annotation",

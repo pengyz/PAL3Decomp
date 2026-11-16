@@ -2,235 +2,235 @@
  "name": "RenderTarget",
  "binary_size": 200,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_iMode",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "4": {
+  "0x4": {
    "name": "m_Texture",
    "type": "gbTexture_D3D *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "100": {
+  "0x64": {
    "name": "m_ScreenPlane",
    "type": "gbTexture_D3D *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "196": {
+  "0xc4": {
    "name": "m_nState",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_nRenderX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_nRenderY",
    "type": "int",
    "source": "A:PAL3patch_verified(running_code)",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_nHalfW",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_nHalfH",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_in_class_method",
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_nHalfWidth",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "28": {
+  "0x1c": {
    "name": "m_nHalfHeight",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_nWidth",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_nHeight",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "40": {
+  "0x28": {
    "name": "m_nTodo_028",
    "type": "unsigned char",
    "source": "A:mov_byte_ptr_in_class_method | [批4 诚实化 2026-10-16] A偏移形：m_nRT_028⇒m_nTodo_028（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "44": {
+  "0x2c": {
    "name": "m_nTodo_02C",
    "type": "float",
    "source": "A:FPU_post_reattrib_0x485435 | [批4 诚实化 2026-10-16] A偏移形：m_fRT_02C⇒m_nTodo_02C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_fX",
    "type": "float",
    "source": "A+:decomp_param_name_fX_assigned_to_this+48",
    "evidence_level": "unverified"
   },
-  "52": {
+  "0x34": {
    "name": "m_fY",
    "type": "float",
    "source": "A+:decomp_param_name_fY_assigned_to_this+52,default=1.0f",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_nTodo_038",
    "type": "int",
    "source": "binary:1x access in RenderTarget:: methods | [批4 诚实化 2026-10-16] A偏移形：m_nRT_038⇒m_nTodo_038（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_nTodo_03C",
    "type": "int",
    "source": "binary:1x access in RenderTarget:: methods | [批4 诚实化 2026-10-16] A偏移形：m_nRT_03C⇒m_nTodo_03C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_fileHeader",
    "type": "float",
    "source": "A:FPU_disp8_in_class_method",
    "evidence_level": "unverified"
   },
-  "68": {
+  "0x44": {
    "name": "m_fRenderX",
    "type": "float",
    "source": "ida_decomp:Render (float *)this+17 = pos calc, 5 refs",
    "evidence_level": "unverified"
   },
-  "72": {
+  "0x48": {
    "name": "m_fRenderY",
    "type": "float",
    "source": "ida_decomp:Render store/compare/clamp, 10 refs",
    "evidence_level": "unverified"
   },
-  "76": {
+  "0x4c": {
    "name": "m_fileData",
    "type": "float",
    "source": "A:FPU_disp8_in_class_method",
    "evidence_level": "unverified"
   },
-  "80": {
+  "0x50": {
    "name": "m_fFileParam",
    "type": "float",
    "source": "A:decomp RenderTarget::ApplyScale unscales+rescales with all pos/dim fields; ReadVFile reads 4 bytes from file",
    "evidence_level": "unverified"
   },
-  "84": {
+  "0x54": {
    "name": "m_nColor",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "88": {
+  "0x58": {
    "name": "m_szPath",
    "type": "int",
    "source": "ida_decomp:ctor = 800, Read 64 bytes, strcat as string",
    "evidence_level": "unverified"
   },
-  "92": {
+  "0x5c": {
    "name": "m_nDefaultH",
    "type": "int",
    "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)",
    "evidence_level": "unverified"
   },
-  "124": {
+  "0x7c": {
    "name": "m_nAlpha",
    "type": "int",
    "source": "ida_decomp:SetColor = a4",
    "evidence_level": "unverified"
   },
-  "128": {
+  "0x80": {
    "name": "m_bVisible",
    "type": "int",
    "source": "ida_decomp:SetVisible = a2",
    "evidence_level": "unverified"
   },
-  "132": {
+  "0x84": {
    "name": "m_fRenderIntensity",
    "type": "float",
    "source": "A:20 callers to SetField084 pass constant floats(1.0/1.6/2.0); called after SetColor/SetAlpha, before SetState; render intensity/glow factor",
    "evidence_level": "unverified"
   },
-  "136": {
+  "0x88": {
    "name": "m_fOffsetParam",
    "type": "float",
    "source": "ida_decomp:_sub_4B4B10 add to v6, 4 refs",
    "evidence_level": "unverified"
   },
-  "140": {
+  "0x8c": {
    "name": "m_fRender",
    "type": "float",
    "source": "binary:2x access in RenderTarget:: methods",
    "evidence_level": "unverified"
   },
-  "144": {
+  "0x90": {
    "name": "m_fOffsetX",
    "type": "float",
    "source": "B:naming_m_n+FPU_misattrib | task-6 案例B 2026-10-15 int→float：A 级=SetOffset 0x4B4D88/0x4B4D8E 裸 mov 位拷贝 float 参数（调用侧 push float 常量/ fild-fstp 转换）+ 受控实验 float,float 编出 23 字节全同；名字泄漏用法核过（InitChildPanels `this[16].m_nOffsetX=0`（0==0.0f 位型）/LOBYTE 置0/`&this[1060].m_nOffsetX` 取址）⇒ 型改安全",
    "evidence_level": "A"
   },
-  "148": {
+  "0x94": {
    "name": "m_fOffsetY",
    "type": "float",
    "source": "B:naming_m_n+FPU_misattrib | task-6 案例B 2026-10-15 int→float：A 级=SetOffset 0x4B4D88/0x4B4D8E 裸 mov 位拷贝 float 参数（调用侧 push float 常量/ fild-fstp 转换）+ 受控实验 float,float 编出 23 字节全同；名字泄漏用法核过（InitChildPanels `this[16].m_nOffsetX=0`（0==0.0f 位型）/LOBYTE 置0/`&this[1060].m_nOffsetX` 取址）⇒ 型改安全",
    "evidence_level": "A"
   },
-  "152": {
+  "0x98": {
    "name": "m_nScaleX",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "156": {
+  "0x9c": {
    "name": "m_nScaleY",
    "type": "int",
    "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "160": {
+  "0xa0": {
    "name": "m_szTexPath",
    "type": "char[16]",
    "source": "A:lstrcpyA(&this+A0,szFilename)@0x4B493E + Read(&this+A0,4)@0x4BAF07",
    "evidence_level": "unverified"
   },
-  "176": {
+  "0xb0": {
    "name": "m_fInvScale",
    "type": "float",
    "source": "ida_decomp:_nearby_4bb0f0 1.0/this, 3 refs",
    "evidence_level": "unverified"
   },
-  "184": {
+  "0xb8": {
    "name": "m_nDeviceLost",
    "type": "int",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "188": {
+  "0xbc": {
    "name": "m_nTodo_0BC",
    "type": "int",
    "source": "gap_fill:ida_decomp_access",
@@ -978,9 +978,9 @@
    "signature": "int __thiscall()"
   },
   "0x0043de40": {
-   "name": "ReleaseTempStorage",
-   "semantic_name": "CCBStage::slot_3(void)",
-   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "name": "HideAll",
+   "semantic_name": "RenderTarget::HideAll(void)",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -989,34 +989,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified"
   }
  },
  "vtables": [
   {
-   "addr": "0x0056C590",
+   "addr": "0x0056c590",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0048EB40"
+     "addr": "0x0048eb40"
     },
     {
-     "addr": "0x0048EF80"
+     "addr": "0x0048ef80"
     },
     {
-     "addr": "0x0043DE40"
+     "addr": "0x0043de40"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x00486D00"
+     "addr": "0x00486d00"
     },
     {
-     "addr": "0x0048F3A0"
+     "addr": "0x0048f3a0"
     }
    ]
   }

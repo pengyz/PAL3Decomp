@@ -1,49 +1,49 @@
 {
  "name": "UITitle",
  "known_members": {
-  "3288": {
+  "0xcd8": {
    "name": "m_hEffect",
    "type": "int",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "3292": {
+  "0xcdc": {
    "name": "m_dwEffectTick",
    "type": "int",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "3296": {
+  "0xce0": {
    "name": "m_dwTimerTick",
    "type": "int",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "3300": {
+  "0xce4": {
    "name": "m_bTimerActive",
    "type": "unsigned char",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "3304": {
+  "0xce8": {
    "name": "m_bTimerDone",
    "type": "unsigned char",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "3305": {
+  "0xce9": {
    "name": "m_bTimerProcessed",
    "type": "unsigned char",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "7412": {
+  "0x1cf4": {
    "name": "m_nTitleStage",
    "type": "int",
    "source": "binary:UITitle::RunFrame",
    "evidence_level": "unverified"
   },
-  "8460": {
+  "0x210c": {
    "name": "m_nTitleScript",
    "type": "int",
    "source": "binary:UITitle::RunFrame",
@@ -81,9 +81,9 @@
    "signature": "void __thiscall()"
   },
   "0x0044b0f0": {
-   "name": "RunFrame",
+   "name": "Update",
    "ordinal": 2,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -101,7 +101,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(struct PalScript *p, int nVal)"
+   "signature": "int __thiscall(struct PalScript *p, int nVal)",
+   "semantic_name": "UITitle::Update",
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名RunFrame=体读数命名"
   },
   "0x0044acc0": {
    "name": "_scalar_dtor_ACC0",
@@ -131,9 +133,9 @@
    "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0044b710": {
-   "name": "OnCommand",
+   "name": "OnMessage",
    "ordinal": 6,
-   "evidence_level": "unverified",
+   "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -155,7 +157,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)"
+   "signature": "int __thiscall(int nVal, char *pszBuf, int nVal2)",
+   "semantic_name": "UITitle::OnMessage",
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnCommand=体读数命名"
   },
   "0x0044b460": {
    "name": "Render",
@@ -194,29 +198,29 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AFD4",
+   "addr": "0x0056afd4",
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70"
+     "addr": "0x00445e70"
     },
     {
-     "addr": "0x0044B460"
+     "addr": "0x0044b460"
     },
     {
-     "addr": "0x0044B0F0"
+     "addr": "0x0044b0f0"
     },
     {
-     "addr": "0x004A14C0"
+     "addr": "0x004a14c0"
     },
     {
-     "addr": "0x00445B90"
+     "addr": "0x00445b90"
     },
     {
-     "addr": "0x0044ACC0"
+     "addr": "0x0044acc0"
     },
     {
-     "addr": "0x0044B710"
+     "addr": "0x0044b710"
     }
    ]
   }

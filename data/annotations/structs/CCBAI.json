@@ -2,87 +2,87 @@
  "name": "CCBAI",
  "binary_size": 3664,
  "known_members": {
-  "0": {
+  "0x0": {
    "name": "m_bNewRole",
    "type": "unsigned char[11]",
    "offset": 0,
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_pCBSystem",
    "type": "CCBSystem *",
    "offset": 12,
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_pRoleState",
    "type": "CCBRoleState *",
    "offset": 16,
    "evidence_level": "unverified"
   },
-  "20": {
+  "0x14": {
    "name": "m_pUtil",
    "type": "CUtil *",
    "offset": 20,
    "evidence_level": "unverified"
   },
-  "24": {
+  "0x18": {
    "name": "m_VA",
    "type": "tagVA",
    "offset": 24,
    "evidence_level": "unverified"
   },
-  "48": {
+  "0x30": {
    "name": "m_VAO",
    "type": "tagVAO[32]",
    "offset": 48,
    "evidence_level": "unverified"
   },
-  "560": {
+  "0x230": {
    "name": "m_VAF",
    "type": "tagVAF[32]",
    "offset": 560,
    "evidence_level": "unverified"
   },
-  "1584": {
+  "0x630": {
    "name": "m_Demand",
    "type": "tagDemand[10][11]",
    "offset": 1584,
    "evidence_level": "unverified"
   },
-  "3344": {
+  "0xd10": {
    "name": "m_EnemyDemand",
    "type": "tagDemand[5]",
    "offset": 3344,
    "source": "+fix:overlap_correct_count | verified:2026-10-15 A:间距算术 gap80=5x16(tagDemand编译器裁判✓5成员一致)恰好相邻无重叠,overlap_correct_count修正正确",
    "evidence_level": "unverified"
   },
-  "3504": {
+  "0xdb0": {
    "name": "m_FriendDemand",
    "type": "tagDemand[5]",
    "offset": 3504,
    "source": "+fix:overlap_correct_count | verified:2026-10-15 A:同上 gap80=5x16 相邻无重叠",
    "evidence_level": "unverified"
   },
-  "3424": {
+  "0xd60": {
    "name": "m_nDemandThreadTracer",
    "type": "int",
    "source": "binary:disp32_3hits_2funcs",
    "evidence_level": "unverified"
   },
-  "3432": {
+  "0xd68": {
    "name": "m_bDemandThreadTracer",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs",
    "evidence_level": "unverified"
   },
-  "3584": {
+  "0xe00": {
    "name": "m_nHandleEnemyWell",
    "type": "int",
    "source": "binary:disp32_7hits_4funcs",
    "evidence_level": "unverified"
   },
-  "3592": {
+  "0xe08": {
    "name": "m_nTodo_E08",
    "type": "unsigned char",
    "source": "binary:disp32_1hits_1funcs",

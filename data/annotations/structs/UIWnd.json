@@ -2,37 +2,37 @@
  "name": "UIWnd",
  "binary_size": 68,
  "known_members": {
-  "4": {
+  "0x4": {
    "name": "m_fontcolor",
    "type": "gbColorQuad",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "8": {
+  "0x8": {
    "name": "m_wndcolor",
    "type": "gbColorQuad",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "12": {
+  "0xc": {
    "name": "m_id",
    "type": "unsigned int",
    "source": "annotation|fix:void_star_to_unsigned_int:s_RoleState L141/144 双证（m_id 存取均为 DWORD 容器：`(void*)*(v3+1)` 入/`*(_DWORD*)` 出）2026-09-29",
    "evidence_level": "unverified"
   },
-  "16": {
+  "0x10": {
    "name": "m_rect",
    "type": "tagRECT",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "32": {
+  "0x20": {
    "name": "m_pfather",
    "type": "UIWnd *",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "36": {
+  "0x24": {
    "name": "m_childs",
    "type": "PtrArray",
    "source": "annotation",
@@ -76,25 +76,25 @@
     "timestamp": "2026-11-12"
    }
   },
-  "52": {
+  "0x34": {
    "name": "m_bcreateok",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "56": {
+  "0x38": {
    "name": "m_bvisible",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "60": {
+  "0x3c": {
    "name": "m_benable",
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "64": {
+  "0x40": {
    "name": "m_bfocus",
    "type": "int",
    "source": "annotation",
@@ -322,31 +322,6 @@
    },
    "signature": "void * __thiscall(void *Block, char a2)"
   },
-  "0x004431b0": {
-   "name": "_sdtor_call_dtor",
-   "source": "vtable_migrated",
-   "ordinal": 12,
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "void *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall(void *Block, char)"
-  },
   "0x00445b90": {
    "name": "Create",
    "evidence_level": "A",
@@ -420,21 +395,6 @@
    },
    "signature": "void __thiscall(int)"
   },
-  "0x00442e90": {
-   "name": "RenderWithTexture",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_1",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
   "0x00442ff0": {
    "name": "Update_2ff0",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
@@ -457,37 +417,6 @@
     "pending": false
    },
    "signature": "void __thiscall(int, int)"
-  },
-  "0x00442420": {
-   "name": "Destroy_2420",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "Destroy_2420",
-   "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x00442e60": {
-   "name": "_scalar_dtor_2E60",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_5",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
   },
   "0x00445cd0": {
    "name": "Render",
@@ -541,40 +470,44 @@
  },
  "vtables": [
   {
-   "addr": "0x0056AEC8",
+   "addr": "0x0056aec8",
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70",
-     "name": null,
-     "sig": null
+     "addr": "0x00445e70",
+     "name": "ShowClipped",
+     "sig": null,
+     "name_note": "根槽名补缺20261116(复核P2-7): 承methods已裁定名(0x44570簇), 链律载体就位"
     },
     {
-     "addr": "0x00445CD0",
-     "name": null,
-     "sig": null
+     "addr": "0x00445cd0",
+     "name": "Render",
+     "sig": null,
+     "name_note": "根槽名补缺20261116(复核P2-7): 承methods已裁定名(0x445d0簇), 链律载体就位"
     },
     {
-     "addr": "0x00445C60",
-     "name": null,
-     "sig": null
+     "addr": "0x00445c60",
+     "name": "Update",
+     "sig": null,
+     "name_note": "根槽名补缺20261116(复核P2-7): 承methods已裁定名(0x445c0簇), 链律载体就位"
     },
     {
-     "addr": "0x00445C10",
-     "name": null,
-     "sig": null
+     "addr": "0x00445c10",
+     "name": "HideAll",
+     "sig": null,
+     "name_note": "根槽名补缺20261116(复核P2-7): 承methods已裁定名(0x44510簇), 链律载体就位"
     },
     {
-     "addr": "0x00445B90",
+     "addr": "0x00445b90",
      "name": "Create"
     },
     {
-     "addr": "0x00445B20",
+     "addr": "0x00445b20",
      "name": null,
      "sig": null
     },
     {
-     "addr": "0x00445D10",
+     "addr": "0x00445d10",
      "name": "OnMessage"
     }
    ],
