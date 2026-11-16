@@ -3110,24 +3110,41 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # 消费注解层已落盘的 signature 字符串本身。
                 # [地址级签名统一 2026-11-17] 退役slot.sig不再读取; 全局映射命中
                 # = 一地址一签名(methods条目=真值), 链一致性由结构保证而非数据填充。
-                _ret_vote = _family_slot_sig(cls_name, _nm, _slot_addr_hex)
-                _base_sig = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
-                    or (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
-                    or (_m0 or {}).get('signature') or ''
-                if _ret_vote and _base_sig:
-                    # [返回型×参数组合 2026-11-17] 返回型=族投票裁决, 参数=地址条目正名账
-                    _mb = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)\s*(.*)$', _base_sig)
-                    if _mb:
-                        _sg = '%s%s %s' % (_mb.group(1) or '', _ret_vote, _mb.group(3) or '__thiscall()')
-                    else:
-                        _sg = '%s __thiscall()' % _ret_vote
-                elif _ret_vote:
-                    _sg = '%s __thiscall()' % _ret_vote
+                # [按名族投票全签名 2026-11-17] 折叠载体四名各自签名不同(float/int),
+                # 地址条目参数组合对折叠载体天然不足 → 槽声明=按名投票获胜全签名
+                # (P0修复后各chain_unified条目参数=pre编译态/个数=census, 投票胜者干净);
+                # 无票回退地址条目组合(纯桩链零变更)。
+                _fam_full = _family_slot_sig_full(cls_name, _nm, _slot_addr_hex)
+                if _fam_full:
+                    _sg = _fam_full
                 else:
-                    _sg = _base_sig or 'void __thiscall()'
+                    _ret_vote = _family_slot_sig(cls_name, _nm, _slot_addr_hex)
+                    _base_sig = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
+                        or (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
+                        or (_m0 or {}).get('signature') or ''
+                    if _ret_vote and _base_sig:
+                        _mb = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)\s*(.*)$', _base_sig)
+                        if _mb:
+                            _sg = '%s%s %s' % (_mb.group(1) or '', _ret_vote, _mb.group(3) or '__thiscall()')
+                        else:
+                            _sg = '%s __thiscall()' % _ret_vote
+                    elif _ret_vote:
+                        _sg = '%s __thiscall()' % _ret_vote
+                    else:
+                        _sg = _base_sig or 'void __thiscall()'
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
-            if _vi == 0 and (_dtor_form0 or (_will_inject_vptr and _nm == '~' + cls_name)):
-                continue  # slot0=dtor位: 注入~X已占位, 删除式dtor本体走dtor槽规则
+            if _dtor_form0 and _nm == '~' + cls_name:
+                # [dtor槽实际位 2026-11-17] 本二进制删除式dtor位=slot5(非slot0旧模型):
+                # 槽名~Cls → 发射析构声明(virtual ~Cls();)——删除式dtor由编译器生成,
+                # C++层唯一合法形态=析构声明; methods循环同名跳过防双声明
+                lines.append("    virtual ~%s();" % cls_name)
+                continue
+            if _dtor_form0:
+                # 非~Cls形dtor槽(_scalar_dtor_NNNN残留名): 同为dtor位, 发射析构声明
+                lines.append("    virtual ~%s();" % cls_name)
+                continue
+            if _vi == 0 and (_will_inject_vptr and _nm == '~' + cls_name):
+                continue  # slot0旧模型兜底
             _ret0, _cc0, _par0, _ret_right0 = parse_signature(_sg)
             _ret0 = re.sub(r'\bvirtual\b', '', _ret0).strip()
             # [this泄漏规范化 2026-11-14] Hex-Rays 泄漏的显式 this 形态两种:

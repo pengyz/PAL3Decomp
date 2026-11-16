@@ -9,7 +9,7 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   Template stubs: 0
   Phantom globals skipped: 24 (arr, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC00, dword_D8BC10, dword_D8BC30, dword_D8BC34)
     ... and 14 more
-  Annotation-skipped globals: 75
+  Annotation-skipped globals: 76
   declared_globals refreshed post-emit: 2827
   Globals: 2952 in globals.h
   Globals: 2844 in globals.cpp
@@ -19,7 +19,7 @@ Collecting functions from decomp...
   Free functions: 201
 [L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
-Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 221 .cpp files (3528 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 2 files
   Effect/: 18 files
@@ -32,13 +32,12 @@ Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 0/222 ok | own-fail 106 | imported-only 116  (24s)
+S2 cpp: 102/222 ok | own-fail 108 | imported-only 12  (25s)
 Top root-cause headers (files blocked):
-  pal3/src/Misc/UIButton.h                      blocks 222 cpp
-  pal3/src/free_functions.h                     blocks 132 cpp
   pal3/src/Combat/CCBStage.h                    blocks  56 cpp
   pal3/src/Misc/CEffAction.h                    blocks  13 cpp
-  pal3/src/Misc/UIScenePanel.h                  blocks   6 cpp
+  pal3/src/Misc/CCBUIPanel.h                    blocks   9 cpp
+  pal3/src/Misc/UITitle_JDHY.h                  blocks   6 cpp
   pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
