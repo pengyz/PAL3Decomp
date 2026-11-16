@@ -220,10 +220,10 @@
    "signature": "void __thiscall(int, int, int, int)"
   },
   "0x004c0650": {
-   "name": "AllocActionArray",
-   "semantic_name": "slot_1",
+   "name": "Create",
+   "semantic_name": "CEffQuake::Create",
    "confidence": "中高",
-   "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用",
+   "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用 | C9name定谳20261117→Create: 链律(slot1=Create位, 同CEffCallBack 0x4c0650同址); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -237,7 +237,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "evidence_level": "chain_unified"
   }
  },
  "vtables": [
@@ -251,7 +252,7 @@
     },
     {
      "addr": "0x004c0650",
-     "name": "AllocActionArray"
+     "name": "Create"
     },
     {
      "addr": "0x004d33a0",

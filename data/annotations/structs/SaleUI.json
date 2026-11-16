@@ -449,7 +449,7 @@
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0046b040": {
-   "name": "ProcessCellAnimations",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
@@ -466,7 +466,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,deltatime,haveinput)铁证; 原名ProcessCellAnimations留档",
+   "semantic_name": "SaleUI::Update"
   },
   "0x004ab5e0": {
    "name": "InitColumnWidths",
@@ -875,11 +876,11 @@
    "signature": "void * __thiscall(UIWnd *Block, char pData)"
   },
   "0x0046b4b0": {
-   "name": "_todo_0046B4B0",
+   "name": "OnMessage",
    "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox） | multiclaim 裁决 2026-11-03: 败于 SaleUI（uniq=13）",
    "evidence_level": "chain_unified",
    "adjudication": "rejected",
-   "semantic_name": "_todo_0046B4B0",
+   "semantic_name": "SaleUI::OnMessage",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -901,8 +902,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
+   "signature": "int __thiscall(int, int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 链律(slot6=OnMessage位); 原名_todo_N12占位; 原名_todo_0046B4B0留档"
   },
   "0x0043ddf0": {
    "name": "Render",
@@ -950,7 +951,7 @@
     },
     {
      "addr": "0x0046b040",
-     "name": "ProcessCellAnimations"
+     "name": "Update"
     },
     {
      "addr": "0x0043de40",
@@ -965,7 +966,7 @@
     },
     {
      "addr": "0x0046b4b0",
-     "name": "_todo_0046B4B0"
+     "name": "OnMessage"
     }
    ]
   }

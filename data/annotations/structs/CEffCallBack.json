@@ -198,10 +198,10 @@
    "evidence_level": "chain_unified"
   },
   "0x004c0650": {
-   "name": "AllocActionArray",
-   "semantic_name": "slot_1",
+   "name": "Create",
+   "semantic_name": "CEffCallBack::Create",
    "confidence": "中高",
-   "name_note": "C9批体证定谳: 同址ICF折叠共享, 同体证据",
+   "name_note": "C9批体证定谳: 同址ICF折叠共享, 同体证据 | C9name定谳20261117→Create: 链律(slot1=Create位); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
@@ -215,7 +215,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)"
+   "signature": "char __thiscall(tagEffObjType *)",
+   "evidence_level": "chain_unified"
   }
  },
  "base_size": 52,
@@ -240,7 +241,7 @@
     },
     {
      "addr": "0x004c0650",
-     "name": "AllocActionArray"
+     "name": "Create"
     },
     {
      "addr": "0x004c2930",

@@ -189,10 +189,10 @@
    "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名ForwardOnMessage=体读数命名 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nMsg, int wParam): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x005164d0": {
-   "name": "Destroy",
+   "name": "HideAll",
    "name_source": "same-name消歧 + 2026-11-09 复核",
-   "name_note": "剥壳定谳(验证pass): Destroy: 委托slot_3+m_pOk释放实证 | C9sig基锚定20261117→void __thiscall()(基=UIWnd)",
-   "semantic_name": "Destroy_64D0",
+   "name_note": "剥壳定谳(验证pass): Destroy: 委托slot_3+m_pOk释放实证 | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3=HideAll位); 体=子物件析构循环(slot5调1+置空)留档; 原名Destroy留档",
+   "semantic_name": "CCBProtectWindow::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -238,7 +238,7 @@
     },
     {
      "addr": "0x005164d0",
-     "name": "Destroy"
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"

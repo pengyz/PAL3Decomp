@@ -715,7 +715,7 @@
    "signature": "int __thiscall(int nVal)"
   },
   "0x004a0370": {
-   "name": "HandleEquipEvent",
+   "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
    "semantic_sig": "void",
@@ -725,22 +725,23 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int, int nVal2)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int, int nVal2)(基=UIWnd)"
+   "signature": "int __thiscall(int, int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int, int nVal2)(基=UIWnd) | C9name定谳20261117→OnMessage: 体switch dispatch; 链律(slot6位); sig同步基形int(int,int,int); 原名HandleEquipEvent留档",
+   "semantic_name": "EquipUI::OnMessage"
   },
   "0x00484d20": {
    "name": "ShowPage",
@@ -1005,7 +1006,7 @@
     },
     {
      "addr": "0x004a0370",
-     "name": "HandleEquipEvent"
+     "name": "OnMessage"
     }
    ]
   }

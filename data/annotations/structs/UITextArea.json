@@ -95,11 +95,11 @@
  },
  "methods": {
   "0x00445920": {
-   "name": "Destroy",
+   "name": "HideAll",
    "ordinal": 3,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_name": "Destroy",
+   "semantic_name": "UITextArea::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -109,7 +109,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=MoveWindow调用弱证据; 原名Destroy留档"
   },
   "0x00444f60": {
    "name": "InitAfterClear",
@@ -147,11 +147,11 @@
    "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
   },
   "0x00445170": {
-   "name": "ProcessInput",
+   "name": "Update",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_name": "ProcessInput",
+   "semantic_name": "UITextArea::Update",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -166,7 +166,7 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档"
   },
   "0x00445500": {
    "name": "Render",
@@ -185,11 +185,11 @@
    "signature": "void __thiscall()"
   },
   "0x00445720": {
-   "name": "ShowWindow",
+   "name": "ShowClipped",
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "chain_unified",
-   "semantic_name": "ShowWindow",
+   "semantic_name": "UITextArea::ShowClipped",
    "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "void",
@@ -204,7 +204,7 @@
     "pending": false
    },
    "signature": "void __thiscall(int)",
-   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd)"
+   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | C9name定谳20261117→ShowClipped: 链律(slot0=ShowClipped位); 体=m_bvisible操作弱证据待深查; 原名ShowWindow留档"
   },
   "0x00444ff0": {
    "name": "_sdtor_13",
@@ -240,7 +240,7 @@
    "slots": [
     {
      "addr": "0x00445720",
-     "name": "ShowWindow"
+     "name": "ShowClipped"
     },
     {
      "addr": "0x00445500",
@@ -248,11 +248,11 @@
     },
     {
      "addr": "0x00445170",
-     "name": "ProcessInput"
+     "name": "Update"
     },
     {
      "addr": "0x00445920",
-     "name": "Destroy"
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"

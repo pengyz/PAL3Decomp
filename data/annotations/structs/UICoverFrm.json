@@ -372,7 +372,7 @@
    "signature": "char __thiscall(float fVal)"
   },
   "0x0052c480": {
-   "name": "UpdateStarAnimation",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "semantic_sig": "double",
@@ -389,7 +389,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体else分支UIWnd::Update铁证; 原名UpdateStarAnimation留档",
+   "semantic_name": "UICoverFrm::Update"
   },
   "0x0044ff20": {
    "name": "FindActiveSlot",
@@ -684,7 +685,7 @@
     },
     {
      "addr": "0x0052c480",
-     "name": "UpdateStarAnimation"
+     "name": "Update"
     },
     {
      "addr": "0x0043de40",

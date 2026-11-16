@@ -690,7 +690,7 @@
    "signature": "char *__thiscall ()"
   },
   "0x00485df0": {
-   "name": "OnRender",
+   "name": "OnMessage",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
@@ -716,7 +716,8 @@
     "pending": false
    },
    "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 体default: result=UIWnd::OnMessage(this,...)铁证(原名OnRender误名); 原名OnRender留档",
+   "semantic_name": "StateUI::OnMessage"
   },
   "0x0048a310": {
    "name": "SelectSubTab1",
@@ -918,12 +919,12 @@
    "signature": "void * __thiscall(UIWnd *Block, char)"
   },
   "0x004850e0": {
-   "name": "sub_4850E0",
+   "name": "Render",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "confirmed",
    "evidence_level": "chain_unified",
    "evidence": "成员实访独占证据 uniq=6: m_DlgEx,m_Frame,m_LeaveHere,m_RoleState,m_par（adjudicate_multiclaim 2026-11-03）",
-   "semantic_name": "sub_4850E0",
+   "semantic_name": "StateUI::Render",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -933,14 +934,14 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIListBox)"
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIListBox) | C9name定谳20261117→Render: 链律(slot1=Render位); 体=PopMatrixStacks渲染邻证(原名sub_N12形); 原名sub_4850E0留档"
   },
   "0x00485230": {
-   "name": "sub_485230",
+   "name": "Update",
    "source": "vtable_gap_fill_v1 + F4(b) 回落 2026-11-03（真名待证·StateUI::sub 污染名剥离）",
    "evidence_level": "chain_unified",
    "evidence": "vtable 槽成员资格 + decomp sig CScreenMode*this + 成员实访 m_nLayoutOffX",
-   "semantic_name": "sub_485230",
+   "semantic_name": "StateUI::Update",
    "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
@@ -955,7 +956,7 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 链律(slot2=Update位); 原名sub_N12形; 原名sub_485230留档"
   },
   "0x0043de40": {
    "name": "HideAll",
@@ -983,11 +984,11 @@
     },
     {
      "addr": "0x004850e0",
-     "name": "sub_4850E0"
+     "name": "Render"
     },
     {
      "addr": "0x00485230",
-     "name": "sub_485230"
+     "name": "Update"
     },
     {
      "addr": "0x0043de40",
@@ -1002,7 +1003,7 @@
     },
     {
      "addr": "0x00485df0",
-     "name": "OnRender"
+     "name": "OnMessage"
     }
    ]
   }

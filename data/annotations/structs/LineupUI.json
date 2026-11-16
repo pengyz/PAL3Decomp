@@ -826,7 +826,7 @@
    "signature": "char __thiscall(int nVal)"
   },
   "0x0047f970": {
-   "name": "CleanupAndForwardInput",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
@@ -843,7 +843,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,fVal,a3)铁证; 原名CleanupAndForwardInput留档",
+   "semantic_name": "LineupUI::Update"
   },
   "0x00480600": {
    "name": "OnMessage",
@@ -1046,7 +1047,7 @@
     },
     {
      "addr": "0x0047f970",
-     "name": "CleanupAndForwardInput"
+     "name": "Update"
     },
     {
      "addr": "0x0043de40",

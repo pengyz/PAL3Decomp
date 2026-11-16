@@ -47,7 +47,7 @@
    "signature": "void __thiscall()"
   },
   "0x0045a4f0": {
-   "name": "fill",
+   "name": "Update",
    "ordinal": 2,
    "source": "manual_fix_vtable+canonical_rename",
    "evidence_level": "chain_unified",
@@ -65,7 +65,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
+   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 链律(slot2=Update位); 体=状态机switch弱证据; 原名fill留档",
+   "semantic_name": "UISceneFrm::Update"
   },
   "0x00459240": {
    "name": "_scalar_dtor_9240",
@@ -391,7 +392,7 @@
     },
     {
      "addr": "0x0045a4f0",
-     "name": "fill"
+     "name": "Update"
     },
     {
      "addr": "0x00459360",

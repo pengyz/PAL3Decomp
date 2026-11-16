@@ -345,7 +345,7 @@
    "signature": "int * __thiscall()"
   },
   "0x00439a20": {
-   "name": "CheckRayHitRole",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
@@ -362,7 +362,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名CheckRayHitRole留档",
+   "semantic_name": "UIProgressBar::Update"
   },
   "0x00439410": {
    "name": "Render",
@@ -381,10 +382,10 @@
    "signature": "void __thiscall()"
   },
   "0x00439810": {
-   "name": "Destroy",
+   "name": "HideAll",
    "ordinal": 3,
    "evidence_level": "chain_unified",
-   "semantic_name": "Destroy",
+   "semantic_name": "UIProgressBar::HideAll",
    "semantic_sig": "int",
    "sig_model": {
     "return": "void",
@@ -394,7 +395,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd)"
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=m_decorateRc循环部分证据; 原名Destroy留档"
   },
   "0x00439110": {
    "name": "~UIProgressBar",
@@ -435,11 +436,11 @@
     },
     {
      "addr": "0x00439a20",
-     "name": "CheckRayHitRole"
+     "name": "Update"
     },
     {
      "addr": "0x00439810",
-     "name": "Destroy"
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90"

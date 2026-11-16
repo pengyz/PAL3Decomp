@@ -171,7 +171,7 @@
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
   },
   "0x0047e4e0": {
-   "name": "HandleMsgDLL",
+   "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
@@ -196,7 +196,8 @@
     "pending": false
    },
    "signature": "int __thiscall(int hinstDLL, unsigned int fdwReason, int lpvReserved)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→int __thiscall(int hinstDLL, unsigned int fdwReason, int lpvReserved)(基=UIWnd)"
+   "name_note": " | C9sig链统一20261117→int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→int __thiscall(int hinstDLL, unsigned int fdwReason, int lpvReserved)(基=UIWnd) | C9name定谳20261117→OnMessage: 体消息循环+HandleMsg语义; 链律(slot6=OnMessage位); 原名HandleMsgDLL留档",
+   "semantic_name": "UITitle_YXXX::OnMessage"
   },
   "0x0047dd70": {
    "name": "_scalar_dtor_DD70",
@@ -333,7 +334,7 @@
     },
     {
      "addr": "0x0047e4e0",
-     "name": "HandleMsgDLL"
+     "name": "OnMessage"
     }
    ]
   }

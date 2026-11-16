@@ -782,7 +782,7 @@
    "signature": "void __thiscall(int nVal)"
   },
   "0x0047b3b0": {
-   "name": "Render3DModel",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "semantic_sig": "BOOL",
@@ -799,7 +799,8 @@
     "pending": false
    },
    "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd)"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,a2,a3)铁证; 原名Render3DModel留档",
+   "semantic_name": "MainEquipUI::Update"
   },
   "0x0047b6c0": {
    "name": "OnMessage",
@@ -1010,7 +1011,7 @@
     },
     {
      "addr": "0x0047b3b0",
-     "name": "Render3DModel"
+     "name": "Update"
     },
     {
      "addr": "0x0043de40",
