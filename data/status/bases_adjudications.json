@@ -74,5 +74,21 @@
   "date": "2026-11-17",
   "ctor_evidence": "ctor 0x519310 UIListBox ctor+存己表0x5704C8@+0; dtor 0x519380 UIListBox~ → 真基UIListBox",
   "verdict_by": "base_chain_tracer+存表律"
+ },
+ "UIRoleDialog": {
+  "bases": [
+   "UIFrameWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x4A12F0 call 0x43BB70(UIFrameWnd ctor)首调+存表0x56E190@+0",
+  "verdict_by": "base_chain_tracer"
+ },
+ "UIAnimateCtrlEX": {
+  "bases": [
+   "UIWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x452790 call 0x445AA0(UIWnd ctor)直调+存表0x56B1DC@+0",
+  "verdict_by": "base_chain_tracer"
  }
 }

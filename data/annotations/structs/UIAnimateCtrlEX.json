@@ -301,11 +301,12 @@
    ]
   }
  ],
- "base_size": 164,
+ "base_size": 68,
  "bases": [
   {
-   "name": "UIAnimateCtrl",
+   "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "bases_note": "链法定谳20261117: ctor 0x452790直调UIWnd ctor(0x445AA0)+存己表0x56B1DC@+0(本机capstone); 原UIAnimateCtrl=幻影嫌疑(无表/语料仅GetRoleBySlot一文件/无ctor, 本类ctor不调它)——若后续发现UIAnimateCtrl实体再升级为链"
 }
