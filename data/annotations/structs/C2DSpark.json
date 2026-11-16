@@ -127,53 +127,179 @@
   "0x004d5ab0": {
    "name": "C2DSpark",
    "signature": "void __thiscall(int nClientWidth, int nClientHeight)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nClientWidth"
+     },
+     {
+      "type": "int",
+      "name": "nClientHeight"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d5dc0": {
    "name": "~C2DSpark",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d5ec0": {
    "name": "CreateSingle",
    "signature": "bool __thiscall(const void *pSpark)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *pSpark",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d5f20": {
    "name": "CreateTrack",
    "signature": "void __thiscall(int nx, int ny)",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nx"
+     },
+     {
+      "type": "int",
+      "name": "ny"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d5f40": {
    "name": "SetEnableMouseTrack",
    "signature": "void __thiscall(int bEnable, int nVal)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "bEnable"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d6050": {
    "name": "CreateMore",
    "signature": "void __thiscall(int x, int y, int color, int nVal)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "x"
+     },
+     {
+      "type": "int",
+      "name": "y"
+     },
+     {
+      "type": "int",
+      "name": "color"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d61a0": {
    "name": "CreateStars",
    "signature": "_BYTE *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "_BYTE *",
+   "sig_model": {
+    "return": "_BYTE *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d61c0": {
    "name": "DestroyAll",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d6380": {
    "name": "Render",
    "signature": "void __thiscall(float fVal)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

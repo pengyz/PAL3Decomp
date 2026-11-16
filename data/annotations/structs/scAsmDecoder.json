@@ -14,12 +14,42 @@
    "name": "GetGlobalUserVar",
    "signature": "struct scGlobalUserVar * (char *)",
    "source": "pdb",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "struct scGlobalUserVar *",
+   "sig_model": {
+    "return": "struct scGlobalUserVar *",
+    "cc": null,
+    "params": [
+     {
+      "type": "char *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040e5f0": {
    "name": "Execute",
    "signature": "int __thiscall(int nVal, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_verdicts": {

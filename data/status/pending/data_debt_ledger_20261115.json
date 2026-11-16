@@ -1,0 +1,135 @@
+{
+ "date": "2026-11-15",
+ "context": "from退役+G1b五缺陷修复+UIWnd二进制定谳后的数据债全量记账",
+ "metrics": {
+  "s2": "126/223 ok (own-fail 97, imported-only 0)",
+  "check": "98 errors — FAIL (G2三战后: 0x43de40/0x4c15d0/0x43ddf0清零)",
+  "baseline_ref": "compile_baseline.json 2026-11-14 s2=159/215(旧分母)",
+  "l1": "本轮未对账(match未跑)"
+ },
+ "g2_worklist_c7_121": {
+  "desc": "C7自有槽无methods条目——from错误绑定掩蔽的债, 地址推导后浮出 [修正20261115: 早前按地址统计grep双重命中虚高一倍; 真实数=键地址计数]",
+  "by_address": {
+   "0x43de40": 34,
+   "0x4c15d0": 22,
+   "0x542102": 10,
+   "0x542114": 6,
+   "0x54211a": 6,
+   "0x445b90": 16,
+   "0x445e70": 14,
+   "0x43ddf0": 12
+  },
+  "hypothesis": "折叠地址族: 0x43ddf0/0x43de40=CCB窗口族折叠dtor, 0x4c15d0=CEff族折叠dtor, 0x5421xx=待定; 0x445b90/0x445e70=UIWnd槽4/槽0被非后代类 claim",
+  "method": "逐地址ctor写点owner定谳→owner补条目→非owner类表槽裁决(继承/假表退役)",
+  "by_address_real": {
+   "0x00445b90": 8,
+   "0x00445e70": 7,
+   "0x00542102": 5,
+   "0x004c29a0": 3,
+   "0x00408bd0": 3,
+   "0x004af760": 3,
+   "0x005420d8": 3,
+   "0x005420de": 3,
+   "0x0054210e": 3,
+   "0x00542114": 3,
+   "0x0054211a": 3,
+   "0x00445d10": 3,
+   "0x00434d50": 3,
+   "0x0051b5d0": 2,
+   "0x004c0650": 2,
+   "0x00524970": 2,
+   "0x00438100": 2,
+   "0x004b7f70": 2,
+   "0x0051c260": 1,
+   "0x0051c880": 1
+  },
+  "total_real": 87
+ },
+ "cxx_gate": {
+  "new_violations": 6,
+  "addresses": [
+   "0x442420",
+   "0x442E60",
+   "0x442E90",
+   "0x445C10",
+   "0x445C60",
+   "0x445CD0"
+  ],
+  "cause": "UIWnd幽灵改名sub_442xxx+新增槽条目 vs 旧claim(UIFrameWnd×5/scScriptInstance×2/UILoadingFrm v1_slot_3)",
+  "resolution": "G2 claim清理后 --bootstrap 刷新CXX基线"
+ },
+ "claim_gate": {
+  "multi_claim_unadjudicated": [
+   "0x445c60"
+  ],
+  "desc": "0x445c60=UIWnd slot_2; UIListBox/UI3DCtrl表槽引用s2(from=SceneObj已删claim)——claim图需复查"
+ },
+ "data_quality_open": {
+  "hex_suffix_names": {
+   "count": 200,
+   "ledger": "data/status/pending/hex_suffix_names_20261115.json",
+   "desc": "低16位地址后缀名(_58d0形); 多为C8消歧约定形态, 但用户定性=数据质量问题; N系列门禁候选",
+   "top_classes": [
+    "UIListBox:10",
+    "UICursor:8",
+    "CCBRoleState:7",
+    "CCBSystem:7",
+    "RoleSystem:6"
+   ]
+  },
+  "gate_candidates_N11_plus": [
+   "backtick编译器名入methods(已4处, G1b拒发但注解层无门禁)",
+   "dtor族名(_scalar_dtor_*/_sdtor_*)非dtor槽条目",
+   "同址多名claim跨类(CXX已覆盖但CLAIM_GATE未联动)"
+  ],
+  "uiwnd_slot0_misname": "0x445e70条目名ShowClipped=UIWnd删除式dtor的bisect误名(MSVC律slot0=dtor); CUtil/ArraySlots/CCBPanelSlot同误名传播",
+  "uiwnd_ghost_true_owner": "0x442xxx三函数(sub_442E90/442420/442E60)真身未定谳(疑UIFrameWnd族); 现寄挂UIWnd",
+  "scScriptInstance_fake_table": "表含UIWnd槽地址(0x445cd0/0x445c10)但非UIWnd后代=census产物嫌疑, 需ctor写点裁决",
+  "ccbPanelSlot_table": "非UIWnd后代但表含UIWnd slot0地址(0x445e70)=同嫌疑",
+  "v1_slot_3_todo_names": "UILoadingFrm v1_slot_3 / ArraySlots _todo_445B90 = 遗留占位命名",
+  "uiwnd_slot123_names": "slot1/2/3暂slot_N占位, 语义名需decomp证据(现registry误名留semantic_name)"
+ },
+ "compile_families_open": {
+  "C2227_367_C2673_339": "最大族未诊断根因; 集中CEff族cpp(CEffgbParticle 87/CEffCylinder 82/CEffGrid 79/CCBRoleState 78/CEffMeteor 78); 疑=重归属后this语境垃圾化(体渲染耦合律)",
+  "C2440_350": "CEff重渲染类型漂移族+lvar裁决族挂账",
+  "C2664_169": "CreateProtectedObj等fn-pointer转换族",
+  "C2143_104": "CCBSystem语法族",
+  "C2039_92": "cpp定义行名对齐头契约(路线①-G1b, 消1769错=63%mass的入口)",
+  "C2084_10": "ICF折叠同体cpp双定义(CEffCylinder::ProcessData×4/CEffGrid ctor等)"
+ },
+ "pipeline_open": [
+  "路线①-G1b cpp定义行名对齐头契约pass",
+  "槽链canonical传播: 真override(表值≠基址)派生类须取基canonical名+签名(防C2555复发)",
+  "去重过滤器对inline体/函数指针成员字段的过杀风险(未用例钉死)",
+  "宏冲突卫兵双发射点(主循环+G1b)未合并",
+  "unify fmt双cc拼接bug(悬案)",
+  "adjustor thunk未接入binary_polymorphic判定(权威序#1空挂); registrar 0x5704C8-0x570A78区段≥11真表漏扫; V1 max()欠计+CEffBink双ctor反例; V1 poly与判定器不同源(PSWO/GlowObj)"
+ ],
+ "pending_campaigns": [
+  "组②8类alloc-wrapper定谳(CCBRoleState/CCBUI/CEffGrid/Meteor/SParticle/Shock/CEffectSystem/UICoverFrm)+TextureLib/UITitle_YXXX/WeatherEffectNode/gbLightObj ctor定位",
+  "RenderTarget2身份裁决(96 methods归属)",
+  "终态验收: 全量ctor写点xref→表→类三联普查"
+ ],
+ "g2_resolved": [
+  "0x43de40(slot_3×19类)",
+  "0x4c15d0(UpdateParticles×11类)",
+  "0x43ddf0(slot_1×7类)"
+ ],
+ "g2_parked_thunk": "0x542102批(VisNode族s2)=adjustor thunk槽位, 管线无thunk建模, 挂账",
+ "l1_verdict": {
+  "ratchet": "162→114 REGRESSION(总体1458→1040不可比, ratchet已拦截并回滚基线)",
+  "root_cause": "419消失符号中389个(93%)属于当前97个编译失败单元——符号根本没进产物。L1衰减=s2从159时代跌到126的累积后果, 非本轮G2/G1b字节回归",
+  "top_lost_units": {
+   "CCBAI.cpp": 51,
+   "RenderTarget2.cpp": 42,
+   "CameraCtrl.cpp": 40,
+   "ScreenEffectMgr.cpp": 27,
+   "CEffgbParticle.cpp": 22,
+   "UISceneFrm.cpp": 18,
+   "CEffectSystem.cpp": 18,
+   "CEffCylinder.cpp": 17
+  },
+  "north_star_path": "修s2 own-fail就是修L1: 每修复一个编译单元, 其符号立即回到字节比较总体",
+  "remaining_lost_not_failing": "419-389=30个: 待查(可能符号改名/重排, 量小)"
+ }
+}

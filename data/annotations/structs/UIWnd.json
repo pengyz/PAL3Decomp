@@ -106,52 +106,138 @@
    "name": "SetRect",
    "signature": "int __thiscall(UIWnd *this, void *a2)",
    "name_source": "IDA语义分析 2026-11-01 批11",
-   "name_note": "设置矩形+发送消息 1022"
+   "name_note": "设置矩形+发送消息 1022",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *a2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043bb90": {
    "name": "_scalar_dtor",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": null,
+    "cc": null,
+    "params": null,
+    "varargs": false,
+    "pending": true
+   }
   },
   "0x00445b40": {
    "name": "_UIWnd",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d589c": {
    "name": "SetRect_589c",
    "signature": "void (tagRECT *)",
    "source": "pdb",
    "evidence_level": "unverified",
-   "semantic_name": "SetRect"
+   "semantic_name": "SetRect",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": null,
+    "params": [
+     {
+      "type": "tagRECT *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d5950": {
    "name": "BringWindowToTop",
    "signature": "void __thiscall()",
    "source": "pdb | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [C2660修 2026-11-14] param数1→0: 2个调用点全传0参(this->BringWindowToTop())",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00457340": {
    "name": "CleanupScript",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=805416>class_size=68",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445f20": {
    "name": "MoveWindow",
    "signature": "int __thiscall(void)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450390": {
    "name": "DelegateRender",
    "signature": "void __thiscall()",
    "source": "batch:sub_fix_from_decomp_this_type",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451730": {
    "name": "GetState",
    "signature": "int __thiscall(UIWnd *this)",
    "name_source": "IDA语义分析 2026-10-31 批5",
-   "name_note": "偏移访问器（+276 DWORD）"
+   "name_note": "偏移访问器（+276 DWORD）",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445b20": {
    "name": "_scalar_dtor_5B20",
@@ -159,19 +245,57 @@
    "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
    "declaration_only": true,
    "evidence_level": "A",
-   "adjudication": "confirmed"
+   "adjudication": "confirmed",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445d20": {
    "name": "MoveToAbsolute",
    "signature": "int __thiscall UIWnd::MoveToAbsolute()",
    "source": "| [归属定谳 2026-10-25·布局+调用者双面] 体读 this+16/+20 = UIWnd m_rect.left/top（known_members @16 m_rect:tagRECT 逐偏移吻合，绝对坐标→增量换算语义自洽）；调用者面：5 站全为 UIWnd 派生指针（CCBUI m_pRoleStateMP[4]=UIProgressBar*、m_pRoleStateFace/AttackInc=UIStatic* 等）调同一函数 ⇒ 基类方法；尾调 sub_445D40（UIWnd::MoveBy，m_rect 四字段 ±delta 布局铁证）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445d40": {
    "name": "HitTest",
    "signature": "int __thiscall(UIWnd *this, int a2, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批6",
-   "name_note": "矩形命中测试（left/right/top/bottom）"
+   "name_note": "矩形命中测试（left/right/top/bottom）",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "int",
+      "name": "a3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044a7d0": {
    "name": "_sdtor_14",
@@ -179,7 +303,24 @@
    "source": "vtable_gap_fill_v1(from UIWnd.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "adjudication": "rejected"
+   "adjudication": "rejected",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004431b0": {
    "name": "_sdtor_call_dtor",
@@ -187,49 +328,215 @@
    "source": "vtable_migrated",
    "ordinal": 12,
    "evidence_level": "unverified",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445b90": {
    "name": "Create",
    "signature": "int __thiscall(int, tagRECT *, UIWnd *)",
    "evidence_level": "A",
-   "source": "binary:UIWnd真表slot4(Create), registry名吻合"
+   "source": "binary:UIWnd真表slot4(Create), registry名吻合",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "tagRECT *",
+      "name": null
+     },
+     {
+      "type": "UIWnd *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445d10": {
    "name": "OnMessage",
    "signature": "int __thiscall(int, int, int)",
    "source": "binary:UIWnd真表slot6(0x445D10=OnMessage, 头声明槽契约已有); cpp定义在CCBRoleState.cpp(继承实现, 体属UIWnd)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445e70": {
    "name": "ShowClipped",
    "signature": "void __thiscall(int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442e90": {
-   "name": "slot_1",
+   "name": "RenderWithTexture",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_1",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442ff0": {
-   "name": "Update",
+   "name": "Update_2ff0",
    "signature": "void __thiscall(int,int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442420": {
-   "name": "slot_3",
+   "name": "Destroy_2420",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "Destroy_2420",
+   "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442e60": {
-   "name": "slot_5",
+   "name": "_scalar_dtor_2E60",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_5",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00445cd0": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "semantic_name": "RoleCameraCtrl::Render(void)",
+   "name_note": "; C9定谳(高置信): 源级void——基体返回值=float位形eax垃圾(LODWORD(m_targetfrom.y)语义无意义) + 三叶类Render体零return独立佐证; Registry名Render=语义正确保留",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00445c60": {
+   "name": "Update",
+   "signature": "BOOL __thiscall(int, int)",
+   "semantic_name": "SceneObj::Update(int,int)",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00445c10": {
+   "name": "HideAll",
+   "signature": "int __thiscall()",
+   "semantic_name": "RoleCameraCtrl::HideAll(void)",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -239,38 +546,39 @@
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": null
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x00442E90",
-     "from": null
+     "addr": "0x00445CD0",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x00442FF0",
-     "from": null
+     "addr": "0x00445C60",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x00442420",
-     "from": null
+     "addr": "0x00445C10",
+     "name": null,
+     "sig": null
     },
     {
      "addr": "0x00445B90",
-     "from": null,
-     "name": "Create",
-     "sig": "int __thiscall(int, tagRECT *, UIWnd *)"
+     "name": "Create"
     },
     {
-     "addr": "0x00442E60",
-     "from": null
+     "addr": "0x00445B20",
+     "name": null,
+     "sig": null
     },
     {
      "addr": "0x00445D10",
-     "from": null,
-     "name": "OnMessage",
-     "sig": "int __thiscall(int, int, int)"
+     "name": "OnMessage"
     }
    ],
-   "source": "binary:UIWnd ctor 0x445B40 单写[esi]=0x56AEC8(两段式扫描确认, 无第二基); 46槽旧注解=表遍历越界产物(7周期重复实锤); 0x445B90=Create/0x445D10=OnMessage registry名吻合",
+   "source": "binary:ctor UIWnd::_UIWnd+0x1D 单写[esi]=0x56AEC8; raw .rdata 7码指针槽(slot7=0x41400000浮点=表尾), 46槽旧注解/true_vtable_map计数=遍历越界; 0x445B90=Create/0x445D10=OnMessage registry名吻合",
    "evidence_level": "binary_ctor_write"
   }
  ],

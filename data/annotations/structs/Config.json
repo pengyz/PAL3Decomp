@@ -14,48 +14,212 @@
   "0x0042fda0": {
    "name": "ReadINIInt",
    "signature": "int __thiscall(char *filename, char *key)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *filename",
+      "name": null
+     },
+     {
+      "type": "char *key",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042fdc0": {
    "name": "FormatSectionPath",
    "signature": "void __cdecl(char *param_1, char *param_2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "char *param_1",
+      "name": null
+     },
+     {
+      "type": "char *param_2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042fde0": {
    "name": "ReadSectionAsInt",
    "signature": "bool __cdecl(char *param_1, char *param_2, unsigned int *param_3, unsigned int param_4)",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "char *param_1",
+      "name": null
+     },
+     {
+      "type": "char *param_2",
+      "name": null
+     },
+     {
+      "type": "unsigned int *param_3",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": "param_4"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042ff40": {
    "name": "ReadFloatArray",
    "signature": "BOOL __thiscall(int nVal, int nVal2, int *pnVal, int *pnVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "int *pnVal2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042feb0": {
    "name": "ResetField7",
    "signature": "int *__thiscall Config::ResetField7()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042fec0": {
    "name": "InitDefaults",
    "signature": "int __thiscall(int *p_DWORD, int *p_DWORD2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00430080": {
    "name": "SetSlotValue",
    "signature": "int __thiscall(int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004300a0": {
    "name": "GetNextEntry",
    "signature": "bool __thiscall(int nVal, int *pnVal, int *pnVal2, int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "int *pnVal2",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00430670": {
    "name": "ParseSection",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

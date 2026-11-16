@@ -87,67 +87,216 @@
    "name": "~RoleCameraCtrl",
    "signature": "void ()",
    "source": "pdb",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445860": {
    "name": "SetName",
    "signature": "void __thiscall RoleCameraCtrl::SetName(const char *pszName)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const char *pszName",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450a60": {
    "name": "InitFrameUI",
    "signature": "RoleCameraCtrl * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RoleCameraCtrl *",
+   "sig_model": {
+    "return": "RoleCameraCtrl *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450c90": {
    "name": "UpdatePosition",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445910": {
    "name": "SetTargetDistance",
    "signature": "int __thiscall RoleCameraCtrl::SetTargetDistance(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450ad0": {
    "name": "InitBaseWidget",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450c60": {
    "name": "OnMessage",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450d00": {
    "name": "ShowWindow",
    "signature": "void __thiscall(int a1)",
    "ordinal": 0,
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bb50": {
    "name": "InitViewSlots",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052dff0": {
    "name": "SetViewPosition",
    "signature": "int __thiscall RoleCameraCtrl::SetViewPosition(int nVal, int nVal2, int nVal3, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e080": {
    "name": "ComputeViewVector",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "evidence_level": "unverified"
-  },
-  "0x00445c10": {
-   "name": "HideAll",
-   "signature": "int __thiscall()",
    "evidence_level": "unverified",
-   "semantic_name": "HideAll"
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450ab0": {
    "name": "_sdtor_26",
@@ -155,13 +304,38 @@
    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_sdtor_26"
+   "semantic_name": "_sdtor_26",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445cd0": {
    "name": "Render",
    "signature": "int __thiscall()",
    "evidence_level": "unverified",
-   "semantic_name": "Render"
+   "semantic_name": "Render",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -170,32 +344,25 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00450D00",
-     "from": null
+     "addr": "0x00450D00"
     },
     {
-     "addr": "0x00445CD0",
-     "from": "scScriptInstance"
+     "addr": "0x00445CD0"
     },
     {
-     "addr": "0x00450C90",
-     "from": null
+     "addr": "0x00450C90"
     },
     {
-     "addr": "0x00445C10",
-     "from": "scScriptInstance"
+     "addr": "0x00445C10"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00450AB0",
-     "from": null
+     "addr": "0x00450AB0"
     },
     {
-     "addr": "0x00450C60",
-     "from": null
+     "addr": "0x00450C60"
     }
    ]
   }
@@ -203,8 +370,9 @@
  "base_size": 8,
  "bases": [
   {
-   "name": "PalScriptWaitObj",
+   "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "bases_note": "继承证据(slot指纹): 表含0x445c10/0x445b90双UIWnd值; G2审计恢复"
 }

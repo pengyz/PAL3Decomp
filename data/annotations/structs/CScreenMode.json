@@ -537,59 +537,193 @@
    "name": "ProcessGameMode",
    "signature": "void __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043afa0": {
    "name": "SetTooltipText",
    "signature": "void __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043dc40": {
    "name": "SetPosition",
    "signature": "void __thiscall(int nX, int nY)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nX"
+     },
+     {
+      "type": "int",
+      "name": "nY"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e8b0": {
    "name": "HideUIBars",
    "signature": "void __thiscall CScreenMode::HideUIBars(int nVal, unsigned int dwVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00456280": {
    "name": "GetMouseScroll",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00456e20": {
    "name": "PauseAllStreams",
    "signature": "void __thiscall(void *pStreams, unsigned __int8 a2)",
    "source": "| param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *pStreams",
+      "name": null
+     },
+     {
+      "type": "unsigned __int8",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004593c0": {
    "name": "InitGameUI",
    "signature": "void __thiscall CScreenMode::InitGameUI()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0047be20": {
    "name": "InitEquipScreen",
    "signature": "void __thiscall CScreenMode::InitEquipScreen()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00493290": {
    "name": "GetPlayerAttByIndex",
    "signature": "void __thiscall(int nIndex)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b30c0": {
    "name": "GetMouseDelta",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00523f30": {
    "name": "CScreenMode",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00524110": {
    "name": "_scalar_dtor_4110",
@@ -599,303 +733,1075 @@
    "ordinal": 5,
    "source": "+canonical_rename | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CScreenMode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570630）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00524130": {
    "name": "~CScreenMode",
    "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 _CScreenMode 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CScreenMode。refs: ??1UIRoleDialog@@QAE@XZ ?CleanupScript@CCBStage@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ??1CCB",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00524980": {
    "name": "ForwardMessage",
    "signature": "BOOL __thiscall(int, int)",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_name": "ForwardMessage"
+   "semantic_name": "ForwardMessage",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005249a0": {
    "name": "OnRenderAlt",
    "signature": "int __thiscall CScreenMode::OnRenderAlt(int nVal1)",
    "ordinal": 6,
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00527f50": {
    "name": "InitSceneAudio",
    "signature": "int __thiscall CScreenMode::InitSceneAudio(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052d230": {
    "name": "InitPlayerData",
    "signature": "char __thiscall CScreenMode::InitPlayerData()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052df40": {
    "name": "InitCamera",
    "signature": "void __thiscall(struct gbGfxManager *pGfx)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "struct gbGfxManager *pGfx",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052ed30": {
    "name": "InitEndScreen",
    "signature": "void __thiscall CScreenMode::InitEndScreen()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530440": {
    "name": "CreateVolModNode",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530660": {
    "name": "FreeNPCBuffer",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00533250": {
    "name": "LoadScreenScene",
    "signature": "double __thiscall(double result, float result_4)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "double",
+   "sig_model": {
+    "return": "double",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "double",
+      "name": "result"
+     },
+     {
+      "type": "float",
+      "name": "result_4"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c420": {
    "name": "CloseBinkVideo",
    "signature": "int __thiscall CScreenMode::CloseBinkVideo()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c440": {
    "name": "CreateDevice",
    "signature": "int __thiscall(int a, int b, int c, int d)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a"
+     },
+     {
+      "type": "int",
+      "name": "b"
+     },
+     {
+      "type": "int",
+      "name": "c"
+     },
+     {
+      "type": "int",
+      "name": "d"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c460": {
    "name": "WaitBinkFrame",
    "signature": "int __thiscall CScreenMode::WaitBinkFrame()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c470": {
    "name": "IsSceneReady",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c530": {
    "name": "CheckFieldReady",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, int nVal6)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int",
+      "name": "nVal5"
+     },
+     {
+      "type": "int",
+      "name": "nVal6"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c5a0": {
    "name": "PlayVideo",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c6f0": {
    "name": "SetViewport",
    "signature": "int __thiscall(int x, int y)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "x"
+     },
+     {
+      "type": "int",
+      "name": "y"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c710": {
    "name": "GetWidth",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c720": {
    "name": "GetHeight",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053c8c0": {
    "name": "InitDisplayState",
    "signature": "int __thiscall CScreenMode::InitDisplayState()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053cdd0": {
    "name": "SetState",
    "signature": "int __thiscall(int state)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "state"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d150": {
    "name": "GetSoundList",
    "signature": "PtrArray * __thiscall CScreenMode::GetSoundList()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "PtrArray *",
+   "sig_model": {
+    "return": "PtrArray *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d1e0": {
    "name": "SetAudioParam",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d2d0": {
    "name": "IsAudioReady",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053dc50": {
    "name": "CleanupSoundList",
    "signature": "void __thiscall CScreenMode::CleanupSoundList()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053dd70": {
    "name": "SetMode",
    "signature": "void __thiscall(int mode)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "mode"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053def0": {
    "name": "Restore",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053df80": {
    "name": "GetByteParam",
    "signature": "BOOL __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053dfb0": {
    "name": "PlaySoundStream",
    "signature": "int __thiscall CScreenMode::PlaySoundStream(const void *pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *pData",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e2e0": {
    "name": "AudioSetPosition",
    "signature": "void __thiscall(CScreenMode *this, const void *pData, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *pData",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e490": {
    "name": "AudioUpdate",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e4e0": {
    "name": "PlaySoundIfEnabled",
    "signature": "void __thiscall CScreenMode::PlaySoundIfEnabled(void *pSound, int nMode)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *pSound",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nMode"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e500": {
    "name": "GetAudioManager",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e510": {
    "name": "PlaySceneMusic",
    "signature": "void __thiscall CScreenMode::PlaySceneMusic(char *pszScene, const char *pszArea, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszScene",
+      "name": null
+     },
+     {
+      "type": "const char *pszArea",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e680": {
    "name": "PlayCombatMusic",
    "signature": "void __thiscall CScreenMode::PlayCombatMusic(char *pszSceneName)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszSceneName",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e720": {
    "name": "StopAllAudio",
    "signature": "unsigned int __thiscall CScreenMode::StopAllAudio()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned int",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e740": {
    "name": "PlayAmbientSound",
    "signature": "void __thiscall CScreenMode::PlayAmbientSound(char *pszName, gbAudioManager *pAudioMgr)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszName",
+      "name": null
+     },
+     {
+      "type": "gbAudioManager *pAudioMgr",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e890": {
    "name": "ApplyColorFilter",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e950": {
    "name": "AudioStopAll",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053e970": {
    "name": "StopAll",
    "signature": "unsigned int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned int",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ea60": {
    "name": "AudioFadeOut",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053eb50": {
    "name": "IterateChildList",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053eb90": {
    "name": "AddSoundEntry",
    "signature": "int __thiscall CScreenMode::AddSoundEntry(char *pszBuf, char *pszBuf2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszBuf",
+      "name": null
+     },
+     {
+      "type": "char *pszBuf2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ed70": {
    "name": "GetSoundCount",
    "signature": "int __thiscall CScreenMode::GetSoundCount()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053eda0": {
    "name": "DestroyString",
    "signature": "void __thiscall(int *p_DWORD, int *p_DWORD2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ede0": {
    "name": "FreeSoundBuffer",
    "signature": "void __thiscall CScreenMode::FreeSoundBuffer(void *Block, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *Block",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053edf0": {
    "name": "ComparePointers",
    "signature": "int * __thiscall(int *p_DWORD, int *p_DWORD2, int *p_DWORD3)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD3",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ee30": {
    "name": "InitSceneObjects",
    "signature": "void __thiscall(int *p_DWORD, int nVal, int *p_DWORD2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053f220": {
    "name": "UpdateRenderState",
    "signature": "char __thiscall CScreenMode::UpdateRenderState(int *lpString)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *lpString",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00569320": {
    "name": "LoadAudioFromFile",
    "signature": "int __cdecl CScreenMode::LoadAudioFromFile(int *p_DWORD, FILE *Stream, int *p_DWORD2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "FILE *Stream",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005694f0": {
    "name": "OpenBinkVideo",
    "signature": "int __cdecl CScreenMode::OpenBinkVideo(CScreenMode *pScreen, const char *szFilename, int nVal, int nVal2, int nFlags)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CScreenMode *pScreen",
+      "name": null
+     },
+     {
+      "type": "const char *szFilename",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043c550": {
    "name": "SetProgress",
    "signature": "void __thiscall(float fProgress)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fProgress"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053edd0": {
    "name": "GetPrevIndex",
    "signature": "int __stdcall(int)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "stdcall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053f4c0": {
    "name": "Method",
    "signature": "_DWORD *__thiscall(CScreenMode *this, _DWORD *a2)",
    "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "_DWORD *",
+   "sig_model": {
+    "return": "_DWORD *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "_DWORD *a2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053df70": {
    "name": "GetInstance",
    "signature": "CScreenMode *__cdecl()",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "CScreenMode *",
+   "sig_model": {
+    "return": "CScreenMode *",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00494250": {
    "name": "ResetProgressList",
    "signature": "int __thiscall(CScreenMode *this)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0042c1c0": {
    "name": "CheckUIVisible",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "UI 可见性检查（switch 状态）",
-   "signature": "bool __thiscall(CScreenMode *this, int thisa)"
+   "signature": "bool __thiscall(CScreenMode *this, int thisa)",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "thisa"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00524970": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "semantic_name": "Render",
+   "confidence": "中",
+   "name_note": "G2批: thunk→CCBControlWindow::Render, 契约随目标void(链已定谳)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -904,35 +1810,35 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00524970",
-     "from": "CCBStage"
+     "addr": "0x00524970"
     },
     {
-     "addr": "0x00524980",
-     "from": null
+     "addr": "0x00524980"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00524110",
-     "from": null
+     "addr": "0x00524110"
     },
     {
-     "addr": "0x005249A0",
-     "from": null
+     "addr": "0x005249A0"
     }
    ]
   }
  ],
- "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓"
+ "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓",
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445b90双UIWnd值; G2审计恢复"
 }

@@ -55,18 +55,61 @@
   "0x00429af0": {
    "name": "InitFromFile",
    "signature": "void __thiscall GeomNode::InitFromFile(const gbGeomNode *pGeomNode, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const gbGeomNode *pGeomNode",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d0950": {
    "name": "LoadFromNode",
    "signature": "bool __thiscall GeomNode::LoadFromNode(const gbGeomNode *pNode)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const gbGeomNode *pNode",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d0a80": {
    "name": "DestroyChildren",
    "signature": "void __thiscall GeomNode::DestroyChildren(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

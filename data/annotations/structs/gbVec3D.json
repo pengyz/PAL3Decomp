@@ -25,7 +25,24 @@
   "0x0042fd40": {
    "name": "Copy",
    "signature": "gbVec3D *__thiscall(int nSrcIndex, gbVec3D *pSrc)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVec3D *",
+   "sig_model": {
+    "return": "gbVec3D *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nSrcIndex"
+     },
+     {
+      "type": "gbVec3D *pSrc",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

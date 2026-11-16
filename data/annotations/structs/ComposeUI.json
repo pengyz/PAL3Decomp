@@ -64,17 +64,60 @@
    "_misattrib_evidence": "max_offset=2912>class_size=152",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 调用点2个(UITitle_YXXX.cpp:408外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
-   "owner": "ComposeUI"
+   "owner": "ComposeUI",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0047e030": {
    "name": "RefreshRecipeList",
    "signature": "int __thiscall ComposeUI::RefreshRecipeList(int arg0)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "arg0"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a3730": {
    "name": "ProcessChildItem",
    "signature": "int __thiscall ComposeUI::ProcessChildItem(int arg0, int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "arg0"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 72,

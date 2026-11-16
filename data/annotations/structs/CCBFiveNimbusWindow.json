@@ -61,78 +61,275 @@
   "0x00519b60": {
    "name": "~CCBFiveNimbusWindow",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a070": {
    "name": "SetFloatParam",
    "signature": "int __thiscall(float value)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "value"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00439740": {
    "name": "CreateScriptAndCamera",
    "signature": "int *__thiscall(int id, int parent)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "int",
+      "name": "parent"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043fd20": {
    "name": "CalcHitAngle",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00443af0": {
    "name": "UpdateDisplay",
    "signature": "int __thiscall CCBFiveNimbusWindow::UpdateDisplay()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00443ba0": {
    "name": "IsHitLeft",
    "signature": "bool __thiscall(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00443bf0": {
    "name": "IsAboveThreshold",
    "signature": "bool __thiscall(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00443c20": {
    "name": "IsHitRight",
    "signature": "bool __thiscall(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00443c70": {
    "name": "IsHitBottom",
    "signature": "bool __thiscall(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e2f0": {
    "name": "UpdateAnimation",
    "signature": "char __thiscall CCBFiveNimbusWindow::UpdateAnimation(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052f300": {
    "name": "GetValue",
    "signature": "int __thiscall(int nVal)",
    "source": "| rename:_todo_→fn_",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052fbb0": {
    "name": "GetSlotA",
    "signature": "int __thiscall CCBFiveNimbusWindow::GetSlotA(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052fc30": {
    "name": "GetSlotB",
    "signature": "int __thiscall CCBFiveNimbusWindow::GetSlotB(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530bc0": {
    "name": "ApplySelection",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00519fe0": {
    "name": "HandleInput",
    "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "unsigned int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00519b40": {
    "name": "_scalar_dtor_9B40",
@@ -141,21 +338,77 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed",
-   "semantic_name": "_scalar_dtor_9B40"
+   "semantic_name": "_scalar_dtor_9B40",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051a090": {
    "name": "AddResultWindowAni",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "source": "vtable_gap_fill_v1(from CCBFiveNimbusWindow.json)",
    "evidence_level": "unverified",
-   "adjudication": "confirmed"
+   "adjudication": "confirmed",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00519f50": {
-   "name": "Destroy_9F50",
+   "name": "Destroy",
    "signature": "int __thiscall()",
    "name_source": "same-name消歧 + 2026-11-09 复核",
-   "name_note": "CCBUI自有虚槽×2(双vtable引用);B面: dtor族逻辑。与CCBFiveNimbusWindow:0x004438F0同族消歧",
-   "semantic_name": "Destroy_9F50"
+   "name_note": "剥壳定谳(验证pass): Destroy: 委托slot_3+m_OpenWindow实证",
+   "semantic_name": "Destroy_9F50",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043ddf0": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBControlWindow::Render(void)",
+   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -163,36 +416,28 @@
    "addr": "0x005704E4",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x0043DDF0",
-     "from": "UIListBox"
+     "addr": "0x0043DDF0"
     },
     {
-     "addr": "0x0051A090",
-     "from": null
+     "addr": "0x0051A090"
     },
     {
-     "addr": "0x00519F50",
-     "from": null
+     "addr": "0x00519F50"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00519B40",
-     "from": null
+     "addr": "0x00519B40"
     },
     {
-     "addr": "0x00519FE0",
-     "from": null
+     "addr": "0x00519FE0"
     },
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     }
    ]
   }

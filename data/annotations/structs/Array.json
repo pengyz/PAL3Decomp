@@ -58,24 +58,79 @@
    "name": "Insert",
    "signature": "void *__thiscall(void *pElem, void *pEnd)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *pElem",
+      "name": null
+     },
+     {
+      "type": "void *pEnd",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004111c0": {
    "name": "Size",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004111e0": {
    "name": "Erase",
    "signature": "void *__thiscall(int nIndex, int nCount)",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "int",
+      "name": "nCount"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00411240": {
    "name": "Copy",
    "signature": "void *__cdecl(void *dst)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "void *dst",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049cf80": {
    "name": "HandleItemPage",
@@ -85,33 +140,150 @@
     "v111": "NPC *"
    },
    "lvars_source": " | L-VAR 2026-11-12 R1提案人工复核纯赢: 19 使用点全 NPC* 语境(->m_AnimWndA/m_wndDialog/m_AnimWndB 成员访问 + (NPC*)cast 调用 + *(DWORD*)v111 dword 读——IDB user type 后 Hex-Rays 自渲染); 提案器 R1 4 证据一致",
-   "source": "[修 2026-11-14] __fastcall(int*,int,int)→__thiscall Array::HandleItemPage(int,int,int): EquipUI L1694 调用(((int*)this))->Array::HandleItemPage(3参)——thiscall成员非fastcall"
+   "source": "[修 2026-11-14] __fastcall(int*,int,int)→__thiscall Array::HandleItemPage(int,int,int): EquipUI L1694 调用(((int*)this))->Array::HandleItemPage(3参)——thiscall成员非fastcall",
+   "semantic_sig": "double",
+   "sig_model": {
+    "return": "double",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "elem"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00410960": {
    "name": "Free",
    "signature": "void __thiscall Array::Free()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00410df0": {
    "name": "CopyRange",
    "signature": "int *__thiscall(int *p_DWORD, int *p_DWORD2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004115c0": {
    "name": "PartialSort",
    "signature": "unsigned int *__cdecl Array::PartialSort(unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned int *__cdecl",
+   "sig_model": {
+    "return": "unsigned int *__cdecl",
+    "cc": null,
+    "params": [
+     {
+      "type": "unsigned int *pdwVal",
+      "name": null
+     },
+     {
+      "type": "unsigned int *pdwVal2",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004af450": {
    "name": "InsertBlocks",
    "signature": "char *__thiscall Array::InsertBlocks(char *pszBuf, unsigned int dwVal, int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *__thiscall",
+   "sig_model": {
+    "return": "char *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "char *pszBuf",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00410bd0": {
    "name": "InsertAt",
    "signature": "int __thiscall Array::InsertAt(char *pPos, int *pSrc)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pPos",
+      "name": null
+     },
+     {
+      "type": "int *pSrc",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

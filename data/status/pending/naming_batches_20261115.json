@@ -1,0 +1,156 @@
+{
+ "date": "2026-11-15",
+ "law": "分批执行+置信度留档+呈报用户确认",
+ "done": {
+  "mechanical_dtor": 5,
+  "suffix_strip": "25裁决(14强5弱2ctor1回退1悬案)",
+  "slot_chain": 20,
+  "B3_Actor": {
+   "confirmed_by_user": true,
+   "applied": {
+    "0x0051dfd0": "InitBattleSystem(高:调用点+xref双证)",
+    "0x004c9470": "~Actor(complete dtor机制实证)",
+    "0x004cb280": "~Actor_2",
+    "0x004d37a0": "~Actor_3",
+    "0x004d4ca0": "~Actor_4"
+   },
+   "parked_weak": [
+    "0x004b73e0空体零调用点",
+    "0x0053d390全局写零xref",
+    "0x0053db10全局结构零xref",
+    "0x00408410 slot2无decomp"
+   ],
+   "to_B5": [
+    "0x004b72c0 thunk→SetDefaultSpeed",
+    "0x00532a20 thunk→00532A30"
+   ]
+  },
+  "B4_CCBUI_CCBStage": {
+   "confirmed_by_user": true,
+   "applied": {
+    "0x00526660": "CCBUI_Render(高:全体现渲染+粒子施放)",
+    "0x00508930": "LoadTaskToEditor(中高:任务表→编辑器装载)"
+   },
+   "retracted": "OpenTaskEditor(调用点外推编造风险, 用户拦下)",
+   "deepening": [
+    "sub_00459fa0",
+    "sub_0045a020",
+    "sub_0045a0a0",
+    "sub_0045a120",
+    "sub_0045a1a0"
+   ],
+   "no_evidence": [
+    "0x0051b9c0",
+    "0x0051ba40",
+    "0x0051bac0",
+    "0x004feef0"
+   ]
+  },
+  "B4_deep_sub0045xxx": {
+   "confirmed_by_user": true,
+   "applied": {
+    "0x00459fa0": "ShowSlotPage0",
+    "0x0045a020": "ShowSlotPage1",
+    "0x0045a0a0": "ShowSlotPage2",
+    "0x0045a120": "ShowSlotPage3",
+    "0x0045a1a0": "ShowSlotPage4"
+   },
+   "evidence": "三被调N映射结构自洽(ShowCategoryN/LayoutSlotPanelN/ToggleSlotN)"
+  },
+  "B6_bodies": {
+   "confirmed_by_user": true,
+   "applied_A_dtor": [
+    "~CEffBink",
+    "~EffAudioNode",
+    "~CEffCallBack",
+    "~EffMultiPassNode",
+    "~EffBinkNode",
+    "~UIListBox(误归属标注)",
+    "~RoleAtt(误归属标注)",
+    "SetVisible",
+    "ProcessData_2/3"
+   ],
+   "c8_guards": [
+    "ScreenEffectMgr 0x4bef30(类内已有~X=complete dtor双dtor形态待定名)",
+    "RoleSystem 0x4202f0(同上)",
+    "UICaption 0x450670(类内已有Destroy)",
+    "CEffCylinder 0x4c2640(基名已被占)"
+   ],
+   "moved_to_B5": [
+    "B组adjustor 7条(this±12委托)"
+   ],
+   "misattribution_C": [
+    "UISceneMap 5条RoleAtt方法(待所有权移动)",
+    "UIFrameWnd 0x442390=UIFrameContainer dtor",
+    "UILoadingFrm 0x445c10=UIWnd槽3副本(待删)"
+   ],
+   "deepening": [
+    "CUtil 0x523b90消息分发",
+    "StateUI巨函数×2",
+    "SaleUI 46K巨体",
+    "CCBStage 0x4feef0"
+   ]
+  },
+  "B6_C_moves": {
+   "confirmed_by_user": true,
+   "result": "UISceneMap 6条纯重复(RoleAtt早已持有)纯删源去重; UIFrameContainer已有0x442390源删; UILoadingFrm槽3副本删",
+   "dup_assert_caught": "0x445c10残余claim: UIFrameWnd/RoleCameraCtrl已清(继承副本); scScriptInstance留G2",
+   "pending": "RoleAtt 0x450e90 _sdtor_27 → ~RoleAtt (N12机械dtor律, 下一批)"
+  }
+ },
+ "pending_batches": [
+  {
+   "id": "B1",
+   "desc": "剥壳扩展批(C8冲突态双条件守卫)",
+   "est": "~30",
+   "confidence": "机械层"
+  },
+  {
+   "id": "B2",
+   "desc": "槽链传播剩余(37跳过复核)",
+   "est": "~15",
+   "confidence": "机械层"
+  },
+  {
+   "id": "B3",
+   "desc": "Actor卷宗(9 _todo_ + Method_*族)",
+   "est": "~20",
+   "confidence": "需人工仲裁"
+  },
+  {
+   "id": "B4",
+   "desc": "CCBUI/CCBStage sub_*批",
+   "est": "~10",
+   "confidence": "需人工仲裁"
+  },
+  {
+   "id": "B5",
+   "desc": "WeatherEffectNode thunk批(15)",
+   "est": 15,
+   "confidence": "挂thunk建模"
+  },
+  {
+   "id": "B6+",
+   "desc": "hex后缀余量+零散",
+   "est": "~150",
+   "confidence": "混合"
+  }
+ ],
+ "gate_todo": [
+  "N系列加非语义名禁入",
+  "CLAUDE.md _todo_旧豁免清除",
+  "CXX --bootstrap结算"
+ ],
+ "workflow_law": "未读全体现不得出提案; 调用点名/成员名仅旁证; 函数体语义=唯一主证据",
+ "decomp_index_bug": "decomp address字段含int形态, 字符串索引层漏文件——索引层需统一归一化(待修)",
+ "index_fix": {
+  "tool": "tools/decomp_index_20261115.py (norm_addr双形态归一化+load_decomp_index函数化)",
+  "indexed": 3677,
+  "impact": "真丢层条目有体覆盖: 之前\"空体假象\"大面积存在, 现261/350条目有体可读; 89条仍无体",
+  "garbage_keys_found": [
+   "ParticleEffect 0x00000000/_todo_000000",
+   "0x9d353918(非.text地址!)",
+   "0x3f91df46(疑float位形)——坏键条目需单独裁决"
+  ]
+ }
+}

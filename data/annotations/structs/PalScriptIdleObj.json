@@ -19,18 +19,60 @@
   "0x00453c00": {
    "name": "UpdateWait",
    "signature": "int __thiscall PalScriptIdleObj::UpdateWait(const void *pData, unsigned int dwVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *pData",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00535600": {
    "name": "ResetTimers",
    "signature": "UISceneFrm * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "UISceneFrm *",
+   "sig_model": {
+    "return": "UISceneFrm *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044a970": {
    "name": "LoadScriptTexture",
    "signature": "gbVFileSystem *__thiscall PalScriptIdleObj::LoadTexture(int nTexID, int nParam)",
    "_misattrib_evidence": "max_offset=92>class_size=16",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *__thiscall",
+   "sig_model": {
+    "return": "gbVFileSystem *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "nTexID"
+     },
+     {
+      "type": "int",
+      "name": "nParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 8,

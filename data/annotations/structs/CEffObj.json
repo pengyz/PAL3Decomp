@@ -23,92 +23,77 @@
     {
      "addr": "0x004C0620",
      "name": "slot_0",
-     "sig": null,
-     "from": null
+     "sig": null
     },
     {
      "addr": "0x004C0600",
-     "name": "Create",
-     "sig": "char __thiscall(tagEffObjType *)",
-     "from": null
+     "name": "Create"
     },
     {
      "addr": "0x004C0610",
-     "name": "ResetState",
-     "sig": "void __thiscall(int, int, int, int)",
-     "from": null
+     "name": "ResetState"
     },
     {
      "addr": "0x00401800",
-     "name": "DestroyEffect",
-     "sig": "void __thiscall()",
-     "from": null
+     "name": "DestroyEffect"
     },
     {
      "addr": "0x00401800",
-     "name": "RenderScenePass",
-     "sig": "void __thiscall()",
-     "from": null
+     "name": "RenderScenePass"
     },
     {
      "addr": "0x004AF760",
-     "name": "UpdateFrame",
-     "sig": "void __thiscall(float)",
-     "from": null
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00401800",
-     "name": "Destroy",
-     "sig": "void __thiscall()",
-     "from": null
+     "name": "Destroy"
     },
     {
      "addr": "0x0055434F",
-     "name": "AllocEffect",
-     "sig": "void* __thiscall() = 0",
-     "from": null
+     "name": "AllocEffect"
     },
     {
      "addr": "0x004C0500",
-     "name": "OnTest",
-     "sig": "char __thiscall()",
-     "from": null
+     "name": "OnTest"
     },
     {
      "addr": "0x004AF760",
-     "name": "Update",
-     "sig": "int __thiscall(int)",
-     "from": null
+     "name": "Update"
     },
     {
      "addr": "0x004C0510",
-     "name": "GetEditorObjDescription",
-     "sig": "const char *__thiscall(int)",
-     "from": null
+     "name": "GetEditorObjDescription"
     },
     {
      "addr": "0x004AF760",
      "name": "GetEffect",
      "sig": "int __thiscall(int)",
-     "from": null
+     "sig_note": "slot11 GetEffect槽级契约(int): 派生CEffgbParticle::GetEffect(int)对编译; 载体条目void(int)服务slot5/9同体异名——一址四契约各自槽级签名",
+     "sig_model": {
+      "return": "int",
+      "cc": "thiscall",
+      "params": [
+       {
+        "type": "int",
+        "name": null
+       }
+      ],
+      "varargs": false,
+      "pending": false
+     }
     },
     {
      "addr": "0x004AF760",
-     "name": "RenderEffectPass",
-     "sig": "void __thiscall(int)",
-     "from": null
+     "name": "RenderEffectPass"
     },
     {
      "addr": "0x00401800",
-     "name": "UpdateParticles",
-     "sig": "void __thiscall()",
-     "from": null
+     "name": "UpdateParticles"
     },
     {
      "addr": "0x004C0510",
-     "name": "GetEditorTaskDescription",
-     "sig": "const char *__thiscall(int)",
-     "from": null
+     "name": "GetEditorTaskDescription"
     }
    ],
    "source": "binary:全族叶dtor尾部mov [this],0x56F62C(24写点)=真基表(对抗复核定谳); slot7=0x55434F _purecall=抽象基佐证; 0x56FA88=CEffQuake叶表(此前误钉) | 勘误:基表slot3/4/6/13=0x401800空实现(0x408BD0=叶覆写折叠值)",
@@ -120,54 +105,150 @@
    "name": "OnTest",
    "signature": "char __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0510": {
    "name": "GetEditorObjDescription",
    "signature": "const char *__thiscall(int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "GetEditorObjDescription"
+   "semantic_name": "GetEditorObjDescription",
+   "semantic_sig": "const char *",
+   "sig_model": {
+    "return": "const char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004af760": {
    "name": "UpdateFrame",
-   "signature": "int __thiscall(int)",
+   "signature": "void __thiscall(int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址) | IDB类型载体定谳20261115: 一地址4槽4契约(UpdateFrame/Update/GetEffect/RenderEffectPass), IDB只能一个类型=retn 4字节语义(1栈参int); 头声明按槽位独立(emit逐位), 4个cpp定义共用此IDB类型(实施序③体合成)",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "Update"
+   "semantic_name": "Update",
+   "name_note": "; C2511修正: 对齐cpp定义void(int)(体=空no-op无反证)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0600": {
    "name": "Create",
    "signature": "char __thiscall(tagEffObjType *)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "tagEffObjType *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0610": {
    "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00401800": {
    "name": "DestroyEffect",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "DestroyEffect"
+   "semantic_name": "DestroyEffect",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0620": {
    "name": "slot_0",
    "signature": "void __thiscall()",
    "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
    "evidence_level": "binary_vtable_slot",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0055434f": {
    "name": "AllocEffect",
    "signature": "void* __thiscall() = 0",
    "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
    "evidence_level": "binary_vtable_slot",
-   "declaration_only": true
+   "declaration_only": true,
+   "sig_model": {
+    "return": null,
+    "cc": null,
+    "params": null,
+    "varargs": false,
+    "pending": true
+   }
   }
  },
  "_adjudicated_tables": [
@@ -177,5 +258,12 @@
    "evidence": "全族叶dtor尾写0x56F62C(24处); slot7=_purecall抽象佐证; 复核定谳",
    "date": "2026-11-15"
   }
- ]
+ ],
+ "bases": [
+  {
+   "name": "Object",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据(slot指纹): CEff族基类; 表slot2继承Object UpdateFrame(0x4af760); G2审计恢复"
 }

@@ -25,25 +25,88 @@
   "0x0051b710": {
    "name": "CCBParabolaWindow",
    "signature": "void __thiscall(CCBParabolaWindow **this, int *pnVal, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051b950": {
    "name": "OnMessage_b950",
    "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)",
    "evidence_level": "unverified",
-   "semantic_name": "OnMessage"
+   "semantic_name": "OnMessage",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "msg"
+     },
+     {
+      "type": "unsigned int",
+      "name": "wparam"
+     },
+     {
+      "type": "unsigned int",
+      "name": "lparam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c280": {
    "name": "_scalar_dtor",
    "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00440be0": {
    "name": "LoadResourceEx",
    "signature": "gbVFileSystem *__thiscall(const char *pszName, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *",
+   "sig_model": {
+    "return": "gbVFileSystem *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const char *pszName",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c260": {
    "name": "`scalar deleting destructor'",
@@ -51,28 +114,85 @@
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
    "evidence_level": "A",
    "adjudication": "shared_impl",
-   "semantic_name": "`scalar deleting destructor'"
+   "semantic_name": "`scalar deleting destructor'",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c880": {
-   "name": "Destroy_c880",
+   "name": "Destroy",
    "signature": "int __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "adjudication": "shared_impl",
+   "semantic_name": "Destroy_c880",
+   "name_note": "剥壳定谳(验证pass): Destroy: 释放子控件(m_pBack/m_pDescription)+委托slot_3清理=析构语义实证",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c9f0": {
    "name": "Update",
    "signature": "BOOL __thiscall(int deltatime, int haveinput)",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "adjudication": "shared_impl",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "deltatime"
+     },
+     {
+      "type": "int",
+      "name": "haveinput"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051ca50": {
    "name": "ToggleSlots",
    "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots(int nVal)",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "adjudication": "shared_impl",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051caa0": {
    "name": "Render",
@@ -80,13 +200,42 @@
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "Render"
+   "semantic_name": "Render",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c9b0": {
    "name": "OnMessage",
    "signature": "void __thiscall(uint,uint,uint)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "uint",
+      "name": null
+     },
+     {
+      "type": "uint",
+      "name": null
+     },
+     {
+      "type": "uint",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -95,32 +244,25 @@
    "base": "CCBSkillWindow",
    "slots": [
     {
-     "addr": "0x0051CA50",
-     "from": null
+     "addr": "0x0051CA50"
     },
     {
-     "addr": "0x0051CAA0",
-     "from": null
+     "addr": "0x0051CAA0"
     },
     {
-     "addr": "0x0051C9F0",
-     "from": null
+     "addr": "0x0051C9F0"
     },
     {
-     "addr": "0x0051C880",
-     "from": null
+     "addr": "0x0051C880"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0051C260",
-     "from": null
+     "addr": "0x0051C260"
     },
     {
-     "addr": "0x0051C9B0",
-     "from": "CCBLineupWindow"
+     "addr": "0x0051C9B0"
     }
    ]
   }

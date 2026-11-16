@@ -100,17 +100,50 @@
    "ordinal": 3,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_name": "Destroy"
+   "semantic_name": "Destroy",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00444f60": {
    "name": "InitAfterClear",
    "signature": "int __thiscall UITextArea::InitAfterClear()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445760": {
    "name": "UpdateChildLayout",
    "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "RECT *pRect",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445170": {
    "name": "ProcessInput",
@@ -118,14 +151,40 @@
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_name": "ProcessInput"
+   "semantic_name": "ProcessInput",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445500": {
    "name": "Render",
-   "signature": "int __thiscall()",
+   "signature": "void __thiscall()",
    "ordinal": 1,
    "evidence_level": "unverified",
-   "semantic_name": "Render"
+   "semantic_name": "Render",
+   "name_note": "; C9定谳(中高): slot1链源级void——result=m_bvisible/m_nTodo成员态语义不通; 对齐基契约",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445720": {
    "name": "ShowWindow",
@@ -133,7 +192,20 @@
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "unverified",
-   "semantic_name": "ShowWindow"
+   "semantic_name": "ShowWindow",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00444ff0": {
    "name": "_sdtor_13",
@@ -142,7 +214,24 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "adjudication": "rejected",
-   "semantic_name": "_sdtor_13"
+   "semantic_name": "_sdtor_13",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -151,32 +240,25 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445720",
-     "from": null
+     "addr": "0x00445720"
     },
     {
-     "addr": "0x00445500",
-     "from": null
+     "addr": "0x00445500"
     },
     {
-     "addr": "0x00445170",
-     "from": null
+     "addr": "0x00445170"
     },
     {
-     "addr": "0x00445920",
-     "from": null
+     "addr": "0x00445920"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00444FF0",
-     "from": null
+     "addr": "0x00444FF0"
     },
     {
-     "addr": "0x00445D10",
-     "from": "CGameData"
+     "addr": "0x00445D10"
     }
    ]
   }

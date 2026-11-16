@@ -55,7 +55,20 @@
   "0x00479260": {
    "name": "GetRoleBySlot",
    "signature": "int __thiscall UIAnimateCtrl::GetRoleBySlot(unsigned int dwVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 68,

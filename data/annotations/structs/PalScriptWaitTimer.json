@@ -16,22 +16,52 @@
  },
  "methods": {
   "0x00434d50": {
-   "name": "slot_0",
+   "name": "_scalar_dtor_4D50",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_0",
+   "name_note": "槽链传播: 同址语义名(_scalar_dtor_4D50)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00438100": {
-   "name": "slot_1",
+   "name": "CheckFlag0C",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_1",
+   "name_note": "槽链传播: 同址语义名(CheckFlag0C)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004382a0": {
-   "name": "slot_2",
+   "name": "UpdateIdleTimer",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_2",
+   "name_note": "槽链传播: 同址语义名(UpdateIdleTimer)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -40,16 +70,13 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00434D50",
-     "from": "PalScript"
+     "addr": "0x00434D50"
     },
     {
-     "addr": "0x00438100",
-     "from": "PalScript"
+     "addr": "0x00438100"
     },
     {
-     "addr": "0x004382A0",
-     "from": "PalScript"
+     "addr": "0x004382A0"
     }
    ],
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 表址修正（边界精核）：0x56ABCC=非安装点（含非码值 0xBC8EFA35）；真表 0x56ABE0 槽行 [0x434D50 del,0x438100 IsWaitDone,0x4382A0 UpdateIdleTimer] 语义吻合；evidence=xrefs 0x4382A0@0x56abe0 + 三槽 decompile；confidence=90"

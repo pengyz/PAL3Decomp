@@ -231,185 +231,611 @@
   "0x00421a10": {
    "name": "NotifyRender",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004220a0": {
    "name": "OverlayRender",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004234d0": {
    "name": "CombatCheck",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004235b0": {
    "name": "ProcessInput",
    "signature": "BOOL __cdecl(char *String1, char *pszBuf)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "char *String1",
+      "name": null
+     },
+     {
+      "type": "char *pszBuf",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a4c0": {
    "name": "LoadResource",
    "signature": "void __thiscall(void *path)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *path",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043fa00": {
    "name": "GetChildCount",
    "signature": "int __thiscall UIScene::GetChildCount()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043fae0": {
    "name": "GetChildAt",
    "signature": "int __thiscall UIScene::GetChildAt()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004427a0": {
    "name": "SetShow",
    "signature": "int __thiscall(UIScene *this, int bShow)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "bShow"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043bce0": {
    "name": "ctor",
    "signature": "int *__thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a4b0": {
    "name": "SetController",
    "signature": "int __thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=68>class_size=4",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a5d0": {
    "name": "OpenAndLoadResource",
    "signature": "gbVFileSystem *__thiscall(BOOL bVisible, UIWnd *pWnd)",
    "_misattrib_evidence": "max_offset=160>class_size=20",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *",
+   "sig_model": {
+    "return": "gbVFileSystem *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "BOOL",
+      "name": "bVisible"
+     },
+     {
+      "type": "UIWnd *pWnd",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043afe0": {
    "name": "SetupRenderClip",
    "signature": "unsigned char __thiscall(int nVal, unsigned int dwVal, unsigned int dwVal2, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned char",
+   "sig_model": {
+    "return": "unsigned char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043b060": {
    "name": "CreateTextureWidget",
    "signature": "gbVFileSystem *__thiscall UIScene::CreateTextureWidget(int id, void *pRect, gbVFileSystem *parent, const char *pszName, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *__thiscall",
+   "sig_model": {
+    "return": "gbVFileSystem *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "void *pRect",
+      "name": null
+     },
+     {
+      "type": "gbVFileSystem *parent",
+      "name": null
+     },
+     {
+      "type": "const char *pszName",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043b500": {
    "name": "GetChildWidget",
    "signature": "unsigned char __thiscall(unsigned int dwVal, unsigned int dwVal2, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned char",
+   "sig_model": {
+    "return": "unsigned char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043c7b0": {
    "name": "CreateScrollWidget",
-   "signature": "gbVFileSystem *__thiscall UIScene::CreateScrollWidget(int id, int *p_DWORD, int parent, gbVFileSystem *pVFileSystem, char pData)",
+   "signature": "gbVFileSys *__thiscall()",
    "ordinal": 7,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "name_note": "; 签名归一: 修饰名QAEPAVgbVFileSys→gbVFileSys*(slot裁决一致)",
+   "semantic_sig": "gbVFileSys *",
+   "sig_model": {
+    "return": "gbVFileSys *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043d1a0": {
    "name": "CheckMouseHit",
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "int __thiscall(int, int)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "BOOL __thiscall(int nVal, int nVal2)",
+   "name_note": "; C6修正: 签名对齐槽裁决 — 槽裁决对齐(修饰名CheckMouseHit(int,int))",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00459900": {
    "name": "RenderUI",
    "signature": "int __thiscall UIScene::RenderUI()",
    "_misattrib_evidence": "max_offset=3280>class_size=1012",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a660": {
    "name": "ResetState",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043a680": {
    "name": "SetColors",
    "signature": "int __thiscall(int nVal)",
    "source": "| rename:_todo_→fn_",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043beb0": {
    "name": "SetTexture",
    "signature": "void __thiscall UIScene::SetTexture(LPCSTR lpString, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "LPCSTR",
+      "name": "lpString"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043c0f0": {
    "name": "UpdateLayout",
    "signature": "void __thiscall UIScene::UpdateLayout(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043c330": {
    "name": "RefreshLayout",
    "signature": "int __thiscall UIScene::RefreshLayout()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043c9d0": {
    "name": "fill",
    "signature": "void __thiscall UIScene::fill(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "PlayerItem *a1",
+      "name": null
+     },
+     {
+      "type": "PlayerItem *a2",
+      "name": null
+     },
+     {
+      "type": "PlayerItem *a3",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043cbd0": {
    "name": "ResizeContentAlt",
    "signature": "int __thiscall UIScene::ResizeContentAlt(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043cdf0": {
-   "name": "Render_CDF0",
-   "signature": "virtual int __thiscall(UIScene *this)",
+   "name": "Render",
+   "signature": "void __thiscall()",
    "name_source": "IDA语义分析 2026-10-31 批4",
-   "name_note": "UIScene 渲染（位置/浮点计算）"
+   "name_note": "剥壳定谳(验证pass): Render: RoleCameraCtrl::Render+SetLibFolder场景渲染实证; C6修正: 签名对齐槽裁决 — Render链void已定谳(史前Rendervoid双证)",
+   "semantic_name": "Render_CDF0",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043fbc0": {
    "name": "SetTextParam",
    "signature": "void __thiscall UIScene::SetTextParam()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00455190": {
    "name": "SetParam",
    "signature": "int __thiscall UIScene::SetParam(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045adf0": {
    "name": "DestroyParent",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e120": {
    "name": "LoadMapData",
    "signature": "void __thiscall UIScene::LoadMapData(int a1)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e140": {
    "name": "CalcViewTransform",
    "signature": "int __thiscall UIScene::CalcViewTransform(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00535ae0": {
    "name": "ClearColors",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00535ba0": {
    "name": "ResetCameraOffset",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00419c20": {
    "name": "RenderVertexPool",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043be80": {
    "name": "ReleaseTexture",
    "signature": "void __thiscall()",
    "ordinal": 3,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043be10": {
    "name": "~UIScene",
@@ -417,92 +843,285 @@
    "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScene（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ACD8）",
    "ordinal": 5,
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00524230": {
    "name": "InitScriptScene",
    "signature": "char __thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=5248>class_size=204",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00532d60": {
    "name": "UpdateAlpha",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445930": {
    "name": "SetState",
    "signature": "void __thiscall UIScene::SetState(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442060": {
    "name": "SetFirstShow",
    "signature": "void __thiscall UIScene::SetFirstShow(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445f80": {
    "name": "GetPixelChannel",
    "signature": "unsigned char __thiscall(int nX, int nY, int nW, int nH)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned char",
+   "sig_model": {
+    "return": "unsigned char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nX"
+     },
+     {
+      "type": "int",
+      "name": "nY"
+     },
+     {
+      "type": "int",
+      "name": "nW"
+     },
+     {
+      "type": "int",
+      "name": "nH"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004932d0": {
    "name": "LoadRoleSkillData",
    "signature": "int __thiscall UIScene::LoadRoleSkillData(int nRoleIndex)",
    "_misattrib_evidence": "max_offset=217412>class_size=204",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nRoleIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043bbc0": {
+   "name": "Update",
+   "signature": "int __thiscall(int, int)",
+   "semantic_name": "Update",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043bb90": {
+   "name": "_scalar_dtor_BB90",
+   "signature": "void __thiscall()",
+   "semantic_name": "_scalar_dtor_BB90",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043d7a0": {
+   "name": "ForwardOnMessage",
+   "signature": "int __thiscall(int, int, int)",
+   "semantic_name": "ForwardOnMessage",
+   "name_note": "G2条目补齐(UIScene双真表): 表2slot6: registry语义名(消息转发)",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
   {
-   "addr": "0x0056AEC8",
-   "base": "UIWnd",
+   "addr": "0x0056ACB8",
    "slots": [
     {
      "addr": "0x00445E70",
-     "from": "UIWnd",
      "name": null,
      "sig": null
     },
     {
-     "addr": "0x00442E90",
-     "from": "UIWnd",
+     "addr": "0x00445CD0",
      "name": null,
      "sig": null
     },
     {
-     "addr": "0x00442FF0",
-     "from": "UIWnd",
-     "name": null,
-     "sig": null
+     "addr": "0x0043BBC0",
+     "name": "Update"
     },
     {
-     "addr": "0x00442420",
-     "from": "UIWnd",
+     "addr": "0x00445C10",
      "name": null,
      "sig": null
     },
     {
      "addr": "0x00445B90",
-     "from": "UIWnd",
-     "name": "Create",
-     "sig": "int __thiscall(int, tagRECT *, UIWnd *)"
+     "name": null
     },
     {
-     "addr": "0x00442E60",
-     "from": "UIWnd",
+     "addr": "0x0043BB90",
      "name": null,
      "sig": null
     },
     {
      "addr": "0x00445D10",
-     "from": "UIWnd",
-     "name": "OnMessage",
-     "sig": "int __thiscall(int, int, int)"
+     "name": null
     }
    ],
-   "source": "继承UIWnd真表(G1a定谳): UIScene自有方法全部非虚, 不产生新vtable"
+   "base": null,
+   "source": "binary:UIScene ctor区imm32直写0x56ACB8(0x43bb7a/0x43bbb2); raw 7槽(slot7=float); slot2/slot5自有(0x43bbxx码区)"
+  },
+  {
+   "addr": "0x0056ACD8",
+   "slots": [
+    {
+     "addr": "0x00445E70",
+     "name": "~UIWnd",
+     "sig": null
+    },
+    {
+     "addr": "0x0043CDF0",
+     "name": "Render"
+    },
+    {
+     "addr": "0x0043D1A0",
+     "name": "CheckMouseHit"
+    },
+    {
+     "addr": "0x0043BE80",
+     "name": "ReleaseTexture"
+    },
+    {
+     "addr": "0x00445B90",
+     "name": "Create"
+    },
+    {
+     "addr": "0x0043BE10",
+     "name": null,
+     "sig": null
+    },
+    {
+     "addr": "0x0043D7A0",
+     "name": "ForwardOnMessage"
+    },
+    {
+     "addr": "0x0043C7B0",
+     "name": "CreateScrollWidget"
+    }
+   ],
+   "base": null,
+   "source": "binary:0x43bd5a imm32写0x56ACD8(第二基表); raw 8槽(slot8=float); slot1/2/3/7=UIScene修饰名铁证; slot5=0x43be10零证据挂卷宗"
   }
  ],
  "bases": [

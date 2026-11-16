@@ -32,12 +32,33 @@
    "name": "CopyParams",
    "signature": "void __thiscall(int *pParams)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pParams",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdfb0": {
    "name": "ScreenEffect",
    "signature": "ScreenEffect * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "ScreenEffect *",
+   "sig_model": {
+    "return": "ScreenEffect *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004be060": {
    "name": "_scalar_dtor_E060",
@@ -45,7 +66,20 @@
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectMgr（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F4F0,0x56F508）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_name": "_scalar_dtor_E060"
+   "semantic_name": "_scalar_dtor_E060",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 8,
@@ -55,8 +89,7 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004BE060",
-     "from": null
+     "addr": "0x004BE060"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor ScreenEffect@0x4BDFB0+142 + ClearAllEffects@0x4BE080+29 析构族复写"

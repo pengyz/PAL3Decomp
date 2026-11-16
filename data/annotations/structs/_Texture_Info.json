@@ -91,7 +91,20 @@
   "0x0053fcf0": {
    "name": "_CalculateUV",
    "signature": "CHAR *__thiscall(LPCSTR lpString)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "CHAR *",
+   "sig_model": {
+    "return": "CHAR *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "LPCSTR",
+      "name": "lpString"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

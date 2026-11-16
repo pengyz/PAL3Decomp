@@ -18,7 +18,20 @@
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_bIdle,m_nController,m_pEM（adjudicate_multiclaim 2026-11-03）",
-   "semantic_name": "UpdateFrame"
+   "semantic_name": "UpdateFrame",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0640": {
    "name": "ResetState",
@@ -28,7 +41,32 @@
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_nController（adjudicate_multiclaim 2026-11-03）",
-   "semantic_name": "ResetState"
+   "semantic_name": "ResetState",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0520": {
    "name": "AllocEffect",
@@ -36,7 +74,15 @@
    "source": "manual_fix_vtable+manual_ida_body",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "semantic_name": "AllocRenderTarget"
+   "semantic_name": "AllocRenderTarget",
+   "semantic_sig": "void*",
+   "sig_model": {
+    "return": "void*",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0920": {
    "name": "Update",
@@ -44,7 +90,20 @@
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 9,
    "evidence_level": "unverified",
-   "semantic_name": "PrepareEffect"
+   "semantic_name": "PrepareEffect",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c09e0": {
    "name": "RenderEffectPass",
@@ -52,14 +111,40 @@
    "source": "manual_fix_vtable+manual_ida_body | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "ordinal": 12,
    "evidence_level": "unverified",
-   "semantic_name": "RenderScene"
+   "semantic_name": "RenderScene",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0540": {
    "name": "~CEffAction",
    "signature": "char *__thiscall(char a2)",
    "source": "| [T140] 语义偏离名修正：@0x4C0540 全函数体（202 字符）= ExecutePasses 调用+flag+operator delete（标量删除析构经典形）⇒ `scalar deleting destructor`（T138 模式，~<Cls> 撞名规避）；@0x4C0560 ExecutePasses 保留（m_nMaxPasses/m_nMaxTargets 实体） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffAction（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F5E4,0x56F5D8）",
    "evidence_level": "A",
-   "semantic_name": "~CEffAction"
+   "semantic_name": "~CEffAction",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0650": {
    "name": "Create",
@@ -67,7 +152,20 @@
    "source": "vtable_gap_fill_v1(from CEffQuake.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "AllocSegments"
+   "semantic_name": "AllocSegments",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "tagEffObjType *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c1270": {
    "name": "GetEditorTaskDescription",
@@ -77,14 +175,35 @@
    "alt_name": "sub_4C1270",
    "alt_signature": "int __thiscall(CEffAction *this)",
    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
-   "semantic_name": "Method_1270"
+   "semantic_name": "Method_1270",
+   "semantic_sig": "const char *",
+   "sig_model": {
+    "return": "const char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c15d0": {
    "name": "UpdateParticles",
    "signature": "void __thiscall()",
    "evidence_level": "unverified",
    "semantic_name": "UpdateParticles",
-   "source": "vtable_gap_fill_v1(from CEffCylinder.json)"
+   "source": "vtable_gap_fill_v1(from CEffCylinder.json)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408bd0": {
    "name": "NullCallback",
@@ -92,7 +211,15 @@
    "source": "vtable_gap_fill_v1(from CEffAction.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "DestroyEffect(槽3语义) / RenderScenePass(槽4语义) / Destroy(槽6语义) — 三槽同址ICF"
+   "semantic_name": "DestroyEffect(槽3语义) / RenderScenePass(槽4语义) / Destroy(槽6语义) — 三槽同址ICF",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -101,95 +228,66 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004C0540",
-     "from": null
+     "addr": "0x004C0540"
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle",
-     "name": "Create",
-     "sig": "char __thiscall(tagEffObjType *)"
+     "name": "Create"
     },
     {
      "addr": "0x004C0640",
-     "from": null,
-     "name": "ResetState",
-     "sig": "void __thiscall(int, int, int, int)"
+     "name": "ResetState"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
      "name": "NullCallback",
-     "sig": "void __thiscall()",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
      "name": "NullCallback",
-     "sig": "void __thiscall()",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x004C0740",
-     "from": null,
-     "name": "UpdateFrame",
-     "sig": "void __thiscall(float)"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
      "name": "NullCallback",
-     "sig": "void __thiscall()",
      "semantic_name": "NullCallback(空回调; 槽位角色由覆写类定义)"
     },
     {
      "addr": "0x004C0520",
-     "from": null,
-     "name": "AllocEffect",
-     "sig": "void* __thiscall()"
+     "name": "AllocEffect"
     },
     {
      "addr": "0x004C0500",
-     "from": "CEffObj",
-     "name": "OnTest",
-     "sig": "char __thiscall()"
+     "name": "OnTest"
     },
     {
      "addr": "0x004C0920",
-     "from": null,
-     "name": "Update",
-     "sig": "int __thiscall(int)"
+     "name": "Update"
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffObj",
-     "name": "GetEditorObjDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorObjDescription"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffObj",
-     "name": "GetEffect",
-     "sig": "int __thiscall(int)"
+     "name": "GetEffect"
     },
     {
      "addr": "0x004C09E0",
-     "from": null,
-     "name": "RenderEffectPass",
-     "sig": "void __thiscall(int)"
+     "name": "RenderEffectPass"
     },
     {
      "addr": "0x004C15D0",
-     "from": null,
-     "name": "UpdateParticles",
-     "sig": "void __thiscall()"
+     "name": "UpdateParticles"
     },
     {
      "addr": "0x004C1270",
-     "from": null,
-     "name": "GetEditorTaskDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorTaskDescription"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

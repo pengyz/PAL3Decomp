@@ -9,7 +9,20 @@
    "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_scalar_dtor_1bb0"
+   "semantic_name": "_scalar_dtor_1bb0",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00411b80": {
    "name": "_scalar_dtor_1b80",
@@ -17,7 +30,35 @@
    "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_scalar_dtor_1b80"
+   "semantic_name": "_scalar_dtor_1b80",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004af760": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(int)",
+   "semantic_name": "UpdateFrame",
+   "confidence": "中",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -26,25 +67,28 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00411BB0",
-     "from": null
+     "addr": "0x00411BB0"
     },
     {
-     "addr": "0x0055434F",
-     "from": "CEffObj"
+     "addr": "0x0055434F"
     },
     {
-     "addr": "0x004AF760",
-     "from": "CEffObj"
+     "addr": "0x004AF760"
     },
     {
-     "addr": "0x00411B80",
-     "from": null
+     "addr": "0x00411B80"
     }
    ],
    "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=Role ctor +114/+672/+697 三写（MI 链第三子对象=根）②被调用者面=Object::Update(0x4AF760 共享)/FatalExit 桩 ③成员访问面=写表回基桩 0x411BB0/0x411B80 ④类归属面=Role 层级根基（0x56A9A4 Role/0x56A9B0 ScriptObj:base/0x56A9C0 根）⑤交互模式面=MI 构造链根初始化 ⇒ **游戏对象根基**（虚 Update/终止接口）；evidence=[Role ctor 三写,槽 0x4AF760 共享 Object::Update,回基桩体字节] confidence=85"
   }
  ],
  "_naming": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 再创作命名 GameObject（根接口语义：虚 Update+终止+回基 reset；Role 层级根）",
- "_size_note": "bs=4 几何最小界（根 vptr 位）；MI 根实际占位随宿主布局，真身锚挂账"
+ "_size_note": "bs=4 几何最小界（根 vptr 位）；MI 根实际占位随宿主布局，真身锚挂账",
+ "bases": [
+  {
+   "name": "Object",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据(slot指纹): 表slot2=0x4af760=Object slot2 UpdateFrame精确指纹; G2审计恢复"
 }

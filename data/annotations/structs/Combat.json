@@ -6,23 +6,73 @@
    "name": "LogMessage",
    "signature": "char __thiscall(char *, int, char *format, ...)",
    "source": "manual_fix_from_call_sites",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *format",
+      "name": null
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0040ccd0": {
    "name": "GetSlotCount",
    "signature": "int __thiscall()",
    "source": "| rename:_todo_→fn_",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004cdb60": {
    "name": "ReleaseCompletedEffects",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f4820": {
    "name": "HandleControlCmd",
    "signature": "unsigned __int8 __thiscall Combat::HandleControlCmd(int idx)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned __int8",
+   "sig_model": {
+    "return": "unsigned __int8",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "idx"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "known_methods": {

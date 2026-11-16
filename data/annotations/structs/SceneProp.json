@@ -97,12 +97,33 @@
   "0x005330f0": {
    "name": "CalculateWorldPos",
    "signature": "char __thiscall(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00533bc0": {
    "name": "CalcScreenPosition",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

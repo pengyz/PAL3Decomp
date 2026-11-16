@@ -28,7 +28,15 @@
    "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref CalcDeltaTime×12 表内共享 + 删际析构 0x4C0620 decompile 写 vptr 回 str | [上下文语义强化 2026-10-17 analyzer] 全文语义更正：152B 步长对象数组释放循环（非 BeginRenderPass）；调用者=0x56F620 槽 + 成员访问 +28/+32 计数 +12 数组基 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=BeginRenderPass 域 | 体 1054B] 交互面[152B 步长数组释放循环] 判定 ✅名实相符（ReleaseObjects152）",
    "evidence_level": "A",
    "adjudication": "confirmed",
-   "evidence": "成员实访独占证据 uniq=3: m_nCount,m_nCount2,m_pObjects（adjudicate_multiclaim 2026-11-03）"
+   "evidence": "成员实访独占证据 uniq=3: m_nCount,m_nCount2,m_pObjects（adjudicate_multiclaim 2026-11-03）",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C1490 全文体=释放循环 `operator delete(ptr); v6+=152`（152B 步长对象数组释放）——IDB 名 BeginRenderPass=误名；上下文语义=**对象池管理**（时间步 CalcDeltaTime + 数组释放 + 删际析构归 0x56F5D8 主表）⇒ EffRenderPassNode→EffObjectPool",

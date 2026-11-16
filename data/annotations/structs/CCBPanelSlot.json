@@ -130,19 +130,59 @@
    "owner": "CCBPanelSlot",
    "signature": "int __thiscall()",
    "evidence_level": "unverified",
-   "semantic_name": "CCBPanelSlot::Render"
+   "semantic_name": "CCBPanelSlot::Render",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00442ff0": {
    "name": "Update_2ff0",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Update_2ff0",
+   "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445e70": {
    "name": "ShowClipped",
    "signature": "void __thiscall(int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -151,16 +191,13 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": null
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00443200",
-     "from": null
+     "addr": "0x00443200"
     },
     {
-     "addr": "0x00442FF0",
-     "from": null
+     "addr": "0x00442FF0"
     }
    ]
   }

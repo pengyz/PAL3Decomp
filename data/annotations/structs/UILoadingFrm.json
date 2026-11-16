@@ -40,13 +40,29 @@
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UILoadingFrm（ctor 名形=类名）：A 级 refs ??0UIListBox@@QAE@XZ（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450790": {
    "name": "~UILoadingFrm",
    "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UILoadingFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UILoadingFrm。refs: ??1UIButton@@QAE@XZ ??1UIListBox@@QAE@XZ",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450770": {
    "name": "_scalar_dtor_0770",
@@ -56,85 +72,258 @@
    "ordinal": 5,
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UILoadingFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B100）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450990": {
    "name": "OnMessage",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
    "ordinal": 6,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00483300": {
    "name": "DestroyFrames",
    "signature": "void __thiscall UILoadingFrm::DestroyFrames()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004507f0": {
    "name": "InitFullScreen",
    "signature": "void __thiscall UILoadingFrm::InitFullScreen()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450900": {
    "name": "UpdateAnimation",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00483280": {
    "name": "DestroyStatics",
    "signature": "void __thiscall UILoadingFrm::DestroyStatics()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052dd60": {
    "name": "ResetState",
    "signature": "int __thiscall UIGameOver::ResetState()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052de00": {
    "name": "ResetAllState",
    "signature": "int __thiscall UILoadingFrm::ResetAllState()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e820": {
    "name": "CheckProgress",
    "signature": "char __thiscall UILoadingFrm::CheckProgress(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00524970": {
-   "name": "slot_1",
+   "name": "Render",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_1",
+   "name_note": "槽链传播: 同址语义名(Render)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451b40": {
    "name": "UIListBox_ResizeToContent",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451c10": {
    "name": "UIListBox_IsVisible",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot"
-  },
-  "0x00445c10": {
-   "name": "v1_slot_3",
-   "signature": "void __thiscall()",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004518e0": {
-   "name": "v1_slot_5",
+   "name": "~UIListBox",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "v1_slot_5",
+   "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451aa0": {
    "name": "OnMessage_1AA0",
    "signature": "void __thiscall(int,int,int)",
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -143,32 +332,25 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00524970",
-     "from": "CCBStage"
+     "addr": "0x00524970"
     },
     {
-     "addr": "0x00450900",
-     "from": null
+     "addr": "0x00450900"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00450770",
-     "from": null
+     "addr": "0x00450770"
     },
     {
-     "addr": "0x00450990",
-     "from": null
+     "addr": "0x00450990"
     }
    ]
   }

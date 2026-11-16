@@ -9,35 +9,75 @@
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisRender | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
    "evidence_level": "A",
-   "semantic_name": "VisRender"
+   "semantic_name": "VisRender",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052b9c0": {
    "name": "_todo_52B9C0",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052b980": {
    "name": "Remove",
@@ -45,13 +85,36 @@
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "semantic_name": "Remove",
-   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only"
+   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00542120": {
-   "name": "slot_4",
+   "name": "CScreenModeNode_adjthunk_2120",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_4",
+   "name_note": "槽链传播: 同址语义名(CScreenModeNode_adjthunk_2120)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -60,36 +123,28 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x0052B980",
-     "from": null
+     "addr": "0x0052B980"
     },
     {
-     "addr": "0x00542126",
-     "from": null
+     "addr": "0x00542126"
     },
     {
-     "addr": "0x00542102",
-     "from": "ParticleVisNode"
+     "addr": "0x00542102"
     },
     {
-     "addr": "0x005420FC",
-     "from": "ParticleVisNode"
+     "addr": "0x005420FC"
     },
     {
-     "addr": "0x00542120",
-     "from": null
+     "addr": "0x00542120"
     },
     {
-     "addr": "0x0054211A",
-     "from": "RenderTargetNode"
+     "addr": "0x0054211A"
     },
     {
-     "addr": "0x00542114",
-     "from": "RenderTargetNode"
+     "addr": "0x00542114"
     },
     {
-     "addr": "0x0054210E",
-     "from": "RenderTargetNode"
+     "addr": "0x0054210E"
     }
    ],
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 写点 `PalScript::LoadVisNode+309`/CCBStageScene_CreateCamera+977（VisNode 构造域）②被调用者面=thunk IDA 名 **gbVisNode::Render/Attach**（__imp_ 导入转发）+ UIRoleDialog::Update(gbVisNode*) ③成员访问面=thunk 转发形 ④类归属面=gbVisNode 界面实现 ⑤交互模式面=场景/相机装载构造 ⇒ **场景可视节点**；evidence=[thunk decompile×3,xref,ctor 写点] confidence=85"

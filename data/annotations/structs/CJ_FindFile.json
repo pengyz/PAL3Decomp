@@ -52,7 +52,32 @@
   "0x00450f90": {
    "name": "Create",
    "signature": "int __thiscall(int id, void *pRect, int parent, char *tex)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "void *pRect",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "parent"
+     },
+     {
+      "type": "char *tex",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

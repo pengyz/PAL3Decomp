@@ -127,7 +127,20 @@
   "0x0043fca0": {
    "name": "SetRange",
    "signature": "void __thiscall(float fValue)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fValue"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 68,

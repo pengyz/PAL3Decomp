@@ -43,68 +43,216 @@
   "0x00457410": {
    "name": "LoadLanguage",
    "signature": "char __thiscall(char *path)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *path",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00478e00": {
    "name": "PAL_GDB",
    "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] A返回型Cls*：PAL_GDB *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0OpenBaseFile",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00478fd0": {
    "name": "ResetRoles",
    "signature": "void __thiscall(PAL_GDB *this, int nVal)",
    "name_source": "IDA语义分析 2026-10-31 批5",
-   "name_note": "GDB 角色数据重置（fightstate 清零）"
+   "name_note": "GDB 角色数据重置（fightstate 清零）",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479040": {
    "name": "GDB_LoadFile",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479050": {
    "name": "GDB_GetRole",
    "signature": "int __thiscall(unsigned int ID)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "ID"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479080": {
-   "name": "GDB_GetRoleNum_9080",
+   "name": "GDB_GetRoleNum",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GDB_GetRoleNum_9080",
+   "name_note": "剥壳定谳(验证pass): GDB_GetRoleNum: m_SkillData/m_head查表语义一致",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479130": {
    "name": "GDB_GetSkillNum",
    "signature": "int __thiscall(PAL_GDB *this, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004791a0": {
    "name": "GDB_GetSkillID",
    "signature": "unsigned long __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned long",
+   "sig_model": {
+    "return": "unsigned long",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004791e0": {
-   "name": "GDB_GetItemNum_91E0",
+   "name": "GDB_GetItemNum",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "GDB_GetItemNum_91E0",
+   "name_note": "剥壳定谳(验证pass): GDB_GetItemNum: m_ItemData查表语义一致",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004792c0": {
    "name": "GDB_GetComboID",
    "signature": "unsigned long __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned long",
+   "sig_model": {
+    "return": "unsigned long",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049ca70": {
    "name": "IsValidItem",
    "signature": "BOOL __thiscall(int nItemID, int a2)",
    "sig_note": "ret-N adjudication (round 10): callee cleans 8 bytes; caller args = 2; prev 1 params",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nItemID"
+     },
+     {
+      "type": "int",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049c2c0": {
    "name": "LoadByType",
    "signature": "char __thiscall PAL_GDB::LoadByType(unsigned int dwVal, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049c660": {
    "name": "SelectBestTarget",
@@ -114,191 +262,651 @@
     "v25": "unsigned long *",
     "v27": "unsigned long *"
    },
-   "lvars_source": "[C2440修 2026-11-13] v25/v27 = pOut(unsigned long[5]) 数组地址赋给int变量 ⇒ 重型为指针(数组退化为指针)"
+   "lvars_source": "[C2440修 2026-11-13] v25/v27 = pOut(unsigned long[5]) 数组地址赋给int变量 ⇒ 重型为指针(数组退化为指针)",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00457f00": {
    "name": "RefreshSkillNumbers",
    "signature": "void __thiscall PAL_GDB::RefreshSkillNumbers()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e50b0": {
    "name": "SetupSkillConfig",
    "signature": "char * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00526300": {
    "name": "RefreshPartyStats",
    "signature": "gbGeomNode *__thiscall PAL_GDB::RefreshPartyStats()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbGeomNode *__thiscall",
+   "sig_model": {
+    "return": "gbGeomNode *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005294c0": {
    "name": "SetDefaultEquipment",
    "signature": "char *__thiscall PAL_GDB::SetDefaultEquipment()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *__thiscall",
+   "sig_model": {
+    "return": "char *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00478c00": {
    "name": "ResetAllData",
    "signature": "MainEquipUI *__thiscall PAL_GDB::ResetAllData()",
    "_misattrib_evidence": "max_offset=804880>class_size=204620",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "MainEquipUI *__thiscall",
+   "sig_model": {
+    "return": "MainEquipUI *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004791b0": {
    "name": "GetItemID",
    "signature": "int __thiscall PAL_GDB::GetItemID(unsigned int index)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "index"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5500": {
    "name": "LoadConfigFromINI",
    "signature": "int __thiscall PAL_GDB::LoadConfigFromINI()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e56e0": {
    "name": "FindItemByID",
    "signature": "char __thiscall(int nVal, int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5710": {
    "name": "GetItemPrice",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5760": {
    "name": "GetItemWeight",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e57b0": {
    "name": "GetItemData",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5b20": {
    "name": "RefreshPartyDialog",
    "signature": "LRESULT __thiscall PAL_GDB::RefreshPartyDialog()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "LRESULT",
+   "sig_model": {
+    "return": "LRESULT",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5e00": {
    "name": "PopulateAvailableRoles",
    "signature": "int __thiscall PAL_GDB::PopulateAvailableRoles()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5f60": {
    "name": "UpdateInventorySlots",
    "signature": "int *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e5ff0": {
    "name": "DlgProcCamera",
    "signature": "int __thiscall PAL_GDB::DlgProcCamera(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     },
+     {
+      "type": "UINT",
+      "name": "msg"
+     },
+     {
+      "type": "WPARAM",
+      "name": "wParam"
+     },
+     {
+      "type": "LPARAM",
+      "name": "lParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ec1f0": {
    "name": "ShowDetailPanel",
    "signature": "LRESULT __thiscall PAL_GDB::ShowDetailPanel(HWND hDlg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "LRESULT",
+   "sig_model": {
+    "return": "LRESULT",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ed8c0": {
    "name": "LoadSkillData",
    "signature": "int __thiscall PAL_GDB::LoadSkillData()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f69f0": {
    "name": "IsItemConsumable",
    "signature": "bool __thiscall PAL_GDB::IsItemConsumable(int nItemId)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nItemId"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6a20": {
    "name": "IsItemEquipment",
    "signature": "bool __thiscall PAL_GDB::IsItemEquipment(int nItemId)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nItemId"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6a40": {
    "name": "IsRoleAlive",
    "signature": "bool __thiscall PAL_GDB::IsRoleAlive(int nRoleId)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nRoleId"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6a60": {
    "name": "IsRoleDead",
    "signature": "bool __thiscall PAL_GDB::IsRoleDead(int nRoleId)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nRoleId"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6ab0": {
    "name": "IsItemConsumed",
    "signature": "bool __thiscall PAL_GDB::IsItemConsumed(int nItemId)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nItemId"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6ad0": {
    "name": "GetSkillLevel",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6b20": {
    "name": "GetSkillType",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6b70": {
    "name": "IsSkillUsable",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6bb0": {
    "name": "IsSkillEmpty",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6be0": {
    "name": "SearchAllItems",
    "signature": "char __thiscall(int nVal, int *p_DWORD, int *pnVal, int *p_DWORD2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6c60": {
    "name": "SearchItemLoop",
    "signature": "char __thiscall(int nVal, int nVal2, int *p_DWORD, int *pnVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6d30": {
    "name": "IsRoleSkillValid",
    "signature": "char __thiscall(unsigned int *pdwVal, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int *pdwVal",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6e80": {
    "name": "IterateInventory",
    "signature": "char __thiscall(int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6fb0": {
    "name": "BuildItemArray",
    "signature": "char __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00528650": {
    "name": "InitSkillDisplay",
    "signature": "int __thiscall(PAL_GDB *this)",
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：占位垃圾签名 `int __thiscall(int nVal)`（MXTransport 教训同族）；A 级：0x528650 访问 v14[-1].nSkillCount2 别名形（PAL_GDB 成员）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052ece0": {
    "name": "SetupSkillData",
    "signature": "BOOL __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004f6a80": {
    "name": "IsRoleAlive2",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004790f0": {
    "name": "GDB_GetRoleNum_90F0",
    "signature": "int __thiscall PAL_GDB::GDB_GetRoleNum(PAL_GDB *this)",
    "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetRoleNum(PAL_GDB *this)` 类名直证 ✓ + ①NPC::Create/Init ③return m_head.SkillNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479250": {
    "name": "GDB_GetItemNum_9250",
    "signature": "int __thiscall PAL_GDB::GDB_GetItemNum(PAL_GDB *this)",
    "source": "[函数归属 2026-10-17·余 8] PAL_GDB——②`GDB_GetItemNum(PAL_GDB *this)` 类名直证 ✓ + ①CCBCamControl/CCBRoleState ③return m_head.ComboNum ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

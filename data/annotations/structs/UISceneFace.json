@@ -50,19 +50,52 @@
    "name": "ResetAllSlots",
    "signature": "int __thiscall UISceneFace::ResetAllSlots()",
    "class": "UIWnd",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052d010": {
    "name": "SetFaceVisible",
    "signature": "int __thiscall UISceneFace::SetFaceVisible(int nVal, unsigned int dwVal)",
    "class": "UIWnd",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052d0f0": {
    "name": "UpdateFacePosition",
    "signature": "int __thiscall()",
    "source": "batch:sub_fix_from_decomp_this_type",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 68,

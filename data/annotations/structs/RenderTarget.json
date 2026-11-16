@@ -242,76 +242,267 @@
    "name": "~RenderTarget",
    "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 RenderTarget 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~RenderTarget。refs: ??1gbTexture_D3D@@UAE@XZ",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdb60": {
    "name": "Create",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdc10": {
    "name": "OnDeviceLost",
    "signature": "void __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdc40": {
    "name": "OnResetDevice",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdf10": {
    "name": "Destroy",
    "signature": "int *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4920": {
    "name": "LoadTexture",
    "signature": "gbVFileSystem *__thiscall(const char *szFilename)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *",
+   "sig_model": {
+    "return": "gbVFileSystem *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const char *szFilename",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4850": {
    "name": "SetColor",
    "signature": "void __thiscall(unsigned char r, unsigned char g, unsigned char b)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "r"
+     },
+     {
+      "type": "unsigned char",
+      "name": "g"
+     },
+     {
+      "type": "unsigned char",
+      "name": "b"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b48b0": {
    "name": "SetAlpha",
    "signature": "void __thiscall(unsigned char nAlpha)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nAlpha"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4840": {
    "name": "SetField084",
    "signature": "void __thiscall RenderTarget::SetField084(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b49c0": {
    "name": "UpdateTransform",
    "signature": "void __thiscall(float fX, float fY)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fX"
+     },
+     {
+      "type": "float",
+      "name": "fY"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4d80": {
    "name": "SetOffset",
    "signature": "void __thiscall(float fVal1, float fVal2)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补 2 参 float：A 级定义侧 0x4B4D80 `8b 44 24 04/8b 54 24 08/89 81 90 00 00 00/89 91 94 00 00 00/c2 08 00`（读 [esp+4]/[esp+8] 双槽+ret 8=2 参，裸 mov 位拷贝无 FPU 转换）；调用侧 4 处全核（0x482E12/0x47A507/0x48EDCE/0x47A54E）实参 float 位型（push 0x40000000=2.0f、0x41200000=10.0f 常量、fild/fstp int→float 转换）；受控实验 float,float+float 成员编出与原 23 字节逐字节全同",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal1"
+     },
+     {
+      "type": "float",
+      "name": "fVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4820": {
    "name": "SetVisible",
    "signature": "void __thiscall(BOOL bVisible)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "BOOL",
+      "name": "bVisible"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4c60": {
    "name": "Render",
    "signature": "void __thiscall(int nY, int nWidth, int nHeight)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nY"
+     },
+     {
+      "type": "int",
+      "name": "nWidth"
+     },
+     {
+      "type": "int",
+      "name": "nHeight"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb260": {
    "name": "LoadFromFile",
    "signature": "void __thiscall(gbVFile *pFile)",
    "_misattrib_evidence": "max_offset=1664>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbVFile *pFile",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00486d00": {
    "name": "_scalar_dtor_6D00",
@@ -321,42 +512,115 @@
    "ordinal": 5,
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RenderTarget（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56C590）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bc7b0": {
    "name": "UpdateTimeStep",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bc8a0": {
    "name": "RenderToTexture",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004be8d0": {
    "name": "ResetHorizontal",
    "signature": "int __thiscall RenderTarget::ResetHorizontal()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bea60": {
    "name": "ResetVertical",
    "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RenderTarget *__thiscall",
+   "sig_model": {
+    "return": "RenderTarget *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bebb0": {
    "name": "ResetVertical2",
    "signature": "RenderTarget *__thiscall RenderTarget::ResetVertical2()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RenderTarget *__thiscall",
+   "sig_model": {
+    "return": "RenderTarget *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bed00": {
    "name": "ResetBase",
    "signature": "RenderTarget *__thiscall RenderTarget::ResetBase()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RenderTarget *__thiscall",
+   "sig_model": {
+    "return": "RenderTarget *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00486ce0": {
    "name": "Init",
    "signature": "int *__thiscall RenderTarget::Init()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048f3a0": {
    "name": "OnRender",
@@ -367,77 +631,252 @@
    "lvars": {
     "nVal": "const char **"
    },
-   "lvars_source": " | L-VAR 2026-11-12 纯赢: 声明本就是 const char**(另一函数 523 行同形), 3 使用点全 char** 语境(L1240/1264 cast 同型), L1234 (int)&off 系 Hex-Rays 位惯例——IDB 真型后自渲染消 cast"
+   "lvars_source": " | L-VAR 2026-11-12 纯赢: 声明本就是 const char**(另一函数 523 行同形), 3 使用点全 char** 语境(L1240/1264 cast 同型), L1234 (int)&off 系 Hex-Rays 位惯例——IDB 真型后自渲染消 cast",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4b10": {
    "name": "CalcRenderDimensions",
    "signature": "void __thiscall RenderTarget::CalcRenderDimensions(int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb0b0": {
    "name": "ClearTexture",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb0f0": {
    "name": "ApplyScale",
    "signature": "int __thiscall RenderTarget::ApplyScale(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb180": {
    "name": "SetRenderState",
    "signature": "int __thiscall(int nVal)",
    "source": "| rename:_todo_→fn_",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd6c0": {
    "name": "LoadParticleTextures",
    "signature": "char __thiscall(const char *pszName)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const char *pszName",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd870": {
    "name": "GetManagedTexture",
    "signature": "void __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd9c0": {
    "name": "SetDefaultParams",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdd90": {
    "name": "RenderToScreen",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdeb0": {
    "name": "GetActiveTexture",
    "signature": "gbTexture *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbTexture *",
+   "sig_model": {
+    "return": "gbTexture *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb050": {
    "name": "ReadVFile",
    "signature": "void __thiscall(struct gbVFile *pFile)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "struct gbVFile *pFile",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4910": {
    "name": "SetState",
    "signature": "void __thiscall(int nVal1)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b48e0": {
    "name": "SetSize",
    "signature": "void __thiscall(int nHeight)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nHeight"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4da0": {
    "name": "SetScale",
    "signature": "void __thiscall(int nVal1, int nVal2)",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | task-6 案例B 2026-10-15 补第 2 参：A 级定义侧 0x4B4DA0 `8b 44 24 04/8b 54 24 08/89 81 98/89 91 9c/c2 08 00`（ret 8=2 参）；⚠️ 型刻意留 int 不改 float：152/156 被名字泄漏进 int 语境（SetRenderState `this[1].m_nScaleY=nVal` int 存=L1 函数 13B、OnRender `this[1247].m_nScaleX=1`、RenderToTexture `m_nScaleX>0`）⇒ float 化必插转换破 L1；调用侧实参 float 位型证据留档（0x47A54E fild/fstp 双槽），待名字泄漏治理后复议 float 化",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004867f0": {
    "name": "InitChildPanels",
@@ -445,25 +884,57 @@
    "_misattrib_evidence": "max_offset=307036>class_size=200",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0047a400": {
    "name": "InitParticleRenders",
    "signature": "int __thiscall RenderTarget::InitParticleRenders()",
    "_misattrib_evidence": "max_offset=209000>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004870c0": {
    "name": "InitNPCPanel",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=249476>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b4830": {
    "name": "IsVisible",
    "signature": "char __thiscall RenderTarget::IsVisible(RenderTarget *this)",
    "source": "[函数归属 2026-10-17·余 8] RenderTarget——②`IsVisible(RenderTarget *this)` 类名直证 ✓ + ①31 站（MainEquipUI::Render 族）③return m_bVisible ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048ef80": {
    "name": "ValidateDevice",
@@ -471,7 +942,24 @@
    "_misattrib_evidence": "max_offset=209892>class_size=200",
    "evidence_level": "unverified",
    "semantic_name": "ValidateDevice",
-   "source": "vtable_gap_fill_v1(from CameraCtrl.json)"
+   "source": "vtable_gap_fill_v1(from CameraCtrl.json)",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048eb40": {
    "name": "RenderWithEffects",
@@ -479,7 +967,29 @@
    "_misattrib_evidence": "max_offset=307040>class_size=200",
    "evidence_level": "unverified",
    "semantic_name": "RenderWithEffects",
-   "source": "vtable_gap_fill_v1(from MainPropUI.json)"
+   "source": "vtable_gap_fill_v1(from MainPropUI.json)",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -488,34 +998,34 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x0048EB40",
-     "from": null
+     "addr": "0x0048EB40"
     },
     {
-     "addr": "0x0048EF80",
-     "from": null
+     "addr": "0x0048EF80"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00486D00",
-     "from": null
+     "addr": "0x00486D00"
     },
     {
-     "addr": "0x0048F3A0",
-     "from": null
+     "addr": "0x0048F3A0"
     }
    ]
   }
- ]
+ ],
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹)"
 }

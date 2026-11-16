@@ -225,31 +225,75 @@
    "name": "Render",
    "signature": "void ** __thiscall RoleAtt::Render()",
    "ordinal": 1,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void **",
+   "sig_model": {
+    "return": "void **",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451320": {
    "name": "Destroy",
    "signature": "int __thiscall()",
    "ordinal": 3,
    "evidence_level": "unverified",
-   "semantic_name": "Destroy"
+   "semantic_name": "Destroy",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005310c0": {
    "name": "UpdateTimedBuff",
    "signature": "void __thiscall RoleAtt::UpdateTimedBuff(float fDelta)",
-   "evidence_level": "unverified"
-  },
-  "0x00450eb0": {
-   "name": "~RoleAtt",
-   "signature": "void __fastcall RoleAtt::~RoleAtt(UIWnd *pWnd)",
-   "source": "| 析构名误挂改名 2026-09-29：~RoleAtt→_todo_00450EB0（~名+真参=非析构；actionIdx/CCBLineupWindow 族剥参病灶；真名未知按规则留 _todo_ 形） | 撤误改名 2026-09-29：`UIWnd *pWnd`=this 形参（名非字面 this 但为此call this 槽）⇒ 真析构形（判别器只剥字面 this 名的漏洞——挂账修）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fDelta"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004515a0": {
    "name": "OnMessage",
    "signature": "int __thiscall RoleAtt::OnMessage(int nVal, LPCSTR lpString1, int nVal2)",
    "ordinal": 6,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "LPCSTR",
+      "name": "lpString1"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004515e0": {
    "name": "HandleInput",
@@ -259,7 +303,24 @@
    "lvars": {
     "v9": "void (__thiscall **)(_DWORD)"
    },
-   "lvars_source": "[C2440修 2026-11-13] v9=this->id fn-ptr, decomp有__thiscall但变换剥掉 ⇒ lvar覆写保住调用约定; HostInput L122/L124 C2440×2"
+   "lvars_source": "[C2440修 2026-11-13] v9=this->id fn-ptr, decomp有__thiscall但变换剥掉 ⇒ lvar覆写保住调用约定; HostInput L122/L124 C2440×2",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00451740": {
    "name": "ShowWindow",
@@ -267,101 +328,386 @@
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "unverified",
-   "semantic_name": "ShowWindow"
+   "semantic_name": "ShowWindow",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00457f90": {
    "name": "FormatAttributeText",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530810": {
    "name": "LoadModelAndInit",
    "signature": "void __thiscall RoleAtt::LoadModelAndInit()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530960": {
    "name": "SetSAIDAndImage",
    "signature": "int __thiscall(int *pnVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pnVal",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00531010": {
    "name": "ApplySpeedFactor",
    "signature": "void __thiscall RoleAtt::ApplySpeedFactor(float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00531160": {
    "name": "InterpolateStats",
    "signature": "char __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005322d0": {
    "name": "SetPageParam",
    "signature": "int __thiscall RoleAtt::SetPageParam(int nVal)",
    "_misattrib_evidence": "max_offset=1308>class_size=332",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005322e0": {
    "name": "SetPageParam2",
    "signature": "int __thiscall RoleAtt::SetPageParam2(int nVal)",
    "_misattrib_evidence": "max_offset=1312>class_size=332",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005322f0": {
    "name": "SwitchPage",
    "signature": "int __thiscall RoleAtt::SwitchPage(int nPageIdx, int nParam)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nPageIdx"
+     },
+     {
+      "type": "int",
+      "name": "nParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00533db0": {
    "name": "ResetNameField",
    "signature": "int __thiscall RoleAtt::ResetNameField()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00533fe0": {
    "name": "UpdatePosition",
    "signature": "void __thiscall RoleAtt::UpdatePosition(float fX, float fY, float fZ)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fX"
+     },
+     {
+      "type": "float",
+      "name": "fY"
+     },
+     {
+      "type": "float",
+      "name": "fZ"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534210": {
    "name": "SetPositionFromInts",
    "signature": "void __thiscall RoleAtt::SetPositionFromInts(int nX, int nY, int nZ)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nX"
+     },
+     {
+      "type": "int",
+      "name": "nY"
+     },
+     {
+      "type": "int",
+      "name": "nZ"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534450": {
    "name": "InterpolateMotion",
    "signature": "void __thiscall RoleAtt::InterpolateMotion(float f1, float f2, float f3, float f4, float f5)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "f1"
+     },
+     {
+      "type": "float",
+      "name": "f2"
+     },
+     {
+      "type": "float",
+      "name": "f3"
+     },
+     {
+      "type": "float",
+      "name": "f4"
+     },
+     {
+      "type": "float",
+      "name": "f5"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534810": {
    "name": "UpdateDirectionalMotion",
    "signature": "void __thiscall RoleAtt::UpdateDirectionalMotion(gbVec3D pData, float fVal, float fVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbVec3D",
+      "name": "pData"
+     },
+     {
+      "type": "float",
+      "name": "fVal"
+     },
+     {
+      "type": "float",
+      "name": "fVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534ba0": {
    "name": "SetFightState",
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5, char pData, char pData2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int",
+      "name": "nVal5"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     },
+     {
+      "type": "char",
+      "name": "pData2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534bf0": {
    "name": "ResetFightState",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00534c50": {
    "name": "UpdateOscillation",
    "signature": "double __thiscall RoleAtt::UpdateOscillation()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "double",
+   "sig_model": {
+    "return": "double",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052f8e0": {
    "name": "LoadGeomNode",
    "signature": "gbVFileSystem *__thiscall (int nVal)",
    "_misattrib_evidence": "max_offset=3100>class_size=852",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbVFileSystem *",
+   "sig_model": {
+    "return": "gbVFileSystem *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004531f0": {
    "name": "_sub",
    "signature": "void __thiscall()",
    "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 RoleAtt::_sub_4531F0（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 RoleAtt 方法面",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450e90": {
    "name": "_sdtor_27",
@@ -369,43 +715,144 @@
    "source": "vtable_gap_fill_v1(from UIWnd.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_sdtor_27"
+   "semantic_name": "_sdtor_27",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00445b90": {
+   "name": "Create",
+   "signature": "int __thiscall(int, tagRECT *, UIWnd *)",
+   "semantic_name": "Create",
+   "name_note": "G2(RoleAtt真表0x56B140): slot7=UIWnd Create同址继承指纹(链签名取UIWnd正主)",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "tagRECT *",
+      "name": null
+     },
+     {
+      "type": "UIWnd *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00450f80": {
+   "name": "IsValid",
+   "signature": "int __thiscall()",
+   "semantic_name": "IsValid",
+   "confidence": "中",
+   "name_note": "G2(RoleAtt真表slot1): 体证据=return m_ptex[14]!=0有效性查询; bisect名IsValid吻合语义",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004af760": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(int)",
+   "semantic_name": "UpdateFrame",
+   "confidence": "中",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
   {
-   "addr": "0x0056B14C",
-   "base": "UIWnd",
+   "addr": "0x0056B140",
    "slots": [
     {
+     "addr": "0x00451800",
+     "name": null,
+     "sig": null
+    },
+    {
+     "addr": "0x00450f80",
+     "name": null,
+     "sig": null
+    },
+    {
+     "addr": "0x004af760",
+     "name": null,
+     "sig": null
+    },
+    {
      "addr": "0x00451740",
-     "from": null
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x004512F0",
-     "from": null
+     "addr": "0x004512f0",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x004515E0",
-     "from": null
+     "addr": "0x004515e0",
+     "name": null,
+     "sig": null
     },
     {
      "addr": "0x00451320",
-     "from": null
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445b90",
+     "name": "Create",
+     "sig": null
     },
     {
-     "addr": "0x00450E90",
-     "from": null
+     "addr": "0x00450e90",
+     "name": null,
+     "sig": null
     },
     {
-     "addr": "0x004515A0",
-     "from": null
+     "addr": "0x004515a0",
+     "name": null,
+     "sig": null
     }
-   ]
+   ],
+   "source": "binary:raw .rdata考古——真表起点0x56B140(前表float边界0x56B13C); 注解0x56B14C=真表slot3错切; 10槽非UIWnd布局(slot7=Create同址继承/slot8=scalar dtor位/slot9=OnMessage), 基类待定谳(G2)"
   }
  ]
 }

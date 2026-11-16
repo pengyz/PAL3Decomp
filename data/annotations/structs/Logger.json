@@ -80,52 +80,157 @@
   "0x0053c990": {
    "name": "Render",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053cef0": {
    "name": "FormatException",
    "signature": "char *__thiscall(Logger *this, char *msg, ...)",
    "evidence_level": "use_site_majority",
-   "source": " | L-VAR 2026-11-11 变参定谳: CEffMgr.cpp:827/872 实参 (格式串, float 值) printf 族形态; 固定 (file,line) 与调用实参数不符"
+   "source": " | L-VAR 2026-11-11 变参定谳: CEffMgr.cpp:827/872 实参 (格式串, float 值) printf 族形态; 固定 (file,line) 与调用实参数不符",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *msg",
+      "name": null
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0053cc70": {
    "name": "Write",
    "signature": "char *()",
    "evidence_level": "unverified",
-   "source": "L-VAR 2026-11-11i 取证挂账(签名未改): 入口 mov ecx,[esp+8]+调用点4push(0x4049F7: 对象0x17B1EC0+fmt字符串+edx变参) => 真 __cdecl(Logger *this, char *fmt, ...); 变参成员VC6强制cdecl; 0参渲染系 Hex-Rays 按错误thiscall类型丢参; 签名三面(头/体/调用点)接受度待试探轮 | [C2660修 2026-11-13] param数1→0: 5个调用点全传0参; fmt+4756/4856/6356全部落在Logger binary_size=6360内 ⇒ fmt=this(ECX), 函数体0栈参; IDB/Hex-Rays不知__thiscall致ECX误名为param"
+   "source": "L-VAR 2026-11-11i 取证挂账(签名未改): 入口 mov ecx,[esp+8]+调用点4push(0x4049F7: 对象0x17B1EC0+fmt字符串+edx变参) => 真 __cdecl(Logger *this, char *fmt, ...); 变参成员VC6强制cdecl; 0参渲染系 Hex-Rays 按错误thiscall类型丢参; 签名三面(头/体/调用点)接受度待试探轮 | [C2660修 2026-11-13] param数1→0: 5个调用点全传0参; fmt+4756/4856/6356全部落在Logger binary_size=6360内 ⇒ fmt=this(ECX), 函数体0栈参; IDB/Hex-Rays不知__thiscall致ECX误名为param",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053cc10": {
    "name": "RegisterCallback",
    "signature": "int __thiscall(int *f, char *name, char *desc)",
    "evidence_level": "unverified",
-   "source": "[修 2026-11-13] void(*f)()→int*: 函数体 v6->pfn=(int*)f 存储真值(int*), 实参含thiscall成员函数指针(WriteRoleNames), 原始源码用泛型指针存回调"
+   "source": "[修 2026-11-13] void(*f)()→int*: 函数体 v6->pfn=(int*)f 存储真值(int*), 实参含thiscall成员函数指针(WriteRoleNames), 原始源码用泛型指针存回调",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *f",
+      "name": null
+     },
+     {
+      "type": "char *name",
+      "name": null
+     },
+     {
+      "type": "char *desc",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ce90": {
    "name": "RegisterCallbacks",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ce20": {
    "name": "WriteRoleNames",
    "signature": "char *__thiscall(char *pszBuf)",
    "static": true,
    "evidence_level": "unverified",
-   "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留"
+   "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszBuf",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053cb10": {
    "name": "WinProc_HWND_InputLine",
    "signature": "int __thiscall(Logger *this, char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053ccf0": {
    "name": "WinProc_HWND_ExecCommand",
    "signature": "char *__thiscall(Logger *this)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *",
+   "sig_model": {
+    "return": "char *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053cde0": {
    "name": "WinProc_HWND_SetAndExec",
    "signature": "int __thiscall(Logger *this, char *Source)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *Source",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

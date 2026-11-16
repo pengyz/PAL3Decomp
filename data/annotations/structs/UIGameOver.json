@@ -25,22 +25,69 @@
   "0x004500f0": {
    "name": "Create",
    "signature": "void __thiscall UIGameOver::Create()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044d470": {
    "name": "InitParticle",
    "signature": "int __thiscall UIGameOver::InitParticle(int nIndex)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044d580": {
    "name": "RandomizeEffects",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044d680": {
    "name": "InitParticle2",
    "signature": "int __thiscall UIGameOver::InitParticle2(int nIndex)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052e500": {
    "name": "SetupDisplay",
@@ -49,19 +96,48 @@
    "lvars": {
     "v21": "char *"
    },
-   "lvars_source": " | L-VAR 2026-11-12: (uint)v21 - (char*)m_textx 指针差语境(C2113), v21 系 char* 槽"
+   "lvars_source": " | L-VAR 2026-11-12: (uint)v21 - (char*)m_textx 指针差语境(C2113), v21 系 char* 槽",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00530570": {
    "name": "ClearState",
    "signature": "int __thiscall UIGameOver::ClearState()",
    "_misattrib_evidence": "max_offset=780>class_size=232",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005305a0": {
    "name": "ResetState",
    "signature": "int __thiscall UIGameOver::ResetState()",
    "_misattrib_evidence": "max_offset=724>class_size=184",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 72,

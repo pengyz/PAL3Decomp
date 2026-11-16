@@ -103,7 +103,20 @@
   "0x004be460": {
    "name": "RenderPost",
    "signature": "int __thiscall(void *param_1)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *param_1",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

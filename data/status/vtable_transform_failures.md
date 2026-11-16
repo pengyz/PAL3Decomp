@@ -927,3 +927,16 @@
 | `CCCTData::Create_8770` | inline | `float` | 16 | non_class_hint | `(*(void ( **)(float *, __int16 *, int *, CCCTData *))(*(_DWORD *)p_fSwingFre + 16))( p_fSwingFre, &word_A00552, &v77, this)` |
 | `CCCTData::Create_8770` | vftable_local | `_BYTE` | 28 | non_class_hint | `(*(void ( **)(_BYTE *, int *, _DWORD *, CCCTData *, char *, _DWORD, int))(v24 + 28))( &this->m_Pool[1881].bStartCamValid, &byte_A00560, v67, this, aUiGamemainuiEq_1, 0, v25)` |
 | `LineupUI::OnMessage_7bb0` | inline | `LineupUI` | 24 | self_arg_mismatch | `(*(void ( **)(LineupUI *, int, int, int))(*(_DWORD *)&this->UIWnd + 24))( this, 1007, 773, this->m_TimeMoney.m_bfocus)` |
+| `Actor::InitBattleSystem` | vftable_local | `char` | 16 | non_class_hint | `(*(int ( **)(char *, char *, int *, Actor *))(v29 + 16))( &this[1].m_curact[19], &byte_A01B00, &v117, this)` |
+| `CCBParabolaWindow::Destroy` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)*p_right + 20))(*p_right, 1)` |
+| `CCBParabolaWindow::Destroy` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBParabolaWindow::Destroy` | inline | `UIListBox` | 20 | self_arg_mismatch | `(*(int ( **)(UIListBox *, int))(*(_DWORD *)&m_pItemList->UIWnd + 20))(m_pItemList, 1)` |
+| `CCBParabolaWindow::Destroy` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1)` |
+| `CCBParabolaWindow::Destroy` | inline | `unsigned int` | 20 | non_class_hint | `(*(int ( **)(unsigned int, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBParabolaWindow::Destroy` | inline | `gbTexture` | 20 | self_arg_mismatch | `(*(int ( **)(gbTexture *, int))(*(_DWORD *)&m_pbktex->gbRefObject + 20))(m_pbktex, 1)` |
+| `UIFrameContainer::Update` | inline | `int` | 24 | non_class_hint | `(*(void ( **)(int, int, _DWORD, _DWORD))(*(_DWORD *)v9 + 24))(v9, 1003, *((_DWORD *)this + 3), 0)` |
+| `UIListBox::OnMessage` | inline | `UIWnd` | 24 | name_not_declared_for_class | `(*(void ( **)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIWnd::HideAll` | inline | `int` | 12 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v3 + 12))(v3)` |
+| `CCBItemWindow::Destroy_9` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&(*p_m_pDescription)->UIWnd + 20))( *p_m_pDescription, 1)` |
+| `CCBItemWindow::Destroy_9` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(int ( **)(UIPushButton *, int))(*(_DWORD *)&m_pButtonTreasure->UIWnd + 20))( m_pButtonTreasure, 1)` |
+| `CCBItemWindow::Destroy_9` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |

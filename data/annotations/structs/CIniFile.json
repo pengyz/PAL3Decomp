@@ -19,12 +19,28 @@
   "0x004ec700": {
    "name": "LoadData",
    "signature": "char __thiscall CIniFile::LoadData()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00504130": {
    "name": "LoadStructuredConfig",
    "signature": "void __thiscall CIniFile::LoadStructuredConfig()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

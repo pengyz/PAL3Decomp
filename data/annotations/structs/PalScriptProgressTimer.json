@@ -16,16 +16,65 @@
  },
  "methods": {
   "0x00438190": {
-   "name": "slot_0",
+   "name": "_scalar_dtor_8190",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_0",
+   "name_note": "槽链传播: 同址语义名(_scalar_dtor_8190)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00438110": {
-   "name": "slot_2",
+   "name": "UpdateWaitTimer",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_2",
+   "name_note": "槽链传播: 同址语义名(UpdateWaitTimer)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00438100": {
+   "name": "IsAnimDone",
+   "signature": "BOOL __thiscall()",
+   "semantic_name": "IsAnimDone",
+   "name_note": "G2条目补齐(PalScript计时器族): 体证据: 同上ICF折叠共享",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00434d50": {
+   "name": "~PalScriptProgressTimer",
+   "signature": "void __thiscall()",
+   "semantic_name": "~PalScriptProgressTimer",
+   "name_note": "G2条目补齐(PalScript计时器族): slot1=complete dtor位(编译器伴生), 折叠入PalScript scalar dtor",
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -34,20 +83,16 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00438190",
-     "from": "PalScript"
+     "addr": "0x00438190"
     },
     {
-     "addr": "0x00438100",
-     "from": "PalScript"
+     "addr": "0x00438100"
     },
     {
-     "addr": "0x00438110",
-     "from": "PalScript"
+     "addr": "0x00438110"
     },
     {
-     "addr": "0x00434D50",
-     "from": "PalScript"
+     "addr": "0x00434D50"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate; fmul [0x56A744] 全局速率缩放` 累加器 +flag(this+0xC) 判 + 删际析构 0x438190；交互模式面:进度/速率计时"

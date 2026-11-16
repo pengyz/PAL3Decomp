@@ -356,91 +356,322 @@
   "0x0040c630": {
    "name": "Render",
    "signature": "void __thiscall(gbMatrixStack *pMatrixStack)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbMatrixStack *pMatrixStack",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040c790": {
    "name": "Cleanup",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040c960": {
    "name": "Destroy",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004101f0": {
    "name": "RunWithDelay",
    "signature": "int __cdecl(float delay, int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "float",
+      "name": "delay"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00410470": {
    "name": "RunEvent",
    "signature": "int __thiscall(int eventId, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "eventId"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00411f60": {
    "name": "UpdateTimers",
    "signature": "int __cdecl(float dt)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "float",
+      "name": "dt"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004194c0": {
    "name": "UpdateObjects",
    "signature": "int __cdecl(float dt)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "float",
+      "name": "dt"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041efa0": {
    "name": "Init",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040cb80": {
    "name": "GetMainRoleSystem",
    "signature": "RoleSystem *__cdecl(unsigned short pData)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RoleSystem *",
+   "sig_model": {
+    "return": "RoleSystem *",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "unsigned short",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040cbb0": {
    "name": "GetScriptContext",
    "signature": "int __cdecl(unsigned short pData, int nVal)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "unsigned short",
+      "name": "pData"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040cbd0": {
    "name": "PassThrough",
    "signature": "int __cdecl(unsigned short pData, int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "unsigned short",
+      "name": "pData"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040cc00": {
    "name": "CheckEventType",
    "signature": "int __cdecl(unsigned short pData, int nVal)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "unsigned short",
+      "name": "pData"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040cc60": {
    "name": "ClearTimerSlot",
    "signature": "int __fastcall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "fastcall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00419090": {
    "name": "UpdatePositions",
    "signature": "void __thiscall ScriptSystem::UpdatePositions()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00419200": {
    "name": "SmoothTrackTarget",
    "signature": "int __thiscall ScriptSystem::SmoothTrackTarget(float fDeltaTime, float fMaxAccel, float fVal3, float fVal4)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fDeltaTime"
+     },
+     {
+      "type": "float",
+      "name": "fMaxAccel"
+     },
+     {
+      "type": "float",
+      "name": "fVal3"
+     },
+     {
+      "type": "float",
+      "name": "fVal4"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004890a0": {
    "name": "ProcessScriptEvent",
    "signature": "char __thiscall(int nVal, int nVal2, int nParam)",
    "_misattrib_evidence": "max_offset=217324>class_size=8704",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

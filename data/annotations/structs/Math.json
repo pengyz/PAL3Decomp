@@ -6,7 +6,24 @@
    "name": "RandomLerp",
    "signature": "double __cdecl Math::RandomLerp(float fFrom, float fTo)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "double",
+   "sig_model": {
+    "return": "double",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "float",
+      "name": "fFrom"
+     },
+     {
+      "type": "float",
+      "name": "fTo"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "binary_size": 4,

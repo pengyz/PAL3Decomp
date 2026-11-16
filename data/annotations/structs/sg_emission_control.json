@@ -92,13 +92,55 @@
    "name": "Emit",
    "signature": "void __thiscall(sg_emission_control *this, int a2, int a3, int a4, int a5)",
    "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "粒子发射（sg_emitter+D3DXVECTOR3）"
+   "name_note": "粒子发射（sg_emitter+D3DXVECTOR3）",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "int",
+      "name": "a3"
+     },
+     {
+      "type": "int",
+      "name": "a4"
+     },
+     {
+      "type": "int",
+      "name": "a5"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b8890": {
    "name": "Update",
    "signature": "void __thiscall(sg_emission_control *this, int a2, int a3)",
    "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "发射控制更新（浮点计算）"
+   "name_note": "发射控制更新（浮点计算）",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "int",
+      "name": "a3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

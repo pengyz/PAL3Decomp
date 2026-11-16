@@ -83,17 +83,56 @@
   "0x004ca400": {
    "name": "SetParam",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ce460": {
    "name": "Render",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048e780": {
    "name": "CreateFromTemplate",
    "signature": "int __thiscall CEffect::CreateFromTemplate(int f)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "f"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048e950": {
    "name": "UpdateState",
@@ -101,47 +140,126 @@
    "_misattrib_evidence": "max_offset=4672>class_size=200",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 体内v1//ecx未初始化即用(16*nVal+v1数组基址); 调用点3个全在free_functions内部(CEffect_UpdateCallback族) | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
-   "owner": "CEffect"
+   "owner": "CEffect",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bb190": {
    "name": "SetRenderParam",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd7a0": {
    "name": "SetQuadParam",
    "signature": "int *__thiscall CEffect::SetQuadParam(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d0db0": {
    "name": "UpdateCallback",
    "signature": "void __fastcall(CEffect *this)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "fastcall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d580": {
    "name": "ReleaseResources",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d3950": {
    "name": "~CEffect",
    "signature": "void __fastcall(CEffect *this)",
    "source": "| [rsite 根治 2026-10-16] 归属迁移 CEffect⇒CEffShock + 名 DestroyCallback⇒~CEffShock：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回改+正名] A级：C2039 成员面反证（m_bActive/m_Partical=CEffect 成员，CEffShock 无）+ decompile 本体 CEffect *this + dtor 写自身表 0x56FADC@0x4d3973 + 删析构 0x4D3930 ABI 配对 ⇒ 0x4D3950=CEffect 完整析构；上轮 ~CEffShock 误迁回改",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "fastcall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c88b0": {
    "name": "CreateOnePartical_adjthunk",
    "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004C7150）⇒ 目标名 CreateOnePartical 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d0c90": {
    "name": "_nearby_4cffb0_adjthunk",
    "signature": "void __thiscall()",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004CFFB0）⇒ 目标名 _nearby_4cffb0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

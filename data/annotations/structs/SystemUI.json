@@ -392,97 +392,321 @@
   "0x004200a0": {
    "name": "Render",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00420110": {
    "name": "RenderWithStack",
    "signature": "int __thiscall(void *pStack)",
    "_misattrib_evidence": "max_offset=57572>class_size=204",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *pStack",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a7690": {
    "name": "~SystemUI",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00420150": {
    "name": "UIUpdate",
    "signature": "double __thiscall(double result, double pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "double",
+   "sig_model": {
+    "return": "double",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "double",
+      "name": "result"
+     },
+     {
+      "type": "double",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ad540": {
    "name": "UpdateSwordDisplay",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041f6f0": {
    "name": "Reset",
    "signature": "void __thiscall SystemUI::Reset()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a8150": {
    "name": "ShowPage",
    "signature": "int __thiscall SystemUI::ShowPage()",
    "_misattrib_evidence": "max_offset=26968>class_size=1816",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004acde0": {
    "name": "UpdateNoteScroll",
    "signature": "int __thiscall SystemUI::UpdateNoteScroll()",
    "_misattrib_evidence": "max_offset=283700>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004acf90": {
    "name": "UpdateNoteScrollAlt",
    "signature": "int __thiscall SystemUI::UpdateNoteScrollAlt()",
    "_misattrib_evidence": "max_offset=283704>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ad140": {
    "name": "ProcessFrame",
    "signature": "void __thiscall SystemUI::ProcessFrame()",
    "ordinal": 1,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004adc30": {
    "name": "InitScreenUI",
    "signature": "int __thiscall(int nVal, UIWnd *pWnd, int nVal2, char *pszBuf, int nVal3)",
    "ordinal": 6,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "UIWnd *pWnd",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "char *pszBuf",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00421a40": {
    "name": "GetNoteItemData",
    "signature": "int __thiscall SystemUI::GetNoteItemData(int *item)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *item",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a7c40": {
    "name": "LayoutWidgets",
    "signature": "int __thiscall SystemUI::LayoutWidgets()",
    "_misattrib_evidence": "max_offset=177412>class_size=33228",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a8260": {
    "name": "CreateNoteEntry",
    "signature": "char __thiscall SystemUI::CreateNoteEntry(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int",
+      "name": "nVal5"
+     },
+     {
+      "type": "unsigned __int8",
+      "name": "a8"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004acc10": {
    "name": "InitSlotEffects",
    "signature": "int __thiscall SystemUI::InitSlotEffects(int nVal)",
    "_misattrib_evidence": "max_offset=177420>class_size=200",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051f130": {
    "name": "UpdateParticles",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ac8b0": {
    "name": "ReplaceTextures",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=382744>class_size=4280",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a7670": {
    "name": "_scalar_dtor_7670",
@@ -490,12 +714,51 @@
    "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SystemUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F29C）",
    "ordinal": 5,
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041f800": {
    "name": "Close",
    "signature": "void __thiscall SystemUI::Close()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -504,32 +767,25 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x004AD140",
-     "from": null
+     "addr": "0x004AD140"
     },
     {
-     "addr": "0x004AD540",
-     "from": null
+     "addr": "0x004AD540"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x004A7670",
-     "from": null
+     "addr": "0x004A7670"
     },
     {
-     "addr": "0x004ADC30",
-     "from": null
+     "addr": "0x004ADC30"
     }
    ]
   }

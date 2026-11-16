@@ -306,8 +306,7 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00411B80",
-     "from": "GameObject"
+     "addr": "0x00411B80"
     }
    ],
    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x411900(Role::Role)@+101/+624/+649 三写自证（Role MI 第三表；ctor 已注册 Role::Role ✓ 解锁）"
@@ -318,57 +317,184 @@
    "name": "CalcXueJianInit",
    "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408d80": {
    "name": "CalcLongKuiInit",
    "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408e30": {
    "name": "CalcZiXuanInit",
    "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408e90": {
    "name": "CalcChangQingInit",
    "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408f30": {
    "name": "CalcHuaYingInit",
    "signature": "int __cdecl(int nVal, int nVal2)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00418170": {
    "name": "CheckOBBCollision",
    "signature": "int __thiscall(struct gbOBBox *p)",
    "_misattrib_evidence": "max_offset=680>class_size=64",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "struct gbOBBox *p",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00411900": {
    "name": "Role",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=8700>class_size=596",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041b640": {
    "name": "UpdateBoundingBox",
    "signature": "CCBAIWindow *__thiscall CCBSkillWindow::ToggleSlots (int)",
    "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)",
    "evidence_level": "unverified",
-   "semantic_name": "UpdateBoundingBox"
+   "semantic_name": "UpdateBoundingBox",
+   "semantic_sig": "CCBAIWindow *__thiscall",
+   "sig_model": {
+    "return": "CCBAIWindow *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041b6a0": {
    "name": "GetGfxManager",
    "signature": "int __thiscall()",
    "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_name": "GetGfxManager"
+   "semantic_name": "GetGfxManager",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041be30": {
    "name": "_sdtor_22",
@@ -376,7 +502,24 @@
    "source": "vtable_owner_fix(Glow 层虚函数)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_sdtor_22"
+   "semantic_name": "_sdtor_22",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041be20": {
    "name": "_ScriptObj_adjthunk1",
@@ -387,12 +530,28 @@
    "alt_name": "Object_adjthunk_1be20",
    "alt_source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）—— Role 继承槽引用 + declaration_only",
    "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
-   "semantic_name": "_ScriptObj_adjthunk1"
+   "semantic_name": "_ScriptObj_adjthunk1",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00416500": {
    "name": "IsActionBlocked",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 96

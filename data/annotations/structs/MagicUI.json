@@ -470,56 +470,176 @@
    "name": "NextRole",
    "signature": "int (int *)",
    "source": "pdb",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": null,
+    "params": [
+     {
+      "type": "int *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00551c66": {
    "name": "InitComItem",
    "signature": "void (int nVal1)",
    "source": "pdb | 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [2026-11-13] +declaration_only: 体由 skip(0x00551C66, VC6无3DNow内置)排除, 条目保留声明收编",
    "evidence_level": "unverified",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00494660": {
    "name": "ProcessInput",
    "signature": "void __thiscall MagicUI::ProcessInput()",
    "_misattrib_evidence": "max_offset=215196>class_size=4280",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048a010": {
    "name": "RefreshAndLayout",
    "signature": "int __thiscall MagicUI::RefreshAndLayout()",
    "_misattrib_evidence": "max_offset=205784>class_size=4088",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00494620": {
    "name": "SelectBigMapTab3",
    "signature": "int __thiscall MagicUI::SelectBigMapTab3(char nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00494640": {
    "name": "SelectBigMapTab4",
    "signature": "int __thiscall MagicUI::SelectBigMapTab4(char nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00484ed0": {
    "name": "SelectTab3",
    "signature": "int __thiscall MagicUI::SelectTab3(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00484ef0": {
    "name": "SelectTab4",
    "signature": "int __thiscall MagicUI::SelectTab4(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048a350": {
    "name": "SelectSubTab3",
    "signature": "int __thiscall MagicUI::SelectSubTab3(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048a370": {
    "name": "SelectSubTab4",
    "signature": "int __thiscall MagicUI::SelectSubTab4(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048a390": {
    "name": "InitUILayout",
@@ -527,23 +647,70 @@
    "_misattrib_evidence": "max_offset=249552>class_size=4088",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 调用点6个(RenderTarget.cpp:424/1246外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
-   "owner": "MagicUI"
+   "owner": "MagicUI",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048b8f0": {
    "name": "UpdateViewListItems",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=248268>class_size=4088",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049e8a0": {
    "name": "SelectXJTMTab3",
    "signature": "int __thiscall MagicUI::SelectXJTMTab3(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0049e8c0": {
    "name": "SelectXJTMTab4",
    "signature": "int __thiscall MagicUI::SelectXJTMTab4(unsigned __int8 nTab)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "nTab"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 72,

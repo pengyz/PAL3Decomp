@@ -7,13 +7,34 @@
   "0x004d3300": {
    "name": "Update",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d3860": {
    "name": "_sdtor",
    "signature": "CEffQuake *__thiscall(char pData)",
    "source": "[非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形（`sub ecx,N; jmp`/flag-test+delete），非普通 ctor/dtor —— 名保留 `_sdtor` 系",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "CEffQuake *",
+   "sig_model": {
+    "return": "CEffQuake *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d32e0": {
    "name": "~CEffQuake",
@@ -21,7 +42,20 @@
    "source": "vtable_gap_fill_v1(IDB:??_GCEffQuake@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffQuake（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56FA88,0x56FA7C）",
    "evidence_level": "A",
    "adjudication": "shared_impl",
-   "semantic_name": "~CEffQuake"
+   "semantic_name": "~CEffQuake",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d4de0": {
    "name": "_sdtor_adj",
@@ -30,21 +64,45 @@
    "reason": "compiler-generated",
    "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d4df0": {
    "name": "_todo_4D4DF0",
    "signature": "void __thiscall()",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d32c0": {
    "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名Destroy为分析命名待Round-2归属正名) | move-back:工厂stub体(new+jmp ctor)在CEffQuake归属下编译过(CEffObj值类型cast渲染C2440)"
+   "source": "binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名Destroy为分析命名待Round-2归属正名) | move-back:工厂stub体(new+jmp ctor)在CEffQuake归属下编译过(CEffObj值类型cast渲染C2440)",
+   "semantic_sig": "void*",
+   "sig_model": {
+    "return": "void*",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d33b0": {
    "name": "RenderEffectPass",
@@ -52,7 +110,20 @@
    "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名RenderEffectPass为分析命名待Round-2归属正名) | move-back:大体函数体在CEffQuake归属下Hex-Rays渲染正常(slot_12体v1[1]垃圾化实证); slot位次=共享表slot12/14",
    "ordinal": 12,
    "evidence_level": "unverified",
-   "semantic_name": "RenderEffectPass"
+   "semantic_name": "RenderEffectPass",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004d3660": {
    "name": "GetEditorTaskDescription",
@@ -60,7 +131,104 @@
    "source": "vtable_migrated | binary:ceff_family_adjudication_20261114 主表0x56FA88槽内=CEffObj基实现(CEffQuake共享start零覆写) — 自CEffQuake移交 | rename:slot_位次名(避免派生类同名虚碰撞C2555; 原名GetQuakeType为分析命名待Round-2归属正名) | move-back:大体函数体在CEffQuake归属下Hex-Rays渲染正常(slot_12体v1[1]垃圾化实证); slot位次=共享表slot12/14",
    "ordinal": 14,
    "evidence_level": "unverified",
-   "semantic_name": "GetQuakeType"
+   "semantic_name": "GetQuakeType",
+   "semantic_sig": "const char *",
+   "sig_model": {
+    "return": "const char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c15d0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "semantic_name": "CEffAction::UpdateParticles(void)",
+   "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c29a0": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(float)",
+   "semantic_name": "UpdateInternal",
+   "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004d33a0": {
+   "name": "ResetState",
+   "signature": "void __thiscall(int, int, int, int)",
+   "semantic_name": "ResetState",
+   "name_note": "G2条目补齐(CEff表): 体110实证: m_bIdle=0重置语义; 修饰名CEffBink::ResetState",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c0650": {
+   "name": "AllocActionArray",
+   "signature": "char __thiscall(tagEffObjType *)",
+   "semantic_name": "slot_1",
+   "confidence": "中高",
+   "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "tagEffObjType *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -69,92 +237,63 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004D32E0",
-     "from": null
+     "addr": "0x004D32E0"
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle",
-     "name": "Create",
-     "sig": "char __thiscall(tagEffObjType *)"
+     "name": "Create"
     },
     {
      "addr": "0x004D33A0",
-     "from": "EffAudioNode",
-     "name": "ResetState",
-     "sig": "void __thiscall(int, int, int, int)"
+     "name": "ResetState"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x004C29A0",
-     "from": "EffAudioNode",
-     "name": "UpdateFrame",
-     "sig": "void __thiscall(float)"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x004D32C0",
-     "from": null,
-     "name": "AllocEffect",
-     "sig": "void* __thiscall()"
+     "name": "AllocEffect"
     },
     {
      "addr": "0x004C0500",
-     "from": "CEffObj",
-     "name": "OnTest",
-     "sig": "char __thiscall()"
+     "name": "OnTest"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffObj",
-     "name": "Update",
-     "sig": "int __thiscall(int)"
+     "name": "Update"
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffObj",
-     "name": "GetEditorObjDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorObjDescription"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffObj",
-     "name": "GetEffect",
-     "sig": "int __thiscall(int)"
+     "name": "GetEffect"
     },
     {
      "addr": "0x004D33B0",
-     "from": null,
-     "name": "RenderEffectPass",
-     "sig": "void __thiscall(int)"
+     "name": "RenderEffectPass"
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffAction",
-     "name": "UpdateParticles",
-     "sig": "void __thiscall()"
+     "name": "UpdateParticles"
     },
     {
      "addr": "0x004D3660",
-     "from": null,
-     "name": "GetEditorTaskDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorTaskDescription"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

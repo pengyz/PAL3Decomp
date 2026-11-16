@@ -45,44 +45,34 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x0044EB40",
-     "from": null
+     "addr": "0x0044EB40"
     },
     {
-     "addr": "0x0044AB00",
-     "from": null
+     "addr": "0x0044AB00"
     },
     {
-     "addr": "0x004AF760",
-     "from": "CEffObj"
+     "addr": "0x004AF760"
     },
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00445CD0",
-     "from": "scScriptInstance"
+     "addr": "0x00445CD0"
     },
     {
-     "addr": "0x0044E980",
-     "from": "scScriptInstance"
+     "addr": "0x0044E980"
     },
     {
-     "addr": "0x00445C10",
-     "from": "scScriptInstance"
+     "addr": "0x00445C10"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0044E5C0",
-     "from": "scScriptInstance"
+     "addr": "0x0044E5C0"
     },
     {
-     "addr": "0x00445D10",
-     "from": "CGameData"
+     "addr": "0x00445D10"
     }
    ],
    "source": "[100 表认领 2026-10-16 重落] UIEmote 主表 A 级：写入点 ctor+101 + 析构族+39 双自证；UIWnd 接口形 + 0x44E5C0 删除析构在槽 | 槽名债清毕 2026-10-16：0x55434F 双注册摘除（CRT amsg_exit(0x19) T145 族）/UNREG 槽天然 slot_<i>/共享名 verified"
@@ -92,24 +82,56 @@
   "0x0044e530": {
    "name": "UIEmote",
    "signature": "void __thiscall UIEmote::UIEmote()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00529870": {
    "name": "Render",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044d0b0": {
    "name": "InitParticleSlots",
    "signature": "int __thiscall UIEmote::InitParticleSlots()",
    "_misattrib_evidence": "max_offset=10048>class_size=2272",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044eb40": {
    "name": "Reset",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "空覆盖虚方法",
-   "signature": "virtual void __thiscall(UIEmote *this)"
+   "signature": "virtual void __thiscall(UIEmote *this)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
@@ -117,20 +139,84 @@
    "source": "vtable_gap_fill_v1(from scScriptInstance.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "adjudication": "rejected"
+   "adjudication": "rejected",
+   "semantic_sig": "scScriptInstance *",
+   "sig_model": {
+    "return": "scScriptInstance *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "scScriptInstance *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e980": {
    "name": "OnVisible",
    "signature": "void * __thiscall(UIWnd *Block, char)",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "可见性处理（m_bvisible 检查+offset 19）",
-   "semantic_name": "OnVisible"
+   "semantic_name": "OnVisible",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044ab00": {
-   "name": "slot_1",
+   "name": "GetType",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_1",
+   "name_note": "槽链传播: 同址语义名(GetType)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004af760": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(int)",
+   "semantic_name": "UpdateFrame",
+   "confidence": "中",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 76,

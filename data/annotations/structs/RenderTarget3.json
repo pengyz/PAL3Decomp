@@ -14,70 +14,217 @@
   "0x004b6630": {
    "name": "Begin",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6df0": {
    "name": "End",
    "signature": "void *__thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6e20": {
    "name": "Resolve",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b65f0": {
    "name": "Init",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b65a0": {
    "name": "GetInstance",
    "signature": "RenderTarget3 * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RenderTarget3 *",
+   "sig_model": {
+    "return": "RenderTarget3 *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b66b0": {
    "name": "ResetAndRender",
    "signature": "bool __thiscall(int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b67b0": {
    "name": "EndSceneGraph",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6c20": {
    "name": "ClearEffects",
    "signature": "CPolicy **__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "CPolicy **",
+   "sig_model": {
+    "return": "CPolicy **",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b63c0": {
    "name": "GenerateRingMesh",
    "signature": "int __cdecl RenderTarget3::GenerateRingMesh(float fVal, float fVal2, int nVal, int nVal2, int nVal3, int nVal4, float fVal3)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     },
+     {
+      "type": "float",
+      "name": "fVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "float",
+      "name": "fVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6550": {
    "name": "InitStruct",
    "signature": "int __thiscall()",
    "source": "sig_evidence_A(ret-N arity)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b67e0": {
    "name": "SwapBuffers",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6820": {
    "name": "UpdateRender",
    "signature": "int __thiscall RenderTarget3::UpdateRender(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6d20": {
    "name": "Reset",
    "signature": "int *__thiscall RenderTarget3::Reset()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6c80": {
    "name": "_scalar_dtor_6C80",
@@ -85,13 +232,43 @@
    "source": "vtable_migrated | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4B6CA0 写 vptr 0x56F36C（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F36C→RenderTarget3（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RenderTarget3（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4B6CA0 写 vptr 0x56F36C",
    "ordinal": 2,
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6ca0": {
    "name": "OnEvent",
    "signature": "void __thiscall(RenderTarget3 *this, void **a2)",
    "name_source": "IDA语义分析 2026-10-31 批5",
-   "name_note": "空覆盖虚方法"
+   "name_note": "空覆盖虚方法",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void **a2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -100,16 +277,13 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x0055434F",
-     "from": "CEffObj"
+     "addr": "0x0055434F"
     },
     {
-     "addr": "0x0055434F",
-     "from": "CEffObj"
+     "addr": "0x0055434F"
     },
     {
-     "addr": "0x004B6C80",
-     "from": null
+     "addr": "0x004B6C80"
     }
    ]
   }

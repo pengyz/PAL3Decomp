@@ -232,101 +232,255 @@
    "name": "Init",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005054f0": {
    "name": "DoTask",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00505770": {
    "name": "ClearFinishedTask",
    "signature": "char __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00505800": {
    "name": "AddTask",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005081d0": {
    "name": "_scalar_dtor_81D0",
    "signature": "void __thiscall()",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CCBCamControl 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_81D0。refs: ??1CCBCamControl@@QAE@XZ",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005081e0": {
    "name": "~CCBCamControl",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508220": {
    "name": "Reset",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508230": {
    "name": "Create",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508270": {
    "name": "Destroy",
    "signature": "bool __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005082c0": {
    "name": "Update",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005082d0": {
    "name": "StartList",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508320": {
    "name": "StopList",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508360": {
    "name": "HandleInput",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508370": {
    "name": "UpdateCircleSet",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005083b0": {
    "name": "SetCircle",
    "signature": "CCBCamControl * __thiscall(int pvecCenter)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "CCBCamControl *",
+   "sig_model": {
+    "return": "CCBCamControl *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "pvecCenter"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005084c0": {
    "name": "IsPointerUnderMouse",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508660": {
    "name": "LoadPointer",
    "signature": "int *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508680": {
    "name": "DoList",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508690": {
    "name": "ResetListFlag",
@@ -336,86 +490,274 @@
    "lvars": {
     "v4": "float *"
    },
-   "lvars_source": " | L-VAR 2026-11-12: v4 = m_pModObj+7 指针偏移(float* 声明系 Hex-Rays 退化), 真型=同元素指针 | 修正 2026-11-12: 反汇编0x508690定谳 v4 写 float 数组(*v4=-0.25/v4[1..3]), float* 是二进制真值(前标 gbVolumeModifier* 系 m_pModObj 同型猜测, C2679 x4 实证错误)"
+   "lvars_source": " | L-VAR 2026-11-12: v4 = m_pModObj+7 指针偏移(float* 声明系 Hex-Rays 退化), 真型=同元素指针 | 修正 2026-11-12: 反汇编0x508690定谳 v4 写 float 数组(*v4=-0.25/v4[1..3]), float* 是二进制真值(前标 gbVolumeModifier* 系 m_pModObj 同型猜测, C2679 x4 实证错误)",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00508880": {
    "name": "KeepCurCam",
    "signature": "void __thiscall(int pCam)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "pCam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005088d0": {
    "name": "DoLineMove",
    "signature": "void __thiscall(unsigned int dwVal)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048e600": {
    "name": "ProcessRenderQueue",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=307028>class_size=4088",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ff360": {
    "name": "ProcessCamMove",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004a9ed0": {
    "name": "ShowAllSlots",
    "signature": "int __thiscall(int nVal)",
    "_misattrib_evidence": "max_offset=394816>class_size=1208",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ebd30": {
    "name": "ShowCameraDialog",
    "signature": "void __thiscall CCBCamControl::ShowCameraDialog(HWND hDlg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ebf90": {
    "name": "ReadCameraDialog",
    "signature": "void __thiscall CCBCamControl::ReadCameraDialog(HWND hDlg)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005058e0": {
    "name": "SwitchEditorCamPos",
    "signature": "bool __thiscall(int nVal1, int nVal2)",
    "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 bool __thiscall(int nVal1) ⇒ bool __thiscall(int nVal1, int nVal2)（A 级 ret-N 证据：ret $0x8 ⇒ 2 栈参；int 占位·nVal 序号惯例）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00505820": {
    "name": "ProcCamMove",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005052e0": {
    "name": "SetCamPos",
    "signature": "CCBStageCam * __thiscall(int **pCamParam, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "CCBStageCam *",
+   "sig_model": {
+    "return": "CCBStageCam *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int **pCamParam",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004e9750": {
    "name": "GetData",
    "signature": "int __thiscall(CCBCamControl *this, HWND hDlg)",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004eb6f0": {
    "name": "Show",
    "signature": "void __thiscall(CCBCamControl *this, HWND hDlg)",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004eb720": {
    "name": "GetData_B720",
    "signature": "LRESULT __thiscall(CCBCamControl *this, HWND hDlg)",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "LRESULT",
+   "sig_model": {
+    "return": "LRESULT",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004eb8d0": {
    "name": "GetData_B8D0",
    "signature": "LRESULT __thiscall(CCBCamControl *this, HWND hDlg)",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "LRESULT",
+   "sig_model": {
+    "return": "LRESULT",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HWND",
+      "name": "hDlg"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）"

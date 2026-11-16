@@ -489,17 +489,46 @@
    "signature": "int __thiscall MainPropUI::~MainPropUI()",
    "_misattrib_evidence": "max_offset=219676>class_size=10248",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~MainPropUI→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：构造函数误判重定谳（体=基类/成员构造级联——ctor 名形）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048c4a0": {
    "name": "SetPage",
    "signature": "int __thiscall(unsigned char nPageIdx)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nPageIdx"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00491b40": {
    "name": "ShowPage",
    "signature": "int __thiscall MainPropUI::ShowPage()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00492bb0": {
    "name": "ShowSubPanels",
@@ -507,53 +536,188 @@
    "_misattrib_evidence": "max_offset=212204>class_size=54024",
    "evidence_level": "unverified",
    "source": "member_attribution_20261113: 调用点5个(EquipUI.cpp:501外部+free内部); 命名形态+UI族一致性 | [修 2026-11-13] +owner: functions.json 旧free条目占坑致merge静默丢弃(T5-F5 owner顶替语义)",
-   "owner": "MainPropUI"
+   "owner": "MainPropUI",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00487650": {
    "name": "CreateCoverTemplate",
    "signature": "int __thiscall ()",
    "_misattrib_evidence": "max_offset=205768>class_size=14952",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00488660": {
    "name": "DisplayCaption",
    "signature": "void __thiscall MainPropUI::DisplayCaption(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00489030": {
    "name": "CalcBarWidth",
    "signature": "int __thiscall(int nVal, float fVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00489ed0": {
    "name": "InitNPCs",
    "signature": "int *__thiscall MainPropUI::InitNPCs(int nVal, int arg4, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "arg4"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048cee0": {
    "name": "FindValidSaveSlot",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0048cf10": {
    "name": "SetCaption",
    "signature": "void __thiscall MainPropUI::SetCaption(int nVal, int nVal2, int nVal3)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004970b0": {
    "name": "HandleKeyInput",
    "signature": "char __thiscall MainPropUI::HandleKeyInput()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00497050": {
    "name": "ProcessSlotCounter",
    "signature": "int __thiscall MainPropUI::ProcessSlotCounter(int *pCounter)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pCounter",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00497080": {
    "name": "FindNextValid",
    "signature": "int __thiscall(int *pCounter)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pCounter",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00490e70": {
    "name": "_scalar_dtor",
@@ -561,25 +725,102 @@
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=MainPropUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56D618）"
+   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=MainPropUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56D618）",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00496fa0": {
    "name": "Render",
    "signature": "int __thiscall()",
    "evidence_level": "unverified",
-   "semantic_name": "Render"
+   "semantic_name": "Render",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004971e0": {
    "name": "ProcessInput",
    "signature": "BOOL __thiscall(int, int)",
    "evidence_level": "unverified",
-   "semantic_name": "ProcessInput"
+   "semantic_name": "ProcessInput",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004974a0": {
    "name": "OnMessage",
    "signature": "int __thiscall(int, int, int)",
    "evidence_level": "unverified",
-   "semantic_name": "OnMessage"
+   "semantic_name": "OnMessage",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -588,32 +829,25 @@
    "base": "UIBigMap",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00496FA0",
-     "from": null
+     "addr": "0x00496FA0"
     },
     {
-     "addr": "0x004971E0",
-     "from": null
+     "addr": "0x004971E0"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x00490E70",
-     "from": null
+     "addr": "0x00490E70"
     },
     {
-     "addr": "0x004974A0",
-     "from": null
+     "addr": "0x004974A0"
     }
    ]
   }

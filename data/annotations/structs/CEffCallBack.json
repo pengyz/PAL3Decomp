@@ -32,43 +32,186 @@
    "name": "OnTest",
    "signature": "char __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c2ba0": {
    "name": "Update",
    "signature": "int __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c2d00": {
    "name": "RenderEffectPass",
    "signature": "void __thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c3160": {
    "name": "GetEditorTaskDescription",
    "signature": "const char *__thiscall(int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "const char *",
+   "sig_model": {
+    "return": "const char *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c2870": {
-   "name": "slot_0",
+   "name": "~CEffCallBack",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_0",
+   "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c2930": {
    "name": "ResetState",
    "signature": "void __thiscall(int, int, int, int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c2820": {
    "name": "AllocEffect",
    "signature": "void* __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void*",
+   "sig_model": {
+    "return": "void*",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c15d0": {
+   "name": "UpdateParticles",
+   "signature": "void __thiscall()",
+   "semantic_name": "CEffAction::UpdateParticles(void)",
+   "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c29a0": {
+   "name": "UpdateFrame",
+   "signature": "void __thiscall(float)",
+   "semantic_name": "UpdateInternal",
+   "name_note": "G2条目补齐(CEff表): 同上折叠共享; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004c0650": {
+   "name": "AllocActionArray",
+   "signature": "char __thiscall(tagEffObjType *)",
+   "semantic_name": "slot_1",
+   "confidence": "中高",
+   "name_note": "C9批体证定谳: 同址ICF折叠共享, 同体证据",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "tagEffObjType *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 52,
@@ -88,92 +231,63 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004C2870",
-     "from": null
+     "addr": "0x004C2870"
     },
     {
      "addr": "0x004C0650",
-     "from": "CEffSParticle",
-     "name": "Create",
-     "sig": "char __thiscall(tagEffObjType *)"
+     "name": "Create"
     },
     {
      "addr": "0x004C2930",
-     "from": null,
-     "name": "ResetState",
-     "sig": "void __thiscall(int, int, int, int)"
+     "name": "ResetState"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x004C29A0",
-     "from": "EffAudioNode",
-     "name": "UpdateFrame",
-     "sig": "void __thiscall(float)"
+     "name": "UpdateFrame"
     },
     {
      "addr": "0x00408BD0",
-     "from": "EffAudioNode",
-     "name": "NullCallback",
-     "sig": "void __thiscall()"
+     "name": "NullCallback"
     },
     {
      "addr": "0x004C2820",
-     "from": null,
-     "name": "AllocEffect",
-     "sig": "void* __thiscall()"
+     "name": "AllocEffect"
     },
     {
      "addr": "0x004C2840",
-     "from": null,
-     "name": "OnTest",
-     "sig": "char __thiscall()"
+     "name": "OnTest"
     },
     {
      "addr": "0x004C2BA0",
-     "from": null,
-     "name": "Update",
-     "sig": "int __thiscall(int)"
+     "name": "Update"
     },
     {
      "addr": "0x004C0510",
-     "from": "CEffObj",
-     "name": "GetEditorObjDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorObjDescription"
     },
     {
      "addr": "0x004AF760",
-     "from": "CEffObj",
-     "name": "GetEffect",
-     "sig": "int __thiscall(int)"
+     "name": "GetEffect"
     },
     {
      "addr": "0x004C2D00",
-     "from": null,
-     "name": "RenderEffectPass",
-     "sig": "void __thiscall(int)"
+     "name": "RenderEffectPass"
     },
     {
      "addr": "0x004C15D0",
-     "from": "CEffAction",
-     "name": "UpdateParticles",
-     "sig": "void __thiscall()"
+     "name": "UpdateParticles"
     },
     {
      "addr": "0x004C3160",
-     "from": null,
-     "name": "GetEditorTaskDescription",
-     "sig": "const char *__thiscall(int)"
+     "name": "GetEditorTaskDescription"
     }
    ],
    "source": "binary:vtable_walk 20261114 (ctor写表三元组裁决)",

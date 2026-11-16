@@ -49,44 +49,144 @@
   "0x0051a3b0": {
    "name": "~CCBItemWindow",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051b1d0": {
    "name": "Reset",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051b210": {
    "name": "Create",
    "signature": "bool __thiscall(int *pRect, int parent)",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *pRect",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "parent"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051b620": {
    "name": "Update",
    "signature": "UIListBox * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "UIListBox *",
+   "sig_model": {
+    "return": "UIListBox *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004461b0": {
    "name": "CCBItemWindow",
    "signature": "void __thiscall CCBItemWindow::CCBItemWindow()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00450650": {
    "name": "SetItemName",
    "signature": "char *__thiscall CCBItemWindow::SetItemName(char *pszName)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *__thiscall",
+   "sig_model": {
+    "return": "char *__thiscall",
+    "cc": null,
+    "params": [
+     {
+      "type": "char *pszName",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051a930": {
    "name": "HandleMessage",
    "signature": "int __thiscall(int nVal, unsigned int nMsg, int wParam)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "nMsg"
+     },
+     {
+      "type": "int",
+      "name": "wParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051ab00": {
    "name": "CheckMagicKeyPress",
    "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051a390": {
    "name": "_scalar_dtor_A390",
@@ -95,15 +195,55 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed",
-   "semantic_name": "_scalar_dtor_A390"
+   "semantic_name": "_scalar_dtor_A390",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051a880": {
-   "name": "Destroy_A880",
+   "name": "Destroy",
    "signature": "int __thiscall()",
    "source": "vtable_gap_fill_v1(from CCBItemWindow.json) | multiclaim 裁决 2026-11-03: 败于 CCBItemWindow（uniq=4）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "Destroy_A880"
+   "semantic_name": "Destroy_A880",
+   "name_note": "剥壳定谳(验证pass): Destroy: 委托slot_3+控件指针释放实证",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043ddf0": {
+   "name": "Render",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBControlWindow::Render(void)",
+   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -111,36 +251,28 @@
    "addr": "0x00570500",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x0043DDF0",
-     "from": "UIListBox"
+     "addr": "0x0043DDF0"
     },
     {
-     "addr": "0x0051AB00",
-     "from": null
+     "addr": "0x0051AB00"
     },
     {
-     "addr": "0x0051A880",
-     "from": null
+     "addr": "0x0051A880"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0051A390",
-     "from": null
+     "addr": "0x0051A390"
     },
     {
-     "addr": "0x0051A930",
-     "from": null
+     "addr": "0x0051A930"
     },
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     }
    ]
   }

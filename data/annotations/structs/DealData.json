@@ -58,18 +58,56 @@
   "0x00457490": {
    "name": "LoadStoreConfig",
    "signature": "LPSTR __thiscall(CHAR *lpString2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "LPSTR",
+   "sig_model": {
+    "return": "LPSTR",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "CHAR *lpString2",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00457260": {
    "name": "DealData",
    "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int *__thiscall DealData::DealData() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0TxtFile",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004573c0": {
    "name": "CompareString",
    "signature": "int __thiscall(LPCSTR lpString1, LPCSTR lpString2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "LPCSTR",
+      "name": "lpString1"
+     },
+     {
+      "type": "LPCSTR",
+      "name": "lpString2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

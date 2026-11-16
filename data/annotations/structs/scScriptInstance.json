@@ -50,31 +50,89 @@
    "name": "~scScriptInstance",
    "signature": "void __thiscall scScriptInstance::~scScriptInstance()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e980": {
    "name": "OnVisible",
    "signature": "void __thiscall(int,int)",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e5c0": {
-   "name": "slot_5",
+   "name": "_sdtor_25",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_5",
+   "name_note": "槽链传播: 同址语义名(_sdtor_25)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445cd0": {
    "name": "Render",
    "signature": "void __thiscall(void)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445c10": {
-   "name": "slot_3",
+   "name": "HideAll",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_3",
+   "name_note": "槽链传播: 同址语义名(HideAll)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -83,34 +141,34 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x00445CD0",
-     "from": null
+     "addr": "0x00445CD0"
     },
     {
-     "addr": "0x0044E980",
-     "from": null
+     "addr": "0x0044E980"
     },
     {
-     "addr": "0x00445C10",
-     "from": null
+     "addr": "0x00445C10"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0044E5C0",
-     "from": null
+     "addr": "0x0044E5C0"
     },
     {
-     "addr": "0x00445D10",
-     "from": "CGameData"
+     "addr": "0x00445D10"
     }
    ]
   }
- ]
+ ],
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据: 表0x56B050五槽=UIWnd精确函数地址(0/1/3/4/6继承指纹) + slot5=自有删除式dtor0x44E5C0(0x44e5c0体=scScriptInstance::`scalar deleting destructor`铁证); 写者记录UICoverFrm::SetCoverTexture=归因噪音(UICoverFrm真表0x570830/0x5706EC)"
 }

@@ -124,41 +124,126 @@
    "name": "Create",
    "signature": "unsigned int __cdecl(int index)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned int",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "index"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040ec20": {
    "name": "Init",
    "signature": "void *__cdecl(int index)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "index"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f060": {
    "name": "SetRoleMode",
    "signature": "int __cdecl(int nVal)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f620": {
    "name": "InitAll",
    "signature": "int __cdecl()",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00446020": {
    "name": "UpdateAnim",
    "signature": "void __thiscall(int)",
    "source": "sig_evidence_A(ret-N arity)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00517a50": {
    "name": "DestroyAndRecreateUI",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00517ac0": {
    "name": "HandleAIMessage",
    "signature": "char __thiscall(int thisa, int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "thisa"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f9e0": {
    "name": "LoadFromStream",
@@ -167,67 +252,211 @@
    "lvars": {
     "v16": "char *"
    },
-   "lvars_source": " | L-VAR 2026-11-12: v16=(int)operator new(12*n) 赋值(char*声明) C2440, 真=缓冲指针 | (int)operator new 赋 char * 声明——P-A19 撤回态 (census C2440)"
+   "lvars_source": " | L-VAR 2026-11-12: v16=(int)operator new(12*n) 赋值(char*声明) C2440, 真=缓冲指针 | (int)operator new 赋 char * 声明——P-A19 撤回态 (census C2440)",
+   "semantic_sig": "size_t",
+   "sig_model": {
+    "return": "size_t",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "FILE *Stream",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00410580": {
    "name": "SetSceneFlag",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00517cf0": {
    "name": "ResetLineupWindow",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040ee00": {
    "name": "FreeBuffer",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040ee30": {
    "name": "ShiftBufferData",
    "signature": "char __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f000": {
    "name": "HasBufferData",
    "signature": "bool __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f030": {
    "name": "GetBufferCount",
    "signature": "int __thiscall NPC::GetBufferCount()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f050": {
    "name": "GetBufferAt",
    "signature": "int __thiscall NPC::GetBufferAt(int nIndex)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f6f0": {
    "name": "ReadBufferData",
    "signature": "int __thiscall(FILE *Stream)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "FILE *Stream",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f760": {
    "name": "LoadBufferFromStream",
    "signature": "int __thiscall NPC::LoadBufferFromStream(FILE *fp)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "FILE *fp",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0040f950": {
    "name": "SaveToStream",
    "signature": "size_t __thiscall(FILE *Stream)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "size_t",
+   "sig_model": {
+    "return": "size_t",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "FILE *Stream",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00479100": {
    "name": "GetPropertyByIndex",
    "signature": "int __thiscall NPC::GetPropertyByIndex(unsigned int dwVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00517ba0": {
    "name": "ShowAIWindow",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

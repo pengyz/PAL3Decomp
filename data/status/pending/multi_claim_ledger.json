@@ -1269,6 +1269,54 @@
    "addr": "0x0043bb90",
    "answer": "键归一化后多认领: UIFrameWnd,UIWnd",
    "adjudicated": true
+  },
+  {
+   "addr": "0x0043ad40",
+   "classes": "UICaption/UIScenePanel",
+   "name": "Render",
+   "answer": "shared_impl",
+   "evidence": "折叠Render族(slot1链void已定谳), UICaption体证+UIScenePanel表slot1指纹",
+   "date": "2026-11-16"
+  },
+  {
+   "addr": "0x0043bbc0",
+   "classes": "UIScene(UIFrameWnd链)",
+   "name": "Update",
+   "answer": "shared_impl",
+   "evidence": "UIScene真表0x56ACB8 slot2(ctor imm32实证), UIWnd slot2链律名",
+   "date": "2026-11-16"
+  },
+  {
+   "addr": "0x00445c60",
+   "classes": "UIWnd/他类副本",
+   "name": "Update",
+   "answer": "shared_impl",
+   "evidence": "UIWnd正主地址; 副本对齐owner契约",
+   "date": "2026-11-16"
+  },
+  {
+   "addr": "0x00450f80",
+   "classes": "RoleAtt",
+   "name": "IsValid",
+   "answer": "shared_impl",
+   "evidence": "RoleAtt真表0x56B140 slot1(体证m_ptex[14]!=0)",
+   "date": "2026-11-16"
+  },
+  {
+   "addr": "0x005195e0",
+   "classes": "CCBUI",
+   "name": "OnMessage",
+   "answer": "shared_impl",
+   "evidence": "CCBUI真表0x5704C8 slot6(基OnMessage链律)",
+   "date": "2026-11-16"
+  },
+  {
+   "addr": "0x0051b5d0",
+   "classes": "CCBLineupWindow",
+   "name": "~CCBLineupWindow",
+   "answer": "shared_impl",
+   "evidence": "真表0x570538 slot0删除式dtor位(registry误名CreateWithTextures)",
+   "date": "2026-11-16"
   }
  ]
 }

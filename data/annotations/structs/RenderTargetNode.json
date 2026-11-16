@@ -5,57 +5,173 @@
   "0x004bd830": {
    "name": "RenderTargetNode",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd880": {
    "name": "CreateParticleEffect",
    "signature": "gbParticleEffect *__thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbParticleEffect *",
+   "sig_model": {
+    "return": "gbParticleEffect *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd900": {
    "name": "UpdateParticleEffect",
    "signature": "struct gbParticleGroup *__thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "struct gbParticleGroup *",
+   "sig_model": {
+    "return": "struct gbParticleGroup *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd950": {
    "name": "Stop",
    "signature": "int __thiscall RenderTarget::Stop(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd970": {
    "name": "ReleaseDefault",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd990": {
    "name": "SetPathMode",
    "signature": "int __thiscall(int, int, int)",
    "evidence_level": "unverified",
-   "semantic_name": "SetPathMode"
+   "semantic_name": "SetPathMode",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bd850": {
-   "name": "slot_0",
+   "name": "_scalar_dtor_D850",
    "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_0",
+   "name_note": "槽链传播: 同址语义名(_scalar_dtor_D850)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0054211a": {
-   "name": "slot_5",
+   "name": "VisUpdate",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_5",
+   "name_note": "槽链传播: 同址语义名(VisUpdate)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00542114": {
-   "name": "slot_6",
+   "name": "SceneVisNode_adjthunk_2114",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_6",
+   "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_2114)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0054210e": {
-   "name": "slot_7",
+   "name": "SceneVisNode_adjthunk_210E",
    "signature": "void __thiscall()",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "slot_7",
+   "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_210E)沿override链正名",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -64,60 +180,46 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004BD850",
-     "from": null
+     "addr": "0x004BD850"
     },
     {
-     "addr": "0x004B7F70",
-     "from": null
+     "addr": "0x004B7F70"
     },
     {
-     "addr": "0x00542102",
-     "from": "ParticleVisNode"
+     "addr": "0x00542102"
     },
     {
-     "addr": "0x004B7F70",
-     "from": null
+     "addr": "0x004B7F70"
     },
     {
-     "addr": "0x004BD950",
-     "from": null
+     "addr": "0x004BD950"
     },
     {
-     "addr": "0x0054211A",
-     "from": null
+     "addr": "0x0054211A"
     },
     {
-     "addr": "0x00542114",
-     "from": null
+     "addr": "0x00542114"
     },
     {
-     "addr": "0x0054210E",
-     "from": null
+     "addr": "0x0054210E"
     },
     {
-     "addr": "0x005420DE",
-     "from": "ParticleVisNode"
+     "addr": "0x005420DE"
     },
     {
-     "addr": "0x005420D8",
-     "from": "ParticleVisNode"
+     "addr": "0x005420D8"
     },
     {
-     "addr": "0x004BD880",
-     "from": null
+     "addr": "0x004BD880"
     },
     {
-     "addr": "0x004BD970",
-     "from": null
+     "addr": "0x004BD970"
     },
     {
-     "addr": "0x004BD900",
-     "from": null
+     "addr": "0x004BD900"
     },
     {
-     "addr": "0x004BD990",
-     "from": null
+     "addr": "0x004BD990"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor RenderTargetNode@0x4BD830+8 + GetManagedTexture@0x4BD870+0 复写"

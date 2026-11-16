@@ -11,7 +11,15 @@
    "lvars": {
     "v4": "int"
    },
-   "lvars_source": " | L-VAR 2026-11-12: v4=this+2*sizeof 存的 vtable 槽基址(P-A16④ 意图), 对象值槽致 C2451; int 后 *(void(**)(...))(*(_DWORD*)&v4+16) 调用合法"
+   "lvars_source": " | L-VAR 2026-11-12: v4=this+2*sizeof 存的 vtable 槽基址(P-A16④ 意图), 对象值槽致 C2451; int 后 *(void(**)(...))(*(_DWORD*)&v4+16) 调用合法",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_verdicts": {

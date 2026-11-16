@@ -703,34 +703,102 @@
   "0x0044ade0": {
    "name": "InitRoles",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e660": {
    "name": "InitItems",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f5b0": {
    "name": "ProcessDialog",
    "signature": "int __thiscall CGameData::ProcessDialog()",
    "ordinal": 1,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f8a0": {
    "name": "SetMode",
    "signature": "int __thiscall(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f430": {
    "name": "Cleanup",
    "signature": "void __thiscall CGameData::Cleanup()",
    "ordinal": 3,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f610": {
    "name": "Load",
    "signature": "int __thiscall(CGameData *this, CUtil *pUtil)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "CUtil *pUtil",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f050": {
    "name": "~CGameData",
@@ -738,12 +806,28 @@
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~CGameData。refs: ?Cleanup@CGameData@@QAEXXZ ??1UITitle@@QAE@XZ ??1RoleAtt@@QAE@PAVUIWnd@@@Z ?DestroyContent",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044ff60": {
    "name": "GetMode",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f030": {
    "name": "_scalar_dtor_F030",
@@ -753,12 +837,33 @@
    "ordinal": 5,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CGameData（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B094）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445a60": {
    "name": "SetDefaultColors",
    "signature": "char __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f8d0": {
    "name": "_init_44f8d0",
@@ -768,7 +873,20 @@
    "lvars": {
     "v10": "CCBUI *"
    },
-   "lvars_source": " | L-VAR 2026-11-11c(P-A16⑤退役承接): decomp v10=(CCBUI*)v9 赋值 cast 即类型意图, result=v10 返回链同型; 全局文本替换(全局裸 replace)误伤 CCBUI 同形声明, 改由本注解按地址承接"
+   "lvars_source": " | L-VAR 2026-11-11c(P-A16⑤退役承接): decomp v10=(CCBUI*)v9 赋值 cast 即类型意图, result=v10 返回链同型; 全局文本替换(全局裸 replace)误伤 CCBUI 同形声明, 改由本注解按地址承接",
+   "semantic_sig": "CCBUI *",
+   "sig_model": {
+    "return": "CCBUI *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044f4c0": {
    "name": "SceneUpdate",
@@ -776,13 +894,53 @@
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 CGameData（uniq=8）",
-   "semantic_name": "SceneUpdate"
+   "semantic_name": "SceneUpdate",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00445d10": {
    "name": "OnMessage",
-   "signature": "void __thiscall(int,int,int)",
+   "signature": "int __thiscall(int, int, int)",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "void __thiscall(int,int,int)",
+   "name_note": "; C9修正: 0x445d10=UIWnd OnMessage正主地址的同址副本, sig对齐owner契约(int,体证据:LineupUI/MainPropUI派生返回值实证); 陈旧void=漂移副本",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -791,34 +949,34 @@
    "base": "UIWnd",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x0044F5B0",
-     "from": null
+     "addr": "0x0044F5B0"
     },
     {
-     "addr": "0x0044F4C0",
-     "from": null
+     "addr": "0x0044F4C0"
     },
     {
-     "addr": "0x0044F430",
-     "from": null
+     "addr": "0x0044F430"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0044F030",
-     "from": null
+     "addr": "0x0044F030"
     },
     {
-     "addr": "0x00445D10",
-     "from": null
+     "addr": "0x00445D10"
     }
    ]
   }
- ]
+ ],
+ "bases": [
+  {
+   "name": "UIWnd",
+   "offset": 0
+  }
+ ],
+ "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹)"
 }

@@ -510,151 +510,424 @@
   "0x00404760": {
    "name": "PAL3",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004047f0": {
    "name": "~PAL3",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00404ff0": {
    "name": "InitGFX",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00405330": {
    "name": "CreateEffectSystem",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004055a0": {
    "name": "DestroyEffectSystem",
    "signature": "bool __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004055d0": {
    "name": "Update",
    "signature": "void __thiscall(float dt)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "dt"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00405c00": {
-   "name": "Render_5C00",
+   "name": "Render",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_name": "Render_5C00",
+   "name_note": "剥壳定谳(验证pass): Render: CGameData::ProcessDialog+MiniGame::Render+CameraCtrl::SetAsCurrent=主渲染循环强实证",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406230": {
    "name": "Destroy",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406310": {
    "name": "CheckSystemRequire",
    "signature": "void __thiscall(HINSTANCE hinst)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "HINSTANCE",
+      "name": "hinst"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004065f0": {
    "name": "CreateGfxWindow",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004066f0": {
    "name": "ParseCmdLine",
    "signature": "void __thiscall(const char *lpCmdLine)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const char *lpCmdLine",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004068c0": {
    "name": "HasCommandLineParam",
    "signature": "BOOL __cdecl()",
    "source": "pdb_ret",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406980": {
    "name": "GetCommandLineParam",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406a10": {
    "name": "TestCombat",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406b80": {
    "name": "DefaultKeyMap",
    "signature": "void __thiscall(int nVal, int nVal2)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406d70": {
    "name": "PrintScreen",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00406ff0": {
    "name": "SnapScreen",
    "signature": "void __cdecl()",
    "source": "pdb_ret",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407180": {
    "name": "StartWolf",
    "signature": "void __cdecl(HKEY hKey, CHAR *lpSubKey)",
    "source": "pdb_ret",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "HKEY",
+      "name": "hKey"
+     },
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004071c0": {
    "name": "EndWolf",
    "signature": "void __cdecl()",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004072d0": {
    "name": "StartHideFight",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407300": {
    "name": "EndHideFight",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407320": {
    "name": "StartCombat",
    "signature": "void __cdecl(unsigned int *const pdwVal, int monsterid, Role *side, char pMonster)",
    "source": "pdb_ret",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "unsigned int *const",
+      "name": "pdwVal"
+     },
+     {
+      "type": "int",
+      "name": "monsterid"
+     },
+     {
+      "type": "Role *side",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pMonster"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407560": {
    "name": "StartCombatFromNPC",
    "signature": "char __cdecl PAL3::StartCombatFromNPC(const NPCInfo *pNPCInfo, int tmp, Role *side)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "const NPCInfo *pNPCInfo",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "tmp"
+     },
+     {
+      "type": "Role *side",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407640": {
    "name": "EntryCatchGhost",
    "signature": "void __thiscall()",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00407740": {
    "name": "IfHideFightSucceed",
    "signature": "int __cdecl()",
    "source": "pdb_ret",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408be0": {
    "name": "InitSubsystems",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00408fd0": {
    "name": "FullInit",
@@ -687,172 +960,507 @@
     "pSceneName": "char *",
     "pNewBuffer": "char *"
    },
-   "lvars_source": "[C2036修 2026-11-13] void*→char*: ++pSceneName/&pSceneName[v131+1] 字符串遍历语义"
+   "lvars_source": "[C2036修 2026-11-13] void*→char*: ++pSceneName/&pSceneName[v131+1] 字符串遍历语义",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004118d0": {
    "name": "UpdateSubsystems",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0041ee40": {
    "name": "UIPostProcess",
    "signature": "int __thiscall()",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c0400": {
    "name": "ClearAdditiveEffects",
    "signature": "void __thiscall PAL3::ClearAdditiveEffects()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bdb10": {
    "name": "Init",
    "signature": "PAL3 *__cdecl()",
    "name_source": "IDA语义分析 2026-11-01 批14",
-   "name_note": "从 decomp 推断（GetInstance_db10）"
+   "name_note": "从 decomp 推断（GetInstance_db10）",
+   "semantic_sig": "PAL3 *",
+   "sig_model": {
+    "return": "PAL3 *",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bfd20": {
    "name": "GetValue",
    "signature": "ScreenEffectMgr *__thiscall(PAL3 *this)",
    "name_source": "IDA语义分析 2026-11-01 批14",
-   "name_note": "从 decomp 推断（GetInstance_fd20）"
+   "name_note": "从 decomp 推断（GetInstance_fd20）",
+   "semantic_sig": "ScreenEffectMgr *",
+   "sig_model": {
+    "return": "ScreenEffectMgr *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b6d30": {
    "name": "GetInstance",
    "signature": "RenderTarget3 * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "RenderTarget3 *",
+   "sig_model": {
+    "return": "RenderTarget3 *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bded0": {
    "name": "InvalidateSnapH",
    "signature": "void __thiscall PAL3::InvalidateSnapH()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00461bf0": {
    "name": "EnterGameMode",
    "signature": "int __thiscall PAL3::EnterGameMode(int nVal)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004070a0": {
    "name": "ReadRegistryValue",
    "signature": "bool __cdecl(const CHAR *szSubKey, const CHAR *szValueName, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "const CHAR *szSubKey",
+      "name": null
+     },
+     {
+      "type": "const CHAR *szValueName",
+      "name": null
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0041f9f0": {
    "name": "LoadingTimerCallback",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00437e60": {
    "name": "WriteRegistryValue",
    "signature": "bool __cdecl PAL3::WriteRegistryValue(CHAR *lpSubKey, DWORD dwDisposition, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0044e2b0": {
    "name": "WriteRegistryDword",
    "signature": "bool __cdecl(CHAR *lpSubKey, const CHAR *szValueName, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "const CHAR *szValueName",
+      "name": null
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x00456590": {
    "name": "WriteRegistryKey",
    "signature": "bool __cdecl PAL3::WriteRegistryKey(CHAR *lpSubKey, DWORD dwDisposition, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x00459860": {
    "name": "HandleDeviceReset",
    "signature": "char __thiscall PAL3::HandleDeviceReset()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0047c260": {
    "name": "Render_47c260",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=3996>class_size=1012",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b2840": {
    "name": "WriteRegistry",
    "signature": "bool __cdecl PAL3::WriteRegistry(CHAR *lpSubKey, DWORD dwDisposition, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0052f570": {
    "name": "WriteRegistryDwordEx",
    "signature": "bool __cdecl PAL3::WriteRegistryDwordEx(CHAR *lpSubKey, DWORD dwDisposition, ...)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
+    "varargs": true,
+    "pending": false
+   }
   },
   "0x0044e390": {
    "name": "LoadRoleByIndex",
    "signature": "void __cdecl(int nVal)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0044e410": {
    "name": "LoadUnlockFlags",
    "signature": "char *__thiscall PAL3::LoadUnlockFlags()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char *__thiscall",
+   "sig_model": {
+    "return": "char *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00462030": {
    "name": "SetPanelStates",
    "signature": "int __thiscall(unsigned char pData)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0047c2d0": {
    "name": "DispatchModeCommand",
    "signature": "void __thiscall PAL3::DispatchModeCommand(int nVal)",
    "_misattrib_evidence": "max_offset=124>class_size=28",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00527c30": {
    "name": "HandleDeviceLost",
    "signature": "int *__thiscall PAL3::HandleDeviceLost()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *__thiscall",
+   "sig_model": {
+    "return": "int *__thiscall",
+    "cc": null,
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00532f60": {
    "name": "CheckViewCollision",
    "signature": "char __thiscall PAL3::CheckViewCollision()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00569110": {
    "name": "ResetForNewScene",
    "signature": "void __cdecl()",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004bda60": {
    "name": "CreateTextures",
    "signature": "int *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int *",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004c58c0": {
    "name": "CreateRenderEffects",
    "signature": "int __cdecl()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00401bc0": {
    "name": "InitVFileSystem",
    "signature": "void * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00401c00": {
    "name": "InitVFileSystem2",
    "signature": "void * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00404530": {
    "name": "InitVolModNode",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00569020": {
    "name": "RandomPickValues",
    "signature": "int __cdecl RandomPickValues(int nVal, int nVal2, int nVal3)",
    "static": true,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int RandomPickValues",
+   "sig_model": {
+    "return": "int RandomPickValues",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00404800": {
    "name": "InitGame",
@@ -862,7 +1470,20 @@
    "lvars": {
     "hgfxwnd": "HWND"
    },
-   "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位"
+   "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "HINSTANCE",
+      "name": "hInstance"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  }
 }

@@ -5,13 +5,34 @@
   "0x0052fbd0": {
    "name": "GetOBBox",
    "signature": "gbOBBox *__thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "gbOBBox *",
+   "sig_model": {
+    "return": "gbOBBox *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0052fe30": {
    "name": "UpdateMiniGame2",
    "signature": "void __thiscall(float fDeltaTime)",
    "_misattrib_evidence": "max_offset=3628>class_size=4",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fDeltaTime"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_verdicts": {

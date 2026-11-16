@@ -397,167 +397,506 @@
   "0x00525120": {
    "name": "InitUI",
    "signature": "int __thiscall SaleUI::InitUI()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045a7b0": {
    "name": "SaleUI",
    "signature": "void __thiscall()",
    "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int __thiscall SaleUI::SaleUI() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox 等成员ctor",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004615f0": {
    "name": "DestroySubFrames",
    "signature": "int __thiscall SaleUI::DestroySubFrames()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0046acd0": {
    "name": "ConsumeItems",
    "signature": "int __thiscall SaleUI::ConsumeItems()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0046a8b0": {
    "name": "Update",
    "signature": "int __thiscall SaleUI::Update(int deltatime, int haveinput)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "deltatime"
+     },
+     {
+      "type": "int",
+      "name": "haveinput"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0046b040": {
    "name": "ProcessCellAnimations",
    "signature": "int __thiscall SaleUI::ProcessCellAnimations(int deltatime, int haveinput)",
    "ordinal": 2,
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "deltatime"
+     },
+     {
+      "type": "int",
+      "name": "haveinput"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004ab5e0": {
    "name": "InitColumnWidths",
    "signature": "int __thiscall ()",
    "_misattrib_evidence": "max_offset=383296>class_size=111488",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005263c0": {
    "name": "ResetGridState",
    "signature": "int __thiscall SaleUI::ResetGridState()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00462220": {
    "name": "GetValue",
    "signature": "int __thiscall(unsigned char nIndex)",
    "_misattrib_evidence": "saleui-slider: accesses +0x1795C(96,604) > PAL3 size; SaleUI ctor inits same layout",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00462080": {
    "name": "SetRange",
    "signature": "int __thiscall(unsigned char nMax)",
    "_misattrib_evidence": "saleui-slider: accesses +0x192AC/+0x18E70 — exactly the offsets SaleUI ctor initializes",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nMax"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00461fd0": {
    "name": "SetValue",
    "signature": "int __thiscall(unsigned char nValue)",
    "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nValue"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045ae60": {
    "name": "~SaleUI",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "round5: installs vtable 0x56B5CC at 0x45ae81 and tears members down descending (+0x19DB4 first); sole caller is ?_scalar_dtor@SaleUI@@ 0x45ae43 - this is ~SaleUI, IDA had it as ?ctor@PlayerMgr (no PDB mangled PlayerMgr exists)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045b7a0": {
    "name": "LoadState",
    "signature": "unsigned __int8 __thiscall PlayerMgr::LoadState(const void *arg0)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "unsigned __int8",
+   "sig_model": {
+    "return": "unsigned __int8",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *arg0",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045b990": {
    "name": "InitCombatUI",
    "signature": "int __thiscall(int nVal)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00461c50": {
    "name": "InitMode",
    "signature": "void __thiscall PlayerMgr::InitMode(int nVal)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004620e0": {
    "name": "SendInputToRole",
    "signature": "int __thiscall(unsigned char pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00462120": {
    "name": "SetSelectionFlags",
    "signature": "int __thiscall PlayerMgr::SetSelectionFlags(int nFlags)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004623a0": {
    "name": "CreatePanelElements",
    "signature": "int __thiscall(CCBUIPanel *arg0)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "CCBUIPanel *arg0",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00469d50": {
    "name": "AddItem",
    "signature": "int __thiscall(PlayerMgr *this)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00469d90": {
    "name": "SetupPlayerDisplay",
    "signature": "void __thiscall PlayerMgr::SetupPlayerDisplay(int nVal)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00469eb0": {
    "name": "HandleInput",
    "signature": "BOOL __thiscall(int nInputID, int nParam, int nFlags)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nInputID"
+     },
+     {
+      "type": "int",
+      "name": "nParam"
+     },
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00471220": {
    "name": "ToggleSlot0",
    "signature": "char __thiscall PlayerMgr::ToggleSlot0(unsigned __int8 pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004712d0": {
    "name": "ToggleSlot1",
    "signature": "char __thiscall PlayerMgr::ToggleSlot1(unsigned __int8 pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00471380": {
    "name": "ToggleSlot2",
    "signature": "char __thiscall PlayerMgr::ToggleSlot2(unsigned __int8 pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00471430": {
    "name": "ToggleSlot3",
    "signature": "char __thiscall PlayerMgr::ToggleSlot3(unsigned __int8 pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004714e0": {
    "name": "ToggleSlot4",
    "signature": "char __thiscall PlayerMgr::ToggleSlot4(unsigned __int8 pData)",
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00460a90": {
    "name": "UpdateSkillPanel",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0045ae40": {
    "name": "_scalar_dtor_AE40",
    "signature": "void *__thiscall(UIWnd *Block, char pData)",
    "source": "vtable_gap_fill_v1(from SaleUI.json)",
    "evidence_level": "unverified",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0046b4b0": {
    "name": "_todo_0046B4B0",
@@ -565,13 +904,58 @@
    "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox） | multiclaim 裁决 2026-11-03: 败于 SaleUI（uniq=13）",
    "evidence_level": "A",
    "adjudication": "rejected",
-   "semantic_name": "_todo_0046B4B0"
+   "semantic_name": "_todo_0046B4B0",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0043ddf0": {
    "name": "Render",
-   "signature": "void __thiscall(void)",
+   "signature": "void __thiscall()",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot"
+   "evidence_level": "binary_vtable_slot",
+   "semantic_name": "void __thiscall(void)",
+   "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043de40": {
+   "name": "ReleaseTempStorage",
+   "signature": "void __thiscall()",
+   "semantic_name": "CCBStage::slot_3(void)",
+   "name_note": "体语义正名: Release(m_TempStorageNGH)+委托基类slot3; decomp名slot_3=无语义证据, 用户裁定禁占位",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -580,32 +964,25 @@
    "base": "UIListBox",
    "slots": [
     {
-     "addr": "0x00445E70",
-     "from": "CCBPanelSlot"
+     "addr": "0x00445E70"
     },
     {
-     "addr": "0x0043DDF0",
-     "from": "UIListBox"
+     "addr": "0x0043DDF0"
     },
     {
-     "addr": "0x0046B040",
-     "from": null
+     "addr": "0x0046B040"
     },
     {
-     "addr": "0x0043DE40",
-     "from": "CCBStage"
+     "addr": "0x0043DE40"
     },
     {
-     "addr": "0x00445B90",
-     "from": "CCBStage"
+     "addr": "0x00445B90"
     },
     {
-     "addr": "0x0045AE40",
-     "from": null
+     "addr": "0x0045AE40"
     },
     {
-     "addr": "0x0046B4B0",
-     "from": null
+     "addr": "0x0046B4B0"
     }
    ]
   }

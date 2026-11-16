@@ -5,69 +5,159 @@
   "0x004b7ce0": {
    "name": "~ScreenEffectNode",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7c30": {
    "name": "ScreenEffectNode",
    "signature": "void __thiscall()",
    "_misattrib_evidence": "max_offset=160>class_size=4",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7cc0": {
    "name": "_scalar_dtor_7CC0",
    "signature": "void __thiscall()",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F450 认领（ctor ScreenEffectNode@0x4B7C30+110 + dto）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ScreenEffectNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F450）",
    "evidence_level": "A",
-   "declaration_only": true
+   "declaration_only": true,
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7f60": {
    "name": "_todo_7F60",
    "signature": "void __thiscall()",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:d9 44 24 04；表 0x0056F450 认领（ctor ScreenEffectNode@0x4B7C30+110 + dto）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b81a0": {
    "name": "_todo_81A0",
    "signature": "void __thiscall()",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F450 认领（ctor ScreenEffectNode@0x4B7C30+110 + dto）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7d30": {
    "name": "LoadTexture",
    "signature": "gbParticleEffect * __thiscall(int)",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "纹理加载（gbTexture+gbGeomNode+OpenBaseFile）",
-   "semantic_name": "LoadTexture"
+   "semantic_name": "LoadTexture",
+   "semantic_sig": "gbParticleEffect *",
+   "sig_model": {
+    "return": "gbParticleEffect *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b80c0": {
    "name": "RenderActorTransform",
    "signature": "int __thiscall()",
    "source": "深证批2 2026-10-06：A 级 vtable 槽（0x56f3xx 簇）+偏移[92,96,168] Actor 证 | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorTransform（原 _todo_004B80C0）",
    "evidence_level": "A",
-   "semantic_name": "RenderActorTransform"
+   "semantic_name": "RenderActorTransform",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b8030": {
    "name": "UpdateRenderInfo",
    "signature": "int __thiscall()",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "渲染信息更新（RenderInfoObj+Matrix4）",
-   "semantic_name": "UpdateRenderInfo"
+   "semantic_name": "UpdateRenderInfo",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7f80": {
    "name": "RenderTransformed",
    "signature": "__thiscall int RenderTarget::Stop (int)",
    "_misattrib_evidence": "max_offset=1056>class_size=152",
    "evidence_level": "unverified",
-   "semantic_name": "RenderTransformed"
+   "semantic_name": "RenderTransformed",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x004b7f00": {
    "name": "ReleaseResources",
    "signature": "int __thiscall()",
    "_misattrib_evidence": "max_offset=1056>class_size=268",
    "evidence_level": "unverified",
-   "semantic_name": "ReleaseResources"
+   "semantic_name": "ReleaseResources",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 88,
@@ -77,60 +167,46 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x004B7CC0",
-     "from": null
+     "addr": "0x004B7CC0"
     },
     {
-     "addr": "0x004B80C0",
-     "from": null
+     "addr": "0x004B80C0"
     },
     {
-     "addr": "0x00542102",
-     "from": "ParticleVisNode"
+     "addr": "0x00542102"
     },
     {
-     "addr": "0x004B8030",
-     "from": null
+     "addr": "0x004B8030"
     },
     {
-     "addr": "0x004B7F80",
-     "from": null
+     "addr": "0x004B7F80"
     },
     {
-     "addr": "0x0054211A",
-     "from": "RenderTargetNode"
+     "addr": "0x0054211A"
     },
     {
-     "addr": "0x00542114",
-     "from": "RenderTargetNode"
+     "addr": "0x00542114"
     },
     {
-     "addr": "0x0054210E",
-     "from": "RenderTargetNode"
+     "addr": "0x0054210E"
     },
     {
-     "addr": "0x005420DE",
-     "from": "ParticleVisNode"
+     "addr": "0x005420DE"
     },
     {
-     "addr": "0x005420D8",
-     "from": "ParticleVisNode"
+     "addr": "0x005420D8"
     },
     {
-     "addr": "0x004B7D30",
-     "from": null
+     "addr": "0x004B7D30"
     },
     {
-     "addr": "0x004B7F00",
-     "from": null
+     "addr": "0x004B7F00"
     },
     {
-     "addr": "0x004B7F60",
-     "from": null
+     "addr": "0x004B7F60"
     },
     {
-     "addr": "0x004B7F70",
-     "from": "RenderTargetNode"
+     "addr": "0x004B7F70"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor ScreenEffectNode@0x4B7C30+110 + dtor@0x4B7CE0+29 双自证"

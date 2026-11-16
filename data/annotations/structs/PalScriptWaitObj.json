@@ -19,7 +19,20 @@
   "0x004a68d0": {
    "name": "ReleaseObject",
    "signature": "char __thiscall(char *pszBuf)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "char",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *pszBuf",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_adjudicated_tables": [

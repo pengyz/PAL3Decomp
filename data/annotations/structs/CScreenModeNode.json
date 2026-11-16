@@ -6,13 +6,29 @@
   "0x0053d3a0": {
    "name": "CScreenModeNode",
    "signature": "void __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d3d0": {
    "name": "~CScreenModeNode",
    "signature": "void __thiscall()",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A24 认领（ctor CScreenModeNode@0x53D3A0+29/+109 双写）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CScreenModeNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570A24）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00542120": {
    "name": "CScreenModeNode_adjthunk_2120",
@@ -20,14 +36,35 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
-   "semantic_name": "CScreenModeNode_adjthunk_2120"
+   "semantic_name": "CScreenModeNode_adjthunk_2120",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0053d5d0": {
    "name": "RenderActorGeometry",
    "signature": "int __thiscall()",
    "source": "深证批4 2026-10-06：A 级 vtable 槽+偏移[88,112,116,120] Actor×3 非低偏移证（净判别力筛） | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorGeometry（原 _todo_0053D5D0）",
    "evidence_level": "A",
-   "semantic_name": "RenderActorGeometry"
+   "semantic_name": "RenderActorGeometry",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005420fc": {
    "name": "ParticleVisNode_adjthunk_20FC",
@@ -35,7 +72,15 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
-   "semantic_name": "ParticleVisNode_adjthunk_20FC"
+   "semantic_name": "ParticleVisNode_adjthunk_20FC",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0054211a": {
    "name": "VisUpdate",
@@ -43,7 +88,24 @@
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisUpdate | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
    "evidence_level": "A",
-   "semantic_name": "VisUpdate"
+   "semantic_name": "VisUpdate",
+   "semantic_sig": "void *",
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "UIWnd *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00542102": {
    "name": "SceneVisNode_adjthunk_2102",
@@ -51,7 +113,24 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
-   "semantic_name": "SceneVisNode_adjthunk_2102"
+   "semantic_name": "SceneVisNode_adjthunk_2102",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00542114": {
    "name": "SceneVisNode_adjthunk_2114",
@@ -59,7 +138,28 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
-   "semantic_name": "SceneVisNode_adjthunk_2114"
+   "semantic_name": "SceneVisNode_adjthunk_2114",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0054210e": {
    "name": "SceneVisNode_adjthunk_210E",
@@ -67,14 +167,52 @@
    "declaration_only": true,
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
-   "semantic_name": "SceneVisNode_adjthunk_210E"
+   "semantic_name": "SceneVisNode_adjthunk_210E",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "CCBItemWindow *__hidden",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "unsigned",
+      "name": null
+     },
+     {
+      "type": "unsigned",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005420d8": {
    "name": "EnableShadow",
    "signature": "void __thiscall(int nEnable)",
    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(int nEnable)：idapro decompile：thunk 转发 gbVisNode::EnableShadow(gbVisNode*, int enable) ⇒ 1 参 int",
    "evidence_level": "unverified",
-   "adjudication": "shared_impl"
+   "adjudication": "shared_impl",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nEnable"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x005420de": {
    "name": "GetAABBox",
@@ -82,7 +220,24 @@
    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "GetAABBox"
+   "semantic_name": "GetAABBox",
+   "semantic_sig": "scScriptInstance *",
+   "sig_model": {
+    "return": "scScriptInstance *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "scScriptInstance *Block",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 88,
@@ -92,44 +247,34 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x0053D3D0",
-     "from": null
+     "addr": "0x0053D3D0"
     },
     {
-     "addr": "0x0053D5D0",
-     "from": null
+     "addr": "0x0053D5D0"
     },
     {
-     "addr": "0x00542102",
-     "from": "ParticleVisNode"
+     "addr": "0x00542102"
     },
     {
-     "addr": "0x005420FC",
-     "from": "ParticleVisNode"
+     "addr": "0x005420FC"
     },
     {
-     "addr": "0x00542120",
-     "from": "SceneVisNode"
+     "addr": "0x00542120"
     },
     {
-     "addr": "0x0054211A",
-     "from": "RenderTargetNode"
+     "addr": "0x0054211A"
     },
     {
-     "addr": "0x00542114",
-     "from": "RenderTargetNode"
+     "addr": "0x00542114"
     },
     {
-     "addr": "0x0054210E",
-     "from": "RenderTargetNode"
+     "addr": "0x0054210E"
     },
     {
-     "addr": "0x005420DE",
-     "from": "ParticleVisNode"
+     "addr": "0x005420DE"
     },
     {
-     "addr": "0x005420D8",
-     "from": "ParticleVisNode"
+     "addr": "0x005420D8"
     }
    ],
    "source": "[vtable 合并批 2026-10-16 analyzer] 认领 A 级：ctor CScreenModeNode@0x53D3A0+29/+109 双写自证"

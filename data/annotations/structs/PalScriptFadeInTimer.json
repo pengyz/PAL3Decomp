@@ -20,7 +20,15 @@
    "signature": "int __thiscall()",
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_GetCombat+93；方法语义面:UpdateFadeIn(float)=累加器（decompi | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=无 | 体 80B 谓词] 交互面[淡变完成谓词] 判定 ✅名实相符（IsFadeDone） | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓",
    "evidence_level": "unverified",
-   "semantic_name": "IsFadeDone"
+   "semantic_name": "IsFadeDone",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x00438640": {
    "name": "UpdateFadeIn",
@@ -28,7 +36,38 @@
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_GetCombat+93；方法语义面:UpdateFadeIn(float)=累加器（decompi | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=RoleSystem::SetBlendMode×2+UpdateFadeIn 域 | store×2] 交互面[淡入混合更新] 判定 ✅名实相符（UpdateFadeIn） | multiclaim 裁决 2026-11-03: 败于 PalScript（成员实访独占 uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "UpdateFadeIn"
+   "semantic_name": "UpdateFadeIn",
+   "semantic_sig": "BOOL",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00434d50": {
+   "name": "~PalScriptFadeInTimer",
+   "signature": "void __thiscall()",
+   "semantic_name": "~PalScriptFadeInTimer",
+   "name_note": "G2条目补齐(PalScript计时器族): slot0删除式dtor位, ICF折叠入PalScript scalar dtor",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -37,16 +76,13 @@
    "base": null,
    "slots": [
     {
-     "addr": "0x00434D50",
-     "from": "PalScript"
+     "addr": "0x00434D50"
     },
     {
-     "addr": "0x00438530",
-     "from": null
+     "addr": "0x00438530"
     },
     {
-     "addr": "0x00438640",
-     "from": null
+     "addr": "0x00438640"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 Op_GetCombat+93；方法语义面:UpdateFadeIn(float)=累加器（decompile m_waitobj+=fDelta）；交互模式面:淡入过渡等待"

@@ -5,7 +5,24 @@
   "0x004326a0": {
    "name": "Assign",
    "signature": "void __thiscall String::Assign(char *src, int len)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *src",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "len"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_verdicts": {

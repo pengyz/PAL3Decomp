@@ -81,51 +81,164 @@
    "signature": "void __thiscall()",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051b9f0": {
    "name": "CCBMagicWindow",
    "signature": "void __thiscall(int nVal, int nVal2, int *p_DWORD)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bab0": {
    "name": "Method",
    "signature": "void __thiscall(CCBMagicWindow *this, int nVal)",
    "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断"
+   "name_note": "从 decomp 推断",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bb00": {
    "name": "Reset",
    "signature": "void __thiscall(int nVal, int nVal2)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "void",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bb40": {
    "name": "Create",
    "signature": "int __thiscall(int rc)",
    "source": "pdb_ret | [T94] 返型 bool→int：A 级 objdump 0x51bb40 `8b 44 24 04/89 41 74/c2 04 00`——EAX=arg 直回（无 setne 形）⇒ 非 bool；原 bool 来自 pdb_ret（PDB 仅参考级——A 级优先）。int/void 编译字节等价（passthrough），按语义取 int。L1 目标：n_diff=5 [4-9] run",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "rc"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bb90": {
    "name": "ForbidPage",
    "signature": "UIListBox * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "UIListBox *",
+   "sig_model": {
+    "return": "UIListBox *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bc50": {
    "name": "ClearMagicData",
    "signature": "int __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "int",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051bc70": {
    "name": "CreateButton",
    "signature": "bool __thiscall(int *ppButton, int id)",
    "source": "pdb_ret",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "bool",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *ppButton",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "id"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   },
   "0x0051c210": {
    "name": "GetActivePage",
    "signature": "UIListBox * __thiscall()",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "semantic_sig": "UIListBox *",
+   "sig_model": {
+    "return": "UIListBox *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "base_size": 72,
