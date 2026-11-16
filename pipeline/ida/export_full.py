@@ -278,8 +278,39 @@ def main():
         _addr_to_class = {}       # int(addr) -> class_name (own slots only)
         _structs_dir = os.path.join(PROJECT_ROOT, "data", "annotations", "structs")
         if os.path.isdir(_structs_dir):
+            # [from退役 2026-11-15 用户裁定] 自有槽归属判据 = 地址推导:
+            # 槽地址 ∉ bases链祖先表槽集合 → 自有(归属本类); ∈ → 继承(归属祖先)。
+            # 旧判据 from is None = 物化副本(漂移实证~40类错绑), 已全树清除。
+            _own_slot_addrs = {}      # cls -> set(int addr) 本类全部表槽地址
+            _bases_by_cls = {}        # cls -> [base names]
+            _cls_by_file = []
             for _sf, _sd in _strict_struct_entries(_structs_dir):
                 _sname = _sd.get('name', '')
+                _cls_by_file.append((_sf, _sd, _sname))
+                _own_slot_addrs[_sname] = set()
+                for _vt in _sd.get('vtables', []):
+                    for _slot in _vt.get('slots', []):
+                        _sa = _slot.get('addr', '')
+                        if _sa:
+                            _own_slot_addrs[_sname].add(int(_sa, 16))
+                _bases_by_cls[_sname] = [
+                    (_b.get('name') if isinstance(_b, dict) else _b)
+                    for _b in (_sd.get('bases') or [])
+                    if (_b.get('name') if isinstance(_b, dict) else _b)]
+
+            def _ancestor_slot_addrs(_cls, _seen=None):
+                _seen = _seen if _seen is not None else set()
+                _out = set()
+                for _bn in _bases_by_cls.get(_cls, []):
+                    if _bn in _seen:
+                        continue
+                    _seen.add(_bn)
+                    _out |= _own_slot_addrs.get(_bn, set())
+                    _out |= _ancestor_slot_addrs(_bn, _seen)
+                return _out
+
+            _anc_slot_memo = {}
+            for _sf, _sd, _sname in _cls_by_file:
                 for _addr, _minfo in _sd.get('methods', {}).items():
                     if 'ordinal' in _minfo:
                         _virtual_addrs.add(int(_addr, 16))
@@ -288,10 +319,12 @@ def main():
                         _sa = _slot.get('addr', '')
                         if _sa:
                             _virtual_addrs.add(int(_sa, 16))
+                if _sname not in _anc_slot_memo:
+                    _anc_slot_memo[_sname] = _ancestor_slot_addrs(_sname)
                 for _vt in _sd.get('vtables', []):
                     for _slot in _vt.get('slots', []):
                         _sa = _slot.get('addr', '')
-                        if _sa and _slot.get('from') is None:
+                        if _sa and int(_sa, 16) not in _anc_slot_memo[_sname]:
                             _key = int(_sa, 16)
                             if _key not in _addr_to_class:
                                 _addr_to_class[_key] = _sname
@@ -707,7 +740,10 @@ def main():
                 except:
                     pass
 
-                data = {'name': display_name, 'address': '0x%08X' % ea,
+                # [N11 2026-11-15 用户裁定] 地址发射规格=0x+8位小写hex(唯一规范形):
+                # decomp/*.json虽是再生产品, 但产品层形态由生产者决定——大写形曾致
+                # 3044文件索引失配(证据采集假象), 生产者产对, 下游零容忍成立
+                data = {'name': display_name, 'address': '0x%08x' % ea,
                         'size_bytes': size, 'signature': sig,
                         'decompiled_c': code}
                 if lvar_info:

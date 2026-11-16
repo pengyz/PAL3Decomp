@@ -1130,7 +1130,7 @@ def create_fixed_struct(name, struct_info, all_structs, vtables, til):
         log("  [vtable] %s: %d table(s), %d slots" % (name, len(vt_slots), total))
     seen_vm = set()
     for _vt_addr, slots in vt_slots:
-        for _slot_addr, vm_short, ann_sig, _from in slots:
+        for _slot_addr, vm_short, ann_sig in slots:
             if not vm_short or vm_short in seen_vm or not ann_sig:
                 continue
             seen_vm.add(vm_short)
@@ -1460,7 +1460,7 @@ def resolve_vtable_slots(struct_info, functions):
             entry = methods.get(addr) or functions.get(addr) or {}
             raw_name = entry.get("name", "")
             short = raw_name.split("::")[-1] if "::" in raw_name else raw_name
-            slots.append((addr, short, entry.get("signature", ""), slot.get("from")))
+            slots.append((addr, short, entry.get("signature", "")))  # [from退役] 4元组→3元组
         out.append((vt.get("addr", ""), slots))
     return out
 
@@ -2762,7 +2762,7 @@ def apply_annotations():
         struct_name = "vtbl_%s" % vt_addr[2:]
         lines = []
         seen_names = set()
-        for i, (slot_addr, short_name, sig, _from) in enumerate(slots):
+        for i, (slot_addr, short_name, sig) in enumerate(slots):
             short = short_name or ("method_%d" % i)
             short = _re3.sub(r'[^a-zA-Z0-9_]', '_', short) if short else ("method_%d" % i)
             if short in seen_names:

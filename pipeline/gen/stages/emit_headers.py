@@ -26,9 +26,45 @@ from pathlib import Path
 
 from pipeline.gen.stages.scope_tree import ScopeTree
 from pipeline.gen.stages.collect import get_class_dir
+from tools.format_non_slot_decl import format_non_slot_decl as _format_non_slot_decl  # G1b 格式函数(20用例钉死)
 
 # Module-level cache for _scalar_dtor detection (populated lazily)
 _scalar_dtor_classes = None
+
+# [Windows API 宏冲突 2026-11-15] 方法名与 Windows API 宏同名 → 头顶部 #undef 卫兵
+# (主循环与 G1b 段共用; 提升到模块级避免两处定义漂移)
+_MACRO_CONFLICT_NAMES = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
+                         'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
+                         'PostMessage', 'SendMessage', 'DefWindowProc'}
+
+# [G1b 槽地址全局集 2026-11-15] 全语料 vtable 槽地址——槽函数由归属类槽路径声明,
+# 派生类继承同名同址函数不得再声明(重复声明=返回型漂移→C2555 大面积事故根因)
+_global_slot_addr_cache = None
+
+
+def _global_vtable_slot_addrs():
+    global _global_slot_addr_cache
+    if _global_slot_addr_cache is None:
+        import glob as _glob
+        _s = set()
+        _base = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), '..', '..', '..',
+            'data', 'annotations', 'structs'))
+        for _p in _glob.glob(os.path.join(_base, '*.json')):
+            try:
+                _d = json.load(open(_p, encoding='utf-8'))
+            except Exception:
+                continue
+            for _vt in (_d.get('vtables') or []):
+                for _sl in (_vt.get('slots') or []):
+                    _a = _sl.get('addr')
+                    if _a:
+                        try:
+                            _s.add(int(_a, 16))
+                        except Exception:
+                            pass
+        _global_slot_addr_cache = _s
+    return _global_slot_addr_cache
 
 
 # [C2501 修 2026-10-19·P2] 合成名→具名顶替映射（渲染层型名置换）
@@ -2834,6 +2870,43 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _nm = _sl.get('name')
             _sg = _sl.get('sig') or ''
             _m0 = _methods_by_addr.get(_slot_addr_hex.lower())
+            # [继承槽回退 2026-11-16] 自有methods缺该址 → 祖先链行走(C7v3同推导原则):
+            #   多槽同名地址(如CEffObj 0x4AF760四名)的继承槽, 派生类methods无条目,
+            #   旧回退落占位符void() → C2555链雪崩(CEffgbParticle实证)
+            if not _m0:
+                try:
+                    _ai_fb = int(_slot_addr_hex, 16)
+                except (ValueError, TypeError):
+                    _ai_fb = None
+                if _ai_fb is not None:
+                    _cur_fb = _ann_s or {}
+                    _seen_fb = set()
+                    _cur_fb2 = _cur_fb
+                    # [对抗复核修复 2026-11-16] ida_structs条目无'name'键(0/1172实证)
+                    #   ⇒ get('name')恒None ⇒ 首轮_seen_fb={None} ⇒ 第二轮祖先必命中None
+                    #   ⇒ 环路在任何真实祖先处死断(CEffgbParticle slot9回退失效根因)。
+                    #   改用dict对象身份(id)作visited键, 与'name'字段存在性解耦。
+                    while _cur_fb2 and id(_cur_fb2) not in _seen_fb:
+                        _seen_fb.add(id(_cur_fb2))
+                        _bm = (_cur_fb2.get('methods') or {})
+                        _hit_fb = None
+                        for _kfb in _bm:
+                            try:
+                                if int(_kfb, 16) == _ai_fb:
+                                    _hit_fb = _bm[_kfb]; break
+                            except (ValueError, TypeError):
+                                pass
+                        if _hit_fb is not None:
+                            _m0 = _hit_fb
+                            break
+                        _nb = None
+                        for _bfb in (_cur_fb2.get('bases') or []):
+                            _bnfb = _bfb.get('name') if isinstance(_bfb, dict) else _bfb
+                            if _bnfb:
+                                _nb = _bnfb; break
+                        if not _nb:
+                            break
+                        _cur_fb2 = _get_ida_structs().get(_nb) or {}
             if not _nm:
                 _nm = (_m0 or {}).get('name') or ('slot_%d' % _vi)
             # [合法标识符守卫 2026-11-14] 槽名带作用域前缀(旧普查'CCBPanelSlot::X'形)
@@ -2907,9 +2980,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 return (0, _vtable_addr_order[_addr], _addr)
             return (1, 0, _addr)
         # Add undef guards for Windows API macros that conflict with method names
-        _MACRO_CONFLICTS = {'CreateDialog', 'CreateWindow', 'DestroyWindow',
-                            'LoadMenu', 'LoadBitmap', 'LoadImage', 'LoadCursor',
-                            'PostMessage', 'SendMessage', 'DefWindowProc'}
+        _MACRO_CONFLICTS = _MACRO_CONFLICT_NAMES
         _conflict_undefs = []
         for _mn, _ms, _ma in methods:
             if _mn in _MACRO_CONFLICTS:
@@ -3304,72 +3375,80 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
-    # [G1b 声明去重 2026-11-15] 同名方法声明只保留第一条(防C2535/C2084)
+    # [G1b 声明去重 2026-11-15 v2] 同名方法声明只保留第一条(防C2535/C2084)
+    # v1缺陷: re.match 单token返回型假设——'const char * X(' / 'NODE * X(' / '~X(' 全漏检
+    # (CEffSParticle slot14+methods双声明C2535实证) ⇒ findall 提取行内全部 标识符( 形态。
+    _kw = {'if', 'for', 'while', 'switch', 'return', 'sizeof', 'switch'}
     _seen_decl = set()
     _deduped = []
     for _l in lines:
-        _dm = re.match(r'\s+(?:virtual\s+)?[\w:\*&]+\s+(\w+)\s*\(', _l)
-        if _dm and _dm.group(1) not in ('if', 'for', 'while', 'switch'):
-            _key = _dm.group(1)
-            if _key in _seen_decl:
-                continue  # 重复同名声明, 跳过
-            _seen_decl.add(_key)
+        _names = re.findall(r'([~A-Za-z_]\w*)\s*\(', _l.split('//')[0])
+        _names = [n for n in _names if n not in _kw]
+        if any(_n in _seen_decl for _n in _names):
+            continue  # 重复同名声明, 跳过
+        _seen_decl.update(_names)
         _deduped.append(_l)
     lines = _deduped
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
-    # [G1b non-slot declaration] 非槽自有方法头声明
+    # [G1b non-slot declaration 2026-11-15 v2] 非槽自有方法头声明——插入类体闭合 }; 之前
+    # 事故复盘(AStarPathFinder.h C2588/C2146): v1 三缺陷——
+    #   ①追加在类闭合 } 之后(全局作用域→C2588)  ②已声明探测正则漏检 ~dtor/多token返回(NODE * X())/unsigned __int8
+    #   ③内联重implement格式化→名字重复拼接(ret name name())
+    # v2: 复用 tools/format_non_slot_decl(20用例钉死行为, dtor/ctor 由工具拒绝)。
     try:
         _g1b_path = os.path.normpath(os.path.join(
             os.path.dirname(os.path.abspath(__file__)), '..', '..', '..',
             'data', 'annotations', 'structs', cls_name + '.json'))
-        if not os.path.exists(_g1b_path):
-            raise FileNotFoundError(_g1b_path)
-        _g1b_data = json.load(open(_g1b_path, encoding='utf-8'))
+        _g1b_data = {}
+        if os.path.exists(_g1b_path):
+            _g1b_data = json.load(open(_g1b_path, encoding='utf-8'))
         _g1b_ms = _g1b_data.get('methods') or {}
-        # 收集已在头中的方法名
-        _already = set()
-        for _l2 in lines:
-            _dm = re.match(r'\s+(?:virtual\s+)?[\w:\*&]+\s+(\w+)\s*\(', _l2)
-            if _dm:
-                _already.add(_dm.group(1))
-        # 遍历注解 methods, 补缺失的非槽方法声明
-        _g1b_ms_items = sorted(_g1b_ms.items())
-        _g1b_added = 0
-        for _ga, _gm in _g1b_ms_items:
-            _gn = str(_gm.get('name') or '')
-            _gs = str(_gm.get('signature') or '')
-            if not _gn or not _gs or _gm.get('declaration_only'):
-                continue
-            # 剥 virtual / cc / 类限定名
-            _gs = re.sub(r'\bvirtual\b', '', _gs).strip()
-            _gs = re.sub(r'\b__thiscall\b|\b__cdecl\b|\b__stdcall\b|\b__fastcall\b', '', _gs).strip()
-            _gs = re.sub(r'\w+::(\w+)', r'\1', _gs)
-            _pm = re.match(r'^(.*?)\((.*)\)\s*$', _gs)
-            if not _pm:
-                continue
-            _gr = _pm.group(1).strip()
-            _gp = _pm.group(2).strip()
-            # 剥 this 参数
-            _cp = re.escape(cls_name)
-            _gp = re.sub(r'^' + _cp + r'\s*\*\s*\w+\s*,\s*', '', _gp)
-            _gp = re.sub(r',\s*' + _cp + r'\s*\*\s*\w+\s*', '', _gp)
-            # 剥参数名
-            _pp = []
-            for _p in _gp.split(','):
-                _p = _p.strip()
-                if not _p: continue
-                _t = re.sub(r'\s+\w+$', '', _p).strip()
-                _pp.append(_t if _t else _p)
-            _decl = '{} {}({})'.format(_gr, _gn, ', '.join(_pp))
-            # 去重: 名字已在头中就跳过
-            if _gn in _already:
-                continue
-            lines.append('    {}; // [G1b] 0x{}'.format(_decl, _ga[-8:]))
-            _g1b_added += 1
-        if _g1b_added:
-            lines.append('')
-    except Exception as _e_g1b:
+        if _g1b_ms:
+            # 类体闭合位置: 反向扫最后一个 '};' (类闭合后只追加 typedef/pack(pop), 无 '};')
+            _close_idx = None
+            for _i in range(len(lines) - 1, -1, -1):
+                if lines[_i].strip() == '};':
+                    _close_idx = _i
+                    break
+            if _close_idx is not None:
+                # 已声明探测: 类体内任意 '标识符(' 形态(兼容 ~dtor/NODE * X()/unsigned __int8 X())
+                _already = set()
+                for _l2 in lines[:_close_idx]:
+                    _already.update(re.findall(r'([~A-Za-z_]\w*)\s*\(', _l2.split('//')[0]))
+                _slot_addrs = _global_vtable_slot_addrs()
+                _g1b_new = []
+                for _ga, _gm in sorted(_g1b_ms.items()):
+                    _gn = str(_gm.get('name') or '')
+                    _gs = str(_gm.get('signature') or '')
+                    if not _gn or not _gs or _gm.get('declaration_only'):
+                        continue
+                    try:
+                        if int(_ga, 16) in _slot_addrs:
+                            continue  # 槽函数: 归属类槽路径已声明, 派生类继承勿重声明(C2555根因)
+                    except Exception:
+                        pass
+                    if 'operator' in _gn:
+                        continue  # operator 走专用 inline 发射路径(3200-3227), 声明会C2535
+                    if '`' in _gn:
+                        continue  # 编译器生成名(`scalar deleting destructor'/vcall/adjustor)——
+                                  # 槽0 dtor 专用路径发射, 源码层声明非法(C2018 backtick)
+                    if _gn in _already:
+                        continue  # 已在头中(槽位/方法循环/dtor路径)
+                    _decl = _format_non_slot_decl(_gn, _gs, cls_name)
+                    if not _decl:
+                        continue
+                    _g1b_new.append('    {}; // [G1b] 0x{}'.format(_decl, _ga[-8:]))
+                if _g1b_new:
+                    # [宏冲突卫兵 2026-11-15] G1b 名与 Windows API 宏同名(CreateDialog等)
+                    # → 主循环卫兵只对 methods 列表发射, G1b 补的声明同样需要
+                    _g1b_macros = [n for n in _MACRO_CONFLICT_NAMES
+                                   if any(n in l for l in _g1b_new)]
+                    for _ul in reversed(_g1b_macros):
+                        lines.insert(1, '')
+                        lines.insert(1, '#ifdef %s\n#undef %s\n#endif' % (_ul, _ul))
+                    lines[_close_idx:_close_idx] = _g1b_new + ['']
+    except Exception:
         import traceback; traceback.print_exc()  # G1b 失败不阻塞头生成
 
     return '\n'.join(lines)

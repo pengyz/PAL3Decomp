@@ -860,6 +860,62 @@ def check_canonical_contract():
         base = set(json.load(open(base_path, encoding='utf-8')).get('grandfathered', []))
     cur_viol = {}   # key → 描述
 
+    # [from退役 2026-11-15 用户裁定'本来就没必要加这个字段'] 全语料预扫:
+    # 继承判据 = 槽地址 ∈ bases链祖先表槽集合(MSVC未override槽槽值=基类同槽地址,
+    # 纯编译器力学可推导)。from=物化副本, 漂移实证~40类错绑(同款病灶链第三次:
+    # slot sig冗余→vtables_retired→from) ⇒ 字段全树清除, 消费方全部改推导。
+    _pre_slots = {}   # cls -> set(int addr)
+    _pre_bases = {}   # cls -> [base names]
+    _pre_entry = {}   # cls -> {int addr: (name, sig)}  [C9 override链签名门 2026-11-16]
+    # [卷宗挂账通道] 在册零证据槽集
+    _dossier_keys = set()
+    try:
+        _dp = json.load(open(os.path.join(root, 'data', 'status', 'dossier_pending.json'), encoding='utf-8'))
+        for _it in (_dp.get('items') or []):
+            _dossier_keys.add((_it.get('class'), str(_it.get('addr') or '').lower()))
+    except Exception:
+        pass
+    for _fp0 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        try:
+            _d0 = json.load(open(_fp0, encoding='utf-8'))
+        except Exception:
+            continue
+        _c0 = os.path.basename(_fp0)[:-5]
+        _pre_slots[_c0] = set()
+        for _vt0 in (_d0.get('vtables') or []):
+            for _s0 in (_vt0.get('slots') or []):
+                try:
+                    _pre_slots[_c0].add(int(_s0.get('addr') or 'x', 16))
+                except (ValueError, TypeError):
+                    pass
+        _pre_bases[_c0] = [(_b.get('name') if isinstance(_b, dict) else _b)
+                           for _b in (_d0.get('bases') or [])
+                           if (_b.get('name') if isinstance(_b, dict) else _b)]
+        _pre_entry[_c0] = {}
+        for _k0, _v0 in (_d0.get('methods') or {}).items():
+            try:
+                _pre_entry[_c0][int(_k0, 16)] = (str(_v0.get('name') or ''), str(_v0.get('signature') or ''))
+            except (ValueError, TypeError):
+                pass
+
+    def _ancestor_slot_addrs(_cls, _seen=None):
+        _seen = _seen if _seen is not None else set()
+        _out = set()
+        for _bn in _pre_bases.get(_cls, []):
+            if _bn in _seen:
+                continue
+            _seen.add(_bn)
+            _out |= _pre_slots.get(_bn, set())
+            _out |= _ancestor_slot_addrs(_bn, _seen)
+        return _out
+
+    _anc_slots_memo = {}
+
+    def _is_inherited_slot(_cls, _addr_int):
+        if _cls not in _anc_slots_memo:
+            _anc_slots_memo[_cls] = _ancestor_slot_addrs(_cls)
+        return _addr_int in _anc_slots_memo[_cls]
+
     for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
         cls = os.path.basename(fp)[:-5]
         try:
@@ -871,58 +927,61 @@ def check_canonical_contract():
             # [sig降维 2026-11-14 用户质问修正] 槽位sig=冗余拷贝(一地址一签名,
             # methods条目=真值) —— 契约只要求name; 签名一致性走地址级统一
             _miss = sum(1 for i, s in enumerate(slots)
-                        if not s.get('name'))
+                        if not s.get('name')
+                        and (cls, str(s.get('addr') or '').lower()) not in _dossier_keys)
             if slots and _miss:
                 cur_viol['C1:%s:v%d' % (cls, vi)] = '%s v%d: %d/%d 槽缺name' % (cls, vi, _miss, len(slots))
             for s in slots:
-                frm = s.get('from')
-                if frm and frm not in _KNOWN_VT_CLASSES:
-                    cur_viol['C2:%s:%s' % (cls, frm)] = '%s from悬空→%s' % (cls, frm)
+                # [C2 from退役] from字段已全树清除, 悬空检查随之退役
                 a = s.get('addr') or ''
                 if a and not re.match(r'^0x[0-9A-Fa-f]{8}$', str(a)):
                     cur_viol['C4:%s:%s' % (cls, a)] = '%s addr非长形: %s' % (cls, a)
         for a, m in (d.get('methods') or {}).items():
             if m.get('non_virtual') and 'virtual' in str(m.get('signature', '')).lower():
                 cur_viol['C3:%s:%s' % (cls, a)] = '%s %s non_virtual但sig带virtual' % (cls, m.get('name'))
-        # [C7 2026-11-15 用户裁定] 槽位-条目完备性: 表槽引用的地址必须有对应 methods 条目
-        #   自有槽(from=null) → 本类 methods 必须有条目(否则头声明无定义路由 → C2039/C2673)
-        #   继承槽(from≠null) → from 类 methods 或表槽必须有条目/声明
-        _slot_addr_count = {}  # 复用多槽计数
+        # [C7 2026-11-15 v2 from退役] 槽位-条目完备性(地址推导路由):
+        #   继承槽(地址∈祖先表槽) → 免检(归属祖先; 祖先C7自有检查递归强制条目存在,
+        #     链顶自有槽无条目必在上溯终点报红)
+        #   自有槽(地址∉祖先表槽) → 本类 methods 必须有条目(定义路由断链→C2039)
+        _slot_addr_count = {}  # 多槽地址豁免(同址多槽=多契约共载体)
         for _vt6 in (d.get('vtables') or []):
             for _s6 in (_vt6.get('slots') or []):
                 _a6 = str(_s6.get('addr') or '').lower()
                 if _a6: _slot_addr_count[_a6] = _slot_addr_count.get(_a6, 0) + 1
+        _own_methods_ints = set()
+        for _k in (d.get('methods') or {}).keys():
+            try:
+                _own_methods_ints.add(int(_k, 16))
+            except (ValueError, TypeError):
+                pass
         for vi, vt in enumerate(d.get('vtables') or []):
             for si, s in enumerate(vt.get('slots') or []):
                 au = str(s.get('addr') or '').lower()
                 if not au: continue
-                f = s.get('from')
-                if f:
-                    # 继承槽: from 类的 methods 或表槽须有该地址
-                    fpath = os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % f)
-                    if os.path.exists(fpath):
-                        fd = json.load(open(fpath, encoding='utf-8'))
-                        fkeys = {str(k).lower() for k in (fd.get('methods') or {}).keys()}
-                        fslot_addrs = set()
-                        for fvt in (fd.get('vtables') or []):
-                            for fs in (fvt.get('slots') or []):
-                                fa = str(fs.get('addr') or '').lower()
-                                if fa: fslot_addrs.add(fa)
-                        if au not in fkeys and au not in fslot_addrs:
-                            cur_viol['C7:%s:%s:inh:%s' % (cls, au, f)] = (
-                                '%s 继承槽 addr=%s from=%s 但 %s.methods/表均无此址' % (cls, au, f, f))
-                else:
-                    # 自有槽: 本类 methods 须有条目(多槽地址豁免——同址多槽=多契约共载体)
-                    if _slot_addr_count.get(au, 0) > 1:
-                        continue
-                    _ms_int = set()
-                    for _k in (d.get('methods') or {}).keys():
-                        try: _ms_int.add(int(_k, 16))
-                        except (ValueError, TypeError): pass
-                    if int(au, 16) not in _ms_int:
-                        cur_viol['C7:%s:%s:own' % (cls, au)] = (
-                            '%s 自有槽 slot%d addr=%s 但本类 methods 无条目(定义路由断链→C2039)' % (
-                                cls, vi, au))
+                try:
+                    _a_int = int(au, 16)
+                except (ValueError, TypeError):
+                    continue
+                if _is_inherited_slot(cls, _a_int):
+                    continue  # 继承槽: 归属祖先, 免检
+                # [C7v3 2026-11-16] 纯虚槽豁免: 槽值=_purecall(0x55434f, 6A19E859C3)
+                #   → 抽象基类纯虚, 二进制无定义体, 条目不应存在
+                if _a_int == 0x55434f:
+                    continue
+                # [C7v3] thunk区段槽豁免(0x542000-0x542200 adjustor链=B5建模域, 暂挂):
+                if 0x542000 <= _a_int <= 0x542200:
+                    continue
+                # [卷宗挂账通道 2026-11-16 用户裁定A] 零证据槽在册=债务可见暂放行,
+                #   考古计划入台账(data/status/dossier_pending.json, 版本化);
+                #   新零证据槽不在册=硬错(防新债静默)
+                if (cls, au.lower()) in _dossier_keys:
+                    continue
+                if _slot_addr_count.get(au, 0) > 1:
+                    continue  # 多槽地址豁免
+                if _a_int not in _own_methods_ints:
+                    cur_viol['C7:%s:%s:own' % (cls, au)] = (
+                        '%s 自有槽 slot%d addr=%s 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)' % (
+                            cls, vi, au))
         # [C6 2026-11-15 用户裁定'套用器不应存在'] slot.sig=裁决真值, methods条目必须一致
         # (同类内分歧=数据非法; 棘轮: 存量grandfather, 新增=硬红)
         # [多槽豁免 2026-11-15] 一地址多槽(同址多槽ICF折叠)=多契约共享一个IDB载体:
@@ -958,11 +1017,12 @@ def check_canonical_contract():
             continue
         ms8 = d8.get('methods') or {}
         if not ms8: continue
+        # [C8 2026-11-16 dtor单点标注律] complete dtor由编译器自源声明再生,
+        # 不进methods清单(用户裁定skip方案) ⇒ 同名双地址恢复严格检查, 无豁免
         _seen_nm = {}
         for a8, m8 in ms8.items():
             nm8 = str(m8.get('name') or '')
             if not nm8: continue
-            # 剥类限定名(CCBUI::Destroy → Destroy)
             bare = nm8.split('::')[-1] if '::' in nm8 else nm8
             if bare in _seen_nm:
                 prev_a = _seen_nm[bare]
@@ -971,6 +1031,68 @@ def check_canonical_contract():
                         cls8, bare, prev_a[-8:], bare, a8[-8:]))
             else:
                 _seen_nm[bare] = a8
+
+        # [C9 2026-11-16 用户裁定"apply前提前报错"] override链签名一致性:
+        #   本类方法与祖先类同名(真override) ⇒ 签名必须与基类一致
+        #   (返回型/约定不匹配=C2555编译错误级 → 禁入grandfather)
+        _re9 = re.compile(r'_scalar_dtor|_sdtor|scalar_deleting')
+        def _sig_parts9(_s):
+            # (ret+cc, params) 拆解; 参数名剥离(末尾空格分隔词, 类型形才剥)
+            _s = str(_s or '').strip()
+            _m = re.match(r'^(.*?)\s*(__\w+)?\s*\((.*)\)\s*$', _s)
+            if not _m:
+                return _s, ''
+            _head = (_m.group(1) + ' ' + (_m.group(2) or '')).strip()
+            _ps = []
+            for _p in _m.group(3).split(','):
+                _p = _p.strip()
+                if not _p:
+                    continue
+                _w = _p.split()
+                if len(_w) >= 2 and re.match(r'^[A-Za-z_]\w*$', _w[-1]) and _w[-1] not in (
+                        'int', 'char', 'float', 'double', 'bool', 'void'):
+                    _p = ' '.join(_w[:-1])
+                _ps.append(re.sub(r'\s+', '', _p))
+            return _head, ','.join(_ps)  # head保留空格: presence判定用首token
+        def _anc_named9(_cls, _nm, _seen=None):
+            _seen = _seen if _seen is not None else set()
+            for _bn in _pre_bases.get(_cls, []):
+                if _bn in _seen:
+                    continue
+                _seen.add(_bn)
+                for _a2, (_n2, _s2) in _pre_entry.get(_bn, {}).items():
+                    if _n2 == _nm:
+                        return _a2, _s2
+                _r9 = _anc_named9(_bn, _nm, _seen)
+                if _r9:
+                    return _r9
+            return None
+        for _a9, _m9 in ms8.items():
+            _n9 = str(_m9.get('name') or '')
+            if not _n9 or _n9.startswith('~') or _re9.search(_n9):
+                continue
+            try:
+                _ai9 = int(_a9, 16)
+            except (ValueError, TypeError):
+                continue
+            _hit9 = _anc_named9(cls8, _n9)
+            if _hit9 and _hit9[0] != _ai9:
+                _r_me, _p_me = _sig_parts9(_m9.get('signature'))
+                _r_base, _p_base = _sig_parts9(_hit9[1])
+                # 基类条目无签名数据 → 证据不足不判
+                if not str(_hit9[1]).strip():
+                    continue
+                # [C9锚修正 2026-11-16 用户裁定] 可观测ABI契约=硬约束:
+                #   参数个数一致 + 返回存在性(void/非void)一致 —— 编译器强制
+                #   类型名差异(int/uint/ulong)=不可观测的分析层 → 不执法, 归name_note纪律
+                # presence判定: 原始空格head首token('void __thiscall X::Y'→'void')
+                _void_me = (_r_me.split() or [''])[0].lower() == 'void'
+                _void_base = (_r_base.split() or [''])[0].lower() == 'void'
+                if _p_me == _p_base and _void_me != _void_base:
+                    cur_viol['C9:%s:%s' % (cls8, _a9)] = (
+                        '%s %s 返回存在性与基类冲突(可观测ABI契约): 本=%s 基=%s → C2555前置; '
+                        '取证=两侧函数体出口eax+调用点消费' % (
+                            cls8, _n9, _m9.get('signature'), _hit9[1]))
 
     # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
     # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。
@@ -1043,6 +1165,17 @@ def check_canonical_contract():
                     cur_viol['N10b:%s:%s' % (cls, a)] = '%s methods键非规范形: %s (应=%s)' % (cls, a, canonical)
             except (ValueError, TypeError):
                 pass
+        # [N12 2026-11-15 用户裁定"严格禁止无语义函数名变量名"] 非语义名禁入:
+        #   slot_N占位/sub_无名/_todo_/v1_/Method_地址名/adjthunk机制名/纯地址后缀名
+        #   存量冻结(N12自基线ratchet), 新增=硬错; 语义名+消歧后缀(Update_2ff0形)不在模式表
+        for a12, mv12 in (d.get('methods') or {}).items():
+            _n12 = str(mv12.get('name') or '')
+            _stem = re.sub(r'_[0-9a-fA-F]{4,8}$', '', _n12)
+            if (re.match(r'^slot_\d+$', _n12) or re.match(r'^sub_[0-9a-fA-F]+$', _n12)
+                    or '_todo_' in _n12 or _n12.startswith('v1_')
+                    or re.match(r'^Method_[0-9a-fA-F]+$', _n12) or 'adjthunk' in _n12
+                    or (re.search(r'_[0-9a-fA-F]{4,8}$', _n12) and _stem in ('', 'Method', 'sub'))):
+                cur_viol['N12:%s:%s' % (cls, a12)] = '%s 非语义名(命名铁律禁入): %s' % (cls, _n12)
         for vt in d.get('vtables') or []:
             for s in (vt.get('slots') or []):
                 nm = str(s.get('name') or '')
@@ -1058,8 +1191,12 @@ def check_canonical_contract():
                         cur_viol['N10s:%s:%s' % (cls, s.get('addr'))] = '%s slot addr非hex: %s' % (cls, s.get('addr'))
 
     for k, desc in sorted(cur_viol.items()):
-        # [C7不可豁免] 编译错误级键跳过grandfather检查, 直接硬红
-        if k.startswith('C7') or k not in base:
+        # [C7/C9不可豁免] 编译错误级键跳过grandfather检查, 直接硬红
+        # [N12自治 2026-11-16] N12键由自基线路径报告(DATA:N12, 冻结存量静默),
+        #   不经CANON环路——否则冻结存量被无条件硬错(双层计费bug, 102假错实证)
+        if k.startswith('N12:'):
+            continue
+        if k.startswith('C7') or k.startswith('C9') or k not in base:
             errors.append('CANON:%s %s' % (k, desc))
     if cur_viol and not os.path.exists(base_path):
         # [C7不可豁免 2026-11-15 用户裁定] 编译错误级键(C7)禁入grandfather
@@ -1067,6 +1204,36 @@ def check_canonical_contract():
                    'note': '存量grandfather; 新增违规=硬红 (canonical_slot_names_20261114契约)'},
                   open(base_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         print('[canonical] 基线自举: %d 违规键冻结 (存量grandfather, 新增=硬红)' % len(cur_viol))
+
+    # [N11 2026-11-15 用户裁定"数据质量问题不让管线擦屁股"] decomp语料地址规范门:
+    #   address 必须 ^0x[0-9a-f]{8}$ 小写长形——索引/匹配层字符串比较依赖唯一形态。
+    #   3044文件大小写/短形事故实证: 数据不规范→证据采集假象(空体/漏读)。
+    #   数据已一次性归一(每修必落脚本), 本门禁防再入; 违规=硬错(apply前强制报错)。
+    import glob as _glob2
+    _decomp_dir = os.path.join(root, 'asm', 'pal3', 'decomp')
+    for _dp in sorted(_glob2.glob(os.path.join(_decomp_dir, '*.json'))):
+        try:
+            _dd = json.load(open(_dp, encoding='utf-8'))
+        except Exception:
+            continue
+        _da = _dd.get('address')
+        if not (isinstance(_da, str) and re.match(r'^0x[0-9a-f]{8}$', _da)):
+            errors.append('DATA:N11:decomp:%s address非规范形(须0x+8位小写hex): %r'
+                          % (os.path.basename(_dp), _da))
+    # [N12自基线] 独立ratchet: 冻结存量非语义名债, 新增=硬错 (命名铁律2026-11-15)
+    _n12_base = os.path.join(root, 'data', 'status', 'n12_grandfathered.json')
+    _n12_viol = {k: v for k, v in cur_viol.items() if k.startswith('N12:')}
+    _n12_old = set()
+    if os.path.exists(_n12_base):
+        _n12_old = set(json.load(open(_n12_base, encoding='utf-8')).get('grandfathered', []))
+    for k12, d12 in sorted(_n12_viol.items()):
+        if k12 not in _n12_old:
+            errors.append('DATA:%s %s' % (k12, d12))
+    if _n12_viol and not os.path.exists(_n12_base):
+        json.dump({'grandfathered': sorted(_n12_viol.keys()),
+                   'note': 'N12存量非语义名债冻结; 新增=硬错 (命名铁律2026-11-15)'},
+                  open(_n12_base, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        print('[N12] 基线自举: %d 非语义名冻结 (存量债, 新增=硬错)' % len(_n12_viol))
     return errors, warnings
 
 

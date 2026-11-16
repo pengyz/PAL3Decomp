@@ -56,6 +56,31 @@ def check(cls_name=None, structs=None, verbose=False):
     stats = {'checked':0,'pass':0,'fail':0,'total_slots':0,'resolved':0,'own_unresolved':0,
              'order_mismatch':0,'signature_mismatch':0}
     
+    # [from退役 2026-11-16] 消费者同步: 继承判据=地址∈祖先链槽/方法集(推导), 旧from路由作废
+    _pre = {}
+    for _cn0, _d0 in structs.items():
+        _slots0 = set()
+        for _vt0 in (_d0.get('vtables') or []):
+            for _sl0 in (_vt0.get('slots') or []):
+                try: _slots0.add(int(_sl0.get('addr'), 16))
+                except (ValueError, TypeError): pass
+        _m0 = set()
+        for _k0 in (_d0.get('methods') or {}):
+            try: _m0.add(int(_k0, 16))
+            except (ValueError, TypeError): pass
+        _b0 = [(_b.get('name') if isinstance(_b, dict) else _b) for _b in (_d0.get('bases') or [])]
+        _pre[_cn0] = (_slots0, _m0, [x for x in _b0 if x])
+
+    def _in_chain(_cls, _addr, _seen=None):
+        _seen = _seen if _seen is not None else set()
+        for _bn in _pre.get(_cls, (set(), set(), []))[2]:
+            if _bn in _seen: continue
+            _seen.add(_bn)
+            _bs, _bm, _bb = _pre.get(_bn, (set(), set(), []))
+            if _addr in _bs or _addr in _bm: return True
+            if _in_chain(_bn, _addr, _seen): return True
+        return False
+
     targets = [cls_name] if cls_name else sorted(structs.keys())
     
     for cn in targets:
@@ -90,34 +115,18 @@ def check(cls_name=None, structs=None, verbose=False):
             
             for si, slot in enumerate(slots):
                 addr = slot.get('addr', '')
-                from_base = slot.get('from')
                 addr_int = int(addr, 16) if isinstance(addr, str) else addr
                 addr_hex = '0x%08X' % addr_int
-                
-                if from_base:
-                    # 继承槽：验证基类中该槽位有对应方法
-                    base_d = structs.get(from_base, {})
-                    base_methods = base_d.get('methods') or {}
-                    # 在基类 methods 或基类的 vtable slots 中查找
-                    base_vts = base_d.get('vtables') or []
-                    base_found = False
-                    for key in (addr_hex, '0x%08x' % addr_int, hex(addr_int), str(addr_int)):
-                        if key in base_methods:
-                            base_found = True; break
-                    if not base_found:
-                        for bvt in base_vts:
-                            if not isinstance(bvt, dict): continue
-                            for bslot in (bvt.get('slots') or []):
-                                if bslot.get('addr','') == addr:
-                                    base_found = True; break
-                            if base_found: break
-                    if not base_found:
-                        cls_errors.append(
-                            f"slot[{si}] inherited from {from_base}: addr={addr} not found in {from_base} methods/vtables")
-                        stats['own_unresolved'] += 1
-                    else:
-                        stats['resolved'] += 1
+                # [from退役 2026-11-16] 继承=地址∈祖先链(推导, _in_chain已确认
+                #   某祖先槽/方法集持有该地址) ⇒ 解析成立; 否则走自有槽路径
+                if _in_chain(cn, addr_int):
+                    # 继承槽：祖先链已确认持有该地址(_in_chain推导), 解析成立
+                    stats['resolved'] += 1
                 else:
+                    # [C7v3对齐 2026-11-16] 纯虚槽(_purecall)与thunk域豁免
+                    if addr_int == 0x55434f or 0x542000 <= addr_int <= 0x542200:
+                        stats['resolved'] += 1
+                        continue
                     # 自有槽：必须在当前类 methods 表中，且函数地址精确匹配
                     found_method = None
                     for key in (addr_hex, '0x%08x' % addr_int, hex(addr_int), str(addr_int)):
