@@ -1,0 +1,343 @@
+{
+ "date": "2026-11-17",
+ "judgement": "体返回语义裁决: return未赋值/无return=void(出口eax伪影); 原源码override一致约束→全组统一",
+ "groups": {
+  "CCBControlWindow::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBControlWindow::HideAll",
+     "file": "CCBControlWindow_HideAllvoid_0051afe0.json",
+     "sig": "virtual int __thiscall(CCBControlWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBFiveNimbusWindow::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBFiveNimbusWindow::HideAll",
+     "file": "CCBFiveNimbusWindow_HideAllvoid_00519f50.json",
+     "sig": "virtual int __thiscall(CCBFiveNimbusWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBLineupWindow::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBLineupWindow::HideAll",
+     "file": "CCBLineupWindow_HideAllvoid_0051b4b0.json",
+     "sig": "virtual int __thiscall(CCBLineupWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBParabolaWindow::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBParabolaWindow::HideAll",
+     "file": "CCBParabolaWindow_HideAllvoid_0051c880.json",
+     "sig": "virtual int __thiscall(CCBParabolaWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBResultWindow::Render": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBResultWindow::Render",
+     "file": "CCBResultWindow_Rendervoid_00444ad0.json",
+     "sig": "virtual int __thiscall(CCBResultWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBSkillWindow::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBSkillWindow::HideAll",
+     "file": "CCBSkillWindow_HideAllvoid_0051c110.json",
+     "sig": "virtual int __thiscall(CCBSkillWindow *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBUI::HideAll": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBUI::HideAll",
+     "file": "CCBUI_HideAllvoid_00519510.json",
+     "sig": "virtual int __thiscall(CCBUI *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "CCBUIPanel::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "CCBUIPanel::HideAll",
+     "file": "CCBUIPanel_HideAllvoid_00449990.json",
+     "sig": "virtual int __thiscall(CCBUIPanel *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": [
+    "CCBUIPanel_HideAllvoid_00449990.json"
+   ]
+  },
+  "CGameData::Render": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "CGameData::Render",
+     "file": "CGameData_Rendervoid_0044f5b0.json",
+     "sig": "virtual int __thiscall(CGameData *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "PalScript::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "PalScript::HideAll",
+     "file": "PalScript_HideAllvoid_0043a250.json",
+     "sig": "virtual int __thiscall(PalScript *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": [
+    "PalScript_HideAllvoid_0043a250.json"
+   ]
+  },
+  "PalScript::Render": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "PalScript::Render",
+     "file": "PalScript_Rendervoid_0043a270.json",
+     "sig": "virtual int __thiscall(PalScript *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "SceneObj::Render": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "SceneObj::Render",
+     "file": "SceneObj_Rendervoid_00453200.json",
+     "sig": "virtual int __thiscall(SceneObj *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "UIFrameContainer::Render": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIFrameContainer::Render",
+     "file": "UIFrameContainer_Rendervoid_00442890.json",
+     "sig": "virtual int __thiscall(UIFrameContainer *this)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "UIPushButton::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIPushButton::HideAll",
+     "file": "UIPushButton_HideAllvoid_00440ba0.json",
+     "sig": "virtual int __thiscall(UIPushButton *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": [
+    "UIPushButton_HideAllvoid_00440ba0.json"
+   ]
+  },
+  "UIRoleDialog::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIRoleDialog::HideAll",
+     "file": "UIRoleDialog_HideAllvoid_004a14c0.json",
+     "sig": "virtual int __thiscall(UIRoleDialog *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": [
+    "UIRoleDialog_HideAllvoid_004a14c0.json"
+   ]
+  },
+  "UISceneFrm::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "UISceneFrm::HideAll",
+     "file": "UISceneFrm_HideAllvoid_00459360.json",
+     "sig": "virtual int __thiscall(UISceneFrm *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": [
+    "UISceneFrm_HideAllvoid_00459360.json"
+   ]
+  },
+  "UIWnd::HideAll": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIWnd::HideAll",
+     "file": "UIWnd_HideAllvoid_00445c10.json",
+     "sig": "virtual void __thiscall(UIWnd *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "UIWnd::Render": {
+   "verdict": "void_ish",
+   "new_return": "void",
+   "verdict_dist": {
+    "void_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIWnd::Render",
+     "file": "UIWnd_Rendervoid_00445cd0.json",
+     "sig": "virtual void __thiscall(UIWnd *this)",
+     "verdict": "void_ish"
+    }
+   ],
+   "fixes": []
+  },
+  "UIWnd::Update": {
+   "verdict": "int_ish",
+   "new_return": "int",
+   "verdict_dist": {
+    "int_ish": 1
+   },
+   "members": [
+    {
+     "member": "UIWnd::Update",
+     "file": "UIWnd_Updateint_int_00445c60.json",
+     "sig": "virtual int __thiscall(UIWnd *this, int a2, int a3)",
+     "verdict": "int_ish"
+    }
+   ],
+   "fixes": []
+  }
+ },
+ "manual": [
+  "CEffAction::GetEffect (无语料)",
+  "CEffBink::GetEffect (无语料)",
+  "CEffCallBack::GetEffect (无语料)",
+  "CEffCylinder::GetEffect (无语料)",
+  "CEffExplosive::GetEffect (无语料)",
+  "CEffGrid::GetEffect (无语料)",
+  "CEffMeteor::GetEffect (无语料)",
+  "CEffModel::GetEffect (无语料)",
+  "CEffObj::GetEffect (无语料)",
+  "CEffQuad::GetEffect (无语料)",
+  "CEffQuake::GetEffect (无语料)",
+  "CEffSParticle::GetEffect (无语料)",
+  "CEffShock::GetEffect (无语料)",
+  "UIFrameWnd::HideAll (无语料)",
+  "UIFrameWnd::Render (无语料)",
+  "UIListBox::HideAll (无语料)",
+  "scScriptInstance::Update (无语料)"
+ ],
+ "stats": {
+  "corpus_fixed": 5,
+  "ann_fixed": 5
+ }
+}

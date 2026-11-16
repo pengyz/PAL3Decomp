@@ -31,23 +31,23 @@ Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 0/222 ok | own-fail 107 | imported-only 115  (28s)
+S2 cpp: 0/222 ok | own-fail 107 | imported-only 115  (27s)
 Top root-cause headers (files blocked):
-  pal3/src/UI/UIListBox.h                       blocks 222 cpp
-  pal3/src/Effect/CEffgbParticle.h              blocks 222 cpp
-  pal3/src/Misc/UISceneMap.h                    blocks 222 cpp
-  pal3/src/Misc/UIButton.h                      blocks 222 cpp
   pal3/src/Script/PalScript.h                   blocks 222 cpp
-  pal3/src/Render/CScreenMode.h                 blocks 222 cpp
   pal3/src/free_functions.h                     blocks 128 cpp
-  pal3/src/Combat/CCBStage.h                    blocks  56 cpp
-  pal3/src/Misc/UI3DCtrl.h                      blocks  34 cpp
   pal3/src/Misc/UIFrameContainer.h              blocks  33 cpp
   pal3/src/Combat/CCBUI.h                       blocks  32 cpp
-  pal3/src/Combat/CCBRoleState.h                blocks  23 cpp
+  pal3/src/Combat/CCBControlWindow.h            blocks  29 cpp
   pal3/src/Data/CGameData.h                     blocks  20 cpp
   pal3/src/Combat/CCBResultWindow.h             blocks  18 cpp
   pal3/src/Scene/SceneObj.h                     blocks  17 cpp
+  pal3/src/Misc/CCBFiveNimbusWindow.h           blocks  17 cpp
+  pal3/src/Misc/CEffAction.h                    blocks  13 cpp
+  pal3/src/Effect/CEffSParticle.h               blocks   9 cpp
+  pal3/src/Combat/CCBLineupWindow.h             blocks   8 cpp
+  pal3/src/Combat/CCBParabolaWindow.h           blocks   6 cpp
+  pal3/src/Effect/CEffCylinder.h                blocks   6 cpp
+  pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 [Regression] diff vs latest baseline:

@@ -361,7 +361,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -372,9 +372,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
+   "signature": "int __thiscall(int)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1})"
   },
   "0x004c8e90": {
    "name": "RenderEffectPass",
