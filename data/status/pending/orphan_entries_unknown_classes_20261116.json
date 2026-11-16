@@ -1349,5 +1349,45 @@
    },
    "reason": "complete dtor(体=存表0x5705D0+逆序析构+call 0x43DD10 UIListBox dtor@0x51DFB4, 复核实证); 语料误名ShowWindow; dtor单点律伴生摘除"
   }
+ },
+ "in_array_ghost_members": {
+  "CGameData:m_nInitItems": {
+   "addr": "0x8b4",
+   "entry": {
+    "name": "m_nInitItems",
+    "type": "int",
+    "source": "gen_headers_9.2",
+    "evidence_level": "unverified"
+   },
+   "reason": "memset32(&m_pItemArray,3,0xD)机器实证[0x8ac,0x8e0)=13×int数组, 本成员@0x8b4=数组index2内部=幽灵分裂; InitItems函数同证"
+  },
+  "CGameData:0x8ac-0x8e0": {
+   "addr": [
+    "0x8b8",
+    "0x8c8",
+    "0x8d4"
+   ],
+   "members": {
+    "0x8b8": {
+     "name": "m_nItemCount2",
+     "type": "int",
+     "source": "reverted_auto_semantic:1x",
+     "evidence_level": "unverified"
+    },
+    "0x8c8": {
+     "name": "m_nEquipCount",
+     "type": "int",
+     "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
+     "evidence_level": "unverified"
+    },
+    "0x8d4": {
+     "name": "m_nConsumableCount",
+     "type": "int",
+     "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic",
+     "evidence_level": "unverified"
+    }
+   },
+   "reason": "memset32(&m_pItemArray,3,0xD)机器实证13×int数组; 区间内分裂幽灵批量摘除"
+  }
  }
 }

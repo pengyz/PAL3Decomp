@@ -46,9 +46,10 @@
   },
   "0x122c": {
    "name": "m_szCmdBuf2",
-   "type": "char[104]",
+   "type": "char[4]",
    "source": "| inline-union治理 2026-10-16（idapro A 级）：WinProc_HWND_InputLine@0x53CB10 字节写 *(buf2+n+3) 至 n≈100 ⇒ 真跨度 104B；**overlap**：与 m_szCmdBuf@4656 同区别名（buf2[n+3]≡buf[n-1]，cursor 形字节写）",
-   "evidence_level": "A"
+   "evidence_level": "A",
+   "note": "尺寸矫正20261117: char[104]→char[4]。机器证据=InputLine仅访问0x1224/ExecCommand访问0x1228+0x1230(本机capstone), 0x122c零访问; m_szCmdBuf@0x1230 char[100]恰止于m_nRenderState@0x1294; 原char[104]偏移尺寸双错(census跨度伪影)"
   },
   "0x1230": {
    "name": "m_szCmdBuf",

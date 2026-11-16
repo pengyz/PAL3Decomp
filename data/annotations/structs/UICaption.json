@@ -1,6 +1,6 @@
 {
  "name": "UICaption",
- "binary_size": 344,
+ "binary_size": 96,
  "known_members": {
   "0x4c": {
    "name": "m_tex",
@@ -390,5 +390,6 @@
    "date": "2026-11-16",
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
- ]
+ ],
+ "size_note": "尺寸矫正20261117: 344→96。双证=成员末端m_linetime@0x5c+4恰96 + UIGameFrm布局区间[0x104,0x164)=96(m_cap@0x104, 下一成员m_note@0x164); 原344=chimera"
 }
