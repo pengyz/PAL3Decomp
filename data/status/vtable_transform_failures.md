@@ -940,3 +940,56 @@
 | `CCBItemWindow::Destroy_9` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&(*p_m_pDescription)->UIWnd + 20))( *p_m_pDescription, 1)` |
 | `CCBItemWindow::Destroy_9` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(int ( **)(UIPushButton *, int))(*(_DWORD *)&m_pButtonTreasure->UIWnd + 20))( m_pButtonTreasure, 1)` |
 | `CCBItemWindow::Destroy_9` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |
+| `CCBControlWindow::HideAll` | inline | `UIButton` | 20 | self_arg_mismatch | `(*(int ( **)(UIButton *, int))(*(_DWORD *)&m_pButtonSkill->UIWnd + 20))(m_pButtonSkill, 1)` |
+| `CCBControlWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBFiveNimbusWindow::HideAll` | inline | `UIButtonEX` | 20 | self_arg_mismatch | `(*(int ( **)(UIButtonEX *, int))(*(_DWORD *)&(*v3)->UIWnd + 20))(*v3, 1)` |
+| `CCBFiveNimbusWindow::HideAll` | inline | `float` | 20 | self_arg_mismatch | `(*(int ( **)(float, int))(*(_DWORD *)LODWORD(fWaitTime) + 20))( _pal3_coerce_f32(LODWORD(fWaitTime)), 1)` |
+| `CCBFiveNimbusWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v9 + 20))(v9, 1)` |
+| `CCBItemWindow::HideAll_1` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&(*p_m_pDescription)->UIWnd + 20))( *p_m_pDescription, 1)` |
+| `CCBItemWindow::HideAll_1` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(int ( **)(UIPushButton *, int))(*(_DWORD *)&m_pButtonTreasure->UIWnd + 20))( m_pButtonTreasure, 1)` |
+| `CCBItemWindow::HideAll_1` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |
+| `CCBLineupWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v3 + 20))(v3, 1)` |
+| `CCBLineupWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&v4->UIWnd + 20))(v4, 1)` |
+| `CCBLineupWindow::HideAll` | inline | `CCBUI` | 20 | self_arg_mismatch | `(*(int ( **)(CCBUI *, int))(*(_DWORD *)&m_pUI->UIWnd + 20))(m_pUI, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)*p_right + 20))(*p_right, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `UIListBox` | 20 | self_arg_mismatch | `(*(int ( **)(UIListBox *, int))(*(_DWORD *)&m_pItemList->UIWnd + 20))(m_pItemList, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `unsigned int` | 20 | non_class_hint | `(*(int ( **)(unsigned int, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBParabolaWindow::HideAll` | inline | `gbTexture` | 20 | self_arg_mismatch | `(*(int ( **)(gbTexture *, int))(*(_DWORD *)&m_pbktex->gbRefObject + 20))(m_pbktex, 1)` |
+| `CCBRoleState::~CCBRoleState` | inline | `float` | 32 | non_class_hint | `(*(void (**)(float *, _DWORD, int *, CCBRoleState *, int *, int))(*(_DWORD *)p_m_fLastDialogTime + 32))( p_m_fLastDialogTime, *(int *)((char *)&dword_56B294 + i * 4), &v14, this, &` |
+| `CCBSkillWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBSkillWindow::HideAll` | inline | `UIListBox` | 20 | self_arg_mismatch | `(*(int ( **)(UIListBox *, int))(*(_DWORD *)&v5->UIWnd + 20))(v5, 1)` |
+| `CCBSkillWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1)` |
+| `CCBSkillWindow::HideAll` | inline | `unsigned int` | 20 | non_class_hint | `(*(int ( **)(unsigned int, int))(*(_DWORD *)Color + 20))(Color, 1)` |
+| `CCBSkillWindow::HideAll` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)left + 20))(left, 1)` |
+| `CCBUI::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(int ( **)(UIStatic *, int))(*(_DWORD *)&m_pAttackSequenBack->UIWnd + 20))( m_pAttackSequenBack, 1)` |
+| `CCBUIPanel::InitPanel` | inline | `_BYTE` | 32 | non_class_hint | `(*(void ( **)(_BYTE *, int, CCBPanelSlot *, CCBUIPanel *, char *, _DWORD))(*(_DWORD *)&this->m_Slots[27]._tail_000[92] + 32))( &this->m_Slots[27]._tail_000[92], 294, &this->m_Slots` |
+| `CCBUIPanel::Render` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *))(*(_DWORD *)v2 + 4))(v2)` |
+| `CEffBink::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffBink` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffBink *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `CGameData::HideAll` | inline | `char` | 20 | non_class_hint | `(*(void ( **)(char *, int))(*(_DWORD *)m_pGameObj + 20))(m_pGameObj, 1)` |
+| `CGameData::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_nMode + 20))(m_nMode, 1)` |
+| `CGameData::HideAll` | inline | `SceneObj` | 20 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int))(*(_DWORD *)&m_pSceneObjRef->UIWnd + 20))(m_pSceneObjRef, 1)` |
+| `CGameData::Update_23` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_nSceneLoadParam + 4))(m_nSceneLoadParam)` |
+| `CGameData::Update_23` | inline | `char` | 8 | non_class_hint | `(*(void ( **)(char *, int, int))(*(_DWORD *)this->m_pGameObj + 8))( this->m_pGameObj, nVal, nVal2)` |
+| `CGameData::Update_23` | inline | `SceneObj` | 8 | self_arg_mismatch | `(*(int ( **)(SceneObj *, int, bool))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 8))( this->m_pSceneObjRef, nVal, !v6)` |
+| `CGameData::Render` | inline | `SceneObj` | 4 | self_arg_mismatch | `(*(void ( **)(SceneObj *))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 4))(this->m_pSceneObjRef)` |
+| `CGameData::Render` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *))(*(_DWORD *)this->m_pGameObj + 4))(this->m_pGameObj)` |
+| `CGameData::_init_44f8d0` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, int, _DWORD))(*(_DWORD *)&m_pUtil->UIWnd + 24))(m_pUtil, 1000, 1, 0)` |
+| `CScreenMode::InitSceneAudio` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1000, 1, 0)` |
+| `CScreenMode::LoadScreenScene` | vftable_local | `int` | 3340 | self_arg_mismatch | `(**(void ( ***)(int, bool))(v6 + 3340))(v6 + 3340, *(_DWORD *)(v6 + 348) > 0)` |
+| `CUtil::Method` | inline | `CScreenMode` | 20 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int))(*(_DWORD *)&m_pScreenMode->UIWnd + 20))(m_pScreenMode, 1)` |
+| `CUtil::RenderFrame` | inline | `CScreenMode` | 4 | self_arg_mismatch | `(*(int ( **)(CScreenMode *))(*(_DWORD *)&this->m_pScreenMode->UIWnd + 4))(this->m_pScreenMode)` |
+| `CUtil::RenderFrameY` | inline | `CScreenMode` | 8 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, PalScript *, int))(*(_DWORD *)&this->m_pScreenMode->UIWnd + 8))( this->m_pScreenMode, fTime, nVal)` |
+| `PalScript::CleanupInstances` | vftable_local | `int` | 0 | self_arg_mismatch | `(**(void ( ***)(int, int))v3)(v3, 1)` |
+| `RoleShadow::InitFromTemplate` | inline | `PalScript` | 32 | slot_out_of_range | `(*(void ( **)(PalScript *, _DWORD, int *, RoleShadow *, _DWORD, int))(*(_DWORD *)p_z + 32))( p_z, *(int *)((char *)&dword_56B220 + v9), &v32, this, *(int *)((char *)&off_5AC088 + v` |
+| `SystemUI::ProcessNoteMap` | inline | `char` | 16 | non_class_hint | `(*(void ( **)(char *, _DWORD))(*(_DWORD *)this->m_NoteItem[98].m_NoteTime.m_childs.m_pData + 16))( this->m_NoteItem[98].m_NoteTime.m_childs.m_pData, 0)` |
+| `UIAnimateCtrlEX::Update` | inline | `UITextArea` | 8 | self_arg_mismatch | `(*(void ( **)(UITextArea *, int, _DWORD))(*(_DWORD *)&this->m_TextArea.UIWnd + 8))( &this->m_TextArea, nVal, 0)` |
+| `UIListBox::IsVisible` | inline | `UIListBox` | 4 | self_arg_mismatch | `(*(int ( **)(UIListBox *))(*(_DWORD *)&this[18].UIWnd + 4))(this + 18)` |
+| `UIRoleDialog::Render` | inline | `UITextArea` | 4 | self_arg_mismatch | `(*(void ( **)(UITextArea *))(*(_DWORD *)&this->m_static.UIWnd + 4))(&this->m_static)` |
+| `UIRoleDialog::Update` | inline | `UIRoleDialog` | 24 | self_arg_mismatch | `(*(void ( **)(UIRoleDialog *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 655362, 0)` |
+| `UISceneFrm::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v2 + 20))(v2, 1)` |
+| `UITitle::Update` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_hEffect + 4))(m_hEffect)` |
+| `UITitle::OnMessage` | inline | `UISceneMap` | 8 | self_arg_mismatch | `(*(void ( **)(UISceneMap *, _DWORD, _DWORD))(*(_DWORD *)&g_UISceneMapDlg.UIWnd + 8))( &g_UISceneMapDlg, 0, 0)` |
+| `UITitle_ArcSave::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_needscriptdel + 20))(m_needscriptdel, 3)` |
+| `UIWnd::Update` | inline | `int` | 8 | non_class_hint | `(*(int ( **)(int, int, int))(*(_DWORD *)v7 + 8))(v7, a2, v6)` |
