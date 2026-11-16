@@ -1,49 +1,9 @@
 {
  "name": "TextureLib_Data",
  "binary_size": 1116,
- "known_members": {
-  "0x4": {
-   "name": "Seps",
-   "type": "char *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "tok",
-   "type": "char *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "_libfolder",
-   "type": "char[512]",
-   "source": "pdb_fill_incomplete | mirror_from__TextureLib_Data",
-   "evidence_level": "unverified"
-  },
-  "0x20c": {
-   "name": "_realNum",
-   "type": "int",
-   "source": "pdb_fill_incomplete | mirror_from__TextureLib_Data",
-   "evidence_level": "unverified"
-  },
-  "0x210": {
-   "name": "m_pData",
-   "type": "_Texture_Info *",
-   "source": "pdb_fill_incomplete | mirror_from__TextureLib_Data",
-   "evidence_level": "unverified"
-  },
-  "0x214": {
-   "name": "_isLoadTLI",
-   "type": "BYTE",
-   "source": "pdb_fill_incomplete | mirror_from__TextureLib_Data",
-   "evidence_level": "unverified"
-  }
- },
- "base_size": 584,
- "bases": [
-  {
-   "name": "TextureLibDataBase",
-   "offset": 0
-  }
- ]
+ "known_members": {},
+ "base_size": null,
+ "bases": [],
+ "bases_note": "幻影声明摘除20261117: TextureLib_Data无表/无语料/基类TextureLibDataBase亦无表无语料(零证据链); 成员Seps/tok/_libfolder=tokenizer语义真实字段保留; 真基待证据",
+ "note": "census误挂碎片20261117: 成员已归并TextureLibDataBase(机器访问实证); 本名下无独立类证据(无表/无语料/无ctor)"
 }

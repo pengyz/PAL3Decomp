@@ -1295,6 +1295,47 @@
      "evidence_level": "verified"
     }
    }
+  },
+  "scScriptInstance:0-68": {
+   "reason": "UIWnd基区幽灵(ctor 0x44E530 call UIWnd ctor+存表律: [0x56A9C0@+68基构造][0x56B050@+0己主表][0x56B044@+68己次表覆写] → MI类UIWnd@0+0x56A9C0类@68; pblock/reg等脚本VM语义名=census按decomp错名采到UIWnd区)",
+   "members": {
+    "0x0": {
+     "name": "pblock",
+     "type": "scScriptBlock *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x4": {
+     "name": "runmode",
+     "type": "BYTE",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x5": {
+     "name": "pause",
+     "type": "BYTE",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "pcaller",
+     "type": "scScriptInstance *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "codeptr",
+     "type": "BYTE *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "reg",
+     "type": "scVARIANT[8]",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    }
+   }
   }
  },
  "sibling_class_0x5708e8": {

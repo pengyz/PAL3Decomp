@@ -2,42 +2,6 @@
  "name": "scScriptInstance",
  "binary_size": 84,
  "known_members": {
-  "0x0": {
-   "name": "pblock",
-   "type": "scScriptBlock *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x4": {
-   "name": "runmode",
-   "type": "BYTE",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5": {
-   "name": "pause",
-   "type": "BYTE",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "pcaller",
-   "type": "scScriptInstance *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "codeptr",
-   "type": "BYTE *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "reg",
-   "type": "scVARIANT[8]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
   "0x50": {
    "name": "uservar",
    "type": "scVARIANT *",
@@ -137,5 +101,5 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据: 表0x56B050五槽=UIWnd精确函数地址(0/1/3/4/6继承指纹) + slot5=自有删除式dtor0x44E5C0(0x44e5c0体=scScriptInstance::`scalar deleting destructor`铁证); 写者记录UICoverFrm::SetCoverTexture=归因噪音(UICoverFrm真表0x570830/0x5706EC)"
+ "bases_note": "MI定谳20261117: ctor 0x44E530存表序列[0x56A9C0@+68, 0x56B050@+0, 0x56B044@+68] → UIWnd@0主基 + 0x56A9C0类@68次基(Object家族邻接表成员, 身份待Object家族建档); 0x56B044=本类次表(非UIEmote主表——UIEmote身份另案)"
 }
