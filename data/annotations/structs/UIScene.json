@@ -980,10 +980,10 @@
   "0x0043bbc0": {
    "name": "Update",
    "semantic_name": "Update",
-   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -998,7 +998,7 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int)"
+   "signature": "BOOL __thiscall(int, int)"
   },
   "0x0043bb90": {
    "name": "_scalar_dtor_BB90",

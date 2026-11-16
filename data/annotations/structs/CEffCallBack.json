@@ -48,7 +48,7 @@
    "evidence_level": "binary_vtable_slot",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -59,9 +59,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
+   "signature": "BOOL __thiscall(int)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x004c2d00": {
    "name": "RenderEffectPass",

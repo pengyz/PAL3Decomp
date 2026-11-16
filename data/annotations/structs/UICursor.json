@@ -44,10 +44,10 @@
    "name": "Update",
    "evidence_level": "unverified",
    "semantic_name": "Update_5120",
-   "name_note": "剥壳定谳(验证pass): Update: m_tex/m_active游标状态成员更新(调用表bisect噪音不计)",
+   "name_note": "剥壳定谳(验证pass): Update: m_tex/m_active游标状态成员更新(调用表bisect噪音不计) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -58,7 +58,7 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(double fDelta)"
+   "signature": "BOOL __thiscall(double)"
   },
   "0x00541cc0": {
    "name": "Update_1CC0",

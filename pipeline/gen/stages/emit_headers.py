@@ -487,6 +487,32 @@ def _ann_struct_path(name):
 # 旧绊线已删除：留着它只会给人"红线已被机械封死"的错觉。
 
 
+_GLOBAL_SIG_BY_ADDR = None
+
+
+def _global_sig_by_addr():
+    """[地址级签名统一 2026-11-17] sig退役裁定(2026-11-14"签名一致性走地址级统一")
+    的发射器落地: 一地址一签名, methods条目=真值。全局映射从ida_structs(export透传)
+    全类methods构建——槽声明签名不再per-class独立回退(链不一致=C2555根因)。
+    同址多类条目签名分歧时取排序首类(确定性), 分歧本身由C9/CXX门禁追债。"""
+    global _GLOBAL_SIG_BY_ADDR
+    if _GLOBAL_SIG_BY_ADDR is not None:
+        return _GLOBAL_SIG_BY_ADDR
+    m = {}
+    try:
+        _is = _get_ida_structs()
+        for _cls in sorted((_is or {}).get('structs') or {}):
+            for _a, _me in (((_is or {}).get('structs') or {})[_cls].get('methods') or {}).items():
+                k = str(_a).lower()
+                s = str(_me.get('signature') or '')
+                if s and k not in m:
+                    m[k] = s
+    except Exception:
+        pass
+    _GLOBAL_SIG_BY_ADDR = m
+    return m
+
+
 def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     """返回该类的虚表 slot 短名列表（按 vtable 顺序，跨多张表去重）。
 
@@ -2948,7 +2974,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # decomp='virtual int __thiscall(RoleCameraCtrl *this)' vs 注解 void 双证
                 # ⇒ 基类发 int / 派生发 void = C2555×2955 断点环。无新字符串形态:
                 # 消费注解层已落盘的 signature 字符串本身。
-                _sg = (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
+                # [地址级签名统一 2026-11-17] 退役slot.sig不再读取; 全局映射命中
+                # = 一地址一签名(methods条目=真值), 链一致性由结构保证而非数据填充。
+                _sg = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
+                    or (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
                     or (_m0 or {}).get('signature') or 'void __thiscall()'
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
             if _vi == 0 and (_dtor_form0 or (_will_inject_vptr and _nm == '~' + cls_name)):

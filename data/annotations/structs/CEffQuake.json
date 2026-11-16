@@ -9,15 +9,15 @@
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
+   "signature": "BOOL __thiscall()",
    "semantic_name": "int __thiscall()",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x004d3860": {
    "name": "_sdtor",

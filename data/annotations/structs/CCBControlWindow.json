@@ -228,15 +228,15 @@
    "evidence_level": "verified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()",
+   "signature": "void __thiscall()",
    "semantic_name": "CCBControlWindow::HideAll(void)",
-   "name_note": "C9链律正名20261116: slot3二进制位 + RET 0(0参ABI真相, census锚PASS) + 体不读a2/a3(hexrays伪影) + 体形态与HideAll族同构 (ReleaseTempStorage+释放3子控件经slot5(child,1)) + 根契约slot3=HideAll() 0参(UIWnd::HideAll体0参虚调子物件slot3); 原名Update(float,int)=调用点推测伪影"
+   "name_note": "C9链律正名20261116: slot3二进制位 + RET 0(0参ABI真相, census锚PASS) + 体不读a2/a3(hexrays伪影) + 体形态与HideAll族同构 (ReleaseTempStorage+释放3子控件经slot5(child,1)) + 根契约slot3=HideAll() 0参(UIWnd::HideAll体0参虚调子物件slot3); 原名Update(float,int)=调用点推测伪影 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束"
   },
   "0x0051b0b0": {
    "name": "Update",

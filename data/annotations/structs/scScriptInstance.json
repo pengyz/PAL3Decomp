@@ -30,7 +30,7 @@
    "evidence_level": "verified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -45,9 +45,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int, int)",
+   "signature": "BOOL __thiscall(int, int)",
    "semantic_name": "scScriptInstance::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",

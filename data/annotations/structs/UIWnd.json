@@ -426,7 +426,7 @@
    "semantic_name": "SceneObj::Update(int,int)",
    "semantic_sig": "BOOL",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -441,8 +441,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int)",
-   "name_note": " | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1})"
+   "signature": "BOOL __thiscall(int, int)",
+   "name_note": " | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1}) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x00445c10": {
    "name": "HideAll",

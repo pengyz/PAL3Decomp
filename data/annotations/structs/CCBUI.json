@@ -2251,16 +2251,16 @@
   "0x00519510": {
    "name": "HideAll",
    "semantic_name": "CCBUI::HideAll(void)",
-   "name_note": "语义裁定20261116: slot3位(0x5704c8表, 归属CONFIRMED) + RET 0(0参int) + 体=ReleaseTempStorage+释放m_pBack/Wind/Thunder/Water/Fire/Earth等全控件 → 链律名HideAll; 原名Destroy=体读数; decomp名CCBResultWindow::Destroy=hexrays类型传染错名",
+   "name_note": "语义裁定20261116: slot3位(0x5704c8表, 归属CONFIRMED) + RET 0(0参int) + 体=ReleaseTempStorage+释放m_pBack/Wind/Thunder/Water/Fire/Earth等全控件 → 链律名HideAll; 原名Destroy=体读数; decomp名CCBResultWindow::Destroy=hexrays类型传染错名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()",
+   "signature": "void __thiscall()",
    "evidence_level": "verified"
   },
   "0x00519360": {

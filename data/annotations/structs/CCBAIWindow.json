@@ -125,7 +125,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "char",
    "sig_model": {
-    "return": "char",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -136,7 +136,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(CCBUI **deltatime)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x0051cf00": {
    "name": "ShowWindow",

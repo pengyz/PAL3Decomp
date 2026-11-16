@@ -210,13 +210,14 @@
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "int __thiscall()",
+   "name_note": " | 链约束统一20261117→int: CEffgbParticle体int_ish+基条目0x4af760 int(int)+override一致约束"
   },
   "0x004c6360": {
    "name": "DestroyEffect",
@@ -302,13 +303,14 @@
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "BOOL __thiscall()",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x004c6870": {
    "name": "FillDefaultUVSet",

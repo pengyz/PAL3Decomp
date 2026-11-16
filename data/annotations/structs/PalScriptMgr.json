@@ -1265,7 +1265,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "cdecl",
     "params": [
      {
@@ -1276,7 +1276,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __cdecl(const char *pszName)"
+   "signature": "BOOL __thiscall(const char *pszName)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x00432170": {
    "name": "Destroy",

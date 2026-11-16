@@ -540,17 +540,17 @@
   "0x004fc150": {
    "name": "Update",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证",
+   "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束",
    "semantic_name": "Update_C150",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "BOOL __thiscall()"
   },
   "0x004fc3a0": {
    "name": "EditorUpdate",

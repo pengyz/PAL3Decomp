@@ -202,7 +202,7 @@
    "semantic_name": "GetRenderNode",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -213,8 +213,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void)"
+   "signature": "int __thiscall(int)",
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→int: CEffgbParticle体int_ish+基条目0x4af760 int(int)+override一致约束"
   },
   "0x004d03b0": {
    "name": "RenderEffectPass",

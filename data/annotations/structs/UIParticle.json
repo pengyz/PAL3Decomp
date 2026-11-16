@@ -277,10 +277,10 @@
   "0x004b5570": {
    "name": "Update",
    "name_source": "IDA语义分析 2026-10-31 批5",
-   "name_note": "粒子更新（helix/diffuse）",
+   "name_note": "粒子更新（helix/diffuse） | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束",
    "semantic_sig": "__int64",
    "sig_model": {
-    "return": "__int64",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -303,7 +303,7 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "__int64 __thiscall(int a2, int a3, TextureLibDataBase *a4, int a5)"
+   "signature": "BOOL __thiscall(int, int, TextureLibDataBase *a4, int)"
   },
   "0x004b5830": {
    "name": "Update2",

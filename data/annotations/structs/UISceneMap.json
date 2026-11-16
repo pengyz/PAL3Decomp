@@ -334,7 +334,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "double",
    "sig_model": {
-    "return": "double",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -349,7 +349,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "double __thiscall(float fVal, int nVal)"
+   "signature": "BOOL __thiscall(float, int)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x00443ca0": {
    "name": "ProcessSceneChange",

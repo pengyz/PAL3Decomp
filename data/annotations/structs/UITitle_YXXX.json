@@ -156,7 +156,7 @@
    "evidence_level": "unverified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
@@ -171,7 +171,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int, int)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x0047e4e0": {
    "name": "HandleMsgDLL",

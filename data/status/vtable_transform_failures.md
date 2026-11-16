@@ -993,3 +993,4 @@
 | `UITitle::OnMessage` | inline | `UISceneMap` | 8 | self_arg_mismatch | `(*(void ( **)(UISceneMap *, _DWORD, _DWORD))(*(_DWORD *)&g_UISceneMapDlg.UIWnd + 8))( &g_UISceneMapDlg, 0, 0)` |
 | `UITitle_ArcSave::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_needscriptdel + 20))(m_needscriptdel, 3)` |
 | `UIWnd::Update` | inline | `int` | 8 | non_class_hint | `(*(int ( **)(int, int, int))(*(_DWORD *)v7 + 8))(v7, a2, v6)` |
+| `RenderTarget2::Update` | inline | `BOOL` | 44 | non_class_hint | `(*(int ( **)(BOOL, _DWORD, _DWORD, float *, _DWORD))(*(_DWORD *)result + 44))( result, 0, 0, &fVal, 0)` |

@@ -187,13 +187,14 @@
    "evidence_level": "unverified",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "signature": "BOOL __thiscall()",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束"
   },
   "0x004d7120": {
    "name": "Render",
