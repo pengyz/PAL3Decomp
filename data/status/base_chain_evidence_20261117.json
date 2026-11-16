@@ -1,0 +1,639 @@
+{
+ "registry": {
+  "0x0043bb70": "UIFrameWnd",
+  "0x0043bbb0": "UIFrameWnd",
+  "0x0043dcd0": "UIListBox",
+  "0x004422e0": "UIFrameContainer",
+  "0x00444f60": "UITextArea",
+  "0x00445aa0": "UIWnd",
+  "0x00445b40": "UIWnd"
+ },
+ "base_discovery": {
+  "PalScriptWaitObj": {
+   "status": "no_table"
+  },
+  "TextureLibDataBase": {
+   "status": "no_table"
+  },
+  "UIAnimateCtrl": {
+   "status": "no_table"
+  },
+  "UIDialog": {
+   "status": "no_table"
+  },
+  "UIFrameWnd": {
+   "table": "0x0056acb8",
+   "writers": [
+    {
+     "func": "0x0043bb70",
+     "role": "ctor",
+     "base_ctor_calls": [
+      "UIWnd"
+     ],
+     "dtor_calls": [],
+     "store_tables": [
+      "0x0056acb8"
+     ],
+     "calls_sample": [
+      "0x00445aa0"
+     ]
+    },
+    {
+     "func": "0x0043bbb0",
+     "role": "ctor",
+     "base_ctor_calls": [],
+     "dtor_calls": [],
+     "store_tables": [
+      "0x0056acb8"
+     ],
+     "calls_sample": []
+    }
+   ]
+  },
+  "UIWnd": {
+   "table": "0x0056aec8",
+   "writers": [
+    {
+     "func": "0x00445aa0",
+     "role": "ctor",
+     "base_ctor_calls": [],
+     "dtor_calls": [],
+     "store_tables": [
+      "0x0056aec8"
+     ],
+     "calls_sample": [
+      "0x00432660"
+     ]
+    },
+    {
+     "func": "0x00445b40",
+     "role": "ctor",
+     "base_ctor_calls": [],
+     "dtor_calls": [],
+     "store_tables": [
+      "0x0056aec8"
+     ],
+     "calls_sample": [
+      "0x00445c10",
+      "0x00432680"
+     ]
+    }
+   ]
+  },
+  "gbCamera": {
+   "status": "no_table"
+  }
+ },
+ "conflict_classes": {
+  "PalScript": {
+   "claimed_bases": [
+    "UIWnd"
+   ],
+   "binary_size": 2176,
+   "base_size": null,
+   "ctors": [
+    {
+     "func": "0x0043a160",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056ac4c",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 2
+    },
+    {
+     "func": "0x0043a1d0",
+     "base_ctor_chain": [],
+     "dtor_calls": [],
+     "store_seq": [],
+     "n_calls": 2
+    }
+   ]
+  },
+  "CScreenMode": {
+   "claimed_bases": [
+    "UIWnd"
+   ],
+   "binary_size": 5496,
+   "base_size": null,
+   "ctors": [
+    {
+     "func": "0x00523f30",
+     "base_ctor_chain": [
+      "UIListBox",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x00570630",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 12
+    },
+    {
+     "func": "0x00524130",
+     "base_ctor_chain": [],
+     "dtor_calls": [
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIListBox~"
+     ],
+     "store_seq": [
+      [
+       "0x00570630",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 12
+    }
+   ]
+  },
+  "CGameData": {
+   "claimed_bases": [
+    "UIWnd"
+   ],
+   "binary_size": 28268,
+   "base_size": null,
+   "ctors": [
+    {
+     "func": "0x0044eb40",
+     "base_ctor_chain": [],
+     "dtor_calls": [],
+     "store_seq": [],
+     "n_calls": 0
+    },
+    {
+     "func": "0x0044f050",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [
+      "UIWnd~"
+     ],
+     "store_seq": [
+      [
+       "0x0056b094",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 9
+    }
+   ]
+  },
+  "TextureLib_Data": {
+   "claimed_bases": [
+    "TextureLibDataBase"
+   ],
+   "binary_size": 1116,
+   "base_size": 584,
+   "ctors": []
+  },
+  "scScriptInstance": {
+   "claimed_bases": [
+    "UIWnd"
+   ],
+   "binary_size": 84,
+   "base_size": null,
+   "ctors": [
+    {
+     "func": "0x0044e530",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056a9c0",
+       "disp+68"
+      ],
+      [
+       "0x0056b050",
+       "disp+0"
+      ],
+      [
+       "0x0056b044",
+       "disp+68"
+      ]
+     ],
+     "n_calls": 2
+    },
+    {
+     "func": "0x0044e5e0",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [
+      "UIWnd~"
+     ],
+     "store_seq": [
+      [
+       "0x0056b050",
+       "disp+0"
+      ],
+      [
+       "0x0056a9c0",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 2
+    }
+   ]
+  },
+  "SaleUI": {
+   "claimed_bases": [
+    "UIFrameWnd"
+   ],
+   "binary_size": 105912,
+   "base_size": 72,
+   "ctors": [
+    {
+     "func": "0x0045a7b0",
+     "base_ctor_chain": [
+      "UIListBox"
+     ],
+     "dtor_calls": [],
+     "store_seq": [],
+     "n_calls": 1
+    },
+    {
+     "func": "0x0045ae60",
+     "base_ctor_chain": [],
+     "dtor_calls": [
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIListBox~"
+     ],
+     "store_seq": [
+      [
+       "0x0056b5cc",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 46
+    }
+   ]
+  },
+  "RoleCamera": {
+   "claimed_bases": [
+    "gbCamera"
+   ],
+   "binary_size": 692,
+   "base_size": 376,
+   "ctors": []
+  },
+  "UIRoleSelect": {
+   "claimed_bases": [
+    "UIDialog",
+    "PalScriptWaitObj"
+   ],
+   "binary_size": 1488,
+   "base_size": 80,
+   "ctors": []
+  },
+  "UIRoleDialog": {
+   "claimed_bases": [
+    "UIDialog",
+    "PalScriptWaitObj"
+   ],
+   "binary_size": 1368,
+   "base_size": 80,
+   "ctors": [
+    {
+     "func": "0x004a12f0",
+     "base_ctor_chain": [
+      "UIFrameWnd",
+      "UITextArea",
+      "UIFrameContainer",
+      "UIFrameContainer"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056e190",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 6
+    },
+    {
+     "func": "0x004a1410",
+     "base_ctor_chain": [
+      "UIFrameWnd"
+     ],
+     "dtor_calls": [
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UITextArea~",
+      "UIFrameWnd~thunk"
+     ],
+     "store_seq": [
+      [
+       "0x0056e190",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 7
+    }
+   ]
+  },
+  "UIHeadDialog": {
+   "claimed_bases": [
+    "UIDialog",
+    "PalScriptWaitObj"
+   ],
+   "binary_size": 352,
+   "base_size": 80,
+   "ctors": []
+  },
+  "UIEmote": {
+   "claimed_bases": [
+    "UIWnd",
+    "PalScriptWaitObj"
+   ],
+   "binary_size": 2272,
+   "base_size": 76,
+   "ctors": [
+    {
+     "func": "0x0044e530",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056a9c0",
+       "disp+68"
+      ],
+      [
+       "0x0056b050",
+       "disp+0"
+      ],
+      [
+       "0x0056b044",
+       "disp+68"
+      ]
+     ],
+     "n_calls": 2
+    },
+    {
+     "func": "0x0044e5e0",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [
+      "UIWnd~"
+     ],
+     "store_seq": [
+      [
+       "0x0056b050",
+       "disp+0"
+      ],
+      [
+       "0x0056a9c0",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 2
+    }
+   ]
+  },
+  "UIAnimateCtrlEX": {
+   "claimed_bases": [
+    "UIAnimateCtrl"
+   ],
+   "binary_size": 1012,
+   "base_size": 164,
+   "ctors": [
+    {
+     "func": "0x00452790",
+     "base_ctor_chain": [
+      "UIWnd",
+      "UIFrameContainer",
+      "UITextArea"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056b1dc",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 6
+    },
+    {
+     "func": "0x00452850",
+     "base_ctor_chain": [
+      "UIWnd"
+     ],
+     "dtor_calls": [
+      "UITextArea~",
+      "UIFrameContainer~",
+      "UIWnd~"
+     ],
+     "store_seq": [
+      [
+       "0x0056b1dc",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 6
+    }
+   ]
+  },
+  "StateUI": {
+   "claimed_bases": [
+    "UIFrameWnd"
+   ],
+   "binary_size": 162000,
+   "base_size": 72,
+   "ctors": [
+    {
+     "func": "0x00482ed0",
+     "base_ctor_chain": [
+      "UIListBox",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056ba30",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 31
+    },
+    {
+     "func": "0x00483380",
+     "base_ctor_chain": [],
+     "dtor_calls": [
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIListBox~"
+     ],
+     "store_seq": [
+      [
+       "0x0056ba30",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 34
+    }
+   ]
+  },
+  "EquipUI": {
+   "claimed_bases": [
+    "UIFrameWnd"
+   ],
+   "binary_size": 120116,
+   "base_size": 72,
+   "ctors": [
+    {
+     "func": "0x00498820",
+     "base_ctor_chain": [
+      "UIListBox",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer",
+      "UIFrameContainer"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x0056e170",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 47
+    },
+    {
+     "func": "0x00499030",
+     "base_ctor_chain": [],
+     "dtor_calls": [
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIFrameContainer~",
+      "UIListBox~"
+     ],
+     "store_seq": [
+      [
+       "0x0056e170",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 47
+    }
+   ]
+  },
+  "CCBUI": {
+   "claimed_bases": [
+    "UIFrameWnd"
+   ],
+   "binary_size": 2648,
+   "base_size": 72,
+   "ctors": [
+    {
+     "func": "0x00519310",
+     "base_ctor_chain": [
+      "UIListBox"
+     ],
+     "dtor_calls": [],
+     "store_seq": [
+      [
+       "0x005704c8",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 2
+    },
+    {
+     "func": "0x00519380",
+     "base_ctor_chain": [],
+     "dtor_calls": [
+      "UIListBox~"
+     ],
+     "store_seq": [
+      [
+       "0x005704c8",
+       "disp+0"
+      ]
+     ],
+     "n_calls": 2
+    }
+   ]
+  }
+ }
+}

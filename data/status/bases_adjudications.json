@@ -34,5 +34,45 @@
   "ctor_evidence": "0x450A60 call 0x43BB70(UIFrameWnd ctor)@0x450A7D + 存表0x56B120@0x450A96",
   "dtor_evidence": "~RoleCameraCtrl 0x450AD0→0x43BBB0基dtor",
   "verdict_by": "复核agent_34c483be"
+ },
+ "CScreenMode": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x523F30 call UIListBox ctor+存己表0x570630@+0; dtor 0x524130: UIFrameContainer~×6(嵌入成员)后UIListBox~尾调 → 真基UIListBox; 声明UIWnd错",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "SaleUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x45A7B0 UIListBox ctor首调; dtor 0x45AE60: UIFrameContainer~×16后UIListBox~尾调 → 真基UIListBox; 声明UIFrameWnd错",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "StateUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x482ED0 UIListBox ctor首调; dtor 0x483380 UIListBox~尾调 → 真基UIListBox",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "EquipUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x498820 UIListBox ctor首调; dtor 0x499030 UIListBox~尾调 → 真基UIListBox",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "CCBUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x519310 UIListBox ctor+存己表0x5704C8@+0; dtor 0x519380 UIListBox~ → 真基UIListBox",
+  "verdict_by": "base_chain_tracer+存表律"
  }
 }

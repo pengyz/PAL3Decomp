@@ -1,42 +1,6 @@
 {
  "name": "CScreenMode",
  "known_members": {
-  "0x4": {
-   "name": "m_bRenderAlt",
-   "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_nScreenFlags",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_nTodo_0C",
-   "type": "int",
-   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error) | [批4 诚实化 2026-10-16] A偏移形：m_nField0C⇒m_nTodo_0C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_fFadeStart",
-   "type": "float",
-   "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_fFadeTarget",
-   "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_nFadeState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
   "0x48": {
    "name": "m_nPosY",
    "type": "int",
@@ -60,12 +24,6 @@
    "type": "char *",
    "source": "ida_decomp:_init_52ed30 = void*, freed, 4 refs | type_fix:int→void*(pointer assignment+free semantics)",
    "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
-  },
-  "0x0": {
-   "name": "m_pEnumeration",
-   "type": "char *",
-   "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)",
    "evidence_level": "unverified"
   },
   "0x80": {
@@ -134,12 +92,6 @@
    "source": "ida_decomp:_init_529e40 ++, 7 refs | fix:binary_ctor_UIScene_stride344",
    "evidence_level": "unverified"
   },
-  "0x44": {
-   "name": "m_nPosX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
   "0xd4": {
    "name": "m_szTooltip",
    "type": "char[8]",
@@ -168,54 +120,6 @@
    "name": "m_fBarOffsetW",
    "type": "float",
    "source": "ida_decomp:SetProgress added to layout calc, 2 refs",
-   "evidence_level": "unverified"
-  },
-  "0x1c": {
-   "name": "m_fFadeAlpha",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs",
-   "evidence_level": "unverified"
-  },
-  "0x24": {
-   "name": "m_fFadeSpeed",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x28": {
-   "name": "m_fCountdown",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 -= 0.5, 8 refs",
-   "evidence_level": "unverified"
-  },
-  "0x2c": {
-   "name": "m_fFadeParam",
-   "type": "float",
-   "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x30": {
-   "name": "m_fFadeProgress",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_VolMod",
-   "type": "int",
-   "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)",
-   "evidence_level": "unverified"
-  },
-  "0x3c": {
-   "name": "m_bFadeActive",
-   "type": "unsigned char",
-   "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x40": {
-   "name": "m_fScreenTimer",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
   "0x4c": {
@@ -296,12 +200,6 @@
    "source": "A:FPU_disp32_0x52c513",
    "evidence_level": "unverified"
   },
-  "0x38": {
-   "name": "m_fFadeMaxAlpha",
-   "type": "float",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
-   "evidence_level": "unverified"
-  },
   "0x71": {
    "name": "m_bLoadFlag",
    "type": "unsigned char",
@@ -343,12 +241,6 @@
    "name": "_embed_UIFrameWnd_968",
    "source": "A:LEA_ECX_ctor+CALL_UIFrameWnd_init | [embed overlap 声明 2026-10-16] 补 overlap（CLAUDE.md 位面/范围复用定谳）——⚠️ 本冲突系 UIFrameWnd 尺寸修正 72→152（26 站 new-ctor 三元组证）的**下游暴露**：双嵌入 @636/@728 间隔 92B < 152B 对象 ⇒ 二者之一嵌入位/型存疑（真值待 idapro decompile 访问形核实）；暂以 overlap 声明解锁检查面 + 挂账真值待裁",
    "evidence_level": "A"
-  },
-  "0x20": {
-   "name": "m_nFadeCounter",
-   "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
   },
   "0xa0": {
    "name": "m_fVolume",
@@ -1840,9 +1732,10 @@
  "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓",
  "bases": [
   {
-   "name": "UIWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445b90双UIWnd值; G2审计恢复"
+ "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445b90双UIWnd值; G2审计恢复",
+ "base_size": 72
 }

@@ -938,6 +938,363 @@
      "evidence_level": "unverified"
     }
    }
+  },
+  "PalScript:0-68": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x43A160 call UIWnd ctor(0x445AA0)+存己表0x56AC4C@+0(本机capstone) → [UIWnd]保",
+   "members": {
+    "0x4": {
+     "name": "m_pinst",
+     "type": "scScriptInstance *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_waitobj",
+     "type": "PtrArray *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_CamObj",
+     "type": "PtrArray *",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_fBlendFactor",
+     "type": "float",
+     "source": "ida_decomp:_sub_430500 = 0, _nearby_438110 (1-v3)*this",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_nState",
+     "type": "int",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_nFrameCount",
+     "type": "int",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x1c": {
+     "name": "m_fScriptTimer",
+     "type": "float",
+     "source": "A:decomp PalScript::ReleaseFrame/SetReady =0.0; RenderUI m_nFrameCount comparison, used as script timing float",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_bEnabled",
+     "type": "int",
+     "source": "B:naming_m_b+alignment+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x24": {
+     "name": "m_nTodo_024",
+     "type": "unsigned char",
+     "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
+     "evidence_level": "unverified"
+    },
+    "0x38": {
+     "name": "m_bCreated",
+     "type": "int",
+     "source": "decomp:Create_sets_1,CheckRayHitRole_checks",
+     "evidence_level": "unverified"
+    },
+    "0x3c": {
+     "name": "m_bInitialized",
+     "type": "unsigned char",
+     "source": "decomp:Create_sets_1,checked_as_bool",
+     "evidence_level": "unverified"
+    },
+    "0x2c": {
+     "name": "m_nTodo_02C",
+     "type": "int",
+     "source": "binary_scan:21_accesses(store:18, load:3)",
+     "note": "Discovered by member_scan after disp8 fix.",
+     "evidence_level": "unverified"
+    },
+    "0x28": {
+     "name": "m_nTodo_28",
+     "type": "int",
+     "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+     "note": "Discovered by member_scan after disp8 fix.",
+     "evidence_level": "unverified"
+    },
+    "0x30": {
+     "name": "m_nTodo_30",
+     "type": "int",
+     "source": "binary_scan:3_accesses(store:2, load:1);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+     "note": "Discovered by member_scan after disp8 fix.",
+     "evidence_level": "unverified"
+    },
+    "0x34": {
+     "name": "m_nTodo_34",
+     "type": "int",
+     "source": "reverted_auto_semantic:2x;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_34⇒m_nTodo_34（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+     "note": "Discovered by member_scan after disp8 fix.",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_pActorData",
+     "type": "gbRenderEffect *",
+     "source": "decomp:passed_to_Actor_method | [F-HDR#1 2026-10-15] unsigned char→gbRenderEffect*：A 级 import 修饰名铁证 GBENGINE.DLL `?RenderUIQuad@gbDynVertBuf@@QAEXPAUgbUIQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z`（IAT 0x17d930 hint 797）参数3=PAVgbRenderEffect@@⇒gbRenderEffect* 无歧义，与手写头 gbMesh.h:426/gbengine_api.h:483 一致；实参 dword_C11760=unk_C11720+0x40=本成员。名字泄漏核查：全 decomp 仅 1 使用点且为取址形 `&v2->m_pActorData`（ScriptObj_ScriptObj@0x411ca0）⇒ 类型无关、改型安全 ✓。同根连带 L127（同全局被赋 gbRenderEffect* 值）",
+     "note": "Discovered by member_scan after disp8 fix.",
+     "evidence_level": "A"
+    }
+   }
+  },
+  "CGameData:0-68": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace",
+   "members": {
+    "0x0": {
+     "name": "_vftable",
+     "type": "void *",
+     "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_pItemData",
+     "type": "char *",
+     "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
+     "note": "replaced void* with char* (IDB struct compat)",
+     "evidence_level": "unverified"
+    },
+    "0x1c": {
+     "name": "m_pMagicData",
+     "type": "char *",
+     "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
+     "note": "replaced void* with char* (IDB struct compat)",
+     "evidence_level": "unverified"
+    },
+    "0x4": {
+     "name": "m_nRoleCount",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_nItemCount",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_nMagicCount",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_nSceneCount",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_nStateFlags",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x34": {
+     "name": "m_bDataLoaded",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x3c": {
+     "name": "m_nLoadResult",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_nGameTick",
+     "type": "int",
+     "source": "globals_merge",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_nDataVersion",
+     "type": "int",
+     "source": "binary_discovery:1refs",
+     "evidence_level": "unverified"
+    }
+   }
+  },
+  "CScreenMode:0-72": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x523F30 call UIListBox ctor+存己表0x570630@+0; dtor 0x524130: UIFrameContainer~×6(嵌入成员)后UIListBox~尾调 → 真基UIListBox; 声明UIWnd错",
+   "members": {
+    "0x4": {
+     "name": "m_bRenderAlt",
+     "type": "unsigned char",
+     "source": "A:mov_byte_ptr_in_class_method | ida_xref",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_nScreenFlags",
+     "type": "int",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_nTodo_0C",
+     "type": "int",
+     "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error) | [批4 诚实化 2026-10-16] A偏移形：m_nField0C⇒m_nTodo_0C（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_fFadeStart",
+     "type": "float",
+     "source": "B:naming+compile+FPU_misattrib(naming_m_n+FPU_misattrib+compile_error)",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_fFadeTarget",
+     "type": "float",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_nFadeState",
+     "type": "int",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x0": {
+     "name": "m_pEnumeration",
+     "type": "char *",
+     "source": "type_fix:float->void*(naming_convention:prefix m_p indicates pointer)",
+     "evidence_level": "unverified"
+    },
+    "0x44": {
+     "name": "m_nPosX",
+     "type": "int",
+     "source": "B:naming_m_n+FPU_misattrib",
+     "evidence_level": "unverified"
+    },
+    "0x1c": {
+     "name": "m_fFadeAlpha",
+     "type": "float",
+     "source": "ida_decomp:_init_533250 >= v47 compare, 10 refs",
+     "evidence_level": "unverified"
+    },
+    "0x24": {
+     "name": "m_fFadeSpeed",
+     "type": "float",
+     "source": "ida_decomp:_init_533250 += this+12, accumulated, 3 refs",
+     "evidence_level": "unverified"
+    },
+    "0x28": {
+     "name": "m_fCountdown",
+     "type": "float",
+     "source": "ida_decomp:_init_533250 -= 0.5, 8 refs",
+     "evidence_level": "unverified"
+    },
+    "0x2c": {
+     "name": "m_fFadeParam",
+     "type": "float",
+     "source": "ida_decomp:_init_533250 = this+20 + this, accumulated, 3 refs",
+     "evidence_level": "unverified"
+    },
+    "0x30": {
+     "name": "m_fFadeProgress",
+     "type": "float",
+     "source": "reverted_auto_semantic:2x_access",
+     "evidence_level": "unverified"
+    },
+    "0x34": {
+     "name": "m_VolMod",
+     "type": "int",
+     "source": "decomp:gbVolModNode_SetVolModObj(embedded_volmod)",
+     "evidence_level": "unverified"
+    },
+    "0x3c": {
+     "name": "m_bFadeActive",
+     "type": "unsigned char",
+     "source": "ida_decomp:_init_533250 byte toggle 1/0, 3 refs",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_fScreenTimer",
+     "type": "float",
+     "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
+     "evidence_level": "unverified"
+    },
+    "0x38": {
+     "name": "m_fFadeMaxAlpha",
+     "type": "float",
+     "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_nFadeCounter",
+     "type": "int",
+     "source": "binary_scan:1refs",
+     "evidence_level": "unverified"
+    }
+   }
+  },
+  "SaleUI:0-72": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x45A7B0 UIListBox ctor首调; dtor 0x45AE60: UIFrameContainer~×16后UIListBox~尾调 → 真基UIListBox; 声明UIFrameWnd错",
+   "members": {
+    "0x10": {
+     "name": "m_underctrl",
+     "type": "int",
+     "source": "gen_headers_9.2",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_bStartNGHEffect",
+     "type": "int",
+     "source": "gen_headers_9.2",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_nHuaYingMode",
+     "type": "int",
+     "source": "gen_headers_9.2",
+     "evidence_level": "unverified"
+    }
+   }
+  },
+  "StateUI:0-72": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x482ED0 UIListBox ctor首调; dtor 0x483380 UIListBox~尾调 → 真基UIListBox",
+   "members": {
+    "0x0": {
+     "name": "",
+     "type": "UIFrameWnd",
+     "offset": 0,
+     "source": "IDA auto-analysis 2026-11-01",
+     "evidence_level": "verified"
+    }
+   }
+  },
+  "EquipUI:0-72": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x498820 UIListBox ctor首调; dtor 0x499030 UIListBox~尾调 → 真基UIListBox",
+   "members": {
+    "0x0": {
+     "name": "",
+     "type": "UIFrameWnd",
+     "offset": 0,
+     "source": "IDA auto-analysis 2026-11-01",
+     "evidence_level": "verified"
+    }
+   }
+  },
+  "CCBUI:0-72": {
+   "reason": "基区幽灵(census错挂): ctor/dtor链证据=ctor 0x519310 UIListBox ctor+存己表0x5704C8@+0; dtor 0x519380 UIListBox~ → 真基UIListBox",
+   "members": {
+    "0x0": {
+     "name": "",
+     "type": "UIFrameWnd",
+     "offset": 0,
+     "source": "IDA auto-analysis 2026-11-01",
+     "evidence_level": "verified"
+    }
+   }
   }
  },
  "sibling_class_0x5708e8": {

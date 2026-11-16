@@ -2,12 +2,6 @@
  "name": "CGameData",
  "note": "Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
  "known_members": {
-  "0x0": {
-   "name": "_vftable",
-   "type": "void *",
-   "source": "gap_fill:ida_decomp_access | type_fix:float->int(vtable pointer)",
-   "evidence_level": "unverified"
-  },
   "0x38c0": {
    "name": "m_pDialog",
    "type": "char *",
@@ -91,20 +85,6 @@
    "name": "m_nRender",
    "type": "int",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_pItemData",
-   "type": "char *",
-   "source": "binary:raw_this6 | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
-  },
-  "0x1c": {
-   "name": "m_pMagicData",
-   "type": "char *",
-   "source": "binary:raw_this7 | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
   "0x100": {
@@ -367,54 +347,6 @@
    "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
-  "0x4": {
-   "name": "m_nRoleCount",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_nItemCount",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_nMagicCount",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_nSceneCount",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_nStateFlags",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_bDataLoaded",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x3c": {
-   "name": "m_nLoadResult",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x40": {
-   "name": "m_nGameTick",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
   "0x48": {
    "name": "m_nDataCRC",
    "type": "int",
@@ -551,12 +483,6 @@
    "name": "m_nSceneTransition",
    "type": "int",
    "source": "gap_fill:ida_decomp_access+manual_ida_load",
-   "evidence_level": "unverified"
-  },
-  "0x20": {
-   "name": "m_nDataVersion",
-   "type": "int",
-   "source": "binary_discovery:1refs",
    "evidence_level": "unverified"
   },
   "0x198": {
@@ -955,5 +881,5 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹)"
+ "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹) | 链法定谳20261117: dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace"
 }

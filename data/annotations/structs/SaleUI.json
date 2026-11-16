@@ -344,24 +344,6 @@
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "0x10": {
-   "name": "m_underctrl",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_bStartNGHEffect",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_nHuaYingMode",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
   "0x488": {
    "name": "m_inventory",
    "type": "Inventory",
@@ -993,7 +975,7 @@
  "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。",
  "bases": [
   {
-   "name": "UIFrameWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ]

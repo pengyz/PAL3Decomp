@@ -2,54 +2,6 @@
  "name": "PalScript",
  "binary_size": 2176,
  "known_members": {
-  "0x4": {
-   "name": "m_pinst",
-   "type": "scScriptInstance *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_waitobj",
-   "type": "PtrArray *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_CamObj",
-   "type": "PtrArray *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_fBlendFactor",
-   "type": "float",
-   "source": "ida_decomp:_sub_430500 = 0, _nearby_438110 (1-v3)*this",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_nState",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_nFrameCount",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x1c": {
-   "name": "m_fScriptTimer",
-   "type": "float",
-   "source": "A:decomp PalScript::ReleaseFrame/SetReady =0.0; RenderUI m_nFrameCount comparison, used as script timing float",
-   "evidence_level": "unverified"
-  },
-  "0x20": {
-   "name": "m_bEnabled",
-   "type": "int",
-   "source": "B:naming_m_b+alignment+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
   "0xdc": {
    "name": "m_nRoleCount",
    "type": "int",
@@ -132,12 +84,6 @@
    "name": "m_DialogSub",
    "type": "unsigned char",
    "source": "binary:1x access",
-   "evidence_level": "unverified"
-  },
-  "0x24": {
-   "name": "m_nTodo_024",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic:5x_access|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
   "0x118": {
@@ -450,18 +396,6 @@
    "source": "binary:sub_43A3E0 inc[ecx+0x98] when repeats exhausted; cmp with [ecx+0x9C]",
    "evidence_level": "unverified"
   },
-  "0x38": {
-   "name": "m_bCreated",
-   "type": "int",
-   "source": "decomp:Create_sets_1,CheckRayHitRole_checks",
-   "evidence_level": "unverified"
-  },
-  "0x3c": {
-   "name": "m_bInitialized",
-   "type": "unsigned char",
-   "source": "decomp:Create_sets_1,checked_as_bool",
-   "evidence_level": "unverified"
-  },
   "0x44": {
    "name": "m_fTimerLimit",
    "type": "float",
@@ -475,45 +409,10 @@
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
-  "0x2c": {
-   "name": "m_nTodo_02C",
-   "type": "int",
-   "source": "binary_scan:21_accesses(store:18, load:3)",
-   "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
-  },
   "0x4c": {
    "name": "m_nTodo_04C",
    "type": "_BYTE[68]",
    "source": "[型订正 2026-10-20·A 级] 原 float ✗。objdump `lea 0x4c(%esi),%ecx; call 0x445ea0`（ZeroInitSelf68）⇒ 68 字节内嵌子对象基址。子对象真型待补，暂 _BYTE[68]（诚实占位）。",
-   "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "A"
-  },
-  "0x28": {
-   "name": "m_nTodo_28",
-   "type": "int",
-   "source": "reverted_auto_semantic:6x_access|reverted:pseudo_semantic;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_28⇒m_nTodo_28（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
-  },
-  "0x30": {
-   "name": "m_nTodo_30",
-   "type": "int",
-   "source": "binary_scan:3_accesses(store:2, load:1);A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_30⇒m_nTodo_30（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_nTodo_34",
-   "type": "int",
-   "source": "reverted_auto_semantic:2x;A:decomp_batch_rename_usage_pattern | [批4 诚实化 2026-10-16] A偏移形：m_bFlag_34⇒m_nTodo_34（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
-  },
-  "0x40": {
-   "name": "m_pActorData",
-   "type": "gbRenderEffect *",
-   "source": "decomp:passed_to_Actor_method | [F-HDR#1 2026-10-15] unsigned char→gbRenderEffect*：A 级 import 修饰名铁证 GBENGINE.DLL `?RenderUIQuad@gbDynVertBuf@@QAEXPAUgbUIQuad@@HPAVgbRenderEffect@@PAUgbTextureArray@@@Z`（IAT 0x17d930 hint 797）参数3=PAVgbRenderEffect@@⇒gbRenderEffect* 无歧义，与手写头 gbMesh.h:426/gbengine_api.h:483 一致；实参 dword_C11760=unk_C11720+0x40=本成员。名字泄漏核查：全 decomp 仅 1 使用点且为取址形 `&v2->m_pActorData`（ScriptObj_ScriptObj@0x411ca0）⇒ 类型无关、改型安全 ✓。同根连带 L127（同全局被赋 gbRenderEffect* 值）",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "A"
   },
@@ -654,24 +553,24 @@
   },
   "0x90": {
    "name": "m_pCurrentTask",
-   "type": "int",
-   "union": true,
-   "source": "int 位面（`=0`/`+1`/`(int)` 比较实证；C2679 站 RHS 标量） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
-   "evidence_level": "A"
-  },
-  "0x90_1": {
-   "name": "m_pCurrentTask_f",
-   "type": "float",
-   "union": true,
-   "source": "float 别名视图（RenderUI@0x43A270 `(double)(int)`+乘法 st6 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
-   "evidence_level": "A"
-  },
-  "0x90_2": {
-   "name": "m_pCurrentTask_p",
-   "type": "char *",
-   "union": true,
-   "source": "指针步进视图（UpdateTimer@0x43A3E0 `(char*)...;+1` 实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
-   "evidence_level": "A"
+   "type": {
+    "union": [
+     {
+      "type": "int",
+      "name": "m_pCurrentTask"
+     },
+     {
+      "type": "float",
+      "name": "m_pCurrentTask_f"
+     },
+     {
+      "type": "char *",
+      "name": "m_pCurrentTask_p"
+     }
+    ]
+   },
+   "evidence_level": "verified",
+   "note": "union cell合并20261117: 三同址键(144)_f/_p=float/ptr双视图别名(decomp同cell异型解读), C10c消解; 先例CG_Scene m_sCombatDialog"
   },
   "0x104": {
    "name": "m_WaitObjList",
@@ -4123,5 +4022,5 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445d10/0x445b90三UIWnd值; G2审计恢复"
+ "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445d10/0x445b90三UIWnd值; G2审计恢复 | 链法定谳20261117: ctor 0x43A160 call UIWnd ctor(0x445AA0)+存己表0x56AC4C@+0(本机capstone) → [UIWnd]保"
 }
