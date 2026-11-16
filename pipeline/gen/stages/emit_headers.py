@@ -3362,7 +3362,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 else:
                     # [每槽位置发射 2026-11-14] vtable地址已由槽位块逐位声明,
                     # 此分支仅余非虚表方法(ret_right形) — dtor槽规则已被注解non_virtual取代
-                    if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                    _is_alias = (_addr_int_vt in _vt_covered) and (
+                        _mn not in _slot_names_by_addr.get('%08x' % _addr_int_vt, set()))
+                    if _is_alias:
+                        # [折叠别名非virtual 2026-11-17] 别名=同址折叠的直调入口(复核P1-3),
+                        # virtual前缀=幻影虚表条目(C++布局虚函数数>二进制槽数)
+                        decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
+                    elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                         decl = "    virtual %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                     else:
                         decl = "    %s %s(%s)%s;" % (ret, _mn, params, ret_right)
@@ -3372,7 +3378,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 # vtable 方法强制 virtual（编译器 vptr 分发）——slot0 dtor 由槽位块/注解non_virtual处理
-                if _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
+                _is_alias = (_addr_int_vt in _vt_covered) and (
+                    _mn not in _slot_names_by_addr.get('%08x' % _addr_int_vt, set()))
+                if _is_alias:
+                    decl = "    %s %s(%s);" % (ret, _mn, params)
+                elif _addr_int_vt in _vtable_addr_order and not ret.startswith('virtual'):
                     decl = "    virtual %s %s(%s);" % (ret, _mn, params)
                 else:
                     decl = "    %s %s(%s);" % (ret, _mn, params)

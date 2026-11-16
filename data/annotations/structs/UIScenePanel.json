@@ -740,15 +740,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0043b900": {
    "name": "ProcessMessage",
@@ -839,11 +843,11 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "UICursor",
+      "name": "msg"
      },
      {
-      "type": "unsigned int",
+      "type": "int",
       "name": "wparam"
      },
      {
@@ -854,8 +858,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int wparam, int lparam)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int wparam, int lparam): 家族投票获胜签名(真体票body证据加权)"
+   "signature": "int __thiscall(UICursor msg, int wparam, int lparam)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int wparam, int lparam): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0044be40": {
    "name": "_scalar_dtor_BE40",
@@ -880,7 +884,7 @@
    "name": "Render",
    "semantic_name": "Render",
    "confidence": "中",
-   "name_note": "G2批: slot1折叠Render(UICaption同址已定谳void链) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "G2批: slot1折叠Render(UICaption同址已定谳void链) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",

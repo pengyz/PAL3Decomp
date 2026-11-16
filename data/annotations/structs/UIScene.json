@@ -669,7 +669,7 @@
     "pending": false
    },
    "signature": "void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权)"
+   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0043cbd0": {
    "name": "ResizeContentAlt",
@@ -692,7 +692,7 @@
   "0x0043cdf0": {
    "name": "Render",
    "name_source": "IDA语义分析 2026-10-31 批4",
-   "name_note": "剥壳定谳(验证pass): Render: RoleCameraCtrl::Render+SetLibFolder场景渲染实证; C6修正: 签名对齐槽裁决 — Render链void已定谳(史前Rendervoid双证) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "剥壳定谳(验证pass): Render: RoleCameraCtrl::Render+SetLibFolder场景渲染实证; C6修正: 签名对齐槽裁决 — Render链void已定谳(史前Rendervoid双证) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_name": "Render_CDF0",
    "semantic_sig": "void",
    "sig_model": {
@@ -982,47 +982,46 @@
   "0x0043bbc0": {
    "name": "Update",
    "semantic_name": "Update",
-   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "evidence_level": "chain_unified"
   },
   "0x0043bb90": {
    "name": "_scalar_dtor_BB90",
    "semantic_name": "_scalar_dtor_BB90",
-   "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位) | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏)",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位) | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "flags"
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(int)",
+   "signature": "void * __thiscall()",
    "evidence_level": "chain_unified"
   },
   "0x0043d7a0": {
    "name": "OnMessage",
    "semantic_name": "UIScene::OnMessage",
-   "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用) | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用) | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -1030,21 +1029,21 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMsg"
+     },
+     {
+      "type": "int",
+      "name": "wParam"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
+   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
    "evidence_level": "chain_unified"
   }
  },

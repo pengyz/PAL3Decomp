@@ -473,15 +473,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名UpdateSwordDisplay留档",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名UpdateSwordDisplay留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_name": "SystemUI::Update"
   },
   "0x0041f6f0": {
@@ -553,7 +557,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "SystemUI::Render",
-   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x004adc30": {
    "name": "OnMessage",
@@ -569,7 +573,7 @@
       "name": null
      },
      {
-      "type": "unsigned int",
+      "type": "int",
       "name": null
      },
      {
@@ -580,8 +584,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 体switch消息处理+result=1 dispatch模式; 原名InitScreenUI留档",
+   "signature": "int __thiscall(int, int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 体switch消息处理+result=1 dispatch模式; 原名InitScreenUI留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int, int, int)",
    "semantic_name": "SystemUI::OnMessage"
   },
   "0x00421a40": {
@@ -745,7 +749,7 @@
   "0x0043de40": {
    "name": "HideAll",
    "semantic_name": "SystemUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",

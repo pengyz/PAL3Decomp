@@ -4078,7 +4078,7 @@
     "pending": false
    },
    "signature": "int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved): 家族投票获胜签名(真体票body证据加权)"
+   "name_note": " | C9sig链统一20261117→int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00532c80": {
    "name": "AdjustHeight",
@@ -4495,7 +4495,7 @@
    },
    "signature": "void __thiscall()",
    "semantic_name": "RoleSystem::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Reset=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Reset=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x004209e0": {
    "name": "ResetState",
@@ -4511,7 +4511,7 @@
       "name": null
      },
      {
-      "type": "unsigned int",
+      "type": "int",
       "name": null
      },
      {
@@ -4522,8 +4522,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd)"
+   "signature": "int __thiscall(int, int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=0 (RET字节=硬证据) | 标签基锚20261117→int __thiscall(int, int, int)"
   }
  },
  "vtables": [

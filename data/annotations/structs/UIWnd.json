@@ -322,22 +322,22 @@
     "params": [
      {
       "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "tagRECT *pRect",
       "name": null
      },
      {
-      "type": "tagRECT *",
-      "name": null
-     },
-     {
-      "type": "UIWnd *",
+      "type": "UIWnd *parent",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, tagRECT *, UIWnd *)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, tagRECT *, UIWnd *)"
+   "signature": "int __thiscall(int id, tagRECT *pRect, UIWnd *parent)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, tagRECT *, UIWnd *) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00445d10": {
    "name": "OnMessage",
@@ -350,22 +350,22 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMsg"
+     },
+     {
+      "type": "int",
+      "name": "wParam"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)"
+   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | C9sig基锚定20261117→int __thiscall(int, unsigned int, int) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00445e70": {
    "name": "ShowClipped",
@@ -378,14 +378,14 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nFlags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int) | C9sig基锚定20261117→void __thiscall(int)"
+   "signature": "void __thiscall(int nFlags)",
+   "name_note": " | C9sig链统一20261117→void __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int) | C9sig基锚定20261117→void __thiscall(int) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00442ff0": {
    "name": "Update_2ff0",
@@ -413,7 +413,7 @@
   "0x00445cd0": {
    "name": "Render",
    "semantic_name": "RoleCameraCtrl::Render(void)",
-   "name_note": "; C9定谳(高置信): 源级void——基体返回值=float位形eax垃圾(LODWORD(m_targetfrom.y)语义无意义) + 三叶类Render体零return独立佐证; Registry名Render=语义正确保留 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "; C9定谳(高置信): 源级void——基体返回值=float位形eax垃圾(LODWORD(m_targetfrom.y)语义无意义) + 三叶类Render体零return独立佐证; Registry名Render=语义正确保留 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -434,15 +434,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "int",
+      "name": "a3"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1}) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)",
+   "signature": "BOOL __thiscall(int a2, int a3)",
+   "name_note": " | L-TAILADDR定谳20261117: 返回型→int(体证据{'int_ish': 1}) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "evidence_level": "chain_unified"
   },
   "0x00445c10": {
@@ -458,7 +462,7 @@
    },
    "signature": "void __thiscall()",
    "evidence_level": "chain_unified",
-   "name_note": " | 返回型定谳20261117(void): ①体对子物件slot3调用渲染void函数指针 ②result未初始化(hexrays把未初始化eax渲染成return伪影) ③19+派生表slot3折叠载体0x43de40全部无返回 ④原源码编译通过→override合法→基类派生返回型必一致, int侧必错 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall() | C9sig基锚定20261117→void __thiscall() | C9sig基锚定20261117→void __thiscall()"
+   "name_note": " | 返回型定谳20261117(void): ①体对子物件slot3调用渲染void函数指针 ②result未初始化(hexrays把未初始化eax渲染成return伪影) ③19+派生表slot3折叠载体0x43de40全部无返回 ④原源码编译通过→override合法→基类派生返回型必一致, int侧必错 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall() | C9sig基锚定20261117→void __thiscall() | C9sig基锚定20261117→void __thiscall() | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00445aa0": {
    "name": "UIWnd",

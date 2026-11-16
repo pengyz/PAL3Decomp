@@ -354,15 +354,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名CheckRayHitRole留档",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名CheckRayHitRole留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_name": "UIProgressBar::Update"
   },
   "0x00439410": {
@@ -370,7 +374,7 @@
    "ordinal": 1,
    "evidence_level": "chain_unified",
    "semantic_name": "Render",
-   "name_note": "; C9定谳(中高): slot1链源级void——result零赋值=纯未初始化eax; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "; C9定谳(中高): slot1链源级void——result零赋值=纯未初始化eax; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -395,7 +399,7 @@
     "pending": false
    },
    "signature": "void __thiscall()",
-   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=m_decorateRc循环部分证据; 原名Destroy留档"
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=m_decorateRc循环部分证据; 原名Destroy留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x00439110": {
    "name": "~UIProgressBar",

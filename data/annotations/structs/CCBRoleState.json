@@ -2408,7 +2408,7 @@
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 6,
    "source": "+canonical_rename",
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -2419,7 +2419,7 @@
       "name": "nVal"
      },
      {
-      "type": "unsigned int",
+      "type": "int",
       "name": "nVal2"
      },
      {
@@ -2430,8 +2430,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3)(基=UIWnd) | 角色归正补做20261117(修rebuild守卫漏网): slot6位(0x56B364表, OnMessage位) + ABI RET 12=3参与根契约一致 + 体ret 0xC; 原名ctor=N12占位(rebuild守卫name=='CCBRoleState'未匹配'ctor'静默跳过——'没找到≠不存在'教训复现)",
+   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3)(基=UIWnd) | 角色归正补做20261117(修rebuild守卫漏网): slot6位(0x56B364表, OnMessage位) + ABI RET 12=3参与根契约一致 + 体ret 0xC; 原名ctor=N12占位(rebuild守卫name=='CCBRoleState'未匹配'ctor'静默跳过——'没找到≠不存在'教训复现) | 标签基锚20261117→int __thiscall(int nVal, int nVal2, int nVal3)",
    "semantic_name": "CCBRoleState::OnMessage(int, int, int)"
   },
   "0x00456b80": {
@@ -3388,16 +3388,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
    "semantic_name": "CCBRoleState::Update(int, int)",
-   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权)"
+   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0046d770": {
    "name": "LayoutSlotPanelA",
@@ -4625,7 +4629,7 @@
    "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "CCBRoleState::HideAll(void)",
-   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -4642,7 +4646,7 @@
    "evidence_level": "chain_unified",
    "adjudication": "rejected",
    "semantic_name": "CCBRoleState::Render",
-   "name_note": "; C9定谳(高): 体=thunk→CCBControlWindow::Render, thunk契约随目标(void); 基slot1链void已定谳 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权)",
+   "name_note": "; C9定谳(高): 体=thunk→CCBControlWindow::Render, thunk契约随目标(void); 基slot1链void已定谳 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
