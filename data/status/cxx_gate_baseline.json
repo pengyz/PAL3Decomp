@@ -45,6 +45,7 @@
   "same_addr:0x4C0500:OnTest|OnTest",
   "same_addr:0x4C0510:GetEditorObjDescription|GetEditorObjDescription",
   "same_addr:0x4C0650:AllocActionArray|AllocActionArray|Create|Create",
+  "same_addr:0x4C0650:Create|Create|Create|Create",
   "same_addr:0x4C15B0:AllocEffect|CreateEffAudio",
   "same_addr:0x4C15D0:UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles",
   "same_addr:0x4C1640:~CEffBink|~EffAudioNode",
@@ -67,6 +68,7 @@
   "same_addr:0x4D4DE0:_sdtor_adj|sub_4D3DC0_adjthunk",
   "same_addr:0x4D4DF0:_todo_4D4DF0|_todo_4D4DF0",
   "same_addr:0x519360:ShowLineupWindow|ShowLineupWindow",
+  "same_addr:0x519360:ShowLineupWindow|~CCBUI",
   "same_addr:0x519510:Destroy|Destroy",
   "same_addr:0x5195E0:OnMessage|OnMessage",
   "same_addr:0x519660:IsImbibeNimbusNotFinish|IsImbibeNimbusNotFinish",
@@ -94,6 +96,7 @@
   "20261116 same_addr:0x442420 HideAll×3 = UIWnd系四类HideAll的ICF折叠载体(slot3位+RET 0+体同构; 裁决账multi_claim_ledger 0x00442420)",
   "20261116 batch5: 0x43D7A0=slot6 OnMessage折叠×3(ForwardOnMessage正名后); 0x44E980=跨位合法折叠(UIEmote双继承第二表+scScriptInstance), 台账0x0044e980",
   "20261116: 0x43DE40=UIWnd系slot3 HideAll大折叠载体×20表(体=释放临时资源), 台账0x0043de40",
-  "20261116: 0x524970=slot1 Render位thunk折叠×6表(转发CCBControlWindow::Render), 台账"
+  "20261116: 0x524970=slot1 Render位thunk折叠×6表(转发CCBControlWindow::Render), 台账",
+  "20261117: 0x4C0650=CEff族slot1 Create位折叠(AllocActionArray链律改名后); 0x519360=CCBUI删除式dtor(ShowLineupWindow误名→~CCBUI破案)"
  ]
 }

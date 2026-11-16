@@ -1047,10 +1047,15 @@ def check_canonical_contract():
             if not nm8: continue
             bare = nm8.split('::')[-1] if '::' in nm8 else nm8
             if bare in _seen_nm:
-                prev_a = _seen_nm[bare]
-                cur_viol['C8:%s:%s:%s:%s' % (cls8, bare, prev_a, a8)] = (
-                    '%s 同名方法双地址: %s@%s vs %s@%s — 同类内同名同址冲突' % (
-                        cls8, bare, prev_a[-8:], bare, a8[-8:]))
+                # [签名感知 2026-11-17 与CXX_GATE闸②同裁定] 同名异签=合法重载
+                # (C++同名不同参=不同函数, SaleUI Update 0参/2参实证);
+                # 同名同签双址=真冲突
+                _s1 = re.sub(r'\s+', ' ', str(m8.get('signature') or ''))
+                _s2 = re.sub(r'\s+', ' ', str((ms8.get(_seen_nm[bare]) or {}).get('signature') or ''))
+                if _s1 == _s2:
+                    cur_viol['C8:%s:%s:%s:%s' % (cls8, bare, _seen_nm[bare], a8)] = (
+                        '%s 同名同签双地址: %s@%s vs %s@%s — 同类内同名同签冲突' % (
+                            cls8, bare, _seen_nm[bare][-8:], bare, a8[-8:]))
             else:
                 _seen_nm[bare] = a8
 
@@ -1464,8 +1469,15 @@ def check_canonical_contract():
             _n13 = str(_e13.get('name') or '').split('::')[-1]
             if not _n13 or _n13.startswith('~') or '_scalar_dtor' in _n13 or '_sdtor' in _n13:
                 continue
+            # [路由更新 2026-11-17] name-aware skip落地后: methods条目经ida_structs
+            # (apply透传)进methods循环即发射(折叠别名放行) → 路由已通; 残条件仅查
+            # ida_structs缺条目(apply未跑/漂移) → 降级WARN
             if (_cls13, _n13) in _cpp_qualified and _a13.lower() not in _corpus_addrs and not _has_km:
-                _emit_miss.append((_cls13, _n13, _a13))
+                _ann_has = bool(_dd.get('methods', {}).get(_a13))
+                if _ann_has:
+                    warnings.append('N13b:%s::%s@%s 发射路由=注解methods直通(依赖apply新鲜度)' % (_cls13, _n13, _a13))
+                else:
+                    _emit_miss.append((_cls13, _n13, _a13))
     for _c13, _n13, _a13 in _emit_miss[:20]:
         errors.append('DATA:N13b:%s::%s@%s 发射路由断(语料引用但无按址文件且known_methods空) '
                       '→ C2039族预测' % (_c13, _n13, _a13))

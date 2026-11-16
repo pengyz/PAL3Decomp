@@ -1389,6 +1389,41 @@
     "signature": "void __thiscall()"
    },
    "reason": "complete dtor(体=存表0x5705D0+逆序析构+call 0x43DD10 UIListBox dtor@0x51DFB4, 复核实证); 语料误名ShowWindow; dtor单点律伴生摘除"
+  },
+  "CCBRoleState:0x00456c20": {
+   "was_name": "~CCBRoleState",
+   "entry": {
+    "name": "~CCBRoleState",
+    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
+    "evidence_level": "unverified",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "complete dtor伴生(体=析构本体void(); 删除式dtor 0x00456b60=slot5位已承~CCBRoleState名); dtor单点律=伴生不进清单; 语料引用由slot5析构声明覆盖"
+  },
+  "CCBUI:0x00517650": {
+   "was_name": "~CCBUI",
+   "entry": {
+    "name": "~CCBUI",
+    "evidence_level": "unverified",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "complete dtor伴生(体=析构本体void(); 删除式dtor 0x00519360=slot5位已承~CCBUI名); dtor单点律=伴生不进清单; 语料引用由slot5析构声明覆盖"
   }
  },
  "in_array_ghost_members": {
