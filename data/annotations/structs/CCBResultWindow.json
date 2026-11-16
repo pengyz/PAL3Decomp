@@ -288,18 +288,18 @@
   "0x00444ad0": {
    "name": "Render",
    "ordinal": 30,
-   "evidence_level": "verified",
+   "evidence_level": "chain_unified",
    "semantic_name": "CCBResultWindow::Render(void)",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()",
-   "name_note": "C9血统修复20261116: slot1位(Render, UIWnd骨架slot1=0x445cd0) → 链律名Render; 原名RenderAll=体读数; 返回型int vs 根void漂移→L-TAILADDR队列"
+   "signature": "void __thiscall()",
+   "name_note": "C9血统修复20261116: slot1位(Render, UIWnd骨架slot1=0x445cd0) → 链律名Render; 原名RenderAll=体读数; 返回型int vs 根void漂移→L-TAILADDR队列 | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束"
   },
   "0x00444aa0": {
    "name": "_sdtor_full",

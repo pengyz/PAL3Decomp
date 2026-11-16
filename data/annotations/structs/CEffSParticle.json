@@ -179,10 +179,10 @@
   },
   "0x004d56b0": {
    "name": "Render",
-   "evidence_level": "unverified",
+   "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
@@ -213,7 +213,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)"
+   "signature": "void __thiscall(int, int, int, int *p_DWORD, int, int)",
+   "name_note": " | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束"
   },
   "0x004d5790": {
    "name": "SetTimeScale",
