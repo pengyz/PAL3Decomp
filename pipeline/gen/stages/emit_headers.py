@@ -500,9 +500,9 @@ def _global_sig_by_addr():
         return _GLOBAL_SIG_BY_ADDR
     m = {}
     try:
-        _is = _get_ida_structs()
-        for _cls in sorted((_is or {}).get('structs') or {}):
-            for _a, _me in (((_is or {}).get('structs') or {})[_cls].get('methods') or {}).items():
+        _is = _get_ida_structs() or {}
+        for _cls in sorted(_is.keys()):
+            for _a, _me in ((_is.get(_cls) or {}).get('methods') or {}).items():
                 k = str(_a).lower()
                 s = str(_me.get('signature') or '')
                 if s and k not in m:
@@ -511,6 +511,126 @@ def _global_sig_by_addr():
         pass
     _GLOBAL_SIG_BY_ADDR = m
     return m
+
+
+_FAMILY_CACHE = None
+_DECOMP_REAL_ADDRS = None
+
+
+def _family_graph():
+    """[方案D 2026-11-17] bases无向连通分量={cls: frozenset(家族)}。
+    跨链同名(UIWnd::Update vs CEffObj::Update)由家族隔离天然解决。"""
+    global _FAMILY_CACHE
+    if _FAMILY_CACHE is not None:
+        return _FAMILY_CACHE
+    _is = _get_ida_structs() or {}
+    adj = {}
+    for cls, info in _is.items():
+        names = []
+        for b in (info.get('bases') or []):
+            bn = b.get('name') if isinstance(b, dict) else b
+            if bn:
+                names.append(bn)
+        adj.setdefault(cls, set()).update(names)
+        for bn in names:
+            adj.setdefault(bn, set()).add(cls)
+    fam = {}
+    seen = set()
+    for start in sorted(_is.keys()):
+        if start in seen:
+            continue
+        comp = set()
+        stack = [start]
+        while stack:
+            cur = stack.pop()
+            if cur in comp:
+                continue
+            comp.add(cur)
+            seen.add(cur)
+            stack.extend(adj.get(cur, ()) - comp)
+        for c in comp:
+            fam[c] = frozenset(comp)
+    _FAMILY_CACHE = fam
+    return fam
+
+
+def _decomp_real_body_addrs():
+    """有真体的地址集: 语料按址存在且size>4且非纯ret N(折叠桩体无返回型证据)。"""
+    global _DECOMP_REAL_ADDRS
+    if _DECOMP_REAL_ADDRS is not None:
+        return _DECOMP_REAL_ADDRS
+    import glob as _g
+    real = set()
+    for fp in _g.glob(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))))), 'asm', 'pal3', 'decomp', '*.json')):
+        m = re.search(r'_([0-9a-fA-F]{8})\.json$', fp)
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        addr = str(d.get('address') or '').lower()
+        if not addr.startswith('0x'):
+            if m:
+                addr = '0x' + m.group(1).lower()
+            else:
+                continue
+        sz = d.get('size_bytes') or 0
+        body = (d.get('decompiled_c') or '')
+        if sz > 4 and not re.match(r'^[\s\S]{0,40}ret\b', body):
+            real.add(addr)
+    _DECOMP_REAL_ADDRS = real
+    return real
+
+
+def _norm_ret_cmp(sig):
+    """返回型比较键: 仅取返回型token, BOOL≡int typedef归一。
+    (C2555判据=返回型; 参数文本分歧随获胜签名串, 不阻塞投票一致性)"""
+    m = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)', str(sig or ''))
+    ret = m.group(2) if m else str(sig or '')
+    return re.sub(r'\bBOOL\b', 'int', ret, count=1)
+
+
+def _family_slot_sig(cls_name, slot_name, slot_addr):
+    """[方案D 2026-11-17] 槽声明签名=族内同名条目三档加权投票。
+    折叠载体边界例外不做数据字段做派生规则: 签名键=(继承家族, 槽名)。
+    桩位条目(地址==槽址/own_slot_backfill)禁票; 无票→None回退地址级(纯桩链零变更)。"""
+    fam = _family_graph().get(cls_name)
+    if not fam:
+        return None
+    real = _decomp_real_body_addrs()
+    votes = []  # (tier, sig, cls)
+    for c in sorted(fam):
+        for a, e in ((_get_ida_structs() or {}).get(c) or {}).get('methods', {}).items():
+            nm = str(e.get('name') or '').split('::')[-1]
+            if nm != slot_name:
+                continue
+            sig = str(e.get('signature') or '')
+            if not sig:
+                continue
+            if str(a).lower() == str(slot_addr).lower():
+                continue  # 桩位自身禁票
+            if 'own_slot_backfill' in str(e.get('source') or ''):
+                continue  # 桩位回填禁票(CEffSParticle::Update BOOL实证)
+            if str(a).lower() not in real:
+                continue  # 无真体=无返回型证据
+            ev = str(e.get('evidence_level') or '')
+            tier = 1 if (ev in ('verified', 'binary_vtable_slot', 'chain_unified') or ev.startswith('manual')) else 2
+            votes.append((tier, sig, c))
+    if not votes:
+        return None
+    t1 = [v for v in votes if v[0] == 1]
+    t2 = [v for v in votes if v[0] == 2]
+    use = t1 if t1 else t2
+    keys = {_norm_ret_cmp(s) for _t, s, _c in use}
+    if len(keys) > 1:
+        return None  # 真体票分歧→None(门禁追债), 不猜
+    # [参数污染防线 2026-11-17] 投票只裁决返回型token——参数从地址条目(根类正名账)
+    # 组合, 防获胜成员的hexrays污染参数(CCBUI**实证)污染全族声明
+    for _t, s, _c in sorted(use, key=lambda x: x[2]):
+        if _norm_ret_cmp(s) in keys:
+            _m = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)', s)
+            return _m.group(2) if _m else None
+    return None
 
 
 def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
@@ -2905,10 +3025,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _a0 = str(_sl0.get('addr') or '').lower()
             # [槽签正名优先 2026-11-16] 扫描源并集: 注解裁决形(ida_structs methods.signature)
             # + decomp 原始串 + 槽sig —— 前向声明是并集敏感(冗余合法), 非优先级敏感
-            _sig_src = '%s %s %s' % (
+            _sig_src = '%s %s %s %s' % (
                 (((_ann_s or {}).get('methods') or {}).get(_a0) or {}).get('signature') or '',
                 (_methods_by_addr.get(_a0) or {}).get('signature') or '',
-                _sl0.get('sig') or '')
+                _global_sig_by_addr().get(_a0) or '',
+                _family_slot_sig(cls_name, str((_sl0.get('name') or '')).split('::')[-1], _a0) or '')
             for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sig_src):
                 if _t0 not in _builtin_t and _t0 != cls_name and _t0 not in _fwd_needed:
                     _fwd_needed.append(_t0)
@@ -2919,7 +3040,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _slot_addr_hex = _sn[0]
             _sl = _vt_slots_flat[_vi] if _vi < len(_vt_slots_flat) else {}
             _nm = _sl.get('name')
-            _sg = _sl.get('sig') or ''
+            _sg = ''
             _m0 = _methods_by_addr.get(_slot_addr_hex.lower())
             # [继承槽回退 2026-11-16] 自有methods缺该址 → 祖先链行走(C7v3同推导原则):
             #   多槽同名地址(如CEffObj 0x4AF760四名)的继承槽, 派生类methods无条目,
@@ -2976,9 +3097,21 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # 消费注解层已落盘的 signature 字符串本身。
                 # [地址级签名统一 2026-11-17] 退役slot.sig不再读取; 全局映射命中
                 # = 一地址一签名(methods条目=真值), 链一致性由结构保证而非数据填充。
-                _sg = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
+                _ret_vote = _family_slot_sig(cls_name, _nm, _slot_addr_hex)
+                _base_sig = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
                     or (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
-                    or (_m0 or {}).get('signature') or 'void __thiscall()'
+                    or (_m0 or {}).get('signature') or ''
+                if _ret_vote and _base_sig:
+                    # [返回型×参数组合 2026-11-17] 返回型=族投票裁决, 参数=地址条目正名账
+                    _mb = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)\s*(.*)$', _base_sig)
+                    if _mb:
+                        _sg = '%s%s %s' % (_mb.group(1) or '', _ret_vote, _mb.group(3) or '__thiscall()')
+                    else:
+                        _sg = '%s __thiscall()' % _ret_vote
+                elif _ret_vote:
+                    _sg = '%s __thiscall()' % _ret_vote
+                else:
+                    _sg = _base_sig or 'void __thiscall()'
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
             if _vi == 0 and (_dtor_form0 or (_will_inject_vptr and _nm == '~' + cls_name)):
                 continue  # slot0=dtor位: 注入~X已占位, 删除式dtor本体走dtor槽规则

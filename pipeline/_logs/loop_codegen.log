@@ -31,7 +31,7 @@ Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 0/222 ok | own-fail 107 | imported-only 115  (27s)
+S2 cpp: 0/222 ok | own-fail 109 | imported-only 113  (24s)
 Top root-cause headers (files blocked):
   pal3/src/Script/PalScript.h                   blocks 222 cpp
   pal3/src/free_functions.h                     blocks 128 cpp
@@ -39,15 +39,7 @@ Top root-cause headers (files blocked):
   pal3/src/Data/CGameData.h                     blocks  20 cpp
   pal3/src/Combat/CCBResultWindow.h             blocks  18 cpp
   pal3/src/Scene/SceneObj.h                     blocks  17 cpp
-  pal3/src/Misc/CEffAction.h                    blocks  13 cpp
-  pal3/src/Effect/CEffSParticle.h               blocks   9 cpp
-  pal3/src/Effect/CEffCylinder.h                blocks   6 cpp
   pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
-  pal3/src/Misc/CEffCallBack.h                  blocks   4 cpp
-  pal3/src/Effect/CEffShock.h                   blocks   3 cpp
-  pal3/src/Misc/CEffBink.h                      blocks   3 cpp
-  pal3/src/Effect/CEffExplosive.h               blocks   2 cpp
-  pal3/src/Effect/CEffGrid.h                    blocks   1 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 [Regression] diff vs latest baseline:
