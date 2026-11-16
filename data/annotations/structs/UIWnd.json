@@ -446,15 +446,17 @@
   "0x00445c10": {
    "name": "HideAll",
    "semantic_name": "RoleCameraCtrl::HideAll(void)",
-   "semantic_sig": "int",
+   "semantic_sig": "void",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "signature": "void __thiscall()",
+   "evidence_level": "verified",
+   "name_note": " | 返回型定谳20261117(void): ①体对子物件slot3调用渲染void函数指针 ②result未初始化(hexrays把未初始化eax渲染成return伪影) ③19+派生表slot3折叠载体0x43de40全部无返回 ④原源码编译通过→override合法→基类派生返回型必一致, int侧必错"
   },
   "0x00445aa0": {
    "name": "UIWnd",

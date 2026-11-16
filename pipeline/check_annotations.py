@@ -1387,6 +1387,128 @@ def check_canonical_contract():
                         'CANON:C11:%s bases变更无裁决条目: 快照%s → 现%s; '
                         '须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)'
                         % (_cls11, _snap11.get(_cls11), _cur11))
+    # [N13 2026-11-17 S2崩盘教训] 跨层名字契约门(三层子检):
+    #   (a) 字段契约: 语料函数(类由name字段定)的 ->M 引用必须∈类链known_members名
+    #       (抓CCCTData/C2227族——引用了注解没有的字段)
+    #   (b) 发射路由契约: 注解methods条目若被语料以C::M(引用, 必须有发射路由
+    #       (语料按址文件 ∨ known_methods), 否则头文件不声明→C2039
+    #       (抓NullCallback族: 0x408bd0条目在methods但无语料文件且known_methods空)
+    #   (c) 限定调用契约: 语料C::M(引用的M必须∈注解methods名∪语料归属名
+    #       (抓改名断链: cpp调旧名, 注解已正名)
+    _re_arrow = re.compile(r'this\s*->\s*([A-Za-z_]\w*)')  # [精度修正] 仅this锚定箭头
+    _struct_names = set()
+    for _fp13 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        _struct_names.add(os.path.basename(_fp13)[:-5])
+    _re_qual = re.compile(r'\b([A-Za-z_]\w*)::([A-Za-z_]\w*)\s*\(')
+    # 语料装载: (类名, 函数名, body) + 按址文件存在性
+    _corpus_fn = []
+    _corpus_addrs = set()
+    for _fp13 in sorted(_glob.glob(os.path.join(root, 'asm', 'pal3', 'decomp', '*.json'))):
+        try:
+            _dd = json.load(open(_fp13, encoding='utf-8'))
+        except Exception:
+            continue
+        _nm13 = str(_dd.get('name') or '')
+        _corpus_addrs.add(str(_dd.get('address') or '').lower())
+        if '::' in _nm13:
+            _cp, _mp = _nm13.split('::', 1)
+            _corpus_fn.append((_cp.strip(), _mp.split('(')[0].strip(), _dd.get('decompiled_c') or ''))
+    # (a) 字段契约
+    _kmnames = {}
+    def _chain_km(cls):
+        if cls in _kmnames:
+            return _kmnames[cls]
+        names = set()
+        _seen13 = set()
+        _cur = cls
+        while _cur and _cur not in _seen13:
+            _seen13.add(_cur)
+            try:
+                _dd = json.load(open(os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % _cur), encoding='utf-8'))
+            except Exception:
+                break
+            for _v13 in (_dd.get('known_members') or {}).values():
+                _n13 = _v13.get('name')
+                if _n13:
+                    names.add(str(_n13))
+            _bs13 = _dd.get('bases') or []
+            _cur = (_bs13[0].get('name') if isinstance(_bs13[0], dict) else _bs13[0]) if _bs13 else None
+        _kmnames[cls] = names
+        return names
+    _field_miss = {}
+    for _cp13, _mp13, _body13 in _corpus_fn:
+        for _m13 in _re_arrow.findall(_body13):
+            # [精度] 基类子对象访问记法(this->基类名.字段)豁免——箭头目标=类名
+            if _m13 in _struct_names:
+                continue
+            if _m13 not in _chain_km(_cp13) and _m13 not in ('m_pData',):
+                _field_miss.setdefault((_cp13, _m13), 0)
+                _field_miss[(_cp13, _m13)] += 1
+    for (_c13, _m13), _n13 in sorted(_field_miss.items()):
+        errors.append('DATA:N13a:%s::%s 字段契约断(语料->引用%d次, 类链known_members无名) '
+                      '→ C2227族预测' % (_c13, _m13, _n13))
+    # (b) 发射路由契约
+    _cpp_qualified = set()
+    for _cp13, _mp13, _body13 in _corpus_fn:
+        for _q13 in _re_qual.findall(_body13):
+            _cpp_qualified.add((_q13[0], _q13[1]))
+    _emit_miss = []
+    for _fp13 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        _cls13 = os.path.basename(_fp13)[:-5]
+        try:
+            _dd = json.load(open(_fp13, encoding='utf-8'))
+        except Exception:
+            continue
+        _has_km = bool(_dd.get('known_methods'))
+        for _a13, _e13 in (_dd.get('methods') or {}).items():
+            _n13 = str(_e13.get('name') or '').split('::')[-1]
+            if not _n13 or _n13.startswith('~') or '_scalar_dtor' in _n13 or '_sdtor' in _n13:
+                continue
+            if (_cls13, _n13) in _cpp_qualified and _a13.lower() not in _corpus_addrs and not _has_km:
+                _emit_miss.append((_cls13, _n13, _a13))
+    for _c13, _n13, _a13 in _emit_miss[:20]:
+        errors.append('DATA:N13b:%s::%s@%s 发射路由断(语料引用但无按址文件且known_methods空) '
+                      '→ C2039族预测' % (_c13, _n13, _a13))
+    # (c) 限定调用契约
+    _meth_names = {}
+    for _fp13 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        _cls13 = os.path.basename(_fp13)[:-5]
+        try:
+            _dd = json.load(open(_fp13, encoding='utf-8'))
+        except Exception:
+            continue
+        _names13 = set()
+        for _e13 in (_dd.get('methods') or {}).values():
+            _n13 = str(_e13.get('name') or '').split('::')[-1]
+            if _n13:
+                _names13.add(_n13)
+        _meth_names[_cls13] = _names13
+    _call_miss = {}
+    _corpus_owned = set()
+    for _cp13, _mp13, _body13 in _corpus_fn:
+        _corpus_owned.add((_cp13, _mp13))
+    for (_c13, _m13) in sorted(_cpp_qualified):
+        if _c13 in _meth_names and _m13 not in _meth_names[_c13] and (_c13, _m13) not in _corpus_owned:
+            _call_miss[(_c13, _m13)] = _call_miss.get((_c13, _m13), 0) + 1
+    for (_c13, _m13), _n13 in sorted(_call_miss.items())[:20]:
+        errors.append('DATA:N13c:%s::%s 限定调用契约断(语料引用但注解methods与语料归属皆无名) '
+                      '→ C2039/C2065族预测' % (_c13, _m13))
+    # [N14 2026-11-17] 引用类型存在性门: 语料C::前缀类型必须有注解建档
+    _type_miss = collections.Counter() if False else {}
+    import collections as _coll14
+    _type_miss = _coll14.Counter()
+    for (_c13, _m13) in _cpp_qualified:
+        if _c13 in _struct_names or _c13.startswith(('gb', 'j_')) or _c13 in (
+                'std', 'HANDLE', 'HWND', 'string', 'wstring', 'vector', 'map', 'list',
+                'deque', 'set', 'pair', 'allocator', 'codecvt', 'codecvt_base',
+                'char_traits', 'basic_string', 'istream', 'ostream', 'iostream',
+                'fstream', 'sstream', 'basic_ostream', 'basic_istream', 'locale',
+                'ctype', 'num_put', 'num_get', 'basic_filebuf', 'int_char',
+                'HANDLE', 'tagRECT', 'tagPOINT'):
+            continue
+        _type_miss[_c13] += 1
+    for _t13, _n13 in _type_miss.most_common(15):
+        errors.append('DATA:N14:%s 引用类型无建档(语料限定前缀%d次) → C2061族预测' % (_t13, _n13))
     # [N11s 2026-11-16 用户裁定] structs注解键形门禁: 不合法十六进制全ban。
     #   地址键 ^0x[0-9a-f]{8}$ 小写8位(external+external:true=合法豁免);
     #   known_members键 ^0x[0-9a-f]+(_N)?$ 偏移小写hex。
