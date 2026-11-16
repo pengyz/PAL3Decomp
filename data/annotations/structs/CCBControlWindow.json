@@ -248,20 +248,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
    "semantic_name": "CCBControlWindow::Update(int, int)",
-   "name_note": "C9链律正名20261116: slot2二进制位(0x57051C+8) + RET 8(2参) + 体尾直调UIWnd::Update(this,nVal,nVal2) + 根契约Update(int,int)=BOOL; 原名MoveButtons=体读数命名, 违每槽一名override律 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9链律正名20261116: slot2二进制位(0x57051C+8) + RET 8(2参) + 体尾直调UIWnd::Update(this,nVal,nVal2) + 根契约Update(int,int)=BOOL; 原名MoveButtons=体读数命名, 违每槽一名override律 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0051b110": {
    "name": "CreateButton",
@@ -288,10 +288,10 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "a2"
      },
      {
@@ -302,8 +302,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int a2, int a3)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int a2, int a3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "int __thiscall(int, unsigned int a2, int a3)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int a2, int a3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0051b5d0": {
    "name": "CreateWithTextures",

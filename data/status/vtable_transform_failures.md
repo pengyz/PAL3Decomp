@@ -994,3 +994,16 @@
 | `UITitle_ArcSave::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_needscriptdel + 20))(m_needscriptdel, 3)` |
 | `UIWnd::Update` | inline | `int` | 8 | non_class_hint | `(*(int ( **)(int, int, int))(*(_DWORD *)v7 + 8))(v7, a2, v6)` |
 | `RenderTarget2::Update` | inline | `BOOL` | 44 | non_class_hint | `(*(int ( **)(BOOL, _DWORD, _DWORD, float *, _DWORD))(*(_DWORD *)result + 44))( result, 0, 0, &fVal, 0)` |
+| `CCBProtectWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&m_pBack->UIWnd + 20))(m_pBack, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int))(*(_DWORD *)&(*p_m_pWHFace)->UIWnd + 20))(*p_m_pWHFace, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v5 + 20))(v5, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `UIButton` | 20 | self_arg_mismatch | `(*(void ( **)(UIButton *, int))(*(_DWORD *)&(*v6)->UIWnd + 20))(*v6, 1)` |
+| `CGameData::Update_24` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_nSceneLoadParam + 4))(m_nSceneLoadParam)` |
+| `CGameData::Update_24` | inline | `char` | 8 | non_class_hint | `(*(void ( **)(char *, int, int))(*(_DWORD *)this->m_pGameObj + 8))( this->m_pGameObj, nVal, nVal2)` |
+| `CGameData::Update_24` | inline | `SceneObj` | 8 | self_arg_mismatch | `(*(int ( **)(SceneObj *, int, bool))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 8))( this->m_pSceneObjRef, nVal, !v6)` |
+| `PropUI::OnMessage` | inline | `PropUI` | 24 | self_arg_mismatch | `(*(void ( **)(PropUI *, int, _DWORD, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1007, 0, 0)` |
+| `SaleUI::OnMessage_19` | inline | `SaleUI` | 24 | self_arg_mismatch | `(*(void ( **)(SaleUI *, int, _DWORD, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1007, 0, 0)` |
+| `StateUI::Update` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&(*v49)->gbChain1DNode + 24))(*v49, 0)` |
+| `UIProgressBar::Update` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)*p_m_progress + 20))(*p_m_progress)` |
+| `UIProgressBar::Update` | inline | `int` | 24 | self_arg_mismatch | `(*(void ( **)(int, unsigned int, int, int, struct gbVec3D *, int *))(*(_DWORD *)m_pfather + 24))( 1013, this->m_id, v17, v42, v45, v50)` |
+| `UITitle_ArcSave::Update` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, int, int))(*(_DWORD *)this->m_YesNo.m_childs.m_needscriptdel + 8))( this->m_YesNo.m_childs.m_needscriptdel, p, nVal)` |

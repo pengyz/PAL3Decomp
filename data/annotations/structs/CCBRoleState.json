@@ -2419,7 +2419,7 @@
       "name": "nVal"
      },
      {
-      "type": "int",
+      "type": "unsigned int",
       "name": "nVal2"
      },
      {
@@ -2430,8 +2430,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3)(基=UIWnd) | 角色归正补做20261117(修rebuild守卫漏网): slot6位(0x56B364表, OnMessage位) + ABI RET 12=3参与根契约一致 + 体ret 0xC; 原名ctor=N12占位(rebuild守卫name=='CCBRoleState'未匹配'ctor'静默跳过——'没找到≠不存在'教训复现) | 标签基锚20261117→int __thiscall(int nVal, int nVal2, int nVal3)",
+   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3)(基=UIWnd) | 角色归正补做20261117(修rebuild守卫漏网): slot6位(0x56B364表, OnMessage位) + ABI RET 12=3参与根契约一致 + 体ret 0xC; 原名ctor=N12占位(rebuild守卫name=='CCBRoleState'未匹配'ctor'静默跳过——'没找到≠不存在'教训复现) | 标签基锚20261117→int __thiscall(int nVal, int nVal2, int nVal3) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_name": "CCBRoleState::OnMessage(int, int, int)"
   },
   "0x00456b80": {
@@ -3388,20 +3388,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
    "semantic_name": "CCBRoleState::Update(int, int)",
-   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "语义裁定20261116: slot2位(表0x56B364, 骨架slot0=445e70/slot4=445b90) + 体尾return UIWnd::Update(this,nVal,nVal2)=覆写+基调模式 + 体前段PlayVideo条件分支(Update职责内含) → 链律名Update; 原名PlayVideoIfReady=体读数 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0046d770": {
    "name": "LayoutSlotPanelA",

@@ -438,19 +438,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
+      "type": "CCBUI **deltatime",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int deltatime, int haveinput)",
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0046b040": {
    "name": "Update",
@@ -462,19 +458,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "deltatime"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "haveinput"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int deltatime, int haveinput)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,deltatime,haveinput)铁证; 原名ProcessCellAnimations留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,deltatime,haveinput)铁证; 原名ProcessCellAnimations留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
    "semantic_name": "SaleUI::Update"
   },
   "0x004ab5e0": {
@@ -896,22 +892,22 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pszBuf"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int pszBuf, int nVal2)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 链律(slot6=OnMessage位); 原名_todo_N12占位; 原名_todo_0046B4B0留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 链律(slot6=OnMessage位); 原名_todo_N12占位; 原名_todo_0046B4B0留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043ddf0": {
    "name": "Render",

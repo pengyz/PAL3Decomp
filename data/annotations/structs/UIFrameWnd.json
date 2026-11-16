@@ -312,14 +312,14 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "flags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(int)",
-   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据)"
+   "signature": "void * __thiscall(int flags)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043bbb0": {
    "name": "BBB0",
@@ -381,19 +381,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00442ff0": {
    "name": "Update_2ff0",

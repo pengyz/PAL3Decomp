@@ -1403,19 +1403,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBSystem *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": "pData"
+      "type": "int",
+      "name": "flags"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(CCBSystem *Block, char pData)",
-   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "void * __thiscall(int flags)",
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00515df0": {
    "name": "Cleanup",

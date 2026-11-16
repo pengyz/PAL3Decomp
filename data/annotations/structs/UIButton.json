@@ -143,19 +143,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nDelta"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nDelta, int nVal2)",
-   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043f9c0": {
    "name": "HideAll",
@@ -187,19 +187,19 @@
       "name": "id"
      },
      {
-      "type": "tagRECT *pRect",
+      "type": "tagRECT *",
       "name": null
      },
      {
-      "type": "UIWnd *parent",
+      "type": "UIWnd *",
       "name": "parent"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int id, tagRECT *pRect, UIWnd *parent parent)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int id, tagRECT *, UIWnd * parent)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int id, tagRECT *pRect, UIWnd *parent parent)"
+   "signature": "int __thiscall(int id, tagRECT *, UIWnd * parent)",
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int id, tagRECT *, UIWnd * parent)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int id, tagRECT *pRect, UIWnd *parent parent) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043ff70": {
    "name": "Render",

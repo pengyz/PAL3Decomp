@@ -669,7 +669,7 @@
     "pending": false
    },
    "signature": "void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": " | C9sig链统一20261117→void __thiscall(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043cbd0": {
    "name": "ResizeContentAlt",
@@ -982,46 +982,51 @@
   "0x0043bbc0": {
    "name": "Update",
    "semantic_name": "Update",
-   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
    "evidence_level": "chain_unified"
   },
   "0x0043bb90": {
    "name": "_scalar_dtor_BB90",
    "semantic_name": "_scalar_dtor_BB90",
-   "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位) | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位) | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": "flags"
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall()",
+   "signature": "void * __thiscall(int flags)",
    "evidence_level": "chain_unified"
   },
   "0x0043d7a0": {
    "name": "OnMessage",
    "semantic_name": "UIScene::OnMessage",
-   "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用) | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用) | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "int",
    "sig_model": {
     "return": "int",
@@ -1029,21 +1034,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nMsg"
-     },
-     {
-      "type": "int",
-      "name": "wParam"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int nMsg, int wParam)",
+   "signature": "int __thiscall(int, unsigned int, int)",
    "evidence_level": "chain_unified"
   }
  },

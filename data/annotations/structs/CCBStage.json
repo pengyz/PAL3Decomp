@@ -540,17 +540,22 @@
   "0x004fc150": {
    "name": "Update",
    "name_source": "IDA语义分析 2026-11-01 批15",
-   "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_name": "Update_C150",
    "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "CCBUI **deltatime",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
+   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "evidence_level": "chain_unified"
   },
   "0x004fc3a0": {
@@ -2488,7 +2493,7 @@
   "0x0051f1b0": {
    "name": "OnMessage",
    "name_source": "归属修正 2026-10-31（vtable 二进制证据）",
-   "name_note": "CCBStage 虚方法（vtable 0x005705D0 +24 槽位），10KB 消息处理 | C9sig链统一20261117→int __thiscall(int a2, unsigned int nVal, int nVal2): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=4 census ABI=3 (RET字节=硬证据)",
+   "name_note": "CCBStage 虚方法（vtable 0x005705D0 +24 槽位），10KB 消息处理 | C9sig链统一20261117→int __thiscall(int a2, unsigned int nVal, int nVal2): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=4 census ABI=3 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "attribution_evidence": "vtable 0x005705D0 +24 槽位 + 构造器 0x0051D710 Create_d710 引用 + 偏移范围 628-671128 超出 CCBResultWindow 180B",
    "semantic_sig": "int",
    "sig_model": {
@@ -2497,21 +2502,21 @@
     "params": [
      {
       "type": "int",
+      "name": "a2"
+     },
+     {
+      "type": "unsigned int",
       "name": "nVal"
      },
      {
       "type": "int",
       "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, int, int)",
+   "signature": "int __thiscall(int a2, unsigned int nVal, int nVal2)",
    "evidence_level": "chain_unified"
   },
   "0x00508930": {
@@ -4861,19 +4866,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,nVal,nVal2)+return 1铁证; 原名OnCommand留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,nVal,nVal2)+return 1铁证; 原名OnCommand留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00524970": {
    "name": "Render",

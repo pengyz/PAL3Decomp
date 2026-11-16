@@ -128,7 +128,7 @@
   "0x0044eb40": {
    "name": "Reset",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
-   "name_note": "空覆盖虚方法 | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据)",
+   "name_note": "空覆盖虚方法 | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
@@ -173,7 +173,7 @@
   "0x0044e980": {
    "name": "OnVisible",
    "name_source": "IDA语义分析 2026-11-01 批11",
-   "name_note": "可见性处理（m_bvisible 检查+offset 19） | C9sig基锚定20261117→void * __thiscall(int nVal1)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void * __thiscall(int)",
+   "name_note": "可见性处理（m_bvisible 检查+offset 19） | C9sig基锚定20261117→void * __thiscall(int nVal1)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void * __thiscall(int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→void * __thiscall(int)",
    "semantic_name": "OnVisible",
    "semantic_sig": "void *",
    "sig_model": {
@@ -211,14 +211,14 @@
    "name": "UpdateFrame",
    "semantic_name": "UpdateFrame",
    "confidence": "中",
-   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int)",
+   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
    "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -229,7 +229,7 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
    "evidence_level": "chain_unified"
   }
  },

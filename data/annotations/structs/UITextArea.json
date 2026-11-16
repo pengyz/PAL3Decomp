@@ -158,19 +158,19 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal1"
+      "type": "CCBUI **deltatime",
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal1, int a3)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00445500": {
    "name": "Render",
@@ -201,14 +201,14 @@
     "params": [
      {
       "type": "int",
-      "name": "nFlags"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nFlags)",
-   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | C9name定谳20261117→ShowClipped: 链律(slot0=ShowClipped位); 体=m_bvisible操作弱证据待深查; 原名ShowWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "void __thiscall(int)",
+   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | C9name定谳20261117→ShowClipped: 链律(slot0=ShowClipped位); 体=m_bvisible操作弱证据待深查; 原名ShowWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00444ff0": {
    "name": "_sdtor_13",

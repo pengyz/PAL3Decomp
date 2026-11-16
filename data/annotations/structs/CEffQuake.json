@@ -11,13 +11,18 @@
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
+   "signature": "BOOL __thiscall(int)",
    "semantic_name": "int __thiscall()",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x004d3860": {
    "name": "_sdtor",
@@ -118,15 +123,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "a2"
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int a2)",
-   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "void __thiscall(float)",
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x004d3660": {
    "name": "GetEditorTaskDescription",
@@ -166,21 +171,21 @@
   "0x004c29a0": {
    "name": "UpdateFrame",
    "semantic_name": "UpdateInternal",
-   "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int fVal)",
+   "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int fVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "fVal"
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int fVal)",
+   "signature": "void __thiscall(float)",
    "evidence_level": "chain_unified"
   },
   "0x004d33a0": {
@@ -218,21 +223,21 @@
    "name": "Create",
    "semantic_name": "CEffQuake::Create",
    "confidence": "中高",
-   "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用 | C9name定谳20261117→Create: 链律(slot1=Create位, 同CEffCallBack 0x4c0650同址); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2)",
+   "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用 | C9name定谳20261117→Create: 链律(slot1=Create位, 同CEffCallBack 0x4c0650同址); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "tagEffObjType *a2",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *a2)",
+   "signature": "char __thiscall(tagEffObjType *)",
    "evidence_level": "chain_unified"
   }
  },

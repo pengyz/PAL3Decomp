@@ -835,7 +835,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -846,8 +846,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,fVal,a3)铁证; 原名CleanupAndForwardInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int)",
+   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,fVal,a3)铁证; 原名CleanupAndForwardInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
    "semantic_name": "LineupUI::Update"
   },
   "0x00480600": {
@@ -863,22 +863,22 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pszBuf"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, int pszBuf, int nVal2)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "signature": "int __thiscall(int, unsigned int, int)",
+   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x004826a0": {
    "name": "RebuildSystemPage",

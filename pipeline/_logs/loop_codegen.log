@@ -17,6 +17,7 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
 Collecting functions from decomp...
   Classes with methods: 220
   Free functions: 201
+[L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
 Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
@@ -31,9 +32,13 @@ Generated 221 .cpp files (3529 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 58/222 ok | own-fail 105 | imported-only 59  (28s)
+S2 cpp: 0/222 ok | own-fail 106 | imported-only 116  (24s)
 Top root-cause headers (files blocked):
-  pal3/src/free_functions.h                     blocks 128 cpp
+  pal3/src/Misc/UIButton.h                      blocks 222 cpp
+  pal3/src/free_functions.h                     blocks 132 cpp
+  pal3/src/Combat/CCBStage.h                    blocks  56 cpp
+  pal3/src/Misc/CEffAction.h                    blocks  13 cpp
+  pal3/src/Misc/UIScenePanel.h                  blocks   6 cpp
   pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
@@ -50,6 +55,6 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
         修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'（会使 compile_regression 的结论失去意义）。
 [emit] CCBTaskSlot: member at +0x18 is behind bookkeeping (start_off=0x1A, +0x2) — 不跳过，交由布局审计裁决
 [DEBUG-INC] stru_DBA134 typ='RoleCameraCtrl' has_header=True has_struct=True pointer_only=False
-[ret-N evidence] 指令级(asm) 3362 / 裸扫描回退 376 / 无证据 15
+[ret-N evidence] 指令级(asm) 3359 / 裸扫描回退 376 / 无证据 15
 ❌ 错误: 'line'
 ❌ 错误: 'line'
