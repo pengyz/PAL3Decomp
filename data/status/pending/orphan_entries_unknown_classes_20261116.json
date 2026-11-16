@@ -403,5 +403,594 @@
    },
    "reason": "jmp 0x4fca80 thunk; GetTask真身已有同签认主, thunk引用重复"
   }
+ },
+ "census_misattributed_members": {
+  "RoleCameraCtrl": {
+   "reason": "原known_members(+8..+64)全部落在UIFrameWnd区[0,72)内部=census错型(相机语义名targetdist/startyaw属他类); 版面证据+72 UITextArea*",
+   "members": {
+    "0xc": {
+     "name": "m_type",
+     "type": "RCC_TYPE",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_time",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_passtime",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_itype",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x1c": {
+     "name": "m_targetdist",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_startdist",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x24": {
+     "name": "m_targetyaw",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x28": {
+     "name": "m_startyaw",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x2c": {
+     "name": "m_targetpitch",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x30": {
+     "name": "m_startpitch",
+     "type": "float",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x34": {
+     "name": "m_targetfrom",
+     "type": "gbVec3D",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_startfrom",
+     "type": "gbVec3D",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_pVtable",
+     "type": "void *",
+     "union": true,
+     "source": "原 void* 位面（SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
+     "evidence_level": "A"
+    }
+   }
+  }
+ },
+ "base_region_ghost_members": {
+  "UIListBox:72-2147483647": {
+   "reason": "chimera尾部(>72B): m_scrollbar/m_numcol/m_column等真实字段属他类(UIListBox ctor 0x43DCD0仅构72B骨架), 身份待定谳",
+   "members": {
+    "0x48": {
+     "name": "m_showGrayBk",
+     "type": "int",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x4c": {
+     "name": "m_hasKeyCtrl",
+     "type": "unsigned char",
+     "source": "annotation",
+     "evidence_level": "unverified"
+    },
+    "0x50": {
+     "name": "m_scrollbar",
+     "type": "UIScrollBar",
+     "source": "annotation",
+     "evidence_level": "unverified",
+     "audit": {
+      "level": "contradicted",
+      "method": "use_site_enumeration",
+      "sites_checked": 294,
+      "sites_consistent": 0,
+      "sites_contradicted": 1,
+      "contradictions": [
+       {
+        "file": "Script/PalScript.cpp",
+        "line": 3455,
+        "expected": "UIScrollBar",
+        "actual": "UIWnd",
+        "detail": "cast 型别不一致"
+       }
+      ],
+      "timestamp": "2026-11-12"
+     }
+    },
+    "0x1b0": {
+     "name": "m_numcol",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x1b4": {
+     "name": "m_column",
+     "type": "UILBColumn[8]",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x454": {
+     "name": "m_itemheight",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x458": {
+     "name": "m_fontsize",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x45c": {
+     "name": "m_firstshow",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x460": {
+     "name": "m_onsel",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x464": {
+     "name": "m_locksel",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x468": {
+     "name": "m_scrollRc",
+     "type": "tagRECT",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x478": {
+     "name": "m_pbkpic",
+     "type": "gbTexture *",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x47c": {
+     "name": "m_pbkpicInfo",
+     "type": "_PlugInfo *",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x480": {
+     "name": "m_selpic",
+     "type": "gbTexture *",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x484": {
+     "name": "m_selpicInfo",
+     "type": "_PlugInfo *",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x488": {
+     "name": "m_seloffset",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x48c": {
+     "name": "m_seloffsetL",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x490": {
+     "name": "m_seloffsetR",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x494": {
+     "name": "m_scrollW",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x498": {
+     "name": "m_seltexcolor",
+     "type": "gbColorQuad",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x49c": {
+     "name": "m_itemoffset",
+     "type": "tagPOINT",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x4a4": {
+     "name": "m_movesel",
+     "type": "int",
+     "source": "PDB+PAL3_offset_adjusted",
+     "evidence_level": "unverified"
+    },
+    "0x4a8": {
+     "name": "m_rowenable",
+     "type": "unsigned char[16]",
+     "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换",
+     "evidence_level": "A"
+    }
+   }
+  },
+  "CCBRoleState:0-72": {
+   "reason": "幽灵基区条目([0,0x48)=[vfptr+UIWnd 68B+UIListBox m_selcolor]): m_sCombatDialog@0x0等与ctor写入矛盾(真ctor写own从0x48起)",
+   "members": {
+    "0x0": {
+     "name": "m_sCombatDialog",
+     "type": {
+      "union": [
+       {
+        "type": "char[4]",
+        "name": "m_sCombatDialog"
+       },
+       {
+        "type": "float",
+        "name": "m_fCombatDialogVal"
+       }
+      ]
+     },
+     "source": "[A 级值位面 union 2026-10-21·fixer] m_sCombatDialog = **union**（三判据①值位面 ✓ 值证实录）· **fstps/fmuls 0x0(%ebp)** 值证 ✓ A 级实录 · MIXED（char[4]+float 同存储多解释）· checklist 5 问全过 ✓ · 原 type=char[4]",
+     "evidence_level": "A"
+    },
+    "0x4": {
+     "name": "m_nRoundCounter",
+     "type": "int",
+     "source": "ida_gap_13refs | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 4, 'evidence': '40101a:\\t89 46 04 \\tmov %eax,0x4(%esi)'}, {'form': 'float', 'count': 3, 'evidence': '40111d:\\td9 57 04 \\tfsts 0x4(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = MIXED（assign 61 + float 2 + cmp 1）= **位面复用**非单形 ⇒ 改型破坏 int 用法 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float",
+     "_rename_evidence": "decomp:ProcessRound/VarianceRoundCounter 递增/比较 ⇒ 回合计数",
+     "evidence_level": "A"
+    },
+    "0x8": {
+     "name": "m_nCurrentRound",
+     "type": "int",
+     "source": "ida_gap_3refs",
+     "_rename_evidence": "decomp:GetTotalRounds 返回当前回合值",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_nActiveRoleIdx",
+     "type": "int",
+     "source": "ida_gap_6refs",
+     "_rename_evidence": "decomp:ProcessCombatAction 首参数=当前行动角色索引",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_nPhase",
+     "type": "int",
+     "source": "ida_gap_3refs",
+     "_rename_evidence": "decomp:UpdateSpringAnim 检查相位状态",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_nState_014",
+     "type": "int",
+     "source": "ida_gap_1refs",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_nState_018",
+     "type": "int",
+     "source": "ida_gap_11refs",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_nState_020",
+     "type": "int",
+     "source": "ida_gap_1refs",
+     "evidence_level": "unverified"
+    },
+    "0x30": {
+     "name": "m_nState_030",
+     "type": "gbRefObject *",
+     "source": "ida_gap_2refs; corrected from int to gbRefObject*",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_nState_040",
+     "type": "int",
+     "source": "ida_gap_1refs",
+     "evidence_level": "unverified"
+    },
+    "0x44": {
+     "name": "m_nState_044",
+     "type": "int",
+     "source": "ida_gap_1refs",
+     "evidence_level": "unverified"
+    }
+   }
+  },
+  "CCBStage:0-88": {
+   "reason": "幽灵基区条目(m_pCBSystem@0x0等7个指针字段, [0,0x58)=[vfptr+UIWnd+UIListBox m_selcolor]: 与真ctor 0x51D710字段构造序矛盾",
+   "members": {
+    "0x0": {
+     "name": "m_pCBSystem",
+     "type": "CCBSystem *",
+     "offset": 0,
+     "evidence_level": "unverified"
+    },
+    "0x4": {
+     "name": "m_pRoleState",
+     "type": "CCBRoleState *",
+     "offset": 4,
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_pEditor",
+     "type": "CCBEditor *",
+     "offset": 8,
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_pCam",
+     "type": "CCBStageCam *",
+     "offset": 12,
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_pCamControl",
+     "type": "CCBCamControl *",
+     "offset": 16,
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_pScene",
+     "type": "CCBStageScene *",
+     "offset": 20,
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_pRole",
+     "type": "CCBStageRole *[11]",
+     "offset": 24,
+     "evidence_level": "unverified"
+    },
+    "0x44": {
+     "name": "m_TempStorageNGH",
+     "type": "Actor *",
+     "offset": 68,
+     "evidence_level": "unverified"
+    },
+    "0x48": {
+     "name": "m_NGHVariance",
+     "type": "Actor *",
+     "offset": 72,
+     "evidence_level": "unverified"
+    },
+    "0x4c": {
+     "name": "m_TempStorageWPX",
+     "type": "Actor *",
+     "offset": 76,
+     "evidence_level": "unverified"
+    },
+    "0x50": {
+     "name": "m_WPXVariance",
+     "type": "Actor *",
+     "offset": 80,
+     "evidence_level": "unverified"
+    },
+    "0x54": {
+     "name": "m_pDisplayChain",
+     "type": "CCBDisplayChain *",
+     "offset": 84,
+     "evidence_level": "unverified"
+    }
+   }
+  },
+  "CCBPanelSlot:0-180": {
+   "reason": "幽灵基区条目(复核P0-1 ctor链: CCBPanelSlot真链=本类:中间类0x56AE10:UIFrameContainer:UIWnd, 基区[0,0xB4); 0x10-0x1C=UIWnd::m_rect/0x20=m_pfather/0x24-0x34=m_childs/0x5C=UIFrameContainer字段; 原注解名m_nDimH等=decomp循环产物)",
+   "members": {
+    "0x4": {
+     "name": "m_nDimH",
+     "type": "int",
+     "source": "InitPanel",
+     "evidence_level": "unverified"
+    },
+    "0x8": {
+     "name": "m_nEdgeR",
+     "type": "int",
+     "source": "InitPanel:computed",
+     "evidence_level": "unverified"
+    },
+    "0xc": {
+     "name": "m_nEdgeB",
+     "type": "int",
+     "source": "InitPanel:computed",
+     "evidence_level": "unverified"
+    },
+    "0x10": {
+     "name": "m_nMarginX2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x14": {
+     "name": "m_nDimH2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x18": {
+     "name": "m_nEdgeR2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x1c": {
+     "name": "m_nEdgeB2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x20": {
+     "name": "m_fMarginX",
+     "type": "float",
+     "source": "InitPanel:IEEE754",
+     "evidence_level": "unverified"
+    },
+    "0x24": {
+     "name": "m_fDimH",
+     "type": "float",
+     "source": "InitPanel:IEEE754",
+     "evidence_level": "unverified"
+    },
+    "0x28": {
+     "name": "m_nClipL",
+     "type": "int",
+     "source": "InitPanel:clip",
+     "evidence_level": "unverified"
+    },
+    "0x2c": {
+     "name": "m_nClipT",
+     "type": "int",
+     "source": "InitPanel:clip",
+     "evidence_level": "unverified"
+    },
+    "0x30": {
+     "name": "m_nClipR",
+     "type": "int",
+     "source": "InitPanel:clip",
+     "evidence_level": "unverified"
+    },
+    "0x34": {
+     "name": "m_nClipB",
+     "type": "int",
+     "source": "InitPanel:clip",
+     "evidence_level": "unverified"
+    },
+    "0x38": {
+     "name": "m_nClipL2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x3c": {
+     "name": "m_nClipT2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x40": {
+     "name": "m_nClipR2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x44": {
+     "name": "m_nClipB2",
+     "type": "int",
+     "source": "InitPanel:copy",
+     "evidence_level": "unverified"
+    },
+    "0x48": {
+     "name": "m_nPosX",
+     "type": "int",
+     "source": "InitPanel:position",
+     "evidence_level": "unverified"
+    },
+    "0x4c": {
+     "name": "m_nPosY",
+     "type": "int",
+     "source": "InitPanel:position",
+     "evidence_level": "unverified"
+    },
+    "0x5c": {
+     "name": "m_Widget",
+     "type": "char[384]",
+     "source": "vtable+32_called_UIWnd_compatible",
+     "evidence_level": "unverified"
+    }
+   }
+  }
+ },
+ "sibling_class_0x5708e8": {
+  "from_CCBRoleState": {
+   "reason": "第二表0x5708E8+方法0x5362F0/0x5363C0/0x5368A0属兄弟类(其ctor 0x536260存表@0x5362CE, 仅两处写入; 复核P1)",
+   "vtable": {
+    "addr": "0x005708e8",
+    "base": null,
+    "slots": [
+     {
+      "addr": "0x00445e70"
+     },
+     {
+      "addr": "0x00524970"
+     },
+     {
+      "addr": "0x005368a0"
+     },
+     {
+      "addr": "0x005363c0"
+     },
+     {
+      "addr": "0x00445b90"
+     },
+     {
+      "addr": "0x005362f0"
+     },
+     {
+      "addr": "0x00445d10"
+     }
+    ],
+    "source": "[余量 33 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor SceneObj::CreateUI+108 / Actor::DestroyInternal+29 对 ②被调用者面=池基共享 impl（EffTargetPool/EffObjectPool 既有命名）+ 类域槽 ③成员访问面=池节点布局 ④类归属面=ctor/dtor 域双自证 ⑤交互模式面=RenderTarget2 效果生命周期；evidence=[写点对,槽行,删际锚] confidence=80"
+   },
+   "methods": {}
+  }
+ },
+ "companion_dtor_entries": {
+  "CCBStage:0x0051dda0": {
+   "was_name": "ShowWindow",
+   "entry": {
+    "name": "ShowWindow",
+    "evidence_level": "unverified",
+    "semantic_sig": "void",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "signature": "void __thiscall()"
+   },
+   "reason": "complete dtor(体=存表0x5705D0+逆序析构+call 0x43DD10 UIListBox dtor@0x51DFB4, 复核实证); 语料误名ShowWindow; dtor单点律伴生摘除"
+  }
  }
 }

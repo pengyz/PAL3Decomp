@@ -1022,11 +1022,7 @@
    ]
   }
  ],
- "bases": [
-  {
-   "name": "UIWnd",
-   "offset": 0
-  }
- ],
- "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹)"
+ "bases": [],
+ "bases_note": "基声明摘除20261116(置信HIGH~92%): ①+0起=RenderTarget专属字段(m_iMode/m_Texture/m_nRenderX...零UIWnd重名) ②机器码位移直方图177/239命中 ③无ctor条目(Init模式)且~RenderTarget(0x4bdac0)直调无UIWnd dtor族(0x445b20/0x43bb90不在列) ④vtable槽值共享=ICF折叠旁系(本类slot1/2/5/6均为自有方法, slot0/3/4=同体折叠)",
+ "base_size": null
 }

@@ -132,19 +132,6 @@
     "pending": true
    }
   },
-  "0x00445b40": {
-   "name": "_UIWnd",
-   "evidence_level": "unverified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
   "0x004d589c": {
    "name": "SetRect_589c",
    "source": "pdb",
@@ -240,14 +227,14 @@
    "signature": "int __thiscall()"
   },
   "0x00445b20": {
-   "name": "_scalar_dtor_5B20",
+   "name": "~UIWnd",
    "source": "vtable_gap_fill_v1(IDB:UIWnd::scalar_deleting_dtor_ovl_5b20) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIWnd（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AEC8）",
    "declaration_only": true,
-   "evidence_level": "A",
+   "evidence_level": "verified",
    "adjudication": "confirmed",
    "semantic_sig": "void",
    "sig_model": {
-    "return": "void",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
@@ -258,7 +245,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal1)"
+   "signature": "void * __thiscall(int)",
+   "semantic_name": "UIWnd::~UIWnd(del)",
+   "name_note": "角色归正20261117: slot5 deleting dtor(体=call 0x445B40 complete dtor + call 0x541D10 operator delete, 本机capstone实证); 原名_scalar_dtor_5B20=N12形"
   },
   "0x00445d20": {
    "name": "MoveToAbsolute",
@@ -466,6 +455,20 @@
     "pending": false
    },
    "signature": "int __thiscall()"
+  },
+  "0x00445aa0": {
+   "name": "UIWnd",
+   "evidence_level": "verified",
+   "semantic_name": "UIWnd::UIWnd(void)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "signature": "void __thiscall()",
+   "name_note": "ctor归正20261117: 体=call 0x432660(构造m_childs@+0x24) + 存表0x56AEC8(本机capstone实证); 语料误名ClearSubArraySlot; 0x445B40为dtor非ctor(语料ctor/dtor名标反)"
   }
  },
  "vtables": [

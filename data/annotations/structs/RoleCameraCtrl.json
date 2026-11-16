@@ -2,84 +2,11 @@
  "name": "RoleCameraCtrl",
  "binary_size": 76,
  "known_members": {
-  "0xc": {
-   "name": "m_type",
-   "type": "RCC_TYPE",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_time",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_passtime",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_itype",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1c": {
-   "name": "m_targetdist",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x20": {
-   "name": "m_startdist",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x24": {
-   "name": "m_targetyaw",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x28": {
-   "name": "m_startyaw",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2c": {
-   "name": "m_targetpitch",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x30": {
-   "name": "m_startpitch",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_targetfrom",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x40": {
-   "name": "m_startfrom",
-   "type": "gbVec3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_pVtable",
-   "type": "void *",
-   "union": true,
-   "source": "原 void* 位面（SetViewPosition@0x52DFF0 `=(void*)nVal2` 裸搬实证） | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：",
-   "evidence_level": "A"
+  "0x48": {
+   "name": "m_pTextArea",
+   "type": "UITextArea *",
+   "evidence_level": "verified",
+   "note": "InitFrameUI体访问(this+72)直证"
   }
  },
  "methods": {
@@ -129,7 +56,7 @@
    "signature": "RoleCameraCtrl * __thiscall()"
   },
   "0x00450c90": {
-   "name": "UpdatePosition",
+   "name": "Update",
    "ordinal": 2,
    "evidence_level": "unverified",
    "semantic_sig": "BOOL",
@@ -149,7 +76,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   "signature": "BOOL __thiscall(int nVal, int nVal2)",
+   "semantic_name": "RoleCameraCtrl::Update(int, int)",
+   "name_note": "C10重裁定20261116链律: slot2位(Update BOOL(int,int)契约) → 链律名Update; 原名UpdatePosition=体读数; 待解异常: 体访问+244/+264超出bin_size 76, 疑hexrays错型或折叠加挂, 留L-TAILADDR批次复核"
   },
   "0x00445910": {
    "name": "SetTargetDistance",
@@ -210,7 +139,7 @@
    "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
   },
   "0x00450d00": {
-   "name": "ShowWindow",
+   "name": "ShowClipped",
    "ordinal": 0,
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
    "evidence_level": "unverified",
@@ -227,7 +156,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int a1)"
+   "signature": "void __thiscall(int a1)",
+   "semantic_name": "RoleCameraCtrl::ShowClipped(int)",
+   "name_note": "C10重裁定20261116链律: slot0位(UIWnd系ShowClipped位) + 体=剪裁态检查(+52)+slot6调OnMessage(1000,flags,0)=ShowClipped模式; 原名ShowWindow=体读数误名"
   },
   "0x0051bb50": {
    "name": "InitViewSlots",
@@ -353,12 +284,12 @@
    ]
   }
  ],
- "base_size": 8,
+ "base_size": 72,
  "bases": [
   {
-   "name": "UIWnd",
+   "name": "UIFrameWnd",
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): 表含0x445c10/0x445b90双UIWnd值; G2审计恢复"
+ "bases_note": "重裁定20261116: InitFrameUI体首行UIFrameWnd::UIFrameWnd(this)=基类构造直调(继承铁证); 尺寸算术UIFrameWnd(72)+4=76=bin_size(CG_Scene跨度三方互证); 原bases=[UIWnd]与版面矛盾(C10a抓捕)"
 }

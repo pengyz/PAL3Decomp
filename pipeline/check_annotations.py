@@ -1357,6 +1357,36 @@ def check_canonical_contract():
                 errors.append('CANON:C10:%s:%s:c %s.%s@+%d 与 %s@+%d(size %d) 重叠(非union) — 布局冲突'
                               % (_cls10, _nm10, _cls10, _nm10, _o10, _prev10[2], _prev10[0], _prev10[1]))
             _prev10 = (_o10, _sz10, _nm10)
+    # [C11 2026-11-17 复核P0教训] bases变更棘轮门禁: bases声明只能随ctor/dtor链
+    #   证据变更(4例P0误摘教训: "未找到"证无效, 继承定谳必须基构造直调+双方存表律)。
+    #   快照=批准态; 与快照不符的类必须落 bases_adjudications.json 条目
+    #   (含ctor_evidence/dtor_evidence), 否则硬错拒绝。
+    _snap_path = os.path.join(root, 'data', 'status', 'bases_snapshot.json')
+    _adj_path = os.path.join(root, 'data', 'status', 'bases_adjudications.json')
+    try:
+        _snap11 = json.load(open(_snap_path, encoding='utf-8')).get('snapshot') or {}
+    except Exception:
+        _snap11 = None  # 快照缺失=门禁未初始化, 不拦(初始化由脚本落)
+    if _snap11 is not None:
+        try:
+            _adj11 = json.load(open(_adj_path, encoding='utf-8')) or {}
+        except Exception:
+            _adj11 = {}
+        for _fp11 in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+            _cls11 = os.path.basename(_fp11)[:-5]
+            try:
+                _d11 = json.load(open(_fp11, encoding='utf-8'))
+            except Exception:
+                continue
+            _cur11 = [(b.get('name') if isinstance(b, dict) else b)
+                      for b in (_d11.get('bases') or [])]
+            if _cur11 != (_snap11.get(_cls11) or []):
+                _a11 = _adj11.get(_cls11) or {}
+                if not _a11.get('ctor_evidence'):
+                    errors.append(
+                        'CANON:C11:%s bases变更无裁决条目: 快照%s → 现%s; '
+                        '须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)'
+                        % (_cls11, _snap11.get(_cls11), _cur11))
     # [N11s 2026-11-16 用户裁定] structs注解键形门禁: 不合法十六进制全ban。
     #   地址键 ^0x[0-9a-f]{8}$ 小写8位(external+external:true=合法豁免);
     #   known_members键 ^0x[0-9a-f]+(_N)?$ 偏移小写hex。

@@ -2,78 +2,6 @@
  "name": "CCBStage",
  "binary_size": 673988,
  "known_members": {
-  "0x0": {
-   "name": "m_pCBSystem",
-   "type": "CCBSystem *",
-   "offset": 0,
-   "evidence_level": "unverified"
-  },
-  "0x4": {
-   "name": "m_pRoleState",
-   "type": "CCBRoleState *",
-   "offset": 4,
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_pEditor",
-   "type": "CCBEditor *",
-   "offset": 8,
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_pCam",
-   "type": "CCBStageCam *",
-   "offset": 12,
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_pCamControl",
-   "type": "CCBCamControl *",
-   "offset": 16,
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_pScene",
-   "type": "CCBStageScene *",
-   "offset": 20,
-   "evidence_level": "unverified"
-  },
-  "0x18": {
-   "name": "m_pRole",
-   "type": "CCBStageRole *[11]",
-   "offset": 24,
-   "evidence_level": "unverified"
-  },
-  "0x44": {
-   "name": "m_TempStorageNGH",
-   "type": "Actor *",
-   "offset": 68,
-   "evidence_level": "unverified"
-  },
-  "0x48": {
-   "name": "m_NGHVariance",
-   "type": "Actor *",
-   "offset": 72,
-   "evidence_level": "unverified"
-  },
-  "0x4c": {
-   "name": "m_TempStorageWPX",
-   "type": "Actor *",
-   "offset": 76,
-   "evidence_level": "unverified"
-  },
-  "0x50": {
-   "name": "m_WPXVariance",
-   "type": "Actor *",
-   "offset": 80,
-   "evidence_level": "unverified"
-  },
-  "0x54": {
-   "name": "m_pDisplayChain",
-   "type": "CCBDisplayChain *",
-   "offset": 84,
-   "evidence_level": "unverified"
-  },
   "0x58": {
    "name": "m_pShadow",
    "type": "CCBStageShadow *",
@@ -546,7 +474,7 @@
    "signature": "int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4, int nVal5)"
   },
   "0x004fb9a0": {
-   "name": "CCBStage",
+   "name": "InitFromDescriptor",
    "evidence_level": "unverified",
    "source": "[R95 修 2026-10-23·A 级] objdump mov %ebx,%eax 返回 this（指针）",
    "semantic_sig": "CCBStage *",
@@ -562,7 +490,9 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "CCBStage * __thiscall(int pCBSystem)"
+   "signature": "CCBStage * __thiscall(int pCBSystem)",
+   "semantic_name": "CCBStage::InitFromDescriptor(int)",
+   "name_note": "角色归正20261117: 非ctor——体=rep stosd清零+[0]=arg(caller-delivered表)+[4]=[arg+0x10](描述符初始化模式, 本机capstone实证); 原误名CCBStage(与真ctor 0x51D710让位)"
   },
   "0x004fb9f0": {
    "name": "SetData",
@@ -2468,9 +2398,9 @@
    "signature": "int __thiscall()"
   },
   "0x0051d710": {
-   "name": "Initialize",
+   "name": "CCBStage",
    "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断",
+   "name_note": "ctor归正20261117: 体=call 0x43DCD0(UIListBox ctor)+30+字段依序构造(0x168/0x200/0x298/0x330[6×0x98]...)+存表0x5705D0(复核实证); 原名Initialize=体读数",
    "semantic_sig": "CCBProtectWindow *",
    "sig_model": {
     "return": "CCBProtectWindow *",
@@ -2479,20 +2409,8 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "CCBProtectWindow * __thiscall()"
-  },
-  "0x0051dda0": {
-   "name": "ShowWindow",
-   "evidence_level": "unverified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   "signature": "CCBProtectWindow * __thiscall()",
+   "semantic_name": "CCBStage::CCBStage(void)"
   },
   "0x0050da90": {
    "name": "UpdateSlotTimer",
@@ -5024,9 +4942,10 @@
  "note": "[R50 第三族曝光 2026-10-21·analyzer] B 段（0x4DFF90 AssignSlotData@CCBStage）体内实证this+0 起 **280B 步进数组**（35i 缩放 · +0 头指针 · +0x14 状态码=6 · 索引@+0x10）⇒ CCBStage 缺口结构面 **≥3 类数组**（208B×2 + 280B×1）。⚠️ 与 208B 两区**不同族**（+0x14 在 208B 族=ptr 对 · 在 280B 族=状态码）⇒ 须独立结构体。 | [R58 第五族曝光 2026-10-21·analyzer] **896B 网格数组**（7i×shl7 缩放）· 元素≤256（`and 0xff` 实录）· +0xE0/+0x18D 字段 · 用户=IsTileInBounds/SetRoleGridPosition/CheckTileScript 域（tile/role 网格）· ⚠️ **幂等式前缀 ≠ 同族**（7i 缩放前缀通用但收口分族：×8=280 · ×128=896 · ×4=29）",
  "bases": [
   {
-   "name": "UIWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): 表slot0=UIWnd dtor 0x445e70指纹; G2审计恢复"
+ "bases_note": "真基链重建20261117(复核P0-3): bases=[UIListBox]。铁证=真ctor 0x51D710call 0x43DCD0(UIListBox ctor)@0x51D732+真dtor 0x51DDA0 call 0x43DD10(UIListBox dtor)@0x51DFB4; 原0x4FB9A0=blob reset非ctor(误名CCBStage)",
+ "base_size": 72
 }

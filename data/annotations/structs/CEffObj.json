@@ -260,11 +260,6 @@
    "date": "2026-11-15"
   }
  ],
- "bases": [
-  {
-   "name": "Object",
-   "offset": 0
-  }
- ],
- "bases_note": "[对抗核验降级 2026-11-16] bases→Object证据降级: 声称的slot2指纹不存在(CEffObj slot2=0x4c0610自有ResetState; 0x4af760在slot5/9/11=跨层级大折叠no-op共享址, 非位置继承证据); CEffObj真实基类待考古(0x56F62C写者归属+纯虚slot7语义)。保留bases=低置信工作假设, 门禁不受影响(推导按地址集)"
+ "bases": [],
+ "bases_note": "基声明摘除20261116(置信HIGH~95%): 证据1尺寸算术12<56不可内嵌; 证据2派生类CEffAction ctor双写[eax]=主表+[eax+0xC]=次表(复核员实证) → MI第二基@0xC=第一基恰占12字节=CEffObj真尺寸; 原bases=[Object(56)]为census错挂"
 }

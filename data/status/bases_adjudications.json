@@ -1,0 +1,38 @@
+{
+ "CCBRoleState": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x456AB0 call 0x43DCD0(UIListBox ctor)@0x456ACE + 存表0x56B364@0x456B36",
+  "dtor_evidence": "0x456B80→0x43DD10→0x445B40链",
+  "verdict_by": "复核agent_34c483be+本机capstone验证"
+ },
+ "CCBStage": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x51D710 call 0x43DCD0@0x51D732 + 存表0x5705D0@0x51DD45",
+  "dtor_evidence": "0x51DDA0 call 0x43DD10@0x51DFB4",
+  "verdict_by": "复核agent_34c483be"
+ },
+ "UIListBox": {
+  "bases": [
+   "UIWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x43DCD0 call 0x445AA0(UIWnd ctor) + 存表0x56AD20(本机capstone)",
+  "dtor_evidence": "0x43DD10 存表→0x43DE40→0x445B40",
+  "verdict_by": "本机capstone验证"
+ },
+ "RoleCameraCtrl": {
+  "bases": [
+   "UIFrameWnd"
+  ],
+  "date": "2026-11-16",
+  "ctor_evidence": "0x450A60 call 0x43BB70(UIFrameWnd ctor)@0x450A7D + 存表0x56B120@0x450A96",
+  "dtor_evidence": "~RoleCameraCtrl 0x450AD0→0x43BBB0基dtor",
+  "verdict_by": "复核agent_34c483be"
+ }
+}

@@ -1,167 +1,12 @@
 {
  "name": "UIListBox",
- "binary_size": 1208,
+ "binary_size": 72,
  "known_members": {
   "0x44": {
    "name": "m_selcolor",
    "type": "gbColorQuad",
    "source": "annotation",
    "evidence_level": "unverified"
-  },
-  "0x48": {
-   "name": "m_showGrayBk",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x4c": {
-   "name": "m_hasKeyCtrl",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x50": {
-   "name": "m_scrollbar",
-   "type": "UIScrollBar",
-   "source": "annotation",
-   "evidence_level": "unverified",
-   "audit": {
-    "level": "contradicted",
-    "method": "use_site_enumeration",
-    "sites_checked": 294,
-    "sites_consistent": 0,
-    "sites_contradicted": 1,
-    "contradictions": [
-     {
-      "file": "Script/PalScript.cpp",
-      "line": 3455,
-      "expected": "UIScrollBar",
-      "actual": "UIWnd",
-      "detail": "cast 型别不一致"
-     }
-    ],
-    "timestamp": "2026-11-12"
-   }
-  },
-  "0x1b0": {
-   "name": "m_numcol",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x1b4": {
-   "name": "m_column",
-   "type": "UILBColumn[8]",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x454": {
-   "name": "m_itemheight",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x458": {
-   "name": "m_fontsize",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x45c": {
-   "name": "m_firstshow",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x460": {
-   "name": "m_onsel",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x464": {
-   "name": "m_locksel",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x468": {
-   "name": "m_scrollRc",
-   "type": "tagRECT",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x478": {
-   "name": "m_pbkpic",
-   "type": "gbTexture *",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x47c": {
-   "name": "m_pbkpicInfo",
-   "type": "_PlugInfo *",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x480": {
-   "name": "m_selpic",
-   "type": "gbTexture *",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x484": {
-   "name": "m_selpicInfo",
-   "type": "_PlugInfo *",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x488": {
-   "name": "m_seloffset",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x48c": {
-   "name": "m_seloffsetL",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x490": {
-   "name": "m_seloffsetR",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x494": {
-   "name": "m_scrollW",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x498": {
-   "name": "m_seltexcolor",
-   "type": "gbColorQuad",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x49c": {
-   "name": "m_itemoffset",
-   "type": "tagPOINT",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x4a4": {
-   "name": "m_movesel",
-   "type": "int",
-   "source": "PDB+PAL3_offset_adjusted",
-   "evidence_level": "unverified"
-  },
-  "0x4a8": {
-   "name": "m_rowenable",
-   "type": "unsigned char[16]",
-   "source": "PDB+PAL3_offset_adjusted | [批1-5#1 A 级重定型 2026-10-15] std::vector<int>→unsigned char[16]：① UIListBox=1208 定案（objdump `68 b8 04 00 00/push 0x4b8; call new` ×2 @519d05/51a558）⇒ +0x4A8 尾块 16B（0x4A8+16=0x4B8 恰好到类尾）⇒ 不可能是 Actor(820B) 整体；② 访问形=字节/双字下标（43e748 `lea 0x4a8(%esi)` 取址 + 解引用 [edi+4]/[edi+8]；decomp 渲染 `&this->m_rowenable[8]`/`&this->m_rowenable[4]` = +0x4B0/+0x4AC）⇒ 16B 字节簇；③ 被 call 0x5372d0 以 this=&成员 调用（体读 +4/+8/+0xC begin/end/cap 三元组=actarray 增长形，匹配 Actor.m_actarray_* 但该簇独立 16B；簇的语义类未定 ⇒ 按 workaround 规则用 char 簇表不透明区）。修 3 错：C2440(vector→Actor*) 单根 + C2227/C2653 级联（Actor.h 实际已 include，见 UIListBox.cpp L5）。⚠️ 原 source=PDB 单证违规（PDB+PAL3_offset_adjusted）已由 A 级证据替换",
-   "evidence_level": "A"
   }
  },
  "methods": {
@@ -1473,7 +1318,7 @@
   }
  ],
  "base_size": 68,
- "size_note": "heap alloc says 1760 (vtable-proven ctor 0x527950, 0x5706EC table) BUT UIRoleSelect embeds a 1208-byte region at +0x58 (bounded by m_bk@0x510) whose accesses break at 1760. UIListBox family likely has base(1208)/derived(1760) split - finding recorded round 6b. Held at 1208 pending family split resolution.",
+ "size_note": "chimera矫正20261117: 1208→72。证据=ctor 0x43DCD0仅3指令(call 0x445AA0UIWnd ctor+存表0x56AD20, 本机capstone实证, 无字段构造) + CCBRoleState ctor own字段写从0x48起(基区恰72B旁证); 原1208=chimera(72B骨架+他类字段)",
  "_attribution_migrations": [
   {
    "0x0046B4B0": {
