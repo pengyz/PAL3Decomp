@@ -1,0 +1,3 @@
+#pragma once
+#include "CTaskTpl_tagEffTaskParam__unsigned_long____thiscall_CEffAction_____unsigned_long__.h"
+typedef CTaskTpl<tagEffTaskParam,_CEffAction_cb> CTaskTpl_tagEffTaskParam_CEffAction;
