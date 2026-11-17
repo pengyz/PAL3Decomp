@@ -3478,6 +3478,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             8: "*(__int64*)this = (__int64)v",
         }.get(_isd_size)
         if _ctor_body:
+            if os.environ.get('PAL3_DEBUG_SCALAR') and cls_name == 'SaleUI_SortData':
+                sys.stderr.write('DEBUG_SCALAR %s: seen=%r\n' % (cls_name, sorted(seen_methods)))
             if (cls_name + '()') not in seen_methods:
                 lines.append("    // Scalar-wrapper: ctors for IDA (Cls)int casts (no init code)")
                 lines.append("    %s() {}" % cls_name)
