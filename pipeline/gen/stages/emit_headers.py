@@ -3623,11 +3623,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _seen_decl = set()
     _deduped = []
     for _l in lines:
-        _names = re.findall(r'([~A-Za-z_]\w*)\s*\(', _l.split('//')[0])
-        _names = [n for n in _names if n not in _kw]
+        # [C2440根因修 2026-11-17 复核agent_f67c4030] 键=名字+紧随参数组:
+        # 同名不同参是合法C++重载(Cls()/Cls(int)转换构造对被纯名键吞掉=
+        # 11类C2440根因实证+13处#pragma pack失衡顺带根治); 同名同参仍拦(保C2535/C2084职责)
+        _names = re.findall(r'([~A-Za-z_]\w*)(\s*\([^()]*(?:\([^()]*\)[^()]*)*\))', _l.split('//')[0])
+        _names = [(n, (p or '').replace(' ', '')) for n, p in _names if n not in _kw]
         if any(_n in _seen_decl for _n in _names):
-            continue  # 重复同名声明, 跳过
-        _seen_decl.update(_names)
+            continue  # 重复同名同参声明, 跳过
+        _seen_decl.update(_n for _n, _p in _names)
         _deduped.append(_l)
     lines = _deduped
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
