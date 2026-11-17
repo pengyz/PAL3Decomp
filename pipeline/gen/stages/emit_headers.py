@@ -1702,13 +1702,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     _pod_dm = [m for m in (ida_struct or {}).get('data_members') or []
                if not str(m.get('name', '')).startswith('_tail')]
     _pod_no_vt = not (ida_struct or {}).get('vtables')
-    _pod_no_methods = not methods
-    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt and _pod_no_methods:
+    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt:
         _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
         _pod_type = _pod_map.get(_pod_size, 'DWORD')
         _pod_td = 'typedef %s %s;' % (_pod_type, cls_name)
         _POD_TYPEDEFS.append(_pod_td)
-        return '#pragma once\n// POD scalar: centralized in scalar_typedefs.h\n#include "pal3/src/scalar_typedefs.h"\n'
+        return '#pragma once\n// POD scalar: centralized in scalar_typedefs.h\n#include "scalar_typedefs.h"\n'
     lines.append('// Auto-generated: %s' % (
         template_expr if template_expr else cls_name))
     # standalone-compile base: Win32 primitives + Hex-Rays ttl aliases
@@ -5223,6 +5222,27 @@ def generate_globals_cpp():
     out_path = OUTPUT_DIR / "globals.cpp"
     out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print("  Globals: %d in globals.cpp" % inc)
+
+    # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
+    if _POD_TYPEDEFS:
+        _std_path = OUTPUT_DIR / "scalar_typedefs.h"
+        with open(_std_path, 'w', encoding='utf-8') as _f:
+            _f.write('#pragma once\n')
+            _f.write('// POD scalar typedefs (centralized management)\n')
+            for _td in sorted(set(_POD_TYPEDEFS)):
+                _f.write(_td + '\n')
+        print("  Scalar typedefs: %d in scalar_typedefs.h" % len(set(_POD_TYPEDEFS)))
+
+
+    # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
+    if _POD_TYPEDEFS:
+        _std_path = OUTPUT_DIR / "scalar_typedefs.h"
+        with open(_std_path, 'w', encoding='utf-8') as _f:
+            _f.write('#pragma once\n')
+            _f.write('// POD scalar typedefs (centralized management)\n')
+            for _td in sorted(set(_POD_TYPEDEFS)):
+                _f.write(_td + '\n')
+        print("  Scalar typedefs: %d in scalar_typedefs.h" % len(set(_POD_TYPEDEFS)))
 
 
 def run_header_generation():

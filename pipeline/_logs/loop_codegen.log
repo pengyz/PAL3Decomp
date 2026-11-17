@@ -14,6 +14,8 @@ Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   Globals: 2952 in globals.h
   Globals: 2844 in globals.cpp
   Globals: 2844 in globals.cpp
+  Scalar typedefs: 108 in scalar_typedefs.h
+  Scalar typedefs: 108 in scalar_typedefs.h
 Collecting functions from decomp...
   Classes with methods: 220
   Free functions: 200
@@ -32,10 +34,16 @@ Generated 221 .cpp files (3525 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 98/222 ok | own-fail 124 | imported-only 0  (24s)
+S2 cpp: 0/222 ok | own-fail 136 | imported-only 86  (39s)
 Top root-cause headers (files blocked):
-  pal3/src/Combat/Combat.h                      blocks   7 cpp
-  pal3/src/Misc/SaleUI_SortData.h               blocks   6 cpp
+  pal3/src/globals.h                            blocks 222 cpp
+  pal3/src/UI/UIScene.h                         blocks 222 cpp
+  include/pal3/gen/_ns_udts.h                   blocks 222 cpp
+  pal3/src/Misc/TextureLibDataBase.h            blocks 222 cpp
+  pal3/src/free_functions.h                     blocks 152 cpp
+  pal3/src/Combat/CCBStage.h                    blocks  56 cpp
+  pal3/src/Combat/CCBSystem.h                   blocks  26 cpp
+  pal3/src/Data/CGameData.h                     blocks  20 cpp
   pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
