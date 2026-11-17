@@ -97,10 +97,18 @@ def _load_fold_carrier_aliases():
                 'fold_carrier_aliases: %s.%s 校验失败(注解cc=%r≠thiscall)'
                 '——声明漂移(类/方法已改名或除名?)，先修声明再跑' % (_qual, _name, _cc))
         _out[_name] = _qual
-    # 声明通道: free_func_sigs → free_functions.h 自动覆盖（既有通道，零新状态）
+    # 声明通道: free_func_sigs → free_functions.h 自动覆盖（既有通道，零新状态）。
+    # [声明碰撞守卫] 同名已有**异形**声明(注解T27/decomp来源) ⇒ 头声明与别名定义
+    # 签名失配(C2556/C2371)。同形=幂等复跑, 直接复用; 异形=fail-loud人工裁定。
     for _name in _out:
-        if _name not in _store.free_func_sigs:
-            _store.free_func_sigs[_name] = 'void __cdecl %s(void)' % _name
+        _my_decl = 'void __cdecl %s(void)' % _name
+        _ex = _store.free_func_sigs.get(_name)
+        if _ex is not None and _ex != _my_decl:
+            raise RuntimeError(
+                'fold_carrier_aliases: %s 已有异形声明(%r ≠ %r)——头声明与'
+                '别名定义将失配。裁定同一符号后统一声明' % (_name, _ex, _my_decl))
+        if _ex is None:
+            _store.free_func_sigs[_name] = _my_decl
     _atexit_member_aliases.update(_out)
     return _out
 
@@ -1092,6 +1100,16 @@ def generate_free_funcs_cpp(funcs, atexit_aliases=None):
     # 注解"retn空实现", 槽3/4/6/7共享）。条目来自声明文件（数据层决策）。
     # 类循环先于此运行 ⇒ 重写已完成。
     if atexit_aliases:
+        # [定义碰撞守卫 2026-11-17] decomp自由函数若已有同名体（collect产出funcs），
+        # 其定义在上方已发射 ⇒ 别名再定义=C2084重定义。同名的既有体即折叠符号本尊，
+        # 直接复用（跳过别名定义），并在读取器校验环节报文要求人工裁定。
+        _existing_free_names = {f.get('name') for f in funcs}
+        _collided = sorted(_a for _a in atexit_aliases if _a in _existing_free_names)
+        if _collided:
+            raise RuntimeError(
+                'fold_carrier_aliases: 别名与decomp自由函数重名 %s——'
+                '同址双定义(C2084)。若系同一符号: 从声明文件移除（既有体即别名）；'
+                '若系异址撞名: 别名须改名并重新裁定' % _collided)
         lines.append("")
         lines.append("// Address-bound free aliases: atexit-referenced empty member")
         lines.append("// functions (MSVC6 forbids qualified non-static member names")
