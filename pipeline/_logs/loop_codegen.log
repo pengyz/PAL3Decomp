@@ -19,7 +19,7 @@ Collecting functions from decomp...
   Free functions: 201
 [L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
-Generated 221 .cpp files (3528 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 221 .cpp files (3526 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 2 files
   Effect/: 18 files
@@ -32,9 +32,10 @@ Generated 221 .cpp files (3528 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 90/222 ok | own-fail 126 | imported-only 6  (26s)
+S2 cpp: 98/222 ok | own-fail 124 | imported-only 0  (27s)
 Top root-cause headers (files blocked):
-  pal3/src/Combat/CCBStage.h                    blocks  56 cpp
+  pal3/src/Combat/Combat.h                      blocks   7 cpp
+  pal3/src/Misc/SaleUI_SortData.h               blocks   6 cpp
   pal3/src/Misc/UIRoleSelectDialog.h            blocks   4 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 

@@ -3094,6 +3094,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         _cur_fb2 = _get_ida_structs().get(_nb) or {}
             if not _nm:
                 _nm = (_m0 or {}).get('name') or ('slot_%d' % _vi)
+            # [dtor判定前置 2026-11-17 复核P0-C1] ~Cls/_scalar_dtor形必须先于合法标识符
+            # 守卫处理——守卫把'~UIWnd'改写slot_5导致dtor分支死代码(C2555×56根因)。
+            # dtor槽发射析构声明后continue, 永不进守卫/签名链。
+            _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', str(_nm) or '')
+            if _dtor_form0:
+                lines.append("    virtual ~%s();" % cls_name)
+                continue
             # [合法标识符守卫 2026-11-14] 槽名带作用域前缀(旧普查'CCBPanelSlot::X'形)
             # = 非法C++标识符 ⇒ 剥前缀取尾段; 剥后非标识符 ⇒ 回退slot_{位置}
             if '::' in str(_nm):
@@ -3132,19 +3139,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         _sg = '%s __thiscall()' % _ret_vote
                     else:
                         _sg = _base_sig or 'void __thiscall()'
-            _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', _nm or '')
-            if _dtor_form0 and _nm == '~' + cls_name:
-                # [dtor槽实际位 2026-11-17] 本二进制删除式dtor位=slot5(非slot0旧模型):
-                # 槽名~Cls → 发射析构声明(virtual ~Cls();)——删除式dtor由编译器生成,
-                # C++层唯一合法形态=析构声明; methods循环同名跳过防双声明
-                lines.append("    virtual ~%s();" % cls_name)
-                continue
-            if _dtor_form0:
-                # 非~Cls形dtor槽(_scalar_dtor_NNNN残留名): 同为dtor位, 发射析构声明
-                lines.append("    virtual ~%s();" % cls_name)
-                continue
-            if _vi == 0 and (_will_inject_vptr and _nm == '~' + cls_name):
-                continue  # slot0旧模型兜底
+            # [dtor已在守卫前发射并continue——此处不可达]
             _ret0, _cc0, _par0, _ret_right0 = parse_signature(_sg)
             _ret0 = re.sub(r'\bvirtual\b', '', _ret0).strip()
             # [this泄漏规范化 2026-11-14] Hex-Rays 泄漏的显式 this 形态两种:

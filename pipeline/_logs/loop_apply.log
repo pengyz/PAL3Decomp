@@ -2,16 +2,13 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 -> OK: annotations applied
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **4 个**
-    GRPinput                 size=10584    无 virtual、无 +0x0 vptr 也无 _gap_000
-    PtrArray                 size=16       无 virtual、无 +0x0 vptr 也无 _gap_000
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
-    ScreenEffect             size=24       无 virtual、无 +0x0 vptr 也无 _gap_000
 [A] PASS：没有任何 code 位置的 __vftable
 [B] PASS：122 个 sub_ 符号的声明/调用形参数全部一致（另 96 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 4；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py export

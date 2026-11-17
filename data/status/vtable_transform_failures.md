@@ -1007,3 +1007,4 @@
 | `UIProgressBar::Update` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)*p_m_progress + 20))(*p_m_progress)` |
 | `UIProgressBar::Update` | inline | `int` | 24 | self_arg_mismatch | `(*(void ( **)(int, unsigned int, int, int, struct gbVec3D *, int *))(*(_DWORD *)m_pfather + 24))( 1013, this->m_id, v17, v42, v45, v50)` |
 | `UITitle_ArcSave::Update` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, int, int))(*(_DWORD *)this->m_YesNo.m_childs.m_needscriptdel + 8))( this->m_YesNo.m_childs.m_needscriptdel, p, nVal)` |
+| `EffCallBackNode::UpdatePost` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
