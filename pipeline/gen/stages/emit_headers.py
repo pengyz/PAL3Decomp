@@ -646,6 +646,12 @@ def _family_vote_sig(votes):
     return None
 
 
+
+def _json_dump_line(s):
+    import json as _j
+    return _j.dumps({'line': s}, ensure_ascii=False) + '\n'
+
+
 def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     """返回该类的虚表 slot 短名列表（按 vtable 顺序，跨多张表去重）。
 
@@ -3619,20 +3625,30 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # [G1b 声明去重 2026-11-15 v2] 同名方法声明只保留第一条(防C2535/C2084)
     # v1缺陷: re.match 单token返回型假设——'const char * X(' / 'NODE * X(' / '~X(' 全漏检
     # (CEffSParticle slot14+methods双声明C2535实证) ⇒ findall 提取行内全部 标识符( 形态。
+    G1B_DROPPED = []
+    # [导出钩子 2026-11-17] run末尾可读取
     _kw = {'if', 'for', 'while', 'switch', 'return', 'sizeof', 'switch'}
     _seen_decl = set()
     _deduped = []
     for _l in lines:
-        # [C2440根因修 2026-11-17 复核agent_f67c4030] 键=名字+紧随参数组:
-        # 同名不同参是合法C++重载(Cls()/Cls(int)转换构造对被纯名键吞掉=
-        # 11类C2440根因实证+13处#pragma pack失衡顺带根治); 同名同参仍拦(保C2535/C2084职责)
-        _names = re.findall(r'([~A-Za-z_]\w*)(\s*\([^()]*(?:\([^()]*\)[^()]*)*\))', _l.split('//')[0])
-        _names = [(n, (p or '').replace(' ', '')) for n, p in _names if n not in _kw]
-        if any(_n in _seen_decl for _n in _names):
-            continue  # 重复同名同参声明, 跳过
-        _seen_decl.update(_n for _n, _p in _names)
-        _deduped.append(_l)
+        _names = re.findall(r'([~A-Za-z_]\w*)\s*\(', _l.split('//')[0])
+        _names = [n for n in _names if n not in _kw]
+        _dropped = any(_n in _seen_decl for _n in _names)
+        if _dropped:
+            # [迁移清单 2026-11-17] 被去重行全量记录——单循环改造的重复源清单
+            G1B_DROPPED.append(_l.strip()[:120])
+        else:
+            _seen_decl.update(_names)
+            _deduped.append(_l)
     lines = _deduped
+    # [单循环迁移清单 2026-11-17] 被去重行落盘(报告器产物)
+    if G1B_DROPPED:
+        try:
+            with open('data/status/g1b_dropped_lines_20261117.jsonl', 'a', encoding='utf-8') as _f:
+                for _dl in G1B_DROPPED:
+                    _f.write(_json_dump_line(_dl))
+        except Exception:
+            pass
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
     # [G1b non-slot declaration 2026-11-15 v2] 非槽自有方法头声明——插入类体闭合 }; 之前
