@@ -3542,7 +3542,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines = _rewritten
 
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
-    lines = [l for l in lines if '[G1b non-slot]' not in l]
     # [G1b 声明去重 2026-11-15 v2] 同名方法声明只保留第一条(防C2535/C2084)
     # v1缺陷: re.match 单token返回型假设——'const char * X(' / 'NODE * X(' / '~X(' 全漏检
     # (CEffSParticle slot14+methods双声明C2535实证) ⇒ findall 提取行内全部 标识符( 形态。
@@ -3571,7 +3570,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         except Exception:
             pass
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
-    lines = [l for l in lines if '[G1b non-slot]' not in l]
     # [G1b non-slot declaration 2026-11-15 v2] 非槽自有方法头声明——插入类体闭合 }; 之前
     # 事故复盘(AStarPathFinder.h C2588/C2146): v1 三缺陷——
     #   ①追加在类闭合 } 之后(全局作用域→C2588)  ②已声明探测正则漏检 ~dtor/多token返回(NODE * X())/unsigned __int8
