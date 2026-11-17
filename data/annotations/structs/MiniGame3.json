@@ -14,20 +14,17 @@
   "0x00535320": {
    "name": "Render",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00535c30": {
    "name": "LoadModels",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -47,26 +44,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(const char *pszModel1, const char *pszModel2, const char *pszModel3)"
+   }
   },
   "0x00533fd0": {
    "name": "SetCameraActive",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00535970": {
    "name": "PushPopStack",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -78,13 +71,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pStack)"
+   }
   },
   "0x00535f10": {
    "name": "RenderWithTransform",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -96,12 +87,8 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pStack)"
+   }
   }
- },
- "_verdicts": {
-  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MiniGame3@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"

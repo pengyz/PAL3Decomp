@@ -74,8 +74,6 @@
    "name": "AllocEffect",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "semantic_name": "CEffSParticle",
-   "semantic_sig": "void*",
    "sig_model": {
     "return": "void*",
     "cc": "thiscall",
@@ -83,12 +81,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void* __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0055434f",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x0055434f(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004d4f20": {
    "name": "~CEffSParticle",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -96,14 +97,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CEffSParticle(??1/??_G析构族); decomp文件=CEffSParticle_~CEffSParticlevoid_004d4f20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004d4fc0": {
    "name": "UpdateFrame",
    "ordinal": 5,
    "evidence_level": "chain_unified",
-   "semantic_name": "Create",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -116,15 +118,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int pType) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int pType) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004af760",
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004d51b0": {
    "name": "RenderEffectPass",
    "ordinal": 12,
    "evidence_level": "chain_unified",
-   "semantic_name": "Init",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -137,13 +141,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)",
-   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004af760",
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004d53e0": {
    "name": "Attach",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -155,16 +162,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004d5620": {
    "name": "GetEditorTaskDescription",
    "ordinal": 14,
    "source": "| [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
-   "semantic_name": "GetEffTypeData",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -177,12 +181,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "const char * __thiscall(int)"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004c0510",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004d56b0": {
    "name": "Render",
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -215,13 +222,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int *p_DWORD, int nVal4, int nVal5)",
    "name_note": " | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x004d5790": {
    "name": "SetTimeScale",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -237,14 +242,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(CEffSParticle *Block, char fTimeScale)"
+   }
   },
   "0x004d5860": {
    "name": "CreateTask",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_sig": "char *",
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
@@ -256,14 +259,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char * __thiscall(char p)"
+   }
   },
   "0x004d58d0": {
    "name": "GetEditorTaskDescription_58d0",
    "evidence_level": "unverified",
-   "semantic_name": "GetEditorTaskDescription",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -275,8 +275,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "const char * __thiscall(int nIndex)"
+   }
   },
   "0x004d4f00": {
    "name": "_scalar_dtor_4F00",
@@ -284,7 +283,6 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed",
-   "semantic_sig": "char *",
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
@@ -297,22 +295,23 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char * __thiscall(char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_4F00(??1/??_G析构族); decomp文件=CEffSParticle_scalar_dtor_4F00char_004d4f00 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004d5850": {
    "name": "Create_adjthunk",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004D4FC0）⇒ 目标名 Create 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004c2600": {
    "name": "UpdateDelta",
@@ -325,87 +324,30 @@
     "v2": "CEffMgr *"
    },
    "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): 唯一指针语境 this->m_pEM=((CEffMgr*)v2); *(float*)&v2 位读 retype 后仍合法",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004c2850": {
    "name": "Method",
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（_todo_4C2850）",
-   "semantic_name": "Method",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
-  },
-  "0x004c0650": {
-   "name": "Create",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "chain_unified",
-   "semantic_sig": "char",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "tagEffObjType *",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "char __thiscall(tagEffObjType *)",
-   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
-  },
-  "0x004d33a0": {
-   "name": "ResetState",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(int, int, int, int)"
+   }
   },
   "0x00408bd0": {
    "name": "DestroyEffect",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -413,89 +355,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
-  },
-  "0x004c0500": {
-   "name": "OnTest",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "char",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "char __thiscall()"
-  },
-  "0x004af760": {
-   "name": "Update",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "chain_unified",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "BOOL __thiscall(int)",
-   "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | Update链统一20261117: BOOL(int)——CEffAction真体return result+ABI 1参; slot9语义(CEff族); 修三源重建float残留"
-  },
-  "0x004c0510": {
-   "name": "GetEditorObjDescription",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "const char *",
-   "sig_model": {
-    "return": "const char *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "const char * __thiscall(int)"
-  },
-  "0x004c15d0": {
-   "name": "UpdateParticles",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x0055434f": {
-   "name": "v2_slot_1",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00401800",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   }
  },
  "vtables": [

@@ -20,8 +20,6 @@
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=SetBlendMode+UpdateFadeOut 域 | store×2] 交互面[淡出混合更新] 判定 ✅名实相符（UpdateFadeOut） | multiclaim 裁决 2026-11-03: 败于 PalScript（成员实访独占 uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "UpdateFadeOut",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -37,36 +35,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int, int)"
-  },
-  "0x00438530": {
-   "name": "IsFadeDone",
-   "semantic_name": "IsFadeDone",
-   "name_note": "G2条目补齐(PalScript计时器族): 体证据: return this[16]==0(修饰名PalScriptFadeInTimer::IsFadeDone)",
-   "semantic_sig": "BOOL",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "BOOL __thiscall()"
-  },
-  "0x00434d50": {
-   "name": "~PalScriptFadeOutTimer",
-   "semantic_name": "~PalScriptFadeOutTimer",
-   "name_note": "G2法证(dtor律): 表slot0=删除式dtor位(MSVC律), 27表族ICF折叠共享址0x408bd0/同族址; 零decomp不阻命名(位置律即证据)",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "vtables": [
@@ -76,7 +45,11 @@
    "slots": [
     {
      "addr": "0x00434d50",
-     "name": "~PalScriptFadeOutTimer"
+     "name": "~PalScriptFadeOutTimer",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     },
     {
      "addr": "0x00438530",
@@ -88,13 +61,16 @@
     },
     {
      "addr": "0x00434d50",
-     "name": "~PalScriptFadeOutTimer"
+     "name": "~PalScriptFadeOutTimer",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data +ctor 写点 Op_CombatNotGameOve+44；方法语义面:UpdateFadeOut(float)=累加器 +flag(this+0x10)==0 判；交互模式面:淡出过渡等待"
   }
  ],
- "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
  "binary_size": 20,
  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

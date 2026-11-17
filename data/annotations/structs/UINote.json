@@ -19,7 +19,6 @@
   "0x004450a0": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -43,14 +42,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(int id, int nVal, int nVal2, char *tex)"
+   }
   },
   "0x0052afc0": {
    "name": "RenderIfVisible",
    "_misattrib_evidence": "max_offset=256>class_size=68",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -62,13 +59,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(gbMatrixStack *pMatrixStack)"
+   }
   },
   "0x00528d30": {
    "name": "GetEntryPtr",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -80,14 +75,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nIndex)"
+   }
   },
   "0x0052b030": {
    "name": "CallVtableMethod",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -99,13 +92,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(double pData)"
+   }
   },
   "0x0052aff0": {
    "name": "RenderWithStack",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -117,8 +108,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pStack)"
+   }
   }
  },
  "base_size": 72,

@@ -91,7 +91,6 @@
   "0x004a1410": {
    "name": "~UIRoleDialog",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -99,14 +98,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UIRoleDialog(??1/??_G析构族); decomp文件=UIRoleDialog_~UIRoleDialogvoid_004a1410 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004bef50": {
    "name": "~UIWnd",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -114,13 +115,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UIWnd(??1/??_G析构族); decomp文件=ScreenEffectMgr_UIWndvoid_004bef50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004a1a80": {
    "name": "Render",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_sig": "void *__thiscall",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -128,15 +131,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "semantic_name": "UIRoleDialog::Render",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RemoveChild=体读数命名 | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=0 (RET字节=硬证据)"
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RemoveChild=体读数命名 | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=0 (RET字节=硬证据)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004a1aa0": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -153,9 +158,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_name": "UIRoleDialog::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessFrame=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessFrame=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004a13f0": {
    "name": "_scalar_dtor_13F0",
@@ -163,7 +171,6 @@
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIRoleDialog（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56E190）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "UIItem *",
    "sig_model": {
     "return": "UIItem *",
     "cc": "thiscall",
@@ -180,13 +187,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "UIItem * __thiscall(void *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_13F0(??1/??_G析构族); decomp文件=UIRoleDialog_scalar_dtor_13F0void_char_004a13f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004a1d10": {
    "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -207,15 +216,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
-   "semantic_name": "UIRoleDialog::OnMessage",
-   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnCommand=体读数命名 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C9级联正名20261116: slot6位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名OnMessage(基类同槽); 原名OnCommand=体读数命名 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004a12f0": {
    "name": "UIRoleDialog",
    "_attribution_evidence": "ctor stores own vtable 0x56E190 at this+0 (0x4a13c1); vtable slots = UIRoleDialog::RemoveChild/_sdtor/OnCommand/ProcessFrame (func_bounds); PDB 名 Refresh@ARC_PlayerAtt 为误归属 ✗",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -223,15 +234,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UIRoleDialog(??0构造); decomp文件=UIRoleDialog_UIRoleDialogvoid_004a12f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004a14c0": {
    "name": "HideAll",
    "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "ordinal": 3,
    "evidence_level": "chain_unified",
-   "semantic_name": "HideAll",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -239,8 +251,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": " | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": " | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   }
  },
  "vtables": [

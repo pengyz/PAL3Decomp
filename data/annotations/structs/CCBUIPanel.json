@@ -358,7 +358,6 @@
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -366,13 +365,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_3E70(??1/??_G析构族); decomp文件=CCBUIPanel_scalar_dtor_3E70void_00453e70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004460d0": {
    "name": "CCBUIPanel",
    "source": "| [签名层正交治理 2026-10-16] A返回型int*：int *__thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0PalScript/??0UIRoleDialog/??0TxtFile",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -380,14 +381,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCBUIPanel(??0构造); decomp文件=CCBUIPanel_CCBUIPanelvoid_004460d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0044a540": {
    "name": "OnMessage",
    "name_source": "IDA语义分析 2026-11-01 批7",
    "name_note": "剥壳定谳(验证pass): OnMessage: m_EmbedPlayerAtt+槽链名对齐实证 | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_name": "OnMessage_A540",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -408,28 +410,29 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00453d10": {
    "name": "Init",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "初始化（UIListBox ctor + ResetContainerState 链）",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00446200": {
    "name": "~CCBUIPanel",
    "source": "| [T119] decomp 命名形态定位+正名：ctor_6200（@0x446200）decomp 体=成员销毁序列（Destroy/PalScript::Cleanup/UIRoleDialog dtor 簇/UIListBox dtor）⇒ **真析构**（拷贝构造族假设证伪——T117 判据修正：ctor_* 名≠ctor 语义，须本体判读）⇒ 语义名 ~CCBUIPanel（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -437,14 +440,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CCBUIPanel(??1/??_G析构族); decomp文件=CCBUIPanel_~CCBUIPanelvoid_00446200 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00449980": {
    "name": "SetUserData",
    "_misattrib_evidence": "max_offset=364>class_size=96",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -456,8 +461,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x004461d0": {
    "name": "_scalar_dtor_61D0",
@@ -467,7 +471,6 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -480,40 +483,38 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal1)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_61D0(??1/??_G析构族); decomp文件=CCBUIPanel_scalar_dtor_61D0int_004461d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004462c0": {
    "name": "InitPanel",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00449b90": {
    "name": "FocusCurrentRole",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x0044a1b0": {
    "name": "Update",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -530,28 +531,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime st7_0, int)",
-   "semantic_name": "CCBUIPanel::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessInput=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=2 (RET字节=硬证据) | 标签基锚20261117→BOOL __thiscall(int st7_0, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名ProcessInput=体读数命名 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime st7_0): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=2 (RET字节=硬证据) | 标签基锚20261117→BOOL __thiscall(int st7_0, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c60",
+   "flags_evidence": "sig_model同名+同参数结构(CCBUI**deltatime,int)+基槽0x00445c60(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00454550": {
    "name": "RenderIfUnlocked",
    "evidence_level": "unverified",
-   "semantic_name": "RenderIfUnlocked",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00454560": {
    "name": "ProcessInputIfUnlocked",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -567,14 +567,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00449ab0": {
    "name": "CenterSlot",
    "_misattrib_evidence": "max_offset=18792>class_size=456",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -586,28 +584,24 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned int nSlotIdx)"
+   }
   },
   "0x00449c50": {
    "name": "UpdateSlotClipping",
    "_misattrib_evidence": "max_offset=608>class_size=160",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00449cf0": {
    "name": "UpdateSlotPositions",
    "_misattrib_evidence": "max_offset=18800>class_size=584",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -619,14 +613,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nVal)"
+   }
   },
   "0x00449e60": {
    "name": "EnsureSize",
    "_misattrib_evidence": "max_offset=18832>class_size=204",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -642,14 +634,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0044a180": {
    "name": "SetAllSlotsVisible",
    "_misattrib_evidence": "max_offset=608>class_size=160",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -661,13 +651,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 bVisible)"
+   }
   },
   "0x0044a4f0": {
    "name": "ActivateSlot",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -679,56 +667,47 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(unsigned int nSlotIdx)"
+   }
   },
   "0x004544f0": {
    "name": "UpdateButtonVisibility",
    "_misattrib_evidence": "max_offset=1416>class_size=352",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0048a170": {
    "name": "InitSlots",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a3ec0": {
    "name": "InitScrollState",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00449990": {
    "name": "HideAll",
    "source": "vtable_migrated | [C2511修 2026-11-13] this型 UIListBox**→CCBUIPanel*: 函数在CCBUIPanel.json=该类方法, this类型应为宿主类指针; C2511重载不新覆盖=同名异型冲突",
    "ordinal": 3,
    "evidence_level": "chain_unified",
-   "semantic_name": "CCBUIPanel::HideAll",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -736,14 +715,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00449c20": {
    "name": "Render",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名InitMagicWindows=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -751,9 +733,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "semantic_name": "CCBUIPanel::Render",
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00453e50": {
    "name": "_scalar_dtor_3E50",
@@ -761,7 +746,6 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "adjudication": "rejected",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -778,7 +762,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_3E50(??1/??_G析构族); decomp文件=scalar_dtor_3E50_00453e50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00454590": {
    "name": "OnMessage_4590",
@@ -786,7 +773,6 @@
    "evidence_level": "unverified",
    "adjudication": "rejected",
    "name_note": " | 2026-11-09 消歧: 与B面命名OnMessage_4590趋同(thiscall mov ecx,this实证)",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -806,8 +792,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   }
   }
  },
  "vtables": [

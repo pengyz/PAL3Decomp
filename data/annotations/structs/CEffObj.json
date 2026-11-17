@@ -22,8 +22,7 @@
    "slots": [
     {
      "addr": "0x004c0620",
-     "name": "slot_0",
-     "sig": null
+     "name": "slot_0"
     },
     {
      "addr": "0x004c0600",
@@ -91,22 +90,18 @@
    "name": "OnTest",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x004c0510": {
    "name": "GetEditorObjDescription",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "GetEditorObjDescription",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -118,35 +113,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "const char * __thiscall(int)"
-  },
-  "0x004af760": {
-   "name": "UpdateFrame",
-   "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址) | IDB类型载体定谳20261115: 一地址4槽4契约(UpdateFrame/Update/GetEffect/RenderEffectPass), IDB只能一个类型=retn 4字节语义(1栈参int); 头声明按槽位独立(emit逐位), 4个cpp定义共用此IDB类型(实施序③体合成)",
-   "evidence_level": "chain_unified",
-   "semantic_name": "Update",
-   "name_note": "; C2511修正: 对齐cpp定义void(int)(体=空no-op无反证) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(float)"
+   }
   },
   "0x004c0600": {
    "name": "Create",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
    "evidence_level": "chain_unified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -159,14 +131,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)",
    "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x004c0610": {
    "name": "ResetState",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -190,53 +160,32 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int, int, int, int)"
+   }
   },
   "0x00401800": {
    "name": "DestroyEffect",
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "DestroyEffect",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004c0620": {
    "name": "slot_0",
    "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
    "evidence_level": "binary_vtable_slot",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x0055434f": {
-   "name": "AllocEffect",
-   "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
-   "evidence_level": "binary_vtable_slot",
-   "declaration_only": true,
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void * __thiscall()",
-   "name_note": "; Fix3 purecall槽签回填: 13派生AllocEffect(void*)一致+G2 purecall定谳; 原pending→结构化(纯语义以cpp定义过渡, 正式pure标记待发射器支持)"
+   }
   }
  },
  "_adjudicated_tables": [

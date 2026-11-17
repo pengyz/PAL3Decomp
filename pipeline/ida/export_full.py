@@ -461,9 +461,12 @@ def main():
                                     _info['name'] = "%s::%s" % (_nt_full, _mn)
                                 _ann_funcs[_addr] = _info
             _set_count = 0
+            # [sig退役迁移 2026-11-17 T3] sig_model单源渲染(sm_text); structs条目
+            # signature已退役, 旧直读=空串→pre-pass对类方法全跳过(3199名失效病灶)
+            from pipeline.gen.annotation_view import sm_text as _sm_x
             for _addr_s, _info in _ann_funcs.items():
                 _name = _info.get('name', '')
-                _sig = _info.get('signature', '')
+                _sig = _sm_x(_info) or str(_info.get('signature') or '')
                 if '::' not in _name or not _sig:
                     continue
                 try:

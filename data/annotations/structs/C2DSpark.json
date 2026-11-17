@@ -127,7 +127,6 @@
   "0x004d5ab0": {
    "name": "C2DSpark",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -144,12 +143,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nClientWidth, int nClientHeight)"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=C2DSpark(??0构造); decomp文件=C2DSpark_C2DSparkint_int_004d5ab0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004d5dc0": {
    "name": "~C2DSpark",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -157,13 +158,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~C2DSpark(??1/??_G析构族); decomp文件=C2DSpark_~C2DSparkvoid_004d5dc0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004d5ec0": {
    "name": "CreateSingle",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -175,14 +178,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(const void *pSpark)"
+   }
   },
   "0x004d5f20": {
    "name": "CreateTrack",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -198,14 +199,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nx, int ny)"
+   }
   },
   "0x004d5f40": {
    "name": "SetEnableMouseTrack",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -221,14 +220,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int bEnable, int nVal)"
+   }
   },
   "0x004d6050": {
    "name": "CreateMore",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -252,41 +249,35 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int x, int y, int color, int nVal)"
+   }
   },
   "0x004d61a0": {
    "name": "CreateStars",
    "evidence_level": "unverified",
-   "semantic_sig": "_BYTE *",
    "sig_model": {
     "return": "_BYTE *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "_BYTE * __thiscall()"
+   }
   },
   "0x004d61c0": {
    "name": "DestroyAll",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004d6380": {
    "name": "Render",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -298,8 +289,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   }
  }
 }

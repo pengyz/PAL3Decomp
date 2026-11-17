@@ -1408,5 +1408,918 @@
    "answer": "深chimera立案: 151成员含全局地址成员dword_17AA450@0x1968, 成员末端6508>SceneMgr区间5444(m_nTodo_C059A0@0x1610类型RoleSystem值/指针存疑); 需独立定谳",
    "adjudicated": true
   }
- ]
+ ],
+ "entries": [
+  {
+   "addr": "0x00408bd0",
+   "owner": "CEffSParticle",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffSParticle",
+   "related_classes": [
+    "CEffAction"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00411b80",
+   "owner": "Object",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "Object",
+   "related_classes": [
+    "GameObject",
+    "ScriptObj"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00411bb0",
+   "owner": "Object",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "Object",
+   "related_classes": [
+    "GameObject",
+    "ScriptObj"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00411bd0",
+   "owner": "Object",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "Object",
+   "related_classes": [
+    "ScriptObj"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0041c710",
+   "owner": "CCBSystem",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBSystem",
+   "related_classes": [
+    "InputSystem"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00434d50",
+   "owner": "PalScriptBlendTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptBlendTimer",
+   "related_classes": [
+    "PalScript",
+    "PalScriptFadeOutTimer",
+    "PalScriptFadeInTimer",
+    "PalScriptProgressTimer",
+    "PalScriptWaitTimer"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00438100",
+   "owner": "PalScriptAnimTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptAnimTimer",
+   "related_classes": [
+    "PalScript",
+    "PalScriptProgressTimer",
+    "PalScriptWaitTimer"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00438110",
+   "owner": "PalScriptProgressTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptProgressTimer",
+   "related_classes": [
+    "PalScript"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00438190",
+   "owner": "PalScriptProgressTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptProgressTimer",
+   "related_classes": [
+    "PalScript"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004382a0",
+   "owner": "PalScriptWaitTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptWaitTimer",
+   "related_classes": [
+    "PalScript"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00438530",
+   "owner": "PalScriptFadeInTimer",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "PalScriptFadeInTimer",
+   "related_classes": [
+    "PalScriptFadeOutTimer"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043ad40",
+   "owner": "UIScenePanel",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIScenePanel",
+   "related_classes": [
+    "UICaption"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043bb90",
+   "owner": "UIFrameWnd",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIFrameWnd",
+   "related_classes": [
+    "UIScene",
+    "UIWnd"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043bbc0",
+   "owner": "UIFrameWnd",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIFrameWnd",
+   "related_classes": [
+    "UIScene"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043d7a0",
+   "owner": "CCBProtectWindow",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBProtectWindow",
+   "related_classes": [
+    "UIScene"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043ddf0",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "CCBControlWindow",
+    "CCBFiveNimbusWindow",
+    "CCBItemWindow",
+    "CCBLineupWindow",
+    "CCBProtectWindow",
+    "CCBSkillWindow",
+    "PropUI",
+    "CCBUI",
+    "SaleUI"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0043de40",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "JusticeBookUI",
+    "LineupUI",
+    "MainEquipUI",
+    "MainPropUI",
+    "PropUI",
+    "RenderTarget",
+    "SystemUI",
+    "TaskBookUI",
+    "UILoadingFrm",
+    "UIRoleSelectDialog",
+    "UITitle_JDHY",
+    "UITitle_YXXX",
+    "CCBRoleState",
+    "CCBStage",
+    "CScreenMode",
+    "EquipUI",
+    "SaleUI",
+    "StateUI",
+    "UICoverFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00442420",
+   "owner": "CCBPanelSlot",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBPanelSlot",
+   "related_classes": [
+    "CCBResultWindow",
+    "UIFrameContainer"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00442ff0",
+   "owner": "CCBPanelSlot",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBPanelSlot",
+   "related_classes": [
+    "UIFrameWnd",
+    "UIWnd"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00445b90",
+   "owner": "UIWnd",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIWnd",
+   "related_classes": [
+    "RoleAtt"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00445e70",
+   "owner": "UIWnd",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIWnd",
+   "related_classes": [
+    "CCBPanelSlot"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0044ab00",
+   "owner": "UIEmote",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIEmote",
+   "related_classes": [
+    "ArraySlots"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0044e5c0",
+   "owner": "UIEmote",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIEmote",
+   "related_classes": [
+    "scScriptInstance"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0044e980",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x00450f80",
+   "owner": "RoleAtt",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "RoleAtt",
+   "related_classes": [
+    "UISceneMap"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004518e0",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "UILoadingFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00451aa0",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "UILoadingFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00451b40",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "UILoadingFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00451c10",
+   "owner": "UIListBox",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIListBox",
+   "related_classes": [
+    "UILoadingFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004a14c0",
+   "owner": "UIRoleDialog",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UIRoleDialog",
+   "related_classes": [
+    "UITitle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004a2150",
+   "owner": "RoleStatePanel",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "RoleStatePanel",
+   "related_classes": [
+    "UIGameFrm"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004af760",
+   "owner": "Object",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "Object",
+   "related_classes": [
+    "CEffObj",
+    "CEffSParticle",
+    "GameObject",
+    "UITitle_YXXX",
+    "RoleAtt",
+    "ScriptObj",
+    "UIEmote"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004b7ba0",
+   "owner": "UI3DModelNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UI3DModelNode",
+   "related_classes": [
+    "CEffGroupNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004bd850",
+   "owner": "ParticleEffect",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "ParticleEffect",
+   "related_classes": [
+    "RenderTargetNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004bef50",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x004c0500",
+   "owner": "CEffObj",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffObj",
+   "related_classes": [
+    "CEffSParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c0510",
+   "owner": "CEffObj",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffObj",
+   "related_classes": [
+    "CEffSParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c0650",
+   "owner": "CEffAction",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffAction",
+   "related_classes": [
+    "CEffCallBack",
+    "CEffQuake",
+    "CEffSParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c15b0",
+   "owner": "CEffBink",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffBink",
+   "related_classes": [
+    "EffAudioNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c15d0",
+   "owner": "CEffAction",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffAction",
+   "related_classes": [
+    "CEffBink",
+    "CEffCallBack",
+    "CEffCylinder",
+    "CEffExplosive",
+    "CEffGrid",
+    "CEffMeteor",
+    "CEffModel",
+    "CEffQuad",
+    "CEffQuake",
+    "CEffSParticle",
+    "CEffShock",
+    "CEffgbParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c1640",
+   "owner": "CEffBink",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffBink",
+   "related_classes": [
+    "EffAudioNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2170",
+   "owner": "CEffBink",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffBink",
+   "related_classes": [
+    "EffAudioNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2620",
+   "owner": "CEffCylinder",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCylinder",
+   "related_classes": [
+    "RenderTarget2"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2820",
+   "owner": "CEffCallBack",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCallBack",
+   "related_classes": [
+    "EffMultiPassNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2870",
+   "owner": "CEffCallBack",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCallBack",
+   "related_classes": [
+    "EffMultiPassNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2930",
+   "owner": "CEffCallBack",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCallBack",
+   "related_classes": [
+    "EffMultiPassNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c29a0",
+   "owner": "CEffBink",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffBink",
+   "related_classes": [
+    "CEffCallBack",
+    "CEffQuake",
+    "EffAudioNode",
+    "EffMultiPassNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c3bb0",
+   "owner": "CEffCylinder",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCylinder",
+   "related_classes": [
+    "RenderTarget2"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c5800",
+   "owner": "CEffCylinder",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCylinder",
+   "related_classes": [
+    "RenderTarget2"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c5810",
+   "owner": "CEffCylinder",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffCylinder",
+   "related_classes": [
+    "RenderTarget2"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c5b90",
+   "owner": "CEffectSystem",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffectSystem",
+   "related_classes": [
+    "_Texture_uv"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c88b0",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x004cb340",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x004cb350",
+   "owner": "CEffGrid",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffGrid",
+   "related_classes": [
+    "CEffgbParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004d0c90",
+   "owner": "CEffModel",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffModel",
+   "related_classes": [
+    "CEffect"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004d3220",
+   "owner": "CEffModel",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffModel",
+   "related_classes": [
+    "CEffQuad"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004d33a0",
+   "owner": "CEffBink",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffBink",
+   "related_classes": [
+    "CEffQuake",
+    "EffAudioNode",
+    "CEffSParticle"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004d4de0",
+   "owner": "CEffShock",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffShock",
+   "related_classes": [
+    "CEffQuake"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004d4df0",
+   "owner": "CEffShock",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffShock",
+   "related_classes": [
+    "CEffQuake"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00519360",
+   "owner": "CCBUI",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBUI",
+   "related_classes": [
+    "CCBResultWindow"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x005195e0",
+   "owner": "CCBUI",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBUI",
+   "related_classes": [
+    "CCBResultWindow"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0051b5d0",
+   "owner": "CCBControlWindow",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBControlWindow",
+   "related_classes": [
+    "CCBLineupWindow"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0051c9b0",
+   "owner": "CCBLineupWindow",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBLineupWindow",
+   "related_classes": [
+    "CCBParabolaWindow"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00524970",
+   "owner": "CCBRoleState",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CCBRoleState",
+   "related_classes": [
+    "CCBStage",
+    "CScreenMode",
+    "TaskBookUI",
+    "UILoadingFrm",
+    "UITitle_YXXX"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x0052b9a0",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x0052b9c0",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x0052b9e0",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x0052ba00",
+   "owner": null,
+   "verdict": "pending",
+   "kept": null,
+   "related_classes": [],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "不可定谳: 双认领保留待身份案"
+  },
+  {
+   "addr": "0x00535930",
+   "owner": "UISceneFrm",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "UISceneFrm",
+   "related_classes": [
+    "UISceneMap"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x005420d8",
+   "owner": "CScreenModeNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CScreenModeNode",
+   "related_classes": [
+    "ParticleVisNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x005420de",
+   "owner": "CScreenModeNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CScreenModeNode",
+   "related_classes": [
+    "ParticleVisNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x005420fc",
+   "owner": "ParticleVisNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "ParticleVisNode",
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00542102",
+   "owner": null,
+   "verdict": "thunk_skip_domain_no_entry",
+   "kept": null,
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "adjustor thunk=B5建模域(skip_functions在册 0x00542102): structs零条目, 槽契约留vtable"
+  },
+  {
+   "addr": "0x0054210e",
+   "owner": "RenderTargetNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "RenderTargetNode",
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00542114",
+   "owner": null,
+   "verdict": "thunk_skip_domain_no_entry",
+   "kept": null,
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "adjustor thunk=B5建模域(skip_functions在册 0x00542114): structs零条目, 槽契约留vtable"
+  },
+  {
+   "addr": "0x0054211a",
+   "owner": "RenderTargetNode",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "RenderTargetNode",
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x00542120",
+   "owner": null,
+   "verdict": "thunk_skip_domain_no_entry",
+   "kept": null,
+   "related_classes": [
+    "CScreenModeNode"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": "adjustor thunk=B5建模域(skip_functions在册 0x00542120): structs零条目, 槽契约留vtable"
+  },
+  {
+   "addr": "0x0055434f",
+   "owner": null,
+   "verdict": "purecall_no_owner",
+   "kept": null,
+   "related_classes": [
+    "CEffObj",
+    "CEffSParticle",
+    "Object",
+    "ScriptObj"
+   ],
+   "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  }
+ ],
+ "updated": "2026-11-17"
 }

@@ -14,7 +14,6 @@
    "name": "GetGlobalUserVar",
    "source": "pdb",
    "evidence_level": "unverified",
-   "semantic_sig": "struct scGlobalUserVar *",
    "sig_model": {
     "return": "struct scGlobalUserVar *",
     "cc": null,
@@ -26,13 +25,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "struct scGlobalUserVar * (char *)"
+   }
   },
   "0x0040e5f0": {
    "name": "Execute",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -48,12 +45,8 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, char pData)"
+   }
   }
- },
- "_verdicts": {
-  "gapfill_shell_20261016": "误挂（变量名）"
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`scAsmDecoder`=**匈牙利变量名形**（小写前缀+大写体）被误收为类 · mangled 零命中"
 }

@@ -577,15 +577,13 @@
   "0x00452670": {
    "name": "Init",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0046d4e0": {
    "name": "~PropUI",
@@ -593,7 +591,6 @@
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~PropUI。refs: ??3@YAXPAX@Z Destroy ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?Destroy2@UICaption@@QAEXXZ ?DeleteRo",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -601,39 +598,37 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~PropUI(??1/??_G析构族); decomp文件=PropUI_~PropUIvoid_0046d4e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0046d140": {
    "name": "InitUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0046ecc0": {
    "name": "DisplayItemInfo",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0046f620": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -650,15 +645,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_name": "PropUI::Update",
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名HandleInput=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名HandleInput=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0046f650": {
    "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -679,14 +676,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int arg0, unsigned int nVal, int dwVal)",
    "name_note": " | C9sig基锚定20261117→int __thiscall(int arg0, unsigned int nVal, int dwVal)(基=UIWnd) | C9name定谳20261117→OnMessage: 体尾default: return UIWnd::OnMessage(this,...)+switch dispatch铁证; 原名InitListUI留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int arg0, int nVal, int dwVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_name": "PropUI::OnMessage"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0045b200": {
    "name": "ShowCategory0",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -698,13 +697,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 pData)"
+   }
   },
   "0x0045b320": {
    "name": "ShowCategory1",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -716,13 +713,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 pData)"
+   }
   },
   "0x0045b440": {
    "name": "ShowCategory2",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -734,13 +729,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 pData)"
+   }
   },
   "0x0045b560": {
    "name": "ShowCategory3",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -752,13 +745,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 pData)"
+   }
   },
   "0x0045b680": {
    "name": "ShowCategory4",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -770,13 +761,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned __int8 pData)"
+   }
   },
   "0x0046dd10": {
    "name": "UpdateItemList",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -788,13 +777,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(const void *arg0)"
+   }
   },
   "0x0046df40": {
    "name": "InitPlayerList",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -806,13 +793,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0046ec30": {
    "name": "SetSlotLock",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -824,13 +809,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0046ec50": {
    "name": "CheckMode",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -842,13 +825,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(unsigned int dwVal)"
+   }
   },
   "0x0046ec70": {
    "name": "SetSceneStates",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -860,26 +841,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned char pData)"
+   }
   },
   "0x0046f160": {
    "name": "UpdateCaptions",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0046f300": {
    "name": "UpdateItemDetail",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -891,13 +868,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nItemIdx)"
+   }
   },
   "0x00521a50": {
    "name": "SetPendingMessage",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -917,8 +892,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char msg, int wparam, int lparam)"
+   }
   },
   "0x0046d4c0": {
    "name": "_scalar_dtor_D4C0",
@@ -926,7 +900,6 @@
    "ordinal": 5,
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -943,51 +916,38 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(void *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_D4C0(??1/??_G析构族); decomp文件=PropUI_scalar_dtor_D4C0void_char_0046d4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0046f3d0": {
    "name": "GetInputFlag",
    "source": "[函数归属判定 2026-10-17·主攻点 2] 迁入 PropUI（①PropUI::HandleInput ✓ ③this[21261] 读 ✓ ⑤输入状态查询 ✓——五面满卡面证（前批 049a9ed82））——成员访问谱比对类布局 ✓ （禁止仅凭 signature this ✓ 本条为 decomp member access 证）",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
-  "0x0043de40": {
-   "name": "HideAll",
-   "semantic_name": "PropUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
+  "0x0056b688": {
+   "name": "PropUI",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "binary_vtable_slot",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056b688'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056b688) 2026-11-17 机械补迁(P0-1-B缺口72类)",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()",
-   "evidence_level": "chain_unified"
-  },
-  "0x0043ddf0": {
-   "name": "Render",
-   "semantic_name": "CCBControlWindow::Render(void)",
-   "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()",
-   "evidence_level": "chain_unified"
+    "pending": true
+   }
   }
  },
  "vtables": [

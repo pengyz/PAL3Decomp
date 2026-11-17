@@ -48,7 +48,6 @@
   "0x0053fdd0": {
    "name": "CreateParentData",
    "evidence_level": "unverified",
-   "semantic_sig": "Parent_Data *",
    "sig_model": {
     "return": "Parent_Data *",
     "cc": "thiscall",
@@ -60,53 +59,45 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "Parent_Data * __thiscall(LPCSTR lpString)"
+   }
   },
   "0x0053ffa0": {
    "name": "_TextureLib_Data",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00443a00": {
    "name": "CountEntries",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00443a90": {
    "name": "SearchByIndex",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00540440": {
    "name": "SetLibFolder",
    "source": "| 批19 2026-10-07：&this->m... 指针参证（C2664 根因——unsigned 误型） | 批20 2026-10-07：2 栈参读证（[esp+0x38]/[esp+0x50]）——签名 1 参证伪补 2 参",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -122,13 +113,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const char *pszFolder, int nIdx)"
+   }
   },
   "0x00540210": {
    "name": "_CheckItem",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -144,13 +133,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *pszName, char *pszBuf)"
+   }
   },
   "0x005400e0": {
    "name": "_GetItemNum",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned int",
    "sig_model": {
     "return": "unsigned int",
     "cc": "thiscall",
@@ -162,14 +149,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned int __thiscall(void *pData)"
+   }
   },
   "0x00540650": {
    "name": "GetLibInfo",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -181,27 +166,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(char *pszName)"
+   }
   },
   "0x005407a0": {
    "name": "GetLib",
    "source": "fix:C2660:inflation: decl 1 vs ret-N slots 0, pszName was double-counted this",
    "evidence_level": "unverified",
-   "semantic_sig": "char *",
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char * __thiscall()"
+   }
   },
   "0x005408e0": {
    "name": "GetTextureInfo",
    "evidence_level": "unverified",
-   "semantic_sig": "_Texture_Info *",
    "sig_model": {
     "return": "_Texture_Info *",
     "cc": "thiscall",
@@ -213,13 +194,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "_Texture_Info * __thiscall(char *pszName)"
+   }
   },
   "0x00540a20": {
    "name": "GetTextureInfoByIndex",
    "evidence_level": "unverified",
-   "semantic_sig": "_Texture_Info *",
    "sig_model": {
     "return": "_Texture_Info *",
     "cc": "thiscall",
@@ -231,8 +210,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "_Texture_Info * __thiscall(int nIndex)"
+   }
   }
  },
  "base_size": 4,

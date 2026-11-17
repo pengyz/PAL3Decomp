@@ -716,22 +716,18 @@
   "0x004fba70": {
    "name": "ResetSceneState",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0050fee0": {
    "name": "CCBStageScene",
    "evidence_level": "unverified",
-   "semantic_name": "CCBStageScene_FEE0",
    "name_note": "剥壳定谳(验证pass): ctor形: name==类名=构造器正确形态",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -739,12 +735,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCBStageScene(??0构造); decomp文件=CCBStageScene_CCBStageScenevoid_0050fee0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x005100d0": {
    "name": "~CCBStageScene",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -752,81 +750,73 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CCBStageScene(??1/??_G析构族); decomp文件=CCBStageScene_~CCBStageScenevoid_005100d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00510180": {
    "name": "Reset",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00510540": {
    "name": "Create",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00510610": {
    "name": "Destroy",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x005107c0": {
    "name": "Init",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00510c80": {
    "name": "SetBattleFieldAttr",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00510ca0": {
    "name": "GetBattleFieldSubdueAttr",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -838,40 +828,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pMatrixStack)"
+   }
   },
   "0x00510e00": {
    "name": "GetBFASubdueFM",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00510f50": {
    "name": "IsSameBattleFieldAttr",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00511030": {
    "name": "LoadPointer",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -883,218 +867,186 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(char pData)"
+   }
   },
   "0x00511110": {
    "name": "LoadFlingNode",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x005112b0": {
    "name": "SetFlingRotX",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x005112f0": {
    "name": "SetFlingRotY",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x00511790": {
    "name": "Render",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511970": {
    "name": "ShowAxis",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511ae0": {
    "name": "ShowRoleIndex",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511c00": {
    "name": "ShowEnemyFiveLineupEx",
    "source": "| D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511c10": {
    "name": "IsFiveLineupUnderMouse",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00511c20": {
    "name": "ResetFiveLineupToInit",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511c30": {
    "name": "ResetRolePosToInit",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511c40": {
    "name": "LoadScene",
    "source": "| D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00511c50": {
    "name": "DestroyScene",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511c90": {
    "name": "SaveRolePos",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00511ce0": {
    "name": "LoadFiveLineupData",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00511cf0": {
    "name": "SaveFiveLineupDate",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x0050fe50": {
    "name": "Update",
    "source": "pdb_ret",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -1102,13 +1054,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0050fd00": {
    "name": "CCBStageScene_FD00",
    "evidence_level": "unverified",
-   "semantic_sig": "CCBStageScene *__thiscall",
    "sig_model": {
     "return": "CCBStageScene *__thiscall",
     "cc": null,
@@ -1120,69 +1070,59 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CCBStageScene *__thiscall (CCBStage *pCBStage)"
+   }
   },
   "0x0052b2a0": {
    "name": "CleanupCamera",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052b3b0": {
    "name": "CreateCamera",
    "_misattrib_evidence": "max_offset=940>class_size=124",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x0052b1e0": {
    "name": "InitCameraPositions",
    "_misattrib_evidence": "max_offset=1040>class_size=124",
    "evidence_level": "unverified",
-   "semantic_sig": "int *__thiscall",
    "sig_model": {
     "return": "int *__thiscall",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int *__thiscall ()"
+   }
   },
   "0x0052b350": {
    "name": "SetCameraDefaults",
    "_misattrib_evidence": "max_offset=1040>class_size=268",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00511340": {
    "name": "LoadModel",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -1194,8 +1134,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(const char *pszName)"
+   }
   }
  }
 }

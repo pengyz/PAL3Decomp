@@ -26,7 +26,6 @@
    "name": "CalcDist",
    "source": "| 签名缺参批量 2026-10-06：ret 32/4=8 参 vs 签名 2——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -42,13 +41,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal, float fVal2)"
+   }
   },
   "0x005044c0": {
    "name": "UpdateCamera",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -60,15 +57,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x005058f0": {
    "name": "CCCTData",
    "evidence_level": "unverified",
-   "semantic_name": "CCCTData_58F0",
    "name_note": "剥壳定谳(验证pass): ctor形: name==类名=构造器正确形态",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -85,12 +79,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int *p_DWORD, int *p_DWORD2)"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCCTData(??0构造); decomp文件=CCCTData_CCCTDataint_int_005058f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00505930": {
    "name": "~CCCTData",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -98,12 +94,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CCCTData(??1/??_G析构族); decomp文件=CCCTData_~CCCTDatavoid_00505930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00506020": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -115,40 +113,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(float *pfVal)"
+   }
   },
   "0x005060d0": {
    "name": "Destroy",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x005061a0": {
    "name": "Init",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00506260": {
    "name": "Save",
    "evidence_level": "unverified",
-   "semantic_sig": "char *",
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
@@ -160,14 +152,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char * __thiscall(int nVal)"
+   }
   },
   "0x005062d0": {
    "name": "Load",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -179,107 +169,91 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(float *pfVal)"
+   }
   },
   "0x005075e0": {
    "name": "InsertTaskToList",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00507b20": {
    "name": "SwapTask",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00508190": {
    "name": "ClearList",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x005081a0": {
    "name": "IsTaskValid",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x005081b0": {
    "name": "GetTaskNumInList",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x005081c0": {
    "name": "GetFreeSpaceInPool",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004a6f10": {
    "name": "CCCTData_6F10",
    "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int __thiscall CCCTData::CCCTData() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UI3DCtrl",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0044d780": {
    "name": "InitEntries",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -291,13 +265,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float fVal)"
+   }
   },
   "0x004533f0": {
    "name": "ProcessTask",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -309,63 +281,53 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004a8770": {
    "name": "Create_8770",
    "evidence_level": "unverified",
    "name_note": "回退 2026-11-01：CreateUI 重命名导致 ARC_PlayerAtt 引用 C2039 +47",
-   "semantic_name": "Create",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004e7d70": {
    "name": "UpdateDebugDialog",
    "evidence_level": "unverified",
-   "semantic_sig": "LRESULT",
    "sig_model": {
     "return": "LRESULT",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "LRESULT __thiscall()"
+   }
   },
   "0x004a6730": {
    "name": "InitImages",
    "evidence_level": "unverified",
-   "semantic_sig": "CCCTData *",
    "sig_model": {
     "return": "CCCTData *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CCCTData * __thiscall()"
+   }
   },
   "0x004a67b0": {
    "name": "DestroyImage",
    "_misattrib_evidence": "max_offset=420>class_size=124",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  }
 }

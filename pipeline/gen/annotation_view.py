@@ -138,6 +138,30 @@ def load_annotation_json(name, store=None):
     return _ANNOTATION_JSON_CACHE[name]
 
 
+
+def sm_text(m):
+    """[消费端sig退役迁移 2026-11-17] sig_model结构化标注→旧signature文本格式。
+
+    消费端唯一合法读取路径——signature/sig字段已退役(数据层已清除3759条),
+    禁止直读已退役字段(用户裁定)。pending/缺失返回''(与旧读空行为一致)。
+    """
+    if not isinstance(m, dict):
+        return ''
+    sm = m.get('sig_model') or {}
+    if not sm or sm.get('pending'):
+        return ''
+    ret = (sm.get('return') or 'void').strip()
+    cc = (sm.get('cc') or '').strip()
+    ps = []
+    for p in (sm.get('params') or []):
+        t = str(p.get('type') or '').strip()
+        if not t:
+            continue
+        ps.append(t if t.endswith('*') or t.endswith('&') else t)
+    params = ', '.join(ps)
+    _ccp = ('__%s ' % cc) if cc else ''
+    return ('%s %s(%s)' % (ret, _ccp, params)).replace('  ', ' ')
+
 def skip_functions(store=None):
     """`skip_functions.json` 的内容（dict）；不可读返回 `{}`（与调用方原语义一致）。"""
     d = load_annotation_json('skip_functions.json', store=store)

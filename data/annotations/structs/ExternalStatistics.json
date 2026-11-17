@@ -14,7 +14,6 @@
   "0x00534e60": {
    "name": "UpdateFromRole",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -30,14 +29,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00534dd0": {
    "name": "CheckKeyPress",
    "class": "ExternalStatistics",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -49,14 +46,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nParam)"
+   }
   },
   "0x00534e30": {
    "name": "Reset",
    "class": "ExternalStatistics",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -68,12 +63,8 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nParam)"
+   }
   }
- },
- "_verdicts": {
-  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@ExternalStatistics@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"

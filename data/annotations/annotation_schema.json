@@ -1,0 +1,118 @@
+{
+ "$id": "pal3-annotation-schema-v1",
+ "_doc": "标注层数据格式定义 2026-11-17。check_annotations N16 门禁按此校验。退役字段=禁止存在(非null)。",
+ "structs_class": {
+  "required": [
+   "name",
+   "binary_size"
+  ],
+  "allowed": [
+   "name",
+   "binary_size",
+   "known_members",
+   "methods",
+   "bases",
+   "base_size",
+   "vtables",
+   "members_note",
+   "note",
+   "name_source_note",
+   "pdb_size",
+   "source",
+   "bases_note"
+  ],
+  "banned": [
+   "signature",
+   "sig",
+   "semantic_sig",
+   "alt_name",
+   "pending_adjudication",
+   "_verdicts",
+   "_naming",
+   "_misattrib_evidence",
+   "base_class"
+  ],
+  "methods_entry": {
+   "required": [
+    "name"
+   ],
+   "allowed": [
+    "name",
+    "sig_model",
+    "semantic_sig*",
+    "evidence_level",
+    "source",
+    "flags",
+    "flags_evidence",
+    "override_of",
+    "ordinal",
+    "declaration_only",
+    "static",
+    "name_note",
+    "adjudication",
+    "lvars",
+    "owner",
+    "local_vars"
+   ],
+   "banned": [
+    "signature",
+    "sig",
+    "alt_name",
+    "pending_adjudication",
+    "semantic_sig",
+    "semantic_name"
+   ],
+   "sig_model_required": [
+    "return",
+    "cc",
+    "params",
+    "varargs"
+   ],
+   "flags_vocabulary": [
+    "dtor",
+    "ctor",
+    "override",
+    "static",
+    "const",
+    "pure_virtual"
+   ],
+   "flags_rules": {
+    "dtor": "name须呈dtor形态(~/_sdtor/scalar_dtor)或override_of有基dtor槽",
+    "ctor": "name须=类名或override_of有基ctor",
+    "override": "override_of必填且指向祖先槽址"
+   },
+   "key_format": "^0x[0-9a-f]{8}$"
+  },
+  "vtable_slot": {
+   "allowed": [
+    "addr",
+    "name",
+    "name_note",
+    "flags"
+   ],
+   "banned": [
+    "sig"
+   ],
+   "flags_note": "2026-11-18 T1善后: 条目退役后槽级身份flags(dtor), 消费端emit_headers槽扫描读取"
+  }
+ },
+ "functions_json": {
+  "_doc": "IDB命名通道——只许自由函数; 类方法名/类方法签名禁止(归属structs层)",
+  "entry_required": [
+   "name"
+  ],
+  "entry_allowed": [
+   "name",
+   "signature",
+   "lvars",
+   "type"
+  ],
+  "banned_values": {
+   "name": "禁止含'::'(类方法须走structs层)"
+  },
+  "key_format": "^0x[0-9a-f]{8}$",
+  "signature_banned_substrings": [
+   "= 0"
+  ]
+ }
+}

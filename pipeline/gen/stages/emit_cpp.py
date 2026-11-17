@@ -57,11 +57,9 @@ def _annotation_method_cc(cls_name, meth_name):
         if sm.get('cc'):
             _ccs.add(sm['cc'])
         else:
-            sig = m.get('signature') or ''
-            if '__thiscall' in sig:
-                _ccs.add('thiscall')
-            elif '__cdecl' in sig or '__stdcall' in sig:
-                _ccs.add('cdecl_or_stdcall')
+            # [sig退役迁移 2026-11-17] signature已清除——cc缺失时无文本兜底,
+            # cc未知=不添加(与旧行为等价: 旧文本无thiscall/__cdecl也不添加)
+            pass
     if len(_ccs) == 1:
         return _ccs.pop()
     if len(_ccs) > 1:
@@ -823,7 +821,7 @@ def _void_ret_calls():
             for _p, sd in _av.iter_structs(None):
                 sd_name = (sd.get('name') or '')
                 for _a, m in (sd.get('methods') or {}).items():
-                    sig = (m.get('signature') or '')
+                    sig = _av.sm_text(m)  # [sig退役迁移]
                     cn = (m.get('name') or '')
                     if not cn or not sig:
                         continue

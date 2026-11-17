@@ -313,7 +313,6 @@
   "0x004125d0": {
    "name": "InitFromScene",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -325,14 +324,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const char *pszSceneName)"
+   }
   },
   "0x0041e7d0": {
    "name": "CheckCollision1",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -352,14 +349,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(float *pPos, void *pBounds, float *pDist)"
+   }
   },
   "0x0041ea00": {
    "name": "CheckCollision2",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -379,27 +374,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(float *pPos, int rolePtr, void *pBounds)"
+   }
   },
   "0x0041ee60": {
    "name": "IsTransitioning",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x00439850": {
    "name": "UpdateCameraLookAt",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -415,14 +406,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nScreenX, int nScreenY)"
+   }
   },
   "0x00439930": {
    "name": "UpdateCameraLookAt_9930",
    "evidence_level": "unverified",
-   "semantic_name": "UpdateCameraLookAt",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -442,14 +430,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nScreenX, int nScreenY, int nOffsetY)"
+   }
   },
   "0x0041be80": {
    "name": "Camera",
    "source": "| [签名层正交治理 2026-10-16] E真参保留：Camera *__thiscall(struct gbGfxManager *p) ⇒ void __thiscall(struct gbGfxManager *p)（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：idapro 26177ab7: 基类gbCamera::gbCamera(..,p)透传真参+return this",
    "evidence_level": "unverified",
-   "semantic_sig": "struct CameraCtrl *",
    "sig_model": {
     "return": "struct CameraCtrl *",
     "cc": "thiscall",
@@ -462,27 +448,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "struct CameraCtrl * __thiscall(struct gbGfxManager *p)"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=Camera(??0构造); decomp文件=Camera_CameragbGfxManager_0041be80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0052beb0": {
    "name": "InitUIElements",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0041bfc0": {
    "name": "_scalar_dtor_BFC0",
    "source": "| [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AA84）：本体 56 8b f1 e8 c8 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41C090 写 vptr 0x56AA84（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AA84→Camera（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Camera（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41C090 写 vptr 0x56AA84",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -490,7 +476,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_BFC0(??1/??_G析构族); decomp文件=Camera_scalar_dtor_BFC0void_0041bfc0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "binary_size_source": "P1 复核（12f09f9e）第三判据 + 编排者独立复验：① operator new(544) + call 0x41BE80（alloc_sizeof，exhibits 经复核者逐字节校验 28/28 OK）；② 0x41BE80 是 name==Camera 的真构造函数并写 off_56AA84；③ 该类 ctor ±0x2000 邻域 [reg+imm] 最大位移 = 544 = alloc（两个独立读数一致）；④ 47 个成员的 max offset=404 ⇒ 末端 408 < 544；⑤ cascade_scan：0 派生/0 按值/0 数组/0 union；⑥ base_class=None。原 12956 的膨胀来自错挂方法 0x52BEB0 InitUIElements（0x52Bxxx 区）。"

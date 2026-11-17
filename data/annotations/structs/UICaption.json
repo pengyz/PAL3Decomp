@@ -37,7 +37,6 @@
   "0x004427c0": {
    "name": "SetEnable",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -53,69 +52,59 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int szName, int bEnable)"
+   }
   },
   "0x004461f0": {
    "name": "DestroyPanel",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00450320": {
    "name": "LayoutDefault",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043a810": {
    "name": "Destroy2",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0044bda0": {
    "name": "DestroyAll",
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00450370": {
    "name": "_scalar_dtor_0370",
    "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -123,28 +112,28 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0370(??1/??_G析构族); decomp文件=sdtor_15_00450370 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00450670": {
    "name": "_todo_0670",
    "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004506c0": {
    "name": "~UICaption_adjthunk",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x00450370）⇒ 目标名 ~UICaption 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -152,13 +141,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UICaption_adjthunk(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004503c0": {
    "name": "OnEvent",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "空覆盖虚方法",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -170,14 +161,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int a2)"
+   }
   },
   "0x00450560": {
    "name": "IsOnScreen",
    "source": "ida_xref:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -193,16 +182,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0043a7f0": {
    "name": "_sdtor",
    "source": "vtable_gap_fill_v1(from UICaption.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "_sdtor",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -219,30 +205,29 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor(??1/??_G析构族); decomp文件=sdtor_1_0043a7f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043ab00": {
    "name": "Destroy",
    "source": "vtable_gap_fill_v1(from UICaption.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "Destroy",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043ab20": {
    "name": "Update2",
    "source": "vtable_gap_fill_v1(from UICaption.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -258,16 +243,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0043a870": {
    "name": "CreateChildWidget",
    "source": "vtable_gap_fill_v1(from UICaption.json) | multiclaim 裁决 2026-11-03: 败于 UICaption（uniq=2）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "CreateChildWidget",
-   "semantic_sig": "gbVFileSystem *__thiscall",
    "sig_model": {
     "return": "gbVFileSystem *__thiscall",
     "cc": null,
@@ -295,40 +277,19 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVFileSystem *__thiscall (int, void *pRect, UIWnd *parent, const char *pszName, char)"
-  },
-  "0x0043ad40": {
-   "name": "Render",
-   "source": "vtable_gap_fill_v1(from UICaption.json) | multiclaim 裁决 2026-11-03: 败于 UICaption（uniq=3）",
-   "evidence_level": "chain_unified",
-   "adjudication": "rejected",
-   "semantic_name": "Render_AD40",
-   "name_note": "剥壳定谳(验证pass): Render: m_fontcolor/gbColorQuad/gbTextureArray=字幕渲染实证; C9定谳(中高): slot1链源级void——result=m_bvisible成员态渲染函数回报语义不通; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00450440": {
    "name": "RenderContent",
    "source": "ida_xref:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
-   "semantic_name": "RenderContent",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  },
  "vtables": [

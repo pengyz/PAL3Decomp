@@ -28,17 +28,14 @@
    "evidence_level": "A",
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_nCount,m_nCount2,m_pObjects（adjudicate_multiclaim 2026-11-03）",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
- "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C1490 全文体=释放循环 `operator delete(ptr); v6+=152`（152B 步长对象数组释放）——IDB 名 BeginRenderPass=误名；上下文语义=**对象池管理**（时间步 CalcDeltaTime + 数组释放 + 删际析构归 0x56F5D8 主表）⇒ EffRenderPassNode→EffObjectPool",
  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

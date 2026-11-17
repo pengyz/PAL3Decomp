@@ -1,0 +1,3612 @@
+{
+ "date": "2026-11-17",
+ "purpose": "T1 N17定谳删除条目全量归档(铁律1)",
+ "items": [
+  {
+   "class": "CEffAction",
+   "addr": "0x00408bd0",
+   "reason_safety": "free",
+   "reason": "multi-slot(3) exempt; NullCallback unverified; 27表no-op折叠载体",
+   "deleted_entry": {
+    "name": "NullCallback",
+    "source": "vtable_gap_fill_v1(from CEffAction.json)",
+    "evidence_level": "unverified",
+    "adjudication": "shared_impl",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "GameObject",
+   "addr": "0x00411b80",
+   "reason_safety": "free",
+   "reason": "inherited(bases=[Object] 实证GameObject表0x56a9c0⊆Object槽集)",
+   "deleted_entry": {
+    "name": "_scalar_dtor_1b80",
+    "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+    "evidence_level": "unverified",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_1b80(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "ScriptObj",
+   "addr": "0x00411b80",
+   "reason_safety": "dossier",
+   "reason": "表0x56a9bc=Object表逐字节同址(壳类身份案未结), bases=[]故own-slot",
+   "deleted_entry": {
+    "name": "slot_unk_1b80",
+    "source": "C7_backfill_v2",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "GameObject",
+   "addr": "0x00411bb0",
+   "reason_safety": "free",
+   "reason": "inherited同上",
+   "deleted_entry": {
+    "name": "_scalar_dtor_1bb0",
+    "source": "vtable_owner_fix(Object 多态化, 二进制表直读) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+    "evidence_level": "unverified",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "CCBAIWindow *__thiscall",
+     "cc": null,
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_1bb0(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "ScriptObj",
+   "addr": "0x00411bb0",
+   "reason_safety": "dossier",
+   "reason": "同0x411b80",
+   "deleted_entry": {
+    "name": "slot_unk_1bb0",
+    "source": "C7_backfill_v2",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ScriptObj",
+   "addr": "0x00411bd0",
+   "reason_safety": "dossier",
+   "reason": "同0x411b80; 体this型=Object; IDA旧名ScriptObj_~ScriptObj冲突已注记",
+   "deleted_entry": {
+    "name": "slot_unk",
+    "source": "C7_backfill_v2",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "InputSystem",
+   "addr": "0x0041c710",
+   "reason_safety": "free",
+   "reason": "无槽; 体member m_Thread@152=CCBSystem; InputSystem仅1成员",
+   "deleted_entry": {
+    "name": "ProcessKeyboard",
+    "sig_note": "F81 (round 139): explicit `this` restored. Binary evidence (A-level, IDA): callee 0x0041C710 starts `sub esp,1Ch` and uses ecx as this ([ecx+1C8h]/[ecx+210h]), ends `add esp,1Ch; retn 4` => exactly ONE 4-byte stack argument beyond this; call sites (0x0041C526-28, 0x0041C9F5-F6) are `push <int>; mov ecx,<InputSystem*>; call` => signature = this + int. The previous spelling `void __thiscall(int a1)` omitted `this`, so IDA stored a 0-stack-arg type, Hex-Rays rendered calls as `InputSystem::ProcessKeyboard(this)` (the pushed constant was LOST) and the generated C++ failed with C2664 'cannot convert parameter 1 from class InputSystem *const to int'. Round-10 ret-N adjudication was right about 1 stack arg, the spelling was what dropped it.",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "a1"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "PalScript",
+   "addr": "0x00434d50",
+   "reason_safety": "free",
+   "reason": "无槽(表0x56ac4c不含此址); 其A证据自证wrapped dtor写GameObject vptr",
+   "deleted_entry": {
+    "name": "_scalar_dtor_4D50",
+    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x411BA0 写 vptr 0x56A9C0",
+    "evidence_level": "A",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_4D50(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScriptFadeOutTimer",
+   "addr": "0x00434d50",
+   "reason_safety": "free",
+   "reason": "multi-slot(2)",
+   "deleted_entry": {
+    "name": "~PalScriptFadeOutTimer",
+    "name_note": "G2法证(dtor律): 表slot0=删除式dtor位(MSVC律), 27表族ICF折叠共享址0x408bd0/同族址; 零decomp不阻命名(位置律即证据)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~PalScriptFadeOutTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScriptFadeInTimer",
+   "addr": "0x00434d50",
+   "reason_safety": "dossier",
+   "reason": "own-slot0",
+   "deleted_entry": {
+    "name": "~PalScriptFadeInTimer",
+    "name_note": "G2条目补齐(PalScript计时器族): slot0删除式dtor位, ICF折叠入PalScript scalar dtor",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~PalScriptFadeInTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScriptProgressTimer",
+   "addr": "0x00434d50",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "~PalScriptProgressTimer",
+    "name_note": "G2条目补齐(PalScript计时器族): slot1=complete dtor位(编译器伴生), 折叠入PalScript scalar dtor",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~PalScriptProgressTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScriptWaitTimer",
+   "addr": "0x00434d50",
+   "reason_safety": "dossier",
+   "reason": "own-slot0",
+   "deleted_entry": {
+    "name": "_scalar_dtor_4D50",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(_scalar_dtor_4D50)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_4D50(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScript",
+   "addr": "0x00438100",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "CheckFlag0C",
+    "source": "vtable_migrated",
+    "ordinal": 1,
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": null,
+     "cc": null,
+     "params": null,
+     "varargs": false,
+     "pending": true
+    }
+   }
+  },
+  {
+   "class": "PalScriptProgressTimer",
+   "addr": "0x00438100",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "IsAnimDone",
+    "name_note": "G2条目补齐(PalScript计时器族): 体证据: 同上ICF折叠共享",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "PalScriptWaitTimer",
+   "addr": "0x00438100",
+   "reason_safety": "dossier",
+   "reason": "own-slot1(名CheckFlag0C=同址异名契约)",
+   "deleted_entry": {
+    "name": "CheckFlag0C",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(CheckFlag0C)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "PalScript",
+   "addr": "0x00438110",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "UpdateWaitTimer",
+    "ordinal": 2,
+    "evidence_level": "A",
+    "adjudication": "confirmed",
+    "evidence": "成员实访独占证据 uniq=5: m_CamObj,m_fBlendFactor,m_nFrameCount,m_nState,m_waitobj（adjudicate_multiclaim 2026-11-03）",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": "fVal"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "PalScript",
+   "addr": "0x00438190",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "_scalar_dtor_8190",
+    "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=PalScript（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ABD4）",
+    "ordinal": 0,
+    "evidence_level": "A",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "CCBAIWindow *__thiscall",
+     "cc": null,
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_8190(??1/??_G析构族); decomp文件=PalScript_`scalar_deleting_destructoruint_00438190 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "PalScript",
+   "addr": "0x004382a0",
+   "reason_safety": "free",
+   "reason": "无槽; 体this->m_fElapsed/m_bDone=WaitTimer A级成员(最强归属)",
+   "deleted_entry": {
+    "name": "UpdateIdleTimer",
+    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 三证法命名：调用者面:xref 仅表内 data 引用（虚调用）+ctor 写点 PalScript::Op_Trigger+103（Op 域组装）；方法语义面:Updat | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[被调=UpdateIdleTimer 域 | store×2] 交互面[空闲计时推进] 判定 ✅名实相符（UpdateIdleTimer） | multiclaim 裁决 2026-11-03: 败于 PalScript（uniq=5）",
+    "evidence_level": "unverified",
+    "adjudication": "rejected",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "PalScriptFadeOutTimer",
+   "addr": "0x00438530",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "IsFadeDone",
+    "name_note": "G2条目补齐(PalScript计时器族): 体证据: return this[16]==0(修饰名PalScriptFadeInTimer::IsFadeDone)",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UICaption",
+   "addr": "0x0043ad40",
+   "reason_safety": "free",
+   "reason": "无记录槽(vt0空); IDA旧名UICaption_Render已注记",
+   "deleted_entry": {
+    "name": "Render",
+    "source": "vtable_gap_fill_v1(from UICaption.json) | multiclaim 裁决 2026-11-03: 败于 UICaption（uniq=3）",
+    "evidence_level": "chain_unified",
+    "adjudication": "rejected",
+    "name_note": "剥壳定谳(验证pass): Render: m_fontcolor/gbColorQuad/gbTextureArray=字幕渲染实证; C9定谳(中高): slot1链源级void——result=m_bvisible成员态渲染函数回报语义不通; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UIScene",
+   "addr": "0x0043bb90",
+   "reason_safety": "dossier",
+   "reason": "own-slot5(表0x56acb8=UIFrameWnd表同址, 表级折叠)",
+   "deleted_entry": {
+    "name": "_scalar_dtor_BB90",
+    "name_note": "G2条目补齐(0x56ACB8真7槽): slot5; registry名; 语义待UIWnd slot5链定谳(0x445b20同名位) | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "void *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "flags"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_BB90(??1/??_G析构族); decomp文件=UIFrameWnd_scalar_dtor_BB90int_0043bb90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "UIWnd",
+   "addr": "0x0043bb90",
+   "reason_safety": "free",
+   "reason": "无槽; UIWnd真dtor=0x445b20/0x445b90族",
+   "deleted_entry": {
+    "name": "_scalar_dtor",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": null,
+     "cc": null,
+     "params": null,
+     "varargs": false,
+     "pending": true
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=UIFrameWnd_scalar_dtor_BB90int_0043bb90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "UIScene",
+   "addr": "0x0043bbc0",
+   "reason_safety": "dossier",
+   "reason": "own-slot2",
+   "deleted_entry": {
+    "name": "Update",
+    "name_note": "G2条目补齐(0x56ACB8真7槽): slot2 override(链律名=基Update); registry bisect名UIFrameWnd::Update | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "CCBUI **deltatime",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c60",
+    "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "UIScene",
+   "addr": "0x0043d7a0",
+   "reason_safety": "dossier",
+   "reason": "own-slot6(表0x56acd8)",
+   "deleted_entry": {
+    "name": "OnMessage",
+    "name_note": "语义裁定20261116: 0x43d7a0=slot6(OnMessage位)折叠载体 → 链律名OnMessage; 原名ForwardOnMessage=体读数(转发即调用) | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "unsigned int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445d10",
+    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CCBControlWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "source": "vtable_decl_only_fill(copied from CCBControlWindow.json)",
+    "evidence_level": "chain_unified",
+    "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBFiveNimbusWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBItemWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBLineupWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "G2条目补齐(CCBLineupWindow真表0x570538): slot1链名; farm折叠Render(void已定谳) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBProtectWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBSkillWindow",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "PropUI",
+   "addr": "0x0043ddf0",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "语义名=decomp名CCBControlWindow::Render; 用户裁定禁slot_N | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBUI",
+   "addr": "0x0043ddf0",
+   "reason_safety": "free",
+   "reason": "inherited(bases=[UIListBox])",
+   "deleted_entry": {
+    "name": "Render",
+    "name_note": "G2: 真表slot1(原始rdata实证), 体=可见性检查+m_pbktex背景纹理+委托基渲染 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "SaleUI",
+   "addr": "0x0043ddf0",
+   "reason_safety": "free",
+   "reason": "inherited(bases=[UIListBox])",
+   "deleted_entry": {
+    "name": "Render",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "JusticeBookUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "LineupUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "MainEquipUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "MainPropUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "PropUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "RenderTarget",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "verified"
+   }
+  },
+  {
+   "class": "SystemUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "TaskBookUI",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UIRoleSelectDialog",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UITitle_JDHY",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UITitle_YXXX",
+   "addr": "0x0043de40",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBRoleState",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "source": "vtable_gap_fill_v1(from CCBRoleState.json)",
+    "evidence_level": "chain_unified",
+    "adjudication": "rejected",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBStage",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "chain_unified",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CScreenMode",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "EquipUI",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "SaleUI",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "StateUI",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UICoverFrm",
+   "addr": "0x0043de40",
+   "reason_safety": "free",
+   "reason": "multi-slot(2)",
+   "deleted_entry": {
+    "name": "HideAll",
+    "name_note": "语义裁定batch5-20261116: 0x43de40=UIWnd系slot3折叠载体(19+表slot3值, RET 0参, 体=释放临时资源=面板隐藏即释放语义) → 链律名HideAll; 原名ReleaseTempStorage=G2体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CCBResultWindow",
+   "addr": "0x00442420",
+   "reason_safety": "dossier",
+   "reason": "own-slot3(表0x56ae84)",
+   "deleted_entry": {
+    "name": "HideAll",
+    "ordinal": 3,
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "C9血统修复20261116: slot3位 + RET 0(0参ABI) + 体=Release纹理引用 (与CCBPanelSlot/未知类0x56ae10三处同址=ICF折叠载体) → 链律名HideAll; 原名Destroy_2420=N12地址后缀形; 返回型void vs 根int漂移→L-TAILADDR队列 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UIFrameContainer",
+   "addr": "0x00442420",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "HideAll",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "verified",
+    "name_note": "C9血统修复20261116: 本类表0x56ADD0 slot3=0x442420(机器码骨架: slot0=445e70/slot4=445b90/slot6=445d10与UIWnd同值) + RET 0 + 体=Release纹理引用(四类ICF折叠载体) → 链律名HideAll; 原名Destroy_2420=N12地址后缀形",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UIFrameWnd",
+   "addr": "0x00442ff0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "Update_2ff0",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UIWnd",
+   "addr": "0x00442ff0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "Update_2ff0",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RoleAtt",
+   "addr": "0x00445b90",
+   "reason_safety": "dossier",
+   "reason": "own-slot(表0x56b140); UIWnd引入者55表继承",
+   "deleted_entry": {
+    "name": "Create",
+    "name_note": "[恢复] 同上: RoleAtt bases=None(真表10槽slot7=0x445b90), 基类定谳前条目须在",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "tagRECT",
+       "name": "*"
+      },
+      {
+       "type": "UIWnd",
+       "name": "*"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CCBPanelSlot",
+   "addr": "0x00445e70",
+   "reason_safety": "dossier",
+   "reason": "own-slot0",
+   "deleted_entry": {
+    "name": "ShowClipped",
+    "name_note": "[恢复] owner-primacy删除过早: CCBPanelSlot bases未定谳, 派生豁免失效→C7; bases定谳后再清",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ArraySlots",
+   "addr": "0x0044ab00",
+   "reason_safety": "free",
+   "reason": "无槽; 体负索引访问=IDA类型猜测工件(签名this型不可作归属)",
+   "deleted_entry": {
+    "name": "GetType",
+    "name_source": "IDA语义分析 2026-10-31 批3-6",
+    "name_note": "偏移访问器（this-3）",
+    "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=other:8b 41 f4 c3 · body_head=8b 41 f4 c3 90 90 90 90 90 90 90 90。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "scScriptInstance",
+   "addr": "0x0044e5c0",
+   "reason_safety": "dossier",
+   "reason": "own-slot5(表0x56b050); 体this型=UIEmote",
+   "deleted_entry": {
+    "name": "_sdtor_25",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(_sdtor_25)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_sdtor_25(??1/??_G析构族); decomp文件=scScriptInstance_`scalar_deleting_destructoruint_0044e5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "UISceneMap",
+   "addr": "0x00450f80",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "IsValid",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x004518e0",
+   "reason_safety": "free",
+   "reason": "无槽(表0x56b100不含); UILoadingFrmbases=[UIFrameWnd]; 4条目全系UIListBox名形错插",
+   "deleted_entry": {
+    "name": "~UIListBox",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~UIListBox(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_18E0void_004518e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x00451aa0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "OnMessage_1AA0",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x00451b40",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "UIListBox_ResizeToContent",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x00451c10",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "UIListBox_IsVisible",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UITitle",
+   "addr": "0x004a14c0",
+   "reason_safety": "dossier",
+   "reason": "own-slot3(表0x56afd4)",
+   "deleted_entry": {
+    "name": "HideAll",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445c10",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UIGameFrm",
+   "addr": "0x004a2150",
+   "reason_safety": "free",
+   "reason": "无槽(UIGameFrm无表记录); RoleStatePanel五面卡A级+表0x56F040归属",
+   "deleted_entry": {
+    "name": "_scalar_dtor",
+    "type": "skip",
+    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "nVal1"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=RoleStatePanel_`scalar_deleting_destructoruint_004a2150 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "CEffObj",
+   "addr": "0x004af760",
+   "reason_safety": "free",
+   "reason": "multi-slot(4)farm表",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (slot5/9/11同址) | IDB类型载体定谳20261115: 一地址4槽4契约(UpdateFrame/Update/GetEffect/RenderEffectPass), IDB只能一个类型=retn 4字节语义(1栈参int); 头声明按槽位独立(emit逐位), 4个cpp定义共用此IDB类型(实施序③体合成)",
+    "evidence_level": "chain_unified",
+    "name_note": "; C2511修正: 对齐cpp定义void(int)(体=空no-op无反证) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | C9sig基锚定20261117→void __thiscall(float) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004af760",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "Update",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | Update链统一20261117: BOOL(int)——CEffAction真体return result+ABI 1参; slot9语义(CEff族); 修三源重建float残留"
+   }
+  },
+  {
+   "class": "GameObject",
+   "addr": "0x004af760",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "confidence": "中",
+    "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→void __thiscall()(基=Object) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall()",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified"
+   }
+  },
+  {
+   "class": "UITitle_YXXX",
+   "addr": "0x004af760",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "confidence": "中",
+    "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RoleAtt",
+   "addr": "0x004af760",
+   "reason_safety": "dossier",
+   "reason": "own-slot2",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "confidence": "中",
+    "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ScriptObj",
+   "addr": "0x004af760",
+   "reason_safety": "dossier",
+   "reason": "own-slot3",
+   "deleted_entry": {
+    "name": "slot_unk_f760",
+    "source": "C7_backfill_v2",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "UIEmote",
+   "addr": "0x004af760",
+   "reason_safety": "dossier",
+   "reason": "own-slot2",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "confidence": "中",
+    "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "CCBUI **deltatime",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified"
+   }
+  },
+  {
+   "class": "CEffGroupNode",
+   "addr": "0x004b7ba0",
+   "reason_safety": "free",
+   "reason": "无槽; UI3DModelNode A级证据",
+   "deleted_entry": {
+    "name": "_todo_4b7ba0",
+    "source": "| [表认领+槽注册合并批 2026-10-16 analyzer] 槽注册：real-method | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+    "declaration_only": true,
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RenderTargetNode",
+   "addr": "0x004bd850",
+   "reason_safety": "dossier",
+   "reason": "own-slot0(表0x56f4b0)",
+   "deleted_entry": {
+    "name": "_scalar_dtor_D850",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(_scalar_dtor_D850)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_scalar_dtor_D850(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_D850int_004bd850 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004c0500",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "OnTest",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "char",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004c0510",
+   "reason_safety": "free",
+   "reason": "inherited",
+   "deleted_entry": {
+    "name": "GetEditorObjDescription",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "const char *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffCallBack",
+   "addr": "0x004c0650",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Create",
+    "confidence": "中高",
+    "name_note": "C9批体证定谳: 同址ICF折叠共享, 同体证据 | C9name定谳20261117→Create: 链律(slot1=Create位); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "char",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "tagEffObjType *",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004c0600",
+    "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004c0650",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Create",
+    "confidence": "中高",
+    "name_note": "C9批体证定谳: 全体现已读: new(0x4C0)块+8×152元素池+计数[28]=8/[32]=10(与UpdateParticles iter同字段互证)+失败全回滚; registry位名slot_1弃用; 参数nVal体未用 | C9name定谳20261117→Create: 链律(slot1=Create位, 同CEffCallBack 0x4c0650同址); 名AllocActionArray=创建语义佐证; 无语料; 原名AllocActionArray留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "char",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "tagEffObjType *",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004c0600",
+    "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004c0650",
+   "reason_safety": "free",
+   "reason": "multi-slot(2)",
+   "deleted_entry": {
+    "name": "Create",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "char",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "tagEffObjType *",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004c0600",
+    "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "EffAudioNode",
+   "addr": "0x004c15b0",
+   "reason_safety": "dossier",
+   "reason": "own-slot(表0x56f674=CEffBink表同址)",
+   "deleted_entry": {
+    "name": "CreateEffAudio",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "void",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffBink",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffCallBack",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffExplosive",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffGrid",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffMeteor",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffModel",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffQuad",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffShock",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CEffgbParticle",
+   "addr": "0x004c15d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot13",
+   "deleted_entry": {
+    "name": "UpdateParticles",
+    "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00401800",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "EffAudioNode",
+   "addr": "0x004c1640",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "~EffAudioNode",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~EffAudioNode(??1/??_G析构族); decomp文件=CEffBink_~CEffBinkvoid_004c1640 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "EffAudioNode",
+   "addr": "0x004c2170",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "AllocTargets",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RenderTarget2",
+   "addr": "0x004c2620",
+   "reason_safety": "free",
+   "reason": "幻影类(无表无成员); 体this型=CEffCylinder",
+   "deleted_entry": {
+    "name": "RenderEffect",
+    "source": "pdb_ret",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "nVal"
+      },
+      {
+       "type": "int",
+       "name": "nVal2"
+      },
+      {
+       "type": "int",
+       "name": "nVal3"
+      },
+      {
+       "type": "int *p_DWORD",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": "nVal4"
+      },
+      {
+       "type": "int",
+       "name": "nVal5"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "EffMultiPassNode",
+   "addr": "0x004c2820",
+   "reason_safety": "free",
+   "reason": "无表",
+   "deleted_entry": {
+    "name": "CreateDeactivated",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "void",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "EffMultiPassNode",
+   "addr": "0x004c2870",
+   "reason_safety": "free",
+   "reason": "无表",
+   "deleted_entry": {
+    "name": "~EffMultiPassNode",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~EffMultiPassNode(??1/??_G析构族); decomp文件=CEffCallBack_~CEffCallBackvoid_004c2870 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "EffMultiPassNode",
+   "addr": "0x004c2930",
+   "reason_safety": "free",
+   "reason": "无表",
+   "deleted_entry": {
+    "name": "InitTargetPos",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float *",
+       "name": null
+      },
+      {
+       "type": "float",
+       "name": null
+      },
+      {
+       "type": "float",
+       "name": null
+      },
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffCallBack",
+   "addr": "0x004c29a0",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "name_note": "G2条目补齐(CEff表): 同上折叠共享; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int fVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004af760",
+    "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004c29a0",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "name_note": "G2条目补齐(CEff表): 体3987实证EffAudioNode::UpdateInternal(float)语义; 多类表同址=ICF折叠override族; 链律修正: slot5链名=UpdateFrame(CEffObj slot5正名账), UpdateInternal=bisect名降为semantic_name; 体语义(内部更新)与槽名并存于note | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int fVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004af760",
+    "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "EffAudioNode",
+   "addr": "0x004c29a0",
+   "reason_safety": "free",
+   "reason": "own-slot但表0x56f674=CEffBink表同址→deleting后C7查其自有表记录, 需dossier",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "; 链律修正: slot5链名=UpdateFrame"
+   }
+  },
+  {
+   "class": "EffMultiPassNode",
+   "addr": "0x004c29a0",
+   "reason_safety": "free",
+   "reason": "无表",
+   "deleted_entry": {
+    "name": "UpdateFrame",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "float",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "; 链律修正: slot5链名=UpdateFrame"
+   }
+  },
+  {
+   "class": "RenderTarget2",
+   "addr": "0x004c3bb0",
+   "reason_safety": "free",
+   "reason": "幻影类",
+   "deleted_entry": {
+    "name": "AdvancePass",
+    "ordinal": 20,
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "RenderTarget2 *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "void *Block",
+       "name": null
+      },
+      {
+       "type": "char",
+       "name": "pData"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RenderTarget2",
+   "addr": "0x004c5800",
+   "reason_safety": "free",
+   "reason": "幻影类",
+   "deleted_entry": {
+    "name": "sub_4C5800",
+    "source": "vtable_gap_fill_v1(IDB:sub_4C5800) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+    "evidence_level": "unverified",
+    "adjudication": "shared_impl",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "nVal1"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "RenderTarget2",
+   "addr": "0x004c5810",
+   "reason_safety": "free",
+   "reason": "幻影类",
+   "deleted_entry": {
+    "name": "_sdtor",
+    "source": "| [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系",
+    "evidence_level": "A",
+    "sig_model": {
+     "return": "char *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "char",
+       "name": "pData"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_sdtor(??1/??_G析构族); decomp文件=CEffCylinder_`scalar_deleting_destructoruint_004c5810 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "_Texture_uv",
+   "addr": "0x004c5b90",
+   "reason_safety": "free",
+   "reason": "无槽; 体member m_nEffect=CEffectSystem",
+   "deleted_entry": {
+    "name": "operator_",
+    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+    "sig_model": {
+     "return": "_Texture_uv",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "_Texture_uv*",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffgbParticle",
+   "addr": "0x004cb350",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "_todo_4CB350",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffect",
+   "addr": "0x004d0c90",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "_nearby_4cffb0_adjthunk",
+    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004CFFB0）⇒ 目标名 _nearby_4cffb0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+    "evidence_level": "A",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffQuad",
+   "addr": "0x004d3220",
+   "reason_safety": "dossier",
+   "reason": "own-slot(dossier已在册0x004d3220)",
+   "deleted_entry": {
+    "name": "sub_4D17D0_adjthunk",
+    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004D17D0）⇒ 目标名 sub_4D17D0 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
+    "evidence_level": "A",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004d33a0",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "ResetState",
+    "name_note": "G2条目补齐(CEff表): 体110实证: m_bIdle=0重置语义; 修饰名CEffBink::ResetState",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004c0610",
+    "flags_evidence": "同名+同归一签名(int,int,int,int)+基槽0x004c0610(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "EffAudioNode",
+   "addr": "0x004d33a0",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "ResetIdle",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x004d33a0",
+   "reason_safety": "free",
+   "reason": "multi-slot(2)",
+   "deleted_entry": {
+    "name": "ResetState",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x004c0610",
+    "flags_evidence": "同名+同归一签名(int,int,int,int)+基槽0x004c0610(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004d4de0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "_sdtor_adj",
+    "type": "skip",
+    "reason": "compiler-generated",
+    "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
+    "evidence_level": "A",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=_sdtor_adj(??1/??_G析构族); decomp文件=CEffShock_sub_4D3DC0_adjthunkvoid_004d4de0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "addr": "0x004d4df0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "_todo_4D4DF0",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CCBResultWindow",
+   "addr": "0x00519360",
+   "reason_safety": "free",
+   "reason": "无槽(表0x56ae84不含); 体删析构三段式=CCBUI dtor名形自洽",
+   "deleted_entry": {
+    "name": "ShowLineupWindow",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "UIWnd *Block",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | 个数对齐census 20261117: decomp=2 census ABI=1 (RET字节=硬证据)"
+   }
+  },
+  {
+   "class": "CCBResultWindow",
+   "addr": "0x005195e0",
+   "reason_safety": "free",
+   "reason": "无槽",
+   "deleted_entry": {
+    "name": "OnMessage",
+    "source": "vtable_gap_fill_v1(from CCBResultWindow.json)",
+    "evidence_level": "chain_unified",
+    "adjudication": "confirmed",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "unsigned int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445d10",
+    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CCBLineupWindow",
+   "addr": "0x0051b5d0",
+   "reason_safety": "dossier",
+   "reason": "own-slot; A级CreateWithTextures+体此型胜dtor名形",
+   "deleted_entry": {
+    "name": "~CCBLineupWindow",
+    "name_note": "G2条目补齐(CCBLineupWindow真表0x570538): slot0删除式dtor位(MSVC律); registry名CreateWithTextures=bisect误名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~CCBLineupWindow(??1/??_G析构族); decomp文件=CCBControlWindow_CreateWithTexturesint_void_UIWnd_char_const 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  },
+  {
+   "class": "CCBParabolaWindow",
+   "addr": "0x0051c9b0",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "OnMessage",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "unsigned int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445d10",
+    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   }
+  },
+  {
+   "class": "CCBStage",
+   "addr": "0x00524970",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "Render",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "N12占位正名20261116: 0x524970=slot1(Render位)thunk转发CCBControlWindow::Render, ABI 0参 → 链律名Render; 原名slot_1=N12占位 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x0043ddf0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x0043ddf0(UIListBox) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "CScreenMode",
+   "addr": "0x00524970",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "Render",
+    "confidence": "中",
+    "name_note": "G2批: thunk→CCBControlWindow::Render, 契约随目标void(链已定谳) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x0043ddf0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x0043ddf0(UIListBox) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "TaskBookUI",
+   "addr": "0x00524970",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "Render",
+    "confidence": "中",
+    "name_note": "G2批: thunk→CCBControlWindow::Render, 契约随目标void(链已定谳) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "evidence_level": "chain_unified",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "addr": "0x00524970",
+   "reason_safety": "dossier",
+   "reason": "own-slot1",
+   "deleted_entry": {
+    "name": "Render",
+    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+    "evidence_level": "chain_unified",
+    "name_note": "槽链传播: 同址语义名(Render)沿override链正名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UITitle_YXXX",
+   "addr": "0x00524970",
+   "reason_safety": "dossier",
+   "reason": "own-slot",
+   "deleted_entry": {
+    "name": "Render",
+    "ordinal": 1,
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "C7补条目20261116: 表0x56B8A4 slot1(Render位, 幻表0x56B898摘除后暴露) + ABI 0参(census) + 体=thunk转发CCBControlWindow::Render → 链律名Render; decomp名CCBStage::slot_1=N12占位(hexrays错型) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445cd0",
+    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   }
+  },
+  {
+   "class": "UISceneMap",
+   "addr": "0x00535930",
+   "reason_safety": "free",
+   "reason": "无槽; 体this型=UISceneFrm",
+   "deleted_entry": {
+    "name": "LoadOverlayTexture",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "struct gbVFileSystem *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "double",
+       "name": "thisa"
+      },
+      {
+       "type": "int",
+       "name": "nVal"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ParticleVisNode",
+   "addr": "0x005420d8",
+   "reason_safety": "free",
+   "reason": "thunk区0x542000-0x542200 C7豁免",
+   "deleted_entry": {
+    "name": "EnableShadow",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ParticleVisNode",
+   "addr": "0x005420de",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "GetAABBox",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "gbAABBox *",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x005420fc",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "ParticleVisNode_adjthunk_20FC",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x00542102",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_2102",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "BOOL",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x0054210e",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_210E",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "CCBItemWindow *__hidden",
+       "name": null
+      },
+      {
+       "type": "unsigned int",
+       "name": null
+      },
+      {
+       "type": "unsigned",
+       "name": null
+      },
+      {
+       "type": "unsigned",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x00542114",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_2114",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x0054211a",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "VisUpdate",
+    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisUpdate | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
+    "declaration_only": true,
+    "evidence_level": "A",
+    "sig_model": {
+     "return": "void *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "UIWnd *Block",
+       "name": null
+      },
+      {
+       "type": "char",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x00542120",
+   "reason_safety": "free",
+   "reason": "thunk区",
+   "deleted_entry": {
+    "name": "CScreenModeNode_adjthunk_2120",
+    "declaration_only": true,
+    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffObj",
+   "addr": "0x0055434f",
+   "reason_safety": "free",
+   "reason": "purecall槽C7豁免,条目不应存在(C7v3)",
+   "deleted_entry": {
+    "name": "AllocEffect",
+    "source": "binary:基表slot7=_purecall(抽象基纯虚工厂佐证; 复核裁决slot7=虚工厂成立)",
+    "evidence_level": "binary_vtable_slot",
+    "declaration_only": true,
+    "sig_model": {
+     "return": "void *",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": "; Fix3 purecall槽签回填: 13派生AllocEffect(void*)一致+G2 purecall定谳; 原pending→结构化(纯语义以cpp定义过渡, 正式pure标记待发射器支持)"
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "addr": "0x0055434f",
+   "reason_safety": "free",
+   "reason": "purecall",
+   "deleted_entry": {
+    "name": "v2_slot_1",
+    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "Object",
+   "addr": "0x0055434f",
+   "reason_safety": "free",
+   "reason": "purecall",
+   "deleted_entry": {
+    "name": "slot_unk",
+    "source": "C7_backfill_v2",
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig基锚定20261117→void __thiscall()"
+   }
+  },
+  {
+   "class": "ScriptObj",
+   "addr": "0x0055434f",
+   "reason_safety": "free",
+   "reason": "purecall",
+   "deleted_entry": {
+    "name": "slot_unk_434f",
+    "source": "C7_backfill_v2",
+    "evidence_level": "binary_vtable_slot",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "addr": "0x004c2620",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "ProcessData",
+    "name_source": "IDA语义分析 2026-11-01 批9",
+    "name_note": "数据处理（DWORD 循环操作）",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "addr": "0x004c3bb0",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "CheckState",
+    "name_source": "IDA语义分析 2026-11-01 批9",
+    "name_note": "状态检查（_tail_000[16] 判断+循环）",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "addr": "0x004c5800",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "CreateTaskWrapper",
+    "name_source": "IDA语义分析 2026-11-01 批9",
+    "name_note": "CreateTask 包装（this-12 调整）",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "addr": "0x004c5810",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "_sdtor",
+    "source": "vtable_gap_fill_v1(from RenderTarget2.json) | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系",
+    "evidence_level": "A",
+    "adjudication": "shared_impl",
+    "sig_model": {
+     "return": "char *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "char",
+       "name": "pData"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CEffModel",
+   "addr": "0x004d0c90",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "_todo_004D0C90",
+    "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056F9D0'] 槽指向本函数 ⇒ 归属 CEffModel。shape=adjustor · body_head=83 e9 0c e9 18 f3 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
+    "evidence_level": "A",
+    "sig_inferred": "占位签名(A/B级证据条目sig缺失, N6b修复; 真实签名待反汇编复核)",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CCBLineupWindow",
+   "addr": "0x0051c9b0",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "OnMessage",
+    "source": "vtable_migrated",
+    "ordinal": 20,
+    "evidence_level": "chain_unified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": null
+      },
+      {
+       "type": "unsigned int",
+       "name": null
+      },
+      {
+       "type": "int",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+    "flags": [
+     "override"
+    ],
+    "override_of": "0x00445d10",
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x005420d8",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "EnableShadow",
+    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(int nEnable)：idapro decompile：thunk 转发 gbVisNode::EnableShadow(gbVisNode*, int enable) ⇒ 1 参 int",
+    "evidence_level": "unverified",
+    "adjudication": "shared_impl",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "int",
+       "name": "nEnable"
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "CScreenModeNode",
+   "addr": "0x005420de",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "GetAABBox",
+    "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针",
+    "evidence_level": "unverified",
+    "adjudication": "shared_impl",
+    "sig_model": {
+     "return": "scScriptInstance *",
+     "cc": "thiscall",
+     "params": [
+      {
+       "type": "scScriptInstance *Block",
+       "name": null
+      },
+      {
+       "type": "char",
+       "name": null
+      }
+     ],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "ParticleVisNode",
+   "addr": "0x005420fc",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "ParticleVisNode_adjthunk_20FC",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(ParticleVisNode_adjthunk_20FC)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "RenderTargetNode",
+   "addr": "0x0054210e",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_210E",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_210E)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "RenderTargetNode",
+   "addr": "0x0054211a",
+   "reason_safety": "incident",
+   "reason": "T1b脚本转录错误误删owner条目; 已按HEAD+evidence3恢复(本条目=恢复过程存档)",
+   "deleted_entry": {
+    "name": "VisUpdate",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(VisUpdate)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   }
+  },
+  {
+   "class": "RenderTargetNode",
+   "addr": "0x00542114",
+   "reason_safety": "intentional",
+   "reason": "skip_functions在册thunk地址(B5建模域): structs零条目政策, 槽契约留vtable; 内容=HEAD恢复剥离退役字段",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_2114",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_2114)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ParticleVisNode",
+   "addr": "0x00542102",
+   "reason_safety": "intentional",
+   "reason": "skip_functions在册thunk地址(B5建模域): structs零条目政策, 槽契约留vtable; 内容=HEAD恢复剥离退役字段",
+   "deleted_entry": {
+    "name": "SceneVisNode_adjthunk_2102",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_2102)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "SceneVisNode",
+   "addr": "0x00542120",
+   "reason_safety": "intentional",
+   "reason": "skip_functions在册thunk地址(B5建模域): structs零条目政策, 槽契约留vtable; 内容=HEAD恢复剥离退役字段",
+   "deleted_entry": {
+    "name": "CScreenModeNode_adjthunk_2120",
+    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+    "evidence_level": "binary_vtable_slot",
+    "name_note": "槽链传播: 同址语义名(CScreenModeNode_adjthunk_2120)沿override链正名",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    }
+   }
+  },
+  {
+   "class": "ParticleVisNode",
+   "addr": "0x00542120",
+   "reason_safety": "intentional",
+   "reason": "skip_functions在册thunk地址(B5建模域): structs零条目政策, 槽契约留vtable; 内容=evidence3重构",
+   "deleted_entry": {}
+  }
+ ]
+}

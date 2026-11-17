@@ -49,7 +49,6 @@
   "0x00511ee0": {
    "name": "CCBStageShadow",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -57,12 +56,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCBStageShadow(??0构造); decomp文件=CCBStageShadow_CCBStageShadowvoid_00511ee0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00511f90": {
    "name": "~CCBStageShadow",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -70,52 +71,48 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CCBStageShadow(??1/??_G析构族); decomp文件=CCBStageShadow_~CCBStageShadowvoid_00511f90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00511fc0": {
    "name": "Reset",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00512080": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00512240": {
    "name": "Destroy",
    "evidence_level": "unverified",
-   "semantic_sig": "float *",
    "sig_model": {
     "return": "float *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "float * __thiscall()"
+   }
   },
   "0x005122e0": {
    "name": "Update",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -123,48 +120,41 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x005122f0": {
    "name": "Render",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00512300": {
    "name": "FillShadowQuad",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00511e80": {
    "name": "UpdateShadowMesh",
    "evidence_level": "unverified",
-   "semantic_sig": "float *",
    "sig_model": {
     "return": "float *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "float * __thiscall()"
+   }
   }
  }
 }

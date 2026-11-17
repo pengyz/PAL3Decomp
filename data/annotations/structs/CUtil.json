@@ -118,7 +118,6 @@
    "name": "~CUtil",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -126,53 +125,49 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CUtil(??1/??_G析构族); decomp文件=CUtil_~CUtilvoid_005230f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00523100": {
    "name": "Create",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00523110": {
    "name": "Destroy",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00523120": {
    "name": "Init",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00523130": {
    "name": "CUtil",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -180,7 +175,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CUtil(??0构造); decomp文件=CUtil_CUtilvoid_00523130 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x005231d0": {
    "name": "_scalar_dtor_31D0",
@@ -189,7 +187,6 @@
    "repro_pointer": "ptr:0x5231D0|0x5231d3|0x5231e0 decompile 行（_CUtil_31f0 call 0x5231d3 · operator delete 0x5231e0）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "UIWnd *",
    "sig_model": {
     "return": "UIWnd *",
     "cc": "thiscall",
@@ -206,82 +203,74 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "UIWnd * __thiscall(CUtil *Block, char format)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_31D0(??1/??_G析构族); decomp文件=CUtil_scalar_dtor_31D0CUtil_char_005231d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x005231f0": {
    "name": "Method",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x005232b0": {
    "name": "InitGameSystems",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00523560": {
    "name": "RectIntersection",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00523600": {
    "name": "CalulateParabola",
    "_misattrib_evidence": "max_offset=1764>class_size=48",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00523670": {
    "name": "RenderFrame",
    "ordinal": 1,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x005236e0": {
    "name": "RenderFrameY",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -297,14 +286,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(PalScript *fTime, int nVal)"
+   }
   },
   "0x00523820": {
    "name": "Update",
    "_misattrib_evidence": "max_offset=1752>class_size=4",
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -317,13 +304,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(float nDelta)",
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00523e80": {
    "name": "DispatchCommand",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -335,15 +320,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *pCmd)"
+   }
   },
   "0x00523b90": {
    "name": "sub_523B90",
    "source": "vtable_gap_fill_v1(IDB:?sub_523B90@CUtil@@QAEHXZ) | vtable_sig_arity_fill(ret-N=12) | vtable_sig_arity_fill(ret-N=12) | multiclaim 裁决 2026-11-03: 败于 CUtil（uniq=6）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -363,8 +346,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int, int, int)"
+   }
   }
  },
  "vtables": [

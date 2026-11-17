@@ -19,7 +19,6 @@
   "0x00408930": {
    "name": "exception",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -27,7 +26,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=exception(??0构造); decomp文件=exception_exceptionvoid_00408930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  }
 }

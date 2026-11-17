@@ -109,7 +109,6 @@
   "0x0043f970": {
    "name": "~UIButton",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -117,27 +116,26 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UIButton(??1/??_G析构族); decomp文件=UIButton_~UIButtonvoid_0043f970 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043f7f0": {
    "name": "ctor",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x00440560": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_name": "Update",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -154,14 +152,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c60",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0043f9c0": {
    "name": "HideAll",
    "ordinal": 3,
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -169,15 +170,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "semantic_name": "UIButton::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0043ff00": {
    "name": "Create",
    "ordinal": 4,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -198,15 +201,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int id, tagRECT *, UIWnd * parent)",
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int id, tagRECT *, UIWnd * parent)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int id, tagRECT *pRect, UIWnd *parent parent) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int id, tagRECT *, UIWnd * parent)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int id, tagRECT *pRect, UIWnd *parent parent) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445b90",
+   "flags_evidence": "sig_model同名+同参数结构(int,tagRECT*,UIWnd*)+基槽0x00445b90(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0043ff70": {
    "name": "Render",
    "ordinal": 1,
    "source": "+fix:sig_match_base",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -214,8 +220,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0043f950": {
    "name": "_scalar_dtor_F950",
@@ -223,7 +233,6 @@
    "ordinal": 5,
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -240,7 +249,26 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(void *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F950(??1/??_G析构族); decomp文件=UIButton_scalar_dtor_F950void_char_0043f950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+  },
+  "0x0056ad64": {
+   "name": "UIButton",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "binary_vtable_slot",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056ad64'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056ad64) 2026-11-17 机械补迁(P0-1-B缺口72类)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": true
+   }
   }
  },
  "vtables": [

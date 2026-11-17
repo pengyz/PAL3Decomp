@@ -166,31 +166,9 @@
   }
  },
  "methods": {
-  "0x004a2150": {
-   "name": "_scalar_dtor",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal1"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
-  },
   "0x004a6120": {
    "name": "OnMessage",
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -211,22 +189,24 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004a6600": {
    "name": "Destroy",
    "_misattrib_evidence": "max_offset=176080>class_size=28188",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  },
  "base_size": 76,

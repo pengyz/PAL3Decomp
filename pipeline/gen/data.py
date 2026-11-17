@@ -2,7 +2,7 @@
 
 Loaded once at startup, accessed by transforms via `from .data import store`.
 """
-from annotation_view import base_names as _base_names, base_entries as _base_entries
+from annotation_view import base_names as _base_names, base_entries as _base_entries, sm_text as _sm_text
 import json
 import os
 import re
@@ -516,7 +516,7 @@ class DataStore:
                     if not isinstance(_mv, dict):
                         continue
                     _mn = str(_mv.get('name') or '').split('(')[0]
-                    _ms = _mv.get('signature') or ''
+                    _ms = _sm_text(_mv)  # [sig退役迁移] signature字段已清除
                     if _mn and _ms and '::' not in _mn:
                         self.method_sigs.setdefault('%s::%s' % (_cls_t27, _mn), _ms)
                     try:

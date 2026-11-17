@@ -12,7 +12,6 @@
   "0x00408bc0": {
    "name": "Iostream_init",
    "evidence_level": "unverified",
-   "semantic_sig": "Iostream_init *",
    "sig_model": {
     "return": "Iostream_init *",
     "cc": "thiscall",
@@ -20,14 +19,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "Iostream_init * __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=Iostream_init(??0构造); decomp文件=Iostream_init_Iostream_initvoid_00408bc0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "binary_size": 4,
  "note": "binary_size estimated at 4 for IDB struct compat",
- "_verdicts": {
-  "gapfill_shell_20261016": "误挂待终审（mangled 零命中）"
- },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@Iostream_init@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }

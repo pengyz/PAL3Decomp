@@ -19,9 +19,7 @@
    "name": "_scalar_dtor_8190",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_0",
    "name_note": "槽链传播: 同址语义名(_scalar_dtor_8190)沿override链正名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -29,52 +27,23 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_8190(??1/??_G析构族); decomp文件=PalScript_`scalar_deleting_destructoruint_00438190 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00438110": {
    "name": "UpdateWaitTimer",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_2",
    "name_note": "槽链传播: 同址语义名(UpdateWaitTimer)沿override链正名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x00438100": {
-   "name": "IsAnimDone",
-   "semantic_name": "IsAnimDone",
-   "name_note": "G2条目补齐(PalScript计时器族): 体证据: 同上ICF折叠共享",
-   "semantic_sig": "BOOL",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "BOOL __thiscall()"
-  },
-  "0x00434d50": {
-   "name": "~PalScriptProgressTimer",
-   "semantic_name": "~PalScriptProgressTimer",
-   "name_note": "G2条目补齐(PalScript计时器族): slot1=complete dtor位(编译器伴生), 折叠入PalScript scalar dtor",
-   "declaration_only": true,
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "vtables": [
@@ -96,13 +65,16 @@
     },
     {
      "addr": "0x00434d50",
-     "name": "~PalScriptProgressTimer"
+     "name": "~PalScriptProgressTimer",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     }
    ],
    "source": "[caller 三证法 2026-10-16 analyzer 再创作命名] 认领+再创作命名（功能驱动，字节等价唯一判据）A 级三证：调用者面:xref 表内 data（0x4382A0 xref@0x56abd4=本族）；方法语义面:0x438110=`m_time += fVal*rate; fmul [0x56A744] 全局速率缩放` 累加器 +flag(this+0xC) 判 + 删际析构 0x438190；交互模式面:进度/速率计时"
   }
  ],
- "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
  "binary_size": 16,
  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

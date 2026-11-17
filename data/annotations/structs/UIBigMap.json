@@ -158,7 +158,6 @@
    "name": "UpdateActions",
    "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00414E50 调用簇=Actor::CompareActionName/RoleSystem::Notify（行动更新）（调用簇/成员簇证据）⇒ 语义名 UpdateActions（禁伪语义 ✓）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -174,13 +173,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *deltatime, int haveinput)"
+   }
   },
   "0x00489ba0": {
    "name": "UpdateElement",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -196,13 +193,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int element, int visible)"
+   }
   },
   "0x00490e90": {
    "name": "UIBigMap",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -210,13 +205,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UIBigMap(??0构造); decomp文件=UIBigMap_UIBigMapvoid_00490e90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004910b0": {
    "name": "~UIBigMap",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -224,13 +221,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UIBigMap(??1/??_G析构族); decomp文件=UIBigMap_~UIBigMapvoid_004910b0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00418260": {
    "name": "UpdateTransform",
    "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x00418260 调用簇=RoleSystem::AddVec3ToTarget + 子窗/矩形簇（变换更新）（调用簇/成员簇证据）⇒ 语义名 UpdateTransform（禁伪语义 ✓）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -246,13 +245,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int deltatime, float *haveinput)"
+   }
   },
   "0x00423a70": {
    "name": "LoadScene",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -268,13 +265,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int element, const char *visible)"
+   }
   },
   "0x00424570": {
    "name": "RenderRole",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -290,14 +285,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pStack, int visible)"
+   }
   },
   "0x0043bf90": {
    "name": "UpdateWindowPos",
    "source": "| [T131] Update 族命名约定确立（Update<Aspect>——T120 Render<Scope> 模式对应）+ 正名：0x0043BF90 成员簇=bkWndY（窗位更新）（调用簇/成员簇证据）⇒ 语义名 UpdateWindowPos（禁伪语义 ✓）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -313,13 +306,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int deltatime, int haveinput)"
+   }
   },
   "0x00441240": {
    "name": "SetScrollRange",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -335,13 +326,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nMin, int nMax)"
+   }
   },
   "0x004431e0": {
    "name": "SetViewParams",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -357,13 +346,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int deltatime, int haveinput)"
+   }
   },
   "0x00451360": {
    "name": "LayoutBinkVideo",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -379,13 +366,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(LPCSTR lpString1, int haveinput)"
+   }
   },
   "0x004528f0": {
    "name": "InitUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -401,14 +386,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int id, int parent)"
+   }
   },
   "0x00491c30": {
    "name": "GetChildCount",
    "evidence_level": "unverified",
    "lvars_source": " | L-VAR auto-R2 2026-11-11: UIBigMap.cpp:1653 下标/解引用+同函数dword cast形态",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -424,13 +407,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x004929e0": {
    "name": "ProcessChildItem",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -446,13 +427,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int arg0, int *p_DWORD)"
+   }
   },
   "0x00497450": {
    "name": "UpdateNPCAnimations",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -468,26 +447,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0052c8a0": {
    "name": "DestroyFrames",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052e0f0": {
    "name": "SetBounds",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -507,13 +482,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int msg, int wparam, int lparam)"
+   }
   },
   "0x00539810": {
    "name": "SetElementVisible",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -529,14 +502,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(FILE *Buffer, FILE *Stream)"
+   }
   },
   "0x00492e10": {
    "name": "SetEntryVisible",
    "class": "UIWnd",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -552,8 +523,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nIndex, unsigned __int8 bParam)"
+   }
   }
  },
  "base_size": 72,

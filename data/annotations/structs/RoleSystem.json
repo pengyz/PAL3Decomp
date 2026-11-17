@@ -1380,20 +1380,17 @@
   "0x0040be50": {
    "name": "Init",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x0040be80": {
    "name": "RecalcAggregatedStats",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1405,27 +1402,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char pData)"
+   }
   },
   "0x00410e40": {
    "name": "CheckVisible",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl()"
+   }
   },
   "0x00412400": {
    "name": "RenderRole",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1441,26 +1434,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrixStack *pStack, int nVal)"
+   }
   },
   "0x00412710": {
    "name": "UpdateTransform_2710",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00412e60": {
    "name": "MoveRole",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1484,13 +1473,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float *pPos, int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x00413010": {
    "name": "UpdateRole",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -1510,13 +1497,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(float *pfVal, int nVal, int nVal2)"
+   }
   },
   "0x00414a30": {
    "name": "PathFind",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1528,13 +1513,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float *pTarget)"
+   }
   },
   "0x00416790": {
    "name": "UpdateAnimation",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1546,26 +1529,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pfVal)"
+   }
   },
   "0x00416f10": {
    "name": "GetActiveRole",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00419a80": {
    "name": "GetDirection",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1577,26 +1556,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float *pOut)"
+   }
   },
   "0x0041bbe0": {
    "name": "GetCount",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00420f30": {
    "name": "GetRolePtr",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1608,13 +1583,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int index)"
+   }
   },
   "0x00412d90": {
    "name": "BindPartyToScene",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -1630,13 +1603,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(float *pfVal, int nVal)"
+   }
   },
   "0x00416220": {
    "name": "CheckMoveCollisionDist",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1648,80 +1619,68 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pfVal)"
+   }
   },
   "0x004142e0": {
    "name": "NotifyMoveComplete",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004181e0": {
    "name": "Notify",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00531d20": {
    "name": "SetData",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0042a010": {
    "name": "ProcessAction",
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 `void __thiscall()`；A 级：0x42A010 gbVec3D 局部 + RoleSystem 成员访问",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004122c0": {
    "name": "UpdatePosition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00412230": {
    "name": "SetMoveSpeed",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1741,14 +1700,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fSpeed, int nRoleIndex, int nFlag)"
+   }
   },
   "0x00418130": {
    "name": "GetMoveState",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1760,14 +1717,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal1)"
+   }
   },
   "0x00421020": {
    "name": "CheckCollision",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -1783,13 +1738,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int *pResult, int nFlag)"
+   }
   },
   "0x00412b60": {
    "name": "SetMoveTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1805,13 +1758,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pTargetPos, int nFlags)"
+   }
   },
   "0x00416550": {
    "name": "IsPathComplete",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1827,13 +1778,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pTargetPos, int nMode)"
+   }
   },
   "0x00416620": {
    "name": "UpdateMovement",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1849,26 +1798,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float fDeltaTime, int nMode)"
+   }
   },
   "0x00413cd0": {
    "name": "PathFollowUpdate",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00416490": {
    "name": "SetTargetRotation",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1880,14 +1825,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbVec3D *pTarget)"
+   }
   },
   "0x004125b0": {
    "name": "NotifySceneChange",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1899,14 +1842,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal1)"
+   }
   },
   "0x00414e30": {
    "name": "GetActionByIndex",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1918,66 +1859,56 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nParam)"
+   }
   },
   "0x00412a50": {
    "name": "StartHalfSpeedMovement",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004178a0": {
    "name": "CheckVisibility",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall()"
+   }
   },
   "0x0041abe0": {
    "name": "UpdateFollowVelocity",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0041ad40": {
    "name": "UpdateFollowVelocityEx",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00411e00": {
    "name": "ApplyMoveStep",
    "evidence_level": "unverified",
    "lvars_source": " | L-VAR 2026-11-12 R2类(asm寄存器别名): reg_EAX = (ulong)(&reg_ESI[..].m_fSpeed + 2) 取址惯例存地址, 下标写 [1]/[2]=元素——真值指针槽(unsigned long*), C2109/C2106 x9 消 | 移除 2026-11-12: 重导出后 Hex-Rays 已自洽(reg_EAX 零出现, gbVec3D pB 真型出现)——F83 reg_ 族系 codegen stage5 注入伪名,属留批 F 深水区, 非 lvars 可修",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2001,8 +1932,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(double fInput, int nVal, float fVal, char bCollide)"
+   }
   },
   "0x00412a90": {
    "name": "MoveToTile",
@@ -2011,7 +1941,6 @@
     "pTargetPos": "struct gbVec3D"
    },
    "lvars_source": " | L-VAR 2026-11-11 双生命期放开试点(IDB通路): decomp pTargetPos=0.0f(float初始化)+((UIWnd*)pTargetPos[1])指针数组读——IDB user type void* 后 Hex-Rays 按真类型自洽重渲染(数据流视图唯一全知者); 纯赢门在 IDB 通路下放开 | L-VAR 2026-11-12 真值修正(反汇编0x412A90): 槽=3相邻栈字(0x0c/0x10/0x14), 前8字节mov 0双写+fstp float位写+lea 传址 SetMoveTarget——gbVec3D BYREF(x/y/z), 原 void* 系猜测(重渲染出 0.0 double 位写炸 VC6)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2027,13 +1956,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(__int64 tileXY, int nMode)"
+   }
   },
   "0x00413420": {
    "name": "StepAlongPath",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2049,13 +1976,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(double fStepSize, float fVal)"
+   }
   },
   "0x00413850": {
    "name": "AdvanceToTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -2067,14 +1992,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(double fDelta)"
+   }
   },
   "0x00414350": {
    "name": "UpdateMovement_4350",
    "evidence_level": "unverified",
-   "semantic_name": "UpdateMovement",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -2090,13 +2012,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(double result, gbVec3D *pB)"
+   }
   },
   "0x004150c0": {
    "name": "UpdateActionState",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2108,13 +2028,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   },
   "0x00416fa0": {
    "name": "InitPathTracking",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2126,13 +2044,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *nFlags)"
+   }
   },
   "0x00416fe0": {
    "name": "RestoreMoveMode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2144,13 +2060,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *nFlags)"
+   }
   },
   "0x00417420": {
    "name": "UpdateTransform",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2162,26 +2076,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float arg0)"
+   }
   },
   "0x00417850": {
    "name": "EnterSubMode6",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00417c50": {
    "name": "UpdateMoveSubMode",
    "evidence_level": "unverified",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -2197,13 +2107,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(double result, float result_4)"
+   }
   },
   "0x0041a1a0": {
    "name": "ScanMoveDirections",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2215,13 +2123,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fRadius)"
+   }
   },
   "0x0041a450": {
    "name": "UpdateFollowerMovement",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2233,13 +2139,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   },
   "0x00420320": {
    "name": "GetCurrentID",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2255,13 +2159,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *pnVal, char pData)"
+   }
   },
   "0x00420a10": {
    "name": "IsTileInBounds",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
@@ -2281,13 +2183,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall(int nVal, int nY, int nVal2)"
+   }
   },
   "0x00420a90": {
    "name": "SetRoleGridPosition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2311,13 +2211,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal, int nVal, float fVal2, int nVal2)"
+   }
   },
   "0x00420fb0": {
    "name": "CheckMoveCollision",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2337,13 +2235,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int *index, float *pfVal, int nVal)"
+   }
   },
   "0x00421150": {
    "name": "IsTilePassable",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2367,13 +2263,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(char nTileType, int nSceneIdx, int nX, int nY)"
+   }
   },
   "0x004214b0": {
    "name": "ValidatePathIndex",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2393,13 +2287,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int index, int nY, int nVal)"
+   }
   },
   "0x00421bf0": {
    "name": "NotifyPathEnd",
    "evidence_level": "unverified",
-   "semantic_sig": "char *",
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
@@ -2411,13 +2303,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char * __thiscall(int nVal)"
+   }
   },
   "0x0042a950": {
    "name": "CheckScriptTrigger",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2429,26 +2319,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(struct gbVec3D *p)"
+   }
   },
   "0x0042b510": {
    "name": "UpdateStateMode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0042c0c0": {
    "name": "SetTileTypeVisible",
    "evidence_level": "unverified",
-   "semantic_sig": "int *__thiscall",
    "sig_model": {
     "return": "int *__thiscall",
     "cc": null,
@@ -2464,13 +2350,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int *__thiscall (int nTileType, int bVisible)"
+   }
   },
   "0x0042d9f0": {
    "name": "ExecScriptDataCmd",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2482,13 +2366,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *p_DWORD)"
+   }
   },
   "0x0042e870": {
    "name": "ExecScriptDataIdx",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2500,14 +2382,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00410430": {
    "name": "RenderMainRole",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "cdecl",
@@ -2519,13 +2399,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __cdecl(void *pMatrixStack)"
+   }
   },
   "0x004132b0": {
    "name": "MoveToTileCheck",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -2545,13 +2423,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nTileX, int nTileY, int nMode)"
+   }
   },
   "0x00413390": {
    "name": "InterpolateMoveFrame",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2563,13 +2439,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   },
   "0x00417040": {
    "name": "SetupMoveState",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2581,26 +2455,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pfVal)"
+   }
   },
   "0x00417bc0": {
    "name": "StopAndResetPath",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004189c0": {
    "name": "StartPathMove",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2632,13 +2502,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *pszBuf, int nVal, char *pszBuf2, int nVal2, float fVal, int nVal3)"
+   }
   },
   "0x00419a20": {
    "name": "GetActorState",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2662,13 +2530,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(double thisa, int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x00419b30": {
    "name": "UpdateFollowBehavior",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2680,13 +2546,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fDelta)"
+   }
   },
   "0x0041a150": {
    "name": "SetActorTexture",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2698,13 +2562,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const char *pszName)"
+   }
   },
   "0x0041b6c0": {
    "name": "ApproachTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -2716,13 +2578,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nVal)"
+   }
   },
   "0x00420290": {
    "name": "RoleSystem",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2730,13 +2590,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=RoleSystem(??0构造); decomp文件=RoleSystem_RoleSystemvoid_00420290 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00420930": {
    "name": "InitInternal",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2748,13 +2610,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x00420940": {
    "name": "CopyRoleToSlot",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2770,13 +2630,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(RoleSystem *pRoleSystem, int index)"
+   }
   },
   "0x00420f70": {
    "name": "IsRoleInRange",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2796,13 +2654,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int index, int *pnVal, int nVal)"
+   }
   },
   "0x00421440": {
    "name": "SetRoleParam",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -2826,13 +2682,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int index, float *pfVal, int *pnVal, int *p_DWORD)"
+   }
   },
   "0x004215b0": {
    "name": "AdvanceOnPath",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2860,13 +2714,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *pResult, char *nFlag, int nVal, char *pszBuf, int nVal2)"
+   }
   },
   "0x00421710": {
    "name": "ValidatePath",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2898,13 +2750,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *pResult, int *nFlag, int *pnVal, int nVal, int nVal2, int **a7)"
+   }
   },
   "0x004218b0": {
    "name": "GetPathTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -2936,13 +2786,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int *pResult, int *nFlag, int *pnVal, char *pszBuf, int nVal, int **a7)"
+   }
   },
   "0x00421a90": {
    "name": "UpdatePathProgress",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -2974,13 +2822,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char arg0, int index, char *pszBuf, int nVal, char *pszBuf2, int nVal2)"
+   }
   },
   "0x00421d10": {
    "name": "BuildPathSegment",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
@@ -2996,60 +2842,51 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall(int *pnVal, char pData)"
+   }
   },
   "0x00421ea0": {
    "name": "ResetTransition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0042dbd0": {
    "name": "ExecScriptDataA",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0042dd80": {
    "name": "ExecScriptDataB",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0042ea30": {
    "name": "ExecScriptDataC",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00531e50": {
    "name": "_scalar_dtor_1E50",
@@ -3059,7 +2896,6 @@
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570890）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -3076,12 +2912,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_1E50(??1/??_G析构族); decomp文件=RoleSystem_scalar_dtor_1E50UIWnd_char_00531e50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00408460": {
    "name": "BindRoleToScene",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3109,14 +2947,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int index, float *pfVal, float *pfVal2, int nVal, char pData)"
+   }
   },
   "0x0040c9a0": {
    "name": "ForceStopRole",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -3128,14 +2964,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal)"
+   }
   },
   "0x004126d0": {
    "name": "GetAnimOffset",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -3151,13 +2985,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nType, unsigned __int8 nMode)"
+   }
   },
   "0x00412c30": {
    "name": "SetPathWaypoint",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3169,13 +3001,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float fVal)"
+   }
   },
   "0x00413c00": {
    "name": "PlaceAtRegion",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3191,13 +3021,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nSceneIdx, int nRegion)"
+   }
   },
   "0x004148c0": {
    "name": "UpdateMoveInterpolation",
    "evidence_level": "unverified",
-   "semantic_sig": "float *",
    "sig_model": {
     "return": "float *",
     "cc": "thiscall",
@@ -3213,26 +3041,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "float * __thiscall(float *pfVal, float *pfVal2)"
+   }
   },
   "0x00414a10": {
    "name": "UpdateMoveTimer",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00414f90": {
    "name": "PlayAction",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3248,39 +3072,33 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *pszAction, int nMode)"
+   }
   },
   "0x004164e0": {
    "name": "IsPathMoving",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall()"
+   }
   },
   "0x00416bc0": {
    "name": "ProcessInteraction",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004180b0": {
    "name": "CheckWidgetReady",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3292,13 +3110,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(gbRay *pRay)"
+   }
   },
   "0x00418970": {
    "name": "AddVec3ToTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -3314,13 +3130,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00418d90": {
    "name": "IsInBounds",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -3336,13 +3150,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00418dc0": {
    "name": "TryMoveToTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -3358,13 +3170,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(__int16 pData, int nVal)"
+   }
   },
   "0x00419030": {
    "name": "ResetPathParams",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3376,13 +3186,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00419790": {
    "name": "ProcessMoveCommand",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3394,13 +3202,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *p_DWORD)"
+   }
   },
   "0x004198c0": {
    "name": "StartLinearMove",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -3416,39 +3222,33 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int *pTargetPos, int nMode)"
+   }
   },
   "0x00419ae0": {
    "name": "NotifyAndSetMode6",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00419b10": {
    "name": "SetCollisionRadius",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall()"
+   }
   },
   "0x00419ef0": {
    "name": "AdvancePathStep",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -3460,13 +3260,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(float *pfVal)"
+   }
   },
   "0x0041aea0": {
    "name": "SetBlendMode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -3478,13 +3276,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fAlpha)"
+   }
   },
   "0x0041aee0": {
    "name": "SetTransform",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3496,13 +3292,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *p_DWORD)"
+   }
   },
   "0x0041af50": {
    "name": "AllocPathPage",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3518,13 +3312,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0041b120": {
    "name": "StopPathMovement",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3536,13 +3328,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0041b420": {
    "name": "LoadWeaponModel",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -3554,13 +3344,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(char *pszRoleName)"
+   }
   },
   "0x0041ba10": {
    "name": "InterpolateHeight",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -3572,26 +3360,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(float *pfVal)"
+   }
   },
   "0x0041bad0": {
    "name": "InitDefaultState",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0041bc30": {
    "name": "ExportRoleData",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3603,13 +3387,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float *pfVal)"
+   }
   },
   "0x0041bd40": {
    "name": "ClearColors",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
@@ -3621,26 +3403,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall(_BYTE *p_BYTE)"
+   }
   },
   "0x0041c090": {
    "name": "FlushCommandQueue",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0041c190": {
    "name": "SetInactive",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3652,26 +3430,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0041d220": {
    "name": "AddCameraKeyframe",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00420f50": {
    "name": "GetMapNodePtr",
    "evidence_level": "unverified",
-   "semantic_sig": "char *__thiscall",
    "sig_model": {
     "return": "char *__thiscall",
     "cc": null,
@@ -3683,13 +3457,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char *__thiscall (int nIndex)"
+   }
   },
   "0x00421dd0": {
    "name": "ClearWaypointBuffer",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3713,13 +3485,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
+   }
   },
   "0x00421f20": {
    "name": "GetFontColor",
    "evidence_level": "unverified",
-   "semantic_sig": "size_t",
    "sig_model": {
     "return": "size_t",
     "cc": "thiscall",
@@ -3731,13 +3501,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "size_t __thiscall(FILE *Stream)"
+   }
   },
   "0x00421f70": {
    "name": "ClearPathData",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -3749,13 +3517,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(FILE *Buffer)"
+   }
   },
   "0x00422000": {
    "name": "BuildModelPath",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -3767,27 +3533,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(const char *pszName)"
+   }
   },
   "0x00422140": {
    "name": "ResetModelPaths",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x00422430": {
    "name": "SetAnimBlend",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "cdecl",
@@ -3799,40 +3561,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __cdecl(int nVal)"
+   }
   },
   "0x00422540": {
    "name": "SetAnimFrame",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00422740": {
    "name": "ResetGlobalPos",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004234a0": {
    "name": "SetCameraMode",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -3844,13 +3600,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal)"
+   }
   },
   "0x0042ad40": {
    "name": "SetActionState",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3866,80 +3620,68 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, char pData)"
+   }
   },
   "0x0044b470": {
    "name": "ProcessWaypoint",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0044cd90": {
    "name": "InitUICtrlArray",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0044cec0": {
    "name": "InitDefaultPositions",
    "_misattrib_evidence": "max_offset=4224>class_size=180",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0044d380": {
    "name": "InitRandomParticles",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00531f50": {
    "name": "InitAllSystems",
    "_misattrib_evidence": "max_offset=7432>class_size=232",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00532360": {
    "name": "ApplyRotationAxis",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3955,13 +3697,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, char pData)"
+   }
   },
   "0x00532410": {
    "name": "ShowHideUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -3973,40 +3713,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char pData)"
+   }
   },
   "0x005326a0": {
    "name": "StartBlinkUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x005326e0": {
    "name": "StopBlinkUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00532710": {
    "name": "UpdateTimer",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -4022,14 +3756,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00532960": {
    "name": "ScaleValue",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -4049,14 +3781,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int *pnVal, int *p_DWORD)"
+   }
   },
   "0x005329a0": {
    "name": "HandleMsgDLL",
    "ordinal": 6,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -4077,13 +3807,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)",
    "name_note": " | C9sig链统一20261117→int __thiscall(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x00532c80": {
    "name": "AdjustHeight",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4095,27 +3823,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x00532d30": {
    "name": "GetStateMode",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00532e10": {
    "name": "ResetPathState",
    "source": "| 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -4127,13 +3851,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nVal1)"
+   }
   },
   "0x00414250": {
    "name": "NormalizeDirection",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4145,14 +3867,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pfDir)"
+   }
   },
   "0x004161e0": {
    "name": "ScaleVector",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "cdecl",
@@ -4168,13 +3888,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __cdecl(float *pVec, float fScale)"
+   }
   },
   "0x004207d0": {
    "name": "LoadRoleImage",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned char *",
    "sig_model": {
     "return": "unsigned char *",
     "cc": "thiscall",
@@ -4190,13 +3908,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned char * __thiscall(int nIndex, const char *pszPath)"
+   }
   },
   "0x004163b0": {
    "name": "CalcTileDistance",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -4212,52 +3928,44 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nTileX, int nTileY)"
+   }
   },
   "0x0041b300": {
    "name": "GetCurrentTile",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004203c0": {
    "name": "InitRoleImage",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00532d40": {
    "name": "NegateStateMode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0041bd70": {
    "name": "GetRoleName",
    "evidence_level": "unverified",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -4269,13 +3977,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "const char * __thiscall(unsigned int nRoleIndex)"
+   }
   },
   "0x00414980": {
    "name": "GetPosition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4291,14 +3997,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float *pOut, int nVal)"
+   }
   },
   "0x00417ac0": {
    "name": "SetState",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4310,13 +4014,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int state)"
+   }
   },
   "0x004209f0": {
    "name": "GetTile",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -4332,13 +4034,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nX, int nY)"
+   }
   },
   "0x00412940": {
    "name": "UpdatePath",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -4350,8 +4050,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00420910": {
    "name": "_scalar_dtor_0910",
@@ -4359,7 +4058,6 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4372,13 +4070,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0910(??1/??_G析构族); decomp文件=RoleSystem_`scalar_deleting_destructoruint_00420910 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x005110b0": {
    "name": "SetColor",
    "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4390,16 +4090,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nColor)"
+   }
   },
   "0x00420430": {
    "name": "_scalar_dtor_0430",
    "source": "[5表重落收尾 2026-10-16] 补登记（槽名债清毕后重落缺口）：A 级 decomp 快照 RoleSystem_sdtor_2_00420430.json——体 `sub_420450(Block); if (a2 & 1) operator delete(Block); return Block` = 删析构形（flags 条件 delete+return Block），flags 真型 char、this 隐式（弃 (void *Block, char a2) 显式 this 旧建模） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AAD8,0x56AAE4）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_name": "_scalar_dtor_0430",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -4416,14 +4113,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0430(??1/??_G析构族); decomp文件=RoleSystem_sdtor_2_00420430 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00420270": {
    "name": "_scalar_dtor_0270",
    "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x420290 写 vptr 0x56AAD8（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAD8→RoleSystem（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x420290 写 vptr 0x56AAD8",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4431,30 +4130,29 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0270(??1/??_G析构族); decomp文件=RoleSystem_`scalar_deleting_destructoruint_00420270 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00532d50": {
    "name": "ClearStateMode",
    "source": "[函数归属 2026-10-17·余 8] RoleSystem——②`ClearStateMode(RoleSystem *this)` 类名直证 ✓ + ①ExternalStatistics::UpdateFromRole ③m_rect.right=0 ✓（**decompile 类名直证**（非 signature this ✗ 铁律）=decomp 产出的类限定 ✓）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004202f0": {
    "name": "~RoleSystem",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 gbRenderEffect（成员实访独占 uniq=3）",
-   "semantic_name": "sub_4202F0",
    "name_note": "; B6定谳: slot0=删除式dtor正主(槽位律); 伴生complete=0x531e70(declaration_only)",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -4462,30 +4160,29 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~RoleSystem(??1/??_G析构族); decomp文件=RoleSystem_RoleSystem_004202f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004202a0": {
    "name": "AllocSlotData",
    "source": "vtable_gap_fill_v1(from RoleSystem.json) | multiclaim 裁决 2026-11-03: 败于 RoleSystem（uniq=3）",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "AllocSlotData",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004208a0": {
    "name": "HideAll",
    "source": "vtable_gap_fill_v1(from RoleSystem.json) | multiclaim 裁决 2026-11-03: 败于 RoleSystem（uniq=4）",
    "evidence_level": "chain_unified",
    "adjudication": "rejected",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -4493,15 +4190,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "semantic_name": "RoleSystem::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Reset=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Reset=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004209e0": {
    "name": "ResetState",
    "source": "vtable_gap_fill_v1(from RoleSystem.json) | 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -4522,7 +4221,6 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
    "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=0 (RET字节=硬证据) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→int __thiscall(int, unsigned int, int)"
   }
  },
@@ -4579,8 +4277,5 @@
    "name": "UIWnd",
    "offset": 0
   }
- ],
- "_verdicts": {
-  "pack_test_20261020": "P0-1 实验**否定**：pack=1 未消除 91 冲突 ⇒ 「对齐自插 padding」假设错，P0-1 根因另寻。"
- }
+ ]
 }

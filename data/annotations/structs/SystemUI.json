@@ -392,7 +392,6 @@
   "0x004200a0": {
    "name": "ProcessNoteMap",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -405,15 +404,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal)",
-   "semantic_name": "SystemUI::ProcessNoteMap",
    "name_note": "语义裁定20261116: 体=m_NoteItem[98].m_NoteTime+UIBigMap处理带参nVal, 非槽(slot1真Render=0x4ad140已正名) → 笔记地图处理; 原名Render=误名; 部分体证据置信中"
   },
   "0x00420110": {
    "name": "RenderWithStack",
    "_misattrib_evidence": "max_offset=57572>class_size=204",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -425,13 +421,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(void *pStack)"
+   }
   },
   "0x004a7690": {
    "name": "~SystemUI",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -439,12 +433,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~SystemUI(??1/??_G析构族); decomp文件=SystemUI_~SystemUIvoid_004a7690 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00420150": {
    "name": "UIUpdate",
    "evidence_level": "unverified",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -460,14 +456,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(double result, double pData)"
+   }
   },
   "0x004ad540": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -484,70 +478,64 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
    "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名UpdateSwordDisplay留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_name": "SystemUI::Update"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0041f6f0": {
    "name": "Reset",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004a8150": {
    "name": "ShowPage",
    "_misattrib_evidence": "max_offset=26968>class_size=1816",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004acde0": {
    "name": "UpdateNoteScroll",
    "_misattrib_evidence": "max_offset=283700>class_size=200",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004acf90": {
    "name": "UpdateNoteScrollAlt",
    "_misattrib_evidence": "max_offset=283704>class_size=200",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004ad140": {
    "name": "Render",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -555,15 +543,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "semantic_name": "SystemUI::Render",
-   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004adc30": {
    "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -584,14 +574,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int, unsigned int, int)",
    "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 体switch消息处理+result=1 dispatch模式; 原名InitScreenUI留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_name": "SystemUI::OnMessage"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00421a40": {
    "name": "GetNoteItemData",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -603,27 +595,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int *item)"
+   }
   },
   "0x004a7c40": {
    "name": "LayoutWidgets",
    "_misattrib_evidence": "max_offset=177412>class_size=33228",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a8260": {
    "name": "CreateNoteEntry",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -659,14 +647,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nVal, int nVal2, int nVal3, char pData, int nVal4, int nVal5, unsigned __int8 a8)"
+   }
   },
   "0x004acc10": {
    "name": "InitSlotEffects",
    "_misattrib_evidence": "max_offset=177420>class_size=200",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -678,35 +664,30 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0051f130": {
    "name": "UpdateParticles",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004ac8b0": {
    "name": "ReplaceTextures",
    "_misattrib_evidence": "max_offset=382744>class_size=4280",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004a7670": {
    "name": "_scalar_dtor_7670",
@@ -714,7 +695,6 @@
    "ordinal": 5,
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -731,35 +711,37 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(void *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_7670(??1/??_G析构族); decomp文件=SystemUI_`scalar_deleting_destructoruint_004a7670 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0041f800": {
    "name": "Close",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
-  "0x0043de40": {
-   "name": "HideAll",
-   "semantic_name": "SystemUI::HideAll",
-   "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
+  "0x0056f29c": {
+   "name": "SystemUI",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "binary_vtable_slot",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056f29c'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056f29c) 2026-11-17 机械补迁(P0-1-B缺口72类)",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()",
-   "evidence_level": "chain_unified"
+    "pending": true
+   }
   }
  },
  "vtables": [

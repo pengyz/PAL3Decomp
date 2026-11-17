@@ -25,7 +25,6 @@
   "0x0043dcb0": {
    "name": "~UILBColumn",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -33,20 +32,21 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UILBColumn(??1/??_G析构族); decomp文件=UILBColumn_~UILBColumnvoid_0043dcb0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043dcc0": {
    "name": "Destroy",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "methods_note": "2026-09-14: removed pseudo ctor@0x43DCA0 (11-byte accessor mislabeled by PDB drift); kept ~UILBColumn@0x43DCB0 (jmp Destroy = real dtor shape) and Destroy"

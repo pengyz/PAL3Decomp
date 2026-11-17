@@ -99,8 +99,6 @@
    "ordinal": 3,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_name": "UITextArea::HideAll",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -108,26 +106,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=MoveWindow调用弱证据; 原名Destroy留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": " | C9sig基锚定20261117→void __thiscall()(基=UIWnd) | C9name定谳20261117→HideAll: 链律(slot3位); 体=MoveWindow调用弱证据; 原名Destroy留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00444f60": {
    "name": "InitAfterClear",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00445760": {
    "name": "UpdateChildLayout",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -143,16 +142,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(RECT *pRect, unsigned int nFlags)"
+   }
   },
   "0x00445170": {
    "name": "Update",
    "ordinal": 2,
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
-   "semantic_name": "UITextArea::Update",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -169,16 +165,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c60",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00445500": {
    "name": "Render",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_name": "Render",
    "name_note": "; C9定谳(中高): slot1链源级void——result=m_bvisible/m_nTodo成员态语义不通; 对齐基契约 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -186,15 +184,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00445720": {
    "name": "ShowClipped",
    "ordinal": 0,
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "chain_unified",
-   "semantic_name": "UITextArea::ShowClipped",
-   "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -207,8 +207,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
-   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | C9name定谳20261117→ShowClipped: 链律(slot0=ShowClipped位); 体=m_bvisible操作弱证据待深查; 原名ShowWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→char __thiscall(CCBControlWindow **show): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | C9name定谳20261117→ShowClipped: 链律(slot0=ShowClipped位); 体=m_bvisible操作弱证据待深查; 原名ShowWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445e70",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x00445e70(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00444ff0": {
    "name": "_sdtor_13",
@@ -216,8 +220,6 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "adjudication": "rejected",
-   "semantic_name": "_sdtor_13",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -234,7 +236,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_13(??1/??_G析构族); decomp文件=UITextArea_sdtor_13_00444ff0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [

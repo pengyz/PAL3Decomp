@@ -25,20 +25,17 @@
   "0x004500f0": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0044d470": {
    "name": "InitParticle",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -50,13 +47,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nIndex)"
+   }
   },
   "0x0044d580": {
    "name": "RandomizeEffects",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -68,13 +63,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0044d680": {
    "name": "InitParticle2",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -86,8 +79,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nIndex)"
+   }
   },
   "0x0052e500": {
    "name": "SetupDisplay",
@@ -96,7 +88,6 @@
     "v21": "char *"
    },
    "lvars_source": " | L-VAR 2026-11-12: (uint)v21 - (char*)m_textx 指针差语境(C2113), v21 系 char* 槽",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -108,36 +99,31 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x00530570": {
    "name": "ClearState",
    "_misattrib_evidence": "max_offset=780>class_size=232",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x005305a0": {
    "name": "ResetState",
    "_misattrib_evidence": "max_offset=724>class_size=184",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  },
  "base_size": 72,

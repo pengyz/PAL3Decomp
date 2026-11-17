@@ -55,46 +55,39 @@
   "0x004dba60": {
    "name": "ProcessQueue",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x004dbb20": {
    "name": "CheckComplete",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x004dbd40": {
    "name": "AdvanceStep",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004db910": {
    "name": "SetPause",
    "evidence_level": "unverified",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -106,39 +99,33 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(char bPause)"
+   }
   },
   "0x004db5c0": {
    "name": "ResetTimers",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004dbb80": {
    "name": "CalcTurnOrder",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x005270c0": {
    "name": "FindSequenceSlot",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -150,29 +137,25 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00527510": {
    "name": "AdvanceToNextSlot",
    "_misattrib_evidence": "max_offset=15008>class_size=4280",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004db640": {
    "name": "CalcSpeed",
    "_migrated_from": "CCBSystem",
    "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -188,15 +171,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int roleIdx, int nVal)"
+   }
   },
   "0x004db660": {
    "name": "GetCmdSlot",
    "_migrated_from": "CCBSystem",
    "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -208,15 +189,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int idx)"
+   }
   },
   "0x004dbe60": {
    "name": "InitCombatSlot",
    "_migrated_from": "CCBSystem",
    "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -228,23 +207,20 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int roleIdx)"
+   }
   },
   "0x004db7a0": {
    "name": "ProcessAllCmds",
    "_migrated_from": "CCBSystem",
    "_evidence": "A级: 0x4DB7A0 把 this+8(=m_pControl, 声明 CCBControl*) 当 CCBRoleState* 传给 CCBRoleState::IsActive(0x4ED052: mov 0x243(%ecx,%edx,4),%al)、InitUI(0x4EE882: lea 0x228(%ecx,%edx,4))、SetRoleField(0x4F2BCA: mov 0x250(%ecx,%edx,4),%eax)，edx=idx*28 ⇒ 对象需>=0x250+28*idx=592B+；CCBControl binary_size=368 ⇒ 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 吻合",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  }
 }

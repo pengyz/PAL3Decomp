@@ -202,20 +202,17 @@
    "name": "RenderActiveRoles",
    "_misattrib_evidence": "max_offset=57572>class_size=204",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004cda10": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "CEffMgr *",
    "sig_model": {
     "return": "CEffMgr *",
     "cc": "thiscall",
@@ -235,40 +232,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CEffMgr * __thiscall(int gfxMgr, int cam, int nVal)"
+   }
   },
   "0x004cdbf0": {
    "name": "RenderAll",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x004cdc20": {
    "name": "RenderUpdate",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x00422050": {
    "name": "FindRoleByState",
    "_misattrib_evidence": "max_offset=57744>class_size=8684",
    "evidence_level": "unverified",
-   "semantic_sig": "int *__thiscall",
    "sig_model": {
     "return": "int *__thiscall",
     "cc": null,
@@ -280,15 +271,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int *__thiscall (char nState)"
+   }
   },
   "0x004cd930": {
    "name": "_scalar_dtor",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "SceneMgr *__thiscall",
    "sig_model": {
     "return": "SceneMgr *__thiscall",
     "cc": null,
@@ -305,118 +294,105 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "SceneMgr *__thiscall (void *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=SceneMgr_`scalar_deleting_destructoruint_004cd930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00528d50": {
    "name": "LoadMainUITexture",
    "_misattrib_evidence": "max_offset=56180>class_size=200",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0052ec90": {
    "name": "GetCurrentNode",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x0040ca40": {
    "name": "InitSceneRoles",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl()"
+   }
   },
   "0x00408850": {
    "name": "ResetPlayerAtts",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl()"
+   }
   },
   "0x00423500": {
    "name": "ClearInactiveRoles",
    "source": "F61(2026-09-19): 原为 int 返回 ⇒ Hex-Rays 把 result 钉成 int，只能发 *(int*)/*(_DWORD*) 裸指针算术，同一表达式两处符号性不一致（jl vs jb）。二进制 0x423500 尾部无 mov eax（eax 一直保留 UISceneUpdate() 的返回指针），故返回 SceneMgr* 与二进制相容；唯一引用者是 Logger.cpp:216 的取地址（cast 成 void(*)()，不受返回类型影响）。",
    "static": true,
    "evidence_level": "B",
-   "semantic_sig": "struct SceneMgr *__cdecl",
    "sig_model": {
     "return": "struct SceneMgr *__cdecl",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "struct SceneMgr *__cdecl ()"
+   }
   },
   "0x0040fc70": {
    "name": "GetValidPartyCount",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl()"
+   }
   },
   "0x004236b0": {
    "name": "ResetSceneFlags",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl()"
+   }
   },
   "0x00421c40": {
    "name": "UINotifyUpdate",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  }
 }

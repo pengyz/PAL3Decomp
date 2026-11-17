@@ -259,7 +259,6 @@
   "0x00529400": {
    "name": "CountActiveParticles",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "fastcall",
@@ -271,14 +270,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __fastcall(int *p_DWORD)"
+   }
   },
   "0x004b5570": {
    "name": "Update",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新（helix/diffuse） | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -303,14 +300,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int a2, int a3, TextureLibDataBase *a4, int a5)",
    "evidence_level": "chain_unified"
   },
   "0x004b5830": {
    "name": "Update2",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetLib）",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -334,14 +329,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(int a2, int a3, TextureLibDataBase *a4, int a5)"
+   }
   },
   "0x004b5bb0": {
    "name": "Update4",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetTop + 物理）",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -365,8 +358,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(int a2, int a3, TextureLibDataBase *a4, int a5)"
+   }
   },
   "0x004b4dc0": {
    "name": "Apply",
@@ -374,7 +366,6 @@
    "note": "reattribute: 归属 A 级：①UIParticle.binary_size=584，与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致（且 0x1258+128*584=0x13658 算得精确）；②本函数 `mov esi,ecx`（this 在 ecx, __thiscall）且 13 处 `retn 4` ⇒ 恰 1 个栈参，并由 `mov ecx,[esp+10h+arg_0]` 读出作为 switch 的 mode；③它的 13 个分支调用的正是刚由独立复核确认为 UIParticle 的 _todo_4b5570/4b5830/4b5bb0（同一 this、同 `mov ecx,esi`）；④原注解 ScreenEffect 只有 24 字节（装不下 [esi+0x80/0x88/0x8c] 等访问），且 source=None（无来源；据复核其来源为 commit 19a64a498 PDB 单源）。",
    "name_evidence": "保留原名 Apply：该名本身语义合理（按 mode 分派执行），且 UIParticle 现无同名成员；按规则不无据改名。签名补上此前被丢掉的栈参 mode（retn 4 为证），类型 int（作为 switch 索引、调用方 push 字面量 8/0Ah/0Bh/0Ch）。",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -386,8 +377,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int mode)"
+   }
   },
   "0x004b4fe0": {
    "name": "AutoScrollParticles",
@@ -395,7 +385,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 AutoScrollParticles：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -419,8 +408,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)"
+   }
   },
   "0x004b51a0": {
    "name": "AutoScrollParticlesEx",
@@ -428,7 +416,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 AutoScrollParticlesEx：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -452,8 +439,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, TextureLibDataBase *pTextureLibDataBase, int nVal, int nVal2)"
+   }
   },
   "0x004b5380": {
    "name": "UpdateCircularMotion",
@@ -461,7 +447,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 UpdateCircularMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -485,8 +470,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"
+   }
   },
   "0x004b5450": {
    "name": "UpdateOrbitalMotion",
@@ -494,7 +478,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 UpdateOrbitalMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -518,8 +501,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"
+   }
   },
   "0x004b5750": {
    "name": "UpdateLinearMotion",
@@ -527,7 +509,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 UpdateLinearMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -551,14 +532,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"
+   }
   },
   "0x004b59b0": {
    "name": "Update3",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（color quad）",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -582,8 +561,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"
+   }
   },
   "0x004b5d20": {
    "name": "RenderFrame",
@@ -591,7 +569,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 RenderFrame：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -615,8 +592,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2, int nVal3, int nVal4)"
+   }
   },
   "0x004b5ee0": {
    "name": "LoadLibrary",
@@ -624,7 +600,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 LoadLibrary：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -648,8 +623,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)"
+   }
   },
   "0x004b60f0": {
    "name": "UpdateByMode",
@@ -657,7 +631,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 UpdateByMode：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -681,8 +654,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(char *pszBuf, int nVal, TextureLibDataBase *p, int nVal2)"
+   }
   },
   "0x004b6300": {
    "name": "GetTextureByName",
@@ -690,7 +662,6 @@
    "note": "reattribute: 布局证据：该函数经 this（`mov esi,ecx` 的 esi）访问的偏移中，有 %d 处做 **float 运算**（fld/fst/fild…）而偏移落在 `TextureLibDataBase._libfolder char[512] @+0x0C` 范围内 —— 一个路径字符串缓冲不可能被 float 运算访问；这些偏移在 `UIParticle` 里都是 float 成员（如 0x2C=m_HelixAngle、0x30=m_tempx、0x84=_fade、0x88=_x、0x8C=_y、0x244=_speed）。旁证：`UIParticle.binary_size=584` 与 asm 187160-187172 的 eh-vector-ctor-iterator 元素尺寸 0x248=584 一致；其 ctor/dtor(0x4B4690/0x4B47E0) 写点与 UIParticle 声明成员 47/47 覆盖且宽度一致；同簇的 0x4B5570/5830/5BB0 与 0x4B4DC0 已由独立复核确认属 UIParticle。反例对照：同类的 `CreateParentData(0x53FDD0)` 访问的是 TLB 专有成员 _realNum/_m_pData/_isLoadTLI ⇒ **未**纳入本批。",
    "name_evidence": "保留原名 GetTextureByName：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
-   "semantic_sig": "__int64",
    "sig_model": {
     "return": "__int64",
     "cc": "thiscall",
@@ -714,8 +685,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "__int64 __thiscall(char *pszBuf, int nVal, TextureLibDataBase *pTextureLibDataBase, int nVal2)"
+   }
   }
  }
 }

@@ -46,7 +46,6 @@
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UISceneMap（ctor 名形=类名）：A 级 refs ??0UIListBox（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -54,28 +53,28 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UISceneMap(??0构造); decomp文件=UISceneMap_UISceneMapvoid_0044ffe0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004b47e0": {
    "name": "Destructor",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00450090": {
    "name": "~UISceneMap",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_90 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UISceneMap。refs: ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -83,29 +82,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
-  },
-  "0x00535930": {
-   "name": "LoadOverlayTexture",
-   "evidence_level": "unverified",
-   "semantic_sig": "struct gbVFileSystem *",
-   "sig_model": {
-    "return": "struct gbVFileSystem *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "double",
-      "name": "thisa"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "struct gbVFileSystem * __thiscall(double thisa, int nVal)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UISceneMap(??1/??_G析构族); decomp文件=UISceneMap_~UISceneMapvoid_00450090 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00450070": {
    "name": "_scalar_dtor_0070",
@@ -115,7 +95,6 @@
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UISceneMap（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B0B4）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -132,12 +111,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0070(??1/??_G析构族); decomp文件=UISceneMap_`scalar_deleting_destructoruint_00450070 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00451200": {
    "name": "LoadCompass",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -153,67 +134,56 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(const char *arg0, int nVal)"
+   }
   },
   "0x0046f2c0": {
    "name": "RenderWithUpdate",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004b42f0": {
    "name": "ShowPage",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00527cd0": {
    "name": "CheckCompassDir",
    "evidence_level": "unverified",
-   "semantic_name": "UISceneMap::CheckCompassDir(void)",
    "name_note": "语义裁定20261116: 体=2行罗盘方向检查(m_compass.m_rotdir判空→todo_540d20) 非渲染 → 让位slot1真Render(0x450230 alpha混色); 原名Render=误名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00529c80": {
    "name": "Render_529c80",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00449f70": {
    "name": "ValidateInput",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned int",
    "sig_model": {
     "return": "unsigned int",
     "cc": "thiscall",
@@ -225,15 +195,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned int __thiscall(unsigned int dwVal)"
+   }
   },
   "0x00450230": {
    "name": "Render",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_name": "UISceneMap::Render",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -241,41 +208,40 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名Render_0230 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名Render_0230 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00450dc0": {
    "name": "Init",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "多组件构造链（UIFrameWnd/UITextArea/PalScript）",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00523e60": {
    "name": "GetSceneInfo",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0052fba0": {
    "name": "SetCurrentMapID",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -287,13 +253,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00535960": {
    "name": "SetColorIfValid",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -305,14 +269,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00535e50": {
    "name": "SetFieldIfValid",
    "_misattrib_evidence": "max_offset=224>class_size=68",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -324,15 +286,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004501a0": {
    "name": "Update",
    "source": "vtable_migrated",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -349,14 +309,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int fVal, int nVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int fVal, int nVal) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c60",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00443ca0": {
    "name": "ProcessSceneChange",
    "name_source": "IDA语义分析 2026-11-01 批6",
    "name_note": "场景切换处理（光标+场景信息）",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -368,8 +331,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(float fVal)"
+   }
   },
   "0x00451800": {
    "name": "_todo_00451800",
@@ -383,20 +345,6 @@
     "varargs": false,
     "pending": true
    }
-  },
-  "0x00450f80": {
-   "name": "IsValid",
-   "evidence_level": "unverified",
-   "semantic_name": "IsValid",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall()"
   }
  },
  "vtables": [

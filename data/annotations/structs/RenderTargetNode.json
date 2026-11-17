@@ -5,7 +5,6 @@
   "0x004bd830": {
    "name": "RenderTargetNode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -13,12 +12,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=RenderTargetNode(??0构造); decomp文件=RenderTargetNode_RenderTargetNodevoid_004bd830 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004bd880": {
    "name": "CreateParticleEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "gbParticleEffect *",
    "sig_model": {
     "return": "gbParticleEffect *",
     "cc": "thiscall",
@@ -30,13 +31,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbParticleEffect * __thiscall(int nVal)"
+   }
   },
   "0x004bd900": {
    "name": "UpdateParticleEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "struct gbParticleGroup *",
    "sig_model": {
     "return": "struct gbParticleGroup *",
     "cc": "thiscall",
@@ -48,13 +47,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "struct gbParticleGroup * __thiscall(int nVal)"
+   }
   },
   "0x004bd950": {
    "name": "Stop",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -66,27 +63,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004bd970": {
    "name": "ReleaseDefault",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004bd990": {
    "name": "SetPathMode",
    "evidence_level": "unverified",
-   "semantic_name": "SetPathMode",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -106,64 +98,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int, int, int)"
-  },
-  "0x004bd850": {
-   "name": "_scalar_dtor_D850",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_0",
-   "name_note": "槽链传播: 同址语义名(_scalar_dtor_D850)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x0054211a": {
-   "name": "VisUpdate",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_5",
-   "name_note": "槽链传播: 同址语义名(VisUpdate)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x00542114": {
-   "name": "SceneVisNode_adjthunk_2114",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_6",
-   "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_2114)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0054210e": {
    "name": "SceneVisNode_adjthunk_210E",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_7",
    "name_note": "槽链传播: 同址语义名(SceneVisNode_adjthunk_210E)沿override链正名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -171,7 +112,21 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+  },
+  "0x0054211a": {
+   "name": "VisUpdate",
+   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
+   "evidence_level": "binary_vtable_slot",
+   "name_note": "槽链传播: 同址语义名(VisUpdate)沿override链正名",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
   }
  },
  "vtables": [
@@ -181,7 +136,11 @@
    "slots": [
     {
      "addr": "0x004bd850",
-     "name": "_scalar_dtor_D850"
+     "name": "_scalar_dtor_D850",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     },
     {
      "addr": "0x004b7f70"

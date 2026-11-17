@@ -15,7 +15,7 @@ Sources:
 NO raw PDB data is read. The IDB export is the single source of truth.
 """
 
-from annotation_view import base_names as _base_names, base_entries as _base_entries
+from annotation_view import base_names as _base_names, base_entries as _base_entries, sm_text
 import json
 import os
 import re
@@ -551,7 +551,7 @@ def _global_sig_by_addr():
         for _cls in sorted(_is.keys()):
             for _a, _me in ((_is.get(_cls) or {}).get('methods') or {}).items():
                 k = str(_a).lower()
-                s = str(_me.get('signature') or '')
+                s = sm_text(_me)  # [导出层sig退役迁移 2026-11-18]
                 if s and k not in m:
                     m[k] = s
     except Exception:
@@ -625,6 +625,10 @@ def _decomp_real_body_addrs():
         body = (d.get('decompiled_c') or '')
         if sz > 4 and not re.match(r'^[\s\S]{0,40}ret\b', body):
             real.add(addr)
+        elif sz == 3 and 'return' in body:
+            # [3字节真体 2026-11-18] return 0型微体(OnTest@0x4c0500=char实证):
+            #   显式return语句=有返回型证据, 不同于无语句纯ret桩(C2555×536票源闭合)
+            real.add(addr)
     _DECOMP_REAL_ADDRS = real
     return real
 
@@ -660,11 +664,13 @@ def _family_slot_sig_full(cls_name, slot_name, slot_addr):
             nm = str(e.get('name') or '').split('::')[-1]
             if nm != slot_name:
                 continue
-            sig = str(e.get('signature') or '')
+            sig = sm_text(e)   # [导出层sig退役迁移 2026-11-18] T3后条目只
+                               # 有sig_model; 票源直读退役字段=全族读空=C2555×536
             if not sig:
                 continue
-            if str(a).lower() == str(slot_addr).lower():
-                continue  # 桩位自身禁票
+            if str(a).lower() == str(slot_addr).lower() and str(a).lower() not in real:
+                continue  # 桩位自身禁票——仅无真体条目; 真体在手者有票权
+                         # (OnTest@0x4c0500=char return 0真体实证, C2555×536)
             if 'own_slot_backfill' in str(e.get('source') or ''):
                 continue  # 桩位回填禁票(CEffSParticle::Update BOOL实证)
             if str(a).lower() not in real:
@@ -1341,7 +1347,9 @@ def collect_methods():
                         _anh = _vh
                         break
             _anh_name = _anh.get('name') if isinstance(_anh, dict) else None
-            if _anh_name and _anh_name != method and                     'thunk' in str(_anh.get('name_source', '')) + str(_anh.get('name_note', '')):
+            # [P0-3闭合 2026-11-17 T3] 注解名覆盖条件与 collect.py P-A5 对称化:
+            # 注解名存在即覆盖(注解=唯一真值; 旧thunk限定=头体漂移C2039复发病灶)
+            if _anh_name and _anh_name != method:
                 method = _anh_name
         except Exception as _e5h:
             print('[P5H-EXC] %s: %s' % (addr, _e5h))
@@ -1730,6 +1738,7 @@ def _offset0_vptr_placeholder(cls_name):
 
 
 _POD_TYPEDEFS = []
+_dup_reports = []   # [真重复collect 2026-11-17] generate_header全程收集, main末尾统一assert(APPLY_GATE_OFF可关)
 
 
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
@@ -1742,6 +1751,32 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     methods:    function definitions collected from decomp JSONs.
     """
     seen_methods = set()  # populated by the method-decl loop below; also read by the scalar-wrapper ctor block
+    # [C阶段 flags化 2026-11-17 用户裁定] ctor/dtor 身份唯一决策源=注解flags字段
+    #   (B阶段迁移: 254 dtor + 137 ctor, 证据链逐条)。名字形态推断退役。
+    _flags_dtor_addrs = set()
+    # [继承槽所有权 2026-11-17 assert首猎#4] 被覆写的继承槽归方法循环(自有址)——
+    #   槽循环只发未被覆写的继承槽+自有槽。CCBResultWindow OnMessage实证:
+    #   覆写@0x5195e0 + 继承槽@0x445d10 双声明。
+    _corpus_method_names = {str(_m0) for _m0, _s0, _a0 in (methods or [])}
+    _corpus_addr_set = {str(_a0).lower() for _m0, _s0, _a0 in (methods or []) if _a0}
+    _flags_ctor_addrs = set()
+    has_dtor_decl = False   # [所有权唯一化 2026-11-17] 槽位循环dtor分支置位; 方法循环查它
+    try:
+        for _fa, _fm in ((_annview.struct_by_class(cls_name) or {}).get('methods') or {}).items():
+            if isinstance(_fm, dict):
+                _fl = _fm.get('flags') or []
+                if 'dtor' in _fl:
+                    _flags_dtor_addrs.add(str(_fa).lower())
+                if 'ctor' in _fl:
+                    _flags_ctor_addrs.add(str(_fa).lower())
+        # [T1善后 2026-11-18] 槽级身份flags——折叠载体条目退役(N17唯一所有者)后,
+        #   dtor身份注解落槽记录(vtable_slot.flags); 消费端同权读取(铁律3 flags唯一决策源)
+        for _vt_f in ((_annview.struct_by_class(cls_name) or {}).get('vtables') or []):
+            for _sl_f in (_vt_f.get('slots') or []):
+                if isinstance(_sl_f, dict) and 'dtor' in (_sl_f.get('flags') or []):
+                    _flags_dtor_addrs.add(str(_sl_f.get('addr') or '').lower())
+    except Exception:
+        pass
     lines = ["#pragma once"]
 
     # [POD标量早退 2026-11-17] 判据唯一化: 以_pod_scalar_names()预扫描为准
@@ -2000,8 +2035,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     try:
         _ann_md = _get_ida_structs()
         _ann_ms = _ann_md.get(cls_name, {}).get('methods', {})
+        # [导出层sig退役迁移 2026-11-18] export schema已signature→sig_model
+        #   (子agent T3), 本扫描源直读signature读空 ⇒ fwd声明全丢(C2061回归,
+        #   Actor/tagActionCommand实证)。切sm_text结构化渲染。
         for _k, _v in _ann_ms.items():
-            _ann_sigs_by_addr[_k] = _v.get('signature', '')
+            _ann_sigs_by_addr[_k] = sm_text(_v)
     except:
         pass
 
@@ -3073,7 +3111,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # ⚠️ 模板特化类（template_expr 非空）跳过注入：注入的 `virtual ~扁平名()`
     # 与特化类名（CTaskTpl<...>）不匹配 ⇒ C2523 ×446 全库崩 ✗（2026-09-23 实测）。
     # 特化类的 36 字节按数据发射本就与二进制布局等价（其虚调用经 ret-N 槽号机制发射）✓
-    if _will_inject_vptr:
+    # [真重复assert首猎#5修 2026-11-18] 注入dtor与槽循环dtor声明互斥——
+    #   槽位flags判定有dtor槽时, 槽循环将发 `virtual ~Cls();`(带vptr等效),
+    #   注入再发 `virtual ~Cls() {}` = C2535双析构(CEffgbParticle/RenderTarget3/
+    #   UIFrameWnd 实证, 阻断220单元)。
+    _slot_dtor_pending = any(
+        str((_sl.get('addr') or '')).lower() in _flags_dtor_addrs
+        for _vt_i in ((_annview.struct_by_class(cls_name) or {}).get('vtables') or [])
+        for _sl in (_vt_i.get('slots') or []))
+    if _will_inject_vptr and not _slot_dtor_pending:
         lines.append("    virtual ~%s() {}" % cls_name)
         lines.append("")
 
@@ -3081,6 +3127,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # 同址多槽(0x401800×4/0x4AF760×4)必须逐位独立声明, methods列表排序无法表达。
     # 名字/签名 = 注解vtables slots的canonical字段(正名账); 回退 methods名/slot_{位置}。
     # 叶slot0(删除式dtor)由注入~X或dtor槽规则接管, 此处跳过。
+    # [真重复assert首猎#5修 2026-11-18] 槽名集先行初始化(槽循环登记生效名→方法循环守卫消费)
+    _slot_names_by_addr = {}
     try:
         # [去越权 2026-11-14] 数据源 = ida_structs(export透传注解vtables, 合法上游)。
         # 退役 _read_vtable_from_binary(管线读二进制=越权) 与 true_vtable_map 依赖:
@@ -3090,6 +3138,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # 第二链机制(B2路线parked) —— 逐位发射第二表 = 与主表同名声明C2535
         # (RoleSystem::AllocSlotData 主表+第二表双声明实证) ⇒ 只发 vts[0]。
         _vt_slots_flat = []
+        _slot_decl_addrs = set()   # [声明按址发射 2026-11-17] 已发声明地址集
+        # [真重复assert首猎#5修 2026-11-18] 槽名集前置初始化(槽循环登记生效名,
+        #   方法循环守卫消费——原初始化在方法循环段=槽循环期不可见)
+        _slot_names_by_addr = {}
         if _is_vts:
             _vt_slots_flat.extend(_is_vts[0].get('slots') or [])
         def _norm_addr(_a):
@@ -3119,7 +3171,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # [槽签正名优先 2026-11-16] 扫描源并集: 注解裁决形(ida_structs methods.signature)
             # + decomp 原始串 + 槽sig —— 前向声明是并集敏感(冗余合法), 非优先级敏感
             _sig_src = '%s %s %s %s' % (
-                (((_ann_s or {}).get('methods') or {}).get(_a0) or {}).get('signature') or '',
+                _annview.sm_text(((_ann_s or {}).get('methods') or {}).get(_a0) or {}),
                 (_methods_by_addr.get(_a0) or {}).get('signature') or '',
                 _global_sig_by_addr().get(_a0) or '',
                 _family_slot_sig(cls_name, str((_sl0.get('name') or '')).split('::')[-1], _a0) or '')
@@ -3184,9 +3236,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # 守卫处理——守卫把'~UIWnd'改写slot_5导致dtor分支死代码(C2555×56根因)。
             # dtor槽发射析构声明后continue, 永不进守卫/签名链。
             _dtor_form0 = re.match(r'^(~|_sdtor_|_scalar_dtor|.*scalar_deleting)', str(_nm) or '')
-            if _dtor_form0:
-                lines.append("    virtual ~%s();" % cls_name)
+            # [推断退役 2026-11-17 用户裁定] 发射唯一决策源=flags; 名字形态降级为
+            #   检测器——名形命中而flags缺失=注解数据bug, assert显形(兜底逻辑→assert)
+            if str(_slot_addr_hex).lower() in _flags_dtor_addrs:
+                # [一类一析构声明 2026-11-17] ??1真析构+??_G删除析构都是独立函数但
+                #   源码级只声明一次——删除析构是编译器产物不入源(源模型)。第二个
+                #   dtor形地址跳过发射(非静默: 一类一析构是C++结构真相)。
+                if not has_dtor_decl:
+                    lines.append("    virtual ~%s();" % cls_name)
+                    has_dtor_decl = True
                 continue
+            if _dtor_form0:
+                raise RuntimeError(
+                    'generate_header(%s): 槽%s 名呈dtor形态(%r)但flags缺dtor——'
+                    '身份标注缺失(注解bug), 先修flags再跑' % (cls_name, _slot_addr_hex, str(_nm)[:40]))
             # [合法标识符守卫 2026-11-14] 槽名带作用域前缀(旧普查'CCBPanelSlot::X'形)
             # = 非法C++标识符 ⇒ 剥前缀取尾段; 剥后非标识符 ⇒ 回退slot_{位置}
             if '::' in str(_nm):
@@ -3207,24 +3270,38 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # 地址条目参数组合对折叠载体天然不足 → 槽声明=按名投票获胜全签名
                 # (P0修复后各chain_unified条目参数=pre编译态/个数=census, 投票胜者干净);
                 # 无票回退地址条目组合(纯桩链零变更)。
-                _fam_full = _family_slot_sig_full(cls_name, _nm, _slot_addr_hex)
-                if _fam_full:
-                    _sg = _fam_full
+                # [本类自有契约优先 2026-11-18 真重复assert#5修] 槽址在本类methods有
+                #   条目(sig_model非pending)⇒槽契约=本类条目sig_model——族投票按"名"
+                #   跨类取签, 会把派生自有覆盖签名(SaleUI Update(CCBUI**,int))压成
+                #   基类桩形(void()) ⇒ 与方法循环同名同参双声明(真重复实证)。
+                #   投票仍服务无本类条目的槽(折叠载体多契约)。
+                try:
+                    _own_key = '0x%08x' % int(str(_slot_addr_hex), 16)   # [hex归一化] 长形键(methods键形0x%08x)
+                except (ValueError, TypeError):
+                    _own_key = str(_slot_addr_hex).lower()
+                _own_e = (((_ann_s or {}).get('methods') or {}).get(_own_key) or {})
+                _own_sig = _annview.sm_text(_own_e) if isinstance(_own_e, dict) else ''
+                if _own_sig:
+                    _sg = _own_sig
                 else:
-                    _ret_vote = _family_slot_sig(cls_name, _nm, _slot_addr_hex)
-                    _base_sig = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
-                        or (((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}).get('signature') \
-                        or (_m0 or {}).get('signature') or ''
-                    if _ret_vote and _base_sig:
-                        _mb = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)\s*(.*)$', _base_sig)
-                        if _mb:
-                            _sg = '%s%s %s' % (_mb.group(1) or '', _ret_vote, _mb.group(3) or '__thiscall()')
-                        else:
-                            _sg = '%s __thiscall()' % _ret_vote
-                    elif _ret_vote:
-                        _sg = '%s __thiscall()' % _ret_vote
+                    _fam_full = _family_slot_sig_full(cls_name, _nm, _slot_addr_hex)
+                    if _fam_full:
+                        _sg = _fam_full
                     else:
-                        _sg = _base_sig or 'void __thiscall()'
+                        _ret_vote = _family_slot_sig(cls_name, _nm, _slot_addr_hex)
+                        _base_sig = _global_sig_by_addr().get(_slot_addr_hex.lower()) \
+                            or sm_text(((_ann_s or {}).get('methods') or {}).get(_slot_addr_hex.lower()) or {}) \
+                            or sm_text(_m0 or {}) or ''
+                        if _ret_vote and _base_sig:
+                            _mb = re.match(r'^(virtual\s+)?([\w:]+(?:\s*\*)?)\s*(.*)$', _base_sig)
+                            if _mb:
+                                _sg = '%s%s %s' % (_mb.group(1) or '', _ret_vote, _mb.group(3) or '__thiscall()')
+                            else:
+                                _sg = '%s __thiscall()' % _ret_vote
+                        elif _ret_vote:
+                            _sg = '%s __thiscall()' % _ret_vote
+                        else:
+                            _sg = _base_sig or 'void __thiscall()'
             # [dtor已在守卫前发射并continue——此处不可达]
             _ret0, _cc0, _par0, _ret_right0 = parse_signature(_sg)
             _ret0 = re.sub(r'\bvirtual\b', '', _ret0).strip()
@@ -3235,6 +3312,25 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _par0 = re.sub(r'^\s*[\w:]\w*[\s\*&]+this\s*,?\s*', '', _par0)
             else:
                 _par0 = re.sub(r'(^|\()\s*this\s*,\s*', r'\1', _par0)
+            # [声明按址发射 2026-11-17 assert首猎] 折叠载体多槽同址(slot0/slot7同址
+            #   实证)——一函数一声明, 声明按唯一址发射; 槽布局由vtable注释块记录,
+            #   声明重复=生产者按槽而非按址(真重复assert首例CCBFiveNimbusWindow)。
+            if _slot_addr_hex.lower() in _slot_decl_addrs:
+                continue
+            # [继承槽所有权] 槽址非自有方法址 且 槽名被corpus覆写 ⇒ 方法循环所有, 跳过
+            if (_nm in _corpus_method_names
+                    and str(_slot_addr_hex).lower() not in _corpus_addr_set):
+                continue
+            _slot_decl_addrs.add(_slot_addr_hex.lower())
+            # [真重复assert首猎#5修 2026-11-18] 登记槽循环"生效名"(未名槽回退链
+            #   methods名/slot_N)→_slot_names_by_addr——方法循环同名防重复守卫
+            #   依赖此集; 未名槽回退名不登记=守卫漏配(Object slot_unk_* 实证)
+            try:
+                _slot_names_by_addr.setdefault(
+                    '%08x' % int(_slot_addr_hex, 16), set()
+                ).add(str(_nm).split('::')[-1])
+            except (ValueError, TypeError):
+                pass
             lines.append("    virtual %s %s(%s)%s; // slot%d %s" % (
                 _ret0, _nm, _par0, _ret_right0 or '', _vi, _slot_addr_hex))
         lines.append("")
@@ -3304,7 +3400,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # [折叠别名声明 2026-11-17] 槽址→槽名集: 折叠载体一址多名(NullCallback等址级
         # 别名≠槽链名) → methods条目名不在槽名集=别名声明, 不跳过(C2039修复);
         # 同名条目仍跳过(防C2535双声明)
-        _slot_names_by_addr = {}
+        # [真重复assert首猎#5修 2026-11-18] 显式槽名并入槽循环已登记的生效名集(只增不覆)
         for _sn0 in (_all_vtable_slots or []):
             if _sn0[0]:
                 _k0 = '%08x' % int(_sn0[0], 16)
@@ -3327,8 +3423,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # Type corrections must go through: annotate→SetType→IDB→re-export.
             ret, cc, params, ret_right = parse_signature(sig)
 
-            is_ctor = (method_name == cls_name)
-            is_dtor = (method_name.startswith('~') or method_name == '~%s' % cls_name)
+            # [推断退役 2026-11-17] 发射唯一决策源=flags; 名字形态=检测器(assert)
+            is_ctor = isinstance(addr, str) and addr.lower() in _flags_ctor_addrs
+            is_dtor = isinstance(addr, str) and addr.lower() in _flags_dtor_addrs
+            if not is_ctor and method_name == cls_name:
+                raise RuntimeError(
+                    'generate_header(%s): 方法名=类名(ctor形)但flags缺ctor @%s——'
+                    '身份标注缺失, 先修flags' % (cls_name, addr))
+            if not is_dtor and method_name.startswith('~'):
+                raise RuntimeError(
+                    'generate_header(%s): 方法名呈dtor形(%r)但flags缺dtor @%s——'
+                    '身份标注缺失, 先修flags' % (cls_name, method_name[:30], addr))
+            # [生产者不相交化 2026-11-17 flags化+所有权唯一化] dtor所有权=槽位循环
+            #   是否已发(has_dtor_decl)——比_vt_covered覆盖完整姓更本质(所有者即置位者)。
+            _is_dtor_slot_owned = has_dtor_decl
             _has_ovl = re.search(r'__ovl_[0-9a-fA-F]+$', method_name)
             is_thiscall = '__thiscall' in cc
             # Also treat as thiscall if params contain '*this' (IDA sometimes omits __thiscall)
@@ -3446,6 +3554,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     continue  # opaque type generates its own ctor body
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
+                # [生产者不相交化 2026-11-17] 槽位循环(:3188)是虚dtor唯一所有者
+                #   (_dtor_form0 分支已发 virtual ~Cls();)——本分支只发**非槽**dtor。
+                #   槽已覆盖再发=真重复(1081条账本实证, 抽样200/200)。判据: 该方法
+                #   地址已入 _vt_covered, 或方法名即 ~Cls 形(槽循环按名判定, 此处
+                #   按名对齐同一所有权)。
+                if _is_dtor_slot_owned:
+                    continue
                 if _has_ovl:
                     decl = "    %s();" % method_name
                 else:
@@ -3458,8 +3573,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
                     decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
                 else:
-                    # [每槽位置发射 2026-11-14] vtable地址已由槽位块逐位声明,
-                    # 此分支仅余非虚表方法(ret_right形) — dtor槽规则已被注解non_virtual取代
+                    # [每槽位置发射 2026-11-14 / 生产者不相交化 2026-11-17] vtable地址
+                    # 已由槽位块按址声明——地址已覆盖且名与槽名匹配 ⇒ 槽位块所有, 跳过
+                    # (原代码只调virtual前缀从不跳过=双发射根源, CCBResultWindow
+                    # OnMessage assert首猎实证)。别名(名不匹配)=折叠兄弟直调入口, 保留。
+                    if (_addr_int_vt in _vt_covered) and (
+                            _mn in _slot_names_by_addr.get('%08x' % _addr_int_vt, set())):
+                        continue
                     _is_alias = (_addr_int_vt in _vt_covered) and (
                         _mn not in _slot_names_by_addr.get('%08x' % _addr_int_vt, set()))
                     if _is_alias:
@@ -3476,6 +3596,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 decl = "    static %s %s(%s);" % (ret, _mn, params)
             else:
                 # vtable 方法强制 virtual（编译器 vptr 分发）——slot0 dtor 由槽位块/注解non_virtual处理
+                # [生产者不相交化 2026-11-17] 同上: 地址覆盖+名匹配 ⇒ 槽位块所有, 跳过
+                if (_addr_int_vt in _vt_covered) and (
+                        _mn in _slot_names_by_addr.get('%08x' % _addr_int_vt, set())):
+                    continue
                 _is_alias = (_addr_int_vt in _vt_covered) and (
                     _mn not in _slot_names_by_addr.get('%08x' % _addr_int_vt, set()))
                 if _is_alias:
@@ -3702,35 +3826,48 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
     lines = [l for l in lines if '[G1b non-slot]' not in l]
-    # [G1b 声明去重 2026-11-15 v2] 同名方法声明只保留第一条(防C2535/C2084)
-    # v1缺陷: re.match 单token返回型假设——'const char * X(' / 'NODE * X(' / '~X(' 全漏检
-    # (CEffSParticle slot14+methods双声明C2535实证) ⇒ findall 提取行内全部 标识符( 形态。
-    G1B_DROPPED = []
-    # [导出钩子 2026-11-17] run末尾可读取
-    _kw = {'if', 'for', 'while', 'switch', 'return', 'sizeof', 'switch'}
-    _seen_decl = set()
-    _deduped = []
+    # [真重复断言 2026-11-17 用户裁定] 声明去重机制整体退役——真重复=annotation
+    # 数据双归属或发射生产者不相交性被破坏, 必须 fail-loud 显形逐例溯源,
+    # 静默折叠=掩盖数据病(v2裸名键曾吃掉890条Cls(int v)构造+17条默认构造,
+    # 账本g1b_dropped_lines_20261117.jsonl 3828行实证)。
+    # 键=(名, 归一参数)——形参名剥离(签名同一性不参看形参名, C2535判据同型),
+    # 返回类型不入键(C++返回类型不参与重载, int f()/bool f()=非法重声明)。
+    # virtual不入键(virtual ~Cls(); 与 ~Cls(); 同一函数)。
+    def _norm_decl_key(_ln):
+        _code = _ln.split('//')[0].strip()
+        _m = re.match(
+            r'^\s*(?:(?:virtual|static|inline|explicit)\s+)*'
+            r'(?:[\w:<>&\*\s]+?\s+)?'
+            r'(~?[A-Za-z_]\w*|operator\s+(?:[^\s(]+\(\)|[^\s(]+))\s*'
+            r'\(([^)]*)\)\s*(const)?\s*(?:noexcept)?\s*(?:=\s*\w+)?\s*(?:;|\{)?\s*$',
+            _code)
+        if not _m:
+            return None
+        _name = re.sub(r'\s+', '', _m.group(1))
+        _TYPE_KW = {'int', 'char', 'short', 'long', 'float', 'double', 'bool',
+                    'void', 'unsigned', 'signed', 'const', 'BYTE', 'WORD', 'DWORD',
+                    'UINT', 'BOOL', 'HANDLE', 'HWND', 'LPARAM', 'WPARAM', 'LRESULT',
+                    'LPSTR', 'LPCSTR', 'SIZE_T', 'size_t', '_BYTE', '_WORD',
+                    '_DWORD', '_QWORD'}
+        _pn = []
+        _params_raw = _m.group(2) or ''
+        for _p in (_params_raw.split(',') if _params_raw.strip() else []):
+            _toks = _p.split()
+            if len(_toks) >= 2 and not _toks[-1].rstrip('*&') in _TYPE_KW:
+                _toks = _toks[:-1]   # 尾token非类型关键字=形参名, 剥
+            _pn.append(''.join(_toks))
+        return (_name, ','.join(_pn))
+    _decl_keys = {}
     for _l in lines:
-        _names = re.findall(r'([~A-Za-z_]\w*)\s*\(', _l.split('//')[0])
-        _names = [n for n in _names if n not in _kw]
-        _dropped = any(_n in _seen_decl for _n in _names)
-        if _dropped:
-            # [迁移清单 2026-11-17] 被去重行全量记录——单循环改造的重复源清单
-            G1B_DROPPED.append(_l.strip()[:120])
-        else:
-            _seen_decl.update(_names)
-            _deduped.append(_l)
-    lines = _deduped
-    # [单循环迁移清单 2026-11-17] 被去重行落盘(报告器产物)
-    if G1B_DROPPED:
-        try:
-            with open('data/status/g1b_dropped_lines_20261117.jsonl', 'a', encoding='utf-8') as _f:
-                for _dl in G1B_DROPPED:
-                    _f.write(_json_dump_line(_dl))
-        except Exception:
-            pass
-    # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
-    lines = [l for l in lines if '[G1b non-slot]' not in l]
+        _k = _norm_decl_key(_l)
+        if _k is None:
+            continue
+        if _k in _decl_keys:
+            _dup_reports.append(
+                'generate_header(%s): (归一键=%r) 已发[%s] 再发[%s]'
+                % (cls_name, _k, _decl_keys[_k], _l.strip()))
+            continue   # [collect模式 2026-11-17 用户裁定] 全程收集, main末尾统一assert
+        _decl_keys[_k] = _l.strip()[:100]
     # [G1b non-slot declaration 2026-11-15 v2] 非槽自有方法头声明——插入类体闭合 }; 之前
     # 事故复盘(AStarPathFinder.h C2588/C2146): v1 三缺陷——
     #   ①追加在类闭合 } 之后(全局作用域→C2588)  ②已声明探测正则漏检 ~dtor/多token返回(NODE * X())/unsigned __int8
@@ -3760,7 +3897,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _g1b_new = []
                 for _ga, _gm in sorted(_g1b_ms.items()):
                     _gn = str(_gm.get('name') or '')
-                    _gs = str(_gm.get('signature') or '')
+                    _gs = sm_text(_gm)  # [导出层sig退役迁移 2026-11-18]
                     if not _gn or not _gs or _gm.get('declaration_only'):
                         continue
                     try:
@@ -3791,6 +3928,20 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except Exception:
         import traceback; traceback.print_exc()  # G1b 失败不阻塞头生成
 
+    # [守卫序修复 2026-11-18] insert(0)家族把inc/fwd挤到#pragma once之前
+    #   (守卫失效形态: 多头include时fwd区重复展开→C2501雪崩, MainEquipUI.h等
+    #   实证)。重排: pragma once与include区之后、类体之前的所有行保持相对序
+    #   移入守卫内。
+    try:
+        _pi = lines.index('#pragma once')
+        _head = lines[:_pi]
+        _rest = lines[_pi:]
+        _moved = [x for x in _head if x.strip() and not x.startswith('//')]
+        # 头注释留在pragma前(无副作用), 结构行(inc/fwd)移入守卫内紧随pragma
+        _keep_head = [x for x in _head if x not in _moved]
+        lines = _keep_head + _rest[:1] + _moved + _rest[1:]
+    except ValueError:
+        pass
     return '\n'.join(lines)
 
 
@@ -4268,6 +4419,17 @@ def main():
     except Exception as _e:
         print("[C2011] ns-decl shared header write failed: %s" % _e)
     print("Generated %d header files in %s" % (generated, OUTPUT_DIR))
+
+    # [真重复统一assert 2026-11-17 用户裁定] collect全程收集→此处集中裁决;
+    #   APPLY_GATE_OFF=既有环境开关复用(房规)——关闭=打印清单不阻断(调试域)
+    if _dup_reports:
+        _full = ('真重复声明 %d 条(逐例溯源修生产者, 禁止静默折叠):\n  '
+                 + '\n  '.join(_dup_reports[:40])
+                 + ('\n  ...(共%d条)' % len(_dup_reports) if len(_dup_reports) > 40 else ''))
+        if os.environ.get('APPLY_GATE_OFF'):
+            print('[DUP-COLLECT][GATE-OFF] %s' % _full)
+        else:
+            raise RuntimeError(_full)
     print("  With annotation layout: %d" % len(all_classes))
     print("  With methods: %d" % sum(1 for c in all_classes if c in methods_by_class and methods_by_class[c]))
     print("  Enums: %d" % enum_count)

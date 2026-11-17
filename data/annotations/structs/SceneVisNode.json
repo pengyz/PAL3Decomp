@@ -15,84 +15,71 @@
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] A 级 IDA thunk：VisRender | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
    "evidence_level": "A",
-   "semantic_name": "VisRender",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052b9c0": {
    "name": "_todo_52B9C0",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0052b980": {
    "name": "Remove",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
-   "semantic_name": "Remove",
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "CCBAIWindow *__thiscall",
     "cc": null,
@@ -104,24 +91,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CCBAIWindow *__thiscall (int)"
-  },
-  "0x00542120": {
-   "name": "CScreenModeNode_adjthunk_2120",
-   "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_4",
-   "name_note": "槽链传播: 同址语义名(CScreenModeNode_adjthunk_2120)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "vtables": [
@@ -160,7 +130,6 @@
    "source": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 认领五面卡：①调用者面=ctor 写点 `PalScript::LoadVisNode+309`/CCBStageScene_CreateCamera+977（VisNode 构造域）②被调用者面=thunk IDA 名 **gbVisNode::Render/Attach**（__imp_ 导入转发）+ UIRoleDialog::Update(gbVisNode*) ③成员访问面=thunk 转发形 ④类归属面=gbVisNode 界面实现 ⑤交互模式面=场景/相机装载构造 ⇒ **场景可视节点**；evidence=[thunk decompile×3,xref,ctor 写点] confidence=85"
   }
  ],
- "_naming": "[余 9 挂账定案 2026-10-17 analyzer 证据账目制] 再创作命名 SceneVisNode（LoadVisNode 构造域 + gbVisNode 界面）",
  "_size_note": "bs=8 最小界；真身锚挂账",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }

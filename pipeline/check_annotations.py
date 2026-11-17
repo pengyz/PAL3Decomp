@@ -25,7 +25,7 @@ import sys
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, _PROJECT_ROOT)
 
-from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
+from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct, sm_text
 from pipeline.ida.vc6_mangler import strip_stamp   # [D7] 单源
 
 ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
@@ -340,7 +340,7 @@ def check(struct_dir=None):
                 _b_addr = int(_ba_s, 16)
                 _dminfo = _addr_to_minfo.get(_d_addr, {})
                 if _d_addr == _b_addr:
-                    if _dminfo.get('signature'):
+                    if sm_text(_dminfo):
                         errors.append(
                             f"structs[{_sn}]: method '{_dminfo.get('name','')}' @ {hex(_d_addr)} "
                             f"(ordinal {_bord}) has same address as {_base_name} — "
@@ -348,7 +348,7 @@ def check(struct_dir=None):
                 elif _b_addr != _d_addr:
                     _bname = _bminfo.get('name', '')
                     _dname = _dminfo.get('name', '')
-                    if _dname == _bname and not _dminfo.get('signature'):
+                    if _dname == _bname and not sm_text(_dminfo):
                         errors.append(
                             f"structs[{_sn}]: method '{_dname}' @ {hex(_d_addr)} "
                             f"(ordinal {_bord}) overrides {_base_name} — "
@@ -797,7 +797,155 @@ def check(struct_dir=None):
 
     _run_claim_gate(errors, warnings)
     _run_cxx_gate(errors, warnings)
+    _run_n15_ctor_gate(errors, warnings)
+    _run_n16_schema_gate(errors, warnings)
+    _run_n17_addr_unique_gate(errors, warnings)
     return errors, warnings
+
+
+def _run_n17_addr_unique_gate(errors, warnings):
+    """[N17 地址唯一性 2026-11-17 用户裁定] 一地址一条methods条目(唯一所有者类)。
+    虚表槽不受限(槽=契约)。折叠载体多类声明唯一合法通道=multi_claim_ledger登记
+    (逐条evidence); 未登记多认领=ERROR。"""
+    import glob as _glob
+    _owner = {}
+    _multi = {}
+    for _fp in _glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'structs', '*.json')):
+        _cls = os.path.basename(_fp)[:-5]
+        try:
+            _d = json.load(open(_fp, encoding='utf-8'))
+        except Exception:
+            continue
+        for _ea in (_d.get('methods') or {}):
+            try:
+                _k = int(str(_ea), 16)
+            except (ValueError, TypeError):
+                continue
+            if _k in _owner:
+                _multi.setdefault(_k, [_owner[_k]]).append(_cls)
+            else:
+                _owner[_k] = _cls
+    _led_p = os.path.join(_PROJECT_ROOT, 'data', 'status', 'pending', 'multi_claim_ledger.json')
+    _led_ok = set()
+    try:
+        _led = json.load(open(_led_p, encoding='utf-8'))
+        for _e in (_led if isinstance(_led, list) else (_led.get('entries') or [])):
+            _a = str((_e.get('addr') or '')) if isinstance(_e, dict) else ''
+            if _a:
+                _led_ok.add(int(_a, 16))
+    except Exception:
+        pass
+    for _k, _clss in sorted(_multi.items()):
+        if _k in _led_ok:
+            continue
+        errors.append('N17:0x%08x 多类认领methods(%s)——折叠载体须ledger登记, '
+                      '归属错误须删认领(唯一所有者律)' % (_k, ','.join(_clss[:6])))
+
+
+def _run_n16_schema_gate(errors, warnings):
+    """[N16 schema 2026-11-17 用户裁定] 标注层数据格式门禁——按
+    data/annotations/annotation_schema.json 校验。退役字段=禁止存在。"""
+    import glob as _glob
+    _sch_p = os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'annotation_schema.json')
+    try:
+        _sch = json.load(open(_sch_p, encoding='utf-8'))
+    except Exception as _e:
+        errors.append('N16:schema_unreadable %s' % _e)
+        return
+    _sc = _sch['structs_class']
+    _me = _sc['methods_entry']
+    _n = 0
+    for _fp in _glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'structs', '*.json')):
+        _cls = os.path.basename(_fp)[:-5]
+        try:
+            _d = json.load(open(_fp, encoding='utf-8'))
+        except Exception:
+            continue
+        for _b in _sc['banned']:
+            if _b in _d:
+                errors.append('N16:structs[%s] 退役字段 %s 存在(禁止, 非null=不存在)' % (_cls, _b))
+                _n += 1
+        if _cls != _d.get('name'):
+            errors.append('N16:structs[%s] name=%r 与文件名不符' % (_cls, _d.get('name')))
+            _n += 1
+        for _ea, _m in (_d.get('methods') or {}).items():
+            if not isinstance(_m, dict):
+                continue
+            if not re.match(_me.get('key_format', ''), str(_ea)):
+                errors.append('N16:structs[%s].%s 键形违规' % (_cls, _ea))
+                _n += 1
+            for _b in _me['banned']:
+                if _b in _m:
+                    errors.append('N16:structs[%s].%s 退役字段 %s 存在' % (_cls, _ea, _b))
+                    _n += 1
+            _fl = _m.get('flags') or []
+            for _f in _fl:
+                if _f not in _me['flags_vocabulary']:
+                    errors.append('N16:structs[%s].%s flags词表外: %r' % (_cls, _ea, _f))
+                    _n += 1
+            if 'override' in _fl and not _m.get('override_of'):
+                errors.append('N16:structs[%s].%s override缺override_of' % (_cls, _ea))
+                _n += 1
+            _sm = _m.get('sig_model')
+            if _sm is not None:
+                for _r in _me['sig_model_required']:
+                    if _r not in _sm:
+                        errors.append('N16:structs[%s].%s sig_model缺%s' % (_cls, _ea, _r))
+                        _n += 1
+        for _vt in (_d.get('vtables') or []):
+            for _s in (_vt.get('slots') or []):
+                for _b in _sc['vtable_slot']['banned']:
+                    if _b in _s:
+                        errors.append('N16:structs[%s] 槽退役字段 %s 存在' % (_cls, _b))
+                        _n += 1
+    # functions.json
+    _fj = _sch['functions_json']
+    _fpj = os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'functions.json')
+    try:
+        _fdata = json.load(open(_fpj, encoding='utf-8'))
+    except Exception as _e:
+        errors.append('N16:functions_unreadable %s' % _e)
+        return
+    for _ea, _e in _fdata.items():
+        if not isinstance(_e, dict):
+            continue
+        if not re.match(_fj['key_format'], str(_ea)):
+            errors.append('N16:functions.%s 键形违规' % _ea)
+            _n += 1
+        _nm = _e.get('name') or ''
+        if '::' in _nm:
+            errors.append('N16:functions.%s 类方法名 %r 禁止(structs层权威)' % (_ea, _nm[:40]))
+            _n += 1
+        for _bad in _fj['signature_banned_substrings']:
+            if _bad in str(_e.get('signature') or ''):
+                errors.append('N16:functions.%s signature含禁止子串 %r' % (_ea, _bad))
+                _n += 1
+    if _n:
+        warnings.insert(0, 'N16[schema]: %d 处格式违规(详见errors——当前计入errors硬失败, 清零后转常规)' % _n)
+
+
+def _run_n15_ctor_gate(errors, warnings):
+    """[N15 ctor存在性 2026-11-17 用户裁定] 真正的类必须有构造——有vtable类
+    无ctor证据=伪造候选(身份案队列)。证据源仅两个: ctor写表普查(二进制)+
+    注解flags(决策层); ida_structs是导出数据不作证据(谱系裁定 2026-11-17)。
+    gb*引擎类豁免(头来自gbengine_prelude非生成物)。advisory普查模式——
+    逐例裁定清零后升硬失败(房规)。"""
+    try:
+        _reg_p = os.path.join(_PROJECT_ROOT, 'data', 'status',
+                              'ctor_evidence_registry_20261117.json')
+        _reg = set(json.load(open(_reg_p, encoding='utf-8')).get('classes') or {})
+        _ida_p = os.path.join(_PROJECT_ROOT, 'asm', 'pal3', 'ida_structs.json')
+        _ida = json.load(open(_ida_p, encoding='utf-8'))
+        _n15 = sorted(
+            _n for _n, _e in _ida.items()
+            if isinstance(_e, dict) and _e.get('vtables') and not _n.startswith('gb')
+            and _n not in _reg)
+        if _n15:
+            warnings.append(
+                'N15[advisory普查]: %d个有vtable类无ctor证据=伪造候选(身份案队列): %s'
+                % (len(_n15), ','.join(_n15[:20])))
+    except Exception as _e:
+        errors.append('N15:internal_error %s' % _e)
 
 
 
@@ -1021,12 +1169,12 @@ def check_canonical_contract():
                     continue  # 多槽地址豁免
                 _ma = str(s.get('addr') or '')
                 _m6 = (d.get('methods') or {}).get(_ma)  # [键形归一后精确查找 2026-11-16, 双形态容忍已拆]
-                if _m6 and _m6.get('signature'):
+                if _m6 and sm_text(_m6):
                     import re as _re6
                     _n6 = lambda x: _re6.sub(r'\s+', ' ', re.sub(r'\b(this|a\d+|nVal\d*|p\w+|f\w+)\b(?![\w*])', '', str(x).strip())).strip()
-                    if _n6(_m6['signature']) != _n6(s['sig']):
+                    if _n6(sm_text(_m6)) != _n6(s.get('sig', '')):
                         cur_viol['C6:%s:%s' % (cls, _ma)] = '%s %s: 条目sig %r != 槽位裁决 %r' % (
-                            cls, s.get('name'), _m6['signature'][:40], s['sig'][:40])
+                            cls, s.get('name'), sm_text(_m6)[:40], s.get('sig', '')[:40])
 
     # [C8 2026-11-15 用户裁定] 同类 methods 条目同名冲突
     # C++ 不允许同类内两个成员方法同名同参(重载需参数不同)
@@ -1050,8 +1198,8 @@ def check_canonical_contract():
                 # [签名感知 2026-11-17 与CXX_GATE闸②同裁定] 同名异签=合法重载
                 # (C++同名不同参=不同函数, SaleUI Update 0参/2参实证);
                 # 同名同签双址=真冲突
-                _s1 = re.sub(r'\s+', ' ', str(m8.get('signature') or ''))
-                _s2 = re.sub(r'\s+', ' ', str((ms8.get(_seen_nm[bare]) or {}).get('signature') or ''))
+                _s1 = re.sub(r'\s+', ' ', sm_text(m8))
+                _s2 = re.sub(r'\s+', ' ', sm_text(ms8.get(_seen_nm[bare]) or {}))
                 if _s1 == _s2:
                     cur_viol['C8:%s:%s:%s:%s' % (cls8, bare, _seen_nm[bare], a8)] = (
                         '%s 同名同签双地址: %s@%s vs %s@%s — 同类内同名同签冲突' % (
@@ -1207,7 +1355,7 @@ def check_canonical_contract():
             continue
         for a, m in (d.get('methods') or {}).items():
             nm = str(m.get('name') or '')
-            sig = str(m.get('signature') or '')
+            sig = sm_text(m)
             if '(' in nm:
                 cur_viol['N1:%s:%s' % (cls, a)] = '%s name含括号: %s' % (cls, nm[:50])
             if '::' in nm:

@@ -14,7 +14,6 @@
    "name": "~scScriptInstance",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -22,13 +21,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~scScriptInstance(??1/??_G析构族); decomp文件=scScriptInstance_~scScriptInstancevoid_0044e5e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0044e980": {
    "name": "Update",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -45,25 +46,23 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_name": "scScriptInstance::Update",
    "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int a3) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
-  "0x0044e5c0": {
-   "name": "_sdtor_25",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+  "0x0056b050": {
+   "name": "scScriptInstance",
+   "flags": [
+    "ctor"
+   ],
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_5",
-   "name_note": "槽链传播: 同址语义名(_sdtor_25)沿override链正名",
-   "semantic_sig": "void",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056a9c0', '0x0056b050'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056b050) 2026-11-17 机械补迁(P0-1-B缺口72类)",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+    "pending": true
+   }
   }
  },
  "vtables": [
@@ -89,7 +88,11 @@
     },
     {
      "addr": "0x0044e5c0",
-     "name": "_sdtor_25"
+     "name": "_sdtor_25",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     },
     {
      "addr": "0x00445d10"

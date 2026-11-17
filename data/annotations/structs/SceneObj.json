@@ -283,36 +283,31 @@
   "0x00536260": {
    "name": "CreateUI",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00452fd0": {
    "name": "ctor",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00453030": {
    "name": "~SceneObj",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 SceneObj 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~SceneObj。refs: ??3@YAXPAX@Z ?_UIWnd@UIWnd@@QAEXXZ",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -320,12 +315,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~SceneObj(??1/??_G析构族); decomp文件=SceneObj_~SceneObjvoid_00453030 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00407b50": {
    "name": "UpdateAutoDelete",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -337,8 +334,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(unsigned int deltatime)"
+   }
   },
   "0x00453010": {
    "name": "_scalar_dtor_3010",
@@ -348,7 +344,6 @@
    "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x453030 写 vptr 0x56B200（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B200→SceneObj（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SceneObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x453030 写 vptr 0x56B200",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -365,14 +360,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_3010(??1/??_G析构族); decomp文件=SceneObj_`scalar_deleting_destructoruint_00453010 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004530c0": {
    "name": "_init_4530c0",
    "declaration_only": true,
    "source": "归属修正 2026-10-14（同名消歧族·T142 判读模式）：原 skip_functions 名 `string::_init_4530c0`(reason=std_library) 误挂 std::string ⇒ UISceneMap.cpp:156 C2039 ×2『'_init_4530c0' is not a member of 'basic_string'』。A 级证据链：①同 TU 簇 ctor@0x452FD0 = call 0x445AA0(UIWnd ctor，vptr 0x56AEC8) + `movl $0x56B200,(%esi)`（vptr store）⇒ 该簇类=UIWnd 派生且 vtable=0x56B200（SceneObj.json vtables 唯一认领，GlowObj/PalScriptWaitObj 无 vtables 键=误命中）；②同接收者兄弟调用 0x4538E0=SceneObj::LoadData（UISceneMap::LoadCompass@0x451208 lea 0x250(%esi),%ebx → mov %ebx,%ecx; call 两次同对象）；③本体 this+0x44/+0x48/+0x4C 引用计数串形（refcount@ptr[-1]）与 0x4538E0 同形（SceneObj::LoadData 生成体对同偏移渲染 this->m_fTimerLimit 等已编译通过）⇒ SceneObj 成员，非 std::string（std::string Dinkumware 布局 {buf/ptr@0,size@8,res@12} 不符）。名 _init_4530c0 保留同名消歧族现状（CGameData::_init_44f8d0 同式）；真语义名（append 形）挂账。2026-10-14 收窄：体渲染实测 +3 错（std::_Eos 变参丢失 ×2 / RoleAtt::_sub_4531F0 实参错位——T 族既有病灶）⇒ 转声明收编形（批 12-13：skip=体排除 + declaration_only=声明收编），体渲染修复挂账",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -384,13 +381,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const char *pszName)"
+   }
   },
   "0x0052f800": {
    "name": "LoadGeomFromFile",
    "evidence_level": "unverified",
-   "semantic_sig": "gbVFileSystem *",
    "sig_model": {
     "return": "gbVFileSystem *",
     "cc": "thiscall",
@@ -402,26 +397,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVFileSystem * __thiscall(const char *pszName)"
+   }
   },
   "0x0052fb70": {
    "name": "LoadObstruction",
    "evidence_level": "unverified",
-   "semantic_sig": "gbVFileSystem *",
    "sig_model": {
     "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVFileSystem * __thiscall()"
+   }
   },
   "0x00530280": {
    "name": "LoadGeomNode",
    "evidence_level": "unverified",
-   "semantic_sig": "gbGeomNode *",
    "sig_model": {
     "return": "gbGeomNode *",
     "cc": "thiscall",
@@ -433,26 +424,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbGeomNode * __thiscall(const char *pszFilename)"
+   }
   },
   "0x00530330": {
    "name": "LoadDefaultModel",
    "evidence_level": "unverified",
-   "semantic_sig": "gbGeomNode *",
    "sig_model": {
     "return": "gbGeomNode *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbGeomNode * __thiscall()"
+   }
   },
   "0x0053ee60": {
    "name": "StringCopyReplace",
    "evidence_level": "unverified",
-   "semantic_sig": "char *__thiscall",
    "sig_model": {
     "return": "char *__thiscall",
     "cc": null,
@@ -472,13 +459,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char *__thiscall (SceneObj *pSceneObj, char *pszBuf, char *pszBuf2)"
+   }
   },
   "0x0053f060": {
    "name": "StringCopyCat",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -494,15 +479,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(SceneObj *pSceneObj, SceneObj *pSceneObj2)"
+   }
   },
   "0x00453200": {
    "name": "Render",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_name": "SceneObj::Render",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -510,26 +492,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名ValidateState=体读数命名 | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名ValidateState=体读数命名 | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004538e0": {
    "name": "LoadData",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x00527d40": {
    "name": "GetVisibleFlag",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -541,27 +524,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(_BYTE *p_BYTE)"
+   }
   },
   "0x00527d60": {
    "name": "GetCommonData",
    "source": "| rename:_todo_→fn_",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00530340": {
    "name": "SetScriptDel",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -573,14 +552,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0053ef60": {
    "name": "LoadFromConfig",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -600,13 +577,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int *p_DWORD, int *p_DWORD2, int nVal)"
+   }
   },
   "0x00453a70": {
    "name": "InsertAt",
    "evidence_level": "unverified",
-   "semantic_sig": "SceneObj *__thiscall",
    "sig_model": {
     "return": "SceneObj *__thiscall",
     "cc": null,
@@ -626,13 +601,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "SceneObj *__thiscall (SceneObj *pSceneObj, unsigned int dwVal, unsigned int dwVal2)"
+   }
   },
   "0x0053f4f0": {
    "name": "ProcessNearby",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -644,8 +617,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(_DWORD *)"
+   }
+  },
+  "0x0056b200": {
+   "name": "SceneObj",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "binary_vtable_slot",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056b200'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056b200) 2026-11-17 机械补迁(P0-1-B缺口72类)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": true
+   }
   }
  },
  "vtables": [

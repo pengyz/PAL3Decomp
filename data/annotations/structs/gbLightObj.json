@@ -155,7 +155,6 @@
    "ordinal": 0,
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -167,29 +166,25 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(struct gbAABBox *p)"
+   }
   },
   "0x0042bee0": {
    "name": "IsIdle",
    "ordinal": 4,
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall()"
+   }
   },
   "0x0042c6e0": {
    "name": "GetGfxManager",
    "source": "vtable_migrated | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "ordinal": 1,
    "evidence_level": "unverified",
-   "semantic_sig": "gbGfxManager *",
    "sig_model": {
     "return": "gbGfxManager *",
     "cc": "thiscall",
@@ -201,15 +196,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbGfxManager * __thiscall(int nVal1)"
+   }
   },
   "0x0042c8d0": {
    "name": "GetCGEntry",
    "source": "vtable_migrated+pdb_correct",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -221,14 +214,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char)"
+   }
   },
   "0x00423860": {
    "name": "~gbLightObj",
    "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB28 认领连带 | [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AB34 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AB28/34）：本体 56 8b f1 e8 18 00 00 00 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=gbLightObj（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AB34,0x56AB28）",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -236,7 +227,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~gbLightObj(??1/??_G析构族); decomp文件=gbLightObj_~gbLightObjvoid_00423860 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [

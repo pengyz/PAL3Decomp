@@ -21,7 +21,6 @@
    "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref AllocTargets 仅表内 + DestroyEffBase-del 被 `?DestroyEffWithBase | 挂账19续 2026-10-17（verifier A 级·DestroyEff 族四分账）：0x4C2040 decompile=`return DestroyEffBase((RenderTarget2*)((char*)this-12), a2)` = **−12 基调整删除壳**（真身非 DestroyEffWithBase 实体；判定=名实错+**注册面重复**（EffTargetPool+RenderTarget2 同址双注册））⇒ 消歧 `_scalar_dtor_EffTargetNode` 制式；归属挂账（真属=基类析构链，槽反查待收） | 三证法补面 2026-10-17（verifier·被调用者+交互模式机械取）：被调面[（批1 已证 −12 基调整删除壳）] 交互面[删际生命周期] 判定 ✅已消歧（_scalar_dtor_EffTargetNode）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -29,9 +28,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_EffTargetNode(??1/??_G析构族); decomp文件=EffTargetPool_scalar_dtor_EffTargetNodevoid_004c2040 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
- "_naming": "[上下文语义强化 2026-10-17 analyzer] 名精化：0x4C2170 全文体=分配循环 `operator new(0x4C0)` 头 + `operator new(0x2D0)`×N 元素（720B 目标元素池）+ 成员 +24 池指针/+28 计数 ⇒ 对象池语义铁证",
  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

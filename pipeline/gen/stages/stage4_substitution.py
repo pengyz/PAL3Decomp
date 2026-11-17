@@ -1674,7 +1674,7 @@ def _method_return_index():
                 if not isinstance(mv, dict):
                     continue
                 name = str(mv.get('name') or '').split('(')[0]
-                sig = str(mv.get('signature') or '')
+                sig = _sm_text(mv)  # [sig退役迁移]
                 if not name or '(' not in sig:
                     continue
                 head = sig[:sig.find('(')]
@@ -2358,8 +2358,8 @@ def run(code, ctx):
                 try:
                     _d = _j.load(open(_p, encoding='utf-8'))
                     for _mk, _mv in (_d.get('methods') or {}).items():
-                        if isinstance(_mv, dict) and _mv.get('name') and _mv.get('signature'):
-                            _SIG_CACHE[str(_mv['name']).split('(')[0]] = _mv['signature']
+                        if isinstance(_mv, dict) and _mv.get('name') and _sm_text(_mv):
+                            _SIG_CACHE[str(_mv['name']).split('(')[0]] = _sm_text(_mv)  # [sig退役迁移]
                 except Exception:
                     continue
         _ms = _SIG_CACHE

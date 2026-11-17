@@ -55,7 +55,6 @@
   "0x004b7510": {
    "name": "~UI3DModelNode",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -63,13 +62,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UI3DModelNode(??1/??_G析构族); decomp文件=UI3DModelNode_~UI3DModelNodevoid_004b7510 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004b74a0": {
    "name": "UI3DModelNode",
    "_misattrib_evidence": "max_offset=244>class_size=4",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -77,14 +78,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UI3DModelNode(??0构造); decomp文件=UI3DModelNode_UI3DModelNodevoid_004b74a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004b74f0": {
    "name": "_scalar_dtor_74F0",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F404 认领（ctor UI3DModelNode@0x4B74A0+27 + ~UI3DMo）连带 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UI3DModelNode（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F404）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -92,43 +95,40 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_74F0(??1/??_G析构族); decomp文件=UI3DModelNode_scalar_dtor_74F0void_004b74f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004b7b60": {
    "name": "_todo_7B60",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:d9 44 24 04；表 0x0056F404 认领（ctor UI3DModelNode@0x4B74A0+27 + ~UI3DMo）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
    "declaration_only": true,
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004b7ba0": {
    "name": "_todo_7BA0",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x0056F404 认领（ctor UI3DModelNode@0x4B74A0+27 + ~UI3DMo）连带",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004b7560": {
    "name": "ResetMatrix",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "矩阵重置（虚调用链）",
-   "semantic_name": "ResetMatrix",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -140,45 +140,36 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int)"
+   }
   },
   "0x004b7590": {
    "name": "RenderActorTransform2",
    "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,100,104,168,232] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 RenderActorTransform2（原 _todo_004B7590）",
    "evidence_level": "A",
-   "semantic_name": "RenderActorTransform2",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004b7650": {
    "name": "Render",
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "渲染（MatrixStack+GeomQuad+DynVertBuf）; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)",
-   "semantic_name": "Render",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004b7980": {
    "name": "LoadActorVisual",
    "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[100,104] Actor 多偏移证（ctor 装配实证表） | [G3 C1 2026-10-25] 名对齐 IDB 现名 LoadActorVisual（原 _todo_004B7980）",
    "evidence_level": "A",
-   "semantic_name": "LoadActorVisual",
-   "semantic_sig": "gbParticleEffect *",
    "sig_model": {
     "return": "gbParticleEffect *",
     "cc": "thiscall",
@@ -190,24 +181,20 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbParticleEffect * __thiscall(int)"
+   }
   },
   "0x004b7af0": {
    "name": "ReleaseAllTextures",
    "evidence_level": "unverified",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 UI3DModelNode（uniq=4）",
-   "semantic_name": "ReleaseAllTextures",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  },
  "base_size": 88,

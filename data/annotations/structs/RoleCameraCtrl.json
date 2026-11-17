@@ -14,7 +14,6 @@
    "name": "~RoleCameraCtrl",
    "source": "pdb",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": null,
@@ -22,12 +21,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void ()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~RoleCameraCtrl(??1/??_G析构族); decomp文件=RoleCameraCtrl_~RoleCameraCtrlvoid_00450a25 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00445860": {
    "name": "SetName",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -39,27 +40,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const char *pszName)"
+   }
   },
   "0x00450a60": {
    "name": "InitFrameUI",
    "evidence_level": "unverified",
-   "semantic_sig": "RoleCameraCtrl *",
    "sig_model": {
     "return": "RoleCameraCtrl *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "RoleCameraCtrl * __thiscall()"
+   }
   },
   "0x00450c90": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -76,14 +73,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_name": "RoleCameraCtrl::Update(int, int)",
-   "name_note": "C10重裁定20261116链律: slot2位(Update BOOL(int,int)契约) → 链律名Update; 原名UpdatePosition=体读数; 待解异常: 体访问+244/+264超出bin_size 76, 疑hexrays错型或折叠加挂, 留L-TAILADDR批次复核 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C10重裁定20261116链律: slot2位(Update BOOL(int,int)契约) → 链律名Update; 原名UpdatePosition=体读数; 待解异常: 体访问+244/+264超出bin_size 76, 疑hexrays错型或折叠加挂, 留L-TAILADDR批次复核 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00445910": {
    "name": "SetTargetDistance",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -95,27 +94,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x00450ad0": {
    "name": "InitBaseWidget",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00450c60": {
    "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -136,15 +131,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int nVal, unsigned int nVal2, int nVal3)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x00450d00": {
    "name": "ShowClipped",
    "ordinal": 0,
    "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -157,27 +155,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int a1)",
-   "semantic_name": "RoleCameraCtrl::ShowClipped(int)",
-   "name_note": "C10重裁定20261116链律: slot0位(UIWnd系ShowClipped位) + 体=剪裁态检查(+52)+slot6调OnMessage(1000,flags,0)=ShowClipped模式; 原名ShowWindow=体读数误名 | C9sig链统一20261117→void __thiscall(int a1): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C10重裁定20261116链律: slot0位(UIWnd系ShowClipped位) + 体=剪裁态检查(+52)+slot6调OnMessage(1000,flags,0)=ShowClipped模式; 原名ShowWindow=体读数误名 | C9sig链统一20261117→void __thiscall(int a1): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445e70",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x00445e70(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0051bb50": {
    "name": "InitViewSlots",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0052dff0": {
    "name": "SetViewPosition",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -201,13 +199,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, char pData)"
+   }
   },
   "0x0052e080": {
    "name": "ComputeViewVector",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -227,16 +223,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x00450ab0": {
    "name": "_sdtor_26",
    "source": "vtable_gap_fill_v1(from RoleCameraCtrl.json)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_sdtor_26",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -253,7 +246,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_26(??1/??_G析构族); decomp文件=RoleCameraCtrl_`scalar_deleting_destructoruint_00450ab0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [

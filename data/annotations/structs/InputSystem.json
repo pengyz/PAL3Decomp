@@ -15,7 +15,6 @@
    "name": "ProcessMouse",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "cdecl",
@@ -27,33 +26,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __cdecl(int nVal)"
-  },
-  "0x0041c710": {
-   "name": "ProcessKeyboard",
-   "sig_note": "F81 (round 139): explicit `this` restored. Binary evidence (A-level, IDA): callee 0x0041C710 starts `sub esp,1Ch` and uses ecx as this ([ecx+1C8h]/[ecx+210h]), ends `add esp,1Ch; retn 4` => exactly ONE 4-byte stack argument beyond this; call sites (0x0041C526-28, 0x0041C9F5-F6) are `push <int>; mov ecx,<InputSystem*>; call` => signature = this + int. The previous spelling `void __thiscall(int a1)` omitted `this`, so IDA stored a 0-stack-arg type, Hex-Rays rendered calls as `InputSystem::ProcessKeyboard(this)` (the pushed constant was LOST) and the generated C++ failed with C2664 'cannot convert parameter 1 from class InputSystem *const to int'. Round-10 ret-N adjudication was right about 1 stack arg, the spelling was what dropped it.",
-   "evidence_level": "unverified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "a1"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(int a1)"
+   }
   },
   "0x00410360": {
    "name": "ProcessFrame",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "cdecl",
@@ -65,8 +43,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __cdecl(char *pInputState)"
+   }
   }
  },
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"

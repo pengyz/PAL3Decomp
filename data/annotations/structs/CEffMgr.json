@@ -13,7 +13,6 @@
   "0x004ce100": {
    "name": "CEffMgr",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -21,12 +20,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CEffMgr(??0构造); decomp文件=CEffMgr_CEffMgrvoid_004ce100 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004ce2a0": {
    "name": "~CEffMgr",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -34,13 +35,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CEffMgr(??1/??_G析构族); decomp文件=CEffMgr_~CEffMgrvoid_004ce2a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004ce340": {
    "name": "Init",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -68,14 +71,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+   }
   },
   "0x004ce580": {
    "name": "Render",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -87,14 +88,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x004ce5f0": {
    "name": "SetTimeScale",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -106,14 +105,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fScale)"
+   }
   },
   "0x004ce690": {
    "name": "CreateEff",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11i asm槽位记账定谳: 342字节全函数栈读集合仅{esp+4}一处 + ret 4 x2(首尾) = 单栈参; 体用 param1 作 g_EffTable[280*idx] 整型索引——IDB 5参(char*/uint/floatx3)全幻影, 调用方 v62-v64 同为调用侧幻影渲染",
    "evidence_level": "A",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "stdcall",
@@ -125,14 +122,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __stdcall(int nEffIndex)"
+   }
   },
   "0x004ceda0": {
    "name": "RunEffGroup",
    "source": "pdb_ret | sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned long",
    "sig_model": {
     "return": "unsigned long",
     "cc": null,
@@ -160,14 +155,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned long (char *nGroup, float fx, char *fy, float fz, unsigned int dwID)"
+   }
   },
   "0x004cf100": {
    "name": "IsAllEffGroupStop",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -187,14 +180,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(char *pszBuf, int nVal, char *pszBuf2)"
+   }
   },
   "0x004cf7c0": {
    "name": "CopyObjInGroup",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -214,39 +205,33 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(char *nGroup, int nObj, char *nObjType)"
+   }
   },
   "0x004d58a0": {
    "name": "Reset",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x004cea80": {
    "name": "ReleaseCompletedEffects",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   },
   "0x004cdc50": {
    "name": "SetEffectsTimeScale",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -258,27 +243,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall(int nVal)"
+   }
   },
   "0x004cded0": {
    "name": "InitEffClass",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004cefe0": {
    "name": "CreateSParticleEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -298,13 +279,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004cf220": {
    "name": "CreateModelEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -324,13 +303,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004cf460": {
    "name": "CreateEffectType3",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -350,13 +327,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004cf6a0": {
    "name": "CreateEffectType4",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -376,13 +351,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004cf8e0": {
    "name": "CreateEffectType5",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -402,13 +375,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004cfb20": {
    "name": "CreateShockEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -428,13 +399,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(CEffMgr *pEffMgr, int nVal, CEffMgr *pEffMgr2)"
+   }
   },
   "0x004b7340": {
    "name": "UpdateTimedTrigger",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -446,13 +415,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   },
   "0x004b73f0": {
    "name": "SetEffectClass",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -472,13 +439,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x004c2f30": {
    "name": "ProcessEffectPass",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -490,34 +455,29 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004c5350": {
    "name": "UpdateParticlePositions",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004c7e60": {
    "name": "EmitParticles",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004cdca0": {
    "name": "CreateEffect",
@@ -529,7 +489,6 @@
     }
    ],
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -557,13 +516,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2, int nVal3, int nVal4, int nVal5)"
+   }
   },
   "0x004cdfd0": {
    "name": "FindEffSlot",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -575,13 +532,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004ce000": {
    "name": "FindEffByID",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -593,13 +548,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004d22f0": {
    "name": "UpdateKeyframe",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -611,13 +564,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x004ccef0": {
    "name": "UpdateEffect",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -633,8 +584,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(float fVal, int nVal)"
+   }
   },
   "0x004cdae0": {
    "name": "ReleaseAllRefs",
@@ -642,15 +592,13 @@
    "note": "reattribute: asm 行 304120-304186 本体给出三段与 CEffMgr 逐项吻合的结构： (1) 开头对 [edi+8]/[edi+0Ch]/[edi+10h]/[edi+14h] 各调一次 gbRefObject::Release() —— CEffMgr 在这四个偏移上正好是 4 个 `gbRenderEffect *`（m_pAdditiveBlendNoZ/m_pAlphaBlendNoZ/m_pAdditiveBlend/m_pAlphaBlend），类型与调用吻合；在 894 个注解类中，同时具备'这 4 个偏移'且四者类型都是 gbRenderEffect* 的只有 CEffMgr 与 SceneMgr，而只有 CEffMgr 另有 32 元素数组（下一条）⇒ 唯一。 (2) 第一段循环：`lea esi,[edi+60h] ; mov ebx,20h`（32 次），元素内字段 +0/+1/+8，步长 `add esi,48h`=72 ⇒ 遍历 32 条 72 字节记录。 (3) 第二段循环：`lea esi,[edi+92Ch] ; mov edi,800h`（2048 次），步长 `add esi,14h`=20 = tagEffObj 的尺寸（tagEffObj.json binary_size=20），且 0x92C + 2048*20 = 0xA92C 恰好落在 CEffMgr 的 size=43312(0xA930) 之内 ⇒ 与 m_EffTable 区段的 tagEffObj[2048] 读法一致。 原类 gbRefObject 的 size=8（成员 m_refCount 等），不可能有 +0x14/+0x58/+0x92C ⇒ 归属错。",
    "name_evidence": "沿用原注解名 ReleaseAllRefs：函数体正是'释放本对象持有的全部引用/效果槽'（4 次 Release + 两轮清理），语义与名字一致，不臆造新名。返回类型保留原注解的 char（PDB 来源，本次无证据推翻它）；只改类归属与 this 类型。",
    "evidence_level": "unverified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char __thiscall()"
+   }
   }
  },
  "_flexible": true,

@@ -15,53 +15,18 @@
   }
  },
  "methods": {
-  "0x00434d50": {
-   "name": "_scalar_dtor_4D50",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_0",
-   "name_note": "槽链传播: 同址语义名(_scalar_dtor_4D50)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x00438100": {
-   "name": "CheckFlag0C",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_1",
-   "name_note": "槽链传播: 同址语义名(CheckFlag0C)沿override链正名",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
   "0x004382a0": {
    "name": "UpdateIdleTimer",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_2",
    "name_note": "槽链传播: 同址语义名(UpdateIdleTimer)沿override链正名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "vtables": [
@@ -71,7 +36,11 @@
    "slots": [
     {
      "addr": "0x00434d50",
-     "name": "_scalar_dtor_4D50"
+     "name": "_scalar_dtor_4D50",
+     "flags": [
+      "dtor"
+     ],
+     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
     },
     {
      "addr": "0x00438100",
@@ -85,7 +54,6 @@
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 表址修正（边界精核）：0x56ABCC=非安装点（含非码值 0xBC8EFA35）；真表 0x56ABE0 槽行 [0x434D50 del,0x438100 IsWaitDone,0x4382A0 UpdateIdleTimer] 语义吻合；evidence=xrefs 0x4382A0@0x56abe0 + 三槽 decompile；confidence=90"
   }
  ],
- "_naming": "[caller 三证法 2026-10-16 analyzer 再创作命名] 再创作命名（原名不可达）：功能反推；名字不入编译字节（字节等价保持）",
  "binary_size": 16,
  "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
 }

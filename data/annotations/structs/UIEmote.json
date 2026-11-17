@@ -87,7 +87,6 @@
   "0x0044e530": {
    "name": "UIEmote",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -95,12 +94,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UIEmote(??0构造); decomp文件=UIEmote_UIEmotevoid_0044e530 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00529870": {
    "name": "Render",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -108,28 +109,29 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
+   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0044d0b0": {
    "name": "InitParticleSlots",
    "_misattrib_evidence": "max_offset=10048>class_size=2272",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0044eb40": {
    "name": "Reset",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "空覆盖虚方法 | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -142,7 +144,6 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
    "evidence_level": "chain_unified"
   },
   "0x0044e5c0": {
@@ -151,7 +152,6 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "adjudication": "rejected",
-   "semantic_sig": "scScriptInstance *",
    "sig_model": {
     "return": "scScriptInstance *",
     "cc": "thiscall",
@@ -168,14 +168,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "scScriptInstance * __thiscall(scScriptInstance *Block, char a2)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_25(??1/??_G析构族); decomp文件=scScriptInstance_`scalar_deleting_destructoruint_0044e5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0044e980": {
    "name": "OnVisible",
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "可见性处理（m_bvisible 检查+offset 19） | C9sig基锚定20261117→void * __thiscall(int nVal1)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void * __thiscall(int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→void * __thiscall(int)",
-   "semantic_name": "OnVisible",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -188,49 +189,20 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(int)",
    "evidence_level": "chain_unified"
   },
   "0x0044ab00": {
    "name": "GetType",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_1",
    "name_note": "槽链传播: 同址语义名(GetType)沿override链正名",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x004af760": {
-   "name": "UpdateFrame",
-   "semantic_name": "UpdateFrame",
-   "confidence": "中",
-   "name_note": "G2批: registry名CEffObj::UpdateFrame+空体无反证; slot2 Update链位 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int)",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "CCBUI **deltatime",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "evidence_level": "chain_unified"
+   }
   }
  },
  "base_size": 76,

@@ -63,7 +63,6 @@
   "0x1001bd30": {
    "name": "CreateFromMemory",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -95,15 +94,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int, int, gbPixelFmtType, int, gbPixelFmtType, void *)"
+   }
   },
   "0x1001bea0": {
    "name": "UpdateTexture",
    "source": "asm 导入声明 + 重整名（A 级证据 2026-09-21）",
    "note": "真实签名由二进制确定：`original/PAL3.exe.asm:534569-534570` 的 extrn 声明及其重整名 `?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z` ⇒ `QAE`=__thiscall 公有 · `X`=返回 void · `PAVgbImage2D@@`=gbImage2D*（1 参）；且两处调用点（asm:244390 / loc_4A6EDC）**均不使用 eax** ✓ ⇒ 原注解的 6 参 `(int,int,int,int,gbPixelFmtType,void*)` 全错 ✗。修此 ⇒ Hex-Rays 应产出正确调用。",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -115,13 +112,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbImage2D *pImage)"
+   }
   },
   "0x1001bf80": {
    "name": "CreateForRenderTarget",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -141,13 +136,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int, int, gbPixelFmtType)"
+   }
   },
   "0x1001c010": {
    "name": "CreateFromFileMemory",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -163,8 +156,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(void *, int)"
+   }
   }
  },
  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x100F57E8 越映像界（>0x189C3CA）⇒ 运行时地址非映像 vtable ⇒ 编造",

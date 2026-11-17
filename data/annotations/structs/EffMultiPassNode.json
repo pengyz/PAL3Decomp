@@ -14,7 +14,6 @@
    "name": "BeginNextPass",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -30,14 +29,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(void *, char)"
+   }
   },
   "0x004c2030": {
    "name": "_adjustor_c",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -49,14 +46,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(void)"
+   }
   },
   "0x004c3400": {
    "name": "BeginMultiPassRender",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -68,99 +63,10 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(char)"
-  },
-  "0x004c2870": {
-   "name": "~EffMultiPassNode",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_name": "slot_6",
-   "name_note": "B6定谳(A组dtor律): 体=资源释放+条件delete this=删除式dtor机制实证",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x004c2930": {
-   "name": "InitTargetPos",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(float *, float, float, float)"
-  },
-  "0x004c29a0": {
-   "name": "UpdateFrame",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "semantic_name": "UpdateInternal",
-   "name_note": "; 链律修正: slot5链名=UpdateFrame",
-   "signature": "void __thiscall(float)"
-  },
-  "0x004c2820": {
-   "name": "CreateDeactivated",
-   "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
-   "evidence_level": "binary_vtable_slot",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "void",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall(void)"
+   }
   }
  },
  "vtables": [],
- "_naming": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 再创作命名（独有槽工厂语义反推：CreateEffMultiPass）",
  "_size_note": "bs=32 几何最小界；池节点区真身锚挂账",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }

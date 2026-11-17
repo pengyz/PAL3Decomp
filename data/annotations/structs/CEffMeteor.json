@@ -212,8 +212,6 @@
    "name": "AllocEffect",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "semantic_name": "CEffMeteor",
-   "semantic_sig": "void*",
    "sig_model": {
     "return": "void*",
     "cc": "thiscall",
@@ -221,12 +219,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void* __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0055434f",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x0055434f(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004cb4c0": {
    "name": "~CEffMeteor",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "fastcall",
@@ -234,14 +235,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __fastcall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CEffMeteor(??1/??_G析构族); decomp文件=CEffMeteor_~CEffMeteorvoid_004cb4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004cb5e0": {
    "name": "ResetState",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_name": "Init",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -266,13 +268,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int, int, int, int)"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004c0610",
+   "flags_evidence": "同名+同归一签名(int,int,int,int)+基槽0x004c0610(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cb800": {
    "name": "Create",
    "ordinal": 1,
    "evidence_level": "chain_unified",
-   "semantic_sig": "char",
    "sig_model": {
     "return": "char",
     "cc": "thiscall",
@@ -285,15 +290,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "char __thiscall(tagEffObjType *)",
-   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→char __thiscall(tagEffObjType *): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→char __thiscall(tagEffObjType *a2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004c0600",
+   "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cbfc0": {
    "name": "UpdateFrame",
    "ordinal": 5,
    "evidence_level": "chain_unified",
-   "semantic_name": "CreateTask",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -306,15 +313,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)",
-   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int arg0) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(float): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void __thiscall(int arg0) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004af760",
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cc290": {
    "name": "RenderEffectPass",
    "ordinal": 12,
    "evidence_level": "chain_unified",
-   "semantic_name": "CreateTarget",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -327,15 +336,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)",
-   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004af760",
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cbc50": {
    "name": "Destroy",
    "source": "vtable_migrated",
    "ordinal": 6,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -343,15 +355,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00401800",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00401800(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004ccba0": {
    "name": "GetEditorObjDescription",
    "source": "vtable_migrated",
    "ordinal": 10,
    "evidence_level": "unverified",
-   "semantic_name": "DispatchByType",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -364,15 +378,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "const char * __thiscall(int)"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004c0510",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cca90": {
    "name": "GetEditorTaskDescription",
    "source": "vtable_migrated",
    "ordinal": 14,
    "evidence_level": "unverified",
-   "semantic_name": "GetEffectType",
-   "semantic_sig": "const char *",
    "sig_model": {
     "return": "const char *",
     "cc": "thiscall",
@@ -385,7 +401,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "const char * __thiscall(int)"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x004c0510",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
   },
   "0x004cb4a0": {
    "name": "_scalar_dtor_B4A0",
@@ -393,7 +413,6 @@
    "evidence_level": "A",
    "declaration_only": true,
    "adjudication": "confirmed",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -406,51 +425,36 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal1)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_B4A0(??1/??_G析构族); decomp文件=CEffMeteor_scalar_dtor_B4A0int_004cb4a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004cd9f0": {
    "name": "CreateTask_adjthunk",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004CBFC0）⇒ 目标名 CreateTask 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x004cda00": {
    "name": "_todo_4CDA00",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
-  },
-  "0x004c15d0": {
-   "name": "UpdateParticles",
-   "semantic_name": "CEffAction::UpdateParticles(void)",
-   "name_note": "G2定谳: CEff族slot13共享实现(canonical正名账slot13=UpdateParticles); 13族表s13同址=继承+ICF",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   }
  },
  "vtables": [

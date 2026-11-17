@@ -58,7 +58,6 @@
    "name": "Insert",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -74,27 +73,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(void *pElem, void *pEnd)"
+   }
   },
   "0x004111c0": {
    "name": "Size",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004111e0": {
    "name": "Erase",
    "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 2——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -110,14 +105,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(int nIndex, int nCount)"
+   }
   },
   "0x00411240": {
    "name": "Copy",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "cdecl",
@@ -129,8 +122,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __cdecl(void *dst)"
+   }
   },
   "0x0049cf80": {
    "name": "HandleItemPage",
@@ -140,7 +132,6 @@
    },
    "lvars_source": " | L-VAR 2026-11-12 R1提案人工复核纯赢: 19 使用点全 NPC* 语境(->m_AnimWndA/m_wndDialog/m_AnimWndB 成员访问 + (NPC*)cast 调用 + *(DWORD*)v111 dword 读——IDB user type 后 Hex-Rays 自渲染); 提案器 R1 4 证据一致",
    "source": "[修 2026-11-14] __fastcall(int*,int,int)→__thiscall Array::HandleItemPage(int,int,int): EquipUI L1694 调用(((int*)this))->Array::HandleItemPage(3参)——thiscall成员非fastcall",
-   "semantic_sig": "double",
    "sig_model": {
     "return": "double",
     "cc": "thiscall",
@@ -160,26 +151,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "double __thiscall(int nVal, int nVal2, int elem)"
+   }
   },
   "0x00410960": {
    "name": "Free",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00410df0": {
    "name": "CopyRange",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
@@ -195,14 +182,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall(int *p_DWORD, int *p_DWORD2)"
+   }
   },
   "0x004115c0": {
    "name": "PartialSort",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned int *__cdecl",
    "sig_model": {
     "return": "unsigned int *__cdecl",
     "cc": null,
@@ -234,13 +219,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned int *__cdecl (unsigned int *pdwVal, unsigned int *pdwVal2, unsigned int dwVal, int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x004af450": {
    "name": "InsertBlocks",
    "evidence_level": "unverified",
-   "semantic_sig": "char *__thiscall",
    "sig_model": {
     "return": "char *__thiscall",
     "cc": null,
@@ -260,13 +243,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "char *__thiscall (char *pszBuf, unsigned int dwVal, int *p_DWORD)"
+   }
   },
   "0x00410bd0": {
    "name": "InsertAt",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -282,21 +263,19 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *pPos, int *pSrc)"
+   }
   },
   "0x00411ba0": {
    "name": "_nearby_411ba0",
    "evidence_level": "unverified",
    "source": "idb_name_evidence 2026-11-17(N13c按名解析)",
    "sig_model": {
-    "return": null,
-    "cc": null,
-    "params": null,
+    "return": "_nearby_411ba0",
+    "cc": "thiscall",
+    "params": [],
     "varargs": false,
-    "pending": true
+    "pending": false
    },
-   "signature": "_nearby_411ba0 __thiscall()",
    "name_note": "N13c按名解析20261117: IDB名字表反查命中(语料限定调用契约断修复)"
   }
  }

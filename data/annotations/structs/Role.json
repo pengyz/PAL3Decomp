@@ -317,7 +317,6 @@
    "name": "CalcXueJianInit",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -333,14 +332,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int nVal2)"
+   }
   },
   "0x00408d80": {
    "name": "CalcLongKuiInit",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -356,14 +353,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int nVal2)"
+   }
   },
   "0x00408e30": {
    "name": "CalcZiXuanInit",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -379,14 +374,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int nVal2)"
+   }
   },
   "0x00408e90": {
    "name": "CalcChangQingInit",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -402,14 +395,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int nVal2)"
+   }
   },
   "0x00408f30": {
    "name": "CalcHuaYingInit",
    "static": true,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
@@ -425,14 +416,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __cdecl(int nVal, int nVal2)"
+   }
   },
   "0x00418170": {
    "name": "CheckOBBCollision",
    "_misattrib_evidence": "max_offset=680>class_size=64",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -444,14 +433,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(struct gbOBBox *p)"
+   }
   },
   "0x00411900": {
    "name": "Role",
    "_misattrib_evidence": "max_offset=8700>class_size=596",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -459,14 +446,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=Role(??0构造); decomp文件=Role_Role_00411900 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0041b640": {
    "name": "UpdateBoundingBox",
    "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)",
    "evidence_level": "unverified",
-   "semantic_name": "UpdateBoundingBox",
-   "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "CCBAIWindow *__thiscall",
     "cc": null,
@@ -478,31 +466,25 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CCBAIWindow *__thiscall (int)"
+   }
   },
   "0x0041b6a0": {
    "name": "GetGfxManager",
    "source": "vtable_owner_fix(Glow 层虚函数) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_name": "GetGfxManager",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0041be30": {
    "name": "_sdtor_22",
    "source": "vtable_owner_fix(Glow 层虚函数)",
    "evidence_level": "unverified",
    "declaration_only": true,
-   "semantic_name": "_sdtor_22",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -519,39 +501,35 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(int, int)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_22(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0041be20": {
    "name": "_ScriptObj_adjthunk1",
    "source": "[thunk 命名落地 2026-10-16·裁决 A] adjustor thunk（sub ecx,0x38 ; jmp 0x411bd0）⇒ 目标名 ~ScriptObj + _adjthunk ⇒ ~ScriptObj_adjthunk1（零语义发明 ✓ 目标名继承；A 级=指令形 + idapro decompile 目标名） | thunk 形统一 2026-10-17（verifier A 级）：disasm 0x41BE20=`sub ecx,38h; jmp ScriptObj::~ScriptObj(int)`、0x41BE30=`sub ecx,40h; jmp 同` = 析构 adjustor thunk 实锤；原名 `~ScriptObj_adjthunkN` 语义对但**制式非法**（`~` 前缀非合法标识符 ⇒ 注解 `~`/生成 `_` 三源分叉）⇒ 统一制式 `_ScriptObj_adjthunkN`（与生成侧对齐）",
    "evidence_level": "A",
    "declaration_only": true,
-   "alt_name": "Object_adjthunk_1be20",
    "alt_source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）—— Role 继承槽引用 + declaration_only",
-   "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)",
-   "semantic_name": "_ScriptObj_adjthunk1",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00416500": {
    "name": "IsActionBlocked",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   }
  },
  "base_size": 96

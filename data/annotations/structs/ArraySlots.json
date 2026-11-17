@@ -20,7 +20,6 @@
    "name": "ArraySlots",
    "source": "[vtable 55 续 2026-10-17 analyzer 证据账目制] A 级 decompile：ClearSubArraySlot();槽清零;return this（ctor 形）",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -28,15 +27,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=ArraySlots(??0构造); decomp文件=ArraySlots_ArraySlotsvoid_0044a790 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0044a820": {
    "name": "GetUIElements",
    "source": "vtable_gap_fill_v1(from UIWnd.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "GetUIElements",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -52,16 +52,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(UIWnd *Block, char)"
+   }
   },
   "0x0044a870": {
    "name": "RenderText",
    "source": "vtable_gap_fill_v1(from UIWnd.json)",
    "evidence_level": "unverified",
    "adjudication": "rejected",
-   "semantic_name": "RenderText",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -73,16 +70,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int)"
+   }
   },
   "0x0044ab40": {
    "name": "_sdtor_14_adjthunk",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x0044A7D0）⇒ 目标名 _sdtor_14 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_name": "_sdtor_14_adjthunk",
-   "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "CCBAIWindow *__thiscall",
     "cc": null,
@@ -95,24 +89,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "CCBAIWindow *__thiscall (int)"
-  },
-  "0x0044ab00": {
-   "name": "GetType",
-   "name_source": "IDA语义分析 2026-10-31 批3-6",
-   "name_note": "偏移访问器（this-3）",
-   "semantic_name": "GetType",
-   "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056AFA4'] 槽指向本函数 ⇒ 归属 ArraySlots。shape=other:8b 41 f4 c3 · body_head=8b 41 f4 c3 90 90 90 90 90 90 90 90。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
-   "semantic_sig": "int",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_14_adjthunk(??1/??_G析构族); decomp文件=ArraySlots_sdtor_14_adjthunkint_0044ab40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
- },
- "_naming": "[vtable 55 续 2026-10-17 analyzer 证据账目制] 再创作命名 ArraySlots（ClearSubArraySlot + 槽指针数组语义）"
+ }
 }

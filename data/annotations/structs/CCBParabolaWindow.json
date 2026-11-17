@@ -25,7 +25,6 @@
   "0x0051b710": {
    "name": "CCBParabolaWindow",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -42,13 +41,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int *pnVal, int nVal)"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCBParabolaWindow(??0构造); decomp文件=CCBParabolaWindow_CCBParabolaWindowint_int_0051b710 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0051b950": {
    "name": "OnMessage_b950",
    "evidence_level": "unverified",
-   "semantic_name": "OnMessage",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -68,15 +68,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(int msg, unsigned int wparam, unsigned int lparam)"
+   }
   },
   "0x0051c280": {
    "name": "_scalar_dtor",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -84,12 +82,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=CCBParabolaWindow_`scalar_deleting_destructoruint_0051c280 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00440be0": {
    "name": "LoadResourceEx",
    "evidence_level": "unverified",
-   "semantic_sig": "gbVFileSystem *",
    "sig_model": {
     "return": "gbVFileSystem *",
     "cc": "thiscall",
@@ -105,16 +105,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVFileSystem * __thiscall(const char *pszName, char pData)"
+   }
   },
   "0x0051c260": {
    "name": "`scalar deleting destructor'",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
-   "semantic_name": "`scalar deleting destructor'",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -127,7 +124,6 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(int flags)",
    "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0051c880": {
@@ -135,9 +131,7 @@
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
-   "semantic_name": "CCBParabolaWindow::HideAll",
    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名Destroy=体读数命名 | 链约束统一20261117→void: HideAll三证(体对子物件slot3虚调渲染void+result未初始化+19+折叠载体无返回)+链多数void+override一致约束 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -145,14 +139,17 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0051c9f0": {
    "name": "Update",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -169,15 +166,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime, int)",
-   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0051ca50": {
    "name": "ShowClipped",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
-   "semantic_sig": "CCBAIWindow *__thiscall",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -190,17 +190,18 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal)",
-   "semantic_name": "CCBParabolaWindow::ShowClipped",
-   "name_note": "C9级联正名20261116: slot0位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名ShowClipped(基类同槽); 原名ToggleSlots=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(int nVal): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "C9级联正名20261116: slot0位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名ShowClipped(基类同槽); 原名ToggleSlots=体读数命名 | L-TAILADDR定谳20261117: 返回型→void(体证据{'void_ish': 1}) | C9sig链统一20261117→void __thiscall(int nVal): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445e70",
+   "flags_evidence": "同名+同归一签名(int)+基槽0x00445e70(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0051caa0": {
    "name": "Render",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json)",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
-   "semantic_name": "Render",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -209,35 +210,11 @@
     "pending": false
    },
    "name_note": "; C2555链对齐(结构化sweep): B: 真override返回漂移(基void); 置信度中高(史前+基形式多数证据) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "signature": "void __thiscall()"
-  },
-  "0x0051c9b0": {
-   "name": "OnMessage",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "chain_unified",
-   "semantic_sig": "void",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "signature": "int __thiscall(int, unsigned int, int)",
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   }
  },
  "vtables": [

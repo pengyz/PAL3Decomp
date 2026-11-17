@@ -22,24 +22,19 @@
    "evidence_level": "unverified",
    "adjudication": "rejected",
    "source": " | multiclaim 裁决 2026-11-03: 败于 PalScriptBlendTimer（uniq=2）",
-   "semantic_name": "IsBlendComplete",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00434d40": {
    "name": "AccumulateTime",
    "ordinal": 5,
    "evidence_level": "unverified",
-   "semantic_name": "AccumulateTime",
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] A 级 decompile：`m_fElapsed(+8) += fDelta` 累加",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -55,14 +50,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int, int)"
+   }
   },
   "0x00434d50": {
    "name": "~PalScriptBlendTimer",
-   "semantic_name": "~PalScriptBlendTimer",
    "name_note": "G2条目补齐(PalScript计时器族): slot0删除式dtor位, ICF折叠入PalScript scalar dtor 0x434d50(体=Array清理)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -70,7 +62,10 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~PalScriptBlendTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [
@@ -93,6 +88,5 @@
    ],
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=xref 0x434D50@0x56abb8/0x56abc4 表内 ②被调用者面=del 链 ③成员访问面=+8/+12 浮点对 ④类归属面=独立小类（PalScript 族）⑤交互模式面=ctor 写点 Op_Idle+30（Op 域构造）⇒ **混合/过渡计时器**（Blend=混合进度语义：elapsed<duration 判 + 累加）evidence=[0x434D20/0x434D40 decompile,xrefs_to 0x434D50,writer Op_Idle+30] confidence=88"
   }
- ],
- "_naming": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 再创作命名：BlendTimer（IsBlendComplete+AccumulateTime 双语义函数名实证）"
+ ]
 }

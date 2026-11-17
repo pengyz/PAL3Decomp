@@ -70,8 +70,11 @@ def load_entries():
         cls = d.get('name') or ''
         for addr, m in (d.get('methods') or {}).items():
             if isinstance(m, dict) and m.get('name'):
+                import sys as _sys, os as _os
+                _sys.path.insert(0, str(ROOT / 'pipeline' / 'gen'))
+                from annotation_view import sm_text as _sm_text
                 entries.append({'addr': addr, 'class': cls, 'name': m['name'],
-                                'sig': m.get('signature') or ''})
+                                'sig': _sm_text(m)})  # [sig退役迁移 2026-11-17]
     # [same_addr执法域收缩 2026-11-16] functions.json(IDB状态)=apply的修正域:
     #   IDB名字滞后于注解=apply未跑的正常态, 计入same_addr=check永久FAIL→apply死锁
     #   (0x445B90四名误报实证)。same_addr执法域=structs层(注解claim=数据真值)。

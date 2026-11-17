@@ -169,8 +169,6 @@
    "ordinal": 1,
    "owner": "CCBPanelSlot",
    "evidence_level": "unverified",
-   "semantic_name": "CCBPanelSlot::Render",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -178,16 +176,13 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)",
-   "signature": "void __thiscall()"
+   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)"
   },
   "0x00442ff0": {
    "name": "Update_2ff0",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_name": "Update_2ff0",
    "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -203,20 +198,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
-  },
-  "0x00445e70": {
-   "name": "ShowClipped",
-   "signature": "void __thiscall(int)",
-   "semantic_name": "ShowClipped",
-   "name_note": "[恢复] owner-primacy删除过早: CCBPanelSlot bases未定谳, 派生豁免失效→C7; bases定谳后再清"
+   }
   },
   "0x00442420": {
    "name": "HideAll",
    "ordinal": 4,
    "evidence_level": "verified",
-   "semantic_name": "CCBPanelSlot::HideAll(void)",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -224,14 +211,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
    "name_note": "C9血统修复20261116: slot3位(UIWnd骨架) + RET 0(0参ABI=census) + 体=Release纹理引用(m_pFace[1]/[5]置空, 面板隐藏即释放) → 链律名HideAll; 原名Destroy_2420=体读数命名(N12地址后缀); 返回型void vs 根int漂移→L-TAILADDR队列"
   },
   "0x004431b0": {
    "name": "~CCBPanelSlot",
    "ordinal": 5,
    "evidence_level": "verified",
-   "semantic_name": "CCBPanelSlot::~CCBPanelSlot(del)",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -244,8 +229,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(int)",
-   "name_note": "slot5删除式dtor位定谳20261116(??_G型, ABI RET 4=1参flags, 体=调complete dtor+条件operator delete); 名取类dtor语义形(_scalar_dtor_XXXX为N12禁形不入新条目); UIWnd.json冒领条目_sdtor_call_dtor待用户确认后移除"
+   "name_note": "slot5删除式dtor位定谳20261116(??_G型, ABI RET 4=1参flags, 体=调complete dtor+条件operator delete); 名取类dtor语义形(_scalar_dtor_XXXX为N12禁形不入新条目); UIWnd.json冒领条目_sdtor_call_dtor待用户确认后移除",
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~CCBPanelSlot(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [

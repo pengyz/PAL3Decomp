@@ -55,7 +55,6 @@
   "0x00429af0": {
    "name": "InitFromFile",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -71,13 +70,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(const gbGeomNode *pGeomNode, int nVal)"
+   }
   },
   "0x004d0950": {
    "name": "LoadFromNode",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -89,14 +86,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(const gbGeomNode *pNode)"
+   }
   },
   "0x004d0a80": {
    "name": "DestroyChildren",
    "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -108,8 +103,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   }
  }
 }

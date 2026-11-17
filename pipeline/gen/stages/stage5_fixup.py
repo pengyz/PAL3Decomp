@@ -2140,7 +2140,7 @@ def forward_addr_reg_uses(code):
 #      若强行铸成 `*(float *)reg_EDI = (float)_ET1;` 会多出一条 `mov [reg],0`
 #      ⇒ 字节不匹配。故降为注释：零代码产出、信息不丢、可回溯。
 _RE_REG_DEREF_READ = re.compile(
-    r'(\.\s*(?:x|y|z|w)\s*=\s*)\*\s*(reg_[A-Z]\w*)\s*;')
+    r'(\.\s*[xyzw][xyzw]?\s*=\s*)\*\s*(reg_[A-Z]\w*)\s*;')
 _RE_REG_DEREF_ET = re.compile(
     r'^([ \t]*)\*\s*(reg_[A-Z]\w*)\s*=\s*(_ET\d+)\s*;[ \t]*$', re.M)
 

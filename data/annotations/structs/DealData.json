@@ -58,7 +58,6 @@
   "0x00457490": {
    "name": "LoadStoreConfig",
    "evidence_level": "unverified",
-   "semantic_sig": "LPSTR",
    "sig_model": {
     "return": "LPSTR",
     "cc": "thiscall",
@@ -70,14 +69,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "LPSTR __thiscall(CHAR *lpString2)"
+   }
   },
   "0x00457260": {
    "name": "DealData",
    "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int *__thiscall DealData::DealData() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0TxtFile",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -85,12 +82,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=DealData(??0构造); decomp文件=DealData_DealDatavoid_00457260 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004573c0": {
    "name": "CompareString",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -106,8 +105,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(LPCSTR lpString1, LPCSTR lpString2)"
+   }
   }
  }
 }

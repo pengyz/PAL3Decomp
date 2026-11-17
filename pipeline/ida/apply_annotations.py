@@ -1448,7 +1448,14 @@ def _sig_str_of(m):
     except ImportError:
         from sigmodel import node_of, render
     n = node_of(m)
-    return render(n) if n else (m.get('signature') or '')
+    if n:
+        return render(n)
+    # [sig退役迁移 2026-11-18] 字符串回退已死(signature字段清除)——
+    # 无sig_model渲染即显式pending串, 不静默空串
+    sm = m.get('sig_model') or {}
+    if sm.get('pending'):
+        return ''
+    return '' if sm else '<SIG-MODEL-MISSING>'
 
 
 def resolve_vtable_slots(struct_info, functions):
@@ -2502,7 +2509,9 @@ def apply_annotations():
             if 'class' in info:
                 _cls = info['class']
                 _method = name
-                _sig = info.get('signature', '')
+                # [sig退役迁移 2026-11-17 T3] sig_model单源渲染(_sig_str_of);
+                # structs条目signature已退役, 旧直读=空串→void形乱绞(QAEXXZ病灶)
+                _sig = _sig_str_of(info)
                 _mangled = _mangle_vc6(_cls, _method, _sig)
                 if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
@@ -2511,7 +2520,8 @@ def apply_annotations():
             else:
                 # [2026-11-02 统一转换] 全局函数同走 mangled（注解=可读名单源）；
                 # mangling 失败（签名缺/不可解析）回退可读名。
-                _gm = _mangle_vc6(None, name, info.get('signature', ''))
+                # [sig退役迁移 2026-11-17 T3] sig_model单源渲染, 字符串回退(functions.json层过渡)
+                _gm = _mangle_vc6(None, name, _sig_str_of(info))
                 _target = _gm or name
                 if ida_name.set_name(addr, _target, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1

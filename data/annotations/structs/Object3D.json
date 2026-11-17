@@ -211,7 +211,6 @@
   "0x0047cb70": {
    "name": "Object3D",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -219,13 +218,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=Object3D(??0构造); decomp文件=Object3D_Object3Dvoid_0047cb70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0047cb90": {
    "name": "Load",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "3D 模型加载（gbGeomNode + Actor）",
-   "semantic_sig": "OpenNULLFile *",
    "sig_model": {
     "return": "OpenNULLFile *",
     "cc": "thiscall",
@@ -241,13 +242,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "OpenNULLFile * __thiscall(const char *pszName, int actionIdx)"
+   }
   },
   "0x0047cd70": {
    "name": "LoadObject",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned char",
    "sig_model": {
     "return": "unsigned char",
     "cc": "thiscall",
@@ -263,40 +262,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned char __thiscall(const char *filename, int act)"
+   }
   },
   "0x0047cee0": {
    "name": "LoadSubObject",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047cf40": {
    "name": "Destroy",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047cfb0": {
    "name": "IsOverCVD",
    "evidence_level": "unverified",
-   "semantic_sig": "long double",
    "sig_model": {
     "return": "long double",
     "cc": "thiscall",
@@ -328,13 +321,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "long double __thiscall(float fVal, float fVal2, float fVal3, float fVal4, float fVal5, float fVal6)"
+   }
   },
   "0x0047d030": {
    "name": "VecAngle",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -354,13 +345,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal, float fVal2, float fVal3)"
+   }
   },
   "0x0047d130": {
    "name": "SetObjectPosition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -380,40 +369,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float position, float fVal, float fVal2)"
+   }
   },
   "0x0047d230": {
    "name": "SetCentrePos",
    "evidence_level": "unverified",
-   "semantic_sig": "long double",
    "sig_model": {
     "return": "long double",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "long double __thiscall()"
+   }
   },
   "0x0047d320": {
    "name": "GetScreenDegree",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047d440": {
    "name": "RenderObjectScene",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": null,
@@ -429,13 +412,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void (gbVec3D scrVec, gbMatrixStack *pMatrixStack)"
+   }
   },
   "0x0047d690": {
    "name": "CaculateRelative",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -447,14 +428,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float fVal)"
+   }
   },
   "0x0047d9d0": {
    "name": "SetupCamera",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -466,13 +445,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(int nVal1)"
+   }
   },
   "0x0047da60": {
    "name": "Update",
    "evidence_level": "chain_unified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -480,14 +457,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   },
   "0x0047db40": {
    "name": "GetMouseRay",
    "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [C2660修 2026-11-14] gbRay* retstr是sret形参(return value pointer), 真实栈参只有tagPOINT*; 调用点1参",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -499,41 +474,35 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(tagPOINT *pPOINT)"
+   }
   },
   "0x0047dc60": {
    "name": "CheckMouseLPressed",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x0047dc70": {
    "name": "CheckMousePressed",
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall()"
+   }
   },
   "0x00429ee0": {
    "name": "SetTransform",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -545,39 +514,33 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbMatrix4 *pMatrix)"
+   }
   },
   "0x00537060": {
    "name": "GetVisNode",
    "evidence_level": "unverified",
-   "semantic_sig": "gbVisNode *",
    "sig_model": {
     "return": "gbVisNode *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVisNode * __thiscall()"
+   }
   },
   "0x0042b1f0": {
    "name": "IsVisible",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall()"
+   }
   },
   "0x00537070": {
    "name": "CheckMessage",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -589,13 +552,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(const char *pszMsgName)"
+   }
   },
   "0x0042b2f0": {
    "name": "GetOrientedOBBox",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -607,15 +568,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbOBBox *pOBBox)"
+   }
   },
   "0x0047fd90": {
    "name": "LoadActorModel",
    "_misattrib_evidence": "max_offset=162708>class_size=152",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -627,8 +586,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void * __thiscall(int nParam)"
+   }
   }
  }
 }

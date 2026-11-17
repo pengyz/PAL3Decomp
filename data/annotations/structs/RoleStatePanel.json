@@ -14,22 +14,19 @@
    "name": "InitUI",
    "_misattrib_evidence": "rolestatepanel: installs vtable 0x56F040 at this+0 (was EquipUI.InitUI)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a2450": {
    "name": "~RoleStatePanel",
    "_misattrib_evidence": "rolestatepanel: dtor; xref to vtable 0x56F040 at 0x4a246d (was MainEquipUI.~MainEquipUI)",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~RoleStatePanel→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（体=成员析构逆序级联+基类析构） | 订正 2026-10-06：体证=纯析构（成员析构逆序级联+基类析构收尾）——原 sig int __thiscall MainEquipUI::~MainEquipUI() 串类脏数据→void __thiscall() 纯析构形",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -37,13 +34,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~RoleStatePanel(??1/??_G析构族); decomp文件=RoleStatePanel_~RoleStatePanelvoid_004a2450 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004a3900": {
    "name": "SetItemData",
    "_misattrib_evidence": "rolestatepanel: stride this+id*3788 = s_RoleState; fields +0x25E04.. (was UIBase.SetItemData)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -59,28 +58,24 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int id, unsigned int data)"
+   }
   },
   "0x004a4780": {
    "name": "HandleDeviceLostB",
    "_misattrib_evidence": "rolestatepanel: writes +0x2B07C/+0x2B078 (last fields, size 0x2B080) (was MainEquipUI.HandleDeviceLostB)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a4820": {
    "name": "Render",
    "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -88,30 +83,25 @@
     "varargs": false,
     "pending": false
    },
-   "semantic_name": "int __thiscall()",
-   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)",
-   "signature": "void __thiscall()"
+   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)"
   },
   "0x004a4890": {
    "name": "GetSelected",
    "_misattrib_evidence": "rolestatepanel: scans +0x169[5] slot flags (was EquipUI.GetSelected)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a48b0": {
    "name": "InitSlots",
    "_misattrib_evidence": "rolestatepanel: 0xa1 family; ecx=[parent+0x6E14] call chain (was EquipUI.InitSlots)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -123,15 +113,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x004a4960": {
    "name": "InitLayout",
    "_misattrib_evidence": "rolestatepanel: 0xa1 family (byte-identical variant) (was StateUI.InitLayout)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -143,15 +131,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal1)"
+   }
   },
   "0x004a4a10": {
    "name": "CreateWidgets",
    "_misattrib_evidence": "rolestatepanel: 0xa1 family (was StateUI.CreateWidgets)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -163,15 +149,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x004a4ac0": {
    "name": "SetSelectedData",
    "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.SetSelectedData)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -183,15 +167,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal1)"
+   }
   },
   "0x004a4b70": {
    "name": "Init",
    "_misattrib_evidence": "rolestatepanel: 0xa1 family (was MagicUI.Init)",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -203,85 +185,73 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x004a4c20": {
    "name": "Create",
    "_misattrib_evidence": "rolestatepanel: calls 0xa1 family on this (was EquipUI.Create)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a4fc0": {
    "name": "SetEquipSlotData",
    "_misattrib_evidence": "rolestatepanel: writes +0x2AFD4..0x2AFD9 (was MainEquipUI.SetEquipSlotData)",
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall()"
+   }
   },
   "0x004a5930": {
    "name": "RenderThrottled",
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a5a80": {
    "name": "LayoutHandleNav",
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.LayoutHandleNav)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a5b30": {
    "name": "UpdateCaptions",
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a2150": {
    "name": "_scalar_dtor_2150",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=RoleStatePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F040）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -289,7 +259,26 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_2150(??1/??_G析构族); decomp文件=RoleStatePanel_`scalar_deleting_destructoruint_004a2150 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+  },
+  "0x0056f040": {
+   "name": "RoleStatePanel",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "binary_vtable_slot",
+   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056f040'])",
+   "flags_evidence": "ctor写表普查在册(census annotated=0x0056f040) 2026-11-17 机械补迁(P0-1-B缺口72类)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": true
+   }
   }
  },
  "known_members": {

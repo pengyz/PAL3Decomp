@@ -81,7 +81,6 @@
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -89,12 +88,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=CCBMagicWindow_`scalar_deleting_destructoruint_0051b690 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0051b9f0": {
    "name": "CCBMagicWindow",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -115,13 +116,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int nVal, int nVal2, int *p_DWORD)"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=CCBMagicWindow(??0构造); decomp文件=CCBMagicWindow_CCBMagicWindowint_int_int_0051b9f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0051bab0": {
    "name": "Method",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -133,14 +136,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x0051bb00": {
    "name": "Reset",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -156,14 +157,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0051bb40": {
    "name": "Create",
    "source": "pdb_ret | [T94] 返型 bool→int：A 级 objdump 0x51bb40 `8b 44 24 04/89 41 74/c2 04 00`——EAX=arg 直回（无 setne 形）⇒ 非 bool；原 bool 来自 pdb_ret（PDB 仅参考级——A 级优先）。int/void 编译字节等价（passthrough），按语义取 int。L1 目标：n_diff=5 [4-9] run",
    "evidence_level": "A",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -175,40 +174,34 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int rc)"
+   }
   },
   "0x0051bb90": {
    "name": "ForbidPage",
    "evidence_level": "unverified",
-   "semantic_sig": "UIListBox *",
    "sig_model": {
     "return": "UIListBox *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "UIListBox * __thiscall()"
+   }
   },
   "0x0051bc50": {
    "name": "ClearMagicData",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0051bc70": {
    "name": "CreateButton",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "bool",
    "sig_model": {
     "return": "bool",
     "cc": "thiscall",
@@ -224,21 +217,18 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "bool __thiscall(int *ppButton, int id)"
+   }
   },
   "0x0051c210": {
    "name": "GetActivePage",
    "evidence_level": "unverified",
-   "semantic_sig": "UIListBox *",
    "sig_model": {
     "return": "UIListBox *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "UIListBox * __thiscall()"
+   }
   }
  },
  "base_size": 72,

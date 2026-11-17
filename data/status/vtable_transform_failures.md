@@ -1008,3 +1008,71 @@
 | `UIProgressBar::Update` | inline | `int` | 24 | self_arg_mismatch | `(*(void ( **)(int, unsigned int, int, int, struct gbVec3D *, int *))(*(_DWORD *)m_pfather + 24))( 1013, this->m_id, v17, v42, v45, v50)` |
 | `UITitle_ArcSave::Update` | inline | `int` | 8 | non_class_hint | `(*(void ( **)(int, int, int))(*(_DWORD *)this->m_YesNo.m_childs.m_needscriptdel + 8))( this->m_YesNo.m_childs.m_needscriptdel, p, nVal)` |
 | `EffCallBackNode::UpdatePost` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `C2DSpark::C2DSpark` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, &stru_5D550C.m_callbacks[5].szDesc[72])` |
+| `C3DSpark::C3DSpark` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, &stru_5D550C.m_callbacks[5].szDesc[72])` |
+| `CCBControlWindow::Create` | inline | `int` | 28 | non_class_hint | `(*(void ( **)(int, unsigned int, unsigned int, CCBControlWindow *, unsigned int, _DWORD))(*(_DWORD *)v7 + 28))( v7, ppChild.m_fontcolor.Color, ppChild.m_wndcolor.Color, this, ppChi` |
+| `CCBParabolaWindow::LoadResourceEx` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v6 + 8))(gfxMgr, v7)` |
+| `CCBStageScene::CCBStageScene` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, &stru_5DBC2C.m_callbacks[6].szDesc[80])` |
+| `CCBStageShadow::CCBStageShadow` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, &stru_5DBC2C.m_callbacks[11].szDesc[44])` |
+| `CCBUI::SetupAIWindow` | inline | `_DWORD` | 16 | self_arg_mismatch | `(*(void ( **)(_DWORD, int, int *, CCBUI *))(*(_DWORD *)&(*(v24 - 11))->UIWnd + 16))( *(v24 - 11), 79, &v68, this)` |
+| `CCBUI::CreateButton` | inline | `int` | 28 | self_arg_mismatch | `(*(void ( **)(int, int, CCBUI *, _DWORD, int, _DWORD))(*(_DWORD *)&(*m_pBattleFieldAttr)->UIWnd + 28))( *v15, parent, this, 0, 1, 0)` |
+| `CCBUI::AddTask` | inline | `int` | 28 | self_arg_mismatch | `(*(void ( **)(int, char *, CCBUI *, _DWORD, int, _DWORD))(*(_DWORD *)&(*p_pPanel)->UIWnd + 28))( *v7, pTask.fp[0], this, 0, 1, 0)` |
+| `CEffQuad::UpdateFrame_7` | inline | `CTaskTpl_tagEffTaskParam_CEffQuad` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffQuad *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4->_tail_000 + 4))( v4, *(_DWORD *)(*(_DWORD *)v13 + v14), *(_DWORD *)(*(_DWORD *)v13 + v14 ` |
+| `CEffShock::UpdateFrame_9` | inline | `CTaskTpl_tagEffTaskParam_CEffShock` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffShock *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v5), *(_DWORD *)(*v4 + v5 + 4), 0)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 84 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 84))( gfxMgr, v6, 1)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 88 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 88))(gfxMgr)` |
+| `CEffectSystem::IsVisible` | inline | `gbGfxManager` | 92 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, float *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 92))( gfxMgr, p_eu)` |
+| `CEffectSystem::HandleViewMove` | inline | `gbGfxManager` | 92 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *, float *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 92))( gfxMgr, &this->m_DefaultUVSet[6 * v3 + 2].eu)` |
+| `CScreenMode::IsSceneReady` | inline | `gbGfxManager` | 88 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 88))(gfxMgr)` |
+| `CUtil::Update` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, _DWORD, _DWORD))(*(_DWORD *)&m_pScreenMode->UIWnd + 24))( m_pScreenMode, 1000, 0, 0)` |
+| `Object3D::RenderObjectScene` | inline | `gbGeomNode` | 16 | self_arg_mismatch | `(*(void ( **)(gbGeomNode *, _DWORD))(*(_DWORD *)&this->m_pol->gbChain1DNode + 16))(this->m_pol, 0)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 48 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 48))(gfxMgr)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 52 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 52))(gfxMgr)` |
+| `PAL3::Render` | inline | `gbGfxManager` | 112 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *, int *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 112))( gfxMgr, &g_nPAL3_D8E488)` |
+| `PAL3::PrintScreen` | inline | `gbGfxManager` | 84 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 84))( gfxMgr, &v24, 1)` |
+| `PAL3::PrintScreen` | inline | `gbGfxManager` | 88 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 88))(gfxMgr)` |
+| `PalScript::OpenScript` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v5 + 8))(gfxMgr, v6)` |
+| `PalScriptIdleObj::LoadScriptTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, nVal)` |
+| `PalScriptWaitObj::ReleaseObject` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, pszBuf)` |
+| `ParticleEffect::LoadTextures` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, Buffer)` |
+| `RenderTarget::LoadTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, m_szTexPath)` |
+| `RenderTarget::RenderToTexture` | inline | `gbGfxManager` | 60 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 60))(gfxMgr)` |
+| `RenderTarget::Create` | inline | `gbGfxManager` | 84 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 84))( gfxMgr, &v2, 1)` |
+| `RenderTarget::Create` | inline | `gbGfxManager` | 88 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 88))(gfxMgr)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 92 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, gbTexture_D3D **))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 92))( gfxMgr, &this->m_ScreenPlane)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 48 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 48))(gfxMgr)` |
+| `RenderTarget::OnResetDevice` | inline | `gbGfxManager` | 52 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 52))(gfxMgr)` |
+| `RenderTarget::RenderToScreen` | inline | `gbGfxManager` | 92 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 92))(gfxMgr, 0)` |
+| `RenderTarget2::Resolve` | inline | `gbGfxManager` | 60 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *))(*(_DWORD *)&v4 + 60))(v3)` |
+| `RoleSystem::LoadRoleImage` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, 0)` |
+| `RoleSystem::LoadRoleImage` | inline | `_BYTE` | 4 | non_class_hint | `(*(void ( **)(_BYTE *, _DWORD, int, int, _DWORD, int, _BYTE *))(*(_DWORD *)v5 + 4))( v5, LODWORD(this->m_fScale), this->m_nImageIdx, 2, 0, 2, v6)` |
+| `ScreenEffectMgr::LoadResources` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, aEffectRayTga)` |
+| `ScreenEffectNode::LoadTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, aEffectSaveTga)` |
+| `UI3DModelNode::LoadActorVisual` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, Buffer)` |
+| `UIFrameWnd::SetTextureByID` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, nTexID)` |
+| `UIFrameWnd::SetTextureByName` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v3)` |
+| `UIFrameWnd::LoadFrameResources` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _BYTE *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, &v17[16])` |
+| `UIListBox::GetSel` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v3)` |
+| `UIListBox::LoadListItems` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, Source)` |
+| `UIListBox::SetMouseMoveSel` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int (**)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, Source)` |
+| `UIManager::LoadShadowTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, aShadowTga)` |
+| `UIPushButton::CreateWithTextures` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v10 + 8))(gfxMgr, v11)` |
+| `UIPushButton::FormatText` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::LoadResource` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::LoadTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v5 + 8))(gfxMgr, v6)` |
+| `UIPushButton::SetText` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v3 + 8))(gfxMgr, v4)` |
+| `UIPushButton::LoadTextureByName` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v6 + 8))(gfxMgr, v7)` |
+| `UIPushButton::CreateFromTemplate` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v7 + 8))(gfxMgr, v8)` |
+| `UIRenderObj::~UIRenderObj` | inline | `gbGfxManager` | 104 | self_arg_mismatch | `(*(void (**)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 104))( gfxMgr, (unsigned __int8)nVal1)` |
+| `UIScene::SetTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v3)` |
+| `UIScene::CreateScrollWidget` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v18 + 8))(gfxMgr, v19)` |
+| `UIScene::GetChildCount` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v1)` |
+| `UIScene::GetChildAt` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v1)` |
+| `UIScene::SetTextParam` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, const CHAR *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, v1)` |
+| `UIWnd::ShowClipped` | vftable_local | `int` | 24 | self_arg_mismatch | `(*(void ( **)(int, int, _DWORD))(v2 + 24))(1000, nFlags, 0)` |
+| `::LoadUISceneTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))(gfxMgr, a2)` |
+| `::Load` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, aEffectscnFrame)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, *v4)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 96 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 96))( gfxMgr, *(_DWORD *)((char *)v7 + (_DWORD)v10 - self), 0, 0)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 104 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 104))(gfxMgr, 1)` |
+| `::_todo_541590` | inline | `gbGfxManager` | 100 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 100))( gfxMgr, *(_DWORD *)(result + 4 * param_1))` |

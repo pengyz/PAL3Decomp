@@ -123,7 +123,6 @@
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ObjectCamera 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_C570。refs: ??1ObjectCamera@@QAE@XZ",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -131,12 +130,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_C570(??1/??_G析构族); decomp文件=ObjectCamera_scalar_dtor_C570void_0047c570 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0047c580": {
    "name": "~ObjectCamera",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -144,39 +145,37 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~ObjectCamera(??1/??_G析构族); decomp文件=ObjectCamera_~ObjectCameravoid_0047c580 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0047c590": {
    "name": "Create",
    "evidence_level": "unverified",
-   "semantic_sig": "float *",
    "sig_model": {
     "return": "float *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "float * __thiscall()"
+   }
   },
   "0x0047c630": {
    "name": "GetCameraDirect",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047c640": {
    "name": "SetCameraEyePosition",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -188,14 +187,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbGfxManager *position)"
+   }
   },
   "0x0047c6e0": {
    "name": "SetCameraAtPosition",
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -211,14 +208,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(gbVec3D position, char pData)"
+   }
   },
   "0x0047c770": {
    "name": "SetCameraRotate",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -238,14 +233,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(float yaw, float pitch, float roll)"
+   }
   },
   "0x0047c7e0": {
    "name": "SetCameraDist",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -265,27 +258,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int dist, int nVal, int nVal2)"
+   }
   },
   "0x0047c810": {
    "name": "Destroy",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047c830": {
    "name": "ComputeInfo",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -297,26 +286,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int from)"
+   }
   },
   "0x0047c9b0": {
    "name": "SetStepRotate",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0047cad0": {
    "name": "Update",
    "evidence_level": "chain_unified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -324,7 +309,6 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall()",
    "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)"
   }
  }

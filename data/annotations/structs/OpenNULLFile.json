@@ -13,7 +13,6 @@
   "0x00401f90": {
    "name": "OpenNULLFile",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -21,11 +20,11 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=OpenNULLFile(??0构造); decomp文件=OpenNULLFile_OpenNULLFilevoid_00401f90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
- },
- "_verdicts": {
-  "gapfill_shell_20261016": "误挂（函数名）"
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂定谳**：`OpenNULLFile`=**函数名**（动宾形）被 gap-fill 名解析误收为类名 · mangled 零命中"
 }

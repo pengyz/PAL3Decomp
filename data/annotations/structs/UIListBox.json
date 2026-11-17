@@ -13,7 +13,6 @@
   "0x0043dcd0": {
    "name": "UIListBox",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
@@ -21,12 +20,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int * __thiscall()"
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=UIListBox(??0构造); decomp文件=UIListBox_UIListBoxvoid_0043dcd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043dd10": {
    "name": "~UIListBox",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -34,12 +35,14 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~UIListBox(??1/??_G析构族); decomp文件=UIListBox_~UIListBoxvoid_0043dd10 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043dd60": {
    "name": "SetSelTexture",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -67,129 +70,109 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int id, int pRect, int nVal, int nVal2, int nVal3)"
+   }
   },
   "0x0043de90": {
    "name": "Destroy_thunk_3de90",
    "name_source": "IDA取证 2026-11-09",
    "name_note": "剥壳回退: 产出thunk机制名仍非语义; 待thunk建模裁决",
-   "semantic_name": "Destroy_thunk_3de90",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043dea0": {
    "name": "AddColumn",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043deb0": {
    "name": "AddRow",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043dec0": {
    "name": "SetSubItem",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043ded0": {
    "name": "GetSubItemInfo",
    "evidence_level": "unverified",
-   "semantic_sig": "UIListBox *",
    "sig_model": {
     "return": "UIListBox *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "UIListBox * __thiscall()"
+   }
   },
   "0x0043def0": {
    "name": "Render_DEF0",
    "source": "+fix:sig_match_base",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043df10": {
    "name": "CalHeightCount",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043df20": {
    "name": "GetItemPos",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043dfc0": {
    "name": "UpdateKeyCtrl",
    "evidence_level": "unverified",
-   "semantic_sig": "UIListBox *",
    "sig_model": {
     "return": "UIListBox *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "UIListBox * __thiscall()"
+   }
   },
   "0x0043e100": {
    "name": "_scalar_dtor_E100",
@@ -199,7 +182,6 @@
    "source": "|fixed_ios_base | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AD40）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -216,14 +198,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_E100(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_E100UIWnd_char_0043e100 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043e1c0": {
    "name": "CalScrollBarRange",
    "source": "pdb_ret",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -255,13 +239,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int id, int *p_DWORD, int parent, LPCSTR lpString, int nVal, char pData)"
+   }
   },
   "0x0043e330": {
    "name": "GetSel",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -277,13 +259,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0043e3b0": {
    "name": "GetLockSel",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -311,14 +291,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int *p_DWORD, int nVal2, int nVal3, char pData)"
+   }
   },
   "0x0043e440": {
    "name": "SetSel",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -330,16 +308,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int sel)"
+   }
   },
   "0x0043e480": {
    "name": "OnMessage",
    "ordinal": 6,
    "evidence_level": "chain_unified",
    "name_note": "剥壳定谳(验证pass): OnMessage: m_movesel/m_rowenable消息处理+槽6链名与UIWnd canonical对齐=强实证 | C9sig链统一20261117→int __thiscall(int height, unsigned int nVal, int nVal2): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "semantic_name": "OnMessage_E480",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -360,27 +335,28 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "int __thiscall(int height, unsigned int nVal, int nVal2)"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
   },
   "0x0043e520": {
    "name": "Destroy",
    "name_source": "IDA语义分析 2026-11-01 批7",
    "name_note": "清理+释放纹理",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043e560": {
    "name": "SetColumnHead",
    "source": "| [T103] 同名消歧：@0x43E560 体=strncpy(m_column[m_numcol].head,src,0x40)（decomp 成员访问证据）⇒ 语义名 SetColumnHead（禁伪语义 ✓）；@0x43F670 族 SetItemOffset 保留（m_itemoffset.x/y 直存）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -396,14 +372,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nOffset)"
+   }
   },
   "0x0043e5c0": {
    "name": "LoadListItems",
    "source": "| [T114] 同名消歧：@0x43E5C0 全函数体（2976 字符）调用簇=gbTexture::LoadTexture/UIListBox::CreateChild/GetSubItemInfo/PtrArray::SetAt/InitScrollbar（列循环+子项构造+纹理加载+滚动条初始化）⇒ 语义名 LoadListItems（禁伪语义 ✓ 调用簇证据）；@0x43F670 SetItemOffset 保留（m_itemoffset 直存）",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -419,13 +393,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *Source, int y)"
+   }
   },
   "0x0043e7d0": {
    "name": "SetMouseMoveSel",
    "evidence_level": "unverified",
-   "semantic_sig": "gbVFileSystem *",
    "sig_model": {
     "return": "gbVFileSystem *",
     "cc": "thiscall",
@@ -449,57 +421,49 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "gbVFileSystem * __thiscall(int movesel, int nVal, char *Source, int nVal2)"
+   }
   },
   "0x0043e8a0": {
    "name": "Render_E8A0",
    "name_source": "IDA语义分析 2026-11-01 批7",
    "name_note": "渲染（capacity/firstshow）",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043eba0": {
    "name": "SetDefaultSel",
    "source": "pdb_ret",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00527950": {
    "name": "ctor",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00470a60": {
    "name": "InitWithPalScript",
    "_misattrib_evidence": "max_offset=124248>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -515,15 +479,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x005279f0": {
    "name": "_scalar_dtor_79F0",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_79F0 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_79F0。refs: ??1UIRoleDialog@@QAE@XZ ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -531,27 +493,27 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_79F0(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_79F0void_005279f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004b4690": {
    "name": "Reset",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00452600": {
    "name": "_scalar_dtor_2600",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor_2600 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_2600。refs: ?ctor@UITitle_BBTY@@QAEXXZ UIAnimateCtrlEX__UIAnimateCtrlEX ??1UIListBox@@QAE@XZ",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -559,52 +521,48 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_2600(??1/??_G析构族); decomp文件=UIListBox_`scalar_deleting_destructoruint_00452600 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043f5b0": {
    "name": "GetItem",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f360": {
    "name": "ClearAll",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f650": {
    "name": "GetItemData",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f640": {
    "name": "SetLockSel",
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -616,66 +574,56 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal1)"
+   }
   },
   "0x0043fe90": {
    "name": "GetCurSel",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00432680": {
    "name": "ReleaseVtable",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004a9870": {
    "name": "_todo",
    "_misattrib_evidence": "max_offset=400040>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00451ad0": {
    "name": "ReinitScrollbar",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00451af0": {
    "name": "CalcVisibleRange",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -691,27 +639,23 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(char *Source, int nVal)"
+   }
   },
   "0x00431cd0": {
    "name": "RefreshSelection",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043ebe0": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -724,40 +668,34 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "BOOL __thiscall(CCBUI **deltatime)",
    "name_note": " | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
   },
   "0x0043f080": {
    "name": "ProcessSelection",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f520": {
    "name": "InitScrollbar",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f6a0": {
    "name": "SetChildParam",
    "_misattrib_evidence": "max_offset=1196>class_size=308",
    "evidence_level": "unverified",
-   "semantic_sig": "unsigned int",
    "sig_model": {
     "return": "unsigned int",
     "cc": "thiscall",
@@ -773,8 +711,7 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "unsigned int __thiscall(unsigned int dwVal, int nVal)"
+   }
   },
   "0x004525e0": {
    "name": "_scalar_dtor_25E0",
@@ -784,7 +721,6 @@
    "source": "| 错挂修正 2026-10-16（verifier A 级）：真身=0x56B1BC 复合体的 scalar deleting destructor（vtable 槽 0x56b1bc→0x4525E0 xref 实证）——错挂 UIListBox，复合体真名挂账中 | [撞名 28 组四分账裁决 2026-10-16 analyzer] 组内同名撞（同 sig 双址 C2084 硬撞）→ 唯一名（addr 后缀=诚实标记惯例） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIListBox（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B1BC）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void *",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -801,13 +737,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void * __thiscall(UIWnd *Block, char pData)"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_25E0(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_25E0UIWnd_char_004525e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x004526c0": {
    "name": "ShouldProcessInput",
    "ordinal": 2,
    "evidence_level": "unverified",
-   "semantic_sig": "BOOL",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
@@ -823,53 +761,45 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "BOOL __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x004526f0": {
    "name": "RenderMagic",
    "ordinal": 1,
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00519af0": {
    "name": "InitAndRender",
    "evidence_level": "unverified",
-   "semantic_sig": "CCBUI *",
    "sig_model": {
     "return": "CCBUI *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "CCBUI * __thiscall()"
+   }
   },
   "0x0043df70": {
    "name": "GetItemAt",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043f410": {
    "name": "AdjustScroll",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -881,26 +811,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal)"
+   }
   },
   "0x0043f590": {
    "name": "GetLockedSel",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043f670": {
    "name": "SetItemOffset",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -916,14 +842,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x0043f690": {
    "name": "SetItemData",
    "_misattrib_evidence": "max_offset=1188>class_size=308",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -935,26 +859,22 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nData)"
+   }
   },
   "0x00451850": {
    "name": "UIListBox_Init",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0049cf20": {
    "name": "GetSkillSlotLevel",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -970,34 +890,29 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int nVal, int nVal2)"
+   }
   },
   "0x00532a40": {
    "name": "ResetRect",
    "evidence_level": "unverified",
-   "semantic_sig": "int *",
    "sig_model": {
     "return": "int *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int * __thiscall()"
+   }
   },
   "0x0053d100": {
    "name": "RefreshList",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x0043dcf0": {
    "name": "_scalar_dtor_DCF0",
@@ -1005,7 +920,6 @@
    "ordinal": 5,
    "evidence_level": "chain_unified",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1018,14 +932,16 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(int)",
-   "name_note": " | C9sig基锚定20261117→void __thiscall() | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据)"
+   "name_note": " | C9sig基锚定20261117→void __thiscall() | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据)",
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_DCF0(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_DCF0int_0043dcf0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043f6d0": {
    "name": "SetFirstShow",
    "_misattrib_evidence": "max_offset=1200>class_size=308",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1037,42 +953,36 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(unsigned int dwVal)"
+   }
   },
   "0x004aa1b0": {
    "name": "ResetAllListBoxes",
    "_misattrib_evidence": "max_offset=394816>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004aa230": {
    "name": "ShowSlotUI",
    "_misattrib_evidence": "max_offset=397552>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004aa320": {
    "name": "InsertUIListBox",
    "_misattrib_evidence": "max_offset=400536>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1084,14 +994,12 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x004aa680": {
    "name": "ProcessListInput",
    "_misattrib_evidence": "max_offset=397552>class_size=1208",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1103,13 +1011,11 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int nVal)"
+   }
   },
   "0x0043ebb0": {
    "name": "GetGridOffset",
    "evidence_level": "unverified",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1125,57 +1031,49 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall(int *pOut, int index)"
+   }
   },
   "0x0043f560": {
    "name": "CreateChild",
    "_misattrib_evidence": "round4: 33 xrefs all UIListBox block (physically adjacent); offsets +0x1B0/+0x45C/+0x460 fit UIListBox(1208B) not NPC(1152B) usage zone",
    "evidence_level": "unverified",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x0043e120": {
    "name": "DeleteRow",
    "source": "| [rsite 根治 2026-10-16] 名 DeleteRow⇒~UIListBox（真析构，vtable 0x56AD40 slot None=本类）：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [退化修复 2026-10-16 回退] ~UIListBox 与 0x43DD10 同签名双析构=C2084 误伤实锤（析构不可重载）；真身 0x43E0xx=UIListBox 本体（m_rowenable 面）但与 0x43DCxx 簇双簇裁决未完 ⇒ 名形暂缓，待裁决后正名",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00451900": {
    "name": "DestroyContent",
    "source": "sig_evidence_A(ret-N arity) | [rsite 根治 2026-10-16] 归属迁移 UIListBox⇒UILoadingFrm + 名 DestroyContent⇒~UILoadingFrm：A级 idapro 2f27f612：删析构 vtable 槽 xref（0x4518E0@0x56B178 from=UILoadingFrm / 0x4D3930@0x56FADC from=CEffShock / 0x43E100@0x56AD40 from=None=UIListBox）+ call 完整dtor(this)+flags 条件 delete ABI 配对 ⇒ 目标=同类完整析构 | [停车场清理 2026-10-16 回改] A级 idapro d9a0f50c+objdump：0x451850 基类 call 0x43bb70（≠UIListBox 簇 0x445AA0）+ call 0x43dfc0(UIListBox ctor) 于子对象 + UITextArea::InitAfterClear ⇒ 0x4518xx=独立类（UIFrameWnd 系+UIListBox/UITextArea 成员）；UILoadingFrm=0x4507xx 簇（m_LoadProgress+m_MaxValue=100 语义吻合）⇒ 上轮 ~UILoadingFrm 误迁回改，真名待 0x4518xx 簇裁决",
    "evidence_level": "A",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "void __thiscall()"
+   }
   },
   "0x00451c70": {
    "name": "_sdtor_28_adjthunk",
    "source": "[97 族注册 2026-10-17·裁决 A] adjustor thunk（sub ecx,imm8;jmp 0x004518E0）⇒ 目标名 _sdtor_28 继承+_adjthunk（零语义发明 ✓ 证据账目：体形 A 级+目标名注解面）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1183,45 +1081,42 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_sdtor_28_adjthunk(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00451b40": {
    "name": "ResizeToContent",
    "source": "vtable_gap_fill_v1(from UIListBox.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_name": "ResizeToContent",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x00451c10": {
    "name": "IsVisible",
    "source": "vtable_gap_fill_v1(from UIListBox.json)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall()"
+   }
   },
   "0x004518e0": {
    "name": "_scalar_dtor_18E0",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UILoadingFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B178,0x56B16C）",
    "evidence_level": "A",
    "declaration_only": true,
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1229,13 +1124,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_18E0(??1/??_G析构族); decomp文件=UIListBox_scalar_dtor_18E0void_004518e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00451aa0": {
    "name": "OnMessage_1AA0",
    "name_source": "IDA语义分析 2026-11-01 批7 + 2026-11-09 C2084消歧",
    "name_note": "消息处理（1007=设颜色）；vtable[1] slot6 自有槽。原名 OnMessage 与 0x00450990(消息1000分派,OnMessage)撞名 → 消歧名",
-   "semantic_sig": "int",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -1255,16 +1152,13 @@
     ],
     "varargs": false,
     "pending": false
-   },
-   "signature": "int __thiscall(int a2, int a3, int a4)"
+   }
   },
   "0x0043ddf0": {
    "name": "Render",
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "chain_unified",
-   "semantic_name": "void __thiscall(void)",
    "name_note": "; C9链对齐: slot1链源级void(基体eax垃圾渲染+史前同态双void+三叶零返回); 调用点20消费样例疑AllocBuffer他族待逐站点vtable追踪 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall() | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1272,13 +1166,15 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()"
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x0043de40": {
    "name": "HideAll",
-   "semantic_name": "UIListBox::HideAll",
    "name_note": "C9级联正名20261116: slot3位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名HideAll(基类同槽); 原名ReleaseTempStorage=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "semantic_sig": "void",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1286,8 +1182,12 @@
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall()",
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c10",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   }
  },
  "vtables": [
