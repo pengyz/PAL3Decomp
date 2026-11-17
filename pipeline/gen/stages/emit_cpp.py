@@ -114,17 +114,21 @@ def _load_fold_carrier_aliases():
 
 
 def _atexit_member_ref_rewrite(code):
-    """体级重写: (void(*)())Cls::M → ::M（仅声明文件登记的折叠载体别名）。
+    """体级重写: (void(*)())Cls::M → ::M（仅声明文件登记的 类+名 对）。
 
     :: 前缀强制全局域——派生类成员函数内裸名会命中继承成员
     （类域优先于全局域），成员类型无函数指针转换 ⇒ C2664 'void (void)'
     （CEffCylinder ×57 实证 2026-11-17）。
+    [精度 2026-11-17] 限定前缀必须与声明项一致（qualifier+name 对）——
+    只查裸名会把未登记类的同名成员一并误重写（COther::DestroyEffect
+    反例自查 2026-11-17）。IDB 名址1:1 ⇒ 凡渲染声明项限定名即引用其址。
     """
     if not _atexit_member_aliases:
         return code
-    return _ATEXIT_MFP_CAST_RE.sub(
-        lambda m: '::' + m.group(2) if _atexit_member_aliases.get(m.group(2)) else m.group(0),
-        code)
+    def _sub(m):
+        _q = m.group(1).rstrip(':').rsplit('::', 1)[-1]
+        return '::' + m.group(2) if _atexit_member_aliases.get(m.group(2)) == _q else m.group(0)
+    return _ATEXIT_MFP_CAST_RE.sub(_sub, code)
 
 
 # ---------------------------------------------------------------------------
