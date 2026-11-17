@@ -226,6 +226,8 @@ def main():
     import time as _t
     _T0 = _t.time()
     log('[S1-DIAG] main() start')
+
+    _export_failed = False
     try:
         ida_auto.auto_wait()
         log("[*] Pure export (no IDB modifications)")
@@ -775,10 +777,15 @@ def main():
         log("[*] Done")
     except Exception as e:
         log("[!] %s" % str(e))
+        _export_failed = True
 
     os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         f.write("\n".join(log_lines))
+    # [P1-1修 2026-11-17] 异常路径非零退出——此前恒qexit(0)=中途崩溃以rc 0收场,
+    # 下游消费半截/陈旧语料且看起来一切正常(复核agent_408f3962 P1-1实证)
+    if _export_failed:
+        idc.qexit(1)
     idc.qexit(0)
 
 

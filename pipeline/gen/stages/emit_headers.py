@@ -1682,6 +1682,9 @@ def _offset0_vptr_placeholder(cls_name):
         and str(cand.get('type') or '') == 'void *'
 
 
+_POD_TYPEDEFS = []
+
+
 def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_names=None,
                     colliding_enums=None, template_expr=None, template_param_count=0,
                     nested_types=None, nested_methods=None, scope_node=None):
@@ -1693,6 +1696,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     """
     seen_methods = set()  # populated by the method-decl loop below; also read by the scalar-wrapper ctor block
     lines = ["#pragma once"]
+
+    # [POD标量早退 2026-11-17] size≤8+零真成员+零vtable+零methods → 非类, typedef集中管理
+    _pod_size = (ida_struct or {}).get('size') or 0
+    _pod_dm = [m for m in (ida_struct or {}).get('data_members') or []
+               if not str(m.get('name', '')).startswith('_tail')]
+    _pod_no_vt = not (ida_struct or {}).get('vtables')
+    _pod_no_methods = not methods
+    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt and _pod_no_methods:
+        _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
+        _pod_type = _pod_map.get(_pod_size, 'DWORD')
+        _pod_td = 'typedef %s %s;' % (_pod_type, cls_name)
+        _POD_TYPEDEFS.append(_pod_td)
+        return '#pragma once\n// POD scalar: centralized in scalar_typedefs.h\n#include "pal3/src/scalar_typedefs.h"\n'
     lines.append('// Auto-generated: %s' % (
         template_expr if template_expr else cls_name))
     # standalone-compile base: Win32 primitives + Hex-Rays ttl aliases

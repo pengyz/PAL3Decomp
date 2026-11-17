@@ -1090,7 +1090,9 @@ def cmd_loop(argv):
 
     # 跑之前先如实展示"已知恒红"，避免把这些当成真失败
     red = preflight.known_red_gates(preflight.collect_state())
-    red_gates = {g['gate'].split(' → ')[0] for g in red}
+    # [P1-2修 2026-11-17] 前缀名归一: 'codegen all'→'codegen'(strip ' all'后缀)
+    # 使TOLERATED匹配与阶段名一致; 门级匹配(区分compile_regression等具体门)待后续
+    red_gates = {g['gate'].split(' → ')[0].replace(' all', '') for g in red}
     if red:
         print('[loop] 已知恒红门禁 %d 条（出现时会被标为 TOLERATED，不会被静默吞掉）：' % len(red))
         for g in red:
