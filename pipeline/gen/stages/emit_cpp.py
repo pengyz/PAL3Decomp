@@ -17,6 +17,109 @@ _nullsub_stubs = set()
 
 
 # ---------------------------------------------------------------------------
+# [折叠载体自由符号 2026-11-17] MSVC6 禁非静态成员限定名做函数指针表达式
+# ---------------------------------------------------------------------------
+# 形态: atexit((void ( *)())Cls::Method) ⇒ C2440 "cannot convert from ''"
+# （149站/全corpus=CEffObj::DestroyEffect单一形态）。MSVC6语义下原始源码
+# 不可能这样写——二进制实际是 push <空函数地址>(如0x401800, 注解"retn空实现",
+# CEffObj槽3/4/6/7折叠载体)。原始注册符号被ICF折叠抹名, 不可恢复。
+# 重建形态（用户裁决 2026-11-17）: 成员空体(thiscall角色) + 自由别名空体
+# (注册角色) → 链接器ICF折叠一址, 与原始机制同构。
+# 决策在数据层: data/annotations/fold_carrier_aliases.json 声明别名+证据链
+# （ROWTABLE 同模式, 管线只机械执行——管线正则推导已退役）。
+_ATEXIT_MFP_CAST_RE = re.compile(
+    r'\(\s*void\s*\(\s*(?:__\w+\s*)?\*\s*\)\s*\(\s*\)\s*\)'
+    r'\s*((?:[A-Za-z_]\w*::)+)([A-Za-z_]\w*)')
+_atexit_member_aliases = {}   # bare_name -> qualifier class（声明文件登记项）
+
+
+def _annotation_method_cc(cls_name, meth_name):
+    """注解层方法调用约定查询（None=未知）。data/annotations/structs/Cls.json"""
+    if not cls_name or not meth_name:
+        return None
+    import json as _json
+    from data import store as _store
+    fp = str(_store.project_root / 'data' / 'annotations' / 'structs' / ('%s.json' % cls_name))
+    try:
+        d = _json.load(open(fp, encoding='utf-8'))
+    except Exception:
+        return None
+    for m in (d.get('methods') or {}).values():
+        if (m.get('name') or '') != meth_name:
+            continue
+        sm = m.get('sig_model') or {}
+        if sm.get('cc'):
+            return sm['cc']
+        sig = m.get('signature') or ''
+        if '__thiscall' in sig:
+            return 'thiscall'
+        if '__cdecl' in sig or '__stdcall' in sig:
+            return 'cdecl_or_stdcall'
+    return None
+
+
+def _load_fold_carrier_aliases():
+    """读折叠载体自由符号声明（数据层决策）+ 机械校验（防漂移）。
+
+    决策: data/annotations/fold_carrier_aliases.json（ROWTABLE 同模式：
+    声明+证据链在数据层，管线只机械执行——2026-11-17 用户裁决：
+    管线正则推导=决策越层，退役）。
+    fail-loud（ROWTABLE CG-023 教训：静默缺省=149站退回C2440且无信号）。
+    校验: 声明的 (qualifier, name) 必须在注解层是 thiscall 成员——
+    类改名/方法除名后别名失绑在此显形，不静默带病运行。
+    返回 {bare_name: qualifier_cls}。
+    """
+    import json as _json
+    from data import store as _store
+    _atexit_member_aliases.clear()   # 进程内多次codegen的状态确定性
+    _p = _store.project_root / 'data' / 'annotations' / 'fold_carrier_aliases.json'
+    if not _p.exists():
+        raise RuntimeError(
+            'emit_cpp: fold_carrier_aliases.json 缺失 (%s)。折叠载体别名是'
+            '声明式输入契约——静默缺失会让折叠载体站点退回C2440。重建该文件'
+            '（条目须带证据链）而非继续。' % _p)
+    try:
+        _data = _json.load(open(_p, encoding='utf-8'))
+    except ValueError as _e:
+        raise RuntimeError('emit_cpp: fold_carrier_aliases.json 解析失败: %s' % _e)
+    _out = {}
+    for _e in (_data.get('aliases') or []):
+        _name, _qual = _e.get('name'), _e.get('qualifier')
+        if not (_name and _qual and _e.get('addr')):
+            raise RuntimeError('fold_carrier_aliases: 条目缺name/qualifier/addr: %r' % _e)
+        if not _e.get('evidence'):
+            raise RuntimeError('fold_carrier_aliases: %s 缺 evidence（决策必须留证据链）' % _name)
+        if _name in _out:
+            raise RuntimeError('fold_carrier_aliases: 重名条目 %s' % _name)
+        _cc = _annotation_method_cc(_qual, _name)
+        if _cc != 'thiscall':
+            raise RuntimeError(
+                'fold_carrier_aliases: %s.%s 校验失败(注解cc=%r≠thiscall)'
+                '——声明漂移(类/方法已改名或除名?)，先修声明再跑' % (_qual, _name, _cc))
+        _out[_name] = _qual
+    # 声明通道: free_func_sigs → free_functions.h 自动覆盖（既有通道，零新状态）
+    for _name in _out:
+        if _name not in _store.free_func_sigs:
+            _store.free_func_sigs[_name] = 'void __cdecl %s(void)' % _name
+    _atexit_member_aliases.update(_out)
+    return _out
+
+
+def _atexit_member_ref_rewrite(code):
+    """体级重写: (void(*)())Cls::M → ::M（仅声明文件登记的折叠载体别名）。
+
+    :: 前缀强制全局域——派生类成员函数内裸名会命中继承成员
+    （类域优先于全局域），成员类型无函数指针转换 ⇒ C2664 'void (void)'
+    （CEffCylinder ×57 实证 2026-11-17）。
+    """
+    if not _atexit_member_aliases:
+        return code
+    return _ATEXIT_MFP_CAST_RE.sub(
+        lambda m: '::' + m.group(2) if _atexit_member_aliases.get(m.group(2)) else m.group(0),
+        code)
+
+
+# ---------------------------------------------------------------------------
 # 无 this 的编译器桩（等价变换：R1 thunk 尾跳）
 # ---------------------------------------------------------------------------
 # 二进制实证（2026-10-09）：
@@ -787,6 +890,7 @@ def generate_class_cpp(cls_name, methods):
         code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
+        code = _atexit_member_ref_rewrite(code)          # [atexit虚成员引用修正 2026-11-17]
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
 
@@ -884,7 +988,7 @@ def generate_class_cpp(cls_name, methods):
     return content
 
 
-def generate_free_funcs_cpp(funcs):
+def generate_free_funcs_cpp(funcs, atexit_aliases=None):
     """Generate .cpp for free functions."""
     lines = []
     lines.append('#include "pal3/ida_defs.h"')
@@ -959,6 +1063,7 @@ def generate_free_funcs_cpp(funcs):
         code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
+        code = _atexit_member_ref_rewrite(code)          # [atexit虚成员引用修正 2026-11-17]
         transformed.append((f['addr'], code))
 
     # Forward declarations
@@ -980,6 +1085,21 @@ def generate_free_funcs_cpp(funcs):
         lines.append("")
         for ns in sorted(_nullsub_stubs):
             lines.append("void __cdecl %s(...) {}" % ns)
+        lines.append("")
+
+    # [折叠载体别名 2026-11-17] 自由符号定义（空体→ICF折叠回原址）。
+    # 二进制语义: atexit注册的是空折叠载体地址（如CEffObj::DestroyEffect@0x401800,
+    # 注解"retn空实现", 槽3/4/6/7共享）。条目来自声明文件（数据层决策）。
+    # 类循环先于此运行 ⇒ 重写已完成。
+    if atexit_aliases:
+        lines.append("")
+        lines.append("// Address-bound free aliases: atexit-referenced empty member")
+        lines.append("// functions (MSVC6 forbids qualified non-static member names")
+        lines.append("// as function pointers; binary registers the empty fold-carrier)")
+        lines.append("")
+        for _a in sorted(atexit_aliases):
+            lines.append("void __cdecl %s(void) {} // folded empty: %s::%s"
+                         % (_a, atexit_aliases[_a], _a))
         lines.append("")
 
     content = '\n'.join(lines)
@@ -1071,6 +1191,13 @@ def run_cpp_generation(filter_classes=None):
     print("  Classes with methods: %d" % len(by_class))
     print("  Free functions: %d" % len(free_funcs))
 
+    # [折叠载体别名 2026-11-17] 读声明文件（数据层决策），须先于free_functions.h发射
+    # （声明经store.free_func_sigs通道进头）
+    _atexit_aliases = _load_fold_carrier_aliases()
+    if _atexit_aliases:
+        print("  [fold-carrier] 折叠载体自由符号: %s" %
+              ', '.join('%s→%s' % (v, k) for k, v in sorted(_atexit_aliases.items())))
+
     output_dir.mkdir(parents=True, exist_ok=True)
     generated = 0
     total_funcs = 0
@@ -1110,7 +1237,7 @@ def run_cpp_generation(filter_classes=None):
     # Free functions
     if free_funcs and not filter_classes:
         out_path = output_dir / "free_functions.cpp"
-        content = generate_free_funcs_cpp(free_funcs)
+        content = generate_free_funcs_cpp(free_funcs, atexit_aliases=_atexit_aliases)
         # [__ovl_ 剥离退役 2026-11-04] 同上，不再剥戳。
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(content)

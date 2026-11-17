@@ -1,0 +1,19 @@
+{
+  "_doc": "折叠载体自由符号别名（声明式决策 2026-11-17）",
+  "_law": "ICF折叠抹除原始符号名；本文件声明'哪个名字作为自由符号重建被折叠的注册符号'。决策+证据在数据层，管线只机械执行（ROWTABLE 同模式）。改此文件须经语义裁定并留证据链。",
+  "_mechanism": "成员空体(void Cls::Name(){}, thiscall角色) + 自由别名空体(void __cdecl Name(){}, 注册角色) → MSVC6 /opt:icf 按字节等价折叠成一址 → 虚表槽与 atexit push 天然同址，与原始二进制折叠机制同构。",
+  "_schema": {
+    "name": "自由符号名（重建名，原始名被折叠抹除不可恢复）",
+    "qualifier": "成员名所属类（体文本中的限定前缀）",
+    "addr": "折叠载体地址（十六进制8位）",
+    "evidence": "裁定证据链（必填，逐条可查）"
+  },
+  "aliases": [
+    {
+      "name": "DestroyEffect",
+      "qualifier": "CEffObj",
+      "addr": "0x00401800",
+      "evidence": "注解 methods[0x401800] source='binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)'；虚表槽3/4/6/7同址四名(DestroyEffect/RenderScenePass/Destroy/UpdateParticles)=ICF折叠载体实锤；atexit注册128站(MSVC6拒绝成员限定名做函数指针C2440实证)=原始注册符号与空虚成员折叠。原始符号名被折叠抹除，按体语义命名DestroyEffect。"
+    }
+  ]
+}
