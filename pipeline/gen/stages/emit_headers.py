@@ -363,6 +363,38 @@ def _get_ida_structs():
     return _ida_structs_cache
 
 
+# [POD标量预扫描 2026-11-17] 确定性POD typedef名单——替代增量累积(_POD_TYPEDEFS)。
+# 事故复盘：原实现依赖类处理顺序（P<UIScene 才能排除），且 `_tail_000` 过滤把
+# 「唯一成员是合成尾」的4字节类误判为零成员 → 67个typedef，其中19个注解层有methods
+# （UISystem/UIManager/SoundSystem/Parent_Data…真类）→ C2371×1147 + 语义破坏。
+# 判据（全部满足才入名单）：
+#   a) ida_structs size ∈ {1,2,4,8}（正值，排除 -1/缺失）
+#   b) 非tail真成员为空（_tail_000合成尾不算成员）
+#   c) vtables 空
+#   d) 注解层 methods 空（真类铁律：二进制有成员函数=类）
+_pod_scalar_names_cache = None
+
+
+def _pod_scalar_names():
+    global _pod_scalar_names_cache
+    if _pod_scalar_names_cache is not None:
+        return _pod_scalar_names_cache
+    _out = set()
+    for _n, _e in (_get_ida_structs() or {}).items():
+        if not isinstance(_e, dict):
+            continue
+        _sz = _e.get('size')
+        if _sz not in (1, 2, 4, 8):
+            continue
+        _real_dm = [m for m in (_e.get('data_members') or [])
+                    if not str(m.get('name', '')).startswith('_tail')]
+        if _real_dm or _e.get('vtables') or _e.get('methods'):
+            continue
+        _out.add(_n)
+    _pod_scalar_names_cache = _out
+    return _pod_scalar_names_cache
+
+
 # SDK 类型尺寸（`data/annotations/sdk_types.json`）。
 #
 # 为什么需要单独一源：`_estimate_member_size` 原先只查 ida_structs.json，
@@ -1698,11 +1730,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     lines = ["#pragma once"]
 
     # [POD标量早退 2026-11-17] size≤8+零真成员+零vtable+零methods → 非类, typedef集中管理
+    # [误判修复 2026-11-17] methods双证据(decomp形参+注解层)必须为空——19个真类
+    #   (UISystem/Parent_Data等)曾因 `_tail_000` 过滤被误typedef成DWORD(C2371×1147+语义破坏)
     _pod_size = (ida_struct or {}).get('size') or 0
     _pod_dm = [m for m in (ida_struct or {}).get('data_members') or []
                if not str(m.get('name', '')).startswith('_tail')]
     _pod_no_vt = not (ida_struct or {}).get('vtables')
-    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt:
+    _pod_no_meth = (not (methods or [])) and (not (ida_struct or {}).get('methods'))
+    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt and _pod_no_meth:
         _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
         _pod_type = _pod_map.get(_pod_size, 'DWORD')
         _pod_td = 'typedef %s %s;' % (_pod_type, cls_name)
@@ -2066,6 +2101,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # （`class NODE;` 全局 vs `struct NODE` 嵌套 ⇒ NODE* 解析失败 C2143 · 213 文件 L7）。
     _nested_names = {n.split('::')[-1] for n in (nested_types or [])}
     fwd_types = {t for t in fwd_types if t.split('::')[-1] not in _nested_names}
+    # [C2371 修 2026-11-17] POD标量typedef型排除：scalar_typedefs.h已有typedef
+    # （经ida_types.h全域可见），再发 `class X;` ⇒ C2371 redefinition; different basic types
+    fwd_types = {t for t in fwd_types if t not in _pod_scalar_names()}
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
@@ -3067,7 +3105,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sig_src):
                 if _t0 not in _builtin_t and _t0 != cls_name and _t0 not in _fwd_needed:
                     _fwd_needed.append(_t0)
+        _POD_TYPEDEFS_SET = set()
+        for _td_s in _POD_TYPEDEFS:
+            _td_m = re.match(r'typedef \w+ (\w+);', _td_s)
+            if _td_m:
+                _POD_TYPEDEFS_SET.add(_td_m.group(1))
         for _t0 in _fwd_needed:
+            # [排除POD typedef类型 2026-11-17] typedef类型已在scalar_typedefs.h全局定义
+            if _t0 in _POD_TYPEDEFS_SET:
+                continue
             lines.insert(0, '')
             lines.insert(0, 'class %s;' % _t0)
         for _vi, _sn in enumerate(_all_vtable_slots_self):
@@ -3739,6 +3785,12 @@ def main():
 
     # Collect methods from decomp JSONs (function bodies with class attribution)
     methods_by_class = collect_methods()
+    # [POD预扫描收窄 2026-11-17] decomp有methods但注解层暂无 ⇒ 真类, 从POD名单剔除
+    #   （否则其前向声明被误压制 ⇒ 无头包含的TU引用断链）。generate_header 内部
+    #   另有 methods 形参独立判定, 两处判据一致。
+    #   注: 原地变异(无global声明时重绑定不写回模块缓存——P-A5同类教训)
+    _pod_scalar_names_cache = _pod_scalar_names()
+    _pod_scalar_names_cache -= set(methods_by_class.keys())
 
     # Load struct definitions from export output (ida_structs.json).
     # This is the legitimate data source for codegen — it's the export stage's output,
@@ -4125,7 +4177,8 @@ def main():
             }
             _fwd_needed = sorted(
                 t for t in ((_ptr_types - _defined_here) - _builtin)
-                if not should_skip_class(t))   # SDK 型来自 ida_types.h，勿再声明
+                if not should_skip_class(t)   # SDK 型来自 ida_types.h，勿再声明
+                and t not in _pod_scalar_names())  # [C2371修 2026-11-17] POD typedef型
             _fwd_lines = ['class %s;' % _t for _t in _fwd_needed]
 
             # [C2146 修 2026-10-19] 按值引用类型须**完整定义**（前向声明不够）
@@ -4842,6 +4895,8 @@ def generate_globals():
                 continue  # 非法类名(畸形抽取形), 跳过
             if cls in _IDA_TYPE_ALIASES:
                 continue  # ida_types.h已知别名, 编译器已有typedef
+            if cls in _pod_scalar_names():
+                continue  # [C2371修 2026-11-17] POD typedef型(scalar_typedefs.h已有)
             h_lines.insert(insert_pos, 'class %s;' % cls)
             _fwd_emitted.append(cls)
             insert_pos += 1
@@ -5222,17 +5277,6 @@ def generate_globals_cpp():
     out_path = OUTPUT_DIR / "globals.cpp"
     out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print("  Globals: %d in globals.cpp" % inc)
-
-    # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
-    if _POD_TYPEDEFS:
-        _std_path = OUTPUT_DIR / "scalar_typedefs.h"
-        with open(_std_path, 'w', encoding='utf-8') as _f:
-            _f.write('#pragma once\n')
-            _f.write('// POD scalar typedefs (centralized management)\n')
-            for _td in sorted(set(_POD_TYPEDEFS)):
-                _f.write(_td + '\n')
-        print("  Scalar typedefs: %d in scalar_typedefs.h" % len(set(_POD_TYPEDEFS)))
-
 
     # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
     if _POD_TYPEDEFS:

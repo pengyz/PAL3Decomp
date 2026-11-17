@@ -1020,6 +1020,13 @@ def _emit_free_functions_header(store, header_dir):
             t = m.group(1)
             if t not in _SYSTEM_TYPES:
                 fwd_types.add(t)
+    # [C2371修 2026-11-17] POD标量typedef型排除（scalar_typedefs.h已有typedef,
+    #   ida_types.h全域可见 ⇒ class前置=重定义）。延迟import避免环。
+    try:
+        from stages.emit_headers import _pod_scalar_names as _pod_names
+        fwd_types = {t for t in fwd_types if t not in _pod_names()}
+    except Exception as _e_pod:
+        print('[free_functions.h] POD排除集加载失败(保守跳过过滤): %s' % _e_pod)
     if fwd_types:
         for t in sorted(fwd_types):
             h_lines.append('class %s;' % t)

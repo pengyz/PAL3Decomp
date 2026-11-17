@@ -502,7 +502,7 @@ class RegressionDetector:
             for failure in comparison["new_failures"]:
                 lines.append(f"  {failure['unit']}")
                 for error in failure["errors"][:3]:  # 只显示前3个错误
-                    lines.append(f"    L{error['line']}: {error['code']} - {error['msg'][:60]}")
+                    lines.append(f"    L{error.get('line', 0)}: {error['code']} - {error['msg'][:60]}")
                 if len(failure["errors"]) > 3:
                     lines.append(f"    ... 还有 {len(failure['errors']) - 3} 个错误")
             lines.append("")
@@ -518,7 +518,7 @@ class RegressionDetector:
                              f"{error_info.get('genuine_count', '?')} "
                              f"{error_info.get('by_code', {})}")
                 for error in error_info["new_errors"][:5]:
-                    lines.append(f"    新增 L{error['line']}: {error['code']} - "
+                    lines.append(f"    新增 L{error.get('line', 0)}: {error['code']} - "
                                  f"{error['msg'][:70]}")
             lines.append("")
 
