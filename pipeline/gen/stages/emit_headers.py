@@ -3381,21 +3381,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             decl = decl.replace('std::ios_base *', 'UIWnd *')
             lines.append("%s // %s" % (decl, addr))
 
-    # If class has parameterized ctor but no default ctor, add one
-    # (skip for opaque structs which get their own ctor below)
-    _ann_for_ctor = _get_ida_structs()
-    _ctor_struct = _ann_for_ctor.get(cls_name, {})
-    _ctor_size = _ctor_struct.get('binary_size') or 0
-    _ctor_members = _ctor_struct.get('data_members', [])
-    _is_opaque = (_ctor_size and _ctor_size <= 16 and len(_ctor_members) == 0)
-    if methods and not _is_opaque:
-        has_param_ctor = any(k.startswith(cls_name + '(') and k != cls_name + '()' for k in seen_methods)
-        has_default_ctor = (cls_name + '()') in seen_methods
-        if has_param_ctor and not has_default_ctor:
-            # Not auto-generating a default constructor — if a class has parameterized
-            # constructors only, there's a reason (e.g. gbCamera needs gbGfxManager*).
-            # An empty default ctor would silently construct an invalid object.
-            pass
 
     # For opaque scalar-wrapper structs (size <= 16, no real members —
     # _tail_* fill entries don't count), emit converting constructors.
