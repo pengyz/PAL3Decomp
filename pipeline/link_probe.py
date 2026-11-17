@@ -56,8 +56,14 @@ LNK_RE = re.compile(r'^(?P<where>.+?)\s*:\s*(?P<fatal>fatal )?error (?P<code>LNK
 
 def run_link(obj_paths, out_exe):
     cmd = [str(LINK_EXE)] if pc.NATIVE_WIN else ['wine', pc.wpath(str(LINK_EXE))]
+    # [ICF 2026-11-17 对抗复核P1-3] /OPT:ICF + /OPT:NOREF 对齐 MSVC6 release 语义:
+    #   折叠载体自由符号(atexit别名空体)与空虚成员依赖 ICF 按字节等价折叠一址——
+    #   163站 atexit push 立即数与虚表槽同址性全部押注于此。缺 ICF = 别名落址
+    #   任意 → push 立即数全偏(字节匹配断裂, 无任何报错信号=静默)。原版
+    #   PAL3.exe 为 release 构建(/Gy+ICF), 语义必须复刻。/INCREMENTAL:NO 由
+    #   /OPT:ICF 隐含(增量链接与折叠互斥)。
     args = ['/nologo', '/OUT:' + pc.wpath(out_exe), '/SUBSYSTEM:WINDOWS',
-            '/MACHINE:I386']
+            '/MACHINE:I386', '/OPT:ICF', '/OPT:NOREF']
     for lib in PLATFORM_LIBS:
         args.append('/DEFAULTLIB:' + lib)
     for d in LIB_DIRS:

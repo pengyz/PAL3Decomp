@@ -34,7 +34,12 @@ _atexit_member_aliases = {}   # bare_name -> qualifier class（声明文件登�
 
 
 def _annotation_method_cc(cls_name, meth_name):
-    """注解层方法调用约定查询（None=未知）。data/annotations/structs/Cls.json"""
+    """注解层方法调用约定查询（None=未知）。data/annotations/structs/Cls.json
+
+    [对抗复核P2-7 2026-11-17] 同名多址（重载/误登记）时不再取首个——
+    全部同名条目 cc 一致才返回该值；不一致返回 'AMBIGUOUS'（调用方按非
+    thiscall 处理=fail-closed）。
+    """
     if not cls_name or not meth_name:
         return None
     import json as _json
@@ -44,17 +49,23 @@ def _annotation_method_cc(cls_name, meth_name):
         d = _json.load(open(fp, encoding='utf-8'))
     except Exception:
         return None
+    _ccs = set()
     for m in (d.get('methods') or {}).values():
         if (m.get('name') or '') != meth_name:
             continue
         sm = m.get('sig_model') or {}
         if sm.get('cc'):
-            return sm['cc']
-        sig = m.get('signature') or ''
-        if '__thiscall' in sig:
-            return 'thiscall'
-        if '__cdecl' in sig or '__stdcall' in sig:
-            return 'cdecl_or_stdcall'
+            _ccs.add(sm['cc'])
+        else:
+            sig = m.get('signature') or ''
+            if '__thiscall' in sig:
+                _ccs.add('thiscall')
+            elif '__cdecl' in sig or '__stdcall' in sig:
+                _ccs.add('cdecl_or_stdcall')
+    if len(_ccs) == 1:
+        return _ccs.pop()
+    if len(_ccs) > 1:
+        return 'AMBIGUOUS'
     return None
 
 
@@ -96,6 +107,17 @@ def _load_fold_carrier_aliases():
             raise RuntimeError(
                 'fold_carrier_aliases: %s.%s 校验失败(注解cc=%r≠thiscall)'
                 '——声明漂移(类/方法已改名或除名?)，先修声明再跑' % (_qual, _name, _cc))
+        # [对抗复核P2-6 2026-11-17] addr必须与注解methods键对得上——
+        #   addr此前纯文书, 写错不loud, 污染证据链可查性
+        import json as _json2
+        _ann2 = _json2.load(open(str(_store.project_root / 'data' / 'annotations'
+                                       / 'structs' / ('%s.json' % _qual)),
+                                 encoding='utf-8'))
+        _addr_norm = _e['addr'].lower()
+        if _addr_norm not in {str(k).lower() for k in (_ann2.get('methods') or {})}:
+            raise RuntimeError(
+                'fold_carrier_aliases: %s.%s addr=%s 不在注解methods键中——'
+                '地址与注解脱钩, 证据链断裂, 先修声明' % (_qual, _name, _e['addr']))
         _out[_name] = _qual
     # 声明通道: free_func_sigs → free_functions.h 自动覆盖（既有通道，零新状态）。
     # [声明碰撞守卫] 同名已有**异形**声明(注解T27/decomp来源) ⇒ 头声明与别名定义
@@ -375,8 +397,12 @@ def generate_forward_decls(all_code):
                 _class_type_externs.append((u, gt))
         if _class_type_externs:
             seen_t = set()
+            # [C2371修 2026-11-17] POD typedef型排除(对抗复核P2-5, 现库无命中,
+            #   latent防漂移)——typedef已在ida_types.h链全域可见
+            from stages.emit_headers import _pod_scalar_names as _pod_g
+            _pod_gset = _pod_g()
             for _u, _t in _class_type_externs:
-                if _t in seen_t:
+                if _t in seen_t or _t in _pod_gset:
                     continue
                 seen_t.add(_t)
                 lines.append('class %s;' % _t)
@@ -1164,11 +1190,10 @@ def _emit_free_functions_header(store, header_dir):
                 fwd_types.add(t)
     # [C2371修 2026-11-17] POD标量typedef型排除（scalar_typedefs.h已有typedef,
     #   ida_types.h全域可见 ⇒ class前置=重定义）。延迟import避免环。
-    try:
-        from stages.emit_headers import _pod_scalar_names as _pod_names
-        fwd_types = {t for t in fwd_types if t not in _pod_names()}
-    except Exception as _e_pod:
-        print('[free_functions.h] POD排除集加载失败(保守跳过过滤): %s' % _e_pod)
+    # [对抗复核P2-4 2026-11-17] fail-open退役——import失败=管线已坏,
+    #   静默跳过滤会让C2371复活无信号, 直接raise(fail-loud铁律)
+    from stages.emit_headers import _pod_scalar_names as _pod_names
+    fwd_types = {t for t in fwd_types if t not in _pod_names()}
     if fwd_types:
         for t in sorted(fwd_types):
             h_lines.append('class %s;' % t)

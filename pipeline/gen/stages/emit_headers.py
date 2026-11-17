@@ -391,6 +391,21 @@ def _pod_scalar_names():
         if _real_dm or _e.get('vtables') or _e.get('methods'):
             continue
         _out.add(_n)
+    # [第三证据源 2026-11-17 对抗复核P1-1] template_bases 成员指针=成员函数铁证:
+    #   "unsigned long (__thiscall CEffCamera::*)(...)" 出现在模板实参 ⇒ 该类
+    #   有成员函数（成员指针存在即类成立）。UISystem 事故同构判据漏项——
+    #   template_bases.json 里 18 个 CEff* 全被此通道证明是真类。
+    try:
+        _tpl = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'template_bases.json',
+                              encoding='utf-8'))
+        import re as _re_t
+        for _v in _tpl.values():
+            _tv = _v.get('template', '') if isinstance(_v, dict) else str(_v)
+            for _m in _re_t.finditer(r'(\w+)::\*', _tv):
+                _out.discard(_m.group(1))
+    except (OSError, ValueError) as _e_tb:
+        print('[WARN] _pod_scalar_names: template_bases.json 不可读(%s)——'
+              '成员指针证据源缺席, 仅布局判据生效' % str(_e_tb)[:60])
     _pod_scalar_names_cache = _out
     return _pod_scalar_names_cache
 
@@ -1729,15 +1744,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     seen_methods = set()  # populated by the method-decl loop below; also read by the scalar-wrapper ctor block
     lines = ["#pragma once"]
 
-    # [POD标量早退 2026-11-17] size≤8+零真成员+零vtable+零methods → 非类, typedef集中管理
-    # [误判修复 2026-11-17] methods双证据(decomp形参+注解层)必须为空——19个真类
-    #   (UISystem/Parent_Data等)曾因 `_tail_000` 过滤被误typedef成DWORD(C2371×1147+语义破坏)
+    # [POD标量早退 2026-11-17] 判据唯一化: 以_pod_scalar_names()预扫描为准
+    #   (布局判据+注解methods+template_bases成员指针三证据源, 对抗复核P1-1)。
+    #   与四路前向声明排除同源——杜绝"预扫描判真类/内联判typedef"双向分歧
+    #   (CEffCamera反例: template_bases成员指针证明有成员函数, 内联条件却会typedef)。
+    #   decomp methods在main()已收窄预扫描集, 此处再查methods形参兜底。
     _pod_size = (ida_struct or {}).get('size') or 0
-    _pod_dm = [m for m in (ida_struct or {}).get('data_members') or []
-               if not str(m.get('name', '')).startswith('_tail')]
-    _pod_no_vt = not (ida_struct or {}).get('vtables')
-    _pod_no_meth = (not (methods or [])) and (not (ida_struct or {}).get('methods'))
-    if _pod_size and _pod_size <= 8 and not _pod_dm and _pod_no_vt and _pod_no_meth:
+    if cls_name in _pod_scalar_names() and not (methods or []):
         _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
         _pod_type = _pod_map.get(_pod_size, 'DWORD')
         _pod_td = 'typedef %s %s;' % (_pod_type, cls_name)
@@ -2289,6 +2302,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if inc_line not in lines:
                             lines.insert(0, inc_line)
                     else:
+                        # [C2371修 2026-11-17] POD typedef型排除(scalar_typedefs.h已有,
+                        #   ida_types.h全域可见)——对抗复核P1-1漏接点
+                        if param in _pod_scalar_names():
+                            continue
                         fwd_line = 'class %s;' % param
                         if fwd_line not in lines:
                             lines.insert(0, fwd_line)
@@ -2415,7 +2432,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # __thiscall so dropping it is semantics-preserving.
                 _td_type = re.sub(r'\b__thiscall\s+', '', _td_type_raw)
                 _td_type_named = re.sub(r'\*\)', '*%s)' % _td_name, _td_type, 1)
-                lines.append('class %s;' % _td_cls)
+                # [C2371修 2026-11-17] POD typedef型不发class前置(对抗复核P1-1)。
+                #   正常输入下成员指针模板类已被template_bases证据源判真类,
+                #   此守卫防矛盾输入(POD名出现在成员指针模板=注解层错误)。
+                if _td_cls not in _pod_scalar_names():
+                    lines.append('class %s;' % _td_cls)
                 lines.append('typedef %s;' % _td_type_named)
                 _base_tpl = template_expr.split('<')[0]
                 _sub = get_class_dir(_base_tpl)
@@ -3105,14 +3126,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             for _t0 in re.findall(r'([A-Za-z_]\w*)\s*\*', _sig_src):
                 if _t0 not in _builtin_t and _t0 != cls_name and _t0 not in _fwd_needed:
                     _fwd_needed.append(_t0)
-        _POD_TYPEDEFS_SET = set()
-        for _td_s in _POD_TYPEDEFS:
-            _td_m = re.match(r'typedef \w+ (\w+);', _td_s)
-            if _td_m:
-                _POD_TYPEDEFS_SET.add(_td_m.group(1))
         for _t0 in _fwd_needed:
-            # [排除POD typedef类型 2026-11-17] typedef类型已在scalar_typedefs.h全局定义
-            if _t0 in _POD_TYPEDEFS_SET:
+            # [排除POD typedef类型 2026-11-17/对抗复核P1-2] 用预扫描集(确定性,
+            #   三证据源)——旧增量_POD_TYPEDEFS_SET: ①顺序依赖(ASCII序大写类
+            #   先于gb*类生成时typedef未入表) ②正则`typedef \w+`对多词基类型
+            #   (unsigned char/__int64)不匹配, 61/112名漏保护(gbVFile实测)
+            if _t0 in _pod_scalar_names():
                 continue
             lines.insert(0, '')
             lines.insert(0, 'class %s;' % _t0)
