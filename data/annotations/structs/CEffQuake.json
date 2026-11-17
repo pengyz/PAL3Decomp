@@ -1,13 +1,6 @@
 {
  "name": "CEffQuake",
- "known_members": {
-  "_0x0": {
-   "name": "_tail_000",
-   "type": "char[48]",
-   "interim": true,
-   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
-  }
- },
+ "known_members": {},
  "pdb_size": 48,
  "binary_size": 48,
  "methods": {
@@ -377,5 +370,5 @@
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
  ],
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
+ "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查"
 }
