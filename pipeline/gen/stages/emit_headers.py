@@ -2410,57 +2410,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append("")
     lines.append("public:")
 
-    # Virtual methods from vtable (must be first, order matches vtable layout)
-    vtable_method_names = set()  # track names declared via vtable (including inherited)
-    try:
-        def _collect_base_vtable_names(class_name, visited=None):
-            if visited is None:
-                visited = set()
-            if class_name in visited:
-                return set()
-            visited.add(class_name)
-            names = set(re.sub(r'[^a-zA-Z0-9_]', '_', n) for n in class_vtable_slots(class_name))
-            # Get base_class from ida_structs (primary) or annotation (fallback)
-            _is_entry = _get_ida_structs().get(class_name, {})
-            # [真相源迁移 2026-10-20] 只读 `bases`
-            base = _base_names(_is_entry)
-            if not base:
-                try:
-                    base = _base_names(_get_ida_structs().get(class_name, {}))
-                except Exception:
-                    pass
-            if base:
-                for b in base:
-                    names |= _collect_base_vtable_names(b, visited)
-            return names
-
-        for bn in base_names:
-            vtable_method_names |= _collect_base_vtable_names(bn)
-
-        # Also include known_methods from annotation as vtable methods
-        # P1-5（第八批）：收敛到 _annview.struct_by_class（保留本处 try 容错）
-        _ann_data = _annview.struct_by_class(cls_name)
-        if _ann_data:
-            try:
-                for _slot, _minfo in _ann_data.get('known_methods', {}).items():
-                    if isinstance(_minfo, dict) and _minfo.get('name'):
-                        vtable_method_names.add(_minfo['name'])
-            except:
-                pass
-
-        own_slots = class_vtable_slots(cls_name)
-        if own_slots and not base_names:
-            lines.append("    // vtable (%d methods, order matches binary layout)" % len(own_slots))
-            seen_vnames = set()
-            for raw in own_slots:
-                short = re.sub(r'[^a-zA-Z0-9_]', '_', raw)
-                if short in seen_vnames:
-                    continue
-                seen_vnames.add(short)
-                vtable_method_names.add(short)
-            lines.append("")
-    except:
-        pass
 
     # Forward-declare nested types used as pointer members
     if scope_node and scope_node.children:
@@ -3396,11 +3345,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     decl = "    virtual %s %s(%s);" % (ret, _mn, params)
                 else:
                     decl = "    %s %s(%s);" % (ret, _mn, params)
-
-            # Virtual override: method inherited from base vtable but this class has its own impl.
-            # Don't add virtual keyword — subclasses may have different return types (C2555 risk).
-            if method_name in vtable_method_names:
-                pass
 
             # Detect duplicate declarations
             def _strip_param_names(p_str):
