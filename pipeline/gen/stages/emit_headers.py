@@ -3163,14 +3163,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         _slot_decls_emitted = False
 
     # Methods (deduplicate by name+params to avoid C2535)
-    # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
-    _is_opaque = False
-    _ann_for_check = _get_ida_structs()
-    _check_struct = _ann_for_check.get(cls_name, {})
-    _check_size = _check_struct.get('binary_size') or 0
-    _check_members = _check_struct.get('data_members', [])
-    if _check_size and _check_size <= 16 and len(_check_members) == 0:
-        _is_opaque = True
+    # [S1退役 2026-11-17] 原G块(_is_opaque预计算)退役: ida_structs无binary_size键
+    # → _is_opaque恒False → 消费点L3365永不触发(架构师复核实测)。消费点一并退役。
     if methods:
         # Sort: vtable methods first (in slot order by address), then non-vtable by addr
         _vtable_addr_order = {}
@@ -3362,8 +3356,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 return '(%s)' % name if name in _MACRO_CONFLICTS else name
             _mn = _safe_method_name(method_name)
             if is_ctor:
-                if _is_opaque:
-                    continue  # opaque type generates its own ctor body
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
                 if _has_ovl:
