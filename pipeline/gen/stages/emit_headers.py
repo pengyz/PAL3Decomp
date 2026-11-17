@@ -2410,6 +2410,57 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append("")
     lines.append("public:")
 
+    # Virtual methods from vtable (must be first, order matches vtable layout)
+    vtable_method_names = set()  # track names declared via vtable (including inherited)
+    try:
+        def _collect_base_vtable_names(class_name, visited=None):
+            if visited is None:
+                visited = set()
+            if class_name in visited:
+                return set()
+            visited.add(class_name)
+            names = set(re.sub(r'[^a-zA-Z0-9_]', '_', n) for n in class_vtable_slots(class_name))
+            # Get base_class from ida_structs (primary) or annotation (fallback)
+            _is_entry = _get_ida_structs().get(class_name, {})
+            # [真相源迁移 2026-10-20] 只读 `bases`
+            base = _base_names(_is_entry)
+            if not base:
+                try:
+                    base = _base_names(_get_ida_structs().get(class_name, {}))
+                except Exception:
+                    pass
+            if base:
+                for b in base:
+                    names |= _collect_base_vtable_names(b, visited)
+            return names
+
+        for bn in base_names:
+            vtable_method_names |= _collect_base_vtable_names(bn)
+
+        # Also include known_methods from annotation as vtable methods
+        # P1-5（第八批）：收敛到 _annview.struct_by_class（保留本处 try 容错）
+        _ann_data = _annview.struct_by_class(cls_name)
+        if _ann_data:
+            try:
+                for _slot, _minfo in _ann_data.get('known_methods', {}).items():
+                    if isinstance(_minfo, dict) and _minfo.get('name'):
+                        vtable_method_names.add(_minfo['name'])
+            except:
+                pass
+
+        own_slots = class_vtable_slots(cls_name)
+        if own_slots and not base_names:
+            lines.append("    // vtable (%d methods, order matches binary layout)" % len(own_slots))
+            seen_vnames = set()
+            for raw in own_slots:
+                short = re.sub(r'[^a-zA-Z0-9_]', '_', raw)
+                if short in seen_vnames:
+                    continue
+                seen_vnames.add(short)
+                vtable_method_names.add(short)
+            lines.append("")
+    except:
+        pass
 
     # Forward-declare nested types used as pointer members
     if scope_node and scope_node.children:
@@ -3112,8 +3163,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         _slot_decls_emitted = False
 
     # Methods (deduplicate by name+params to avoid C2535)
-    # [S1退役 2026-11-17] 原G块(_is_opaque预计算)退役: ida_structs无binary_size键
-    # → _is_opaque恒False → 消费点L3365永不触发(架构师复核实测)。消费点一并退役。
+    # Pre-compute opaque type info (needed before method loop to suppress ctor decl)
+    _is_opaque = False
+    _ann_for_check = _get_ida_structs()
+    _check_struct = _ann_for_check.get(cls_name, {})
+    _check_size = _check_struct.get('binary_size') or 0
+    _check_members = _check_struct.get('data_members', [])
+    if _check_size and _check_size <= 16 and len(_check_members) == 0:
+        _is_opaque = True
     if methods:
         # Sort: vtable methods first (in slot order by address), then non-vtable by addr
         _vtable_addr_order = {}
@@ -3305,6 +3362,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 return '(%s)' % name if name in _MACRO_CONFLICTS else name
             _mn = _safe_method_name(method_name)
             if is_ctor:
+                if _is_opaque:
+                    continue  # opaque type generates its own ctor body
                 decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
                 if _has_ovl:
@@ -3346,6 +3405,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 else:
                     decl = "    %s %s(%s);" % (ret, _mn, params)
 
+            # Virtual override: method inherited from base vtable but this class has its own impl.
+            # Don't add virtual keyword — subclasses may have different return types (C2555 risk).
+            if method_name in vtable_method_names:
+                pass
+
             # Detect duplicate declarations
             def _strip_param_names(p_str):
                 parts = split_params(p_str)
@@ -3381,6 +3445,21 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             decl = decl.replace('std::ios_base *', 'UIWnd *')
             lines.append("%s // %s" % (decl, addr))
 
+    # If class has parameterized ctor but no default ctor, add one
+    # (skip for opaque structs which get their own ctor below)
+    _ann_for_ctor = _get_ida_structs()
+    _ctor_struct = _ann_for_ctor.get(cls_name, {})
+    _ctor_size = _ctor_struct.get('binary_size') or 0
+    _ctor_members = _ctor_struct.get('data_members', [])
+    _is_opaque = (_ctor_size and _ctor_size <= 16 and len(_ctor_members) == 0)
+    if methods and not _is_opaque:
+        has_param_ctor = any(k.startswith(cls_name + '(') and k != cls_name + '()' for k in seen_methods)
+        has_default_ctor = (cls_name + '()') in seen_methods
+        if has_param_ctor and not has_default_ctor:
+            # Not auto-generating a default constructor — if a class has parameterized
+            # constructors only, there's a reason (e.g. gbCamera needs gbGfxManager*).
+            # An empty default ctor would silently construct an invalid object.
+            pass
 
     # For opaque scalar-wrapper structs (size <= 16, no real members —
     # _tail_* fill entries don't count), emit converting constructors.
@@ -3542,6 +3621,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             lines = _rewritten
 
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(G1b non-slot标记)
+    lines = [l for l in lines if '[G1b non-slot]' not in l]
     # [G1b 声明去重 2026-11-15 v2] 同名方法声明只保留第一条(防C2535/C2084)
     # v1缺陷: re.match 单token返回型假设——'const char * X(' / 'NODE * X(' / '~X(' 全漏检
     # (CEffSParticle slot14+methods双声明C2535实证) ⇒ findall 提取行内全部 标识符( 形态。
@@ -3570,6 +3650,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         except Exception:
             pass
     # [G1b non-slot 过滤 2026-11-15] 移除非槽方法声明行(体借用垃圾)
+    lines = [l for l in lines if '[G1b non-slot]' not in l]
     # [G1b non-slot declaration 2026-11-15 v2] 非槽自有方法头声明——插入类体闭合 }; 之前
     # 事故复盘(AStarPathFinder.h C2588/C2146): v1 三缺陷——
     #   ①追加在类闭合 } 之后(全局作用域→C2588)  ②已声明探测正则漏检 ~dtor/多token返回(NODE * X())/unsigned __int8
