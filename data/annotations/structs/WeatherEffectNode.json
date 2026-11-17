@@ -1,7 +1,14 @@
 {
  "name": "WeatherEffectNode",
  "binary_size": 8,
- "known_members": {},
+ "known_members": {
+  "_0x0": {
+   "name": "_tail_000",
+   "type": "char[8]",
+   "interim": true,
+   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+  }
+ },
  "methods": {
   "0x00405310": {
    "name": "_scalar_dtor_light",
@@ -527,5 +534,6 @@
   }
  ],
  "_naming": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] 再创作命名 WeatherEffectNode（MI 界面族：gbGeomNode+gbLightObj+gbRain/gbSnow 导入转发）",
- "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账"
+ "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账",
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }

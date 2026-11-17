@@ -1,7 +1,14 @@
 {
  "name": "EffAudioNode",
  "binary_size": 32,
- "known_members": {},
+ "known_members": {
+  "_0x0": {
+   "name": "_tail_000",
+   "type": "char[32]",
+   "interim": true,
+   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+  }
+ },
  "methods": {
   "0x004c1640": {
    "name": "~EffAudioNode",
@@ -132,5 +139,6 @@
   }
  ],
  "_naming": "[RenderTarget2 节点族 2026-10-17 analyzer 证据账目制] 再创作命名（独有槽工厂语义反推：CreateEffAudio）",
- "_size_note": "bs=32 几何最小界；池节点区真身锚挂账"
+ "_size_note": "bs=32 几何最小界；池节点区真身锚挂账",
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }

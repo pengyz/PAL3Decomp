@@ -1,7 +1,14 @@
 {
  "name": "CEffMgr",
  "binary_size": 43312,
- "known_members": {},
+ "known_members": {
+  "_0x0": {
+   "name": "_tail_000",
+   "type": "char[43312]",
+   "interim": true,
+   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+  }
+ },
  "methods": {
   "0x004ce100": {
    "name": "CEffMgr",
@@ -647,5 +654,6 @@
   }
  },
  "_flexible": true,
- "_phantom_clear": "[容器级幻影传播族治理 2026-10-16 analyzer] 成员全清 38 条：成员存在性报告（object_phantom 容器 + aggregates=phantom 100%）+ 根容器 g_EffMgr@0x5D5484 A 级字节=`quake\\0\\0\\0bink\\0\\0\\0\\0shock…` VC6 池化字符串表（c34f38aa 复核一致）——非对象存储 ⇒ 子成员全幻影。⚠️ binary_size 证据化收缩挂账（真身重定位按 this/ctor/atexit 锚另账）；methods/vtables 保留"
+ "_phantom_clear": "[容器级幻影传播族治理 2026-10-16 analyzer] 成员全清 38 条：成员存在性报告（object_phantom 容器 + aggregates=phantom 100%）+ 根容器 g_EffMgr@0x5D5484 A 级字节=`quake\\0\\0\\0bink\\0\\0\\0\\0shock…` VC6 池化字符串表（c34f38aa 复核一致）——非对象存储 ⇒ 子成员全幻影。⚠️ binary_size 证据化收缩挂账（真身重定位按 this/ctor/atexit 锚另账）；methods/vtables 保留",
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
 }
