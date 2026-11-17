@@ -105,20 +105,20 @@
    "evidence_level": "chain_unified",
    "semantic_sig": "int",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "signature": "void __thiscall(float)",
+   "signature": "BOOL __thiscall(int)",
    "semantic_name": "int __thiscall(int)",
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig基锚定20261117→void __thiscall(float)(基=CEffObj) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | Update链统一20261117: BOOL(int)——CEffAction真体return result+ABI 1参; slot9语义(CEff族); 修三源重建float残留"
   },
   "0x004c18d0": {
    "name": "RenderEffectPass",

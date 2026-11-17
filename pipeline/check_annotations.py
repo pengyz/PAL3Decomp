@@ -1144,13 +1144,21 @@ def check_canonical_contract():
                         '%s slot%d 名字与基类不一致: 本=%s(%s) 基=%s(%s) → 折叠载体名≠链律名, 语义名需定谳' % (
                             cls8, _si9, _my_nm, _a9[-8:], _base_nm, '%08x' % _baddr_int))
                 # 检2: 签名一致性(重载正确性判定 2026-11-16: cc+参数序列+返回型+varargs逐维报告)
-                _oc = override_check(_nd_me, _nd_base)
-                if not _oc.get('pending') and not _oc['compatible']:
-                    cur_viol['C9:%s:%s:sig' % (cls8, _a9)] = (
-                        '%s %s 签名与基类不一致: %s; 本=%s 基=%s → C2555前置; '
-                        '取证=两侧函数体出口eax+调用点消费' % (
-                            cls8, _n9, '; '.join(_oc['mismatches']),
-                            render(_nd_me), render(_nd_base)))
+                # [折叠载体基锚错位跳过 2026-11-17] 基条目名≠槽链名(如0x4af760=
+                # UpdateFrame条目被Update槽链引用)时, 条目签名属他链(UpdateFrame void(float))
+                # 非本链(Update BOOL(int))真值——比较错位签名=假信号; 链名状态由检1独立报告
+                _base_entry_nm = str(_nd_base.get('name') or '').split('::')[-1]
+                _sig_cmp_ok = (_base_entry_nm == _base_nm) or (_base_nm == _base_entry_nm)
+                if not _sig_cmp_ok and _base_nm:
+                    pass  # 错位: 跳过sig检(名检已报)
+                else:
+                    _oc = override_check(_nd_me, _nd_base)
+                    if not _oc.get('pending') and not _oc['compatible']:
+                        cur_viol['C9:%s:%s:sig' % (cls8, _a9)] = (
+                            '%s %s 签名与基类不一致: %s; 本=%s 基=%s → C2555前置; '
+                            '取证=两侧函数体出口eax+调用点消费' % (
+                                cls8, _n9, '; '.join(_oc['mismatches']),
+                                render(_nd_me), render(_nd_base)))
 
     # [V-table 形态断言 2026-11-15 用户裁定] MSVC真实规则: 每个多态子对象恰一张表。
     # 单继承链全族共享一张; N表 > 1+多态基数 = 形态不可能(邻接派生表误挂/普查产物)。
