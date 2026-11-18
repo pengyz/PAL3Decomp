@@ -1,6 +1,56 @@
 {
  "name": "CTaskTpl_tagEffTaskParam_CEffShock",
  "binary_size": 36,
- "known_members": {},
+ "known_members": {
+  "0x4": {
+   "name": "m_fCurTime",
+   "type": "float",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0x8": {
+   "name": "m_fDeltaTime",
+   "type": "float",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0xc": {
+   "name": "m_pTask",
+   "type": "char *",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "note": "replaced void* with char* (IDB struct compat)",
+   "evidence_level": "unverified"
+  },
+  "0x10": {
+   "name": "m_nCurTask",
+   "type": "int",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0x14": {
+   "name": "m_nCurSubTask",
+   "type": "int",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0x18": {
+   "name": "m_nTask",
+   "type": "int",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0x1c": {
+   "name": "m_nMaxTask",
+   "type": "int",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  },
+  "0x20": {
+   "name": "m_nMaxSubTask",
+   "type": "int",
+   "source": "gen_headers_9.2 | [模板同构传播 2026-11-18] 自泛型 CTaskTpl.json 拷贝 (模板实例化布局等价; 语料语义互证: _tail_000[4]≡m_fCurTime/[12]≡m_pTask/[28]≡m_nMaxTask=8/[32]≡m_nMaxSubTask=10)",
+   "evidence_level": "unverified"
+  }
+ },
  "members_note": "tail禁用20261117(复核P0-A1): 特化tail经继承解析=+12字节漂移通道; 基类普查落地前不发"
 }
