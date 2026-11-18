@@ -915,9 +915,10 @@
    "evidence_level": "unverified",
    "lvars": {
     "pSceneName": "char *",
-    "pNewBuffer": "char *"
+    "pNewBuffer": "char *",
+    "pRoleTriple": "int *"
    },
-   "lvars_source": "[C2036修 2026-11-13] void*→char*: ++pSceneName/&pSceneName[v131+1] 字符串遍历语义",
+   "lvars_source": "2026-11-18 P-A23使用点判据: pRoleTriple[0]=301/[1]=0(int常量写) → int*(原gbVec3D*=hexrays走样——gbVec3D无operator=(int)即C2679×35)。[C2036修 2026-11-13] void*→char*: ++pScen",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
