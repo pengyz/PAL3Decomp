@@ -119,9 +119,9 @@
    "evidence_level": "unverified"
   },
   "0xa8": {
-   "name": "m_TaskPool",
-   "type": "_BYTE[673792]",
-   "source": "[A 级汇编直证 2026-11-18] ForceDelTask(0x4fca00) 循环界三合一直证: 基址lea[ecx+0A8h]/stride add 0A48h/count cmp edx,100h; 类尾池外28B边界互证(0xa48a8/0xa48c0 池外) · 三视图字段目录见 members_note",
+   "name": "m_TaskGroups",
+   "type": "CCBTaskGroup[256]",
+   "source": "[A 级汇编直证 2026-11-18] ForceDelTask(0x4fca00) 循环界三合一直证: 基址lea[ecx+0A8h]/stride add 0A48h/count cmp edx,100h; 256×2632=673792 恰收口于类尾池外28B; 条目级布局见 CCBTaskGroup.json/CCBTaskSlot.json",
    "evidence_level": "A"
   }
  },
@@ -4189,5 +4189,5 @@
  ],
  "bases_note": "真基链重建20261117(复核P0-3): bases=[UIListBox]。铁证=真ctor 0x51D710call 0x43DCD0(UIListBox ctor)@0x51D732+真dtor 0x51DDA0 call 0x43DD10(UIListBox dtor)@0x51DFB4; 原0x4FB9A0=blob reset非ctor(误名CCBStage)",
  "base_size": 72,
- "members_note": "三视图汇编目录(原始disp, tools/probe_ccbstage_layout_20261118.py 2026-11-18):\n[池] ForceDelTask(0x4fca00) lea [ecx+0A8h]+add 0A48h+cmp edx,100h → 基址0xa8 stride2632 count256; 类尾池外28B(0xa48a8 int/0xa48c0 m_dwAniFlagOver)。\n[队列] GetProperCurAction(0x50ad30): token@376(0x178) 游标@392(0x188) 条目@416(0x1A0)+96i: +0..15四参数(nVal=回调fn*经(int)cast传参) +24三快照(g_nCBRoleMoveTable 0x50/54/58) +36 blob44(qmemcpy pData 0x2C) +80 ProcProtect +84 type(2/3) +88 occupied=1。\n[槽] GetTask(0x4fca80)/GetTaskID(0x4fcbd0)/StartSubTask(0x4fce00): 记录锚 this+120+2632g+80s(g<256,s<32循环界汇编直证): +0 gate(int==2) +8 ts +64 cb(fn*) +68 param(thiscall this%=this+param) +80 state(GetTaskID写3/StartSubTask写4/dispatcher读{2,3,4}三方同址互证) +88 ts2 +92 dur +104 active +105 inuse +107 state2。\n[组控] +4 gate(int==3) +8 curSlot(==4分支取X=s+1派发前槽回调) +2576 EndTask旗标(0x4fc9a0 [ecx+e*8+0AB8h]) +2580 +2628 inuse(ForceDelTask [eax+0A44h]≡GetTask [edi])。\n[回调] GetTask 0x4fcb8e mov ecx,[edi+44h]/add ecx,esi/call [edi+40h] = thiscall this%=this+param —— 成员回调挂子对象。\n[嵌合体清算] 原0xa8..0xa4898成员(m_nForceDelTask=池基址1B误注/m_bPaused=组+8游标槽/m_TaskQueue=EndTask旗标区/m_TaskArrC CCBTaskSlot280[1]虚构型/m_TaskSlots _BYTE[96]=槽(0,0)+64锚片段...)全为三视图叠影, 已归档原文于archive/ccbtaskslot280_fictional_20261118.json。"
+ "members_note": "任务池四视图汇编目录(原始disp, tools/probe_ccbstage_layout_20261118.py + tools/land_ccbstage_slotlayout_20261118.py 2026-11-18):\n[组视图] B=0xa8+2632g: id@0/state@4/curSlot@8/slots@16..2576/endFlag@2576/delResult@2580/inUse@2628。slot0.m_nTaskArg0 兼组级 actionId (dispatcher==4 写 B+20=slots[0]+4)。\n[槽视图] rec(s)=B+16+80s(80B): cb/arg0..2/state(2=等前置,3=运行,4=完成)/ts/maxWait/dur/actionId/active/registered/forceDone/turnState — 链式任务: 槽 s state==2 等前槽 state==4 或超时(maxWait)后 GetTaskID 派发。\n[回调] dispatcher==3: call [rec.cb] this'=this+rec.arg0; ==4: 前槽回调==ProcFiveLienupFadeOut 且三参全零 → actionId 取前二槽。\n[组0 多态复用挂账] 组0 运行时为实例上下文区(原 C++ cast 叠印, 布局未定谳): GetProperCurAction cursor@B0+224(=slots[2]+48 gap)/token@208(渲染为 slots[2].m_fDuration 位)/roleIndex@284(=slots[3]+28)/队列条目 96B×26 @248+96i(占 slots[2..31] 区); UIPB(248B)构造站跨组 3560+248k 周期1008 (=248×3+264, 页基3560/4568/5576/6584/7592)。这些访问将渲染为组0 slot 字段名 — 字节精确, 语义按任务视图, 待独立战役定谳。"
 }

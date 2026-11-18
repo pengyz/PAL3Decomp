@@ -1,0 +1,48 @@
+{
+ "name": "CCBTaskGroup",
+ "binary_size": 2632,
+ "known_members": {
+  "0x0": {
+   "name": "m_nTaskId",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] ForceDelTask VA=0x4fca17: cmp ecx(nIndex),[eax]=本字段 (组任务标识匹配)"
+  },
+  "0x4": {
+   "name": "m_nState",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] GetTask 组门 VA=0x4fca9c: [edi-0xA40]==3 才扫槽; dispatcher==4 写4 VA=0x4fcaf9; DelTask VA=0x4fc9e1 读==4"
+  },
+  "0x8": {
+   "name": "m_nCurSlot",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] GetTaskState VA=0x4fcc1e: v6=本值, ≤0 即组完成, >0 时从 slots[0].m_nState 步进80 扫连续==4 上界=本值(进度); dispatcher==4 VA=0x4fcaf3 读 → 定位 slots[cs-1] 取回调 (cs=下一分配槽索引)"
+  },
+  "0x10": {
+   "name": "m_Slots",
+   "type": "CCBTaskSlot[32]",
+   "evidence_level": "A",
+   "source": "[A] 槽流 rec(s)=B+16+80s: cb@rec+0=dispatcher[edi+0x40](VA=0x4fcb95); state@rec+16=GetTaskID 写址(VA=0x4fcbf0 [A+0xC8])+GetTaskState 扫描步长80 四方互证; slots[32] 恰抵 m_nEndFlag@2576 (16+2560=2576 边界收口)"
+  },
+  "0xa10": {
+   "name": "m_nEndFlag",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] EndTask VA=0x4fc9ad: mov eax,[ecx+2632n+0xAB8] 返回本值; 写入方未定谳挂账"
+  },
+  "0xa14": {
+   "name": "m_nDelResult",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] DelTask VA=0x4fc9f0: 组 m_nState==4 时经出参返回本值 (删除结果载荷); 写入方未定谳挂账"
+  },
+  "0xa44": {
+   "name": "m_bInUse",
+   "type": "unsigned char",
+   "evidence_level": "A",
+   "source": "[A] GetTask 组门 VA=0x4fca93: byte==1 才处理; ForceDelTask VA=0x4fca0d [eax+0xA44] 同址互证 (双视图同字节)"
+  }
+ }
+}

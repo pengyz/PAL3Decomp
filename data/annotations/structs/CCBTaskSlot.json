@@ -3,111 +3,82 @@
  "binary_size": 80,
  "known_members": {
   "0x0": {
-   "name": "_todo_0",
+   "name": "m_nTaskFn",
    "type": "int",
-   "source": "v13[0] = nVal（CCBStage.cpp:2050）；伪成员 m_nCurTask@elem0+0 / m_CmdQueue@elem5+0",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-18] 任务回调(int形态,调用方传 (int)CCBStage::ProcMagic 等)。dispatcher==3 派发 VA=0x4fcb95: call [edi+0x40]=本字段(ecx=this+[rec+4],push 0); dispatcher==4 VA=0x4fcb1a: 与 ProcFiveLienupFadeOut 比对; StartSubTask 锚 VA=0x4fce29: lea esi,[..+0xB8]"
   },
   "0x4": {
-   "name": "_todo_4",
+   "name": "m_nTaskArg0",
    "type": "int",
-   "source": "+4 = 2（CCBStage.cpp:2046）",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "[A] VA=0x4fcb8e: mov ecx,[edi+0x44] → this'=this+本值 (==3 派发实参); ==4 零检三元之一(0x4fcb29); slot0 本字段兼组级 actionId (dispatcher==4 VA=0x4fcb17: mov [edx-0x30]=B+20=slots[0]+4)"
   },
   "0x8": {
-   "name": "_gap_8",
+   "name": "m_nTaskArg1",
    "type": "int",
-   "source": "未见直接访问，按布局补",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "[A] ==4 零检 VA=0x4fcb29: mov ecx,[eax-0x3Ch]"
   },
   "0xc": {
-   "name": "_todo_12",
+   "name": "m_nTaskArg2",
    "type": "int",
-   "source": "伪成员 m_RoleSlots@elem0+12（CCBStage.cpp:2050 nVal4 写位）",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "[A] ==4 零检 VA=0x4fcb30: mov ecx,[eax-0x38h] (第三元 0x4fcb37)"
   },
   "0x10": {
-   "name": "_gap_16",
+   "name": "m_nState",
    "type": "int",
-   "source": "未见直接访问",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "_ovl_20",
-   "type": {
-    "union": [
-     {
-      "type": "int",
-      "name": "v5_int"
-     },
-     {
-      "type": {
-       "struct": [
-        {
-         "offset": 0,
-         "name": "b20",
-         "type": "char"
-        },
-        {
-         "offset": 1,
-         "name": "b21",
-         "type": "char"
-        },
-        {
-         "offset": 2,
-         "name": "_todo_22",
-         "type": "short"
-        }
-       ]
-      },
-      "name": "v5_bytes"
-     }
-    ]
-   },
-   "source": "位面复用：v13[5]=ProcProtect()（:2051）· +21 字面量访问 · +22 = 伪成员 m_TurnFlags@elem5+22（short）",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "[A] 四方同址互证: GetTaskID VA=0x4fcbf0 写3(任务已派发)/StartSubTask VA=0x4fce62 写4(完成或强停)/dispatcher VA=0x4fcac9 读{2,3,4}分支/GetTaskState VA=0x4fcc2a 从本址步进80 扫连续==4。语义: 2=等前置槽, 3=已派发运行, 4=完成"
   },
   "0x18": {
-   "name": "_gap_24",
-   "type": "int",
-   "source": "未见直接访问",
-   "evidence_level": "unverified"
+   "name": "m_fStartTime",
+   "type": "float",
+   "evidence_level": "A",
+   "source": "[A] GetTaskID VA=0x4fcbff: fstp 本址=系统时钟([vptr+0x50]); StartSubTask VA=0x4fce47 与 IsSubTaskFinished 读 elapsed=now-本值"
   },
   "0x1c": {
-   "name": "_ovl_28",
-   "type": {
-    "union": [
-     {
-      "type": "int",
-      "name": "v7_int"
-     },
-     {
-      "type": {
-       "struct": [
-        {
-         "offset": 0,
-         "name": "b28",
-         "type": "char"
-        },
-        {
-         "offset": 1,
-         "name": "b29",
-         "type": "char"
-        }
-       ]
-      },
-      "name": "v7_bytes"
-     }
-    ]
-   },
-   "source": "位面复用：v13[7]=nVal5（:2052）· *((_BYTE*)&m_RoleSlots + .. +28)=1 / +29=0（:2044-2045）",
-   "evidence_level": "unverified"
+   "name": "m_fMaxWait",
+   "type": "float",
+   "evidence_level": "A",
+   "source": "[A] dispatcher==2 分支 VA=0x4fcb50: fld 本址 与 flt_56A644 比对(<0 疑禁用); VA=0x4fcb6c: now-ts(前槽) ≥ 本值 → GetTaskID 派发本槽(链式等待超时)"
   },
   "0x20": {
-   "name": "_gap_32",
-   "type": "_BYTE[48]",
-   "source": "元素尾部，未见访问",
-   "evidence_level": "unverified"
+   "name": "m_fDuration",
+   "type": "float",
+   "evidence_level": "A",
+   "source": "[A] StartSubTask VA=0x4fce4a: now-ts ≥ 本值 → 强停 state=4; IsSubTaskFinished: 本值×0.25 与 ×0.75 为回合推进里程碑阈值"
+  },
+  "0x24": {
+   "name": "m_nActionId",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] dispatcher==4 VA=0x4fcb09: v7=本值(前槽cs-1) → 写组头 slots[0].m_nTaskArg0(B+20); fallback VA=0x4fcb3e: 前二槽(cs-2)同字段(条件: 前槽回调==ProcFiveLienupFadeOut 且三参全零)"
+  },
+  "0x28": {
+   "name": "m_bActive",
+   "type": "unsigned char",
+   "evidence_level": "A",
+   "source": "[A] dispatcher 顶门 VA=0x4fcab1: mov al,[edi+0x68]=本字节, ==0 → break (槽未登记则跳过该组)"
+  },
+  "0x29": {
+   "name": "m_bRegistered",
+   "type": "unsigned char",
+   "evidence_level": "A",
+   "source": "[A] StartSubTask VA=0x4fce20 读/VA=0x4fce32 写1; IsSubTaskFinished 同址: 0→1 时同时清 m_nTurnState (首访初始化对)"
+  },
+  "0x2b": {
+   "name": "m_bForceDone",
+   "type": "unsigned char",
+   "evidence_level": "A",
+   "source": "[A] StartSubTask VA=0x4fce3c: cmp 本字节,1 → 直接 state=4 强停(外部强制结束标志, SetForceFinishThrowingWeapon 族写入)"
+  },
+  "0x40": {
+   "name": "m_nTurnState",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A] IsSubTaskFinished: m_bRegistered 0→1 时清零; 低字节作 EndTurnAndAdvance 第5实参(回合状态码)"
   }
  }
 }
