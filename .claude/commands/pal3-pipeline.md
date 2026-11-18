@@ -38,7 +38,7 @@ PDB参考:    data/pdb/ (PAL3A, 只读参考)
 
 ```
 data/annotations/
-  ├── functions.json        — {addr: {name, signature}}
+  ├── functions.json        — {addr: {name, sig_model}}  # signature已退役
   ├── globals.json          — {addr: {name, type}}
   ├── skip_functions.json   — {addr: {name, reason}}
   ├── vtables.json          — {vtbl_name: {address, class, methods}}

@@ -91,6 +91,7 @@ annotations → apply → IDB → Hex-Rays → decomp JSON → codegen → C++  
 - **禁止批量修改未验证字段**。每个偏移/类型变更必须逐一验证，不能批量推断。
 - **禁止伪语义命名（2026-11-15 收紧）**：`m_nState_4968`、`m_fParam_0A0` 这类用地址后缀伪装的名字没有语义价值；`_todo_` 占位同样**禁止**（旧"不确定时保留 _todo_"条款作废）——不确定语义时走证据卷宗流程人工正名，见下方"命名铁律"。
 - **禁止仅凭 Hex-Rays 反编译文本推断偏移**——除非 IDB 已 apply_annotations 且结构体正确。
+- **sig/signature 字段已退役（2026-11-17）**：标注层 methods 条目**禁止存在** `signature`/`sig` 字段（不是置 null，是字段不存在）。签名唯一合法形式=`sig_model` 结构化标注（return/cc/params[].type/varargs）。签名判定一律读 sig_model，禁止读已退役字段。
 - **禁止仅凭 signature this 修正函数归属**——必须有 decomp member access evidence（函数内 this->member 引用的成员在目标类中存在且不在原类中存在）。
 
 ### inline union/struct 语法（2026-06-20 新增）
@@ -428,10 +429,10 @@ annotation 的**布局/类型/名字/归属审计**（DAG 序、三形态证据�
 | 函数语义命名 / 改名 | `tools/misattribution_ledger.py` A/B/C 分桶 | 伪语义命名禁令（`_todo_` 保底） | 桶内逐条裁决，禁止批量跳过 C 桶 |
 | 新会话冷启动 | `cli.py status` + `query --status open` | 复用优先，禁止重复考古 | — |
 
-## 函数签名修正判据（2026-11-13 定谳，逐条执行，不可批量）
+## 签名修正判据（2026-11-13 定谳，逐条执行，不可批量；落点=sig_model，signature字段已退役）
 
 C2660（元数）/ C2671（static this）/ C2511（重载冲突）错误的修法流程：
-**先查函数体（decomp JSON 的 `decompiled_c`），再改 sig。** 不可跳过函数体分析直接改。
+**先查函数体（decomp JSON 的 `decompiled_c`），再改 sig_model。** 不可跳过函数体分析直接改；禁止写 signature/sig 字段。
 
 ### 七类判据（按优先级排序，命中即定谳）
 

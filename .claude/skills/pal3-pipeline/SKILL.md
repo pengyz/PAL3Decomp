@@ -90,7 +90,7 @@ subprocess.run(f'"{ida_path}" -A -S"script.py" "{raw_idb}"', shell=True)
 C2440/C2664/C2065 等编译错误是 annotation 标注错误的**表象**。任务是理解原始代码的意图——内存布局、复用模式、生命周期——然后让 annotation 正确表达。盯着错误码修是治标不治本，错误自然消失。
 
 **修复层次（从优先到降级）：**
-1. **annotation 层**（struct 成员类型、函数签名、全局变量类型）—— 第一选择
+1. **annotation 层**（struct 成员类型、sig_model 结构化签名——signature字段已退役、全局变量类型）—— 第一选择
 2. **export 层**（`export_full.py` 的类型映射/过滤）—— 当 annotation 不完整时
 3. **codegen 层**（Stage 3/4 的 AST 变换）—— 仅当以上两层无法解决时
 

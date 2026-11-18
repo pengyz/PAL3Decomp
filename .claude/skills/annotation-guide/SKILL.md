@@ -20,13 +20,13 @@ rejects: "需要跑 pipeline CLI、判断证据等级、CRT 边界、模板基�
 {
   "0x004014F0": {
     "name": "ArraySort",
-    "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
+    "sig_model": {"return": "int", "cc": "stdcall", "params": [{"type": "int", "name": "base"}, {"type": "int", "name": "count"}, {"type": "int", "name": "elemSize"}, {"type": "int", "name": "compareFunc"}], "varargs": false}
   }
 }
 ```
 - Key: `0x` + 8 位大写十六进制地址
 - `name`: 非空，**仅限全局函数名**（不包含 `::`）
-- `signature`: IDA 风格函数签名
+- `sig_model`: 结构化签名（**唯一合法形式**；`signature`/`sig` 字段已退役，标注层禁止存在）
 - ⚠️ **不再存储类成员函数** — 所有类方法（含虚函数）归属到 `structs/*.json` 的 `methods` 字段
 
 ### structs/*.json — 类定义（含虚函数表和方法）
@@ -43,7 +43,7 @@ rejects: "需要跑 pipeline CLI、判断证据等级、CRT 边界、模板基�
   "methods": {
     "0x00445E70": {
       "name": "UIWnd::ShowWindow",
-      "signature": "int __thiscall(UIWnd *this, int nFlags)",
+      "sig_model": {"return": "int", "cc": "thiscall", "params": [{"type": "UIWnd *", "name": "this"}, {"type": "int", "name": "nFlags"}], "varargs": false},
       "source": "vtable_migrated",
       "ordinal": 0
     }
@@ -100,7 +100,7 @@ cd /home/peng/workspace/PAL3Decomp && python3 pipeline/check_annotations.py
 验证项目：
 1. JSON 格式正确性
 2. 地址格式 `0x[0-9A-F]{8}`
-3. 必填字段（name、signature、type）
+3. 必填字段（name、sig_model、type）——signature已退役禁止写入
 4. 结构体成员无重名，offset 递增
 5. base_class 引用存在
 6. vtable 地址/slot 地址格式正确
