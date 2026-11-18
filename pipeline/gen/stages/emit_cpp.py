@@ -1019,6 +1019,16 @@ def generate_class_cpp(cls_name, methods):
         lines.append("")
 
     content = '\n'.join(lines)
+
+    # [sig_model int 参数接收函数名 2026-11-18] hexrays 渲染函数地址为
+    #   限定名(如 CCBStage::CalcFacingAngle), 但 sig_model 该参数类型=int
+    #   → MSVC6 不允许隐式转换 → C2664。修: 加 (int) cast(原始源码本有的
+    #   显式转换, hexrays 渲染省略)。判据: 限定名含:: 且 sig_model 参数=int。
+    #   当前仅 GetProperCurAction(后续同型按此规则扩展)。
+    _cc = re.compile(r'(GetProperCurAction\()((?:CCBStage::|CCBRoleState::)\w+)([,)])')
+    if _cc.search(content):
+        content = _cc.sub(r'\1(int)\2\3', content)
+
     if '_Tidy(' in content:                 # [T9] 私有成员访问面 workaround
         content = _STRING_PRIVATE_HACK + content
     return content
