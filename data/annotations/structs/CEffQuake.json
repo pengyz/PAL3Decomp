@@ -131,6 +131,28 @@
    "override_of": "0x004c0510",
    "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x004d37a0": {
+   "name": "_sdtor_call_dtor",
+   "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "[A 级 2026-11-18] scalar deleting dtor 实锤: 函数序 mov [esi],offset 0x56facc (写本类 vptr) + a2&1 → operator delete(this); 表尾同构 slot17 (上槽 GetEditorTaskDescription@CEffQuake); 物理字节与 Actor::~Actor 仅差 vtable 立即数(bytes probe first diff @+0x8)。原误注 Actor::~Actor_N 已归档 archive/actor_sdtor_misnomer_trio_20261118.json。",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_3): int("
   }
  },
  "vtables": [

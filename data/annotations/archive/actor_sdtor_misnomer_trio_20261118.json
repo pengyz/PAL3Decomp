@@ -1,0 +1,75 @@
+{
+ "_doc": "Actor deleting-dtor 名盗用三连 2026-11-18: ~Actor_2/3/4 实为 CEffGrid/CEffQuake/CEffShock 的 scalar deleting dtor (129B 同构体, 唯一差异=vptr 写目标表)。原文如下。",
+ "evidence": "probe_sdtor_bytes_20261118: first diff @+0x8 = vtable 立即数; probe_vtable_region_56f9: 四表尾同构 slot17=deleting dtor。",
+ "stolen_entries": {
+  "0x004cb280": {
+   "name": "~Actor_2",
+   "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
+   "evidence_level": "unverified",
+   "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~Actor_2(??1/??_G析构族); decomp文件=Actor_Actor_2int_004cb280 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_2): int("
+  },
+  "0x004d37a0": {
+   "name": "~Actor_3",
+   "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
+   "evidence_level": "unverified",
+   "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~Actor_3(??1/??_G析构族); decomp文件=Actor_Actor_3int_004d37a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_3): int("
+  },
+  "0x004d4ca0": {
+   "name": "~Actor_4",
+   "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
+   "evidence_level": "unverified",
+   "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~Actor_4(??1/??_G析构族); decomp文件=Actor_Actor_4int_004d4ca0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_4): int("
+  }
+ }
+}
