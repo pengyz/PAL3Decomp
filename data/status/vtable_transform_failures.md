@@ -1082,3 +1082,7 @@
 | `CCBUI::~CCBParabolaWindow` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&v2->UIWnd + 20))(v2, 1)` |
 | `CEffQuad::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffQuad` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffQuad *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4->_tail_000 + 4))( v4, *(_DWORD *)(*(_DWORD *)v13 + v14), *(_DWORD *)(*(_DWORD *)v13 + v14 ` |
 | `CEffShock::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffShock` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffShock *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v5), *(_DWORD *)(*v4 + v5 + 4), 0)` |
+| `UI3DCtrl::CreateWithTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, nVal)` |
+| `UIDialog::Create` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, tex)` |
+| `UIListBox::SetSelTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, gbVFileSystem *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, m_plastsys)` |
+| `UIListBox::CalScrollBarRange` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v9 + 8))(gfxMgr, v10)` |
