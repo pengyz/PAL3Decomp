@@ -29,6 +29,12 @@ def free_sig_decl(name, sig):
     """
     m = _FREE_SIG_CC_RE.match(sig) or _FREE_SIG_CC_NAMED_RE.match(sig)
     if not m:
+        # [无cc默认cdecl 2026-11-18] 'bool(CHAR*, DWORD, ...)'形(hexrays对无原型
+        # 函数的默认渲染, cc缺省=C调用约定)——拒收=声明缺失=C2065级联
+        # (Initialize_8190×102错单元族实证)。仅对'名紧跟('形态兜底。
+        m2 = re.match(r'^(.*?)\s*\((.*)\)\s*$', sig)
+        if m2 and '__' not in (m2.group(1) or ''):
+            return '%s %s(%s)' % ((m2.group(1) or 'int').strip() or 'int', name, (m2.group(2) or 'void').strip() or 'void')
         return None
     ret = re.sub(r'\bvirtual\s+', '', m.group(1).strip())
     cc = m.group(2)

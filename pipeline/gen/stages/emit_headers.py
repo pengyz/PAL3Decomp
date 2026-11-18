@@ -410,6 +410,38 @@ def _pod_scalar_names():
     return _pod_scalar_names_cache
 
 
+
+
+_pod_real_def_cache = None
+
+
+def _pod_has_real_definition(name):
+    """[真定义冲突过滤 2026-11-18] 该名字是否已有手写/遗留头的 class/struct X { 真定义。
+    遗留参考头(gbengine_api.h/pal3_structs.h/topo_api.h)与手写件(gbGeomNode.h族)
+    的真定义优先于POD typedef(gbVolumeModifier/BEZIER C2371实证)。带缓存。"""
+    global _pod_real_def_cache
+    if _pod_real_def_cache is None:
+        _cache = set()
+        from data import store as _store_root
+        _proj = str(_store_root.project_root)
+        _roots = [os.path.join(_proj, 'include'), os.path.join(_proj, 'pal3', 'src')]
+        import re as _re_scan
+        _rx = _re_scan.compile(r'(?:class|struct)\s+(\w+)\s*(?::[^{]+)?\{')
+        for _root in _roots:
+            for _dirpath, _dirnames, _files in os.walk(_root):
+                for _fn in _files:
+                    if not _fn.endswith('.h'):
+                        continue
+                    _fp = os.path.join(_dirpath, _fn)
+                    try:
+                        _t = open(_fp, encoding='utf-8', errors='replace').read()
+                    except Exception:
+                        continue
+                    _cache.update(_mm.group(1) for _mm in _rx.finditer(_t))
+        _pod_real_def_cache = _cache
+    return name in _pod_real_def_cache
+
+
 # SDK 类型尺寸（`data/annotations/sdk_types.json`）。
 #
 # 为什么需要单独一源：`_estimate_member_size` 原先只查 ida_structs.json，
@@ -5507,17 +5539,44 @@ def generate_globals_cpp():
     print("  Globals: %d in globals.cpp" % inc)
 
     # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
-    if _POD_TYPEDEFS:
-        _std_path = OUTPUT_DIR / "scalar_typedefs.h"
-        with open(_std_path, 'w', encoding='utf-8') as _f:
-            _f.write('#pragma once\n')
-            _f.write('// POD scalar typedefs (centralized management)\n')
-            # [P0.5 2026-11-18] 独立编译基座: DWORD/uchar等基型来自ida_defs.h链
-            #   (S1 90头C2146首行即炸实证: typedef DWORD X; 无DWORD定义)
-            _f.write('#include "pal3/ida_defs.h"\n')
-            for _td in sorted(set(_POD_TYPEDEFS)):
-                _f.write(_td + '\n')
-        print("  Scalar typedefs: %d in scalar_typedefs.h" % len(set(_POD_TYPEDEFS)))
+    # [SKIP类并入 2026-11-18] _pod_scalar_names全集含被SKIP的cast用4字节类
+    #   (gbSingleton_gbGfxManager实证: cast形语料需类型名, POD typedef合法路径
+    #   但generate_header不产出→typedef缺失→C2065)。写入源=预扫描全集按size映射。
+    # [SKIP类并入 2026-11-18] _pod_scalar_names全集含被SKIP的cast用4字节类
+    #   (gbSingleton_gbGfxManager实证: cast形语料需类型名)。写入源=预扫描全集,
+    #   基型按各**自身size**映射(修同名基型冲突: ACTION_KIND uchar vs DWORD
+    #   双typedef实证), 排序去重保证幂等。
+    _sz_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
+    _pod_all = sorted(_pod_scalar_names())
+    _std_path = OUTPUT_DIR / "scalar_typedefs.h"
+    with open(_std_path, 'w', encoding='utf-8') as _f:
+        _f.write('#pragma once\n')
+        _f.write('// POD scalar typedefs (centralized management)\n')
+        # [P0.5 2026-11-18] 独立编译基座: DWORD/uchar等基型来自ida_defs.h链
+        #   (S1 90头C2146首行即炸实证: typedef DWORD X; 无DWORD定义)
+        _f.write('#include "pal3/ida_defs.h"\n')
+        _td_lines = []
+        _covered = set()
+        for _td in sorted(set(_POD_TYPEDEFS)):
+            _td_lines.append(_td + '\n')
+            _covered.add(_td.split()[-1].rstrip(';'))
+        _is_data_g = _get_ida_structs() or {}
+        for _pn in _pod_all:
+            if _pn in _covered:
+                continue
+            # [嵌套限定名过滤 2026-11-18] typedef Cls::Nested非法C++(顶层名形式)
+            #   →PlayerMgr::PoisonState写入=PlayerMgr未声明级联C2065×251实证
+            if '::' in _pn:
+                continue
+            # [真定义冲突过滤] 手写/遗留头已有class/struct真定义的名字不入typedef
+            #   (gbVolumeModifier/BEZIER与gbengine_api.h真定义C2371实证)
+            if _pod_has_real_definition(_pn):
+                continue
+            _sz = (_is_data_g.get(_pn) or {}).get('size') or 4
+            _td_lines.append('typedef %s %s;' % (_sz_map.get(_sz, 'DWORD'), _pn) + '\n')
+        for _l in sorted(set(_td_lines)):
+            _f.write(_l)
+    print("  Scalar typedefs: %d(全集去重) in scalar_typedefs.h" % len(set(_td_lines)))
 
 
 def run_header_generation():
