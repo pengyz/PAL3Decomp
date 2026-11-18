@@ -4957,6 +4957,7 @@ def generate_globals():
     #   泄漏实证: 函数指针表成员extern在C++不可访问=导出泄漏)
     # [键形统一 2026-11-18] 全部归一为int(globals键'0x56a244'与vtables键
     #   '0x0056a244'异形——N1键形归一律, 不归一必漏判)
+    _known_class_names = {k for k in _is_data.keys() if isinstance(k, str) and not k.startswith('_')}
     _vtable_covered_addrs = set()
     for _cls_e in _is_data.values():
         if isinstance(_cls_e, dict):
@@ -4988,9 +4989,15 @@ def generate_globals():
         #   命中即跳过声明(零信息损失)。双保险判据: ①type前缀vtbl_ ②地址∈注解vtables
         if str(typ).startswith('vtbl_'):
             continue
+        # [分治终版 2026-11-18] vtable域址分两类:
+        #  ①基址类名碰撞(SceneObj族): extern类名绑死前置声明→跳过(用户裁定)
+        #  ②裸方法名指针项(Rotate/Push族): 无碰撞+原始源码真形态(DLL导入函数
+        #    指针表调用, IAT项0xffffffff实证)→保留extern合法形(__thiscall * NAME)
+        #  注: ②的C2197(带参调无参指针)为hexrays借用名渲染的深层问题,
+        #  并案'导入引擎接口族'立案——当前C2065消解优先
         try:
-            if int(addr_str, 16) in _vtable_covered_addrs:
-                continue
+            if int(addr_str, 16) in _vtable_covered_addrs and name in _known_class_names:
+                continue  # ①类名碰撞跳过; ②方法名项走通用渲染(__thiscall合法形)
         except (ValueError, TypeError):
             pass
         _s = _sect_of(g)
@@ -5107,10 +5114,21 @@ def generate_globals():
         #   => `extern RET (__thiscall** )NAME(ARGS);` —— 槽=fn-ptr 的指针, VC6
         #   合法(约定保持由 IDB 侧消费, 头侧只需合法形)。
         _mfn = re.match(r'^(.*?)\s*__(thiscall|stdcall|cdecl)\((.*)\)$', typ)
-        if _mfn and '*' not in _mfn.group(1):
+        # [指针返回放宽 2026-11-18] ret含*(gbMatrix4 * __thiscall(...))同样合法
+        #   ——旧判据'*' not in挡掉指针返回型→GetTop族渲染坏(gbMatrix4 *__thiscall
+        #   (this) GetTop双名错位实证)
+        if _mfn:
             _cc = _mfn.group(2)
             _r = _mfn.group(1).strip() or 'void'
-            typ = '%s (%s** )(%s)' % (_r, _cc, _mfn.group(3))
+            # [__前缀+形参卫生 2026-11-18] '(thiscall** )'丢下划线非法C++
+            #   且'** )NAME'名字外置非法。合法形: 'RET (__cc * )(ARGS)'——名由
+            #   通用分支'%s (*%s)%s;'插成'( __thiscall * Rotate )(args)'。
+            #   形参表'__hidden this'非法(隐藏this非真参数)剥除。
+            _p_clean = re.sub(r'[\w\s:*&]+__hidden\s+this\s*,?\s*', '', _mfn.group(3))
+            _p_clean = re.sub(r'^,\s*', '', _p_clean.strip()).strip()
+            # [名占位形态 2026-11-18] 函数指针变量名必须在(* NAME)内——
+            #   '%s'名字占位由通用'%s %s;'分支替换(名后置非法C2059实证)
+            typ = '%s (__%s * #NAME# )(%s)' % (_r, _cc, _p_clean)
             g = dict(g, type=typ)
         if re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ) or re.search(r'\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\w*\s*\)', typ):
             _ret = re.match(r'^(.*?)\(\s*(?:__cdecl\s+|__noreturn\s+)*\*\s*\)', typ)
@@ -5128,12 +5146,18 @@ def generate_globals():
             h_lines.append('extern %s %s%s; // %s' % (base, name, arr, addr_str))
         elif arr_match and '*' not in typ:
             base, arr = arr_match.group(1).strip(), arr_match.group(2)
+            base = base.replace('#NAME#', name)  # [fnptr名占位]
             h_lines.append('extern %s %s%s; // %s' % (base, name, arr, addr_str))
         elif '[]' in typ:
             base = typ.replace('[]', '').strip()
             h_lines.append('extern %s %s[]; // %s' % (base, name, addr_str))
         elif '*' in typ:
-            h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
+            _typ2 = typ.replace('#NAME#', name)  # [fnptr名占位替换]
+            if '#NAME#' in typ:
+                # 名已在占位处(函数指针形: 名必须在(* NAME)内), 不再尾缀
+                h_lines.append('extern %s; // %s' % (_typ2, addr_str))
+            else:
+                h_lines.append('extern %s %s; // %s' % (_typ2, name, addr_str))
         else:
             h_lines.append('extern %s %s; // %s' % (typ, name, addr_str))
 
