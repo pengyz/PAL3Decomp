@@ -39,10 +39,40 @@
    "evidence_level": "unverified"
   },
   "0x6c": {
-   "name": "reserve",
-   "type": "unsigned int[6]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "name": "nCount",
+   "type": "int",
+   "source": "体判据: (int)this->reserve[0]>0做循环计数 2026-11-18",
+   "evidence_level": "verified"
+  },
+  "0x70": {
+   "name": "pBuffer",
+   "type": "float *",
+   "evidence_level": "verified",
+   "source": "体判据: *(float*)(v4+reserve[1]+36)做指针算术→缓冲区指针 2026-11-18"
+  },
+  "0x74": {
+   "name": "fScale",
+   "type": "float",
+   "evidence_level": "verified",
+   "source": "体判据: *(float*)&this->reserve[2]乘法缩放系数 2026-11-18"
+  },
+  "0x78": {
+   "name": "bFlag",
+   "type": "unsigned char",
+   "evidence_level": "verified",
+   "source": "体判据: LOBYTE(this->reserve[3])单字节读写 2026-11-18"
+  },
+  "0x7c": {
+   "name": "fResult",
+   "type": "float",
+   "evidence_level": "verified",
+   "source": "体判据: *(float*)&this->reserve[4]结果存储 2026-11-18"
+  },
+  "0x80": {
+   "name": "nFlag",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "体判据: this->reserve[5]=0整数写 2026-11-18"
   }
  },
  "methods": {
@@ -115,7 +145,10 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 lvar类型判据: v9=edi循环计数(步长20, 用作pBuffer下标)→int; 原float=hexrays寄存器类型映射错误。",
+   "lvars": {
+    "v9": "int"
+   }
   },
   "0x00444380": {
    "name": "CheckHitRight",
@@ -268,5 +301,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessCollision): int(char,int,int); 原注解无"
   }
- }
+ },
+ "members_note": "2026-11-18 语义普查: reserve[6]按UpdateScaling体证据拆为6成员(nCount/pBuffer/fScale/bFlag/fResult/nFlag)。"
 }
