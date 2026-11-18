@@ -1,0 +1,328 @@
+{
+ "_doc": "CCBStage 嵌合体成员清算 2026-11-18: [0xa8,0xa48a8) 区间原逐成员标注为三视图叠影产物, 已折叠为 m_TaskPool 扁平数组。本文件为原文存档。",
+ "folded_into": {
+  "name": "m_TaskPool",
+  "offset": "0xa8",
+  "size": 673792
+ },
+ "members": {
+  "0xa8": {
+   "name": "m_nForceDelTask",
+   "type": "unsigned char",
+   "source": "A:mov_byte_ptr_in_class_method",
+   "evidence_level": "unverified"
+  },
+  "0xac": {
+   "name": "m_fMusicVolume",
+   "type": "float",
+   "offset": 172,
+   "evidence_level": "unverified"
+  },
+  "0xb0": {
+   "name": "m_bPaused",
+   "type": "unsigned char",
+   "offset": 176,
+   "evidence_level": "unverified"
+  },
+  "0xb4": {
+   "name": "m_nTask",
+   "type": "int",
+   "offset": 180,
+   "evidence_level": "unverified"
+  },
+  "0xb8": {
+   "name": "m_TaskSlots",
+   "type": "_BYTE[96]",
+   "source": "[B1b 结构改造 2026-10-20] +184..+2744 区段原有 46 个伪成员（m_nCurTask/m_RoleSlots/m_CmdQueue/m_TurnFlags/m_nCurSubTask/m_Task/m_CamParams/m_ActionCmds/m_TargetPos …）实为同一 80B 结构体数组的字段。数组基 +184 · 步进 80 · 索引 m_nRoleSlot(+164) · 元素数 32（184+32×80=2744 ≈ m_TaskQueue@2752）。证据：objdump 指令级 80 步进 30 次 · memset(v13,0,0x50) 确认元素 80 字节 · 生成源 CCBStage.cpp:2044-2052/3428 位面复用实证。 | [R91 修 2026-10-23·8 errors] IDA _BYTE[96]（原 CCBTaskSlot[32] 2560 太大）",
+   "evidence_level": "A"
+  },
+  "0x118": {
+   "name": "m_TaskArrC",
+   "type": "CCBTaskSlot280[1]",
+   "source": "[A 级 2026-10-21·analyzer R58 定案] arrC_280 **base=0**（@+280 说**撤回**）· B 段 elem[i]+0x14（无 inc）+ A 段 elem[i+1]+4..16（inc=Advance）自洽 ⇒ **base=0 唯一解**（base=280 使 B 段 f=-260 矛盾）· count@+0x114（紧贴首元素前 4B）· 元素数待 count@+0x114 实证（几何约束 ≤18）· ⚠️ 0x118 = **bitplane_reuse**（R58 判定：float 2.0f 位型写 @4108af + 指针写 @439091 = 同槽双用法，三判据①值位面 + ③重解释）· ⚠️ 数组元素型访问形=比例变址（P0-8 scanner 已扩展支持）",
+   "evidence_level": "A"
+  },
+  "0xac0": {
+   "name": "m_TaskQueue",
+   "type": "int",
+   "source": "decomp:10x_compared_to_270(task_type_check)",
+   "evidence_level": "unverified"
+  },
+  "0xac4": {
+   "name": "m_TaskState",
+   "type": "int",
+   "source": "decomp:7x_indexed_state_value",
+   "evidence_level": "unverified"
+  },
+  "0xac8": {
+   "name": "m_nTaskExist",
+   "type": "int",
+   "source": "binary:disp32_1hits_1funcs",
+   "evidence_level": "unverified"
+  },
+  "0xacc": {
+   "name": "m_DamageData",
+   "type": "int",
+   "source": "decomp:11x_indexed_float_cast+BYTE+5",
+   "evidence_level": "unverified"
+  },
+  "0xaec": {
+   "name": "m_nTaskState",
+   "type": "unsigned char",
+   "source": "A:mov_byte_ptr_disp32_in_class_method",
+   "evidence_level": "unverified"
+  },
+  "0x1198": {
+   "name": "m_nTodo_1198",
+   "type": "void *",
+   "source": "binary:disp32_1hits_1funcs|A:memset 0x50 bytes in ClearActionSlot;batch_fix:int_to_v*_LEA_embed | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：`memset(&this->m_nTodo_1198, 0, 0x50u)`（地址清 80B 块）⇒ 嵌入字节块 | **overlap**：80B memset 块覆盖 4504..4584，内含 m_nSlotCounter@4508 等命名视图（同区）——check 语义 source 含 overlap ⇒ 跳过（2026-10-16 verifier 补标，与 Logger/CGameData 同型） | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议",
+   "evidence_level": "unverified"
+  },
+  "0x119c": {
+   "name": "m_nSlotCounter",
+   "type": "int",
+   "source": "gap_fill:ida_decomp_access;A:decomp_batch_rename_usage_pattern",
+   "evidence_level": "unverified"
+  },
+  "0x11e8": {
+   "name": "m_TurnBuffer",
+   "type": "int",
+   "source": "decomp:4x_memset_0x600(turn_data_buffer)",
+   "evidence_level": "unverified"
+  },
+  "0x1478": {
+   "name": "m_TaskArrA",
+   "type": "_BYTE[1328]",
+   "source": "[A 级 opcode 2026-10-21·verifier 全量 231 方法] 区段 **+0x1478=+5240** 至 +0x1A40=+6720（1480B/208=7.12⇒**~8 元素**）· stride 208 = `add $0xd0,%esi/edi`@0x44d00b/0x44d0cb 指针步进实锤 · 元素内字段：+0x14/+0x18 int 对 · +0x60-0x74 float ×6（x87 d8/d9）· +0x50 计数器 · +0x00/+0xB8 子对象 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **16 元素** · arrA_208 @ +0x1478 · **16 元素**（`mov ecx,0x32`@44d006 循环计数实录）· `add esi,0xd0`@44d00b 步进 · `lea esi,[edi+0x1478]`@44cffa 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[50] → CCBTaskSlot208[16] · arrA @ +0x1478 · **16 元素**（`mov ebx,0x10` + `dec ebx; jne` 循环计数形实录）· ⚠️ R53「16 元素」**撤回**（`mov ecx,0x32` 是 **idiv 除数** rand%50 非数组大小）· span 0x1478..0x2178（16×0xD0 精确）· **相接铁证**：arrA 终点=arrB 起点 | [R91 修 2026-10-23·8 errors] IDA _BYTE[1328]（原 CCBTaskSlot208[16] 3328 太大）",
+   "evidence_level": "A"
+  },
+  "0x19a8": {
+   "name": "m_nAllDone",
+   "type": "int",
+   "source": "binary:disp32_24hits_12funcs",
+   "evidence_level": "unverified"
+  },
+  "0x19b8": {
+   "name": "m_fCurPosX",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6608, 16 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19bc": {
+   "name": "m_fCurPosY",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6612, 13 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19c0": {
+   "name": "m_fCurPosZ",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone delta=target-cur, copy from +6616, 14 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19d0": {
+   "name": "m_fTargetPosX",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone from array[idx]+432, 18 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19d4": {
+   "name": "m_fTargetPosY",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone from array[idx]+436, 17 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19d8": {
+   "name": "m_fTargetPosZ",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone from array[idx]+440, 17 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19dc": {
+   "name": "m_fVelX",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19e0": {
+   "name": "m_fVelY",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19e4": {
+   "name": "m_fVelZ",
+   "type": "float",
+   "source": "ida_decomp:CheckAllDone = g_var * lerp, 12 refs",
+   "evidence_level": "unverified"
+  },
+  "0x19e8": {
+   "name": "m_fAngleDegrees",
+   "type": "float",
+   "source": "A+:ida_decomp 28refs + angle_math(rad->deg * 57.29578, normalize 2¦Ð, compare ¦Ð/2)",
+   "evidence_level": "unverified"
+  },
+  "0x19ec": {
+   "name": "m_fCombatAnimY",
+   "type": "float",
+   "source": "A:FPU_binary_evidence | ida_xref2",
+   "evidence_level": "unverified"
+  },
+  "0x19f4": {
+   "name": "m_nBattleResult",
+   "type": "int",
+   "source": "decomp:8x_compared_for_victory_check",
+   "evidence_level": "unverified"
+  },
+  "0x19f8": {
+   "name": "m_nActionFilterA",
+   "type": "int",
+   "source": "A:cmp_[esi+19F8h]_edi_ResolveActionEffect|naming:action_id_filter",
+   "evidence_level": "unverified"
+  },
+  "0x19fc": {
+   "name": "m_nActionFilterB",
+   "type": "int",
+   "source": "A:cmp_[esi+19FCh]_edi_x3_ResolveActionEffect|naming:action_id_filter",
+   "evidence_level": "unverified"
+  },
+  "0x1a08": {
+   "name": "m_nDoneCount",
+   "type": "int",
+   "source": "binary:disp32_1hits_1funcs | ida_xref",
+   "evidence_level": "unverified"
+  },
+  "0x1a0c": {
+   "name": "m_nTotalCount",
+   "type": "int",
+   "source": "binary:disp32_1hits_1funcs | ida_xref",
+   "evidence_level": "unverified"
+  },
+  "0x1f74": {
+   "name": "m_fTurnTimer",
+   "type": "float",
+   "source": "decomp:_nearby_4e0340_set_NAN(float_sentinel_invalid)",
+   "evidence_level": "unverified"
+  },
+  "0x1f78": {
+   "name": "m_nTurnSlot0",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1(invalid_slot_index)",
+   "evidence_level": "unverified"
+  },
+  "0x1f7c": {
+   "name": "m_nTurnSlot1",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x1f80": {
+   "name": "m_nTurnSlot2",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x1f84": {
+   "name": "m_nTurnSlot3",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x1f88": {
+   "name": "m_nTurnSlot4",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x1f8c": {
+   "name": "m_nTurnSlot5",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x2178": {
+   "name": "m_TaskArrB",
+   "type": "_BYTE[1048]",
+   "source": "[A 级 opcode 2026-10-21·verifier] 区段 **+0x2178=+8568** 至 +0x2740=+10048（同 span/stride）· ~8 元素 | [R53 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[8] → **10 元素** · arrB_208 @ +0x2178 · **10 元素**（`mov ecx,0x64`@44d0c6 循环计数实录）· `add edi,0xd0`@44d0cb 步进 · `lea edi,[esi+0x2178]`@44d0ba 数组基 · ⚠️ R48 估 ~8/区大幅低估（span/stride 粗估），R53 用循环计数常量实录修正 | [R54 元素数定案 2026-10-21·analyzer] CCBTaskSlot208[100] → CCBTaskSlot208[10] · arrB @ +0x2178 · **10 元素**（`mov ebx,0xa` + `dec ebx; jne`）· span 0x2178..0x29A8（10×0xD0）· ⚠️ R53「10 元素」**撤回**（同 idiv 除数误读） | [R91 修 2026-10-23·8 errors] IDA _BYTE[1048]（原 CCBTaskSlot208[10] 2080 太大）",
+   "evidence_level": "A"
+  },
+  "0x2590": {
+   "name": "m_nResultSlot0",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x2594": {
+   "name": "m_nResultSlot1",
+   "type": "int",
+   "source": "decomp:_nearby_4e0340_set_-1",
+   "evidence_level": "unverified"
+  },
+  "0x639c0": {
+   "name": "m_EditDescBuf",
+   "type": "char[2000]",
+   "source": "binary:disp32_1hits_1funcs|A:memset 0x7D0 bytes in ClearAll;A:decomp_batch_rename_usage_pattern",
+   "evidence_level": "unverified"
+  },
+  "0x64190": {
+   "name": "m_nTodo_64190",
+   "type": "void *",
+   "source": "binary:disp32_1hits_1funcs;batch_fix:int_to_v*_LEA | [void* 语义化 2026-10-16 analyzer 30 条跨类取证] A级：`memset(&this->m_nTodo_64190, 0xFFu, 0x4E20u)`（清 20000B）+ `&…+24368` 指针算术 + DWORD 存写 ⇒ 嵌入大字节块 | [void* 语义化回退 2026-10-16 analyzer] 四道门判负实证：CCBStage _BYTE[N] 型改使 `&field + N` 指针算术步长从 4B 变 N B ⇒ C2039/C2228 族爆发；PalScript char* 引 C2679 operator= 不匹配（L5942）⇒ 类型语义化候选保留 source，落地待渲染层（指针算术缩放）修妥后复议",
+   "evidence_level": "unverified"
+  }
+ },
+ "ccbtaskslot280": {
+  "name": "CCBTaskSlot280",
+  "binary_size": 280,
+  "known_members": {
+   "0x0": {
+    "name": "m_pHead",
+    "type": "_BYTE[3]",
+    "source": "[A 级 opcode 2026-10-21·analyzer] +0x00 头指针（拷自 this+8）· `mov 0x8(%ecx)→mov %eax,(%ecx,%edx,8)` ×2 形 | [R92 修 2026-10-23·8 errors] IDA _BYTE[3]（原 void* 4B 太大）",
+    "evidence_level": "A"
+   },
+   "0x3": {
+    "name": "m_bFlag",
+    "type": "char",
+    "source": "[A 级 opcode] +0x03 标志（第 5 参）· `mov 0x14(%esp),%al → mov %al,0x11b(...)`",
+    "evidence_level": "A"
+   },
+   "0x4": {
+    "name": "m_fSlot0",
+    "type": "float",
+    "source": "[A 级 opcode] +0x04 float · `fstps 0x11c(...)` 4 连写之一",
+    "evidence_level": "A"
+   },
+   "0x8": {
+    "name": "m_fSlot1",
+    "type": "float",
+    "source": "[A 级 opcode] +0x08 float · `fstps 0x120(...)`",
+    "evidence_level": "A"
+   },
+   "0xc": {
+    "name": "m_fSlot2",
+    "type": "float",
+    "source": "[A 级 opcode] +0x0C float · `fstps 0x124(...)`",
+    "evidence_level": "A"
+   },
+   "0x10": {
+    "name": "m_fSlot3",
+    "type": "float",
+    "source": "[A 级 opcode] +0x10 float · `fstps 0x128(...)` 4 连写之末",
+    "evidence_level": "A"
+   },
+   "0x14": {
+    "name": "m_nState",
+    "type": "int",
+    "source": "[A 级 opcode] +0x14 **int 状态码=6** · `movl $0x6,0x14(...)` @0x4dff9f —— 与 208B 族同偏移 0x14 的 int 对**两义铁证**",
+    "evidence_level": "A"
+   },
+   "0x18": {
+    "name": "_todo_018",
+    "type": "_BYTE[232]",
+    "source": "[反证占位 2026-10-21·P0-6 纪律] +0x18..0x117 尾部 scaled disp 全扫仅现 f∈{0,3,4,8,0xC,0x10,0x14} ⇒ **零访问** · 不改型（单点 opcode 不足）· 待补证",
+    "evidence_level": "A"
+   }
+  }
+ }
+}
