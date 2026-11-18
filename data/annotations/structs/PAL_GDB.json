@@ -282,35 +282,38 @@
    "name": "RefreshPartyStats",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbGeomNode *__thiscall",
+    "return": "gbGeomNode *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x005294c0": {
    "name": "SetDefaultEquipment",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00478c00": {
    "name": "ResetAllData",
    "_misattrib_evidence": "max_offset=804880>class_size=204620",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "MainEquipUI *__thiscall",
+    "return": "MainEquipUI *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004791b0": {
    "name": "GetItemID",

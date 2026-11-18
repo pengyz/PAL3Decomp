@@ -52,7 +52,7 @@
    "_misattrib_evidence": "max_offset=92>class_size=16",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *__thiscall",
+    "return": "gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -66,7 +66,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   }
  },
  "base_size": 8,

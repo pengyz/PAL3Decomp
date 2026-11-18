@@ -101,7 +101,7 @@
    "name": "SetTextureByID",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *__thiscall",
+    "return": "gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -111,30 +111,33 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004434c0": {
    "name": "InitSharedPanel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *__thiscall",
+    "return": "void *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004435a0": {
    "name": "LoadFrameResources",
    "ordinal": 28,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *__thiscall",
+    "return": "gbVFileSystem *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00443950": {
    "name": "Render_3950",

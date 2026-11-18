@@ -615,7 +615,7 @@
    "_misattrib_evidence": "max_offset=162724>class_size=152",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "OpenNULLFile *__thiscall",
+    "return": "OpenNULLFile *",
     "cc": null,
     "params": [
      {
@@ -629,7 +629,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00481cb0": {
    "name": "SelectWithSound",
@@ -848,7 +849,7 @@
    "name": "UpdateFadeAlpha",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -858,7 +859,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00481ba0": {
    "name": "SetAdornVisible",

@@ -2616,7 +2616,7 @@
    "name": "ActionEntry_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [
      {
@@ -2626,7 +2626,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x005394d0": {
    "name": "ClearActionArrays",
@@ -2716,12 +2717,13 @@
    "name": "ClearAllActions",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0053a020": {
    "name": "IterateAllocBuffer",
@@ -2743,7 +2745,7 @@
    "name": "InitAction",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -2753,7 +2755,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0053a080": {
    "name": "GetActionArrayEnd",
@@ -2826,7 +2829,7 @@
    "name": "CopyBufferBlocks",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [
      {
@@ -2844,7 +2847,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0053afe0": {
    "name": "CopyIfValid",
@@ -2909,7 +2913,7 @@
    "name": "SetCurrentAction",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [
      {
@@ -2919,13 +2923,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0053bae0": {
    "name": "ActArray_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -2935,13 +2940,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0053bd30": {
    "name": "BoneIndexVec_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -2951,7 +2957,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0041bca0": {
    "name": "ExecuteAction",

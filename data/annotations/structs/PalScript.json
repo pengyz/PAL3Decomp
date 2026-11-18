@@ -860,12 +860,13 @@
    "name": "Op_RoleScriptInitCam",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00431c10": {
    "name": "FindSaveStateString",
@@ -899,7 +900,7 @@
    "name": "LoadModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbGeomNode *__thiscall",
+    "return": "gbGeomNode *",
     "cc": null,
     "params": [
      {
@@ -913,7 +914,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00421ca0": {
    "name": "BindRolesToStage",
@@ -1000,7 +1002,7 @@
    "name": "InitParticleSlht",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "PalScript *__thiscall",
+    "return": "PalScript *",
     "cc": null,
     "params": [
      {
@@ -1010,13 +1012,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004309d0": {
    "name": "EvalExpression",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -1030,13 +1033,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00431040": {
    "name": "GetVarRef",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -1050,13 +1054,14 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00431100": {
    "name": "EvalExprTree",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -1078,7 +1083,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00431d20": {
    "name": "CleanupInstances",
@@ -1469,12 +1475,13 @@
    "name": "Op_RoleSetLayerByObj",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00437c40": {
    "name": "Op_Enable_JusticeBook",
@@ -1742,7 +1749,7 @@
    "name": "LoadVisNode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "struct gbVFileSystem *__thiscall",
+    "return": "struct gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -1760,7 +1767,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00430500": {
    "name": "ReleaseFrame",
@@ -1802,7 +1810,7 @@
    "name": "ResolveScope",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [
      {
@@ -1812,29 +1820,32 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00431440": {
    "name": "IteratorNext",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004314a0": {
    "name": "IteratorPrev",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x004314f0": {
    "name": "ConstructStringObj",
@@ -2818,12 +2829,13 @@
    "name": "Op_InTeamExecScript",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00437b20": {
    "name": "Op_Combat",

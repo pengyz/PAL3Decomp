@@ -1483,12 +1483,13 @@
    "name": "ExecuteScriptByID",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "PalScriptMgr *__thiscall",
+    "return": "PalScriptMgr *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0042bfe0": {
    "name": "IsScriptReady",
@@ -1614,7 +1615,7 @@
    "name": "LoadSceneGeometry",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "struct gbVFileSystem *__thiscall",
+    "return": "struct gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -1624,7 +1625,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0042cf60": {
    "name": "CmdPushCmd04",
@@ -1750,12 +1752,13 @@
    "name": "LoadYlfScript",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0042aae0": {
    "name": "CheckTileCollision",
@@ -1850,7 +1853,7 @@
    "name": "CmdCameraOrbitPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": null,
     "params": [
      {
@@ -1872,7 +1875,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0042e4d0": {
    "name": "CmdRoleMoveSmooth",

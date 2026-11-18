@@ -15,7 +15,7 @@
    "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref 0x410900 仅表内（转发包装）+ 7 槽 `ff 25 [IAT]` 全导入转发；方法语义面:0x410900=I",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBAIWindow *__thiscall",
+    "return": "CCBAIWindow *",
     "cc": null,
     "params": [
      {
@@ -25,7 +25,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",

@@ -250,7 +250,7 @@
    "evidence_level": "unverified",
    "source": "| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石",
    "sig_model": {
-    "return": "gbVFileSystem *__thiscall",
+    "return": "gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -276,7 +276,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00440960": {
    "name": "FormatText",
@@ -303,7 +304,7 @@
    "name": "LoadResource",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *__thiscall",
+    "return": "gbVFileSystem *",
     "cc": null,
     "params": [
      {
@@ -317,7 +318,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x00440ce0": {
    "name": "SetText",
@@ -345,12 +347,13 @@
    "name": "UIPushButton_Base",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "UIPushButton *__thiscall",
+    "return": "UIPushButton *",
     "cc": null,
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
   },
   "0x0043dab0": {
    "name": "RenderQuadSlice",
