@@ -1581,19 +1581,27 @@ def check_canonical_contract():
             return _kmnames[cls]
         names = set()
         _seen13 = set()
-        _cur = cls
-        while _cur and _cur not in _seen13:
+        _queue13 = [cls]
+        # [修正 2026-11-18] 全基遍历(原 bases[0] 单链走不到 MI 二基——
+        # CEffObj@0 + CTaskTpl_tagEffTaskParam_X@12 双基布局, m_fCurTime 等模板
+        # 字段在二基, 单链误报 N13a×77)。语义=C++ 成员查找搜全部直接基。
+        while _queue13:
+            _cur = _queue13.pop(0)
+            if not _cur or _cur in _seen13:
+                continue
             _seen13.add(_cur)
             try:
                 _dd = json.load(open(os.path.join(root, 'data', 'annotations', 'structs', '%s.json' % _cur), encoding='utf-8'))
             except Exception:
-                break
+                continue
             for _v13 in (_dd.get('known_members') or {}).values():
                 _n13 = _v13.get('name')
                 if _n13:
                     names.add(str(_n13))
-            _bs13 = _dd.get('bases') or []
-            _cur = (_bs13[0].get('name') if isinstance(_bs13[0], dict) else _bs13[0]) if _bs13 else None
+            for _b13 in (_dd.get('bases') or []):
+                _bn13 = _b13.get('name') if isinstance(_b13, dict) else _b13
+                if _bn13:
+                    _queue13.append(_bn13)
         _kmnames[cls] = names
         return names
     _field_miss = {}
