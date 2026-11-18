@@ -3914,8 +3914,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 for _ga, _gm in sorted(_g1b_ms.items()):
                     _gn = str(_gm.get('name') or '')
                     _gs = sm_text(_gm)  # [导出层sig退役迁移 2026-11-18]
-                    if not _gn or not _gs or _gm.get('declaration_only'):
+                    _is_decl_only = _gm.get('declaration_only')
+                    _g1b_cls = _g1b_data.get('name') or cls_name
+                    import json as _j_g1b
+                    _is_dll = _j_g1b.loads(open(_g1b_path, encoding='utf-8').read()).get('imported_dll')
+                    if not _gn or not _gs:
                         continue
+                    if _is_decl_only and not _is_dll:
+                        continue  # 借用体垃圾: 不发声明(头由emit常规产出)
+                    # declaration_only+imported_dll=导入引擎类: 声明合法(链接期DLL符号)
                     try:
                         if int(_ga, 16) in _slot_addrs:
                             continue  # 槽函数: 归属类槽路径已声明, 派生类继承勿重声明(C2555根因)

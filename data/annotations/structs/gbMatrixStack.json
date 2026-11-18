@@ -38,6 +38,190 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x0056a244": {
+   "name": "Rotate",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": null
+     },
+     {
+      "type": "gbVec3D *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a260": {
+   "name": "Translate",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbVec3D *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a2a0": {
+   "name": "MultMatrix",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbMatrix4 *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a33c": {
+   "name": "Rotate",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbQuaternion *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用 Rotate重载(quaternion形); mangle= Rotate@...QAEXAAUgbQuaternion@@ 2026-11-18"
+  },
+  "0x0056a370": {
+   "name": "Translate",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用 Translate重载(MMM形) 2026-11-18"
+  },
+  "0x0056a570": {
+   "name": "GetTop",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "gbMatrix4 *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a578": {
+   "name": "Push",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a57c": {
+   "name": "LoadIdentity",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a588": {
+   "name": "Pop",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+  },
+  "0x0056a5c0": {
+   "name": "LoadMatrix",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbMatrix4 *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_vtable_slot",
+   "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
   }
- }
+ },
+ "imported_dll": true,
+ "imported_dll_evidence": "vtable项=0xffffffff(import thunk表)×10方法址实证; 方法体在引擎DLL, PAL3.exe仅声明调用 2026-11-18"
 }
