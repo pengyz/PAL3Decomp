@@ -311,23 +311,23 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=2: m_nActivePage,m_pDescription（adjudicate_multiclaim 2026-11-03）",
    "sig_model": {
-    "return": "gbVFileSystem *",
-    "cc": null,
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
       "name": null
      },
      {
-      "type": "void *pRect",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "UIWnd *parent",
+      "type": "int",
       "name": null
      },
      {
-      "type": "const char *pszName",
+      "type": "char *",
       "name": null
      },
      {
@@ -338,7 +338,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 双证定谳: IDB mangle QAEHHPAXHPAD(ret int, 参数int/void*/int/char*/char——旧sig_model return粘__thiscall+cc=null=SetType跳过→IDB类型IDA猜测__userpurge→decomp this@<ecx>渲染)——mangle权威修正。2026-11-18 sig_model.return粘cc剥离(cc应在cc字"
   },
   "0x0051ac90": {
    "name": "_scalar_dtor_AC90",

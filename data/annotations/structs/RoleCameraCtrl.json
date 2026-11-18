@@ -16,7 +16,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
@@ -24,7 +24,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~RoleCameraCtrl(??1/??_G析构族); decomp文件=RoleCameraCtrl_~RoleCameraCtrlvoid_00450a25 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~RoleCameraCtrl(??1/??_G析构族); decomp文件=RoleCameraCtrl_~RoleCameraCtrlvoid_00450a25 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x00445860": {
    "name": "SetName",

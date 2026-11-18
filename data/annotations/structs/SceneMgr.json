@@ -262,7 +262,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "char",
@@ -272,7 +272,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x004cd930": {
    "name": "_scalar_dtor",
@@ -281,7 +281,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "SceneMgr *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "void *Block",
@@ -299,7 +299,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=SceneMgr_`scalar_deleting_destructoruint_004cd930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x00528d50": {
    "name": "LoadMainUITexture",
@@ -355,12 +355,12 @@
    "evidence_level": "B",
    "sig_model": {
     "return": "struct SceneMgr *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0040fc70": {
    "name": "GetValidPartyCount",

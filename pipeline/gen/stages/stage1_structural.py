@@ -406,13 +406,27 @@ def _regex_fallback(code, ctx):
         _is_thiscall = '__thiscall' in (ctx.sig or '')
         if ctx.cls_name and _is_thiscall:
             _cls_pat = re.escape(ctx.cls_name)
-            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*,\s*', '(', first, count=1)
-            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+\s*\)', '()', first, count=1)
+            # [this@<reg>尾注 2026-11-18] hexrays形 'Cls *this@<ecx>,'——
+            #   @<reg>剥除先于此行时this词已裸, 但旧序下@尾巴使\w+捕获'this'后
+            #   残留'@<ecx>'→C2143链。正则放宽允许尾注。
+            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+(?:@<\w+>)?\s*,\s*', '(', first, count=1)
+            first = re.sub(r'\(\s*' + _cls_pat + r'\s*\*+\s*\w+(?:@<\w+>)?\s*\)', '()', first, count=1)
         # Fallback: literal 'this' name
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*,\s*', '(', first)
         first = re.sub(r'\(\s*\w[\w\s]*\*+\s*this\s*\)', '()', first)
         # Catch 'int this' and other typed this params not matched above
         first = re.sub(r'\(\s*\w[\w\s]+\bthis\b\s*,\s*', '(', first)
+        # [续行参数 2026-11-18] 多行签名的续行(2+)同款剥除——L329实错误行是续行
+        #   (CreateWithTextures定义首行后), 旧逻辑只剥func_line_idx一行
+        for _ci in range(func_line_idx + 1, min(func_line_idx + 12, len(lines))):
+            _l2 = lines[_ci]
+            if ')' in _l2 and '{' in ''.join(lines[_ci:_ci+3]):
+                pass
+            if _is_thiscall and ctx.cls_name:
+                _cp = re.escape(ctx.cls_name)
+                _l2 = re.sub(r'^\s*' + _cp + r'\s*\*+\s*\w+(?:@<\w+>)?\s*,\s*$', '', _l2)
+            _l2 = re.sub(r'@<\w+>', '', _l2)
+            lines[_ci] = _l2
         first = re.sub(r'\(\s*\w[\w\s]+\bthis\b\s*\)', '()', first)
         if ctx.is_dtor:
             first = re.sub(r'\([^)]*\)', '()', first)

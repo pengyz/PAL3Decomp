@@ -545,7 +545,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "float",
@@ -554,7 +554,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x004fc700": {
    "name": "GetRoleIndex",
@@ -790,7 +791,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -807,7 +808,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x004fcc50": {
    "name": "GetTaskState_cc50",
@@ -815,7 +817,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -828,7 +830,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x004fcd00": {
    "name": "IsTaskFinished",
@@ -932,7 +935,7 @@
    "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): v8=dword 写(v3+20)后全字节算术基址(*(DWORD*)(v8+900/904/908/916) 实参); float 声明炸 C2440 x5",
    "sig_model": {
     "return": "bool",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "it",
@@ -945,7 +948,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x004fcfb0": {
    "name": "IsAllSubTaskFinished",
@@ -991,7 +995,7 @@
    "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): 同 0x4FCE70 平行块: v8=dword 写(v7+20)后字节算术基址",
    "sig_model": {
     "return": "bool",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "it",
@@ -1004,7 +1008,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x004fd3d0": {
    "name": "HasNormalAttackRole",
@@ -2058,12 +2063,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x00504ab0": {
    "name": "ClearActionSlot",

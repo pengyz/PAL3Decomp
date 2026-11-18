@@ -60,7 +60,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "uint",
@@ -69,7 +69,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   }
  }
 }

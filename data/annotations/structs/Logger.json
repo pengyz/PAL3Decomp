@@ -113,11 +113,12 @@
    "source": "L-VAR 2026-11-11i 取证挂账(签名未改): 入口 mov ecx,[esp+8]+调用点4push(0x4049F7: 对象0x17B1EC0+fmt字符串+edx变参) => 真 __cdecl(Logger *this, char *fmt, ...); 变参成员VC6强制cdecl; 0参渲染系 Hex-Rays 按错误thiscall类型丢参; 签名三面(头/体/调用点)接受度待试探轮 | [C2660修 2026-11-13] param数1→0: 5个调用点全传0参; fmt+4756/4856/6356全部落在Logger binary_size=6360内 ⇒ fmt=this(ECX), 函数体0栈参; IDB/Hex-Rays不知__thiscall致ECX误名为param",
    "sig_model": {
     "return": "char *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
   },
   "0x0053cc10": {
    "name": "RegisterCallback",

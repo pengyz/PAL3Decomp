@@ -4953,13 +4953,28 @@ def generate_globals():
         return re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', b).strip()
 
     # [vftable跳过判据 2026-11-18] 注解vtables全量地址集(13类碰撞extern实证)
+    # [表项并入 2026-11-18] slot函数址也是vtable域(0x56a244 Rotate等10项extern
+    #   泄漏实证: 函数指针表成员extern在C++不可访问=导出泄漏)
+    # [键形统一 2026-11-18] 全部归一为int(globals键'0x56a244'与vtables键
+    #   '0x0056a244'异形——N1键形归一律, 不归一必漏判)
     _vtable_covered_addrs = set()
     for _cls_e in _is_data.values():
         if isinstance(_cls_e, dict):
             for _vt_e in (_cls_e.get('vtables') or []):
-                _va = str(_vt_e.get('addr') or '').lower()
-                if _va:
-                    _vtable_covered_addrs.add(_va)
+                try:
+                    _vtable_covered_addrs.add(int(str(_vt_e.get('addr')), 16))
+                except (ValueError, TypeError):
+                    pass
+                for _sl in (_vt_e.get('slots') or []):
+                    try:
+                        _vtable_covered_addrs.add(int(str(_sl.get('addr')), 16))
+                    except (ValueError, TypeError):
+                        pass
+            for _mk in (_cls_e.get('methods') or {}):
+                try:
+                    _vtable_covered_addrs.add(int(str(_mk), 16))
+                except (ValueError, TypeError):
+                    pass
 
     for addr_str, g in sorted_globs:
         name = g.get('name', '')
@@ -4971,9 +4986,13 @@ def generate_globals():
         #   vtbl_0056b200 SceneObj; 绑死类名⇒class SceneObj;前置声明失效→
         #   C2501×100单元)。注解vtables[addr]已记录全部虚表址=真值在手,
         #   命中即跳过声明(零信息损失)。双保险判据: ①type前缀vtbl_ ②地址∈注解vtables
-        _ga = addr_str.lower()
-        if str(typ).startswith('vtbl_') or _ga in _vtable_covered_addrs:
+        if str(typ).startswith('vtbl_'):
             continue
+        try:
+            if int(addr_str, 16) in _vtable_covered_addrs:
+                continue
+        except (ValueError, TypeError):
+            pass
         _s = _sect_of(g)
         if _s != _cur_sect[0]:
             _cur_sect[0] = _s

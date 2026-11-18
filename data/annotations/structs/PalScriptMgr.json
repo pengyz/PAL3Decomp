@@ -1484,12 +1484,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "PalScriptMgr *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0042bfe0": {
    "name": "IsScriptReady",
@@ -1616,7 +1616,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "struct gbVFileSystem *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "char",
@@ -1626,7 +1626,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0042cf60": {
    "name": "CmdPushCmd04",
@@ -1753,12 +1753,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0042aae0": {
    "name": "CheckTileCollision",
@@ -1854,7 +1854,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -1876,7 +1876,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0042e4d0": {
    "name": "CmdRoleMoveSmooth",

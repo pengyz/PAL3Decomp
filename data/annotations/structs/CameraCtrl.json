@@ -623,7 +623,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "float *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "float *pfOut",
@@ -645,7 +645,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x0041ca90": {
    "name": "SetDimention",
@@ -1420,7 +1420,7 @@
    "evidence_level": "A",
    "sig_model": {
     "return": "CCBAIWindow *",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
@@ -1434,7 +1434,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=~GameObject(??1/??_G析构族); decomp文件=CameraCtrl_GameObjectint_0041cba0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只留返回型——头渲染gbVFileSystem* CreateWithTexturesvs体char返回C2556/C2143族根因)。"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   }
  },
  "vtables": [
