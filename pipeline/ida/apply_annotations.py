@@ -394,7 +394,11 @@ def _make_vtable_method_type(ann_sig, vm_short, til, cls_name=None):
                 p = ''.join(current).strip()
                 if p:
                     tokens = p.split()
-                    if len(tokens) >= 2 and tokens[-1] not in ('const',):
+                    # [指针星修复 2026-11-18] 无名指针参数('void *')tokens=
+                    #   ['void','*']——尾token纯*/&是类型一部分非形参名, 误剥→
+                    #   IDB参数变void→C2664×403族根因
+                    if len(tokens) >= 2 and tokens[-1] not in ('const',) \
+                            and tokens[-1][-1] not in '*&':
                         ptype = ' '.join(tokens[:-1])
                     else:
                         ptype = p
@@ -410,7 +414,8 @@ def _make_vtable_method_type(ann_sig, vm_short, til, cls_name=None):
             p = ''.join(current).strip()
             if p:
                 tokens = p.split()
-                if len(tokens) >= 2 and tokens[-1] not in ('const',):
+                if len(tokens) >= 2 and tokens[-1] not in ('const',) \
+                        and tokens[-1][-1] not in '*&':
                     ptype = ' '.join(tokens[:-1])
                 else:
                     ptype = p
