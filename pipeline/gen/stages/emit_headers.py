@@ -3905,6 +3905,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _already = set()
                 for _l2 in lines[:_close_idx]:
                     _already.update(re.findall(r'([~A-Za-z_]\w*)\s*\(', _l2.split('//')[0]))
+                    # [括号包裹防宏形 2026-11-18] _safe_method_name输出'(Name)'
+                    # (CreateDialog撞Windows宏族)——findall常规模式漏检→G1b重复
+                    # 声明(C2556/C2371双声明, UIRoleSelectDialog实证)
+                    _already.update(re.findall(r'\(([A-Za-z_]\w*)\)\s*\(', _l2.split('//')[0]))
                 _slot_addrs = _global_vtable_slot_addrs()
                 _g1b_new = []
                 for _ga, _gm in sorted(_g1b_ms.items()):
@@ -3933,9 +3937,16 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     # → 主循环卫兵只对 methods 列表发射, G1b 补的声明同样需要
                     _g1b_macros = [n for n in _MACRO_CONFLICT_NAMES
                                    if any(n in l for l in _g1b_new)]
+                    # [undef定位修 2026-11-18] 原insert(1)把undef放在头首——
+                    #   windows.h在其后的include链中重新定义宏→类体声明再被撕
+                    #   (UIRoleSelectDialog.h C2556×3实证: CreateDialog宏复活)。
+                    #   修正: undef插到最后一个#include之后(windows.h已展开,
+                    #   宏已定义, undef才真正生效); 保留多重def检查防顺序变化。
+                    _last_inc = max((i for i, x in enumerate(lines[:_close_idx])
+                                     if x.startswith('#include ')), default=0)
                     for _ul in reversed(_g1b_macros):
-                        lines.insert(1, '')
-                        lines.insert(1, '#ifdef %s\n#undef %s\n#endif' % (_ul, _ul))
+                        lines.insert(_last_inc + 1, '')
+                        lines.insert(_last_inc + 1, '#ifdef %s\n#undef %s\n#endif' % (_ul, _ul))
                     lines[_close_idx:_close_idx] = _g1b_new + ['']
     except Exception:
         import traceback; traceback.print_exc()  # G1b 失败不阻塞头生成
