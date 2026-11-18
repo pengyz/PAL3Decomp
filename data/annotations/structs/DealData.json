@@ -59,15 +59,11 @@
    "name": "LoadStoreConfig",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "LPSTR",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "CHAR *lpString2",
       "name": null
      }
     ],
@@ -96,12 +92,16 @@
    "name": "CompareString",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "LPCSTR",
+      "name": "lpString1"
+     },
+     {
+      "type": "LPCSTR",
+      "name": "lpString2"
      }
     ],
     "varargs": false,

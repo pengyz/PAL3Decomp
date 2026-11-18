@@ -593,11 +593,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *pParams",
       "name": null
      }
     ],
@@ -610,16 +606,12 @@
    "name": "SetAsCurrent",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "flags"
      }
     ],
     "varargs": false,
@@ -631,28 +623,24 @@
    "name": "CalcOrbitalPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "float *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfOut",
       "name": null
      },
      {
       "type": "float",
-      "name": null
+      "name": "fTargetX"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fTargetY"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fTargetZ"
      }
     ],
     "varargs": false,
@@ -664,20 +652,16 @@
    "name": "SetDimention",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "w"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "h"
      }
     ],
     "varargs": false,
@@ -689,19 +673,15 @@
    "name": "GetViewTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "void *pTarget",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pPos",
       "name": null
      }
     ],
@@ -726,28 +706,24 @@
    "name": "GetLerpPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "float *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pResult",
       "name": null
      },
      {
       "type": "float",
-      "name": null
+      "name": "fCurrent"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fTarget"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fFactor"
      }
     ],
     "varargs": false,
@@ -768,12 +744,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDelta"
      }
     ],
     "varargs": false,
@@ -790,23 +762,19 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal4"
      }
     ],
     "varargs": false,
@@ -823,27 +791,23 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -860,27 +824,23 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -896,20 +856,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -926,23 +882,19 @@
     "params": [
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -959,31 +911,27 @@
     "params": [
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -1000,11 +948,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "mode"
      }
     ],
     "varargs": false,
@@ -1021,11 +965,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1048,19 +988,15 @@
    "name": "SetCameraSource",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -1074,16 +1010,12 @@
    "source": "| param a typed: VA=0x41D7F0 prologue mov eax,[esp+arg_0] (single int stack arg; decomp int a2)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1106,16 +1038,12 @@
    "name": "UpdateInternal",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDelta"
      }
     ],
     "varargs": false,
@@ -1128,16 +1056,12 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1155,11 +1079,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1217,16 +1137,12 @@
    "name": "CalcStatPower",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1238,20 +1154,16 @@
    "name": "UpdateBlendWeight",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "arg0"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1267,11 +1179,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pCounter",
       "name": null
      }
     ],
@@ -1288,11 +1196,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pCounter",
       "name": null
      }
     ],
@@ -1371,16 +1275,12 @@
    "name": "SetViewport",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -1408,11 +1308,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1436,20 +1332,16 @@
    "_misattrib_evidence": "max_offset=207612>class_size=4088",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nParam"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "BOOL",
+      "name": "bFlag"
      }
     ],
     "varargs": false,
@@ -1462,16 +1354,12 @@
    "_misattrib_evidence": "max_offset=307028>class_size=4088",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1501,15 +1389,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1522,20 +1406,16 @@
    "_misattrib_evidence": "max_offset=205788>class_size=4088",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "arg0"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1561,21 +1441,9 @@
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=GameObject（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41CBC0 写 vptr 0x56A9C0",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "CCBAIWindow *__thiscall",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null

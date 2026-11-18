@@ -7,13 +7,9 @@
    "source": "manual_fix_from_call_sites",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "char *",
       "name": null
@@ -23,7 +19,7 @@
       "name": null
      },
      {
-      "type": "char *",
+      "type": "char *format",
       "name": null
      }
     ],
@@ -59,16 +55,12 @@
    "name": "HandleControlCmd",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned __int8",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "idx"
      }
     ],
     "varargs": false,

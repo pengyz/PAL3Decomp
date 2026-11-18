@@ -89,23 +89,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -133,20 +121,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -168,11 +152,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
@@ -180,7 +160,7 @@
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,

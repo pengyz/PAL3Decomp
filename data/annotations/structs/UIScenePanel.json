@@ -565,16 +565,12 @@
    "name": "ValidateIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -592,11 +588,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "id"
      }
     ],
     "varargs": false,
@@ -613,27 +605,23 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "arg0"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal4"
      }
     ],
     "varargs": false,
@@ -748,23 +736,11 @@
    "name": "Update",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -788,13 +764,9 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "UIScene 消息处理（rect/widget 遍历）",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -893,16 +865,12 @@
    "name_source": "恢复 2026-11-01（vtable 需要）",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScenePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AFFC）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,

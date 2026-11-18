@@ -430,20 +430,16 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -456,16 +452,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -477,20 +469,16 @@
    "name": "SetPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nX"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nY"
      }
     ],
     "varargs": false,
@@ -502,20 +490,16 @@
    "name": "HideUIBars",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,
@@ -539,20 +523,16 @@
    "source": "| param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "void *pStreams",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -586,16 +566,12 @@
    "name": "GetPlayerAttByIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -679,23 +655,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -725,19 +689,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "a2"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -760,11 +720,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -787,19 +743,11 @@
    "name": "InitCamera",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "struct gbGfxManager *pGfx",
       "name": null
      }
     ],
@@ -845,20 +793,16 @@
    "name": "LoadScreenScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "double",
     "cc": "thiscall",
     "params": [
      {
       "type": "double",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
+      "name": "result"
      },
      {
       "type": "float",
-      "name": null
+      "name": "result_4"
      }
     ],
     "varargs": false,
@@ -886,23 +830,19 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "a"
      },
      {
       "type": "int",
-      "name": null
+      "name": "b"
      },
      {
       "type": "int",
-      "name": null
+      "name": "c"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "d"
      }
     ],
     "varargs": false,
@@ -941,31 +881,27 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal5"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal6"
      }
     ],
     "varargs": false,
@@ -982,11 +918,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1003,15 +935,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "x"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "y"
      }
     ],
     "varargs": false,
@@ -1061,11 +989,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "state"
      }
     ],
     "varargs": false,
@@ -1121,16 +1045,12 @@
    "name": "SetMode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "mode"
      }
     ],
     "varargs": false,
@@ -1154,20 +1074,16 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "cdecl",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1179,15 +1095,11 @@
    "name": "PlaySoundStream",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData",
       "name": null
      }
     ],
@@ -1200,20 +1112,16 @@
    "name": "AudioSetPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1236,20 +1144,16 @@
    "name": "PlaySoundIfEnabled",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *pSound",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -1272,24 +1176,20 @@
    "name": "PlaySceneMusic",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "char *pszScene",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszArea",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1301,15 +1201,11 @@
    "name": "PlayCombatMusic",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszSceneName",
       "name": null
      }
     ],
@@ -1333,19 +1229,15 @@
    "name": "PlayAmbientSound",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "char *pszName",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbAudioManager *pAudioMgr",
       "name": null
      }
     ],
@@ -1417,15 +1309,11 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "char *pszBuf",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      }
     ],
@@ -1449,19 +1337,15 @@
    "name": "DestroyString",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD2",
       "name": null
      }
     ],
@@ -1474,20 +1358,16 @@
    "name": "FreeSoundBuffer",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1499,23 +1379,19 @@
    "name": "ComparePointers",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *p_DWORD2",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD3",
       "name": null
      }
     ],
@@ -1528,23 +1404,19 @@
    "name": "InitSceneObjects",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "int *",
+      "type": "int *p_DWORD2",
       "name": null
      }
     ],
@@ -1557,15 +1429,11 @@
    "name": "UpdateRenderState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *lpString",
       "name": null
      }
     ],
@@ -1581,7 +1449,20 @@
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "int *p_DWORD",
+      "name": null
+     },
+     {
+      "type": "FILE *Stream",
+      "name": null
+     },
+     {
+      "type": "int *p_DWORD2",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -1593,7 +1474,28 @@
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CScreenMode *pScreen",
+      "name": null
+     },
+     {
+      "type": "const char *szFilename",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -1604,16 +1506,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fProgress"
      }
     ],
     "varargs": false,
@@ -1642,15 +1540,11 @@
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "_DWORD *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "_DWORD *a2",
       "name": null
      }
     ],
@@ -1687,16 +1581,12 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "UI 可见性检查（switch 状态）",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "thisa"
      }
     ],
     "varargs": false,

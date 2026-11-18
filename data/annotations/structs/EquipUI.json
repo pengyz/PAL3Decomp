@@ -549,15 +549,11 @@
    "source": "pdb",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "uchar",
       "name": null
      }
     ],
@@ -617,24 +613,20 @@
    "name": "UpdateSlot",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nSlotIdx"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nItemID"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nCount"
      }
     ],
     "varargs": false,
@@ -646,20 +638,16 @@
    "name": "HandleInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nInputID"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nParam"
      }
     ],
     "varargs": false,
@@ -675,12 +663,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "bVisible"
      }
     ],
     "varargs": false,
@@ -692,20 +676,16 @@
    "name": "UpdateDisplay",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nPage"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nSlot"
      }
     ],
     "varargs": false,
@@ -722,11 +702,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -742,10 +718,6 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -789,12 +761,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "nTab"
      }
     ],
     "varargs": false,
@@ -811,20 +779,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -863,12 +827,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nTab"
      }
     ],
     "varargs": false,
@@ -884,12 +844,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nTab"
      }
     ],
     "varargs": false,
@@ -905,12 +861,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nTab"
      }
     ],
     "varargs": false,
@@ -935,23 +887,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -980,11 +920,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1000,11 +936,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pCounter",
       "name": null
      }
     ],
@@ -1021,11 +953,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pCounter",
       "name": null
      }
     ],

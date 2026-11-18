@@ -103,23 +103,19 @@
    "name": "GetPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "float",
+      "name": "pPos"
+     },
+     {
+      "type": "float *pfVal",
       "name": null
      },
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],

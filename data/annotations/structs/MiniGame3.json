@@ -26,23 +26,19 @@
    "name": "LoadModels",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
+      "type": "const char *pszModel1",
       "name": null
      },
      {
-      "type": "char",
+      "type": "const char *pszModel2",
       "name": null
      },
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszModel3",
       "name": null
      }
     ],
@@ -66,15 +62,11 @@
    "name": "PushPopStack",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrixStack *pStack",
       "name": null
      }
     ],
@@ -87,15 +79,11 @@
    "name": "RenderWithTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrixStack *pStack",
       "name": null
      }
     ],

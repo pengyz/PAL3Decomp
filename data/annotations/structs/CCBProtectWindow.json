@@ -103,23 +103,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -142,16 +130,12 @@
    "name": "ValidateSlot",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,

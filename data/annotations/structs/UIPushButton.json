@@ -135,20 +135,16 @@
    "source": "fix:C2660:retn 8 unanimous + caller push x2 (table ptr then flag; fresh-IDB re-verified); param types provisional",
    "evidence_level": "A",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *pTemplate",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nFlag"
      }
     ],
     "varargs": false,
@@ -161,23 +157,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -245,20 +229,16 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -272,32 +252,28 @@
    "evidence_level": "unverified",
    "source": "| [parent 类型定谳 2026-10-25·A 级] 体证据链：sub_445BF0(parent,...) 读 parent+36 = UIWnd::m_childs:PtrArray（known_members @36 逐字段吻合，UI 树子节点注册）+ m_pfather=(UIWnd*)parent 存储 ⇒ parent=UIWnd*；原 int/gbVFileSystem* 系无类型期猜测化石",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
       "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "void *pRect",
       "name": null
      },
      {
-      "type": "void *",
+      "type": "UIWnd *parent",
       "name": null
      },
      {
-      "type": "unsigned int",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -310,20 +286,16 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | 签名定谳 2026-10-09（复做 10-06 已回滚项，但本次有 A 级方向判据）：二进制实证 2026-10-09：ret 0x8=2 栈参（0x440a18 c2 08 00）| local_vars 双栈槽 36/40 | arg1 被 _CalculateUV/CreateParentData 当 LPCSTR（0x53fd5f push ebp 入 0x608cbc \"Not Found %s In UI_opt.tli\" 的 %s 位）| 调用点 2 push 且实参为字符串字面量（0x4b0b2f push 0x5d37f8=\"UI\\GameMainUI\\System\\Saveon.tga\"，生成码被强转 (int)）| arg2 宽度 A 级=mov al,[esp+0x1c]+test al,al（1 字节），char/bool/单字节枚举不可分⇒取最小假设 char，语义未定 | 方向判据：调用点发 2 参⇒非'渲染丢参族'⇒签名侧（对照 _completeness_convergence_ledger.md:95） | P0-2 类型定谳收窄 2026-10-09：arg2 只保留**宽度**结论（A 级：0x440997 mov al,[esp+0x1c]+test al,al = 1 字节读取），**语义未定**——char/bool/单字节枚举不可分。取 `char` 而非 bool/unsigned char 的唯一理由是：三者在本仓 VC6 下均为 1 字节、生成指令同为 test al,al ⇒ **选择本身不影响 L1 字节**（宽度才是字节约束，具体 1 字节类型名不是）。⚠️ 该点与 codex 复核意见相左（其判'类型定谳违规'），已提交独立复核裁决；若裁决不接受，撤销 arg2 的显式类型、改回未定占位。 | 独立复核补证 2026-10-09：LoadTexture 的 ret 8 在 **0x440B93**（非 FormatText 的 0x440A18）、arg2 读点在 **0x440B17**（`8A 44 24 1C 84 C0` 同形）——上一 commit 把两方法共用一条证据，此处补齐。字节等价受控实证（项目同款 /O2 /Ob2 /Oi /Ot /Oy /Gd + VC6）：char/signed char/unsigned char/bool 四者编译 `if(a)` 字节全同 `8A 44 24 04 84 C0 74 05`，与原版 `8A 44 24 1C 84 C0 74 37` 同形；int 为 `8B 44 24 04 85 C0`（不同）⇒ **宽度才是字节约束，1 字节类型名不是**。⚠️ 约束：若日后 arg2 被外传给其他函数，须重新取证（届时 movsx/movzx 使类型名字节相关）。",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -390,20 +362,16 @@
    "name": "RenderQuadSlice",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -436,20 +404,16 @@
    "name": "RenderTile",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -479,11 +443,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {
@@ -506,16 +466,12 @@
    "evidence_level": "A",
    "name_note": "B6定谳(D组语义直读): nVal切m_bvisible/m_caption=可见性设置",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -534,11 +490,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {

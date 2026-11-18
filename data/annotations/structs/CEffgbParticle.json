@@ -57,36 +57,32 @@
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -99,16 +95,12 @@
    "source": "| [T138] 语义偏离名修正：@0x4C87A0 全函数体（795 字符）= 自调用+flag+operator delete（**标量删除析构经典形**）⇒ 语义名 `scalar deleting destructor`（CCBParabolaWindow 模式——~<Cls> 会与 T128 的 ~CEffgbParticle 撞名，T135 教训）；@0x4C6C10 Create 保留（粒子创建实体）",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "flags"
      }
     ],
     "varargs": false,
@@ -126,11 +118,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "pType"
      }
     ],
     "varargs": false,
@@ -142,16 +130,12 @@
    "name": "Attach",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -204,15 +188,11 @@
    "ordinal": 1,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -232,13 +212,9 @@
    "ordinal": 5,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -298,15 +274,19 @@
    "name": "CreateInstance",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CEffgbParticle *pSrc",
       "name": null
      },
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "CEffgbParticle *pParam",
       "name": null
      }
     ],
@@ -350,13 +330,9 @@
    "ordinal": 2,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -390,13 +366,9 @@
    "ordinal": 11,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -419,13 +391,9 @@
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -448,13 +416,9 @@
    "ordinal": 14,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -545,7 +509,12 @@
    "sig_model": {
     "return": "int",
     "cc": "fastcall",
-    "params": [],
+    "params": [
+     {
+      "type": "CEffgbParticle *a1",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": true
    },

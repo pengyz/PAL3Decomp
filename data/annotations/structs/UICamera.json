@@ -100,20 +100,16 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "相机视锥可见性检测",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfTargetPos",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "bNearVisible"
      }
     ],
     "varargs": false,
@@ -131,11 +127,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -148,15 +140,11 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "可见性过滤搜索",
    "sig_model": {
-    "return": "int",
+    "return": "float *",
     "cc": "cdecl",
     "params": [
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pMat",
       "name": null
      }
     ],

@@ -135,11 +135,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -218,16 +214,12 @@
    "ordinal": 10,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -298,16 +290,12 @@
    "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -356,16 +344,12 @@
    "ordinal": 12,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -384,11 +368,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nType"
      }
     ],
     "varargs": false,
@@ -402,15 +382,11 @@
    "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(gbMatrix4 *pMat)：idapro decompile（session 1af5c89c）铁证：`gbMatrix4::LoadIdentity((gbMatrix4 *)nVal)` + `*(_DWORD *)(nVal + 68/72)` 偏移写 ⇒ **nVal 实为 gbMatrix4***（占位 int 错型）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrix4 *pMat",
       "name": null
      }
     ],
@@ -524,13 +500,9 @@
    "declaration_only": true,
    "evidence_level": "A",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -557,16 +529,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -583,11 +551,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -599,16 +563,12 @@
    "name": "Render",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,

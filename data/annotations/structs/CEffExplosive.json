@@ -200,20 +200,16 @@
    "name": "InitDefaultUVSet",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nFramePerRow"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nFramePerCol"
      }
     ],
     "varargs": false,
@@ -225,15 +221,11 @@
    "name": "LoadTexture",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pFileName",
       "name": null
      }
     ],
@@ -259,20 +251,16 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDeltaTime"
      },
      {
       "type": "int",
-      "name": null
+      "name": "fTime"
      }
     ],
     "varargs": false,
@@ -284,15 +272,11 @@
    "name": "Create",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -327,13 +311,9 @@
    "name": "GetEditorTaskDescription",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -353,13 +333,9 @@
    "name": "GetEditorObjDescription",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -404,13 +380,9 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -443,13 +415,9 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -488,13 +456,9 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null

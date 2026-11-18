@@ -617,11 +617,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "pathAddr"
      }
     ],
     "varargs": false,
@@ -633,15 +629,11 @@
    "name": "SetAppName",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *name",
       "name": null
      }
     ],
@@ -654,15 +646,11 @@
    "name": "LoadFromFile",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *filename",
       "name": null
      }
     ],
@@ -679,11 +667,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *dir",
       "name": null
      }
     ],
@@ -786,20 +770,16 @@
    "name": "OpenScript",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -925,24 +905,16 @@
    "name": "LoadModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbGeomNode *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *szFilename",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nActionIdx"
      }
     ],
     "varargs": false,
@@ -998,16 +970,12 @@
    "name": "GetCount",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1019,19 +987,15 @@
    "name": "DestroyInstances",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "nActionID"
      },
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -1044,9 +1008,14 @@
    "name": "InitParticleSlht",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "PalScript *__thiscall",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "PalScript *pPalScript",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
@@ -1056,19 +1025,15 @@
    "name": "EvalExpression",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -1081,20 +1046,16 @@
    "name": "GetVarRef",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pOut",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nIdx"
      }
     ],
     "varargs": false,
@@ -1106,27 +1067,23 @@
    "name": "EvalExprTree",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "void *pData",
       "name": null
      },
      {
-      "type": "void *",
+      "type": "int *p_DWORD2",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -1684,20 +1641,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -1727,23 +1680,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -1761,19 +1702,15 @@
    "name": "SetDialogTemplate",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "LPSTR",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CHAR *String1",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "CHAR *lpString2",
       "name": null
      }
     ],
@@ -1786,15 +1723,11 @@
    "name": "LoadSceneConfig",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *filename",
       "name": null
      }
     ],
@@ -1811,11 +1744,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *filename",
       "name": null
      }
     ],
@@ -1828,23 +1757,19 @@
    "name": "LoadVisNode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "struct gbVFileSystem *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
       "type": "double",
+      "name": "String2"
+     },
+     {
+      "type": "char *pszBuf",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      }
     ],
@@ -1872,20 +1797,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal2"
      }
     ],
     "varargs": false,
@@ -1897,16 +1818,12 @@
    "name": "ResolveScope",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1942,15 +1859,11 @@
    "name": "ConstructStringObj",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -1967,16 +1880,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "unsigned int",
+      "name": "dwVal"
      },
      {
       "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "dwVal2"
      }
     ],
     "varargs": false,
@@ -1993,11 +1902,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nDescriptor"
      }
     ],
     "varargs": false,
@@ -3270,20 +3175,16 @@
    "name": "GetRayToScreen",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "void *pRay",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "LPPOINT",
+      "name": "pResult"
      }
     ],
     "varargs": false,
@@ -3436,16 +3337,12 @@
    ],
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleID"
      }
     ],
     "varargs": false,
@@ -3458,16 +3355,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3523,23 +3416,19 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "对象拷贝/赋值（vftable+m_pinst）",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "_BYTE *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
+      "type": "_BYTE *thisa",
       "name": null
      },
      {
-      "type": "int",
+      "type": "_DWORD *a2",
       "name": null
      },
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "_BYTE *a3",
       "name": null
      }
     ],

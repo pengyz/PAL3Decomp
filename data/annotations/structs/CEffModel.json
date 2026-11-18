@@ -92,15 +92,19 @@
    "name": "CreateInstance",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CEffModel *pSrc",
       "name": null
      },
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "CEffModel *pParam",
       "name": null
      }
     ],
@@ -114,15 +118,11 @@
    "ordinal": 1,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -174,16 +174,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -215,13 +211,9 @@
    "ordinal": 11,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -244,13 +236,9 @@
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -273,13 +261,9 @@
    "ordinal": 14,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -377,13 +361,9 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -416,13 +396,9 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null

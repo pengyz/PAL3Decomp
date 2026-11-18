@@ -120,20 +120,16 @@
    "name": "LoadCompass",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *arg0",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -190,16 +186,12 @@
    "name": "ValidateInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
       "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,
@@ -258,11 +250,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -279,11 +267,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -301,11 +285,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -319,23 +299,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -359,16 +327,12 @@
    "name_source": "IDA语义分析 2026-11-01 批6",
    "name_note": "场景切换处理（光标+场景信息）",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,

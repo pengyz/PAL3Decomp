@@ -32,19 +32,11 @@
    "name": "UpdateCameraAndRole",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "struct gbGfxManager *p",
       "name": null
      }
     ],

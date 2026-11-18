@@ -56,24 +56,16 @@
    "name": "InitFromFile",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "double",
+      "type": "const gbGeomNode *pGeomNode",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -85,19 +77,11 @@
    "name": "LoadFromNode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "double",
+      "type": "const gbGeomNode *pNode",
       "name": null
      }
     ],
@@ -111,16 +95,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 24/4=6 参 vs 签名 0——补 6 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,

@@ -84,11 +84,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int *",
+      "type": "unsigned int *pPoint",
       "name": null
      }
     ],
@@ -101,32 +97,28 @@
    "name": "CreateInfoPanel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -138,32 +130,28 @@
    "name": "CreateMonsterUI",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -175,32 +163,28 @@
    "name": "CreateStatusPanel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -216,12 +200,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -237,12 +217,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,

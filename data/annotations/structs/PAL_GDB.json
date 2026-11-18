@@ -44,15 +44,11 @@
    "name": "LoadLanguage",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *path",
       "name": null
      }
     ],
@@ -82,16 +78,12 @@
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "GDB 角色数据重置（fightstate 清零）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -119,12 +111,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "ID"
      }
     ],
     "varargs": false,
@@ -142,11 +130,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -163,11 +147,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -197,11 +177,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -226,20 +202,16 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(IsValidItem): int(int,int,int); 原注解ret-N adjudication (round 10): callee cl",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nItemID"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -250,20 +222,16 @@
    "name": "LoadByType",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -285,11 +253,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -364,12 +328,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "index"
      }
     ],
     "varargs": false,
@@ -392,19 +352,15 @@
    "name": "FindItemByID",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -422,11 +378,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -443,11 +395,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -464,11 +412,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -517,24 +461,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "HWND",
+      "name": "hDlg"
      },
      {
-      "type": "int",
-      "name": null
+      "type": "UINT",
+      "name": "msg"
      },
      {
-      "type": "unsigned int",
-      "name": null
+      "type": "WPARAM",
+      "name": "wParam"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "LPARAM",
+      "name": "lParam"
      }
     ],
     "varargs": false,
@@ -546,16 +486,12 @@
    "name": "ShowDetailPanel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "LRESULT",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "HWND",
+      "name": "hDlg"
      }
     ],
     "varargs": false,
@@ -578,16 +514,12 @@
    "name": "IsItemConsumable",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nItemId"
      }
     ],
     "varargs": false,
@@ -599,16 +531,12 @@
    "name": "IsItemEquipment",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nItemId"
      }
     ],
     "varargs": false,
@@ -620,16 +548,12 @@
    "name": "IsRoleAlive",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleId"
      }
     ],
     "varargs": false,
@@ -641,16 +565,12 @@
    "name": "IsRoleDead",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleId"
      }
     ],
     "varargs": false,
@@ -662,16 +582,12 @@
    "name": "IsItemConsumed",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nItemId"
      }
     ],
     "varargs": false,
@@ -683,16 +599,12 @@
    "name": "GetSkillLevel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -704,16 +616,12 @@
    "name": "GetSkillType",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -725,16 +633,12 @@
    "name": "IsSkillUsable",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -746,16 +650,12 @@
    "name": "IsSkillEmpty",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -767,27 +667,23 @@
    "name": "SearchAllItems",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD2",
       "name": null
      }
     ],
@@ -800,27 +696,23 @@
    "name": "SearchItemLoop",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      }
     ],
@@ -833,20 +725,16 @@
    "name": "IsRoleSkillValid",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int *",
+      "type": "unsigned int *pdwVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -858,15 +746,11 @@
    "name": "IterateInventory",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -879,16 +763,12 @@
    "name": "BuildItemArray",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -912,16 +792,12 @@
    "name": "SetupSkillData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -933,16 +809,12 @@
    "name": "IsRoleAlive2",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,

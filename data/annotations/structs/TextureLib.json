@@ -250,15 +250,11 @@
    "name": "SetPath",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *path",
       "name": null
      }
     ],
@@ -282,12 +278,16 @@
    "name": "CheckEndKey",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "LPCSTR",
+      "name": "lpString1"
+     },
+     {
+      "type": "LPCSTR",
+      "name": "lpString2"
      }
     ],
     "varargs": false,
@@ -314,11 +314,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *String",
       "name": null
      }
     ],
@@ -332,19 +328,15 @@
    "ordinal": 0,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
+      "type": "char *lpString2",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *Delimiter",
       "name": null
      }
     ],
@@ -357,15 +349,11 @@
    "name": "LoadTexture",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszPath",
       "name": null
      }
     ],
@@ -428,11 +416,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {

@@ -50,24 +50,20 @@
    "name": "OnMessage_b950",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "msg"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "wparam"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "lparam"
      }
     ],
     "varargs": false,
@@ -96,20 +92,16 @@
    "name": "LoadResourceEx",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -123,16 +115,12 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "flags"
      }
     ],
     "varargs": false,
@@ -166,23 +154,11 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -207,16 +183,12 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,

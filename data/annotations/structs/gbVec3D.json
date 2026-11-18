@@ -26,11 +26,15 @@
    "name": "Copy",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVec3D *",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
+      "name": "nSrcIndex"
+     },
+     {
+      "type": "gbVec3D *pSrc",
       "name": null
      }
     ],

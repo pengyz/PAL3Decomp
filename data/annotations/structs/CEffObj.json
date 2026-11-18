@@ -103,13 +103,9 @@
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); 叶值==基值真·继承实现",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -125,15 +121,11 @@
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); xor al,al; retn 4 (4B stub)",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -148,13 +140,9 @@
    "source": "binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn 4 (空实现)",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null

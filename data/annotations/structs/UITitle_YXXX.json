@@ -97,24 +97,20 @@
    "name": "CreateTitle",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -154,23 +150,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -199,19 +183,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "hinstDLL"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "fdwReason"
      },
      {
       "type": "int",
-      "name": null
+      "name": "lpvReserved"
      }
     ],
     "varargs": false,
@@ -236,11 +216,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {

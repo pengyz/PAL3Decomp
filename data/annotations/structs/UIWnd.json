@@ -111,11 +111,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *a2",
       "name": null
      }
     ],
@@ -253,15 +249,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "a2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "a3"
      }
     ],
     "varargs": false,
@@ -301,7 +293,7 @@
    "evidence_level": "chain_unified",
    "source": "binary:UIWnd真表slot4(Create), registry名吻合",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -309,15 +301,11 @@
       "name": null
      },
      {
-      "type": "int",
+      "type": "tagRECT *",
       "name": null
      },
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "UIWnd *",
       "name": null
      }
     ],
@@ -335,10 +323,6 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -363,13 +347,9 @@
    "source": "C7_backfill 20261115: 自有槽缺条目(定义路由断链), 名签=槽位契约",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -396,23 +376,11 @@
   "0x00445c60": {
    "name": "Update",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {

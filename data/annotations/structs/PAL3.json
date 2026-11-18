@@ -576,16 +576,12 @@
    "name": "Update",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "dt"
      }
     ],
     "varargs": false,
@@ -621,16 +617,12 @@
    "name": "CheckSystemRequire",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "HINSTANCE",
+      "name": "hinst"
      }
     ],
     "varargs": false,
@@ -654,15 +646,11 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *lpCmdLine",
       "name": null
      }
     ],
@@ -711,20 +699,16 @@
    "name": "DefaultKeyMap",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -762,19 +746,15 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "HKEY",
+      "name": "hKey"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "CHAR *lpSubKey",
       "name": null
      }
     ],
@@ -825,9 +805,26 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "unsigned int *const",
+      "name": "pdwVal"
+     },
+     {
+      "type": "int",
+      "name": "monsterid"
+     },
+     {
+      "type": "Role *side",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": "pMonster"
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -838,9 +835,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "const NPCInfo *pNPCInfo",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "tmp"
+     },
+     {
+      "type": "Role *side",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -1012,11 +1022,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1029,9 +1035,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "const CHAR *szSubKey",
+      "name": null
+     },
+     {
+      "type": "const CHAR *szValueName",
+      "name": null
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1053,9 +1068,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1066,9 +1090,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "const CHAR *szValueName",
+      "name": null
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1079,9 +1112,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1115,9 +1157,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1128,9 +1179,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "CHAR *lpSubKey",
+      "name": null
+     },
+     {
+      "type": "DWORD",
+      "name": "dwDisposition"
+     }
+    ],
     "varargs": true,
     "pending": true
    },
@@ -1141,16 +1201,12 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1178,12 +1234,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -1196,16 +1248,12 @@
    "_misattrib_evidence": "max_offset=124>class_size=28",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1308,24 +1356,20 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int RandomPickValues",
     "cc": "cdecl",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -1342,16 +1386,12 @@
    },
    "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "HINSTANCE",
+      "name": "hInstance"
      }
     ],
     "varargs": false,

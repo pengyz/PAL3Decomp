@@ -1396,12 +1396,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -1425,20 +1421,16 @@
    "name": "RenderRole",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrixStack *pStack",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1465,24 +1457,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pPos",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -1494,24 +1482,20 @@
    "name": "UpdateRole",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1527,11 +1511,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pTarget",
       "name": null
      }
     ],
@@ -1544,15 +1524,11 @@
    "name": "UpdateAnimation",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -1580,11 +1556,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pOut",
       "name": null
      }
     ],
@@ -1613,11 +1585,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "index"
      }
     ],
     "varargs": false,
@@ -1629,20 +1597,16 @@
    "name": "BindPartyToScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1654,15 +1618,11 @@
    "name": "CheckMoveCollisionDist",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -1732,24 +1692,20 @@
    "name": "SetMoveSpeed",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fSpeed"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nFlag"
      }
     ],
     "varargs": false,
@@ -1767,11 +1723,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -1784,20 +1736,16 @@
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pResult",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nFlag"
      }
     ],
     "varargs": false,
@@ -1809,20 +1757,16 @@
    "name": "SetMoveTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pTargetPos",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -1834,20 +1778,16 @@
    "name": "IsPathComplete",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pTargetPos",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -1863,16 +1803,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDeltaTime"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -1895,15 +1831,11 @@
    "name": "SetTargetRotation",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "gbVec3D *pTarget",
       "name": null
      }
     ],
@@ -1922,11 +1854,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -1944,11 +1872,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nParam"
      }
     ],
     "varargs": false,
@@ -2005,28 +1929,24 @@
    "evidence_level": "unverified",
    "lvars_source": " | L-VAR 2026-11-12 R2类(asm寄存器别名): reg_EAX = (ulong)(&reg_ESI[..].m_fSpeed + 2) 取址惯例存地址, 下标写 [1]/[2]=元素——真值指针槽(unsigned long*), C2109/C2106 x9 消 | 移除 2026-11-12: 重导出后 Hex-Rays 已自洽(reg_EAX 零出现, gbVec3D pB 真型出现)——F83 reg_ 族系 codegen stage5 注入伪名,属留批 F 深水区, 非 lvars 可修",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "fInput"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "bCollide"
      }
     ],
     "varargs": false,
@@ -2042,20 +1962,16 @@
    },
    "lvars_source": " | L-VAR 2026-11-11 双生命期放开试点(IDB通路): decomp pTargetPos=0.0f(float初始化)+((UIWnd*)pTargetPos[1])指针数组读——IDB user type void* 后 Hex-Rays 按真类型自洽重渲染(数据流视图唯一全知者); 纯赢门在 IDB 通路下放开 | L-VAR 2026-11-12 真值修正(反汇编0x412A90): 槽=3相邻栈字(0x0c/0x10/0x14), 前8字节mov 0双写+fstp float位写+lea 传址 SetMoveTarget——gbVec3D BYREF(x/y/z), 原 void* 系猜测(重渲染出 0.0 double 位写炸 VC6)",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "__int64",
+      "name": "tileXY"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -2071,16 +1987,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "fStepSize"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2092,16 +2004,12 @@
    "name": "AdvanceToTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "double",
     "cc": "thiscall",
     "params": [
      {
       "type": "double",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
+      "name": "fDelta"
      }
     ],
     "varargs": false,
@@ -2113,19 +2021,15 @@
    "name": "UpdateMovement_4350",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "double",
     "cc": "thiscall",
     "params": [
      {
       "type": "double",
-      "name": null
+      "name": "result"
      },
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "gbVec3D *pB",
       "name": null
      }
     ],
@@ -2138,16 +2042,12 @@
    "name": "UpdateActionState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2159,15 +2059,11 @@
    "name": "InitPathTracking",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *nFlags",
       "name": null
      }
     ],
@@ -2180,15 +2076,11 @@
    "name": "RestoreMoveMode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *nFlags",
       "name": null
      }
     ],
@@ -2201,16 +2093,12 @@
    "name": "UpdateTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "arg0"
      }
     ],
     "varargs": false,
@@ -2233,20 +2121,16 @@
    "name": "UpdateMoveSubMode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "double",
     "cc": "thiscall",
     "params": [
      {
       "type": "double",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
+      "name": "result"
      },
      {
       "type": "float",
-      "name": null
+      "name": "result_4"
      }
     ],
     "varargs": false,
@@ -2258,16 +2142,12 @@
    "name": "ScanMoveDirections",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fRadius"
      }
     ],
     "varargs": false,
@@ -2279,16 +2159,12 @@
    "name": "UpdateFollowerMovement",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2304,16 +2180,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -2325,24 +2197,20 @@
    "name": "IsTileInBounds",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nY"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2354,28 +2222,24 @@
    "name": "SetRoleGridPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2387,24 +2251,20 @@
    "name": "CheckMoveCollision",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int *index",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2416,28 +2276,24 @@
    "name": "IsTilePassable",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "nTileType"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nSceneIdx"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nX"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nY"
      }
     ],
     "varargs": false,
@@ -2449,24 +2305,20 @@
    "name": "ValidatePathIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "index"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nY"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2478,16 +2330,12 @@
    "name": "NotifyPathEnd",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2499,15 +2347,11 @@
    "name": "CheckScriptTrigger",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "struct gbVec3D *p",
       "name": null
      }
     ],
@@ -2531,20 +2375,16 @@
    "name": "SetTileTypeVisible",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
+      "type": "int",
+      "name": "nTileType"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "bVisible"
      }
     ],
     "varargs": false,
@@ -2560,11 +2400,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -2582,11 +2418,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2599,15 +2431,11 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *pMatrixStack",
       "name": null
      }
     ],
@@ -2620,24 +2448,20 @@
    "name": "MoveToTileCheck",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nTileX"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nTileY"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -2649,16 +2473,12 @@
    "name": "InterpolateMoveFrame",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2670,15 +2490,11 @@
    "name": "SetupMoveState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -2706,32 +2522,28 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -2743,28 +2555,24 @@
    "name": "GetActorState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "thisa"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -2776,16 +2584,12 @@
    "name": "UpdateFollowBehavior",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDelta"
      }
     ],
     "varargs": false,
@@ -2797,15 +2601,11 @@
    "name": "SetActorTexture",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      }
     ],
@@ -2818,16 +2618,12 @@
    "name": "ApproachTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2855,16 +2651,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -2897,24 +2689,20 @@
    "name": "IsRoleInRange",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
+      "name": "index"
+     },
+     {
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2926,27 +2714,23 @@
    "name": "SetRoleParam",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
+      "name": "index"
+     },
+     {
+      "type": "float *pfVal",
       "name": null
      },
      {
-      "type": "float *",
+      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -2963,28 +2747,24 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int *pResult",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *nFlag",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2996,35 +2776,31 @@
    "name": "ValidatePath",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int *pResult",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *nFlag",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
-      "type": "int *",
+      "type": "int **a7",
       "name": null
      }
     ],
@@ -3037,35 +2813,31 @@
    "name": "GetPathTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int *pResult",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *nFlag",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "int *",
+      "type": "int **a7",
       "name": null
      }
     ],
@@ -3082,32 +2854,28 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
+      "name": "arg0"
+     },
+     {
+      "type": "int",
+      "name": "index"
+     },
+     {
+      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -3119,20 +2887,16 @@
    "name": "BuildPathSegment",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3193,20 +2957,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3227,27 +2987,23 @@
     "params": [
      {
       "type": "int",
+      "name": "index"
+     },
+     {
+      "type": "float *pfVal",
+      "name": null
+     },
+     {
+      "type": "float *pfVal2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3265,11 +3021,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3287,15 +3039,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nType"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -3311,12 +3059,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -3333,15 +3077,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nSceneIdx"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nRegion"
      }
     ],
     "varargs": false,
@@ -3353,19 +3093,15 @@
    "name": "UpdateMoveInterpolation",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "float *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal2",
       "name": null
      }
     ],
@@ -3393,16 +3129,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszAction",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -3453,20 +3185,16 @@
    "name": "AddVec3ToTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -3478,20 +3206,16 @@
    "name": "IsInBounds",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -3503,20 +3227,16 @@
    "name": "TryMoveToTarget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "__int16",
+      "name": "pData"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3533,11 +3253,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3553,11 +3269,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -3570,20 +3282,16 @@
    "name": "StartLinearMove",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pTargetPos",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nMode"
      }
     ],
     "varargs": false,
@@ -3617,15 +3325,11 @@
    "name": "AdvancePathStep",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -3638,16 +3342,12 @@
    "name": "SetBlendMode",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fAlpha"
      }
     ],
     "varargs": false,
@@ -3663,11 +3363,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -3685,15 +3381,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -3710,11 +3402,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3726,15 +3414,11 @@
    "name": "LoadWeaponModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszRoleName",
       "name": null
      }
     ],
@@ -3747,15 +3431,11 @@
    "name": "InterpolateHeight",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -3783,11 +3463,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -3800,15 +3476,11 @@
    "name": "ClearColors",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "_BYTE *p_BYTE",
       "name": null
      }
     ],
@@ -3837,11 +3509,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3864,16 +3532,12 @@
    "name": "GetMapNodePtr",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -3890,23 +3554,19 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3918,23 +3578,11 @@
    "name": "GetFontColor",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "size_t",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "FILE *Stream",
       "name": null
      }
     ],
@@ -3947,23 +3595,11 @@
    "name": "ClearPathData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "FILE *Buffer",
       "name": null
      }
     ],
@@ -3976,15 +3612,11 @@
    "name": "BuildModelPath",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      }
     ],
@@ -4009,16 +3641,12 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "cdecl",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4058,11 +3686,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4079,15 +3703,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4161,15 +3781,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4185,12 +3801,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4225,20 +3837,16 @@
    "ordinal": 2,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -4256,18 +3864,14 @@
     "params": [
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -4307,16 +3911,12 @@
    "name": "AdjustHeight",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4340,16 +3940,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 68/4=17 参 vs 签名 0——补 17 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -4361,15 +3957,11 @@
    "name": "NormalizeDirection",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfDir",
       "name": null
      }
     ],
@@ -4383,20 +3975,16 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pVec",
       "name": null
      },
      {
       "type": "float",
-      "name": null
+      "name": "fScale"
      }
     ],
     "varargs": false,
@@ -4408,19 +3996,15 @@
    "name": "LoadRoleImage",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "unsigned char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      },
      {
-      "type": "char",
+      "type": "const char *pszPath",
       "name": null
      }
     ],
@@ -4438,15 +4022,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nTileX"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nTileY"
      }
     ],
     "varargs": false,
@@ -4491,16 +4071,12 @@
    "name": "GetRoleName",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -4512,20 +4088,16 @@
    "name": "GetPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pOut",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4538,16 +4110,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "state"
      }
     ],
     "varargs": false,
@@ -4559,20 +4127,16 @@
    "name": "GetTile",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nX"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nY"
      }
     ],
     "varargs": false,
@@ -4589,11 +4153,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4629,16 +4189,12 @@
    "source": "重定谳 2026-10-07：偏移 672/884-887（台账 rework 族）=RoleSystem 归属（非 Actor）·SetColor 语义名（RGBA 字节写 0x374-377 证）·unskip 同批",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nColor"
      }
     ],
     "varargs": false,
@@ -4759,10 +4315,6 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null

@@ -223,11 +223,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -258,11 +254,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -281,11 +273,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -309,28 +297,16 @@
    "name": "SaveData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "FILE *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "Data"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -418,16 +394,12 @@
    "source": "| [T127] 语义偏离名修正：@0x4B2920 全函数体（3922 字符）调用簇=Actor::LoadActorModel/LoadSaveData/ChoseCompose::LayoutItem/UIPushButton::CreateFromTemplate（**加载族**）⇒ 语义名 LoadData（禁伪语义 ✓ 调用簇证据）；@0x4B2750 SaveData 保留（DoSceneTransition/CGameData::Load+WriteRegistry 存档形）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "Data"
      }
     ],
     "varargs": false,
@@ -442,24 +414,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "CCBUI **deltatime",
+      "name": "nVal1"
      },
      {
       "type": "int",
@@ -504,10 +464,6 @@
       "name": null
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "unsigned int",
       "name": null
      },
@@ -537,11 +493,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nPage"
      }
     ],
     "varargs": false,
@@ -554,16 +506,12 @@
    "source": "vtable_gap_fill_v1(from UITitle_JDHY.json) | [T142R] 跨类重复条目同名同步（同 UITitle_JDHY.json 0x004B0520）：T138 形 objdump A 级=call 0x4B0540(~UITitle_JDHY,vptr 0x56F33C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构（T142 曾判『误名』—— 误：首步被调即真析构）",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "flags"
      }
     ],
     "varargs": false,

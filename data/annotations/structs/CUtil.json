@@ -295,16 +295,12 @@
    "_misattrib_evidence": "max_offset=1752>class_size=4",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "nDelta"
      }
     ],
     "varargs": false,
@@ -321,11 +317,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pCmd",
       "name": null
      }
     ],

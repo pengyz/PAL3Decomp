@@ -142,20 +142,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -172,32 +168,28 @@
    "ordinal": 7,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "void *pRect",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "parent"
      }
     ],
     "varargs": false,
@@ -227,19 +219,15 @@
    "name": "LoadEncampModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
+      "type": "const char *pszModelName",
       "name": null
      },
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      }
     ],
@@ -296,16 +284,12 @@
    "name": "UpdateTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -317,15 +301,11 @@
    "name": "LoadModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszModelName",
       "name": null
      }
     ],

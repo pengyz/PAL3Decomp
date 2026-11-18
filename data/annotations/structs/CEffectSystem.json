@@ -93,16 +93,12 @@
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "顶点缓冲初始化（sub_4C5D00+flag 设 1）",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -252,16 +248,12 @@
    "name": "SetVisible",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "effect"
      }
     ],
     "varargs": false,
@@ -274,16 +266,12 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11e 反汇编反转: 入口 push esi; mov esi,ecx 读 [esi+4]/[esi+5] = thiscall; 栈访问仅 [esp+8] 一参; 调方 v22->HandleViewMove(v2) 一实参——旧 static(float,float) 双错",
    "evidence_level": "A",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -319,40 +307,28 @@
    "name": "CreateEffectChain",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CCBUI *pCBUI",
       "name": null
      },
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
+      "type": "HWND",
+      "name": "hDlg"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "bReadOnly"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -364,15 +340,19 @@
    "name": "CreateEffect",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "CEffectSystem *pSrc",
       "name": null
      },
      {
       "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "CEffectSystem *pParam",
       "name": null
      }
     ],
@@ -430,11 +410,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *Block",
       "name": null
      },
      {
@@ -509,11 +485,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -537,10 +509,6 @@
      {
       "type": "int",
       "name": null
-     },
-     {
-      "type": "int",
-      "name": null
      }
     ],
     "varargs": false,
@@ -556,20 +524,16 @@
    "signature_note": "set_signature: asm 行 290910-290924：`retn 8` ⇒ 2 个栈参数；第一参 `[esp+arg_0]` 作为索引传给 sub_4C5940 再用于 `[esi+eax*4+118h]`（取 m_pEffect[idx]）；第二参 `mov dl,[esp+4+arg_4]` 后 `mov [ecx+0Dh],dl` 是**字节存储**到 CEffect::m_bVisible ⇒ 第二参为字节、返回值为 void（函数未对 eax 作有效设置，调用方也不使用返回值）。搬移前该条带的是原类残留签名 `struct _Texture_uv & (_Texture_uv *)`，导致生成头把它发射成 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`（pal3/src/Effect/CEffectSystem.h:44）—— 与函数体、与所属类均不符，已证伪。 (was: struct _Texture_uv & (_Texture_uv *))",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      },
      {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "bVisible"
      }
     ],
     "varargs": false,

@@ -423,15 +423,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -449,27 +445,23 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -537,23 +529,11 @@
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "剥壳定谳(验证pass): Update: gbRay::IntersectPlane拾取+m_pCam/m_pScene=逐帧场景更新强实证 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
@@ -568,16 +548,12 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -589,24 +565,20 @@
    "name": "GetRoleIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nameCrc"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -623,39 +595,35 @@
     "params": [
      {
       "type": "int",
+      "name": "nameCrc"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal5"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal6"
      }
     ],
     "varargs": false,
@@ -668,16 +636,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -689,16 +653,12 @@
    "name": "GetStageRole",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "idx"
      }
     ],
     "varargs": false,
@@ -710,16 +670,12 @@
    "name": "GetStageRoleByIdx",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "idx"
      }
     ],
     "varargs": false,
@@ -732,16 +688,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "eTask"
      }
     ],
     "varargs": false,
@@ -754,16 +706,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -775,23 +723,19 @@
    "name": "DelTask",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "_BYTE *p_BYTE",
       "name": null
      },
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -805,16 +749,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -841,20 +781,16 @@
    "name": "GetTaskID",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nIndex"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -867,23 +803,19 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "bool *bFinished",
       "name": null
      },
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "unsigned int *",
+      "type": "unsigned int *dwReturn",
       "name": null
      }
     ],
@@ -897,23 +829,15 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | drop enum keyword: generated header fwd-declares class ECBStageTaskState (line 21) and the elaborate enum specifier in the member decl caused MSVC C2011 class-type-redefinition; pointer width identical",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      },
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "ECBStageTaskState *State",
       "name": null
      }
     ],
@@ -927,16 +851,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -948,24 +868,20 @@
    "name": "IsTaskValidButNotFinish",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned char *",
     "cc": "stdcall",
     "params": [
      {
-      "type": "unsigned int *",
-      "name": null
-     },
-     {
-      "type": "unsigned int *",
+      "type": "unsigned char *result",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "eTask"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -978,16 +894,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "dwTaskID"
      }
     ],
     "varargs": false,
@@ -1000,16 +912,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1022,16 +930,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "it",
+      "name": "n"
      }
     ],
     "varargs": false,
@@ -1048,20 +952,16 @@
    },
    "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): v8=dword 写(v3+20)后全字节算术基址(*(DWORD*)(v8+900/904/908/916) 实参); float 声明炸 C2440 x5",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
+      "type": "it",
+      "name": "n"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nSub"
      }
     ],
     "varargs": false,
@@ -1074,16 +974,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "it",
+      "name": "n"
      }
     ],
     "varargs": false,
@@ -1096,16 +992,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "it",
+      "name": "n"
      }
     ],
     "varargs": false,
@@ -1122,20 +1014,16 @@
    },
    "lvars_source": " | L-VAR 批二 2026-11-11(纯赢=全部使用点自洽): 同 0x4FCE70 平行块: v8=dword 写(v7+20)后字节算术基址",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
+      "type": "it",
+      "name": "n"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nSub"
      }
     ],
     "varargs": false,
@@ -1148,16 +1036,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -1170,16 +1054,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -1192,16 +1072,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -1218,11 +1094,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -1235,16 +1107,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,
@@ -1359,16 +1227,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "it",
+      "name": "n"
      }
     ],
     "varargs": false,
@@ -1381,16 +1245,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "Selected"
      }
     ],
     "varargs": false,
@@ -1538,11 +1398,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -1567,20 +1423,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "CCBStageRole *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "index"
      }
     ],
     "varargs": false,
@@ -1597,11 +1445,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1618,11 +1462,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1690,16 +1530,12 @@
    "name": "GetTurnSlotData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1727,11 +1563,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1747,12 +1579,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -1769,11 +1597,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1790,11 +1614,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1811,15 +1631,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1836,11 +1652,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1857,11 +1669,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1900,15 +1708,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1920,16 +1724,12 @@
    "name": "SetTaskState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1941,16 +1741,12 @@
    "name": "InitStage",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1973,28 +1769,24 @@
    "name": "UpdateTurnFlags",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal2"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal3"
      }
     ],
     "varargs": false,
@@ -2006,28 +1798,24 @@
    "name": "InitSlotFlags",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -2043,12 +1831,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -2060,20 +1844,16 @@
    "name": "CalculateTurnOrder",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "__int64",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2085,16 +1865,12 @@
    "name": "ResetAndSetSystem",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2151,16 +1927,12 @@
    "name": "ProcessAction",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "HWND",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -2173,16 +1945,12 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2205,20 +1973,16 @@
    "name": "FindThreadByParam",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,
@@ -2230,15 +1994,11 @@
    "name": "CheckGDBTypeCompat",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int *",
+      "type": "unsigned int *pdwVal",
       "name": null
      }
     ],
@@ -2256,11 +2016,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2277,11 +2033,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2298,11 +2050,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2314,23 +2062,15 @@
    "name": "ResetTurnData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int **a2",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "struct gbGfxManager *p",
       "name": null
      }
     ],
@@ -2359,11 +2099,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2375,15 +2111,11 @@
    "name": "HasTurnChanged",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      }
     ],
@@ -2408,16 +2140,12 @@
    "name": "ClearActionSlot",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2429,43 +2157,39 @@
    "name": "EnqueueCommand",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      },
      {
       "type": "float",
+      "name": "fVal"
+     },
+     {
+      "type": "const void *pData",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData2",
       "name": null
      }
     ],
@@ -2483,11 +2207,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2516,11 +2236,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2575,11 +2291,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2596,11 +2308,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2617,11 +2325,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2638,11 +2342,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2661,19 +2361,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "a2"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2693,23 +2389,19 @@
    "evidence_level": "unverified",
    "name_note": "B4定谳(中高,全体现已读): m_TaskArrC[nVal]读任务条目→装入m_pEditor->m_NewItem字段组(900/904/908等); 调用点ProcShowCost/TaskExecAttack传任务索引吻合; 前案OpenTaskEditor撤回(调用点外推教训)",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -2722,16 +2414,12 @@
    "name": "SetAlive",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
+      "type": "bool",
+      "name": "bAlive"
      }
     ],
     "varargs": false,
@@ -2837,16 +2525,12 @@
    "source": "pdb_ret | [T96] 返型 bool→int：A 级 objdump 原始无 setne 形（bool-ization 指纹 absent）+ source=pdb_ret（PDB 参考级）——T95 判据/T94 首例同族",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,
@@ -2875,11 +2559,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2896,11 +2576,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2928,11 +2604,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2949,11 +2621,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2970,11 +2638,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3026,11 +2690,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "void *thisa",
       "name": null
      }
     ],
@@ -3125,24 +2785,20 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
+      "type": "int",
+      "name": "index"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nAttacker"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3156,20 +2812,16 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "BOOL",
+      "name": "fpTask"
      }
     ],
     "varargs": false,
@@ -3183,15 +2835,11 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrixStack *fpTask",
       "name": null
      }
     ],
@@ -3206,16 +2854,12 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "dwStageTaskID"
      }
     ],
     "varargs": false,
@@ -3229,16 +2873,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "dwStageTaskID"
      }
     ],
     "varargs": false,
@@ -3264,16 +2904,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3287,16 +2923,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3334,16 +2966,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "fBladeTime"
      }
     ],
     "varargs": false,
@@ -3357,16 +2985,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "gbRay",
+      "name": "nActIndex"
      }
     ],
     "varargs": false,
@@ -3384,11 +3008,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "index"
      }
     ],
     "varargs": false,
@@ -3413,15 +3033,11 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "double",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *fp",
       "name": null
      }
     ],
@@ -3460,20 +3076,16 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
+      "type": "int",
+      "name": "fp"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "dwTaskID"
      }
     ],
     "varargs": false,
@@ -3487,16 +3099,12 @@
    "evidence_level": "A",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -3510,20 +3118,16 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3536,16 +3140,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3570,16 +3170,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "idx"
      }
     ],
     "varargs": false,
@@ -3611,16 +3207,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -3645,20 +3237,16 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -3672,20 +3260,16 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "pParam"
      },
      {
       "type": "char",
-      "name": null
+      "name": "dw1"
      }
     ],
     "varargs": false,
@@ -3698,44 +3282,40 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int",
+      "name": "nVal4"
+     },
+     {
+      "type": "int",
+      "name": "nVal5"
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "const void *pData",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal6"
      }
     ],
     "varargs": false,
@@ -3748,40 +3328,36 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "unsigned int",
+      "name": "dwMsg"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int *pnVal",
+      "name": null
+     },
+     {
+      "type": "const void *pData",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal4"
      }
     ],
     "varargs": false,
@@ -3795,16 +3371,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "bForce"
      }
     ],
     "varargs": false,
@@ -3830,24 +3402,20 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "formal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -3874,16 +3442,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "formal"
      }
     ],
     "varargs": false,
@@ -3897,16 +3461,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "dwMsg"
      }
     ],
     "varargs": false,
@@ -3920,16 +3480,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
       "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "dwMsg"
      }
     ],
     "varargs": false,
@@ -3943,16 +3499,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "dwMsg"
      }
     ],
     "varargs": false,
@@ -3965,20 +3517,16 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *name",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -3993,15 +3541,11 @@
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "alt_signature": "char *__thiscall(CCBStage *this, int thisa, int *pConfig)",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pConfig",
       "name": null
      }
     ],
@@ -4015,15 +3559,11 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -4041,11 +3581,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *String1",
       "name": null
      }
     ],
@@ -4076,11 +3612,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *p_DWORD",
       "name": null
      }
     ],
@@ -4094,16 +3626,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "thisa"
      }
     ],
     "varargs": false,
@@ -4121,11 +3649,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4142,12 +3666,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nFlag"
      }
     ],
     "varargs": false,
@@ -4164,12 +3684,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "nFlag"
      }
     ],
     "varargs": false,
@@ -4211,11 +3727,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4233,11 +3745,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4255,11 +3763,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4277,11 +3781,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nState"
      }
     ],
     "varargs": false,
@@ -4295,16 +3795,12 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -4346,11 +3842,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4368,11 +3860,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4402,11 +3890,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4424,11 +3908,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4446,11 +3926,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4468,11 +3944,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4490,11 +3962,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4512,11 +3980,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4538,11 +4002,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4560,11 +4020,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4582,11 +4038,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4604,11 +4056,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4626,11 +4074,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4648,11 +4092,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -4669,12 +4109,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "nActIndex"
      }
     ],
     "varargs": false,
@@ -4688,9 +4124,14 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "int",
+    "return": "bool",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -4800,20 +4241,16 @@
    "name_source": "IDA语义分析 2026-11-01 批12",
    "name_note": "B4深化定谳(高,全体现已读): IsStateFlagSet<5分支=PropUI::ShowCategory0+CCBRoleState::LayoutSlotPanelA+SaleUI::ToggleSlot0 三联动显示页签, else全0隐藏; N映射三被调间结构自洽(0/A/0..4/E/4); 页签字节=m_nTodo_99",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "thisa"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4828,20 +4265,16 @@
    "name_source": "IDA语义分析 2026-11-01 批13",
    "name_note": "B4深化定谳(高,全体现已读): IsStateFlagSet<5分支=PropUI::ShowCategory1+CCBRoleState::LayoutSlotPanelB+SaleUI::ToggleSlot1 三联动显示页签, else全0隐藏; N映射三被调间结构自洽(0/A/0..4/E/4); 页签字节=m_nTodo_9A",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "thisa"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4856,20 +4289,16 @@
    "name_source": "IDA语义分析 2026-11-01 批13",
    "name_note": "B4深化定谳(高,全体现已读): IsStateFlagSet<5分支=PropUI::ShowCategory2+CCBRoleState::LayoutSlotPanelC+SaleUI::ToggleSlot2 三联动显示页签, else全0隐藏; N映射三被调间结构自洽(0/A/0..4/E/4); 页签字节=m_nTodo_9B",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "thisa"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4884,20 +4313,16 @@
    "name_source": "IDA语义分析 2026-11-01 批13",
    "name_note": "B4深化定谳(高,全体现已读): IsStateFlagSet<5分支=PropUI::ShowCategory3+CCBRoleState::LayoutSlotPanelD+SaleUI::ToggleSlot3 三联动显示页签, else全0隐藏; N映射三被调间结构自洽(0/A/0..4/E/4); 页签字节=m_nTaskCount低字节",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "thisa"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4912,20 +4337,16 @@
    "name_source": "IDA语义分析 2026-11-01 批13",
    "name_note": "B4深化定谳(高,全体现已读): IsStateFlagSet<5分支=PropUI::ShowCategory4+CCBRoleState::LayoutSlotPanelE+SaleUI::ToggleSlot4 三联动显示页签, else全0隐藏; N映射三被调间结构自洽(0/A/0..4/E/4); 页签字节=m_nTaskCount高字节",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
+      "type": "int",
+      "name": "thisa"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -4944,11 +4365,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
+      "type": "void *thisa",
       "name": null
      }
     ],
@@ -4962,23 +4379,11 @@
    "evidence_level": "chain_unified",
    "source": "vtable_gap_fill_v1(from CCBProtectWindow.json)",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {

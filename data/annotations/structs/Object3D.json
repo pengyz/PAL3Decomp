@@ -228,24 +228,16 @@
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "3D 模型加载（gbGeomNode + Actor）",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "OpenNULLFile *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "actionIdx"
      }
     ],
     "varargs": false,
@@ -257,20 +249,16 @@
    "name": "LoadObject",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "unsigned char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *filename",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "act"
      }
     ],
     "varargs": false,
@@ -305,36 +293,32 @@
    "name": "IsOverCVD",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "long double",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "float",
+      "name": "fVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal2"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal3"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal4"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal5"
      },
      {
       "type": "float",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
+      "name": "fVal6"
      }
     ],
     "varargs": false,
@@ -346,24 +330,20 @@
    "name": "VecAngle",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "float",
+      "name": "fVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal2"
      },
      {
       "type": "float",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
+      "name": "fVal3"
      }
     ],
     "varargs": false,
@@ -375,24 +355,20 @@
    "name": "SetObjectPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "float",
+      "name": "position"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "float",
-      "name": null
-     },
-     {
-      "type": "float",
-      "name": null
+      "name": "fVal2"
      }
     ],
     "varargs": false,
@@ -427,19 +403,15 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "gbVec3D",
+      "name": "scrVec"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrixStack *pMatrixStack",
       "name": null
      }
     ],
@@ -452,16 +424,12 @@
    "name": "CaculateRelative",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -474,16 +442,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -508,19 +472,11 @@
    "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [C2660修 2026-11-14] gbRay* retstr是sret形参(return value pointer), 真实栈参只有tagPOINT*; 调用点1参",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "double",
+      "type": "tagPOINT *pPOINT",
       "name": null
      }
     ],
@@ -557,15 +513,11 @@
    "name": "SetTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float",
+      "type": "gbMatrix4 *pMatrix",
       "name": null
      }
     ],
@@ -600,15 +552,11 @@
    "name": "CheckMessage",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszMsgName",
       "name": null
      }
     ],
@@ -640,16 +588,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nParam"
      }
     ],
     "varargs": false,

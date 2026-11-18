@@ -109,36 +109,32 @@
    "source": "pdb_ret",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
+      "name": "fCurTime"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal4"
      }
     ],
     "varargs": false,

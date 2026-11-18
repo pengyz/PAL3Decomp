@@ -107,13 +107,9 @@
    "ordinal": 5,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -135,13 +131,9 @@
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -167,11 +159,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -185,13 +173,9 @@
    "source": "| [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -211,36 +195,32 @@
    "name": "Render",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nVal3"
+     },
+     {
+      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal4"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal5"
      }
     ],
     "varargs": false,
@@ -275,16 +255,12 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "p"
      }
     ],
     "varargs": false,
@@ -296,16 +272,12 @@
    "name": "GetEditorTaskDescription_58d0",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -320,13 +292,9 @@
    "declaration_only": true,
    "adjudication": "confirmed",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char *",
-      "name": null
-     },
      {
       "type": "char",
       "name": null

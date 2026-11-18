@@ -18,13 +18,9 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=3: m_bIdle,m_nController,m_pEM（adjudicate_multiclaim 2026-11-03）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -49,13 +45,9 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=2: m_bIdle,m_nController（adjudicate_multiclaim 2026-11-03）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -107,13 +99,9 @@
    "ordinal": 9,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -131,13 +119,9 @@
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -181,15 +165,11 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -210,13 +190,9 @@
    "name_note": "从 decomp 推断（sub_4C1270）",
    "alt_signature": "int __thiscall(CEffAction *this)",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null

@@ -38,15 +38,11 @@
    "name": "CalcPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -59,16 +55,12 @@
    "name": "GetScreenLeft",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "thisa"
      }
     ],
     "varargs": false,
@@ -114,24 +106,20 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
+      "type": "char *pszBuf",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -148,11 +136,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -176,28 +160,24 @@
    "_misattrib_evidence": "max_offset=88>class_size=28",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal2"
      },
      {
       "type": "float",
-      "name": null
+      "name": "fVal3"
      }
     ],
     "varargs": false,

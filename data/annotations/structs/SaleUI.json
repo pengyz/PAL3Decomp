@@ -429,23 +429,11 @@
    "name": "Update",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      }
     ],
@@ -460,23 +448,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -527,12 +503,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "nIndex"
      }
     ],
     "varargs": false,
@@ -549,12 +521,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "nMax"
      }
     ],
     "varargs": false,
@@ -571,12 +539,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "nValue"
      }
     ],
     "varargs": false,
@@ -605,15 +569,11 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "unsigned __int8",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *arg0",
       "name": null
      }
     ],
@@ -632,11 +592,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -649,16 +605,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -675,12 +627,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -698,11 +646,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -715,23 +659,11 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUIPanel *arg0",
       "name": null
      }
     ],
@@ -758,16 +690,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -780,24 +708,20 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nInputID"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nParam"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -810,16 +734,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -832,16 +752,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -854,16 +770,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -876,16 +788,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -898,16 +806,12 @@
    "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "unsigned __int8",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -933,20 +837,16 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *Block",
       "name": null
      },
      {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,

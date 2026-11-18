@@ -286,13 +286,9 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=15: m_bIdle,m_bVisible,m_dwStartColor,m_fAlpha,m_fBlue（adjudicate_multiclaim 2026-11-03）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -327,15 +323,11 @@
    "adjudication": "confirmed",
    "evidence": "成员实访独占证据 uniq=21: m_bAdditiveBlend,m_bNoZTest,m_byMaxFrame,m_dwStartColor,m_fBottomRadius（adjudicate_multiclaim 2026-11-03）",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "tagEffObjType *",
       "name": null
      }
     ],
@@ -374,13 +366,9 @@
    "ordinal": 5,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -402,13 +390,9 @@
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "float",
       "name": null
@@ -430,13 +414,9 @@
    "ordinal": 14,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -457,13 +437,9 @@
    "ordinal": 10,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "const char *",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "char",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -483,20 +459,16 @@
    "name": "InitDefaultUVSet",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nFramePerRow"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nFramePerCol"
      }
     ],
     "varargs": false,
@@ -508,15 +480,11 @@
    "name": "LoadTexture",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pFileName",
       "name": null
      }
     ],
@@ -545,11 +513,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -564,16 +528,12 @@
    "declaration_only": true,
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,

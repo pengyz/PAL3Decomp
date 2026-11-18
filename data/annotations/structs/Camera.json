@@ -314,15 +314,11 @@
    "name": "InitFromScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszSceneName",
       "name": null
      }
     ],
@@ -340,19 +336,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "float *pPos",
       "name": null
      },
      {
-      "type": "float *",
+      "type": "void *pBounds",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pDist",
       "name": null
      }
     ],
@@ -370,19 +362,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pPos",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "rolePtr"
      },
      {
-      "type": "void *",
+      "type": "void *pBounds",
       "name": null
      }
     ],
@@ -407,20 +395,16 @@
    "name": "UpdateCameraLookAt",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nScreenX"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nScreenY"
      }
     ],
     "varargs": false,
@@ -432,24 +416,20 @@
    "name": "UpdateCameraLookAt_9930",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nScreenX"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nScreenY"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nOffsetY"
      }
     ],
     "varargs": false,

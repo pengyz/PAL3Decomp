@@ -95,15 +95,11 @@
    "evidence_level": "use_site_majority",
    "source": " | L-VAR 2026-11-11 变参定谳: CEffMgr.cpp:827/872 实参 (格式串, float 值) printf 族形态; 固定 (file,line) 与调用实参数不符",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *msg",
       "name": null
      }
     ],
@@ -134,19 +130,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "int *f",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "char *name",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *desc",
       "name": null
      }
     ],
@@ -172,15 +164,11 @@
    "evidence_level": "unverified",
    "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -197,12 +185,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "char",
-      "name": null
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -229,11 +213,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *Source",
       "name": null
      }
     ],

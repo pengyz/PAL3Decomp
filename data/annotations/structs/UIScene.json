@@ -248,11 +248,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -277,19 +273,15 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "char *String1",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -302,15 +294,11 @@
    "name": "LoadResource",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *path",
       "name": null
      }
     ],
@@ -350,11 +338,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "bShow"
      }
     ],
     "varargs": false,
@@ -385,11 +369,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -402,19 +382,15 @@
    "_misattrib_evidence": "max_offset=160>class_size=20",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
+      "type": "BOOL",
+      "name": "bVisible"
      },
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "UIWnd *pWnd",
       "name": null
      }
     ],
@@ -427,28 +403,24 @@
    "name": "SetupRenderClip",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned char",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -493,24 +465,20 @@
    "name": "GetChildWidget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
+      "type": "unsigned int",
+      "name": "dwVal"
      },
      {
       "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "dwVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -540,10 +508,6 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "int",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -591,11 +555,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -628,16 +588,12 @@
    "name": "UpdateLayout",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -690,11 +646,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -740,11 +692,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -768,16 +716,12 @@
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(LoadMapData): i",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a1"
      }
     ],
     "varargs": false,
@@ -793,11 +737,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -878,16 +818,12 @@
    "_misattrib_evidence": "max_offset=5248>class_size=204",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -911,16 +847,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -933,16 +865,12 @@
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -954,28 +882,24 @@
    "name": "GetPixelChannel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
+      "type": "int",
+      "name": "nX"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nY"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nW"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nH"
      }
     ],
     "varargs": false,
@@ -993,11 +917,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nRoleIndex"
      }
     ],
     "varargs": false,

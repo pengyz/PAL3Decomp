@@ -161,36 +161,32 @@
    "ordinal": 7,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
+      "type": "int",
+      "name": "id"
+     },
+     {
+      "type": "void *pRect",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "parent"
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszTexPath",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "char",
-      "name": null
+      "name": "bAtlas"
      }
     ],
     "varargs": false,
@@ -221,23 +217,11 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "CCBUI **deltatime",
       "name": null
      },
      {
@@ -266,19 +250,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,

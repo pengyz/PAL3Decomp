@@ -171,16 +171,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "nFuncID"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nArgCount"
      }
     ],
     "varargs": false,
@@ -198,11 +194,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nObjID"
      }
     ],
     "varargs": false,
@@ -241,20 +233,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "void *pData",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "nType"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nCount"
      },
      {
       "type": "int",
@@ -274,12 +262,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -307,12 +291,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "type": "unsigned char",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -360,24 +340,20 @@
    "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal1"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,

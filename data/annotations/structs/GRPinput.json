@@ -294,16 +294,12 @@
    "name": "GetCursorPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "type": "LPPOINT",
+      "name": "lpPoint"
      }
     ],
     "varargs": false,
@@ -353,20 +349,16 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "按键状态追踪（press→drag→hold）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -390,24 +382,20 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal2"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -494,20 +482,16 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *x",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "y"
      }
     ],
     "varargs": false,
@@ -520,16 +504,12 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "x"
      }
     ],
     "varargs": false,
@@ -558,11 +538,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -574,16 +550,12 @@
    "name": "PollInputState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "_BYTE *__thiscall",
     "cc": "thiscall",
     "params": [
      {
       "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "key"
      }
     ],
     "varargs": false,
@@ -629,20 +601,16 @@
    "name": "GetJoystickFreePos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "x"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "y"
      }
     ],
     "varargs": false,
@@ -733,15 +701,11 @@
    "name": "CheckKeyEvents",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *key",
       "name": null
      }
     ],
@@ -755,20 +719,16 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "float *",
     "cc": "cdecl",
     "params": [
      {
-      "type": "float *",
-      "name": null
-     },
-     {
-      "type": "float *",
+      "type": "float *pfVal",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -780,15 +740,11 @@
    "name": "InitDIKToKEY",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
+      "type": "unsigned short *pwVal",
       "name": null
      }
     ],
@@ -858,28 +814,24 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "a"
      },
      {
       "type": "int",
-      "name": null
+      "name": "b"
      },
      {
       "type": "int",
-      "name": null
+      "name": "c"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "d"
      }
     ],
     "varargs": false,
@@ -892,19 +844,15 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "void *pOut",
       "name": null
      },
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "void *pOut2",
       "name": null
      }
     ],
@@ -922,19 +870,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nMouse"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nKeyboard"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal3"
      }
     ],
     "varargs": false,
@@ -951,11 +895,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "mode"
      }
     ],
     "varargs": false,
@@ -967,16 +907,12 @@
    "name": "GetKeyState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "short",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
       "type": "unsigned short",
-      "name": null
+      "name": "key"
      }
     ],
     "varargs": false,
@@ -988,44 +924,20 @@
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "HINSTANCE *hInst",
       "name": null
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "double",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
+      "name": "hwnd"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "flag"
      }
     ],
     "varargs": false,
@@ -1063,11 +975,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -1080,20 +988,16 @@
    "name": "SetCursorPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "X"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "Y"
      }
     ],
     "varargs": false,
@@ -1116,16 +1020,12 @@
    "name": "ProcessMouseInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -1148,16 +1048,12 @@
    "name": "ProcessButtonHold",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fDelta"
      }
     ],
     "varargs": false,

@@ -1924,15 +1924,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "actionIdx"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -1944,16 +1940,12 @@
    "name": "GetAnimDuration",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "animId"
      }
     ],
     "varargs": false,
@@ -1965,20 +1957,16 @@
    "name": "EnableTransition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -1990,16 +1978,12 @@
    "name": "SetTimeScale",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "scale"
      }
     ],
     "varargs": false,
@@ -2017,11 +2001,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal1"
      }
     ],
     "varargs": false,
@@ -2038,11 +2018,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "actionId"
      }
     ],
     "varargs": false,
@@ -2059,11 +2035,7 @@
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "actionId"
      }
     ],
     "varargs": false,
@@ -2123,24 +2095,20 @@
    "name": "AddActionByName",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "const char *pszName",
       "name": null
      },
      {
-      "type": "char",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2177,19 +2145,15 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nY"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nX"
      }
     ],
     "varargs": false,
@@ -2201,24 +2165,20 @@
    "name": "SetVideoRegions",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nX"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nY"
      }
     ],
     "varargs": false,
@@ -2230,16 +2190,12 @@
    "name": "GetInnerAnimDuration",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "animId"
      }
     ],
     "varargs": false,
@@ -2251,16 +2207,12 @@
    "name": "GetAnimDurationByIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "unsigned int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2272,16 +2224,12 @@
    "name": "UpdateFrame",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "arg0"
      }
     ],
     "varargs": false,
@@ -2293,28 +2241,16 @@
    "name": "DoSceneTransition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "FILE *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
       "type": "double",
-      "name": null
+      "name": "pData"
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2343,23 +2279,19 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "cdecl",
     "params": [
      {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int *",
+      "type": "int *pnVal2",
       "name": null
      },
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal3",
       "name": null
      }
     ],
@@ -2372,16 +2304,12 @@
    "name": "UpdatePhysics",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2453,16 +2381,12 @@
    "name": "BlendAnimation",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "float",
-      "name": null
+      "name": "fVal"
      }
     ],
     "varargs": false,
@@ -2479,15 +2403,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2499,15 +2419,11 @@
    "name": "SetTextureName",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *pszName",
       "name": null
      }
     ],
@@ -2561,15 +2477,11 @@
     "params": [
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2609,11 +2521,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszSlotIdx",
       "name": null
      }
     ],
@@ -2679,16 +2587,12 @@
    "name": "LoadActorModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2712,19 +2616,15 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
+      "type": "char *String1",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *String2",
       "name": null
      }
     ],
@@ -2737,16 +2637,12 @@
    "name": "ActionEntry_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2800,19 +2696,15 @@
    "name": "SearchAnimByIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
+      "type": "char *String1",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -2825,19 +2717,15 @@
    "name": "RegisterAnim",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
+      "type": "char *pszName",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      }
     ],
@@ -2862,16 +2750,12 @@
    "name": "IterateAllocBuffer",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2932,20 +2816,16 @@
    "name": "DestroyActionRange",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "int",
+      "name": "nVal"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nVal2"
      }
     ],
     "varargs": false,
@@ -2957,16 +2837,12 @@
    "name": "CopyActionData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,
@@ -2978,23 +2854,19 @@
    "name": "CopyBufferBlocks",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
+      "type": "char *pszDst",
       "name": null
      },
      {
-      "type": "char *",
+      "type": "char *pszSrc",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf3",
       "name": null
      }
     ],
@@ -3007,23 +2879,19 @@
    "name": "CopyIfValid",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData",
       "name": null
      }
     ],
@@ -3047,23 +2915,19 @@
    "name": "CompareBuffers",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *",
+      "type": "char *pszBuf",
       "name": null
      },
      {
-      "type": "char *",
+      "type": "char *pszBuf2",
       "name": null
      },
      {
-      "type": "char *",
-      "name": null
-     },
-     {
-      "type": "char *",
+      "type": "char *pszBuf3",
       "name": null
      }
     ],
@@ -3093,15 +2957,11 @@
    "name": "ActArray_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *p_DWORD",
       "name": null
      }
     ],
@@ -3114,15 +2974,11 @@
    "name": "BoneIndexVec_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "int *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pnVal",
       "name": null
      }
     ],
@@ -3135,15 +2991,11 @@
    "name": "ExecuteAction",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "tagActionCommand *pCmd",
       "name": null
      }
     ],
@@ -3167,15 +3019,11 @@
    "name": "BuildCollisionMesh",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *pOut",
       "name": null
      }
     ],
@@ -3200,16 +3048,12 @@
    "_misattrib_evidence": "max_offset=3340>class_size=596",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "actionId"
      }
     ],
     "varargs": false,
@@ -3346,9 +3190,18 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "void *pDst",
+      "name": null
+     },
+     {
+      "type": "const void *pSrc",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -3359,9 +3212,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "void *pDst",
+      "name": null
+     },
+     {
+      "type": "const void *pSrc",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -3372,9 +3238,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "cdecl",
-    "params": [],
+    "params": [
+     {
+      "type": "void *pDst",
+      "name": null
+     },
+     {
+      "type": "const void *pSrc",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
     "varargs": false,
     "pending": true
    },
@@ -3385,20 +3264,16 @@
    "evidence_level": "unverified",
    "source": " | [G3 C1 2026-10-25] 名对齐 IDB 现名 LoadActionSequences（原 sub_536D20）",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
-      "type": "char",
+      "type": "const char *a2",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "a3"
      }
     ],
     "varargs": false,
@@ -3413,13 +3288,9 @@
    "name_source": "IDA语义分析 2026-10-31 批1-2",
    "name_note": "空覆盖虚方法",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -3439,16 +3310,12 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "链式节点处理（gbChain1DNode）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3485,16 +3352,12 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "设默认速度 24.0",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3507,16 +3370,12 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "设默认范围 24.0",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3529,16 +3388,12 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "动画数组排序（55 次循环）",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3551,16 +3406,12 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "静态数据清理",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3591,16 +3442,12 @@
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3648,13 +3495,9 @@
    "evidence_level": "unverified",
    "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -3674,16 +3517,12 @@
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3697,13 +3536,9 @@
    "evidence_level": "unverified",
    "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -3724,13 +3559,9 @@
    "evidence_level": "unverified",
    "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -3767,16 +3598,12 @@
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3789,16 +3616,12 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "A* 路径释放",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
-     },
-     {
       "type": "int",
-      "name": null
+      "name": "a2"
      }
     ],
     "varargs": false,
@@ -3811,13 +3634,9 @@
    "source": "深证批1 2026-10-06：A 级 vtable 槽（0x56f404 Actor 簇）+偏移[92,96,100,104,108] Actor 多偏移证（ctor 装配实证表）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [
-     {
-      "type": "void *",
-      "name": null
-     },
      {
       "type": "int",
       "name": null
@@ -3891,20 +3710,16 @@
    "name": "CheckSceneCollision",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int *",
+      "type": "int *nFlag",
       "name": null
      },
      {
       "type": "int",
-      "name": null
+      "name": "nVal"
      }
     ],
     "varargs": false,

@@ -20,20 +20,16 @@
    "name": "UpdateWait",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "void *",
+      "type": "const void *pData",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": null
+      "name": "dwVal"
      }
     ],
     "varargs": false,
@@ -57,20 +53,16 @@
    "_misattrib_evidence": "max_offset=92>class_size=16",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "gbVFileSystem *__thiscall",
     "cc": "thiscall",
     "params": [
      {
-      "type": "signed __int16",
-      "name": null
+      "type": "int",
+      "name": "nTexID"
      },
      {
       "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
+      "name": "nParam"
      }
     ],
     "varargs": false,
