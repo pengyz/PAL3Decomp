@@ -3718,9 +3718,13 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         if _off == '0' or _off == '0x0':
                             _first_member = _mi.get('name', 'Data')
                             break
-                    if _first_member:
+                    _interim0 = _first_member and _first_member.startswith('_tail_')
+                    if _first_member and not _interim0:
                         lines.append("    operator int() const { return %s; }" % _first_member)
                     else:
+                        # [F2a 2026-11-18 复核员裁定] 偏移0成员是_tail_*interim数组
+                        #   (语义未普查挂账态)→按字节读4字节对象, 与IDA (int)壳值等价;
+                        #   return _tail_000(char[4])不可转int=C2440×7单元根因
                         lines.append("    operator int() const { return *(int*)this; }")
                     _has_op_int = True
                 elif _minfo.get('name') == 'operator=' and not _has_op_assign:
@@ -4890,10 +4894,27 @@ def generate_globals():
         b = t.replace('const ', '').replace('*', '').replace('[]', '').strip()
         return re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', b).strip()
 
+    # [vftable跳过判据 2026-11-18] 注解vtables全量地址集(13类碰撞extern实证)
+    _vtable_covered_addrs = set()
+    for _cls_e in _is_data.values():
+        if isinstance(_cls_e, dict):
+            for _vt_e in (_cls_e.get('vtables') or []):
+                _va = str(_vt_e.get('addr') or '').lower()
+                if _va:
+                    _vtable_covered_addrs.add(_va)
+
     for addr_str, g in sorted_globs:
         name = g.get('name', '')
         typ = g.get('type', 'int')
         if not name:
+            continue
+        # [vftable extern 跳过 2026-11-18 用户裁定] 正常C++不可访问vptr(编译器
+        #   隐式管理), extern类名vtable=导出泄漏且与类名碰撞(13例: extern
+        #   vtbl_0056b200 SceneObj; 绑死类名⇒class SceneObj;前置声明失效→
+        #   C2501×100单元)。注解vtables[addr]已记录全部虚表址=真值在手,
+        #   命中即跳过声明(零信息损失)。双保险判据: ①type前缀vtbl_ ②地址∈注解vtables
+        _ga = addr_str.lower()
+        if str(typ).startswith('vtbl_') or _ga in _vtable_covered_addrs:
             continue
         _s = _sect_of(g)
         if _s != _cur_sect[0]:
@@ -5465,6 +5486,9 @@ def generate_globals_cpp():
         with open(_std_path, 'w', encoding='utf-8') as _f:
             _f.write('#pragma once\n')
             _f.write('// POD scalar typedefs (centralized management)\n')
+            # [P0.5 2026-11-18] 独立编译基座: DWORD/uchar等基型来自ida_defs.h链
+            #   (S1 90头C2146首行即炸实证: typedef DWORD X; 无DWORD定义)
+            _f.write('#include "pal3/ida_defs.h"\n')
             for _td in sorted(set(_POD_TYPEDEFS)):
                 _f.write(_td + '\n')
         print("  Scalar typedefs: %d in scalar_typedefs.h" % len(set(_POD_TYPEDEFS)))

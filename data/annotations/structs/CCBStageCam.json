@@ -87,19 +87,15 @@
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "CCBStageCam *Buffer",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
    "flags": [
     "ctor"
    ],
-   "flags_evidence": "IDA名字形态=CCBStageCam(??0构造); decomp文件=CCBStageCam_CCBStageCamCCBStageCam_00504e70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=CCBStageCam(??0构造); decomp文件=CCBStageCam_CCBStageCamCCBStageCam_00504e70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 RET判据定谳: 函数尾retn裸(零弹栈→零参数)+体内Buffer零引用 ⇒ \"CCBStageCam Buffer\"为hexrays鬼影参数(调用方栈残留误读)。"
   },
   "0x00505060": {
    "name": "Reset",
