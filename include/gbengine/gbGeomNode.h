@@ -29,7 +29,8 @@ public:
 class GBAPI gbGeomNode : public gbVisNode {
 public:
     // gbVisNode base: 0x00-0x57 (88 bytes)
-    gbMatrix4 worldTransform;              // +0x58 (64B) - GetCacheToWorld returns &this->worldTransform
+    gbMatrix4 CacheToW;                    // +0x58 (64B) - GetCacheToWorld returns &this->CacheToW
+                                           // [改名 2026-11-18] worldTransform→CacheToW: 注解known_members+0x58=CacheToW(N17同一律, 语料引用CacheToW×23)——双真值源冲突按注解层裁定
     gbMatrix4 staticTransform;             // +0x98 (64B) - initial local pose/orientation
     gbAnimCurve* PosCtrl;           // +0xD8: translation curve (virtual dtor + GetValue)
     gbAnimCurve* pAnimRotate;              // +0xDC: rotation curve

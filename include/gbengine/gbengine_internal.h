@@ -104,63 +104,11 @@ public:
 
 // gbGfxManager_D3D: full definition in gbGfxManager.h
 
-// ========= gbMatrixStack =========
-class GBAPI gbMatrixStack {
-public:
-    struct gbMatrix4 *pStack;   // +0x00: pointer to array of gbMatrix4
-    int maxDepth;               // +0x04: maximum stack depth
-    int curDepth;               // +0x08: current stack index
-    int dirty;                  // +0x0C: invalidation flag
+// [退役 2026-11-18] 旧手写定义(pStack/maxDepth族)与注解known_members双真值源冲突
+// (C2011×32: gbMatrixStack.h重建件冲突实证)。真值=structs/gbMatrixStack.json
+// (pMatBuf/MaxVol/CurPos/ValidFlag)→定义见 gbengine/gbMatrixStack.h
+class gbMatrixStack;
 
-public:
-    gbMatrixStack(int p0);
-
-public:
-    ~gbMatrixStack();
-
-public:
-    class gbMatrixStack & operator=(class gbMatrixStack const & p0);
-
-public:
-    int GetDepth();
-
-public:
-    struct gbMatrix4 * GetTop();
-
-public:
-    void LoadIdentity();
-
-public:
-    void LoadMatrix(struct gbMatrix4 * p0);
-
-public:
-    void MultMatrix(struct gbMatrix4 * p0);
-
-public:
-    void Pop();
-
-public:
-    void Push();
-
-public:
-    void Rotate(struct gbQuaternion & p0);
-
-public:
-    void Rotate(float p0, struct gbVec3D & p1);
-
-public:
-    void Scale(struct gbVec3D & p0);
-
-public:
-    void Scale(float p0, float p1, float p2);
-
-public:
-    void Translate(struct gbVec3D & p0);
-
-public:
-    void Translate(float p0, float p1, float p2);
-
-};
 
 // ========= gbVTextFile =========
 class gbVTextFile {
