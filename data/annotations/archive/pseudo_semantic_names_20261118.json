@@ -1,0 +1,1908 @@
+{
+ "_doc": "伪语义名清单 2026-11-18: 字母/序号后缀装饰名 (CachedA/B, RoleParam0-3, UIFlagA/B, MatrixA-C, ActionFlag1-3 等) 语义=0, 与 _todo_ 占位同效, 等同无效。按\"能选=理解不到位\"纪律, 不立即改名, 各类取证战役(汇编/语料交叉)后正名。生成: tools/audit_semantic_coverage_20261118.py 三档口径。",
+ "criteria": [
+  "尾部大写单字母 A-E 且词根小写",
+  "HOLLOW 词(Param/Flag/State/Val/Data/Info/Arg/Buf/Cached/Temp)+1-3位数字或大写字母尾"
+ ],
+ "names": {
+  "Actor": [
+   {
+    "offset": "0x30",
+    "name": "m_nRoleParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x34",
+    "name": "m_fRoleParam1",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x3c",
+    "name": "m_fRoleParam2",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x40",
+    "name": "m_fRoleParam3",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x44",
+    "name": "m_nRoleParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "m_pRoleParam3",
+    "type": "char *",
+    "size": 4
+   },
+   {
+    "offset": "0x4c",
+    "name": "m_nCachedA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x50",
+    "name": "m_nCachedB",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x58",
+    "name": "m_nRoleState0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5c",
+    "name": "m_bUIFlagA",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x5d",
+    "name": "m_bUIFlagB",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x80",
+    "name": "m_nAnimParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x84",
+    "name": "m_nAnimParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xdc",
+    "name": "m_fMatrixA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xe0",
+    "name": "m_fMatrixB",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xe4",
+    "name": "m_fMatrixC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xec",
+    "name": "m_fMatrixParamA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xf0",
+    "name": "m_fMatrixParamB",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xfc",
+    "name": "m_fMatrixParamC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x14d",
+    "name": "m_bActionFlag1",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x151",
+    "name": "m_bActionFlag2",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x152",
+    "name": "m_bActionFlag3",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x18c",
+    "name": "m_nCloneParamB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x194",
+    "name": "m_nCloneFlag1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x198",
+    "name": "m_nCloneFlag2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1a4",
+    "name": "m_nModelParamA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1ac",
+    "name": "m_nModelParamB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1b0",
+    "name": "m_nRoleState1",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "CCBCamControl": [
+   {
+    "offset": "0x34",
+    "name": "m_fCamBlendA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x38",
+    "name": "m_fCamBlendB",
+    "type": "float",
+    "size": 4
+   }
+  ],
+  "CCBPanelSlot": [
+   {
+    "offset": "0xc",
+    "name": "m_nEdgeB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x34",
+    "name": "m_nClipB",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "CCBRoleState": [
+   {
+    "offset": "0x55c8",
+    "name": "m_bScrollEnableA",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x55c9",
+    "name": "m_bScrollEnableB",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x5064",
+    "name": "m_nEffCurA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5068",
+    "name": "m_nEffCurB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x507c",
+    "name": "m_nEffSwapA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5080",
+    "name": "m_nEffSwapB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5088",
+    "name": "m_nEffCurC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x508c",
+    "name": "m_nEffSwapC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5090",
+    "name": "m_nEffCurD",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x120",
+    "name": "m_nState3",
+    "type": "int[18]",
+    "size": 72
+   },
+   {
+    "offset": "0xa8",
+    "name": "m_nState2",
+    "type": "int[26]",
+    "size": 104
+   }
+  ],
+  "CCBStageScene": [
+   {
+    "offset": "0x334",
+    "name": "m_fDirSinC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x338",
+    "name": "m_fBlendC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x33c",
+    "name": "m_fDirCosC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x340",
+    "name": "m_fDirSinD",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x344",
+    "name": "m_fBlendD",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x348",
+    "name": "m_fDirCosD",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x2ac",
+    "name": "m_fDirSinA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x2b0",
+    "name": "m_fBlendA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x2d0",
+    "name": "m_fDirSinB",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x2d4",
+    "name": "m_fBlendB",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x2d8",
+    "name": "m_fDirCosB",
+    "type": "float",
+    "size": 4
+   }
+  ],
+  "CCBTaskSlot": [
+   {
+    "offset": "0x4",
+    "name": "m_nTaskArg0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x8",
+    "name": "m_nTaskArg1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xc",
+    "name": "m_nTaskArg2",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "CCBTaskSlot208": [
+   {
+    "offset": "0x60",
+    "name": "m_fVal0",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x64",
+    "name": "m_fVal1",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x68",
+    "name": "m_fVal2",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x6c",
+    "name": "m_fVal3",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x70",
+    "name": "m_fVal4",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x74",
+    "name": "m_fVal5",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x90",
+    "name": "m_ptrC",
+    "type": "void *",
+    "size": 4
+   }
+  ],
+  "CG_UI": [
+   {
+    "offset": "0x34c",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "CGameData": [
+   {
+    "offset": "0x374",
+    "name": "m_RoleDataA",
+    "type": "CScreenMode *",
+    "size": 4
+   },
+   {
+    "offset": "0x4cc",
+    "name": "m_RoleDataB",
+    "type": "CScreenMode *",
+    "size": 4
+   },
+   {
+    "offset": "0x624",
+    "name": "m_RoleDataC",
+    "type": "CScreenMode *",
+    "size": 4
+   },
+   {
+    "offset": "0x2510",
+    "name": "m_nScriptHandleA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x2514",
+    "name": "m_nScriptHandleB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x2518",
+    "name": "m_nScriptHandleC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x251c",
+    "name": "m_nScriptHandleD",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x6e18",
+    "name": "m_pGameObjB",
+    "type": "char *",
+    "size": 4
+   },
+   {
+    "offset": "0x77c",
+    "name": "m_ItemSlotA",
+    "type": "UIItem",
+    "size": 232
+   },
+   {
+    "offset": "0xcec",
+    "name": "m_ItemSlotB",
+    "type": "UIItem",
+    "size": 232
+   },
+   {
+    "offset": "0x1244",
+    "name": "m_ItemSlotC",
+    "type": "UIItem",
+    "size": 232
+   },
+   {
+    "offset": "0x179c",
+    "name": "m_ItemSlotD",
+    "type": "UIItem",
+    "size": 232
+   },
+   {
+    "offset": "0x1ba0",
+    "name": "m_fTimerC",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x1ac",
+    "name": "m_subObjA",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "CScreenMode": [
+   {
+    "offset": "0x78",
+    "name": "m_nProgressValA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x7c",
+    "name": "m_nProgressValB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xa4",
+    "name": "m_wndAssistA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xb94",
+    "name": "m_ScenePanelB",
+    "type": "UIScene",
+    "size": 344
+   },
+   {
+    "offset": "0xcec",
+    "name": "m_ScenePanelC",
+    "type": "UIScene",
+    "size": 344
+   },
+   {
+    "offset": "0xd0",
+    "name": "m_fProgressD",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x118",
+    "name": "m_FrameB",
+    "type": "UIStatic",
+    "size": 152
+   },
+   {
+    "offset": "0x8d4",
+    "name": "m_BtnTooltipC",
+    "type": "UIButton",
+    "size": 344
+   }
+  ],
+  "CameraCtrl": [
+   {
+    "offset": "0x184",
+    "name": "m_nParamA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x188",
+    "name": "m_nParamB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x18c",
+    "name": "m_nParamC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x26c",
+    "name": "m_wParamA",
+    "type": "WORD",
+    "size": 2
+   },
+   {
+    "offset": "0x270",
+    "name": "m_wParamB",
+    "type": "WORD",
+    "size": 2
+   },
+   {
+    "offset": "0x4a4",
+    "name": "m_nBlendWeightA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x4a8",
+    "name": "m_nBlendWeightB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x4ac",
+    "name": "m_nBlendWeightC",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "CameraParam": [
+   {
+    "offset": "0x8",
+    "name": "nParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xc",
+    "name": "nParam2",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "Comp_DonateUI": [
+   {
+    "offset": "0x5374",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "DealUI": [
+   {
+    "offset": "0xec",
+    "name": "m_FlagB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "EquipUI": [
+   {
+    "offset": "0x6724",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "JusticeBookUI": [
+   {
+    "offset": "0x544",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "LineupUI": [
+   {
+    "offset": "0x490",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "Logger": [
+   {
+    "offset": "0x122c",
+    "name": "m_szCmdBuf2",
+    "type": "char[4]",
+    "size": 4
+   }
+  ],
+  "MXTransport": [
+   {
+    "offset": "0xac",
+    "name": "m_pEffectA",
+    "type": "gbRenderEffect *",
+    "size": 4
+   }
+  ],
+  "MagicUI": [
+   {
+    "offset": "0xa840",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "MainEquipUI": [
+   {
+    "offset": "0x680",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "MainPropUI": [
+   {
+    "offset": "0x6f8",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "NPC": [
+   {
+    "offset": "0x38",
+    "name": "m_pConditionA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x3c",
+    "name": "m_pConditionB",
+    "type": "void*",
+    "size": 4
+   },
+   {
+    "offset": "0x22c",
+    "name": "m_AnimWndA",
+    "type": "UIWnd",
+    "size": 68
+   },
+   {
+    "offset": "0x2c4",
+    "name": "m_AnimWndB",
+    "type": "UIWnd",
+    "size": 68
+   },
+   {
+    "offset": "0x35c",
+    "name": "m_AnimWndC",
+    "type": "UIWnd",
+    "size": 68
+   }
+  ],
+  "PalScriptMgr": [
+   {
+    "offset": "0xdc",
+    "name": "m_nSavedDataA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xe0",
+    "name": "m_nSavedDataB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x100",
+    "name": "m_nCmdParam0",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0x104",
+    "name": "m_nCmdParam1",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0x330",
+    "name": "m_nLoopCountA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x334",
+    "name": "m_nLoopCountB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x338",
+    "name": "m_nLoopCountC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xe8",
+    "name": "m_nExecRangeA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xec",
+    "name": "m_nExecRangeB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf0",
+    "name": "m_nExecRangeC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf4",
+    "name": "m_nExecRangeD",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x108",
+    "name": "m_nCmdParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x340",
+    "name": "m_pSubScriptB",
+    "type": "PalScriptMgr *",
+    "size": 4
+   },
+   {
+    "offset": "0x2514",
+    "name": "m_pScriptInstA",
+    "type": "char *",
+    "size": 4
+   },
+   {
+    "offset": "0x2518",
+    "name": "m_pScriptInstD",
+    "type": "PalScriptMgr *",
+    "size": 4
+   },
+   {
+    "offset": "0x2520",
+    "name": "m_nScriptResultA",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x2524",
+    "name": "m_nScriptResultB",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x2528",
+    "name": "m_nScriptResultC",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x360",
+    "name": "m_nExecState2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x194",
+    "name": "m_nRoleParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x198",
+    "name": "m_nRoleParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x19c",
+    "name": "m_nRoleParam3",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "PropUI": [
+   {
+    "offset": "0x4a54",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "RoleSystem": [
+   {
+    "offset": "0x10c",
+    "name": "m_nSpawnParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x12c",
+    "name": "m_bSpawnByteA",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x12d",
+    "name": "m_bSpawnByteB",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x524",
+    "name": "m_FrameA",
+    "type": "UIFrameWnd",
+    "size": 72
+   },
+   {
+    "offset": "0x5a4",
+    "name": "m_bRenderFlag1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x5a8",
+    "name": "m_bRenderFlag2",
+    "type": "char",
+    "size": 1
+   },
+   {
+    "offset": "0x118c",
+    "name": "m_nMoveState1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1190",
+    "name": "m_nMoveState2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1194",
+    "name": "m_nMoveState3",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1198",
+    "name": "m_bMoveFlag1",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x119c",
+    "name": "m_nMoveParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x11a0",
+    "name": "m_nMoveParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x11a4",
+    "name": "m_bMoveFlag2",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xc00",
+    "name": "m_teamSlotsB",
+    "type": {
+     "union": [
+      {
+       "type": "tagTeamSlotsBOverlay",
+       "name": "combat"
+      }
+     ]
+    },
+    "size": null
+   }
+  ],
+  "SaleUI": [
+   {
+    "offset": "0x156f8",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "ScreenEffectMgr": [
+   {
+    "offset": "0x80",
+    "name": "m_nAllocFlag1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x84",
+    "name": "m_nAllocFlag2",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "ScriptSystemData": [
+   {
+    "offset": "0x8a8",
+    "name": "m_fTimerA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xbd8",
+    "name": "m_fTimerB",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0xf14",
+    "name": "m_nCmdParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf18",
+    "name": "m_nCmdParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf20",
+    "name": "m_nCmdParam3",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xf24",
+    "name": "m_nCmdParam4",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf28",
+    "name": "m_nCmdParam5",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf30",
+    "name": "m_nCmdParam6",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xf34",
+    "name": "m_nCmdParam7",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf40",
+    "name": "m_nCmdParam8",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xf44",
+    "name": "m_nCmdParam9",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf48",
+    "name": "m_nCmdParam10",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf70",
+    "name": "m_nCmdParam11",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xf78",
+    "name": "m_bCmdFlag1",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xf80",
+    "name": "m_nCmdParam12",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xf84",
+    "name": "m_nCmdParam13",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xf88",
+    "name": "m_bCmdFlag2",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xf90",
+    "name": "m_nCmdParam14",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xfd4",
+    "name": "m_nCmdParam19",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xfd8",
+    "name": "m_bCmdFlag4",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xfe0",
+    "name": "m_nCmdParam20",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0xfe4",
+    "name": "m_nCmdParam21",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0xfe8",
+    "name": "m_bCmdFlag5",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0xff4",
+    "name": "m_nCmdParam22",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1000",
+    "name": "m_nCmdParam23",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0x1020",
+    "name": "m_nCmdParam24",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0x1024",
+    "name": "m_nCmdParam25",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1029",
+    "name": "m_bCmdFlag6",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x1038",
+    "name": "m_bCmdFlag7",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x1039",
+    "name": "m_bCmdFlag8",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x103a",
+    "name": "m_bCmdFlag9",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x1040",
+    "name": "m_nCmdParam26",
+    "type": "short",
+    "size": 2
+   },
+   {
+    "offset": "0x1044",
+    "name": "m_nCmdParam27",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x1078",
+    "name": "m_bCmdExtraFlag2",
+    "type": "unsigned char",
+    "size": 1
+   }
+  ],
+  "StateUI": [
+   {
+    "offset": "0x420",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "SwordUI": [
+   {
+    "offset": "0x59ce0",
+    "name": "Purge_rectA",
+    "type": "tagRECT[5]",
+    "size": null
+   },
+   {
+    "offset": "0x59d30",
+    "name": "Purge_rectB",
+    "type": "tagRECT[5]",
+    "size": null
+   }
+  ],
+  "SystemUI": [
+   {
+    "offset": "0x490",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "TaskBookUI": [
+   {
+    "offset": "0x248",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "TextureLib": [
+   {
+    "offset": "0x94",
+    "name": "m_fColorModB",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x98",
+    "name": "m_fColorModA",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x44",
+    "name": "m_nTexParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "m_nTexParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x4c",
+    "name": "m_nTexParam3",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "UIChatRest": [
+   {
+    "offset": "0x100",
+    "name": "m_FlagB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "UICoverFrm": [
+   {
+    "offset": "0x21d0",
+    "name": "m_mountainA",
+    "type": "UIStatic",
+    "size": 152
+   },
+   {
+    "offset": "0x2270",
+    "name": "m_mountainB",
+    "type": "UIStatic",
+    "size": 152
+   },
+   {
+    "offset": "0x2458",
+    "name": "m_tjA",
+    "type": "UIStaticEXA",
+    "size": 192
+   },
+   {
+    "offset": "0x2520",
+    "name": "m_tjB",
+    "type": "UIStaticEXA",
+    "size": 192
+   }
+  ],
+  "UIFrameContainer": [
+   {
+    "offset": "0x60",
+    "name": "m_bFlag96",
+    "type": "char",
+    "size": 1
+   }
+  ],
+  "UIParticle": [
+   {
+    "offset": "0x50",
+    "name": "m_isSubA",
+    "type": "BYTE",
+    "size": 1
+   }
+  ],
+  "UIScenePanel": [
+   {
+    "offset": "0x3630",
+    "name": "m_bPanelFlagA",
+    "type": "unsigned char",
+    "size": 1
+   },
+   {
+    "offset": "0x2cec",
+    "name": "m_SceneA",
+    "type": "UIScene",
+    "size": 344
+   },
+   {
+    "offset": "0x2e74",
+    "name": "m_SceneB",
+    "type": "UIScene",
+    "size": 344
+   },
+   {
+    "offset": "0x2ffc",
+    "name": "m_SceneC",
+    "type": "UIScene",
+    "size": 344
+   },
+   {
+    "offset": "0x3184",
+    "name": "m_SceneD",
+    "type": "UIScene",
+    "size": 344
+   }
+  ],
+  "UITitle_BBTY": [
+   {
+    "offset": "0xae8",
+    "name": "m_FlagB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "UITitle_JDHY": [
+   {
+    "offset": "0x338",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "UITitle_QCYM": [
+   {
+    "offset": "0x338",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "UITitle_XJTM": [
+   {
+    "offset": "0x240",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "UITitle_YXXX": [
+   {
+    "offset": "0x238",
+    "name": "m_OutFrameB",
+    "type": "UIStatic",
+    "size": 152
+   }
+  ],
+  "gbTagXBladeNode": [
+   {
+    "offset": "0x0",
+    "name": "tagNodeA",
+    "type": "gbTagNode",
+    "size": 48
+   },
+   {
+    "offset": "0x30",
+    "name": "tagNodeB",
+    "type": "gbTagNode",
+    "size": 48
+   }
+  ],
+  "tag17A7BData": [
+   {
+    "offset": "0xc",
+    "name": "m_nEffParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x18",
+    "name": "m_nEffParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x24",
+    "name": "m_nEffParam24",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tag17A8Data": [
+   {
+    "offset": "0xc",
+    "name": "m_nEffParam0",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x10",
+    "name": "m_nEffParam10",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x18",
+    "name": "m_nEffParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x24",
+    "name": "m_nEffParam24",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x30",
+    "name": "m_nEffParam30",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagC10Data": [
+   {
+    "offset": "0xc",
+    "name": "m_nEffParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x10",
+    "name": "m_nEffParam10",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x18",
+    "name": "m_nEffParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x24",
+    "name": "m_nEffParam24",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x30",
+    "name": "m_nEffParam30",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x34",
+    "name": "m_nEffParam34",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x38",
+    "name": "m_nEffParam38",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagCCBStageData": [
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagCombatTaskData": [
+   {
+    "offset": "0xc",
+    "name": "m_nEffParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x10",
+    "name": "m_nEffParam10",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x18",
+    "name": "m_nEffParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x24",
+    "name": "m_nEffParam24",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x40",
+    "name": "m_nEffParam40",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x44",
+    "name": "m_nEffParam44",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "m_nEffParam48",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x50",
+    "name": "m_nEffParam50",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x54",
+    "name": "m_nEffParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x58",
+    "name": "m_nEffParam58",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x60",
+    "name": "m_nEffParam3",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x68",
+    "name": "m_nEffParam4",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x84",
+    "name": "m_nEffParam7",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x8c",
+    "name": "m_nEffParam8",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x94",
+    "name": "m_nEffParam9",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x98",
+    "name": "m_nEffParam98",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagControlData": [
+   {
+    "offset": "0x4",
+    "name": "dwParam1",
+    "type": "char *",
+    "size": 4
+   },
+   {
+    "offset": "0x8",
+    "name": "dwParam2",
+    "type": "DWORD",
+    "size": 4
+   }
+  ],
+  "tagPAL3GameState": [
+   {
+    "offset": "0x18",
+    "name": "m_nEffParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x30",
+    "name": "m_nEffParam30",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x38",
+    "name": "m_nEffParam38",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x40",
+    "name": "m_nEffParam40",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "m_nEffParam48",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x50",
+    "name": "m_nEffParam50",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x58",
+    "name": "m_nEffParam58",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x60",
+    "name": "m_nEffParam3",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x68",
+    "name": "m_nEffParam4",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x70",
+    "name": "m_nEffParam5",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x78",
+    "name": "m_nEffParam6",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x8c",
+    "name": "m_nEffParam8",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x98",
+    "name": "m_nEffParam98",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x118",
+    "name": "m_fParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x168",
+    "name": "m_fState0",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagRoleActionState": [
+   {
+    "offset": "0x90",
+    "name": "m_SceneCfg_fParam0",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x94",
+    "name": "m_SceneCfg_nParam0",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x98",
+    "name": "m_SceneCfg_nParam1",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x9c",
+    "name": "m_SceneCfg_nParam2",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagRoleSystemData": [
+   {
+    "offset": "0x14",
+    "name": "m_nEffParam14",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x50",
+    "name": "m_nEffParam50",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagRoleTask": [
+   {
+    "offset": "0x4c",
+    "name": "fTemp2",
+    "type": "float",
+    "size": 4
+   }
+  ],
+  "tagScriptPtrQuad": [
+   {
+    "offset": "0x94",
+    "name": "pScriptPtrA",
+    "type": "void *",
+    "size": 4
+   },
+   {
+    "offset": "0x98",
+    "name": "pScriptPtrB",
+    "type": "void *",
+    "size": 4
+   },
+   {
+    "offset": "0xa0",
+    "name": "pScriptPtrC",
+    "type": "void *",
+    "size": 4
+   }
+  ],
+  "tagStageRoleData": [
+   {
+    "offset": "0x24",
+    "name": "m_nEffParam24",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x30",
+    "name": "m_nEffParam30",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x34",
+    "name": "m_nEffParam34",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x38",
+    "name": "m_nEffParam38",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x40",
+    "name": "m_nEffParam40",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x44",
+    "name": "m_nEffParam44",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "m_nEffParam48",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x50",
+    "name": "m_nEffParam50",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x54",
+    "name": "m_nEffParam2",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x58",
+    "name": "m_nEffParam58",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "offset": "0x70",
+    "name": "m_nEffParam5",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x78",
+    "name": "m_nEffParam6",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x84",
+    "name": "m_nEffParam7",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x8c",
+    "name": "m_nEffParam8",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "tagStageSubTask": [
+   {
+    "offset": "0x40",
+    "name": "fTemp1",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x44",
+    "name": "fTemp2",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x48",
+    "name": "fTemp3",
+    "type": "float",
+    "size": 4
+   },
+   {
+    "offset": "0x4c",
+    "name": "fTemp4",
+    "type": "float",
+    "size": 4
+   }
+  ]
+ }
+}
