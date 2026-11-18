@@ -105,5 +105,6 @@
  "DATA:N13c:CPK::SetOpenMode 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测",
  "CANON:N8:ParticleVisNode:0x00410900 ParticleVisNode 双调用约定: CCBAIWindow *__thiscall __thiscall (int)",
  "CANON:N8:Actor:0x0053bd30 Actor 双调用约定: int *__thiscall __thiscall (int *pnVal)",
- "DATA:N13a:CEffMeteor::_tail_000 字段契约断(语料->引用18次, 类链known_members无名) → C2227族预测"
+ "DATA:N13a:CEffMeteor::_tail_000 字段契约断(语料->引用18次, 类链known_members无名) → C2227族预测",
+ "CANON:C9:CCBUI:0x00519660:sig CCBUI Update 签名与基类不一致: return_type: signed __int32 vs BOOL; param[0]: int vs CCBUI * *; 本=signed __int32 __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费"
 ]

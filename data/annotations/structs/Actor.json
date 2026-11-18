@@ -2637,7 +2637,7 @@
    "name": "ActionEntry_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
@@ -2648,7 +2648,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ActionEntry_Assign): int(char *,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(ActionEntry_Assign): int("
   },
   "0x005394d0": {
    "name": "ClearActionArrays",
@@ -2854,7 +2854,7 @@
    "name": "CopyBufferBlocks",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
@@ -2873,7 +2873,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CopyBufferBlocks): int(char *,char *,char *,char *); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(CopyBufferBlocks): int(ch"
   },
   "0x0053afe0": {
    "name": "CopyIfValid",
@@ -2957,7 +2957,7 @@
    "name": "ActArray_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
@@ -2968,13 +2968,13 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ActArray_Assign): int(int *,int *); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(ActArray_Assign): int(int"
   },
   "0x0053bd30": {
    "name": "BoneIndexVec_Assign",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__thiscall",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
@@ -2985,7 +2985,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(BoneIndexVec_Assign): int(int *,int *); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(BoneIndexVec_Assign): int"
   },
   "0x0041bca0": {
    "name": "ExecuteAction",

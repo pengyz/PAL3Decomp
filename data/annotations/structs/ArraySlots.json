@@ -78,7 +78,7 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "CCBAIWindow *__thiscall",
+    "return": "CCBAIWindow *",
     "cc": "thiscall",
     "params": [
      {
@@ -93,7 +93,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_sdtor_14_adjthunk(??1/??_G析构族); decomp文件=ArraySlots_sdtor_14_adjthunkint_0044ab40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 m"
   }
  }
 }

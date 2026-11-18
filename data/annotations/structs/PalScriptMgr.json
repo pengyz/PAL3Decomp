@@ -1625,7 +1625,7 @@
    "name": "LoadSceneGeometry",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "struct gbVFileSystem *__thiscall",
+    "return": "struct gbVFileSystem *",
     "cc": "thiscall",
     "params": [
      {
@@ -1636,7 +1636,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 m"
   },
   "0x0042cf60": {
    "name": "CmdPushCmd04",
@@ -1868,7 +1868,7 @@
    "name": "CmdCameraOrbitPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
@@ -1891,7 +1891,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CmdCameraOrbitPos): int(char *,int,float,float,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(CmdCameraOrbitPos): int(c"
   },
   "0x0042e4d0": {
    "name": "CmdRoleMoveSmooth",

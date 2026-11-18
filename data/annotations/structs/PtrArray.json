@@ -401,7 +401,7 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *__cdecl",
+    "return": "int *",
     "cc": "thiscall",
     "params": [
      {
@@ -420,7 +420,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CopyRange): int(int *,int *,int,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(CopyRange): int(int *,int"
   },
   "0x0053d0b0": {
    "name": "ClearBoth",

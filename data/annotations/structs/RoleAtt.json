@@ -321,7 +321,7 @@
    "source": "vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBAIWindow *__thiscall",
+    "return": "CCBAIWindow *",
     "cc": "thiscall",
     "params": [
      {
@@ -332,7 +332,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 m"
   },
   "0x00457f90": {
    "name": "FormatAttributeText",

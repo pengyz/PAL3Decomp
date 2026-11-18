@@ -3099,7 +3099,7 @@
    "name": "PopulateItemList",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *__thiscall",
+    "return": "char *",
     "cc": "thiscall",
     "params": [
      {
@@ -3110,7 +3110,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(PopulateItemList): int(char *,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(PopulateItemList): int(ch"
   },
   "0x004f9390": {
    "name": "PopulateMagicList",
