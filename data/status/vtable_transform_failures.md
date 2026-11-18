@@ -1076,3 +1076,9 @@
 | `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 96 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 96))( gfxMgr, *(_DWORD *)((char *)v7 + (_DWORD)v10 - self), 0, 0)` |
 | `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 104 | self_arg_mismatch | `(*(void ( **)(gbGfxManager *, int))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 104))(gfxMgr, 1)` |
 | `::_todo_541590` | inline | `gbGfxManager` | 100 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, _DWORD))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 100))( gfxMgr, *(_DWORD *)(result + 4 * param_1))` |
+| `CCBItemWindow::HideAll` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&(*p_m_pDescription)->UIWnd + 20))(*p_m_pDescription, 1)` |
+| `CCBItemWindow::HideAll` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int))(*(_DWORD *)&m_pButtonTreasure->UIWnd + 20))(m_pButtonTreasure, 1)` |
+| `CCBItemWindow::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_nActivePage + 20))(m_nActivePage, 1)` |
+| `CCBUI::~CCBParabolaWindow` | inline | `UIStatic` | 20 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int))(*(_DWORD *)&v2->UIWnd + 20))(v2, 1)` |
+| `CEffQuad::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffQuad` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffQuad *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v4->_tail_000 + 4))( v4, *(_DWORD *)(*(_DWORD *)v13 + v14), *(_DWORD *)(*(_DWORD *)v13 + v14 ` |
+| `CEffShock::UpdateFrame` | inline | `CTaskTpl_tagEffTaskParam_CEffShock` | 4 | no_vtables_declaration | `(*(void ( **)(CTaskTpl_tagEffTaskParam_CEffShock *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2->_tail_000 + 4))( v2, *(_DWORD *)(*v4 + v5), *(_DWORD *)(*v4 + v5 + 4), 0)` |
