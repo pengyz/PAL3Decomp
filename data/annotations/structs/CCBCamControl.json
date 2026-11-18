@@ -225,6 +225,36 @@
    "count": 38,
    "source": "| normalize_key: 0x260 -> 608",
    "evidence_level": "unverified"
+  },
+  "0x3cfb8": {
+   "name": "m_RenderQueue",
+   "type": "UIParticle[98]",
+   "evidence_level": "A",
+   "source": "[A 级汇编+语料三重互证 2026-11-18] ProcessRenderQueue VA=0x48e600: v12=98 do-while(--v12)=98 次迭代 (R1 初版误读 12, 复核 P0-2 证伪), 步进 584B (VA=0x48e75x add esi,248h); 98*584=0xDF90, 0x3CFB8+0xDF90=0x4AF48 与选区 m_SelectRect 邻接三角互证; 语料 m_RenderQueue[98].m_viewRect.left 渲染实证; UIParticle sizeof=584 注解对账"
+  },
+  "0x5d9ec": {
+   "name": "m_SlotButtons",
+   "type": "UIButton[5]",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-18] ShowAllSlots VA=0x4a9eda: lea edi,[esi+5D9ECh]; VA=0x4a9f07: lea ecx,[esi+ecx*8+5D9ECh] (86*4=344 stride), 循环界 v3=5; UIButton sizeof=344 (注解对账); sub_445E50 链表头操作"
+  },
+  "0x5f360": {
+   "name": "m_TabLists",
+   "type": "_BYTE[6040]",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-18] ShowAllSlots VA=0x4a9f32/0x4a9f50: lea [esi+5F360h]/[esi+5F818h] stride 1208B (0x5F818-0x5F360=0x4B8), 5 页签; UIListBox::ClearAll/GetItem 虚调用经此 (对象有 vptr 但 1208B 身份未定谳, UIListBox=72B 不符) → _BYTE 占位, 身份定谳挂账"
+  },
+  "0x4af48": {
+   "name": "m_SelectRect",
+   "type": "int[4]",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-18] ProcessRenderQueue VA=0x48e606: mov esi,[ecx+4AF48h] (x1) / VA=0x48e60d: [ecx+4AF50h] (x2) / VA=0x48e615: [ecx+4AF54h] (y2), y1@0x4AF4C 隐含; CalcRenderDimensions(v2=x2-x1, v6=y2-y1) 消费。R1 初版误落 0x4AF4C (复核 P0-3: x1 撂在成员外+含越界 4B), 修正基址"
+  },
+  "0x5558": {
+   "name": "m_nCurPageTab",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "[B 级语料锚 2026-11-18] ShowAllSlots: *(&m_nCurCamIdx+3057)=nVal; 3057*4=12228=0x2FC4, 0x2594+0x2FC4=0x5558 (R1 初版 0x2FE4 算术错, 复核 P0-1 证伪); B 级待汇编直接捕获"
   }
  },
  "methods": {
@@ -717,5 +747,6 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetData_B8D0): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   }
  },
- "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）"
+ "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）",
+ "members_note": "\n[R1 2026-11-18 修正版·复核P0后] 池区骨架 (全部汇编 disp 对齐):\n  m_RenderQueue UIParticle[98] [0x3CFB8,0x4AF48) — 98x584 与选区邻接互证\n  m_SelectRect int[4] [0x4AF48,0x4AF58) — x1/x2/y2 disp 实测\n  m_nCurPageTab int [0x5558,0x555C) — B级语料锚 3057*4\n  m_SlotButtons UIButton[5] [0x5D9EC,0x5E0A4) — stride 344 循环界 5\n  m_TabLists _BYTE[6040] [0x5F360,0x60AF8) — stride 1208 身份未定谳\n未名 gap ≈396KB: [0x24e4,0x5558)+[0x555c,0x3cfb8)+[0x4af58,0x5d9ec)+[0x5e0a4,0x5f360)+[0x60af8,0x68fb0) 自然保留挂账 (R1 初版账本边界 4 处算错已重算, 复核 P1-6)。"
 }

@@ -220,13 +220,13 @@
   "0x30": {
    "name": "m_nRoleParam0",
    "type": "int",
-   "source": "decomp:transfer_from_nVal+48 | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 2, 'evidence': '4024a1:\\t8b 5e 30 \\tmov 0x30(%esi),%ebx'}, {'form': 'float', 'count': 2, 'evidence': '402d88:\\td9 5f 30 \\tfstps 0x30(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = SINGLE_ASSIGN 9 站（mov reg int 存）非 FLOAT ⇒ 命名错 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float",
+   "source": "decomp:transfer_from_nVal+48 | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 2, 'evidence': '4024a1:\\t8b 5e 30 \\tmov 0x30(%esi),%ebx'}, {'form': 'float', 'count': 2, 'evidence': '402d88:\\td9 5f 30 \\tfstps 0x30(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = SINGLE_ASSIGN 9 站（mov reg int 存）非 FLOAT ⇒ 命名错 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "A"
   },
   "0x34": {
    "name": "m_fRoleParam1",
    "type": "float",
-   "source": "decomp:transfer_from_nVal+52_float",
+   "source": "decomp:transfer_from_nVal+52_float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
@@ -239,39 +239,39 @@
   "0x3c": {
    "name": "m_fRoleParam2",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_484",
+   "source": "transfer_from_RoleSystem_off_484 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x40": {
    "name": "m_fRoleParam3",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_488",
+   "source": "transfer_from_RoleSystem_off_488 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x44": {
    "name": "m_nRoleParam2",
    "type": "int",
-   "source": "decomp:transfer_from_nVal+68",
+   "source": "decomp:transfer_from_nVal+68 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "note": "Discovered by member_scan after disp8 fix.",
    "evidence_level": "unverified"
   },
   "0x48": {
    "name": "m_pRoleParam3",
    "type": "char *",
-   "source": "decomp:transfer_from_nVal+72_ptr",
+   "source": "decomp:transfer_from_nVal+72_ptr | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "unverified"
   },
   "0x4c": {
    "name": "m_nCachedA",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_500",
+   "source": "transfer_from_RoleSystem_off_500 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x50": {
    "name": "m_nCachedB",
    "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method",
+   "source": "A:mov_byte_ptr_in_class_method | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x54": {
@@ -283,19 +283,19 @@
   "0x58": {
    "name": "m_nRoleState0",
    "type": "int",
-   "source": "decomp:transfer_from_RoleSystem",
+   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x5c": {
    "name": "m_bUIFlagA",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_516",
+   "source": "transfer_from_RoleSystem_off_516 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x5d": {
    "name": "m_bUIFlagB",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_517",
+   "source": "transfer_from_RoleSystem_off_517 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x60": {
@@ -325,13 +325,13 @@
   "0x80": {
    "name": "m_nAnimParam0",
    "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+128",
+   "source": "decomp:_nearby_53b890_from_nVal+128 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x84": {
    "name": "m_nAnimParam1",
    "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+132",
+   "source": "decomp:_nearby_53b890_from_nVal+132 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x88": {
@@ -584,7 +584,7 @@
   "0xdc": {
    "name": "m_fMatrixA",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init",
+   "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -635,7 +635,7 @@
   "0xe0": {
    "name": "m_fMatrixB",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E365D 同形取址 DWORD 算术 ⇒ 位面复用；名 m_fMatrixB 挂账 | evidence: 详前文 A 级形证",
+   "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E365D 同形取址 DWORD 算术 ⇒ 位面复用；名 m_fMatrixB 挂账 | evidence: 详前文 A 级形证 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "A",
    "audit": {
     "level": "contradicted",
@@ -686,7 +686,7 @@
   "0xe4": {
    "name": "m_fMatrixC",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_652",
+   "source": "transfer_from_RoleSystem_off_652 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -767,7 +767,7 @@
   "0xec": {
    "name": "m_fMatrixParamA",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x53b84e",
+   "source": "A:FPU_post_reattrib_0x53b84e | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -804,7 +804,7 @@
   "0xf0": {
    "name": "m_fMatrixParamB",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_664",
+   "source": "transfer_from_RoleSystem_off_664 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -908,7 +908,7 @@
   "0xfc": {
    "name": "m_fMatrixParamC",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x5368f5",
+   "source": "A:FPU_post_reattrib_0x5368f5 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1071,7 +1071,7 @@
   "0x14d": {
    "name": "m_bActionFlag1",
    "type": "unsigned char",
-   "source": "binary:raw_CompareAction",
+   "source": "binary:raw_CompareAction | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x150": {
@@ -1083,13 +1083,13 @@
   "0x151": {
    "name": "m_bActionFlag2",
    "type": "unsigned char",
-   "source": "binary:raw",
+   "source": "binary:raw | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x152": {
    "name": "m_bActionFlag3",
    "type": "unsigned char",
-   "source": "binary:raw",
+   "source": "binary:raw | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x153": {
@@ -1169,7 +1169,7 @@
   "0x18c": {
    "name": "m_nCloneParamB",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_820",
+   "source": "transfer_from_RoleSystem_off_820 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x190": {
@@ -1181,13 +1181,13 @@
   "0x194": {
    "name": "m_nCloneFlag1",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs",
+   "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x198": {
    "name": "m_nCloneFlag2",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs",
+   "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x19c": {
@@ -1199,13 +1199,13 @@
   "0x1a4": {
    "name": "m_nModelParamA",
    "type": "int",
-   "source": "binary:gap_r2",
+   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x1ac": {
    "name": "m_nModelParamB",
    "type": "int",
-   "source": "binary:gap_r2",
+   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1228,7 +1228,7 @@
   "0x1b0": {
    "name": "m_nRoleState1",
    "type": "int",
-   "source": "decomp:transfer_from_RoleSystem",
+   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
    "evidence_level": "unverified"
   },
   "0x1b4": {

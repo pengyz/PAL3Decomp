@@ -528,6 +528,7 @@ census/decomp 成员名与真实访问脱钩（hexrays 循环产物）：Logger 
 - 证据链上确实无语义的地址：用体语义推导命名（如 0x43de40 = ReleaseTempStorage），并留 name_note 说明推导依据；不得占位、不得编造无关语义
 - C8 同类同名双址冲突：走语义保形消歧（`Update_2ff0` 形），消歧后缀不算语义退化
 - 管线槽名回退链中 `slot_%d` 占位分支同样违规——数据必须自带头槽语义名，回退分支命中即视为数据缺陷
+- **存量伪语义名过渡条款（2026-11-18 R1-T5）**：台账 `data/annotations/archive/pseudo_semantic_names_20261118.json` 已登记的历史序号后缀名（CachedA/B、RoleParam0-3 等 58 类）为**合法过渡态**——禁止新增此形态，存量正名逐类走取证战役（每名 name_note 留语料/汇编证据链），禁止 _todo_ 降级规避
 
 ## 编译器产物命名规约（2026-11-16 理解修正）
 

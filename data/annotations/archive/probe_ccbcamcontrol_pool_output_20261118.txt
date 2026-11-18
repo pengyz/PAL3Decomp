@@ -1,0 +1,56 @@
+
+=== 方法 x 池区 disp 命中 (6 方法) ===
+0x004a9ed0 ShowAllSlots                         hits=32
+    0x004a9eda disp=0x5d9ec  lea     edi, [esi+5D9ECh]
+    0x004a9f07 disp=0x5d9ec  lea     ecx, [esi+ecx*8+5D9ECh]; a2
+    0x004a9f2c disp=0x5f360  mov     edx, [esi+5F360h]
+    0x004a9f32 disp=0x5f360  lea     edi, [esi+5F360h]
+    0x004a9f50 disp=0x5f818  lea     edi, [esi+5F818h]
+    0x004a9f65 disp=0x5fcd0  lea     edi, [esi+5FCD0h]
+    0x004a9f7f disp=0x5f360  lea     edi, [esi+5F360h]; jumptable 004A9F1C case 1
+    0x004a9f9d disp=0x5f818  mov     edx, [esi+5F818h]
+    0x004a9fa3 disp=0x5f818  lea     edi, [esi+5F818h]
+    0x004a9fc1 disp=0x5fcd0  lea     edi, [esi+5FCD0h]
+    0x004a9fd6 disp=0x60188  lea     edi, [esi+60188h]
+    0x004a9ff0 disp=0x5f360  lea     edi, [esi+5F360h]; jumptable 004A9F1C case 2
+    0x004aa005 disp=0x5f818  lea     edi, [esi+5F818h]
+    0x004aa023 disp=0x5fcd0  mov     edx, [esi+5FCD0h]
+    0x004aa029 disp=0x5fcd0  lea     edi, [esi+5FCD0h]
+    0x004aa047 disp=0x60188  lea     edi, [esi+60188h]
+    0x004aa05c disp=0x60640  lea     edi, [esi+60640h]
+    0x004aa071 disp=0x05558  mov     [esi+5558h], ebx
+    0x004aa07d disp=0x5f360  lea     edi, [esi+5F360h]; jumptable 004A9F1C case 3
+    0x004aa092 disp=0x5f818  lea     edi, [esi+5F818h]
+    0x004aa0a7 disp=0x5fcd0  lea     edi, [esi+5FCD0h]
+    0x004aa0c5 disp=0x60188  mov     edx, [esi+60188h]
+    0x004aa0cb disp=0x60188  lea     edi, [esi+60188h]
+    0x004aa0e9 disp=0x60640  lea     edi, [esi+60640h]
+    0x004aa0fe disp=0x05558  mov     [esi+5558h], ebx
+    0x004aa10a disp=0x5f360  lea     edi, [esi+5F360h]; jumptable 004A9F1C case 4
+    0x004aa11f disp=0x5f818  lea     edi, [esi+5F818h]
+    0x004aa134 disp=0x5fcd0  lea     edi, [esi+5FCD0h]
+    0x004aa149 disp=0x60188  lea     edi, [esi+60188h]
+    0x004aa167 disp=0x60640  mov     edx, [esi+60640h]
+    0x004aa16d disp=0x60640  lea     edi, [esi+60640h]
+    0x004aa18b disp=0x05558  mov     [esi+5558h], ebx; jumptable 004A9F1C default case
+0x0048e600 ProcessRenderQueue                   hits=5
+    0x0048e606 disp=0x4af48  mov     esi, [ecx+4AF48h]
+    0x0048e60d disp=0x4af50  mov     edi, [ecx+4AF50h]
+    0x0048e615 disp=0x4af54  mov     ebx, [ecx+4AF54h]
+    0x0048e624 disp=0x3cfb8  lea     esi, [ecx+3CFB8h]
+    0x0048e62e disp=0x4af4c  mov     eax, [ecx+4AF4Ch]
+0x004ebf90 ReadCameraDialog                     hits=3
+    0x004ebf96 disp=0x02594  cmp     dword ptr [ebx+2594h], 0FFFFFFFFh
+    0x004ec09a disp=0x02594  mov     edx, [ebx+2594h]
+    0x004ec1cb disp=0x02594  mov     edx, [ebx+2594h]
+0x004eb720 GetData_B720                         hits=2
+    0x004eb860 disp=0x02590  mov     edx, [ebx+2590h]
+    0x004eb8a7 disp=0x02590  mov     edx, [ebx+2590h]
+0x004eb8d0 GetData_B8D0                         hits=2
+    0x004ebcbc disp=0x02594  mov     edx, [eax+2594h]
+    0x004ebd09 disp=0x02594  mov     eax, [edx+2594h]
+0x004ebd30 ShowCameraDialog                     hits=2
+    0x004ebd36 disp=0x02594  cmp     dword ptr [ebx+2594h], 0FFFFFFFFh
+    0x004ebe3a disp=0x02594  mov     edx, [ebx+2594h]
+
+[probe] done

@@ -19,6 +19,11 @@
     "size": 4
    },
    {
+    "offset": "0x38",
+    "name": "m_fRoleParam",
+    "type": "float"
+   },
+   {
     "offset": "0x3c",
     "name": "m_fRoleParam2",
     "type": "float",
@@ -73,6 +78,11 @@
     "size": 1
    },
    {
+    "offset": "0x60",
+    "name": "m_fAnimParam",
+    "type": "float"
+   },
+   {
     "offset": "0x80",
     "name": "m_nAnimParam0",
     "type": "int",
@@ -103,6 +113,11 @@
     "size": 4
    },
    {
+    "offset": "0xe8",
+    "name": "m_nMatrixParam",
+    "type": "int"
+   },
+   {
     "offset": "0xec",
     "name": "m_fMatrixParamA",
     "type": "float",
@@ -113,6 +128,16 @@
     "name": "m_fMatrixParamB",
     "type": "float",
     "size": 4
+   },
+   {
+    "offset": "0xf4",
+    "name": "m_fMatrixE",
+    "type": "float"
+   },
+   {
+    "offset": "0xf8",
+    "name": "m_fMatrixF",
+    "type": "float"
    },
    {
     "offset": "0xfc",
@@ -137,6 +162,11 @@
     "name": "m_bActionFlag3",
     "type": "unsigned char",
     "size": 1
+   },
+   {
+    "offset": "0x184",
+    "name": "m_nCloneParam",
+    "type": "int"
    },
    {
     "offset": "0x18c",
@@ -173,6 +203,11 @@
     "name": "m_nRoleState1",
     "type": "int",
     "size": 4
+   },
+   {
+    "offset": "0x308",
+    "name": "m_pRoleState",
+    "type": "char *"
    }
   ],
   "CCBCamControl": [
@@ -1904,5 +1939,6 @@
     "size": 4
    }
   ]
- }
+ },
+ "adjudication_r1": "2026-11-18 R1-T5 裁定: _todo_ 降级撤销 (CLAUDE.md:525 命名铁律全禁占位名); 存量伪语义名以本台账登记为合法过渡态 (CLAUDE.md 已补记条款), 禁止新增; 正名逐类走取证战役 (Actor=内嵌子对象身份战役)。复核 P1-8 补录 7 名漏网。"
 }
