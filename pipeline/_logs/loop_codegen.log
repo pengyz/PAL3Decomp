@@ -1,9 +1,9 @@
   Cleaned: /home/peng/workspace/PAL3Decomp/pal3/src/
 [clean] Done
   [R91] 重归属路由 28 条（scope=batch0）: ClearActionArrays, ClearActionFlags, ClearAllActions, ClearAllocBuffers, ClearPathBuffer, CreateChildWidget ...
-[C2011] ns-decls: 17 unique blocks, 4 byval-inc, 4 fwd-decls -> _ns_udts.h
-Generated 761 header files in /home/peng/workspace/PAL3Decomp/pal3/src
-  With annotation layout: 1288
+[C2011] ns-decls: 15 unique blocks, 4 byval-inc, 4 fwd-decls -> _ns_udts.h
+Generated 762 header files in /home/peng/workspace/PAL3Decomp/pal3/src
+  With annotation layout: 1289
   With methods: 237
   Enums: 0
   Template stubs: 0
@@ -22,7 +22,7 @@ Collecting functions from decomp...
 [L-VAR] WARN: 0x004442b0 覆盖 v9 但函数体内无声明行（参数变量？）
 [L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
-Generated 221 .cpp files (3517 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 221 .cpp files (3514 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 2 files
   Effect/: 18 files
@@ -35,7 +35,7 @@ Generated 221 .cpp files (3517 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 98/222 ok | own-fail 124 | imported-only 0  (38s)
+S2 cpp: 98/222 ok | own-fail 124 | imported-only 0  (32s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
@@ -43,430 +43,326 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261114_175959
 基线时间: 2026-11-14T17:59:59.395850
-检测时间: 2026-11-18T22:42:14.109890
+检测时间: 2026-11-19T01:59:49.129884
 
 📊 摘要:
-  总文件数: 1009
-  新失败: 86
+  总文件数: 1010
+  新失败: 83
   新错误(真新增 (code,msg)): 40
   已修复: 2
-  错误收敛(消失 (code,msg)): 30
+  错误收敛(消失 (code,msg)): 31
   持续失败: 59
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
   C2197    +212  ⚠️ 增加
-  C2227    +117  ⚠️ 增加
-  C2673    +105  ⚠️ 增加
+  C2227    +84  ⚠️ 增加
+  C2673    +75  ⚠️ 增加
   C2511    +55  ⚠️ 增加
-  C2039    +48  ⚠️ 增加
+  C2039    +45  ⚠️ 增加
   C2143    +34  ⚠️ 增加
   C2228    +33  ⚠️ 增加
   C2653    +23  ⚠️ 增加
+  C2440    +21  ⚠️ 增加
   C2556    +21  ⚠️ 增加
-  C2059    +21  ⚠️ 增加
-  C2065    +20  ⚠️ 增加
-  C2664    -19
+  C2059    +20  ⚠️ 增加
   C2373    +19  ⚠️ 增加
-  C2011    +17  ⚠️ 增加
-  C2440    +16  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C1004, C2011, C2039, C2040, C2041, C2059, C2065, C2084, C2143, C2146, C2197, C2199, C2226, C2227, C2228, C2230, C2264, C2276, C2296, C2297, C2352, C2355, C2371, C2373, C2440, C2446, C2447, C2451, C2501, C2511, C2523, C2556, C2631, C2652, C2653, C2660, C2673, C2678 —— 即使总错误数在下降也要逐条归因
+  C2065    +17  ⚠️ 增加
+  C2660    +15  ⚠️ 增加
+  C2011    +15  ⚠️ 增加
+  ⚠️ 注意: 以下错误码**净增** C1004, C2011, C2039, C2040, C2041, C2059, C2065, C2084, C2143, C2146, C2197, C2199, C2226, C2227, C2228, C2230, C2264, C2276, C2296, C2297, C2352, C2355, C2371, C2373, C2440, C2446, C2447, C2451, C2501, C2511, C2523, C2556, C2631, C2653, C2660, C2673, C2678 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Combat/CCBItemWindow.cpp
-    L57: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L154: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/DIENVELOPE.h
-    L0: C2011 - 'DIENVELOPE' : 'struct' type redefinition
-  s1:pal3/src/Misc/DIEFFESCAPE.h
-    L0: C2011 - 'DIEFFESCAPE' : 'struct' type redefinition
-  s1:pal3/src/Misc/DICOLORSET.h
-    L0: C2371 - 'DICOLORSET' : redefinition; different basic types
-  pal3/src/Misc/gbLightObj.cpp
-    L28: C2511 - 'GetAABBox' : overloaded member function 'int (void *)' not 
-  s1:pal3/src/Misc/_Collvec.h
-    L0: C2011 - '_Collvec' : 'struct' type redefinition
-  pal3/src/Effect/CEffSParticle.cpp
-    L20: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
-    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
-    L25: C2227 - left of '->m_pEM' must point to class/struct/union
-    ... 还有 26 个错误
-  pal3/src/Misc/UITitle_BBTY.cpp
-    L79: C2664 - 'void (char *,int,struct tagRECT *,class UITitle_BBTY *)' : 
-    L158: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/RoleCameraCtrl.cpp
-    L122: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/DIDEVICEINSTANCEA.h
-    L0: C2011 - 'DIDEVICEINSTANCEA' : 'struct' type redefinition
+  pal3/src/Misc/MainPropUI.cpp
+    L107: C2664 - 'void (char *,int,unsigned long *,class MainPropUI *)' : can
+    L939: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L1115: C2065 - 'SceneMgr_FormatStatusCaption' : undeclared identifier
   pal3/src/Data/CGameData.cpp
     L254: C2440 - '=' : cannot convert from 'unsigned long [23]' to 'long *'
     L327: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
     L640: C2440 - '=' : cannot convert from 'class UIScenePanel *' to 'class C
     ... 还有 8 个错误
-  pal3/src/Render/TextureLib.cpp
-    L475: C2511 - 'AddEntryFromConfig' : overloaded member function 'char (cha
-  pal3/src/Effect/CEffMeteor.cpp
-    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L508: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L545: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 6 个错误
-  pal3/src/Scene/CameraCtrl.cpp
-    L151: C2039 - '_sdtor_call_dtor' : is not a member of 'CameraCtrl'
-    L153: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L153: C2227 - left of '->CameraCtrl' must point to class/struct/union
-    ... 还有 11 个错误
-  pal3/src/Misc/UISceneFrm.cpp
-    L104: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L132: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Effect/CEffgbParticle.cpp
-    L136: C2501 - 'm_nCurTask' : missing storage-class or type specifiers
-    L136: C2355 - 'this' : can only be referenced inside non-static member fun
-    L136: C2227 - left of '->m_nCurTask' must point to class/struct/union
-    ... 还有 19 个错误
-  pal3/src/Misc/gbOBBox.cpp
-    L10: C2511 - 'GetBBox' : overloaded member function 'struct gbOBBox *(voi
-  s1:pal3/src/Misc/DIDEVICEOBJECTINSTANCEA.h
-    L0: C2011 - 'DIDEVICEOBJECTINSTANCEA' : 'struct' type redefinition
-  pal3/src/Misc/PtrArray.cpp
-    L712: C2440 - '=' : cannot convert from 'int' to 'void *'
-    L714: C2440 - '=' : cannot convert from 'int' to 'void *'
-  pal3/src/Effect/CEffQuad.cpp
-    L325: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L360: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L361: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 9 个错误
-  pal3/src/Combat/CCBLineupWindow.cpp
-    L34: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L100: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/UICoverFrm.cpp
-    L178: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
-    L184: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
-    L184: C2227 - left of '->UISceneMap' must point to class/struct/union
-    ... 还有 79 个错误
-  pal3/src/Effect/CEffShock.cpp
-    L60: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L66: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
-    L68: C2352 - 'CEffect::CEffect::~CEffect' : illegal call of non-static me
-    ... 还有 13 个错误
-  pal3/src/Misc/UISceneMap.cpp
-    L86: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/DIPROPDWORD.h
-    L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
-    L0: C2011 - 'DIPROPDWORD' : 'struct' type redefinition
-  pal3/src/Effect/CEffCylinder.cpp
-    L456: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L465: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    L466: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual
-    ... 还有 13 个错误
-  pal3/src/Misc/UITabCtrl.cpp
-    L21: C2065 - 'MEMORY' : undeclared identifier
-    L21: C2109 - subscript requires array or pointer type
-    L21: C2106 - '=' : left operand must be l-value
-  pal3/src/Misc/CCBPanelSlot.cpp
-    L82: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L93: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    ... 还有 13 个错误
-  pal3/src/Misc/UIButton.cpp
-    L51: C2440 - '=' : cannot convert from 'void *const ' to 'int'
-    L363: C2664 - 'SetLibFolder' : cannot convert parameter 1 from 'const char
-    L372: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/MainPropUI.cpp
-    L107: C2664 - 'void (char *,int,unsigned long *,class MainPropUI *)' : can
-    L939: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L1115: C2065 - 'SceneMgr_FormatStatusCaption' : undeclared identifier
-  pal3/src/globals.cpp
-    L4: C2199 - syntax error : found 'void (' at global scope (was a declara
-    L4: C2143 - syntax error : missing ';' before '{'
-    L4: C2447 - missing function header (old-style formal list?)
-    ... 还有 30 个错误
-  s1:pal3/src/Misc/_Ctypevec.h
-    L0: C2011 - '_Ctypevec' : 'struct' type redefinition
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L83: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
-    L186: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L188: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
-    ... 还有 8 个错误
-  pal3/src/Combat/CUtil.cpp
-    L171: C2440 - '=' : cannot convert from 'int' to 'char *'
-    L318: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  pal3/src/Misc/UITextArea.cpp
-    L36: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/DIDEVICEOBJECTDATA.h
+    L0: C2011 - 'DIDEVICEOBJECTDATA' : 'struct' type redefinition
+  pal3/src/Combat/CCBItemWindow.cpp
+    L57: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L154: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/RoleCameraCtrl.cpp
+    L122: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/DIEFFECT.h
+    L0: C2011 - 'DIEFFECT' : 'struct' type redefinition
   pal3/src/Effect/ScreenEffectMgr.cpp
     L666: C2039 - '_sdtor_call_dtor' : is not a member of 'ScreenEffectMgr'
     L668: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
     L668: C2227 - left of '->ScreenEffectMgr' must point to class/struct/union
     ... 还有 19 个错误
-  s1:pal3/src/Misc/DIEFFECT.h
-    L0: C2011 - 'DIEFFECT' : 'struct' type redefinition
-  pal3/src/Misc/MatrixStack.cpp
-    L36: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L42: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L43: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 26 个错误
-  pal3/src/Misc/SystemUI.cpp
-    L1288: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/ArraySlots.cpp
-    L29: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
-    L59: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
-  s1:pal3/src/Misc/ArcLocale.h
-    L0: C2039 - 'PoisonState' : is not a member of '`global namespace''
-    L0: C2143 - syntax error : missing ';' before '*'
-    L0: C2501 - 'pstate' : missing storage-class or type specifiers
-  s1:pal3/src/Combat/Combat.h
-    L0: C2440 - 'return' : cannot convert from 'const char [4]' to 'int'
-  s1:pal3/src/Misc/UIRoleSelectDialog.h
-    L0: C2059 - syntax error : 'constant'
-  s1:pal3/src/Misc/DIEFFECTINFOA.h
-    L0: C2011 - 'DIEFFECTINFOA' : 'struct' type redefinition
-  pal3/src/Misc/UITitle.cpp
-    L72: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/UITitle_ArcSave.cpp
-    L70: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L93: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Effect/CEffGrid.cpp
-    L42: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 10 个错误
-  s1:pal3/src/Misc/_Cvtvec.h
-    L0: C2011 - '_Cvtvec' : 'struct' type redefinition
-  pal3/src/Misc/UIMap.cpp
-    L40: C2039 - '_sdtor_call_dtor' : is not a member of 'UIMap'
-    L42: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L42: C2227 - left of '->UIMap' must point to class/struct/union
-    ... 还有 4 个错误
-  pal3/src/UI/UISystem.cpp
-    L35: C2065 - 'HideAll_11' : undeclared identifier
-  pal3/src/Misc/UICaption.cpp
-    L140: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L207: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L363: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  pal3/src/Misc/UILoadingFrm.cpp
-    L68: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Combat/CCBResultWindow.cpp
-    L218: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/RoleStatePanel.cpp
-    L672: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  pal3/src/Combat/CCBParabolaWindow.cpp
-    L48: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L150: C2143 - syntax error : missing ';' before 'return'
-    L151: C2143 - syntax error : missing ';' before '}'
-    ... 还有 5 个错误
-  pal3/src/Misc/CEffObj.cpp
-    L15: C2556 - 'char *__thiscall CEffObj::GetEditorObjDescription(int)' : o
-    L15: C2373 - 'GetEditorObjDescription' : redefinition; different type mod
-  pal3/src/UI/UIListBox.cpp
-    L300: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L823: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L1586: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    ... 还有 1 个错误
-  pal3/src/Render/RenderTarget2.cpp
-    L412: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-  s1:pal3/src/Combat/CCBStageCam.h
-    L0: C2652 - 'CCBStageCam' : illegal copy constructor: first parameter mu
-  pal3/src/Misc/UI3DModelNode.cpp
-    L77: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L81: C2440 - '=' : cannot convert from 'float' to 'void *'
-    L111: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 5 个错误
-  pal3/src/Misc/CEffAction.cpp
-    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
-    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
-    ... 还有 5 个错误
-  pal3/src/MiniGame/MiniGame1.cpp
-    L29: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L34: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/UIFrameContainer.cpp
-    L123: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
-    L166: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/PalScriptBlendTimer.cpp
-    L30: C2227 - left of '->Array' must point to class/struct/union
-    L30: C2653 - 'Array' : is not a class or namespace name
-  pal3/src/Effect/CEffModel.cpp
-    L121: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
-    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 9 个错误
-  s1:pal3/src/Misc/DIFILEEFFECT.h
-    L0: C2011 - 'DIFILEEFFECT' : 'struct' type redefinition
-  pal3/src/Effect/CEffExplosive.cpp
-    L333: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L342: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    L343: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
-    ... 还有 9 个错误
-  pal3/src/Misc/TaskBookUI.cpp
-    L1045: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/CScreenModeNode.cpp
-    L142: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L144: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L149: C2197 - 'void (__cdecl *)(struct gbMatrix4 *)' : too many actual par
-    ... 还有 3 个错误
-  pal3/src/Misc/UIPushButton.cpp
-    L142: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
-    L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    ... 还有 5 个错误
-  pal3/src/UI/UINote.cpp
-    L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L67: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Combat/CCBSkillWindow.cpp
-    L59: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L112: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
   pal3/src/Misc/UIProgressBar.cpp
     L46: C2039 - '_sdtor_call_dtor' : is not a member of 'UIProgressBar'
     L48: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
     L48: C2227 - left of '->PalScript' must point to class/struct/union
     ... 还有 19 个错误
-  pal3/src/Combat/CCBControlWindow.cpp
-    L323: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L369: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L394: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
-  pal3/src/UI/UIWnd.cpp
-    L52: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/lconv.h
-    L0: C2011 - 'lconv' : 'struct' type redefinition
   s1:pal3/src/Misc/DIDEVCAPS.h
     L0: C2011 - 'DIDEVCAPS' : 'struct' type redefinition
-  pal3/src/Misc/CCBUIPanel.cpp
-    L2229: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L2422: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  s1:pal3/src/Misc/DIDEVICEOBJECTDATA.h
-    L0: C2011 - 'DIDEVICEOBJECTDATA' : 'struct' type redefinition
-  pal3/src/Misc/AStarPathFinder.cpp
-    L140: C2556 - 'char __thiscall AStarPathFinder::GetHeuristicIdx(int,int)' 
-    L140: C2371 - 'GetHeuristicIdx' : redefinition; different basic types
-    L251: C2264 - 'GetHeuristicIdx' : error in function definition or declarat
-    ... 还有 1 个错误
+  pal3/src/Effect/CEffCylinder.cpp
+    L456: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L465: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    L466: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual
+    ... 还有 13 个错误
+  pal3/src/Misc/UISceneMap.cpp
+    L86: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/DIEFFESCAPE.h
+    L0: C2011 - 'DIEFFESCAPE' : 'struct' type redefinition
+  pal3/src/Misc/PtrArray.cpp
+    L712: C2440 - '=' : cannot convert from 'int' to 'void *'
+    L714: C2440 - '=' : cannot convert from 'int' to 'void *'
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L83: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
+    L186: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L188: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
+    ... 还有 8 个错误
+  pal3/src/Effect/CEffShock.cpp
+    L60: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L66: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
+    L68: C2352 - 'CEffect::CEffect::~CEffect' : illegal call of non-static me
+    ... 还有 13 个错误
+  pal3/src/Misc/UIButton.cpp
+    L51: C2440 - '=' : cannot convert from 'void *const ' to 'int'
+    L363: C2664 - 'SetLibFolder' : cannot convert parameter 1 from 'const char
+    L372: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/PalScriptBlendTimer.cpp
+    L30: C2227 - left of '->Array' must point to class/struct/union
+    L30: C2653 - 'Array' : is not a class or namespace name
   pal3/src/Effect/CEffQuake.cpp
     L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
     L34: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
     L34: C2227 - left of '->CEffQuake' must point to class/struct/union
     ... 还有 4 个错误
+  pal3/src/Effect/CEffExplosive.cpp
+    L333: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L342: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    L343: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
+    ... 还有 9 个错误
+  pal3/src/Combat/CCBProtectWindow.cpp
+    L93: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L414: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/globals.cpp
+    L4: C2199 - syntax error : found 'void (' at global scope (was a declara
+    L4: C2143 - syntax error : missing ';' before '{'
+    L4: C2447 - missing function header (old-style formal list?)
+    ... 还有 30 个错误
+  pal3/src/UI/UIListBox.cpp
+    L300: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L823: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L1586: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    ... 还有 1 个错误
+  pal3/src/Combat/CCBResultWindow.cpp
+    L218: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/CCBFiveNimbusWindow.cpp
+    L189: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L276: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/ArraySlots.cpp
+    L29: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
+    L59: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
+  pal3/src/Effect/CEffSParticle.cpp
+    L20: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
+    L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
+    L25: C2227 - left of '->m_pEM' must point to class/struct/union
+    ... 还有 26 个错误
+  s1:pal3/src/Misc/lconv.h
+    L0: C2011 - 'lconv' : 'struct' type redefinition
+  pal3/src/Render/RenderTarget2.cpp
+    L412: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+  s1:pal3/src/Misc/_Collvec.h
+    L0: C2011 - '_Collvec' : 'struct' type redefinition
+  s1:pal3/src/Misc/_Ctypevec.h
+    L0: C2011 - '_Ctypevec' : 'struct' type redefinition
+  pal3/src/Combat/CCBLineupWindow.cpp
+    L34: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L100: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/CCBPanelSlot.cpp
+    L82: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L93: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    ... 还有 13 个错误
+  pal3/src/Misc/UITextArea.cpp
+    L36: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UITitle.cpp
+    L72: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/CScreenModeNode.cpp
+    L142: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L144: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L149: C2197 - 'void (__cdecl *)(struct gbMatrix4 *)' : too many actual par
+    ... 还有 3 个错误
+  pal3/src/Scene/CameraCtrl.cpp
+    L151: C2039 - '_sdtor_call_dtor' : is not a member of 'CameraCtrl'
+    L153: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L153: C2227 - left of '->CameraCtrl' must point to class/struct/union
+    ... 还有 11 个错误
+  pal3/src/Combat/CCBSkillWindow.cpp
+    L59: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L112: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UICaption.cpp
+    L140: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L207: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L363: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  pal3/src/Render/TextureLib.cpp
+    L475: C2511 - 'AddEntryFromConfig' : overloaded member function 'char (cha
+  pal3/src/UI/UISystem.cpp
+    L35: C2065 - 'HideAll_11' : undeclared identifier
+  s1:pal3/src/Misc/DIPROPDWORD.h
+    L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
+    L0: C2011 - 'DIPROPDWORD' : 'struct' type redefinition
+  s1:pal3/src/Misc/DIFILEEFFECT.h
+    L0: C2011 - 'DIFILEEFFECT' : 'struct' type redefinition
+  pal3/src/Misc/UISceneFrm.cpp
+    L104: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L132: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Combat/CCBControlWindow.cpp
+    L323: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L369: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L394: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
+  pal3/src/Combat/CUtil.cpp
+    L171: C2440 - '=' : cannot convert from 'int' to 'char *'
+    L318: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  s1:pal3/src/Misc/ArcLocale.h
+    L0: C2039 - 'PoisonState' : is not a member of '`global namespace''
+    L0: C2143 - syntax error : missing ';' before '*'
+    L0: C2501 - 'pstate' : missing storage-class or type specifiers
+  pal3/src/Misc/UITitle_BBTY.cpp
+    L79: C2664 - 'void (char *,int,struct tagRECT *,class UITitle_BBTY *)' : 
+    L158: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIMap.cpp
+    L40: C2039 - '_sdtor_call_dtor' : is not a member of 'UIMap'
+    L42: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L42: C2227 - left of '->UIMap' must point to class/struct/union
+    ... 还有 4 个错误
+  pal3/src/Misc/CEffAction.cpp
+    L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
+    L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
+    ... 还有 5 个错误
+  pal3/src/Misc/UI3DModelNode.cpp
+    L77: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L81: C2440 - '=' : cannot convert from 'float' to 'void *'
+    L111: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 5 个错误
+  pal3/src/Misc/CEffObj.cpp
+    L15: C2556 - 'char *__thiscall CEffObj::GetEditorObjDescription(int)' : o
+    L15: C2373 - 'GetEditorObjDescription' : redefinition; different type mod
+  pal3/src/Effect/CEffGrid.cpp
+    L42: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 10 个错误
+  pal3/src/Misc/TaskBookUI.cpp
+    L1045: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/UI/UIRenderObj.cpp
+    L48: C2039 - '_sdtor_call_dtor' : is not a member of 'UIRenderObj'
+    L51: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L51: C2227 - left of '->_tail_000' must point to class/struct/union
+  pal3/src/Misc/UITabCtrl.cpp
+    L21: C2065 - 'MEMORY' : undeclared identifier
+    L21: C2109 - subscript requires array or pointer type
+    L21: C2106 - '=' : left operand must be l-value
+  pal3/src/Misc/SystemUI.cpp
+    L1288: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/_Cvtvec.h
+    L0: C2011 - '_Cvtvec' : 'struct' type redefinition
+  s1:pal3/src/Misc/DIENVELOPE.h
+    L0: C2011 - 'DIENVELOPE' : 'struct' type redefinition
+  s1:pal3/src/Misc/DIDEVICEINSTANCEA.h
+    L0: C2011 - 'DIDEVICEINSTANCEA' : 'struct' type redefinition
+  pal3/src/Misc/UICoverFrm.cpp
+    L178: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
+    L184: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
+    L184: C2227 - left of '->UISceneMap' must point to class/struct/union
+    ... 还有 79 个错误
+  pal3/src/Misc/gbOBBox.cpp
+    L10: C2511 - 'GetBBox' : overloaded member function 'struct gbOBBox *(voi
+  s1:pal3/src/Misc/DIDEVICEOBJECTINSTANCEA.h
+    L0: C2011 - 'DIDEVICEOBJECTINSTANCEA' : 'struct' type redefinition
+  pal3/src/Misc/UILoadingFrm.cpp
+    L68: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
   pal3/src/Misc/UIAnimateCtrlEX.cpp
     L100: C2660 - 'MoveWindow' : function does not take 0 parameters
     L185: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     L186: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
     ... 还有 3 个错误
+  pal3/src/Effect/CEffMeteor.cpp
+    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L508: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L545: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 6 个错误
+  pal3/src/Combat/CCBParabolaWindow.cpp
+    L48: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L150: C2143 - syntax error : missing ';' before 'return'
+    L151: C2143 - syntax error : missing ';' before '}'
+    ... 还有 5 个错误
+  pal3/src/UI/UINote.cpp
+    L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L67: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/AStarPathFinder.cpp
+    L140: C2556 - 'char __thiscall AStarPathFinder::GetHeuristicIdx(int,int)' 
+    L140: C2371 - 'GetHeuristicIdx' : redefinition; different basic types
+    L251: C2264 - 'GetHeuristicIdx' : error in function definition or declarat
+    ... 还有 1 个错误
+  pal3/src/Misc/RoleStatePanel.cpp
+    L672: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  pal3/src/Misc/gbLightObj.cpp
+    L28: C2511 - 'GetAABBox' : overloaded member function 'int (void *)' not 
+  s1:pal3/src/Misc/DIEFFECTINFOA.h
+    L0: C2011 - 'DIEFFECTINFOA' : 'struct' type redefinition
+  pal3/src/Effect/CEffgbParticle.cpp
+    L136: C2501 - 'm_nCurTask' : missing storage-class or type specifiers
+    L136: C2355 - 'this' : can only be referenced inside non-static member fun
+    L136: C2227 - left of '->m_nCurTask' must point to class/struct/union
+    ... 还有 19 个错误
+  pal3/src/Misc/MatrixStack.cpp
+    L36: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L42: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L43: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 26 个错误
+  pal3/src/UI/UIWnd.cpp
+    L52: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIPushButton.cpp
+    L142: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
+    L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    ... 还有 5 个错误
+  s1:pal3/src/Misc/DICOLORSET.h
+    L0: C2371 - 'DICOLORSET' : redefinition; different basic types
+  pal3/src/Effect/CEffModel.cpp
+    L121: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
+    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 9 个错误
+  pal3/src/Misc/UITitle_ArcSave.cpp
+    L70: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L93: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIFrameContainer.cpp
+    L123: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
+    L166: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/MiniGame/MiniGame1.cpp
+    L29: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L34: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
   s1:pal3/src/Misc/DIPROPHEADER.h
     L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
-  pal3/src/UI/UIRenderObj.cpp
-    L48: C2039 - '_sdtor_call_dtor' : is not a member of 'UIRenderObj'
-    L51: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L51: C2227 - left of '->_tail_000' must point to class/struct/union
-  pal3/src/Combat/CCBProtectWindow.cpp
-    L93: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L414: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/CCBFiveNimbusWindow.cpp
-    L189: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L276: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/CCBUIPanel.cpp
+    L2229: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L2422: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  pal3/src/Effect/CEffQuad.cpp
+    L325: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L360: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L361: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 9 个错误
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp
-    错误数: 19 -> 22  真新增 4 {'C2446': 1, 'C2040': 1, 'C2227': 1, 'C2440': 1}
-    新增 L520: C2446 - '==' : no conversion from 'char *' to 'int'
-    新增 L520: C2040 - '==' : 'int' differs in levels of indirection from 'char *'
-    新增 L1559: C2227 - left of '->p_DWORD' must point to class/struct/union
-    新增 L1559: C2440 - 'type cast' : cannot convert from 'int *' to 'class CCCTData'
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 39 -> 56  真新增 16 {'C2197': 6, 'C2039': 2, 'C2041': 6, 'C2660': 1, 'C2631': 1}
-    新增 L917: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
-    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
-    新增 L928: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L934: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Render/RenderTarget.cpp
-    错误数: 1 -> 4  真新增 3 {'C2664': 1, 'C2197': 2}
-    新增 L516: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L1891: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L2233: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 12 -> 37  真新增 21 {'C2065': 2, 'C2653': 1, 'C2197': 11, 'C2039': 2, 'C2440': 1, 'C2511': 1, 'C2660': 3}
-    新增 L1583: C2065 - 'j_j_codecvt_base' : undeclared identifier
-    新增 L1583: C2653 - 'j_j_codecvt_base' : is not a class or namespace name
-    新增 L1897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L1933: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L1934: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 1 -> 13  真新增 12 {'C2143': 6, 'C2447': 1, 'C2230': 1, 'C2296': 2, 'C2297': 1, 'C2511': 1}
-    新增 L795: C2143 - syntax error : missing ';' before 'if'
-    新增 L797: C2143 - syntax error : missing ';' before 'return'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 2 -> 5  真新增 3 {'C2556': 1, 'C2371': 1, 'C2664': 1}
-    新增 L70: C2556 - 'int __thiscall RoleAtt::OnMessage(int,int,int)' : overloaded function
-    新增 L70: C2371 - 'OnMessage' : redefinition; different basic types
-    新增 L128: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 19 -> 31  真新增 21 {'C2197': 19, 'C2039': 2}
-    新增 L897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L904: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L914: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L921: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
   pal3/src/Misc/UIRoleSelectDialog.cpp
     错误数: 2 -> 1  真新增 1 {'C2511': 1}
     新增 L186: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 46 {'C2084': 1, 'C2065': 6, 'C2296': 7, 'C2227': 25, 'C2228': 1, 'C2653': 1, 'C2440': 4, 'C2660': 1}
-    新增 L472: C2084 - function 'int __cdecl StartCombat(void *,unsigned int *,int,char)' alr
-    新增 L1923: C2065 - 'v1' : undeclared identifier
-    新增 L1923: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
-    新增 L1924: C2065 - 'v2' : undeclared identifier
-    新增 L1924: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
-  pal3/src/Misc/UIFrameWnd.cpp
-    错误数: 2 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
-    新增 L42: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L429: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-  pal3/src/Render/RenderTarget3.cpp
-    错误数: 2 -> 5  真新增 3 {'C2197': 3}
-    新增 L219: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L220: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters
-    新增 L234: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 22 -> 21  真新增 3 {'C2511': 1, 'C2660': 2}
-    新增 L928: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L1544: C2660 - 'GetBBox' : function does not take 0 parameters
-    新增 L2146: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 3 -> 2  真新增 2 {'C2664': 1, 'C2065': 1}
-    新增 L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L106: C2065 - 'sdtor_25' : undeclared identifier
-  pal3/src/Misc/JusticeBookUI.cpp
-    错误数: 2 -> 3  真新增 1 {'C2511': 1}
-    新增 L176: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 18 -> 25  真新增 18 {'C2039': 4, 'C2664': 1, 'C2446': 2, 'C2040': 2, 'C2276': 1, 'C2065': 1, 'C2501': 1, 'C2373': 1, 'C2143': 5}
-    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1455: C2664 - 'EditorUpdate' : cannot convert parameter 1 from 'class CCBStage *' to
-  pal3/src/MiniGame/MiniGame3.cpp
-    错误数: 6 -> 13  真新增 7 {'C2197': 6, 'C2440': 1}
-    新增 L43: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L49: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L59: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L152: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Script/PalScript.cpp
-    错误数: 39 -> 38  真新增 3 {'C2065': 1, 'C2511': 1, 'C2440': 1}
-    新增 L2912: C2065 - 'CON_State' : undeclared identifier
-    新增 L5852: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L5914: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
-  pal3/src/Combat/CCBUI.cpp
-    错误数: 24 -> 30  真新增 14 {'C2511': 2, 'C2065': 1, 'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2556': 1, 'C2371': 1, 'C2523': 1, 'C2631': 1}
-    新增 L974: C2511 - 'SettingsDialogProc' : overloaded member function 'int (int,int,unsign
-    新增 L1162: C2511 - 'HandleWindowMessage' : overloaded member function 'int (int,int,unsig
-    新增 L1348: C2065 - 'aHp' : undeclared identifier
-    新增 L4161: C2039 - '_sdtor_call_dtor' : is not a member of 'CCBUI'
-    新增 L4163: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
   pal3/src/GameBase/PAL3.cpp
     错误数: 40 -> 55  真新增 16 {'C2065': 2, 'C2197': 4, 'C2440': 4, 'C2446': 3, 'C2230': 3}
     新增 L619: C2065 - 'Update_25' : undeclared identifier
@@ -474,19 +370,6 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L988: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
     新增 L992: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
     新增 L1015: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
-  pal3/src/UI/EquipUI.cpp
-    错误数: 1 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
-    新增 L977: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L2186: C2664 - 'void (int *,__int16 *,int *,class EquipUI *)' : cannot convert parame
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 2 -> 5  真新增 3 {'C2227': 1, 'C2653': 1, 'C2511': 1}
-    新增 L568: C2227 - left of '->CCCTData' must point to class/struct/union
-    新增 L568: C2653 - 'CCCTData' : is not a class or namespace name
-    新增 L960: C2511 - 'StoreCurrentView' : overloaded member function 'int (int,int,unsigned
-  pal3/src/Script/ScriptSystem.cpp
-    错误数: 5 -> 12  真新增 2 {'C2197': 2}
-    新增 L87: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L91: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
   pal3/src/UI/StateUI.cpp
     错误数: 5 -> 13  真新增 8 {'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2511': 1}
     新增 L415: C2039 - '_sdtor_call_dtor' : is not a member of 'StateUI'
@@ -494,42 +377,25 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L417: C2227 - left of '->StateUI' must point to class/struct/union
     新增 L417: C2653 - 'StateUI' : is not a class or namespace name
     新增 L419: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 5 -> 10  真新增 5 {'C2511': 1, 'C2664': 4}
-    新增 L201: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L419: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L494: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L1014: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L1023: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-  pal3/src/Role/Object3D.cpp
-    错误数: 6 -> 23  真新增 19 {'C2511': 1, 'C2660': 5, 'C2197': 13}
-    新增 L342: C2511 - 'IsOverCVD' : overloaded member function 'int (int,float,float,float,f
-    新增 L384: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L424: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L456: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L460: C2660 - 'IsOverCVD' : function does not take 7 parameters
-  pal3/src/UI/PropUI.cpp
-    错误数: 4 -> 5  真新增 2 {'C2664': 1, 'C2511': 1}
-    新增 L364: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
-    新增 L1286: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Misc/SaleUI.cpp
-    错误数: 27 -> 29  真新增 19 {'C2228': 17, 'C2660': 1, 'C2511': 1}
-    新增 L94: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L187: C2228 - left of '._tail_000' must have class/struct/union type
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 8 -> 16  真新增 8 {'C2664': 6, 'C2440': 1, 'C2511': 1}
-    新增 L61: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
-    新增 L699: C2664 - 'void (char *,unsigned long,unsigned long *,class LineupUI *,char *,un
-    新增 L733: C2664 - 'void (char *,int,int *,class LineupUI *)' : cannot convert parameter 
-    新增 L762: C2440 - 'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdec
-    新增 L775: C2664 - 'void (char *,int,unsigned long *,class LineupUI *)' : cannot convert 
-  pal3/src/Misc/MainEquipUI.cpp
-    错误数: 3 -> 3  真新增 2 {'C2511': 1, 'C2440': 1}
-    新增 L1093: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L1398: C2440 - '=' : cannot convert from 'void *const ' to 'int'
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 25  真新增 18 {'C2039': 4, 'C2664': 1, 'C2446': 2, 'C2040': 2, 'C2276': 1, 'C2065': 1, 'C2501': 1, 'C2373': 1, 'C2143': 5}
+    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1455: C2664 - 'EditorUpdate' : cannot convert parameter 1 from 'class CCBStage *' to
+  pal3/src/Role/Actor.cpp
+    错误数: 26 -> 42  真新增 22 {'C2039': 1, 'C2673': 10, 'C2227': 11}
+    新增 L369: C2039 - '_sdtor_call_dtor' : is not a member of 'Actor'
+    新增 L375: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L375: C2227 - left of '->m_fMoveSpeed' must point to class/struct/union
+    新增 L376: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L376: C2227 - left of '->m_fMoveRange' must point to class/struct/union
+  pal3/src/Misc/RoleAtt.cpp
+    错误数: 2 -> 5  真新增 3 {'C2556': 1, 'C2371': 1, 'C2664': 1}
+    新增 L70: C2556 - 'int __thiscall RoleAtt::OnMessage(int,int,int)' : overloaded function
+    新增 L70: C2371 - 'OnMessage' : redefinition; different basic types
+    新增 L128: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
   pal3/src/Combat/CCBStageScene.cpp
     错误数: 2 -> 10  真新增 6 {'C2197': 6}
     新增 L971: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
@@ -537,132 +403,259 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L977: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L991: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L993: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 3 -> 1  真新增 1 {'C2678': 1}
-    新增 L11: C2678 - binary '==' : no operator defined which takes a left-hand operand of t
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 2 -> 4  真新增 3 {'C2440': 2, 'C2065': 1}
-    新增 L3329: C2440 - '=' : cannot convert from 'int' to 'void *'
-    新增 L3339: C2440 - '=' : cannot convert from 'int' to 'void *'
-    新增 L3355: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Role/Actor.cpp
-    错误数: 26 -> 101  真新增 89 {'C2039': 4, 'C2673': 40, 'C2227': 44, 'C2084': 1}
-    新增 L369: C2039 - '_sdtor_call_dtor' : is not a member of 'Actor'
-    新增 L375: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-    新增 L375: C2227 - left of '->m_fMoveSpeed' must point to class/struct/union
-    新增 L376: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-    新增 L376: C2227 - left of '->m_fMoveRange' must point to class/struct/union
-  pal3/src/UI/UIManager.cpp
-    错误数: 6 -> 8  真新增 2 {'C2197': 2}
-    新增 L109: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
-    新增 L110: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+  pal3/src/MiniGame/MiniGame3.cpp
+    错误数: 6 -> 13  真新增 7 {'C2197': 6, 'C2440': 1}
+    新增 L43: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L49: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L59: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L152: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 27 -> 29  真新增 19 {'C2228': 17, 'C2660': 1, 'C2511': 1}
+    新增 L94: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L187: C2228 - left of '._tail_000' must have class/struct/union type
   pal3/src/Misc/UIRoleDialog.cpp
     错误数: 1 -> 1  真新增 1 {'C2511': 1}
     新增 L76: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Misc/UITitle_YXXX.cpp
-    错误数: 1 -> 2  真新增 2 {'C2065': 1, 'C2511': 1}
-    新增 L335: C2065 - 'off_56B898' : undeclared identifier
-    新增 L348: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/UI/EquipUI.cpp
+    错误数: 1 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
+    新增 L977: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L2186: C2664 - 'void (int *,__int16 *,int *,class EquipUI *)' : cannot convert parame
+  pal3/src/Script/PalScript.cpp
+    错误数: 39 -> 38  真新增 3 {'C2065': 1, 'C2511': 1, 'C2440': 1}
+    新增 L2912: C2065 - 'CON_State' : undeclared identifier
+    新增 L5852: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L5914: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 5 -> 12  真新增 2 {'C2197': 2}
+    新增 L87: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L91: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/JusticeBookUI.cpp
+    错误数: 2 -> 3  真新增 1 {'C2511': 1}
+    新增 L176: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 1 -> 13  真新增 12 {'C2143': 6, 'C2447': 1, 'C2230': 1, 'C2296': 2, 'C2297': 1, 'C2511': 1}
+    新增 L795: C2143 - syntax error : missing ';' before 'if'
+    新增 L797: C2143 - syntax error : missing ';' before 'return'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 46 {'C2084': 1, 'C2065': 6, 'C2296': 7, 'C2227': 25, 'C2228': 1, 'C2653': 1, 'C2440': 4, 'C2660': 1}
+    新增 L472: C2084 - function 'int __cdecl StartCombat(void *,unsigned int *,int,char)' alr
+    新增 L1923: C2065 - 'v1' : undeclared identifier
+    新增 L1923: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
+    新增 L1924: C2065 - 'v2' : undeclared identifier
+    新增 L1924: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
   pal3/src/Effect/C3DSpark.cpp
     错误数: 1 -> 4  真新增 4 {'C2197': 4}
     新增 L381: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
     新增 L423: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L424: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L426: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Script/PalScriptMgr.cpp
+    错误数: 2 -> 4  真新增 3 {'C2440': 2, 'C2065': 1}
+    新增 L3329: C2440 - '=' : cannot convert from 'int' to 'void *'
+    新增 L3339: C2440 - '=' : cannot convert from 'int' to 'void *'
+    新增 L3355: C2065 - 'CON_State' : undeclared identifier
+  pal3/src/Role/Object3D.cpp
+    错误数: 6 -> 23  真新增 19 {'C2511': 1, 'C2660': 5, 'C2197': 13}
+    新增 L342: C2511 - 'IsOverCVD' : overloaded member function 'int (int,float,float,float,f
+    新增 L384: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L424: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L456: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L460: C2660 - 'IsOverCVD' : function does not take 7 parameters
+  pal3/src/Misc/UITitle_YXXX.cpp
+    错误数: 1 -> 2  真新增 2 {'C2065': 1, 'C2511': 1}
+    新增 L335: C2065 - 'off_56B898' : undeclared identifier
+    新增 L348: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/Render/RenderTarget.cpp
+    错误数: 1 -> 4  真新增 3 {'C2664': 1, 'C2197': 2}
+    新增 L516: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L1891: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L2233: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Render/RenderTarget3.cpp
+    错误数: 2 -> 5  真新增 3 {'C2197': 3}
+    新增 L219: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L220: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters
+    新增 L234: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 2 -> 5  真新增 3 {'C2227': 1, 'C2653': 1, 'C2511': 1}
+    新增 L568: C2227 - left of '->CCCTData' must point to class/struct/union
+    新增 L568: C2653 - 'CCCTData' : is not a class or namespace name
+    新增 L960: C2511 - 'StoreCurrentView' : overloaded member function 'int (int,int,unsigned
+  pal3/src/Misc/UIEmote.cpp
+    错误数: 3 -> 2  真新增 2 {'C2664': 1, 'C2065': 1}
+    新增 L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L106: C2065 - 'sdtor_25' : undeclared identifier
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 22 -> 21  真新增 3 {'C2511': 1, 'C2660': 2}
+    新增 L928: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L1544: C2660 - 'GetBBox' : function does not take 0 parameters
+    新增 L2146: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
+  pal3/src/Combat/CCBUI.cpp
+    错误数: 24 -> 29  真新增 13 {'C2511': 2, 'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2556': 1, 'C2371': 1, 'C2523': 1, 'C2631': 1}
+    新增 L974: C2511 - 'SettingsDialogProc' : overloaded member function 'int (int,int,unsign
+    新增 L1162: C2511 - 'HandleWindowMessage' : overloaded member function 'int (int,int,unsig
+    新增 L4161: C2039 - '_sdtor_call_dtor' : is not a member of 'CCBUI'
+    新增 L4163: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L4163: C2227 - left of '->CCBUI' must point to class/struct/union
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 3  真新增 2 {'C2511': 1, 'C2440': 1}
+    新增 L1093: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L1398: C2440 - '=' : cannot convert from 'void *const ' to 'int'
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 10  真新增 5 {'C2511': 1, 'C2664': 4}
+    新增 L201: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L419: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L494: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L1014: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L1023: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+  pal3/src/Misc/UIFrameWnd.cpp
+    错误数: 2 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
+    新增 L42: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L429: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+  pal3/src/Misc/PalScriptAnimTimer.cpp
+    错误数: 3 -> 1  真新增 1 {'C2678': 1}
+    新增 L11: C2678 - binary '==' : no operator defined which takes a left-hand operand of t
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 39 -> 56  真新增 16 {'C2197': 6, 'C2039': 2, 'C2041': 6, 'C2660': 1, 'C2631': 1}
+    新增 L917: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
+    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
+    新增 L928: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L934: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 19 -> 31  真新增 21 {'C2197': 19, 'C2039': 2}
+    新增 L897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L904: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L914: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L921: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/UI/UIManager.cpp
+    错误数: 6 -> 8  真新增 2 {'C2197': 2}
+    新增 L109: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+    新增 L110: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
   pal3/src/GameBase/Logger.cpp
     错误数: 1 -> 2  真新增 1 {'C2440': 1}
     新增 L235: C2440 - 'type cast' : cannot convert from 'class SceneMgr *(__thiscall SceneMg
-  s1:pal3/src/_ns_udts.h
-    错误数: 40 -> 44  真新增 3 {'C2501': 2, 'C2011': 1}
-    新增 L0: C2501 - 'PlayerMgr' : missing storage-class or type specifiers
-    新增 L0: C2501 - 'pToggle' : missing storage-class or type specifiers
-    新增 L0: C2011 - '_inline_PalScript_m_pCurrentTask' : 'union' type redefinition
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 12 -> 40  真新增 21 {'C2065': 2, 'C2653': 1, 'C2197': 11, 'C2039': 2, 'C2440': 1, 'C2511': 1, 'C2660': 3}
+    新增 L1587: C2065 - 'j_j_codecvt_base' : undeclared identifier
+    新增 L1587: C2653 - 'j_j_codecvt_base' : is not a class or namespace name
+    新增 L1901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L1937: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L1938: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
   pal3/src/Combat/CCBRoleState.cpp
-    错误数: 5 -> 16  真新增 6 {'C2511': 1, 'C2065': 3, 'C2440': 2}
+    错误数: 5 -> 14  真新增 4 {'C2511': 1, 'C2065': 1, 'C2440': 2}
     新增 L361: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
     新增 L1662: C2065 - 'COERCE_SIGNED_INT32' : undeclared identifier
-    新增 L2441: C2065 - 'unk_5D8944' : undeclared identifier
-    新增 L2444: C2065 - 'aHp' : undeclared identifier
     新增 L5123: C2440 - '=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'
+    新增 L5129: C2440 - '=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'
+  pal3/src/Combat/CCCTData.cpp
+    错误数: 19 -> 22  真新增 4 {'C2446': 1, 'C2040': 1, 'C2227': 1, 'C2440': 1}
+    新增 L520: C2446 - '==' : no conversion from 'char *' to 'int'
+    新增 L520: C2040 - '==' : 'int' differs in levels of indirection from 'char *'
+    新增 L1559: C2227 - left of '->p_DWORD' must point to class/struct/union
+    新增 L1559: C2440 - 'type cast' : cannot convert from 'int *' to 'class CCCTData'
+  pal3/src/UI/PropUI.cpp
+    错误数: 4 -> 5  真新增 2 {'C2664': 1, 'C2511': 1}
+    新增 L364: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
+    新增 L1286: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  s1:pal3/src/_ns_udts.h
+    错误数: 40 -> 42  真新增 2 {'C2501': 2}
+    新增 L0: C2501 - 'PlayerMgr' : missing storage-class or type specifiers
+    新增 L0: C2501 - 'pToggle' : missing storage-class or type specifiers
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 8 -> 16  真新增 8 {'C2664': 6, 'C2440': 1, 'C2511': 1}
+    新增 L61: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
+    新增 L699: C2664 - 'void (char *,unsigned long,unsigned long *,class LineupUI *,char *,un
+    新增 L733: C2664 - 'void (char *,int,int *,class LineupUI *)' : cannot convert parameter 
+    新增 L762: C2440 - 'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdec
+    新增 L775: C2664 - 'void (char *,int,unsigned long *,class LineupUI *)' : cannot convert 
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
+  pal3/src/Script/PalScript.cpp: {'C2664': 1}
+  pal3/src/free_functions.cpp: {'C2664': 1, 'C2065': 1, 'C2440': 2, 'C2039': 2, 'C2373': 1}
+  pal3/src/Render/CScreenMode.cpp: {'C2664': 5}
+  pal3/src/Combat/CCBUI.cpp: {'C2440': 1, 'C2664': 5, 'C2660': 1}
+  pal3/src/Misc/UIFrameWnd.cpp: {'C2440': 1}
   pal3/src/Role/RoleSystem.cpp: {'C2440': 2, 'C2664': 1}
   pal3/src/Combat/CCBStage.cpp: {'C2440': 3, 'C2664': 1}
-  pal3/src/free_functions.cpp: {'C2664': 1, 'C2065': 1, 'C2440': 2, 'C2039': 2, 'C2373': 1}
-  pal3/src/Misc/UIFrameWnd.cpp: {'C2440': 1}
-  pal3/src/Render/CScreenMode.cpp: {'C2664': 5}
-  pal3/src/Script/PalScript.cpp: {'C2664': 1}
-  pal3/src/Combat/CCBUI.cpp: {'C2440': 1, 'C2664': 5, 'C2660': 1}
   pal3/src/Combat/CCBRoleState.cpp: {'C2664': 2}
+  s1:pal3/src/_ns_udts.h: {'C2011': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp: 19 -> 22  (消失 1)
-  pal3/src/Role/RoleSystem.cpp: 39 -> 56  (消失 3)
-  pal3/src/GameBase/Config.cpp: 5 -> 2  (消失 3)
-  pal3/src/Render/RenderTarget.cpp: 1 -> 4  (消失 1)
-  pal3/src/Combat/CCBStage.cpp: 12 -> 37  (消失 5)
-  pal3/src/Misc/UIBigMap.cpp: 19 -> 31  (消失 8)
   pal3/src/Misc/UIRoleSelectDialog.cpp: 2 -> 1  (消失 2)
-  pal3/src/free_functions.cpp: 101 -> 101  (消失 62)
-  pal3/src/Misc/UIFrameWnd.cpp: 2 -> 3  (消失 2)
-  pal3/src/Render/CScreenMode.cpp: 22 -> 21  (消失 9)
-  pal3/src/Misc/UIEmote.cpp: 3 -> 2  (消失 3)
+  pal3/src/GameBase/Config.cpp: 5 -> 2  (消失 3)
+  pal3/src/GameBase/PAL3.cpp: 40 -> 55  (消失 1)
   pal3/src/Combat/CCBSystem.cpp: 18 -> 25  (消失 6)
-  pal3/src/GameBase/GRPinput.cpp: 14 -> 12  (消失 1)
+  pal3/src/Role/Actor.cpp: 26 -> 42  (消失 4)
+  pal3/src/Misc/SaleUI.cpp: 27 -> 29  (消失 17)
+  pal3/src/Misc/UIRoleDialog.cpp: 1 -> 1  (消失 1)
   pal3/src/Script/PalScript.cpp: 39 -> 38  (消失 4)
-  pal3/src/Combat/CCBUI.cpp: 24 -> 30  (消失 15)
+  pal3/src/Script/ScriptSystem.cpp: 5 -> 12  (消失 5)
+  pal3/src/GameBase/GRPinput.cpp: 14 -> 12  (消失 1)
+  pal3/src/free_functions.cpp: 101 -> 101  (消失 62)
+  pal3/src/Effect/C3DSpark.cpp: 1 -> 4  (消失 1)
+  pal3/src/Role/Object3D.cpp: 6 -> 23  (消失 2)
+  pal3/src/Misc/UITitle_YXXX.cpp: 1 -> 2  (消失 1)
+  pal3/src/Render/RenderTarget.cpp: 1 -> 4  (消失 1)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Effect/CEffect.cpp
   pal3/src/Effect/C2DSpark.cpp
+  pal3/src/Effect/CEffect.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Combat/CCCTData.cpp: 19 → 22
-  pal3/src/Role/RoleSystem.cpp: 39 → 56
-  pal3/src/GameBase/Config.cpp: 5 ↓ 2
-  pal3/src/Render/RenderTarget.cpp: 1 → 4
-  pal3/src/Combat/CCBStage.cpp: 12 → 37
-  pal3/src/Misc/UITitle_JDHY.cpp: 1 → 13
-  pal3/src/Misc/RoleAtt.cpp: 2 → 5
-  pal3/src/Misc/UIBigMap.cpp: 19 → 31
   pal3/src/Misc/UIRoleSelectDialog.cpp: 2 ↓ 1
-  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
-  pal3/src/Render/RenderTarget3.cpp: 2 → 5
-  pal3/src/Render/CScreenMode.cpp: 22 ↓ 21
-  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
-  pal3/src/Misc/JusticeBookUI.cpp: 2 → 3
-  pal3/src/Combat/CCBSystem.cpp: 18 → 25
-  pal3/src/MiniGame/MiniGame3.cpp: 6 → 13
-  pal3/src/GameBase/GRPinput.cpp: 14 ↓ 12
-  pal3/src/Script/PalScript.cpp: 39 ↓ 38
-  pal3/src/Combat/CCBUI.cpp: 24 → 30
-  pal3/src/Data/PAL_GDB.cpp: 4 ↓ 2
+  pal3/src/GameBase/Config.cpp: 5 ↓ 2
   pal3/src/GameBase/PAL3.cpp: 40 → 55
-  pal3/src/UI/EquipUI.cpp: 1 → 3
-  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
-  pal3/src/Script/ScriptSystem.cpp: 5 → 12
   pal3/src/UI/StateUI.cpp: 5 → 13
-  pal3/src/Misc/UIScenePanel.cpp: 5 → 10
-  pal3/src/Role/Object3D.cpp: 6 → 23
-  pal3/src/UI/PropUI.cpp: 4 → 5
-  pal3/src/UI/UIScene.cpp: 102 ↓ 80
-  pal3/src/Misc/SaleUI.cpp: 27 → 29
-  pal3/src/Misc/LineupUI.cpp: 8 → 16
+  pal3/src/Combat/CCBSystem.cpp: 18 → 25
+  pal3/src/Role/Actor.cpp: 26 → 42
+  pal3/src/Misc/RoleAtt.cpp: 2 → 5
   pal3/src/Combat/CCBStageScene.cpp: 2 → 10
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 3 ↓ 1
-  pal3/src/Script/PalScriptMgr.cpp: 2 → 4
-  pal3/src/Role/Actor.cpp: 26 → 101
-  pal3/src/UI/UIManager.cpp: 6 → 8
-  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 2
+  pal3/src/MiniGame/MiniGame3.cpp: 6 → 13
+  pal3/src/Misc/SaleUI.cpp: 27 → 29
+  pal3/src/UI/EquipUI.cpp: 1 → 3
+  pal3/src/Script/PalScript.cpp: 39 ↓ 38
+  pal3/src/Script/ScriptSystem.cpp: 5 → 12
+  pal3/src/GameBase/GRPinput.cpp: 14 ↓ 12
+  pal3/src/Misc/JusticeBookUI.cpp: 2 → 3
+  pal3/src/Misc/UITitle_JDHY.cpp: 1 → 13
   pal3/src/Effect/C3DSpark.cpp: 1 → 4
-  pal3/src/GameBase/Logger.cpp: 1 → 2
+  pal3/src/Script/PalScriptMgr.cpp: 2 → 4
+  pal3/src/Role/Object3D.cpp: 6 → 23
+  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 2
+  pal3/src/Render/RenderTarget.cpp: 1 → 4
+  pal3/src/Render/RenderTarget3.cpp: 2 → 5
+  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
+  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
+  pal3/src/UI/UIScene.cpp: 102 ↓ 80
+  pal3/src/Render/CScreenMode.cpp: 22 ↓ 21
+  pal3/src/Combat/CCBUI.cpp: 24 → 29
   pal3/src/Effect/CEffMgr.cpp: 10 ↓ 9
-  s1:pal3/src/_ns_udts.h: 40 → 44
-  pal3/src/Combat/CCBRoleState.cpp: 5 → 16
+  pal3/src/Misc/UIScenePanel.cpp: 5 → 10
+  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
+  pal3/src/Misc/PalScriptAnimTimer.cpp: 3 ↓ 1
+  pal3/src/Role/RoleSystem.cpp: 39 → 56
+  pal3/src/Misc/UIBigMap.cpp: 19 → 31
+  pal3/src/UI/UIManager.cpp: 6 → 8
+  pal3/src/GameBase/Logger.cpp: 1 → 2
+  pal3/src/Data/PAL_GDB.cpp: 4 ↓ 2
+  pal3/src/Combat/CCBStage.cpp: 12 → 40
+  pal3/src/Combat/CCBRoleState.cpp: 5 → 14
+  pal3/src/Combat/CCCTData.cpp: 19 → 22
+  pal3/src/UI/PropUI.cpp: 4 → 5
+  s1:pal3/src/_ns_udts.h: 40 → 42
+  pal3/src/Misc/LineupUI.cpp: 8 → 16
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 ================================================================================
@@ -670,436 +663,339 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261114_175959
 基线时间: 2026-11-14T17:59:59.395850
-检测时间: 2026-11-18T22:42:14.150518
+检测时间: 2026-11-19T01:59:49.169358
 
 📊 摘要:
-  总文件数: 1009
-  新失败: 86
+  总文件数: 1010
+  新失败: 83
   新错误(真新增 (code,msg)): 40
   已修复: 2
-  错误收敛(消失 (code,msg)): 30
+  错误收敛(消失 (code,msg)): 31
   持续失败: 59
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
   C2197    +212  ⚠️ 增加
-  C2227    +117  ⚠️ 增加
-  C2673    +105  ⚠️ 增加
+  C2227    +84  ⚠️ 增加
+  C2673    +75  ⚠️ 增加
   C2511    +55  ⚠️ 增加
-  C2039    +48  ⚠️ 增加
+  C2039    +45  ⚠️ 增加
   C2143    +34  ⚠️ 增加
   C2228    +33  ⚠️ 增加
   C2653    +23  ⚠️ 增加
+  C2440    +21  ⚠️ 增加
   C2556    +21  ⚠️ 增加
-  C2059    +21  ⚠️ 增加
-  C2065    +20  ⚠️ 增加
-  C2664    -19
+  C2059    +20  ⚠️ 增加
   C2373    +19  ⚠️ 增加
-  C2011    +17  ⚠️ 增加
-  C2440    +16  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C1004, C2011, C2039, C2040, C2041, C2059, C2065, C2084, C2143, C2146, C2197, C2199, C2226, C2227, C2228, C2230, C2264, C2276, C2296, C2297, C2352, C2355, C2371, C2373, C2440, C2446, C2447, C2451, C2501, C2511, C2523, C2556, C2631, C2652, C2653, C2660, C2673, C2678 —— 即使总错误数在下降也要逐条归因
+  C2065    +17  ⚠️ 增加
+  C2011    +15  ⚠️ 增加
+  C2660    +15  ⚠️ 增加
+  ⚠️ 注意: 以下错误码**净增** C1004, C2011, C2039, C2040, C2041, C2059, C2065, C2084, C2143, C2146, C2197, C2199, C2226, C2227, C2228, C2230, C2264, C2276, C2296, C2297, C2352, C2355, C2371, C2373, C2440, C2446, C2447, C2451, C2501, C2511, C2523, C2556, C2631, C2653, C2660, C2673, C2678 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Misc/CEffObj.cpp
-    L15: C2556 - 'char *__thiscall CEffObj::GetEditorObjDescription(int)' : o
-    L15: C2373 - 'GetEditorObjDescription' : redefinition; different type mod
-  pal3/src/Misc/RoleCameraCtrl.cpp
-    L122: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Scene/CameraCtrl.cpp
-    L151: C2039 - '_sdtor_call_dtor' : is not a member of 'CameraCtrl'
-    L153: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L153: C2227 - left of '->CameraCtrl' must point to class/struct/union
-    ... 还有 11 个错误
-  pal3/src/UI/UIListBox.cpp
-    L300: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L823: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L1586: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    ... 还有 1 个错误
-  pal3/src/UI/UISystem.cpp
-    L35: C2065 - 'HideAll_11' : undeclared identifier
-  pal3/src/Misc/gbLightObj.cpp
-    L28: C2511 - 'GetAABBox' : overloaded member function 'int (void *)' not 
-  pal3/src/Misc/UILoadingFrm.cpp
-    L68: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Combat/CCBResultWindow.cpp
-    L218: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/UI/UINote.cpp
-    L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L67: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  s1:pal3/src/Misc/_Collvec.h
-    L0: C2011 - '_Collvec' : 'struct' type redefinition
-  pal3/src/Effect/CEffGrid.cpp
-    L42: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 10 个错误
-  pal3/src/Misc/UICoverFrm.cpp
-    L178: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
-    L184: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
-    L184: C2227 - left of '->UISceneMap' must point to class/struct/union
-    ... 还有 79 个错误
-  pal3/src/Misc/MainPropUI.cpp
-    L107: C2664 - 'void (char *,int,unsigned long *,class MainPropUI *)' : can
-    L939: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L1115: C2065 - 'SceneMgr_FormatStatusCaption' : undeclared identifier
-  s1:pal3/src/Misc/DIEFFECTINFOA.h
-    L0: C2011 - 'DIEFFECTINFOA' : 'struct' type redefinition
-  pal3/src/Combat/CCBItemWindow.cpp
-    L57: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L154: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/DIDEVICEOBJECTINSTANCEA.h
-    L0: C2011 - 'DIDEVICEOBJECTINSTANCEA' : 'struct' type redefinition
-  pal3/src/Misc/PtrArray.cpp
-    L712: C2440 - '=' : cannot convert from 'int' to 'void *'
-    L714: C2440 - '=' : cannot convert from 'int' to 'void *'
-  pal3/src/Misc/UIAnimateCtrlEX.cpp
-    L100: C2660 - 'MoveWindow' : function does not take 0 parameters
-    L185: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L186: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
-    ... 还有 3 个错误
-  pal3/src/Misc/RoleStatePanel.cpp
-    L672: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  s1:pal3/src/Misc/UIRoleSelectDialog.h
-    L0: C2059 - syntax error : 'constant'
-  pal3/src/Misc/UITextArea.cpp
-    L36: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Effect/CEffQuake.cpp
-    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
-    L34: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L34: C2227 - left of '->CEffQuake' must point to class/struct/union
-    ... 还有 4 个错误
   pal3/src/Combat/CUtil.cpp
     L171: C2440 - '=' : cannot convert from 'int' to 'char *'
     L318: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  pal3/src/Combat/CCBSkillWindow.cpp
-    L59: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L112: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/DIFILEEFFECT.h
-    L0: C2011 - 'DIFILEEFFECT' : 'struct' type redefinition
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L83: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
-    L186: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L188: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
-    ... 还有 8 个错误
-  pal3/src/Combat/CCBControlWindow.cpp
-    L323: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L369: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L394: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
-  pal3/src/Misc/MatrixStack.cpp
-    L36: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L42: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L43: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 26 个错误
-  s1:pal3/src/Misc/DIEFFECT.h
-    L0: C2011 - 'DIEFFECT' : 'struct' type redefinition
-  s1:pal3/src/Combat/CCBStageCam.h
-    L0: C2652 - 'CCBStageCam' : illegal copy constructor: first parameter mu
+  s1:pal3/src/Misc/_Ctypevec.h
+    L0: C2011 - '_Ctypevec' : 'struct' type redefinition
   pal3/src/Misc/CCBUIPanel.cpp
     L2229: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
     L2422: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  s1:pal3/src/Misc/lconv.h
-    L0: C2011 - 'lconv' : 'struct' type redefinition
-  pal3/src/Combat/CCBParabolaWindow.cpp
-    L48: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L150: C2143 - syntax error : missing ';' before 'return'
-    L151: C2143 - syntax error : missing ';' before '}'
-    ... 还有 5 个错误
-  pal3/src/Misc/CCBPanelSlot.cpp
-    L82: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L93: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    ... 还有 13 个错误
-  s1:pal3/src/Misc/DIDEVICEINSTANCEA.h
-    L0: C2011 - 'DIDEVICEINSTANCEA' : 'struct' type redefinition
-  pal3/src/globals.cpp
-    L4: C2199 - syntax error : found 'void (' at global scope (was a declara
-    L4: C2143 - syntax error : missing ';' before '{'
-    L4: C2447 - missing function header (old-style formal list?)
-    ... 还有 30 个错误
-  pal3/src/Misc/UI3DModelNode.cpp
-    L77: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L81: C2440 - '=' : cannot convert from 'float' to 'void *'
-    L111: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 5 个错误
-  pal3/src/Misc/UIMap.cpp
-    L40: C2039 - '_sdtor_call_dtor' : is not a member of 'UIMap'
-    L42: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L42: C2227 - left of '->UIMap' must point to class/struct/union
-    ... 还有 4 个错误
-  pal3/src/Misc/UITabCtrl.cpp
-    L21: C2065 - 'MEMORY' : undeclared identifier
-    L21: C2109 - subscript requires array or pointer type
-    L21: C2106 - '=' : left operand must be l-value
-  s1:pal3/src/Misc/DICOLORSET.h
-    L0: C2371 - 'DICOLORSET' : redefinition; different basic types
-  pal3/src/Misc/gbOBBox.cpp
-    L10: C2511 - 'GetBBox' : overloaded member function 'struct gbOBBox *(voi
-  pal3/src/Combat/CCBLineupWindow.cpp
-    L34: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L100: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/CCBFiveNimbusWindow.cpp
-    L189: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L276: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/_Ctypevec.h
-    L0: C2011 - '_Ctypevec' : 'struct' type redefinition
-  s1:pal3/src/Misc/DIEFFESCAPE.h
-    L0: C2011 - 'DIEFFESCAPE' : 'struct' type redefinition
-  pal3/src/Misc/ArraySlots.cpp
-    L29: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
-    L59: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
-  pal3/src/Misc/CScreenModeNode.cpp
-    L142: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L144: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L149: C2197 - 'void (__cdecl *)(struct gbMatrix4 *)' : too many actual par
-    ... 还有 3 个错误
-  pal3/src/Misc/UICaption.cpp
-    L140: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L207: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-    L363: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
-  s1:pal3/src/Misc/DIDEVCAPS.h
-    L0: C2011 - 'DIDEVCAPS' : 'struct' type redefinition
-  pal3/src/Effect/CEffShock.cpp
-    L60: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L66: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
-    L68: C2352 - 'CEffect::CEffect::~CEffect' : illegal call of non-static me
-    ... 还有 13 个错误
-  pal3/src/MiniGame/MiniGame1.cpp
-    L29: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L34: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Effect/CEffCylinder.cpp
-    L456: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L465: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    L466: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual
-    ... 还有 13 个错误
-  pal3/src/Effect/CEffgbParticle.cpp
-    L136: C2501 - 'm_nCurTask' : missing storage-class or type specifiers
-    L136: C2355 - 'this' : can only be referenced inside non-static member fun
-    L136: C2227 - left of '->m_nCurTask' must point to class/struct/union
-    ... 还有 19 个错误
-  pal3/src/Effect/CEffModel.cpp
-    L121: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
-    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
-    ... 还有 9 个错误
-  pal3/src/Misc/UIProgressBar.cpp
-    L46: C2039 - '_sdtor_call_dtor' : is not a member of 'UIProgressBar'
-    L48: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L48: C2227 - left of '->PalScript' must point to class/struct/union
-    ... 还有 19 个错误
-  pal3/src/Effect/CEffQuad.cpp
-    L325: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L360: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    L361: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 9 个错误
-  s1:pal3/src/Misc/DIENVELOPE.h
-    L0: C2011 - 'DIENVELOPE' : 'struct' type redefinition
-  pal3/src/Render/RenderTarget2.cpp
-    L412: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-  pal3/src/Misc/UISceneFrm.cpp
-    L104: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
-    L132: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Effect/ScreenEffectMgr.cpp
-    L666: C2039 - '_sdtor_call_dtor' : is not a member of 'ScreenEffectMgr'
-    L668: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
-    L668: C2227 - left of '->ScreenEffectMgr' must point to class/struct/union
-    ... 还有 19 个错误
+  pal3/src/Misc/TaskBookUI.cpp
+    L1045: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Combat/CCBSkillWindow.cpp
+    L59: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L112: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
   pal3/src/Misc/UITitle.cpp
     L72: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/AStarPathFinder.cpp
-    L140: C2556 - 'char __thiscall AStarPathFinder::GetHeuristicIdx(int,int)' 
-    L140: C2371 - 'GetHeuristicIdx' : redefinition; different basic types
-    L251: C2264 - 'GetHeuristicIdx' : error in function definition or declarat
-    ... 还有 1 个错误
-  s1:pal3/src/Misc/DIDEVICEOBJECTDATA.h
-    L0: C2011 - 'DIDEVICEOBJECTDATA' : 'struct' type redefinition
-  pal3/src/Misc/UISceneMap.cpp
-    L86: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Render/TextureLib.cpp
-    L475: C2511 - 'AddEntryFromConfig' : overloaded member function 'char (cha
-  pal3/src/Misc/UIFrameContainer.cpp
-    L123: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
-    L166: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  s1:pal3/src/Misc/ArcLocale.h
-    L0: C2039 - 'PoisonState' : is not a member of '`global namespace''
-    L0: C2143 - syntax error : missing ';' before '*'
-    L0: C2501 - 'pstate' : missing storage-class or type specifiers
-  s1:pal3/src/Combat/Combat.h
-    L0: C2440 - 'return' : cannot convert from 'const char [4]' to 'int'
-  s1:pal3/src/Misc/_Cvtvec.h
-    L0: C2011 - '_Cvtvec' : 'struct' type redefinition
   pal3/src/Effect/CEffExplosive.cpp
     L333: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     L342: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
     L343: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
     ... 还有 9 个错误
-  s1:pal3/src/Misc/DIPROPHEADER.h
-    L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
-  pal3/src/Effect/CEffMeteor.cpp
-    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
-    L508: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
-    L545: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    ... 还有 6 个错误
-  pal3/src/Misc/PalScriptBlendTimer.cpp
-    L30: C2227 - left of '->Array' must point to class/struct/union
-    L30: C2653 - 'Array' : is not a class or namespace name
-  pal3/src/Misc/UIPushButton.cpp
-    L142: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
-    L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
-    ... 还有 5 个错误
-  pal3/src/Misc/SystemUI.cpp
-    L1288: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Data/CGameData.cpp
-    L254: C2440 - '=' : cannot convert from 'unsigned long [23]' to 'long *'
-    L327: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L640: C2440 - '=' : cannot convert from 'class UIScenePanel *' to 'class C
-    ... 还有 8 个错误
+  pal3/src/globals.cpp
+    L4: C2199 - syntax error : found 'void (' at global scope (was a declara
+    L4: C2143 - syntax error : missing ';' before '{'
+    L4: C2447 - missing function header (old-style formal list?)
+    ... 还有 30 个错误
+  s1:pal3/src/Misc/lconv.h
+    L0: C2011 - 'lconv' : 'struct' type redefinition
   s1:pal3/src/Misc/DIPROPDWORD.h
     L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
     L0: C2011 - 'DIPROPDWORD' : 'struct' type redefinition
-  pal3/src/Misc/UITitle_BBTY.cpp
-    L79: C2664 - 'void (char *,int,struct tagRECT *,class UITitle_BBTY *)' : 
-    L158: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIProgressBar.cpp
+    L46: C2039 - '_sdtor_call_dtor' : is not a member of 'UIProgressBar'
+    L48: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L48: C2227 - left of '->PalScript' must point to class/struct/union
+    ... 还有 19 个错误
+  pal3/src/UI/UIListBox.cpp
+    L300: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L823: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L1586: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    ... 还有 1 个错误
+  pal3/src/Misc/RoleCameraCtrl.cpp
+    L122: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
   pal3/src/Effect/CEffSParticle.cpp
     L20: C2039 - 'UpdateDelta' : is not a member of 'CEffSParticle'
     L25: C2673 - 'UpdateDelta' : global functions do not have 'this' pointers
     L25: C2227 - left of '->m_pEM' must point to class/struct/union
     ... 还有 26 个错误
+  s1:pal3/src/Misc/DIDEVICEOBJECTINSTANCEA.h
+    L0: C2011 - 'DIDEVICEOBJECTINSTANCEA' : 'struct' type redefinition
+  pal3/src/Misc/UIMap.cpp
+    L40: C2039 - '_sdtor_call_dtor' : is not a member of 'UIMap'
+    L42: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L42: C2227 - left of '->UIMap' must point to class/struct/union
+    ... 还有 4 个错误
+  pal3/src/UI/UISystem.cpp
+    L35: C2065 - 'HideAll_11' : undeclared identifier
   pal3/src/Misc/UITitle_ArcSave.cpp
     L70: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
     L93: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/Misc/TaskBookUI.cpp
-    L1045: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-  pal3/src/UI/UIWnd.cpp
-    L52: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/DIDEVICEINSTANCEA.h
+    L0: C2011 - 'DIDEVICEINSTANCEA' : 'struct' type redefinition
+  pal3/src/Misc/PalScriptBlendTimer.cpp
+    L30: C2227 - left of '->Array' must point to class/struct/union
+    L30: C2653 - 'Array' : is not a class or namespace name
   pal3/src/Combat/CCBProtectWindow.cpp
     L93: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
     L414: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Data/CGameData.cpp
+    L254: C2440 - '=' : cannot convert from 'unsigned long [23]' to 'long *'
+    L327: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L640: C2440 - '=' : cannot convert from 'class UIScenePanel *' to 'class C
+    ... 还有 8 个错误
+  pal3/src/Misc/MainPropUI.cpp
+    L107: C2664 - 'void (char *,int,unsigned long *,class MainPropUI *)' : can
+    L939: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L1115: C2065 - 'SceneMgr_FormatStatusCaption' : undeclared identifier
+  pal3/src/Misc/UI3DModelNode.cpp
+    L77: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L81: C2440 - '=' : cannot convert from 'float' to 'void *'
+    L111: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 5 个错误
+  pal3/src/Misc/UICoverFrm.cpp
+    L178: C2039 - 'RenderWithSceneMap' : is not a member of 'UICoverFrm'
+    L184: C2673 - 'RenderWithSceneMap' : global functions do not have 'this' p
+    L184: C2227 - left of '->UISceneMap' must point to class/struct/union
+    ... 还有 79 个错误
+  s1:pal3/src/Misc/DIEFFECT.h
+    L0: C2011 - 'DIEFFECT' : 'struct' type redefinition
+  s1:pal3/src/Misc/DIPROPHEADER.h
+    L0: C2011 - 'DIPROPHEADER' : 'struct' type redefinition
+  pal3/src/UI/UINote.cpp
+    L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L67: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/MatrixStack.cpp
+    L36: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L42: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L43: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 26 个错误
+  pal3/src/Combat/CCBParabolaWindow.cpp
+    L48: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L150: C2143 - syntax error : missing ';' before 'return'
+    L151: C2143 - syntax error : missing ';' before '}'
+    ... 还有 5 个错误
+  pal3/src/Effect/CEffgbParticle.cpp
+    L136: C2501 - 'm_nCurTask' : missing storage-class or type specifiers
+    L136: C2355 - 'this' : can only be referenced inside non-static member fun
+    L136: C2227 - left of '->m_nCurTask' must point to class/struct/union
+    ... 还有 19 个错误
+  s1:pal3/src/Misc/DIEFFECTINFOA.h
+    L0: C2011 - 'DIEFFECTINFOA' : 'struct' type redefinition
+  pal3/src/Misc/CEffObj.cpp
+    L15: C2556 - 'char *__thiscall CEffObj::GetEditorObjDescription(int)' : o
+    L15: C2373 - 'GetEditorObjDescription' : redefinition; different type mod
+  s1:pal3/src/Misc/DIEFFESCAPE.h
+    L0: C2011 - 'DIEFFESCAPE' : 'struct' type redefinition
+  pal3/src/Misc/UISceneFrm.cpp
+    L104: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L132: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIButton.cpp
+    L51: C2440 - '=' : cannot convert from 'void *const ' to 'int'
+    L363: C2664 - 'SetLibFolder' : cannot convert parameter 1 from 'const char
+    L372: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UITitle_BBTY.cpp
+    L79: C2664 - 'void (char *,int,struct tagRECT *,class UITitle_BBTY *)' : 
+    L158: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIFrameContainer.cpp
+    L123: C2440 - 'type cast' : cannot convert from 'class UIFrameContainer' t
+    L166: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UISceneMap.cpp
+    L86: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Effect/CEffShock.cpp
+    L60: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L66: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffShock'
+    L68: C2352 - 'CEffect::CEffect::~CEffect' : illegal call of non-static me
+    ... 还有 13 个错误
+  pal3/src/Misc/AStarPathFinder.cpp
+    L140: C2556 - 'char __thiscall AStarPathFinder::GetHeuristicIdx(int,int)' 
+    L140: C2371 - 'GetHeuristicIdx' : redefinition; different basic types
+    L251: C2264 - 'GetHeuristicIdx' : error in function definition or declarat
+    ... 还有 1 个错误
+  s1:pal3/src/Misc/DIENVELOPE.h
+    L0: C2011 - 'DIENVELOPE' : 'struct' type redefinition
+  pal3/src/MiniGame/MiniGame1.cpp
+    L29: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L34: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/gbLightObj.cpp
+    L28: C2511 - 'GetAABBox' : overloaded member function 'int (void *)' not 
+  pal3/src/Effect/CEffCylinder.cpp
+    L456: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L465: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    L466: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual
+    ... 还有 13 个错误
+  pal3/src/Scene/CameraCtrl.cpp
+    L151: C2039 - '_sdtor_call_dtor' : is not a member of 'CameraCtrl'
+    L153: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L153: C2227 - left of '->CameraCtrl' must point to class/struct/union
+    ... 还有 11 个错误
+  pal3/src/Effect/CEffQuake.cpp
+    L30: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffQuake'
+    L34: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L34: C2227 - left of '->CEffQuake' must point to class/struct/union
+    ... 还有 4 个错误
+  s1:pal3/src/Misc/_Cvtvec.h
+    L0: C2011 - '_Cvtvec' : 'struct' type redefinition
+  pal3/src/Render/TextureLib.cpp
+    L475: C2511 - 'AddEntryFromConfig' : overloaded member function 'char (cha
+  pal3/src/Misc/CScreenModeNode.cpp
+    L142: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L144: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L149: C2197 - 'void (__cdecl *)(struct gbMatrix4 *)' : too many actual par
+    ... 还有 3 个错误
+  pal3/src/Misc/PtrArray.cpp
+    L712: C2440 - '=' : cannot convert from 'int' to 'void *'
+    L714: C2440 - '=' : cannot convert from 'int' to 'void *'
+  pal3/src/Misc/UIPushButton.cpp
+    L142: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
+    L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+    ... 还有 5 个错误
+  pal3/src/Misc/ArraySlots.cpp
+    L29: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
+    L59: C2440 - 'type cast' : cannot convert from 'class ArraySlots' to 'int
   pal3/src/Misc/CEffAction.cpp
     L38: C2039 - '_sdtor_call_dtor' : is not a member of 'CEffAction'
     L40: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
     L40: C2227 - left of '->RenderTarget2' must point to class/struct/union
     ... 还有 5 个错误
-  pal3/src/Misc/UIButton.cpp
-    L51: C2440 - '=' : cannot convert from 'void *const ' to 'int'
-    L363: C2664 - 'SetLibFolder' : cannot convert parameter 1 from 'const char
-    L372: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Combat/CCBLineupWindow.cpp
+    L34: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L100: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
   pal3/src/UI/UIRenderObj.cpp
     L48: C2039 - '_sdtor_call_dtor' : is not a member of 'UIRenderObj'
     L51: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
     L51: C2227 - left of '->_tail_000' must point to class/struct/union
+  s1:pal3/src/Misc/_Collvec.h
+    L0: C2011 - '_Collvec' : 'struct' type redefinition
+  pal3/src/Render/RenderTarget2.cpp
+    L412: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned lon
+  pal3/src/Misc/CCBPanelSlot.cpp
+    L82: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L93: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    ... 还有 13 个错误
+  pal3/src/Effect/CEffModel.cpp
+    L121: C2440 - 'return' : cannot convert from 'class CEffModel' to 'void *'
+    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 9 个错误
+  pal3/src/Effect/CEffQuad.cpp
+    L325: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L360: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L361: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 9 个错误
+  pal3/src/Effect/CEffMeteor.cpp
+    L43: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L508: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual para
+    L545: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    ... 还有 6 个错误
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L83: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsig
+    L186: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L188: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
+    ... 还有 8 个错误
+  pal3/src/Misc/RoleStatePanel.cpp
+    L672: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  pal3/src/Misc/UITextArea.cpp
+    L36: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UILoadingFrm.cpp
+    L68: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UIAnimateCtrlEX.cpp
+    L100: C2660 - 'MoveWindow' : function does not take 0 parameters
+    L185: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L186: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual para
+    ... 还有 3 个错误
+  s1:pal3/src/Misc/ArcLocale.h
+    L0: C2039 - 'PoisonState' : is not a member of '`global namespace''
+    L0: C2143 - syntax error : missing ';' before '*'
+    L0: C2501 - 'pstate' : missing storage-class or type specifiers
+  s1:pal3/src/Misc/DIFILEEFFECT.h
+    L0: C2011 - 'DIFILEEFFECT' : 'struct' type redefinition
+  pal3/src/Combat/CCBResultWindow.cpp
+    L218: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/CCBFiveNimbusWindow.cpp
+    L189: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L276: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Effect/CEffGrid.cpp
+    L42: C2440 - 'return' : cannot convert from 'int' to 'void *'
+    L439: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    L448: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual param
+    ... 还有 10 个错误
+  pal3/src/UI/UIWnd.cpp
+    L52: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/SystemUI.cpp
+    L1288: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  pal3/src/Misc/UITabCtrl.cpp
+    L21: C2065 - 'MEMORY' : undeclared identifier
+    L21: C2109 - subscript requires array or pointer type
+    L21: C2106 - '=' : left operand must be l-value
+  pal3/src/Misc/gbOBBox.cpp
+    L10: C2511 - 'GetBBox' : overloaded member function 'struct gbOBBox *(voi
+  s1:pal3/src/Misc/DICOLORSET.h
+    L0: C2371 - 'DICOLORSET' : redefinition; different basic types
+  s1:pal3/src/Misc/DIDEVICEOBJECTDATA.h
+    L0: C2011 - 'DIDEVICEOBJECTDATA' : 'struct' type redefinition
+  pal3/src/Misc/UICaption.cpp
+    L140: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L207: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+    L363: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' t
+  pal3/src/Combat/CCBItemWindow.cpp
+    L57: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L154: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+  s1:pal3/src/Misc/DIDEVCAPS.h
+    L0: C2011 - 'DIDEVCAPS' : 'struct' type redefinition
+  pal3/src/Combat/CCBControlWindow.cpp
+    L323: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class 
+    L369: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
+    L394: C2511 - 'CreateWithTextures' : overloaded member function 'class gbV
+  pal3/src/Effect/ScreenEffectMgr.cpp
+    L666: C2039 - '_sdtor_call_dtor' : is not a member of 'ScreenEffectMgr'
+    L668: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' poi
+    L668: C2227 - left of '->ScreenEffectMgr' must point to class/struct/union
+    ... 还有 19 个错误
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/UIFrameWnd.cpp
-    错误数: 2 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
-    新增 L42: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L429: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-  pal3/src/Misc/UIRoleSelectDialog.cpp
-    错误数: 2 -> 1  真新增 1 {'C2511': 1}
-    新增 L186: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/UI/EquipUI.cpp
-    错误数: 1 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
-    新增 L977: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L2186: C2664 - 'void (int *,__int16 *,int *,class EquipUI *)' : cannot convert parame
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 2 -> 4  真新增 3 {'C2440': 2, 'C2065': 1}
-    新增 L3329: C2440 - '=' : cannot convert from 'int' to 'void *'
-    新增 L3339: C2440 - '=' : cannot convert from 'int' to 'void *'
-    新增 L3355: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 39 -> 56  真新增 16 {'C2197': 6, 'C2039': 2, 'C2041': 6, 'C2660': 1, 'C2631': 1}
-    新增 L917: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
-    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
-    新增 L928: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L934: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 3 -> 2  真新增 2 {'C2664': 1, 'C2065': 1}
-    新增 L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L106: C2065 - 'sdtor_25' : undeclared identifier
-  pal3/src/Misc/MainEquipUI.cpp
-    错误数: 3 -> 3  真新增 2 {'C2511': 1, 'C2440': 1}
-    新增 L1093: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L1398: C2440 - '=' : cannot convert from 'void *const ' to 'int'
-  pal3/src/Role/Actor.cpp
-    错误数: 26 -> 101  真新增 89 {'C2039': 4, 'C2673': 40, 'C2227': 44, 'C2084': 1}
-    新增 L369: C2039 - '_sdtor_call_dtor' : is not a member of 'Actor'
-    新增 L375: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-    新增 L375: C2227 - left of '->m_fMoveSpeed' must point to class/struct/union
-    新增 L376: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-    新增 L376: C2227 - left of '->m_fMoveRange' must point to class/struct/union
+  pal3/src/UI/UIManager.cpp
+    错误数: 6 -> 8  真新增 2 {'C2197': 2}
+    新增 L109: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+    新增 L110: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+  pal3/src/GameBase/Logger.cpp
+    错误数: 1 -> 2  真新增 1 {'C2440': 1}
+    新增 L235: C2440 - 'type cast' : cannot convert from 'class SceneMgr *(__thiscall SceneMg
   pal3/src/Render/RenderTarget.cpp
     错误数: 1 -> 4  真新增 3 {'C2664': 1, 'C2197': 2}
     新增 L516: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
     新增 L1891: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L2233: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/SaleUI.cpp
-    错误数: 27 -> 29  真新增 19 {'C2228': 17, 'C2660': 1, 'C2511': 1}
-    新增 L94: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
-    新增 L187: C2228 - left of '._tail_000' must have class/struct/union type
-  pal3/src/Script/PalScript.cpp
-    错误数: 39 -> 38  真新增 3 {'C2065': 1, 'C2511': 1, 'C2440': 1}
-    新增 L2912: C2065 - 'CON_State' : undeclared identifier
-    新增 L5852: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L5914: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
-  s1:pal3/src/_ns_udts.h
-    错误数: 40 -> 44  真新增 3 {'C2501': 2, 'C2011': 1}
-    新增 L0: C2501 - 'PlayerMgr' : missing storage-class or type specifiers
-    新增 L0: C2501 - 'pToggle' : missing storage-class or type specifiers
-    新增 L0: C2011 - '_inline_PalScript_m_pCurrentTask' : 'union' type redefinition
-  pal3/src/Combat/CCCTData.cpp
-    错误数: 19 -> 22  真新增 4 {'C2446': 1, 'C2040': 1, 'C2227': 1, 'C2440': 1}
-    新增 L520: C2446 - '==' : no conversion from 'char *' to 'int'
-    新增 L520: C2040 - '==' : 'int' differs in levels of indirection from 'char *'
-    新增 L1559: C2227 - left of '->p_DWORD' must point to class/struct/union
-    新增 L1559: C2440 - 'type cast' : cannot convert from 'int *' to 'class CCCTData'
-  pal3/src/free_functions.cpp
-    错误数: 101 -> 101  真新增 46 {'C2084': 1, 'C2065': 6, 'C2296': 7, 'C2227': 25, 'C2228': 1, 'C2653': 1, 'C2440': 4, 'C2660': 1}
-    新增 L472: C2084 - function 'int __cdecl StartCombat(void *,unsigned int *,int,char)' alr
-    新增 L1923: C2065 - 'v1' : undeclared identifier
-    新增 L1923: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
-    新增 L1924: C2065 - 'v2' : undeclared identifier
-    新增 L1924: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 12 -> 37  真新增 21 {'C2065': 2, 'C2653': 1, 'C2197': 11, 'C2039': 2, 'C2440': 1, 'C2511': 1, 'C2660': 3}
-    新增 L1583: C2065 - 'j_j_codecvt_base' : undeclared identifier
-    新增 L1583: C2653 - 'j_j_codecvt_base' : is not a class or namespace name
-    新增 L1897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L1933: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L1934: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
-  pal3/src/Effect/C3DSpark.cpp
-    错误数: 1 -> 4  真新增 4 {'C2197': 4}
-    新增 L381: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
-    新增 L423: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L424: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L426: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 18 -> 25  真新增 18 {'C2039': 4, 'C2664': 1, 'C2446': 2, 'C2040': 2, 'C2276': 1, 'C2065': 1, 'C2501': 1, 'C2373': 1, 'C2143': 5}
-    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
-    新增 L1455: C2664 - 'EditorUpdate' : cannot convert parameter 1 from 'class CCBStage *' to
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 19 -> 31  真新增 21 {'C2197': 19, 'C2039': 2}
-    新增 L897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L904: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L914: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L921: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 3 -> 1  真新增 1 {'C2678': 1}
-    新增 L11: C2678 - binary '==' : no operator defined which takes a left-hand operand of t
-  pal3/src/UI/UIManager.cpp
-    错误数: 6 -> 8  真新增 2 {'C2197': 2}
-    新增 L109: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
-    新增 L110: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 3  真新增 2 {'C2511': 1, 'C2440': 1}
+    新增 L1093: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L1398: C2440 - '=' : cannot convert from 'void *const ' to 'int'
   pal3/src/MiniGame/MiniGame3.cpp
     错误数: 6 -> 13  真新增 7 {'C2197': 6, 'C2440': 1}
     新增 L43: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
@@ -1107,96 +1003,20 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L59: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L64: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L152: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/UITitle_YXXX.cpp
-    错误数: 1 -> 2  真新增 2 {'C2065': 1, 'C2511': 1}
-    新增 L335: C2065 - 'off_56B898' : undeclared identifier
-    新增 L348: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 40 -> 55  真新增 16 {'C2065': 2, 'C2197': 4, 'C2440': 4, 'C2446': 3, 'C2230': 3}
-    新增 L619: C2065 - 'Update_25' : undeclared identifier
-    新增 L984: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
-    新增 L988: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
-    新增 L992: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
-    新增 L1015: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
-  pal3/src/UI/StateUI.cpp
-    错误数: 5 -> 13  真新增 8 {'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2511': 1}
-    新增 L415: C2039 - '_sdtor_call_dtor' : is not a member of 'StateUI'
-    新增 L417: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-    新增 L417: C2227 - left of '->StateUI' must point to class/struct/union
-    新增 L417: C2653 - 'StateUI' : is not a class or namespace name
-    新增 L419: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 27 -> 29  真新增 19 {'C2228': 17, 'C2660': 1, 'C2511': 1}
+    新增 L94: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L187: C2228 - left of '._tail_000' must have class/struct/union type
   pal3/src/Misc/UIRoleDialog.cpp
     错误数: 1 -> 1  真新增 1 {'C2511': 1}
     新增 L76: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/UI/PropUI.cpp
-    错误数: 4 -> 5  真新增 2 {'C2664': 1, 'C2511': 1}
-    新增 L364: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
-    新增 L1286: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Combat/CCBRoleState.cpp
-    错误数: 5 -> 16  真新增 6 {'C2511': 1, 'C2065': 3, 'C2440': 2}
-    新增 L361: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L1662: C2065 - 'COERCE_SIGNED_INT32' : undeclared identifier
-    新增 L2441: C2065 - 'unk_5D8944' : undeclared identifier
-    新增 L2444: C2065 - 'aHp' : undeclared identifier
-    新增 L5123: C2440 - '=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'
-  pal3/src/Script/ScriptSystem.cpp
-    错误数: 5 -> 12  真新增 2 {'C2197': 2}
-    新增 L87: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L91: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/Misc/JusticeBookUI.cpp
-    错误数: 2 -> 3  真新增 1 {'C2511': 1}
-    新增 L176: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 1 -> 13  真新增 12 {'C2143': 6, 'C2447': 1, 'C2230': 1, 'C2296': 2, 'C2297': 1, 'C2511': 1}
-    新增 L795: C2143 - syntax error : missing ';' before 'if'
-    新增 L797: C2143 - syntax error : missing ';' before 'return'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-    新增 L798: C2143 - syntax error : missing ';' before '}'
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 2 -> 5  真新增 3 {'C2227': 1, 'C2653': 1, 'C2511': 1}
-    新增 L568: C2227 - left of '->CCCTData' must point to class/struct/union
-    新增 L568: C2653 - 'CCCTData' : is not a class or namespace name
-    新增 L960: C2511 - 'StoreCurrentView' : overloaded member function 'int (int,int,unsigned
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 22 -> 21  真新增 3 {'C2511': 1, 'C2660': 2}
-    新增 L928: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L1544: C2660 - 'GetBBox' : function does not take 0 parameters
-    新增 L2146: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
-  pal3/src/Role/Object3D.cpp
-    错误数: 6 -> 23  真新增 19 {'C2511': 1, 'C2660': 5, 'C2197': 13}
-    新增 L342: C2511 - 'IsOverCVD' : overloaded member function 'int (int,float,float,float,f
-    新增 L384: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L424: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L456: C2660 - 'IsOverCVD' : function does not take 7 parameters
-    新增 L460: C2660 - 'IsOverCVD' : function does not take 7 parameters
-  pal3/src/Combat/CCBUI.cpp
-    错误数: 24 -> 30  真新增 14 {'C2511': 2, 'C2065': 1, 'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2556': 1, 'C2371': 1, 'C2523': 1, 'C2631': 1}
-    新增 L974: C2511 - 'SettingsDialogProc' : overloaded member function 'int (int,int,unsign
-    新增 L1162: C2511 - 'HandleWindowMessage' : overloaded member function 'int (int,int,unsig
-    新增 L1348: C2065 - 'aHp' : undeclared identifier
-    新增 L4161: C2039 - '_sdtor_call_dtor' : is not a member of 'CCBUI'
-    新增 L4163: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
-  pal3/src/Render/RenderTarget3.cpp
-    错误数: 2 -> 5  真新增 3 {'C2197': 3}
-    新增 L219: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-    新增 L220: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters
-    新增 L234: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
-  pal3/src/GameBase/Logger.cpp
-    错误数: 1 -> 2  真新增 1 {'C2440': 1}
-    新增 L235: C2440 - 'type cast' : cannot convert from 'class SceneMgr *(__thiscall SceneMg
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 2 -> 5  真新增 3 {'C2556': 1, 'C2371': 1, 'C2664': 1}
-    新增 L70: C2556 - 'int __thiscall RoleAtt::OnMessage(int,int,int)' : overloaded function
-    新增 L70: C2371 - 'OnMessage' : redefinition; different basic types
-    新增 L128: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 5 -> 10  真新增 5 {'C2511': 1, 'C2664': 4}
-    新增 L201: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-    新增 L419: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L494: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L1014: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
-    新增 L1023: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+  pal3/src/Misc/UIFrameWnd.cpp
+    错误数: 2 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
+    新增 L42: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L429: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
   pal3/src/Misc/LineupUI.cpp
     错误数: 8 -> 16  真新增 8 {'C2664': 6, 'C2440': 1, 'C2511': 1}
     新增 L61: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
@@ -1204,6 +1024,125 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L733: C2664 - 'void (char *,int,int *,class LineupUI *)' : cannot convert parameter 
     新增 L762: C2440 - 'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdec
     新增 L775: C2664 - 'void (char *,int,unsigned long *,class LineupUI *)' : cannot convert 
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 5 -> 14  真新增 4 {'C2511': 1, 'C2065': 1, 'C2440': 2}
+    新增 L361: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L1662: C2065 - 'COERCE_SIGNED_INT32' : undeclared identifier
+    新增 L5123: C2440 - '=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'
+    新增 L5129: C2440 - '=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 1 -> 13  真新增 12 {'C2143': 6, 'C2447': 1, 'C2230': 1, 'C2296': 2, 'C2297': 1, 'C2511': 1}
+    新增 L795: C2143 - syntax error : missing ';' before 'if'
+    新增 L797: C2143 - syntax error : missing ';' before 'return'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+    新增 L798: C2143 - syntax error : missing ';' before '}'
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 5 -> 12  真新增 2 {'C2197': 2}
+    新增 L87: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L91: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/UI/PropUI.cpp
+    错误数: 4 -> 5  真新增 2 {'C2664': 1, 'C2511': 1}
+    新增 L364: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
+    新增 L1286: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/Misc/JusticeBookUI.cpp
+    错误数: 2 -> 3  真新增 1 {'C2511': 1}
+    新增 L176: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/Effect/C3DSpark.cpp
+    错误数: 1 -> 4  真新增 4 {'C2197': 4}
+    新增 L381: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+    新增 L423: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L424: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L426: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/UIEmote.cpp
+    错误数: 3 -> 2  真新增 2 {'C2664': 1, 'C2065': 1}
+    新增 L97: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L106: C2065 - 'sdtor_25' : undeclared identifier
+  pal3/src/free_functions.cpp
+    错误数: 101 -> 101  真新增 46 {'C2084': 1, 'C2065': 6, 'C2296': 7, 'C2227': 25, 'C2228': 1, 'C2653': 1, 'C2440': 4, 'C2660': 1}
+    新增 L472: C2084 - function 'int __cdecl StartCombat(void *,unsigned int *,int,char)' alr
+    新增 L1923: C2065 - 'v1' : undeclared identifier
+    新增 L1923: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
+    新增 L1924: C2065 - 'v2' : undeclared identifier
+    新增 L1924: C2296 - '*' : illegal, left operand has type 'int (__cdecl *)(int)'
+  pal3/src/Render/RenderTarget3.cpp
+    错误数: 2 -> 5  真新增 3 {'C2197': 3}
+    新增 L219: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L220: C2197 - 'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters
+    新增 L234: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 10  真新增 5 {'C2511': 1, 'C2664': 4}
+    新增 L201: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L419: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L494: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L1014: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+    新增 L1023: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+  s1:pal3/src/_ns_udts.h
+    错误数: 40 -> 42  真新增 2 {'C2501': 2}
+    新增 L0: C2501 - 'PlayerMgr' : missing storage-class or type specifiers
+    新增 L0: C2501 - 'pToggle' : missing storage-class or type specifiers
+  pal3/src/Combat/CCBUI.cpp
+    错误数: 24 -> 29  真新增 13 {'C2511': 2, 'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2556': 1, 'C2371': 1, 'C2523': 1, 'C2631': 1}
+    新增 L974: C2511 - 'SettingsDialogProc' : overloaded member function 'int (int,int,unsign
+    新增 L1162: C2511 - 'HandleWindowMessage' : overloaded member function 'int (int,int,unsig
+    新增 L4161: C2039 - '_sdtor_call_dtor' : is not a member of 'CCBUI'
+    新增 L4163: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L4163: C2227 - left of '->CCBUI' must point to class/struct/union
+  pal3/src/Role/Actor.cpp
+    错误数: 26 -> 42  真新增 22 {'C2039': 1, 'C2673': 10, 'C2227': 11}
+    新增 L369: C2039 - '_sdtor_call_dtor' : is not a member of 'Actor'
+    新增 L375: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L375: C2227 - left of '->m_fMoveSpeed' must point to class/struct/union
+    新增 L376: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L376: C2227 - left of '->m_fMoveRange' must point to class/struct/union
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 39 -> 56  真新增 16 {'C2197': 6, 'C2039': 2, 'C2041': 6, 'C2660': 1, 'C2631': 1}
+    新增 L917: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
+    新增 L922: C2039 - 'Scale' : is not a member of 'gbMatrixStack'
+    新增 L928: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L934: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/Script/PalScript.cpp
+    错误数: 39 -> 38  真新增 3 {'C2065': 1, 'C2511': 1, 'C2440': 1}
+    新增 L2912: C2065 - 'CON_State' : undeclared identifier
+    新增 L5852: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L5914: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 25  真新增 18 {'C2039': 4, 'C2664': 1, 'C2446': 2, 'C2040': 2, 'C2276': 1, 'C2065': 1, 'C2501': 1, 'C2373': 1, 'C2143': 5}
+    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1217: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1231: C2039 - '_scalar_deleting_destructor_' : is not a member of 'CCBSystem'
+    新增 L1455: C2664 - 'EditorUpdate' : cannot convert parameter 1 from 'class CCBStage *' to
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 22 -> 21  真新增 3 {'C2511': 1, 'C2660': 2}
+    新增 L928: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L1544: C2660 - 'GetBBox' : function does not take 0 parameters
+    新增 L2146: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
+  pal3/src/Combat/CCCTData.cpp
+    错误数: 19 -> 22  真新增 4 {'C2446': 1, 'C2040': 1, 'C2227': 1, 'C2440': 1}
+    新增 L520: C2446 - '==' : no conversion from 'char *' to 'int'
+    新增 L520: C2040 - '==' : 'int' differs in levels of indirection from 'char *'
+    新增 L1559: C2227 - left of '->p_DWORD' must point to class/struct/union
+    新增 L1559: C2440 - 'type cast' : cannot convert from 'int *' to 'class CCCTData'
+  pal3/src/UI/EquipUI.cpp
+    错误数: 1 -> 3  真新增 2 {'C2511': 1, 'C2664': 1}
+    新增 L977: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    新增 L2186: C2664 - 'void (int *,__int16 *,int *,class EquipUI *)' : cannot convert parame
+  pal3/src/Misc/RoleAtt.cpp
+    错误数: 2 -> 5  真新增 3 {'C2556': 1, 'C2371': 1, 'C2664': 1}
+    新增 L70: C2556 - 'int __thiscall RoleAtt::OnMessage(int,int,int)' : overloaded function
+    新增 L70: C2371 - 'OnMessage' : redefinition; different basic types
+    新增 L128: C2664 - 'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class C
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 2 -> 5  真新增 3 {'C2227': 1, 'C2653': 1, 'C2511': 1}
+    新增 L568: C2227 - left of '->CCCTData' must point to class/struct/union
+    新增 L568: C2653 - 'CCCTData' : is not a class or namespace name
+    新增 L960: C2511 - 'StoreCurrentView' : overloaded member function 'int (int,int,unsigned
+  pal3/src/Misc/UITitle_YXXX.cpp
+    错误数: 1 -> 2  真新增 2 {'C2065': 1, 'C2511': 1}
+    新增 L335: C2065 - 'off_56B898' : undeclared identifier
+    新增 L348: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
   pal3/src/Combat/CCBStageScene.cpp
     错误数: 2 -> 10  真新增 6 {'C2197': 6}
     新增 L971: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
@@ -1211,85 +1150,132 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L977: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L991: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
     新增 L993: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 19 -> 31  真新增 21 {'C2197': 19, 'C2039': 2}
+    新增 L897: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L904: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L914: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L921: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 40 -> 55  真新增 16 {'C2065': 2, 'C2197': 4, 'C2440': 4, 'C2446': 3, 'C2230': 3}
+    新增 L619: C2065 - 'Update_25' : undeclared identifier
+    新增 L984: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
+    新增 L988: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
+    新增 L992: C2197 - 'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameter
+    新增 L1015: C2197 - 'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters
+  pal3/src/Role/Object3D.cpp
+    错误数: 6 -> 23  真新增 19 {'C2511': 1, 'C2660': 5, 'C2197': 13}
+    新增 L342: C2511 - 'IsOverCVD' : overloaded member function 'int (int,float,float,float,f
+    新增 L384: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L424: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L456: C2660 - 'IsOverCVD' : function does not take 7 parameters
+    新增 L460: C2660 - 'IsOverCVD' : function does not take 7 parameters
+  pal3/src/Misc/UIRoleSelectDialog.cpp
+    错误数: 2 -> 1  真新增 1 {'C2511': 1}
+    新增 L186: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 12 -> 40  真新增 21 {'C2065': 2, 'C2653': 1, 'C2197': 11, 'C2039': 2, 'C2440': 1, 'C2511': 1, 'C2660': 3}
+    新增 L1587: C2065 - 'j_j_codecvt_base' : undeclared identifier
+    新增 L1587: C2653 - 'j_j_codecvt_base' : is not a class or namespace name
+    新增 L1901: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L1937: C2197 - 'void (__cdecl *)(void)' : too many actual parameters
+    新增 L1938: C2197 - 'void (__cdecl *)(float,float,float)' : too many actual parameters
+  pal3/src/Script/PalScriptMgr.cpp
+    错误数: 2 -> 4  真新增 3 {'C2440': 2, 'C2065': 1}
+    新增 L3329: C2440 - '=' : cannot convert from 'int' to 'void *'
+    新增 L3339: C2440 - '=' : cannot convert from 'int' to 'void *'
+    新增 L3355: C2065 - 'CON_State' : undeclared identifier
+  pal3/src/Misc/PalScriptAnimTimer.cpp
+    错误数: 3 -> 1  真新增 1 {'C2678': 1}
+    新增 L11: C2678 - binary '==' : no operator defined which takes a left-hand operand of t
+  pal3/src/UI/StateUI.cpp
+    错误数: 5 -> 13  真新增 8 {'C2039': 1, 'C2673': 3, 'C2227': 1, 'C2653': 1, 'C2660': 1, 'C2511': 1}
+    新增 L415: C2039 - '_sdtor_call_dtor' : is not a member of 'StateUI'
+    新增 L417: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
+    新增 L417: C2227 - left of '->StateUI' must point to class/struct/union
+    新增 L417: C2653 - 'StateUI' : is not a class or namespace name
+    新增 L419: C2673 - '_sdtor_call_dtor' : global functions do not have 'this' pointers
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
   pal3/src/Misc/UIFrameWnd.cpp: {'C2440': 1}
+  pal3/src/Combat/CCBRoleState.cpp: {'C2664': 2}
+  pal3/src/free_functions.cpp: {'C2664': 1, 'C2065': 1, 'C2440': 2, 'C2039': 2, 'C2373': 1}
+  s1:pal3/src/_ns_udts.h: {'C2011': 1}
+  pal3/src/Combat/CCBUI.cpp: {'C2440': 1, 'C2664': 5, 'C2660': 1}
   pal3/src/Role/RoleSystem.cpp: {'C2440': 2, 'C2664': 1}
   pal3/src/Script/PalScript.cpp: {'C2664': 1}
-  pal3/src/free_functions.cpp: {'C2664': 1, 'C2065': 1, 'C2440': 2, 'C2039': 2, 'C2373': 1}
-  pal3/src/Combat/CCBStage.cpp: {'C2440': 3, 'C2664': 1}
-  pal3/src/Combat/CCBRoleState.cpp: {'C2664': 2}
   pal3/src/Render/CScreenMode.cpp: {'C2664': 5}
-  pal3/src/Combat/CCBUI.cpp: {'C2440': 1, 'C2664': 5, 'C2660': 1}
+  pal3/src/Combat/CCBStage.cpp: {'C2440': 3, 'C2664': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Misc/UIFrameWnd.cpp: 2 -> 3  (消失 2)
-  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 -> 1  (消失 2)
-  pal3/src/Role/RoleSystem.cpp: 39 -> 56  (消失 3)
-  pal3/src/Misc/UIEmote.cpp: 3 -> 2  (消失 3)
-  pal3/src/Misc/MainEquipUI.cpp: 3 -> 3  (消失 2)
-  pal3/src/Role/Actor.cpp: 26 -> 101  (消失 12)
   pal3/src/Render/RenderTarget.cpp: 1 -> 4  (消失 1)
+  pal3/src/Misc/MainEquipUI.cpp: 3 -> 3  (消失 2)
   pal3/src/Misc/SaleUI.cpp: 27 -> 29  (消失 17)
-  pal3/src/Script/PalScript.cpp: 39 -> 38  (消失 4)
-  pal3/src/Data/PAL_GDB.cpp: 4 -> 2  (消失 2)
-  pal3/src/GameBase/Config.cpp: 5 -> 2  (消失 3)
-  pal3/src/GameBase/GRPinput.cpp: 14 -> 12  (消失 1)
-  pal3/src/Combat/CCCTData.cpp: 19 -> 22  (消失 1)
-  pal3/src/Effect/CEffMgr.cpp: 10 -> 9  (消失 1)
+  pal3/src/Misc/UIRoleDialog.cpp: 1 -> 1  (消失 1)
+  pal3/src/Misc/UIFrameWnd.cpp: 2 -> 3  (消失 2)
+  pal3/src/Combat/CCBRoleState.cpp: 5 -> 14  (消失 3)
+  pal3/src/Script/ScriptSystem.cpp: 5 -> 12  (消失 5)
+  pal3/src/UI/PropUI.cpp: 4 -> 5  (消失 1)
+  pal3/src/Effect/C3DSpark.cpp: 1 -> 4  (消失 1)
+  pal3/src/Misc/UIEmote.cpp: 3 -> 2  (消失 3)
   pal3/src/free_functions.cpp: 101 -> 101  (消失 62)
+  pal3/src/Effect/CEffMgr.cpp: 10 -> 9  (消失 1)
+  s1:pal3/src/_ns_udts.h: 40 -> 42  (消失 2)
+  pal3/src/Combat/CCBUI.cpp: 24 -> 29  (消失 15)
+  pal3/src/Role/Actor.cpp: 26 -> 42  (消失 4)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Effect/CEffect.cpp
   pal3/src/Effect/C2DSpark.cpp
+  pal3/src/Effect/CEffect.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
-  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 ↓ 1
-  pal3/src/UI/EquipUI.cpp: 1 → 3
-  pal3/src/Script/PalScriptMgr.cpp: 2 → 4
-  pal3/src/Role/RoleSystem.cpp: 39 → 56
-  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
-  pal3/src/Role/Actor.cpp: 26 → 101
-  pal3/src/Render/RenderTarget.cpp: 1 → 4
-  pal3/src/Misc/SaleUI.cpp: 27 → 29
-  pal3/src/Script/PalScript.cpp: 39 ↓ 38
-  s1:pal3/src/_ns_udts.h: 40 → 44
-  pal3/src/Data/PAL_GDB.cpp: 4 ↓ 2
-  pal3/src/GameBase/Config.cpp: 5 ↓ 2
-  pal3/src/GameBase/GRPinput.cpp: 14 ↓ 12
-  pal3/src/Combat/CCCTData.cpp: 19 → 22
-  pal3/src/Effect/CEffMgr.cpp: 10 ↓ 9
-  pal3/src/UI/UIScene.cpp: 102 ↓ 80
-  pal3/src/Combat/CCBStage.cpp: 12 → 37
-  pal3/src/Effect/C3DSpark.cpp: 1 → 4
-  pal3/src/Combat/CCBSystem.cpp: 18 → 25
-  pal3/src/Misc/UIBigMap.cpp: 19 → 31
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 3 ↓ 1
   pal3/src/UI/UIManager.cpp: 6 → 8
-  pal3/src/MiniGame/MiniGame3.cpp: 6 → 13
-  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 2
-  pal3/src/GameBase/PAL3.cpp: 40 → 55
-  pal3/src/UI/StateUI.cpp: 5 → 13
-  pal3/src/UI/PropUI.cpp: 4 → 5
-  pal3/src/Combat/CCBRoleState.cpp: 5 → 16
-  pal3/src/Script/ScriptSystem.cpp: 5 → 12
-  pal3/src/Misc/JusticeBookUI.cpp: 2 → 3
-  pal3/src/Misc/UITitle_JDHY.cpp: 1 → 13
-  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
-  pal3/src/Render/CScreenMode.cpp: 22 ↓ 21
-  pal3/src/Role/Object3D.cpp: 6 → 23
-  pal3/src/Combat/CCBUI.cpp: 24 → 30
-  pal3/src/Render/RenderTarget3.cpp: 2 → 5
   pal3/src/GameBase/Logger.cpp: 1 → 2
-  pal3/src/Misc/RoleAtt.cpp: 2 → 5
-  pal3/src/Misc/UIScenePanel.cpp: 5 → 10
+  pal3/src/Render/RenderTarget.cpp: 1 → 4
+  pal3/src/MiniGame/MiniGame3.cpp: 6 → 13
+  pal3/src/Misc/SaleUI.cpp: 27 → 29
+  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
   pal3/src/Misc/LineupUI.cpp: 8 → 16
+  pal3/src/Combat/CCBRoleState.cpp: 5 → 14
+  pal3/src/Misc/UITitle_JDHY.cpp: 1 → 13
+  pal3/src/Script/ScriptSystem.cpp: 5 → 12
+  pal3/src/UI/PropUI.cpp: 4 → 5
+  pal3/src/Misc/JusticeBookUI.cpp: 2 → 3
+  pal3/src/Effect/C3DSpark.cpp: 1 → 4
+  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
+  pal3/src/UI/UIScene.cpp: 102 ↓ 80
+  pal3/src/Render/RenderTarget3.cpp: 2 → 5
+  pal3/src/Misc/UIScenePanel.cpp: 5 → 10
+  pal3/src/Effect/CEffMgr.cpp: 10 ↓ 9
+  s1:pal3/src/_ns_udts.h: 40 → 42
+  pal3/src/Combat/CCBUI.cpp: 24 → 29
+  pal3/src/Role/Actor.cpp: 26 → 42
+  pal3/src/Role/RoleSystem.cpp: 39 → 56
+  pal3/src/Script/PalScript.cpp: 39 ↓ 38
+  pal3/src/GameBase/Config.cpp: 5 ↓ 2
+  pal3/src/Combat/CCBSystem.cpp: 18 → 25
+  pal3/src/Render/CScreenMode.cpp: 22 ↓ 21
+  pal3/src/Combat/CCCTData.cpp: 19 → 22
+  pal3/src/UI/EquipUI.cpp: 1 → 3
+  pal3/src/Misc/RoleAtt.cpp: 2 → 5
+  pal3/src/Combat/CCBStageCam.cpp: 2 → 5
+  pal3/src/GameBase/GRPinput.cpp: 14 ↓ 12
+  pal3/src/Data/PAL_GDB.cpp: 4 ↓ 2
+  pal3/src/Misc/UITitle_YXXX.cpp: 1 → 2
   pal3/src/Combat/CCBStageScene.cpp: 2 → 10
+  pal3/src/Misc/UIBigMap.cpp: 19 → 31
+  pal3/src/GameBase/PAL3.cpp: 40 → 55
+  pal3/src/Role/Object3D.cpp: 6 → 23
+  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBStage.cpp: 12 → 40
+  pal3/src/Script/PalScriptMgr.cpp: 2 → 4
+  pal3/src/Misc/PalScriptAnimTimer.cpp: 3 ↓ 1
+  pal3/src/UI/StateUI.cpp: 5 → 13
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 
@@ -1304,6 +1290,5 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 [Probe] Running probe s2 so compile_regression sees THIS codegen's census...
 [ERROR] probe s2 exited 1 — 本次 codegen 的编译普查未通过（新失败/退化，或 probe 自身出错）。
         修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'（会使 compile_regression 的结论失去意义）。
-[emit] CCBTaskSlot: member at +0x18 is behind bookkeeping (start_off=0x1A, +0x2) — 不跳过，交由布局审计裁决
 [DEBUG-INC] stru_DBA134 typ='RoleCameraCtrl' has_header=True has_struct=True pointer_only=False
 [ret-N evidence] 指令级(asm) 3271 / 裸扫描回退 345 / 无证据 18

@@ -1,9 +1,9 @@
 导出产物 vs 注解 一致性校验（[t4-DECLARED-EXCEPTION] 的透传字段）
 ========================================================================
-  两侧都有 struct: 860   仅导出侧: 433   仅注解侧: 63
+  两侧都有 struct: 861   仅导出侧: 433   仅注解侧: 63
   vtables  不一致: 0
   methods  不一致: 0
-  _variants 键不一致: 848  （**仅提示**：两侧表示不同，不参与失败判定）
+  _variants 键不一致: 849  （**仅提示**：两侧表示不同，不参与失败判定）
     [_variants] ARC_ArcBrief, ARC_ArcHeader, ARC_ArcLocaleRole, ARC_ArcMsic, ARC_ComboAttack, ARC_FightItem, ARC_FightSkill, ARC_Inventory, ARC_MonsterStar, ARC_OutFile …
 
 ✅ 一致：导出产物中这些字段与注解**逐字段等值**（与 export_full.py 头部自述的 761/761 相符）
@@ -16,7 +16,7 @@ EXPORT: decompiling to decomp/ ...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：117 个 sub_ 符号的声明/调用形参数全部一致（另 94 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
