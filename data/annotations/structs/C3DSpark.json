@@ -123,42 +123,52 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const void *pSpark",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d6ac0": {
    "name": "CreateOne",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "x"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "y"
+      "name": null
      },
      {
       "type": "int",
-      "name": "z"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CreateOne): int"
   },
   "0x004d6ba0": {
    "name": "DestroyAll",
@@ -176,35 +186,45 @@
    "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [C2660: 调用点0参]",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Render): int(vo"
   },
   "0x004d6d30": {
    "name": "Update",
    "source": "pdb_ret",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fDeltaTime"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,float); 原注解无"
   }
  }
 }

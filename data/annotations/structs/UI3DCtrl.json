@@ -142,16 +142,20 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "void *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
@@ -160,41 +164,46 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_D860(??1/??_G析构族); decomp文件=UI3DCtrl_scalar_dtor_D860UIWnd_char_0043d860 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_D860(??1/??_G析构族); decomp文件=UI3DCtrl_scalar_dtor_D860UIWnd_char_0043d860 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043d890": {
    "name": "CreateWithTexture",
    "ordinal": 7,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "id"
-     },
-     {
-      "type": "void *pRect",
+      "type": "signed __int16",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "unsigned int",
-      "name": "dwVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "parent"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043d940": {
    "name": "Render",
@@ -218,21 +227,26 @@
    "name": "LoadEncampModel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszModelName",
+      "type": "char",
       "name": null
      },
      {
-      "type": "const char *pszName",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0052e8c0": {
    "name": "UpdateRotation",
@@ -282,33 +296,43 @@
    "name": "UpdateTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0052af20": {
-   "name": "LoadModel",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "const char *pszModelName",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateTransform): int(char,int); 原注解无"
+  },
+  "0x0052af20": {
+   "name": "LoadModel",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "signed __int32",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043d920": {
    "name": "HideAll",

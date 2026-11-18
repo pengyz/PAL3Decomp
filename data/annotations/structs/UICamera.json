@@ -104,6 +104,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float *",
       "name": null
      },
@@ -115,7 +119,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMD): int(float *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(IsPointVisible): int(int,float *,char); 原注解2026-11-18 mangle硬真值定谳(HPAMD): int(float"
   },
   "0x00420cd0": {
    "name": "FindNearest",
@@ -127,29 +131,39 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindNearest): int(int,int); 原注解无"
   },
   "0x00420e50": {
    "name": "FindVisible",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "可见性过滤搜索",
    "sig_model": {
-    "return": "float *",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
-      "type": "float *pMat",
+      "type": "float *",
+      "name": null
+     },
+     {
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindVisible): int(float *,float *); 原注解无"
   },
   "0x004230d0": {
    "name": "FindNearestTarget",

@@ -15,7 +15,51 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(BeginNextPass):"
+  },
+  "0x004c2030": {
+   "name": "_adjustor_c",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot",
+   "sig_model": {
     "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。"
+  },
+  "0x004c3400": {
+   "name": "BeginMultiPassRender",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "evidence_level": "binary_vtable_slot",
+   "sig_model": {
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -30,41 +74,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXD): void(void *,char); 原注解无"
-  },
-  "0x004c2030": {
-   "name": "_adjustor_c",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "void",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004c3400": {
-   "name": "BeginMultiPassRender",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
-   "evidence_level": "binary_vtable_slot",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(BeginMultiPassR"
   }
  },
  "vtables": [],

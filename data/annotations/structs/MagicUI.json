@@ -475,6 +475,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -482,7 +486,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(NextRole): int(int,int *); 原注解2026-11-18 mangle硬真值定谳(HPAH): int(int *)"
   },
   "0x00551c66": {
    "name": "InitComItem",
@@ -490,18 +494,22 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitComItem): i"
   },
   "0x00494660": {
    "name": "ProcessInput",
@@ -535,13 +543,18 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "nTab"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectBigMapTab3): int(int,char); 原注解无"
   },
   "0x00494640": {
    "name": "SelectBigMapTab4",
@@ -551,13 +564,18 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "nTab"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectBigMapTab4): int(int,char); 原注解无"
   },
   "0x00484ed0": {
    "name": "SelectTab3",
@@ -569,12 +587,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectTab3): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x00484ef0": {
    "name": "SelectTab4",
@@ -586,12 +608,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectTab4): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0048a350": {
    "name": "SelectSubTab3",
@@ -603,12 +629,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectSubTab3): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0048a370": {
    "name": "SelectSubTab4",
@@ -620,12 +650,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectSubTab4): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0048a390": {
    "name": "InitUILayout",
@@ -639,12 +673,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitUILayout): int(int,int); 原注解无"
   },
   "0x0048b8f0": {
    "name": "UpdateViewListItems",
@@ -668,12 +707,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectXJTMTab3): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0049e8c0": {
    "name": "SelectXJTMTab4",
@@ -685,12 +728,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectXJTMTab4): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   }
  },
  "base_size": 72,

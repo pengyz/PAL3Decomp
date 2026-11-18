@@ -20,46 +20,56 @@
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "id"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
-      "type": "char *tex",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Create): int(void *,int,int,int,char *); 原注解无"
   },
   "0x0052afc0": {
    "name": "RenderIfVisible",
    "_misattrib_evidence": "max_offset=256>class_size=68",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pMatrixStack",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00528d30": {
    "name": "GetEntryPtr",
@@ -70,12 +80,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nIndex"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetEntryPtr): int(int,int); 原注解无"
   },
   "0x0052b030": {
    "name": "CallVtableMethod",
@@ -86,29 +101,39 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "double",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0052aff0": {
-   "name": "RenderWithStack",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
+      "type": "int",
+      "name": null
+     },
      {
-      "type": "gbMatrixStack *pStack",
+      "type": "double",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CallVtableMethod): int(int,double); 原注解无"
+  },
+  "0x0052aff0": {
+   "name": "RenderWithStack",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "signed __int32",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "base_size": 72,

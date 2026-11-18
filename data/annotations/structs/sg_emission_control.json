@@ -93,38 +93,21 @@
    "name_source": "IDA语义分析 2026-11-01 批8",
    "name_note": "粒子发射（sg_emitter+D3DXVECTOR3）",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "a2"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      },
      {
       "type": "int",
-      "name": "a4"
+      "name": null
      },
-     {
-      "type": "int",
-      "name": "a5"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004b8890": {
-   "name": "Update",
-   "name_source": "IDA语义分析 2026-11-01 批8",
-   "name_note": "发射控制更新（浮点计算）; C2555链对齐(结构化sweep): C: 共享址双claim(与UIWnd Update_2ff0族)→定谳真值侧; 置信度中高(史前+基形式多数证据) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
      {
       "type": "int",
       "name": null
@@ -137,7 +120,34 @@
     "varargs": false,
     "pending": false
    },
-   "evidence_level": "chain_unified"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Emit): int(void"
+  },
+  "0x004b8890": {
+   "name": "Update",
+   "name_source": "IDA语义分析 2026-11-01 批8",
+   "name_note": "发射控制更新（浮点计算）; C2555链对齐(结构化sweep): C: 共享址双claim(与UIWnd Update_2ff0族)→定谳真值侧; 置信度中高(史前+基形式多数证据) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "chain_unified",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,int,int); 原注解无"
   }
  }
 }

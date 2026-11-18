@@ -102,45 +102,55 @@
    "source": "annotation_fix | [sig修 2026-11-14] UIWnd**→UIButton**: 函数体 operator new(0xF8)=248B=UIPushButton::binary_size 构造后存入*ppChild ⇒ 原源码参数类型=UIButton**(IDA渲染猜成UIWnd**)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIButton **ppChild",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nCtrlID"
+      "name": null
      },
      {
-      "type": "tagRECT *rc",
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nDataIdx"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051ab60": {
    "name": "HandleInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "UIButton *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIButton *pButton",
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051ac30": {
    "name": "KeyPressed",
@@ -197,9 +207,13 @@
    "source": "| [T112] 语义偏离名修正：@0x51AD10 全函数体（3859 字符）= UIStatic/UIButton/UIListBox 创建 + SetLockSel/GetSel/SetItemData 条目循环（控件构建+条目设置）+ 形参 (pRect,parent)=创建形 ⇒ 语义名 CreateControls（禁伪语义 ✓ 全函数体证据）；@0x51B030 OnMessage 保留（1006/1007 消息分发）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "int *",
       "name": null
@@ -212,7 +226,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(DPAHH): char(int *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateControls): int(char,int *,int); 原注解2026-11-18 mangle硬真值定谳(DPAHH): char(int "
   },
   "0x0051afe0": {
    "name": "HideAll",
@@ -238,11 +252,23 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -258,7 +284,8 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051b110": {
    "name": "CreateButton",
@@ -285,6 +312,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      },
@@ -302,7 +333,7 @@
    ],
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
   },
   "0x0051b5d0": {
    "name": "CreateWithTextures",
@@ -314,6 +345,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -338,7 +373,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 双证定谳: IDB mangle QAEHHPAXHPAD(ret int, 参数int/void*/int/char*/char——旧sig_model return粘__thiscall+cc=null=SetType跳过→IDB类型IDA猜测__userpurge→decomp this@<ecx>渲染)——mangle权威修正。2026-11-18 sig_model.return粘cc剥离(cc应在cc字"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateWithTextures): int(int,int,void *,int,char *,char); 原注解2026-11-18 双证定谳: IDB mangle QAEHHPAXHPAD"
   },
   "0x0051ac90": {
    "name": "_scalar_dtor_AC90",
@@ -346,11 +381,15 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "void *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -364,7 +403,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_AC90(??1/??_G析构族); decomp文件=CCBControlWindow_scalar_dtor_AC90UIWnd_char_0051ac90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_AC90(??1/??_G析构族); decomp文件=CCBControlWindow_scalar_dtor_AC90UIWnd_char_0051ac90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "vtables": [

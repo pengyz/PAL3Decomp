@@ -200,37 +200,47 @@
    "name": "InitDefaultUVSet",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nFramePerRow"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nFramePerCol"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004c7cb0": {
-   "name": "LoadTexture",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
+      "name": null
+     },
      {
-      "type": "char *pFileName",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitDefaultUVSe"
+  },
+  "0x004c7cb0": {
+   "name": "LoadTexture",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "char *",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadTexture): int(int *,char *); 原注解无"
   },
   "0x004c7d40": {
    "name": "CreateGeom",
@@ -249,31 +259,40 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fDeltaTime"
+      "name": null
      },
      {
       "type": "int",
-      "name": "fTime"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateExplosive"
   },
   "0x004c6c10": {
    "name": "Create",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "tagEffObjType *",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
@@ -285,7 +304,8 @@
     "override"
    ],
    "override_of": "0x004c0600",
-   "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(tagEffObjType)+基槽0x004c0600(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c6f20": {
    "name": "Destroy",
@@ -307,9 +327,13 @@
    "name": "GetEditorTaskDescription",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "const char *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -322,15 +346,20 @@
     "override"
    ],
    "override_of": "0x004c0510",
-   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c7b70": {
    "name": "GetEditorObjDescription",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "const char *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -343,7 +372,8 @@
     "override"
    ],
    "override_of": "0x004c0510",
-   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c6960": {
    "name": "~CEffExplosive",
@@ -374,9 +404,13 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -401,16 +435,21 @@
     "override"
    ],
    "override_of": "0x004c0610",
-   "flags_evidence": "同名+同归一签名(int,int,int,int)+基槽0x004c0610(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,int,int,int)+基槽0x004c0610(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ResetState): in"
   },
   "0x004c7150": {
    "name": "UpdateFrame",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float",
       "name": null
@@ -424,7 +463,8 @@
     "override"
    ],
    "override_of": "0x004af760",
-   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateFrame): i"
   },
   "0x004c6940": {
    "name": "AllocEffect",
@@ -448,9 +488,13 @@
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float",
       "name": null
@@ -464,7 +508,8 @@
     "override"
    ],
    "override_of": "0x004af760",
-   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderEffectPas"
   }
  },
  "base_size": 16,

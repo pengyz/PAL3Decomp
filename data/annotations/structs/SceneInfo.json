@@ -50,173 +50,223 @@
    "name": "ProcessSceneChange",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessSceneChange): int(char,float,int,int); 原注解无"
   },
   "0x004441e0": {
    "name": "CheckHitLeft",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004442b0": {
    "name": "UpdateScaling",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00444380": {
    "name": "CheckHitRight",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00444450": {
    "name": "CheckHitBottom",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00444520": {
    "name": "CheckBoundsHorizontal",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckBoundsHorizontal): int(char,float); 原注解无"
   },
   "0x00444660": {
    "name": "CheckBoundsLeftCombo",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckBoundsLeftCombo): int(char,float); 原注解无"
   },
   "0x004447a0": {
    "name": "CheckBoundsRightCombo",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckBoundsRightCombo): int(char,float); 原注解无"
   },
   "0x004448e0": {
    "name": "CheckBoundsBottomCombo",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckBoundsBottomCombo): int(char,float); 原注解无"
   },
   "0x00443ce0": {
    "name": "ProcessCollision",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "char",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessCollision): int(char,int,int); 原注解无"
   }
  }
 }

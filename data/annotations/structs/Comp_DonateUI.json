@@ -192,15 +192,19 @@
  "methods": {
   "0x004a6030": {
    "name": "ProcessInput",
-   "sig_note": "ret-N adjudication (round 10): callee cleans 4 bytes; caller args = 1; prev 0 params",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessInput): int(int,int); 原注解ret-N adjudication (round 10): callee cl",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "a1"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,

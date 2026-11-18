@@ -818,17 +818,22 @@
    "name": "GetBattleFieldSubdueAttr",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pMatrixStack",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00510e00": {
    "name": "GetBFASubdueFM",
@@ -857,17 +862,22 @@
    "name": "LoadPointer",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(LoadPointer): i"
   },
   "0x00511110": {
    "name": "LoadFlingNode",
@@ -1060,18 +1070,22 @@
    "name": "CCBStageScene_FD00",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBStageScene *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBStage *pCBStage",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0052b2a0": {
    "name": "CleanupCamera",
@@ -1126,17 +1140,22 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  }
 }

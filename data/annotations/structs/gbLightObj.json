@@ -156,17 +156,18 @@
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct gbAABBox *p",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0042bee0": {
    "name": "IsIdle",
@@ -186,17 +187,26 @@
    "ordinal": 1,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbGfxManager *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0042c8d0": {
    "name": "GetCGEntry",
@@ -208,13 +218,18 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetCGEntry): int(int,char); 原注解无"
   },
   "0x00423860": {
    "name": "~gbLightObj",

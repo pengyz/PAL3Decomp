@@ -56,11 +56,23 @@
    "source": "manual_fix_vtable+canonical_rename",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -76,7 +88,8 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00459240": {
    "name": "_scalar_dtor_9240",
@@ -139,6 +152,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      },
@@ -156,7 +173,7 @@
    ],
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
   },
   "0x0045a490": {
    "name": "Render",
@@ -298,6 +315,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -305,7 +326,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHE): int(int,unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CallFaceMethod): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHE): int(int,uns"
   },
   "0x00535630": {
    "name": "ShowAndRelease",
@@ -346,9 +367,13 @@
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float *",
       "name": null
@@ -365,7 +390,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMPAMPAM): void(float *,float *,float *); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ScreenToLocal):"
   }
  },
  "vtables": [

@@ -50,25 +50,30 @@
    "name": "OnMessage_b950",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "msg"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "wparam"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "lparam"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051c280": {
    "name": "_scalar_dtor",
@@ -91,21 +96,26 @@
    "name": "LoadResourceEx",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbVFileSystem *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
+      "type": "signed __int16",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051c260": {
    "name": "`scalar deleting destructor'",
@@ -113,18 +123,23 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "flags"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_deleting_destructor_): int(void *,int); 原注解无"
   },
   "0x0051c880": {
    "name": "HideAll",
@@ -151,11 +166,23 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -171,7 +198,8 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051ca50": {
    "name": "ShowClipped",
@@ -179,12 +207,16 @@
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
@@ -195,7 +227,8 @@
     "override"
    ],
    "override_of": "0x00445e70",
-   "flags_evidence": "同名+同归一签名(int)+基槽0x00445e70(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int)+基槽0x00445e70(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ShowClipped): i"
   },
   "0x0051caa0": {
    "name": "Render",

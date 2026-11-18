@@ -163,6 +163,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -174,27 +178,32 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHH): int(int *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateActions): int(int,int *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHH): int(int *"
   },
   "0x00489ba0": {
    "name": "UpdateElement",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "element"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "visible"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateElement):"
   },
   "0x00490e90": {
    "name": "UIBigMap",
@@ -240,6 +249,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float *",
       "name": null
      }
@@ -247,47 +260,57 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAM): int(int,float *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateTransform): int(int,int,float *); 原注解2026-11-18 mangle硬真值定谳(HHPAM): int(int,f"
   },
   "0x00423a70": {
    "name": "LoadScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "element"
+      "type": "void *",
+      "name": null
      },
      {
-      "type": "const char *visible",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00424570": {
    "name": "RenderRole",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pStack",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      },
      {
       "type": "int",
-      "name": "visible"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043bf90": {
    "name": "UpdateWindowPos",
@@ -299,16 +322,21 @@
     "params": [
      {
       "type": "int",
-      "name": "deltatime"
+      "name": null
      },
      {
       "type": "int",
-      "name": "haveinput"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateWindowPos): int(int,int,int); 原注解无"
   },
   "0x00441240": {
    "name": "SetScrollRange",
@@ -319,16 +347,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nMin"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nMax"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetScrollRange): int(int,int,int); 原注解无"
   },
   "0x004431e0": {
    "name": "SetViewParams",
@@ -339,36 +372,42 @@
     "params": [
      {
       "type": "int",
-      "name": "deltatime"
+      "name": null
      },
      {
       "type": "int",
-      "name": "haveinput"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetViewParams): int(int,int,int); 原注解无"
   },
   "0x00451360": {
    "name": "LayoutBinkVideo",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPCSTR",
-      "name": "lpString1"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "haveinput"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004528f0": {
    "name": "InitUI",
@@ -379,16 +418,21 @@
     "params": [
      {
       "type": "int",
-      "name": "id"
+      "name": null
      },
      {
       "type": "int",
-      "name": "parent"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitUI): int(int,int,int); 原注解无"
   },
   "0x00491c30": {
    "name": "GetChildCount",
@@ -400,16 +444,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetChildCount): int(int,int,int); 原注解无"
   },
   "0x004929e0": {
    "name": "ProcessChildItem",
@@ -423,6 +472,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -430,7 +483,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAH): int(int,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessChildItem): int(int,int,int *); 原注解2026-11-18 mangle硬真值定谳(HHPAH): int(int,i"
   },
   "0x00497450": {
    "name": "UpdateNPCAnimations",
@@ -441,16 +494,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateNPCAnimations): int(int,int,int); 原注解无"
   },
   "0x0052c8a0": {
    "name": "DestroyFrames",
@@ -472,40 +530,54 @@
     "params": [
      {
       "type": "int",
-      "name": "msg"
+      "name": null
      },
      {
       "type": "int",
-      "name": "wparam"
+      "name": null
      },
      {
       "type": "int",
-      "name": "lparam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetBounds): int(int,int,int,int); 原注解无"
   },
   "0x00539810": {
    "name": "SetElementVisible",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "FILE *Buffer",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "FILE *Stream",
+      "type": "signed __int16",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00492e10": {
    "name": "SetEntryVisible",
@@ -522,12 +594,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetEntryVisible): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int"
   }
  },
  "base_size": 72,

@@ -26,25 +26,30 @@
    "name": "LoadModels",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszModel1",
+      "type": "char",
       "name": null
      },
      {
-      "type": "const char *pszModel2",
+      "type": "char",
       "name": null
      },
      {
-      "type": "const char *pszModel3",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00533fd0": {
    "name": "SetCameraActive",
@@ -61,33 +66,43 @@
    "name": "PushPopStack",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pStack",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00535f10": {
    "name": "RenderWithTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pStack",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@MiniGame3@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",

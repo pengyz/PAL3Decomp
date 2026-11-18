@@ -214,25 +214,38 @@
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CEffMgr *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "gfxMgr"
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
      },
      {
       "type": "int",
-      "name": "cam"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004cdbf0": {
    "name": "RenderAll",
@@ -261,18 +274,22 @@
    "_misattrib_evidence": "max_offset=57744>class_size=8684",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int *",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "nState"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindRoleByState): int(int *,char); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
   },
   "0x004cd930": {
    "name": "_scalar_dtor",

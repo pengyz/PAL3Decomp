@@ -63,6 +63,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char *",
       "name": null
      }
@@ -70,7 +74,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadStoreConfig): int(int,char *); 原注解2026-11-18 mangle硬真值定谳(HPAD): int(char *"
   },
   "0x00457260": {
    "name": "DealData",
@@ -92,21 +96,18 @@
    "name": "CompareString",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPCSTR",
-      "name": "lpString1"
-     },
-     {
-      "type": "LPCSTR",
-      "name": "lpString2"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  }
 }

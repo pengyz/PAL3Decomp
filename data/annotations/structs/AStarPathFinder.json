@@ -181,36 +181,46 @@
     "params": [
      {
       "type": "int",
-      "name": "nX"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nY"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(IsInBounds): int(int,int,int); 原注解无"
   },
   "0x004014f0": {
    "name": "GetHeuristicIdx",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nX"
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nY"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetHeuristicIdx): int(unsigned int,int,int); 原注解无"
   },
   "0x004012a0": {
    "name": "TryExpand",
@@ -222,33 +232,46 @@
    ],
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "AStarPathFinder::NODE *pNode",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nTileX"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nTileY"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nGoalX"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nGoalY"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00401500": {
    "name": "FindInOpen",
@@ -259,12 +282,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nTileIdx"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindInOpen): int(int,int); 原注解无"
   },
   "0x00401530": {
    "name": "FindInClosed",
@@ -275,44 +303,75 @@
     "params": [
      {
       "type": "int",
-      "name": "nTileIdx"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindInClosed): int(int,int); 原注解无"
   },
   "0x00401560": {
    "name": "PushOpen",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "AStarPathFinder::NODE *pNode",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00401590": {
    "name": "Release",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "AStarPathFinder::NODE *pNode",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004015b0": {
    "name": "UpdateNeighbors",
@@ -324,17 +383,30 @@
    ],
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "AStarPathFinder::NODE *pNode",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00401750": {
    "name": "ResortNode",
@@ -347,11 +419,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ResortNode): int(int,int); 原注解无"
   },
   "0x00401780": {
    "name": "PopStack",

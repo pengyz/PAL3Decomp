@@ -95,17 +95,22 @@
    "evidence_level": "use_site_majority",
    "source": " | L-VAR 2026-11-11 变参定谳: CEffMgr.cpp:827/872 实参 (格式串, float 值) printf 族形态; 固定 (file,line) 与调用实参数不符",
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *msg",
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": true,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FormatException): int(char *,char *); 原注解无"
   },
   "0x0053cc70": {
    "name": "Write",
@@ -129,6 +134,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -144,7 +153,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPADPAD): int(int *,char *,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RegisterCallback): int(int,int *,char *,char *); 原注解2026-11-18 mangle硬真值定谳(HPAHPADPAD): int("
   },
   "0x0053ce90": {
    "name": "RegisterCallbacks",
@@ -163,17 +172,22 @@
    "evidence_level": "unverified",
    "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留",
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(WriteRoleNames): int(char *,char *); 原注解无"
   },
   "0x0053cb10": {
    "name": "WinProc_HWND_InputLine",
@@ -183,13 +197,18 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(WinProc_HWND_InputLine): int(int,char); 原注解无"
   },
   "0x0053ccf0": {
    "name": "WinProc_HWND_ExecCommand",
@@ -210,6 +229,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char *",
       "name": null
      }
@@ -217,7 +240,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(WinProc_HWND_SetAndExec): int(int,char *); 原注解2026-11-18 mangle硬真值定谳(HPAD): int(char *"
   }
  }
 }

@@ -89,25 +89,30 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "流读取数组初始化",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nInitSize"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nGrowBy"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      },
      {
       "type": "char",
-      "name": "bOwned"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitFromStream)"
   },
   "0x004341e0": {
    "name": "~PtrArray",
@@ -140,38 +145,48 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
-      "type": "unsigned short",
-      "name": "pData"
+      "type": "char *",
+      "name": null
      },
      {
-      "type": "int *nIndex",
+      "type": "unsigned short",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAtGrow): int(char *,unsigned short,int *); 原注解无"
   },
   "0x004343f0": {
    "name": "FindByName",
    "source": "| sig-type-fix 2026-09-28: const char *→int（参数名 nIndex+调用点全 int 实参（UIListBox:1221 等）+sibling RemoveAt(int nIndex,int nCount) 同名同义——PDB 残留型订正；证据: 多调用点 B 级） | 返工 2026-09-28（d0643565 反证）：撤 int 订正——被调体 strcmp((const char*)nIndex,v3) 证明实参是名字串；nIndex 更名 pszName；调用点 (int) 铸形系签名渲染产物（循环论证）另解 | [T141] 同名消歧（语义偏离名修正）：@0x4343F0 全函数体=inlined strcmp 逐条比对名字串（24字节项@+8）→ 命中返 &entry[匹配]（0x434450 lea eax,[edx+ecx*8]）否则 0，**纯查表非删除** ⇒ 语义名 FindByName（区别于 sibling RemoveAt(int,int)@0x4327B0 索引删除 this->m_pData/capacity + 既有 Find/FindFirst）；objdump 辅证（strcmp 展开 + 无 memmove/delete）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00434490": {
    "name": "Remove",
@@ -189,17 +204,22 @@
    "source": "| E-3 2026-09-28：nIndex→pszName（RemoveAt 同证据类 strcmp 系改名一致性）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0044bd60": {
    "name": "PtrArray",
@@ -220,21 +240,26 @@
    "name": "SetResolution",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "arg4"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetResolution):"
   },
   "0x004327b0": {
    "name": "RemoveAt",
@@ -245,56 +270,71 @@
     "params": [
      {
       "type": "int",
-      "name": "nIndex"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nCount"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RemoveAt): int(int,int,int); 原注解无"
   },
   "0x00432770": {
    "name": "SetAt",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nIndex"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "newElement"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetAt): int(voi"
   },
   "0x0040d640": {
    "name": "GetAt",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pOut",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "void *",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": "nIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetAt): int(void *,void *,unsigned int); 原注解无"
   },
   "0x0040d620": {
    "name": "GetSize",
@@ -311,17 +351,22 @@
    "name": "Insert",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pItem",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Insert): int(void *,void *); 原注解无"
   },
   "0x0040dbd0": {
    "name": "Find",
@@ -331,6 +376,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      },
@@ -342,32 +391,20 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXPAX): int(void *,void *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Find): int(int,void *,void *); 原注解2026-11-18 mangle硬真值定谳(HPAXPAX): int(voi"
   },
   "0x00411290": {
    "name": "ParseStringPair",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned int",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "char *pszBuf",
-      "name": null
-     },
-     {
-      "type": "char *pszBuf2",
-      "name": null
-     },
-     {
-      "type": "void **a3",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ParseStringPair): int(uns"
   },
   "0x004327f0": {
    "name": "FindFirst",
@@ -377,6 +414,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      }
@@ -384,33 +425,37 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAX): int(void *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindFirst): int(int,void *); 原注解2026-11-18 mangle硬真值定谳(HPAX): int(void *"
   },
   "0x00433dc0": {
    "name": "CopyRange",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CopyRange): int(int *,int *,int,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
   },
   "0x0053d0b0": {
    "name": "ClearBoth",
@@ -432,6 +477,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -443,7 +492,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPAH): int(int *,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CompareValues): int(int,int *,int *); 原注解2026-11-18 mangle硬真值定谳(HPAHPAH): int(int"
   },
   "0x00431cb0": {
    "name": "Reset",
@@ -484,38 +533,35 @@
    "name": "ReadFileSection",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "struct gbVFile *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "signed __int16",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nSection"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00433c50": {
    "name": "ReadFromVFile",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "unsigned short *pBuf",
-      "name": null
-     },
-     {
-      "type": "struct gbVFile *pFile",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
   },
   "0x004019b0": {
    "name": "ReleasePtrArray",

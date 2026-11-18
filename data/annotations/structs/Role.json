@@ -323,16 +323,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcXueJianInit): int(int,int,int); 原注解无"
   },
   "0x00408d80": {
    "name": "CalcLongKuiInit",
@@ -344,16 +349,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcLongKuiInit): int(int,int,int); 原注解无"
   },
   "0x00408e30": {
    "name": "CalcZiXuanInit",
@@ -365,16 +375,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcZiXuanInit): int(int,int,int); 原注解无"
   },
   "0x00408e90": {
    "name": "CalcChangQingInit",
@@ -386,16 +401,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcChangQingInit): int(int,int,int); 原注解无"
   },
   "0x00408f30": {
    "name": "CalcHuaYingInit",
@@ -407,33 +427,39 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcHuaYingInit): int(int,int,int); 原注解无"
   },
   "0x00418170": {
    "name": "CheckOBBCollision",
    "_misattrib_evidence": "max_offset=680>class_size=64",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct gbOBBox *p",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00411900": {
    "name": "Role",
@@ -456,9 +482,21 @@
    "source": "vtable_owner_fix(Glow 层虚函数, Role ctor [esi+40h] 存储证据)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBAIWindow *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -467,7 +505,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0041b6a0": {
    "name": "GetGfxManager",

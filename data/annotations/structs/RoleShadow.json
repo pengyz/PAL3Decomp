@@ -90,12 +90,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitFromTemplate): int(int,int); 原注解无"
   },
   "0x00454420": {
    "name": "CreateFromTemplate",
@@ -105,6 +110,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -112,7 +121,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateFromTemplate): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
   },
   "0x00524e00": {
    "name": "LoadQuadData",
@@ -122,6 +131,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -129,7 +142,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadQuadData): int(int,int *); 原注解2026-11-18 mangle硬真值定谳(HPAH): int(int *)"
   },
   "0x00524f90": {
    "name": "UpdateShadow",

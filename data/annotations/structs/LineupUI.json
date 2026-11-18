@@ -438,20 +438,25 @@
     "params": [
      {
       "type": "int",
-      "name": "msg"
+      "name": null
      },
      {
       "type": "int",
-      "name": "wparam"
+      "name": null
      },
      {
       "type": "int",
-      "name": "lparam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage_7bb0): int(int,int,int,int); 原注解无"
   },
   "0x00482ed0": {
    "name": "Save",
@@ -513,16 +518,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateAndForward): int(int,int,int); 原注解无"
   },
   "0x00475fc0": {
    "name": "RefreshDisplay",
@@ -569,12 +579,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
@@ -583,7 +597,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_E8F0(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E8F0int_0047e8f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_E8F0(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E8F0int_0047e8f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_E8"
   },
   "0x0047f880": {
    "name": "Render",
@@ -618,34 +633,43 @@
    "name": "CreatePreviewScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004b1920": {
-   "name": "UpdateProtectPanel",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreatePreviewScene): int(void *,int); 原注解无"
+  },
+  "0x004b1920": {
+   "name": "UpdateProtectPanel",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateProtectPanel): int(int *,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
   },
   "0x004b3da0": {
    "name": "RebuildMainPage",
@@ -680,12 +704,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nPage"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPageIndex): int(int,int); 原注解无"
   },
   "0x00472aa0": {
    "name": "RefreshListData",
@@ -716,17 +745,22 @@
    "_misattrib_evidence": "max_offset=121864>class_size=10584",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouseInp"
   },
   "0x00474c80": {
    "name": "BuildListItems",
@@ -779,28 +813,45 @@
    "name": "CountVisibleItems",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CountVisibleItems): int(char,int); 原注解无"
   },
   "0x0047f970": {
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -816,7 +867,8 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00480600": {
    "name": "OnMessage",
@@ -827,6 +879,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -849,7 +905,7 @@
    ],
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
   },
   "0x004826a0": {
    "name": "RebuildSystemPage",
@@ -874,6 +930,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -881,7 +941,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHI): int(int,unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotRect): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
   },
   "0x00484810": {
    "name": "RebuildNavPage",
@@ -960,16 +1020,20 @@
    "declaration_only": true,
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=LineupUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B794）",
    "sig_model": {
-    "return": "void *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
@@ -978,7 +1042,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_0f20(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_0f20UIWnd_char_00470f20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0f20(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_0f20UIWnd_char_00470f20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "vtables": [

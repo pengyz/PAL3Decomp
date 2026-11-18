@@ -549,9 +549,13 @@
    "source": "pdb",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -560,7 +564,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ControlDealBTWn"
   },
   "0x004a4220": {
    "name": "Init",
@@ -613,45 +617,55 @@
    "name": "UpdateSlot",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nSlotIdx"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nItemID"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nCount"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateSlot): in"
   },
   "0x00494d70": {
    "name": "HandleInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nInputID"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nParam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HandleInput): i"
   },
   "0x0049f9b0": {
    "name": "SetGroupVisible",
@@ -661,6 +675,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -668,27 +686,32 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetGroupVisible): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
   },
   "0x0049fbe0": {
    "name": "UpdateDisplay",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nPage"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nSlot"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateDisplay): int(int,int,int); 原注解无"
   },
   "0x0049fa10": {
    "name": "InitParticleEffects",
@@ -699,12 +722,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitParticleEffects): int(int,int); 原注解无"
   },
   "0x004a0370": {
    "name": "OnMessage",
@@ -714,6 +742,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -736,7 +768,7 @@
    ],
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
   },
   "0x00484d20": {
    "name": "ShowPage",
@@ -757,13 +789,18 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "nTab"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectBigMapTab0): int(int,char); 原注解无"
   },
   "0x00498c70": {
    "name": "_scalar_dtor_8C70",
@@ -774,16 +811,20 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "void *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "UIWnd *Block",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
@@ -792,7 +833,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_8C70(??1/??_G析构族); decomp文件=EquipUI_scalar_dtor_8C70UIWnd_char_00498c70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_8C70(??1/??_G析构族); decomp文件=EquipUI_scalar_dtor_8C70UIWnd_char_00498c70 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0049fe00": {
    "name": "Render",
@@ -823,12 +865,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectTab0): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0048a2f0": {
    "name": "SetSubTab",
@@ -840,12 +886,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetSubTab): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0049e840": {
    "name": "SetSubTab2",
@@ -857,12 +907,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetSubTab2): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0049ff90": {
    "name": "NavigateSlots",
@@ -881,11 +935,23 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -901,7 +967,8 @@
     "override"
    ],
    "override_of": "0x00445c60",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004ab6b0": {
    "name": "InitEquipUI",
@@ -913,12 +980,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitEquipUI): int(int,int); 原注解无"
   },
   "0x0049ff30": {
    "name": "FindNextSlot",
@@ -928,6 +1000,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -935,7 +1011,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindNextSlot): int(int,int *); 原注解2026-11-18 mangle硬真值定谳(HPAH): int(int *)"
   },
   "0x0049ff60": {
    "name": "FindPrevSlot",
@@ -945,6 +1021,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -952,7 +1032,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindPrevSlot): int(int,int *); 原注解2026-11-18 mangle硬真值定谳(HPAH): int(int *)"
   }
  },
  "vtables": [

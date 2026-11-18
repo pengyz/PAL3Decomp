@@ -93,17 +93,22 @@
    "name_source": "IDA语义分析 2026-11-01 批9",
    "name_note": "顶点缓冲初始化（sub_4C5D00+flag 设 1）",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitVertexBuffer): int(int *,int); 原注解无"
   },
   "0x004c6260": {
    "name": "~CEffectSystem",
@@ -247,34 +252,44 @@
    "name": "SetVisible",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "effect"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetVisible): in"
   },
   "0x004c65f0": {
    "name": "HandleViewMove",
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | L-VAR 2026-11-11e 反汇编反转: 入口 push esi; mov esi,ecx 读 [esi+4]/[esi+5] = thiscall; 栈访问仅 [esp+8] 一参; 调方 v22->HandleViewMove(v2) 一实参——旧 static(float,float) 双错",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HandleViewMove)"
   },
   "0x004c6670": {
    "name": "Update",
@@ -304,73 +319,84 @@
    "name": "CreateEffectChain",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI *pCBUI",
+      "type": "int",
       "name": null
      },
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "bReadOnly"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004cf580": {
    "name": "CreateEffect",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CEffectSystem *pSrc",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "CEffectSystem *pParam",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c5820": {
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CEffectSystem *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "pGfxMgr"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c61a0": {
    "name": "CEffectSystem",
@@ -404,6 +430,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      },
@@ -419,7 +449,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_5D50(??1/??_G析构族); decomp文件=CEffectSystem_scalar_dtor_5D50void_char_004c5d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_5D50): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
   },
   "0x004c5d80": {
    "name": "slot_1",
@@ -479,12 +509,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateEffectState): int(int,int); 原注解无"
   },
   "0x004c5e70": {
    "name": "nullsub",
@@ -502,11 +537,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(nullsub): int(int,int,int); 原注解无"
   },
   "0x004c5b90": {
    "name": "SetEffectVisible",
@@ -516,9 +556,13 @@
    "signature_note": "set_signature: asm 行 290910-290924：`retn 8` ⇒ 2 个栈参数；第一参 `[esp+arg_0]` 作为索引传给 sub_4C5940 再用于 `[esi+eax*4+118h]`（取 m_pEffect[idx]）；第二参 `mov dl,[esp+4+arg_4]` 后 `mov [ecx+0Dh],dl` 是**字节存储**到 CEffect::m_bVisible ⇒ 第二参为字节、返回值为 void（函数未对 eax 作有效设置，调用方也不使用返回值）。搬移前该条带的是原类残留签名 `struct _Texture_uv & (_Texture_uv *)`，导致生成头把它发射成 `static struct _Texture_uv & SetEffectVisible(_Texture_uv *);`（pal3/src/Effect/CEffectSystem.h:44）—— 与函数体、与所属类均不符，已证伪。 (was: struct _Texture_uv & (_Texture_uv *))",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -531,7 +575,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XHE): void(int,unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetEffectVisibl"
   },
   "0x004c5db0": {
    "name": "Activate",

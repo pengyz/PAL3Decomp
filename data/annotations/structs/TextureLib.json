@@ -250,17 +250,22 @@
    "name": "SetPath",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *path",
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPath): int(char *,char *); 原注解无"
   },
   "0x0053f5e0": {
    "name": "FreeTexture",
@@ -277,21 +282,18 @@
    "name": "CheckEndKey",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPCSTR",
-      "name": "lpString1"
-     },
-     {
-      "type": "LPCSTR",
-      "name": "lpString2"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0053f560": {
    "name": "ClearGlobalVars",
@@ -312,6 +314,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char *",
       "name": null
      }
@@ -319,16 +325,20 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ParseConfigFile): int(int,char *); 原注解2026-11-18 mangle硬真值定谳(HPAD): int(char *"
   },
   "0x0053f680": {
    "name": "AddEntryFromConfig",
    "ordinal": 0,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "char *",
       "name": null
@@ -341,15 +351,19 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(DPADPAD): char(char *,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(AddEntryFromConfig): int(char,char *,char *); 原注解2026-11-18 mangle硬真值定谳(DPADPAD): char(ch"
   },
   "0x004a6930": {
    "name": "LoadTexture",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "char *",
       "name": null
@@ -358,48 +372,50 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(DPAD): char(char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadTexture): int(char,char *); 原注解2026-11-18 mangle硬真值定谳(DPAD): char(char "
   },
   "0x004a6960": {
    "name": "CreateFromFile",
    "source": "| 签名缺参批量 2026-10-06：ret 36/4=9 参 vs 签名 0——补 9 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbTexture *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004a6ca0": {
    "name": "CreateFromMemory",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "gbTexture *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "_BYTE *pData",
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nSize"
+      "name": null
      },
      {
       "type": "char",
-      "name": "nFormat"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0053f5c0": {
    "name": "_scalar_dtor_F5C0",
@@ -411,6 +427,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "void *",
       "name": null
@@ -427,7 +447,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_F5C0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F5C0void_char_0053f5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_F5C0): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
   },
   "0x0053f550": {
    "name": "ClearAndJump",

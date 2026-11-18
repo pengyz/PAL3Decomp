@@ -184,21 +184,26 @@
    "evidence_level": "unverified",
    "name_note": "剥壳回退: 跨类同址名不一致(override链风险), 恢复链canonical消歧名",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update_2ff0): int(int,int,int); 原注解无"
   },
   "0x00442420": {
    "name": "HideAll",

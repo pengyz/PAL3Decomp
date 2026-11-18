@@ -95,17 +95,22 @@
    "source": "| 阶2批1 2026-10-06：ret 8（2 栈参 A 级）+[esp+8] 读=第 2 参 nIndex（v4 误名局部）——签名补参（字节 diff first=3 序言帧差根因） | 回滚 2026-10-06：ret 8 证真 2 参但调用 1 参=渲染丢参族（SetVisible 同型）——签名侧不动（字节面待渲染修）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pOut",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetTargetRole): int(void *,void *); 原注解无"
   },
   "0x004d6ff0": {
    "name": "CCBAI",
@@ -153,17 +158,18 @@
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBAI *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d70c0": {
    "name": "Init",
@@ -195,17 +201,22 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Render): int(vo"
   },
   "0x004d71e0": {
    "name": "HandleEnemyAction",
@@ -250,145 +261,184 @@
    ],
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d7820": {
    "name": "HandleEnemyWell",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d7ef0": {
    "name": "HandleEnemyWeak",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d86d0": {
    "name": "HandleEnemyChaos",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d8760": {
    "name": "HandleFriendAction",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d8af0": {
    "name": "HandleFriendNegative",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d8f20": {
    "name": "HandleFriendAffirmative",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9130": {
    "name": "HandlePlayerNormalAttack",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      },
      {
       "type": "int *",
-      "name": "bPlayerCmd"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 参数类型判据: 体内*(_DWORD*)bPlayerCmd多点指针解引用+全族int*调用点(1230/1262/1280) → int*(原int=hexrays缺*渲染)。"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9360": {
    "name": "RepeatPlayerLastOperation",
@@ -440,9 +490,13 @@
    "name": "DemandChecker",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "unsigned int",
       "name": null
@@ -459,470 +513,570 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XIHH): void(unsigned int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(DemandChecker):"
   },
   "0x004d9920": {
    "name": "CastNormalAttack",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9a70": {
    "name": "CastRecoverMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9ba0": {
    "name": "CastRecoverBigMagic",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9d00": {
    "name": "CastAttackMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9e20": {
    "name": "CastAttackBigMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d9f50": {
    "name": "CastSpecifyMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "dwID"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da0a0": {
    "name": "CastBFAMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da1d0": {
    "name": "CastBFAAttackMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da350": {
    "name": "CastRandEnemyMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da4f0": {
    "name": "CastRecoverSkill",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da640": {
    "name": "CastRecoverBigSkill",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da770": {
    "name": "CastAttackSkill",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004da900": {
    "name": "CastAttackBigSkill",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004daa40": {
    "name": "CastRecoverItem",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004dab70": {
    "name": "CastRecoverBigItem",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004daca0": {
    "name": "CastAttackItem",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004dadd0": {
    "name": "CastAttackBigItem",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004daf00": {
    "name": "CastBossPhysicalAttack",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004db030": {
    "name": "CastReviveMagic",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nRoleIndex"
+      "type": "double",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nDestRole"
+      "name": null
      },
      {
       "type": "int",
-      "name": "pDemand"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004db160": {
    "name": "CastReviveSkill",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nRoleIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004db270": {
    "name": "CastCureSpecStateMagic",
@@ -1045,17 +1199,22 @@
    "name": "ChooseRandomAction",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nSelfIdx"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ChooseRandomAct"
   }
  },
  "vtables": []

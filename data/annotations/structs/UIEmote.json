@@ -133,9 +133,13 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "空覆盖虚方法 | C9sig基锚定20261117→void __thiscall(int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -144,7 +148,8 @@
     "varargs": false,
     "pending": false
    },
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Reset): int(voi"
   },
   "0x0044e5c0": {
    "name": "_sdtor_25",
@@ -178,9 +183,13 @@
    "name_source": "IDA语义分析 2026-11-01 批11",
    "name_note": "可见性处理（m_bvisible 检查+offset 19） | C9sig基锚定20261117→void * __thiscall(int nVal1)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→void * __thiscall(int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→void * __thiscall(int)",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -189,7 +198,8 @@
     "varargs": false,
     "pending": false
    },
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnVisible): int(void *,int); 原注解无"
   },
   "0x0044ab00": {
    "name": "GetType",

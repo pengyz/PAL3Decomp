@@ -98,17 +98,22 @@
    "name": "CalculateWorldPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalculateWorldPos): int(char,float); 原注解无"
   },
   "0x00533bc0": {
    "name": "CalcScreenPosition",

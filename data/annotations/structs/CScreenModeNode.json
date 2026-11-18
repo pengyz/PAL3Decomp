@@ -52,18 +52,23 @@
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nEnable"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(EnableShadow): "
   },
   "0x005420de": {
    "name": "GetAABBox",
@@ -71,11 +76,11 @@
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "scScriptInstance *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "scScriptInstance *Block",
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -86,7 +91,8 @@
     "varargs": false,
     "pending": false
    },
-   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "base_size": 88,

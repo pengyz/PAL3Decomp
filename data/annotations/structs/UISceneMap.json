@@ -120,21 +120,26 @@
    "name": "LoadCompass",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *arg0",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0046f2c0": {
    "name": "RenderWithUpdate",
@@ -185,9 +190,13 @@
    "name": "ValidateInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned int",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "unsigned int",
+      "name": null
+     },
      {
       "type": "unsigned int",
       "name": null
@@ -196,7 +205,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(II): unsigned int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ValidateInput): int(unsigned int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(II): unsigned int"
   },
   "0x00450230": {
    "name": "Render",
@@ -249,12 +258,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCurrentMapID): int(int,int); 原注解无"
   },
   "0x00535960": {
    "name": "SetColorIfValid",
@@ -265,12 +279,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetColorIfValid): int(int,int); 原注解无"
   },
   "0x00535e50": {
    "name": "SetFieldIfValid",
@@ -282,12 +301,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetFieldIfValid): int(int,int); 原注解无"
   },
   "0x004501a0": {
    "name": "Update",
@@ -295,11 +319,23 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -315,24 +351,30 @@
     "override"
    ],
    "override_of": "0x00445c60",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00443ca0": {
    "name": "ProcessSceneChange",
    "name_source": "IDA语义分析 2026-11-01 批6",
    "name_note": "场景切换处理（光标+场景信息）",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessSceneChange): int(char,float); 原注解无"
   },
   "0x00451800": {
    "name": "_todo_00451800",
@@ -340,12 +382,18 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": null,
+    "return": "void",
     "cc": null,
-    "params": null,
+    "params": [
+     {
+      "type": "CCBFiveNimbusWindow *this",
+      "name": null
+     }
+    ],
     "varargs": false,
-    "pending": true
-   }
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。"
   }
  },
  "vtables": [

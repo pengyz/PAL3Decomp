@@ -565,17 +565,22 @@
    "name": "ValidateIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ValidateIndex): int(char,int); 原注解无"
   },
   "0x0052caf0": {
    "name": "ActivatePanel",
@@ -587,12 +592,17 @@
     "params": [
      {
       "type": "int",
-      "name": "id"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ActivatePanel): int(int,int); 原注解无"
   },
   "0x0052cd40": {
    "name": "LayoutSlot",
@@ -603,28 +613,33 @@
     "params": [
      {
       "type": "int",
-      "name": "arg0"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LayoutSlot): int(int,int,int,int,int,int); 原注解无"
   },
   "0x0043b570": {
    "name": "CreateLabelWidget",
@@ -632,24 +647,24 @@
    "ordinal": 8,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "id"
-     },
-     {
-      "type": "void *pRect",
       "name": null
      },
      {
       "type": "int",
-      "name": "parent"
+      "name": null
      },
      {
-      "type": "LPCSTR",
-      "name": "lpString"
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      },
      {
       "type": "char",
@@ -658,7 +673,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043b4d0": {
    "name": "~UIScenePanel",
@@ -732,11 +748,23 @@
    "name": "Update",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -752,16 +780,21 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIScene)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIScene)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043b900": {
    "name": "ProcessMessage",
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "UIScene 消息处理（rect/widget 遍历）",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -773,7 +806,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessMessage): int(int,int,int); 原注解无"
   },
   "0x0044c910": {
    "name": "Destroy",
@@ -859,12 +893,16 @@
    "name_source": "恢复 2026-11-01（vtable 需要）",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScenePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AFFC）",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "a2"
+      "name": null
      }
     ],
     "varargs": false,
@@ -873,7 +911,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BE40(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE40int_0044be40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_BE40(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE40int_0044be40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_BE"
   },
   "0x0043ad40": {
    "name": "Render",

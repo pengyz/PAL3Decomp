@@ -137,11 +137,23 @@
    "ordinal": 2,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -157,7 +169,8 @@
     "override"
    ],
    "override_of": "0x00445c60",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043f9c0": {
    "name": "HideAll",
@@ -182,20 +195,28 @@
    "ordinal": 4,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "id"
-     },
-     {
-      "type": "tagRECT *",
       "name": null
      },
      {
-      "type": "UIWnd *",
-      "name": "parent"
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
@@ -206,7 +227,8 @@
     "override"
    ],
    "override_of": "0x00445b90",
-   "flags_evidence": "sig_model同名+同参数结构(int,tagRECT*,UIWnd*)+基槽0x00445b90(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   "flags_evidence": "sig_model同名+同参数结构(int,tagRECT*,UIWnd*)+基槽0x00445b90(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0043ff70": {
    "name": "Render",
@@ -238,6 +260,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      },
@@ -253,7 +279,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_F950(??1/??_G析构族); decomp文件=UIButton_scalar_dtor_F950void_char_0043f950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_F950): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
   },
   "0x0056ad64": {
    "name": "UIButton",

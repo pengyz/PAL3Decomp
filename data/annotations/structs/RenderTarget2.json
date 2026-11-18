@@ -50,18 +50,23 @@
    "class": "RenderTarget2",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,float); 原注解无"
   },
   "0x004c04c0": {
    "name": "ClearTarget",
@@ -122,73 +127,64 @@
    "name": "AddCallbackEffect",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "RenderTarget2 *pTarget",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "RenderTarget2 *pParam",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004cf340": {
    "name": "AddGenericEffect",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "RenderTarget2 *pTarget",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "RenderTarget2 *pParam",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004cfa00": {
    "name": "AddBinkEffect",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "RenderTarget2 *pTarget",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "RenderTarget2 *pParam",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c0560": {
    "name": "ExecutePasses",
@@ -210,12 +206,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nParam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SceneRoleCallback): int(int,int); 原注解无"
   },
   "0x004c13b0": {
    "name": "RenderScene",
@@ -237,6 +238,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -252,7 +257,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(int,int,int,int *,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RenderScene): int(int,int,int,int,int *,int,int); 原注解2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(i"
   },
   "0x004c1660": {
    "name": "DestroyEffBase",
@@ -274,12 +279,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessSoundPass): int(int,int); 原注解无"
   },
   "0x004c1e90": {
    "name": "RenderOverlay",
@@ -301,6 +311,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -316,7 +330,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(int,int,int,int *,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RenderOverlay): int(int,int,int,int,int *,int,int); 原注解2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(i"
   },
   "0x004c20d0": {
    "name": "DestroyEffBink",
@@ -334,9 +348,13 @@
    "ordinal": 72,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int *",
       "name": null
@@ -345,7 +363,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XPAH): void(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CreateVideoTarg"
   },
   "0x004c24b0": {
    "name": "ProcessVideoPass",
@@ -356,29 +374,39 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessVideoPass): int(int,int); 原注解无"
   },
   "0x004c25c0": {
    "name": "GetTargetAddress",
    "ordinal": 74,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetTargetAddress): int(int *,int); 原注解无"
   },
   "0x004c2890": {
    "name": "BeginMultiPass",
@@ -411,6 +439,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -426,7 +458,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(int,int,int,int *,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RenderPostProcess): int(int,int,int,int,int *,int,int); 原注解2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(i"
   },
   "0x004c34d0": {
    "name": "DestroyEffCallBack",
@@ -444,9 +476,13 @@
    "ordinal": 15,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int *",
       "name": null
@@ -455,7 +491,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XPAH): void(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CreateCameraTar"
   },
   "0x004c39a0": {
    "name": "ProcessCameraPass",
@@ -466,29 +502,39 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessCameraPass): int(int,int); 原注解无"
   },
   "0x004c3a90": {
    "name": "GetTargetByType",
    "ordinal": 17,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetTargetByType): int(int *,int); 原注解无"
   },
   "0x004c3ad0": {
    "name": "RenderFinal",
@@ -510,6 +556,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      },
@@ -525,7 +575,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(int,int,int,int *,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RenderFinal): int(int,int,int,int,int *,int,int); 原注解2026-11-18 mangle硬真值定谳(HHHHPAHHH): int(i"
   },
   "0x004d05e0": {
    "name": "CameraInterpCallback",
@@ -536,12 +586,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CameraInterpCallback): int(int,int); 原注解无"
   },
   "0x004c1550": {
    "name": "UpdateFrame",
@@ -550,17 +605,22 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "a2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateFrame): i"
   },
   "0x004c1560": {
    "name": "vfunc",
@@ -569,17 +629,22 @@
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char *",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "a2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(vfunc): int(char *,char); 原注解无"
   },
   "0x004c3c80": {
    "name": "~RenderTarget2",

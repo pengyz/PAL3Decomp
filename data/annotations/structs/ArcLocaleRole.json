@@ -38,34 +38,43 @@
    "name": "CalcPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcPosition): int(int *,int *); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
   },
   "0x005350c0": {
    "name": "GetScreenLeft",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "double",
-      "name": "thisa"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(GetScreenLeft):"
   },
   "0x0047f930": {
    "name": "HandleKeyInput",
@@ -105,9 +114,13 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned int",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "unsigned int",
+      "name": null
+     },
      {
       "type": "char *",
       "name": null
@@ -124,7 +137,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(IPADPADH): unsigned int(char *,char *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ParseLocaleData): int(unsigned int,char *,char *,int); 原注解2026-11-18 mangle硬真值定谳(IPADPADH): unsign"
   },
   "0x005303c0": {
    "name": "DispatchActive",
@@ -135,12 +148,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(DispatchActive): int(int,int); 原注解无"
   },
   "0x00535030": {
    "name": "Destroy",
@@ -158,29 +176,34 @@
    "_misattrib_evidence": "max_offset=88>class_size=28",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float *",
       "name": null
      },
      {
       "type": "float",
-      "name": "fVal"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal2"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(TransformPoint): int(void *,float *,float,float,float); 原注解无"
   }
  }
 }

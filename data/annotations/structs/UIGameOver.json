@@ -42,12 +42,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nIndex"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitParticle): int(int,int); 原注解无"
   },
   "0x0044d580": {
    "name": "RandomizeEffects",
@@ -58,12 +63,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RandomizeEffects): int(int,int); 原注解无"
   },
   "0x0044d680": {
    "name": "InitParticle2",
@@ -74,12 +84,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nIndex"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitParticle2): int(int,int); 原注解无"
   },
   "0x0052e500": {
    "name": "SetupDisplay",
@@ -89,17 +104,22 @@
    },
    "lvars_source": " | L-VAR 2026-11-12: (uint)v21 - (char*)m_textx 指针差语境(C2113), v21 系 char* 槽",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetupDisplay): "
   },
   "0x00530570": {
    "name": "ClearState",

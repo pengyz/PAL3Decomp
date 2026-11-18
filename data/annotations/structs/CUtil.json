@@ -188,16 +188,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "UIWnd *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CUtil *Block",
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "char",
-      "name": "format"
+      "name": null
      }
     ],
     "varargs": false,
@@ -206,7 +206,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_31D0(??1/??_G析构族); decomp文件=CUtil_scalar_dtor_31D0CUtil_char_005231d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_31D0(??1/??_G析构族); decomp文件=CUtil_scalar_dtor_31D0CUtil_char_005231d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x005231f0": {
    "name": "Method",
@@ -272,39 +273,45 @@
    "ordinal": 2,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "PalScript *fTime",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00523820": {
    "name": "Update",
    "_misattrib_evidence": "max_offset=1752>class_size=4",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "nDelta"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,float); 原注解无"
   },
   "0x00523e80": {
    "name": "DispatchCommand",
@@ -314,6 +321,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -321,7 +332,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(DispatchCommand): int(int,int *); 原注解2026-11-18 mangle硬真值定谳(HPAH): int(int *)"
   },
   "0x00523b90": {
    "name": "sub_523B90",

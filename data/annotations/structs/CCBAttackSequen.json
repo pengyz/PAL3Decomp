@@ -89,17 +89,22 @@
    "name": "SetPause",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "double",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "double",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "bPause"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPause): int(double,char); 原注解无"
   },
   "0x004db5c0": {
    "name": "ResetTimers",
@@ -132,12 +137,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindSequenceSlot): int(int,int); 原注解无"
   },
   "0x00527510": {
    "name": "AdvanceToNextSlot",
@@ -162,16 +172,21 @@
     "params": [
      {
       "type": "int",
-      "name": "roleIdx"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcSpeed): int(int,int,int); 原注解无"
   },
   "0x004db660": {
    "name": "GetCmdSlot",
@@ -184,12 +199,17 @@
     "params": [
      {
       "type": "int",
-      "name": "idx"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetCmdSlot): int(int,int); 原注解无"
   },
   "0x004dbe60": {
    "name": "InitCombatSlot",
@@ -197,17 +217,22 @@
    "_evidence": "A级: 0x4DB640 用 this+8 作 CCBRoleState* 调 0x4F3920(GetSpeedBonus, 访问 +0x481+idx*892 ⇒ 需>=1154B)，而 CCBSystem::m_pControl 是 CCBControl*(368B) 物理不可能；CCBAttackSequen::m_pRole 即 CCBRoleState*(+0x8) 类型精确吻合；0x4DB660 以 (char*)this+40*idx 后 +44/+45 写元素，与 m_Sequen 数组形态一致",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "roleIdx"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitCombatSlot)"
   },
   "0x004db7a0": {
    "name": "ProcessAllCmds",

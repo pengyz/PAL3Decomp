@@ -107,9 +107,13 @@
    "ordinal": 5,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float",
       "name": null
@@ -123,16 +127,21 @@
     "override"
    ],
    "override_of": "0x004af760",
-   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateFrame): i"
   },
   "0x004d51b0": {
    "name": "RenderEffectPass",
    "ordinal": 12,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float",
       "name": null
@@ -146,7 +155,8 @@
     "override"
    ],
    "override_of": "0x004af760",
-   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(float)+基槽0x004af760(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderEffectPas"
   },
   "0x004d53e0": {
    "name": "Attach",
@@ -157,12 +167,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Attach): int(int,int); 原注解无"
   },
   "0x004d5620": {
    "name": "GetEditorTaskDescription",
@@ -170,9 +185,13 @@
    "source": "| [T110] 语义偏离名修正：@0x4D5620 全函数体（703 字符）= switch(LODWORD(fCurTime)) 各 case 返回数据指针（类型码→数据表查表）⇒ 语义名 GetEffTypeData（禁伪语义 ✓ 全函数体证据）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "const char *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -185,15 +204,20 @@
     "override"
    ],
    "override_of": "0x004c0510",
-   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d56b0": {
    "name": "Render",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -223,60 +247,71 @@
     "pending": false
    },
    "name_note": " | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_note": "2026-11-18 mangle硬真值定谳(XHHHPAHHH): void(int,int,int,int *,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Render): int(vo"
   },
   "0x004d5790": {
    "name": "SetTimeScale",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CEffSParticle *Block",
+      "type": "void *",
       "name": null
      },
      {
       "type": "char",
-      "name": "fTimeScale"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d5860": {
    "name": "CreateTask",
    "evidence_level": "unverified",
    "declaration_only": true,
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char *",
+      "name": null
+     },
+     {
       "type": "char",
-      "name": "p"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateTask): int(char *,char); 原注解无"
   },
   "0x004d58d0": {
    "name": "GetEditorTaskDescription_58d0",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "const char *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004d4f00": {
    "name": "_scalar_dtor_4F00",
@@ -285,9 +320,13 @@
    "declaration_only": true,
    "adjudication": "confirmed",
    "sig_model": {
-    "return": "char *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char *",
+      "name": null
+     },
      {
       "type": "char",
       "name": null
@@ -299,7 +338,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_4F00(??1/??_G析构族); decomp文件=CEffSParticle_scalar_dtor_4F00char_004d4f00 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_4F00(??1/??_G析构族); decomp文件=CEffSParticle_scalar_dtor_4F00char_004d4f00 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_4F00): int(char *,char); 原注解无"
   },
   "0x004d5850": {
    "name": "Create_adjthunk",

@@ -611,12 +611,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitRoles): int(int,int); 原注解无"
   },
   "0x0044e660": {
    "name": "InitItems",
@@ -627,12 +632,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitItems): int(int,int); 原注解无"
   },
   "0x0044f5b0": {
    "name": "Render",
@@ -656,12 +666,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetMode): int(int,int); 原注解无"
   },
   "0x0044f430": {
    "name": "HideAll",
@@ -680,17 +695,22 @@
    "name": "Load",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CUtil *pUtil",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0044f050": {
    "name": "~CGameData",
@@ -730,12 +750,16 @@
    "evidence_level": "A",
    "declaration_only": true,
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
@@ -744,7 +768,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_F030(??1/??_G析构族); decomp文件=CGameData_scalar_dtor_F030int_0044f030 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F030(??1/??_G析构族); decomp文件=CGameData_scalar_dtor_F030int_0044f030 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_F0"
   },
   "0x00445a60": {
    "name": "SetDefaultColors",
@@ -766,17 +791,30 @@
    },
    "lvars_source": " | L-VAR 2026-11-11c(P-A16⑤退役承接): decomp v10=(CCBUI*)v9 赋值 cast 即类型意图, result=v10 返回链同型; 全局文本替换(全局裸 replace)误伤 CCBUI 同形声明, 改由本注解按地址承接",
    "sig_model": {
-    "return": "CCBUI *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "a2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0044f4c0": {
    "name": "Update",

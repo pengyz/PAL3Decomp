@@ -300,12 +300,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetCursorPos): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x00402310": {
    "name": "AcquireDevices",
@@ -349,21 +353,26 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "按键状态追踪（press→drag→hold）",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessKeyEvent"
   },
   "0x00402570": {
    "name": "InitKeyMappings",
@@ -381,25 +390,30 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetMouseAbs): i"
   },
   "0x00402b00": {
    "name": "SetJoystickAbs",
@@ -480,38 +494,48 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *x",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "y"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00402d00": {
    "name": "SetJoystickFreePos",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "x"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetJoystickFree"
   },
   "0x00402d20": {
    "name": "SetMouseSensitivity",
@@ -534,29 +558,38 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00403000": {
-   "name": "PollInputState",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "_BYTE *",
-    "cc": "thiscall",
-    "params": [
+      "name": null
+     },
      {
-      "type": "unsigned int",
-      "name": "key"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetMouseSensitivity): int(int,int); 原注解无"
+  },
+  "0x00403000": {
+   "name": "PollInputState",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "signed __int32",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00403150": {
    "name": "GetMouseFreePos",
@@ -596,21 +629,26 @@
    "name": "GetJoystickFreePos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "x"
+      "name": null
      },
      {
       "type": "int",
-      "name": "y"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetJoystickFreePos): int(int,int,int); 原注解无"
   },
   "0x00403370": {
    "name": "AcquireMouse",
@@ -695,54 +733,69 @@
    "name": "CheckKeyEvents",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *key",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004038f0": {
    "name": "InitShiftedKeys",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "float *",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
+      "name": null
+     },
+     {
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitShiftedKeys): int(float *,float *,int); 原注解无"
   },
   "0x004039d0": {
    "name": "InitDIKToKEY",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned short *pwVal",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00404020": {
    "name": "GetKey",
@@ -771,21 +824,22 @@
    "source": "| param Time->gbRay*: decomp-inferred param type gbRay* a2; Time type not in til",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbRay *pRay",
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": "cKey"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004042d0": {
    "name": "IsAnyKeyPressed",
@@ -804,38 +858,47 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "a"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "b"
+      "name": null
      },
      {
       "type": "int",
-      "name": "c"
+      "name": null
      },
      {
       "type": "int",
-      "name": "d"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetMouseLimits)"
   },
   "0x004022f0": {
    "name": "GetMousePos",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "void *",
       "name": null
@@ -848,7 +911,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXPAX): void(void *,void *); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(GetMousePos): i"
   },
   "0x004021e0": {
    "name": "HandleDeviceInput",
@@ -859,20 +922,25 @@
     "params": [
      {
       "type": "int",
-      "name": "nMouse"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nKeyboard"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(HandleDeviceInput): int(int,int,int,int); 原注解无"
   },
   "0x004022b0": {
    "name": "SetMode",
@@ -883,12 +951,17 @@
     "params": [
      {
       "type": "int",
-      "name": "mode"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetMode): int(int,int); 原注解无"
   },
   "0x004022c0": {
    "name": "GetKeyState",
@@ -898,6 +971,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned short",
       "name": null
      }
@@ -905,31 +982,56 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(FG): int(unsigned short); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetKeyState): int(int,unsigned short); 原注解2026-11-18 mangle硬真值定谳(FG): int(unsigned"
   },
   "0x004020e0": {
    "name": "Create",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "HINSTANCE *hInst",
+      "type": "int",
       "name": null
      },
      {
       "type": "int",
-      "name": "hwnd"
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "flag"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00402360": {
    "name": "_thunk_vtbl8",
@@ -961,6 +1063,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char *",
       "name": null
      }
@@ -968,27 +1074,32 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessInputFrame): int(int,char *); 原注解2026-11-18 mangle硬真值定谳(HPAD): int(char *"
   },
   "0x00402290": {
    "name": "SetCursorPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "X"
+      "name": null
      },
      {
       "type": "int",
-      "name": "Y"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCursorPos): int(int,int,int); 原注解无"
   },
   "0x00402640": {
    "name": "BuildKeyMap",
@@ -1005,17 +1116,22 @@
    "name": "ProcessMouseInput",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouseInp"
   },
   "0x004031d0": {
    "name": "GetState",
@@ -1032,17 +1148,22 @@
    "name": "ProcessButtonHold",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fDelta"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessButtonHo"
   },
   "0x00402bd0": {
    "name": "_scalar_dtor_2BD0",

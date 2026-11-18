@@ -357,17 +357,22 @@
    "name": "Render",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pMatrixStack",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0040c790": {
    "name": "Cleanup",
@@ -401,21 +406,26 @@
     "cc": "cdecl",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "delay"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunWithDelay): int(int,float,int,int); 原注解无"
   },
   "0x00410470": {
    "name": "RunEvent",
@@ -426,16 +436,21 @@
     "params": [
      {
       "type": "int",
-      "name": "eventId"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunEvent): int(int,int,int); 原注解无"
   },
   "0x00411f60": {
    "name": "UpdateTimers",
@@ -446,13 +461,18 @@
     "cc": "cdecl",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "dt"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateTimers): int(int,float); 原注解无"
   },
   "0x004194c0": {
    "name": "UpdateObjects",
@@ -463,13 +483,18 @@
     "cc": "cdecl",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "dt"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateObjects): int(int,float); 原注解无"
   },
   "0x0041efa0": {
    "name": "Init",
@@ -487,17 +512,13 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "RoleSystem *",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "unsigned short",
-      "name": "pData"
-     }
-    ],
+    "params": [],
     "varargs": false,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(GetMainRoleSystem): int(?"
   },
   "0x0040cbb0": {
    "name": "GetScriptContext",
@@ -508,6 +529,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned short",
       "name": null
      },
@@ -519,7 +544,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HGH): int(unsigned short,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetScriptContext): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne"
   },
   "0x0040cbd0": {
    "name": "PassThrough",
@@ -530,6 +555,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned short",
       "name": null
      },
@@ -545,7 +574,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HGHH): int(unsigned short,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(PassThrough): int(int,unsigned short,int,int); 原注解2026-11-18 mangle硬真值定谳(HGHH): int(unsign"
   },
   "0x0040cc00": {
    "name": "CheckEventType",
@@ -556,6 +585,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned short",
       "name": null
      },
@@ -567,7 +600,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HGH): int(unsigned short,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckEventType): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne"
   },
   "0x0040cc60": {
    "name": "ClearTimerSlot",
@@ -599,50 +632,60 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "fDeltaTime"
+      "type": "int",
+      "name": null
      },
      {
       "type": "float",
-      "name": "fMaxAccel"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal3"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal4"
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SmoothTrackTarget): int(int,float,float,float,float); 原注解无"
   },
   "0x004890a0": {
    "name": "ProcessScriptEvent",
    "_misattrib_evidence": "max_offset=217324>class_size=8704",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "char",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nParam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessScriptEvent): int(char,int,int,int); 原注解无"
   }
  }
 }

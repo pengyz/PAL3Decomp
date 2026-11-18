@@ -7,9 +7,13 @@
    "source": "manual_fix_from_call_sites",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
      {
       "type": "char *",
       "name": null
@@ -26,7 +30,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(DPADHPAD): char(char *,int,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LogMessage): int(char,char *,int,char *); 原注解2026-11-18 mangle硬真值定谳(DPADHPAD): char(c"
   },
   "0x0040ccd0": {
    "name": "GetSlotCount",
@@ -55,17 +59,22 @@
    "name": "HandleControlCmd",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned __int8",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "idx"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(HandleControlCmd): int(int,int); 原注解无"
   }
  },
  "known_methods": {

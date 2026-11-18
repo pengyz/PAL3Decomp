@@ -92,17 +92,18 @@
    "name": "_CalculateUV",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CHAR *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPCSTR",
-      "name": "lpString"
+      "type": "char *",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  }
 }

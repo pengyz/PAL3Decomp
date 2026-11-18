@@ -260,105 +260,125 @@
    "name": "CountActiveParticles",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "fastcall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CountActiveParticles): int(int *,int *); 原注解无"
   },
   "0x004b5570": {
    "name": "Update",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新（helix/diffuse） | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "a2"
-     },
-     {
-      "type": "int",
-      "name": "a3"
-     },
-     {
-      "type": "TextureLibDataBase *a4",
       "name": null
      },
      {
       "type": "int",
-      "name": "a5"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5830": {
    "name": "Update2",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetLib）",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "a2"
-     },
-     {
-      "type": "int",
-      "name": "a3"
-     },
-     {
-      "type": "TextureLibDataBase *a4",
       "name": null
      },
      {
       "type": "int",
-      "name": "a5"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5bb0": {
    "name": "Update4",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（GetTop + 物理）",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "a2"
-     },
-     {
-      "type": "int",
-      "name": "a3"
-     },
-     {
-      "type": "TextureLibDataBase *a4",
       "name": null
      },
      {
       "type": "int",
-      "name": "a5"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b4dc0": {
    "name": "Apply",
@@ -367,17 +387,22 @@
    "name_evidence": "保留原名 Apply：该名本身语义合理（按 mode 分派执行），且 UIParticle 现无同名成员；按规则不无据改名。签名补上此前被丢掉的栈参 mode（retn 4 为证），类型 int（作为 switch 索引、调用方 push 字面量 8/0Ah/0Bh/0Ch）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "mode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Apply): int(voi"
   },
   "0x004b4fe0": {
    "name": "AutoScrollParticles",
@@ -386,29 +411,34 @@
    "name_evidence": "保留原名 AutoScrollParticles：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *pTextureLibDataBase",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b51a0": {
    "name": "AutoScrollParticlesEx",
@@ -417,29 +447,34 @@
    "name_evidence": "保留原名 AutoScrollParticlesEx：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
       "name": null
      },
      {
-      "type": "TextureLibDataBase *pTextureLibDataBase",
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5380": {
    "name": "UpdateCircularMotion",
@@ -448,29 +483,34 @@
    "name_evidence": "保留原名 UpdateCircularMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *p",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5450": {
    "name": "UpdateOrbitalMotion",
@@ -479,29 +519,34 @@
    "name_evidence": "保留原名 UpdateOrbitalMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *p",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5750": {
    "name": "UpdateLinearMotion",
@@ -510,58 +555,68 @@
    "name_evidence": "保留原名 UpdateLinearMotion：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *p",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b59b0": {
    "name": "Update3",
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "粒子更新变体（color quad）",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *p",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b5d20": {
    "name": "RenderFrame",
@@ -570,29 +625,34 @@
    "name_evidence": "保留原名 RenderFrame：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderFrame): i"
   },
   "0x004b5ee0": {
    "name": "LoadLibrary",
@@ -601,29 +661,34 @@
    "name_evidence": "保留原名 LoadLibrary：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *pTextureLibDataBase",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b60f0": {
    "name": "UpdateByMode",
@@ -632,29 +697,34 @@
    "name_evidence": "保留原名 UpdateByMode：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *p",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004b6300": {
    "name": "GetTextureByName",
@@ -663,29 +733,34 @@
    "name_evidence": "保留原名 GetTextureByName：该名语义合理且 UIParticle 无同名成员，按规则不无据改名。 仅改签名里的类前缀为 UIParticle::，参数类型保持原样（多为 IDA 推断，存疑待核）。",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "__int64",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "TextureLibDataBase *pTextureLibDataBase",
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  }
 }

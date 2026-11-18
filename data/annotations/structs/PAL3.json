@@ -576,18 +576,23 @@
    "name": "Update",
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "dt"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,float); 原注解无"
   },
   "0x00405c00": {
    "name": "Render",
@@ -616,9 +621,13 @@
    "name": "CheckSystemRequire",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -627,7 +636,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CheckSystemRequ"
   },
   "0x004065f0": {
    "name": "CreateGfxWindow",
@@ -645,17 +654,22 @@
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *lpCmdLine",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004068c0": {
    "name": "HasCommandLineParam",
@@ -697,21 +711,26 @@
    "name": "DefaultKeyMap",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(DefaultKeyMap):"
   },
   "0x00406d70": {
    "name": "PrintScreen",
@@ -743,9 +762,13 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -758,7 +781,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XHPAD): void(int,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(StartWolf): int"
   },
   "0x004071c0": {
    "name": "EndWolf",
@@ -802,54 +825,26 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "unsigned int *const",
-      "name": "pdwVal"
-     },
-     {
-      "type": "int",
-      "name": "monsterid"
-     },
-     {
-      "type": "Role *side",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": "pMonster"
-     }
-    ],
+    "params": [],
     "varargs": false,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
   },
   "0x00407560": {
    "name": "StartCombatFromNPC",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "const NPCInfo *pNPCInfo",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": "tmp"
-     },
-     {
-      "type": "Role *side",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(StartCombatFromNPC): int("
   },
   "0x00407640": {
    "name": "EntryCatchGhost",
@@ -1017,33 +1012,30 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(EnterGameMode): int(int,int); 原注解无"
   },
   "0x004070a0": {
    "name": "ReadRegistryValue",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "const CHAR *szSubKey",
-      "name": null
-     },
-     {
-      "type": "const CHAR *szValueName",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ReadRegistryValue): int(?"
   },
   "0x0041f9f0": {
    "name": "LoadingTimerCallback",
@@ -1061,63 +1053,39 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "CHAR *lpSubKey",
-      "name": null
-     },
-     {
-      "type": "DWORD",
-      "name": "dwDisposition"
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryValue): int("
   },
   "0x0044e2b0": {
    "name": "WriteRegistryDword",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "CHAR *lpSubKey",
-      "name": null
-     },
-     {
-      "type": "const CHAR *szValueName",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDword): int("
   },
   "0x00456590": {
    "name": "WriteRegistryKey",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "CHAR *lpSubKey",
-      "name": null
-     },
-     {
-      "type": "DWORD",
-      "name": "dwDisposition"
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryKey): int(?_"
   },
   "0x00459860": {
    "name": "HandleDeviceReset",
@@ -1147,59 +1115,48 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "CHAR *lpSubKey",
-      "name": null
-     },
-     {
-      "type": "DWORD",
-      "name": "dwDisposition"
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistry): int(?_,do"
   },
   "0x0052f570": {
    "name": "WriteRegistryDwordEx",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "int",
     "cc": "cdecl",
-    "params": [
-     {
-      "type": "CHAR *lpSubKey",
-      "name": null
-     },
-     {
-      "type": "DWORD",
-      "name": "dwDisposition"
-     }
-    ],
+    "params": [],
     "varargs": true,
-    "pending": false
-   }
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDwordEx): in"
   },
   "0x0044e390": {
    "name": "LoadRoleByIndex",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(LoadRoleByIndex"
   },
   "0x0044e410": {
    "name": "LoadUnlockFlags",
@@ -1221,6 +1178,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -1228,24 +1189,29 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPanelStates): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
   },
   "0x0047c2d0": {
    "name": "DispatchModeCommand",
    "_misattrib_evidence": "max_offset=124>class_size=28",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(DispatchModeCom"
   },
   "0x00527c30": {
    "name": "HandleDeviceLost",
@@ -1342,25 +1308,30 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int RandomPickValues",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RandomPickValues): int(int,int,int,int); 原注解无"
   },
   "0x00404800": {
    "name": "InitGame",
@@ -1371,9 +1342,13 @@
    },
    "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -1382,7 +1357,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitGame): int("
   }
  }
 }

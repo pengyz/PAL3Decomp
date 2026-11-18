@@ -49,17 +49,18 @@
    "name": "CreateParentData",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "Parent_Data *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPCSTR",
-      "name": "lpString"
+      "type": "char",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0053ffa0": {
    "name": "_TextureLib_Data",
@@ -99,21 +100,26 @@
    "source": "| 批19 2026-10-07：&this->m... 指针参证（C2664 根因——unsigned 误型） | 批20 2026-10-07：2 栈参读证（[esp+0x38]/[esp+0x50]）——签名 1 参证伪补 2 参",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszFolder",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "nIdx"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00540210": {
    "name": "_CheckItem",
@@ -123,6 +129,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "char *",
       "name": null
      },
@@ -134,15 +144,19 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_CheckItem): int(int,char *,char *); 原注解2026-11-18 mangle硬真值定谳(HPADPAD): int(cha"
   },
   "0x005400e0": {
    "name": "_GetItemNum",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned int",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "unsigned int",
+      "name": null
+     },
      {
       "type": "void *",
       "name": null
@@ -151,24 +165,29 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(IPAX): unsigned int(void *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_GetItemNum): int(unsigned int,void *); 原注解2026-11-18 mangle硬真值定谳(IPAX): unsigned i"
   },
   "0x00540650": {
    "name": "GetLibInfo",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszName",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x005407a0": {
    "name": "GetLib",
@@ -186,33 +205,43 @@
    "name": "GetTextureInfo",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "_Texture_Info *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszName",
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00540a20": {
    "name": "GetTextureInfoByIndex",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "_Texture_Info *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nIndex"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "base_size": 4,

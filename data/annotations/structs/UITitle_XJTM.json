@@ -198,6 +198,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -205,7 +209,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAH): int(int,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateMonsterEntry): int(int,int,int *); 原注解2026-11-18 mangle硬真值定谳(HHPAH): int(int,i"
   },
   "0x004889e0": {
    "name": "LayoutGetRects",
@@ -227,16 +231,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateNPCAnims2): int(int,int,int); 原注解无"
   },
   "0x00498c90": {
    "name": "DestroyStaticsEx",
@@ -261,6 +270,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "int *",
       "name": null
      }
@@ -268,27 +281,32 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAH): int(int,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateMonsterEntry2): int(int,int,int *); 原注解2026-11-18 mangle硬真值定谳(HHPAH): int(int,i"
   },
   "0x0049a6e0": {
    "name": "Layout",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "arg0"
+      "type": "int *",
+      "name": null
      },
      {
-      "type": "int *pnVal",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Layout): int(int *,int,int *); 原注解无"
   },
   "0x004a0330": {
    "name": "UpdateNPCAnims",
@@ -299,16 +317,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateNPCAnims): int(int,int,int); 原注解无"
   },
   "0x00488c70": {
    "name": "SetMonsterState",
@@ -323,6 +346,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -330,7 +357,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHI): int(int,unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetMonsterState): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
   },
   "0x0049a980": {
    "name": "SetMonsterState2",
@@ -345,6 +372,10 @@
       "name": null
      },
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -352,7 +383,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HHI): int(int,unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetMonsterState2): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
   }
  },
  "base_size": 72,

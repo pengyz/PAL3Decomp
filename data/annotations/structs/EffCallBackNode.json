@@ -43,9 +43,13 @@
    "source": "own_slot_backfill_v2 20261115: 第二表own槽补条目",
    "evidence_level": "binary_vtable_slot",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "void *",
+      "name": null
+     },
      {
       "type": "float",
       "name": null
@@ -53,7 +57,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdatePost): in"
   },
   "0x004c3490": {
    "name": "CreateEffCallBack",
@@ -64,13 +69,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。"
   }
  },
  "vtables": [],

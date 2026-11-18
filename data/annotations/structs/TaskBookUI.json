@@ -301,30 +301,34 @@
    "_misattrib_evidence": "max_offset=133100>class_size=204",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateEntry): int(void *,int,int,int,int); 原注解2026-11-18 cc=null补thiscall(成员方法默认约定; cc"
   },
   "0x004554d0": {
    "name": "AdvancePage",
@@ -351,46 +355,61 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RefreshElements): int(int,int); 原注解无"
   },
   "0x00455a20": {
    "name": "ScrollUp",
    "_misattrib_evidence": "max_offset=130348>class_size=4280",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "char",
-      "name": "pData"
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ScrollUp): int(char,char); 原注解无"
   },
   "0x00455b30": {
    "name": "ScrollDown",
    "_misattrib_evidence": "max_offset=130348>class_size=4280",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "char",
-      "name": "pData"
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ScrollDown): int(char,char); 原注解无"
   },
   "0x00455c40": {
    "name": "HandleInput",
@@ -466,21 +485,26 @@
    "name": "SetEntryCaption",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetEntryCaption"
   },
   "0x00454980": {
    "name": "_scalar_dtor_4980",

@@ -15,9 +15,21 @@
    "source": "[caller 三证法余量 2026-10-17 analyzer 再创作命名] 三证法命名：调用者面:xref 0x410900 仅表内（转发包装）+ 7 槽 `ff 25 [IAT]` 全导入转发；方法语义面:0x410900=I",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "CCBAIWindow *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
      {
       "type": "int",
       "name": null
@@ -26,7 +38,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
@@ -138,11 +150,19 @@
    "source": "修复 2026-10-17: thunk 地址注册（5c 制式 _adjthunk）+ declaration_only",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBItemWindow *__hidden",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
@@ -150,17 +170,22 @@
       "name": null
      },
      {
-      "type": "unsigned",
+      "type": "unsigned int",
       "name": null
      },
      {
-      "type": "unsigned",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x005420ea": {
    "name": "TextureLib_adjthunk_20EA",
@@ -182,11 +207,16 @@
      {
       "type": "int",
       "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(TextureLib_adjthunk_20EA): int(int,int,int,int); 原注解无"
   },
   "0x005420fc": {
    "name": "ParticleVisNode_adjthunk_20FC",

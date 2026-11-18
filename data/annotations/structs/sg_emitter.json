@@ -129,18 +129,23 @@
    "name_source": "IDA语义分析 2026-11-01 批14",
    "name_note": "从 decomp 推断（sub_4BAE60） | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct gbVFile *nVal",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "signed __int16",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "evidence_level": "chain_unified"
+   "evidence_level": "chain_unified",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  }
 }

@@ -228,41 +228,55 @@
    "name_source": "IDA语义分析 2026-10-31 批5",
    "name_note": "3D 模型加载（gbGeomNode + Actor）",
    "sig_model": {
-    "return": "OpenNULLFile *",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "signed __int16",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "actionIdx"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0047cd70": {
    "name": "LoadObject",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned char",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *filename",
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      },
      {
       "type": "int",
-      "name": "act"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0047cee0": {
    "name": "LoadSubObject",
@@ -291,85 +305,100 @@
    "name": "IsOverCVD",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "long double",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "fVal"
+      "type": "int",
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal2"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal3"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal4"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal5"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal6"
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(IsOverCVD): int(int,float,float,float,float,float,float); 原注解无"
   },
   "0x0047d030": {
    "name": "VecAngle",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "fVal"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal2"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal3"
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(VecAngle): int("
   },
   "0x0047d130": {
    "name": "SetObjectPosition",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float",
-      "name": "position"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal2"
+      "name": null
+     },
+     {
+      "type": "float",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetObjectPositi"
   },
   "0x0047d230": {
    "name": "SetCentrePos",
@@ -398,55 +427,69 @@
    "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [T120] 渲染管线命名约定确立（Render<Scope>——T109 RenderEffectTexture 模式）+ 正名：@0x47D440 全函数体（2703 字符）= gbSceneGraph::Begin/End 括号 + gbCamera::SetAsCurrent + Matrix Push/Rotate/Translate + DispatchAction + GetScreenDegree 自调用（场景通路渲染+度计算）⇒ 语义名 RenderObjectScene（禁伪语义 ✓ 全函数体+调用簇证据）；@0x47D320 GetScreenDegree 保留（纯度计算）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbVec3D",
-      "name": "scrVec"
+      "type": "void *",
+      "name": null
      },
      {
-      "type": "gbMatrixStack *pMatrixStack",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0047d690": {
    "name": "CaculateRelative",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "float",
-      "name": "fVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CaculateRelativ"
   },
   "0x0047d9d0": {
    "name": "SetupCamera",
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 0——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nVal1"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetupCamera): int(void *,int); 原注解无"
   },
   "0x0047da60": {
    "name": "Update",
@@ -465,17 +508,26 @@
    "source": "sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | [C2660修 2026-11-14] gbRay* retstr是sret形参(return value pointer), 真实栈参只有tagPOINT*; 调用点1参",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "bool",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "tagPOINT *pPOINT",
+      "type": "double",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "double",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0047dc60": {
    "name": "CheckMouseLPressed",
@@ -505,17 +557,22 @@
    "name": "SetTransform",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrix4 *pMatrix",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00537060": {
    "name": "GetVisNode",
@@ -543,33 +600,39 @@
    "name": "CheckMessage",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszMsgName",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0042b2f0": {
    "name": "GetOrientedOBBox",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbOBBox *pOBBox",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0047fd90": {
    "name": "LoadActorModel",
@@ -577,17 +640,22 @@
    "source": "| 签名缺参批量 2026-10-06：ret 8/4=2 参 vs 签名 1——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void *",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "nParam"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadActorModel): int(void *,int); 原注解无"
   }
  }
 }

@@ -314,17 +314,22 @@
    "name": "InitFromScene",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszSceneName",
+      "type": "void *",
+      "name": null
+     },
+     {
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0041e7d0": {
    "name": "CheckCollision1",
@@ -334,6 +339,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "float *",
       "name": null
@@ -350,7 +359,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMPAXPAM): int(float *,void *,float *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckCollision1): int(int,float *,void *,float *); 原注解2026-11-18 mangle硬真值定谳(HPAMPAXPAM): int("
   },
   "0x0041ea00": {
    "name": "CheckCollision2",
@@ -360,6 +369,10 @@
     "return": "int",
     "cc": "thiscall",
     "params": [
+     {
+      "type": "int",
+      "name": null
+     },
      {
       "type": "float *",
       "name": null
@@ -376,7 +389,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMHPAX): int(float *,int,void *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckCollision2): int(int,float *,int,void *); 原注解2026-11-18 mangle硬真值定谳(HPAMHPAX): int(fl"
   },
   "0x0041ee60": {
    "name": "IsTransitioning",
@@ -394,45 +407,55 @@
    "name": "UpdateCameraLookAt",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nScreenX"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nScreenY"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateCameraLoo"
   },
   "0x00439930": {
    "name": "UpdateCameraLookAt_9930",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nScreenX"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nScreenY"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nOffsetY"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateCameraLoo"
   },
   "0x0041be80": {
    "name": "Camera",

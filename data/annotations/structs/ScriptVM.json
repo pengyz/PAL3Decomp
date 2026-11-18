@@ -171,6 +171,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      },
@@ -182,7 +186,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HEH): int(unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CallFunction): int(int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HEH): int(unsigne"
   },
   "0x004366c0": {
    "name": "GetObjectByID",
@@ -194,12 +198,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nObjID"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetObjectByID): int(int,int); 原注解无"
   },
   "0x0042c730": {
    "name": "OpenSceneScript",
@@ -232,6 +241,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      },
@@ -251,7 +264,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXEHH): int(void *,unsigned int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ExecuteOpcode): int(int,void *,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HPAXEHH): int(voi"
   },
   "0x0042d670": {
    "name": "GetRolePosition",
@@ -261,6 +274,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -268,7 +285,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetRolePosition): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
   },
   "0x00423880": {
    "name": "ProcessFrame",
@@ -290,6 +307,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "unsigned int",
       "name": null
      }
@@ -297,7 +318,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetRolePosition): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
   },
   "0x0042c1a0": {
    "name": "IsRunning",
@@ -339,25 +360,30 @@
    "source": "[批1-5#3 归属修正 2026-10-15] A 级：① 调用侧 0x424fe7-0x424fed `push %ebx; push $0x0; push %edi; mov %esi,%ecx; call 0x42cb70` = 3 栈参 + thiscall（接收者 _ESI=ScriptVM self，同段前后是 ScriptVM::GetRolePosition/ScriptVM::CallFunction(_ESI,…) ✓）；② 本体 0x42cb70 `mov %ecx,%esi` + `lea 0x33c(%esi),%ebp` + 尾 `ret $0xc`（0x42cc29/0x42cd8d）= 3 栈参 thiscall；③ 归属证据（decomp member access）：+0x33C 成员存在于 ScriptVM（m_nPathMode@828）且不在原类（FightInfo binary_size=96 越界 8 倍；functions.json 自由函数无成员）；④ 同址双挂根因=functions.json 的 void __cdecl() 与 FightInfo.json 的 ctor 名双认领⇒ 生成 void FightInfo() 自由函数与 class FightInfo 名撞（C2501/C2065 族 6 错）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "nVal1"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(FightInfo): int"
   }
  },
  "size_evidence": "ExecuteBlock(0x424C20, this-proven ScriptVM method) accesses this+0x370/+0x374 (first-party member access, round-6 profile); old 876(0x36C) contradicted. No heap alloc site exists - objects are embedded/members. Lower bound 0x378=888."

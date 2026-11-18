@@ -38,21 +38,26 @@
    "name": "SetEnable",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int",
-      "name": "szName"
+      "type": "void *",
+      "name": null
      },
      {
       "type": "int",
-      "name": "bEnable"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetEnable): int"
   },
   "0x004461f0": {
    "name": "DestroyPanel",
@@ -151,38 +156,48 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "空覆盖虚方法",
    "sig_model": {
-    "return": "void",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
+      "type": "void *",
+      "name": null
+     },
+     {
       "type": "int",
-      "name": "a2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(OnEvent): int(v"
   },
   "0x00450560": {
    "name": "IsOnScreen",
    "source": "ida_xref:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(IsOnScreen): int(int,int,int); 原注解无"
   },
   "0x0043a7f0": {
    "name": "_sdtor",

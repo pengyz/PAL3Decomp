@@ -165,12 +165,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nID"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FindChildByID): int(int,int); 原注解无"
   },
   "0x00444d10": {
    "name": "StartAnim",
@@ -189,11 +194,23 @@
    "ordinal": 31,
    "evidence_level": "chain_unified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "signed __int32",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "char",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
       "name": null
      },
      {
@@ -209,7 +226,8 @@
     "override"
    ],
    "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00444ad0": {
    "name": "Render",
@@ -240,6 +258,10 @@
     "cc": "thiscall",
     "params": [
      {
+      "type": "int",
+      "name": null
+     },
+     {
       "type": "void *",
       "name": null
      },
@@ -255,7 +277,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_sdtor_full(??1/??_G析构族); decomp文件=CCBResultWindow_sdtor_fullvoid_char_00444aa0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_sdtor_full): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
   },
   "0x00444ac0": {
    "name": "~CCBResultWindow",
