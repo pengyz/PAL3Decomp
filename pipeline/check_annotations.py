@@ -1854,12 +1854,30 @@ if __name__ == '__main__':
 
     for w in warnings:
         print(f"WARN: {w}")
-    for e in errors:
+
+    # [基线分账 2026-11-18 用户裁定] 台账基线错误=存量冻结(advisory), 新增=硬失败(阻断)。
+    # 基线文件=上一次全绿时的errors快照; 基线不存在=全量advisory(首轮建账期)。
+    _baseline_p = os.path.join(_PROJECT_ROOT, 'data', 'status', 'check_baseline_errors.json')
+    _baseline_set = set()
+    if os.path.exists(_baseline_p):
+        try:
+            _baseline_set = set(json.load(open(_baseline_p, encoding='utf-8')))
+        except Exception:
+            pass
+
+    _new_errors = [e for e in errors if e not in _baseline_set]
+    _frozen_errors = [e for e in errors if e in _baseline_set]
+
+    for e in _frozen_errors:
+        print(f"FROZEN: {e}")
+    for e in _new_errors:
         print(f"ERROR: {e}")
 
-    if errors:
-        print(f"\n{len(errors)} errors, {len(warnings)} warnings — FAIL")
+    if _new_errors:
+        print(f"\n{len(_new_errors)} new errors + {len(_frozen_errors)} frozen (advisory), "
+              f"{len(warnings)} warnings — FAIL (新增违规阻断; 存量冻结请修后从基线移除)")
         sys.exit(1)
     else:
-        print(f"\n0 errors, {len(warnings)} warnings — PASS")
+        _fz = (' + %d frozen(advisory)' % len(_frozen_errors)) if _frozen_errors else ''
+        print(f"\n0 new errors{_fz}, {len(warnings)} warnings — PASS")
         sys.exit(0)

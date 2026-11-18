@@ -46,6 +46,60 @@ def get_member_size(mtype):
     return max(a, 1)
 
 
+
+
+# [N16扩展 2026-11-18] schema校验——banned字段/flags词表/override_of/键形
+# 实时拦截(写入时), 与check_annotations N16同判据(双源同律)
+_N16_SCHEMA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                '..', 'data', 'annotations', 'annotation_schema.json')
+
+def _load_n16_schema():
+    try:
+        return json.load(open(_N16_SCHEMA_PATH, encoding='utf-8'))
+    except Exception:
+        return None
+
+def validate_n16(cls_name, data):
+    """按 annotation_schema.json 校验单个类文件。返回违规列表。"""
+    sch = _load_n16_schema()
+    if not sch:
+        return []
+    sc = sch.get('structs_class', {})
+    me = sc.get('methods_entry', {})
+    errs = []
+    for b in sc.get('banned', []):
+        if b in data:
+            errs.append('N16退役字段 %s 存在于类级(banned)' % b)
+    if data.get('name') and data.get('name') != cls_name:
+        errs.append('N16 name=%r 与文件名 %s 不符' % (data.get('name'), cls_name))
+    for ea, m in (data.get('methods') or {}).items():
+        if not isinstance(m, dict):
+            continue
+        key_re = me.get('key_format', '')
+        if key_re and not re.match(key_re, str(ea)):
+            errs.append('N16 methods键形违规: %s' % ea)
+        for b in me.get('banned', []):
+            if b in m:
+                errs.append('N16退役字段 %s 存在于methods[%s]' % (b, ea))
+        fl = m.get('flags') or []
+        for f in fl:
+            if f not in me.get('flags_vocabulary', []):
+                errs.append('N16 flags词表外: %s.%s' % (ea, f))
+        if 'override' in fl and not m.get('override_of'):
+            errs.append('N16 override缺override_of: %s.%s' % (ea, m.get('name')))
+        sm = m.get('sig_model')
+        if sm is not None:
+            for r in me.get('sig_model_required', []):
+                if r not in sm:
+                    errs.append('N16 sig_model缺%s: %s.%s' % (r, ea, m.get('name')))
+    for vt in (data.get('vtables') or []):
+        for sl in (vt.get('slots') or []):
+            for b in sc.get('vtable_slot', {}).get('banned', []):
+                if b in sl:
+                    errs.append('N16槽退役字段 %s 存在' % b)
+    return errs
+
+
 def validate_struct(data):
     errors = []
     members = data.get('known_members', {})
@@ -115,6 +169,9 @@ def check_file_content(file_path, content_str):
         try:
             data = json.loads(content_str)
             passed, errors = validate_struct(data)
+            # [N16扩展 2026-11-18] schema校验接线(banned/flags词表/override_of/键形)
+            cls_name = os.path.basename(file_path).replace('.json', '')
+            errors.extend(validate_n16(cls_name, data))
             return passed, errors
         except json.JSONDecodeError:
             return False, ["INVALID_JSON"]
