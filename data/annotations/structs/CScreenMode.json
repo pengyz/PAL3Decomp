@@ -527,8 +527,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pStreams",
-      "name": null
+      "type": "void *",
+      "name": "pStreams"
      },
      {
       "type": "unsigned __int8",
@@ -659,8 +659,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "CCBUI **",
+      "name": "deltatime"
      },
      {
       "type": "int",
@@ -747,8 +747,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct gbGfxManager *pGfx",
-      "name": null
+      "type": "struct gbGfxManager *",
+      "name": "pGfx"
      }
     ],
     "varargs": false,
@@ -1099,8 +1099,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const void *pData",
-      "name": null
+      "type": "const void *",
+      "name": "pData"
      }
     ],
     "varargs": false,
@@ -1116,8 +1116,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const void *pData",
-      "name": null
+      "type": "const void *",
+      "name": "pData"
      },
      {
       "type": "int",
@@ -1148,8 +1148,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pSound",
-      "name": null
+      "type": "void *",
+      "name": "pSound"
      },
      {
       "type": "int",
@@ -1180,12 +1180,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszScene",
-      "name": null
+      "type": "char *",
+      "name": "pszScene"
      },
      {
-      "type": "const char *pszArea",
-      "name": null
+      "type": "const char *",
+      "name": "pszArea"
      },
      {
       "type": "int",
@@ -1205,8 +1205,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszSceneName",
-      "name": null
+      "type": "char *",
+      "name": "pszSceneName"
      }
     ],
     "varargs": false,
@@ -1233,12 +1233,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszName",
-      "name": null
+      "type": "char *",
+      "name": "pszName"
      },
      {
-      "type": "gbAudioManager *pAudioMgr",
-      "name": null
+      "type": "gbAudioManager *",
+      "name": "pAudioMgr"
      }
     ],
     "varargs": false,
@@ -1309,12 +1309,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
-      "type": "char *pszBuf2",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf2"
      }
     ],
     "varargs": false,
@@ -1341,12 +1341,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
-      "type": "int *p_DWORD2",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD2"
      }
     ],
     "varargs": false,
@@ -1383,16 +1383,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
-      "type": "int *p_DWORD2",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD2"
      },
      {
-      "type": "int *p_DWORD3",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD3"
      }
     ],
     "varargs": false,
@@ -1408,16 +1408,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
       "type": "int",
       "name": "nVal"
      },
      {
-      "type": "int *p_DWORD2",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD2"
      }
     ],
     "varargs": false,
@@ -1433,8 +1433,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *lpString",
-      "name": null
+      "type": "int *",
+      "name": "lpString"
      }
     ],
     "varargs": false,
@@ -1451,16 +1451,16 @@
     "cc": "cdecl",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
       "type": "FILE *Stream",
       "name": null
      },
      {
-      "type": "int *p_DWORD2",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD2"
      }
     ],
     "varargs": false,
@@ -1476,12 +1476,12 @@
     "cc": "cdecl",
     "params": [
      {
-      "type": "CScreenMode *pScreen",
-      "name": null
+      "type": "CScreenMode *",
+      "name": "pScreen"
      },
      {
-      "type": "const char *szFilename",
-      "name": null
+      "type": "const char *",
+      "name": "szFilename"
      },
      {
       "type": "int",
@@ -1544,8 +1544,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "_DWORD *a2",
-      "name": null
+      "type": "_DWORD *",
+      "name": "a2"
      }
     ],
     "varargs": false,

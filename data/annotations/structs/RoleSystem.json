@@ -1425,8 +1425,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbMatrixStack *pStack",
-      "name": null
+      "type": "gbMatrixStack *",
+      "name": "pStack"
      },
      {
       "type": "int",
@@ -1457,8 +1457,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pPos",
-      "name": null
+      "type": "float *",
+      "name": "pPos"
      },
      {
       "type": "int",
@@ -1486,8 +1486,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
       "type": "int",
@@ -1511,8 +1511,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTarget",
-      "name": null
+      "type": "float *",
+      "name": "pTarget"
      }
     ],
     "varargs": false,
@@ -1528,8 +1528,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -1556,8 +1556,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pOut",
-      "name": null
+      "type": "float *",
+      "name": "pOut"
      }
     ],
     "varargs": false,
@@ -1601,8 +1601,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
       "type": "int",
@@ -1622,8 +1622,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -1740,8 +1740,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
-      "name": null
+      "type": "int *",
+      "name": "pResult"
      },
      {
       "type": "int",
@@ -1761,8 +1761,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTargetPos",
-      "name": null
+      "type": "float *",
+      "name": "pTargetPos"
      },
      {
       "type": "int",
@@ -1782,8 +1782,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTargetPos",
-      "name": null
+      "type": "float *",
+      "name": "pTargetPos"
      },
      {
       "type": "int",
@@ -1835,8 +1835,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbVec3D *pTarget",
-      "name": null
+      "type": "gbVec3D *",
+      "name": "pTarget"
      }
     ],
     "varargs": false,
@@ -2029,8 +2029,8 @@
       "name": "result"
      },
      {
-      "type": "gbVec3D *pB",
-      "name": null
+      "type": "gbVec3D *",
+      "name": "pB"
      }
     ],
     "varargs": false,
@@ -2063,8 +2063,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *nFlags",
-      "name": null
+      "type": "float *",
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -2080,8 +2080,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *nFlags",
-      "name": null
+      "type": "float *",
+      "name": "nFlags"
      }
     ],
     "varargs": false,
@@ -2180,8 +2180,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
       "type": "char",
@@ -2255,12 +2255,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *index",
-      "name": null
+      "type": "int *",
+      "name": "index"
      },
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
       "type": "int",
@@ -2351,8 +2351,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "struct gbVec3D *p",
-      "name": null
+      "type": "struct gbVec3D *",
+      "name": "p"
      }
     ],
     "varargs": false,
@@ -2400,8 +2400,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -2435,8 +2435,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pMatrixStack",
-      "name": null
+      "type": "void *",
+      "name": "pMatrixStack"
      }
     ],
     "varargs": false,
@@ -2494,8 +2494,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -2522,16 +2522,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
       "type": "int",
       "name": "nVal"
      },
      {
-      "type": "char *pszBuf2",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf2"
      },
      {
       "type": "int",
@@ -2605,8 +2605,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
-      "name": null
+      "type": "const char *",
+      "name": "pszName"
      }
     ],
     "varargs": false,
@@ -2697,8 +2697,8 @@
       "name": "index"
      },
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
       "type": "int",
@@ -2722,16 +2722,16 @@
       "name": "index"
      },
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -2747,20 +2747,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
-      "name": null
+      "type": "int *",
+      "name": "pResult"
      },
      {
-      "type": "char *nFlag",
-      "name": null
+      "type": "char *",
+      "name": "nFlag"
      },
      {
       "type": "int",
       "name": "nVal"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
       "type": "int",
@@ -2780,16 +2780,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
-      "name": null
+      "type": "int *",
+      "name": "pResult"
      },
      {
-      "type": "int *nFlag",
-      "name": null
+      "type": "int *",
+      "name": "nFlag"
      },
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
       "type": "int",
@@ -2800,8 +2800,8 @@
       "name": "nVal2"
      },
      {
-      "type": "int **a7",
-      "name": null
+      "type": "int **",
+      "name": "a7"
      }
     ],
     "varargs": false,
@@ -2817,28 +2817,28 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
-      "name": null
+      "type": "int *",
+      "name": "pResult"
      },
      {
-      "type": "int *nFlag",
-      "name": null
+      "type": "int *",
+      "name": "nFlag"
      },
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
       "type": "int",
       "name": "nVal"
      },
      {
-      "type": "int **a7",
-      "name": null
+      "type": "int **",
+      "name": "a7"
      }
     ],
     "varargs": false,
@@ -2862,16 +2862,16 @@
       "name": "index"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
       "type": "int",
       "name": "nVal"
      },
      {
-      "type": "char *pszBuf2",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf2"
      },
      {
       "type": "int",
@@ -2891,8 +2891,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
       "type": "char",
@@ -2990,12 +2990,12 @@
       "name": "index"
      },
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
-      "type": "float *pfVal2",
-      "name": null
+      "type": "float *",
+      "name": "pfVal2"
      },
      {
       "type": "int",
@@ -3097,12 +3097,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      },
      {
-      "type": "float *pfVal2",
-      "name": null
+      "type": "float *",
+      "name": "pfVal2"
      }
     ],
     "varargs": false,
@@ -3129,8 +3129,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszAction",
-      "name": null
+      "type": "char *",
+      "name": "pszAction"
      },
      {
       "type": "int",
@@ -3269,8 +3269,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -3286,8 +3286,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pTargetPos",
-      "name": null
+      "type": "int *",
+      "name": "pTargetPos"
      },
      {
       "type": "int",
@@ -3329,8 +3329,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -3363,8 +3363,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -3418,8 +3418,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszRoleName",
-      "name": null
+      "type": "char *",
+      "name": "pszRoleName"
      }
     ],
     "varargs": false,
@@ -3435,8 +3435,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -3463,8 +3463,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
-      "name": null
+      "type": "float *",
+      "name": "pfVal"
      }
     ],
     "varargs": false,
@@ -3480,8 +3480,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "_BYTE *p_BYTE",
-      "name": null
+      "type": "_BYTE *",
+      "name": "p_BYTE"
      }
     ],
     "varargs": false,
@@ -3616,8 +3616,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
-      "name": null
+      "type": "const char *",
+      "name": "pszName"
      }
     ],
     "varargs": false,
@@ -3867,12 +3867,12 @@
       "name": "nVal"
      },
      {
-      "type": "int *pnVal",
-      "name": null
+      "type": "int *",
+      "name": "pnVal"
      },
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -3961,8 +3961,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfDir",
-      "name": null
+      "type": "float *",
+      "name": "pfDir"
      }
     ],
     "varargs": false,
@@ -3979,8 +3979,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pVec",
-      "name": null
+      "type": "float *",
+      "name": "pVec"
      },
      {
       "type": "float",
@@ -4004,8 +4004,8 @@
       "name": "nIndex"
      },
      {
-      "type": "const char *pszPath",
-      "name": null
+      "type": "const char *",
+      "name": "pszPath"
      }
     ],
     "varargs": false,
@@ -4092,8 +4092,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pOut",
-      "name": null
+      "type": "float *",
+      "name": "pOut"
      },
      {
       "type": "int",

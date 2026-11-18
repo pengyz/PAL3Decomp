@@ -633,8 +633,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *name",
-      "name": null
+      "type": "char *",
+      "name": "name"
      }
     ],
     "varargs": false,
@@ -650,8 +650,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *filename",
-      "name": null
+      "type": "char *",
+      "name": "filename"
      }
     ],
     "varargs": false,
@@ -667,8 +667,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *dir",
-      "name": null
+      "type": "char *",
+      "name": "dir"
      }
     ],
     "varargs": false,
@@ -774,8 +774,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *pszName",
-      "name": null
+      "type": "const char *",
+      "name": "pszName"
      },
      {
       "type": "char",
@@ -909,8 +909,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const char *szFilename",
-      "name": null
+      "type": "const char *",
+      "name": "szFilename"
      },
      {
       "type": "int",
@@ -995,8 +995,8 @@
       "name": "nActionID"
      },
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -1012,8 +1012,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "PalScript *pPalScript",
-      "name": null
+      "type": "PalScript *",
+      "name": "pPalScript"
      }
     ],
     "varargs": false,
@@ -1029,12 +1029,12 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      }
     ],
     "varargs": false,
@@ -1050,8 +1050,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pOut",
-      "name": null
+      "type": "int *",
+      "name": "pOut"
      },
      {
       "type": "int",
@@ -1071,20 +1071,20 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
-      "type": "void *pData",
-      "name": null
+      "type": "void *",
+      "name": "pData"
      },
      {
-      "type": "int *p_DWORD2",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD2"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      }
     ],
     "varargs": false,
@@ -1684,8 +1684,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **deltatime",
-      "name": null
+      "type": "CCBUI **",
+      "name": "deltatime"
      },
      {
       "type": "int",
@@ -1710,8 +1710,8 @@
       "name": null
      },
      {
-      "type": "CHAR *lpString2",
-      "name": null
+      "type": "CHAR *",
+      "name": "lpString2"
      }
     ],
     "varargs": false,
@@ -1727,8 +1727,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *filename",
-      "name": null
+      "type": "char *",
+      "name": "filename"
      }
     ],
     "varargs": false,
@@ -1744,8 +1744,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *filename",
-      "name": null
+      "type": "char *",
+      "name": "filename"
      }
     ],
     "varargs": false,
@@ -1765,12 +1765,12 @@
       "name": "String2"
      },
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      },
      {
-      "type": "char *pszBuf2",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf2"
      }
     ],
     "varargs": false,
@@ -1797,8 +1797,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
-      "name": null
+      "type": "int *",
+      "name": "p_DWORD"
      },
      {
       "type": "unsigned int",
@@ -1863,8 +1863,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
-      "name": null
+      "type": "char *",
+      "name": "pszBuf"
      }
     ],
     "varargs": false,
@@ -3130,8 +3130,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "long *p_DWORD",
-      "name": null
+      "type": "long *",
+      "name": "p_DWORD"
      }
     ],
     "varargs": false,
@@ -3179,8 +3179,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pRay",
-      "name": null
+      "type": "void *",
+      "name": "pRay"
      },
      {
       "type": "LPPOINT",
@@ -3420,16 +3420,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "_BYTE *thisa",
-      "name": null
+      "type": "_BYTE *",
+      "name": "thisa"
      },
      {
-      "type": "_DWORD *a2",
-      "name": null
+      "type": "_DWORD *",
+      "name": "a2"
      },
      {
-      "type": "_BYTE *a3",
-      "name": null
+      "type": "_BYTE *",
+      "name": "a3"
      }
     ],
     "varargs": false,
