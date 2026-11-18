@@ -1,14 +1,377 @@
-APPLY: updating annotations in PAL3.exe.i64 ...
--> OK: annotations applied
+[vtable] 改进: 168 → 150 (update vtable_baseline.json)
+WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
+WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
+WARN: functions[0x00446030]: '__thiscall' without '::' in 'AddToArray' (sig: void __thiscall(_DWORD *newElement)) — likely member function, needs IDA investigation
+WARN: functions[0x00401da0]: '__thiscall' without '::' in 'FileSysDestory' (sig: gbVFileSystem * __thiscall()) — likely member function, needs IDA investigation
+WARN: functions[0x0046adf0]: '__thiscall' without '::' in 'GetCellStateByte' (sig: char __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x00523cb0]: '__thiscall' without '::' in 'Method_3CB0' (sig: int __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x0043a090]: '__thiscall' without '::' in 'NormalizeAngle' (sig: void __thiscall(int this, int a2, float a3)) — likely member function, needs IDA investigation
+WARN: functions[0x0043fd90]: '__thiscall' without '::' in 'SetFrameIndex' (sig: int __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x0043fdb0]: '__thiscall' without '::' in 'SetFrameCount' (sig: void __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x00445bf0]: '__thiscall' without '::' in 'SetArrayElement' (sig: void __thiscall(int this, int newElement)) — likely member function, needs IDA investigation
+WARN: functions[0x0044f130]: '__thiscall' without '::' in 'InitUIComponents' (sig: void __thiscall(int nVal)) — likely member function, needs IDA investigation
+WARN: functions[0x0045add0]: '__thiscall' without '::' in 'InitState' (sig: void __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x0047f590]: '__thiscall' without '::' in 'ProcessTree' (sig: int __thiscall(int parent, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x004912d0]: '__thiscall' without '::' in 'Destroy_912D0' (sig: void __thiscall(stdiobuf *this)) — likely member function, needs IDA investigation
+WARN: functions[0x004ab560]: '__thiscall' without '::' in 'Method_B560' (sig: bool __thiscall(_DWORD *this, int a2, int a3)) — likely member function, needs IDA investigation
+WARN: functions[0x004c4b00]: '__thiscall' without '::' in 'SetValue' (sig: int __thiscall(int this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x005306a0]: '__thiscall' without '::' in 'Initialize_06A0' (sig: void __thiscall(int this, char *pszRoleDir)) — likely member function, needs IDA investigation
+WARN: functions[0x0057c068]: '__thiscall' without '::' in 'gbVec3D_ctor' (sig: gbVec3D *__thiscall(gbVec3D *this, float x, float y, float z) — likely member function, needs IDA investigation
+WARN: functions[0x0057c1ec]: '__thiscall' without '::' in 'gbVec3D_Normalize' (sig: void __thiscall(gbVec3D *this)) — likely member function, needs IDA investigation
+WARN: structs[UIFrameContainer]: 'm_bFlag96' at offset 0x60 looks like pseudo-semantic naming — suffix '96' is this field's own offset dressed up with a generic word (Val/Flag/State/...), no real semantic content added over _todo_/_field_. See CLAUDE.md 禁止伪语义命名.
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004b0520
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0045ae40
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b860
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c110
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c1b0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051f0a0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004c15d0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00485230
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004209e0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x005279d0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450e90
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048ef80
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048eb40
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450ab0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b570
+WARN: CLAIM_GATE:member_counter_evidence:0x0051CAA0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051C9F0
+WARN: CLAIM_GATE:member_counter_evidence:0x00442390
+WARN: CLAIM_GATE:member_counter_evidence:0x00442FF0
+WARN: CLAIM_GATE:member_counter_evidence:0x004438F0
+WARN: CLAIM_GATE:member_counter_evidence:0x00443970
+WARN: CLAIM_GATE:member_counter_evidence:0x00443200
+WARN: CLAIM_GATE:member_counter_evidence:0x004382A0
+WARN: CLAIM_GATE:member_counter_evidence:0x00438110
+WARN: CLAIM_GATE:member_counter_evidence:0x00434D20
+WARN: CLAIM_GATE:member_counter_evidence:0x00434D40
+WARN: CLAIM_GATE:member_counter_evidence:0x00526A40
+WARN: CLAIM_GATE:member_counter_evidence:0x0043D920
+WARN: CLAIM_GATE:member_counter_evidence:0x004202A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004208A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004209E0
+WARN: CLAIM_GATE:member_counter_evidence:0x004202F0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C15D0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051B5D0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051C880
+WARN: CLAIM_GATE:member_counter_evidence:0x41b640
+WARN: CLAIM_GATE:member_counter_evidence:0x00438640
+WARN: CLAIM_GATE:member_counter_evidence:0x004B7AF0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051F1B0
+WARN: CLAIM_GATE:member_counter_evidence:0x0043B660
+WARN: CLAIM_GATE:member_counter_evidence:0x0043B900
+WARN: CLAIM_GATE:member_counter_evidence:0x0043A870
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AD40
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x0044A870
+WARN: CLAIM_GATE:member_counter_evidence:0x0044A820
+WARN: CLAIM_GATE:member_counter_evidence:0x00527DC0
+WARN: CLAIM_GATE:member_counter_evidence:0x00454550
+WARN: CLAIM_GATE:member_counter_evidence:0x00454560
+WARN: CLAIM_GATE:member_counter_evidence:0x00454590
+WARN: CLAIM_GATE:member_counter_evidence:0x0046B4B0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5E80
+WARN: CLAIM_GATE:member_counter_evidence:0x004C6030
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5DB0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5DE0
+WARN: CLAIM_GATE:member_counter_evidence:0x00438E30
+WARN: CLAIM_GATE:member_counter_evidence:0x00445B90
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x004C7680
+WARN: CLAIM_GATE:member_counter_evidence:0x00485230
+WARN: CLAIM_GATE:member_counter_evidence:0x00438540
+WARN: CLAIM_GATE:member_counter_evidence:0x004CFE20
+WARN: CLAIM_GATE:member_counter_evidence:0x004CFFB0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C15D0
+WARN: CLAIM_GATE:member_counter_evidence:0x00523B90
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AB00
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AB20
+WARN: CLAIM_GATE:member_counter_evidence:0x005164D0
+WARN: CLAIM_GATE:member_counter_evidence:0x00519510
+WARN: CLAIM_GATE:member_counter_evidence:0x00519F50
+WARN: CLAIM_GATE:member_counter_evidence:0x0051A880
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2600
+WARN: CLAIM_GATE:member_counter_evidence:0x004C1490
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2170
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2600
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0640
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0740
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0920
+WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C4060
+WARN: CLAIM_GATE:member_counter_evidence:0x004C4370
+WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C3EC0
+WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
+WARN: CXX_GATE:baseline_stale:same_addr:0x408BD0:DestroyEffect|NullCallback
+WARN: CXX_GATE:baseline_stale:same_addr:0x411B80:_scalar_dtor_1b80|slot_unk_1b80|slot_unk_1b80
+WARN: CXX_GATE:baseline_stale:same_addr:0x411BB0:_scalar_dtor_1bb0|slot_unk_1bb0|slot_unk_1bb0
+WARN: CXX_GATE:baseline_stale:same_addr:0x411BD0:_scalar_dtor_1BD0|slot_unk
+WARN: CXX_GATE:baseline_stale:same_addr:0x41C710:ProcessKeyboard|ProcessKeyboard
+WARN: CXX_GATE:baseline_stale:same_addr:0x434D50:_scalar_dtor_4D50|_scalar_dtor_4D50|~PalScriptBlendTimer|~PalScriptFadeInTimer|~PalScriptFadeOutTimer|~PalScriptProgressTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438100:CheckFlag0C|CheckFlag0C|IsAnimDone|IsAnimDone
+WARN: CXX_GATE:baseline_stale:same_addr:0x438110:UpdateWaitTimer|UpdateWaitTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438190:_scalar_dtor_8190|_scalar_dtor_8190
+WARN: CXX_GATE:baseline_stale:same_addr:0x4382A0:UpdateIdleTimer|UpdateIdleTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438530:IsFadeDone|IsFadeDone
+WARN: CXX_GATE:baseline_stale:same_addr:0x43AD40:Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x43BB90:_scalar_dtor|_scalar_dtor_BB90|_scalar_dtor_BB90
+WARN: CXX_GATE:baseline_stale:same_addr:0x43BBC0:Update|Update
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:ForwardOnMessage|ForwardOnMessage|ForwardOnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D920:Destroy|Destroy
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DDF0:Render|Render|Render|Render|Render|Render|Render|Render|Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage
+WARN: CXX_GATE:baseline_stale:same_addr:0x442420:Destroy_2420|Destroy_2420|Destroy_2420|v1_slot_3
+WARN: CXX_GATE:baseline_stale:same_addr:0x442420:HideAll|HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x442E60:_scalar_dtor_2E60|_scalar_dtor_2E60
+WARN: CXX_GATE:baseline_stale:same_addr:0x442E90:RenderWithTexture|RenderWithTexture
+WARN: CXX_GATE:baseline_stale:same_addr:0x442FF0:Update_2ff0|Update_2ff0|Update_2ff0
+WARN: CXX_GATE:baseline_stale:same_addr:0x445B90:Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x445E70:ShowClipped|ShowClipped
+WARN: CXX_GATE:baseline_stale:same_addr:0x44AB00:GetType|GetType
+WARN: CXX_GATE:baseline_stale:same_addr:0x44E5C0:_sdtor_25|_sdtor_25
+WARN: CXX_GATE:baseline_stale:same_addr:0x44E980:OnVisible|OnVisible
+WARN: CXX_GATE:baseline_stale:same_addr:0x450F80:IsValid|IsValid
+WARN: CXX_GATE:baseline_stale:same_addr:0x4518E0:_scalar_dtor_18E0|~UIListBox
+WARN: CXX_GATE:baseline_stale:same_addr:0x451AA0:OnMessage_1AA0|OnMessage_1AA0
+WARN: CXX_GATE:baseline_stale:same_addr:0x451B40:ResizeToContent|UIListBox_ResizeToContent
+WARN: CXX_GATE:baseline_stale:same_addr:0x451C10:IsVisible|UIListBox_IsVisible
+WARN: CXX_GATE:baseline_stale:same_addr:0x4A14C0:HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x4A2150:_scalar_dtor|_scalar_dtor_2150
+WARN: CXX_GATE:baseline_stale:same_addr:0x4AF760:Update|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|slot_unk_f760|slot_unk_f760
+WARN: CXX_GATE:baseline_stale:same_addr:0x4B7BA0:_todo_4b7ba0|_todo_7BA0
+WARN: CXX_GATE:baseline_stale:same_addr:0x4BD850:_scalar_dtor_D850|_scalar_dtor_D850
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0500:OnTest|OnTest
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0510:GetEditorObjDescription|GetEditorObjDescription
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:AllocActionArray|AllocActionArray|Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:Create|Create|Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C15B0:AllocEffect|CreateEffAudio
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C15D0:UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C1640:~CEffBink|~EffAudioNode
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2170:AllocTargets|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2620:ProcessData|RenderEffect
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2820:AllocEffect|CreateDeactivated
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2870:~CEffCallBack|~EffMultiPassNode
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2930:InitTargetPos|ResetState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C29A0:UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C3BB0:AdvancePass|CheckState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5800:CreateTaskWrapper|sub_4C5800
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5810:_sdtor|_sdtor
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5B90:SetEffectVisible|operator_
+WARN: CXX_GATE:baseline_stale:same_addr:0x4CB350:_todo_4CB350|_todo_4CB350
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D0C90:_nearby_4cffb0_adjthunk|_todo_004D0C90
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D3220:_sdtor_adj|sub_4D17D0_adjthunk
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D33A0:ResetIdle|ResetState|ResetState|ResetState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DE0:_sdtor_adj|sub_4D3DC0_adjthunk
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DF0:_todo_4D4DF0|_todo_4D4DF0
+WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|ShowLineupWindow
+WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|~CCBUI
+WARN: CXX_GATE:baseline_stale:same_addr:0x519510:Destroy|Destroy
+WARN: CXX_GATE:baseline_stale:same_addr:0x5195E0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x519660:IsImbibeNimbusNotFinish|IsImbibeNimbusNotFinish
+WARN: CXX_GATE:baseline_stale:same_addr:0x51B570:HandleInput|HandleInput
+WARN: CXX_GATE:baseline_stale:same_addr:0x51B5D0:CreateWithTextures|~CCBLineupWindow
+WARN: CXX_GATE:baseline_stale:same_addr:0x51C9B0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|slot_1
+WARN: CXX_GATE:baseline_stale:same_addr:0x535930:LoadOverlayTexture|LoadOverlayTexture
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420D8:EnableShadow|EnableShadow
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420DE:GetAABBox|GetAABBox
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420FC:ParticleVisNode_adjthunk_20FC|ParticleVisNode_adjthunk_20FC
+WARN: CXX_GATE:baseline_stale:same_addr:0x542102:SceneVisNode_adjthunk_2102|SceneVisNode_adjthunk_2102
+WARN: CXX_GATE:baseline_stale:same_addr:0x54210E:SceneVisNode_adjthunk_210E|SceneVisNode_adjthunk_210E
+WARN: CXX_GATE:baseline_stale:same_addr:0x542114:SceneVisNode_adjthunk_2114|SceneVisNode_adjthunk_2114
+WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
+WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
+WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
+WARN: N13b:AStarPathFinder::Reset@0x004017a0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:Array::_nearby_411ba0@0x00411ba0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBControlWindow::CCBControlWindow@0x0051a700 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::GetRoleNum@0x004f0830 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::SetRoleHP@0x004f2910 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::CalcCombatDamage@0x004eef20 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::CombatDialogProc@0x004e1a40 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::CheckTargetCombo@0x004f2660 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBRoleState::AddCommand@0x004f2c70 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBStage::GetRoleIndex@0x004fc700 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBStage::Update_C0A0@0x004fc0a0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBStage::Update@0x0051f0a0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBStageCam::UpdateEditorState@0x004e6020 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBStageScene::CreateCamera@0x0052b3b0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBSystem::ProcNormalAttack@0x005125e0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBUI::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBUI::ResetAllSlots@0x004e0690 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CScreenMode::InitEndScreen@0x0052ed30 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CScreenMode::AudioFadeOut@0x0053ea60 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CScreenMode::AddSoundEntry@0x0053eb90 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:LineupUI::CreatePreviewScene@0x00483650 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:MiniGame1::Render@0x0052b860 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:PAL3::GetCommandLineParam@0x00406980 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:PalScript::ctor@0x0043a1f0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:RoleSystem::SetTargetRotation@0x00416490 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:RoleSystem::RenderMainRole@0x00410430 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:SaleUI::ConsumeItems@0x0046acd0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:SaleUI::HandleInput@0x00469eb0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:SceneObj::_init_4530c0@0x004530c0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:ScreenEffectMgr::_todo_4BDF30@0x004bdf30 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UICaption::Destroy2@0x0043a810 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UICursor::Update@0x00535120 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIMap::UIMap@0x004411d0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIParticle::Apply@0x004b4dc0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbTexture::UpdateTexture@0x1001bea0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbVertPoolMgr::GetDynVertBuf@0x10021680 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: name_drift: globals[0x005BC914] 注解名'off_5BC914' != IDB名'dword_5BC914'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005BC940] 注解名'off_5BC940' != IDB名'dword_5BC940'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87F0] 注解名'unk_5D87F0' != IDB名'byte_5D87F0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8800] 注解名'unk_5D8800' != IDB名'dword_5D8800'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8A3C] 注解名'off_5D8A3C' != IDB名'byte_5D8A3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8AD4] 注解名'unk_5D8AD4' != IDB名'byte_5D8AD4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8AF4] 注解名'unk_5D8AF4' != IDB名'byte_5D8AF4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8B14] 注解名'unk_5D8B14' != IDB名'byte_5D8B14'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8B3C] 注解名'unk_5D8B3C' != IDB名'byte_5D8B3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005DFDEB] 注解名'unk_5DFDEB' != IDB名'byte_5DFDEB'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00D8C1AC] 注解名'unk_D8C1AC' != IDB名'String'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D89BC] 注解名'off_5D89BC' != IDB名'byte_5D89BC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x0056B794] 注解名'off_56B794' != IDB名'stru_56B794'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005706CC] 注解名'off_5706CC' != IDB名'stru_5706CC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00580CFC] 注解名'off_580CFC' != IDB名'asc_580CFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8FEC] 注解名'off_5D8FEC' != IDB名'byte_5D8FEC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005DB9B0] 注解名'off_5DB9B0' != IDB名'byte_5DB9B0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00592E5C] 注解名'dword_592E5C' != IDB名'asc_592E5C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00C0E760] 注解名'unk_C0E760' != IDB名'dword_C0E760'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00C0EC50] 注解名'unk_C0EC50' != IDB名'dword_C0EC50'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87F8] 注解名'unk_5D87F8' != IDB名'dword_5D87F8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87FC] 注解名'unk_5D87FC' != IDB名'dword_5D87FC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x017A89E8] 注解名'byte_17A89E8' != IDB名'Buffer'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: 938 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
+FROZEN: CANON:C7:CCBPanelSlot:0x00445b90:own CCBPanelSlot 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:CCBPanelSlot:0x00445d10:own CCBPanelSlot 自有槽 slot0 addr=0x00445d10 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:RenderTarget:0x00445b90:own RenderTarget 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:RenderTarget:0x00445e70:own RenderTarget 自有槽 slot0 addr=0x00445e70 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C9:CCBUI:0x00519660:sig CCBUI Update 签名与基类不一致: return_type: signed __int32 vs BOOL; param[0]: int vs CCBUI * * deltatime; 本=signed __int32 __thiscall(int, int) 基=BOOL __thiscall(CCBUI **deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费
+FROZEN: CANON:C9:RoleSystem:0x004209e0:name RoleSystem slot6 名字与基类不一致: 本=ResetState(004209e0) 基=OnMessage(00445d10) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:UIEmote:0x0044ab00:name UIEmote slot1 名字与基类不一致: 本=GetType(0044ab00) 基=Render(00445cd0) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:UIEmote:0x0044e980:name UIEmote slot5 名字与基类不一致: 本=OnVisible(0044e980) 基=~UIWnd(00445b20) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:UIEmote:0x0044eb40:name UIEmote slot0 名字与基类不一致: 本=Reset(0044eb40) 基=ShowClipped(00445e70) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:N8:Actor:0x005392c0 Actor 双调用约定: char *__thiscall __thiscall (int)
+FROZEN: CANON:N8:Actor:0x0053afa0 Actor 双调用约定: char *__thiscall __thiscall (char *pszDst, char *p
+FROZEN: CANON:N8:Actor:0x0053bae0 Actor 双调用约定: int *__thiscall __thiscall (int *p_DWORD)
+FROZEN: CANON:N8:Actor:0x0053bd30 Actor 双调用约定: int *__thiscall __thiscall (int *pnVal)
+FROZEN: CANON:N8:ArcLocaleRole:0x004afb60 ArcLocaleRole 双调用约定: int *__thiscall __thiscall (int *p_DWORD)
+FROZEN: CANON:N8:Array:0x004115c0 Array 双调用约定: unsigned int *__cdecl __thiscall (unsigned int *pd
+FROZEN: CANON:N8:Array:0x004af450 Array 双调用约定: char *__thiscall __thiscall (char *pszBuf, unsigne
+FROZEN: CANON:N8:ArraySlots:0x0044ab40 ArraySlots 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:CCBControlWindow:0x0051b5d0 CCBControlWindow 双调用约定: gbVFileSystem *__thiscall __thiscall (int, void *p
+FROZEN: CANON:N8:CCBItemWindow:0x00450650 CCBItemWindow 双调用约定: char *__thiscall __thiscall (char *pszName)
+FROZEN: CANON:N8:CCBRoleState:0x004f91b0 CCBRoleState 双调用约定: char *__thiscall __thiscall (int)
+FROZEN: CANON:N8:CCBStageScene:0x0050fd00 CCBStageScene 双调用约定: CCBStageScene *__thiscall __thiscall (CCBStage *pC
+FROZEN: CANON:N8:CEffQuad:0x004d0d90 CEffQuad 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:CEffect:0x004bd7a0 CEffect 双调用约定: int *__thiscall __thiscall (int)
+FROZEN: CANON:N8:CameraCtrl:0x0041c670 CameraCtrl 双调用约定: float *__thiscall __thiscall (float *pfOut, float,
+FROZEN: CANON:N8:CameraCtrl:0x0041cba0 CameraCtrl 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:GRPinput:0x00403000 GRPinput 双调用约定: _BYTE *__thiscall __thiscall (unsigned int)
+FROZEN: CANON:N8:LineupUI:0x004b1920 LineupUI 双调用约定: int *__thiscall __thiscall (int)
+FROZEN: CANON:N8:MainEquipUI:0x00480530 MainEquipUI 双调用约定: int *__thiscall __thiscall (float)
+FROZEN: CANON:N8:MainPropUI:0x00489ed0 MainPropUI 双调用约定: int *__thiscall __thiscall (int, int, int)
+FROZEN: CANON:N8:Object:0x00411bd0 Object 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:PalScript:0x00410840 PalScript 双调用约定: PalScript *__thiscall __thiscall (PalScript *pPalS
+FROZEN: CANON:N8:PalScript:0x004309d0 PalScript 双调用约定: int *__thiscall __thiscall (int *p_DWORD, char *ps
+FROZEN: CANON:N8:PalScript:0x00431040 PalScript 双调用约定: int *__thiscall __thiscall (int *pOut, int)
+FROZEN: CANON:N8:PalScript:0x00431100 PalScript 双调用约定: int *__thiscall __thiscall (int *p_DWORD, void *pD
+FROZEN: CANON:N8:PalScript:0x00431390 PalScript 双调用约定: int *__thiscall __thiscall (int)
+FROZEN: CANON:N8:PalScript:0x00439230 PalScript 双调用约定: gbGeomNode *__thiscall __thiscall (const char *szF
+FROZEN: CANON:N8:PalScript:0x00535710 PalScript 双调用约定: struct gbVFileSystem *__thiscall __thiscall (doubl
+FROZEN: CANON:N8:PalScriptIdleObj:0x0044a970 PalScriptIdleObj 双调用约定: gbVFileSystem *__thiscall __thiscall (int, int)
+FROZEN: CANON:N8:PalScriptMgr:0x0042c280 PalScriptMgr 双调用约定: struct gbVFileSystem *__thiscall __thiscall (char)
+FROZEN: CANON:N8:PalScriptMgr:0x0042e2c0 PalScriptMgr 双调用约定: char *__thiscall __thiscall (int, float, float, un
+FROZEN: CANON:N8:ParticleVisNode:0x00410900 ParticleVisNode 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:PtrArray:0x00433dc0 PtrArray 双调用约定: int *__cdecl __thiscall (int *p_DWORD, int, int)
+FROZEN: CANON:N8:Role:0x0041b640 Role 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:RoleAtt:0x00451740 RoleAtt 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:RoleSystem:0x00420f50 RoleSystem 双调用约定: char *__thiscall __thiscall (int)
+FROZEN: CANON:N8:RoleSystem:0x0042c0c0 RoleSystem 双调用约定: int *__thiscall __thiscall (int, int)
+FROZEN: CANON:N8:SceneMgr:0x00422050 SceneMgr 双调用约定: int *__thiscall __thiscall (char)
+FROZEN: CANON:N8:SceneObj:0x00453a70 SceneObj 双调用约定: SceneObj *__thiscall __thiscall (SceneObj *pSceneO
+FROZEN: CANON:N8:SceneVisNode:0x0052b980 SceneVisNode 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:ScreenEffect:0x004be060 ScreenEffect 双调用约定: CCBAIWindow *__thiscall __thiscall (int)
+FROZEN: CANON:N8:TaskBookUI:0x00454ca0 TaskBookUI 双调用约定: void *__thiscall __thiscall (int, int, int, int)
+FROZEN: CANON:N8:UI3DCtrl:0x0043d890 UI3DCtrl 双调用约定: gbVFileSystem *__thiscall __thiscall (int, void *p
+FROZEN: CANON:N8:UIFrameWnd:0x00442540 UIFrameWnd 双调用约定: gbVFileSystem *__thiscall __thiscall (int)
+FROZEN: CANON:N8:UIMap:0x004412c0 UIMap 双调用约定: char *__thiscall __thiscall (int, void *pRect, int
+FROZEN: CANON:N8:UIPushButton:0x00440810 UIPushButton 双调用约定: gbVFileSystem *__thiscall __thiscall (int, void *p
+FROZEN: CANON:N8:UITitle_JDHY:0x004b2750 UITitle_JDHY 双调用约定: FILE *__thiscall __thiscall (double, int)
+FROZEN: CANON:N8:UITitle_YXXX:0x004af770 UITitle_YXXX 双调用约定: int *__thiscall __thiscall (char *pszBuf, unsigned
+FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基类gbCamera子对象区[0,376) — 布局冲突
+FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
+FROZEN: CANON:C10:SceneMgr:m_pCCBStageRoleFind:c SceneMgr.m_pCCBStageRoleFind@+11092 与 m_nTodo_C059A0@+5648(size 7600) 重叠(非union) — 布局冲突
+FROZEN: CANON:C10:UIEmote:baseclass2:a UIEmote.baseclass2@+68 落入基类PalScriptWaitObj子对象区[68,76) — 布局冲突
+FROZEN: DATA:N13a:CEffAction::_tail_000 字段契约断(语料->引用26次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffBink::_tail_000 字段契约断(语料->引用19次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffCallBack::_tail_000 字段契约断(语料->引用1次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffCylinder::_tail_000 字段契约断(语料->引用45次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffExplosive::_tail_000 字段契约断(语料->引用18次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffGrid::_tail_000 字段契约断(语料->引用18次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffMeteor::_tail_000 字段契约断(语料->引用18次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffQuad::_tail_000 字段契约断(语料->引用25次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffQuake::_tail_000 字段契约断(语料->引用3次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffSParticle::_tail_000 字段契约断(语料->引用23次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffShock::_tail_000 字段契约断(语料->引用35次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CEffgbParticle::_tail_000 字段契约断(语料->引用45次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:Role::m_needscriptdel 字段契约断(语料->引用1次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:UICaption::m_nTodo_000 字段契约断(语料->引用1次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:UICaption::m_needscriptdel 字段契约断(语料->引用2次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:UIEmote::m_needscriptdel 字段契约断(语料->引用5次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13c:CIniFile::CIniFile 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::OpenFileRead 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::OpenFileWrite 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::ReadLine 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::ReadSection 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::ReadStart 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::WriteLine 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CIniFile::WriteSection 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::CPK 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::Close 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::DeCompress 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::IsValidCPK 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::Open 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::Seek 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:CPK::SetOpenMode 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:gbAABBox::gbAABBox 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:gbActor::EnableActionTransMtl 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:gbActor::GetActionDuration 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:gbActor::GetTagNodeTM 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+FROZEN: DATA:N13c:gbActorMgr::LoadActorFile 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
+ERROR: CANON:N8:MainEquipUI:0x004819a0 MainEquipUI 双调用约定: OpenNULLFile *__thiscall __thiscall (OpenNULLFile 
+
+1 new errors + 97 frozen (advisory), 253 warnings — FAIL (新增违规阻断; 存量冻结请修后从基线移除)
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 96 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：117 个 sub_ 符号的声明/调用形参数全部一致（另 94 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
-Next: python pipeline/cli.py export
+[UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...
+union 按值成员类型共 4 个：FightItemScriptBlock, RoleAttRemarkSkills, tagRoleSlot, tagTeamSlotsBOverlay
+检查：这些类不得有 ctor/dtor 形态的方法（方法名 == 类名 或 ~类名）
+
+✅ 无 landmine：没有 union 按值成员类带 ctor/dtor
+
+[MemberExtent] **advisory**：检查「成员末端 < binary_size」（apply 拒绝的前置）...
+成员末端 < binary_size 的检查：越界 1 个
+   ✗ scVARIANT_data: binary_size=4 但成员末端=5（as_float@1）
+[WARN] MemberExtent 报出违反（advisory，不影响退出码）—— 见上方清单；已登记为既存缺陷（Comp_DonateUI m_state），未取证前不改注解 ✓
+[ERROR] annotation check FAIL (exit 1) — 违规数据不允许进apply。
+        修复 data/annotations 后重试; 存量冻结债务见 check 输出。

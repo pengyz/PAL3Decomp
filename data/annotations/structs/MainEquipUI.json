@@ -618,7 +618,7 @@
    "_misattrib_evidence": "max_offset=162724>class_size=152",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "OpenNULLFile *__thiscall",
+    "return": "OpenNULLFile *",
     "cc": "thiscall",
     "params": [
      {
@@ -633,7 +633,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 return 粘 cc 剥离(漏网条目——return 粘 cc 99 条剥离时此条不在受影响集, 但 N16 双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。20"
   },
   "0x00481cb0": {
    "name": "SelectWithSound",
