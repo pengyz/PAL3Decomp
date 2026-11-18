@@ -1086,3 +1086,31 @@
 | `UIDialog::Create` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, char *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, tex)` |
 | `UIListBox::SetSelTexture` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, gbVFileSystem *))(*(_DWORD *)&gfxMgr->gbSingleton_gbGfxManager + 8))( gfxMgr, m_plastsys)` |
 | `UIListBox::CalScrollBarRange` | inline | `gbGfxManager` | 8 | self_arg_mismatch | `(*(int ( **)(gbGfxManager *, CHAR *))(*(_DWORD *)&v9 + 8))(gfxMgr, v10)` |
+| `CCBStageScene::GetBattleFieldSubdueAttr` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, _DWORD))(*(_DWORD *)v4 + 16))(v4, 0)` |
+| `CCBStageScene::GetBattleFieldSubdueAttr` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, _DWORD))(*(_DWORD *)*v7 + 16))(*v7, 0)` |
+| `CEffAction::UpdateFrame` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v3 + 4))( v3, *(_DWORD *)(*(_DWORD *)v5 + v7), *(_DWORD *)(*(_DWORD *)v5 + v7 + 4), 0)` |
+| `CEffBink::UpdateFrame` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `CEffCylinder::UpdateFrame` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v5 + 4))( v5, *(_DWORD *)(*(_DWORD *)v6 + v8), *(_DWORD *)(*(_DWORD *)v6 + v8 + 4), 0)` |
+| `CEffExplosive::UpdateFrame` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v5 + 4))( v5, *(_DWORD *)(*(_DWORD *)v6 + v8), *(_DWORD *)(*(_DWORD *)v6 + v8 + 4), 0)` |
+| `CEffGrid::UpdateFrame` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v5 + 4))( v5, *(_DWORD *)(*(_DWORD *)v6 + v8), *(_DWORD *)(*(_DWORD *)v6 + v8 + 4), 0)` |
+| `CEffMeteor::UpdateFrame` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v5 + 4))( v5, *(_DWORD *)(*(_DWORD *)v6 + v8), *(_DWORD *)(*(_DWORD *)v6 + v8 + 4), 0)` |
+| `CEffModel::ResetState` | inline | `int` | 24 | non_class_hint | `(*(int ( **)(int, _DWORD))(*(_DWORD *)v6 + 24))(v6, 0)` |
+| `CEffModel::UpdateFrame` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `CEffModel::UpdateFrame` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v16 + 20))(v16)` |
+| `CEffSParticle::UpdateFrame` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v2 + 4))( v2, *(_DWORD *)(*v4 + v6), *(_DWORD *)(*v4 + v6 + 4), 0)` |
+| `CEffgbParticle::UpdateFrame` | inline | `float` | 4 | non_class_hint | `(*(void ( **)(float *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)v6 + 4))( v6, *(_DWORD *)(*v9 + v11), *(_DWORD *)(*v9 + v11 + 4), 0)` |
+| `CGameData::Update` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_nSceneLoadParam + 4))(m_nSceneLoadParam)` |
+| `CGameData::Update` | inline | `char` | 8 | non_class_hint | `(*(void ( **)(char *, _DWORD, unsigned int))(*(_DWORD *)this->m_pGameObj + 8))( this->m_pGameObj, *(_DWORD *)&nVal.UIWnd, nVal.m_fontcolor.Color)` |
+| `CGameData::Update` | inline | `SceneObj` | 8 | self_arg_mismatch | `(*(int ( **)(SceneObj *, _DWORD, bool))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 8))( this->m_pSceneObjRef, *(_DWORD *)&nVal.UIWnd, v6 == 0)` |
+| `GRPinput::ProcessButtonHold` | inline | `char` | 24 | non_class_hint | `(*(void ( **)(char *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 406, 0)` |
+| `GRPinput::ProcessMouseInput` | inline | `char` | 24 | non_class_hint | `(*(void ( **)(char *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 547, 0)` |
+| `GeomNode::InitFromFile` | inline | `int` | 40 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v7 + 40))(v7, nVal)` |
+| `LineupUI::ProcessMouseInput` | inline | `char` | 24 | non_class_hint | `(*(void ( **)(char *, int, int, _DWORD))(*(_DWORD *)this + 24))(this, 1001, 822, 0)` |
+| `MiniGame2Scene::UpdateMiniGame2` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int))(*(_DWORD *)v3 + 20))(v3)` |
+| `MiniGame3::RenderWithTransform` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, _DWORD))(*(_DWORD *)LODWORD(this->x) + 16))(LODWORD(this->x), 0)` |
+| `MiniGame3::RenderWithTransform` | inline | `float` | 16 | self_arg_mismatch | `(*(void ( **)(float, _DWORD))(*(_DWORD *)LODWORD(y) + 16))(_pal3_coerce_f32(LODWORD(y)), 0)` |
+| `PalScript::SetIndex` | inline | `int` | 16 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)this[1] + 16))(this[1], nVal)` |
+| `RoleSystem::LoadRoleImage` | inline | `int` | 4 | non_class_hint | `(*(void ( **)(int, _DWORD, int, int, _DWORD, int, void *))(*(_DWORD *)v6 + 4))( v6, LODWORD(this->m_fScale), this->m_nImageIdx, 2, 0, 2, v7)` |
+| `ScreenEffectMgr::Create` | inline | `void` | 12 | non_class_hint | `(*(void ( **)(void *, _DWORD))(*(_DWORD *)this + 12))(this, 0)` |
+| `UIBigMap::LoadScene` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, 0)` |
+| `CCBUI::SetupAIWindow` | inline | `NPC` | 16 | no_vtables_declaration | `(*(void ( **)(NPC *, int, int *, CCBUI *, int))(*(_DWORD *)v4 + 16))( v4, g_nItemTypeBase[v2], &v101, this, v46)` |
