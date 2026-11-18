@@ -1,0 +1,94 @@
+{
+ "_doc": "标注层数据格式门禁审计 2026-11-18——三层门禁覆盖与漏洞",
+ "schema定义": {
+  "文件": "data/annotations/annotation_schema.json",
+  "覆盖范围": {
+   "structs_class": {
+    "类级required": [
+     "name",
+     "binary_size"
+    ],
+    "类级banned(退役)": [
+     "signature",
+     "sig",
+     "semantic_sig",
+     "alt_name",
+     "pending_adjudication",
+     "_verdicts",
+     "_naming",
+     "_misattrib_evidence",
+     "base_class"
+    ],
+    "methods_entry_banned": [
+     "signature",
+     "sig",
+     "alt_name",
+     "pending_adjudication",
+     "semantic_sig",
+     "semantic_name"
+    ],
+    "flags_vocabulary": [
+     "dtor",
+     "ctor",
+     "override",
+     "static",
+     "const",
+     "pure_virtual"
+    ],
+    "flags_rules": "dtor名形~+override_of必填+ctor名=类名",
+    "键形": "^0x[0-9a-f]{8}$",
+    "vtable_slot_banned": [
+     "sig"
+    ],
+    "vtable_slot_allowed": [
+     "addr",
+     "name",
+     "name_note",
+     "flags"
+    ]
+   },
+   "functions_json": {
+    "entry_required": [
+     "name"
+    ],
+    "banned_values": {
+     "name": "禁止含::"
+    },
+    "signature_banned_substrings": [
+     "= 0"
+    ],
+    "key_format": "^0x[0-9a-f]{8}$"
+   }
+  }
+ },
+ "三层检查时机": {
+  "①PreToolUse hook(实时)": {
+   "触发": "每次Write|Edit|Bash工具调用(annotations路径写入意图)",
+   "实现": ".claude/hooks/validate-annotations.py",
+   "覆盖": "对齐和重叠(structs)+地址格式(functions/globals)+必填字段",
+   "局限": "❌不查N16 schema(banned字段/flags词表/override_of) ❌不查N17地址唯一"
+  },
+  "②pre-commit git hook(提交时)": {
+   "触发": "git commit",
+   "实现": ".git/hooks/pre-commit → pipeline/hooks/pre-commit → python pipeline/cli.py check",
+   "覆盖": "check_annotations.py全量(含N16 schema+N17地址唯一+N15 ctor+N13a/c+C7-C10+真重复+claim+cxx)",
+   "局限": "⚠️ 可被--no-verify绕过(今天全部28个commit都用--no-verify跳过了!)"
+  },
+  "③手动check(随时)": {
+   "触发": "python pipeline/cli.py check",
+   "覆盖": "与②相同(单一真相源)",
+   "输出": "errors(硬失败)+warnings(advisory)"
+  }
+ },
+ "实际覆盖缺口": {
+  "①实时hook覆盖不足": "validate-annotations.py只查对齐/重叠/地址格式——不查schema的banned字段/flags词表/override_of——数据可在写入时就已违规",
+  "②pre-commit被频繁绕过": "今天29个commit全部--no-verify(基线48错误导致check FAIL→hook挡→绕过→门禁形同虚设)",
+  "③export层零覆盖": "N16只扫注解层, ida_structs.json(export产物)被T3改schema后无人报警(536错根因)",
+  "④跨文件碰撞零覆盖": "真重复assert只抓单头内; globals extern vs 类名碰撞=盲区(13类实证)",
+  "⑤消费端直读退役字段零覆盖": "grep化lint缺——unint/star-eating等三次炸点无预防机制"
+ },
+ "升硬建议": {
+  "A(最小修)": "①pre-commit不再--no-verify——但需先把基线48错误降为advisory(分账=基线台账advisory+新增硬失败); ②validate-annotations.py扩N16校验(实时拦截)",
+  "B(完整修)": "①N16扩export层扫描 ②globals碰撞断言 ③退役直读lint(pre-commit grep化) ④probe存警告码文本"
+ }
+}
