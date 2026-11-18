@@ -1,0 +1,109 @@
+{
+ "_doc": "decomp函数语义名全量普查 2026-11-18: 3513函数健康面3394(96.6%)+需治理119(3.4%)",
+ "总览": {
+  "总数": 3513,
+  "健康发射面": {
+   "member引用": 3132,
+   "semantic_free引用": 205,
+   "sub_N引用": 22
+  },
+  "需治理": {
+   "member孤立体": 136,
+   "semantic_free未引用": 4,
+   "mangled": 13,
+   "mechanical": 1
+  },
+  "孤立体拆分": {
+   "dtor族": 81,
+   "方法族": 55,
+   "方法族_语义可读": 46,
+   "方法族_灰色": 9
+  }
+ },
+ "mangled13清单": [
+  {
+   "name": "?CreateTextureWidget@UIScene@@QAEPAVgbVFileSystem@@HPAXPAV3@PBDD@Z",
+   "addr": "0x0043b060",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/CreateTextureWidget_UIScene_QAEPAVgbVFileSystem_HPAXPAV3_PBDD_Z_0043b060.json"
+  },
+  {
+   "name": "?_CalculateUV@_Texture_Info@@QAEPADPB@Z",
+   "addr": "0x0053fcf0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/CalculateUV_Texture_Info_QAEPADPB_Z_0053fcf0.json"
+  },
+  {
+   "name": "?LoadTextureSequence@CCBUI@@QAEPAVgbVFileSystem@@PAV3@D@Z",
+   "addr": "0x004413c0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/LoadTextureSequence_CCBUI_QAEPAVgbVFileSystem_PAV3_D_Z_004413c0.json"
+  },
+  {
+   "name": "?CreateParentData@TextureLibDataBase@@QAEPAVParent_Data@@PB@Z",
+   "addr": "0x0053fdd0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/CreateParentData_TextureLibDataBase_QAEPAVParent_Data_PB_Z_0053fdd0.json"
+  },
+  {
+   "name": "?SetElementVisible@UIBigMap@@QAEXPAVFILE@@PAV3@@Z",
+   "addr": "0x00539810",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/SetElementVisible_UIBigMap_QAEXPAVFILE_PAV3_Z_00539810.json"
+  },
+  {
+   "name": "?HandleInput@CCBControlWindow@@QAEPAVUIButton@@PAV3@@Z",
+   "addr": "0x0051ab60",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/HandleInput_CCBControlWindow_QAEPAVUIButton_PAV3_Z_0051ab60.json"
+  },
+  {
+   "name": "?SetTargetPos@CCBUI@@QAEXPAVgbVec3D@@PAV3@@Z",
+   "addr": "0x00442170",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/SetTargetPos_CCBUI_QAEXPAVgbVec3D_PAV3_Z_00442170.json"
+  },
+  {
+   "name": "?GetActionArrayEnd@Actor@@QAEPAV_WORD@@PAV3@PAF@Z",
+   "addr": "0x0053a080",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/GetActionArrayEnd_Actor_QAEPAV_WORD_PAV3_PAF_Z_0053a080.json"
+  },
+  {
+   "name": "?LoadFromFile@MainEquipUI@@QAEPAVOpenNULLFile@@PAV3@H@Z",
+   "addr": "0x004819a0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/LoadFromFile_MainEquipUI_QAEPAVOpenNULLFile_PAV3_H_Z_004819a0.json"
+  },
+  {
+   "name": "?LineMove@CCBUI@@QAEHPAVPOINT@@PAV3@@Z",
+   "addr": "0x0051a1d0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/LineMove_CCBUI_QAEHPAVPOINT_PAV3_Z_0051a1d0.json"
+  },
+  {
+   "name": "?CompareString@DealData@@QAEHPBPB@Z",
+   "addr": "0x004573c0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/CompareString_DealData_QAEHPBPB_Z_004573c0.json"
+  },
+  {
+   "name": "?CheckEndKey@TextureLib@@QAEHPBPB@Z",
+   "addr": "0x0053f500",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/CheckEndKey_TextureLib_QAEHPBPB_Z_0053f500.json"
+  },
+  {
+   "name": "?Method@CScreenMode@@QAEPAV_DWORD@@PAV3@@Z",
+   "addr": "0x0053f4c0",
+   "kind": "mangled",
+   "file": "asm/pal3/decomp/Method_CScreenMode_QAEPAV_DWORD_PAV3_Z_0053f4c0.json"
+  }
+ ],
+ "行动优先级": {
+  "P1": "mangled×13重命名(demangle可读名直接抄)",
+  "P2": "member孤立体语义可读46→头声明收编(declaration_only)",
+  "P3": "dtor族81+灰色9+_sdtor×4→dtor链遗留组立案",
+  "P4": "mechanical×1+SingletonThunk→编译器桩立案"
+ }
+}
