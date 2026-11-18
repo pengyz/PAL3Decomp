@@ -294,17 +294,18 @@
    "name": "GetCursorPos",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "LPPOINT",
-      "name": "lpPoint"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x00402310": {
    "name": "AcquireDevices",
@@ -835,17 +836,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pOut",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "void *pOut2",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXPAX): void(void *,void *); 原注解无"
   },
   "0x004021e0": {
    "name": "HandleDeviceInput",
@@ -891,17 +893,18 @@
    "name": "GetKeyState",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "short",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "unsigned short",
-      "name": "key"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(FG): int(unsigned short); 原注解无"
   },
   "0x004020e0": {
    "name": "Create",
@@ -957,13 +960,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x00402290": {
    "name": "SetCursorPos",

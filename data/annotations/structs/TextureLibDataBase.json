@@ -123,17 +123,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszName",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
   },
   "0x005400e0": {
    "name": "_GetItemNum",
@@ -143,13 +144,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pData",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(IPAX): unsigned int(void *); 原注解无"
   },
   "0x00540650": {
    "name": "GetLibInfo",

@@ -238,7 +238,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -252,7 +252,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_F950(??1/??_G析构族); decomp文件=UIButton_scalar_dtor_F950void_char_0043f950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F950(??1/??_G析构族); decomp文件=UIButton_scalar_dtor_F950void_char_0043f950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x0056ad64": {
    "name": "UIButton",

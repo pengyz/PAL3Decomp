@@ -100,21 +100,22 @@
    "name_source": "IDA语义分析 2026-10-31 批3-6",
    "name_note": "相机视锥可见性检测",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfTargetPos",
+      "type": "float *",
       "name": null
      },
      {
       "type": "char",
-      "name": "bNearVisible"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMD): int(float *,char); 原注解无"
   },
   "0x00420cd0": {
    "name": "FindNearest",

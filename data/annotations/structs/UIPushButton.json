@@ -139,17 +139,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pTemplate",
+      "type": "void *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nFlag"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXH): void(void *,int); 原注解无"
   },
   "0x00440dd0": {
    "name": "Update",
@@ -359,17 +360,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pnVal",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAHH): void(int *,int); 原注解无"
   },
   "0x00442480": {
    "name": "LoadTextureByName",
@@ -433,7 +435,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -447,7 +449,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_07A0(??1/??_G析构族); decomp文件=UIPushButton_scalar_dtor_07A0void_char_004407a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_07A0(??1/??_G析构族); decomp文件=UIPushButton_scalar_dtor_07A0void_char_004407a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x00442d50": {
    "name": "SetVisible",
@@ -478,7 +481,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -492,7 +495,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_sdtor_thunk(??1/??_G析构族); decomp文件=UIPushButton_sdtor_thunkvoid_char_004433a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_sdtor_thunk(??1/??_G析构族); decomp文件=UIPushButton_sdtor_thunkvoid_char_004433a0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x00442d20": {
    "name": "_sdtor_8",

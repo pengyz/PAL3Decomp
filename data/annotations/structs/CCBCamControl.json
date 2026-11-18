@@ -498,12 +498,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XI): void(unsigned int); 原注解无"
   },
   "0x0048e600": {
    "name": "ProcessRenderQueue",
@@ -558,13 +559,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x004ebf90": {
    "name": "ReadCameraDialog",
@@ -574,13 +576,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x005058e0": {
    "name": "SwitchEditorCamPos",
@@ -643,13 +646,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x004eb6f0": {
    "name": "Show",
@@ -660,47 +664,50 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x004eb720": {
    "name": "GetData_B720",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "LRESULT",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x004eb8d0": {
    "name": "GetData_B8D0",
    "name_source": "IDA语义分析 2026-11-01 批15",
    "name_note": "从 decomp 推断",
    "sig_model": {
-    "return": "LRESULT",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   }
  },
  "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）"

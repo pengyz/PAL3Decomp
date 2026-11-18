@@ -146,13 +146,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *msg",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAH): char(int *); 原注解无"
   },
   "0x0051d3f0": {
    "name": "Update_d3f0",
@@ -162,13 +163,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *deltatime",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAH): char(int *); 原注解无"
   },
   "0x0051d580": {
    "name": "IsPtOnFace",
@@ -233,48 +235,49 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nFaceIndex"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nPosIndex"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal5"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal6"
+      "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHHHHHHHHPAH): char(int,int,int,int,int,int,int,int,int *); 原注解无"
   },
   "0x0051d6d0": {
    "name": "RefreshFacePos",
@@ -391,7 +394,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   }
  },
  "vtables": [

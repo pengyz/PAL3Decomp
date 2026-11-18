@@ -750,17 +750,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int __formal",
+      "type": "unsigned int",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DID): char(unsigned int,char); 原注解无"
   },
   "0x00513060": {
    "name": "CombatUpdate",
@@ -862,13 +863,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char __formal",
+      "type": "char",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DD): char(char); 原注解无"
   },
   "0x00513430": {
    "name": "ProcDefence",
@@ -889,13 +891,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float __formal",
+      "type": "float",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XM): void(float); 原注解无"
   },
   "0x005136a0": {
    "name": "ProcProtect",
@@ -954,24 +957,25 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
-      "type": "char *pMsg",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pTitle",
+      "type": "char *",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": "uType"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPADI): int(char *,char *,unsigned int); 原注解无"
   },
   "0x00513fd0": {
    "name": "IsRoleWaitForFlee",
@@ -1066,12 +1070,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwThreadID"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HI): int(unsigned int); 原注解无"
   },
   "0x00514fe0": {
    "name": "PassCmdToThread",

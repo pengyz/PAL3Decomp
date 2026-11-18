@@ -1455,25 +1455,26 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pPos",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMHHH): int(float *,int,int,int); 原注解无"
   },
   "0x00413010": {
    "name": "UpdateRole",
@@ -1483,21 +1484,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAMHH): char(float *,int,int); 原注解无"
   },
   "0x00414a30": {
    "name": "PathFind",
@@ -1507,13 +1509,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTarget",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAM): int(float *); 原注解无"
   },
   "0x00416790": {
    "name": "UpdateAnimation",
@@ -1523,13 +1526,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x00416f10": {
    "name": "GetActiveRole",
@@ -1550,13 +1554,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pOut",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAM): int(float *); 原注解无"
   },
   "0x0041bbe0": {
    "name": "GetCount",
@@ -1593,17 +1598,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAMH): char(float *,int); 原注解无"
   },
   "0x00416220": {
    "name": "CheckMoveCollisionDist",
@@ -1613,13 +1619,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x004142e0": {
    "name": "NotifyMoveComplete",
@@ -1724,21 +1731,22 @@
    "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nFlag"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHH): int(int *,int); 原注解无"
   },
   "0x00412b60": {
    "name": "SetMoveTarget",
@@ -1748,17 +1756,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTargetPos",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nFlags"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMH): void(float *,int); 原注解无"
   },
   "0x00416550": {
    "name": "IsPathComplete",
@@ -1768,17 +1777,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pTargetPos",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nMode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMH): void(float *,int); 原注解无"
   },
   "0x00416620": {
    "name": "UpdateMovement",
@@ -1946,17 +1956,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "__int64",
-      "name": "tileXY"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nMode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHH): void(int,int); 原注解无"
   },
   "0x00413420": {
    "name": "StepAlongPath",
@@ -2038,13 +2049,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *nFlags",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x00416fe0": {
    "name": "RestoreMoveMode",
@@ -2054,13 +2066,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *nFlags",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x00417420": {
    "name": "UpdateTransform",
@@ -2149,17 +2162,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pnVal",
+      "type": "int *",
       "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHD): int(int *,char); 原注解无"
   },
   "0x00420a10": {
    "name": "IsTileInBounds",
@@ -2217,25 +2231,26 @@
    "name": "CheckMoveCollision",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *index",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPAMH): int(int *,float *,int); 原注解无"
   },
   "0x00421150": {
    "name": "IsTilePassable",
@@ -2360,13 +2375,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x0042e870": {
    "name": "ExecScriptDataIdx",
@@ -2390,16 +2406,17 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "void *pMatrixStack",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAX): void(void *); 原注解无"
   },
   "0x004132b0": {
    "name": "MoveToTileCheck",
@@ -2449,13 +2466,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x00417bc0": {
    "name": "StopAndResetPath",
@@ -2476,33 +2494,34 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "char *pszBuf2",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADHPADHMH): int(char *,int,char *,int,float,int); 原注解无"
   },
   "0x00419a20": {
    "name": "GetActorState",
@@ -2636,25 +2655,26 @@
    "name": "IsRoleInRange",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "index"
+      "name": null
      },
      {
-      "type": "int *pnVal",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAHH): int(int,int *,int); 原注解无"
   },
   "0x00421440": {
    "name": "SetRoleParam",
@@ -2665,24 +2685,25 @@
     "params": [
      {
       "type": "int",
-      "name": "index"
-     },
-     {
-      "type": "float *pfVal",
       "name": null
      },
      {
-      "type": "int *pnVal",
+      "type": "float *",
       "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHPAMPAHPAH): void(int,float *,int *,int *); 原注解无"
   },
   "0x004215b0": {
    "name": "AdvanceOnPath",
@@ -2692,29 +2713,30 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pResult",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "char *nFlag",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPADHPADH): int(int *,char *,int,char *,int); 原注解无"
   },
   "0x00421710": {
    "name": "ValidatePath",
@@ -2797,32 +2819,33 @@
     "params": [
      {
       "type": "char",
-      "name": "arg0"
-     },
-     {
-      "type": "int",
-      "name": "index"
-     },
-     {
-      "type": "char *pszBuf",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "char *pszBuf2",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
+     },
+     {
+      "type": "char *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HDHPADHPADH): int(char,int,char *,int,char *,int); 原注解无"
   },
   "0x00421d10": {
    "name": "BuildPathSegment",
@@ -2926,28 +2949,29 @@
     "params": [
      {
       "type": "int",
-      "name": "index"
-     },
-     {
-      "type": "float *pfVal",
       "name": null
      },
      {
-      "type": "float *pfVal2",
+      "type": "float *",
+      "name": null
+     },
+     {
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAMPAMHD): int(int,float *,float *,int,char); 原注解无"
   },
   "0x0040c9a0": {
    "name": "ForceStopRole",
@@ -2972,20 +2996,21 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nType"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "nMode"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
   },
   "0x00412c30": {
    "name": "SetPathWaypoint",
@@ -3062,17 +3087,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszAction",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nMode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADH): int(char *,int); 原注解无"
   },
   "0x004164e0": {
    "name": "IsPathMoving",
@@ -3160,17 +3186,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "__int16",
-      "name": "pData"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x00419030": {
    "name": "ResetPathParams",
@@ -3196,13 +3223,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x004198c0": {
    "name": "StartLinearMove",
@@ -3212,17 +3240,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pTargetPos",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nMode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAHH): void(int *,int); 原注解无"
   },
   "0x00419ae0": {
    "name": "NotifyAndSetMode6",
@@ -3250,17 +3279,18 @@
    "name": "AdvancePathStep",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAM): int(float *); 原注解无"
   },
   "0x0041aea0": {
    "name": "SetBlendMode",
@@ -3286,13 +3316,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x0041af50": {
    "name": "AllocPathPage",
@@ -3338,29 +3369,31 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszRoleName",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAD): void(char *); 原注解无"
   },
   "0x0041ba10": {
    "name": "InterpolateHeight",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAM): int(float *); 原注解无"
   },
   "0x0041bad0": {
    "name": "InitDefaultState",
@@ -3381,13 +3414,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfVal",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAM): int(float *); 原注解无"
   },
   "0x0041bd40": {
    "name": "ClearColors",
@@ -3764,24 +3798,25 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int *pnVal",
       "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAHPAH): int(int,int *,int *); 原注解无"
   },
   "0x005329a0": {
    "name": "HandleMsgDLL",
@@ -3861,13 +3896,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pfDir",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAM): void(float *); 原注解无"
   },
   "0x004161e0": {
    "name": "ScaleVector",
@@ -3875,20 +3911,21 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "float *pVec",
+      "type": "float *",
       "name": null
      },
      {
       "type": "float",
-      "name": "fScale"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMM): void(float *,float); 原注解无"
   },
   "0x004207d0": {
    "name": "LoadRoleImage",
@@ -3987,17 +4024,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pOut",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMH): void(float *,int); 原注解无"
   },
   "0x00417ac0": {
    "name": "SetState",
@@ -4221,7 +4259,8 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=0 (RET字节=硬证据) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→int __thiscall(int, unsigned int, int)"
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=0 (RET字节=硬证据) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→int __thiscall(int, unsigned int, int)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   }
  },
  "vtables": [

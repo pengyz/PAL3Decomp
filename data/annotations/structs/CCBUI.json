@@ -1094,57 +1094,59 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "stdcall",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "uMsg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004e1f70": {
    "name": "SettingsDialogProc",
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性",
    "sig_model": {
-    "return": "static int",
-    "cc": "stdcall",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "uMsg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004e24c0": {
    "name": "CommandEditDialogProc",
@@ -1154,29 +1156,30 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHHHHH): int(int *,int,int,int,int); 原注解无"
   },
   "0x004e3a20": {
    "name": "InitUI",
@@ -1333,25 +1336,26 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "msg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004e16f0": {
    "name": "PopulateSceneList",
@@ -1390,29 +1394,30 @@
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性",
    "sig_model": {
-    "return": "static int",
-    "cc": "stdcall",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "uMsg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004e2490": {
    "name": "DlgProcMain",
@@ -1422,25 +1427,26 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "msg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004e3780": {
    "name": "UpdateDebugStatus",
@@ -1491,42 +1497,44 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "LRESULT",
-    "cc": "cdecl",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hWnd"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
   },
   "0x004e53e0": {
    "name": "FormatCombatBuffer",
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "LRESULT",
-    "cc": "cdecl",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hWnd"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
   },
   "0x004e5490": {
    "name": "StartMagicThread",
@@ -1685,17 +1693,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x004eac10": {
    "name": "DlgProcInput",
@@ -1706,38 +1715,40 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x004ea4a0": {
    "name": "DlgProcEditor",
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "编辑器对话框过程（GetDlgItem+Dialog 操作）",
    "sig_model": {
-    "return": "LRESULT",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "a3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
   },
   "0x004aa9c0": {
    "name": "CreatePanelUI",
@@ -1900,29 +1911,30 @@
    "name_source": "IDA语义分析 2026-11-01 批10",
    "name_note": "相机配置对话框包装（调 DlgProcCameraConfig）",
    "sig_model": {
-    "return": "INT_PTR",
-    "cc": "stdcall",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "a2"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "a3"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "a4"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004eb260": {
    "name": "DlgProcCameraConfig",
@@ -2116,7 +2128,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   }
  },
  "base_size": 72,

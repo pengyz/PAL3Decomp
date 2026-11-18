@@ -34,16 +34,17 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "char *pInputState",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAD): void(char *); 原注解无"
   }
  },
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"

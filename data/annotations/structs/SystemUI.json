@@ -415,13 +415,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pStack",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAX): int(void *); 原注解无"
   },
   "0x004a7690": {
    "name": "~SystemUI",
@@ -579,7 +580,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x00421a40": {
    "name": "GetNoteItemData",
@@ -589,13 +591,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *item",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x004a7c40": {
    "name": "LayoutWidgets",
@@ -618,36 +621,37 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal5"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "a8"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHHHDHHH): char(int,int,int,char,int,int,int); 原注解无"
   },
   "0x004acc10": {
    "name": "InitSlotEffects",

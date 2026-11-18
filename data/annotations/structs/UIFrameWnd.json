@@ -72,29 +72,30 @@
    "name": "ProcessTimer",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "BOOL",
-      "name": "bEnable"
-     },
-     {
-      "type": "BOOL",
-      "name": "bReset"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nInterval"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nParam"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHH): int(int,int,int,int); 原注解无"
   },
   "0x00442540": {
    "name": "SetTextureByID",
@@ -334,13 +335,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBFiveNimbusWindow *thisa",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x0043bbc0": {
    "name": "Update",

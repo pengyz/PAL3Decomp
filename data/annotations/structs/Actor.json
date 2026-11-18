@@ -2501,13 +2501,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszSlotIdx",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x00537770": {
    "name": "LoadActions",
@@ -2594,21 +2595,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
-    "cc": "cdecl",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "char *String1",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *String2",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
   },
   "0x005392c0": {
    "name": "ActionEntry_Assign",
@@ -2676,17 +2678,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *String1",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPADPAD): char(char *,char *); 原注解无"
   },
   "0x00539af0": {
    "name": "RegisterAnim",
@@ -2696,17 +2699,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszName",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPADPAD): void(char *,char *); 原注解无"
   },
   "0x00539d60": {
    "name": "ClearAllActions",
@@ -2984,13 +2988,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pOut",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAH): void(int *); 原注解无"
   },
   "0x0053beb0": {
    "name": "GetActionCountEx",
@@ -3651,21 +3656,22 @@
    "name": "CheckSceneCollision",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *nFlag",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHH): int(int *,int); 原注解无"
   }
  },
  "vtables": [

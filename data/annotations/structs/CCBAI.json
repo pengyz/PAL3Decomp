@@ -381,13 +381,14 @@
       "name": "nRoleIndex"
      },
      {
-      "type": "int",
+      "type": "int *",
       "name": "bPlayerCmd"
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 参数类型判据: 体内*(_DWORD*)bPlayerCmd多点指针解引用+全族int*调用点(1230/1262/1280) → int*(原int=hexrays缺*渲染)。"
   },
   "0x004d9360": {
    "name": "RepeatPlayerLastOperation",
@@ -444,20 +445,21 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XIHH): void(unsigned int,int,int); 原注解无"
   },
   "0x004d9920": {
    "name": "CastNormalAttack",

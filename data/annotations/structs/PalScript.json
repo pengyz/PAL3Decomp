@@ -664,13 +664,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *dir",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x00431a60": {
    "name": "HasNext",
@@ -983,16 +984,17 @@
     "params": [
      {
       "type": "double",
-      "name": "nActionID"
+      "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XNPAH): void(double,int *); 原注解无"
   },
   "0x00410840": {
    "name": "InitParticleSlht",
@@ -1685,21 +1687,22 @@
    "name": "SetDialogTemplate",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "LPSTR",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CHAR *String1",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "CHAR *lpString2",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
   },
   "0x00522130": {
    "name": "LoadSceneConfig",
@@ -1709,13 +1712,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *filename",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAD): char(char *); 原注解无"
   },
   "0x00529440": {
    "name": "LoadResource",
@@ -1725,13 +1729,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *filename",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x00535710": {
    "name": "LoadVisNode",
@@ -1776,21 +1781,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHII): int(int *,unsigned int,unsigned int); 原注解无"
   },
   "0x00431390": {
    "name": "ResolveScope",
@@ -1838,13 +1844,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAD): void(char *); 原注解无"
   },
   "0x00431640": {
    "name": "SetWaitRange",
@@ -1855,16 +1862,17 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HII): int(unsigned int,unsigned int); 原注解无"
   },
   "0x00431780": {
    "name": "CompareBuffer",

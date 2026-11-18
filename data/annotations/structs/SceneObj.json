@@ -329,12 +329,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "deltatime"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DI): char(unsigned int); 原注解无"
   },
   "0x00453010": {
    "name": "_scalar_dtor_3010",
@@ -560,24 +561,25 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "int *p_DWORD2",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPAHH): int(int *,int *,int); 原注解无"
   },
   "0x00453a70": {
    "name": "InsertAt",

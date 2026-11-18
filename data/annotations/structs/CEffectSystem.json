@@ -404,7 +404,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -418,7 +418,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_5D50(??1/??_G析构族); decomp文件=CEffectSystem_scalar_dtor_5D50void_char_004c5d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_5D50(??1/??_G析构族); decomp文件=CEffectSystem_scalar_dtor_5D50void_char_004c5d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x004c5d80": {
    "name": "slot_1",
@@ -518,16 +519,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nIndex"
+      "name": null
      },
      {
-      "type": "unsigned char",
-      "name": "bVisible"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHE): void(int,unsigned int); 原注解无"
   },
   "0x004c5db0": {
    "name": "Activate",

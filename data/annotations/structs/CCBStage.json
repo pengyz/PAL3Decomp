@@ -589,40 +589,41 @@
     "params": [
      {
       "type": "int",
-      "name": "nameCrc"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     },
-     {
-      "type": "int",
-      "name": "nVal4"
-     },
-     {
-      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal5"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal6"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHHHPAHHH): int(int,int,int,int,int,int *,int,int); 原注解无"
   },
   "0x004fc8b0": {
    "name": "Procced",
@@ -1195,13 +1196,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "it",
-      "name": "n"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x004fee60": {
    "name": "HandleKeyFriend",
@@ -1931,13 +1933,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int *pdwVal",
+      "type": "unsigned int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAI): char(unsigned int *); 原注解无"
   },
   "0x00500840": {
    "name": "ExecuteRoleTask",
@@ -2278,15 +2281,15 @@
     "params": [
      {
       "type": "int",
-      "name": "a2"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
@@ -2297,7 +2300,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x00508930": {
    "name": "LoadTaskToEditor",
@@ -2310,20 +2314,21 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHHPAH): void(int,int,int *); 原注解无"
   },
   "0x00509130": {
    "name": "SetAlive",
@@ -2598,13 +2603,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *thisa",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x00459f80": {
    "name": "IsStateFlagSet",
@@ -2933,13 +2939,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *fp",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(NPAM): double(float *); 原注解无"
   },
   "0x0050a6f0": {
    "name": "ForceDelTaskByPFN",
@@ -3365,12 +3372,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwMsg"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(II): unsigned int(unsigned int); 原注解无"
   },
   "0x0050cde0": {
    "name": "ProcUseRecoverItem",
@@ -3399,17 +3407,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *name",
+      "type": "char *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPADH): void(char *,int); 原注解无"
   },
   "0x0040ccf0": {
    "name": "GetAlive",
@@ -3456,13 +3465,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *String1",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x0040dd80": {
    "name": "Reset",
@@ -3486,13 +3496,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *p_DWORD",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAX): int(void *); 原注解无"
   },
   "0x0040cc90": {
    "name": "Init",
@@ -3537,13 +3548,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "nFlag"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x00521e60": {
    "name": "DispatchUpdate",
@@ -3554,13 +3566,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "nFlag"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0050a4b0": {
    "name": "CheckViewTarget",
@@ -4094,16 +4107,17 @@
     "params": [
      {
       "type": "int",
-      "name": "thisa"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x0045a020": {
    "name": "ShowSlotPage1",
@@ -4117,16 +4131,17 @@
     "params": [
      {
       "type": "int",
-      "name": "thisa"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x0045a0a0": {
    "name": "ShowSlotPage2",
@@ -4140,16 +4155,17 @@
     "params": [
      {
       "type": "int",
-      "name": "thisa"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x0045a120": {
    "name": "ShowSlotPage3",
@@ -4163,16 +4179,17 @@
     "params": [
      {
       "type": "int",
-      "name": "thisa"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x0045a1a0": {
    "name": "ShowSlotPage4",
@@ -4186,16 +4203,17 @@
     "params": [
      {
       "type": "int",
-      "name": "thisa"
+      "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHH): char(int,int); 原注解无"
   },
   "0x004feef0": {
    "name": "sub_4FEEF0",
@@ -4208,13 +4226,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *thisa",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0051f0a0": {
    "name": "Update",

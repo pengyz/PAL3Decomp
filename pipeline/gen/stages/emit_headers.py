@@ -3421,6 +3421,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # Do NOT override with annotation pass-through — that would
             # reintroduce .h/.cpp type mismatches (C2556).
             # Type corrections must go through: annotate→SetType→IDB→re-export.
+            if not sig.strip():
+                # [空sig采信sig_model 2026-11-18] corpus无条目(仅注解声明)时,
+                #   旧路径sig=''→parse空→cc=''→is_static=True→'static int X();'
+                #   错形(GetRoleAI/GetRoleNum实证)。sig_model是注解真值, 渲染采信。
+                _sm_e = (((_ann_s or {}).get('methods') or {}).get(str(addr).lower()) or {})
+                _sm_t = sm_text(_sm_e) if isinstance(_sm_e, dict) else ''
+                if _sm_t:
+                    sig = _sm_t
             ret, cc, params, ret_right = parse_signature(sig)
 
             # [推断退役 2026-11-17] 发射唯一决策源=flags; 名字形态=检测器(assert)

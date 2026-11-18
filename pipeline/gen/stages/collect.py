@@ -290,7 +290,10 @@ def collect_functions(decomp_dir=None):
                     # 体文本定义行同步改名(stage1 重建按 ctx.method 搜定义行——
                     # 不同步则搜不到 → 保留旧名 → C2084 复活)
                     code = code.replace('%s::%s(' % (cls, method), '%s::%s(' % (cls, _an5), 1)
-                    code = code.replace('%s::%~%s(' % (cls, method), '%s::%~%s(' % (cls, _an5), 1)
+                    # [dtor行replace修复 2026-11-18] 原文'%s::%~%s('把%~当格式符
+                    #   →ValueError→except吞→method覆盖从未执行(P-A5全死, HideAll_1
+                    #   等全部注解正名失效C2039/C2673族根因)。%%转义+正则防注入:
+                    code = code.replace('%s::%%~%s(' % (cls, method), '%s::%%~%s(' % (cls, _an5), 1)
                     method = _an5
             except Exception:
                 pass

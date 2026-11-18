@@ -550,16 +550,17 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": null,
+    "cc": "thiscall",
     "params": [
      {
-      "type": "uchar",
+      "type": "int",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x004a4220": {
    "name": "Init",
@@ -660,13 +661,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "bVisible"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x0049fbe0": {
    "name": "UpdateDisplay",
@@ -733,7 +735,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x00484d20": {
    "name": "ShowPage",
@@ -818,13 +821,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "nTab"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0048a2f0": {
    "name": "SetSubTab",
@@ -834,13 +838,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "nTab"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0049e840": {
    "name": "SetSubTab2",
@@ -850,13 +855,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "nTab"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0049ff90": {
    "name": "NavigateSlots",
@@ -922,13 +928,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x0049ff60": {
    "name": "FindPrevSlot",
@@ -938,13 +945,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   }
  },
  "vtables": [

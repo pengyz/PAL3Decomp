@@ -312,13 +312,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *String",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x0053f680": {
    "name": "AddEntryFromConfig",
@@ -329,17 +330,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *lpString2",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *Delimiter",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPADPAD): char(char *,char *); 原注解无"
   },
   "0x004a6930": {
    "name": "LoadTexture",
@@ -349,13 +351,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszPath",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAD): char(char *); 原注解无"
   },
   "0x004a6960": {
    "name": "CreateFromFile",
@@ -409,7 +412,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -423,7 +426,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_F5C0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F5C0void_char_0053f5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F5C0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F5C0void_char_0053f5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x0053f550": {
    "name": "ClearAndJump",

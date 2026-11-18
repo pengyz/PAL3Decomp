@@ -593,13 +593,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pParams",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAX): int(void *); 原注解无"
   },
   "0x0041c630": {
    "name": "SetAsCurrent",
@@ -846,21 +847,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHHH): int(int *,int,int); 原注解无"
   },
   "0x0041d010": {
    "name": "SetupLerp",
@@ -871,24 +873,25 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal3"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHPAHHH): int(int,int *,int,int); 原注解无"
   },
   "0x0041d070": {
    "name": "SmoothTransition",
@@ -899,32 +902,33 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     },
-     {
-      "type": "int",
-      "name": "nVal4"
-     },
-     {
-      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal5"
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHHHHPAHH): int(int,int,int,int,int *,int); 原注解无"
   },
   "0x0041d5b0": {
    "name": "SetCamMode",
@@ -1157,13 +1161,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x0048ee30": {
    "name": "FindPrevValidSlot",
@@ -1173,13 +1178,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x004be910": {
    "name": "OnIdle",
@@ -1306,21 +1312,22 @@
    "_misattrib_evidence": "max_offset=207612>class_size=4088",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nParam"
+      "name": null
      },
      {
-      "type": "BOOL",
-      "name": "bFlag"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHH): int(int,int); 原注解无"
   },
   "0x0048d5d0": {
    "name": "CreateCameraUI",

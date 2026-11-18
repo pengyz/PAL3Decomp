@@ -211,7 +211,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -225,7 +225,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_6C80(??1/??_G析构族); decomp文件=RenderTarget3_scalar_dtor_6C80void_char_004b6c80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_6C80(??1/??_G析构族); decomp文件=RenderTarget3_scalar_dtor_6C80void_char_004b6c80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x004b6ca0": {
    "name": "OnEvent",

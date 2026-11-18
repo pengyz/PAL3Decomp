@@ -492,16 +492,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHI): void(int,unsigned int); 原注解无"
   },
   "0x00456280": {
    "name": "GetMouseScroll",
@@ -523,17 +524,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pStreams",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "unsigned __int8",
-      "name": "a2"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXH): void(void *,int); 原注解无"
   },
   "0x004593c0": {
    "name": "InitGameUI",
@@ -682,15 +684,15 @@
     "params": [
      {
       "type": "int",
-      "name": "a2"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
@@ -701,7 +703,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x00527f50": {
    "name": "InitSceneAudio",
@@ -1128,17 +1131,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pSound",
+      "type": "void *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nMode"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXH): void(void *,int); 原注解无"
   },
   "0x0053e500": {
    "name": "GetAudioManager",
@@ -1183,13 +1187,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszSceneName",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAD): void(char *); 原注解无"
   },
   "0x0053e720": {
    "name": "StopAllAudio",
@@ -1285,17 +1290,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pszBuf2",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
   },
   "0x0053ed70": {
    "name": "GetSoundCount",
@@ -1316,17 +1322,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "int *p_DWORD2",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAHPAH): void(int *,int *); 原注解无"
   },
   "0x0053ede0": {
    "name": "FreeSoundBuffer",
@@ -1336,17 +1343,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAXH): void(void *,int); 原注解无"
   },
   "0x0053edf0": {
    "name": "ComparePointers",
@@ -1380,21 +1388,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "int *p_DWORD2",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAHHPAH): void(int *,int,int *); 原注解无"
   },
   "0x0053f220": {
    "name": "UpdateRenderState",
@@ -1404,13 +1413,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *lpString",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAH): char(int *); 原注解无"
   },
   "0x00569320": {
    "name": "LoadAudioFromFile",

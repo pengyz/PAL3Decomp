@@ -332,24 +332,25 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "float *pPos",
+      "type": "float *",
       "name": null
      },
      {
-      "type": "void *pBounds",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "float *pDist",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMPAXPAM): int(float *,void *,float *); 原注解无"
   },
   "0x0041ea00": {
    "name": "CheckCollision2",
@@ -357,24 +358,25 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "float *pPos",
+      "type": "float *",
       "name": null
      },
      {
       "type": "int",
-      "name": "rolePtr"
+      "name": null
      },
      {
-      "type": "void *pBounds",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAMHPAX): int(float *,int,void *); 原注解无"
   },
   "0x0041ee60": {
    "name": "IsTransitioning",

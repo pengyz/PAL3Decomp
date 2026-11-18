@@ -128,21 +128,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *f",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "char *name",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *desc",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPADPAD): int(int *,char *,char *); 原注解无"
   },
   "0x0053ce90": {
    "name": "RegisterCallbacks",
@@ -208,13 +209,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *Source",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   }
  }
 }

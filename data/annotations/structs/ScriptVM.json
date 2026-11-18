@@ -171,17 +171,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "nFuncID"
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nArgCount"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HEH): int(unsigned int,int); 原注解无"
   },
   "0x004366c0": {
    "name": "GetObjectByID",
@@ -231,16 +232,16 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pData",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "unsigned char",
-      "name": "nType"
+      "type": "unsigned int",
+      "name": null
      },
      {
       "type": "int",
-      "name": "nCount"
+      "name": null
      },
      {
       "type": "int",
@@ -249,7 +250,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXEHH): int(void *,unsigned int,int,int); 原注解无"
   },
   "0x0042d670": {
    "name": "GetRolePosition",
@@ -259,13 +261,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "pData"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x00423880": {
    "name": "ProcessFrame",
@@ -287,13 +290,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "pData"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x0042c1a0": {
    "name": "IsRunning",

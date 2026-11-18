@@ -181,15 +181,15 @@
     "params": [
      {
       "type": "int",
-      "name": "hinstDLL"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "fdwReason"
+      "name": null
      },
      {
       "type": "int",
-      "name": "lpvReserved"
+      "name": null
      }
     ],
     "varargs": false,
@@ -200,7 +200,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x0047dd70": {
    "name": "_scalar_dtor_DD70",
@@ -213,7 +214,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -227,7 +228,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_DD70(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_DD70(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x0047e570": {
    "name": "_scalar_dtor_adjthunk",

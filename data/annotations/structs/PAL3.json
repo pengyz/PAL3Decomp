@@ -620,13 +620,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HINSTANCE",
-      "name": "hinst"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   },
   "0x004065f0": {
    "name": "CreateGfxWindow",
@@ -743,20 +744,21 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HKEY",
-      "name": "hKey"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "CHAR *lpSubKey",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHPAD): void(int,char *); 原注解无"
   },
   "0x004071c0": {
    "name": "EndWolf",
@@ -1217,13 +1219,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "pData"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x0047c2d0": {
    "name": "DispatchModeCommand",
@@ -1366,16 +1369,17 @@
    "lvars_source": " | L-VAR 2026-11-11d: ::UpdateWindow(HWND) 实参 + hgfxwnd=(void*)g_DrvInfo.hgfxwnd 源=CreateWindow 句柄, void* 系占位",
    "sig_model": {
     "return": "void",
-    "cc": "cdecl",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "HINSTANCE",
-      "name": "hInstance"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XH): void(int); 原注解无"
   }
  }
 }

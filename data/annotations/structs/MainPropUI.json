@@ -509,13 +509,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "nPageIdx"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x00491b40": {
    "name": "ShowPage",
@@ -673,13 +674,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x00497080": {
    "name": "FindNextValid",
@@ -689,13 +691,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pCounter",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x00490e70": {
    "name": "_scalar_dtor",
@@ -795,7 +798,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   }
  },
  "vtables": [

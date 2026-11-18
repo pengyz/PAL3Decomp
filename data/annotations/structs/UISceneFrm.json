@@ -136,15 +136,15 @@
     "params": [
      {
       "type": "int",
-      "name": "a2"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
@@ -155,7 +155,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x0045a490": {
    "name": "Render",
@@ -294,16 +295,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "unsigned char",
-      "name": "pData"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHE): int(int,unsigned int); 原注解无"
   },
   "0x00535630": {
    "name": "ShowAndRelease",
@@ -348,21 +350,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "float *pOutX",
+      "type": "float *",
       "name": null
      },
      {
-      "type": "float *pInX",
+      "type": "float *",
       "name": null
      },
      {
-      "type": "float *pInY",
+      "type": "float *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAMPAMPAM): void(float *,float *,float *); 原注解无"
   }
  },
  "vtables": [

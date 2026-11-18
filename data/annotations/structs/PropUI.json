@@ -662,15 +662,15 @@
     "params": [
      {
       "type": "int",
-      "name": "arg0"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "int",
-      "name": "dwVal"
+      "name": null
      }
     ],
     "varargs": false,
@@ -681,7 +681,8 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIH): int(int,unsigned int,int); 原注解无"
   },
   "0x0045b200": {
    "name": "ShowCategory0",
@@ -691,13 +692,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0045b320": {
    "name": "ShowCategory1",
@@ -707,13 +709,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0045b440": {
    "name": "ShowCategory2",
@@ -723,13 +726,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0045b560": {
    "name": "ShowCategory3",
@@ -739,13 +743,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0045b680": {
    "name": "ShowCategory4",
@@ -755,13 +760,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned __int8",
-      "name": "pData"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x0046dd10": {
    "name": "UpdateItemList",
@@ -835,13 +841,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned char",
-      "name": "pData"
+      "type": "unsigned int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HE): int(unsigned int); 原注解无"
   },
   "0x0046f160": {
    "name": "UpdateCaptions",
@@ -905,7 +912,7 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *Block",
+      "type": "void *",
       "name": null
      },
      {
@@ -919,7 +926,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_D4C0(??1/??_G析构族); decomp文件=PropUI_scalar_dtor_D4C0void_char_0046d4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_D4C0(??1/??_G析构族); decomp文件=PropUI_scalar_dtor_D4C0void_char_0046d4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXD): int(void *,char); 原注解无"
   },
   "0x0046f3d0": {
    "name": "GetInputFlag",

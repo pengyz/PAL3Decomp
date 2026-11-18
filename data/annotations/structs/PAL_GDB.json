@@ -48,13 +48,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "char *path",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAD): char(char *); 原注解无"
   },
   "0x00478e00": {
    "name": "PAL_GDB",
@@ -110,12 +111,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "ID"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HI): int(unsigned int); 原注解无"
   },
   "0x00479080": {
    "name": "GDB_GetRoleNum",
@@ -221,16 +223,17 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DID): char(unsigned int,char); 原注解无"
   },
   "0x0049c660": {
    "name": "SelectBestTarget",
@@ -318,12 +321,13 @@
     "params": [
      {
       "type": "unsigned int",
-      "name": "index"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HI): int(unsigned int); 原注解无"
   },
   "0x004e5500": {
    "name": "LoadConfigFromINI",
@@ -345,16 +349,17 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHPAH): char(int,int *); 原注解无"
   },
   "0x004e5710": {
    "name": "GetItemPrice",
@@ -445,41 +450,43 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "UINT",
-      "name": "msg"
+      "type": "unsigned int",
+      "name": null
      },
      {
-      "type": "WPARAM",
-      "name": "wParam"
+      "type": "int",
+      "name": null
      },
      {
-      "type": "LPARAM",
-      "name": "lParam"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HHIHH): int(int,unsigned int,int,int); 原注解无"
   },
   "0x004ec1f0": {
    "name": "ShowDetailPanel",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "LRESULT",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "HWND",
-      "name": "hDlg"
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HH): int(int); 原注解无"
   },
   "0x004ed8c0": {
    "name": "LoadSkillData",
@@ -645,24 +652,25 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *pnVal",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "int *p_DWORD2",
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHPAHPAHPAH): char(int,int *,int *,int *); 原注解无"
   },
   "0x004f6c60": {
    "name": "SearchItemLoop",
@@ -673,24 +681,25 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int *p_DWORD",
       "name": null
      },
      {
-      "type": "int *pnVal",
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DHHPAHPAH): char(int,int,int *,int *); 原注解无"
   },
   "0x004f6d30": {
    "name": "IsRoleSkillValid",
@@ -700,17 +709,18 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned int *pdwVal",
+      "type": "unsigned int *",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAIH): char(unsigned int *,int); 原注解无"
   },
   "0x004f6e80": {
    "name": "IterateInventory",
@@ -720,13 +730,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(DPAH): char(int *); 原注解无"
   },
   "0x004f6fb0": {
    "name": "BuildItemArray",

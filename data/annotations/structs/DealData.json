@@ -59,17 +59,18 @@
    "name": "LoadStoreConfig",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "LPSTR",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "CHAR *lpString2",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAD): int(char *); 原注解无"
   },
   "0x00457260": {
    "name": "DealData",

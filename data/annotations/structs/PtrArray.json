@@ -327,21 +327,22 @@
    "name": "Find",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pKey",
+      "type": "void *",
       "name": null
      },
      {
-      "type": "void *pResult",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAXPAX): int(void *,void *); 原注解无"
   },
   "0x00411290": {
    "name": "ParseStringPair",
@@ -376,13 +377,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *pData",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAX): int(void *); 原注解无"
   },
   "0x00433dc0": {
    "name": "CopyRange",
@@ -425,21 +427,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
-    "cc": "cdecl",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "int *p_DWORD",
+      "type": "int *",
       "name": null
      },
      {
-      "type": "int *p_DWORD2",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAHPAH): int(int *,int *); 原注解无"
   },
   "0x00431cb0": {
    "name": "Reset",

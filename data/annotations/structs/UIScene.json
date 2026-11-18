@@ -272,21 +272,22 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "BOOL",
-    "cc": "cdecl",
+    "return": "int",
+    "cc": "thiscall",
     "params": [
      {
-      "type": "char *String1",
+      "type": "char *",
       "name": null
      },
      {
-      "type": "char *pszBuf",
+      "type": "char *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPADPAD): int(char *,char *); 原注解无"
   },
   "0x0043a4c0": {
    "name": "LoadResource",
@@ -296,13 +297,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *path",
+      "type": "void *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XPAX): void(void *); 原注解无"
   },
   "0x0043fa00": {
    "name": "GetChildCount",
@@ -397,29 +399,30 @@
    "name": "SetupRenderClip",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(EHIIH): int(int,unsigned int,unsigned int,int); 原注解无"
   },
   "0x0043b060": {
    "name": "CreateTextureWidget",
@@ -457,25 +460,26 @@
    "name": "GetChildWidget",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "unsigned char",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
       "type": "unsigned int",
-      "name": "dwVal"
+      "name": null
      },
      {
       "type": "unsigned int",
-      "name": "dwVal2"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(EIIH): int(unsigned int,unsigned int,int); 原注解无"
   },
   "0x0043c7b0": {
    "name": "CreateScrollWidget",

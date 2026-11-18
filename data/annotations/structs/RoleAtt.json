@@ -360,13 +360,14 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "int *pnVal",
+      "type": "int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(HPAH): int(int *); 原注解无"
   },
   "0x00531010": {
    "name": "ApplySpeedFactor",
@@ -553,21 +554,22 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbVec3D",
-      "name": "pData"
+      "type": "int",
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal"
+      "name": null
      },
      {
       "type": "float",
-      "name": "fVal2"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHMM): void(int,float,float); 原注解无"
   },
   "0x00534ba0": {
    "name": "SetFightState",

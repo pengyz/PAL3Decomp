@@ -196,33 +196,34 @@
     "params": [
      {
       "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     },
-     {
-      "type": "int *p_DWORD",
       "name": null
      },
      {
       "type": "int",
-      "name": "nVal4"
+      "name": null
      },
      {
       "type": "int",
-      "name": "nVal5"
+      "name": null
+     },
+     {
+      "type": "int *",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
+   "name_note": " | 链约束统一20261117→void: UIWnd::Render基体子调用slot1虚调渲染void函数指针+无return; 24处直调零消费; 派生return result=尾部eax伪造(CGameData result=字段加载实证); override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "sig_note": "2026-11-18 mangle硬真值定谳(XHHHPAHHH): void(int,int,int,int *,int,int); 原注解无"
   },
   "0x004d5790": {
    "name": "SetTimeScale",
