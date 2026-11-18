@@ -3592,7 +3592,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if is_ctor:
                 if _is_opaque:
                     continue  # opaque type generates its own ctor body
-                decl = "    %s(%s);" % (cls_name, params)
+                # [ctor参数采信sig_model 2026-11-18] sig_model params=[](RET判据
+                #   retn裸=零参)时, 强制发无参ctor——decomp签名的按值参数是
+                #   hexrays鬼影(CCBStageCam Buffer实证, RET n=裸=零参)
+                _sm_addr = str(addr).lower() if isinstance(addr, str) else ''
+                _sm_entry = (((_annview.struct_by_class(cls_name) or {})
+                              .get('methods') or {}).get(_sm_addr) or {})
+                _sm_p = (_sm_entry.get('sig_model') or {}).get('params')
+                if sm_text(_sm_entry) and _sm_p == []:
+                    decl = "    %s();" % cls_name
+                else:
+                    decl = "    %s(%s);" % (cls_name, params)
             elif is_dtor:
                 # [生产者不相交化 2026-11-17] 槽位循环(:3188)是虚dtor唯一所有者
                 #   (_dtor_form0 分支已发 virtual ~Cls();)——本分支只发**非槽**dtor。
