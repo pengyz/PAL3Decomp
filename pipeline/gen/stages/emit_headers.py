@@ -3510,6 +3510,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             # Strip register annotations
             # ★ vtable 槽位方法必须 virtual（2026-09-25）
             _addr_int_vt = int(addr, 16) if isinstance(addr, str) else addr
+            # [sig_model参数采信 2026-11-18] 方法循环params来自decomp签名解析
+            #   (hexrays渲染), 但sig_model params是注解层真值——当sig_model有
+            #   非pending参数时, 参数个数采信sig_model(修C2660参数个数不匹配族)
+            _sig_params_count = None
+            _sm_e2 = (((_annview.struct_by_class(cls_name) or {}).get('methods') or {}).get(str(addr).lower() if isinstance(addr, str) else addr) or {})
+            _sm2 = _sm_e2.get('sig_model') or {} if isinstance(_sm_e2, dict) else {}
+            if _sm2 and not _sm2.get('pending') and _sm2.get('params') is not None:
+                _sig_params_count = len(_sm2['params'])
             _is_vt_method = _addr_int_vt in _vtable_addr_order
             if _is_vt_method:
                 is_static = False  # vtable 方法不可能是 static
@@ -3524,6 +3532,12 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                                    or param_list[0].startswith(cls_name + ' ')):
                     param_list = param_list[1:]
                 params = ', '.join(param_list)
+                # [sig_model参数采信 2026-11-18] sig_model有非pending参数时，
+                #   参数个数采信sig_model(修正decomp签名解析的参数个数偏差)
+                if _sig_params_count is not None:
+                    _cur_pl = split_params(params) if params else []
+                    if len(_cur_pl) != _sig_params_count and len(_cur_pl) > _sig_params_count:
+                        params = ', '.join(_cur_pl[:_sig_params_count])
 
             # Fix invalid parameter names (starting with digit or 'this' keyword)
             if params:
