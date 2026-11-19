@@ -1,0 +1,21 @@
+{
+ "_doc": "X族定案 2026-11-20: 0x411ca0/0x411bd0 Object→Role 归属重裁",
+ "evidence": [
+  "0x411CA0 写三表 [esi]=0x56A9BC/[esi+0x38]=0x56A9B0/[esi+0x40]=0x56A9A4",
+  "三表偏移 0/0x38/0x40 与 Role bases [Object@0,PalScriptWaitObj@56,GlowObj@64] 精确对齐",
+  "0x411CA0 访问 0x2A8 (Role 8704B 装得下 / Object 56B 装不下)",
+  "0x411CA0 调 0x412680=PalScript::DestroyScript (PalScript.json 在案)",
+  "0x411BD0=??_G标准形调0x411CA0; 主表0x56A9BC slot0=0x411BD0"
+ ],
+ "moved": {
+  "0x00411ca0": "Object→Role (~Role complete, 定义载体)",
+  "0x00411bd0": "Object→Role (~Role deleting, declaration_only)"
+ },
+ "pending": [
+  "0x411b80 = Role 第三基表(0x56A9CC, Role.json vtables 已登记) slot0 ??_G —— 认领需先解 N18-MI 多 deleting mangled 撞名(与 0x411bd0 同形 ??_GRole@@...)",
+  "0x411bb0 = GameObject 表类(0x56A9C0) ??_G —— GameObject 独立类建档待考",
+  "Role.json 0x41be30 ~Role deleting 挂 Glow 表 slot2 —— 槽位归属待重审",
+  "表拓扑: 0x56A9A4(Glow)/0x56A9B0(PSWO)/0x56A9BC(Object基)/0x56A9C0(GameObject)/0x56A9CC(Role第三基) 五表族, Role.json vtables 仅登记 1 张",
+  "0x4AF760 三表共享空槽(slot_unk_f760) —— 独立虚函数同实现, 归属保持"
+ ]
+}

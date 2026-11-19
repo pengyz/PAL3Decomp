@@ -20,38 +20,7 @@
    }
   }
  },
- "vtables": [
-  {
-   "addr": "0x0056a9c0",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00411bb0",
-     "name": "_scalar_dtor_1bb0",
-     "flags": [
-      "dtor"
-     ],
-     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
-    },
-    {
-     "addr": "0x0055434f"
-    },
-    {
-     "addr": "0x004af760",
-     "name": "UpdateFrame"
-    },
-    {
-     "addr": "0x00411b80",
-     "name": "_scalar_dtor_1b80",
-     "flags": [
-      "dtor"
-     ],
-     "name_note": "flags移槽 2026-11-18 T1: 条目退役(N17唯一所有者), dtor身份=槽位契约本身(虚表槽dtor位=MSVC律)"
-    }
-   ],
-   "source": "[vtable 100 认领续 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=Role ctor +114/+672/+697 三写（MI 链第三子对象=根）②被调用者面=Object::Update(0x4AF760 共享)/FatalExit 桩 ③成员访问面=写表回基桩 0x411BB0/0x411B80 ④类归属面=Role 层级根基（0x56A9A4 Role/0x56A9B0 ScriptObj:base/0x56A9C0 根）⑤交互模式面=MI 构造链根初始化 ⇒ **游戏对象根基**（虚 Update/终止接口）；evidence=[Role ctor 三写,槽 0x4AF760 共享 Object::Update,回基桩体字节] confidence=85"
-  }
- ],
+ "vtables": [],
  "_size_note": "bs=4 几何最小界（根 vptr 位）；MI 根实际占位随宿主布局，真身锚挂账",
  "bases": [
   {
@@ -60,5 +29,6 @@
   }
  ],
  "bases_note": "继承证据(slot指纹): 表slot2=0x4af760=Object slot2 UpdateFrame精确指纹; G2审计恢复",
- "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查"
+ "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查",
+ "_vtables_removed": "X族定案二段20261120: 0x56A9C0=Role 主表(GameObject 原生表被唯一派生 override 合并) → Role.json vtables; GameObject=4B vptr-only 根基类"
 }

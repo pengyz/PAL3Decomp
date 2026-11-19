@@ -310,6 +310,49 @@
     }
    ],
    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x411900(Role::Role)@+101/+624/+649 三写自证（Role MI 第三表；ctor 已注册 Role::Role ✓ 解锁）"
+  },
+  {
+   "addr": "0x0056a9c0",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00411bb0"
+    },
+    {
+     "addr": "0x0055434f"
+    },
+    {
+     "addr": "0x004af760",
+     "name": "UpdateFrame"
+    },
+    {
+     "addr": "0x00411b80"
+    }
+   ],
+   "source": "X族定案二段20261120: Role 主表 (0x411CA0 写表/0x411BB0 写表直证; 原 GameObject/Object 登记转移)"
+  },
+  {
+   "addr": "0x0056a9bc",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00411bd0"
+    },
+    {
+     "addr": "0x00411bb0"
+    },
+    {
+     "addr": "0x0055434f"
+    },
+    {
+     "addr": "0x004af760",
+     "name": "UpdateFrame"
+    },
+    {
+     "addr": "0x00411b80"
+    }
+   ],
+   "source": "X族定案二段20261120: Role Object基表 (0x411CA0 写表/0x411BB0 写表直证; 原 GameObject/Object 登记转移)"
   }
  ],
  "methods": {
@@ -529,6 +572,99 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00411ca0": {
+   "name": "~Role",
+   "source": "X族定案20261120(原Object盗名): 三基表偏移0/0x38/0x40与bases[Object@0,PalScriptWaitObj@0x38,GlowObj@0x40]精确对齐+调PalScript::DestroyScript(0x412680)+访问0x2A8<8704B | 旧IDB名_PalScript=早期猜测,表偏移证据推翻",
+   "evidence_level": "binary_ctor_write_tables",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ]
+  },
+  "0x00411bd0": {
+   "name": "~Role",
+   "source": "X族定案20261120: 调??1Role(0x411ca0)+test flags&1+operator delete+ret 4=??_G标准形; 主表0x56A9BC slot0(slot0律) ⇒ ??_GRole(Object基表视角)",
+   "evidence_level": "binary_ctor_write_tables",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "declaration_only": true
+  },
+  "0x00411bb0": {
+   "name": "~Role",
+   "source": "X族定案二段20261120: MI 删除析构 主表0x56A9C0 slot0 内联 形态 (写0x56a9c0)——反汇编写表直证; decl_only=织入物 VC6 自生",
+   "evidence_level": "binary_ctor_write_tables",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "declaration_only": true
+  },
+  "0x00411b80": {
+   "name": "~Role",
+   "source": "X族定案二段20261120: MI 删除析构 第三基表0x56A9CC slot0 形态 (写0x56a9cc)——反汇编写表直证; decl_only=织入物 VC6 自生",
+   "evidence_level": "binary_ctor_write_tables",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "declaration_only": true
+  },
+  "0x004af760": {
+   "name": "UpdateFrame",
+   "source": "X族定案二段20261120: Role 主表 0x56A9C0 slot3 (GameObject 表登记 slot2 name=UpdateFrame 迁移); 空函数体, 三表共享实现",
+   "evidence_level": "binary_vtable_slot",
+   "sig_model": {
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
