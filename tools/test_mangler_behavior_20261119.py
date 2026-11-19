@@ -122,20 +122,19 @@ def l2_grammar(cls, meth, out, deleting=False):
             errs.append('ctor 应 ??0 前缀: %r' % out)
         return errs
     if meth.startswith('~'):
-        want = '??_G' + '@'.join(reversed(cls.split('::'))) + '@@UAEPAXI@Z' if deleting else None
         if deleting:
-            if not out.startswith('??_G'):
+            if not out or not out.startswith('??_G'):
                 errs.append('deleting 应 ??_G 前缀: %r' % out)
-        elif not out.startswith('??1'):
+        elif not out or not out.startswith('??1'):
             errs.append('dtor 应 ??1 前缀: %r' % out)
-        if '@' not in out or (base + '@') not in out:
+        if out and ('@' not in out or (base + '@') not in out):
             errs.append('类链缺失: %r' % out)
         return errs
     if re.match(r'^(_s(dtor|calar_dtor)(_\d+)?)$', meth):
         if not out.startswith('??_G'):
             errs.append('_sdtor 形应 ??_G 前缀: %r' % out)
         return errs
-    if not out.startswith('?') or out.startswith('??'):
+    if not out or not out.startswith('?') or out.startswith('??'):
         errs.append('常规方法应 ? 单前缀: %r' % out)
     if (base + '@') not in out:
         errs.append('类链缺失: %r' % out)

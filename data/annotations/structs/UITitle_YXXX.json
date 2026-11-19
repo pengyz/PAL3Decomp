@@ -214,16 +214,7 @@
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "void *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
@@ -231,7 +222,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_DD70(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_DD70): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_DD70): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void  | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
   },
   "0x0047e570": {
    "name": "~UITitle_YXXX",

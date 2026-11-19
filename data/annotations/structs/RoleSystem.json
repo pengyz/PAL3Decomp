@@ -4212,23 +4212,15 @@
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_0430(??1/??_G析构族); decomp文件=RoleSystem_sdtor_2_00420430 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0430(??1/??_G析构族); decomp文件=RoleSystem_sdtor_2_00420430 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
   },
   "0x00420270": {
    "name": "~RoleSystem",

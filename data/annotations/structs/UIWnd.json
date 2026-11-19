@@ -212,12 +212,7 @@
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal1"
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
@@ -225,7 +220,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~UIWnd(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~UIWnd(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
   },
   "0x00445d20": {
    "name": "MoveToAbsolute",
@@ -269,23 +265,15 @@
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "void *Block",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": "a2"
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_sdtor_14(??1/??_G析构族); decomp文件=sdtor_14_0044a7d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_sdtor_14(??1/??_G析构族); decomp文件=sdtor_14_0044a7d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "sig_note": " | [params清零 2026-11-19] complete dtor 恒无参(VC6规则集: ??1Cls@@QAE@XZ); 语料体无删尾=非deleting形; params残留系hexrays对旧IDB名的渲染伪影, 清零。"
   },
   "0x00445b90": {
    "name": "Create",

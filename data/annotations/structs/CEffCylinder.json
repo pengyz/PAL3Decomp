@@ -634,12 +634,7 @@
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
@@ -647,7 +642,8 @@
     "dtor"
    ],
    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离",
-   "declaration_only": true
+   "declaration_only": true,
+   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
   }
  },
  "vtables": [

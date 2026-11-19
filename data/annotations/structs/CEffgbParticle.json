@@ -261,19 +261,15 @@
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,char) 渲染一致。 | [撤销deleting 2026-11-19·复核P0-1] 体无 operator delete(this) 删尾——v1 params==1 判据误标(判据自相矛盾案), 撤销; 归属/形态疑点挂账。"
+   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,char) 渲染一致。 | [撤销deleting 2026-11-19·复核P0-1] 体无 operator delete(this) 删尾——v1 params==1 判据误标(判据自相矛盾案), 撤销; 归属/形态疑点挂账。",
+   "sig_note": " | [params清零 2026-11-19] complete dtor 恒无参(VC6规则集: ??1Cls@@QAE@XZ); 语料体无删尾=非deleting形; params残留系hexrays对旧IDB名的渲染伪影, 清零。"
   },
   "0x004ceb60": {
    "name": "CreateInstance",
