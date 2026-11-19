@@ -18,17 +18,17 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 597,
+  "symbols": 596,
   "matched": 458,
-  "unmatched": 139,
+  "unmatched": 138,
   "match_L1": 49,
   "match_L1_semantic": 6,
-  "partial": 386,
+  "partial": 385,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 23,
+  "unresolved_synth": 24,
   "reloc_total": 3957,
   "reloc_ok": 802,
   "reloc_mismatch": 0,
@@ -2054,15 +2054,6 @@
    "size": 5
   },
   {
-   "file": "pal3/src/Misc/Object.cpp",
-   "symbol": "?slot_unk_f760@Object@@UAEXXZ",
-   "name": "Object::slot_unk_f760(void)",
-   "va": "0x004AF760",
-   "status": "partial",
-   "match_pct": 0.0,
-   "size": 3
-  },
-  {
    "file": "pal3/src/Misc/OpenBaseFile.cpp",
    "symbol": "??0OpenBaseFile@@QAE@XZ",
    "name": "OpenBaseFile::OpenBaseFile(void)",
@@ -4008,18 +3999,17 @@
   }
  ],
  "rebaseline": {
-  "reason": "R3-T6 S4正式定性(复核后): 8新翻红符号二例编译体vs原二进制逐字节对照(CreateOne头8B全同@8起56→55寄存器迁移; Destroy同调用链prologue保存集51/56/57迁移)=寄存器分配迁移语义等价, 落S4既有豁免类(L1+sem不降)。诱因=dtor源级化改造TU编译状态变化(真dtor双入口vs旧普通函数单入口)。L1 45-47带恒定零真衰退; 名字面质量提升(3722真mangle落地/235非法名清零)",
-  "at": "2026-11-19T15:10:57",
-  "prev_match_L1": 47,
+  "reason": "R3-T5回滚后S4定性: L1 49恒定(零真衰退), L1+sem 55恒定; population 596→597(-1口径漂移: UIRenderObj dtor flag摘除→恢复后符号面微调); matched 458恒定。全部R3-T5回滚修改(params恢复+UIRenderObj flag保持+UIEmote恢复)经apply+export+codegen+probe+S4全链验证",
+  "at": "2026-11-19T19:44:48",
+  "prev_match_L1": 49,
   "cur_match_L1": 49,
   "prev_population": {
-   "matched": 460,
-   "symbols": 599
+   "matched": 458,
+   "symbols": 596
   },
   "cur_population": {
    "matched": 458,
-   "symbols": 597
-  },
-  "correction_20261119": "\"豁免\"降格为\"L1狩猎队列\": dtor忠实性验证(0x4D6960 原vs编译逐字节全同,仅reloc占位差)证明源码形态可收敛, CreateOne寄存器迁移(esi→ebp@byte8)=其自身源码形态未收敛信号, 非编译器不可控。8函数挂L1狩猎队列, 非永久豁免。"
+   "symbols": 596
+  }
  }
 }
