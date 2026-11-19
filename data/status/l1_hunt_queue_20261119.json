@@ -73,5 +73,25 @@
    "va": "0x4D6960",
    "note": "C3DSpark dtor: 编译??1 vs 原二进制逐字节全同(仅reloc)——收敛可行性自证"
   }
- ]
+ ],
+ "tu_split_design": {
+  "_doc": "TU 拆分方案设计简报 2026-11-19（R4 前置决策）",
+  "key_insight": "TU 边界在最终二进制不留痕迹(同镜像调用恒 e8 直调)——唯一可观测效应=内联行为本身 ⇒ 边界重建=从内联证据反推",
+  "evidence_method": [
+   "①全量 call graph(idalib 提取 e8/e9 目标)——现 call_graph.json 仅骨架1节点, 需重建",
+   "②内联证据: 编译 obj 体含 callee 体模式(body containment)⇒同 TU 铁证; 原二进制对照排除(原体未内联=跨TU或超阈值)",
+   "③VC6 /Ob2 语义: 同 TU 定义+体量低于阈值才自动内联 ⇒ 观测到内联=强同TU证据, 未观测=弱证据(可能同TU但超阈值)"
+  ],
+  "options": {
+   "A_战术": "逐 callee auto_inline(off)（T90 机制）——零结构改动; 风险=原项目曾内联该 callee 的别处函数会破字节(需 ② 反查)",
+   "B_根本": "TU 拆分还原原项目布局——跨 TU 天然不可内联; 代价=codegen 布局重排+发射路径改造",
+   "C_混合": "②证据强处 B, 尾部 A——推荐"
+  },
+  "decision_points": [
+   "D1: 原 callee 内联史普查(②)——决定 A/B/C 选择面",
+   "D2: codegen 布局改造量(emit_cpp 多 TU 输出)",
+   "D3: S4 基线影响(拆分后全量重对比)"
+  ],
+  "queue_ref": "CreateOne 案: 编译 274B(含内联 callee 体) vs 原 63B(3×e8 直调)"
+ }
 }
