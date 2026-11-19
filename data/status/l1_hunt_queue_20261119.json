@@ -115,5 +115,16 @@
     "note": "107B, 待查"
    }
   ]
+ },
+ "structural_blocker": {
+  "_doc": "TU 合并墙定谳 2026-11-19: UISystem::Destroy 首猎确认——原体 37B 紧凑 3-call + 循环 = callee 跨 TU 不可内联; 编译体更长 = callee 同 TU 被 /Ob2 内联扩张。\"可狩猎\"队列清零: 所有 L1 猎物均撞 TU 合并墙。",
+  "verdict": "TU 拆分(或 auto_inline 机制)是 L1 收敛的前置条件, 非可选优化",
+  "evidence": "原体 3×e8 外部调 + 紧凑循环(37B); 编译体同址调用被内联扩张(更长)",
+  "options": {
+   "A": "全局 auto_inline(off) 包裹所有被内联 callee——逐 callee 裁定量大",
+   "B": "TU 拆分还原原项目 .cpp 划分——结构性解, 需 codegen 布局改造",
+   "C": "VC6 /Ob1 替代 /Ob2(仅 inline 标记的函数内联)——最小改动, 需验证原二进制编译旗标(可能是 /Ob1 非 /Ob2!)"
+  },
+  "recommended_next": "验证原二进制编译旗标是否 /Ob1——若原项目用 /Ob1 (仅显式 inline 内联), 则我们的 /Ob2 是过度内联的根因, 改旗标即可清墙, 零源码改动"
  }
 }
