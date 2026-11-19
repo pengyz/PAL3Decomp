@@ -1,0 +1,42 @@
+{
+ "til_type_count": 49114,
+ "CEffectSystem": {
+  "size": 360,
+  "expected": 360,
+  "size_ok": true
+ },
+ "C3DSpark": {
+  "size": 15920
+ },
+ "UIWnd": {
+  "size": 68
+ },
+ "CEffMgr": {
+  "size": 43312
+ },
+ "gbMatrixStack": {
+  "size": 16
+ },
+ "sg_emitter": {
+  "size": 32088
+ },
+ "fn_CEffectSystem::ctor": {
+  "name": "??0CEffectSystem@@QAE@H@Z",
+  "has_tinfo": true,
+  "type": "signed __int32 *__thiscall(CEffectSystem *__hidden this, signed __int32)"
+ },
+ "fn_C3DSpark::C3DSpark": {
+  "name": "??0C3DSpark@@QAE@XZ",
+  "has_tinfo": true,
+  "type": "C3DSpark *__thiscall(C3DSpark *__hidden this)"
+ },
+ "fn_C3DSpark::CreateOne": {
+  "name": "?CreateOne@C3DSpark@@QAEXHHH@Z",
+  "has_tinfo": true,
+  "type": "void __thiscall(C3DSpark *__hidden this, signed __int32, signed __int32, signed __int32)"
+ },
+ "decompile_CEffectSystem::ctor": "signed __int32 *__thiscall CEffectSystem::CEffectSystem(CEffectSystem *this, signed __int32 nVal)\n{\n  gbTexture *v3; // eax\n  signed __int32 *result; // eax\n  float ev; // ecx\n  char pExceptionObject[1024]; // [esp+8h] [ebp-800h] BYREF\n  char ArgList; // [esp+408h] [ebp-400h] BYREF\n\n  v3 = (gbTexture *)(*(int (__thiscall **)(_DWORD, signed __int32))(**(_DWORD **)dword_DE9384 + 8))(\n                      *(_DWORD *)dword_DE9384,\n                      nVal);\n  LODWORD(this[682].m_DefaultUVSet[15].ev) = v3;\n  gbTexture::LoadTexture(v3, 1);\n  result = (signed __int32 *)operator new(0x44u);",
+ "decompile_CEffectSystem::ctor_degraded": true,
+ "decompile_C3DSpark::C3DSpark": "C3DSpark *__thiscall C3DSpark::C3DSpark(C3DSpark *this)\n{\n  int v2; // ebx\n  gbGeomQuad *m_GeomQuad; // edi\n  gbTexture *v4; // eax\n  gbTextureArray *v5; // eax\n  gbTexture *m_pRedBig; // ecx\n  gbTexture *v7; // eax\n  gbTextureArray *v8; // eax\n  gbTexture *m_pRed16; // ecx\n  gbTexture *v10; // eax\n  gbTextureArray *v11; // eax\n  gbTexture *m_pGreen16; // ecx\n  gbTexture *v13; // eax",
+ "decompile_C3DSpark::C3DSpark_degraded": false
+}

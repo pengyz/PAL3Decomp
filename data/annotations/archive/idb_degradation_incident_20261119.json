@@ -1,0 +1,40 @@
+{
+ "_doc": "S4 L1 49→43 事件结报 2026-11-19 深夜——'IDB退化'假说证伪后的最终定谳: 积债显形。",
+ "incident": {
+  "症状": "总错 1085→1259 / S2 103→99 / S4 L1 49→43 / matched 458→426; probe 新失败 6 单元",
+  "时间线": "19:45 rebaseline 全链 GOOD → 20:45 编排侧 run A 后语料状态转换 → B/C 臂逐字节稳定复现",
+  "棘轮": "S4 棘轮正确拒绝推进并还原 baseline+detail (regressed 明细在 data/status/archive/s4_diff_detail_regressed_20261119T211826.json)"
+ },
+ "final_verdict": {
+  "真相": "无当夜触发器。19:44 GOOD 读数测量的是部分陈旧语料(export 未全量重写, 旧文件盖住积压债务); run A 完成全量重渲, 一次性显形 5+ 族积压债。B/C 全量导出=稳定复现。",
+  "证伪记录": [
+   "IDB til 审计: CEffectSystem 360B=注解精确值/函数签名正确 → IDB 核心健康, 无'被打坏'",
+   "清 saved user lvars 双阴性(A/B 案渲染零变化) → 退化不在 lvars",
+   "同 VA 双文件普查 0 组 → 无陈旧文件混合",
+   "export 前后 IDB 哈希不变(4272b259697effa6) → export 无罪",
+   "CreateOne 干净对照: 干净 sig_model → 类限定名+语义参数名渲染 → IDB 是混合态(健康函数一直健康)"
+  ],
+  "诚实保留": "19:4x export 部分完成无法直接证明(日志已覆盖); 但全部独立证据收敛于此解释, 且它可解释每一个症状"
+ },
+ "damage_families": [
+  {"族": "Blocka 半剥离", "根因": "毒 sig_model('void *Block' 参数名泄漏进 type) → apply 设毒 tinfo → hexrays 渲染毒参名 → 4c段名字匹配失配", "修复": "已修——59 条虚构参清除(sem_conv_r4_dtor_sig_poison) + stage1 结构形态剥离(test_stage1_blocka_strip 16/16)", "状态": "CEffectSystem.cpp 已复活"},
+  {"族": "C2197 +212 裸槽调用", "根因": "gbMatrixStack=16B 无 vptr 类(C式函数指针派发表), FF 15 绝对间接调用 call [0x56A578] = 指针调用是正确源级渲染; 断点=codegen 发射指针声明缺 (*) 形( 'void __thiscall(...) Rotate = {0};' 非法)", "修复": "挂账——需独立战役建模 thiscall 函数指针在 VC6 源的表达+字节匹配路径", "状态": "挂账"},
+  {"族": "C2084 Object 双 dtor", "根因": "0x411ca0(16:19 终裁归 Object complete dtor) 与真 Object dtor 都渲染 ~Object → 双定义", "修复": "归属债四案裁决(??1/??_G 分配)", "状态": "挂账(已有债务)"},
+  {"族": "ObjectCamera '@'", "根因": "callee 名='??1ObjectCamera@@QAE@XZ_0' mangled 名当标识符发射——N18 名槽违规", "修复": "N18 名形修复", "状态": "挂账(已有债务)"},
+  {"族": "ArraySlots C2440 / HideAll_11 C2065", "根因": "同类毒面(名/型退化渲染)", "修复": "随上述战役收口", "状态": "挂账"}
+ ],
+ "fixes_landed": [
+  "pipeline/gen/stages/stage1_structural.py: 4c段(1)flags 尾结构形态匹配(名任意化+可选 byte cast+delete 目标 this|\\w+) (2)非 this 参全剥(~Cls() 源级律)",
+  "59 条 deleting dtor sig_model 虚构参清除(data/annotations/archive/dtor_sig_poison_fix_20261119.json)",
+  "tools/test_stage1_blocka_strip_20261119.py: 16/16 行为钉死"
+ ],
+ "lessons": [
+  "共享可变 IDB 上 A/B 隔离无效(先臂污染后臂继承)——见 memory isolation-ab-shared-idb-law",
+  "全量重渲会一次性显形积债——GOOD 读数可能部分来自陈旧文件, '语料新鲜度'应成为读数前置检查",
+  "IDB 无自动备份是读数考古不可行的根因——挂账: apply 前自动快照机制",
+  "flag/type 渲染名是 IDB 状态函数——匹配判据必须结构形态化, 名字匹配必再断"
+ ],
+ "readings": {"before": {"total": 1085, "s2": "103/224", "L1": 49, "matched": 458},
+              "after_fix": {"total": 1259, "s2": "99/224", "L1": null, "note": "loop 在 probe 中止, match 未跑"}},
+ "next": "R4-T1 tag簇裁决取证独立有效可提交; C2197 指针派发表建模战役 + 归属债四案照旧推进"
+}

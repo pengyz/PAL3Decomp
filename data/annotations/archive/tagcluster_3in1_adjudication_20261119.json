@@ -1,0 +1,19 @@
+{
+ "_doc": "R4-T1 tag簇三合一裁决 2026-11-19: 推翻同日 tag_census 的'三\"类\"=同一结构体'结论。",
+ "verdict": {
+  "tagCombatTaskData": "虚构型 — g_CombatTaskData@0x17AAD4C = 408B lazy-init 静态数组[0x17AAD48,0x17AAEE0)的行窗口锚名(基址+4); 6行×17dword(68B), flag byte_17AAEE0 恰贴数组尾(+0x198); 唯一访问者 ~CCCTData@0x505930 (ArraySort×6 懒初始化守卫直证); '384B struct'与'68字段级联'均为数组整体误读 — 写入内容=盒半边长(±xlen/2,±ylen/2,±zlen/2 立方角)几何暂存, 服务 NewTrivalEffect(3)。处置: 型文件暂留(ledger 过渡条款), 数组建模重造挂账 T2b",
+  "tagPAL3GameState": "纯幻影型 — 0 全局锚 0 语料引用; 溯源=2026-10-16 伪语义批2 cluster 发明(全图 disp 谱法, evidence_level=unverified, grade B, confidence 72); 处置: 注解+codegen头已删, ledger 条目退役",
+  "tagStageRoleData": "真实唯一 — 160B .bss 实体@0x17ABC60; 尺寸双侧闭合: 最大访问偏移 0x9C+4=0xA0 = 右邻分配边界(byte_17ABD00 sprintf缓冲@+0xA0); 13 个访问文件(CCBBStage 家族); 26 known_members = R4-T2 正名工作清单"
+ },
+ "windows_dissolved": {
+  "g_fCombatHalfParam@0x17AAD54": "数组内部窗口(基址+12), 0独立访问0地址取用 — globals.json 条目已删",
+  "g_fCombatTimer@0x17ABCDC": "StageRoleData 内部窗口(+0x7C), 0独立访问0地址取用 — globals.json 条目已删"
+ },
+ "census_retraction": "三条'同值证据'归属解体: SetPause 545→g_StageRoleData 专属(0x3C-0x48); CCCTData 级联→408B数组几何暂存; RenderScenePass 1.0→g_17A7BData 专属(第四个同批发明型, 语料实证 m_nEffParam24/1/0=1065353216)。'三类同值'=同批cluster方法给所有发明型分配相同 偏移→名字 对的分配伪象 ⇒ 普查对照为循环论证。",
+ "evidence_file": "data/status/tagcluster_3in1_evidence_20261119.json (P1 flag贴尾=True / P3 尺寸闭合=True 程序化验证)",
+ "followups": [
+  "T2b: 408B 数组建模决策(6行×17dword 行结构体型 vs 102dword 单块) — 影响 ~CCCTData 渲染, 需独立 A/B",
+  "T2c: tagStageRoleData 26成员正名战役 — 证据源 CCBStage 家族 13 函数语义链(Proceed/SetMaxBlend/SetPause/CheckAction/ProcTurnToRole/ProcUseRecoverItem/UpdateSlotTimer/AnimCallback_MoveTo/RunActiveTask/ProcBlock/Proceed 等)",
+  "同批 cluster 发明型家族普查: tag17A7BData/tag17A8Data/tagC10Data 等疑似同病, 挂账 R5"
+ ]
+}

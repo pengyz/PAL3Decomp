@@ -361,12 +361,19 @@ def run(code, ctx):
                        for _fp in (_flag_pnames or ['a2'])]
         # 退化 this 形（IDA 丢指针型, 首参名恰为类名/Block）: `(*(_BYTE *)&Block & 1) != 0`
         _flag_tests.append(r'\(\s*\(\s*\*\s*\(\s*_BYTE\s*\*\s*\)\s*&\w+\s*&\s*1\s*\)\s*!=\s*0\s*\)')
+        # [Blocka 案 2026-11-19] flags 槽渲染名任意化——hexrays saved lvar 消歧名
+        #   （IDB 净节点陈旧 lvar 名 Block/Blocka 浮出: Block 全局(globals.json
+        #   0x00D8E470)撞名 ⇒ 后缀消歧 Blocka）。织入物判据=结构形态非参数名:
+        #   `((<可选 byte cast><任意标识符> & 1) != 0)`。域限制 _is_del_dtor +
+        #   N18 裁定（flags 织入物源码本无）⇒ 不会误吞真源码条件删。
+        _flag_tests.append(
+            r'\(\s*\(\s*(?:\(\s*(?:unsigned\s+__int8|_BYTE)\s*\)\s*)?\w+\s*&\s*1\s*\)\s*!=\s*0\s*\)')
         for _fpr in _flag_tests:
             code = re.sub(
-                r'\n?[ \t]*if %s\s*\n?[ \t]*operator delete\(this\);[ \t]*\n' % _fpr,
+                r'\n?[ \t]*if %s\s*\n?[ \t]*operator delete\((?:this|\w+)\)[ \t]*;[ \t]*\n' % _fpr,
                 '\n', code)
             code = re.sub(
-                r'\n?[ \t]*if %s\s*\{\s*\n[ \t]*operator delete\(this\);\s*\n[ \t]*\}[ \t]*\n' % _fpr,
+                r'\n?[ \t]*if %s\s*\{\s*\n[ \t]*operator delete\((?:this|\w+)\);\s*\n[ \t]*\}[ \t]*\n' % _fpr,
                 '\n', code)
         # ① flags 形参从签名剥除（多参逗号链）
         if _flag_pnames:
@@ -382,7 +389,11 @@ def run(code, ctx):
                     pn = re.search(r'(\w+)\s*$', ptt)
                     if pn and pn.group(1) in _flag_pnames:
                         continue  # flags 形参剥除
-                    kept.append(ptt)
+                    # [Blocka 案 2026-11-19] 非 this 参**全剥**——deleting dtor
+                    # 定义级签名 = ~Cls()（N18 源级律: ??_G ABI 参皆为织入物）。
+                    # 旧按注解名匹配 ⇒ hexrays 消歧名(Blocka≠注解 Block/char)
+                    # 失配残段( void *Blocka )= 半剥病灶。体内引用已由尾剥/②清。
+                    continue
                 return '(%s)' % ', '.join(kept)
             code = re.sub(r'\(([^()]*)\)', _strip_flag_params, code, count=1)
 

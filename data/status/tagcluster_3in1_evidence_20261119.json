@@ -1,0 +1,65 @@
+{
+ "_doc": "R4-T1 tag簇三合一裁决取证 2026-11-19 (推翻 tag_census 同日结论)",
+ "P1_array_408B": {
+  "base": "0x17aad48",
+  "flag": "0x17aaee0",
+  "flag_offset_from_base": 408,
+  "rows": 6,
+  "stride_bytes": 68,
+  "total_bytes": 408,
+  "end": "0x17aaee0",
+  "flag_adjacent_to_end": true,
+  "accessor_files": [
+   "CCCTData_~CCCTDatavoid_00505930.json"
+  ],
+  "verdict": "g_CombatTaskData@base+4 = 行窗口锚名, 384B struct = 数组(去头4B)误读, ~CCCTData 写入为跨 6 行盒半边长几何暂存 (NewTrivalEffect(3) 盒效应)"
+ },
+ "P2_windows": {
+  "g_fCombatHalfParam": {
+   "corpus_files": 0,
+   "files": [],
+   "offset": "数组基址+12 (0x17AAD54)"
+  },
+  "g_fCombatTimer": {
+   "corpus_files": 0,
+   "files": [],
+   "offset": "g_StageRoleData+0x7C (0x17ABCDC)"
+  },
+  "g_fCBAnimTime": {
+   "corpus_files": 1,
+   "files": [
+    "CCCTData_~CCCTDatavoid_00505930.json"
+   ]
+  },
+  "byte_17AAEE0": {
+   "corpus_files": 1,
+   "files": [
+    "CCCTData_~CCCTDatavoid_00505930.json"
+   ]
+  }
+ },
+ "P3_spectra": {
+  "g_CombatTaskData": {
+   "n_offsets": 69,
+   "min_off": "0x0",
+   "max_off": "0x17c",
+   "max_end": "0x180",
+   "files": [
+    "CCCTData_~CCCTDatavoid_00505930.json"
+   ]
+  },
+  "g_StageRoleData": {
+   "n_offsets": 26,
+   "max_off": "0x9c",
+   "max_end": "0xa0",
+   "next_alloc": "0x17abd00",
+   "size_airtight": true,
+   "n_files": 13
+  },
+  "evidence_rehoming": {
+   "SetPause_545": "g_StageRoleData 0x3C-0x48 (CCBStage_SetPause 专属)",
+   "CCCTData_cascade": "408B 数组几何暂存 (~CCCTData 专属)",
+   "RenderScenePass_1.0": "g_17A7BData 0x18/0x24 (CEffModel::RenderScenePass 专属, 第四个同批发明型) — 语料实证: g_17A7BData.m_nEffParam24/1/0=1065353216"
+  }
+ }
+}
