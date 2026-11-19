@@ -26,4 +26,9 @@ public:
     void LoadIdentity();                                  // 0x0056a57c
     void Pop();                                           // 0x0056a588
     void LoadMatrix(gbMatrix4 *m);                        // 0x0056a5c0
+    // [Scale 补 20261120] 导出表 ?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z + QAEXMMM
+    // (双重载; 语料限定调用 UIBigMap::RenderRole/UIProgressBar::Render/RoleSystem::RenderRole
+    // /CCBPanelSlot::Render/sub_442E90 五处实证)——头族重建时漏, N13c 预测兑现案
+    void Scale(gbVec3D *v);                               // AAUgbVec3D 重载(指针形匹配调用实参)
+    void Scale(float x, float y, float z);                // MMM 重载
 };

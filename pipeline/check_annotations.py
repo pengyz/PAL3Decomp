@@ -1701,11 +1701,33 @@ def check_canonical_contract():
             if _n13:
                 _names13.add(_n13)
         _meth_names[_cls13] = _names13
+    # [导入引擎头族声明源 20261120] include/gbengine/*.h 已重建的导入类头=方法
+    # 声明真值源之一(gbengine.dll 方法体在 DLL, PAL3 侧声明由头族承载)。
+    # N13c 预测职责="会编译失败"——头族已声明⇒预测失准(probe 实测 0 gbXxx
+    # C2065/C2039 兑现, 语料态A→B 渲染面变化使 _corpus_owned 豁免丢失后显形)。
+    # 判据消费已有产物(头族), 非发明。
+    _gbeng_dir = os.path.join(root, 'include', 'gbengine')
+    if os.path.isdir(_gbeng_dir):
+        for _gh in sorted(_glob.glob(os.path.join(_gbeng_dir, '*.h'))):
+            try:
+                _gtxt = open(_gh, encoding='utf-8', errors='replace').read()
+            except Exception:
+                continue
+            for _cm in re.finditer(r'(?:class|struct)\s+(?:\w+\s+)?(\w+)\s*(?::[^{]*)?\{([\s\S]*?)\n\};', _gtxt, re.S):
+                _gcls, _gbody = _cm.group(1), _cm.group(2)
+                _gnames = set(re.findall(r'([~A-Za-z_]\w*)\s*\(', _gbody))
+                _gnames -= {'if', 'for', 'while', 'switch', 'sizeof', 'return', 'catch'}
+                if _gcls in _meth_names:
+                    _meth_names[_gcls] |= _gnames
+                else:
+                    _meth_names[_gcls] = _gnames
     _call_miss = {}
     _corpus_owned = set()
     for _cp13, _mp13, _body13 in _corpus_fn:
         _corpus_owned.add((_cp13, _mp13))
     for (_c13, _m13) in sorted(_cpp_qualified):
+        if _c13.startswith('std::') or _c13 == 'std':
+            continue  # [CRT 内部 20261120] std::_Xlen/_Xran=VC6 <xstring> 自带声明, 预测不成立
         if _c13 in _meth_names and _m13 not in _meth_names[_c13] and (_c13, _m13) not in _corpus_owned:
             _call_miss[(_c13, _m13)] = _call_miss.get((_c13, _m13), 0) + 1
     for (_c13, _m13), _n13 in sorted(_call_miss.items())[:20]:

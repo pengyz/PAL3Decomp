@@ -302,16 +302,6 @@
  "bases_source": "A: Role ctor sub_411900 installs derived vptrs at Object@0 (0x411B30: 0x56A9BC), PalScriptWaitObj@0x38 (0x411B36: 0x56A9B0), GlowObj@0x40 (0x411B3D: 0x56A9A4); GlowObj vtable 0x56A9A4 slot2 is thunk 0x41BE30 (`sub ecx,40h; jmp 0x411BD0`); dtor sub_411CA0 calls 0x4B6CA0 with this=Role+0x40, then restores PSW 0x56A9C0 and Object 0x56A9CC.",
  "vtables": [
   {
-   "addr": "0x0056a9cc",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00411b80"
-    }
-   ],
-   "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x411900(Role::Role)@+101/+624/+649 三写自证（Role MI 第三表；ctor 已注册 Role::Role ✓ 解锁）"
-  },
-  {
    "addr": "0x0056a9c0",
    "base": null,
    "slots": [
@@ -353,6 +343,16 @@
     }
    ],
    "source": "X族定案二段20261120: Role Object基表 (0x411CA0 写表/0x411BB0 写表直证; 原 GameObject/Object 登记转移)"
+  },
+  {
+   "addr": "0x0056a9cc",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x00411b80"
+    }
+   ],
+   "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x411900(Role::Role)@+101/+624/+649 三写自证（Role MI 第三表；ctor 已注册 Role::Role ✓ 解锁）"
   }
  ],
  "methods": {
