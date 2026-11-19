@@ -886,6 +886,28 @@ def _run_n16_schema_gate(errors, warnings):
             if 'override' in _fl and not _m.get('override_of'):
                 errors.append('N16:structs[%s].%s override缺override_of' % (_cls, _ea))
                 _n += 1
+            # [N18 2026-11-19 用户裁定] dtor 名形冗余强校验——flags 与名字互为
+            # 双向断言, 违规报错禁准入(不 warns):
+            #   dtor/deleting ∈ flags ⇔ 名呈 ~X 形(可推导标签, 形态信息上移 flags,
+            #   名槽禁 _sdtor*/_scalar_dtor*/scalar_deleting 等二进制形态名)
+            _is_dtor_flag = 'dtor' in _fl or 'deleting' in _fl
+            _is_dtor_name = bool(re.match(r'^~', str(_m.get('name') or '')))
+            if _is_dtor_flag and not _is_dtor_name:
+                errors.append(
+                    'N18:structs[%s].%s flags含dtor/deleting但名非~X形: %r '
+                    '——析构源名唯一可推导(~类名), 形态信息须上移flags, '
+                    '_sdtor*/_scalar_dtor* 形态名禁入名槽' % (_cls, _ea, _m.get('name')))
+                _n += 1
+            elif _is_dtor_name and not _is_dtor_flag:
+                errors.append(
+                    'N18:structs[%s].%s 名呈~X形但flags缺dtor——身份标注缺失, '
+                    '先修flags再准入' % (_cls, _ea))
+                _n += 1
+            if 'deleting' in _fl and 'dtor' not in _fl:
+                errors.append(
+                    'N18:structs[%s].%s deleting须与dtor同现(deleting=析构的'
+                    '编译器形态标记, 不能独立存在)' % (_cls, _ea))
+                _n += 1
             _sm = _m.get('sig_model')
             if _sm is not None:
                 for _r in _me['sig_model_required']:
@@ -1189,11 +1211,20 @@ def check_canonical_contract():
         if not ms8: continue
         # [C8 2026-11-16 dtor单点标注律] complete dtor由编译器自源声明再生,
         # 不进methods清单(用户裁定skip方案) ⇒ 同名双地址恢复严格检查, 无豁免
+        # [N18 产物族豁免 2026-11-19 用户裁定] dtor 归一名槽后, ~X 多址=编译器
+        # 产物族(??1 + ??_G + 多态链各表 ??_G), 非数据冲突——豁免判据:
+        # 条目任一 (flags含deleting ∨ declaration_only) 即产物成员; 族内须
+        # 恰有一个非产物成员(定义源), 两个定义源仍报错(真冲突不豁免)。
         _seen_nm = {}
+        _dtor_family = {}
         for a8, m8 in ms8.items():
             nm8 = str(m8.get('name') or '')
             if not nm8: continue
             bare = nm8.split('::')[-1] if '::' in nm8 else nm8
+            _fl8 = m8.get('flags') or []
+            if bare.startswith('~') and m8.get('declaration_only'):
+                _dtor_family.setdefault(bare, []).append(a8)
+                continue  # 产物成员不参与同名冲突计数
             if bare in _seen_nm:
                 # [签名感知 2026-11-17 与CXX_GATE闸②同裁定] 同名异签=合法重载
                 # (C++同名不同参=不同函数, SaleUI Update 0参/2参实证);
@@ -1206,6 +1237,17 @@ def check_canonical_contract():
                             cls8, bare, _seen_nm[bare][-8:], bare, a8[-8:]))
             else:
                 _seen_nm[bare] = a8
+        # 产物族一致性: 每个析构名须有定义源(非产物成员), 否则=全伴生无主
+        for _fb, _faddrs in _dtor_family.items():
+            _has_src = False
+            for a9, m9 in ms8.items():
+                if str(m9.get('name') or '') == _fb and a9 not in _faddrs:
+                    _has_src = True
+                    break
+            if not _has_src:
+                cur_viol['C8:%s:%s:orphan_family' % (cls8, _fb)] = (
+                    '%s %s 产物族(%s)无定义源条目——伴生标记缺失, 补 declaration_only/'
+                    'deleting 判定' % (cls8, _fb, ','.join(_faddrs)))
 
         # [C9 2026-11-16 v3 槽位感知·名字+签名双检] override链一致性:
         #   同槽位: 基/派生名字应一致(override=C++同名规则), 签名应兼容(C2555判据)

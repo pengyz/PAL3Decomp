@@ -795,7 +795,6 @@
    "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScene（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56ACD8）",
    "ordinal": 5,
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -809,7 +808,8 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=~UIScene(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },

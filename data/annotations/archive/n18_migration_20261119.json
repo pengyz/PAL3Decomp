@@ -1,0 +1,3015 @@
+{
+ "_doc": "N18 迁移 2026-11-19: dtor 形态名清出名字槽(~类名归一), 形态上移 flags(deleting)+declaration_only。规则=名槽只承载可推导标签, 二进制形态信息归 flags(用户裁定 2026-11-19)。",
+ "stats": {
+  "renamed": 130,
+  "companion_marked": 33
+ },
+ "entries": [
+  {
+   "class": "AStarPathFinder",
+   "file": "AStarPathFinder.json",
+   "before": {
+    "key": "0x00401030",
+    "name": "_scalar_dtor_1030",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00401030",
+    "name": "~AStarPathFinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "Actor",
+   "file": "Actor.json",
+   "before": {
+    "key": "0x0041f340",
+    "name": "_scalar_dtor_F340",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0041f340",
+    "name": "~Actor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "Actor",
+   "file": "Actor.json",
+   "before": {
+    "key": "0x004083b0",
+    "name": "_scalar_dtor_83B0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004083b0",
+    "name": "~Actor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ArraySlots",
+   "file": "ArraySlots.json",
+   "before": {
+    "key": "0x0044ab40",
+    "name": "_sdtor_14_adjthunk",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044ab40",
+    "name": "~ArraySlots",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBCamControl",
+   "file": "CCBCamControl.json",
+   "before": {
+    "key": "0x005081d0",
+    "name": "_scalar_dtor_81D0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x005081d0",
+    "name": "~CCBCamControl",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBCamControl",
+   "file": "CCBCamControl.json",
+   "before": {
+    "key": "0x005081e0",
+    "name": "~CCBCamControl",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x005081e0",
+    "name": "~CCBCamControl",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBControlWindow",
+   "file": "CCBControlWindow.json",
+   "before": {
+    "key": "0x0051ac90",
+    "name": "_scalar_dtor_AC90",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0051ac90",
+    "name": "~CCBControlWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBFiveNimbusWindow",
+   "file": "CCBFiveNimbusWindow.json",
+   "before": {
+    "key": "0x00519b40",
+    "name": "_scalar_dtor_9B40",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00519b40",
+    "name": "~CCBFiveNimbusWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBItemWindow",
+   "file": "CCBItemWindow.json",
+   "before": {
+    "key": "0x0051a390",
+    "name": "_scalar_dtor_A390",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0051a390",
+    "name": "~CCBItemWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBLineupWindow",
+   "file": "CCBLineupWindow.json",
+   "before": {
+    "key": "0x0051b180",
+    "name": "_scalar_dtor_b180",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051b180",
+    "name": "~CCBLineupWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "CCBLineupWindow",
+   "file": "CCBLineupWindow.json",
+   "before": {
+    "key": "0x0051b160",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051b160",
+    "name": "~CCBLineupWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBMagicWindow",
+   "file": "CCBMagicWindow.json",
+   "before": {
+    "key": "0x0051b690",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051b690",
+    "name": "~CCBMagicWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "CCBParabolaWindow",
+   "file": "CCBParabolaWindow.json",
+   "before": {
+    "key": "0x0051c280",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051c280",
+    "name": "~CCBParabolaWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "CCBProtectWindow",
+   "file": "CCBProtectWindow.json",
+   "before": {
+    "key": "0x00516120",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00516120",
+    "name": "~CCBProtectWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBProtectWindow",
+   "file": "CCBProtectWindow.json",
+   "before": {
+    "key": "0x0051d6f0",
+    "name": "~CCBProtectWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051d6f0",
+    "name": "~CCBProtectWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBProtectWindow",
+   "file": "CCBProtectWindow.json",
+   "before": {
+    "key": "0x00516100",
+    "name": "_scalar_dtor_6100",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00516100",
+    "name": "~CCBProtectWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBResultWindow",
+   "file": "CCBResultWindow.json",
+   "before": {
+    "key": "0x00444aa0",
+    "name": "_sdtor_full",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00444aa0",
+    "name": "~CCBResultWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBResultWindow",
+   "file": "CCBResultWindow.json",
+   "before": {
+    "key": "0x00444ac0",
+    "name": "~CCBResultWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00444ac0",
+    "name": "~CCBResultWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBRoleState",
+   "file": "CCBRoleState.json",
+   "before": {
+    "key": "0x00456b80",
+    "name": "_scalar_dtor_6B80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00456b80",
+    "name": "~CCBRoleState",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBSkillWindow",
+   "file": "CCBSkillWindow.json",
+   "before": {
+    "key": "0x0051bbe0",
+    "name": "_scalar_dtor_BBE0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0051bbe0",
+    "name": "~CCBSkillWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBStageCam",
+   "file": "CCBStageCam.json",
+   "before": {
+    "key": "0x00504080",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00504080",
+    "name": "~CCBStageCam",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBStageCam",
+   "file": "CCBStageCam.json",
+   "before": {
+    "key": "0x00504060",
+    "name": "~CCBStageCam",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00504060",
+    "name": "~CCBStageCam",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUI",
+   "file": "CCBUI.json",
+   "before": {
+    "key": "0x00525520",
+    "name": "_scalar_dtor_5520",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00525520",
+    "name": "~CCBUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUI",
+   "file": "CCBUI.json",
+   "before": {
+    "key": "0x0051b810",
+    "name": "~CCBParabolaWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0051b810",
+    "name": "~CCBParabolaWindow",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUI",
+   "file": "CCBUI.json",
+   "before": {
+    "key": "0x00519360",
+    "name": "~CCBUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00519360",
+    "name": "~CCBUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUIPanel",
+   "file": "CCBUIPanel.json",
+   "before": {
+    "key": "0x00453e70",
+    "name": "_scalar_dtor_3E70",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00453e70",
+    "name": "~CCBUIPanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUIPanel",
+   "file": "CCBUIPanel.json",
+   "before": {
+    "key": "0x00446200",
+    "name": "~CCBUIPanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00446200",
+    "name": "~CCBUIPanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUIPanel",
+   "file": "CCBUIPanel.json",
+   "before": {
+    "key": "0x004461d0",
+    "name": "_scalar_dtor_61D0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004461d0",
+    "name": "~CCBUIPanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CCBUIPanel",
+   "file": "CCBUIPanel.json",
+   "before": {
+    "key": "0x00453e50",
+    "name": "_scalar_dtor_3E50",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00453e50",
+    "name": "~CCBUIPanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "file": "CEffCylinder.json",
+   "before": {
+    "key": "0x004c3dd0",
+    "name": "_scalar_dtor_3DD0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c3dd0",
+    "name": "~CEffCylinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "file": "CEffCylinder.json",
+   "before": {
+    "key": "0x004c3eb0",
+    "name": "~CEffCylinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004c3eb0",
+    "name": "~CEffCylinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "file": "CEffCylinder.json",
+   "before": {
+    "key": "0x004c3db0",
+    "name": "_scalar_dtor_3DB0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c3db0",
+    "name": "~CEffCylinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffCylinder",
+   "file": "CEffCylinder.json",
+   "before": {
+    "key": "0x004c5810",
+    "name": "_sdtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004c5810",
+    "name": "~CEffCylinder",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffGrid",
+   "file": "CEffGrid.json",
+   "before": {
+    "key": "0x004c9630",
+    "name": "_scalar_dtor_9630",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c9630",
+    "name": "~CEffGrid",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffGrid",
+   "file": "CEffGrid.json",
+   "before": {
+    "key": "0x004cb280",
+    "name": "_sdtor_call_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004cb280",
+    "name": "~CEffGrid",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffMeteor",
+   "file": "CEffMeteor.json",
+   "before": {
+    "key": "0x004cb4a0",
+    "name": "_scalar_dtor_B4A0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004cb4a0",
+    "name": "~CEffMeteor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffModel",
+   "file": "CEffModel.json",
+   "before": {
+    "key": "0x004d3220",
+    "name": "_sdtor_adj",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004d3220",
+    "name": "~CEffModel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffModel",
+   "file": "CEffModel.json",
+   "before": {
+    "key": "0x004d0ca0",
+    "name": "_scalar_dtor1",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d0ca0",
+    "name": "~CEffModel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffModel",
+   "file": "CEffModel.json",
+   "before": {
+    "key": "0x004d3230",
+    "name": "_scalar_dtor2",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d3230",
+    "name": "~CEffModel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffModel",
+   "file": "CEffModel.json",
+   "before": {
+    "key": "0x004cfd20",
+    "name": "~CEffModel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004cfd20",
+    "name": "~CEffModel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffQuad",
+   "file": "CEffQuad.json",
+   "before": {
+    "key": "0x004d0d90",
+    "name": "_scalar_dtor_0D90",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004d0d90",
+    "name": "~CEffQuad",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "file": "CEffQuake.json",
+   "before": {
+    "key": "0x004d3860",
+    "name": "_sdtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d3860",
+    "name": "~CEffQuake",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "file": "CEffQuake.json",
+   "before": {
+    "key": "0x004d32e0",
+    "name": "~CEffQuake",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d32e0",
+    "name": "~CEffQuake",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffQuake",
+   "file": "CEffQuake.json",
+   "before": {
+    "key": "0x004d37a0",
+    "name": "_sdtor_call_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d37a0",
+    "name": "~CEffQuake",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffSParticle",
+   "file": "CEffSParticle.json",
+   "before": {
+    "key": "0x004d4f00",
+    "name": "_scalar_dtor_4F00",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004d4f00",
+    "name": "~CEffSParticle",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffShock",
+   "file": "CEffShock.json",
+   "before": {
+    "key": "0x004d4ca0",
+    "name": "_sdtor_call_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004d4ca0",
+    "name": "~CEffShock",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffectSystem",
+   "file": "CEffectSystem.json",
+   "before": {
+    "key": "0x004c5d50",
+    "name": "_scalar_dtor_5D50",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c5d50",
+    "name": "~CEffectSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffgbParticle",
+   "file": "CEffgbParticle.json",
+   "before": {
+    "key": "0x004c8950",
+    "name": "_scalar_dtor_8950",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c8950",
+    "name": "~CEffgbParticle",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CEffgbParticle",
+   "file": "CEffgbParticle.json",
+   "before": {
+    "key": "0x004cb340",
+    "name": "_sdtor_adj",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004cb340",
+    "name": "~CEffgbParticle",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CGameData",
+   "file": "CGameData.json",
+   "before": {
+    "key": "0x0044f030",
+    "name": "_scalar_dtor_F030",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044f030",
+    "name": "~CGameData",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CScreenMode",
+   "file": "CScreenMode.json",
+   "before": {
+    "key": "0x00524110",
+    "name": "_scalar_dtor_4110",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00524110",
+    "name": "~CScreenMode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CScreenMode",
+   "file": "CScreenMode.json",
+   "before": {
+    "key": "0x00524130",
+    "name": "~CScreenMode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00524130",
+    "name": "~CScreenMode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "CUtil",
+   "file": "CUtil.json",
+   "before": {
+    "key": "0x005231d0",
+    "name": "_scalar_dtor_31D0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x005231d0",
+    "name": "~CUtil",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "Camera",
+   "file": "Camera.json",
+   "before": {
+    "key": "0x0041bfc0",
+    "name": "_scalar_dtor_BFC0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0041bfc0",
+    "name": "~Camera",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "EffTargetPool",
+   "file": "EffTargetPool.json",
+   "before": {
+    "key": "0x004c2040",
+    "name": "_scalar_dtor_EffTargetNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004c2040",
+    "name": "~EffTargetPool",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "EquipUI",
+   "file": "EquipUI.json",
+   "before": {
+    "key": "0x00498c70",
+    "name": "_scalar_dtor_8C70",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00498c70",
+    "name": "~EquipUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "GRPinput",
+   "file": "GRPinput.json",
+   "before": {
+    "key": "0x00402bd0",
+    "name": "_scalar_dtor_2BD0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00402bd0",
+    "name": "~GRPinput",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "JusticeBookUI",
+   "file": "JusticeBookUI.json",
+   "before": {
+    "key": "0x005284c0",
+    "name": "_scalar_dtor_84C0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x005284c0",
+    "name": "~JusticeBookUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "LineupUI",
+   "file": "LineupUI.json",
+   "before": {
+    "key": "0x0047e910",
+    "name": "_scalar_dtor_E910",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047e910",
+    "name": "~LineupUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "LineupUI",
+   "file": "LineupUI.json",
+   "before": {
+    "key": "0x00470f40",
+    "name": "~LineupUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00470f40",
+    "name": "~LineupUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "LineupUI",
+   "file": "LineupUI.json",
+   "before": {
+    "key": "0x0047e8f0",
+    "name": "_scalar_dtor_E8F0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047e8f0",
+    "name": "~LineupUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "LineupUI",
+   "file": "LineupUI.json",
+   "before": {
+    "key": "0x00470f20",
+    "name": "_scalar_dtor_0f20",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00470f20",
+    "name": "~LineupUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "MainEquipUI",
+   "file": "MainEquipUI.json",
+   "before": {
+    "key": "0x00479660",
+    "name": "_scalar_dtor_9660",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00479660",
+    "name": "~MainEquipUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "MainPropUI",
+   "file": "MainPropUI.json",
+   "before": {
+    "key": "0x00490e70",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00490e70",
+    "name": "~MainPropUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "Object",
+   "file": "Object.json",
+   "before": {
+    "key": "0x00411bd0",
+    "name": "_scalar_dtor_1BD0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00411bd0",
+    "name": "~Object",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ObjectCamera",
+   "file": "ObjectCamera.json",
+   "before": {
+    "key": "0x0047c570",
+    "name": "_scalar_dtor_C570",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047c570",
+    "name": "~ObjectCamera",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ObjectCamera",
+   "file": "ObjectCamera.json",
+   "before": {
+    "key": "0x0047c580",
+    "name": "~ObjectCamera",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0047c580",
+    "name": "~ObjectCamera",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PalScript",
+   "file": "PalScript.json",
+   "before": {
+    "key": "0x0043a1d0",
+    "name": "_scalar_dtor_A1D0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043a1d0",
+    "name": "~PalScript",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PalScript",
+   "file": "PalScript.json",
+   "before": {
+    "key": "0x00411ca0",
+    "name": "~PalScript",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00411ca0",
+    "name": "~PalScript",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PalScript",
+   "file": "PalScript.json",
+   "before": {
+    "key": "0x00431760",
+    "name": "_sdtor_23",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00431760",
+    "name": "~PalScript",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PalScriptAnimTimer",
+   "file": "PalScriptAnimTimer.json",
+   "before": {
+    "key": "0x00438e90",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00438e90",
+    "name": "~PalScriptAnimTimer",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "PalScriptProgressTimer",
+   "file": "PalScriptProgressTimer.json",
+   "before": {
+    "key": "0x00438190",
+    "name": "_scalar_dtor_8190",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00438190",
+    "name": "~PalScriptProgressTimer",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "ParticleEffect",
+   "file": "ParticleEffect.json",
+   "before": {
+    "key": "0x004bc790",
+    "name": "_scalar_dtor_C790",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004bc790",
+    "name": "~ParticleEffect",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ParticleEffect",
+   "file": "ParticleEffect.json",
+   "before": {
+    "key": "0x004bd850",
+    "name": "_scalar_dtor_D850",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004bd850",
+    "name": "~ParticleEffect",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PropUI",
+   "file": "PropUI.json",
+   "before": {
+    "key": "0x0046d4c0",
+    "name": "_scalar_dtor_D4C0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0046d4c0",
+    "name": "~PropUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "PtrArray",
+   "file": "PtrArray.json",
+   "before": {
+    "key": "0x00432960",
+    "name": "_scalar_dtor_2960",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00432960",
+    "name": "~PtrArray",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RenderTarget",
+   "file": "RenderTarget.json",
+   "before": {
+    "key": "0x00486d00",
+    "name": "_scalar_dtor_6D00",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00486d00",
+    "name": "~RenderTarget",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RenderTarget3",
+   "file": "RenderTarget3.json",
+   "before": {
+    "key": "0x004b6c80",
+    "name": "_scalar_dtor_6C80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004b6c80",
+    "name": "~RenderTarget3",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "Role",
+   "file": "Role.json",
+   "before": {
+    "key": "0x0041be30",
+    "name": "_sdtor_22",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0041be30",
+    "name": "~Role",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleAtt",
+   "file": "RoleAtt.json",
+   "before": {
+    "key": "0x00450e90",
+    "name": "_sdtor_27",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00450e90",
+    "name": "~RoleAtt",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleCameraCtrl",
+   "file": "RoleCameraCtrl.json",
+   "before": {
+    "key": "0x00450ab0",
+    "name": "_sdtor_26",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00450ab0",
+    "name": "~RoleCameraCtrl",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleStatePanel",
+   "file": "RoleStatePanel.json",
+   "before": {
+    "key": "0x004a2150",
+    "name": "_scalar_dtor_2150",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004a2150",
+    "name": "~RoleStatePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleSystem",
+   "file": "RoleSystem.json",
+   "before": {
+    "key": "0x00531e50",
+    "name": "_scalar_dtor_1E50",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00531e50",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleSystem",
+   "file": "RoleSystem.json",
+   "before": {
+    "key": "0x00420910",
+    "name": "_scalar_dtor_0910",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00420910",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleSystem",
+   "file": "RoleSystem.json",
+   "before": {
+    "key": "0x00420430",
+    "name": "_scalar_dtor_0430",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00420430",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleSystem",
+   "file": "RoleSystem.json",
+   "before": {
+    "key": "0x00420270",
+    "name": "_scalar_dtor_0270",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00420270",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "RoleSystem",
+   "file": "RoleSystem.json",
+   "before": {
+    "key": "0x004202f0",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004202f0",
+    "name": "~RoleSystem",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "SaleUI",
+   "file": "SaleUI.json",
+   "before": {
+    "key": "0x0045ae40",
+    "name": "_scalar_dtor_AE40",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0045ae40",
+    "name": "~SaleUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "SceneMgr",
+   "file": "SceneMgr.json",
+   "before": {
+    "key": "0x004cd930",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004cd930",
+    "name": "~SceneMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "SceneObj",
+   "file": "SceneObj.json",
+   "before": {
+    "key": "0x00453010",
+    "name": "_scalar_dtor_3010",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00453010",
+    "name": "~SceneObj",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "SceneObjParam",
+   "file": "SceneObjParam.json",
+   "before": {
+    "key": "0x00533d80",
+    "name": "_scalar_dtor_3D80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00533d80",
+    "name": "~SceneObjParam",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffect",
+   "file": "ScreenEffect.json",
+   "before": {
+    "key": "0x004be060",
+    "name": "_scalar_dtor_E060",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004be060",
+    "name": "~ScreenEffect",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffectMgr",
+   "file": "ScreenEffectMgr.json",
+   "before": {
+    "key": "0x004bea80",
+    "name": "_scalar_dtor_EA80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004bea80",
+    "name": "~ScreenEffectMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffectMgr",
+   "file": "ScreenEffectMgr.json",
+   "before": {
+    "key": "0x004bebd0",
+    "name": "_scalar_dtor_EBD0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004bebd0",
+    "name": "~ScreenEffectMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffectMgr",
+   "file": "ScreenEffectMgr.json",
+   "before": {
+    "key": "0x004bed20",
+    "name": "_scalar_dtor_ED20",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004bed20",
+    "name": "~ScreenEffectMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffectMgr",
+   "file": "ScreenEffectMgr.json",
+   "before": {
+    "key": "0x004bef30",
+    "name": "~ScreenEffectMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004bef30",
+    "name": "~ScreenEffectMgr",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "ScreenEffectNode",
+   "file": "ScreenEffectNode.json",
+   "before": {
+    "key": "0x004b7cc0",
+    "name": "_scalar_dtor_7CC0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004b7cc0",
+    "name": "~ScreenEffectNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "SystemUI",
+   "file": "SystemUI.json",
+   "before": {
+    "key": "0x004a7670",
+    "name": "_scalar_dtor_7670",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004a7670",
+    "name": "~SystemUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "TaskBookUI",
+   "file": "TaskBookUI.json",
+   "before": {
+    "key": "0x00454980",
+    "name": "_scalar_dtor_4980",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00454980",
+    "name": "~TaskBookUI",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "TextureLib",
+   "file": "TextureLib.json",
+   "before": {
+    "key": "0x0053f5c0",
+    "name": "_scalar_dtor_F5C0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0053f5c0",
+    "name": "~TextureLib",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "TextureLib",
+   "file": "TextureLib.json",
+   "before": {
+    "key": "0x0053dc30",
+    "name": "_scalar_dtor_DC30",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0053dc30",
+    "name": "~TextureLib",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "TextureLib",
+   "file": "TextureLib.json",
+   "before": {
+    "key": "0x0053f4d0",
+    "name": "_scalar_dtor_F4D0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0053f4d0",
+    "name": "~TextureLib",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UI3DCtrl",
+   "file": "UI3DCtrl.json",
+   "before": {
+    "key": "0x0043d860",
+    "name": "_scalar_dtor_D860",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043d860",
+    "name": "~UI3DCtrl",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UI3DModelNode",
+   "file": "UI3DModelNode.json",
+   "before": {
+    "key": "0x004b74f0",
+    "name": "_scalar_dtor_74F0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004b74f0",
+    "name": "~UI3DModelNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIAnimateCtrlEX",
+   "file": "UIAnimateCtrlEX.json",
+   "before": {
+    "key": "0x00452830",
+    "name": "_scalar_dtor_2830",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00452830",
+    "name": "~UIAnimateCtrlEX",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIButton",
+   "file": "UIButton.json",
+   "before": {
+    "key": "0x0043f950",
+    "name": "_scalar_dtor_F950",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043f950",
+    "name": "~UIButton",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICaption",
+   "file": "UICaption.json",
+   "before": {
+    "key": "0x00450370",
+    "name": "_scalar_dtor_0370",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00450370",
+    "name": "~UICaption",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICaption",
+   "file": "UICaption.json",
+   "before": {
+    "key": "0x0043a7f0",
+    "name": "_sdtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0043a7f0",
+    "name": "~UICaption",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICoverFrm",
+   "file": "UICoverFrm.json",
+   "before": {
+    "key": "0x0052bbb0",
+    "name": "_scalar_dtor_BBB0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0052bbb0",
+    "name": "~UICoverFrm",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICoverFrm",
+   "file": "UICoverFrm.json",
+   "before": {
+    "key": "0x005279d0",
+    "name": "_scalar_dtor_79d0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x005279d0",
+    "name": "~UICoverFrm",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICursor",
+   "file": "UICursor.json",
+   "before": {
+    "key": "0x00541e40",
+    "name": "_scalar_dtor_1E40",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00541e40",
+    "name": "~UICursor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UICursor",
+   "file": "UICursor.json",
+   "before": {
+    "key": "0x00541ffb",
+    "name": "_scalar_dtor_1FFB",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00541ffb",
+    "name": "~UICursor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIEmote",
+   "file": "UIEmote.json",
+   "before": {
+    "key": "0x0044e5c0",
+    "name": "_sdtor_25",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044e5c0",
+    "name": "~UIEmote",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIFrameContainer",
+   "file": "UIFrameContainer.json",
+   "before": {
+    "key": "0x00442370",
+    "name": "_scalar_dtor_2370",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00442370",
+    "name": "~UIFrameContainer",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIFrameContainer",
+   "file": "UIFrameContainer.json",
+   "before": {
+    "key": "0x00442390",
+    "name": "~UIFrameContainer",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00442390",
+    "name": "~UIFrameContainer",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIFrameWnd",
+   "file": "UIFrameWnd.json",
+   "before": {
+    "key": "0x004433c0",
+    "name": "_dtor_thunk",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004433c0",
+    "name": "~UIFrameWnd",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   }
+  },
+  {
+   "class": "UIFrameWnd",
+   "file": "UIFrameWnd.json",
+   "before": {
+    "key": "0x0043bb90",
+    "name": "_scalar_dtor_BB90",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043bb90",
+    "name": "~UIFrameWnd",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x0043e100",
+    "name": "_scalar_dtor_E100",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043e100",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x005279f0",
+    "name": "_scalar_dtor_79F0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x005279f0",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x00452600",
+    "name": "_scalar_dtor_2600",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00452600",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x004525e0",
+    "name": "_scalar_dtor_25E0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004525e0",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x0043dcf0",
+    "name": "_scalar_dtor_DCF0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043dcf0",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x00451c70",
+    "name": "_sdtor_28_adjthunk",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00451c70",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIListBox",
+   "file": "UIListBox.json",
+   "before": {
+    "key": "0x004518e0",
+    "name": "_scalar_dtor_18E0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004518e0",
+    "name": "~UIListBox",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UILoadingFrm",
+   "file": "UILoadingFrm.json",
+   "before": {
+    "key": "0x00450770",
+    "name": "_scalar_dtor_0770",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00450770",
+    "name": "~UILoadingFrm",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIPushButton",
+   "file": "UIPushButton.json",
+   "before": {
+    "key": "0x004407a0",
+    "name": "_scalar_dtor_07A0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004407a0",
+    "name": "~UIPushButton",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIPushButton",
+   "file": "UIPushButton.json",
+   "before": {
+    "key": "0x004433a0",
+    "name": "_sdtor_thunk",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004433a0",
+    "name": "~UIPushButton",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIPushButton",
+   "file": "UIPushButton.json",
+   "before": {
+    "key": "0x00442d20",
+    "name": "_sdtor_8",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00442d20",
+    "name": "~UIPushButton",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIRoleDialog",
+   "file": "UIRoleDialog.json",
+   "before": {
+    "key": "0x004a1410",
+    "name": "~UIRoleDialog",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004a1410",
+    "name": "~UIRoleDialog",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIRoleDialog",
+   "file": "UIRoleDialog.json",
+   "before": {
+    "key": "0x004bef50",
+    "name": "~UIWnd",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x004bef50",
+    "name": "~UIWnd",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIRoleDialog",
+   "file": "UIRoleDialog.json",
+   "before": {
+    "key": "0x004a13f0",
+    "name": "_scalar_dtor_13F0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x004a13f0",
+    "name": "~UIRoleDialog",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIRoleSelectDialog",
+   "file": "UIRoleSelectDialog.json",
+   "before": {
+    "key": "0x00529770",
+    "name": "_scalar_dtor_9770",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00529770",
+    "name": "~UIRoleSelectDialog",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UISceneFrm",
+   "file": "UISceneFrm.json",
+   "before": {
+    "key": "0x00459240",
+    "name": "_scalar_dtor_9240",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00459240",
+    "name": "~UISceneFrm",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UISceneMap",
+   "file": "UISceneMap.json",
+   "before": {
+    "key": "0x00450070",
+    "name": "_scalar_dtor_0070",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00450070",
+    "name": "~UISceneMap",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIScenePanel",
+   "file": "UIScenePanel.json",
+   "before": {
+    "key": "0x0044be80",
+    "name": "_scalar_dtor_BE80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044be80",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIScenePanel",
+   "file": "UIScenePanel.json",
+   "before": {
+    "key": "0x0043b4d0",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0043b4d0",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIScenePanel",
+   "file": "UIScenePanel.json",
+   "before": {
+    "key": "0x0043b4b0",
+    "name": "_sdtor_5",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0043b4b0",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIScenePanel",
+   "file": "UIScenePanel.json",
+   "before": {
+    "key": "0x0044be00",
+    "name": "_sdtor_24",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044be00",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIScenePanel",
+   "file": "UIScenePanel.json",
+   "before": {
+    "key": "0x0044be40",
+    "name": "_scalar_dtor_BE40",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x0044be40",
+    "name": "~UIScenePanel",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITextArea",
+   "file": "UITextArea.json",
+   "before": {
+    "key": "0x00444ff0",
+    "name": "_sdtor_13",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00444ff0",
+    "name": "~UITextArea",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITitle",
+   "file": "UITitle.json",
+   "before": {
+    "key": "0x0044acc0",
+    "name": "_scalar_dtor_ACC0",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044acc0",
+    "name": "~UITitle",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITitle_ArcSave",
+   "file": "UITitle_ArcSave.json",
+   "before": {
+    "key": "0x0047bd00",
+    "name": "_scalar_dtor_BD00",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047bd00",
+    "name": "~UITitle_ArcSave",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITitle_BBTY",
+   "file": "UITitle_BBTY.json",
+   "before": {
+    "key": "0x00451d80",
+    "name": "_scalar_dtor_1D80",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00451d80",
+    "name": "~UITitle_BBTY",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITitle_YXXX",
+   "file": "UITitle_YXXX.json",
+   "before": {
+    "key": "0x0047dd70",
+    "name": "_scalar_dtor_DD70",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047dd70",
+    "name": "~UITitle_YXXX",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UITitle_YXXX",
+   "file": "UITitle_YXXX.json",
+   "before": {
+    "key": "0x0047e570",
+    "name": "_scalar_dtor_adjthunk",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0047e570",
+    "name": "~UITitle_YXXX",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "UIWnd",
+   "file": "UIWnd.json",
+   "before": {
+    "key": "0x0044a7d0",
+    "name": "_sdtor_14",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x0044a7d0",
+    "name": "~UIWnd",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "WeatherEffectNode",
+   "file": "WeatherEffectNode.json",
+   "before": {
+    "key": "0x00405310",
+    "name": "_scalar_dtor_light",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00405310",
+    "name": "~WeatherEffectNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "WeatherEffectNode",
+   "file": "WeatherEffectNode.json",
+   "before": {
+    "key": "0x00405580",
+    "name": "_scalar_dtor_weather",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00405580",
+    "name": "~WeatherEffectNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "WeatherEffectNode",
+   "file": "WeatherEffectNode.json",
+   "before": {
+    "key": "0x00405560",
+    "name": "_scalar_dtor_rain",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   },
+   "after": {
+    "key": "0x00405560",
+    "name": "~WeatherEffectNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  },
+  {
+   "class": "WeatherEffectNode",
+   "file": "WeatherEffectNode.json",
+   "before": {
+    "key": "0x00404d40",
+    "name": "_scalar_dtor",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": null
+   },
+   "after": {
+    "key": "0x00404d40",
+    "name": "~WeatherEffectNode",
+    "flags": [
+     "dtor"
+    ],
+    "declaration_only": true
+   }
+  }
+ ],
+ "adjudication": {
+  "orphan_family": "47族无定义源 → 21单址族升主+25多址族最长体升主+UICursor idalib汇编裁决",
+  "UICursor": "0x541e40/0x541ffb 双28B ??_G stub, 唯一差异=call基类dtor目标(525/527), 0x541e40升主(deleting), 0x541ffb保持伴生; 语料射程外, 汇编探针实证",
+  "criterion_fix": "产物族成员判据=declaration_only(角色); deleting=形态标记不自动伴生 (初版 deleting∨declaration_only 判据使升主条目仍被收进产物族→误报orphan, 已修)",
+  "downstream": "cxx_gate load_entries 同步产物族豁免 (same_name/cxx_rule 不计数)"
+ }
+}

@@ -11,7 +11,7 @@
  },
  "methods": {
   "0x00405310": {
-   "name": "_scalar_dtor_light",
+   "name": "~WeatherEffectNode",
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -28,7 +28,7 @@
    "flags_evidence": "IDA名字形态=_scalar_dtor_light(??1/??_G析构族); decomp文件=WeatherEffectNode_scalar_dtor_lightvoid_00405310 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00405580": {
-   "name": "_scalar_dtor_weather",
+   "name": "~WeatherEffectNode",
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（6 槽尾视图）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -45,7 +45,7 @@
    "flags_evidence": "IDA名字形态=_scalar_dtor_weather(??1/??_G析构族); decomp文件=WeatherEffectNode_scalar_dtor_weathervoid_00405580 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00405560": {
-   "name": "_scalar_dtor_rain",
+   "name": "~WeatherEffectNode",
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（3 槽尾视图=gbRain/gbSnow 基）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -289,7 +289,7 @@
    }
   },
   "0x00404d40": {
-   "name": "_scalar_dtor",
+   "name": "~WeatherEffectNode",
    "source": "| 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbGeomNode@@UAE@XZ + delete + test[esp+8],1 ⇒ 类自证 gbGeomNode；制式名 _scalar_dtor（制式即语义免五面）| confidence: high",
    "evidence_level": "A",
    "sig_model": {

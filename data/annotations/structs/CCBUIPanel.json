@@ -352,12 +352,11 @@
  },
  "methods": {
   "0x00453e70": {
-   "name": "_scalar_dtor_3E70",
+   "name": "~CCBUIPanel",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3E70。refs: ??1UIRoleDialog@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ??1UIL",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -444,7 +443,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CCBUIPanel(??1/??_G析构族); decomp文件=CCBUIPanel_~CCBUIPanelvoid_00446200 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CCBUIPanel(??1/??_G析构族); decomp文件=CCBUIPanel_~CCBUIPanelvoid_00446200 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "declaration_only": true
   },
   "0x00449980": {
    "name": "SetUserData",
@@ -466,7 +466,7 @@
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetUserData): i"
   },
   "0x004461d0": {
-   "name": "_scalar_dtor_61D0",
+   "name": "~CCBUIPanel",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
@@ -751,7 +751,7 @@
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00453e50": {
-   "name": "_scalar_dtor_3E50",
+   "name": "~CCBUIPanel",
    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
    "evidence_level": "unverified",
    "declaration_only": true,

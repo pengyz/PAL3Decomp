@@ -70,6 +70,12 @@ def load_entries():
         cls = d.get('name') or ''
         for addr, m in (d.get('methods') or {}).items():
             if isinstance(m, dict) and m.get('name'):
+                # [N18 产物族豁免 2026-11-19] dtor 归一名槽后 ~X 多址=编译器产物族
+                # (??1+??_G+多态链), flags含deleting∨declaration_only 的成员不参与
+                # same_name/cxx_rule 计数 (与 check_annotations C8 豁免同律)
+                _fl = m.get('flags') or []
+                if 'deleting' in _fl or m.get('declaration_only'):
+                    continue
                 import sys as _sys, os as _os
                 _sys.path.insert(0, str(ROOT / 'pipeline' / 'gen'))
                 from annotation_view import sm_text as _sm_text

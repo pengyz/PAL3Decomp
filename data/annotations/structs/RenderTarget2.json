@@ -600,7 +600,6 @@
    "reason": "compiler-generated scalar deleting destructor for RenderTarget2 (adjustor -12)",
    "source": "| 2-param form -> 1-param: 8-byte jmp-thunk to 0x4C34B0 deleting-dtor body which tests (arg & 1) for operator delete and returns this; mangle QAEPADD = ret char*, args(char) | [非 ctor/dtor 实证 2026-10-16 analyzer] A 级：adjustor thunk `sub ecx,0Ch; jmp _scalar_dtor_34b0`（MI this 调整跳板）",
    "evidence_level": "A",
-   "declaration_only": true,
    "name_note": "机械正名: decomp反引号名=RenderTarget2::`scalar deleting destructor'(uint)(删除式dtor机制实证)",
    "sig_model": {
     "return": "char *",
@@ -615,7 +614,8 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=~RenderTarget2(??1/??_G析构族); decomp文件=RenderTarget2_~RenderTarget2char_004c3c80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },

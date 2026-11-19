@@ -247,10 +247,9 @@
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x0055434f(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x004c3dd0": {
-   "name": "_scalar_dtor_3DD0",
+   "name": "~CEffCylinder",
    "source": "| [ctor/dtor 错位改名 2026-10-16] 名 CEffCylinder 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_3DD0。refs: ??3@YAXPAX@Z ?Release@gbRefObject@@QAEXXZ",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "fastcall",
@@ -276,7 +275,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CEffCylinder(??1/??_G析构族); decomp文件=CEffCylinder_~CEffCylindervoid_004c3eb0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CEffCylinder(??1/??_G析构族); decomp文件=CEffCylinder_~CEffCylindervoid_004c3eb0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "declaration_only": true
   },
   "0x004c3ec0": {
    "name": "ResetState",
@@ -522,7 +522,7 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateGeometry): int(int,int); 原注解无"
   },
   "0x004c3db0": {
-   "name": "_scalar_dtor_3DB0",
+   "name": "~CEffCylinder",
    "source": "vtable_gap_fill_v1(IDB:??_GCEffCylinder@@UAEPAXI@Z) | 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffCylinder（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F7B0,0x56F774,0x56F768,0x56F7C8,0x56F7BC）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -626,7 +626,7 @@
    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
   },
   "0x004c5810": {
-   "name": "_sdtor",
+   "name": "~CEffCylinder",
    "source": "vtable_gap_fill_v1(from RenderTarget2.json) | [非 ctor/dtor 实证 2026-10-16 analyzer 66 条] A 级形判：删际析构/adjustor 跳板形，非普通 ctor/dtor —— 名保留 _sdtor 系",
    "evidence_level": "A",
    "adjudication": "shared_impl",
@@ -645,7 +645,8 @@
    "flags": [
     "dtor"
    ],
-   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+   "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离",
+   "declaration_only": true
   }
  },
  "vtables": [

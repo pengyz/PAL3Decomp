@@ -232,11 +232,10 @@
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00444aa0": {
-   "name": "_sdtor_full",
+   "name": "~CCBResultWindow",
    "source": "vtable_migrated",
    "ordinal": 34,
    "evidence_level": "unverified",
-   "declaration_only": true,
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
@@ -274,7 +273,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CCBResultWindow(??1/??_G析构族); decomp文件=CCBResultWindow_~CCBResultWindowvoid_00444ac0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CCBResultWindow(??1/??_G析构族); decomp文件=CCBResultWindow_~CCBResultWindowvoid_00444ac0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "declaration_only": true
   }
  },
  "vtables": [

@@ -60,7 +60,7 @@
  },
  "methods": {
   "0x00504080": {
-   "name": "_scalar_dtor",
+   "name": "~CCBStageCam",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -615,7 +615,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CCBStageCam(??1/??_G析构族); decomp文件=CCBStageCam_~CCBStageCamvoid_00504060 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CCBStageCam(??1/??_G析构族); decomp文件=CCBStageCam_~CCBStageCamvoid_00504060 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "declaration_only": true
   }
  },
  "base_size": 692,
