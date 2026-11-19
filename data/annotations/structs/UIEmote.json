@@ -181,17 +181,12 @@
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
    "evidence_level": "chain_unified",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnVisible): int(void *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnVisible): int(void *,int); 原注解无 | [params清零 2026-11-19] 语料体 a2/a3 声明未消费(幻影参数); 基类 UIWnd 对应槽 0 参 → 清零对齐。C9 参数不一致消解。"
   },
   "0x0044ab00": {
    "name": "GetType",
