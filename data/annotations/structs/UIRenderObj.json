@@ -40,7 +40,7 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~UIRenderObj(??1/??_G析构族); decomp文件=UIRenderObj_~UIRenderObjint_00541710 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。 | [撤销deleting 2026-11-19·复核P0-1] 体无 operator delete(this) 删尾——v1 params==1 判据误标(判据自相矛盾案), 撤销; 归属/形态疑点挂账。",
+   "flags_evidence": "IDA名字形态=~UIRenderObj(??1/??_G析构族); decomp文件=UIRenderObj_~UIRenderObjint_00541710 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。 | [撤销deleting 2026-11-19·复核P0-1] 体无 operator delete(this) 删尾——v1 params==1 判据误标(判据自相矛盾案), 撤销; 归属/形态疑点挂账。 | [R3-T5 2026-11-19] 摘除 dtor flag: 复核 D5 二进制验尸——setter(读 [esp+8] 存 [this+0x1c] 或 &0xff 转发虚调用 ret 0x4), 非析构形态。 | [R3-T5 P1 挂账 2026-11-19] dtor flag 暂保持(N18 门禁要求名形/flags 一致; 复核 D5 证非析构=setter), 语义名考证挂账 P1。摘除将致名形/flags 失配→N18 拦截。",
    "sig_note": " | [params清零 2026-11-19] complete dtor 恒无参(VC6规则集: ??1Cls@@QAE@XZ); 语料体无删尾=非deleting形; params残留系hexrays对旧IDB名的渲染伪影, 清零。"
   }
  },

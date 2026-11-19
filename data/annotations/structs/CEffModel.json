@@ -305,16 +305,22 @@
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor1(??1/??_G析构族); decomp文件=CEffModel_scalar_dtor1char_004d0ca0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
    "declaration_only": true,
-   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
+   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。 | [R3-T5 复核回滚 2026-11-19] 恢复 params=[int] (deleting 形 1 参 ABI); v2 params清零误判——二进制 ret 0x4/adjustor thunk 硬证, 语料文本缺删尾≠非 deleting (adjustor/链式调用不直接含删尾)。"
   },
   "0x004d3230": {
    "name": "~CEffModel",
@@ -323,16 +329,22 @@
    "sig_model": {
     "return": "char *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor2(??1/??_G析构族); decomp文件=CEffModel_scalar_dtor2char_004d3230 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
    "declaration_only": true,
-   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。"
+   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。 | [R3-T5 复核回滚 2026-11-19] 恢复 params=[int] (deleting 形 1 参 ABI); v2 params清零误判——二进制 ret 0x4/adjustor thunk 硬证, 语料文本缺删尾≠非 deleting (adjustor/链式调用不直接含删尾)。"
   },
   "0x004cfd20": {
    "name": "~CEffModel",
