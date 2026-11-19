@@ -1,5 +1,5 @@
 {
- "_doc": "L1 狩猎队列 v3 2026-11-19: D1v2 反汇编数据修正根因。\n[CreateOne 案再修正] 原体 63B **真 0 调用**(capstone 线性反汇编: 纯全局写)——v2 \"内联扩张\"理论对 CreateOne 不成立(274B 系 objdump 节边界抓取错误)。\n真根因=**源码形态差**(寄存器选择翻转 esi→ebp): 语料渲染的 body 文本(变量序/类型形态)与原源码有差 → 分配器选异。修法=L1 体文本逐行对照迭代。其余单元(UISystem 3 calls/ArraySlots 1/MiniGame1 1)待案级复核内联嫌。",
+ "_doc": "L1 狩猎队列 v4 2026-11-19: **真尺寸定谳**——CreateOne 实际 256B (0x4D6AC0..0x4D6BC0), 队列/基线 size=63 为假记录。v2\"内联扩张\"方向复活(编译 274B vs 原 256B = +18B 内联差量级合理; 原体 2 个正 call 实证)。v3\"0调用\"系 63B 截断伪象。根因终版: /Ob2 内联扩张(TU 合并效应), 修法域不变=callee 选择性 auto_inline(off)。\n[教训升级] v1→v2→v3→v4: 假尺寸(63)污染 v3 撤回——**函数尺寸必须按地址边界(下函数地址-本地址)计算, 元数据 size 字段不可信**。",
  "targets": [
   {
    "va": "0x4D6670",
@@ -20,11 +20,12 @@
   {
    "va": "0x4D6AC0",
    "file": "Effect/C3DSpark.cpp",
-   "size": 63,
+   "size": 256,
    "evidence": "头8B全同, @8 esi→ebp (this持有寄存器翻转)",
    "status": "queued",
-   "root_cause": "源码形态差(寄存器翻转; D1v2 证 0 调用=无内联嫌, v2 内联论撤)",
-   "fix_domain": "L1 体文本迭代(变量序/类型形态)"
+   "root_cause": "/Ob2 内联扩张(TU合并效应, 复核P0-1同源)",
+   "fix_domain": "callee 选择性 auto_inline(off) (T89/T90 机制)",
+   "size_correction": "原记录 63 假; 真尺寸=0x4D6BC0-0x4D6AC0=256"
   },
   {
    "va": "0x4D6BC0",
@@ -96,6 +97,7 @@
  },
  "correction_log": [
   "v1 寄存器迁移(表面症状) → v2 内联扩张(误—objdump 边界错) → v3 源码形态差(D1v2 反汇编实证)",
-  "教训: 体积对比必须以符号边界截取(objdump -d 按 label 截, 勿含后继符号体)"
+  "教训: 体积对比必须以符号边界截取(objdump -d 按 label 截, 勿含后继符号体)",
+  "v4 真尺寸定谳: 63→256 (地址边界法), v2 内联论复活, v3 撤回作废"
  ]
 }
