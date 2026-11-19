@@ -1,55 +1,71 @@
 {
- "_doc": "L1 字节狩猎队列 2026-11-19: 掉出字节完美但语义等价的函数, 逐个形态迭代收敛。范式: diff 编译obj vs 原二进制逐字节 → 找寄存器选择翻转点 → 源码形态差迭代 (dtor案自证: 0x4D6960 已逐字节收敛)。",
+ "_doc": "L1 字节狩猎队列 2026-11-19 v2: 掉出字节完美但语义等价的函数。\n[根因升级定谳 2026-11-19 CreateOne案] 编译274B vs 原63B——非寄存器迁移, 是 /Ob2 内联扩张: 单类单TU布局使原项目跨TU的callee体可见→编译器自动内联。原CreateOne的e8调用点在编译体中变内联体。修法域=T89/T89b 已知机制(member-call内联抑制: inline_depth(0)不抑成员调用, 须 auto_inline(off) 包裹callee——transform.py T89/T90 先例)。逐callee裁定: callee若在原项目曾被内联(别处L1含其体)则不可全局禁内联, 需TU拆分或选择性 noinline。",
  "targets": [
   {
    "va": "0x4D6670",
    "file": "Effect/C3DSpark.cpp",
    "size": 497,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "/Ob2 内联扩张(TU合并效应)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x4D6A60",
    "file": "Effect/C3DSpark.cpp",
    "size": 75,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "/Ob2 内联扩张(TU合并效应)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x4D6AC0",
    "file": "Effect/C3DSpark.cpp",
    "size": 63,
    "evidence": "头8B全同, @8 esi→ebp (this持有寄存器翻转)",
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "/Ob2 内联扩张(TU合并效应)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x4D6BC0",
    "file": "Effect/C3DSpark.cpp",
    "size": 312,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "/Ob2 内联扩张(TU合并效应)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x4D6D30",
    "file": "Effect/C3DSpark.cpp",
    "size": 223,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "/Ob2 内联扩张(TU合并效应)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x422DF0",
    "file": "UI/UISystem.cpp",
    "size": 37,
    "evidence": "同调用链, prologue保存集 51/56/57 vs 56",
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "待案级复核(TU合并同嫌)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x44A790",
    "file": "Misc/ArraySlots.cpp",
    "size": 10,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "待案级复核(TU合并同嫌)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   },
   {
    "va": "0x52B860",
    "file": "MiniGame/MiniGame1.cpp",
    "size": 107,
-   "status": "queued"
+   "status": "queued",
+   "root_cause": "待案级复核(TU合并同嫌)",
+   "fix_domain": "T89/T89b auto_inline(off) callee 选择性禁内联 或 TU 拆分"
   }
  ],
  "converged_proofs": [
