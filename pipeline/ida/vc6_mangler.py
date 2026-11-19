@@ -39,6 +39,15 @@ _TYPE_WORDS = {
 
 def encode_type(t, seen=None):
     t = t.strip()
+    # [N18 2026-11-19] IDA 类型别名归一 (sig_model 里 IDA 渲染别名 → VC6 基础类型)
+    _ALIAS = {
+        'signed __int16': 'short', '__int16': 'short',
+        'signed __int32': 'int', '__int32': 'int',
+        'signed __int64': '__int64', '__int8': 'char',
+        'signed char': 'char',
+    }
+    for _a, _b in _ALIAS.items():
+        t = re.sub(r'\b%s\b' % re.escape(_a), _b, t)
     # normalize qualifier placement: the IDA demangler emits trailing forms
     # ('char const * *'); rotate const/volatile tokens to the front so the
     # const-pointer chain encodes correctly ('PBD')
@@ -157,7 +166,7 @@ def _self_ref_backref(code, cls_name):
     return code
 
 
-def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
+def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, deleting=False):
     """Compute VC6 mangled name for a class method.
 
     Args:
@@ -175,6 +184,17 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     if not cls_name:
         return mangle_global(method_name, sig)
     cls_chain = _mangle_class_chain(cls_name)
+
+    # [N18 2026-11-19] dtor/ctor 特形判定先于 sig 解析——pending/null sig_model
+    # (sig='') 的 dtor 用**固定码** (VC6 dtor 形不依赖签名: ??1Cls@@QAE@XZ /
+    # ??_GCls@@UAEPAXI@Z), 通用回退 '?~...' 含 ~ 恒非法 (PalScript 0x411ca0 案)
+    last_seg_early = cls_name.split('::')[-1]
+    if method_name == '~' + last_seg_early:
+        if deleting:
+            return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
+        return '??1' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
+    if method_name == last_seg_early:
+        return '??0' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
 
     paren = sig.find('(') if sig else -1
     if paren == -1:
@@ -216,6 +236,11 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False):
     if method_name == last_seg:
         special = '0'
     elif method_name == '~' + last_seg:
+        # [N18 收编 2026-11-19] deleting 形 dtor (~X 名 + flags 含 deleting) 产 ??_G
+        # 固定形态 (UAEPAXI@Z = thiscall/返void*/参unsigned int, obj 15/15 实证)——
+        # 形态由 flags 决策层声明, 不再依赖旧地层 _sdtor 名形
+        if deleting:
+            return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
         special = '1'
 
     # 0b-④（2026-09-15）：**scalar deleting destructor**（`??_G<Cls>@@UAEPAXI@Z`）。

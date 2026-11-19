@@ -130,24 +130,6 @@
    "source": "binary layout: after m_ScriptRoleBuf | normalize_key: 0x1610 -> 5648 | [批4 诚实化 2026-10-16] B地址形：stru_C059A0⇒m_nTodo_C059A0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [embed overlap 声明 2026-10-16] 补 overlap（尺寸修正下游暴露：m_nTodo_C059A0(RoleSystem)@5648 ends@13248 > m_pCCBStageRoleFind@11092）⚠️ 11092-5648=5444 疑为 RoleSystem 内员（偏移 5444）误挂外层——真值待核实",
    "evidence_level": "unverified"
   },
-  "0x2b54": {
-   "name": "m_pCCBStageRoleFind",
-   "type": "CCBStageRole *",
-   "source": "global_analysis:g_CCBStageRoleFind",
-   "evidence_level": "unverified"
-  },
-  "0x2b58": {
-   "name": "m_bRoleSlotValid",
-   "type": "unsigned char[8]",
-   "source": "global_analysis:g_bRoleSlotValid",
-   "evidence_level": "unverified"
-  },
-  "0x2b60": {
-   "name": "m_nTodo_61D8",
-   "type": "int",
-   "source": "overlap_marker_removed:2026-10-15(误报) | adjudicated:2026-10-15 误报实锤:marker记+0x1E48(=全局g_nUnk61D8@g_SceneMgr基址偏移)与成员offset0x2B60互斥;decomp锚点(&m_nUnk61D8+8047)反推真偏移0x2BA0(与SceneMgr::Create@[esi+0xa91c]指令逐字节吻合)⇒三数互斥(0x2B60/0x2BA0/0x1E48),overlap标记移除,offset修正挂账(需多站点A级复核),名m_nUnk61D8=地址后缀伪语义(T74族)待改中性名 | [97挂账裁决 2026-10-16] m_nUnk61D8 ⇒ m_nTodo_61D8（诚实 unknown 标记归一至 m_nTodo_ 家族（形统一）；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
   "0x1428": {
    "name": "m_nTodo_1428",
    "type": "int",
@@ -297,9 +279,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=SceneMgr_`scalar_deleting_destructoruint_004cd930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=SceneMgr_`scalar_deleting_destructoruint_004cd930 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
    "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x00528d50": {
@@ -398,5 +381,6 @@
     "pending": false
    }
   }
- }
+ },
+ "members_note": "\n[R3 2026-11-19 C10消解] 0x2b54/0x2b58/0x2b60 三成员删除——均落 RoleSystem值成员@0x1610 区间 [5648,13248) 内, 且证据链全空: 0x2b54 零汇编disp+零语料+source引不存在全局名(g_CCBStageRoleFind); 0x2b58 同(global_analysis 名g_bRoleSlotValid 不在 globals.json); 0x2b60 source 自裁\"真偏移0x2BA0 与本址互斥\"(97挂账裁决遗留)。0x2BA0 修正+RoleSystem 内部归属取证挂账。"
 }

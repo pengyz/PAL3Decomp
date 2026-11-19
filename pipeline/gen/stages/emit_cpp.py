@@ -921,7 +921,8 @@ def generate_class_cpp(cls_name, methods):
             except Exception:
                 pass
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
-                           stub_registry=_stub_reg)
+                           stub_registry=_stub_reg,
+                           flags=_ida_flags_for(cls_name, m.get('addr', '')))
         code = _apply_lvar_overrides(m['code'].strip(), m['addr'])
         code = run_transforms(code, ctx)
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
@@ -1228,6 +1229,29 @@ def _emit_free_functions_header(store, header_dir):
         t.parent.mkdir(parents=True, exist_ok=True)
         with open(t, 'w', encoding='utf-8') as f:
             f.write(content)
+
+
+# [N18 2026-11-19] ida_structs flags 通道——export 盖章的注解复制(单向流合法),
+# 与直读 data/annotations 划清界限; 缓存一次加载。
+_IDA_STRUCTS_FLAGS_CACHE = None
+def _ida_flags_for(cls_name, addr):
+    global _IDA_STRUCTS_FLAGS_CACHE
+    if _IDA_STRUCTS_FLAGS_CACHE is None:
+        import json as _json
+        _p = os.path.normpath(os.path.join(os.path.dirname(
+            os.path.abspath(__file__)), '..', '..', '..', 'asm', 'pal3', 'ida_structs.json'))
+        _cache = {}
+        try:
+            _d = _json.load(open(_p, encoding='utf-8'))
+            for _cls, _st in (_d or {}).items():
+                for _ka, _mm in (_st.get('methods') or {}).items():
+                    if isinstance(_mm, dict):
+                        _cache[(_cls, str(_ka).lower())] = _mm.get('flags') or []
+        except Exception as _e:
+            print('[N18-FLAGS] ida_structs 读取失败(%s) — flags 通道降级为空' % str(_e)[:60])
+            _cache = {}
+        _IDA_STRUCTS_FLAGS_CACHE = _cache
+    return _IDA_STRUCTS_FLAGS_CACHE.get((cls_name, str(addr).lower()), [])
 
 
 def run_cpp_generation(filter_classes=None):

@@ -1,5 +1,5 @@
-S2-passing units: 98
-decomp entries: 3665 | mangled methods: 10232 (mangle-fail 0) | unambiguous bases: 3661
+S2-passing units: 97
+decomp entries: 3665 | mangled methods: 10226 (mangle-fail 0) | unambiguous bases: 3661
 exe .text: base 0x400000 rva 0x1000 captured 1478656 bytes
   [  1] pal3/src/Combat/CCBAI.cpp                     funcs= 53 matched= 52 L1= 5 partial=46
   [  2] pal3/src/Combat/CCBAIWindow.cpp               funcs=  6 matched=  5 L1= 0 partial= 5
@@ -83,35 +83,32 @@ exe .text: base 0x400000 rva 0x1000 captured 1478656 bytes
   [ 80] pal3/src/Misc/_Texture_Info.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
   [ 81] pal3/src/Misc/s_RoleState.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
   [ 82] pal3/src/Misc/scScriptInstance.cpp            funcs=  3 matched=  1 L1= 0 partial= 0
-  [ 83] pal3/src/Misc/sg_emission_control.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 84] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 85] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
-  [ 86] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial= 8
-  [ 87] pal3/src/Role/Role.cpp                        funcs= 15 matched= 11 L1= 1 partial= 9
-  [ 88] pal3/src/Scene/Camera.cpp                     funcs= 11 matched=  8 L1= 0 partial= 8
-  [ 89] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 90] pal3/src/Scene/Scene.cpp                      funcs=  6 matched=  5 L1= 2 partial= 3
-  [ 91] pal3/src/Scene/SceneMgr.cpp                   funcs= 14 matched= 13 L1= 1 partial=12
-  [ 92] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
-  [ 93] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
-  [ 94] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 95] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
-  [ 96] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 97] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 1
-  [ 98] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-matched 455/582 symbols | L1 46 | partial 390 | oob 0 (text_end 0 / file_end 0) | unmatched 127 | compile-skip 0 | unresolved-synth 19
-L1 rate over matched: 46/436 = 10.6%
+  [ 83] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 84] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
+  [ 85] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial= 8
+  [ 86] pal3/src/Role/Role.cpp                        funcs= 15 matched= 11 L1= 1 partial= 9
+  [ 87] pal3/src/Scene/Camera.cpp                     funcs= 11 matched=  8 L1= 0 partial= 8
+  [ 88] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [ 89] pal3/src/Scene/Scene.cpp                      funcs=  6 matched=  5 L1= 2 partial= 3
+  [ 90] pal3/src/Scene/SceneMgr.cpp                   funcs= 14 matched= 13 L1= 1 partial=12
+  [ 91] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
+  [ 92] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
+  [ 93] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 94] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
+  [ 95] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 96] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 1
+  [ 97] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+matched 453/579 symbols | L1 46 | partial 388 | oob 0 (text_end 0 / file_end 0) | unmatched 126 | compile-skip 0 | unresolved-synth 19
+L1 rate over matched: 46/434 = 10.6%
 [metric] L1 字节 1540 | 重定位覆盖字节 368 (23.9%) | 被跳过且双侧不同的隐藏差异字节 281 (18.2% 的 L1 字节 / 76.4% 的重定位字节)
-[metric] 重定位站点值核对：total=3899 ok=782 mismatch=0 unresolved=3117
-[metric] 重定位目标核对（符号法）：total=3899 ok=18 mismatch=0 unresolved=0 unaligned=3807
-L1 rate over matched: 46/436 = 10.6%
+[metric] 重定位站点值核对：total=3879 ok=780 mismatch=0 unresolved=3099
+[metric] 重定位目标核对（符号法）：total=3879 ok=18 mismatch=0 unresolved=0 unaligned=3787
+L1 rate over matched: 46/434 = 10.6%
 report -> /home/peng/workspace/PAL3Decomp/data/status/s4_baseline.json
 registry -> /home/peng/workspace/PAL3Decomp/data/status/pal3_registry.jsonl
-diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (388 partial rows in 91 units)
+diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (386 partial rows in 90 units)
 
-[L1 ratchet] previous 162 -> current 46
-[L1 ratchet] semantic: previous 16 -> current 6 (L1+sem: 178 -> 52)
-[L1 ratchet] population: previous matched=1132/1458 -> current matched=455/582
+[L1 ratchet] previous 46 -> current 46
+[L1 ratchet] semantic: previous 6 -> current 6 (L1+sem: 52 -> 52)
+[L1 ratchet] population: previous matched=450/582 -> current matched=453/579
 [L1 ratchet] ⚠️ 可比总体**已变化** ⇒ 两次 L1 不可直接比较；若确认可接受，用 `cli.py match --rebaseline "<理由>"` 显式重新对齐
-[L1 ratchet] baseline+detail pair restored to previous run (ratchet may only advance explicitly) · regressed detail → data/status/archive/s4_diff_detail_regressed_20261119T024709.json
-[L1 ratchet] REGRESSION: byte-perfect functions lost — investigate before committing

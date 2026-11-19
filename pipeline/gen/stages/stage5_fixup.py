@@ -1813,6 +1813,9 @@ def _run_inner(code, ctx):
     # Reference parameter restoration
     code = _fix_ref_params(code, ctx)
     code = rewrite_deleting_dtor_calls(code)  # [T4 批1] B 组删析构渲染还原
+    # [N18 2026-11-19] mangle 收编后新渲染形 (~Cls(arg) 直呼) 剥 flags 织入参
+    from textutil import rewrite_sdtor_newform_calls as _rsn
+    code = _rsn(code)
     code = strip_singleton_thunk_glue(code)   # [T5(i)] 合成物胶水剥离
     code = strip_singleton_thunk_args(code)    # [D2b] 伪参剥离（B9 零栈参证据）
 

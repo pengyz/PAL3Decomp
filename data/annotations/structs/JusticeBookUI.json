@@ -289,6 +289,36 @@
    "type": "int",
    "source": "annotation",
    "evidence_level": "unverified"
+  },
+  "0x31c8": {
+   "name": "m_DialogState",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-19] ctor VA=0x528438 配对写: mov [esi+31C8h],ebx (紧邻 UIRoleDialog 构造调用)"
+  },
+  "0x31d0": {
+   "name": "m_Dialog",
+   "type": "UIRoleDialog",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-19] ctor VA=0x528438: lea ecx,[esi+31D0h]; VA=0x528444 call UIRoleDialog::UIRoleDialog (值构造); ~JusticeBookUI 配对 disp 0x31D0"
+  },
+  "0x372c": {
+   "name": "m_ParticlesA",
+   "type": "UIParticle[36]",
+   "evidence_level": "A",
+   "source": "[A 级汇编+语料双证 2026-11-19] ctor VA=0x528455: lea eax,[esi+372Ch] + ArraySort(buf,0x24/36项,0x248/584B,Reset@UIListBox回调) 逐元素 Reset; Render 语料: UIParticle::Apply(v2-36,10) 遍历 [0x372C,0x894C); UIParticle sizeof=584 注解对账"
+  },
+  "0x894c": {
+   "name": "m_ParticlesB",
+   "type": "UIParticle[36]",
+   "evidence_level": "A",
+   "source": "[A 级汇编+语料双证 2026-11-19] ctor VA=0x528477: lea ecx,[esi+894Ch] 同构 ArraySort; Render 语料: UIParticle::Apply(v2,11) 遍历第二池 [0x894C,0xDB7C); Render 汇编 VA=0x528ee5: lea esi,[ebx+894Ch], edi=[esi-5220h]=0x372C 双池互指"
+  },
+  "0xdb7c": {
+   "name": "m_FadeState",
+   "type": "unsigned char[2]",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-19] Render VA=0x528ed8: mov al,[ebx+0DB7Ch] test/读; VA=0x528f29/0x528f30: mov byte [ebx+0DB7Ch],0 / [ebx+0DB7Dh],1 (trigger/done 状态对); 0xDB7D+1=0xDB80=尾界精确收口"
   }
  },
  "methods": {
@@ -494,5 +524,6 @@
    "name": "UIFrameWnd",
    "offset": 0
   }
- ]
+ ],
+ "members_note": "\n[R3 2026-11-19] 尾区骨架落地: m_DialogState/m_Dialog(UIRoleDialog 值成员)/m_ParticlesA[36]/m_ParticlesB[36]/m_FadeState[2] — 44808B 尾区全部收口(0xDB80=56192)。中段小 gap (800B×2/640B/2400B) 挂账。"
 }

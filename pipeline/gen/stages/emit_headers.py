@@ -1385,16 +1385,14 @@ def collect_methods():
                 method = _anh_name
         except Exception as _e5h:
             print('[P5H-EXC] %s: %s' % (addr, _e5h))
-        # [T23-F1] 标量删除析构（dtor 名 + sig 含 this 外形参）⇒ _sdtor_call_dtor
-        # 形（与 stage1 定义侧一致；MSVC6 拒绝 ~X(int)（C2524 实测））。保留
-        # flags 形参（A 级：0x411bd8 test BYTE PTR [esp+0x8],0x1 读栈槽）。
+        # [T23-F1 退役 2026-11-19 N18 dtor 源级化] 删除形 dtor 名保持 ~Cls
+        # （名槽=可推导标签, N18 律）；形态信息在注解 flags(deleting)。
         _is_del_dtor = False
         if method.startswith('~'):
             _sm = re.search(r'\((.*)\)\s*$', sig or '')
             _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
             _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
             if _nonthis:
-                method = '_sdtor_call_dtor'
                 _is_del_dtor = True
         # Strip _misattrib_ prefix (same as collect.py)
         if cls.startswith('_misattrib_'):

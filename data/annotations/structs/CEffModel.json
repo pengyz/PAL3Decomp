@@ -354,9 +354,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~CEffModel(??1/??_G析构族); decomp文件=CEffModel_~CEffModelvoid_004cfd20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CEffModel(??1/??_G析构族); decomp文件=CEffModel_~CEffModelvoid_004cfd20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
   },
   "0x004cfe20": {
    "name": "ResetState",

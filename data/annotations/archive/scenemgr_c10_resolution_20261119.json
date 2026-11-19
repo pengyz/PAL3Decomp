@@ -1,0 +1,24 @@
+{
+ "_doc": "SceneMgr C10 冲突消解 2026-11-19: 三成员全落 RoleSystem@0x1610 区间且证据链全空, 删除归档。",
+ "removed": {
+  "0x2b54": {
+   "name": "m_pCCBStageRoleFind",
+   "type": "CCBStageRole *",
+   "source": "global_analysis:g_CCBStageRoleFind",
+   "evidence_level": "unverified"
+  },
+  "0x2b58": {
+   "name": "m_bRoleSlotValid",
+   "type": "unsigned char[8]",
+   "source": "global_analysis:g_bRoleSlotValid",
+   "evidence_level": "unverified"
+  },
+  "0x2b60": {
+   "name": "m_nTodo_61D8",
+   "type": "int",
+   "source": "overlap_marker_removed:2026-10-15(误报) | adjudicated:2026-10-15 误报实锤:marker记+0x1E48(=全局g_nUnk61D8@g_SceneMgr基址偏移)与成员offset0x2B60互斥;decomp锚点(&m_nUnk61D8+8047)反推真偏移0x2BA0(与SceneMgr::Create@[esi+0xa91c]指令逐字节吻合)⇒三数互斥(0x2B60/0x2BA0/0x1E48),overlap标记移除,offset修正挂账(需多站点A级复核),名m_nUnk61D8=地址后缀伪语义(T74族)待改中性名 | [97挂账裁决 2026-10-16] m_nUnk61D8 ⇒ m_nTodo_61D8（诚实 unknown 标记归一至 m_nTodo_ 家族（形统一）；零表达式/零布局改动）",
+   "evidence_level": "unverified"
+  }
+ },
+ "pending": "0x2BA0 真偏移修正 + RoleSystem 内部归属取证 (旧97挂账)"
+}

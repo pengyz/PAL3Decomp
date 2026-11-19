@@ -481,9 +481,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BFC0(??1/??_G析构族); decomp文件=Camera_scalar_dtor_BFC0void_0041bfc0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_BFC0(??1/??_G析构族); decomp文件=Camera_scalar_dtor_BFC0void_0041bfc0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
   }
  },
  "binary_size_source": "P1 复核（12f09f9e）第三判据 + 编排者独立复验：① operator new(544) + call 0x41BE80（alloc_sizeof，exhibits 经复核者逐字节校验 28/28 OK）；② 0x41BE80 是 name==Camera 的真构造函数并写 off_56AA84；③ 该类 ctor ±0x2000 邻域 [reg+imm] 最大位移 = 544 = alloc（两个独立读数一致）；④ 47 个成员的 max offset=404 ⇒ 末端 408 < 544；⑤ cascade_scan：0 派生/0 按值/0 数组/0 union；⑥ base_class=None。原 12956 的膨胀来自错挂方法 0x52BEB0 InitUIElements（0x52Bxxx 区）。"

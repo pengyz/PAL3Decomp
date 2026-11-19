@@ -25,7 +25,7 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_light(??1/??_G析构族); decomp文件=WeatherEffectNode_scalar_dtor_lightvoid_00405310 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
   },
   "0x00405580": {
    "name": "~WeatherEffectNode",
@@ -42,7 +42,7 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_weather(??1/??_G析构族); decomp文件=WeatherEffectNode_scalar_dtor_weathervoid_00405580 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
   },
   "0x00405560": {
    "name": "~WeatherEffectNode",
@@ -59,7 +59,7 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_rain(??1/??_G析构族); decomp文件=WeatherEffectNode_scalar_dtor_rainvoid_00405560 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
   },
   "0x005420c0": {
    "name": "SnowDraw",
@@ -293,7 +293,7 @@
    "source": "| 38条注册 2026-10-17（verifier·删际析构类自证·证据账目制）：删际析构形（A 级 disasm）：call ??1gbGeomNode@@UAE@XZ + delete + test[esp+8],1 ⇒ 类自证 gbGeomNode；制式名 _scalar_dtor（制式即语义免五面）| confidence: high",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void *",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
@@ -309,9 +309,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=WeatherEffectNode_`scalar_deleting_destructoruint_00404d40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "[A 级 mangle 2026-11-19] ??1WeatherEffectNode@@QAE@PAVgbGeomNode@@D@Z = deleting dtor (PAVgbGeomNode@@D = gbGeomNode*,char flags 形参); 31B stub: call gbGeomNode::~gbGeomNode + test (*(_BYTE*)&Block&1) + operator delete(this) + return this = 织入物全谱; stage1 4c 剥离后发 ~WeatherEffectNode() 源级形"
   }
  },
  "vtables": [

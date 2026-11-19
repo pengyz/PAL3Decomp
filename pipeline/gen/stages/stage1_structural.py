@@ -221,14 +221,19 @@ def run(code, ctx):
             # S4 字节匹配兜底。
             _is_del_dtor = False
             if ctx.is_dtor:
-                _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
-                _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
-                _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
-                _is_del_dtor = bool(_nonthis)
-                if _is_del_dtor:
-                    # 名字保留 ~Cls（N18: 名槽=可推导标签）；flags 形参在 step 3
-                    # 的 params[1+] 保留逻辑之后由 4c 段剥除（含体内引用改写）
-                    pass
+                # [N18 决策源修正 2026-11-19·用户质询] deleting 判定主源=注解
+                # flags(ctx.flags, ida_structs 通道单向流); 语料 sig 推断仅作
+                # 通道缺失(ctx.flags is None)降级——两层各判会造成头体分裂
+                # (ParticleEffect 0x4bd850 实证: flags=['dtor'] 无 deleting 而
+                # 语料呈 (this,int) → stage1 剥/其他层不剥)
+                _fl = getattr(ctx, 'flags', None)
+                if _fl is not None:
+                    _is_del_dtor = 'deleting' in _fl
+                else:
+                    _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
+                    _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
+                    _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
+                    _is_del_dtor = bool(_nonthis)
             _mname = ctx.method_name if ctx.method_name.startswith('~') else (
                 '~' + ctx.cls_name if _is_del_dtor else ctx.method_name)
             expected_name = '%s::%s' % (ctx.cls_name, _mname)
@@ -349,6 +354,7 @@ def run(code, ctx):
                         if re.search(r'(\w+)\s*$', p)]
         # ② return this 尾
         code = re.sub(r'\n?[ \t]*return this;\s*(?=\n)', '\n', code)
+        code = re.sub(r'\n?[ \t]*return \(int\)this;\s*(?=\n)', '\n', code)
         # ③+① 条件 delete(this) 独立语句块（空格宽容: hexrays 渲染
         #   'if ( (a2 & 1) != 0 )' 双括号带空格 / 'if ((a2&1) != 0)' 紧凑两极）
         _flag_tests = [r'\(\s*\(\s*%s\s*&\s*1\s*\)\s*!=\s*0\s*\)' % re.escape(_fp)

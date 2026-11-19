@@ -110,7 +110,7 @@
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x0051c260": {
-   "name": "`scalar deleting destructor'",
+   "name": "~CCBParabolaWindow",
    "source": "vtable_gap_fill_v1(from CCBParabolaWindow.json) | [T142R] 同 CCBParabolaWindow.json 0x0051C260（跨类重复条目同名同步）：T138 形 objdump A 级=call 0x51C280(完整析构,vptr 0x57058C)+test flag+operator delete+ret 4 ⇒ 真标量删除析构",
    "evidence_level": "chain_unified",
    "adjudication": "shared_impl",
@@ -127,7 +127,12 @@
     "pending": false
    },
    "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=2 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_deleting_destructor_): int(void *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_deleting_destructor_): int(void *,int); 原注解无",
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "flags_evidence": " | [N18 验收门修 2026-11-19] 旧名=`scalar deleting destructor' (hexrays 反引号特名) — mangle 形 ?...@@QAEPAXH@Z = deleting dtor 铁证(返this/参int flags), 名归一 ~Cls + deleting 形态标注。"
   },
   "0x0051c880": {
    "name": "HideAll",

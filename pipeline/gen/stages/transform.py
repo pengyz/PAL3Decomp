@@ -21,6 +21,9 @@ class TransformContext:
     is_ctor: bool
     is_dtor: bool
     is_free_function: bool
+    # [N18 2026-11-19] 注解 flags（**ida_structs.json 通道**——export 盖章的注解
+    # 复制, 单向流合法; 禁直读 data/annotations）: dtor/deleting 形态决策源
+    flags: object = None
     # 同一**输出文件**内共享的 stub 去重集合（由 emit_cpp 按文件创建）。
     # None ⇒ 不去重（旧行为，安全回退）。
     stub_registry: object = None
@@ -31,13 +34,18 @@ class TransformContext:
 _MEMBER_INDEX_CACHE = None
 
 
-def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None):
+def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=None, flags=None):
     is_ctor = (method_name == cls_name) if cls_name else False
     is_dtor = (method_name == '~%s' % cls_name) if cls_name else False
     if is_dtor and sig:
         _ret = sig.split('(')[0].strip()
         if 'void' not in _ret or '*' in _ret:
-            is_dtor = False
+            # [N18 决策源 2026-11-19] deleting 形 dtor 的 hexrays 渲染返型=int
+            # (??_G 返回 this 指针)——语料返型启发式在此误否决。注解 flags 是
+            # 决策层: flags 含 dtor 时信任注解(通道=ida_structs 单向流);
+            # 无 flags(通道缺失)才回落启发式
+            if not (flags and 'dtor' in flags):
+                is_dtor = False
     # 路由数据流 2026-10-07（复核 R-C）：member_index（类+基类链成员·生成头为准）+
     # classless_names（functions.json classless 条目——32 带 class 排除）
     member_index = None
@@ -89,7 +97,8 @@ def make_context(cls_name, method_name, sig='', is_free=False, stub_registry=Non
         cls_name=cls_name, method_name=method_name, sig=sig,
         is_ctor=is_ctor, is_dtor=is_dtor, is_free_function=is_free,
         stub_registry=stub_registry,
-        member_index=member_index, classless_names=classless_names)
+        member_index=member_index, classless_names=classless_names,
+        flags=flags)
 
 
 def _thunk_keep_tailjump(code, ctx, is_thunk):

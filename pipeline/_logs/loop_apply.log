@@ -162,6 +162,8 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x4C3BB0:AdvancePass|CheckState
 WARN: CXX_GATE:baseline_stale:same_addr:0x4C5800:CreateTaskWrapper|sub_4C5800
 WARN: CXX_GATE:baseline_stale:same_addr:0x4C5810:_sdtor|_sdtor
 WARN: CXX_GATE:baseline_stale:same_addr:0x4C5B90:SetEffectVisible|operator_
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C88B0:CreateOnePartical_adjthunk|_todo_88B0
+WARN: CXX_GATE:baseline_stale:same_addr:0x4CB340:_sdtor_adj|slot_5_adjthunk
 WARN: CXX_GATE:baseline_stale:same_addr:0x4CB350:_todo_4CB350|_todo_4CB350
 WARN: CXX_GATE:baseline_stale:same_addr:0x4D0C90:_nearby_4cffb0_adjthunk|_todo_004D0C90
 WARN: CXX_GATE:baseline_stale:same_addr:0x4D3220:_sdtor_adj|sub_4D17D0_adjthunk
@@ -178,6 +180,10 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x51B5D0:CreateWithTextures|~CCBLineupWi
 WARN: CXX_GATE:baseline_stale:same_addr:0x51C9B0:OnMessage|OnMessage
 WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|Render|Render
 WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|slot_1
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9A0:_todo_52B9A0|_todo_52B9A0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9C0:_todo_52B9C0|_todo_52B9C0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9E0:_todo_52B9E0|_todo_52B9E0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52BA00:_todo_52BA00|_todo_52BA00
 WARN: CXX_GATE:baseline_stale:same_addr:0x535930:LoadOverlayTexture|LoadOverlayTexture
 WARN: CXX_GATE:baseline_stale:same_addr:0x5420D8:EnableShadow|EnableShadow
 WARN: CXX_GATE:baseline_stale:same_addr:0x5420DE:GetAABBox|GetAABBox
@@ -254,7 +260,6 @@ FROZEN: CANON:C9:UIEmote:0x0044e980:name UIEmote slot5 名字与基类不一致:
 FROZEN: CANON:C9:UIEmote:0x0044eb40:name UIEmote slot0 名字与基类不一致: 本=Reset(0044eb40) 基=ShowClipped(00445e70) → 折叠载体名≠链律名, 语义名需定谳
 FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
-FROZEN: CANON:C10:SceneMgr:m_pCCBStageRoleFind:c SceneMgr.m_pCCBStageRoleFind@+11092 与 m_nTodo_C059A0@+5648(size 7600) 重叠(非union) — 布局冲突
 FROZEN: CANON:C10:UIEmote:baseclass2:a UIEmote.baseclass2@+68 落入基类PalScriptWaitObj子对象区[68,76) — 布局冲突
 FROZEN: DATA:N13c:CIniFile::CIniFile 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
 FROZEN: DATA:N13c:CIniFile::OpenFileRead 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
@@ -277,13 +282,13 @@ FROZEN: DATA:N13c:gbActor::GetActionDuration 限定调用契约断(语料引用�
 FROZEN: DATA:N13c:gbActor::GetTagNodeTM 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
 FROZEN: DATA:N13c:gbActorMgr::LoadActorFile 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
 
-0 new errors + 33 frozen(advisory), 244 warnings — PASS
+0 new errors + 32 frozen(advisory), 250 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：144 个 sub_ 符号的声明/调用形参数全部一致（另 107 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
@@ -306,7 +311,7 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
     RoleStatePanel           size=176256   _gap_000[96] @+0x0
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：144 个 sub_ 符号的声明/调用形参数全部一致（另 107 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）

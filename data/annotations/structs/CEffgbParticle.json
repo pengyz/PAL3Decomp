@@ -91,7 +91,7 @@
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetData): int(v"
   },
   "0x004c87a0": {
-   "name": "`scalar deleting destructor'",
+   "name": "~CEffgbParticle",
    "source": "| [T138] 语义偏离名修正：@0x4C87A0 全函数体（795 字符）= 自调用+flag+operator delete（**标量删除析构经典形**）⇒ 语义名 `scalar deleting destructor`（CCBParabolaWindow 模式——~<Cls> 会与 T128 的 ~CEffgbParticle 撞名，T135 教训）；@0x4C6C10 Create 保留（粒子创建实体）",
    "evidence_level": "chain_unified",
    "sig_model": {
@@ -107,7 +107,12 @@
     "pending": false
    },
    "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_deleting_destructor_): int(void *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_deleting_destructor_): int(void *,int); 原注解无",
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "flags_evidence": " | [N18 验收门修 2026-11-19] 旧名=`scalar deleting destructor' (hexrays 反引号特名) — mangle 形 ?...@@QAEPAXH@Z = deleting dtor 铁证(返this/参int flags), 名归一 ~Cls + deleting 形态标注。"
   },
   "0x004c8830": {
    "name": "Init",
@@ -266,9 +271,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,char) 渲染一致。"
   },
   "0x004ceb60": {
    "name": "CreateInstance",

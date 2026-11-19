@@ -36,6 +36,25 @@ def rewrite_deleting_dtor_calls(code):
         return '%sdelete %s;' % (m.group('ind'), m.group('recv'))
     return _DDTOR_STMT.sub(_sub, code)
 
+# [N18 2026-11-19] 删析构调用新渲染形（mangle 收编后 hexrays 直呼源级 ~Cls 形）：
+# `Cls::~Cls(arg);` / `recv->~Cls(arg);` / `recv.~Cls(arg);` — arg=flags 织入物
+# （0/1 常量或退化渲染变量），源码 dtor 无参 ⇒ 剥参还原无参显式析构调用。
+# 接收者+字面 flag=1 的完整 delete 形仍由上规则族负责（本规则只剥参不改写语义）。
+_SDTOR2_STMT = _re_t.compile(
+    r'(?m)^(?P<ind>\s*)(?P<recv>(?:(?:\[[^\]]*\]|\*\s*[\w\.\-&]+|[\w\.\[\]\*&\->]+?)\s*->\s*)?(?P<cls>\w+)::~(?P=cls)\([^)]*\)[ \t]*;)')
+
+def rewrite_sdtor_newform_calls(code):
+    """[N18 2026-11-19] 删析构调用新渲染形 (~Cls(arg) 直呼) 剥 flags 织入参:
+    `Cls::~Cls(v4);` / `recv->~Cls(a3);` → 无参显式析构调用。
+    arg=flags 织入物 (0/1 常量或退化渲染变量), 源码 dtor 无参。
+    无参调用不动; 非 dtor 调用不动。"""
+    def _sub(m):
+        args = m.group(0)
+        # 原样重建但参数段置空
+        head_end = args.find('(')
+        return args[:head_end] + '();'
+    return _SDTOR2_STMT.sub(_sub, code)
+
 
 # [T5(i) 2026-10-29] SingletonThunk 胶水剥离——编译器随全局对象定义再生（B9 imm32 E9 形证据），
 # 手写胶水（atexit 注册+立即调用）为合成物渲染残骸，等价变换删除。

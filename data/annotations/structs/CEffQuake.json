@@ -151,9 +151,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "[A 级 2026-11-18] scalar deleting dtor 实锤: 函数序 mov [esi],offset 0x56facc (写本类 vptr) + a2&1 → operator delete(this); 表尾同构 slot17 (上槽 GetEditorTaskDescription@CEffQuake); 物理字节与 Actor::~Actor 仅差 vtable 立即数(bytes probe first diff @+0x8)。原误注 Actor::~Actor_N 已归档 archive/actor_sdtor_misnomer_trio_20261118.json。",
+   "flags_evidence": "[A 级 2026-11-18] scalar deleting dtor 实锤: 函数序 mov [esi],offset 0x56facc (写本类 vptr) + a2&1 → operator delete(this); 表尾同构 slot17 (上槽 GetEditorTaskDescription@CEffQuake); 物理字节与 Actor::~Actor 仅差 vtable 立即数(bytes probe first diff @+0x8)。原误注 Actor::~Actor_N 已归档 archive/actor_sdtor_misnomer_trio_20261118.json。 | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。",
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_3): int("
   }
  },

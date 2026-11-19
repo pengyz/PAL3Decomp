@@ -239,9 +239,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_D850(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_D850int_004bd850 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_D850(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_D850int_004bd850 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。",
    "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_D850): int(int,int); 原注解无"
   }
  },

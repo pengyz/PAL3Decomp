@@ -36,6 +36,7 @@ LOG_FILE = os.path.join(LOG_DIR, "apply_annotations_log.txt")
 PDB_EXPORT = os.path.join(PROJECT_ROOT, "data", "pdb", "pdb_export.json")
 
 from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_struct
+import vc6_mangler as _vm6_mod
 
 
 def _strict_struct_entries(directory):
@@ -2281,49 +2282,6 @@ def _vc6_strip_param_name(p):
     return p.strip()
 
 
-def _mangle_vc6_class_chain(cls_name):
-    """Convert 'AStarPathFinder::NODE' to 'NODE@AStarPathFinder' (MSVC format)."""
-    parts = cls_name.split('::')
-    return '@'.join(reversed(parts))
-
-def _mangle_vc6(cls_name, method_name, sig):
-    if not cls_name:
-        # [TOS 2026-11-02] 全局形单源委派（本副本不支持 None——2026-11-02 apply 崩因）；
-        # TODO: 本副本整体收编 vc6_mangler（双副本分叉债）
-        import vc6_mangler as _vm6
-        return _vm6.mangle(None, method_name, sig)
-    cls_chain = _mangle_vc6_class_chain(cls_name)
-    paren = sig.find('(') if sig else -1
-    if paren == -1: return '?' + method_name + '@' + cls_chain + '@@QAEXXZ'
-    prefix = sig[:paren].strip()
-    pstr = sig[paren + 1:sig.rfind(')')] if sig.rfind(')') > paren else ''
-    cc = '__thiscall'
-    for c in ['__thiscall', '__cdecl', '__stdcall', '__fastcall']:
-        if c in prefix: cc = c; break
-    ret = prefix.replace(cc, '').strip()
-    # Strip trailing ClassName::Method (from signature patterns like
-    # "int ClassName::Method()") but NOT nested types in return position
-    # (e.g. "AStarPathFinder::NODE *" must keep AStarPathFinder::NODE).
-    ret = re.sub(r'\s+\w+::\w+$', '', ret).strip()
-    pstr = re.sub(r'\w+\s*\*\s*(?:__hidden\s+)?this\s*,?\s*', '', pstr)
-    params = []
-    if pstr and pstr.strip() not in ('', 'void'):
-        depth = 0; cur = ''
-        for ch in pstr:
-            if ch in '<([': depth += 1; cur += ch
-            elif ch in '>)]': depth -= 1; cur += ch
-            elif ch == ',' and depth == 0:
-                if cur.strip(): params.append(cur.strip()); cur = ''
-            else: cur += ch
-        if cur.strip(): params.append(cur.strip())
-    r = '?' + method_name + '@' + cls_chain + '@@'
-    r += 'Q' + _VC6_CC.get(cc, 'A') + 'E'
-    r += _vc6_encode_type(ret)
-    for p in params: r += _vc6_encode_type(_vc6_strip_param_name(p))
-    r += '@Z'
-    return r
-
-
 def _try_apply_type_tinfo(addr, sig, info, til):
     """Apply function type via tinfo_t API (fallback when SetType fails on :: types)."""
     import re as _re_t
@@ -2517,7 +2475,12 @@ def apply_annotations():
                 # [sig退役迁移 2026-11-17 T3] sig_model单源渲染(_sig_str_of);
                 # structs条目signature已退役, 旧直读=空串→void形乱绞(QAEXXZ病灶)
                 _sig = _sig_str_of(info)
-                _mangled = _mangle_vc6(_cls, _method, _sig)
+                # [N18 收编 2026-11-19·双mangle器统一] 类方法 mangle 委派
+                # vc6_mangler(完整实现: ??0/??1/??_G特形码+void返型XZ尾码);
+                # 本地 _mangle_vc6 简化拼装已删(行为面测试实证: L1非法名7/18 +
+                # L2特形码缺9/18 + void尾码错1857条); deleting 由 flags 透传
+                _deleting = 'deleting' in (info.get('flags') or [])
+                _mangled = _vm6_mod.mangle(_cls, _method, _sig, deleting=_deleting)
                 if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
                 else:
@@ -2526,7 +2489,7 @@ def apply_annotations():
                 # [2026-11-02 统一转换] 全局函数同走 mangled（注解=可读名单源）；
                 # mangling 失败（签名缺/不可解析）回退可读名。
                 # [sig退役迁移 2026-11-17 T3] sig_model单源渲染, 字符串回退(functions.json层过渡)
-                _gm = _mangle_vc6(None, name, _sig_str_of(info))
+                _gm = _vm6_mod.mangle(None, name, _sig_str_of(info))
                 _target = _gm or name
                 if ida_name.set_name(addr, _target, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
@@ -3746,11 +3709,14 @@ def apply_annotations():
         if not desired:
             continue
         # Compute expected name: mangled for class methods, simple for free functions
+        # [N18 收编 2026-11-19] sig 单源=sig_model(_sig_str_of, 旧signature已退役);
+        # mangle 统一委派 vc6_mangler (deleting 形态透传)
         if 'class' in info:
             _cls = info['class']
             _method = desired
-            _sig = info.get('signature', '')
-            _expected = _mangle_vc6(_cls, _method, _sig)
+            _sig = _sig_str_of(info)
+            _expected = _vm6_mod.mangle(_cls, _method, _sig,
+                                        deleting='deleting' in (info.get('flags') or []))
         else:
             _expected = desired
         if not _expected:
