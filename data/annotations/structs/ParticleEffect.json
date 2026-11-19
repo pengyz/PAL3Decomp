@@ -290,5 +290,6 @@
    "name": "sg_particle_scene",
    "offset": 0
   }
- ]
+ ],
+ "members_note": "[R2 2026-11-19] 布局定谳: 基类 sg_particle_scene(362832B, IDA 27 名完备) 占 [0x0,0x58950) — econtrol sg_emission_control[4]@0x118→ecenable@0x24278→particle sg_particle[4]@0x2428C→emitter sg_emitter[4]@0x3939C→尾部参数群@0x588FC..0x58950; UpdateParticles(0x4bc7f0) 的 stride-36952 循环遍历的是**基类 econtrol[4]** (&this->econtrol[0]=this+0x118)。ParticleEffect 自有扩展 [0x58950,0x5896C) 28B: active_parnum/m_pTexture[4]/deltatime (已注)。R2 初版 econtrol[9]@0x763C 为余数凑数误落(无 disp 证据, 0x763C 实落基类 econtrol 区内), C10 门禁拦截后撤销。"
 }

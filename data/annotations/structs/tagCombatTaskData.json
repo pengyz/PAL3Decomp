@@ -10,9 +10,9 @@
    "evidence_level": "unverified"
   },
   "0xc": {
-   "name": "m_nEffParam0",
-   "type": "int",
-   "source": "cluster: tagCombatTaskData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
+   "name": "m_fEffDirX",
+   "type": "float",
+   "source": "cluster: tagCombatTaskData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [R2 正名 2026-11-18·复核P1-5改写] 语料直证: ~CCCTData VA=0x505930 行78: g_CombatTaskData.m_fEffDirX = v37 (v37=v46.xlen*0.5, box 半边长 float 写); C3DSpark::CreateOne VA=0x4D6AC0: g_17A8Data.m_nEffParam0 = sin(v6)*xa (跨类型 tag17A8Data 旁证)。双用途披露同 0x14。",
    "evidence_level": "unverified"
   },
   "0x10": {
@@ -22,9 +22,9 @@
    "evidence_level": "unverified"
   },
   "0x14": {
-   "name": "m_nEffParam14",
+   "name": "m_fEffDirZ",
    "type": "float",
-   "source": "cluster: tagCombatTaskData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
+   "source": "cluster: tagCombatTaskData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [R2 正名 2026-11-18·复核P1-5改写] 语料直证: C3DSpark::CreateOne VA=0x4D6AC0 行20-21: g_17A8Data.m_nEffParam0 = sin(v6)*xa / g_17A8Data.m_nEffParam14 = cos(v6)*xa (特效初始方向分量); ~CCCTData VA=0x505930 行83: m_fEffDirZ = *(float *)&g_CombatTaskData.m_nEffParamBase[2] (float 域直证)。披露: ①g_17A8Data 是 tag17A8Data(52B) 与 tagCombatTaskData(384B) 跨类型旁证, sin/cos 为同偏移类比非同型直证; ②~CCCTData 对 0xC/0x14 写入值 = xlen/ylen*0.5 (box 半边长), 与方向分量构成 P/T 交叠双用途; ③命名 m_fEffDirX/Z = IDA/PDB 实名(EffDir)同步, 非编造。R2 初版引文 v37/0x4d8xxx 为失实转述, 已改写。",
    "evidence_level": "unverified"
   },
   "0x18": {

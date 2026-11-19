@@ -1,6 +1,6 @@
 {
-  "name": "20261119_023909",
-  "timestamp": "2026-11-19T02:39:09.863858",
+  "name": "20261119_091401",
+  "timestamp": "2026-11-19T09:14:01.222473",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -4466,12 +4466,12 @@
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 13224
+          "line": 13213
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 13284
+          "line": 13273
         }
       ]
     },
@@ -4493,7 +4493,7 @@
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 40,
+      "error_count": 28,
       "errors": [
         {
           "code": "C2248",
@@ -4521,21 +4521,6 @@
           "line": 1594
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1901
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1937
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 1938
-        },
-        {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 1940
@@ -4544,16 +4529,6 @@
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 1940
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1944
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1954
         },
         {
           "code": "C2440",
@@ -4616,34 +4591,14 @@
           "line": 6575
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7461
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 7462
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7506
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7511
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7535
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7540
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 7545
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 7463
         },
         {
           "code": "C2143",
@@ -4679,21 +4634,6 @@
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'CCBStage'",
           "line": 11417
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckActionValid' : function does not take 2 parameters",
-          "line": 11989
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckActionValid' : function does not take 2 parameters",
-          "line": 11992
-        },
-        {
-          "code": "C2660",
-          "msg": "'CheckActionValid' : function does not take 2 parameters",
-          "line": 11998
         }
       ]
     },
@@ -4740,42 +4680,12 @@
     },
     "pal3/src/Combat/CCBStageScene.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
           "line": 159
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 971
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 973
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 977
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 991
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 993
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 995
         },
         {
           "code": "C2440",
@@ -4932,152 +4842,227 @@
     },
     "pal3/src/Combat/CCBUI.cpp": {
       "status": "fail",
-      "error_count": 29,
+      "error_count": 44,
       "errors": [
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'class UIStatic *' to 'char'",
-          "line": 297
+          "line": 301
         },
         {
           "code": "C2664",
           "msg": "'Method_B560' : cannot convert parameter 1 from 'int *' to 'unsigned long *'",
-          "line": 533
+          "line": 537
         },
         {
           "code": "C2664",
           "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI *'",
-          "line": 646
+          "line": 650
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 908
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 929
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 952
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 990
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 1022
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 1039
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
+          "line": 1049
         },
         {
           "code": "C2511",
           "msg": "'SettingsDialogProc' : overloaded member function 'int (int,int,unsigned int,int,int)' not found in 'CCBUI'",
-          "line": 974
+          "line": 1218
         },
         {
           "code": "C2511",
           "msg": "'HandleWindowMessage' : overloaded member function 'int (int,int,unsigned int,int,int)' not found in 'CCBUI'",
-          "line": 1162
+          "line": 1406
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 1592
+          "line": 1836
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void (__cdecl *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'void (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 1598
+          "line": 1842
         },
         {
           "code": "C2664",
           "msg": "'void (struct HWND__ *,unsigned int,unsigned int,long)' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 1602
+          "line": 1846
         },
         {
           "code": "C2664",
           "msg": "'SendMessageA' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 1729
+          "line": 1973
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1976
+          "line": 2220
+        },
+        {
+          "code": "C2664",
+          "msg": "'GetDlgItem' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2362
+        },
+        {
+          "code": "C2664",
+          "msg": "'SendWindowMessage' : cannot convert parameter 1 from 'class CCBUI *' to 'struct HWND__ *'",
+          "line": 2382
+        },
+        {
+          "code": "C2664",
+          "msg": "'SendWindowMessage' : cannot convert parameter 1 from 'class CCBUI *' to 'struct HWND__ *'",
+          "line": 2384
+        },
+        {
+          "code": "C2664",
+          "msg": "'DlgProcEffect_a6d0' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2388
+        },
+        {
+          "code": "C2664",
+          "msg": "'DlgProcInput' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2394
+        },
+        {
+          "code": "C2664",
+          "msg": "'EndDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2397
+        },
+        {
+          "code": "C2664",
+          "msg": "'EndDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2403
         },
         {
           "code": "C2664",
           "msg": "'FormatCombatBuffer' : cannot convert parameter 1 from 'class CCBUI *' to 'struct HWND__ *'",
-          "line": 2219
+          "line": 2537
+        },
+        {
+          "code": "C2664",
+          "msg": "'ShowCameraDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
+          "line": 2943
         },
         {
           "code": "C2039",
           "msg": "'_sdtor_call_dtor' : is not a member of 'CCBUI'",
-          "line": 4161
+          "line": 4629
         },
         {
           "code": "C2673",
           "msg": "'_sdtor_call_dtor' : global functions do not have 'this' pointers",
-          "line": 4163
+          "line": 4631
         },
         {
           "code": "C2227",
           "msg": "left of '->CCBUI' must point to class/struct/union",
-          "line": 4163
+          "line": 4631
         },
         {
           "code": "C2653",
           "msg": "'CCBUI' : is not a class or namespace name",
-          "line": 4163
+          "line": 4631
         },
         {
           "code": "C2673",
           "msg": "'_sdtor_call_dtor' : global functions do not have 'this' pointers",
-          "line": 4165
+          "line": 4633
         },
         {
           "code": "C2673",
           "msg": "'_sdtor_call_dtor' : global functions do not have 'this' pointers",
-          "line": 4166
+          "line": 4634
         },
         {
           "code": "C2660",
           "msg": "'Destroy' : function does not take 1 parameters",
-          "line": 4248
+          "line": 4716
         },
         {
           "code": "C2556",
           "msg": "'int __thiscall CCBUI::Update(int,int)' : overloaded function differs only by return type from '__int32 __thiscall CCBUI::Update(int,int)'",
-          "line": 4340
+          "line": 4808
         },
         {
           "code": "C2371",
           "msg": "'Update' : redefinition; different basic types",
-          "line": 4340
+          "line": 4808
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 4346
+          "line": 4814
         },
         {
           "code": "C2065",
           "msg": "'g_strColHeadQuantity' : undeclared identifier",
-          "line": 4516
+          "line": 4984
         },
         {
           "code": "C2523",
           "msg": "'CCBUI::~CCBParabolaWindow' : destructor tag mismatch",
-          "line": 4776
+          "line": 5244
         },
         {
           "code": "C2631",
           "msg": "'CCBUI::~CCBUI' : destructors not allowed a return type",
-          "line": 4777
+          "line": 5245
         },
         {
           "code": "C2660",
           "msg": "'Destroy' : function does not take 1 parameters",
-          "line": 4782
+          "line": 5250
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 4815
+          "line": 5283
         },
         {
           "code": "C2664",
           "msg": "'int (char *,char *,int *,class CCBUI *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 4960
+          "line": 5428
         },
         {
           "code": "C2664",
           "msg": "'CreateDigitPair' : cannot convert parameter 2 from 'class UIStatic ** ' to 'class UIWnd ** '",
-          "line": 5367
+          "line": 5835
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 5387
+          "line": 5855
         }
       ]
     },
@@ -5301,186 +5286,145 @@
       "errors": []
     },
     "pal3/src/Effect/C3DSpark.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 381
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 423
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 424
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 426
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/CEffCylinder.cpp": {
       "status": "fail",
-      "error_count": 16,
+      "error_count": 14,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 456
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
-          "line": 465
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 466
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 467
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 468
         },
         {
-          "code": "C2039",
-          "msg": "'Scale' : is not a member of 'gbMatrixStack'",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 469
         },
         {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
-          "line": 469
+          "line": 470
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 471
+          "code": "C2039",
+          "msg": "'Scale' : is not a member of 'gbMatrixStack'",
+          "line": 470
         },
         {
           "code": "C2556",
           "msg": "'char *__thiscall CEffCylinder::GetEditorTaskDescription(int)' : overloaded function differs only by return type from 'const char *__thiscall CEffCylinder::GetEditorTaskDescription(int)'",
-          "line": 779
+          "line": 780
         },
         {
           "code": "C2373",
           "msg": "'GetEditorTaskDescription' : redefinition; different type modifiers",
-          "line": 779
+          "line": 780
         },
         {
           "code": "C2556",
           "msg": "'char *__thiscall CEffCylinder::GetEditorObjDescription(int)' : overloaded function differs only by return type from 'const char *__thiscall CEffCylinder::GetEditorObjDescription(int)'",
-          "line": 865
+          "line": 866
         },
         {
           "code": "C2373",
           "msg": "'GetEditorObjDescription' : redefinition; different type modifiers",
-          "line": 865
+          "line": 866
         },
         {
           "code": "C2039",
           "msg": "'CreateTaskWrapper' : is not a member of 'CEffCylinder'",
-          "line": 1009
+          "line": 1010
         },
         {
           "code": "C2673",
           "msg": "'CreateTaskWrapper' : global functions do not have 'this' pointers",
-          "line": 1013
+          "line": 1014
         },
         {
           "code": "C2227",
           "msg": "left of '->CEffCylinder' must point to class/struct/union",
-          "line": 1013
+          "line": 1014
         },
         {
           "code": "C2653",
           "msg": "'CEffCylinder' : is not a class or namespace name",
-          "line": 1013
+          "line": 1014
         }
       ]
     },
     "pal3/src/Effect/CEffExplosive.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 10,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 333
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
-          "line": 342
-        },
-        {
-          "code": "C2039",
-          "msg": "'Scale' : is not a member of 'gbMatrixStack'",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 343
         },
         {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
-          "line": 343
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
           "line": 344
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2039",
+          "msg": "'Scale' : is not a member of 'gbMatrixStack'",
+          "line": 344
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 345
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 346
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 348
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 347
         },
         {
           "code": "C2556",
           "msg": "'char *__thiscall CEffExplosive::GetEditorTaskDescription(int)' : overloaded function differs only by return type from 'const char *__thiscall CEffExplosive::GetEditorTaskDescription(int)'",
-          "line": 667
+          "line": 668
         },
         {
           "code": "C2373",
           "msg": "'GetEditorTaskDescription' : redefinition; different type modifiers",
-          "line": 667
+          "line": 668
         },
         {
           "code": "C2556",
           "msg": "'char *__thiscall CEffExplosive::GetEditorObjDescription(int)' : overloaded function differs only by return type from 'const char *__thiscall CEffExplosive::GetEditorObjDescription(int)'",
-          "line": 735
+          "line": 736
         },
         {
           "code": "C2373",
           "msg": "'GetEditorObjDescription' : redefinition; different type modifiers",
-          "line": 735
+          "line": 736
         }
       ]
     },
     "pal3/src/Effect/CEffGrid.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 11,
       "errors": [
         {
           "code": "C2440",
@@ -5488,13 +5432,8 @@
           "line": 42
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 439
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 448
         },
         {
@@ -5508,24 +5447,19 @@
           "line": 449
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 450
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 451
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 452
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 454
         },
         {
           "code": "C2556",
@@ -5551,32 +5485,12 @@
     },
     "pal3/src/Effect/CEffMeteor.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'int' to 'void *'",
           "line": 43
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 508
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 545
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 546
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 548
         },
         {
           "code": "C2556",
@@ -5653,7 +5567,7 @@
     },
     "pal3/src/Effect/CEffModel.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 11,
       "errors": [
         {
           "code": "C2440",
@@ -5661,28 +5575,28 @@
           "line": 121
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 439
+          "code": "C2660",
+          "msg": "'DestroyEffect_FD40' : function does not take 0 parameters",
+          "line": 131
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 448
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 449
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 450
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 451
         },
         {
@@ -5694,11 +5608,6 @@
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 452
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 456
         },
         {
           "code": "C2556",
@@ -5719,57 +5628,22 @@
     },
     "pal3/src/Effect/CEffQuad.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 5,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 325
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 360
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 361
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 363
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 395
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 399
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 400
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 401
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 402
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 412
         },
         {
           "code": "C2556",
@@ -5977,7 +5851,7 @@
     },
     "pal3/src/Effect/CEffShock.cpp": {
       "status": "fail",
-      "error_count": 16,
+      "error_count": 14,
       "errors": [
         {
           "code": "C2440",
@@ -6000,28 +5874,23 @@
           "line": 70
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 470
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 479
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 480
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 481
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 482
         },
         {
@@ -6033,11 +5902,6 @@
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 483
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 485
         },
         {
           "code": "C2556",
@@ -6073,7 +5937,7 @@
     },
     "pal3/src/Effect/CEffgbParticle.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 19,
       "errors": [
         {
           "code": "C2501",
@@ -6151,21 +6015,6 @@
           "line": 191
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 539
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 543
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 547
-        },
-        {
           "code": "C2556",
           "msg": "'char *__thiscall CEffgbParticle::GetEditorTaskDescription(int)' : overloaded function differs only by return type from 'const char *__thiscall CEffgbParticle::GetEditorTaskDescription(int)'",
           "line": 688
@@ -6199,7 +6048,7 @@
     },
     "pal3/src/Effect/ScreenEffectMgr.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 11,
       "errors": [
         {
           "code": "C2039",
@@ -6232,51 +6081,16 @@
           "line": 671
         },
         {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 802
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 833
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbMatrix4 *)' : too many actual parameters",
-          "line": 834
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 838
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 844
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 850
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 851
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 857
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 859
-        },
-        {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 862
@@ -6287,29 +6101,9 @@
           "line": 862
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 872
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 879
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 880
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 890
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 900
         }
       ]
     },
@@ -6320,12 +6114,12 @@
         {
           "code": "C2660",
           "msg": "'_Eos' : function does not take 2 parameters",
-          "line": 230
+          "line": 263
         },
         {
           "code": "C2660",
           "msg": "'_Eos' : function does not take 2 parameters",
-          "line": 265
+          "line": 298
         }
       ]
     },
@@ -6418,282 +6212,267 @@
     },
     "pal3/src/GameBase/PAL3.cpp": {
       "status": "fail",
-      "error_count": 55,
+      "error_count": 52,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'struct HWND__ *'",
-          "line": 231
+          "line": 233
         },
         {
           "code": "C2664",
           "msg": "'Load' : cannot convert parameter 1 from 'class RenderTarget3 *' to 'unsigned long *'",
-          "line": 300
+          "line": 302
         },
         {
           "code": "C2664",
           "msg": "'Load' : cannot convert parameter 1 from 'class RenderTarget3 *' to 'unsigned long *'",
-          "line": 316
+          "line": 318
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'class CameraCtrl *'",
-          "line": 394
-        },
-        {
-          "code": "C2065",
-          "msg": "'Update_25' : undeclared identifier",
-          "line": 619
+          "line": 396
         },
         {
           "code": "C2039",
           "msg": "'UIPostUpdate' : is not a member of 'gbSound2DNode'",
-          "line": 671
+          "line": 673
         },
         {
           "code": "C2039",
           "msg": "'UIPostUpdate' : is not a member of 'gbSound2DNode'",
-          "line": 671
+          "line": 673
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class RoleSystem *' to 'unsigned long'",
-          "line": 802
+          "line": 804
         },
         {
           "code": "C2039",
           "msg": "'UIPostUpdate' : is not a member of 'gbSound2DNode'",
-          "line": 879
+          "line": 881
         },
         {
           "code": "C2039",
           "msg": "'UIPostUpdate' : is not a member of 'gbSound2DNode'",
-          "line": 879
+          "line": 881
         },
         {
           "code": "C2664",
           "msg": "'RenderPost' : cannot convert parameter 1 from 'void *' to 'int'",
-          "line": 894
+          "line": 896
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
-          "line": 984
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 986
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
-          "line": 988
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 990
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
-          "line": 992
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 1015
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 994
         },
         {
           "code": "C2039",
           "msg": "'SceneRenderWithRotation' : is not a member of 'gbMatrixStack'",
-          "line": 1094
+          "line": 1096
         },
         {
           "code": "C2039",
           "msg": "'SceneRenderWithRotation' : is not a member of 'gbMatrixStack'",
-          "line": 1094
+          "line": 1096
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'void *'",
-          "line": 1228
+          "line": 1230
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)' to 'long (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 1293
+          "line": 1295
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 1307
+          "line": 1309
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned int' to 'struct HWND__ *'",
-          "line": 1352
+          "line": 1354
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 1510
+          "line": 1512
         },
         {
           "code": "C2352",
           "msg": "'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::max_size' : illegal call of non-static member function",
-          "line": 1598
+          "line": 1600
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned __int8 *'",
-          "line": 1750
+          "line": 1752
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'unsigned __int8 *'",
-          "line": 1771
+          "line": 1773
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 2327
+          "line": 2493
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *[5]' to 'unsigned long'",
-          "line": 2328
+          "line": 2494
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'char'",
-          "line": 2341
+          "line": 2507
         },
         {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'class gbRenderEffect *' to 'char *'",
-          "line": 3071
+          "line": 3237
         },
         {
           "code": "C2230",
           "msg": "'!=' : indirection to different types",
-          "line": 3071
+          "line": 3237
         },
         {
           "code": "C2664",
           "msg": "'Insert' : cannot convert parameter 1 from 'int' to 'void *'",
-          "line": 3101
+          "line": 3267
         },
         {
           "code": "C2665",
           "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
-          "line": 3105
+          "line": 3271
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'int'",
-          "line": 3111
+          "line": 3277
         },
         {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'class gbRenderEffect *' to 'struct gbVec3D *'",
-          "line": 3123
+          "line": 3289
         },
         {
           "code": "C2230",
           "msg": "'!=' : indirection to different types",
-          "line": 3123
+          "line": 3289
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char *'",
-          "line": 3148
+          "line": 3314
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'struct gbVec3D *'",
-          "line": 3152
+          "line": 3318
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'char *'",
-          "line": 3153
+          "line": 3319
         },
         {
           "code": "C2665",
           "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
-          "line": 3162
+          "line": 3328
         },
         {
           "code": "C2107",
           "msg": "illegal index, indirection not allowed",
-          "line": 3163
+          "line": 3329
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 3163
+          "line": 3329
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'int'",
-          "line": 3165
+          "line": 3331
         },
         {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'class gbRenderEffect *' to 'struct gbVec3D *'",
-          "line": 3177
+          "line": 3343
         },
         {
           "code": "C2230",
           "msg": "'!=' : indirection to different types",
-          "line": 3177
+          "line": 3343
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'char *'",
-          "line": 3202
+          "line": 3368
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'struct gbVec3D *'",
-          "line": 3206
+          "line": 3372
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct gbVec3D *' to 'char *'",
-          "line": 3207
+          "line": 3373
         },
         {
           "code": "C2665",
           "msg": "'delete' : none of the 2 overloads can convert parameter 1 from type 'int'",
-          "line": 3216
+          "line": 3382
         },
         {
           "code": "C2107",
           "msg": "illegal index, indirection not allowed",
-          "line": 3217
+          "line": 3383
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 3217
+          "line": 3383
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'int'",
-          "line": 3219
+          "line": 3385
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3506
+          "line": 3774
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3507
+          "line": 3775
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3510
-        },
-        {
-          "code": "C2065",
-          "msg": "'HideAll_11' : undeclared identifier",
-          "line": 3997
+          "line": 3778
         }
       ]
     },
@@ -6719,49 +6498,18 @@
       "errors": []
     },
     "pal3/src/MiniGame/MiniGame1.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 29
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 34
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/MiniGame/MiniGame3.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 10,
       "errors": [
         {
           "code": "C2451",
           "msg": "conditional expression of type 'class MiniGame3' is illegal",
           "line": 36
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 43
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 49
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 59
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 64
         },
         {
           "code": "C2440",
@@ -6779,14 +6527,24 @@
           "line": 116
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 152
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 153
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 159
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class MiniGame3' to 'struct gbVec3D *'",
           "line": 160
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 164
         },
         {
           "code": "C2451",
@@ -6797,11 +6555,6 @@
           "code": "C2451",
           "msg": "conditional expression of type 'class MiniGame3' is illegal",
           "line": 170
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 172
         }
       ]
     },
@@ -6899,20 +6652,9 @@
       ]
     },
     "pal3/src/Misc/ArraySlots.cpp": {
-      "status": "fail",
-      "error_count": 2,
-      "errors": [
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class ArraySlots' to 'int'",
-          "line": 29
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class ArraySlots' to 'int'",
-          "line": 59
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/BINK.cpp": {
       "status": "ok",
@@ -6942,7 +6684,7 @@
     },
     "pal3/src/Misc/CCBPanelSlot.cpp": {
       "status": "fail",
-      "error_count": 16,
+      "error_count": 12,
       "errors": [
         {
           "code": "C2664",
@@ -6980,16 +6722,6 @@
           "line": 137
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 158
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 173
-        },
-        {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 174
@@ -7000,8 +6732,8 @@
           "line": 174
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 181
         },
         {
@@ -7013,16 +6745,6 @@
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 183
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 186
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 193
         }
       ]
     },
@@ -7033,12 +6755,12 @@
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'CCBUIPanel'",
-          "line": 2229
+          "line": 2225
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 2422
+          "line": 2418
         }
       ]
     },
@@ -7153,28 +6875,8 @@
     },
     "pal3/src/Misc/CScreenModeNode.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 2,
       "errors": [
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 142
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 144
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbMatrix4 *)' : too many actual parameters",
-          "line": 149
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 312
-        },
         {
           "code": "C2556",
           "msg": "'int __thiscall CScreenModeNode::GetAABBox(unsigned int,char)' : overloaded function differs only by return type from '__int32 __thiscall CScreenModeNode::GetAABBox(unsigned int,char)'",
@@ -7414,111 +7116,56 @@
     },
     "pal3/src/Misc/MatrixStack.cpp": {
       "status": "fail",
-      "error_count": 29,
+      "error_count": 14,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 36
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 42
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 43
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 45
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 59
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 60
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 65
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 67
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 78
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 79
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 84
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 89
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 91
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 93
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 108
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 110
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 136
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 159
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 163
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 172
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 180
         },
         {
@@ -7532,34 +7179,14 @@
           "line": 183
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 188
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 197
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 201
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbMatrix4 *)' : too many actual parameters",
-          "line": 203
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 205
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 208
         }
       ]
     },
@@ -7703,12 +7330,12 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 712
+          "line": 943
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 714
+          "line": 945
         }
       ]
     },
@@ -7892,42 +7519,42 @@
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 8350
+          "line": 8353
         },
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'SaleUI'",
-          "line": 8389
+          "line": 8392
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'int'",
-          "line": 8707
+          "line": 8706
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'long'",
-          "line": 8713
+          "line": 8712
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 9081
+          "line": 9080
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 9369
+          "line": 9368
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 9421
+          "line": 9420
         },
         {
           "code": "C2228",
           "msg": "left of '._tail_000' must have class/struct/union type",
-          "line": 9597
+          "line": 9596
         }
       ]
     },
@@ -7958,7 +7585,7 @@
     },
     "pal3/src/Misc/ScreenEffectNode.cpp": {
       "status": "fail",
-      "error_count": 11,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2440",
@@ -7966,54 +7593,14 @@
           "line": 83
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 186
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 188
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 194
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 198
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 225
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 247
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbMatrix4 *)' : too many actual parameters",
-          "line": 248
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 249
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 255
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 262
         }
       ]
     },
@@ -8252,7 +7839,7 @@
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'TaskBookUI'",
-          "line": 1045
+          "line": 1046
         }
       ]
     },
@@ -8273,47 +7860,17 @@
     },
     "pal3/src/Misc/UI3DModelNode.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 2,
       "errors": [
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 77
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'float' to 'void *'",
-          "line": 81
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 111
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbMatrix4 *)' : too many actual parameters",
-          "line": 112
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 121
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 172
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 222
+          "line": 84
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char' to 'char *'",
-          "line": 268
+          "line": 271
         }
       ]
     },
@@ -8324,7 +7881,7 @@
     },
     "pal3/src/Misc/UIAnimateCtrlEX.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2660",
@@ -8332,24 +7889,9 @@
           "line": 100
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 185
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,float,float)' : too many actual parameters",
-          "line": 186
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 187
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 191
         },
         {
           "code": "C2511",
@@ -8360,7 +7902,7 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 31,
+      "error_count": 37,
       "errors": [
         {
           "code": "C2143",
@@ -8383,44 +7925,54 @@
           "line": 583
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 897
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 898
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 901
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 899
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 904
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 905
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 914
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 906
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 921
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 915
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 925
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 922
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 928
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 923
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 938
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 929
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 930
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 939
         },
         {
           "code": "C2228",
@@ -8433,24 +7985,29 @@
           "line": 968
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbQuaternion *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(struct gbQuaternion *)' : cannot convert parameter 1 from 'struct gbQuaternion' to 'struct gbQuaternion *'",
           "line": 969
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 975
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 976
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 981
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 977
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1010
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 978
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1011
         },
         {
           "code": "C2039",
@@ -8463,39 +8020,54 @@
           "line": 1012
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1014
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1017
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1016
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1031
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1030
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1040
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1034
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1041
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1039
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1046
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1045
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1047
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1053
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1048
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1054
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1055
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 1056
         },
         {
           "code": "C2109",
@@ -8542,22 +8114,12 @@
     },
     "pal3/src/Misc/UICaption.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 140
-        },
-        {
-          "code": "C2664",
-          "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 207
-        },
-        {
-          "code": "C2664",
-          "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 363
+          "line": 177
         }
       ]
     },
@@ -8979,17 +8541,12 @@
     },
     "pal3/src/Misc/UIEmote.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 97
-        },
-        {
-          "code": "C2065",
-          "msg": "'sdtor_25' : undeclared identifier",
-          "line": 106
+          "line": 100
         }
       ]
     },
@@ -9011,22 +8568,17 @@
     },
     "pal3/src/Misc/UIFrameWnd.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'UIFrameWnd'",
-          "line": 42
+          "line": 40
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 129
-        },
-        {
-          "code": "C2664",
-          "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 429
+          "line": 127
         }
       ]
     },
@@ -9116,7 +8668,7 @@
     },
     "pal3/src/Misc/UIProgressBar.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 16,
       "errors": [
         {
           "code": "C2039",
@@ -9149,61 +8701,41 @@
           "line": 51
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 91
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 92
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 139
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 140
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 145
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 150
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 155
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 160
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 165
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 170
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 179
-        },
-        {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 185
@@ -9212,16 +8744,6 @@
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
           "line": 185
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 191
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 192
         },
         {
           "code": "C2511",
@@ -9337,57 +8859,37 @@
     },
     "pal3/src/Misc/UIScenePanel.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'UIScenePanel'",
-          "line": 201
+          "line": 192
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 419
+          "line": 410
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 494
+          "line": 485
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIWnd' to 'int'",
-          "line": 654
+          "line": 645
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIWnd' to 'int'",
-          "line": 673
-        },
-        {
-          "code": "C2664",
-          "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 1014
-        },
-        {
-          "code": "C2664",
-          "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 1023
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'double' to 'class TaskBookUI *'",
-          "line": 1049
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->_todo_456200' must point to class/struct/union",
-          "line": 1049
+          "line": 664
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1183
+          "line": 923
         }
       ]
     },
@@ -9643,7 +9145,7 @@
     },
     "pal3/src/Render/CScreenMode.cpp": {
       "status": "fail",
-      "error_count": 21,
+      "error_count": 22,
       "errors": [
         {
           "code": "C2511",
@@ -9659,11 +9161,6 @@
           "code": "C2664",
           "msg": "'BinkClose' : cannot convert parameter 1 from 'unsigned int' to 'void *'",
           "line": 2132
-        },
-        {
-          "code": "C2660",
-          "msg": "'OpenBinkVideo' : function does not take 5 parameters",
-          "line": 2146
         },
         {
           "code": "C2664",
@@ -9749,12 +9246,22 @@
           "code": "C2143",
           "msg": "syntax error : missing ';' before '}'",
           "line": 3117
+        },
+        {
+          "code": "C2664",
+          "msg": "'BinkOpen' : cannot convert parameter 1 from 'char' to 'void *'",
+          "line": 3446
+        },
+        {
+          "code": "C2664",
+          "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
+          "line": 3463
         }
       ]
     },
     "pal3/src/Render/RenderTarget.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2664",
@@ -9765,16 +9272,6 @@
           "code": "C2102",
           "msg": "'&' requires l-value",
           "line": 1886
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 1891
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 2233
         }
       ]
     },
@@ -9791,7 +9288,7 @@
     },
     "pal3/src/Render/RenderTarget3.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2102",
@@ -9804,19 +9301,9 @@
           "line": 132
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 219
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 220
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 234
         }
       ]
     },
@@ -10033,17 +9520,17 @@
         {
           "code": "C2664",
           "msg": "'PtrVec_InsertN' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 2587
+          "line": 2591
         },
         {
           "code": "C2664",
           "msg": "'PtrVec_Insert_word' : cannot convert parameter 4 from '__int16 *' to 'const unsigned short *'",
-          "line": 2606
+          "line": 2610
         },
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3406
+          "line": 3440
         }
       ]
     },
@@ -10054,7 +9541,7 @@
     },
     "pal3/src/Role/Object3D.cpp": {
       "status": "fail",
-      "error_count": 23,
+      "error_count": 20,
       "errors": [
         {
           "code": "C2511",
@@ -10087,69 +9574,54 @@
           "line": 520
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 554
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2100",
+          "msg": "illegal indirection",
           "line": 555
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 555
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 560
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 565
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 575
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 581
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 586
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 591
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(float,struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 596
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 609
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 612
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(struct gbVec3D *)' : too many actual parameters",
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
           "line": 616
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 619
         },
         {
           "code": "C2039",
@@ -10185,287 +9657,262 @@
     },
     "pal3/src/Role/RoleSystem.cpp": {
       "status": "fail",
-      "error_count": 56,
+      "error_count": 51,
       "errors": [
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 788
+          "line": 790
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 788
+          "line": 790
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 795
+          "line": 797
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 795
+          "line": 797
         },
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 917
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 920
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 922
+        },
+        {
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 923
         },
         {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
-          "line": 922
+          "line": 924
         },
         {
           "code": "C2039",
           "msg": "'Scale' : is not a member of 'gbMatrixStack'",
-          "line": 922
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 928
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 934
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 938
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 944
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 947
+          "line": 924
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const double' (or there is no acceptable conversion)",
-          "line": 1150
+          "line": 1152
         },
         {
           "code": "C2679",
           "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'double' (or there is no acceptable conversion)",
-          "line": 1165
+          "line": 1167
         },
         {
           "code": "C2664",
           "msg": "'SetMoveTarget' : cannot convert parameter 1 from 'struct gbVec3D *' to 'float *'",
-          "line": 1167
+          "line": 1169
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1191
+          "line": 1193
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'char *'",
-          "line": 1192
+          "line": 1194
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1297
+          "line": 1299
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'char *'",
-          "line": 1298
+          "line": 1300
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'float' to 'class UIWnd *'",
-          "line": 1448
+          "line": 1450
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1708
+          "line": 1710
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long' to 'char *'",
-          "line": 1711
+          "line": 1713
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1809
+          "line": 1811
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1809
+          "line": 1811
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 1815
+          "line": 1817
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 1815
+          "line": 1817
         },
         {
           "code": "C2664",
           "msg": "'NormalizeDirection' : cannot convert parameter 1 from 'unsigned long' to 'float *'",
-          "line": 1816
+          "line": 1818
         },
         {
           "code": "C2664",
           "msg": "'Vec3Cross' : cannot convert parameter 3 from 'unsigned long' to 'struct gbVec3D *'",
-          "line": 1882
+          "line": 1884
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'e' for base '10'",
-          "line": 1887
+          "line": 1889
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'f' for base '8'",
-          "line": 1887
+          "line": 1889
         },
         {
           "code": "C2660",
           "msg": "'Normalize' : function does not take 1 parameters",
-          "line": 2031
+          "line": 2033
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2059
+          "line": 2061
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2059
+          "line": 2061
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2117
+          "line": 2119
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2117
+          "line": 2119
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2123
+          "line": 2125
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2123
+          "line": 2125
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2138
+          "line": 2140
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2138
+          "line": 2140
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 2145
+          "line": 2147
         },
         {
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
-          "line": 2145
+          "line": 2147
         },
         {
           "code": "C2660",
           "msg": "'ScaleVector' : function does not take 3 parameters",
-          "line": 2152
+          "line": 2154
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'e' for base '10'",
-          "line": 2169
+          "line": 2171
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'f' for base '8'",
-          "line": 2169
+          "line": 2171
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class UIWnd *' to 'unsigned long'",
-          "line": 2201
+          "line": 2203
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 2202
+          "line": 2204
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'e' for base '10'",
-          "line": 2257
+          "line": 2259
         },
         {
           "code": "C2041",
           "msg": "illegal digit 'f' for base '8'",
-          "line": 2257
+          "line": 2259
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class UIWnd *' to 'unsigned long'",
-          "line": 3370
+          "line": 3372
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 3371
+          "line": 3373
         },
         {
           "code": "C2110",
           "msg": "cannot add two pointers",
-          "line": 4107
+          "line": 4109
         },
         {
           "code": "C2631",
           "msg": "'RoleSystem::~RoleSystem' : destructors not allowed a return type",
-          "line": 6966
+          "line": 6968
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 7033
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class RoleSystem *const ' to 'class RoleSystem'",
-          "line": 7072
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class RoleSystem *const ' to 'class RoleSystem'",
-          "line": 7128
+          "line": 7035
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 10037
+          "line": 10039
         }
       ]
     },
@@ -10591,286 +10038,286 @@
       "error_count": 38,
       "errors": [
         {
+          "code": "C2039",
+          "msg": "'_sdtor_call_dtor' : is not a member of 'PalScript'",
+          "line": 131
+        },
+        {
           "code": "C2660",
           "msg": "'_Eos' : function does not take 2 parameters",
-          "line": 516
+          "line": 589
         },
         {
           "code": "C2352",
           "msg": "'std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::max_size' : illegal call of non-static member function",
-          "line": 530
+          "line": 603
         },
         {
           "code": "C2660",
           "msg": "'_Tidy' : function does not take 2 parameters",
-          "line": 538
+          "line": 611
         },
         {
           "code": "C2660",
           "msg": "'_Tidy' : function does not take 2 parameters",
-          "line": 546
+          "line": 619
         },
         {
           "code": "C2660",
           "msg": "'_Tidy' : function does not take 2 parameters",
-          "line": 552
+          "line": 625
         },
         {
           "code": "C2660",
           "msg": "'_Grow' : function does not take 4 parameters",
-          "line": 621
+          "line": 694
         },
         {
           "code": "C2664",
           "msg": "'CopyFrom' : cannot convert parameter 2 from 'char ** ' to 'char *'",
-          "line": 656
+          "line": 729
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class PalScript *' to 'char *'",
-          "line": 671
+          "line": 744
         },
         {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'unsigned long' to 'int ** '",
-          "line": 950
+          "line": 1023
         },
         {
           "code": "C2040",
           "msg": "'!=' : 'int ** ' differs in levels of indirection from 'unsigned long'",
-          "line": 950
+          "line": 1023
         },
         {
           "code": "C2446",
           "msg": "'!=' : no conversion from 'unsigned long' to 'int *'",
-          "line": 990
+          "line": 1063
         },
         {
           "code": "C2040",
           "msg": "'!=' : 'int *' differs in levels of indirection from 'unsigned long'",
-          "line": 990
+          "line": 1063
         },
         {
           "code": "C2660",
           "msg": "'_Eos' : function does not take 2 parameters",
-          "line": 1103
+          "line": 1176
         },
         {
           "code": "C2660",
           "msg": "'_Tidy' : function does not take 2 parameters",
-          "line": 1129
+          "line": 1202
         },
         {
           "code": "C2065",
           "msg": "'g_ScriptSlotIdx' : undeclared identifier",
-          "line": 1597
+          "line": 1670
         },
         {
           "code": "C2146",
           "msg": "syntax error : missing ';' before identifier 'ta'",
-          "line": 1597
+          "line": 1670
         },
         {
           "code": "C2065",
           "msg": "'ta' : undeclared identifier",
-          "line": 1597
+          "line": 1670
         },
         {
           "code": "C2228",
           "msg": "left of '.m_nScriptResult' must have class/struct/union type",
-          "line": 1597
+          "line": 1670
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before ']'",
-          "line": 1597
+          "line": 1670
         },
         {
           "code": "C2146",
           "msg": "syntax error : missing ';' before identifier 'ta'",
-          "line": 1616
+          "line": 1689
         },
         {
           "code": "C2228",
           "msg": "left of '.m_nScriptResult' must have class/struct/union type",
-          "line": 1616
+          "line": 1689
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before ']'",
-          "line": 1616
+          "line": 1689
         },
         {
           "code": "C2146",
           "msg": "syntax error : missing ';' before identifier 'ta'",
-          "line": 1629
+          "line": 1702
         },
         {
           "code": "C2228",
           "msg": "left of '.m_nScriptResult' must have class/struct/union type",
-          "line": 1629
+          "line": 1702
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before ']'",
-          "line": 1629
+          "line": 1702
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 2605
+          "line": 2678
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 2612
+          "line": 2685
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 2619
+          "line": 2692
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 2626
+          "line": 2699
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long *'",
-          "line": 2633
-        },
-        {
-          "code": "C2065",
-          "msg": "'CON_State' : undeclared identifier",
-          "line": 2912
+          "line": 2706
         },
         {
           "code": "C2065",
           "msg": "'ProcessKeyboard_2' : undeclared identifier",
-          "line": 2915
+          "line": 2988
         },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 4557
+          "line": 4630
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
-          "line": 5357
+          "line": 5430
         },
         {
           "code": "C2039",
           "msg": "'ProcessKeyboard_2' : is not a member of 'InputSystem'",
-          "line": 5496
+          "line": 5569
         },
         {
           "code": "C2511",
           "msg": "'Update' : overloaded member function 'int (class CCBUI *,int)' not found in 'PalScript'",
-          "line": 5852
+          "line": 5925
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
-          "line": 5914
+          "line": 5987
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class Scene *' to 'unsigned long'",
-          "line": 6729
+          "line": 6802
         }
       ]
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 5,
       "errors": [
+        {
+          "code": "C2446",
+          "msg": "'>=' : no conversion from 'unsigned int' to 'char *'",
+          "line": 3195
+        },
+        {
+          "code": "C2040",
+          "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
+          "line": 3195
+        },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
-          "line": 3164
+          "line": 3222
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 3329
+          "line": 3429
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 3339
-        },
-        {
-          "code": "C2065",
-          "msg": "'CON_State' : undeclared identifier",
-          "line": 3355
+          "line": 3439
         }
       ]
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 11,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 87
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 91
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 89
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'class ScriptSystem *' to 'int'",
-          "line": 1195
+          "line": 1204
         },
         {
           "code": "C2040",
           "msg": "'==' : 'int' differs in levels of indirection from 'class ScriptSystem *'",
-          "line": 1195
+          "line": 1204
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'class ScriptSystem *' to 'int'",
-          "line": 1206
+          "line": 1215
         },
         {
           "code": "C2040",
           "msg": "'==' : 'int' differs in levels of indirection from 'class ScriptSystem *'",
-          "line": 1206
+          "line": 1215
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'class ScriptSystem *' to 'int'",
-          "line": 1217
+          "line": 1226
         },
         {
           "code": "C2040",
           "msg": "'==' : 'int' differs in levels of indirection from 'class ScriptSystem *'",
-          "line": 1217
+          "line": 1226
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'class ScriptSystem *' to 'int'",
-          "line": 1227
+          "line": 1236
         },
         {
           "code": "C2040",
           "msg": "'==' : 'int' differs in levels of indirection from 'class ScriptSystem *'",
-          "line": 1227
+          "line": 1236
         },
         {
           "code": "C2446",
           "msg": "'==' : no conversion from 'class ScriptSystem *' to 'int'",
-          "line": 1237
+          "line": 1246
         },
         {
           "code": "C2040",
           "msg": "'==' : 'int' differs in levels of indirection from 'class ScriptSystem *'",
-          "line": 1237
+          "line": 1246
         }
       ]
     },
@@ -11055,63 +10502,48 @@
     },
     "pal3/src/UI/UIManager.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 6,
       "errors": [
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIManager' to 'class gbTexture *'",
-          "line": 43
+          "line": 44
         },
         {
           "code": "C2039",
           "msg": "'type' : is not a member of 'gbFogParam'",
-          "line": 107
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 109
-        },
-        {
-          "code": "C2197",
-          "msg": "'struct gbMatrix4 *(__cdecl *)(void)' : too many actual parameters",
-          "line": 110
+          "line": 108
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIManager' to 'class gbRenderEffect *'",
-          "line": 119
+          "line": 120
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class gbTexture *' to 'class UIManager'",
-          "line": 147
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class gbRenderEffect *' to 'class UIManager'",
-          "line": 149
+          "line": 148
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class gbRenderEffect *' to 'class UIManager'",
           "line": 150
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'class gbRenderEffect *' to 'class UIManager'",
+          "line": 151
         }
       ]
     },
     "pal3/src/UI/UINote.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
         {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 64
-        },
-        {
-          "code": "C2197",
-          "msg": "'void (__cdecl *)(void)' : too many actual parameters",
-          "line": 67
+          "code": "C2664",
+          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
+          "line": 65
         }
       ]
     },
@@ -11548,15 +10980,9 @@
       ]
     },
     "pal3/src/UI/UISystem.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2065",
-          "msg": "'HideAll_11' : undeclared identifier",
-          "line": 35
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/UI/UIWnd.cpp": {
       "status": "fail",
@@ -11571,683 +10997,433 @@
     },
     "pal3/src/free_functions.cpp": {
       "status": "fail",
-      "error_count": 101,
+      "error_count": 83,
       "errors": [
         {
           "code": "C2660",
           "msg": "'Init' : function does not take 2 parameters",
-          "line": 176
-        },
-        {
-          "code": "C2084",
-          "msg": "function 'int __cdecl StartCombat(void *,unsigned int *,int,char)' already has a body",
-          "line": 472
+          "line": 159
         },
         {
           "code": "C2664",
           "msg": "'Update' : cannot convert parameter 1 from 'class CCBUI *' to 'class CCBUI ** '",
-          "line": 741
-        },
-        {
-          "code": "C2065",
-          "msg": "'v1' : undeclared identifier",
-          "line": 1923
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 1923
-        },
-        {
-          "code": "C2065",
-          "msg": "'v2' : undeclared identifier",
-          "line": 1924
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 1924
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1941
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 1944
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_RoleSlotArray' must point to class/struct/union",
-          "line": 1945
-        },
-        {
-          "code": "C2228",
-          "msg": "left of '.script_state' must have class/struct/union type",
-          "line": 1945
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->NPC' must point to class/struct/union",
-          "line": 1945
-        },
-        {
-          "code": "C2653",
-          "msg": "'NPC' : is not a class or namespace name",
-          "line": 1945
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1946
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1947
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1949
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1951
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1952
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1953
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1955
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1956
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1958
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1960
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1962
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1963
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1964
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1965
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1974
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1975
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1976
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1977
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1978
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1979
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1980
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1981
-        },
-        {
-          "code": "C2227",
-          "msg": "left of '->m_nTodo_04C' must point to class/struct/union",
-          "line": 1982
-        },
-        {
-          "code": "C2065",
-          "msg": "'v17' : undeclared identifier",
-          "line": 2140
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 2140
+          "line": 565
         },
         {
           "code": "C2065",
           "msg": "'VFileSystem' : undeclared identifier",
-          "line": 2172
+          "line": 1710
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2172
+          "line": 1710
         },
         {
           "code": "C2653",
           "msg": "'VFileSystem' : is not a class or namespace name",
-          "line": 2172
+          "line": 1710
         },
         {
           "code": "C2065",
           "msg": "'SLOBYTE' : undeclared identifier",
-          "line": 2223
+          "line": 1761
         },
         {
           "code": "C2027",
           "msg": "use of undefined type 'scAsmDecoder'",
-          "line": 2240
+          "line": 1778
         },
         {
           "code": "C2227",
           "msg": "left of '->scAsmDecoder' must point to class/struct/union",
-          "line": 2240
+          "line": 1778
         },
         {
           "code": "C2653",
           "msg": "'scAsmDecoder' : is not a class or namespace name",
-          "line": 2240
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2244
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2245
-        },
-        {
-          "code": "C2065",
-          "msg": "'v3' : undeclared identifier",
-          "line": 2661
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 2661
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2673
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 2678
-        },
-        {
-          "code": "C2446",
-          "msg": "'>=' : no conversion from 'unsigned int' to 'char *'",
-          "line": 2769
-        },
-        {
-          "code": "C2040",
-          "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
-          "line": 2769
+          "line": 1778
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2822
+          "line": 2248
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2849
+          "line": 2275
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2850
-        },
-        {
-          "code": "C2065",
-          "msg": "'v0' : undeclared identifier",
-          "line": 3751
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 3751
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 3753
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3757
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3762
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3763
-        },
-        {
-          "code": "C2296",
-          "msg": "'*' : illegal, left operand has type 'int (__cdecl *)(int)'",
-          "line": 3772
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 3775
+          "line": 2276
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3833
+          "line": 3218
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3834
+          "line": 3219
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3837
+          "line": 3222
         },
         {
           "code": "C2660",
           "msg": "'MoveWindow' : function does not take 0 parameters",
-          "line": 4171
-        },
-        {
-          "code": "C2039",
-          "msg": "'_scalar_dtor_3E70' : is not a member of 'CCBUIPanel'",
-          "line": 4801
-        },
-        {
-          "code": "C2039",
-          "msg": "'_scalar_dtor_3E70' : is not a member of 'CCBUIPanel'",
-          "line": 4801
+          "line": 3496
         },
         {
           "code": "C2166",
           "msg": "l-value specifies const object",
-          "line": 4920
+          "line": 3975
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 4944
+          "line": 3999
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 4964
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5083
+          "line": 4019
         },
         {
           "code": "C2065",
           "msg": "'UIPushButton_SetParam' : undeclared identifier",
-          "line": 5098
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5173
+          "line": 4153
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int,int *,class Actor *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 5345
+          "line": 4400
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void ** ' to 'char (** )[3]'",
-          "line": 5376
+          "line": 4431
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5406
+          "line": 4461
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,unsigned long *,class Actor *,char *,int,void *)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
-          "line": 5422
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5423
+          "line": 4477
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5438
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5439
+          "line": 4493
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5456
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5457
+          "line": 4511
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5474
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5475
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5493
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5511
+          "line": 4529
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5590
+          "line": 4645
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5602
+          "line": 4657
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5614
+          "line": 4669
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 5614
+          "line": 4669
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,unsigned long *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5626
+          "line": 4681
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,unsigned long *,char *,unsigned long,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5652
-        },
-        {
-          "code": "C2059",
-          "msg": "syntax error : ')'",
-          "line": 5660
+          "line": 4707
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 6138
+          "line": 5142
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6468
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (void ** ,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6482
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6500
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6512
+        },
+        {
+          "code": "C2664",
+          "msg": "'int (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6530
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6542
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6568
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6580
+        },
+        {
+          "code": "C2664",
+          "msg": "'int (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6598
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned int *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
+          "line": 6609
+        },
+        {
+          "code": "C2664",
+          "msg": "'int (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6627
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6638
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6645
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6665
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6676
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
+          "line": 6697
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6721
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 6721
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6746
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6771
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,char *,class Actor *,char *,class RoleAtt *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6793
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,char *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6808
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,char *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6827
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (unsigned int *,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6840
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (class Actor ** ,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6855
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (float *,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6874
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (void ** ,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 3 from 'short *' to '__int16 *'",
+          "line": 6887
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (void ** ,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
+          "line": 6887
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 3 from 'short *' to '__int16 *'",
+          "line": 6902
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (int *,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
+          "line": 6902
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'short *' to '__int16 *'",
+          "line": 6920
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 6920
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 6933
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 6949
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
+          "line": 6964
+        },
+        {
+          "code": "C2664",
+          "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
+          "line": 6980
+        },
+        {
+          "code": "C2065",
+          "msg": "'COERCE_UNSIGNED_INT64' : undeclared identifier",
+          "line": 7478
+        },
+        {
+          "code": "C2065",
+          "msg": "'nearby_5359B0' : undeclared identifier",
+          "line": 7480
+        },
+        {
+          "code": "C2248",
+          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
+          "line": 7545
+        },
+        {
+          "code": "C2248",
+          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
+          "line": 7545
+        },
+        {
+          "code": "C2230",
+          "msg": "'-' : indirection to different types",
+          "line": 7633
+        },
+        {
+          "code": "C2065",
+          "msg": "'SingletonThunk_00539530' : undeclared identifier",
+          "line": 7775
+        },
+        {
+          "code": "C2113",
+          "msg": "pointer can only be subtracted from another pointer",
+          "line": 8098
+        },
+        {
+          "code": "C2113",
+          "msg": "pointer can only be subtracted from another pointer",
+          "line": 9050
+        },
+        {
+          "code": "C2065",
+          "msg": "'_strdate' : undeclared identifier",
+          "line": 9194
+        },
+        {
+          "code": "C2065",
+          "msg": "'_strtime' : undeclared identifier",
+          "line": 9196
         },
         {
           "code": "C2373",
-          "msg": "'DestroyEffect_FD40' : redefinition; different type modifiers",
-          "line": 7047
+          "msg": "'PAL3_LoadUICursor' : redefinition; different type modifiers",
+          "line": 9630
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 7171
+          "code": "C2065",
+          "msg": "'crt_sub_00541490' : undeclared identifier",
+          "line": 9712
         },
         {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 7192
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 7215
+          "code": "C2065",
+          "msg": "'fn' : undeclared identifier",
+          "line": 9778
         }
       ]
     },
     "pal3/src/globals.cpp": {
       "status": "fail",
-      "error_count": 33,
+      "error_count": 1,
       "errors": [
         {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 4
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 4
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 4
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 5
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 5
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 5
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 6
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 6
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 6
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 7
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 7
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 7
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 8
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 8
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 8
-        },
-        {
-          "code": "C2226",
-          "msg": "syntax error : unexpected type 'gbMatrixStack'",
-          "line": 9
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 9
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 9
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 10
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 10
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 10
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 11
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 11
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 11
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 12
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 12
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 12
-        },
-        {
-          "code": "C2199",
-          "msg": "syntax error : found 'void (' at global scope (was a declaration intended?)",
-          "line": 13
-        },
-        {
-          "code": "C2143",
-          "msg": "syntax error : missing ';' before '{'",
-          "line": 13
-        },
-        {
-          "code": "C2447",
-          "msg": "missing function header (old-style formal list?)",
-          "line": 13
-        },
-        {
-          "code": "C2146",
-          "msg": "syntax error : missing ';' before identifier 'AStarPathFinder'",
-          "line": 15
-        },
-        {
-          "code": "C2501",
-          "msg": "'vtbl_0056a600' : missing storage-class or type specifiers",
-          "line": 15
-        },
-        {
-          "code": "C1004",
-          "msg": "unexpected end of file found",
-          "line": 15
+          "code": "C2440",
+          "msg": "'initializing' : cannot convert from 'const unsigned int' to '__int32 *const '",
+          "line": 71
         }
       ]
     }

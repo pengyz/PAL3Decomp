@@ -108,6 +108,12 @@
 {"addr": "0x004D61A0", "name": "C2DSpark::CreateStars(void)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "match_L1", "match_pct": 100.0, "size": 28}
 {"addr": "0x004D61C0", "name": "C2DSpark::DestroyAll(void)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "partial", "match_pct": 16.6, "size": 421}
 {"addr": "0x004D6380", "name": "C2DSpark::Render(float)", "file": "pal3/src/Effect/C2DSpark.cpp", "status": "partial", "match_pct": 23.4, "size": 629}
+{"addr": "0x004D6670", "name": "C3DSpark::C3DSpark(void)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "partial", "match_pct": 33.8, "size": 751}
+{"addr": "0x004D6A60", "name": "C3DSpark::CreateSingle(void const *)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "partial", "match_pct": 12.8, "size": 86}
+{"addr": "0x004D6AC0", "name": "C3DSpark::CreateOne(int,int,int)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "partial", "match_pct": 71.0, "size": 217}
+{"addr": "0x004D6BA0", "name": "C3DSpark::DestroyAll(void)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "match_L1", "match_pct": 100.0, "size": 28}
+{"addr": "0x004D6BC0", "name": "C3DSpark::Render(int)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "partial", "match_pct": 14.5, "size": 365}
+{"addr": "0x004D6D30", "name": "C3DSpark::Update(float)", "file": "pal3/src/Effect/C3DSpark.cpp", "status": "partial", "match_pct": 9.3, "size": 246}
 {"addr": "0x0048E780", "name": "CEffect::CreateFromTemplate(int)", "file": "pal3/src/Effect/CEffect.cpp", "status": "partial", "match_pct": 22.4, "size": 456}
 {"addr": "0x0048E950", "name": "CEffect::UpdateState(int)", "file": "pal3/src/Effect/CEffect.cpp", "status": "partial", "match_pct": 22.4, "size": 487}
 {"addr": "0x004BB190", "name": "CEffect::SetRenderParam(int)", "file": "pal3/src/Effect/CEffect.cpp", "status": "partial", "match_pct": 99.0, "size": 103}
@@ -144,6 +150,7 @@
 {"addr": "0x00410360", "name": "InputSystem::ProcessFrame(char *)", "file": "pal3/src/GameBase/InputSystem.cpp", "status": "partial", "match_pct": 27.5, "size": 204}
 {"addr": "0x0041C540", "name": "InputSystem::ProcessMouse(int)", "file": "pal3/src/GameBase/InputSystem.cpp", "status": "partial", "match_pct": 14.5, "size": 234}
 {"addr": "0x0041ED00", "name": "SoundSystem::Init(void)", "file": "pal3/src/GameBase/SoundSystem.cpp", "status": "partial", "match_pct": 58.2, "size": 306}
+{"addr": "0x0052B860", "name": "MiniGame1::Render(void)", "file": "pal3/src/MiniGame/MiniGame1.cpp", "status": "partial", "match_pct": 26.7, "size": 146}
 {"addr": "0x004A16C0", "name": "ARC_PlayerAtt::Create(void)", "file": "pal3/src/Misc/ARC_PlayerAtt.cpp", "status": "partial", "match_pct": 13.9, "size": 956}
 {"addr": "0x00533B50", "name": "ArcPastScene::LoadCityData(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 19.3, "size": 109}
 {"addr": "0x00534F50", "name": "ArcPastScene::ResetCityName(void)", "file": "pal3/src/Misc/ArcPastScene.cpp", "status": "partial", "match_pct": 5.4, "size": 93}
@@ -158,6 +165,7 @@
 {"addr": "0x0049AAF0", "name": "ArcSceneObject::ResetEquipControls(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 47.2, "size": 369}
 {"addr": "0x005254C0", "name": "ArcSceneObject::InitFromConfig(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "match_L1", "match_pct": 100.0, "size": 87}
 {"addr": "0x00533F50", "name": "ArcSceneObject::UpdateOscillation(float)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 17.2, "size": 128}
+{"addr": "0x0044A790", "name": "ArraySlots::ArraySlots(void)", "file": "pal3/src/Misc/ArraySlots.cpp", "status": "partial", "match_pct": 44.0, "size": 50}
 {"addr": "0x004236D0", "name": "BINK::Reset(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 3.3, "size": 396}
 {"addr": "0x004243E0", "name": "BINK::Destroy(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 19.5, "size": 389}
 {"addr": "0x004517A0", "name": "BINK::SetVideoRect(char)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 8.3, "size": 48}
@@ -429,3 +437,4 @@
 {"addr": "0x004A14D0", "name": "UIItem::SetData(char)", "file": "pal3/src/UI/UIItem.cpp", "status": "partial", "match_pct": 5.4, "size": 93}
 {"addr": "0x0043DCC0", "name": "UILBColumn::Destroy(void)", "file": "pal3/src/UI/UILBColumn.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
 {"addr": "0x005415F0", "name": "UIQuadManager::GetInstance(void)", "file": "pal3/src/UI/UIQuadManager.cpp", "status": "partial", "match_pct": 68.6, "size": 51}
+{"addr": "0x00422DF0", "name": "UISystem::Destroy(void)", "file": "pal3/src/UI/UISystem.cpp", "status": "partial", "match_pct": 44.8, "size": 67}

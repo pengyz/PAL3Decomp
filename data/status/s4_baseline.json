@@ -18,24 +18,24 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 582,
-  "matched": 450,
-  "unmatched": 132,
-  "match_L1": 46,
+  "symbols": 599,
+  "matched": 460,
+  "unmatched": 139,
+  "match_L1": 47,
   "match_L1_semantic": 6,
-  "partial": 385,
+  "partial": 393,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 19,
-  "reloc_total": 3878,
-  "reloc_ok": 776,
+  "unresolved_synth": 20,
+  "reloc_total": 3966,
+  "reloc_ok": 802,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 3102,
-  "rsite_total": 3878,
-  "rsite_unaligned": 3786,
-  "l1_bytes": 1540,
+  "reloc_unresolved": 3164,
+  "rsite_total": 3966,
+  "rsite_unaligned": 3874,
+  "l1_bytes": 1568,
   "l1_hidden_reloc_bytes": 281,
   "l1_reloc_covered_bytes": 368,
   "rsite_ok": 18,
@@ -1048,6 +1048,60 @@
    "size": 629
   },
   {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "??0C3DSpark@@QAE@XZ",
+   "name": "C3DSpark::C3DSpark(void)",
+   "va": "0x004D6670",
+   "status": "partial",
+   "match_pct": 33.8,
+   "size": 751
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "?CreateSingle@C3DSpark@@QAE_NPAX@Z",
+   "name": "C3DSpark::CreateSingle(void const *)",
+   "va": "0x004D6A60",
+   "status": "partial",
+   "match_pct": 12.8,
+   "size": 86
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "?CreateOne@C3DSpark@@QAEXHHH@Z",
+   "name": "C3DSpark::CreateOne(int,int,int)",
+   "va": "0x004D6AC0",
+   "status": "partial",
+   "match_pct": 71.0,
+   "size": 217
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "?DestroyAll@C3DSpark@@QAEPADXZ",
+   "name": "C3DSpark::DestroyAll(void)",
+   "va": "0x004D6BA0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 28
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "?Render@C3DSpark@@QAEXH@Z",
+   "name": "C3DSpark::Render(int)",
+   "va": "0x004D6BC0",
+   "status": "partial",
+   "match_pct": 14.5,
+   "size": 365
+  },
+  {
+   "file": "pal3/src/Effect/C3DSpark.cpp",
+   "symbol": "?Update@C3DSpark@@QAEHM@Z",
+   "name": "C3DSpark::Update(float)",
+   "va": "0x004D6D30",
+   "status": "partial",
+   "match_pct": 9.3,
+   "size": 246
+  },
+  {
    "file": "pal3/src/Effect/CEffect.cpp",
    "symbol": "?CreateFromTemplate@CEffect@@QAEHH@Z",
    "name": "CEffect::CreateFromTemplate(int)",
@@ -1372,6 +1426,15 @@
    "size": 306
   },
   {
+   "file": "pal3/src/MiniGame/MiniGame1.cpp",
+   "symbol": "?Render@MiniGame1@@QAEXXZ",
+   "name": "MiniGame1::Render(void)",
+   "va": "0x0052B860",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 146
+  },
+  {
    "file": "pal3/src/Misc/ARC_PlayerAtt.cpp",
    "symbol": "?Create@ARC_PlayerAtt@@QAEXXZ",
    "name": "ARC_PlayerAtt::Create(void)",
@@ -1496,6 +1559,15 @@
    "status": "partial",
    "match_pct": 17.2,
    "size": 128
+  },
+  {
+   "file": "pal3/src/Misc/ArraySlots.cpp",
+   "symbol": "??0ArraySlots@@QAE@XZ",
+   "name": "ArraySlots::ArraySlots(void)",
+   "va": "0x0044A790",
+   "status": "partial",
+   "match_pct": 44.0,
+   "size": 50
   },
   {
    "file": "pal3/src/Misc/BINK.cpp",
@@ -3935,6 +4007,29 @@
    "status": "partial",
    "match_pct": 68.6,
    "size": 51
+  },
+  {
+   "file": "pal3/src/UI/UISystem.cpp",
+   "symbol": "?Destroy@UISystem@@QAEXXZ",
+   "name": "UISystem::Destroy(void)",
+   "va": "0x00422DF0",
+   "status": "partial",
+   "match_pct": 44.8,
+   "size": 67
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "R2-T5修复后对齐: methods块恢复→sg_emission_control.cpp单元回归编译面(S2 97→102/222), match总体579→599(+20恢复单元), matched 448→460, L1 46→47(+1净改善非回退)。P0根因=sem_conv_r2脚本doc模板无methods键重写时删除HEAD已有Emit/Update签名注解, 已改合并式模板+methods恢复, 复核P0-1闭环",
+  "at": "2026-11-19T09:18:07",
+  "prev_match_L1": 47,
+  "cur_match_L1": 47,
+  "prev_population": {
+   "matched": 460,
+   "symbols": 599
+  },
+  "cur_population": {
+   "matched": 460,
+   "symbols": 599
+  }
+ }
 }

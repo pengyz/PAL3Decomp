@@ -347,7 +347,14 @@
    "type": "int",
    "source": "HandleDeviceLostB (size-4 anchor) | normalize_key: 0x2b07c -> 176252",
    "evidence_level": "unverified"
+  },
+  "0x210": {
+   "name": "m_RoleStatics",
+   "type": "UIStatic[5]",
+   "evidence_level": "A",
+   "source": "[A 级汇编 2026-11-19] InitUI VA=0x4a1e40 / ~RoleStatePanel VA=0x4a2450 ctor/dtor 配对 disp 序列 0x210/2a8/340/3d8/470 stride 152B; UIStatic sizeof=152 (IDA 对账, UIWnd 派生); 体语义: 5 角色状态静态框 (对齐 m_roles s_RoleState[5]@0x25E04 的 5 角色分组)"
   }
  },
- "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json"
+ "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json",
+ "members_note": "\n[R2 2026-11-19] 骨架: m_RoleStatics UIStatic[5] [0x210,0x508)。未定谳挂账: 0x508 起 stride-344 序列(UIButton 尺寸候选, N 未定)/RenderThrottled 深区 disp 0x12F8/0x136F8/0x25B80/池区主体。"
 }
