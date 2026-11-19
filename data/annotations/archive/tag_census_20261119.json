@@ -1,0 +1,13 @@
+{
+ "_doc": "tag簇取证 2026-11-19: tagCombatTaskData/tagPAL3GameState/tagStageRoleData 三\"类\"共享全部字段布局(SetPause 同值/CCCTData 同级联/RenderScenePass 同初始化) ——同一结构体通过不同全局变量名访问, 46 名坍缩为 ~15 个唯一字段语义。",
+ "evidence": "SetPause 0x40/44/48=545 三类同值; ~CCCTData 0x50=v37 三类同级联; RenderScenePass 0x18/0x24=0x3F800000(float 1.0) 三类同初始化",
+ "field_semantics_partial": {
+  "0x10/0x18": "float 1.0 初始化(强度/倍率, RenderScenePass)",
+  "0x24": "游戏状态 ID(SetPause=545/SetMaxBlend=323,716)",
+  "0x40-0x48": "同上(状态码组)",
+  "0x50-0x68": "~CCCTData 析构级联(box 半边长系列)",
+  "0x84-0x8c": "UpdateSlotTimer 写(槽计时器)"
+ },
+ "pending": "每个 offset 的游戏概念语义需跨函数追踪(UpdateSlotTimer/SetPause/ProcTurnToRole/ProcUseRecoverItem/RenderScenePass 全链)",
+ "implication": "正名只需一次语义分析覆盖三\"类\"; 但分析需游戏状态管理器完整理解"
+}
