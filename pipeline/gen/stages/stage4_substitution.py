@@ -548,15 +548,13 @@ def _fix_setvariant_enum_or(code):
     return _SETVARIANT_ENUMOR_RE.sub(r'SetVariant((GBPARAMHANDLE)(\1),', code)
 
 
-# [T23-F1] 标量删除析构调用（dtor 名**带实参**）⇒ _sdtor_call_dtor 形
-# （与 stage1 定义侧改名一致——MSVC6 拒绝 ~X(int)（C2524 实测）；无实参的
-# 纯 dtor 调用不动）。带实参删除析构调用字节等价：同样 push 实参 + call。
-_SD_CALL_RE = re.compile(r'\b([A-Za-z_]\w*::)?~([A-Za-z_]\w*)\s*\((?=\s*[^)\s])')
-
-
+# [T23-F1 退役 2026-11-19 N18 dtor 源级化] 定义侧已发 ~Cls() 源级形（stage1
+# 4c 段剥织入物），调用侧不再改 _sdtor_call_dtor 名——语料 '~Cls(arg)' 是
+# hexrays 对删除析构调用的渲染，限定形 Cls::_sdtor_call_dtor(0/1) 由
+# textutil delete 转写处理（T4 批1）；裸形保留原名（无类证据不转写，批2 挂账）。
+# MSVC6 自源再生 deleting 形入口，S4 兜底。
 def _fix_sdtor_calls(code):
-    return _SD_CALL_RE.sub(
-        lambda m: '%s_sdtor_call_dtor(' % (m.group(1) or ''), code)
+    return code
 
 
 # [T59] thunk #2 形：LOBYTE(result)=EXPR; return result; ⇒ return EXPR;

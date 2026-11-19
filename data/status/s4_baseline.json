@@ -4017,19 +4017,5 @@
    "match_pct": 44.8,
    "size": 67
   }
- ],
- "rebaseline": {
-  "reason": "R2-T5修复后对齐: methods块恢复→sg_emission_control.cpp单元回归编译面(S2 97→102/222), match总体579→599(+20恢复单元), matched 448→460, L1 46→47(+1净改善非回退)。P0根因=sem_conv_r2脚本doc模板无methods键重写时删除HEAD已有Emit/Update签名注解, 已改合并式模板+methods恢复, 复核P0-1闭环",
-  "at": "2026-11-19T09:18:07",
-  "prev_match_L1": 47,
-  "cur_match_L1": 47,
-  "prev_population": {
-   "matched": 460,
-   "symbols": 599
-  },
-  "cur_population": {
-   "matched": 460,
-   "symbols": 599
-  }
- }
+ ]
 }

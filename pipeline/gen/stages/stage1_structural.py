@@ -211,16 +211,26 @@ def run(code, ctx):
 
         if name_node:
             current_name = name_node.text.decode('utf-8')
-            # [T23-F1] 标量删除析构检测（dtor 名 + sig 含 this 外形参）：
-            # 发成 _sdtor_call_dtor 形（MSVC6 拒绝 ~X(int)（C2524））且
-            # **保留返型**（非 dtor 语法形）。
+            # [N18 dtor 源级化 2026-11-19] deleting 形 dtor（??_G 产物，flags 含
+            # deleting 或 sig 恰为 (this, 一标量 flags 形参)）不再改名 _sdtor_
+            # call_dtor——按 VC6 dtor 规则集（六形态测试件实证），deleting 形=
+            # 编译器织入物载体：剥 flags 形参/条件删尾/return this 织入物，还原
+            # **源码唯一析构** ~Cls() 定义。头侧 virtual ~Cls()（槽位循环唯一
+            # 所有者）与定义天然同形，T23-F1 的保参改名+头缺声明死锁（C2039/
+            # C2673×45, Actor 0x4c9470 案）根消。MSVC6 自源再生 ??_G/??_E，
+            # S4 字节匹配兜底。
             _is_del_dtor = False
             if ctx.is_dtor:
                 _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
                 _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
                 _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
                 _is_del_dtor = bool(_nonthis)
-            _mname = '_sdtor_call_dtor' if _is_del_dtor else ctx.method_name
+                if _is_del_dtor:
+                    # 名字保留 ~Cls（N18: 名槽=可推导标签）；flags 形参在 step 3
+                    # 的 params[1+] 保留逻辑之后由 4c 段剥除（含体内引用改写）
+                    pass
+            _mname = ctx.method_name if ctx.method_name.startswith('~') else (
+                '~' + ctx.cls_name if _is_del_dtor else ctx.method_name)
             expected_name = '%s::%s' % (ctx.cls_name, _mname)
 
             # Replace sub_XXXXX with correct name
@@ -305,8 +315,9 @@ def run(code, ctx):
             # 是真栈实参（flags 形参），须保留（对照 Destroy_12 形态）。
 
     # 4. Remove return type for ctor/dtor
-    # [T23-F1] 标量删除析构改发 _sdtor_call_dtor 形（非 dtor 语法）⇒ **保留返型**
-    if (ctx.is_ctor or ctx.is_dtor) and not _is_del_dtor:
+    # [N18 dtor 源级化 2026-11-19] deleting 形 dtor 同样发 dtor 语法（~Cls()），
+    # 返型剥除——flags 形参织入物由 4c 段剥离
+    if (ctx.is_ctor or ctx.is_dtor):
         # Remove everything before the function declarator (return type + CC)
         if declarator:
             # Remove from start of func_def to start of declarator
@@ -321,6 +332,53 @@ def run(code, ctx):
         result = result[:start] + replacement + result[end:]
 
     code = result.decode('utf-8')
+
+    # 4c. [N18 dtor 源级化 2026-11-19] deleting 形织入物剥离：
+    #   ① flags 形参（params[1+]）整剥 + 体内引用改写为字面 flags 值
+    #     （体内对形参的唯一合法消费 = test flags&1 → 条件 delete(this)；
+    #      语料渲染为 `if ((a2 & 1) != 0) operator delete(this);`——改为
+    #      独立 if 块删除，不保留 0/1 分支语义（源码本无此代码））
+    #   ② `return this;` 尾（??_G 返回 this 织入物）→ 删
+    #   ③ `if ((a2 & 1) != 0)` 独立语句块（源码本无）→ 删
+    if _is_del_dtor:
+        # 形参名（语料首非 this 参名，常见 a2/a2a/nVal）
+        _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
+        _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
+        _nonthis_params = [x for x in _spl if not re.search(r'\bthis\s*$', x)]
+        _flag_pnames = [re.search(r'(\w+)\s*$', p).group(1) for p in _nonthis_params
+                        if re.search(r'(\w+)\s*$', p)]
+        # ② return this 尾
+        code = re.sub(r'\n?[ \t]*return this;\s*(?=\n)', '\n', code)
+        # ③+① 条件 delete(this) 独立语句块（空格宽容: hexrays 渲染
+        #   'if ( (a2 & 1) != 0 )' 双括号带空格 / 'if ((a2&1) != 0)' 紧凑两极）
+        _flag_tests = [r'\(\s*\(\s*%s\s*&\s*1\s*\)\s*!=\s*0\s*\)' % re.escape(_fp)
+                       for _fp in (_flag_pnames or ['a2'])]
+        # 退化 this 形（IDA 丢指针型, 首参名恰为类名/Block）: `(*(_BYTE *)&Block & 1) != 0`
+        _flag_tests.append(r'\(\s*\(\s*\*\s*\(\s*_BYTE\s*\*\s*\)\s*&\w+\s*&\s*1\s*\)\s*!=\s*0\s*\)')
+        for _fpr in _flag_tests:
+            code = re.sub(
+                r'\n?[ \t]*if %s\s*\n?[ \t]*operator delete\(this\);[ \t]*\n' % _fpr,
+                '\n', code)
+            code = re.sub(
+                r'\n?[ \t]*if %s\s*\{\s*\n[ \t]*operator delete\(this\);\s*\n[ \t]*\}[ \t]*\n' % _fpr,
+                '\n', code)
+        # ① flags 形参从签名剥除（多参逗号链）
+        if _flag_pnames:
+            def _strip_flag_params(_mc):
+                inner = _mc.group(1)
+                parts = [p for p in inner.split(',')]
+                kept = []
+                for ptxt in parts:
+                    ptt = ptxt.strip()
+                    if 'this' in ptt and '*' in ptt:
+                        kept.append(ptt)  # this 槽（若 3 段未剥）
+                        continue
+                    pn = re.search(r'(\w+)\s*$', ptt)
+                    if pn and pn.group(1) in _flag_pnames:
+                        continue  # flags 形参剥除
+                    kept.append(ptt)
+                return '(%s)' % ', '.join(kept)
+            code = re.sub(r'\(([^()]*)\)', _strip_flag_params, code, count=1)
 
     # Clean up: collapse multiple spaces, strip leading space on def line
     lines = code.split('\n')
