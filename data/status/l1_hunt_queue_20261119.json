@@ -2,71 +2,16 @@
  "_doc": "L1 狩猎队列 v4 2026-11-19: **真尺寸定谳**——CreateOne 实际 256B (0x4D6AC0..0x4D6BC0), 队列/基线 size=63 为假记录。v2\"内联扩张\"方向复活(编译 274B vs 原 256B = +18B 内联差量级合理; 原体 2 个正 call 实证)。v3\"0调用\"系 63B 截断伪象。根因终版: /Ob2 内联扩张(TU 合并效应), 修法域不变=callee 选择性 auto_inline(off)。\n[教训升级] v1→v2→v3→v4: 假尺寸(63)污染 v3 撤回——**函数尺寸必须按地址边界(下函数地址-本地址)计算, 元数据 size 字段不可信**。",
  "targets": [
   {
-   "va": "0x4D6670",
-   "file": "Effect/C3DSpark.cpp",
-   "size": 497,
-   "status": "queued",
-   "root_cause": "源码形态差(寄存器翻转; D1v2 证 0 调用=无内联嫌, v2 内联论撤)",
-   "fix_domain": "L1 体文本迭代(变量序/类型形态)"
-  },
-  {
-   "va": "0x4D6A60",
-   "file": "Effect/C3DSpark.cpp",
-   "size": 75,
-   "status": "queued",
-   "root_cause": "源码形态差(寄存器翻转; D1v2 证 0 调用=无内联嫌, v2 内联论撤)",
-   "fix_domain": "L1 体文本迭代(变量序/类型形态)"
-  },
-  {
-   "va": "0x4D6AC0",
-   "file": "Effect/C3DSpark.cpp",
-   "size": 256,
-   "evidence": "头8B全同, @8 esi→ebp (this持有寄存器翻转)",
-   "status": "queued",
-   "root_cause": "/Ob2 内联扩张(TU合并效应, 复核P0-1同源)",
-   "fix_domain": "callee 选择性 auto_inline(off) (T89/T90 机制)",
-   "size_correction": "原记录 63 假; 真尺寸=0x4D6BC0-0x4D6AC0=256"
-  },
-  {
-   "va": "0x4D6BC0",
-   "file": "Effect/C3DSpark.cpp",
-   "size": 312,
-   "status": "queued",
-   "root_cause": "源码形态差(寄存器翻转; D1v2 证 0 调用=无内联嫌, v2 内联论撤)",
-   "fix_domain": "L1 体文本迭代(变量序/类型形态)"
-  },
-  {
-   "va": "0x4D6D30",
-   "file": "Effect/C3DSpark.cpp",
-   "size": 223,
-   "status": "queued",
-   "root_cause": "源码形态差(寄存器翻转; D1v2 证 0 调用=无内联嫌, v2 内联论撤)",
-   "fix_domain": "L1 体文本迭代(变量序/类型形态)"
-  },
-  {
    "va": "0x422DF0",
    "file": "UI/UISystem.cpp",
    "size": 37,
-   "evidence": "同调用链, prologue保存集 51/56/57 vs 56",
-   "status": "queued",
-   "root_cause": "待案级复核(v2 内联论仅 UISystem/ArraySlots/MiniGame1 嫌)",
-   "fix_domain": "案级: 内联嫌查证 或 体文本迭代"
+   "note": "Destroy, 3 calls, 无 FP"
   },
   {
    "va": "0x44A790",
    "file": "Misc/ArraySlots.cpp",
    "size": 10,
-   "status": "queued",
-   "root_cause": "待案级复核(v2 内联论仅 UISystem/ArraySlots/MiniGame1 嫌)",
-   "fix_domain": "案级: 内联嫌查证 或 体文本迭代"
-  },
-  {
-   "va": "0x52B860",
-   "file": "MiniGame/MiniGame1.cpp",
-   "size": 107,
-   "status": "queued",
-   "root_cause": "待案级复核(v2 内联论仅 UISystem/ArraySlots/MiniGame1 嫌)",
-   "fix_domain": "案级: 内联嫌查证 或 体文本迭代"
+   "note": "ctor, 1 call, 无 FP"
   }
  ],
  "converged_proofs": [
@@ -114,7 +59,8 @@
   "call_expansion": "原 d0 处 call(相对调用某个 callee) -> 编译版为 cmpb/jl/rep movsl 循环体 = 该 callee 被 /Ob2 内联扩张 (TU 合并效应, callee 体在同 TU 可见)",
   "tail_diff": "编译版尾部 [52:78] 多出 26 条指令 = 内联 callee 体的余部",
   "fix_path": "1.fmull->fmuls: 修源码乘法操作数类型(float 非 double) 2.内联扩张: T89/T90 auto_inline(off) 包裹被内联 callee 3.两者修后重编译字节比对",
-  "queued": true
+  "queued": false,
+  "blocked_by": "fmuls/fmull hexrays 保真度限制(记账暂不修, 用户裁定语义一致暂缓)"
  },
  "hexrays_fidelity_limitations": {
   "_doc": "hexrays 渲染保真度限制——已知、记录、暂不修、语义一致。非任何管线层的 bug，是 decompiler 能力边界。修法=语料后处理(原 x87 opcode→浮点字面量 f 后缀) 或 L1 逐案迭代，后续统一处理。",
@@ -126,5 +72,48 @@
    "deferred_reason": "语义一致 + 非任何层 bug + 修法需原二进制 x87 opcode 反查（工装成本>当前收益）",
    "verdict": "记账暂不修"
   }
+ },
+ "targets_by_priority": {
+  "可狩猎(无FP嫌)": [
+   {
+    "va": "0x422DF0",
+    "file": "UI/UISystem.cpp",
+    "size": 37,
+    "note": "Destroy, 3 calls, 无 FP"
+   },
+   {
+    "va": "0x44A790",
+    "file": "Misc/ArraySlots.cpp",
+    "size": 10,
+    "note": "ctor, 1 call, 无 FP"
+   }
+  ],
+  "fmuls阻塞": [
+   {
+    "va": "0x4D6AC0",
+    "file": "Effect/C3DSpark.cpp",
+    "note": "CreateOne, fmuls/fmull 差"
+   },
+   {
+    "va": "0x4D6670",
+    "file": "Effect/C3DSpark.cpp",
+    "note": "497B, 疑含 FP"
+   },
+   {
+    "va": "0x4D6BC0",
+    "file": "Effect/C3DSpark.cpp",
+    "note": "312B, 疑含 FP"
+   },
+   {
+    "va": "0x4D6D30",
+    "file": "Effect/C3DSpark.cpp",
+    "note": "223B, 疑含 FP"
+   },
+   {
+    "va": "0x52B860",
+    "file": "MiniGame/MiniGame1.cpp",
+    "note": "107B, 待查"
+   }
+  ]
  }
 }
