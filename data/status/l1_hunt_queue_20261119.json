@@ -107,5 +107,13 @@
   "evidence": ".rdata 连续表地图 (0x56A9BC+4=0x56A9C0+12=0x56A9CC) + slot0 律",
   "lesson": "引用一张表 ≠ 拥有这张表 — 基表 init/reset 是全继承链的标准模式, 写表链取证必须区分 \"建立\" 与 \"重置\" 两类引用",
   "pending": "0x411ca0 身份终裁 (call 链=??1Object 强证 vs 旧 IDB 名 _PalScript/语料体 borrow 名弱证); Object 完整 dtor 条目 (0x411bd0 伴生 + 0x411ca0 定义源) 待定后补"
+ },
+ "createone_analysis": {
+  "_doc": "CreateOne 首猎分析 2026-11-19: 编译 80 条 vs 原 55 条 (相似度 0.74), 头 31 条语义同构(寄存器改名 esi->ebp + reloc 位移差)。真形态差在 [32:]。",
+  "fp_variant": "fmuls 0x56f814(单精度x4B) vs fmull 0x0(双精度x8B) - 源码类型差: 原源码乘法操作数为 float, 我们为 double (sig_model 或变量声明宽化)",
+  "call_expansion": "原 d0 处 call(相对调用某个 callee) -> 编译版为 cmpb/jl/rep movsl 循环体 = 该 callee 被 /Ob2 内联扩张 (TU 合并效应, callee 体在同 TU 可见)",
+  "tail_diff": "编译版尾部 [52:78] 多出 26 条指令 = 内联 callee 体的余部",
+  "fix_path": "1.fmull->fmuls: 修源码乘法操作数类型(float 非 double) 2.内联扩张: T89/T90 auto_inline(off) 包裹被内联 callee 3.两者修后重编译字节比对",
+  "queued": true
  }
 }
