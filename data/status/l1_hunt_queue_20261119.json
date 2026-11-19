@@ -115,5 +115,16 @@
   "tail_diff": "编译版尾部 [52:78] 多出 26 条指令 = 内联 callee 体的余部",
   "fix_path": "1.fmull->fmuls: 修源码乘法操作数类型(float 非 double) 2.内联扩张: T89/T90 auto_inline(off) 包裹被内联 callee 3.两者修后重编译字节比对",
   "queued": true
+ },
+ "hexrays_fidelity_limitations": {
+  "_doc": "hexrays 渲染保真度限制——已知、记录、暂不修、语义一致。非任何管线层的 bug，是 decompiler 能力边界。修法=语料后处理(原 x87 opcode→浮点字面量 f 后缀) 或 L1 逐案迭代，后续统一处理。",
+  "fmuls_fmull": {
+   "case": "CreateOne 0x4D6AC0 等含 FP 常量运算函数",
+   "mechanism": "hexrays 不保留浮点字面量 f 后缀 → 原源码 float 常量被渲染为 double → VC6 选 fmull(DC/1) 而非 fmuls(D8/1)",
+   "impact": "x87 指令编码差 1-2 字节，语义一致（精度提升不影响结果）",
+   "affects": "凡含浮点常量运算的函数（面待量化：扫原二进制 fmuls/fmull /fadds/faddl/fstps/fstpl 分布）",
+   "deferred_reason": "语义一致 + 非任何层 bug + 修法需原二进制 x87 opcode 反查（工装成本>当前收益）",
+   "verdict": "记账暂不修"
+  }
  }
 }
