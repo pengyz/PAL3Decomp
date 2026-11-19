@@ -166,7 +166,7 @@ def _self_ref_backref(code, cls_name):
     return code
 
 
-def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, deleting=False):
+def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, deleting=False, cc_override=None):
     """Compute VC6 mangled name for a class method.
 
     Args:
@@ -274,7 +274,12 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, del
     else:
         cvl = {'': 'A', 'const': 'B', 'volatile': 'C',
                'const volatile': 'D'}.get(cv, 'A')
-        r += ('U' if virtual_ else 'Q') + cvl + 'E'
+        # [N18 2026-11-19] cc 字母: cc_override(sig_model 决策层)优先,
+        # sig 解析检测次之, 默认 E(thiscall)
+        _cc_final = cc_override or cc
+        _cc_letter = {'__thiscall': 'E', '__cdecl': 'C',
+                      '__stdcall': 'G', '__fastcall': 'I'}.get(_cc_final, 'E')
+        r += ('U' if virtual_ else 'Q') + cvl + _cc_letter
 
     if special:
         r += '@'                       # ctors/dtors carry no return type

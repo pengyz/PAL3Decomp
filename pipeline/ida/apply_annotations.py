@@ -2480,7 +2480,11 @@ def apply_annotations():
                 # 本地 _mangle_vc6 简化拼装已删(行为面测试实证: L1非法名7/18 +
                 # L2特形码缺9/18 + void尾码错1857条); deleting 由 flags 透传
                 _deleting = 'deleting' in (info.get('flags') or [])
-                _mangled = _vm6_mod.mangle(_cls, _method, _sig, deleting=_deleting)
+                # [N18 2026-11-19·用户裁定] sig_model.cc 直接传入 mangle 参与计算——
+                # 标注层已存决策, mangle 器按 cc 选形
+                _cc_model = (info.get('sig_model') or {}).get('cc') or ''
+                _mangled = _vm6_mod.mangle(_cls, _method, _sig,
+                                           deleting=_deleting, cc_override=_cc_model or None)
                 if _mangled and ida_name.set_name(addr, _mangled, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                     renamed += 1
                 else:
