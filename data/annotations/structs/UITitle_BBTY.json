@@ -192,9 +192,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_1D80(??1/??_G析构族); decomp文件=UITitle_BBTY_scalar_dtor_1D80UIWnd_char_00451d80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_1D80(??1/??_G析构族); decomp文件=UITitle_BBTY_scalar_dtor_1D80UIWnd_char_00451d80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00451e50": {

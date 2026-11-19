@@ -23,9 +23,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x00405580": {
    "name": "~WeatherEffectNode",
@@ -40,9 +41,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x00405560": {
    "name": "~WeatherEffectNode",
@@ -57,9 +59,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x005420c0": {
    "name": "SnowDraw",

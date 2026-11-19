@@ -126,9 +126,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_2830(??1/??_G析构族); decomp文件=UIAnimateCtrlEX_`scalar_deleting_destructoruint_00452830 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_2830(??1/??_G析构族); decomp文件=UIAnimateCtrlEX_`scalar_deleting_destructoruint_00452830 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x00452aa0": {
    "name": "Render",

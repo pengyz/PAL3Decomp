@@ -189,12 +189,15 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, del
     # (sig='') 的 dtor 用**固定码** (VC6 dtor 形不依赖签名: ??1Cls@@QAE@XZ /
     # ??_GCls@@UAEPAXI@Z), 通用回退 '?~...' 含 ~ 恒非法 (PalScript 0x411ca0 案)
     last_seg_early = cls_name.split('::')[-1]
-    if method_name == '~' + last_seg_early:
-        if deleting:
-            return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
-        return '??1' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
-    if method_name == last_seg_early:
-        return '??0' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
+    # [N18] 固定码早退仅限 **无签名信息** (pending/空 sig) — 有 sig 时走下方
+    # 完整解析路径 (params 解析后的碰撞防护才可生效)
+    if not sig or sig.find('(') == -1:
+        if method_name == '~' + last_seg_early:
+            if deleting:
+                return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
+            return '??1' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
+        if method_name == last_seg_early:
+            return '??0' + '@'.join(reversed(cls_name.split('::'))) + '@@QAE@XZ'
 
     paren = sig.find('(') if sig else -1
     if paren == -1:
@@ -255,6 +258,12 @@ def mangle(cls_name, method_name, sig, cv='', virtual_=False, static_=False, del
     if re.match(r'^_s(dtor|calar_dtor)(_\d+)?$', method_name):
         return '??_G' + '@'.join(reversed(cls_name.split('::'))) + '@@UAEPAXI@Z'
 
+    if special == '1' and not deleting and params:
+        # [复核P0-1 防护 2026-11-19] complete dtor 固定码恒无参(QAE@XZ);
+        # ~X 名 + 有参 + 无 deleting = 矛盾形态(要么 deleting 漏标要么条目误挂)
+        # → 拒产固定码(返回 None), apply 落 rename_fail 保留旧名——
+        # 防 65 组同名碰撞(??1 与 ??_G 抢名)复现
+        return None
     if special:
         r = '??' + special + '@'.join(reversed(cls_name.split('::'))) + '@@'
     else:

@@ -1,0 +1,21 @@
+{
+ "_doc": "R3 轮对抗复核结报归档 2026-11-19 (只读复核员, P0×2+P1×5+P2×2)",
+ "verdict": "需修复不回滚 — 数据消解对/架构方向对, 但 65 组同名碰撞+77 漏标+98 错 cc 形+8 新翻红未归因, 现状收口会钉错名入树",
+ "p0": [
+  "deleting 补标(已修 v3b +77 精确命中)+碰撞防护(已修: ~X参>0无deleting拒产固定码返None→旧名保留)",
+  "8 新翻红归因(C3DSpark×5=1170B/UISystem=37B/ArraySlots=10B/MiniGame1=107B) — 进行中"
+ ],
+ "p1_pending": [
+  "SceneMgr 0x2BA0 假算术(已更正作废)",
+  "JusticeBookUI 16B洞+2B尾差(已更正)",
+  "成员 cc 编码(thiscall 3532/cdecl 80/fastcall 12/stdcall 6, mangle 恒 QAE 错形)",
+  "验收门=语法合规率非 mangle 正确率(改名+psig 边界声明)",
+  "S2/S4 口径对齐(101 vs 92 日志; 总错溯源)"
+ ],
+ "p2": [
+  "textutil recv 方括号含括号污损边(现语料未触发)",
+  "死变量清理",
+  "4 跨类错挂+42 语料名对齐债维持",
+  "ObjectCamera 挂账改基(8条实为翻绿)"
+ ]
+}

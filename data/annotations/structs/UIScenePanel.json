@@ -702,9 +702,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_sdtor_5(??1/??_G析构族); decomp文件=UIScenePanel_`scalar_deleting_destructoruint_0043b4b0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_sdtor_5(??1/??_G析构族); decomp文件=UIScenePanel_`scalar_deleting_destructoruint_0043b4b0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x0044be00": {
    "name": "~UIScenePanel",
@@ -728,9 +729,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_sdtor_24(??1/??_G析构族); decomp文件=UIScenePanel_`scalar_deleting_destructoruint_0044be00 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_sdtor_24(??1/??_G析构族); decomp文件=UIScenePanel_`scalar_deleting_destructoruint_0044be00 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x0043b1e0": {
    "name": "Update",
@@ -877,9 +879,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BE40(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE40int_0044be40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_BE40(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE40int_0044be40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_BE",
    "declaration_only": true
   },

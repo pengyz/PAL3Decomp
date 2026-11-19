@@ -271,10 +271,9 @@
     "pending": false
    },
    "flags": [
-    "dtor",
-    "deleting"
+    "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,char) 渲染一致。"
+   "flags_evidence": "IDA名字形态=~CEffgbParticle(??1/??_G析构族); decomp文件=CEffgbParticle_~CEffgbParticlechar_004c9540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,char) 渲染一致。 | [撤销deleting 2026-11-19·复核P0-1] 体无 operator delete(this) 删尾——v1 params==1 判据误标(判据自相矛盾案), 撤销; 归属/形态疑点挂账。"
   },
   "0x004ceb60": {
    "name": "CreateInstance",
@@ -459,9 +458,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_8950(??1/??_G析构族); decomp文件=CEffgbParticle_`scalar_deleting_destructoruint_004c8950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_8950(??1/??_G析构族); decomp文件=CEffgbParticle_`scalar_deleting_destructoruint_004c8950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x004cb340": {
    "name": "~CEffgbParticle",

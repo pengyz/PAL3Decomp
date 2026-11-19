@@ -447,9 +447,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_9630(??1/??_G析构族); decomp文件=CEffGrid_`scalar_deleting_destructoruint_004c9630 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_9630(??1/??_G析构族); decomp文件=CEffGrid_`scalar_deleting_destructoruint_004c9630 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
   },
   "0x004cb280": {
@@ -469,9 +470,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "[A 级 2026-11-18] scalar deleting dtor 实锤: 函数序 mov [esi],offset 0x56f964 (写本类 vptr) + a2&1 → operator delete(this); 表尾同构 slot17 (上槽 GetEditorTaskDescription@CEffGrid); 物理字节与 Actor::~Actor 仅差 vtable 立即数(bytes probe first diff @+0x8)。原误注 Actor::~Actor_N 已归档 archive/actor_sdtor_misnomer_trio_20261118.json。",
+   "flags_evidence": "[A 级 2026-11-18] scalar deleting dtor 实锤: 函数序 mov [esi],offset 0x56f964 (写本类 vptr) + a2&1 → operator delete(this); 表尾同构 slot17 (上槽 GetEditorTaskDescription@CEffGrid); 物理字节与 Actor::~Actor 仅差 vtable 立即数(bytes probe first diff @+0x8)。原误注 Actor::~Actor_N 已归档 archive/actor_sdtor_misnomer_trio_20261118.json。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_Actor_2): int(",
    "declaration_only": true
   }

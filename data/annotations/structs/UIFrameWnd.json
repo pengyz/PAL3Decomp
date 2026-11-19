@@ -305,9 +305,10 @@
    },
    "name_note": " | dtor规范形20261117: 删除式dtor MSVC标准形(ret 4=1参flags+返回this); 原sig='void * __thiscall(int)'误型(hexrays参数分裂/隐藏) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=0 census ABI=1 (RET字节=硬证据) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BB90(??1/??_G析构族); decomp文件=UIFrameWnd_scalar_dtor_BB90int_0043bb90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_BB90(??1/??_G析构族); decomp文件=UIFrameWnd_scalar_dtor_BB90int_0043bb90 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_BB90): int(void *,int); 原注解无"
   },
   "0x0043bbb0": {
