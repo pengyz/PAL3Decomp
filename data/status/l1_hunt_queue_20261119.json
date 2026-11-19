@@ -1,0 +1,61 @@
+{
+ "_doc": "L1 字节狩猎队列 2026-11-19: 掉出字节完美但语义等价的函数, 逐个形态迭代收敛。范式: diff 编译obj vs 原二进制逐字节 → 找寄存器选择翻转点 → 源码形态差迭代 (dtor案自证: 0x4D6960 已逐字节收敛)。",
+ "targets": [
+  {
+   "va": "0x4D6670",
+   "file": "Effect/C3DSpark.cpp",
+   "size": 497,
+   "status": "queued"
+  },
+  {
+   "va": "0x4D6A60",
+   "file": "Effect/C3DSpark.cpp",
+   "size": 75,
+   "status": "queued"
+  },
+  {
+   "va": "0x4D6AC0",
+   "file": "Effect/C3DSpark.cpp",
+   "size": 63,
+   "evidence": "头8B全同, @8 esi→ebp (this持有寄存器翻转)",
+   "status": "queued"
+  },
+  {
+   "va": "0x4D6BC0",
+   "file": "Effect/C3DSpark.cpp",
+   "size": 312,
+   "status": "queued"
+  },
+  {
+   "va": "0x4D6D30",
+   "file": "Effect/C3DSpark.cpp",
+   "size": 223,
+   "status": "queued"
+  },
+  {
+   "va": "0x422DF0",
+   "file": "UI/UISystem.cpp",
+   "size": 37,
+   "evidence": "同调用链, prologue保存集 51/56/57 vs 56",
+   "status": "queued"
+  },
+  {
+   "va": "0x44A790",
+   "file": "Misc/ArraySlots.cpp",
+   "size": 10,
+   "status": "queued"
+  },
+  {
+   "va": "0x52B860",
+   "file": "MiniGame/MiniGame1.cpp",
+   "size": 107,
+   "status": "queued"
+  }
+ ],
+ "converged_proofs": [
+  {
+   "va": "0x4D6960",
+   "note": "C3DSpark dtor: 编译??1 vs 原二进制逐字节全同(仅reloc)——收敛可行性自证"
+  }
+ ]
+}
