@@ -54,7 +54,7 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_1BD0(??1/??_G析构族); decomp文件=Object_scalar_dtor_1BD0int_00411bd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "flags_evidence": "IDA名字形态=_scalar_dtor_1BD0(??1/??_G析构族); decomp文件=Object_scalar_dtor_1BD0int_00411bd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [配对终裁 2026-11-19] 与 0x411ca0(??1X complete, 定义源)构成 ??_G/??1 对; X=MI 类(基表 +0/0x38/0x40 三 vptr 写序实证)。",
    "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 m"
   },
   "0x00411bb0": {
@@ -94,6 +94,25 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x00411ca0": {
+   "name": "~Object",
+   "note": "attribution-fix(member-access evidence): 该函数引用的成员 m_RoleArray/m_RoleSlotArray/m_bCreated/m_pActorData/m_pDialogData/m_nTaskIndex **全部属于 PalScript、且都不在 ScriptObj 里** ⇒ 归属应为 PalScript。原注解为 ScriptObj::~ScriptObj（且 decomp 是 __cdecl、this-> 出现 0 次）。",
+   "evidence": "logic-based attribution: ① decomp 首个局部 `PalScript *v1; // ecx` —— MSVC __thiscall 把 this 放在 ecx ⇒ v1 就是 this（这解释了 this-> 计数为 0）；② 在 this 上调用具名方法 `PalScript::DestroyScript(v1)`；③ 访问的成员 m_bCreated/m_pDialogData/m_RoleArray/m_nTaskIndex 全属 PalScript；④ 语义=释放缓冲区+operator delete+NPC::FreeBuffer+PalScriptMgr::Get_result ⇒ 析构/资源释放。旁证：原注解自带 _misattrib_evidence=max_offset=140>class_size=4（不属于 ScriptObj）。",
+   "name_evidence": "语义命名：函数逻辑为\"拆除\"——释放 m_pDialogData 缓冲、operator delete、NPC::FreeBuffer、并调用 PalScript::DestroyScript ⇒ 判为 PalScript 的析构 ~PalScript。（不是 PalScript::PalScript：ctor 不会去摧毁已有资源。）",
+   "source": "[A 级终裁 2026-11-19] 0x411ca0=??1X(与 0x411bd0=??_GX 配对的 complete dtor), X=当前注解 \"Object\"(MI 类: 基表 0x56A9BC@+0 / 0x56A9B0@+0x38 / 0x56A9A4@+0x40, 三 vptr 构造/析构序实证; IDA size=56 仅量到主基端=错值, 真尺寸≥0x44+语料体脚本销毁逻辑暗示 ≥500B)。语料体: DestroyScript+FreeBuffer(script_state+284)+m_nTodo_04C 循环 = 原源码 dtor 体(成员释放), 4c 无需剥(本条目为 complete 形, 定义源)。旧名 PalScript::_PalScript=早期 IDB 误挂。",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~PalScript(??1/??_G析构族); decomp文件=PalScript_00411ca0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   }
  },
  "vtables": [
@@ -119,5 +138,6 @@
     }
    ]
   }
- ]
+ ],
+ "members_note": "\n[终裁 2026-11-19] Object=MI 类 X(当前注解 56B 仅主基端, 真尺寸≥0x44+): 三基表 +0=0x56A9BC / +0x38=0x56A9B0 / +0x40=0x56A9A4; 0x411bd0=??_G(伴生)/0x411ca0=??1(定义源)。真身份含脚本管理(语料体 DestroyScript 族)。X 的 MI 基类谱系考证挂账。"
 }
