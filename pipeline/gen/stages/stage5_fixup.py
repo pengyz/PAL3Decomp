@@ -1816,6 +1816,9 @@ def _run_inner(code, ctx):
     # [N18 2026-11-19] mangle 收编后新渲染形 (~Cls(arg) 直呼) 剥 flags 织入参
     from textutil import rewrite_sdtor_newform_calls as _rsn
     code = _rsn(code)
+    # [导入引擎接口族 2026-11-19] IAT 槽方法 bare 调用形的成员化**不走独立改写器**
+    # ——数据合流 routed_free_by_name(data.py)后由既有路由器统一处理
+    # (三条改写器收敛律: 同变换多数据源喂数, 机制唯一; 曾另写第三条器已撤)。
     code = strip_singleton_thunk_glue(code)   # [T5(i)] 合成物胶水剥离
     code = strip_singleton_thunk_args(code)    # [D2b] 伪参剥离（B9 零栈参证据）
 

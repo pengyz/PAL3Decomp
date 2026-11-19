@@ -189,6 +189,51 @@ class DataStore:
                 for pfx in ida_prefixes:
                     self.globals_map['%s_%s' % (pfx, addr_hex)] = gname
 
+        # 1b. [导入引擎接口族 2026-11-19] IAT 槽方法表——imported_dll=true 类的
+        #     .rdata 方法条目(item 名, IDA dedup 后缀 Rotate_0) → 真方法名。
+        #     证据链: gbengine.dll 导出 ?Push@gbMatrixStack@@QAEXXZ(QAEX=成员
+        #     __thiscall) + ECX 装载(mov ecx,edi; call [0x56a578]) → 源级=
+        #     dllimport 成员调用, IAT 槽非源实体(11-18"函数指针表"判读被
+        #     导出表证据推翻)。消费方:
+        #       路由器 rewrite_routed_free_calls(bare IAT 调用形 → 成员调用;
+        #       经 routed_free_by_name 合流——三条改写器收敛律: 同变换多数据源)
+        #       emit_headers _imported_slot_addrs(globals 发射跳过)
+        self.import_method_names = {}    # item_name -> method_name
+        self.import_method_nparams = {}  # item_name -> nparams (该 item 槽自己的 sig)
+        self.import_slot_addrs = set()   # slot addrs (.rdata)
+        try:
+            _av_imp = annotation_view
+        except NameError:
+            try:
+                import annotation_view as _av_imp
+            except ImportError:
+                from pipeline.gen import annotation_view as _av_imp
+        _slot2meth = {}
+        _slot2np = {}
+        for _sp_imp, _sd_imp in _av_imp.iter_structs(None, store=self):
+            if not _sd_imp.get('imported_dll'):
+                continue
+            for _ai_imp, _mi_imp in (_sd_imp.get('methods') or {}).items():
+                try:
+                    _a_imp = int(str(_ai_imp), 16)
+                except (ValueError, TypeError):
+                    continue
+                self.import_slot_addrs.add(_a_imp)
+                _meth_imp = str(_mi_imp.get('name') or '')
+                if _meth_imp:
+                    _slot2meth[_a_imp] = _meth_imp
+                    # [重载槽 nparams 2026-11-19] nparams 按**槽自己的 sig_model**
+                    # 取——同方法多槽(重载: Translate 1参 vs Translate_0 3参)不可按
+                    # 方法名聚合(后写覆盖前写: Translate nparams 曾被毒成 3 的实证)
+                    _sm_imp = _mi_imp.get('sig_model') or {}
+                    _slot2np[_a_imp] = len(_sm_imp.get('params') or [])
+        _addr2item = {a: n for n, a in self.global_addrs.items()}
+        for _a_imp, _meth_imp in _slot2meth.items():
+            _item_imp = _addr2item.get(_a_imp)
+            if _item_imp:
+                self.import_method_names[_item_imp] = _meth_imp
+                self.import_method_nparams[_item_imp] = _slot2np.get(_a_imp, 0)
+
         # 2. Struct members from ida_structs data_members
         for sname, sinfo in ida_structs.items():
             if sname.startswith('_'):
@@ -598,6 +643,43 @@ class DataStore:
         except Exception as _e:
             print('  [R91] 路由决策失败（保守回退全自由形态）: %s' % _e)
             self.routed_free, self.routed_free_by_name = {}, {}
+
+        # [导入引擎接口族 2026-11-19] IAT 槽方法合流路由表——喂**既有路由器**
+        # rewrite_routed_free_calls（裸调用形→成员调用形统一机制），不新增第三条
+        # 改写器（三条器收敛律：同变换多数据源喂数，机制唯一）。
+        # 值形态 (cls, method, nparams)：nparams=sig_model params 数（thiscall 不含
+        # this 槽）——hexrays 对 IAT 项渲染 "item名(this实参,...)"，路由器元数门
+        # args == nparams+1 恰好匹配（Push(pStack) 1=0+1 ✓）。
+        # Rotate_0/Translate_0（IDA dedup item 名）→ 真方法名（重载解析归编译器）。
+        # nparams=import_method_nparams（槽级 sig，重载槽不被同名方法聚合毒化）。
+        _imp_merged = 0
+        if getattr(self, 'import_method_names', None):
+            try:
+                _av_m = annotation_view
+            except NameError:
+                try:
+                    import annotation_view as _av_m
+                except ImportError:
+                    from pipeline.gen import annotation_view as _av_m
+            _imp_cls = None
+            for _sp_m, _sd_m in _av_m.iter_structs(None, store=self):
+                if _sd_m.get('imported_dll'):
+                    _imp_cls = _sd_m.get('name') or None
+                    break
+            for _item, _meth in self.import_method_names.items():
+                if _item in self.routed_free_by_name:
+                    continue  # 路由判定优先（真函数归属压过 IAT 槽）
+                if _imp_cls is None:
+                    continue
+                _np = self.import_method_nparams.get(_item)
+                if _np is None:
+                    continue
+                self.routed_free_by_name[_item] = (_imp_cls, _meth, _np)
+                self.free_func_sigs.pop(_item, None)  # 同批声明移除（N1 教训）
+                _imp_merged += 1
+            if _imp_merged:
+                print('  [导入引擎接口族] IAT 槽方法合流路由 %d 条: %s'
+                      % (_imp_merged, ', '.join(sorted(self.import_method_names)[:6])))
 
     def _load_binary(self):
         exe_path = self.project_root / "original" / "PAL3.exe"

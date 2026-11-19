@@ -67,6 +67,39 @@ def _global_vtable_slot_addrs():
     return _global_slot_addr_cache
 
 
+_imported_slot_addr_cache = None
+
+def _imported_slot_addrs():
+    """[导入引擎接口族 2026-11-19] imported_dll=true 类的 methods 地址集。
+
+    证据链: gbengine.dll 导出 ?Push@gbMatrixStack@@QAEXXZ(QAEX=成员 __thiscall)
+    + ECX 装载(call dword ptr [0x56a578]) → IAT 槽=dllimport 调用的链接器产物,
+    非源实体 ⇒ globals.h extern / globals.cpp 定义双跳过(类头
+    include/gbengine/gbMatrixStack.h 已声明成员; 11-18"函数指针表"保留裁定被
+    导出表证据推翻)。"""
+    global _imported_slot_addr_cache
+    if _imported_slot_addr_cache is None:
+        import glob as _glob
+        _s = set()
+        _base = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), '..', '..', '..',
+            'data', 'annotations', 'structs'))
+        for _p in _glob.glob(os.path.join(_base, '*.json')):
+            try:
+                _d = json.load(open(_p, encoding='utf-8'))
+            except Exception:
+                continue
+            if not _d.get('imported_dll'):
+                continue
+            for _ai in (_d.get('methods') or {}):
+                try:
+                    _s.add(int(str(_ai), 16))
+                except (ValueError, TypeError):
+                    pass
+        _imported_slot_addr_cache = _s
+    return _imported_slot_addr_cache
+
+
 # [C2501 修 2026-10-19·P2] 合成名→具名顶替映射（渲染层型名置换）
 # 机理：export 跳过合成名（task-8 ✓）但成员型仍引旧名 ⇒ C2501 'missing storage-class'
 # ×1534 ✗✗ 顶替半闭环——渲染层置换：_inline_X → 具名替身（_origin 源 ✓ 前缀容错）。
@@ -5015,11 +5048,19 @@ def generate_globals():
         #  ①基址类名碰撞(SceneObj族): extern类名绑死前置声明→跳过(用户裁定)
         #  ②裸方法名指针项(Rotate/Push族): 无碰撞+原始源码真形态(DLL导入函数
         #    指针表调用, IAT项0xffffffff实证)→保留extern合法形(__thiscall * NAME)
-        #  注: ②的C2197(带参调无参指针)为hexrays借用名渲染的深层问题,
-        #  并案'导入引擎接口族'立案——当前C2065消解优先
+        # [②裁定推翻 2026-11-19] gbengine.dll 导出表实证 ?Push@gbMatrixStack@@QAEXXZ
+        #  (QAEX=成员__thiscall) + ECX 装载(mov ecx,edi; call [0x56a578]) →
+        #  源级=dllimport 成员调用, IAT 槽=链接器产物非源实体 ⇒ extern 跳过
+        #  (类头 include/gbengine/gbMatrixStack.h 已声明成员; 调用方 bare 形由
+        #  stage5 rewrite_import_method_calls 改写成员调用)。
         try:
             if int(addr_str, 16) in _vtable_covered_addrs and name in _known_class_names:
                 continue  # ①类名碰撞跳过; ②方法名项走通用渲染(__thiscall合法形)
+        except (ValueError, TypeError):
+            pass
+        try:
+            if int(addr_str, 16) in _imported_slot_addrs():
+                continue  # [导入引擎接口族 2026-11-19] IAT 槽非源实体
         except (ValueError, TypeError):
             pass
         _s = _sect_of(g)
@@ -5443,6 +5484,11 @@ def generate_globals_cpp():
     _forced_names, _extra_entries = _forced_global_entries()
 
     def _should_skip_global(addr, name, typ, ann_info):
+        # [导入引擎接口族 2026-11-19] IAT 槽=dllimport 成员调用的链接器产物,
+        # 非源实体——判据**优先于** _forced_names(语料 bare 引用会被 stage5
+        # 改写成成员调用消化; 类头已声明成员, 定义缺位合法)
+        if addr in _imported_slot_addrs():
+            return True
         if name in _forced_names:
             return False  # referenced by decomp bodies: must be defined
         if ann_info.get('type') == 'skip':
