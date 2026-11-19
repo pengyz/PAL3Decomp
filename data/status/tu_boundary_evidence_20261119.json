@@ -1,138 +1,90 @@
 {
- "_doc": "TU 边界取证 D1 2026-11-19: L1 猎物函数的原 e8 调用目标清单——下一步逐 callee 做内联史判定 (原别处函数体是否含 callee 头模式)。\n[可靠性警告 2026-11-19] 朴素 e8 扫描不可靠: 目标含 0x553xxx 数据区(操作数内伪 e8)、CreateOne 反常 0 调用——下一迭代须换 capstone/objdump 线性反汇编后再提 call 目标。本文件当前仅作工具骨架存档。",
+ "_doc": "D1v2 反汇编级调用目标 2026-11-19 (capstone 线性反汇编, 指令边界保证)。",
+ "reliability": "DISASM",
  "targets": [
   {
-   "va": "0x4d6670",
+   "va": "0x4D6670",
    "file": "Effect/C3DSpark.cpp",
    "size": 497,
    "n_calls": 11,
-   "callees": [
-    {
-     "va": "0x401810",
-     "head": "8b44240c487820538b5c2414558b6c24"
-    },
-    {
-     "va": "0x55353b",
-     "head": "6a01ff742408e8750100005959c3558b"
-    },
-    {
-     "va": "0x53cef0",
-     "head": "8b4424048b542408568bf18b4c241050"
-    },
-    {
-     "va": "0x5534d7",
-     "head": "558bec83ec208b450856576a0859bed8"
-    },
-    {
-     "va": "0x55353b",
-     "head": "6a01ff742408e8750100005959c3558b"
-    },
-    {
-     "va": "0x53cef0",
-     "head": "8b4424048b542408568bf18b4c241050"
-    },
-    {
-     "va": "0x5534d7",
-     "head": "558bec83ec208b450856576a0859bed8"
-    },
-    {
-     "va": "0x55353b",
-     "head": "6a01ff742408e8750100005959c3558b"
-    },
-    {
-     "va": "0x53cef0",
-     "head": "8b4424048b542408568bf18b4c241050"
-    },
-    {
-     "va": "0x5534d7",
-     "head": "558bec83ec208b450856576a0859bed8"
-    },
-    {
-     "va": "0x55353b",
-     "head": "6a01ff742408e8750100005959c3558b"
-    }
-   ]
+   "calls": [
+    "0x401810",
+    "0x55353b",
+    "0x53cef0",
+    "0x5534d7",
+    "0x55353b",
+    "0x53cef0",
+    "0x5534d7",
+    "0x55353b",
+    "0x53cef0",
+    "0x5534d7",
+    "0x55353b"
+   ],
+   "tail_jumps": []
   },
   {
-   "va": "0x4d6a60",
+   "va": "0x4D6A60",
    "file": "Effect/C3DSpark.cpp",
    "size": 75,
    "n_calls": 0,
-   "callees": []
+   "calls": [],
+   "tail_jumps": []
   },
   {
-   "va": "0x4d6ac0",
+   "va": "0x4D6AC0",
    "file": "Effect/C3DSpark.cpp",
    "size": 63,
    "n_calls": 0,
-   "callees": []
+   "calls": [],
+   "tail_jumps": []
   },
   {
-   "va": "0x4d6bc0",
+   "va": "0x4D6BC0",
    "file": "Effect/C3DSpark.cpp",
    "size": 312,
    "n_calls": 0,
-   "callees": []
+   "calls": [],
+   "tail_jumps": []
   },
   {
-   "va": "0x4d6d30",
+   "va": "0x4D6D30",
    "file": "Effect/C3DSpark.cpp",
    "size": 223,
    "n_calls": 0,
-   "callees": []
+   "calls": [],
+   "tail_jumps": []
   },
   {
-   "va": "0x422df0",
+   "va": "0x422DF0",
    "file": "UI/UISystem.cpp",
    "size": 37,
-   "n_calls": 4,
-   "callees": [
-    {
-     "va": "0x4226f0",
-     "head": "a1ecbbd80083e800740448741e4833c9"
-    },
-    {
-     "va": "0x421870",
-     "head": "568bf18b868400000085c0741c8b8e58"
-    },
-    {
-     "va": "0x41f8c0",
-     "head": "55568bf133ed8b8e8400000089ae6086"
-    },
-    {
-     "va": "0x4208a0",
-     "head": "568bf1578b4e3485c9740dff158ca556"
-    }
-   ]
+   "n_calls": 3,
+   "calls": [
+    "0x4226f0",
+    "0x421870",
+    "0x41f8c0"
+   ],
+   "tail_jumps": []
   },
   {
-   "va": "0x44a790",
+   "va": "0x44A790",
    "file": "Misc/ArraySlots.cpp",
    "size": 10,
    "n_calls": 1,
-   "callees": [
-    {
-     "va": "0x445aa0",
-     "head": "51568bf18d4e24e8b4cbfeff83caff8d"
-    }
-   ]
+   "calls": [
+    "0x445aa0"
+   ],
+   "tail_jumps": []
   },
   {
-   "va": "0x52b860",
+   "va": "0x52B860",
    "file": "MiniGame/MiniGame1.cpp",
    "size": 107,
-   "n_calls": 2,
-   "callees": [
-    {
-     "va": "0x52afc0",
-     "head": "568bf18b860001000085c074178b4424"
-    },
-    {
-     "va": "0x47d440",
-     "head": "83ec10568bf18b465485c00f84350200"
-    }
-   ]
+   "n_calls": 1,
+   "calls": [
+    "0x52afc0"
+   ],
+   "tail_jumps": []
   }
- ],
- "reliability": "NAIVE — 需反汇编级重建 (objdump/capstone)"
+ ]
 }
