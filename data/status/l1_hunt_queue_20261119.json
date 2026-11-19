@@ -99,5 +99,13 @@
   "v1 寄存器迁移(表面症状) → v2 内联扩张(误—objdump 边界错) → v3 源码形态差(D1v2 反汇编实证)",
   "教训: 体积对比必须以符号边界截取(objdump -d 按 label 截, 勿含后继符号体)",
   "v4 真尺寸定谳: 63→256 (地址边界法), v2 内联论复活, v3 撤回作废"
- ]
+ ],
+ "table_ownership_incident": {
+  "_doc": "0x56A9BC 表归属翻烧饼事故 2026-11-19 (未提交即被复核流程拦截)",
+  "wrong_adjudication": "判为 \"PalScript 基类子对象表\" (基于 ??0Role/??1PalScript 引用)",
+  "correct": "0x56A9BC = **Object 自己的 1 槽表** (slot0=??_GObject=0x411bd0); ?0Role/?1PalScript 引用它 = **标准基表初始化/重置模式** (两者都含 Object 基子对象, ctor 写基表 ptr / 基 dtor 重置基表 ptr); 邻表地图: 0x56A9BC=Object[1槽:0x411bd0] / 0x56A9C0=GameObject[4槽] / 0x56A9CC=Role[1槽:0x411b80]",
+  "evidence": ".rdata 连续表地图 (0x56A9BC+4=0x56A9C0+12=0x56A9CC) + slot0 律",
+  "lesson": "引用一张表 ≠ 拥有这张表 — 基表 init/reset 是全继承链的标准模式, 写表链取证必须区分 \"建立\" 与 \"重置\" 两类引用",
+  "pending": "0x411ca0 身份终裁 (call 链=??1Object 强证 vs 旧 IDB 名 _PalScript/语料体 borrow 名弱证); Object 完整 dtor 条目 (0x411bd0 伴生 + 0x411ca0 定义源) 待定后补"
+ }
 }
