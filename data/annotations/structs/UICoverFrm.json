@@ -255,9 +255,9 @@
    "evidence_level": "unverified"
   },
   "0x36e8": {
-   "name": "m_rectCoverSrc",
-   "type": "tagRECT",
-   "source": "正名20261120(R5第四批): UpdateAnimation/SetDefaultValues: UIWnd::SetRect(&m_nTodo_3700, &this->m_nTodo_36E8) 源 rect | 原 m_nTodo_36E8",
+   "name": "m_nCoverRectArg",
+   "type": "int",
+   "source": "正名20261120(R5第四批): UpdateAnimation/SetDefaultValues: UIWnd::SetRect(&m_nTodo_3700, &this->m_nTodo_36E8) 源 rect | 原 m_nTodo_36E8 | type回退int 20261120: tagRECT 16B>窗口4B(0x36ec=m_nCoverInitX 紧邻)——SetRect 传参基座陷阱, 0x36e8-0x36eb 实为 4B 参数槽",
    "evidence_level": "unverified"
   },
   "0x36ec": {
