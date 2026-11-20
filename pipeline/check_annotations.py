@@ -530,10 +530,38 @@ def check(struct_dir=None):
             # word + trailing hex/dec digits, and check whether that number
             # equals this member's own offset (decimal or hex reading).
             # See docs/knowledge/pattern_annotation_batch_rename_no_evidence.md
+            # [R6 门禁升级 20261120] 两新模式(登记级 warning):
+            #   A. 尾部大写单字母 A-E(CachedA/B 族残种——伪语义台账 20261118 在案)
+            #   B. 下划线分隔形 m_XX_State_4968(老正则无分隔符分支漏检——CLAUDE.md 例)
+            # 词干须含小写+不含数字; 白名单尾词=合法缩写(ID/CRC/NPC/VB/IB)与
+            # 过去式后缀(ED——CatchED 动词形), 非序列字母
+            _AB_LOWER = re.match(r'^m_[a-z]\D*([A-E])$', mname)
+            _tail_upper = _AB_LOWER if (_AB_LOWER and not re.search(
+                r'(?:ID|CRC|NPC|VB|IB|ED)$', mname)
+                and not re.search(r'(?:Param|Todo|Field)[0-9A-Fa-f]{0,2}[A-E]$', mname)
+                and 'Todo' not in mname
+                and not re.search(r'[A-Z]{3,}$', mname)) else None
+            _hollow_sep = re.match(
+                r'^m_[nfb]\w*_(?:Val|Flag|State|Param|Init|Zero)_?([0-9A-Fa-f]{2,6})$',
+                mname,
+            )
             _hollow = re.match(
                 r'^m_[nfb](?:Val|Flag|State|Param|Init|Zero)([0-9A-Fa-f]{2,6})$',
                 mname,
             )
+            if _tail_upper:
+                warnings.append(
+                    f"structs[{sname}]: '{mname}' at offset {off} 尾部大写单字母 "
+                    f"'{_tail_upper.group(1)}'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, "
+                    f"禁止新增(R6 门禁升级登记)"
+                )
+                continue  # 已报, 不重复走 hollow 判定
+            if _hollow_sep:
+                warnings.append(
+                    f"structs[{sname}]: '{mname}' at offset {off} 下划线分隔伪语义形"
+                    f"(HOLLOW_词_序号)——CLAUDE.md 禁止伪语义命名(R6 门禁升级登记)"
+                )
+                continue
             if _hollow:
                 _suffix = _hollow.group(1)
                 try:
