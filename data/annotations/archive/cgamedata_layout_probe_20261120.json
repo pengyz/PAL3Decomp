@@ -57,5 +57,91 @@
   "判别法": "Init 方法体 this 访问 disp 范围(L4 基座调用陷阱判别)——InitFrameUI/UIListBox_Init/UISceneMap::Init 三方法体取证"
  },
  "implication": "0x164-0x3744 的现有散成员大部分活在子对象内部(UITitle 9236B 单独覆盖 0x1394-0x3743)——重划=整块手术(锚点级 type 修正会撞 C10, 需窗口内散成员归并一并落)",
- "next": "①三 Init 方法体 disp 判别(三类真尺寸) ②窗口内散成员归并清单 ③整块重划落盘"
+ "next": "①三 Init 方法体 disp 判别(三类真尺寸) ②窗口内散成员归并清单 ③整块重划落盘",
+ "init_disp_verdict": {
+  "_doc": "三 Init 薄壳子构造链 disp 判别 2026-11-20 (反汇编直证)",
+  "UISceneMap::Init(0x450DC0)": {
+   "子构造链": "[esi+0x50]/[esi+0x110]/[esi+0x1b4]/[esi+0x250]/[esi+0x2b8]/[esi+0x350] + 清零 [esi+0x448]",
+   "真尺寸": "≥0x44C, 窗口 0x454(1108B) 精确匹配 ✓✓ —— UISceneMap=0x454 定谳",
+   "vtable": "[esi]=0x56b14c / [esi+0x48]=0x56b140"
+  },
+  "RoleCameraCtrl::InitFrameUI(0x450A60)": {
+   "子构造链": "[esi+0x48](0x444f60)",
+   "真尺寸": "≥0x4C=76B ✓ 注解确认; 窗口 0x164-0x1AB; **known_members m_subObjA@0x1AC(UIStatic) 疑为其内部+0x48 子对象或兄弟段(0x1AC-0x26F, UIStatic 192B?) 待核**",
+   "vtable": "[esi]=0x56b120"
+  },
+  "UIListBox::UIListBox_Init(0x451850)": {
+   "子构造链": "[esi+0x58](0x43dfc0)/[esi+0x510](0x444f60) + [esi+0x48]=0x56a9c0(GameObject表!)+0x56b16c",
+   "真尺寸": "≥0x514(1300B)——**但 0x374=m_RoleDataA 衔接暗示基座 0xE4(228B)——矛盾**",
+   "定谳": "0x290 = **UIListBox 基座+派生数据的容器类**(派生类未识别): 基座构造(UIListBox_Init)后派生数据区 0x374-0x85F(m_RoleDataA/B/C stride 0x168 + m_ItemSlotA)——m_RoleData 槽组不是 CGameData 直属成员而是 0x290 容器的派生区",
+   "挂账": "0x290 容器类身份(派生自 UIListBox?)——m_RoleDataA/B/C 的归属随容器定谳"
+  },
+  "window_closure_final": {
+   "精确闭合段": "0x104 ArraySlots(96) / 0xF40 UISceneMap(0x454=1108B) / 0x1394 UITitle(9236B<9520) / 0x38D0 数组(6×0x8E0=0x6E10)",
+   "确认段": "0x164 RoleCameraCtrl(76B, 至 0x1AB)",
+   "待考段": "0x1AC-0x26F(UIStatic?) / 0x270-0x28F(金钱四件套+reputation=兄弟成员) / 0x290-0x85F(容器派生区)",
+   "重划范围收窄": "本轮手术=已闭合四段(0x104/0xF40/0x1394/0x38D0 散成员归并)+0x164 确认段; 0x290 容器段挂账"
+  }
+ },
+ "surgery_blocked": {
+  "_doc": "重划手术纸上预演暴露三矛盾 2026-11-20——方法论纪律: 锚点不足不动刀, 手术推迟",
+  "矛盾1_UITitle窗口": "UITitle(9236B)@0x1394 窗口 [0x1394,0x37A8) 含 23 个散成员(fUITransition/ItemSlotD/ScriptHandle×6/各Timer+State...)——UITitle 内部 or 兄弟成员, 身份未解",
+  "矛盾2_ItemSlot_stride不均": "0x77C→0xCEC=0x570 / 0xCEC→0x1244=0x558 / 0x1244→0x179C=0x558——非同 stride 数组; 且四兄弟跨段分布(0x77C 容器段/其余 UITitle 段)——ItemSlotB/C/D 不可能活在 UITitle 内 ⇒ UITitle 真尺寸 < 0x958 或 ItemSlot 位置/类型存疑",
+  "矛盾3_数组helper参数序": "【已解】签名 ConstructArray(base,stride,count,ctor,cb) 定谳 + 算术 erratum 修正——0x860 段精确闭合; 0x38D0 段原闭合复核无误",
+  "next": "①0x553627 体反汇编定签名 ②ItemSlot stride 之谜(UIItem 尺寸核对) ③UITitle 窗口成员身份(disp 探针)——三解后整块手术",
+  "矛盾2_UISceneMap注解": "UISceneMap.json binary_size=1012 偏小(Init disp 0x44C ⇒ 真尺寸 0x454=1108)——UISceneMap.json 内部重划挂账",
+  "剩余": "矛盾1(UITitle 窗口 23 散成员) + 矛盾2(ItemSlot stride 不均 0x570/0x558/0x558)——仍立, 手术继续推迟"
+ },
+ "helper_signature": {
+  "_doc": "0x553627 签名定谳 2026-11-20 (体反汇编)",
+  "signature": "ConstructArray(base /*+8*/, stride /*+C*/, count /*+10*/, ctor /*+14*/, cb5 /*+18*/) __cdecl, SEH 包装",
+  "body": "for(i=0;i<count;i++){ ecx=base; thiscall ctor(); base+=stride; }",
+  "call_sites": {
+   "0x860": "ConstructArray(0x860, 0x160, 5, 0x450320, 0x450390) → 尾 0x860+0x700=0xF60",
+   "0x38D0": "ConstructArray(0x38D0, 0x8E0, 6, 0x44e530, 0x44e5e0) → 尾 0x38D0+0x3540=0x6E10 ✓ 精确闭合不变"
+  },
+  "new_conflict": "【已解 2026-11-20】0x860 数组尾算术错误——0x160×5=0x6E0(1760) 非 0x700, 0x860+0x6E0=0xF40=UISceneMap 锚**精确闭合成立**;UISceneMap 调用点唯一(0x44efb1)+注解 1012B 偏小(Init disp≥0x44C ⇒ 真尺寸 0x454=1108)挂账",
+  "candidates": [
+   "UISceneMap::Init(0x450dc0) 的 this 实参链还有前驱(Init 被 ctor 调前可能有偏移调整)",
+   "数组 count 实际 <5(push 5 的语义另解)",
+   "UISceneMap 类尺寸注解/推断有误, 0x44C disp 属于别的 this 传递"
+  ],
+  "next": "UISceneMap::Init 的 this 传递链复核(0x450dc0 被谁调/this 从哪来) + 数组元素访客分析(0x860+0x160*i 的访问者 disp 谱)",
+  "arithmetic_erratum": "hex 乘法事故: 0x160×5 误算 0x700(应 0x6E0)——L4 尺寸算术必须逐元素复核(起点序列 0x860/0x9C0/0xB20/0xC80/0xDE0/尾 0xF40)"
+ },
+ "initroles_misattribution": {
+  "_doc": "CGameData::InitRoles 错挂定谳 2026-11-20 (决定性一击)",
+  "evidence": "InitRoles(0x44ade0) 调用点唯一(0x44f38c, 位于 0x44f330 函数内); 上下文 lea ecx,[esi+0x1394] call 0x44ade0——this=+0x1394=UITitle 子对象",
+  "implication": [
+   "InitRoles 真身=UITitle 方法(错挂 CGameData::InitRoles)",
+   "this->m_RoleDataA/B/C(0x374/0x4CC/0x624)+m_ItemSlotA/B/C/D(0x77C-0x179C)+m_nScriptHandleA-F(0x2510-0x2528) 等访问=UITitle 内部偏移(相对 UITitle 头)",
+   "与 UITitle::UITitle(0x44ab90) ctor disp(0x374/0x4CC/0x624/0x77C/0xCEC/0x1244/0x179C/0x1CFC) 完全互证——同一布局两视角",
+   "UITitle 9236B 自洽(0x1CFC < 0x2414)",
+   "CGameData 13 方法族需整体重审 this(this 形态普查未做的方法全部存疑)",
+   "CGameData known_members 分家: 顶层成员(ctor/dtor 直证: 0x104/0x164/0x290/0x860/0xF40/0x1394/0x38C4/0x38D0/0x6E10/0x6E14/0x6E18) vs UITitle 内部错挂(0x374 族/0x1394 段 23 散成员)"
+  ],
+  "triple_dossier": "CGameData/UIGameFrm/UITitle 三档案纠缠定谳: g_gamefrm 实例真身=UITitle(标题/主框架窗口, 9236B 子对象系)+外层窗口壳; \"CGameData\"名=游戏数据误读",
+  "next": "①13 方法逐个 this 形态普查(调用点 this 偏移) ②known_members 分家落盘(顶层保留/内部迁 UITitle.json) ③UITitle.json 接收内部成员"
+ },
+ "method_census": {
+  "_doc": "13 方法 this 形态普查 2026-11-20 (调用点回溯+imm 值核验)",
+  "true_cgame_methods": {
+   "this=0xDB9FD0 顶层直证": "Load(46)/SetMode(17)/GetMode(4)/Update(1)/Render(2)/HideAll(2) —— mov ecx, 0xDB9FD0 全部核验",
+   "Load 内部": "_init_44f8d0 (mov ecx, ebp, this 顶层)",
+   "dtor 对": "~a(??_G, 0直接调用=经vtable)→~b(??1)——ctor 写表归属 ✓ 真方法"
+  },
+  "misattributed": {
+   "InitRoles(0x44ade0)": "this=+0x1394 (UITitle 方法错挂)——已定谳",
+   "InitItems(0x44e660)": "this=edi 循环遍历 stride 0x8E0 ×6 (0x44f2a5 循环: mov ebp,6 / call / add edi,0x8e0)——**0x38D0 数组元素类的方法错挂**; 元素 ctor=0x44e530(ConstructArray cb)",
+   "SetDefaultColors(0x445a60)": "0 直接调用点——经 vtable 或死代码, 待审"
+  },
+  "family_split_plan": {
+   "迁 UITitle.json (InitRoles 访问族, offset 不变=UITitle 内偏移)": "0x4C/0x5C/0x6C/0x70/0x7C/0x114/0x1AC/0x374/0x3DC/0x3E0/0x4CC/0x534/0x538/0x624/0x68C/0x690/0x77C/0xCD4/0xCD8/0xCE8/0xCE9/0xCEC/0x1244/0x179C/0x1CF4/0x1CF8/0x2510-0x2528/0x2528 ≈30 条",
+   "顶层保留 (this=0xDB9FD0 访问者直证)": "0x164/0x198/0x288/0x28C/0x28D(Load) + 0xF40/0x1394/0x290/0x164(子对象锚, dtor) + 0x38C4/0x38C8/0x38CC/0x6E10/0x6E14/0x6E18(HideAll/Render/GetMode) + 0x38D0/0x860 数组锚",
+   "零踪迹保持挂账": "0x44/0x48/0xDC/0x100/0x148/0x270-0x284(金钱族)/0x900/0x9B0/0x9B4/0xED4/0xF88/0x1160-0x1684/0x1910-0x1914/... (InitItems 元素类候选+纯猜测名)",
+   "冲突预警": "UITitle.json 已有 0xCD8 m_hEffect vs 迁入 m_nTodo_CD8——同址两名合并裁定",
+   "C10 预演": "迁出后顶层 0x374-0x2528 区间仅剩 0xF40/0x1394 锚+0x38D0 锚——无重叠 ✓"
+  },
+  "element_class": "0x38D0 数组元素类(0x8E0=2272B, ctor 0x44e530, InitItems 方法) 未建档——m_pItemArray/0x900/0x9B0/0x9B4 候选成员挂账"
+ }
 }

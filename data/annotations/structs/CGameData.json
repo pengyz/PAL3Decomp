@@ -27,36 +27,6 @@
    "source": "gen_headers_9.2+codegen_infer",
    "evidence_level": "unverified"
   },
-  "0x114": {
-   "name": "m_nInitRoles",
-   "type": "UIWnd *",
-   "source": "gen_headers_9.2+codegen_infer",
-   "evidence_level": "unverified"
-  },
-  "0x374": {
-   "name": "m_RoleDataA",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
-  "0x4cc": {
-   "name": "m_RoleDataB",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
-  "0x624": {
-   "name": "m_RoleDataC",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
-  "0xcd8": {
-   "name": "m_nTodo_CD8",
-   "type": "int",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
-   "evidence_level": "unverified"
-  },
   "0xf40": {
    "name": "m_nRender",
    "type": "int",
@@ -85,78 +55,6 @@
    "name": "m_nTodo_282",
    "type": "unsigned char",
    "source": "binary:6x abs refs, byte access (0x282) | [批4 诚实化 2026-10-16] A偏移形：m_bFlag282⇒m_nTodo_282（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
-  "0xcd4": {
-   "name": "m_bInitRoles",
-   "type": "unsigned char",
-   "source": "binary:raw_batch",
-   "evidence_level": "unverified"
-  },
-  "0xce8": {
-   "name": "m_nTodo_CE8",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
-   "evidence_level": "unverified"
-  },
-  "0xce9": {
-   "name": "m_nTodo_CE9",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
-   "evidence_level": "unverified"
-  },
-  "0x1cf4": {
-   "name": "m_nScriptResult",
-   "type": "int",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
-   "evidence_level": "unverified"
-  },
-  "0x1cf8": {
-   "name": "m_bScriptActive",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)",
-   "evidence_level": "unverified"
-  },
-  "0x2510": {
-   "name": "m_nScriptHandleA",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x2514": {
-   "name": "m_nScriptHandleB",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x2518": {
-   "name": "m_nScriptHandleC",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x251c": {
-   "name": "m_nScriptHandleD",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x2520": {
-   "name": "m_nScriptHandleE",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x2524": {
-   "name": "m_nScriptHandleF",
-   "type": "int",
-   "source": "ida_decomp:InitRoles = 0",
-   "evidence_level": "unverified"
-  },
-  "0x2528": {
-   "name": "m_bScriptRunning",
-   "type": "unsigned char",
-   "source": "reverted_auto_semantic_r3:1x(InitRoles)|reverted:pseudo_semantic",
    "evidence_level": "unverified"
   },
   "0x6e10": {
@@ -203,40 +101,16 @@
    "source": "binary:17x abs refs (0x290) | 子对象嫌疑20261120(dtor cast直证: UIListBox)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
-  "0x77c": {
-   "name": "m_ItemSlotA",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
   "0x8ac": {
    "name": "m_pItemArray",
    "type": "int[13]",
    "source": "| inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）",
    "evidence_level": "A"
   },
-  "0xcec": {
-   "name": "m_ItemSlotB",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
-  "0x1244": {
-   "name": "m_ItemSlotC",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer",
-   "evidence_level": "unverified"
-  },
   "0x1394": {
    "name": "m_UITitle",
    "type": "int",
    "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs | 子对象嫌疑20261120(dtor cast直证: UITitle)——type回退(C10: 尺寸冲突需布局专项)",
-   "evidence_level": "unverified"
-  },
-  "0x179c": {
-   "name": "m_ItemSlotD",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer",
    "evidence_level": "unverified"
   },
   "0x38d0": {
@@ -521,78 +395,6 @@
    "source": "auto:extern_overlap_g_GameData_at_+0x1BA0",
    "evidence_level": "unverified"
   },
-  "0x4c": {
-   "name": "m_rcWindow",
-   "type": "tagRECT",
-   "source": "| normalize_key: 0x4C -> 76",
-   "evidence_level": "unverified"
-  },
-  "0x5c": {
-   "name": "m_rcWidgetRect",
-   "type": "tagRECT",
-   "source": "| normalize_key: 0x5C -> 92",
-   "evidence_level": "unverified"
-  },
-  "0x6c": {
-   "name": "m_nTodo_06C",
-   "type": "int",
-   "source": "| normalize_key: 0x6C -> 108",
-   "evidence_level": "unverified"
-  },
-  "0x70": {
-   "name": "m_nTodo_070",
-   "type": "int",
-   "source": "| normalize_key: 0x70 -> 112",
-   "evidence_level": "unverified"
-  },
-  "0x7c": {
-   "name": "m_nTodo_07C",
-   "type": "UIWnd *",
-   "source": "| normalize_key: 0x7C -> 124",
-   "evidence_level": "unverified"
-  },
-  "0x3dc": {
-   "name": "m_nTodo_3DC",
-   "type": "int",
-   "source": "| normalize_key: 0x3DC -> 988",
-   "evidence_level": "unverified"
-  },
-  "0x3e0": {
-   "name": "m_nTodo_3E0",
-   "type": "int",
-   "source": "| normalize_key: 0x3E0 -> 992",
-   "evidence_level": "unverified"
-  },
-  "0x534": {
-   "name": "m_nTodo_534",
-   "type": "int",
-   "source": "| normalize_key: 0x534 -> 1332",
-   "evidence_level": "unverified"
-  },
-  "0x538": {
-   "name": "m_nTodo_538",
-   "type": "int",
-   "source": "| normalize_key: 0x538 -> 1336",
-   "evidence_level": "unverified"
-  },
-  "0x68c": {
-   "name": "m_nTodo_68C",
-   "type": "int",
-   "source": "| normalize_key: 0x68C -> 1676",
-   "evidence_level": "unverified"
-  },
-  "0x690": {
-   "name": "m_nTodo_690",
-   "type": "int",
-   "source": "| normalize_key: 0x690 -> 1680",
-   "evidence_level": "unverified"
-  },
-  "0x1ac": {
-   "name": "m_subObjA",
-   "type": "UIStatic",
-   "source": "| normalize_key: 0x1AC -> 428",
-   "evidence_level": "unverified"
-  },
   "0xdc": {
    "name": "g_pSceneTransitionEnd",
    "type": "unchar *",
@@ -602,23 +404,6 @@
  },
  "binary_size": 28268,
  "methods": {
-  "0x0044ade0": {
-   "name": "InitRoles",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitRoles): int(int,int); 原注解无"
-  },
   "0x0044e660": {
    "name": "InitItems",
    "evidence_level": "unverified",
@@ -634,7 +419,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitItems): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitItems): int(int,int); 原注解无",
+   "source": " | this普查20261120: this=edi 0x8E0-stride×6循环(0x44f2a5)——真归属=0x38D0数组元素类 MI(UIWnd@0, GameObject@0x44)[ctor 0x44e530 写0x56A9C0直证], 元素类未建档暂留守"
   },
   "0x0044f5b0": {
    "name": "Render",
