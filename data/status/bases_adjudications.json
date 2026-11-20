@@ -103,5 +103,12 @@
   ],
   "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖",
   "at": "2026-11-20"
+ },
+ "UIGameFrm": {
+  "bases": [
+   "UIWnd@0"
+  ],
+  "evidence": "dtor 0x44f050 call UIWnd dtor(0x445b40) + 表0x56B094 slot0 指纹; 幻影壳原 bases PalScriptWaitObj@68 无证据弃置(类改名裁定 8a222b5ab)",
+  "at": "2026-11-20"
  }
 }
