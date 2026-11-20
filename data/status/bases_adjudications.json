@@ -120,7 +120,7 @@
    "UIWnd",
    "GameObject@0x44"
   ],
-  "evidence": "ctor 0x44e530 写 [esi+0x44]=0x56A9C0(GameObject 表, X族定谳)直证; 原 PalScriptWaitObj@68 无证据",
+  "evidence": "ctor 0x44e530 两阶段写表直证: 基构造 0x44E555 写 [esi+0x44]=0x56A9C0(GameObject 原生表) → 派生构造 0x44E595 覆写 [esi+0x44]=0x56B044(UIEmote final 表, slot1=0x44AB00=UIEmote::GetType 直证). 原 PalScriptWaitObj@68 证伪: 0x44+4=0x48 即数据区(m_sub48/m_cur), 无 PalScriptWaitObj 子对象(8B)存留空间",
   "at": "2026-11-20"
  }
 }
