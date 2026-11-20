@@ -100,9 +100,9 @@
    "evidence_level": "unverified"
   },
   "0x38": {
-   "name": "m_nTodo_0034",
-   "type": "int",
-   "source": "binary:raw_final | [97挂账裁决 2026-10-16] m_Sub_0034 ⇒ m_nTodo_0034（泛化词 Sub+偏移尾 0034（现偏移 0x38，PDB 漂移 -4 同族）=禁令形；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_pPauseBackup",
+   "type": "void *",
+   "source": "正名20261120(R5第五批): SetPauseState: 备份 m_pPopScript | 原 m_nTodo_0034",
    "evidence_level": "unverified"
   },
   "0xd8": {
@@ -552,15 +552,15 @@
    "evidence_level": "B"
   },
   "0x114": {
-   "name": "m_nTodo_110",
-   "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_wRoleField114",
+   "type": "unsigned short",
+   "source": "正名20261120(R5第五批): UpdateScriptRoles: 从脚本对象 +104 处拷 WORD | 原 m_nTodo_110",
    "evidence_level": "B"
   },
   "0x116": {
-   "name": "m_nTodo_112",
-   "type": "short",
-   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_wRoleField116",
+   "type": "unsigned short",
+   "source": "正名20261120(R5第五批): 从 +106 拷 WORD | 原 m_nTodo_112",
    "evidence_level": "B"
   },
   "0x118": {
@@ -570,9 +570,9 @@
    "evidence_level": "B"
   },
   "0x11a": {
-   "name": "m_nTodo_116",
-   "type": "short",
-   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_bRoleField11A",
+   "type": "unsigned char",
+   "source": "正名20261120(R5第五批): 从 +110 拷 BYTE | 原 m_nTodo_116",
    "evidence_level": "B"
   },
   "0x11c": {
@@ -697,16 +697,16 @@
    "evidence_level": "unverified"
   },
   "0x214": {
-   "name": "m_nTodo_214",
-   "type": "float",
-   "source": "gap_fill:ida_decomp_access | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_214⇒m_nTodo_214（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动） | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_ScriptRoleState",
+   "type": "int",
+   "source": "正名20261120(R5第五批): BYTE2=从+362 拷(≠0xFF 判定)+gbVec3D 接力——脚本角色状态机 | 原 m_nTodo_214",
    "note": "原名 m_fPosAYTarget 降级(未证语义名,CLAUDE.md 禁伪语义)",
    "evidence_level": "unverified"
   },
   "0x23c": {
-   "name": "m_nTodo_238",
+   "name": "m_nRoleField23C",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "source": "正名20261120(R5第五批): 从 +400 拷 DWORD | 原 m_nTodo_238",
    "evidence_level": "unverified"
   },
   "0x318": {
@@ -769,21 +769,21 @@
    "evidence_level": "unverified"
   },
   "0x1c": {
-   "name": "m_nTodo_018",
+   "name": "m_fPopA",
    "type": "float",
-   "source": "reverted_auto_semantic:1x | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "source": "正名20261120(R5第五批): PopScript 清零——弹栈浮点 A | 原 m_nTodo_018",
    "evidence_level": "unverified"
   },
   "0x20": {
-   "name": "m_nTodo_01C",
+   "name": "m_fPopB",
    "type": "float",
-   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "source": "正名20261120(R5第五批): PopScript 清零——弹栈浮点 B | 原 m_nTodo_01C",
    "evidence_level": "unverified"
   },
   "0x24": {
-   "name": "m_nTodo_020",
-   "type": "float",
-   "source": "reverted_auto_semantic:1x|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
+   "name": "m_pPopScript",
+   "type": "void *",
+   "source": "正名20261120(R5第五批): PopScript 读+UpdateScriptRoles 16处主循环指针——活动脚本弹栈槽 | 原 m_nTodo_020",
    "evidence_level": "unverified"
   },
   "0x28": {
