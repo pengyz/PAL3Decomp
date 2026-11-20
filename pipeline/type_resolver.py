@@ -363,6 +363,8 @@ def iter_type_refs(refs_out, refgraph):
                 refs_out.append((cls, 'base', 'base', str(bn), 'value'))
         for addr, m in (d.get('methods') or {}).items():
             sm = m.get('sig_model') or {}
+            if sm.get('pending'):
+                continue  # R4: pending=声明未定谳, 非类型契约(CPK::Load 案)
             if sm.get('return'):
                 refs_out.append((cls, addr, 'sig.return', sm['return'],
                                  classify_kind(sm['return'])))
@@ -425,6 +427,8 @@ class Resolver:
         if s == '...' or not s:
             return
         toks = s.split()
+        if toks:
+            toks[-1] = re.sub(r'@<[^>]*>$', '', toks[-1])  # R3: @<reg> 注记剥
         if (len(toks) >= 2 and re.match(r'^\**[A-Za-z_]\w*$', toks[-1])
                 and not toks[-1].startswith('__')):
             s = ' '.join(toks[:-1])
@@ -448,6 +452,11 @@ class Resolver:
         s = re.sub(r'\s*&\s*$', '', s)   # 引用尾剥除(FP参数模板形实证)
         if not s:
             return
+        # [functions.signature 豁免 2026-11-20] legacy 全渲染形签名串本就含
+        # this 参数(hexrays 惯例, 消费方 section-6 自带 this 剥除)——该位点
+        # 的 this 令牌非病; sig_model 参数表(全渲染形之外)的 this 仍=污染。
+        if field == 'signature' and source == 'functions':
+            s = re.sub(r'\bthis\b', '', s)
         if _THIS_POLLUTE_RE.search(s):
             self.failures.append((source, owner, field, s, s,
                                   '*this 污染(类型串含 this 令牌)'))
@@ -483,9 +492,9 @@ class Resolver:
                 left, rest = s.rsplit('(', 1)
                 params = rest.rsplit(')', 1)[0]
                 # cc 剥除用正则('*__cdecl'粘连token实证)
-                left_nocc = re.sub(r'\b__\w+\b', ' ', left)
+                left_nocc = re.sub(r'\b(__\w+|virtual|static)\b', ' ', left)   # R1: virtual/static 关键字剥(nameless form 案)
                 ltoks = left_nocc.split()
-                if ltoks and re.match(r'^[A-Za-z_]\w*$', ltoks[-1]) and len(ltoks) > 1:
+                if ltoks and re.match(r'^[A-Za-z_][\w:]*$', ltoks[-1]) and len(ltoks) > 1:
                     ltoks = ltoks[:-1]  # 尾函数名剥除
                 self._resolve_one(' '.join(ltoks), source, owner, field)
                 for pt in _split_top(params):

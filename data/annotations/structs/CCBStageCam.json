@@ -417,7 +417,7 @@
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11d 反汇编定谳: 入口无 ecx-this, 参数全栈读(stdcall); 用作 (DLGPROC) 强转多站; 原 thiscall 归属是 IDB 类作用域命名惯性",
    "sig_model": {
-    "return": "static int",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -440,7 +440,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(StoreCurrentView): int(int,int,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHIHH): int(int,u"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(StoreCurrentView): int(int,int,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHIHH): int(int,u",
+   "name_note": " | REF修复20261120: static int→int (存储类关键字污染剥除, N2)"
   },
   "0x004e9890": {
    "name": "SetBlendWeight",
@@ -572,7 +573,7 @@
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11h 反汇编定谳: 入口栈读参[esp+8/0xc/0x10]无ecx-this(ecx后从全局0x17A94E0装); 用作CreateDialogParamA DLGPROC(API契约stdcall); 原 thiscall 系 IDB 归属惯性",
    "sig_model": {
-    "return": "static int",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -595,7 +596,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(DlgProc): int(int,int,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHIHH): int(int,u"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(DlgProc): int(int,int,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHIHH): int(int,u",
+   "name_note": " | REF修复20261120: static int→int (存储类关键字污染剥除, N2)"
   },
   "0x00504060": {
    "name": "~CCBStageCam",

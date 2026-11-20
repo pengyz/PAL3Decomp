@@ -336,11 +336,11 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "unsigned cha",
+      "type": "unsigned char",
       "name": "r"
      },
      {
-      "type": "unsined char",
+      "type": "unsigned char",
       "name": "g"
      },
      {
@@ -351,7 +351,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetColor): int("
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetColor): int(",
+   "name_note": " | REF修复20261120: unsigned cha→unsigned char (N4拼写) | REF修复20261120: unsined char→unsigned char (N4拼写)"
   },
   "0x004b48b0": {
    "name": "SetAlpha",

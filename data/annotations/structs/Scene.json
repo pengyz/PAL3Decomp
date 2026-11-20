@@ -135,14 +135,15 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "const int pRoleTriple[3]",
+      "type": "const int *",
       "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(AddRoleEntry): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(AddRoleEntry): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注",
+   "name_note": " | REF修复20261120: const int pRoleTriple[3]→const int * (导出直证const int*指针形, N5参数名污染清除)"
   },
   "0x00421230": {
    "name": "GetTileHeight",

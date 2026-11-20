@@ -367,12 +367,13 @@
    "name": "PopStack",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "*",
+    "return": "AStarPathFinder::NODE *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | REF修复20261120: *→AStarPathFinder::NODE * (导出直证, N7空基型)"
   },
   "0x004017a0": {
    "name": "Reset",

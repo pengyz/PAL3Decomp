@@ -345,16 +345,12 @@
    "sig_model": {
     "return": "void",
     "cc": null,
-    "params": [
-     {
-      "type": "CCBFiveNimbusWindow *this",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。"
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。",
+   "name_note": " | REF修复20261120: CCBFiveNimbusWindow *this参数删(this形永非sig_model合法项; adjustor thunk jmp转发, N6) | REF修复补刀20261120: *this子串形过滤修正后参数真删(before=['CCBFiveNimbusWindow *this']→after=[])"
   }
  },
  "vtables": [

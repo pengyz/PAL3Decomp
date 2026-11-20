@@ -1356,7 +1356,7 @@
    "static": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int RandomPickValues",
+    "return": "int",
     "cc": "cdecl",
     "params": [
      {
@@ -1375,7 +1375,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(RandomPickValues): int(int,int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RandomPickValues): int(int,int,int,int); 原注解无",
+   "name_note": " | REF修复20261120: int RandomPickValues→int (名吞return剥名, N3)"
   },
   "0x00404800": {
    "name": "InitGame",
