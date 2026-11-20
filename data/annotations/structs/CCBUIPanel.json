@@ -751,30 +751,6 @@
    "override_of": "0x00445cd0",
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
-  "0x00453e50": {
-   "name": "~CCBUIPanel",
-   "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "adjudication": "rejected",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_3E50(??1/??_G析构族); decomp文件=scalar_dtor_3E50_00453e50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
-  },
   "0x00454590": {
    "name": "OnMessage_4590",
    "source": "vtable_gap_fill_v1(from CCBUIPanel.json)",
@@ -843,5 +819,6 @@
    "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUIPanel()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留"
 }

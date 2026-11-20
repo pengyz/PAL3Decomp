@@ -3415,29 +3415,6 @@
    },
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
-  "0x00431760": {
-   "name": "~PalScript",
-   "source": "[函数归属判定 2026-10-17·主攻点 2 续] IDB 类限定名 PalScript::_sdtor_23（A 级归属证=decomp 限定名形 ✓ 非 signature this）⇒ 迁入 PalScript 方法面",
-   "evidence_level": "A",
-   "declaration_only": true,
-   "sig_model": {
-    "return": "PalScript *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "a2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_sdtor_23(??1/??_G析构族); decomp文件=PalScript_`scalar_deleting_destructoruint_00431760 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
-  },
   "0x00523e70": {
    "name": "GetScriptBufferAddr",
    "source": "[函数归属 2026-10-17·主攻点 2 终] PalScript——面卡④类=PalScript（Op_HY_FLY 族 ✓）（五面卡类归属面 ✓ decomp member access 证）",
@@ -3505,5 +3482,6 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445d10/0x445b90三UIWnd值; G2审计恢复 | 链法定谳20261117: ctor 0x43A160 call UIWnd ctor(0x445AA0)+存己表0x56AC4C@+0(本机capstone) → [UIWnd]保"
+ "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445d10/0x445b90三UIWnd值; G2审计恢复 | 链法定谳20261117: ctor 0x43A160 call UIWnd ctor(0x445AA0)+存己表0x56AC4C@+0(本机capstone) → [UIWnd]保",
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~PalScript()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形0留"
 }

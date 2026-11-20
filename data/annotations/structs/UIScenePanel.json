@@ -680,29 +680,6 @@
    "flags_evidence": "IDA名字形态=~UIScenePanel(??1/??_G析构族); decomp文件=UIScenePanel_~UIScenePanelvoid_0043b4d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
    "declaration_only": true
   },
-  "0x0043b4b0": {
-   "name": "~UIScenePanel",
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "source": "| [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x43B4D0 写 vptr 0x56AC90（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AC90→UIScenePanel（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScenePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x43B4D0 写 vptr 0x56AC90",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_sdtor_5(??1/??_G析构族); decomp文件=UIScenePanel_`scalar_deleting_destructoruint_0043b4b0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
-  },
   "0x0044be00": {
    "name": "~UIScenePanel",
    "evidence_level": "unverified",
@@ -854,30 +831,6 @@
    "override_of": "0x0043d7a0",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x0043d7a0(UIScene)注解签名匹配 2026-11-17 机械推导"
   },
-  "0x0044be40": {
-   "name": "~UIScenePanel",
-   "name_source": "恢复 2026-11-01（vtable 需要）",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UIScenePanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AFFC）",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "a2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BE40(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE40int_0044be40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_BE",
-   "declaration_only": true
-  },
   "0x0043ad40": {
    "name": "Render",
    "confidence": "中",
@@ -932,5 +885,6 @@
    "name": "UIScene",
    "offset": 0
   }
- ]
+ ],
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(2条)——编译器自唯一virtual ~UIScenePanel()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留"
 }

@@ -1267,30 +1267,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(InitRoleDisplay): int(int,int); 原注解无"
   },
-  "0x00525520": {
-   "name": "~CCBUI",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5706CC）",
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_5520(??1/??_G析构族); decomp文件=CCBUI_`scalar_deleting_destructoruint_00525520 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
-  },
   "0x00442200": {
    "name": "SetRoleStatePointers",
    "evidence_level": "unverified",
@@ -2075,7 +2051,7 @@
   },
   "0x00519360": {
    "name": "~CCBUI",
-   "name_note": "G2条目补齐(0x5704C8真7槽): 体: Release后ShowLineupWindow装配 | C9sig基锚定20261117→void __thiscall()(基=UIListBox) | C9name定谳20261117→~CCBUI: dtor破案20261117: 语料名ShowLineupWindow(UIWnd*,char)=(this,char flags)删除式dtor ABI形; 0x519360/0x519380=删除式/complete对(UIWnd 0x445b20/0x445b40同模式); slot5=dtor位结构一致性要求此名; 原名ShowLineupWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "name_note": "G2条目补齐(0x5704C8真7槽): 体: Release后ShowLineupWindow装配 | C9sig基锚定20261117→void __thiscall()(基=UIListBox) | C9name定谳20261117→~CCBUI: dtor破案20261117: 语料名ShowLineupWindow(UIWnd*,char)=(this,char flags)删除式dtor ABI形; 0x519360/0x519380=删除式/complete对(UIWnd 0x445b20/0x445b40同模式); slot5=dtor位结构一致性要求此名; 原名ShowLineupWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥)",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -2093,8 +2069,7 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~CCBUI(??1/??_G析构族); decomp文件=CCBResultWindow_ShowLineupWindowUIWnd_00519360 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "declaration_only": true
+   "flags_evidence": "IDA名字形态=~CCBUI(??1/??_G析构族); decomp文件=CCBResultWindow_ShowLineupWindowUIWnd_00519360 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x005195e0": {
    "name": "OnMessage",
@@ -2170,5 +2145,6 @@
    "offset": 0
   }
  ],
- "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起"
+ "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留"
 }

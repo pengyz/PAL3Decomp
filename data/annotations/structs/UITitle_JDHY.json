@@ -184,23 +184,6 @@
     "pending": false
    }
   },
-  "0x004b0540": {
-   "name": "~UITitle_JDHY",
-   "_misattrib_evidence": "max_offset=289120>class_size=1208",
-   "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl) | 挂账③ F 案改名 2026-10-06：~UITitle_JDHY→_scalar_dtor（deleting-dtor 形（void* 回值+标志参）非纯析构——~名+参=C2631；UIListBox 先例） | 挂账③ 返工重定谳 2026-10-06：纯析构误伤回滚（pat ??1UITitle_JDHY 真析构符号证）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~UITitle_JDHY(??1/??_G析构族); decomp文件=UITitle_JDHY_~UITitle_JDHYvoid_004b0540 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
   "0x0047c1c0": {
    "name": "HandleDeviceLostA",
    "evidence_level": "unverified",
@@ -582,5 +565,6 @@
    "name": "UIFrameWnd",
    "offset": 0
   }
- ]
+ ],
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~UITitle_JDHY()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形0留"
 }

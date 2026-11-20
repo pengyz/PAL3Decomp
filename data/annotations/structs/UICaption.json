@@ -105,7 +105,6 @@
    "name": "~UICaption",
    "source": "| [method 27 余量批 2026-10-16 analyzer] 表 0x0056B0E0 认领连带注册 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x450390 写 vptr 0x56B0E0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56B0E0→UICaption（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICaption（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x450390 写 vptr 0x56B0E0",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -116,7 +115,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_0370(??1/??_G析构族); decomp文件=sdtor_15_00450370 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0370(??1/??_G析构族); decomp文件=sdtor_15_00450370 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥)"
   },
   "0x00450670": {
    "name": "_todo_0670",
@@ -185,29 +185,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(IsOnScreen): int(int,int,int); 原注解无"
-  },
-  "0x0043a7f0": {
-   "name": "~UICaption",
-   "source": "vtable_gap_fill_v1(from UICaption.json)",
-   "evidence_level": "unverified",
-   "adjudication": "rejected",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_sdtor(??1/??_G析构族); decomp文件=sdtor_1_0043a7f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
   },
   "0x0043ab00": {
    "name": "Destroy",
@@ -352,5 +329,6 @@
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
  ],
- "size_note": "尺寸矫正20261117: 344→96。双证=成员末端m_linetime@0x5c+4恰96 + UIGameFrm布局区间[0x104,0x164)=96(m_cap@0x104, 下一成员m_note@0x164); 原344=chimera"
+ "size_note": "尺寸矫正20261117: 344→96。双证=成员末端m_linetime@0x5c+4恰96 + UIGameFrm布局区间[0x104,0x164)=96(m_cap@0x104, 下一成员m_note@0x164); 原344=chimera",
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~UICaption()再生(deleting/adjustor/ICF形态均再生); 槽绑定0+完整形2留"
 }

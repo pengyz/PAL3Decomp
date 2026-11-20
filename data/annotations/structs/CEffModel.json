@@ -322,30 +322,6 @@
    "declaration_only": true,
    "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。 | [R3-T5 复核回滚 2026-11-19] 恢复 params=[int] (deleting 形 1 参 ABI); v2 params清零误判——二进制 ret 0x4/adjustor thunk 硬证, 语料文本缺删尾≠非 deleting (adjustor/链式调用不直接含删尾)。"
   },
-  "0x004d3230": {
-   "name": "~CEffModel",
-   "source": "[余 47 路径 2026-10-17·CEffModel 注册] _scalar_dtor2（同 0x4D0CA0 形（sdtor_39 删除标志形 ✓）——同类双删析构 ⇒ 序号消歧（5c 制式）✓ **5/5**）——删析构制式 `_scalar_dtor`+序号· 证据账目 A 级 conf 92",
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "char *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor2(??1/??_G析构族); decomp文件=CEffModel_scalar_dtor2char_004d3230 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "declaration_only": true,
-   "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。 | [R3-T5 复核回滚 2026-11-19] 恢复 params=[int] (deleting 形 1 参 ABI); v2 params清零误判——二进制 ret 0x4/adjustor thunk 硬证, 语料文本缺删尾≠非 deleting (adjustor/链式调用不直接含删尾)。"
-  },
   "0x004cfd20": {
    "name": "~CEffModel",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffModel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F9DC,0x56F9D0）",
@@ -552,5 +528,6 @@
    "date": "2026-11-16",
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
- ]
+ ],
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CEffModel()再生(deleting/adjustor/ICF形态均再生); 槽绑定2+完整形1留"
 }

@@ -18,37 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 916,
-  "matched": 778,
-  "unmatched": 227,
-  "match_L1": 90,
-  "match_L1_semantic": 11,
-  "partial": 588,
+  "symbols": 920,
+  "matched": 782,
+  "unmatched": 210,
+  "match_L1": 106,
+  "match_L1_semantic": 12,
+  "partial": 600,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 100,
-  "reloc_total": 5816,
-  "reloc_ok": 1371,
+  "unresolved_synth": 76,
+  "reloc_total": 5909,
+  "reloc_ok": 1423,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4445,
-  "rsite_total": 5816,
-  "rsite_unaligned": 5545,
-  "l1_bytes": 3938,
-  "l1_hidden_reloc_bytes": 831,
-  "l1_reloc_covered_bytes": 1084,
-  "rsite_ok": 40,
-  "rsite_unresolved": 1,
-  "rsite_unresolved_samples": [
-   {
-    "va": "0x00444AC0",
-    "off": 2,
-    "tgt": "0x0056AE84",
-    "exp": "sub_56AE84",
-    "sym": "??_7CCBResultWindow@@6B@"
-   }
-  ],
+  "reloc_unresolved": 4486,
+  "rsite_total": 5909,
+  "rsite_unaligned": 5595,
+  "l1_bytes": 4505,
+  "l1_hidden_reloc_bytes": 931,
+  "l1_reloc_covered_bytes": 1256,
+  "rsite_ok": 48,
+  "rsite_class_ok": 248,
   "tail_jump_downgrades": 3,
   "tail_jump_downgrade_samples": [
    {
@@ -70,8 +61,62 @@
     "orig": null
    }
   ],
-  "rsite_class_ok": 221,
-  "rsite_self_local": 9,
+  "rsite_self_local": 11,
+  "rsite_unresolved": 1,
+  "rsite_unresolved_samples": [
+   {
+    "va": "0x004C5D50",
+    "off": 4,
+    "tgt": "0x004C5D70",
+    "exp": "sub_4C5D70",
+    "sym": "??1CEffectSystem@@UAE@XZ"
+   }
+  ],
+  "rsite_mismatch": 6,
+  "rsite_mismatch_samples": [
+   {
+    "va": "0x004BE060",
+    "off": 4,
+    "orig": "ScreenEffectMgr::ClearAllEffects(void)",
+    "ours": "ScreenEffect::~ScreenEffect",
+    "sym": "??1ScreenEffect@@UAE@XZ"
+   },
+   {
+    "va": "0x004BD850",
+    "off": 4,
+    "orig": "RenderTarget::GetManagedTexture(int)",
+    "ours": "ParticleEffect::~ParticleEffect",
+    "sym": "??1ParticleEffect@@UAE@XZ"
+   },
+   {
+    "va": "0x00450AB0",
+    "off": 4,
+    "orig": "RoleCameraCtrl::InitBaseWidget(void)",
+    "ours": "RoleCameraCtrl::~RoleCameraCtrl",
+    "sym": "??1RoleCameraCtrl@@UAE@XZ"
+   },
+   {
+    "va": "0x00454980",
+    "off": 4,
+    "orig": "TaskBookUI::Destroy(void)",
+    "ours": "TaskBookUI::~TaskBookUI",
+    "sym": "??1TaskBookUI@@UAE@XZ"
+   },
+   {
+    "va": "0x0043D860",
+    "off": 4,
+    "orig": "UIFrameWnd::__deleting_view(void)",
+    "ours": "UI3DCtrl::~UI3DCtrl",
+    "sym": "??1UI3DCtrl@@UAE@XZ"
+   },
+   {
+    "va": "0x00439110",
+    "off": 4,
+    "orig": "PalScript::Reset(void)",
+    "ours": "UIProgressBar::~UIProgressBar",
+    "sym": "??1UIProgressBar@@UAE@XZ"
+   }
+  ],
   "rsite_ok_directname": 2
  },
  "rows": [
@@ -374,12 +419,12 @@
   },
   {
    "file": "pal3/src/Combat/CCBResultWindow.cpp",
-   "symbol": "??1CCBResultWindow@@UAE@XZ",
-   "name": "CCBResultWindow::~CCBResultWindow(void)",
-   "va": "0x00444AC0",
+   "symbol": "??_GCCBResultWindow@@UAEPAXI@Z",
+   "name": "CCBResultWindow::`scalar deleting destructor'(uint)",
+   "va": "0x00444AA0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 11
+   "size": 30
   },
   {
    "file": "pal3/src/Combat/CCBResultWindow.cpp",
@@ -828,7 +873,7 @@
    "name": "CEffExplosive::RenderEffectPass(float)",
    "va": "0x004C7450",
    "status": "partial",
-   "match_pct": 18.1,
+   "match_pct": 17.2,
    "size": 559
   },
   {
@@ -893,15 +938,6 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 27
-  },
-  {
-   "file": "pal3/src/Effect/CEffQuad.cpp",
-   "symbol": "??_GCEffQuad@@UAEPAXI@Z",
-   "name": "CEffQuad::_sdtor_39",
-   "va": "0x004D3230",
-   "status": "partial",
-   "match_pct": 37.5,
-   "size": 8
   },
   {
    "file": "pal3/src/Effect/CEffQuad.cpp",
@@ -1139,24 +1175,6 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "?Activate@CEffectSystem@@UAEHXZ",
-   "name": "CEffectSystem::Activate",
-   "va": "0x004C5DB0",
-   "status": "partial",
-   "match_pct": 75.6,
-   "size": 41
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "?ReleaseTextures@CEffectSystem@@UAEXXZ",
-   "name": "CEffectSystem::ReleaseTextures",
-   "va": "0x004C5DE0",
-   "status": "partial",
-   "match_pct": 18.3,
-   "size": 60
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?slot_6@CEffectSystem@@UAEHXZ",
    "name": "CEffectSystem::slot_6(void)",
    "va": "0x004C5E20",
@@ -1175,15 +1193,6 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "?ProcessEffects@CEffectSystem@@UAEHN@Z",
-   "name": "CEffectSystem::ProcessEffects",
-   "va": "0x004C5E80",
-   "status": "partial",
-   "match_pct": 12.1,
-   "size": 282
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?UpdateEffectState@CEffectSystem@@UAEHH@Z",
    "name": "CEffectSystem::UpdateEffectState(int)",
    "va": "0x004C6030",
@@ -1199,6 +1208,15 @@
    "status": "partial",
    "match_pct": 27.1,
    "size": 155
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
+   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
+   "va": "0x004C5D50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
@@ -1327,6 +1345,168 @@
    "size": 1165
   },
   {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?ReleaseEffect@CEffgbParticle@@QAEXXZ",
+   "name": "CEffgbParticle::ReleaseEffect(void)",
+   "va": "0x004C6980",
+   "status": "partial",
+   "match_pct": 13.1,
+   "size": 237
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?SetData@CEffgbParticle@@QAEXHHHPAHHH@Z",
+   "name": "CEffgbParticle::SetData(int,int,int,int *,int,int)",
+   "va": "0x004C8650",
+   "status": "partial",
+   "match_pct": 10.3,
+   "size": 213
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Init@CEffgbParticle@@QAEHH@Z",
+   "name": "CEffgbParticle::Init(int)",
+   "va": "0x004C8830",
+   "status": "partial",
+   "match_pct": 95.0,
+   "size": 80
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Attach@CEffgbParticle@@UAEPADD@Z",
+   "name": "CEffgbParticle::Attach(char)",
+   "va": "0x004C88C0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Render@CEffgbParticle@@QAEXXZ",
+   "name": "CEffgbParticle::Render(void)",
+   "va": "0x004C88D0",
+   "status": "partial",
+   "match_pct": 3.7,
+   "size": 82
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?AllocEffect@CEffgbParticle@@UAEPAXXZ",
+   "name": "CEffgbParticle::AllocEffect(void)",
+   "va": "0x004C8930",
+   "status": "partial",
+   "match_pct": 16.7,
+   "size": 24
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Destroy__fastcall@CEffgbParticle@@QAEXXZ",
+   "name": "CEffgbParticle::Destroy__fastcall(void)",
+   "va": "0x004C8970",
+   "status": "partial",
+   "match_pct": 6.2,
+   "size": 194
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Create@CEffgbParticle@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffgbParticle::Create(tagEffObjType *)",
+   "va": "0x004C8A40",
+   "status": "partial",
+   "match_pct": 25.2,
+   "size": 314
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?ResetState@CEffgbParticle@@UAEXHHHH@Z",
+   "name": "CEffgbParticle::ResetState(int,int,int,int)",
+   "va": "0x004C8B80",
+   "status": "partial",
+   "match_pct": 26.2,
+   "size": 103
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?UpdateFrame@CEffgbParticle@@UAEXM@Z",
+   "name": "CEffgbParticle::UpdateFrame(float)",
+   "va": "0x004C8BF0",
+   "status": "partial",
+   "match_pct": 14.1,
+   "size": 533
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?Destroy@CEffgbParticle@@UAEXXZ",
+   "name": "CEffgbParticle::Destroy(void)",
+   "va": "0x004C8E10",
+   "status": "partial",
+   "match_pct": 38.2,
+   "size": 102
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?GetEffect@CEffgbParticle@@UAEXM@Z",
+   "name": "CEffgbParticle::GetEffect(float)",
+   "va": "0x004C8E80",
+   "status": "partial",
+   "match_pct": 93.8,
+   "size": 16
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?RenderEffectPass@CEffgbParticle@@UAEXM@Z",
+   "name": "CEffgbParticle::RenderEffectPass(float)",
+   "va": "0x004C8E90",
+   "status": "partial",
+   "match_pct": 18.1,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffgbParticle@@UAEPBDH@Z",
+   "name": "CEffgbParticle::GetEditorTaskDescription(int)",
+   "va": "0x004C9260",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 120
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?sub_4C9540@CEffgbParticle@@UAEPADH@Z",
+   "name": "CEffgbParticle::sub_4C9540",
+   "va": "0x004C9540",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?CreateInstance@CEffgbParticle@@QAEHPAV1@H0@Z",
+   "name": "CEffgbParticle::CreateInstance(CEffgbParticle *,int,CEffgbParticle *)",
+   "va": "0x004CEB60",
+   "status": "partial",
+   "match_pct": 15.6,
+   "size": 276
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?DestroyEffect_FD40@CEffgbParticle@@SAHPAV1@@Z",
+   "name": "CEffgbParticle::DestroyEffect_FD40(void)",
+   "va": "0x004CFD40",
+   "status": "partial",
+   "match_pct": 5.2,
+   "size": 210
+  },
+  {
+   "file": "pal3/src/Effect/CEffgbParticle.cpp",
+   "symbol": "?DestroyEffect@CEffgbParticle@@UAEXXZ",
+   "name": "CEffgbParticle::DestroyEffect(void)",
+   "va": "0x004D0A60",
+   "status": "partial",
+   "match_pct": 32.0,
+   "size": 25
+  },
+  {
    "file": "pal3/src/Effect/CMeteorChain.cpp",
    "symbol": "??1CMeteorChain@@QAE@XZ",
    "name": "CMeteorChain::~CMeteorChain(void)",
@@ -1352,6 +1532,15 @@
    "status": "partial",
    "match_pct": 16.6,
    "size": 163
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffect.cpp",
+   "symbol": "??_GScreenEffect@@UAEPAXI@Z",
+   "name": "ScreenEffect::`scalar deleting destructor'(uint)",
+   "va": "0x004BE060",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Effect/ScreenEffect.cpp",
@@ -1496,15 +1685,6 @@
    "status": "partial",
    "match_pct": 82.1,
    "size": 140
-  },
-  {
-   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
-   "symbol": "??1ScreenEffectMgr@@UAE@XZ",
-   "name": "ScreenEffectMgr::~ScreenEffectMgr(void)",
-   "va": "0x004BEBD0",
-   "status": "partial",
-   "match_pct": 43.3,
-   "size": 30
   },
   {
    "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
@@ -1883,6 +2063,15 @@
    "status": "partial",
    "match_pct": 45.5,
    "size": 213
+  },
+  {
+   "file": "pal3/src/Misc/CCBUIPanel.cpp",
+   "symbol": "??_GCCBUIPanel@@UAEPAXI@Z",
+   "name": "CCBUIPanel::`scalar deleting destructor'(uint)",
+   "va": "0x004461D0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -2642,6 +2831,15 @@
   },
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
+   "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
+   "name": "JusticeBookUI::`scalar deleting destructor'(uint)",
+   "va": "0x005284C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "??1JusticeBookUI@@UAE@XZ",
    "name": "JusticeBookUI::~JusticeBookUI(void)",
    "va": "0x005284E0",
@@ -2884,24 +3082,6 @@
    "size": 11
   },
   {
-   "file": "pal3/src/Misc/PalScriptFadeInTimer.cpp",
-   "symbol": "?UpdateFadeIn@PalScriptFadeInTimer@@UAEHHH@Z",
-   "name": "PalScriptFadeInTimer::UpdateFadeIn",
-   "va": "0x00438640",
-   "status": "partial",
-   "match_pct": 32.3,
-   "size": 93
-  },
-  {
-   "file": "pal3/src/Misc/PalScriptFadeOutTimer.cpp",
-   "symbol": "?UpdateFadeOut@PalScriptFadeOutTimer@@UAEHHH@Z",
-   "name": "PalScriptFadeOutTimer::UpdateFadeOut",
-   "va": "0x00438540",
-   "status": "partial",
-   "match_pct": 76.2,
-   "size": 84
-  },
-  {
    "file": "pal3/src/Misc/PalScriptProgressTimer.cpp",
    "symbol": "?UpdateWaitTimer@PalScriptProgressTimer@@UAEXXZ",
    "name": "PalScriptProgressTimer::UpdateWaitTimer(void)",
@@ -3002,6 +3182,15 @@
   },
   {
    "file": "pal3/src/Misc/ParticleEffect.cpp",
+   "symbol": "??_GParticleEffect@@UAEPAXI@Z",
+   "name": "ParticleEffect::`scalar deleting destructor'(uint)",
+   "va": "0x004BD850",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/ParticleEffect.cpp",
    "symbol": "?SetDeltaTime@ParticleEffect@@QAEHH@Z",
    "name": "ParticleEffect::SetDeltaTime(int)",
    "va": "0x004BC7E0",
@@ -3035,15 +3224,6 @@
    "status": "partial",
    "match_pct": 15.8,
    "size": 57
-  },
-  {
-   "file": "pal3/src/Misc/ParticleEffect.cpp",
-   "symbol": "??1ParticleEffect@@UAE@XZ",
-   "name": "ParticleEffect::~ParticleEffect(void)",
-   "va": "0x004BC790",
-   "status": "partial",
-   "match_pct": 30.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/ParticleEffect.cpp",
@@ -3197,6 +3377,15 @@
    "status": "partial",
    "match_pct": 54.5,
    "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/RoleCameraCtrl.cpp",
+   "symbol": "??_GRoleCameraCtrl@@UAEPAXI@Z",
+   "name": "RoleCameraCtrl::`scalar deleting destructor'(uint)",
+   "va": "0x00450AB0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/RoleCameraCtrl.cpp",
@@ -3668,6 +3857,15 @@
   },
   {
    "file": "pal3/src/Misc/TaskBookUI.cpp",
+   "symbol": "??_GTaskBookUI@@UAEPAXI@Z",
+   "name": "TaskBookUI::`scalar deleting destructor'(uint)",
+   "va": "0x00454980",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/TaskBookUI.cpp",
    "symbol": "?Destroy@TaskBookUI@@QAEXXZ",
    "name": "TaskBookUI::Destroy(void)",
    "va": "0x00454BA0",
@@ -3902,6 +4100,15 @@
   },
   {
    "file": "pal3/src/Misc/UI3DCtrl.cpp",
+   "symbol": "??_GUI3DCtrl@@UAEPAXI@Z",
+   "name": "UI3DCtrl::`scalar deleting destructor'(uint)",
+   "va": "0x0043D860",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UI3DCtrl.cpp",
    "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
    "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
    "va": "0x0043D890",
@@ -4000,6 +4207,69 @@
    "size": 36
   },
   {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?SetEnable@UICaption@@QAEXHH@Z",
+   "name": "UICaption::SetEnable(int,int)",
+   "va": "0x004427C0",
+   "status": "partial",
+   "match_pct": 13.7,
+   "size": 205
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyPanel@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyPanel(void)",
+   "va": "0x004461F0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyAll@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyAll(void)",
+   "va": "0x0044BDA0",
+   "status": "partial",
+   "match_pct": 4.2,
+   "size": 95
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?LayoutDefault@UICaption@@QAEXXZ",
+   "name": "UICaption::LayoutDefault(void)",
+   "va": "0x00450320",
+   "status": "partial",
+   "match_pct": 19.1,
+   "size": 68
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?OnEvent@UICaption@@QAEXH@Z",
+   "name": "UICaption::OnEvent(int)",
+   "va": "0x004503C0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 4
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?RenderContent@UICaption@@QAEHXZ",
+   "name": "UICaption::RenderContent(void)",
+   "va": "0x00450440",
+   "status": "partial",
+   "match_pct": 8.6,
+   "size": 266
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?IsOnScreen@UICaption@@QAEHHH@Z",
+   "name": "UICaption::IsOnScreen(int,int)",
+   "va": "0x00450560",
+   "status": "partial",
+   "match_pct": 42.5,
+   "size": 226
+  },
+  {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
    "symbol": "??0UILoadingFrm@@QAE@XZ",
    "name": "UILoadingFrm::UILoadingFrm(void)",
@@ -4007,6 +4277,24 @@
    "status": "partial",
    "match_pct": 39.3,
    "size": 84
+  },
+  {
+   "file": "pal3/src/Misc/UILoadingFrm.cpp",
+   "symbol": "??_GUILoadingFrm@@UAEPAXI@Z",
+   "name": "UILoadingFrm::`scalar deleting destructor'(uint)",
+   "va": "0x00450770",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UILoadingFrm.cpp",
+   "symbol": "??_GUIProgressBar@@UAEPAXI@Z",
+   "name": "UIProgressBar::`scalar deleting destructor'(uint)",
+   "va": "0x00439110",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
@@ -4352,6 +4640,15 @@
   },
   {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
+   "symbol": "??_GUIRoleDialog@@UAEPAXI@Z",
+   "name": "UIRoleDialog::`scalar deleting destructor'(uint)",
+   "va": "0x004A13F0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleDialog.cpp",
    "symbol": "??1UIRoleDialog@@UAE@XZ",
    "name": "UIRoleDialog::~UIRoleDialog(void)",
    "va": "0x004A1410",
@@ -4466,6 +4763,15 @@
    "status": "partial",
    "match_pct": 48.6,
    "size": 142
+  },
+  {
+   "file": "pal3/src/Misc/UISceneMap.cpp",
+   "symbol": "??_GUISceneMap@@UAEPAXI@Z",
+   "name": "UISceneMap::`scalar deleting destructor'(uint)",
+   "va": "0x00450070",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/UISceneMap.cpp",
@@ -4667,6 +4973,15 @@
   },
   {
    "file": "pal3/src/Misc/UITitle.cpp",
+   "symbol": "??_GUITitle@@UAEPAXI@Z",
+   "name": "UITitle::`scalar deleting destructor'(uint)",
+   "va": "0x0044ACC0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UITitle.cpp",
    "symbol": "??1UITitle@@UAE@XZ",
    "name": "UITitle::~UITitle(void)",
    "va": "0x0044ACE0",
@@ -4844,15 +5159,6 @@
    "status": "partial",
    "match_pct": 8.6,
    "size": 336
-  },
-  {
-   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
-   "symbol": "??1WeatherEffectNode@@UAE@XZ",
-   "name": "WeatherEffectNode::~WeatherEffectNode(void)",
-   "va": "0x00405560",
-   "status": "partial",
-   "match_pct": 12.9,
-   "size": 31
   },
   {
    "file": "pal3/src/Misc/_Console.cpp",
@@ -5042,24 +5348,6 @@
    "status": "partial",
    "match_pct": 34.8,
    "size": 89
-  },
-  {
-   "file": "pal3/src/Render/TextureLib.cpp",
-   "symbol": "??1TextureLib@@UAE@XZ",
-   "name": "TextureLib::~TextureLib(void)",
-   "va": "0x0053DC30",
-   "status": "partial",
-   "match_pct": 30.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Render/TextureLib.cpp",
-   "symbol": "??_GTextureLib@@UAEPAXI@Z",
-   "name": "TextureLib::_sdtor_20",
-   "va": "0x0053F4D0",
-   "status": "partial",
-   "match_pct": 40.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Render/TextureLib.cpp",
@@ -5429,6 +5717,15 @@
    "status": "partial",
    "match_pct": 14.1,
    "size": 622
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "symbol": "??_GRole@@UAEPAXI@Z",
+   "name": "Role::`scalar deleting destructor'(uint)",
+   "va": "0x00411BD0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Role/Role.cpp",
@@ -6235,9 +6532,9 @@
    8
   ],
   [
-   "CCBResultWindow::~CCBResultWindow(void)",
-   4475584,
-   11
+   "CCBResultWindow::`scalar deleting destructor'(uint)",
+   4475552,
+   30
   ],
   [
    "CCBStageEffect::Create(void)",
@@ -6278,6 +6575,11 @@
    "CCBUIPanel::SetUserData(int)",
    4495744,
    13
+  ],
+  [
+   "CCBUIPanel::`scalar deleting destructor'(uint)",
+   4481488,
+   30
   ],
   [
    "CEffAction::AllocEffect(void)",
@@ -6395,6 +6697,16 @@
    5
   ],
   [
+   "CEffectSystem::`scalar deleting destructor'(uint)",
+   5004624,
+   30
+  ],
+  [
+   "CEffgbParticle::GetEditorTaskDescription(int)",
+   5018208,
+   120
+  ],
+  [
    "CMeteorChain::~CMeteorChain(void)",
    5034144,
    46
@@ -6408,6 +6720,11 @@
    "Combat::ReleaseCompletedEffects(void)",
    5036896,
    8
+  ],
+  [
+   "JusticeBookUI::`scalar deleting destructor'(uint)",
+   5407936,
+   30
   ],
   [
    "MiniGame2Scene::GetOBBox(void)",
@@ -6465,9 +6782,19 @@
    5
   ],
   [
+   "ParticleEffect::`scalar deleting destructor'(uint)",
+   4970576,
+   30
+  ],
+  [
    "ParticleVisNode::ForwardToImport(int)",
    4262144,
    31
+  ],
+  [
+   "Role::`scalar deleting destructor'(uint)",
+   4266960,
+   30
   ],
   [
    "RoleCamera::UpdateAudioListener(int,int)",
@@ -6478,6 +6805,11 @@
    "RoleCameraCtrl::SetTargetDistance(int)",
    4479248,
    13
+  ],
+  [
+   "RoleCameraCtrl::`scalar deleting destructor'(uint)",
+   4524720,
+   30
   ],
   [
    "SceneMapPlayer::ClearName(void)",
@@ -6495,6 +6827,11 @@
    31
   ],
   [
+   "ScreenEffect::`scalar deleting destructor'(uint)",
+   4972640,
+   30
+  ],
+  [
    "ScreenEffectMgr::GetInstance(void)",
    4973968,
    51
@@ -6508,6 +6845,11 @@
    "TaskBookUI::Reset(void)",
    4547104,
    84
+  ],
+  [
+   "TaskBookUI::`scalar deleting destructor'(uint)",
+   4540800,
+   30
   ],
   [
    "TextureLib::ClearAndJump(void)",
@@ -6535,6 +6877,16 @@
    25
   ],
   [
+   "UI3DCtrl::`scalar deleting destructor'(uint)",
+   4446304,
+   30
+  ],
+  [
+   "UICaption::DestroyPanel(void)",
+   4481520,
+   8
+  ],
+  [
    "UIDialog::ResetState(void)",
    5418736,
    35
@@ -6548,6 +6900,11 @@
    "UILoadingFrm::OnMessage(int,uint,int)",
    4524432,
    91
+  ],
+  [
+   "UILoadingFrm::`scalar deleting destructor'(uint)",
+   4523888,
+   30
   ],
   [
    "UIMap::OnMessage(int,uint,int)",
@@ -6575,9 +6932,19 @@
    13
   ],
   [
+   "UIProgressBar::`scalar deleting destructor'(uint)",
+   4428048,
+   30
+  ],
+  [
    "UIRoleDialog::HideAll(void)",
    4854976,
    5
+  ],
+  [
+   "UIRoleDialog::`scalar deleting destructor'(uint)",
+   4854768,
+   30
   ],
   [
    "UIRoleSelect::SetFieldLeft(int)",
@@ -6615,6 +6982,11 @@
    17
   ],
   [
+   "UISceneMap::`scalar deleting destructor'(uint)",
+   4522096,
+   30
+  ],
+  [
    "UITextArea::ShowClipped(int)",
    4478752,
    57
@@ -6623,6 +6995,11 @@
    "UITitle::Render(void)",
    4502624,
    5
+  ],
+  [
+   "UITitle::`scalar deleting destructor'(uint)",
+   4500672,
+   30
   ],
   [
    "UIWnd::GetState(void)",
@@ -6646,17 +7023,17 @@
   ]
  ],
  "rebaseline": {
-  "reason": "今日签名改革身份churn: fastcall→thiscall×11(mangle变)+gbMatrixStack引用形×3(AAU/PAU mangle变)+vtbl槽型传播(hexrays渲染位移)——CEffgbParticle整TU×16+UICaption×5+Role×1新破行, L1-4候选在其中待逐函数字节对照(身份差分工具本轮上线, 下轮起精确点名); 净效果: matched 713→778(+65)/population 834→916(+82)/L1+sem 103→101(-2待adjudicate)",
-  "at": "2026-11-21T00:41:15",
-  "prev_match_L1": 94,
-  "cur_match_L1": 90,
+  "reason": "C8伴生全量治理(batch8): 28条非vtable绑定~X伴生删除(编译器自virtual ~X()再生)——伴生定义不再发射⇒编译面对齐原编译: L1 90→106(+16)/matched 778→782/population 916→920; 总错919持平(C2065×23=T8名泄漏族既存挂账)",
+  "at": "2026-11-21T03:17:08",
+  "prev_match_L1": 106,
+  "cur_match_L1": 106,
   "prev_population": {
-   "matched": 713,
-   "symbols": 834
+   "matched": 782,
+   "symbols": 920
   },
   "cur_population": {
-   "matched": 778,
-   "symbols": 916
+   "matched": 782,
+   "symbols": 920
   }
  }
 }

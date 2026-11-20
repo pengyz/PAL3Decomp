@@ -3535,29 +3535,6 @@
     "pending": false
    }
   },
-  "0x004c9470": {
-   "name": "~Actor",
-   "source": "挂账④ 放量批8 2026-10-06：thiscall 序言+深窗偏移[0,12,28,32] Actor 同形簇证（五件同形）",
-   "evidence_level": "unverified",
-   "name_note": "B3定谳: complete dtor机制实证(逐元素delete actarray步长152+条件delete this=a2&1标志); 不入表(slotNone吻合); ICF折叠×4类身份丢失, C8消歧形态; 直接调用点0条(经槽0删除式包装)=自洽",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=~Actor(??1/??_G析构族); decomp文件=Actor_~Actorint_004c9470 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。"
-  },
   "0x004d3160": {
    "name": "Remove",
    "name_source": "IDA语义分析 2026-11-01 批15",
@@ -3651,7 +3628,6 @@
    "name": "~Actor",
    "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056AAC4 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56AAC4）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x41F360 写 vptr 0x56AAC4（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56AAC4→Actor（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=Actor（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x41F360 写 vptr 0x56AAC4",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -3662,7 +3638,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_F340(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F340(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥)"
   },
   "0x004083b0": {
    "name": "~Actor",
@@ -3748,5 +3725,6 @@
    ],
    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x4083D0 开头写（ctor 形）+PathObj::CalcLength+1498 reinit；ctor 已注册 Actor::_todo_004083D0 解锁"
   }
- ]
+ ],
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~Actor()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留"
 }

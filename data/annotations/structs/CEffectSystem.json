@@ -106,31 +106,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(InitVertexBuffer): int(int *,int); 原注解无"
   },
-  "0x004c6260": {
-   "name": "~CEffectSystem",
-   "ordinal": 8,
-   "source": "剥多余第 2 参 2026-10-15（T146）：A 级=原函数 c2 04 00（ret 4=1 个 dword 栈参）+ 体中唯一参槽访问 [esp+0x8]=param1（push esi 后）；我方签名 2 参⇒c2 08 00（ret 8），n_diff=1。第 2 参 pData 体中零引用（decomp 零读）。标量删除析构体（call Init/test [esp+8],1/operator delete/mov eax,esi/ret 4）。vtable 间接调用（0 直接调用点）⇒ 影响面=本函数 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CEffectSystem（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F824,0x56F844）",
-   "evidence_level": "A",
-   "declaration_only": true,
-   "name_note": "机械正名: decomp反引号名=CEffectSystem::`scalar deleting destructor'(uint)(删除式dtor机制实证)",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "CEffectSystem",
-      "name": "Block"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=~CEffectSystem(??1/??_G析构族); decomp文件=CEffectSystem_~CEffectSystemCEffectSystem_004c6260 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
-  },
   "0x004c6280": {
    "name": "Init",
    "source": "pdb_ret | 签名缺参批量 2026-10-06：ret 20/4=5 参 vs 签名 0——补 5 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | D 案契约正名 2026-10-06：thunk jmp->retn=0 栈参契约（A 级）",
@@ -626,5 +601,6 @@
  ],
  "_rebuild_note": "2026-09-25: 补 __vftable@0（vptr 缺失 ⇒ 14/14 全冲突 + sizeof +8 = vptr4+double_align4）；所有成员 +4",
  "_size_evidence": "compiled sizeof 360 (vptr@0 4B + members 0x4..0x158 + double_align 4B)；IDB size 352 为旧模型（无 vptr）",
- "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起"
+ "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CEffectSystem()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形0留"
 }
