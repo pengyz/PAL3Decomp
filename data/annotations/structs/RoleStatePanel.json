@@ -6,7 +6,7 @@
   {
    "addr": "0x0056f040",
    "base": "UIWnd",
-   "note": "installed by InitUI@0x4A1E40; slot ownership beyond slot0 unverified",
+   "note": "表字节已验20261120: original/PAL3.exe .rdata VA 0x56f040 七槽逐字直读=[0x445e70,0x4a5930,0x4a5b30,0x4a6600,0x445b90,0x4a2150,0x4a6120] 与本注解一致; slot0/4 坐 UIWnd 原址=继承槽直证; installed by InitUI@0x4A1E40",
    "slots": [
     {
      "addr": "0x00445e70",
@@ -14,15 +14,15 @@
     },
     {
      "addr": "0x004a5930",
-     "name": "RenderThrottled"
+     "name": "Render"
     },
     {
      "addr": "0x004a5b30",
-     "name": "UpdateCaptions"
+     "name": "Update"
     },
     {
      "addr": "0x004a6600",
-     "name": "Destroy"
+     "name": "HideAll"
     },
     {
      "addr": "0x00445b90",
@@ -107,19 +107,6 @@
     "varargs": false,
     "pending": false
    }
-  },
-  "0x004a4820": {
-   "name": "Render",
-   "_misattrib_evidence": "rolestatepanel: max_offset 176252 = size-4 (was MainEquipUI.Render_4a4820)",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": "; C2555链对齐(结构化sweep): B: 返回漂移; 置信度中高(史前+基形式多数证据)"
   },
   "0x004a4890": {
    "name": "GetSelected",
@@ -257,13 +244,14 @@
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "source": " | 链律名修正20261120: RenderThrottled→Render (UIWnd slot override 链律, C9 六条定谳)"
+   "source": " | 链律名修正20261120: RenderThrottled→Render (UIWnd slot override 链律, C9 六条定谳)",
+   "name_note": " | 槽链契约定谳20261120: {'return': 'int', 'params': []}→void (表字节0x56f040直证+12族共识+C2555硬错证伪容忍说+hexrays scratch-eax伪影双证)"
   },
   "0x004a5a80": {
    "name": "LayoutHandleNav",
@@ -282,13 +270,23 @@
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "CCBUI **",
+      "name": "deltatime"
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "source": " | 链律名修正20261120: UpdateCaptions→Update (UIWnd slot override 链律, C9 六条定谳)"
+   "source": " | 链律名修正20261120: UpdateCaptions→Update (UIWnd slot override 链律, C9 六条定谳)",
+   "name_note": " | 槽链契约定谳20261120: {'return': 'int', 'params': []}→BOOL (表字节0x56f040直证+12族共识+C2555硬错证伪容忍说+hexrays scratch-eax伪影双证)"
   },
   "0x004a2150": {
    "name": "~RoleStatePanel",
@@ -361,13 +359,14 @@
    "_misattrib_evidence": "max_offset=176080>class_size=28188",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "int",
+    "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "source": " | 迁移20261120: 表0x56F040槽证据(UIGameFrm错挂迁入; 槽3 0x56F04C) | 链律名修正20261120: Destroy→HideAll (UIWnd slot override 链律, C9 六条定谳)"
+   "source": " | 迁移20261120: 表0x56F040槽证据(UIGameFrm错挂迁入; 槽3 0x56F04C) | 链律名修正20261120: Destroy→HideAll (UIWnd slot override 链律, C9 六条定谳)",
+   "name_note": " | 槽链契约定谳20261120: {'return': 'int', 'params': []}→void (表字节0x56f040直证+12族共识+C2555硬错证伪容忍说+hexrays scratch-eax伪影双证)"
   }
  },
  "known_members": {
@@ -446,5 +445,6 @@
    "offset": 0
   }
  ],
- "bases_note": "base补声明20261120: 表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel(own dtor override) + slot1/2/3/6 派生覆盖——链法定谳; 此前 bases:null 致祖先链断(C7 误判继承槽为自有)"
+ "bases_note": "base补声明20261120: 表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel(own dtor override) + slot1/2/3/6 派生覆盖——链法定谳; 此前 bases:null 致祖先链断(C7 误判继承槽为自有)",
+ "note": " | 槽链契约定谳20261120: C9轮\"基类不一致冻结=MSVC6容忍返回型不协变\"前提被C2555硬错证伪, \"decomp int直证\"实为hexrays scratch-eax伪影(LOBYTE(result)=IsVisible)+撞名自递归伪影; 真签名=家族契约(Render void()/Update BOOL(CCBUI**,int)/HideAll void()), 三重A级: 表字节+12族共识+C2555编译 verdict; 0x4a4820双Render退赔(条目删除, N12铁律)"
 }

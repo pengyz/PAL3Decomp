@@ -1133,3 +1133,14 @@
 | `UIGameFrm::Load` | inline | `SceneObj` | 20 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int))(*(_DWORD *)&v12->UIWnd + 20))(v12, 1)` |
 | `UIGameFrm::_init_44f8d0` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, int, _DWORD))(*(_DWORD *)&m_pUtil->UIWnd + 24))(m_pUtil, 1000, 1, 0)` |
 | `UIEmote::InitItems` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, _DWORD, tagRECT *, UIEmote *))(*(_DWORD *)&v5->UIWnd + 16))(v5, 0, &pRect, this)` |
+| `RoleStatePanel::Render` | inline | `void` | 4 | non_class_hint | `(*(int ( **)(void *))(*(_DWORD *)this->m_pSubTab2 + 4))(this->m_pSubTab2)` |
+| `RoleStatePanel::Render` | inline | `UITitle_XJTM` | 4 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 4))(this->m_pSubTab1)` |
+| `RoleStatePanel::Render` | inline | `LONG` | 4 | non_class_hint | `(*(int ( **)(LONG))(*(_DWORD *)this->m_roles[5].m_QiVal.m_rect.bottom + 4))(this->m_roles[5].m_QiVal.m_rect.bottom)` |
+| `RoleStatePanel::Update` | inline | `void` | 8 | non_class_hint | `(*(void ( **)(void *, CCBUI *, int))(*(_DWORD *)this->m_pSubTab2 + 8))( this->m_pSubTab2, nVal, a3)` |
+| `RoleStatePanel::Update` | inline | `UITitle_XJTM` | 8 | self_arg_mismatch | `(*(void ( **)(UITitle_XJTM *, CCBUI *, int))(*(_DWORD *)&this->m_pSubTab1->UIWnd + 8))( this->m_pSubTab1, nVal, a3)` |
+| `RoleStatePanel::Update` | inline | `LONG` | 8 | non_class_hint | `(*(void ( **)(LONG, CCBUI *, int))(*(_DWORD *)this->m_roles[5].m_QiVal.m_rect.bottom + 8))( this->m_roles[5].m_QiVal.m_rect.bottom, nVal, a3)` |
+| `RoleStatePanel::HideAll` | inline | `LONG` | 12 | non_class_hint | `(*(int ( **)(LONG))(*(_DWORD *)this->m_roles[5].m_QiVal.m_rect.bottom + 12))(this->m_roles[5].m_QiVal.m_rect.bottom)` |
+| `RoleStatePanel::HideAll` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)bottom + 20))(bottom, 1)` |
+| `RoleStatePanel::HideAll` | inline | `UITitle_XJTM` | 20 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *, int))(*(_DWORD *)&m_pSubTab1->UIWnd + 20))(m_pSubTab1, 1)` |
+| `RoleStatePanel::HideAll` | inline | `void` | 20 | non_class_hint | `(*(int ( **)(void *, int))(*(_DWORD *)m_pSubTab2 + 20))(m_pSubTab2, 1)` |
+| `RoleStatePanel::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1)` |

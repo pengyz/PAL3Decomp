@@ -1,0 +1,33 @@
+{
+ "_doc": "N19 裸void参数→void* 修复 2026-11-20 (C2860级联案)",
+ "fixes": [
+  {
+   "file": "structs/Actor.json",
+   "addr": "0x00539700",
+   "param": 0,
+   "before": {
+    "type": "void",
+    "name": "Buffer"
+   },
+   "after": {
+    "type": "void *",
+    "name": "Buffer",
+    "source": "N19修复20261120: 裸void→void*(C2860编译直证 Actor.h:239级联案S2 ok 0/222 + 出参语义Buffer + N17 void→void*律先例); 真类型待RET证据复核定谳"
+   }
+  },
+  {
+   "file": "structs/CScreenMode.json",
+   "addr": "0x0053ede0",
+   "param": 0,
+   "before": {
+    "type": "void",
+    "name": "Block"
+   },
+   "after": {
+    "type": "void *",
+    "name": "Block",
+    "source": "N19修复20261120: 裸void→void*(C2860编译直证 Actor.h:239级联案S2 ok 0/222 + 出参语义Block + N17 void→void*律先例); 真类型待RET证据复核定谳"
+   }
+  }
+ ]
+}

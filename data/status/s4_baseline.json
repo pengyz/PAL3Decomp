@@ -18,27 +18,27 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 615,
-  "matched": 528,
-  "unmatched": 141,
-  "match_L1": 48,
+  "symbols": 628,
+  "matched": 541,
+  "unmatched": 143,
+  "match_L1": 50,
   "match_L1_semantic": 7,
-  "partial": 420,
+  "partial": 429,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 60,
-  "reloc_total": 4044,
-  "reloc_ok": 836,
+  "unresolved_synth": 62,
+  "reloc_total": 4111,
+  "reloc_ok": 848,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 3208,
-  "rsite_total": 4044,
-  "rsite_unaligned": 3940,
-  "l1_bytes": 1948,
-  "l1_hidden_reloc_bytes": 317,
-  "l1_reloc_covered_bytes": 416,
-  "rsite_ok": 18,
+  "reloc_unresolved": 3263,
+  "rsite_total": 4111,
+  "rsite_unaligned": 4003,
+  "l1_bytes": 1994,
+  "l1_hidden_reloc_bytes": 325,
+  "l1_reloc_covered_bytes": 432,
+  "rsite_ok": 20,
   "tail_jump_downgrades": 2,
   "tail_jump_downgrade_samples": [
    {
@@ -54,7 +54,7 @@
     "orig": null
    }
   ],
-  "rsite_class_ok": 86
+  "rsite_class_ok": 88
  },
  "rows": [
   {
@@ -3361,6 +3361,105 @@
    "size": 495
   },
   {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?LoadTexture@TextureLib@@QAEDPAD@Z",
+   "name": "TextureLib::LoadTexture(char *)",
+   "va": "0x004A6930",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 36
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?CreateFromFile@TextureLib@@QAEHH@Z",
+   "name": "TextureLib::CreateFromFile(int)",
+   "va": "0x004A6960",
+   "status": "partial",
+   "match_pct": 8.9,
+   "size": 773
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?CreateFromMemory@TextureLib@@QAEHIHD@Z",
+   "name": "TextureLib::CreateFromMemory(uint,int,char)",
+   "va": "0x004A6CA0",
+   "status": "partial",
+   "match_pct": 14.6,
+   "size": 609
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?ClearAndJump@TextureLib@@QAEXXZ",
+   "name": "TextureLib::ClearAndJump(void)",
+   "va": "0x0053F550",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?ClearGlobalVars@TextureLib@@QAEPAHXZ",
+   "name": "TextureLib::ClearGlobalVars(void)",
+   "va": "0x0053F560",
+   "status": "partial",
+   "match_pct": 34.8,
+   "size": 89
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "??1TextureLib@@UAE@XZ",
+   "name": "TextureLib::~TextureLib(void)",
+   "va": "0x0053DC30",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "??_GTextureLib@@UAEPAXI@Z",
+   "name": "TextureLib::_sdtor_20",
+   "va": "0x0053F4D0",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?FreeTexture@TextureLib@@QAEXXZ",
+   "name": "TextureLib::FreeTexture(void)",
+   "va": "0x0053F5E0",
+   "status": "partial",
+   "match_pct": 25.5,
+   "size": 47
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?ParseConfigFile@TextureLib@@QAEHD@Z",
+   "name": "TextureLib::ParseConfigFile(char)",
+   "va": "0x0053F610",
+   "status": "partial",
+   "match_pct": 33.7,
+   "size": 98
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?AddEntryFromConfig@TextureLib@@UAEDPADD@Z",
+   "name": "TextureLib::AddEntryFromConfig(char *,char)",
+   "va": "0x0053F680",
+   "status": "partial",
+   "match_pct": 21.3,
+   "size": 633
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "?SetPath@TextureLib@@QAEPADPAD@Z",
+   "name": "TextureLib::SetPath(char *)",
+   "va": "0x0053F920",
+   "status": "partial",
+   "match_pct": 41.3,
+   "size": 63
+  },
+  {
    "file": "pal3/src/Role/NPC.cpp",
    "symbol": "?Create@NPC@@SAIH@Z",
    "name": "NPC::Create(int)",
@@ -3444,7 +3543,7 @@
   {
    "file": "pal3/src/Role/NPC.cpp",
    "symbol": "?ReadBufferData@NPC@@QAEHU_iobuf@@@Z",
-   "name": "NPC::ReadBufferData(FILE *)",
+   "name": "NPC::ReadBufferData(int)",
    "va": "0x0040F6F0",
    "status": "partial",
    "match_pct": 68.7,
@@ -3462,7 +3561,7 @@
   {
    "file": "pal3/src/Role/NPC.cpp",
    "symbol": "?SaveToStream@NPC@@QAEIU_iobuf@@@Z",
-   "name": "NPC::SaveToStream(FILE *)",
+   "name": "NPC::SaveToStream(int)",
    "va": "0x0040F950",
    "status": "partial",
    "match_pct": 67.9,
@@ -3471,7 +3570,7 @@
   {
    "file": "pal3/src/Role/NPC.cpp",
    "symbol": "?LoadFromStream@NPC@@QAEIU_iobuf@@@Z",
-   "name": "NPC::LoadFromStream(FILE *)",
+   "name": "NPC::LoadFromStream(int)",
    "va": "0x0040F9E0",
    "status": "partial",
    "match_pct": 13.1,
@@ -4269,5 +4368,19 @@
    "match_pct": 44.8,
    "size": 67
   }
- ]
+ ],
+ "rebaseline": {
+  "reason": "本轮P0/P1裁定: N19裸void修复(Actor/CScreenMode)+RoleStatePanel槽链手术(表字节0x56f040直证+12族共识+4a4820退赔)——签名变更致多址聚合总体615→628, L1 48→50真进+2, L1+sem 55→57",
+  "at": "2026-11-20T19:31:55",
+  "prev_match_L1": 50,
+  "cur_match_L1": 50,
+  "prev_population": {
+   "matched": 541,
+   "symbols": 628
+  },
+  "cur_population": {
+   "matched": 541,
+   "symbols": 628
+  }
+ }
 }

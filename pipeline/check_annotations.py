@@ -942,6 +942,18 @@ def _run_n16_schema_gate(errors, warnings):
                     if _r not in _sm:
                         errors.append('N16:structs[%s].%s sig_model缺%s' % (_cls, _ea, _r))
                         _n += 1
+                # [N19 裸void参数禁令 2026-11-20] C2860直证: Actor.h:239
+                # `void GetAnimDataBuffer(void, int)` 单行级联封死222cpp+6头
+                # (S2 ok 0/222)。裸void参数在C++非法(C2860 "'void' cannot be
+                # an argument type")——出参占位用void*(N17律先例), 无参用[]。
+                # return=void合法(无返回值), 不在禁列。
+                for _pi, _pp in enumerate(_sm.get('params') or []):
+                    if isinstance(_pp, dict) and str(_pp.get('type') or '').strip() == 'void':
+                        errors.append(
+                            'N19:structs[%s].%s 参数#%d type=裸void——C2860级联源'
+                            '(Actor.h:239案), 出参占位void*/无参用params:[]'
+                            % (_cls, _ea, _pi))
+                        _n += 1
         for _vt in (_d.get('vtables') or []):
             for _s in (_vt.get('slots') or []):
                 for _b in _sc['vtable_slot']['banned']:
@@ -970,6 +982,16 @@ def _run_n16_schema_gate(errors, warnings):
             if _bad in str(_e.get('signature') or ''):
                 errors.append('N16:functions.%s signature含禁止子串 %r' % (_ea, _bad))
                 _n += 1
+        # [N19 裸void参数禁令 2026-11-20] 同structs侧——sig_model与legacy signature
+        # 双源都查(Actor.h:239 C2860级联案, S2 ok 0/222)。
+        _fsm = _e.get('sig_model')
+        if isinstance(_fsm, dict):
+            for _pi, _pp in enumerate(_fsm.get('params') or []):
+                if isinstance(_pp, dict) and str(_pp.get('type') or '').strip() == 'void':
+                    errors.append(
+                        'N19:functions.%s 参数#%d type=裸void——C2860级联源, '
+                        '出参占位void*/无参用params:[]' % (_ea, _pi))
+                    _n += 1
     if _n:
         warnings.insert(0, 'N16[schema]: %d 处格式违规(详见errors——当前计入errors硬失败, 清零后转常规)' % _n)
 

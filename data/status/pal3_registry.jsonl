@@ -365,6 +365,17 @@
 {"addr": "0x004B8890", "name": "sg_emission_control::Update(int,int)", "file": "pal3/src/Misc/sg_emission_control.cpp", "status": "partial", "match_pct": 5.6, "size": 2377}
 {"addr": "0x004BA800", "name": "sg_emission_control::Emit(int,int,int,int)", "file": "pal3/src/Misc/sg_emission_control.cpp", "status": "partial", "match_pct": 11.3, "size": 957}
 {"addr": "0x004BAE60", "name": "sg_emitter::Render(gbVFile *)", "file": "pal3/src/Misc/sg_emitter.cpp", "status": "partial", "match_pct": 87.9, "size": 495}
+{"addr": "0x004A6930", "name": "TextureLib::LoadTexture(char *)", "file": "pal3/src/Render/TextureLib.cpp", "status": "match_L1", "match_pct": 100.0, "size": 36}
+{"addr": "0x004A6960", "name": "TextureLib::CreateFromFile(int)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 8.9, "size": 773}
+{"addr": "0x004A6CA0", "name": "TextureLib::CreateFromMemory(uint,int,char)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 14.6, "size": 609}
+{"addr": "0x0053F550", "name": "TextureLib::ClearAndJump(void)", "file": "pal3/src/Render/TextureLib.cpp", "status": "match_L1", "match_pct": 100.0, "size": 10}
+{"addr": "0x0053F560", "name": "TextureLib::ClearGlobalVars(void)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 34.8, "size": 89}
+{"addr": "0x0053DC30", "name": "TextureLib::~TextureLib(void)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 30.0, "size": 30}
+{"addr": "0x0053F4D0", "name": "TextureLib::_sdtor_20", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 40.0, "size": 30}
+{"addr": "0x0053F5E0", "name": "TextureLib::FreeTexture(void)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 25.5, "size": 47}
+{"addr": "0x0053F610", "name": "TextureLib::ParseConfigFile(char)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 33.7, "size": 98}
+{"addr": "0x0053F680", "name": "TextureLib::AddEntryFromConfig(char *,char)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 21.3, "size": 633}
+{"addr": "0x0053F920", "name": "TextureLib::SetPath(char *)", "file": "pal3/src/Render/TextureLib.cpp", "status": "partial", "match_pct": 41.3, "size": 63}
 {"addr": "0x0040EB90", "name": "NPC::Create(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 23.1, "size": 143}
 {"addr": "0x0040EC20", "name": "NPC::Init(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 15.5, "size": 433}
 {"addr": "0x0040EE00", "name": "NPC::FreeBuffer(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 14.7, "size": 34}
@@ -374,10 +385,10 @@
 {"addr": "0x0040F050", "name": "NPC::GetBufferAt(int)", "file": "pal3/src/Role/NPC.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x0040F060", "name": "NPC::SetRoleMode(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 41.3, "size": 92}
 {"addr": "0x0040F620", "name": "NPC::InitAll(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 26.0, "size": 196}
-{"addr": "0x0040F6F0", "name": "NPC::ReadBufferData(FILE *)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 68.7, "size": 99}
+{"addr": "0x0040F6F0", "name": "NPC::ReadBufferData(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 68.7, "size": 99}
 {"addr": "0x0040F760", "name": "NPC::LoadBufferFromStream(FILE *)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 12.8, "size": 484}
-{"addr": "0x0040F950", "name": "NPC::SaveToStream(FILE *)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 67.9, "size": 137}
-{"addr": "0x0040F9E0", "name": "NPC::LoadFromStream(FILE *)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 13.1, "size": 655}
+{"addr": "0x0040F950", "name": "NPC::SaveToStream(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 67.9, "size": 137}
+{"addr": "0x0040F9E0", "name": "NPC::LoadFromStream(int)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 13.1, "size": 655}
 {"addr": "0x00410580", "name": "NPC::SetSceneFlag(void)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 46.7, "size": 45}
 {"addr": "0x00446020", "name": "NPC::UpdateAnim(int)", "file": "pal3/src/Role/NPC.cpp", "status": "match_L1", "match_pct": 100.0, "size": 10}
 {"addr": "0x00479100", "name": "NPC::GetPropertyByIndex(uint)", "file": "pal3/src/Role/NPC.cpp", "status": "partial", "match_pct": 10.5, "size": 38}
