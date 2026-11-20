@@ -1114,3 +1114,4 @@
 | `ScreenEffectMgr::Create` | inline | `void` | 12 | non_class_hint | `(*(void ( **)(void *, _DWORD))(*(_DWORD *)this + 12))(this, 0)` |
 | `UIBigMap::LoadScene` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, 0)` |
 | `CCBUI::SetupAIWindow` | inline | `NPC` | 16 | no_vtables_declaration | `(*(void ( **)(NPC *, int, int *, CCBUI *, int))(*(_DWORD *)v4 + 16))( v4, g_nItemTypeBase[v2], &v101, this, v46)` |
+| `UITitle::InitRoles` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, unsigned __int8 *, tagRECT *, UITitle *))(*(_DWORD *)&p_m_subObjA->UIWnd + 16))( p_m_subObjA, g_PalScriptTemplate, &this->m_rcWidgetRect, this)` |
