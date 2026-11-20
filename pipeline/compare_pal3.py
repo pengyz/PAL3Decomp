@@ -277,7 +277,7 @@ def build_mangled_map(decomp_idx):
                 _k = vm.mangle(_cls, '~' + _cls, 'void __thiscall()',
                                virtual_=_virtual)
                 if _k.startswith('??1'):
-                    m2e.setdefault(_k, {'name': '%s::~%s' % (_cls, _cls),
+                    m2e.setdefault(_k, []).append({'name': '%s::~%s' % (_cls, _cls),
                                         'signature': 'void __thiscall()',
                                         '_from': 'derived_dtor'})
             except Exception:
@@ -287,7 +287,7 @@ def build_mangled_map(decomp_idx):
             try:
                 _k = vm.mangle(_cls, _method, 'void __thiscall()', virtual_=_virtual)
                 if _k.startswith('??1'):
-                    m2e.setdefault(_k, {'name': '%s::%s' % (_cls, _method),
+                    m2e.setdefault(_k, []).append({'name': '%s::%s' % (_cls, _method),
                                         'signature': 'void __thiscall()',
                                         '_from': 'annotation_dtor'})
             except Exception:
@@ -319,13 +319,14 @@ def build_mangled_map(decomp_idx):
         sig = e.get('signature') or ''
         try:
             m = vm.mangle(cls, method, sig)
-            m2e.setdefault(m, e)
+            # [R6 签名键 20261120] 同签名多址聚合(MI 双 ??_G: 0x4c5d50/0x4c6260)
+            m2e.setdefault(m, []).append(e)
             # probe variants the annotation signature can't express:
             # virtual (vtable methods) and static (SA-prefix members)
             for kw in ({'virtual_': True}, {'static_': True}):
                 mv = vm.mangle(cls, method, sig, **kw)
                 if mv != m:
-                    m2e.setdefault(mv, e)
+                    m2e.setdefault(mv, []).append(e)
         except Exception:
             failed += 1
             continue
@@ -341,10 +342,13 @@ def build_basename_index(decomp_idx):
 
 
 def match_symbols(funcs, mangled_map, base_idx):
+    # [R6 签名键 20261120] 值=list(entry)——mangled 串=唯一身份键;
+    # 同签名多址(MI 双 ??_G)聚合为 list, 交 compare_units 逐址择优
     matched = {}
     for sym in funcs:
         if sym in mangled_map:
-            matched[sym] = mangled_map[sym]
+            v = mangled_map[sym]
+            matched[sym] = v if isinstance(v, list) else [v]
             continue
         if sym.startswith('?'):
             # [T80/P0b] mangled 名解码兜底（N2 根因：修饰名返回型写法差异
@@ -354,13 +358,13 @@ def match_symbols(funcs, mangled_map, base_idx):
             if m:
                 key = '%s::%s' % (m.group(2), m.group(1))
                 if key in base_idx:
-                    matched[sym] = base_idx[key]
+                    matched[sym] = [base_idx[key]]
                     continue
             continue  # mangled but no mangler match
         cand = sym[1:] if sym.startswith('_') else sym
         cand = re.sub(r'@\d+$', '', cand)
         if cand in base_idx:
-            matched[sym] = base_idx[cand]
+            matched[sym] = [base_idx[cand]]
     return matched
 
 
@@ -476,9 +480,12 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
         matched = match_symbols(funcs, mangled_map, base_idx)
         stats['symbols'] += len(funcs)
         stats['unmatched'] += len(funcs) - len(matched)
-        stats['matched'] += len(matched)
+        # [R6 签名键] matched 计数=签名数; 比对数=签名×多址展开
+        stats['matched'] += sum(len(v) for v in matched.values())
         p1 = pp = 0
-        for sym, e in matched.items():
+        for sym, _entries in matched.items():
+          for _ei, e in enumerate(_entries):
+            # 多址兄弟址各自独立比对成行(MI 双 ??_G=原二进制两个真实实现址)
             info = funcs[sym]
             # 0b-⑤ 修正（2026-09-15）：**合成条目**（`_from` 标记的 dtor 名字供给）
             # 只携带 name/signature，**没有 `size`/`va`**（真实 decomp 条目由
@@ -526,6 +533,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                         _tgt = e['va'] + _off + 4 + _rel
                         _orig_t = va_idx.get(_tgt)
                         _ge = mangled_map.get(_sn)
+                        if isinstance(_ge, list):
+                            _ge = _ge[0] if _ge else None
                         _our_t = _ge['name'] if _ge else None
                         break
                 status = 'match_L1' if gc.decide_tail_jump_verdict(
@@ -595,6 +604,9 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                     tgt = int.from_bytes(_orig[off:off + 4], 'little')
                 exp_name = va_idx.get(tgt) if tgt is not None else None
                 got_entry = mangled_map.get(sym_name)
+                # [R6 签名键] list 化——目标名取首址(rsite 只比名字串, 多址同名)
+                if isinstance(got_entry, list):
+                    got_entry = got_entry[0] if got_entry else None
                 got_name = got_entry['name'] if got_entry else None
                 bucket = rsite_bucket(_aligned, exp_name, got_name)
                 if bucket == 'unaligned':
