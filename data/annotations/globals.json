@@ -3207,8 +3207,8 @@
  },
  "0x00DB9FD0": {
   "name": "g_gamefrm",
-  "source": "PAL3patch:UIGameFrm*,simplified_for_now | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：锚",
-  "type": "int",
+  "source": "PAL3patch:UIGameFrm*,simplified_for_now | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：锚 | type定谳20261120: UIGameFrm(类改名裁定+38调用点this直证)",
+  "type": "UIGameFrm",
   "category": "anchor_object"
  },
  "0x00DBA014": {
@@ -3234,14 +3234,16 @@
   "name": "g_UIListBoxDlg",
   "type": "UIListBox",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 窗口切片定谳20261120: 该地址=g_gamefrm(UIGameFrm)内部子对象窗口(布局锚点表精确互证: +0x290=UIListBox容器段)——IDA切片锚名, 非独立分配",
+  "overlaps_with": "g_gamefrm"
  },
  "0x00DBAF10": {
   "binary_size": 1012,
   "name": "g_UISceneMapDlg",
   "type": "UISceneMap",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 窗口切片定谳20261120: 该地址=g_gamefrm(UIGameFrm)内部子对象窗口(布局锚点表精确互证: +0xF40=UISceneMap)——IDA切片锚名, 非独立分配",
+  "overlaps_with": "g_gamefrm"
  },
  "0x00DBB364": {
   "binary_size": 9624,
@@ -3249,7 +3251,8 @@
   "type": "CCBEditor",
   "overlap_evidence": "2026-09-21 撤除：原声明建立在\"UIStatic=248/Δ=96\"上，前提已被钉死复核 f314ccac 证伪（UIStatic=152，248 属 UIPushButton）⇒ 按 152，g_UISceneMapDlg@0xDBAF10 占位 1012、末端 0xDBB304，距 0xDBB364 余 96B ⇒ 不重叠 ⇒ 待重新取证。",
   "category": "pending",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待"
+  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待 | 窗口切片定谳20261120: 该地址=g_gamefrm(UIGameFrm)内部子对象窗口(布局锚点表精确互证: +0x1394=UITitle段(CCBEditor型=另一切片误型))——IDA切片锚名, 非独立分配",
+  "overlaps_with": "g_gamefrm"
  },
  "0x00DC0DE8": {
   "name": "g_pComposeUI",

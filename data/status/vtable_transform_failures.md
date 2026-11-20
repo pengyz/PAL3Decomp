@@ -1115,3 +1115,20 @@
 | `UIBigMap::LoadScene` | inline | `gbVisNode` | 24 | self_arg_mismatch | `(*(void ( **)(gbVisNode *, _DWORD))(*(_DWORD *)&this->m_pScriptObjMain->gbChain1DNode + 24))( this->m_pScriptObjMain, 0)` |
 | `CCBUI::SetupAIWindow` | inline | `NPC` | 16 | no_vtables_declaration | `(*(void ( **)(NPC *, int, int *, CCBUI *, int))(*(_DWORD *)v4 + 16))( v4, g_nItemTypeBase[v2], &v101, this, v46)` |
 | `UITitle::InitRoles` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, unsigned __int8 *, tagRECT *, UITitle *))(*(_DWORD *)&p_m_subObjA->UIWnd + 16))( p_m_subObjA, g_PalScriptTemplate, &this->m_rcWidgetRect, this)` |
+| `RoleStatePanel::Destroy` | inline | `LONG` | 12 | non_class_hint | `(*(int ( **)(LONG))(*(_DWORD *)this->m_roles[5].m_QiVal.m_rect.bottom + 12))(this->m_roles[5].m_QiVal.m_rect.bottom)` |
+| `RoleStatePanel::Destroy` | inline | `LONG` | 20 | non_class_hint | `(*(int ( **)(LONG, int))(*(_DWORD *)bottom + 20))(bottom, 1)` |
+| `RoleStatePanel::Destroy` | inline | `UITitle_XJTM` | 20 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *, int))(*(_DWORD *)&m_pSubTab1->UIWnd + 20))(m_pSubTab1, 1)` |
+| `RoleStatePanel::Destroy` | inline | `void` | 20 | non_class_hint | `(*(int ( **)(void *, int))(*(_DWORD *)m_pSubTab2 + 20))(m_pSubTab2, 1)` |
+| `RoleStatePanel::Destroy` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1)` |
+| `UIGameFrm::InitItems` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, _DWORD, tagRECT *, UIGameFrm *))(*(_DWORD *)&p_m_pStartScene->UIWnd + 16))( p_m_pStartScene, 0, &pRect, this)` |
+| `UIGameFrm::HideAll` | inline | `char` | 20 | non_class_hint | `(*(void ( **)(char *, int))(*(_DWORD *)m_pGameObj + 20))(m_pGameObj, 1)` |
+| `UIGameFrm::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)m_nMode + 20))(m_nMode, 1)` |
+| `UIGameFrm::HideAll` | inline | `SceneObj` | 20 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int))(*(_DWORD *)&m_pSceneObjRef->UIWnd + 20))(m_pSceneObjRef, 1)` |
+| `UIGameFrm::Update` | inline | `int` | 4 | non_class_hint | `(*(int ( **)(int))(*(_DWORD *)m_nSceneLoadParam + 4))(m_nSceneLoadParam)` |
+| `UIGameFrm::Update` | inline | `char` | 8 | non_class_hint | `(*(void ( **)(char *, CCBUI *, int))(*(_DWORD *)this->m_pGameObj + 8))( this->m_pGameObj, nVal, nVal2)` |
+| `UIGameFrm::Update` | inline | `SceneObj` | 8 | self_arg_mismatch | `(*(int ( **)(SceneObj *, CCBUI *, bool))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 8))( this->m_pSceneObjRef, nVal, v6 == 0)` |
+| `UIGameFrm::Render` | inline | `SceneObj` | 4 | self_arg_mismatch | `(*(void ( **)(SceneObj *))(*(_DWORD *)&this->m_pSceneObjRef->UIWnd + 4))(this->m_pSceneObjRef)` |
+| `UIGameFrm::Render` | inline | `char` | 4 | non_class_hint | `(*(void ( **)(char *))(*(_DWORD *)this->m_pGameObj + 4))(this->m_pGameObj)` |
+| `UIGameFrm::Load` | inline | `SceneObj` | 24 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int, _DWORD, _DWORD))(*(_DWORD *)&m_pSceneObjRef->UIWnd + 24))( m_pSceneObjRef, 1000, 0, 0)` |
+| `UIGameFrm::Load` | inline | `SceneObj` | 20 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int))(*(_DWORD *)&v12->UIWnd + 20))(v12, 1)` |
+| `UIGameFrm::_init_44f8d0` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, int, _DWORD))(*(_DWORD *)&m_pUtil->UIWnd + 24))(m_pUtil, 1000, 1, 0)` |
