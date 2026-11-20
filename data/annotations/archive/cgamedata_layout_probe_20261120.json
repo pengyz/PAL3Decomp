@@ -184,5 +184,12 @@
   "verdict": "Bink 视频播放器(双 CPK 分包管理器), 大尺寸=两个 CPKTable[32768] 数组(结构性合法)",
   "methods": "方法=0: 方法体在 gbengine DLL(引擎接口类同 gbMatrixStack 家族)",
   "verdict_final": "非缺口, 从榜移除"
+ },
+ "cg_scene_verdict": {
+  "_doc": "CG_Scene 474KB 定性 2026-11-20 (L0-L1)",
+  "verdict": "CG 编辑器场景容器——三池算术全闭合(非缺口): m_OBJ SceneObj[256]: 256×0x6F8=0x6F800 → 尾 0x6F868 ✓ m_ObjHelper OBJHELPER[256]: 256×0x30=0x3000 → 尾 0x72868 ✓ m_OBJPARAM ObjParam[9]: 9×0x1C4=0x1C4 → 尾 0x7384C ✓",
+  "members": "34 成员全语义命名(Barrier/Entry/Scene 指针+CameraCtrl+NPC/BOSS 池+计数族)",
+  "audit口径": "0% 覆盖=数组语义被吞(同 CPKTable/roles 段模式)",
+  "verdict_final": "非缺口, 从榜移除"
  }
 }
