@@ -15,100 +15,52 @@
    "evidence_level": "unverified"
   },
   "0x1c": {
-   "name": "m_nEffParam1C",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x20": {
-   "name": "m_nEffTypeID",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x24": {
-   "name": "m_nEffParam24",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x28": {
-   "name": "m_nEffTypeCode",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
+   "name": "m_nLoadLinkerParams",
+   "type": "int[4]",
+   "source": "装载槽组数组化: CCBStage::Proceed 写519×4 ← CCBStageEffect::LoadLinker 调链 | 值语义阻塞(读取方 DLL 侧, 语料0读取)——真语义名待读取方定谳",
+   "evidence_level": "binary_call_chain",
+   "superseded": [
+    "m_nEffParam1C",
+    "m_nEffTypeID",
+    "m_nEffParam24",
+    "m_nEffTypeCode"
+   ]
   },
   "0x2c": {
-   "name": "m_nEffParam2C",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x30": {
-   "name": "m_nEffParam30",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_nEffParam34",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x38": {
-   "name": "m_nEffParam38",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
+   "name": "m_nSetAliveParams",
+   "type": "int[4]",
+   "source": "装载槽组数组化: CCBStage::SetMaxBlend 写[128,323,519,716] ← CCBStage::SetAlive 调链 | 值语义阻塞(读取方 DLL 侧, 语料0读取)——真语义名待读取方定谳",
+   "evidence_level": "binary_call_chain",
+   "superseded": [
+    "m_nEffParam2C",
+    "m_nEffParam30",
+    "m_nEffParam34",
+    "m_nEffParam38"
+   ]
   },
   "0x3c": {
-   "name": "m_nEffParam3C",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [43待查补证 2026-10-16] overlap(region) 子类：P 族 buffer 域内（region 级真），弱形(有读写无多视图形)；objdump 绝对地址 0 命中=寄存器相对访问，待 IDA 复核",
-   "evidence_level": "A"
-  },
-  "0x40": {
-   "name": "m_nEffParam40",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [43待查补证 2026-10-16] overlap(region) 子类：P 族 buffer 域内（region 级真），弱形(有读写无多视图形)；objdump 绝对地址 0 命中=寄存器相对访问，待 IDA 复核",
-   "evidence_level": "A"
-  },
-  "0x44": {
-   "name": "m_nEffParam44",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [43待查补证 2026-10-16] overlap(region) 子类：P 族 buffer 域内（region 级真），弱形(有读写无多视图形)；objdump 绝对地址 0 命中=寄存器相对访问，待 IDA 复核",
-   "evidence_level": "A"
-  },
-  "0x48": {
-   "name": "m_nEffParam48",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [43待查补证 2026-10-16] overlap(region) 子类：P 族 buffer 域内（region 级真），弱形(有读写无多视图形)；objdump 绝对地址 0 命中=寄存器相对访问，待 IDA 复核",
-   "evidence_level": "A"
+   "name": "m_nSetVisibleParams",
+   "type": "int[4]",
+   "source": "装载槽组数组化: CCBStage::SetPause 写545×4 ← CCBStage::SetVisible 调链 | 值语义阻塞(读取方 DLL 侧, 语料0读取)——真语义名待读取方定谳",
+   "evidence_level": "binary_call_chain",
+   "superseded": [
+    "m_nEffParam3C",
+    "m_nEffParam40",
+    "m_nEffParam44",
+    "m_nEffParam48"
+   ]
   },
   "0x4c": {
-   "name": "m_nEffParam4C",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x50": {
-   "name": "m_nEffParam50",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓ | [43待查补证 2026-10-16] overlap(region) 子类：P 族 buffer 域内（region 级真），弱形(有读写无多视图形)；objdump 绝对地址 0 命中=寄存器相对访问，待 IDA 复核",
-   "evidence_level": "A"
-  },
-  "0x54": {
-   "name": "m_nEffParam2",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
-  },
-  "0x58": {
-   "name": "m_nEffParam58",
-   "type": "int",
-   "source": "cluster: tagStageRoleData | [伪语义批 2 overlap 标注 2026-10-16] 名字保持+overlap 标注（新经验，优先于 union 包裹）：参数区与型字段交插（P/T 交错族=共享 effect 参数布局）⇒ 散名保真、零表达式改动；访问证据=全图 disp 谱 本偏移命中 ✓",
-   "evidence_level": "unverified"
+   "name": "m_nOnChangeActionParams",
+   "type": "int[4]",
+   "source": "装载槽组数组化: CCBStage::CheckAction 写[121,316,512,709] ← CCBStage::OnChangeAction 调链 | 值语义阻塞(读取方 DLL 侧, 语料0读取)——真语义名待读取方定谳",
+   "evidence_level": "binary_call_chain",
+   "superseded": [
+    "m_nEffParam4C",
+    "m_nEffParam50",
+    "m_nEffParam2",
+    "m_nEffParam58"
+   ]
   },
   "0x6c": {
    "name": "_todo_06C",
@@ -142,8 +94,8 @@
   },
   "0x88": {
    "name": "m_fRoleTargetParam",
-   "type": "float",
-   "source": "cluster: tagStageRoleData;A:decomp_batch_rename_usage_pattern | 类型审计 2026-10-16（verifier·语料三形态双证·⚠️待 IDA 复核=idapro 断连降级）：名前缀 m_f + 语料形 float-ctx/reinterpret-f（float 位面）⇒ 型 int 应为 float",
+   "type": "int",
+   "source": "cluster: tagStageRoleData;A:decomp_batch_rename_usage_pattern | 类型审计 2026-10-16（verifier·语料三形态双证·⚠️待 IDA 复核=idapro 断连降级）：名前缀 m_f + 语料形 float-ctx/reinterpret-f（float 位面）⇒ 型 int 应为 float | type修正float→int 20261120: UpdateSlotTimer 下标用法直证(4*LODWORD+24 数组寻址)",
    "evidence_level": "unverified"
   },
   "0x8c": {

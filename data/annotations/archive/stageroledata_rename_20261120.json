@@ -1,0 +1,55 @@
+{
+ "_doc": "tagStageRoleData 渐进正名 2026-11-20 (三段式中间态)",
+ "renamed_groups": [
+  {
+   "base": "0x1c",
+   "new": "m_nLoadLinkerParams",
+   "superseded": [
+    "m_nEffParam1C",
+    "m_nEffTypeID",
+    "m_nEffParam24",
+    "m_nEffTypeCode"
+   ],
+   "evidence": "CCBStage::Proceed 写519×4 ← CCBStageEffect::LoadLinker 调链"
+  },
+  {
+   "base": "0x2c",
+   "new": "m_nSetAliveParams",
+   "superseded": [
+    "m_nEffParam2C",
+    "m_nEffParam30",
+    "m_nEffParam34",
+    "m_nEffParam38"
+   ],
+   "evidence": "CCBStage::SetMaxBlend 写[128,323,519,716] ← CCBStage::SetAlive 调链"
+  },
+  {
+   "base": "0x3c",
+   "new": "m_nSetVisibleParams",
+   "superseded": [
+    "m_nEffParam3C",
+    "m_nEffParam40",
+    "m_nEffParam44",
+    "m_nEffParam48"
+   ],
+   "evidence": "CCBStage::SetPause 写545×4 ← CCBStage::SetVisible 调链"
+  },
+  {
+   "base": "0x4c",
+   "new": "m_nOnChangeActionParams",
+   "superseded": [
+    "m_nEffParam4C",
+    "m_nEffParam50",
+    "m_nEffParam2",
+    "m_nEffParam58"
+   ],
+   "evidence": "CCBStage::CheckAction 写[121,316,512,709] ← CCBStage::OnChangeAction 调链"
+  }
+ ],
+ "type_fix": {
+  "offset": "0x88",
+  "change": "float→int",
+  "evidence": "4*LODWORD(m_fRoleTargetParam)+24 下标寻址"
+ },
+ "kept": []
+}
