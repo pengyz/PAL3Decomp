@@ -48,11 +48,11 @@
     "params": [
      {
       "type": "float",
-      "name": null
+      "name": "angle"
      },
      {
-      "type": "gbVec3D *",
-      "name": null
+      "type": "gbVec3D &",
+      "name": "axis"
      }
     ],
     "varargs": false,
@@ -60,7 +60,8 @@
    },
    "evidence_level": "binary_vtable_slot",
    "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
-   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用",
+   "name_note": " | mangle真值修正20261120: ['float', 'gbVec3D *']→['float', 'gbVec3D &'] (PAL3.exe导入表mangle QAEXMAAUgbVec3D@@@Z: M=float, AAUgbVec3D=引用(非PAU指针)——导入表=IAT槽方法签名权威, AAU=引用/PAU=指针)"
   },
   "0x0056a260": {
    "name": "Translate",
@@ -70,8 +71,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbVec3D *",
-      "name": null
+      "type": "gbVec3D &",
+      "name": "v"
      }
     ],
     "varargs": false,
@@ -79,7 +80,8 @@
    },
    "evidence_level": "binary_vtable_slot",
    "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
-   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用"
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用",
+   "name_note": " | mangle真值修正20261120: ['gbVec3D *']→['gbVec3D &'] (PAL3.exe导入表mangle QAEXAAUgbVec3D@@@Z: AAU=引用——C2664族×96根因(调用点值传语法本就是引用形的正确调用)——导入表=IAT槽方法签名权威, AAU=引用/PAU=指针)"
   },
   "0x0056a2a0": {
    "name": "MultMatrix",
@@ -108,8 +110,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "gbQuaternion *",
-      "name": null
+      "type": "gbQuaternion &",
+      "name": "q"
      }
     ],
     "varargs": false,
@@ -117,7 +119,8 @@
    },
    "evidence_level": "binary_vtable_slot",
    "source": "IDB导入表mangle真值(QAEX族, vtable项=0xffffffff=import thunk) 2026-11-18",
-   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用 Rotate重载(quaternion形); mangle= Rotate@...QAEXAAUgbQuaternion@@ 2026-11-18"
+   "note": "gbMatrixStack=导入引擎类: 方法体在引擎DLL, PAL3.exe只声明调用 Rotate重载(quaternion形); mangle= Rotate@...QAEXAAUgbQuaternion@@ 2026-11-18",
+   "name_note": " | mangle真值修正20261120: ['gbQuaternion *']→['gbQuaternion &'] (PAL3.exe导入表mangle QAEXAAUgbQuaternion@@@Z: AAU=引用——导入表=IAT槽方法签名权威, AAU=引用/PAU=指针)"
   },
   "0x0056a370": {
    "name": "Translate",

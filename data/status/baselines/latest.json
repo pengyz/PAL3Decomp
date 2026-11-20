@@ -1,6 +1,6 @@
 {
-  "name": "20261120_230753",
-  "timestamp": "2026-11-20T23:07:53.508230",
+  "name": "20261120_232940",
+  "timestamp": "2026-11-20T23:29:40.930135",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -4428,7 +4428,7 @@
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 24,
+      "error_count": 22,
       "errors": [
         {
           "code": "C2248",
@@ -4509,16 +4509,6 @@
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 6 parameters",
           "line": 6561
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 7441
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 7442
         },
         {
           "code": "C2143",
@@ -5006,28 +4996,8 @@
     },
     "pal3/src/Effect/CEffCylinder.cpp": {
       "status": "fail",
-      "error_count": 8,
+      "error_count": 4,
       "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 508
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 509
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 510
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 511
-        },
         {
           "code": "C2039",
           "msg": "'CreateTaskWrapper' : is not a member of 'CEffCylinder'",
@@ -5051,59 +5021,18 @@
       ]
     },
     "pal3/src/Effect/CEffExplosive.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 338
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 340
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 341
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 342
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/CEffGrid.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'int' to 'void *'",
           "line": 42
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 443
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 445
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 446
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 447
         }
       ]
     },
@@ -5171,7 +5100,7 @@
     },
     "pal3/src/Effect/CEffModel.cpp": {
       "status": "fail",
-      "error_count": 7,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2440",
@@ -5184,26 +5113,6 @@
           "line": 127
         },
         {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 437
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 438
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 439
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 440
-        },
-        {
           "code": "C2039",
           "msg": "'_todo_004D0C90' : is not a member of 'CEffModel'",
           "line": 686
@@ -5211,25 +5120,9 @@
       ]
     },
     "pal3/src/Effect/CEffQuad.cpp": {
-      "status": "fail",
-      "error_count": 3,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 395
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 396
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 397
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Effect/CEffQuake.cpp": {
       "status": "ok",
@@ -5379,32 +5272,12 @@
     },
     "pal3/src/Effect/CEffShock.cpp": {
       "status": "fail",
-      "error_count": 5,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2440",
           "msg": "'return' : cannot convert from 'int' to 'void *'",
           "line": 61
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 467
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 468
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 469
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 470
         }
       ]
     },
@@ -5434,25 +5307,9 @@
       "errors": []
     },
     "pal3/src/Effect/ScreenEffectMgr.cpp": {
-      "status": "fail",
-      "error_count": 3,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 841
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 854
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 876
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/GameBase/Config.cpp": {
       "status": "fail",
@@ -5574,7 +5431,7 @@
     },
     "pal3/src/GameBase/PAL3.cpp": {
       "status": "fail",
-      "error_count": 46,
+      "error_count": 43,
       "errors": [
         {
           "code": "C2440",
@@ -5625,21 +5482,6 @@
           "code": "C2664",
           "msg": "'RenderPost' : cannot convert parameter 1 from 'void *' to 'int'",
           "line": 895
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 985
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 989
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 993
         },
         {
           "code": "C2039",
@@ -5836,7 +5678,7 @@
     },
     "pal3/src/MiniGame/MiniGame3.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 7,
       "errors": [
         {
           "code": "C2451",
@@ -5859,24 +5701,9 @@
           "line": 120
         },
         {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 157
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 163
-        },
-        {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class MiniGame3' to 'struct gbVec3D *'",
           "line": 164
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 168
         },
         {
           "code": "C2451",
@@ -6010,15 +5837,9 @@
       ]
     },
     "pal3/src/Misc/CCBPanelSlot.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 181
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/CCBUIPanel.cpp": {
       "status": "ok",
@@ -6277,59 +6098,9 @@
     },
     "pal3/src/Misc/MatrixStack.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 2,
       "errors": [
         {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 43
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 60
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 65
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 79
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 84
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 89
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 159
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 163
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 172
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 180
-        },
-        {
           "code": "C2678",
           "msg": "binary '==' : no operator defined which takes a left-hand operand of type 'class MatrixStack' (or there is no acceptable conversion)",
           "line": 183
@@ -6338,16 +6109,6 @@
           "code": "C2678",
           "msg": "binary '==' : no operator defined which takes a left-hand operand of type 'class MatrixStack' (or there is no acceptable conversion)",
           "line": 183
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 188
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 197
         }
       ]
     },
@@ -6729,22 +6490,12 @@
     },
     "pal3/src/Misc/ScreenEffectNode.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
           "line": 83
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 194
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 255
         }
       ]
     },
@@ -7019,23 +6770,18 @@
     },
     "pal3/src/Misc/UIAnimateCtrlEX.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
         {
           "code": "C2660",
           "msg": "'MoveWindow' : function does not take 0 parameters",
           "line": 99
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 186
         }
       ]
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 35,
+      "error_count": 10,
       "errors": [
         {
           "code": "C2143",
@@ -7058,56 +6804,6 @@
           "line": 583
         },
         {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 898
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 899
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 905
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 906
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 915
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 922
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 923
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 929
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 930
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 939
-        },
-        {
           "code": "C2228",
           "msg": "left of '.x' must have class/struct/union type",
           "line": 947
@@ -7116,81 +6812,6 @@
           "code": "C2664",
           "msg": "'SetTwoVector' : cannot convert parameter 1 from 'float *' to 'struct gbVec3D *'",
           "line": 968
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(struct gbQuaternion *)' : cannot convert parameter 1 from 'struct gbQuaternion' to 'struct gbQuaternion *'",
-          "line": 969
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 976
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 977
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 978
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1011
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1017
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1031
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1040
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1041
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1046
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1047
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1048
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1054
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1055
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 1056
         },
         {
           "code": "C2109",
@@ -7768,45 +7389,9 @@
       "errors": []
     },
     "pal3/src/Misc/UIProgressBar.cpp": {
-      "status": "fail",
-      "error_count": 7,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 131
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 136
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 141
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 146
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 151
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 156
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 161
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/UIPushButton.cpp": {
       "status": "fail",
@@ -8238,7 +7823,7 @@
     },
     "pal3/src/Render/RenderTarget3.cpp": {
       "status": "fail",
-      "error_count": 3,
+      "error_count": 2,
       "errors": [
         {
           "code": "C2102",
@@ -8249,11 +7834,6 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
           "line": 130
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 218
         }
       ]
     },
@@ -8375,57 +7955,12 @@
     },
     "pal3/src/Role/Object3D.cpp": {
       "status": "fail",
-      "error_count": 14,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2100",
           "msg": "illegal indirection",
           "line": 543
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 543
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 548
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 553
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 563
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 569
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 574
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 579
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 584
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 604
         },
         {
           "code": "C2039",
@@ -8461,7 +7996,7 @@
     },
     "pal3/src/Role/RoleSystem.cpp": {
       "status": "fail",
-      "error_count": 47,
+      "error_count": 44,
       "errors": [
         {
           "code": "C2109",
@@ -8482,21 +8017,6 @@
           "code": "C2106",
           "msg": "'=' : left operand must be l-value",
           "line": 792
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 911
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 913
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D *)' : cannot convert parameter 2 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 914
         },
         {
           "code": "C2679",
@@ -9061,13 +8581,8 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 12,
       "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 89
-        },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
@@ -9291,15 +8806,9 @@
       ]
     },
     "pal3/src/UI/UINote.cpp": {
-      "status": "fail",
-      "error_count": 1,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall gbMatrixStack::Translate(struct gbVec3D *)' : cannot convert parameter 1 from 'struct gbVec3D' to 'struct gbVec3D *'",
-          "line": 65
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/UI/UIQuadManager.cpp": {
       "status": "ok",

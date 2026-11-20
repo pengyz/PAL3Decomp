@@ -14,12 +14,13 @@ public:
     int ValidFlag;         // +0xC
     // total size: 0x10 (16)
 
-    // [导入引擎类方法 2026-11-18] 方法体在引擎DLL(vtable项=0xffffffff=import
-    // thunk实证), PAL3.exe仅声明调用; sig_model真值见structs/gbMatrixStack.json
-    void Rotate(float angle, gbVec3D *axis);              // 0x0056a244
-    void Translate(gbVec3D *v);                           // 0x0056a260
+    // [导入引擎类方法 2026-11-18] 方法体在引擎DLL(IAT槽=GBENGINE.DLL导入 thunk),
+    // PAL3.exe仅声明调用; 签名权威=PAL3.exe导入表mangle(20261120 AAU=引用修正)
+    // + structs/gbMatrixStack.json
+    void Rotate(float angle, gbVec3D &axis);              // 0x0056a244 mangle QAEXMAAUgbVec3D: AAU=引用
+    void Translate(gbVec3D &v);                           // 0x0056a260 mangle QAEXAAUgbVec3D: AAU=引用
     void MultMatrix(gbMatrix4 *m);                        // 0x0056a2a0
-    void Rotate(gbQuaternion *q);                         // 0x0056a33c 重载
+    void Rotate(gbQuaternion &q);                         // 0x0056a33c 重载 mangle QAEXAAUgbQuaternion: AAU=引用
     void Translate(float x, float y, float z);            // 0x0056a370 重载
     gbMatrix4* GetTop();                                  // 0x0056a570
     void Push();                                          // 0x0056a578
@@ -29,6 +30,6 @@ public:
     // [Scale 补 20261120] 导出表 ?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z + QAEXMMM
     // (双重载; 语料限定调用 UIBigMap::RenderRole/UIProgressBar::Render/RoleSystem::RenderRole
     // /CCBPanelSlot::Render/sub_442E90 五处实证)——头族重建时漏, N13c 预测兑现案
-    void Scale(gbVec3D *v);                               // AAUgbVec3D 重载(指针形匹配调用实参)
+    void Scale(gbVec3D &v);                               // AAUgbVec3D 重载(mangle真值=引用; 指针形系旧注解牵连)
     void Scale(float x, float y, float z);                // MMM 重载
 };

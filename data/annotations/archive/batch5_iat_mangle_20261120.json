@@ -1,0 +1,10 @@
+{
+ "_doc": "batch5 gbMatrixStack IAT mangle真值修正 2026-11-20",
+ "evidence": "PAL3.exe导入表解析: IAT槽0x56a244-0x56a5c0 ← GBENGINE.DLL mangle真值(QAEX族); 导出表仅??0构造导出(方法经vtable分派非导出), IAT槽导入的即DLL内实现",
+ "fixes": [
+  "0x0056a244 Rotate: ['float', 'gbVec3D *'] -> ['float', 'gbVec3D &']",
+  "0x0056a260 Translate: ['gbVec3D *'] -> ['gbVec3D &']",
+  "0x0056a33c Rotate: ['gbQuaternion *'] -> ['gbQuaternion &']"
+ ],
+ "authority_note": "【用户纠正】SDK头=逆向产物非权威; 导入表mangle=二进制事实(PAL3.exe import table直读)"
+}
