@@ -9,33 +9,33 @@
    "evidence_level": "unverified"
   },
   "0x58": {
-   "name": "bkWndX",
+   "name": "m_nBkWndX",
    "type": "int",
-   "source": "annotation",
+   "source": "正名20261120(R5+ SwordUI 首批): 同 SystemUI 头部布局(双视图共享头) | 原 bkWndX",
    "evidence_level": "unverified"
   },
   "0x5c": {
-   "name": "bkWndY",
+   "name": "m_nBkWndY",
    "type": "int",
-   "source": "annotation",
+   "source": "正名20261120(R5+ SwordUI 首批): 同 SystemUI 头部布局 | 原 bkWndY",
    "evidence_level": "unverified"
   },
   "0x60": {
-   "name": "i",
+   "name": "m_nSwordIdx",
    "type": "int",
-   "source": "annotation",
+   "source": "正名20261120(R5+ SwordUI 首批): 位置待 disp 探针(0x60 与 SystemUI 同布局但视图不同) | 原 i",
    "evidence_level": "unverified"
   },
   "0x64": {
-   "name": "j",
+   "name": "m_nSwordIdx2",
    "type": "int",
-   "source": "annotation",
+   "source": "正名20261120(R5+ SwordUI 首批): 同上(0x64) | 原 j",
    "evidence_level": "unverified"
   },
   "0x68": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation",
+   "name": "m_szSwordBuf",
+   "type": "char[64]",
+   "source": "正名20261120(R5+ SwordUI 首批): RenderSword sprintf 语境(与 SystemUI m_szTimeBuf 同布局?) | 原 buf",
    "evidence_level": "unverified"
   },
   "0x168": {
@@ -827,5 +827,6 @@
    "name": "UIFrameWnd",
    "offset": 0
   }
- ]
+ ],
+ "_dual_view_verdict": "双视图定谳20261120: SystemUI::Update 中 SwordUI::RenderSword((SwordUI*)this) this 复用直证——SwordUI(388952B)与 SystemUI(516636B)同实例双视图(剑UI视图⊂系统UI视图), 非 CGameData 式误名。known_members 134 中 119 弱名多带语义暗示(ljs/avg/purge/wskill = 剑UI域词汇), 保留原名单独审计。"
 }
