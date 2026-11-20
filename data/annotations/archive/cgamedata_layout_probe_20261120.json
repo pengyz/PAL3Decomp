@@ -143,5 +143,14 @@
    "C10 预演": "迁出后顶层 0x374-0x2528 区间仅剩 0xF40/0x1394 锚+0x38D0 锚——无重叠 ✓"
   },
   "element_class": "0x38D0 数组元素类(0x8E0=2272B, ctor 0x44e530, InitItems 方法) 未建档——m_pItemArray/0x900/0x9B0/0x9B4 候选成员挂账"
+ },
+ "l1_49_44_verdict": {
+  "_doc": "L1 49→44 差集定谳 2026-11-20 (读数拉取触发)",
+  "差集7": {
+   "簇1_4个??_G结构性丢": "CEffectSystem 0x4c5d50/0x4c6260 + ParticleEffect 0x4bd850/0x4bc790 双双从 registry 消失——MI 类双 ??_G 形态(合法, X族/分家认领放大), VC6 单源 dtor 只产一个 ??_G 符号, m2e 一对一映射结构必丢另一址。**S4 比对器局限非回归**——obj 符号 ??_GCEffectSystem@@UAEPAXI@Z 在(实测 dump), m2e 单键占用",
+   "簇2_3个partial涟漪": "Role::IsActionBlocked(5diff) + Scene::AddVisNode/RemoveVisNode(4diff)——gbSceneGraph 间接调用渲染形变化([eax+0x1c0]call [0x56a320] vs 成员调用渲染), n_diff=4-5 小损, 分家/重排的类型知识涟漪, 挂账"
+  },
+  "轨迹": "43(事件首晚)→46→47(修复轮)→44(今晚: dtor全家认领放大MI双??_G局限)——matched 同步 472→474 扩张",
+  "处置": "簇1: S4 比对器多址同符号支持改造(挂账 R6 前); 簇2: 渲染债挂账"
  }
 }

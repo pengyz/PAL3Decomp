@@ -167,6 +167,7 @@
 {"addr": "0x0049AAF0", "name": "ArcSceneObject::ResetEquipControls(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 47.2, "size": 369}
 {"addr": "0x005254C0", "name": "ArcSceneObject::InitFromConfig(void)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "match_L1", "match_pct": 100.0, "size": 87}
 {"addr": "0x00533F50", "name": "ArcSceneObject::UpdateOscillation(float)", "file": "pal3/src/Misc/ArcSceneObject.cpp", "status": "partial", "match_pct": 17.2, "size": 128}
+{"addr": "0x0044A790", "name": "ArraySlots::ArraySlots(void)", "file": "pal3/src/Misc/ArraySlots.cpp", "status": "partial", "match_pct": 44.0, "size": 50}
 {"addr": "0x004236D0", "name": "BINK::Reset(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 3.3, "size": 396}
 {"addr": "0x004243E0", "name": "BINK::Destroy(void)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 19.5, "size": 389}
 {"addr": "0x004517A0", "name": "BINK::SetVideoRect(char)", "file": "pal3/src/Misc/BINK.cpp", "status": "partial", "match_pct": 8.3, "size": 48}
@@ -300,8 +301,6 @@
 {"addr": "0x0052EA40", "name": "UI3DCtrl::UpdateOscillationY(void)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 34.7, "size": 121}
 {"addr": "0x0052EAC0", "name": "UI3DCtrl::UpdateTransform(int)", "file": "pal3/src/Misc/UI3DCtrl.cpp", "status": "partial", "match_pct": 13.5, "size": 288}
 {"addr": "0x00479260", "name": "UIAnimateCtrl::GetRoleBySlot(uint)", "file": "pal3/src/Misc/UIAnimateCtrl.cpp", "status": "partial", "match_pct": 11.1, "size": 36}
-{"addr": "0x004A6120", "name": "UIGameFrm::OnMessage(int,uint,int)", "file": "pal3/src/Misc/UIGameFrm.cpp", "status": "partial", "match_pct": 24.0, "size": 1082}
-{"addr": "0x004A6600", "name": "UIGameFrm::Destroy(void)", "file": "pal3/src/Misc/UIGameFrm.cpp", "status": "partial", "match_pct": 9.7, "size": 186}
 {"addr": "0x004B4DC0", "name": "UIParticle::Apply(int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 23.4, "size": 491}
 {"addr": "0x004B4FE0", "name": "UIParticle::AutoScrollParticles(char *,int,TextureLibDataBase *,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 13.6, "size": 441}
 {"addr": "0x004B51A0", "name": "UIParticle::AutoScrollParticlesEx(char *,TextureLibDataBase *,int,int)", "file": "pal3/src/Misc/UIParticle.cpp", "status": "partial", "match_pct": 13.6, "size": 479}
@@ -381,14 +380,15 @@
 {"addr": "0x00408E30", "name": "Role::CalcZiXuanInit(int,int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 14.9, "size": 74}
 {"addr": "0x00408E90", "name": "Role::CalcChangQingInit(int,int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 45.8, "size": 131}
 {"addr": "0x00408F30", "name": "Role::CalcHuaYingInit(int,int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 45.8, "size": 131}
-{"addr": "0x00411900", "name": "Role::Role(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 13.5, "size": 622}
-{"addr": "0x00416500", "name": "Role::IsActionBlocked(void)", "file": "pal3/src/Role/Role.cpp", "status": "match_L1", "match_pct": 100.0, "size": 72}
+{"addr": "0x00411900", "name": "Role::Role(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 14.1, "size": 622}
+{"addr": "0x00416500", "name": "Role::IsActionBlocked(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 93.1, "size": 72}
 {"addr": "0x00418170", "name": "Role::CheckOBBCollision(int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 38.2, "size": 110}
 {"addr": "0x0041B640", "name": "Role::UpdateBoundingBox(int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 32.2, "size": 87}
 {"addr": "0x0041B6A0", "name": "Role::GetGfxManager(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 34.5, "size": 29}
+{"addr": "0x004AF760", "name": "Role::UpdateFrame(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 0.0, "size": 3}
 {"addr": "0x004125D0", "name": "Camera::InitFromScene(char const *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 27.6, "size": 163}
 {"addr": "0x0041BE80", "name": "Camera::Camera(gbGfxManager *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 7.4, "size": 312}
-{"addr": "0x0041E7D0", "name": "Camera::CheckCollision1(float *,void *,float *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 19.1, "size": 555}
+{"addr": "0x0041E7D0", "name": "Camera::CheckCollision1(float *,void *,float *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 18.2, "size": 555}
 {"addr": "0x0041EA00", "name": "Camera::CheckCollision2(float *,int,void *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 21.8, "size": 331}
 {"addr": "0x0041EE60", "name": "Camera::IsTransitioning(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 65.6, "size": 128}
 {"addr": "0x00439850", "name": "Camera::UpdateCameraLookAt(int,int)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 22.3, "size": 224}
@@ -398,8 +398,8 @@
 {"addr": "0x0040C7D0", "name": "Scene::Render2(void)", "file": "pal3/src/Scene/Scene.cpp", "status": "partial", "match_pct": 37.2, "size": 398}
 {"addr": "0x00410990", "name": "Scene::AddRoleEntry(int)", "file": "pal3/src/Scene/Scene.cpp", "status": "partial", "match_pct": 7.5, "size": 574}
 {"addr": "0x00421230", "name": "Scene::GetTileHeight(int,int,int,int *)", "file": "pal3/src/Scene/Scene.cpp", "status": "partial", "match_pct": 13.4, "size": 469}
-{"addr": "0x00421830", "name": "Scene::AddVisNode(void)", "file": "pal3/src/Scene/Scene.cpp", "status": "match_L1", "match_pct": 100.0, "size": 53}
-{"addr": "0x00421870", "name": "Scene::RemoveVisNode(void)", "file": "pal3/src/Scene/Scene.cpp", "status": "match_L1", "match_pct": 100.0, "size": 53}
+{"addr": "0x00421830", "name": "Scene::AddVisNode(void)", "file": "pal3/src/Scene/Scene.cpp", "status": "partial", "match_pct": 92.5, "size": 53}
+{"addr": "0x00421870", "name": "Scene::RemoveVisNode(void)", "file": "pal3/src/Scene/Scene.cpp", "status": "partial", "match_pct": 92.5, "size": 53}
 {"addr": "0x00408850", "name": "SceneMgr::ResetPlayerAtts(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 23.0, "size": 213}
 {"addr": "0x0040CA40", "name": "SceneMgr::InitSceneRoles(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "partial", "match_pct": 12.5, "size": 320}
 {"addr": "0x0040FC70", "name": "SceneMgr::GetValidPartyCount(void)", "file": "pal3/src/Scene/SceneMgr.cpp", "status": "match_L1", "match_pct": 100.0, "size": 22}
@@ -440,3 +440,4 @@
 {"addr": "0x0043DCC0", "name": "UILBColumn::Destroy(void)", "file": "pal3/src/UI/UILBColumn.cpp", "status": "partial", "match_pct": 33.3, "size": 15}
 {"addr": "0x005415F0", "name": "UIQuadManager::GetInstance(void)", "file": "pal3/src/UI/UIQuadManager.cpp", "status": "partial", "match_pct": 68.6, "size": 51}
 {"addr": "0x00541640", "name": "UIRenderObj::UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 10.3, "size": 203}
+{"addr": "0x00422DF0", "name": "UISystem::Destroy(void)", "file": "pal3/src/UI/UISystem.cpp", "status": "partial", "match_pct": 44.8, "size": 67}

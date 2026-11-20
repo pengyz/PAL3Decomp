@@ -3,57 +3,57 @@
  "binary_size": 192,
  "known_members": {
   "0x44": {
-   "name": "m_nTodo_44",
+   "name": "m_fFadeDuration",
    "type": "float",
-   "source": "binary:disasm@0x444FD4 (movl $0x3f000000 = float 0.5) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_44⇒m_nTodo_44（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+   "source": "正名20261120(R5首批): Update: v12/m_nTodo_44 比例+>=比较——渐隐时长; Init 0.5 | 原 m_nTodo_44",
    "evidence_level": "A"
   },
   "0x48": {
-   "name": "m_nTodo_48",
-   "type": "BYTE",
-   "source": "binary:disasm@0x444F8F (mov %al,0x48(%esi)) | [批4 诚实化 2026-10-16] A偏移形：m_bTodo_48⇒m_nTodo_48（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+   "name": "m_fFadeInit",
+   "type": "float",
+   "source": "正名20261120(R5首批): InitAfterClear 存 v3(初值缓存) | 原 m_nTodo_48",
    "evidence_level": "unverified"
   },
   "0x4c": {
-   "name": "m_nTodo_4C",
+   "name": "m_nFadeElapsed",
    "type": "int",
-   "source": "binary:disasm@0x444F92 (dword 写（xor edi,edi 归零）)",
+   "source": "正名20261120(R5首批): Render 读+Init 0——已过帧计数 | 原 m_nTodo_4C",
    "evidence_level": "unverified"
   },
   "0x50": {
-   "name": "m_nTodo_50",
+   "name": "m_bFadeActive",
    "type": "int",
-   "source": "binary:disasm@0x444F95 (dword 写)",
+   "source": "正名20261120(R5首批): Render: AC==2 && m_nTodo_50 门控 | 原 m_nTodo_50",
    "evidence_level": "unverified"
   },
   "0x54": {
-   "name": "m_nTodo_54",
+   "name": "m_nReserved54",
    "type": "int",
-   "source": "binary:disasm@0x444F98 (dword 写)",
+   "source": "正名20261120(R5首批): 仅 Init 清零, 语义阻塞 | 原 m_nTodo_54",
    "evidence_level": "unverified"
   },
   "0x58": {
-   "name": "m_nTodo_58",
+   "name": "m_nRectLeft",
    "type": "int",
-   "source": "binary:disasm@0x445500 (Render 高频读)",
+   "source": "正名20261120(R5首批): Render: pRect.left = m_nTodo_58 ×2 | 原 m_nTodo_58",
    "evidence_level": "unverified"
   },
   "0x5c": {
-   "name": "m_nTodo_5C",
+   "name": "m_nRectTop",
    "type": "int",
-   "source": "binary:disasm@0x445135 (_sdtor 内有 incl（计数器）)",
+   "source": "正名20261120(R5首批): Render: pRect.top = m_nTodo_5C ×2 | 原 m_nTodo_5C",
    "evidence_level": "unverified"
   },
   "0x60": {
-   "name": "m_nTodo_60",
+   "name": "m_nRectRight",
    "type": "int",
-   "source": "binary:disasm@0x445500 (写/读)",
+   "source": "正名20261120(R5首批): Render: (m_nTodo_60-m_nTodo_58)/2 水平居中算术 | 原 m_nTodo_60",
    "evidence_level": "unverified"
   },
   "0x64": {
-   "name": "m_nTodo_64",
+   "name": "m_nRectBottom",
    "type": "int",
-   "source": "binary:disasm@0x445500 (读写最多)",
+   "source": "正名20261120(R5首批): Render: m_nTodo_64-m_nTodo_5C 垂直算术 | 原 m_nTodo_64",
    "evidence_level": "unverified"
   },
   "0x68": {
@@ -63,33 +63,33 @@
    "evidence_level": "unverified"
   },
   "0xac": {
-   "name": "m_nTodo_AC",
+   "name": "m_nRenderMode",
    "type": "int",
-   "source": "binary:disasm@0x445194 (ProcessInput 读写)",
+   "source": "正名20261120(R5首批): 值2/0 枚举: Init=2(淡入态) ShowClipped=0 | 原 m_nTodo_AC",
    "evidence_level": "unverified"
   },
   "0xb0": {
-   "name": "m_nTodo_B0",
+   "name": "m_fFadeAlpha",
    "type": "float",
-   "source": "binary:disasm@0x4451AE (fadds/fsts ⇒ 浮点) | [批4 诚实化 2026-10-16] A偏移形：m_fTodo_B0⇒m_nTodo_B0（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+   "source": "正名20261120(R5首批): Update: nVal1+m_nTodo_B0 累加——alpha 步进 | 原 m_nTodo_B0",
    "evidence_level": "unverified"
   },
   "0xb4": {
-   "name": "m_nTodo_B4",
+   "name": "m_nRenderArg",
    "type": "int",
-   "source": "binary:disasm@0x4456F9 (Render 读)",
+   "source": "正名20261120(R5首批): Render 传参尾参 | 原 m_nTodo_B4",
    "evidence_level": "unverified"
   },
   "0xb8": {
-   "name": "m_nTodo_B8",
+   "name": "m_nFadeThreshold",
    "type": "int",
-   "source": "binary:disasm@0x445519 (Render 写)",
+   "source": "正名20261120(R5首批): Render: m_nTodo_B8 >= (right-left)/2 门限 | 原 m_nTodo_B8",
    "evidence_level": "unverified"
   },
   "0xbc": {
-   "name": "m_nTodo_BC",
+   "name": "m_bFadeReverse",
    "type": "int",
-   "source": "binary:disasm@0x445201 (ProcessInput cmp)",
+   "source": "正名20261120(R5首批): Update if 门控+Init/ShowClipped 清零 | 原 m_nTodo_BC",
    "evidence_level": "unverified"
   }
  },
