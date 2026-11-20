@@ -1132,3 +1132,4 @@
 | `UIGameFrm::Load` | inline | `SceneObj` | 24 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int, _DWORD, _DWORD))(*(_DWORD *)&m_pSceneObjRef->UIWnd + 24))( m_pSceneObjRef, 1000, 0, 0)` |
 | `UIGameFrm::Load` | inline | `SceneObj` | 20 | self_arg_mismatch | `(*(void ( **)(SceneObj *, int))(*(_DWORD *)&v12->UIWnd + 20))(v12, 1)` |
 | `UIGameFrm::_init_44f8d0` | inline | `CScreenMode` | 24 | self_arg_mismatch | `(*(void ( **)(CScreenMode *, int, int, _DWORD))(*(_DWORD *)&m_pUtil->UIWnd + 24))(m_pUtil, 1000, 1, 0)` |
+| `UIEmote::InitItems` | inline | `UIScene` | 16 | self_arg_mismatch | `(*(void ( **)(UIScene *, _DWORD, tagRECT *, UIEmote *))(*(_DWORD *)&v5->UIWnd + 16))(v5, 0, &pRect, this)` |
