@@ -253,7 +253,7 @@
    }
   },
   "0x004a5930": {
-   "name": "RenderThrottled",
+   "name": "Render",
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.RenderThrottled)",
    "evidence_level": "unverified",
    "sig_model": {
@@ -262,7 +262,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "source": " | 链律名修正20261120: RenderThrottled→Render (UIWnd slot override 链律, C9 六条定谳)"
   },
   "0x004a5a80": {
    "name": "LayoutHandleNav",
@@ -277,7 +278,7 @@
    }
   },
   "0x004a5b30": {
-   "name": "UpdateCaptions",
+   "name": "Update",
    "_misattrib_evidence": "rolestatepanel: max_offset 176084 (was MainEquipUI.UpdateCaptions)",
    "evidence_level": "unverified",
    "sig_model": {
@@ -286,7 +287,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "source": " | 链律名修正20261120: UpdateCaptions→Update (UIWnd slot override 链律, C9 六条定谳)"
   },
   "0x004a2150": {
    "name": "~RoleStatePanel",
@@ -355,7 +357,7 @@
    "source": " | 迁移20261120: 表0x56F040槽证据(UIGameFrm错挂迁入; 槽6 0x56F058)"
   },
   "0x004a6600": {
-   "name": "Destroy",
+   "name": "HideAll",
    "_misattrib_evidence": "max_offset=176080>class_size=28188",
    "evidence_level": "unverified",
    "sig_model": {
@@ -365,7 +367,7 @@
     "varargs": false,
     "pending": false
    },
-   "source": " | 迁移20261120: 表0x56F040槽证据(UIGameFrm错挂迁入; 槽3 0x56F04C)"
+   "source": " | 迁移20261120: 表0x56F040槽证据(UIGameFrm错挂迁入; 槽3 0x56F04C) | 链律名修正20261120: Destroy→HideAll (UIWnd slot override 链律, C9 六条定谳)"
   }
  },
  "known_members": {

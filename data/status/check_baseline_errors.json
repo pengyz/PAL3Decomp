@@ -24,5 +24,10 @@
  "CANON:C11:UIGameFrm bases变更无裁决条目: 快照['UIWnd', 'PalScriptWaitObj'] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)",
  "structs[MainPropUI]: member overlap: m_szListBuf(char[256], size=256)@104 ends@360 > next buf@108",
  "CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size 256) 重叠(非union) — 布局冲突",
- "DATA:N13a:UIEmote::m_needscriptdel 字段契约断(语料->引用5次, 类链known_members无名) → C2227族预测"
+ "DATA:N13a:UIEmote::m_needscriptdel 字段契约断(语料->引用5次, 类链known_members无名) → C2227族预测",
+ "CXX_GATE:new_violation:cxx_rule:RoleStatePanel:Render:('__thiscall', '', ''):x2",
+ "CXX_GATE:new_violation:same_name:RoleStatePanel:Render:x2",
+ "CANON:C9:RoleStatePanel:0x004a5930:sig RoleStatePanel Render 签名与基类不一致: return_type: int vs void; 本=int __thiscall() 基=void __thiscall() → C2555前置; 取证=两侧函数体出口eax+调用点消费",
+ "CANON:C9:RoleStatePanel:0x004a5b30:sig RoleStatePanel Update 签名与基类不一致: return_type: int vs BOOL; param_count: 0 vs 2; 本=int __thiscall() 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费",
+ "CANON:C9:RoleStatePanel:0x004a6600:sig RoleStatePanel HideAll 签名与基类不一致: return_type: int vs void; 本=int __thiscall() 基=void __thiscall() → C2555前置; 取证=两侧函数体出口eax+调用点消费"
 ]
