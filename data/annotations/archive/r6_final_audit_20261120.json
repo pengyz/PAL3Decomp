@@ -17,5 +17,47 @@
   "S4 比对器: 签名键多址支持(matched 458→528, MI 双 ??_G 局限根除)",
   "L1: 事件低谷 43 → 棘轮守 49(簇1=比对器局限已根除, 簇2=渲染债涟漪挂账)"
  ],
- "raw_tail": "5\n     6272  CCBStageCam                                  0.4%      9     0    32        0\n      896  PalScriptRoleSlotOverlay                     0.4%      1     0     0        1\n      873  RoleSystemTeamSlotOverlay                    0.5%      1     0     0        1\n    32088  sg_emitter                                   0.6%     20     0     1       11\n     4320  CEffTrackCylinder                            0.6%      7     0     0        0\n\n=== 全库汇总 (size≥256 的 265 个结构) ===\n总字节: 15021486 | 语义命名字节: 318416 (2.1%) | 伪语义占位字节: 2188 (0.0%) | 未命名: 97.9%\nsize≥1000 且覆盖<50%: 127 个, 合计未命名 14621811 字节\n"
+ "raw_tail": "5\n     6272  CCBStageCam                                  0.4%      9     0    32        0\n      896  PalScriptRoleSlotOverlay                     0.4%      1     0     0        1\n      873  RoleSystemTeamSlotOverlay                    0.5%      1     0     0        1\n    32088  sg_emitter                                   0.6%     20     0     1       11\n     4320  CEffTrackCylinder                            0.6%      7     0     0        0\n\n=== 全库汇总 (size≥256 的 265 个结构) ===\n总字节: 15021486 | 语义命名字节: 318416 (2.1%) | 伪语义占位字节: 2188 (0.0%) | 未命名: 97.9%\nsize≥1000 且覆盖<50%: 127 个, 合计未命名 14621811 字节\n",
+ "post_audit_fix": {
+  "_doc": "audit 嵌套类型真尺寸改造后的真实终审数字 (c9ab6ee5d)",
+  "total_bytes": 15021486,
+  "named_bytes": 13597980,
+  "named_pct": 90.5,
+  "pseudo_bytes": 2188,
+  "pseudo_pct": 0.0,
+  "unnamed_pct": 9.5,
+  "size_gt_1000_cover_lt_50": 32,
+  "note": "改造前 2.1% 是 type_size 对自定义类型返回 None→4 的严重低估(大数组/子对象真尺寸兑现后 90.5%)"
+ },
+ "campaign_final": {
+  "battle": "语义收敛战役 R1-R6 + 事件响应 + R5+ 九批",
+  "timeline": "2026-11-18 ~ 2026-11-20",
+  "deliverables": {
+   "伪语义名": "台账 58 类 296 名 → 现役 0 残留(全部退役/分型/挂账)",
+   "正名退役": "R1-R5 九批 101 名",
+   "零访问分型": "六批 622 条 belongs_to 注记",
+   "池区定谳": "R1-R4 六主题 + UIGameFrm/Scene/SoundMgr/CPK/gbBinkVideo/CG_Scene 六案定性",
+   "档案修正": "CGameData→UIGameFrm 改名/UIEmote bases 修正/InitRoles 归 UITitle/X 族 ??1Role/分家手术 33 条/InitItems 归位",
+   "管线修正": "S4 比对器签名键多址(matched 458→528)/门禁伪语义新模式 A+B/Blocka 结构形态剥离/毒参清除 59 条/audit 嵌套类型真尺寸",
+   "方法论": "布局排查 v1/弱名-子对象判别/MI 归属判据(写表偏移×bases 对齐)/A-B 共享 IDB 无效律/语料新鲜度读数律"
+  },
+  "readings": {
+   "总错误": "1085(基线) → 1086(恒定)",
+   "S2 编译过": "103/222",
+   "matched": "528/615 (+70)",
+   "L1": "49(棘轮守)",
+   "语义覆盖": "90.5%(字节口径, 改造后真实)",
+   "基线冻结": "23 条(瘦身史 143→23)"
+  },
+  "outstanding": [
+   "元素类建档待续(UIEmote 内部细粒度)",
+   "基类表登记(PSWO/Glow)",
+   "RoleStatePanel C9 六条(语义名 vs 链律名)",
+   "0x290 容器段+0x1AC UIStatic 段(布局重划)",
+   "UIGameFrm 新 TU 11 错(C9 族体债)",
+   "roles 段 0x16C 差值",
+   "毒注解余量(名泄漏 89 候选)",
+   "L1 双墙(fmuls+TU 合并)"
+  ]
+ }
 }
