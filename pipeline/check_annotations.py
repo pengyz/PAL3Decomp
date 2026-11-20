@@ -32,6 +32,19 @@ ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
 
 
 
+def _sig_str_of_local(m):
+    """[退役字段修正 2026-11-21] sig_model 单源渲染（apply_annotations._sig_str_of
+    同款）——signature 字段已退役，一切 structs 域签名读取必须走此处。"""
+    sm = m.get('sig_model') or {}
+    if sm.get('pending'):
+        return ''
+    try:
+        _n = node_of(m)
+        return render(_n) if _n else ''
+    except Exception:
+        return ''
+
+
 def needs_member_attr_warning(name, sig):
     """__thiscall 归属告警判据（纯函数，R15 单测点）。
 
@@ -813,7 +826,7 @@ def check(struct_dir=None):
                         if _reg:
                             break
                 _decl_only = bool(_reg.get('declaration_only')) or \
-                    str(_reg.get('signature', '')).rstrip().endswith('(...)')
+                    str(_sig_str_of_local(_reg) or '').rstrip().endswith('(...)')  # [退役字段修正] sig_model单源
                 if _decl_only:
                     continue
                 skip_name = skip_data[addr].get('name', '?')
@@ -1213,7 +1226,10 @@ def check_canonical_contract():
                 if a and not re.match(r'^0x[0-9A-Fa-f]{8}$', str(a)):
                     cur_viol['C4:%s:%s' % (cls, a)] = '%s addr非长形: %s' % (cls, a)
         for a, m in (d.get('methods') or {}).items():
-            if m.get('non_virtual') and 'virtual' in str(m.get('signature', '')).lower():
+            # [退役字段消费修正 2026-11-21] 旧读 m['signature'](已退役恒空)
+            # ⇒ C3 检查从未生效(死检); sig 单源=_sig_str_of
+            _c3sig = _sig_str_of_local(m)
+            if m.get('non_virtual') and 'virtual' in str(_c3sig).lower():
                 cur_viol['C3:%s:%s' % (cls, a)] = '%s %s non_virtual但sig带virtual' % (cls, m.get('name'))
         # [C7 2026-11-15 v2 from退役] 槽位-条目完备性(地址推导路由):
         #   继承槽(地址∈祖先表槽) → 免检(归属祖先; 祖先C7自有检查递归强制条目存在,

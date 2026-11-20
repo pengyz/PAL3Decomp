@@ -1464,23 +1464,63 @@ def _sig_str_of(m):
     return '' if sm else '<SIG-MODEL-MISSING>'
 
 
+_ADDR_INDEX = None
+
+
+def _get_addr_index():
+    """[祖先兜底 2026-11-21] 全类址→方法索引(懒建)——继承槽址=祖先类函数址
+    (槽链律: 表字节引用祖先函数), 本类 methods 查不到时按址兜底。
+    首见优先(owner 收敛律, 与[5b] owner_cnt 同约定)。"""
+    global _ADDR_INDEX
+    if _ADDR_INDEX is None:
+        idx = {}
+        for _sf, _sd in _strict_struct_entries(os.path.join(ANNOTATIONS_DIR, "structs")):
+            _cls = _sd.get('name') or os.path.basename(str(_sf))[:-5]
+            for _a, _m in (_sd.get('methods') or {}).items():
+                try:
+                    _au = '0x%08x' % int(_a, 16)
+                except (ValueError, TypeError):
+                    continue
+                if _au not in idx:
+                    idx[_au] = (_cls, _m)
+        _ADDR_INDEX = idx
+    return _ADDR_INDEX
+
+
 def resolve_vtable_slots(struct_info, functions):
     """从 per-class vtables 重建有序 slot 列表。
 
     返回 list of (vtable_addr, slots) — slots 是有序 list of
-    (slot_addr, short_name, signature, from_class)。
-    name/signature 按地址从该类 methods -> functions 解析 (Trust by address)。
+    (slot_addr, short_name, signature)。
+    name/signature 按地址解析(Trust by address), 三级:
+      本类 methods → functions.json → 全类址索引(祖先兜底)。
+    sig 单源=sig_model(_sig_str_of)——[槽型传播审计 2026-11-21] 旧读退役
+    signature 字段恒空 ⇒ 全部 vtbl 成员泛型化 `int (*name)();` ⇒ hexrays
+    对间接调用自造伪型(C2664/C2440 FP 族×65 根因)。pending 渲染空 → 走兜底。
     """
     methods = struct_info.get("methods", {}) if struct_info else {}
+    idx = _get_addr_index()
     out = []
     for vt in struct_info.get("vtables", []) if struct_info else []:
         slots = []
         for slot in vt.get("slots", []):
             addr = slot.get("addr", "")
             entry = methods.get(addr) or functions.get(addr) or {}
-            raw_name = entry.get("name", "")
+            sig = ''
+            if entry:
+                sig = _sig_str_of(entry)
+                if sig == '<SIG-MODEL-MISSING>':
+                    sig = ''
+            if not sig:
+                _hit = idx.get(addr)
+                if _hit:
+                    entry = _hit[1]
+                    sig = _sig_str_of(entry)
+                    if sig == '<SIG-MODEL-MISSING>':
+                        sig = ''
+            raw_name = (entry.get("name", "") if entry else '') or slot.get("name", "")
             short = raw_name.split("::")[-1] if "::" in raw_name else raw_name
-            slots.append((addr, short, entry.get("signature", "")))  # [from退役] 4元组→3元组
+            slots.append((addr, short, sig))
         out.append((vt.get("addr", ""), slots))
     return out
 
@@ -2701,7 +2741,13 @@ def apply_annotations():
 
     def get_deps(sinfo):
         deps = set()
-        base = sinfo.get("base_class")
+        # [退役字段修正 2026-11-21] base_class=禁列死码(全数据无此键)——
+        # 现行格式=bases列表, 导入排序依赖必须认它(base先于derived)
+        for _b in (sinfo.get("bases") or []):
+            _bn = _b.get('name') if isinstance(_b, dict) else _b
+            if _bn and _bn in all_struct_names:
+                deps.add(_bn)
+        base = sinfo.get("base_class")  # legacy(恒None, 保留兼容)
         # Handle both single base (string) and multiple bases (list)
         if isinstance(base, list):
             for b in base:
