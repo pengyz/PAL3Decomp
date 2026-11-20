@@ -156,8 +156,9 @@
   "0x10c": {
    "name": "m_nExecCounter",
    "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
+   "source": "B:naming_m_n+FPU_misattrib | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x130": {
    "name": "m_pScriptObjAux",
@@ -168,32 +169,37 @@
   "0x134": {
    "name": "m_nScriptDepth",
    "type": "int",
-   "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteOpcode +1, >0 check, 4 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x144": {
    "name": "m_fExecuteBlock",
    "type": "float",
-   "source": "binary:1x access",
-   "evidence_level": "unverified"
+   "source": "binary:1x access | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x148": {
    "name": "m_fCurPosY",
    "type": "float",
-   "source": "ida_decomp:ExecuteBlock this - +312",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteBlock this - +312 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x14c": {
    "name": "m_fAnimSpeed",
    "type": "float",
-   "source": "binary:1x access",
-   "evidence_level": "unverified"
+   "source": "binary:1x access | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1f8": {
    "name": "m_nScriptID",
    "type": "short",
-   "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecScript_42bf90 ==0xFFFF sentinel | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x21c": {
    "name": "m_fPosAX",
@@ -309,8 +315,9 @@
   "0x36c": {
    "name": "m_nWaitCount",
    "type": "int",
-   "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteOpcode if(this), this-1, 21 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x378": {
    "name": "m_pClearResult",
@@ -322,62 +329,72 @@
   "0xcd8": {
    "name": "m_nField_CD4",
    "type": "unsigned char",
-   "source": "binary:3x access",
-   "evidence_level": "unverified"
+   "source": "binary:3x access | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xcdc": {
    "name": "m_nScreenEffect",
    "type": "int",
-   "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 = ProcessEffect(2), 4 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xce0": {
    "name": "m_nEffectTick",
    "type": "int",
-   "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 = TickCount, 2 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xce4": {
    "name": "m_nTickStamp",
    "type": "int",
-   "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 = TickCount, 3 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xce8": {
    "name": "m_bEffectInit",
    "type": "unsigned char",
-   "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 if(!this) set 1, 3 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xcec": {
    "name": "m_bEffectActive",
    "type": "unsigned char",
-   "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 set 0, if(this), 8 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xa0": {
    "name": "m_nBlockEndAddr",
    "type": "int",
-   "source": "binary:disp32_1hits_1funcs",
-   "evidence_level": "unverified"
+   "source": "binary:disp32_1hits_1funcs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb2": {
    "name": "m_bExecuteBlock",
    "type": "unsigned char",
-   "source": "binary:disp32_23hits_1funcs",
-   "evidence_level": "unverified"
+   "source": "binary:disp32_23hits_1funcs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb3": {
    "name": "m_bScriptPause",
    "type": "unsigned char",
-   "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteBlock if(!this) + toggle, 13 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd5": {
    "name": "m_bOpcodeFlag",
    "type": "unsigned char",
-   "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteOpcode = v2+60, ExecuteBlock = _bScriptPause, 9 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xe8": {
    "name": "m_nExecRangeA",
@@ -424,14 +441,16 @@
   "0x140": {
    "name": "m_nExecuteOpcode",
    "type": "int",
-   "source": "binary:disp32_2hits_2funcs",
-   "evidence_level": "unverified"
+   "source": "binary:disp32_2hits_2funcs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x21a": {
    "name": "m_bScriptByte",
    "type": "unsigned char",
-   "source": "ida_decomp:if(this!=0xFF), 2 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:if(this!=0xFF), 2 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x220": {
    "name": "m_fPosAY",
@@ -473,58 +492,67 @@
   "0x780": {
    "name": "m_ctrlParabola",
    "type": "int",
-   "source": "ida_decomp:UIParabolaCtrl::GetState(this)",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:UIParabolaCtrl::GetState(this) | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x948": {
    "name": "m_wndTextDisplay",
    "type": "UIWnd *",
-   "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:UIWnd::SetEnable(this,Buffer,0)+codegen_infer | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2110": {
    "name": "m_nCapacity",
    "type": "int",
-   "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_init_44b0f0 loaded, >= compare, 3 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2514": {
    "name": "m_pScriptInstA",
    "type": "char *",
-   "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern)",
+   "source": "ida_decomp:Destroy(this)→+9500, 2 refs | type_fix:int→void*(destroy pattern) | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2518": {
    "name": "m_pScriptInstD",
    "type": "PalScriptMgr *",
-   "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:Destroy(this)→+9504, 2 refs+codegen_infer | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x251c": {
    "name": "m_pScriptInstE",
    "type": "char *",
-   "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern)",
+   "source": "ida_decomp:Destroy(this), 2 refs | type_fix:int→void*(destroy pattern) | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2520": {
    "name": "m_nScriptResultA",
    "type": "int",
-   "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:= Destroy(+9488), if+ClearAllScript, 3 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2524": {
    "name": "m_nScriptResultB",
    "type": "int",
-   "source": "ida_decomp:= Destroy(+9492), 2 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:= Destroy(+9492), 2 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2528": {
    "name": "m_nScriptResultC",
    "type": "int",
-   "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:= 0, if+ClearAllScript, 2 refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd4": {
    "name": "m_pTodo_84",
@@ -536,20 +564,23 @@
   "0xf9": {
    "name": "m_nTodo_0F5",
    "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "B"
+   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "B",
+   "access_spectrum": "zero_access"
   },
   "0xfa": {
    "name": "m_bExecuteOpcode",
    "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast",
-   "evidence_level": "B"
+   "source": "raw_decomp:Hex-Rays_type_cast | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "B",
+   "access_spectrum": "zero_access"
   },
   "0xfb": {
    "name": "m_nTodo_0F7",
    "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "B"
+   "source": "raw_decomp:Hex-Rays_type_cast | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "B",
+   "access_spectrum": "zero_access"
   },
   "0x114": {
    "name": "m_wRoleField114",
@@ -578,20 +609,23 @@
   "0x11c": {
    "name": "m_nField_0118",
    "type": "short",
-   "source": "raw_decomp:Hex-Rays_type_cast",
-   "evidence_level": "B"
+   "source": "raw_decomp:Hex-Rays_type_cast | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "B",
+   "access_spectrum": "zero_access"
   },
   "0x11e": {
    "name": "m_nTodo_11A",
    "type": "unsigned char",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x238": {
    "name": "m_bRunCommand",
    "type": "unsigned char",
-   "source": "raw_decomp:Hex-Rays_type_cast",
-   "evidence_level": "B"
+   "source": "raw_decomp:Hex-Rays_type_cast | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "B",
+   "access_spectrum": "zero_access"
   },
   "0x240": {
    "name": "m_bScriptInputBlock",
@@ -632,14 +666,16 @@
   "0x37c": {
    "name": "m_nExecHandle",
    "type": "int",
-   "source": "ida_decomp:*(this+222) loaded",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:*(this+222) loaded | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xa4": {
    "name": "m_pExecState",
    "type": "void *",
-   "source": "A:0_fpu_in_14+_refs_all_mov_load_store",
-   "evidence_level": "unverified"
+   "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xa8": {
    "name": "m_pVarContext",
@@ -656,8 +692,9 @@
   "0xcc": {
    "name": "m_nTodo_0C8",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd0": {
    "name": "m_nSavedBlockNum",
@@ -687,14 +724,16 @@
   "0x1f0": {
    "name": "m_fSpeed1",
    "type": "float",
-   "source": "A:FPU_binary_evidence",
-   "evidence_level": "unverified"
+   "source": "A:FPU_binary_evidence | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x212": {
    "name": "m_nRoleIndex",
    "type": "short",
-   "source": "gap_fill:ida_decomp_access | annotate_todo",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | annotate_todo | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x214": {
    "name": "m_ScriptRoleState",
@@ -712,61 +751,70 @@
   "0x318": {
    "name": "m_pTodo_318",
    "type": "char *",
-   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat) | 原名 m_pRoleSystem 降级(未证语义名,CLAUDE.md 禁伪语义)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x370": {
    "name": "m_pTodo_370",
    "type": "char *",
-   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInst 降级(未证语义名,CLAUDE.md 禁伪语义)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x778": {
    "name": "m_nTodo_774",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x940": {
    "name": "m_nTodo_93C",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xcd0": {
    "name": "m_bDeviceResetFlag",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_CCC）：PAL3::HandleDeviceReset `m = v4`（设备复位处理器置值）；①HandleDeviceReset ②设备复位流程 ③+3280 域 ④PalScriptMgr ⑤设备复位交互；confidence=65",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 正名（原 m_nTodo_CCC）：PAL3::HandleDeviceReset `m = v4`（设备复位处理器置值）；①HandleDeviceReset ②设备复位流程 ③+3280 域 ④PalScriptMgr ⑤设备复位交互；confidence=65 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xcd4": {
    "name": "m_pTodo_CD4",
    "type": "char *",
-   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScreenEffect 降级(未证语义名,CLAUDE.md 禁伪语义)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2108": {
    "name": "m_nCost",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access | annotate_todo",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | annotate_todo | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x250c": {
    "name": "m_pTodo_250C",
    "type": "char *",
-   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstB 降级(未证语义名,CLAUDE.md 禁伪语义)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2510": {
    "name": "m_pTodo_2510",
    "type": "char *",
-   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化",
+   "source": "gap_fill:ida_decomp_access | type_fix:int→void*(naming m_p + annotate_todo) | downgraded:2026-10-15 名型冲突(名断言具体类/型char*或void*且全库decomp零解引用)→诚实占位名,待A级this调用证据后语义化 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat) | 原名 m_pScriptInstC 降级(未证语义名,CLAUDE.md 禁伪语义)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1c": {
    "name": "m_fPopA",
@@ -795,98 +843,114 @@
   "0x64": {
    "name": "m_nTodo_060",
    "type": "int",
-   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "reverted_auto_semantic:2x_access|reverted:pseudo_semantic | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x68": {
    "name": "m_nTodo_064",
    "type": "int",
-   "source": "transfer_from_Camera_off_504 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_504 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x6c": {
    "name": "m_nTodo_068",
    "type": "short",
-   "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x70": {
    "name": "m_nTodo_06C",
    "type": "short",
-   "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "A:66_prefix_word_access_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x74": {
    "name": "m_nTodo_070",
    "type": "int",
-   "source": "transfer_from_Camera_off_516 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_516 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x78": {
    "name": "m_nTodo_074",
    "type": "float",
-   "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x7c": {
    "name": "m_nTodo_078",
    "type": "int",
-   "source": "transfer_from_Camera_off_524 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_524 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x80": {
    "name": "m_nTodo_07C",
    "type": "float",
-   "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "A:FPU_disp8_in_class_method | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x84": {
    "name": "m_nExecParam",
    "type": "int",
-   "source": "A:0_fpu_in_14+_refs_all_mov_load_store",
-   "evidence_level": "unverified"
+   "source": "A:0_fpu_in_14+_refs_all_mov_load_store | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x88": {
    "name": "m_vRolePos",
    "type": "int",
-   "source": "transfer_from_Camera_off_536",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_536 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x8c": {
    "name": "m_fDefaultFOV",
    "type": "float",
-   "source": "transfer_from_Camera_off_540",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_540 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x120": {
    "name": "m_nTodo_11C",
    "type": "int",
-   "source": "transfer_from_Camera_off_688 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_688 | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x3bc": {
    "name": "m_nState",
    "type": "int",
-   "source": "transfer_from_Camera_off_1356",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_1356 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x420": {
    "name": "m_bDirty",
    "type": "int",
-   "source": "transfer_from_Camera_off_1456",
-   "evidence_level": "unverified"
+   "source": "transfer_from_Camera_off_1456 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x98": {
    "name": "m_nScriptIdx",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x9c": {
    "name": "m_pCurScriptBlock",
    "type": "void *",
-   "source": "binary_scan:8refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:8refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb4": {
    "name": "m_RoleAnimData",
@@ -897,92 +961,107 @@
   "0xbc": {
    "name": "m_bRunning",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc0": {
    "name": "m_bBlockActive",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc4": {
    "name": "m_bBlockFlag",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x16c": {
    "name": "m_nField_0168",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x170": {
    "name": "m_RolePos",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x17c": {
    "name": "m_RoleDir",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x188": {
    "name": "m_nRoleState",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x18c": {
    "name": "m_RoleSubData",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x194": {
    "name": "m_nRoleParam1",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x198": {
    "name": "m_nRoleParam2",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x19c": {
    "name": "m_nRoleParam3",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1a0": {
    "name": "m_pRoleScript",
    "type": "void *",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1a8": {
    "name": "m_nField_01A4",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1c4": {
    "name": "m_pOpResult",
    "type": "void *",
-   "source": "binary_scan:4refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:4refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1d8": {
    "name": "m_bTileType",
    "type": "unsigned char",
-   "source": "binary:ida_refs",
-   "evidence_level": "unverified"
+   "source": "binary:ida_refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1f4": {
    "name": "m_fSpeed2",
@@ -993,170 +1072,198 @@
   "0x278": {
    "name": "m_pCaseTable",
    "type": "void *",
-   "source": "binary_scan:8refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:8refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x27c": {
    "name": "m_nTodo_278",
    "type": "int",
-   "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x47c": {
    "name": "m_nFrameState",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x4f8": {
    "name": "m_nOpType",
    "type": "int",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x508": {
    "name": "m_nCmdData",
    "type": "int",
-   "source": "binary_scan:4refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:4refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x514": {
    "name": "m_fFramePosX",
    "type": "int",
-   "source": "binary_scan:3refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x518": {
    "name": "m_fFramePosY",
    "type": "int",
-   "source": "binary_scan:4refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:4refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x51c": {
    "name": "m_fFramePosZ",
    "type": "int",
-   "source": "binary_scan:3refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x520": {
    "name": "m_fFrameScale",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x524": {
    "name": "m_fFrameRot",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x528": {
    "name": "m_nFrameParam",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5cc": {
    "name": "m_OpSubObj",
    "type": "int",
-   "source": "binary_scan:3refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5d0": {
    "name": "m_OpParam",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5d4": {
    "name": "m_OpData",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5e0": {
    "name": "m_OpBuffer",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x7d4": {
    "name": "m_nField_07D0",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x970": {
    "name": "m_nField_096C",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb40": {
    "name": "m_nField_0B3C",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb78": {
    "name": "m_nField_0B74",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc08": {
    "name": "m_nField_0C04",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc68": {
    "name": "m_nField_0C64",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc74": {
    "name": "m_nField_0C70",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xced": {
    "name": "m_nTodo_CE9",
    "type": "unsigned char",
-   "source": "binary_scan:3refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | [成员用法语义 2026-10-17 analyzer·PalScriptMgr+ScriptSystemData 分片] 挂账：无用法/跨类同名碰撞噪声/仅参数拷贝——五面不闭合不赋名 | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xe74": {
    "name": "m_nField_0E70",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xfc0": {
    "name": "m_RoleCmdCtx",
    "type": "int",
-   "source": "binary_scan:11refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:11refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x11cc": {
    "name": "m_nTileFlags",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x11d0": {
    "name": "m_fTileHeight",
    "type": "float",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x13b0": {
    "name": "m_nField_13AC",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x146c": {
    "name": "m_nField_1468",
@@ -1167,68 +1274,79 @@
   "0x1494": {
    "name": "m_nField_1490",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1568": {
    "name": "m_nField_1564",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1600": {
    "name": "m_nField_15FC",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x162c": {
    "name": "m_nField_1628",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1b14": {
    "name": "m_nField_1B10",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1b64": {
    "name": "m_nField_1B60",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1c10": {
    "name": "m_nField_1C0C",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1d98": {
    "name": "m_nField_1D94",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x21f8": {
    "name": "m_fFrameTime",
    "type": "float",
-   "source": "binary_scan:7refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:7refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x21fc": {
    "name": "m_fFrameDelta",
    "type": "float",
-   "source": "binary_scan:5refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:5refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2200": {
    "name": "m_fFrameTotal",
    "type": "float",
-   "source": "binary_scan:7refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:7refs | 零访问分型20261120: PalScriptMgr 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   }
  },
  "methods": {
