@@ -23,5 +23,6 @@
  "globals[0x00DBB364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBB364] if intentional",
  "CANON:C11:UIGameFrm bases变更无裁决条目: 快照['UIWnd', 'PalScriptWaitObj'] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)",
  "structs[MainPropUI]: member overlap: m_szListBuf(char[256], size=256)@104 ends@360 > next buf@108",
- "CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size 256) 重叠(非union) — 布局冲突"
+ "CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size 256) 重叠(非union) — 布局冲突",
+ "DATA:N13a:UIEmote::m_needscriptdel 字段契约断(语料->引用5次, 类链known_members无名) → C2227族预测"
 ]

@@ -110,5 +110,17 @@
   ],
   "evidence": "dtor 0x44f050 call UIWnd dtor(0x445b40) + 表0x56B094 slot0 指纹; 幻影壳原 bases PalScriptWaitObj@68 无证据弃置(类改名裁定 8a222b5ab)",
   "at": "2026-11-20"
+ },
+ "UIEmote": {
+  "prev_bases": [
+   "UIWnd",
+   "PalScriptWaitObj"
+  ],
+  "bases": [
+   "UIWnd",
+   "GameObject@0x44"
+  ],
+  "evidence": "ctor 0x44e530 写 [esi+0x44]=0x56A9C0(GameObject 表, X族定谳)直证; 原 PalScriptWaitObj@68 无证据",
+  "at": "2026-11-20"
  }
 }

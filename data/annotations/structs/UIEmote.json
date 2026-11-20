@@ -14,12 +14,6 @@
    "source": "annotation",
    "evidence_level": "unverified"
   },
-  "0x44": {
-   "name": "baseclass2",
-   "type": "PalScriptWaitObj",
-   "source": "PAL3patch:multi_inheritance_as_embed",
-   "evidence_level": "unverified"
-  },
   "0x8a4": {
    "name": "m_role",
    "type": "Role *",
@@ -37,6 +31,11 @@
    "type": "int[13]",
    "source": "PAL3patch_verified(13_not_14)",
    "evidence_level": "unverified"
+  },
+  "0x48": {
+   "name": "m_sub48",
+   "type": "int",
+   "source": "ctor 写 0(清零) 20261120"
   }
  },
  "vtables": [
@@ -201,6 +200,24 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x0044e660": {
+   "name": "InitItems",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitItems): int(int,int); 原注解无",
+   "source": " | this普查20261120: this=edi 0x8E0-stride×6循环(0x44f2a5)——真归属=0x38D0数组元素类 MI(UIWnd@0, GameObject@0x44)[ctor 0x44e530 写0x56A9C0直证], 元素类未建档暂留守 | 迁回UIEmote 20261120: 0x44e530 ctor 写 GameObject 表直证(元素类=UIEmote, UIGameFrmElement 建档系重复已删)"
   }
  },
  "base_size": 76,
@@ -210,9 +227,10 @@
    "offset": 0
   },
   {
-   "name": "PalScriptWaitObj",
+   "name": "GameObject",
    "offset": 68
   }
  ],
- "bases_source": "A+C 两路线一致（纯二进制）：路线A=注解 ctor UIEmote 的 vfptr 安装序列；路线C=本类被注解函数里的非零位移安装。工具 tools/mi_base_offsets.py 可复现。"
+ "bases_source": "A+C 两路线一致（纯二进制）：路线A=注解 ctor UIEmote 的 vfptr 安装序列；路线C=本类被注解函数里的非零位移安装。工具 tools/mi_base_offsets.py 可复现。",
+ "bases_evidence": "修正20261120: 原 PalScriptWaitObj@68 无证据——ctor 0x44e530 写 [esi+0x44]=0x56A9C0(GameObject表, X族定谳)直证 GameObject@0x44"
 }
