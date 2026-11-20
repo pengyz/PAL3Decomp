@@ -191,5 +191,47 @@
   "members": "34 成员全语义命名(Barrier/Entry/Scene 指针+CameraCtrl+NPC/BOSS 池+计数族)",
   "audit口径": "0% 覆盖=数组语义被吞(同 CPKTable/roles 段模式)",
   "verdict_final": "非缺口, 从榜移除"
+ },
+ "x_family_topology_pending": {
+  "_doc": "Role 五表拓扑专项挂账 2026-11-20",
+  "trigger": "V1 门禁: Role 5 表但多态基数=2(MSVC 每多态子对象恰 1 表)",
+  "五表清单": "0x56A9CC(5槽)/0x56A9C0(4槽)/0x56A9BC(5槽)/0x56A9B0(6槽)/0x56A9A4(6槽)",
+  "dump数据": {
+   "0x56A9CC": [
+    "0x411B80",
+    "..."
+   ],
+   "0x56A9C0": [
+    "0x411BB0",
+    "0x55434F",
+    "0x4AF760",
+    "0x411B80"
+   ],
+   "0x56A9BC": [
+    "0x411BD0",
+    "0x411BB0",
+    "0x4AF760",
+    "0x411B80"
+   ],
+   "0x56A9B0": [
+    "0x41BE20",
+    "0x416500",
+    "0x4AF760",
+    "0x411BD0",
+    "0x411BB0",
+    "0x55434F"
+   ],
+   "0x56A9A4": [
+    "0x41B640",
+    "0x41B6A0",
+    "0x41BE30",
+    "0x41BE20",
+    "0x416500",
+    "0x4AF760"
+   ]
+  },
+  "Role_bases": "[Object@0, PalScriptWaitObj@0x38, GlowObj@0x40] —— 3 基但 5 表",
+  "根因分析方向": "中间基类层级(GameObject 在 Object 和 Role 之间?) + 多级 MI 表链",
+  "处置": "PSWO/Glow 基表登记战术后退(V1 正确拦截——拓扑未闭合不硬登记), 表拓扑专项挂账"
  }
 }
