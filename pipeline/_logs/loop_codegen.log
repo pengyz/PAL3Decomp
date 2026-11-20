@@ -8,11 +8,11 @@ Generated 762 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   With methods: 237
   Enums: 0
   Template stubs: 0
-  Phantom globals skipped: 31 (stru_570500, arr, dword_C04398, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34)
-    ... and 21 more
+  Phantom globals skipped: 30 (stru_570500, arr, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34, dword_D8BC38)
+    ... and 20 more
   Annotation-skipped globals: 75
-  declared_globals refreshed post-emit: 2872
-  Globals: 2997 in globals.h
+  declared_globals refreshed post-emit: 2875
+  Globals: 3000 in globals.h
 
 [WARN] Header generation found 5 annotation conflicts (deduplicated):
   DUPLICATE METHOD: CCBCamControl::~CCBCamControl() (addr=0x005081e0)
@@ -20,8 +20,8 @@ Generated 762 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   DUPLICATE METHOD: ObjectCamera::~ObjectCamera() (addr=0x0047c580)
   DUPLICATE METHOD: UICaption::~UICaption() (addr=0x00450370)
   DUPLICATE METHOD: UICursor::~UICursor() (addr=0x00541ffb)
-  Globals: 2908 in globals.cpp
-  Globals: 2908 in globals.cpp
+  Globals: 2911 in globals.cpp
+  Globals: 2911 in globals.cpp
   Scalar typedefs: 87(全集去重) in scalar_typedefs.h
 Collecting functions from decomp...
   Classes with methods: 220
@@ -43,411 +43,435 @@ Generated 221 .cpp files (3625 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 104/222 ok | own-fail 118 | imported-only 0  (17s)
+S2 cpp: 121/222 ok | own-fail 101 | imported-only 0  (26s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261119_111537
-基线时间: 2026-11-19T11:15:37.925278
-检测时间: 2026-11-20T19:24:59.074415
+基线: 20261120_193158
+基线时间: 2026-11-20T19:31:58.399168
+检测时间: 2026-11-20T22:25:22.245394
 
 📊 摘要:
-  总文件数: 1009
-  新失败: 8
-  新错误(真新增 (code,msg)): 18
-  已修复: 2
-  错误收敛(消失 (code,msg)): 26
-  持续失败: 139
+  总文件数: 1007
+  新失败: 1
+  新错误(真新增 (code,msg)): 14
+  已修复: 18
+  错误收敛(消失 (code,msg)): 59
+  持续失败: 122
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2143    -25
-  C2039    -25
-  C2631    -11
-  C2511    -8
-  C2860    +6  ⚠️ 增加
-  C2664    -5
-  C2447    -5
-  C2661    +4  ⚠️ 增加
-  C2065    +4  ⚠️ 增加
-  C2084    +2  ⚠️ 增加
-  C2660    +2  ⚠️ 增加
-  C2653    +2  ⚠️ 增加
-  C2555    +2  ⚠️ 增加
-  C2556    -1
-  C2373    -1
-  ⚠️ 注意: 以下错误码**净增** C1004, C2027, C2059, C2065, C2084, C2146, C2227, C2451, C2555, C2653, C2660, C2661, C2860 —— 即使总错误数在下降也要逐条归因
+  C2511    -54
+  C2664    -28
+  C2373    -19
+  C2556    -18
+  C2660    -10
+  C2440    +5  ⚠️ 增加
+  C2039    +4  ⚠️ 增加
+  C2102    +4  ⚠️ 增加
+  C2446    -3
+  C2230    -3
+  C2059    +3  ⚠️ 增加
+  C2227    -2
+  C2653    -2
+  C2143    +2  ⚠️ 增加
+  C2352    -1
+  ⚠️ 注意: 以下错误码**净增** C2039, C2059, C2065, C2102, C2113, C2143, C2228, C2371, C2440 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Misc/UIGameFrm.cpp
-    L123: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L436: C2440 - '=' : cannot convert from 'class UIScenePanel *' to 'class C
-    L439: C2039 - 'UIScenePanel' : is not a member of 'CCBUI'
-    ... 还有 7 个错误
-  s1:pal3/src/Scene/Scene.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Role/RoleSystem.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/globals.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Role/Role.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Role/Actor.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Scene/SceneMgr.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Misc/RoleStatePanel.h
-    L0: C2555 - 'RoleStatePanel::Render' : overriding virtual function diffe
-    L0: C2555 - 'RoleStatePanel::HideAll' : overriding virtual function diff
+  pal3/src/Combat/CCBAI.cpp
+    L1299: C2143 - syntax error : missing ')' before '<tag>::*'
+    L1299: C2059 - syntax error : ')'
+    L1308: C2143 - syntax error : missing ')' before '<tag>::*'
+    ... 还有 1 个错误
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 13 -> 10  真新增 4 {'C2084': 1, 'C2660': 3}
-    新增 L802: C2084 - function '__thiscall UITitle_JDHY::~UITitle_JDHY(void)' already has a 
-    新增 L1148: C2660 - 'SetTexture' : function does not take 1 parameters
-    新增 L1264: C2660 - 'SetTexture' : function does not take 1 parameters
-    新增 L1357: C2660 - 'SetTexture' : function does not take 1 parameters
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 4 -> 3  真新增 2 {'C2440': 1, 'C2661': 1}
-    新增 L149: C2440 - '=' : cannot convert from 'unsigned long [23]' to 'long *'
-    新增 L195: C2661 - 'UIEmote::UIEmote' : no overloaded function takes 2 parameters
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 6 -> 10  真新增 2 {'C2440': 1, 'C2227': 1}
-    新增 L1068: C2440 - 'type cast' : cannot convert from 'double' to 'class TaskBookUI *'
-    新增 L1068: C2227 - left of '->_todo_456200' must point to class/struct/union
   pal3/src/Script/PalScript.cpp
-    错误数: 39 -> 41  真新增 4 {'C2065': 1, 'C2440': 3}
-    新增 L2911: C2065 - 'CON_State' : undeclared identifier
-    新增 L3623: C2440 - '=' : cannot convert from 'unsigned __int8 *' to 'int'
-    新增 L3899: C2440 - '=' : cannot convert from 'class PalScriptMgr *' to 'int'
-    新增 L3914: C2440 - '=' : cannot convert from 'class PalScriptMgr *' to 'int'
-  pal3/src/Combat/CCBStageScene.cpp
-    错误数: 4 -> 5  真新增 1 {'C2660': 1}
-    新增 L92: C2660 - 'GetOBBox' : function does not take 0 parameters
-  pal3/src/Misc/UICaption.cpp
-    错误数: 1 -> 4  真新增 1 {'C2065': 1}
-    新增 L281: C2065 - 'UIWnd_1' : undeclared identifier
-  pal3/src/globals.cpp
-    错误数: 1 -> 3  真新增 3 {'C2146': 1, 'C2501': 1, 'C1004': 1}
-    新增 L5: C2146 - syntax error : missing ';' before identifier 'AStarPathFinder'
-    新增 L5: C2501 - 'vtbl_0056a600' : missing storage-class or type specifiers
-    新增 L5: C1004 - unexpected end of file found
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 25 -> 13  真新增 2 {'C2661': 2}
-    新增 L1217: C2661 - 'CCBSystem::CCBSystem' : no overloaded function takes 2 parameters
-    新增 L1231: C2661 - 'CCBSystem::CCBSystem' : no overloaded function takes 2 parameters
-  pal3/src/Misc/TaskBookUI.cpp
-    错误数: 1 -> 2  真新增 1 {'C2660': 1}
-    新增 L229: C2660 - 'SetTexture' : function does not take 1 parameters
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2065': 1}
-    新增 L3357: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 52 -> 53  真新增 1 {'C2065': 1}
-    新增 L619: C2065 - 'Update_54' : undeclared identifier
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 28 -> 29  真新增 3 {'C2660': 3}
-    新增 L11989: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11992: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11998: C2660 - 'CheckActionValid' : function does not take 2 parameters
-  pal3/src/Misc/RoleStatePanel.cpp
-    错误数: 1 -> 1  真新增 1 {'C2511': 1}
-    新增 L573: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
+    错误数: 41 -> 45  真新增 5 {'C2039': 2, 'C2664': 1, 'C2102': 1, 'C2440': 1}
+    新增 L482: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L499: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L644: C2664 - 'CopyFrom' : cannot convert parameter 2 from 'char [5]' to 'unsigned l
+    新增 L650: C2664 - 'CopyFrom' : cannot convert parameter 1 from 'int *' to 'char *'
+    新增 L1471: C2102 - '&' requires l-value
+  pal3/src/GameBase/Config.cpp
+    错误数: 2 -> 4  真新增 2 {'C2039': 2}
+    新增 L212: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L223: C2039 - '_Split' : is not a member of 'GRPinput'
+  pal3/src/Misc/PalScriptBlendTimer.cpp
+    错误数: 2 -> 1  真新增 1 {'C2065': 1}
+    新增 L26: C2065 - 'nearby_411ba0' : undeclared identifier
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 5 -> 5  真新增 1 {'C2440': 1}
+    新增 L1284: C2440 - 'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 29 -> 30  真新增 2 {'C2228': 1, 'C2664': 1}
+    新增 L93: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L183: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
+  pal3/src/Misc/UIGameFrm.cpp
+    错误数: 10 -> 10  真新增 1 {'C2664': 1}
+    新增 L409: C2664 - 'ForwardToPlayerMgr' : cannot convert parameter 1 from 'unsigned __int
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 21 -> 21  真新增 1 {'C2440': 1}
+    新增 L3302: C2440 - 'return' : cannot convert from 'class CScreenMode *const ' to 'unsigne
+  pal3/src/Misc/UIRoleSelectDialog.cpp
+    错误数: 1 -> 4  真新增 4 {'C2059': 1, 'C2440': 2, 'C2065': 1}
+    新增 L188: C2059 - syntax error : ')'
+    新增 L275: C2440 - '=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,st
+    新增 L296: C2065 - 'v10' : undeclared identifier
+    新增 L595: C2440 - '=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,st
   pal3/src/Misc/CScreenModeNode.cpp
-    错误数: 2 -> 1  真新增 1 {'C2511': 1}
-    新增 L328: C2511 - 'GetAABBox' : overloaded member function 'void (struct gbAABBox *)' no
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 1 -> 4  真新增 3 {'C2027': 1, 'C2227': 1, 'C2653': 1}
-    新增 L38: C2027 - use of undefined type 'basic_filebuf<char,struct std::char_traits<char
-    新增 L38: C2227 - left of '->filebuf' must point to class/struct/union
-    新增 L38: C2653 - 'filebuf' : is not a class or namespace name
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 51 -> 49  真新增 1 {'C2065': 1}
-    新增 L7072: C2065 - 'RoleSystem_3' : undeclared identifier
-  pal3/src/Effect/CEffgbParticle.cpp
-    错误数: 18 -> 4  真新增 2 {'C2661': 1, 'C2065': 1}
-    新增 L161: C2661 - 'CEffExplosive::CEffExplosive' : no overloaded function takes 2 parame
-    新增 L706: C2065 - 'CEffgbParticle_1' : undeclared identifier
-  pal3/src/Combat/CCBParabolaWindow.cpp
-    错误数: 8 -> 4  真新增 2 {'C2084': 1, 'C2664': 1}
-    新增 L158: C2084 - function '__thiscall CCBParabolaWindow::~CCBParabolaWindow(void)' alre
-    新增 L182: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
+    错误数: 1 -> 2  真新增 2 {'C2556': 1, 'C2371': 1}
+    新增 L330: C2556 - 'int __thiscall CScreenModeNode::GetAABBox(unsigned int,char)' : overl
+    新增 L330: C2371 - 'GetAABBox' : redefinition; different basic types
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 11 -> 13  真新增 2 {'C2102': 2}
+    新增 L180: C2102 - '&' requires l-value
+    新增 L184: C2102 - '&' requires l-value
+  pal3/src/Misc/UIPushButton.cpp
+    错误数: 8 -> 7  真新增 1 {'C2440': 1}
+    新增 L168: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L291: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L354: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+  pal3/src/GameBase/GRPinput.cpp
+    错误数: 12 -> 13  真新增 1 {'C2102': 1}
+    新增 L567: C2102 - '&' requires l-value
+    新增 L1604: C2102 - '&' requires l-value
+  pal3/src/Misc/SystemUI.cpp
+    错误数: 1 -> 1  真新增 1 {'C2065': 1}
+    新增 L1472: C2065 - 'UIPushButton_SetParam' : undeclared identifier
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 3  真新增 1 {'C2113': 1}
+    新增 L1134: C2113 - pointer can only be subtracted from another pointer
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Render/CScreenMode.cpp: {'C2660': 1}
+  pal3/src/Script/PalScript.cpp: {'C2664': 1}
+  pal3/src/Misc/AStarPathFinder.cpp: {'C2556': 1}
+  pal3/src/Role/RoleSystem.cpp: {'C2440': 1}
+  pal3/src/Combat/CCBStage.cpp: {'C2440': 2}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Misc/UITitle_JDHY.cpp: 13 -> 10  (消失 5)
-  pal3/src/Misc/UIEmote.cpp: 4 -> 3  (消失 3)
-  pal3/src/Effect/CEffGrid.cpp: 11 -> 9  (消失 2)
-  pal3/src/Render/RenderTarget2.cpp: 3 -> 1  (消失 2)
-  pal3/src/Effect/CEffCylinder.cpp: 14 -> 12  (消失 2)
-  pal3/src/Effect/CEffShock.cpp: 12 -> 10  (消失 2)
-  pal3/src/Script/PalScript.cpp: 39 -> 41  (消失 2)
-  pal3/src/Misc/UIProgressBar.cpp: 12 -> 8  (消失 4)
-  pal3/src/Misc/CCBPanelSlot.cpp: 12 -> 8  (消失 4)
-  pal3/src/globals.cpp: 1 -> 3  (消失 1)
-  pal3/src/Render/CScreenMode.cpp: 25 -> 21  (消失 5)
-  pal3/src/Combat/CCBSystem.cpp: 25 -> 13  (消失 11)
-  pal3/src/UI/StateUI.cpp: 9 -> 7  (消失 2)
-  pal3/src/Misc/UITextArea.cpp: 3 -> 1  (消失 2)
-  pal3/src/Effect/CEffExplosive.cpp: 12 -> 8  (消失 4)
+  pal3/src/Combat/CCBControlWindow.cpp: 3 -> 1  (消失 2)
+  pal3/src/Script/PalScript.cpp: 41 -> 45  (消失 2)
+  pal3/src/Role/Object3D.cpp: 20 -> 14  (消失 6)
+  pal3/src/Misc/UIScenePanel.cpp: 10 -> 5  (消失 5)
+  pal3/src/Misc/AStarPathFinder.cpp: 4 -> 4  (消失 1)
+  pal3/src/Combat/CCBProtectWindow.cpp: 2 -> 1  (消失 1)
+  pal3/src/Render/RenderTarget.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/UIAnimateCtrlEX.cpp: 3 -> 2  (消失 1)
+  pal3/src/Misc/UISceneFrm.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 -> 1  (消失 2)
+  pal3/src/Combat/CCBSkillWindow.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/UIProgressBar.cpp: 8 -> 7  (消失 1)
+  pal3/src/Combat/CCBStageScene.cpp: 5 -> 4  (消失 1)
+  pal3/src/Combat/CCBStageCam.cpp: 5 -> 5  (消失 1)
+  pal3/src/Misc/UITitle_ArcSave.cpp: 2 -> 1  (消失 1)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Render/TextureLib.cpp
-  pal3/src/UI/UIRenderObj.cpp
+  pal3/src/UI/UIWnd.cpp
+  pal3/src/Misc/UISceneMap.cpp
+  pal3/src/Misc/RoleStatePanel.cpp
+  pal3/src/Misc/CEffObj.cpp
+  pal3/src/Misc/UIMap.cpp
+  pal3/src/Misc/TaskBookUI.cpp
+  pal3/src/Combat/CCBResultWindow.cpp
+  pal3/src/Misc/CEffBink.cpp
+  pal3/src/Misc/CEffAction.cpp
+  pal3/src/Misc/RoleCameraCtrl.cpp
+  pal3/src/Misc/CEffCallBack.cpp
+  pal3/src/Misc/UITextArea.cpp
+  pal3/src/Misc/JusticeBookUI.cpp
+  pal3/src/Misc/UITitle.cpp
+  pal3/src/Misc/CCBUIPanel.cpp
+  pal3/src/Effect/CEffQuake.cpp
+  pal3/src/Misc/UILoadingFrm.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/UITitle_JDHY.cpp: 13 ↓ 10
-  pal3/src/Misc/UIEmote.cpp: 4 ↓ 3
-  pal3/src/Effect/CEffGrid.cpp: 11 ↓ 9
-  pal3/src/Render/RenderTarget2.cpp: 3 ↓ 1
-  pal3/src/Misc/UIScenePanel.cpp: 6 → 10
-  pal3/src/Effect/CEffCylinder.cpp: 14 ↓ 12
-  pal3/src/Effect/CEffShock.cpp: 12 ↓ 10
-  pal3/src/Script/PalScript.cpp: 39 → 41
-  pal3/src/Combat/CCBUI.cpp: 38 ↓ 23
-  pal3/src/Combat/CCBStageScene.cpp: 4 → 5
-  pal3/src/Misc/UICaption.cpp: 1 → 4
-  pal3/src/Misc/UIProgressBar.cpp: 12 ↓ 8
-  pal3/src/Misc/CCBPanelSlot.cpp: 12 ↓ 8
-  pal3/src/globals.cpp: 1 → 3
-  pal3/src/Render/CScreenMode.cpp: 25 ↓ 21
-  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
-  pal3/src/Combat/CCBSystem.cpp: 25 ↓ 13
-  pal3/src/Misc/TaskBookUI.cpp: 1 → 2
-  pal3/src/UI/StateUI.cpp: 9 ↓ 7
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/GameBase/PAL3.cpp: 52 → 53
-  pal3/src/Misc/UITextArea.cpp: 3 ↓ 1
-  pal3/src/Effect/CEffExplosive.cpp: 12 ↓ 8
-  pal3/src/Combat/CCBStage.cpp: 28 → 29
-  pal3/src/Misc/CScreenModeNode.cpp: 2 ↓ 1
-  pal3/src/Effect/CEffModel.cpp: 11 ↓ 8
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 1 → 4
-  pal3/src/free_functions.cpp: 84 → 102
-  pal3/src/Effect/ScreenEffectMgr.cpp: 5 ↓ 3
-  pal3/src/Misc/UIBigMap.cpp: 37 ↓ 35
-  pal3/src/Role/RoleSystem.cpp: 51 ↓ 49
-  pal3/src/Effect/CEffgbParticle.cpp: 18 ↓ 4
-  pal3/src/Misc/UIMap.cpp: 3 ↓ 1
-  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 ↓ 1
-  pal3/src/Misc/CEffAction.cpp: 4 ↓ 2
-  pal3/src/Combat/CCBParabolaWindow.cpp: 8 ↓ 4
+  pal3/src/Combat/CCBControlWindow.cpp: 3 ↓ 1
+  pal3/src/Script/PalScript.cpp: 41 → 45
+  pal3/src/Role/Object3D.cpp: 20 ↓ 14
+  pal3/src/Misc/UIScenePanel.cpp: 10 ↓ 5
+  pal3/src/GameBase/Config.cpp: 2 → 4
+  pal3/src/Combat/CCBProtectWindow.cpp: 2 ↓ 1
+  pal3/src/Render/RenderTarget.cpp: 2 ↓ 1
+  pal3/src/Misc/UIAnimateCtrlEX.cpp: 3 ↓ 2
+  pal3/src/Misc/UISceneFrm.cpp: 2 ↓ 1
+  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBSkillWindow.cpp: 2 ↓ 1
+  pal3/src/Misc/UIProgressBar.cpp: 8 ↓ 7
+  pal3/src/Combat/CCBStageScene.cpp: 5 ↓ 4
+  pal3/src/Misc/UITitle_ArcSave.cpp: 2 ↓ 1
+  pal3/src/Misc/CCBFiveNimbusWindow.cpp: 2 ↓ 1
+  pal3/src/Misc/UITitle_BBTY.cpp: 2 ↓ 1
+  pal3/src/Misc/UIButton.cpp: 3 ↓ 1
+  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
+  pal3/src/Misc/SaleUI.cpp: 29 → 30
+  pal3/src/Effect/CEffMeteor.cpp: 5 ↓ 1
+  pal3/src/Misc/LineupUI.cpp: 16 ↓ 14
+  pal3/src/Effect/CEffGrid.cpp: 9 ↓ 5
+  pal3/src/Combat/CCBUI.cpp: 23 ↓ 16
+  pal3/src/Effect/CEffgbParticle.cpp: 4 ↓ 2
+  pal3/src/Role/RoleSystem.cpp: 49 ↓ 48
+  pal3/src/Misc/UIFrameContainer.cpp: 2 ↓ 1
+  pal3/src/Effect/CEffCylinder.cpp: 12 ↓ 8
+  pal3/src/Misc/UIRoleSelectDialog.cpp: 1 → 4
+  pal3/src/Effect/CEffShock.cpp: 10 ↓ 5
+  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
+  pal3/src/UI/EquipUI.cpp: 3 ↓ 2
+  pal3/src/Combat/CCBLineupWindow.cpp: 2 ↓ 1
+  pal3/src/Misc/UICaption.cpp: 4 ↓ 1
+  pal3/src/UI/UIListBox.cpp: 4 ↓ 2
+  pal3/src/Combat/CCBParabolaWindow.cpp: 4 ↓ 3
+  pal3/src/Misc/CScreenModeNode.cpp: 1 → 2
+  pal3/src/UI/StateUI.cpp: 7 ↓ 6
+  pal3/src/Script/ScriptSystem.cpp: 11 → 13
+  pal3/src/Combat/CUtil.cpp: 2 ↓ 1
+  pal3/src/Misc/CCBPanelSlot.cpp: 8 ↓ 1
+  pal3/src/Combat/CCBStage.cpp: 29 ↓ 27
+  pal3/src/UI/PropUI.cpp: 5 ↓ 4
+  pal3/src/Combat/CCBItemWindow.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBRoleState.cpp: 14 ↓ 10
+  pal3/src/Misc/UIPushButton.cpp: 8 ↓ 7
+  pal3/src/Misc/UITitle_YXXX.cpp: 2 ↓ 1
+  pal3/src/GameBase/GRPinput.cpp: 12 → 13
+  pal3/src/Effect/CEffModel.cpp: 8 ↓ 6
+  pal3/src/Misc/UITitle_JDHY.cpp: 10 ↓ 6
+  pal3/src/Misc/UIFrameWnd.cpp: 3 ↓ 1
+  pal3/src/Effect/CEffSParticle.cpp: 29 ↓ 27
+  pal3/src/Misc/UICoverFrm.cpp: 82 ↓ 81
+  pal3/src/Effect/CEffQuad.cpp: 5 ↓ 3
+  pal3/src/Misc/MainPropUI.cpp: 3 ↓ 2
+  pal3/src/GameBase/PAL3.cpp: 53 ↓ 47
+  pal3/src/Effect/CEffExplosive.cpp: 8 ↓ 4
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
-[vanished] 1 个失败单元从 census 蒸发(回归门视同回归):
-  pal3/src/Data/CGameData.cpp
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261119_111537
-基线时间: 2026-11-19T11:15:37.925278
-检测时间: 2026-11-20T19:24:59.109296
+基线: 20261120_193158
+基线时间: 2026-11-20T19:31:58.399168
+检测时间: 2026-11-20T22:25:22.279211
 
 📊 摘要:
-  总文件数: 1009
-  新失败: 8
-  新错误(真新增 (code,msg)): 18
-  已修复: 2
-  错误收敛(消失 (code,msg)): 26
-  持续失败: 139
+  总文件数: 1007
+  新失败: 1
+  新错误(真新增 (code,msg)): 14
+  已修复: 18
+  错误收敛(消失 (code,msg)): 59
+  持续失败: 122
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2143    -25
-  C2039    -25
-  C2631    -11
-  C2511    -8
-  C2860    +6  ⚠️ 增加
-  C2664    -5
-  C2447    -5
-  C2065    +4  ⚠️ 增加
-  C2661    +4  ⚠️ 增加
-  C2653    +2  ⚠️ 增加
-  C2660    +2  ⚠️ 增加
-  C2084    +2  ⚠️ 增加
-  C2555    +2  ⚠️ 增加
-  C2556    -1
-  C2373    -1
-  ⚠️ 注意: 以下错误码**净增** C1004, C2027, C2059, C2065, C2084, C2146, C2227, C2451, C2555, C2653, C2660, C2661, C2860 —— 即使总错误数在下降也要逐条归因
+  C2511    -54
+  C2664    -28
+  C2373    -19
+  C2556    -18
+  C2660    -10
+  C2440    +5  ⚠️ 增加
+  C2039    +4  ⚠️ 增加
+  C2102    +4  ⚠️ 增加
+  C2446    -3
+  C2230    -3
+  C2059    +3  ⚠️ 增加
+  C2227    -2
+  C2653    -2
+  C2143    +2  ⚠️ 增加
+  C2352    -1
+  ⚠️ 注意: 以下错误码**净增** C2039, C2059, C2065, C2102, C2113, C2143, C2228, C2371, C2440 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  s1:pal3/src/Scene/Scene.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Role/Actor.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Role/Role.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Scene/SceneMgr.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  pal3/src/Misc/UIGameFrm.cpp
-    L123: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,in
-    L436: C2440 - '=' : cannot convert from 'class UIScenePanel *' to 'class C
-    L439: C2039 - 'UIScenePanel' : is not a member of 'CCBUI'
-    ... 还有 7 个错误
-  s1:pal3/src/Role/RoleSystem.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
-  s1:pal3/src/Misc/RoleStatePanel.h
-    L0: C2555 - 'RoleStatePanel::Render' : overriding virtual function diffe
-    L0: C2555 - 'RoleStatePanel::HideAll' : overriding virtual function diff
-  s1:pal3/src/globals.h
-    L0: C2860 - 'void' cannot be an argument type, except for '(void)'
+  pal3/src/Combat/CCBAI.cpp
+    L1299: C2143 - syntax error : missing ')' before '<tag>::*'
+    L1299: C2059 - syntax error : ')'
+    L1308: C2143 - syntax error : missing ')' before '<tag>::*'
+    ... 还有 1 个错误
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 25 -> 13  真新增 2 {'C2661': 2}
-    新增 L1217: C2661 - 'CCBSystem::CCBSystem' : no overloaded function takes 2 parameters
-    新增 L1231: C2661 - 'CCBSystem::CCBSystem' : no overloaded function takes 2 parameters
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 28 -> 29  真新增 3 {'C2660': 3}
-    新增 L11989: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11992: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11998: C2660 - 'CheckActionValid' : function does not take 2 parameters
-  pal3/src/Misc/RoleStatePanel.cpp
-    错误数: 1 -> 1  真新增 1 {'C2511': 1}
-    新增 L573: C2511 - 'Update' : overloaded member function 'int (class CCBUI *,int)' not fo
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 1 -> 4  真新增 3 {'C2027': 1, 'C2227': 1, 'C2653': 1}
-    新增 L38: C2027 - use of undefined type 'basic_filebuf<char,struct std::char_traits<char
-    新增 L38: C2227 - left of '->filebuf' must point to class/struct/union
-    新增 L38: C2653 - 'filebuf' : is not a class or namespace name
-  pal3/src/Combat/CCBParabolaWindow.cpp
-    错误数: 8 -> 4  真新增 2 {'C2084': 1, 'C2664': 1}
-    新增 L158: C2084 - function '__thiscall CCBParabolaWindow::~CCBParabolaWindow(void)' alre
-    新增 L182: C2664 - 'Destroy' : cannot convert parameter 1 from 'int' to 'class CCBFiveNim
-  pal3/src/Misc/CScreenModeNode.cpp
-    错误数: 2 -> 1  真新增 1 {'C2511': 1}
-    新增 L328: C2511 - 'GetAABBox' : overloaded member function 'void (struct gbAABBox *)' no
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 6 -> 10  真新增 2 {'C2440': 1, 'C2227': 1}
-    新增 L1068: C2440 - 'type cast' : cannot convert from 'double' to 'class TaskBookUI *'
-    新增 L1068: C2227 - left of '->_todo_456200' must point to class/struct/union
-  pal3/src/Combat/CCBStageScene.cpp
-    错误数: 4 -> 5  真新增 1 {'C2660': 1}
-    新增 L92: C2660 - 'GetOBBox' : function does not take 0 parameters
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 52 -> 53  真新增 1 {'C2065': 1}
-    新增 L619: C2065 - 'Update_54' : undeclared identifier
-  pal3/src/Effect/CEffgbParticle.cpp
-    错误数: 18 -> 4  真新增 2 {'C2661': 1, 'C2065': 1}
-    新增 L161: C2661 - 'CEffExplosive::CEffExplosive' : no overloaded function takes 2 parame
-    新增 L706: C2065 - 'CEffgbParticle_1' : undeclared identifier
-  pal3/src/Misc/UICaption.cpp
-    错误数: 1 -> 4  真新增 1 {'C2065': 1}
-    新增 L281: C2065 - 'UIWnd_1' : undeclared identifier
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 4 -> 3  真新增 2 {'C2440': 1, 'C2661': 1}
-    新增 L149: C2440 - '=' : cannot convert from 'unsigned long [23]' to 'long *'
-    新增 L195: C2661 - 'UIEmote::UIEmote' : no overloaded function takes 2 parameters
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 51 -> 49  真新增 1 {'C2065': 1}
-    新增 L7072: C2065 - 'RoleSystem_3' : undeclared identifier
-  pal3/src/Misc/TaskBookUI.cpp
-    错误数: 1 -> 2  真新增 1 {'C2660': 1}
-    新增 L229: C2660 - 'SetTexture' : function does not take 1 parameters
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 13 -> 10  真新增 4 {'C2084': 1, 'C2660': 3}
-    新增 L802: C2084 - function '__thiscall UITitle_JDHY::~UITitle_JDHY(void)' already has a 
-    新增 L1148: C2660 - 'SetTexture' : function does not take 1 parameters
-    新增 L1264: C2660 - 'SetTexture' : function does not take 1 parameters
-    新增 L1357: C2660 - 'SetTexture' : function does not take 1 parameters
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2065': 1}
-    新增 L3357: C2065 - 'CON_State' : undeclared identifier
+  pal3/src/Misc/SystemUI.cpp
+    错误数: 1 -> 1  真新增 1 {'C2065': 1}
+    新增 L1472: C2065 - 'UIPushButton_SetParam' : undeclared identifier
   pal3/src/Script/PalScript.cpp
-    错误数: 39 -> 41  真新增 4 {'C2065': 1, 'C2440': 3}
-    新增 L2911: C2065 - 'CON_State' : undeclared identifier
-    新增 L3623: C2440 - '=' : cannot convert from 'unsigned __int8 *' to 'int'
-    新增 L3899: C2440 - '=' : cannot convert from 'class PalScriptMgr *' to 'int'
-    新增 L3914: C2440 - '=' : cannot convert from 'class PalScriptMgr *' to 'int'
-  pal3/src/globals.cpp
-    错误数: 1 -> 3  真新增 3 {'C2146': 1, 'C2501': 1, 'C1004': 1}
-    新增 L5: C2146 - syntax error : missing ';' before identifier 'AStarPathFinder'
-    新增 L5: C2501 - 'vtbl_0056a600' : missing storage-class or type specifiers
-    新增 L5: C1004 - unexpected end of file found
+    错误数: 41 -> 45  真新增 5 {'C2039': 2, 'C2664': 1, 'C2102': 1, 'C2440': 1}
+    新增 L482: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L499: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L644: C2664 - 'CopyFrom' : cannot convert parameter 2 from 'char [5]' to 'unsigned l
+    新增 L650: C2664 - 'CopyFrom' : cannot convert parameter 1 from 'int *' to 'char *'
+    新增 L1471: C2102 - '&' requires l-value
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 21 -> 21  真新增 1 {'C2440': 1}
+    新增 L3302: C2440 - 'return' : cannot convert from 'class CScreenMode *const ' to 'unsigne
+  pal3/src/GameBase/GRPinput.cpp
+    错误数: 12 -> 13  真新增 1 {'C2102': 1}
+    新增 L567: C2102 - '&' requires l-value
+    新增 L1604: C2102 - '&' requires l-value
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 29 -> 30  真新增 2 {'C2228': 1, 'C2664': 1}
+    新增 L93: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L183: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L184: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L185: C2228 - left of '._tail_000' must have class/struct/union type
+    新增 L186: C2228 - left of '._tail_000' must have class/struct/union type
+  pal3/src/Misc/UIRoleSelectDialog.cpp
+    错误数: 1 -> 4  真新增 4 {'C2059': 1, 'C2440': 2, 'C2065': 1}
+    新增 L188: C2059 - syntax error : ')'
+    新增 L275: C2440 - '=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,st
+    新增 L296: C2065 - 'v10' : undeclared identifier
+    新增 L595: C2440 - '=' : cannot convert from 'int (__stdcall *)(const struct tagRECT *,st
+  pal3/src/Misc/PalScriptBlendTimer.cpp
+    错误数: 2 -> 1  真新增 1 {'C2065': 1}
+    新增 L26: C2065 - 'nearby_411ba0' : undeclared identifier
+  pal3/src/Misc/UIPushButton.cpp
+    错误数: 8 -> 7  真新增 1 {'C2440': 1}
+    新增 L168: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L215: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L253: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L291: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+    新增 L354: C2440 - '=' : cannot convert from 'unsigned long *' to 'unsigned long'
+  pal3/src/Misc/UIGameFrm.cpp
+    错误数: 10 -> 10  真新增 1 {'C2664': 1}
+    新增 L409: C2664 - 'ForwardToPlayerMgr' : cannot convert parameter 1 from 'unsigned __int
+  pal3/src/GameBase/Config.cpp
+    错误数: 2 -> 4  真新增 2 {'C2039': 2}
+    新增 L212: C2039 - '_Split' : is not a member of 'GRPinput'
+    新增 L223: C2039 - '_Split' : is not a member of 'GRPinput'
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 5 -> 5  真新增 1 {'C2440': 1}
+    新增 L1284: C2440 - 'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND
+  pal3/src/Misc/CScreenModeNode.cpp
+    错误数: 1 -> 2  真新增 2 {'C2556': 1, 'C2371': 1}
+    新增 L330: C2556 - 'int __thiscall CScreenModeNode::GetAABBox(unsigned int,char)' : overl
+    新增 L330: C2371 - 'GetAABBox' : redefinition; different basic types
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 11 -> 13  真新增 2 {'C2102': 2}
+    新增 L180: C2102 - '&' requires l-value
+    新增 L184: C2102 - '&' requires l-value
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 3  真新增 1 {'C2113': 1}
+    新增 L1134: C2113 - pointer can only be subtracted from another pointer
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Render/CScreenMode.cpp: {'C2660': 1}
+  pal3/src/Script/PalScript.cpp: {'C2664': 1}
+  pal3/src/Combat/CCBStage.cpp: {'C2440': 2}
+  pal3/src/Role/RoleSystem.cpp: {'C2440': 1}
+  pal3/src/Misc/AStarPathFinder.cpp: {'C2556': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Combat/CCBSystem.cpp: 25 -> 13  (消失 11)
-  pal3/src/Combat/CCBStage.cpp: 28 -> 29  (消失 2)
-  pal3/src/Misc/UIMap.cpp: 3 -> 1  (消失 2)
-  pal3/src/UI/StateUI.cpp: 9 -> 7  (消失 2)
-  pal3/src/Misc/CCBPanelSlot.cpp: 12 -> 8  (消失 4)
-  pal3/src/Effect/CEffShock.cpp: 12 -> 10  (消失 2)
-  pal3/src/Render/CScreenMode.cpp: 25 -> 21  (消失 5)
-  pal3/src/Effect/ScreenEffectMgr.cpp: 5 -> 3  (消失 2)
-  pal3/src/Combat/CCBParabolaWindow.cpp: 8 -> 4  (消失 4)
-  pal3/src/Effect/CEffExplosive.cpp: 12 -> 8  (消失 4)
-  pal3/src/Misc/CScreenModeNode.cpp: 2 -> 1  (消失 2)
-  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 -> 1  (消失 1)
-  pal3/src/Misc/UITextArea.cpp: 3 -> 1  (消失 2)
-  pal3/src/Effect/CEffCylinder.cpp: 14 -> 12  (消失 2)
-  pal3/src/Misc/UIProgressBar.cpp: 12 -> 8  (消失 4)
+  pal3/src/Combat/CUtil.cpp: 2 -> 1  (消失 1)
+  pal3/src/GameBase/PAL3.cpp: 53 -> 47  (消失 6)
+  pal3/src/Combat/CCBRoleState.cpp: 14 -> 10  (消失 4)
+  pal3/src/Render/RenderTarget.cpp: 2 -> 1  (消失 1)
+  pal3/src/Effect/CEffSParticle.cpp: 29 -> 27  (消失 2)
+  pal3/src/Misc/SystemUI.cpp: 1 -> 1  (消失 1)
+  pal3/src/Combat/CCBProtectWindow.cpp: 2 -> 1  (消失 1)
+  pal3/src/Script/PalScript.cpp: 41 -> 45  (消失 2)
+  pal3/src/Effect/CEffShock.cpp: 10 -> 5  (消失 5)
+  pal3/src/Render/CScreenMode.cpp: 21 -> 21  (消失 1)
+  pal3/src/Misc/UIFrameContainer.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/RoleAtt.cpp: 5 -> 4  (消失 1)
+  pal3/src/Misc/UITitle_YXXX.cpp: 2 -> 1  (消失 1)
+  pal3/src/Combat/CCBItemWindow.cpp: 2 -> 1  (消失 1)
+  pal3/src/UI/PropUI.cpp: 5 -> 4  (消失 1)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/UI/UIRenderObj.cpp
-  pal3/src/Render/TextureLib.cpp
+  pal3/src/UI/UIWnd.cpp
+  pal3/src/Misc/TaskBookUI.cpp
+  pal3/src/Misc/CEffAction.cpp
+  pal3/src/Combat/CCBResultWindow.cpp
+  pal3/src/Misc/UITextArea.cpp
+  pal3/src/Misc/CEffCallBack.cpp
+  pal3/src/Misc/CEffBink.cpp
+  pal3/src/Misc/JusticeBookUI.cpp
+  pal3/src/Effect/CEffQuake.cpp
+  pal3/src/Misc/RoleStatePanel.cpp
+  pal3/src/Misc/CEffObj.cpp
+  pal3/src/Misc/UIMap.cpp
+  pal3/src/Misc/RoleCameraCtrl.cpp
+  pal3/src/Misc/CCBUIPanel.cpp
+  pal3/src/Misc/UILoadingFrm.cpp
+  pal3/src/Misc/UIRoleDialog.cpp
+  pal3/src/Misc/UITitle.cpp
+  pal3/src/Misc/UISceneMap.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Combat/CCBSystem.cpp: 25 ↓ 13
-  pal3/src/Combat/CCBStage.cpp: 28 → 29
-  pal3/src/Misc/UIMap.cpp: 3 ↓ 1
-  pal3/src/UI/StateUI.cpp: 9 ↓ 7
-  pal3/src/Misc/CCBPanelSlot.cpp: 12 ↓ 8
-  pal3/src/Effect/CEffShock.cpp: 12 ↓ 10
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 1 → 4
-  pal3/src/Render/CScreenMode.cpp: 25 ↓ 21
-  pal3/src/Effect/ScreenEffectMgr.cpp: 5 ↓ 3
-  pal3/src/Combat/CCBParabolaWindow.cpp: 8 ↓ 4
-  pal3/src/Effect/CEffExplosive.cpp: 12 ↓ 8
-  pal3/src/Misc/CScreenModeNode.cpp: 2 ↓ 1
-  pal3/src/Misc/UIRoleSelectDialog.cpp: 2 ↓ 1
-  pal3/src/Misc/UIScenePanel.cpp: 6 → 10
-  pal3/src/Combat/CCBStageScene.cpp: 4 → 5
-  pal3/src/GameBase/PAL3.cpp: 52 → 53
-  pal3/src/Combat/CCBUI.cpp: 38 ↓ 23
-  pal3/src/Misc/UITextArea.cpp: 3 ↓ 1
-  pal3/src/Effect/CEffCylinder.cpp: 14 ↓ 12
-  pal3/src/Misc/UIProgressBar.cpp: 12 ↓ 8
-  pal3/src/Effect/CEffgbParticle.cpp: 18 ↓ 4
-  pal3/src/free_functions.cpp: 84 → 102
-  pal3/src/Misc/UICaption.cpp: 1 → 4
-  pal3/src/Misc/UIEmote.cpp: 4 ↓ 3
-  pal3/src/Role/RoleSystem.cpp: 51 ↓ 49
-  pal3/src/Render/RenderTarget2.cpp: 3 ↓ 1
-  pal3/src/Misc/TaskBookUI.cpp: 1 → 2
-  pal3/src/Misc/UITitle_JDHY.cpp: 13 ↓ 10
-  pal3/src/Misc/UIFrameWnd.cpp: 2 → 3
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/Script/PalScript.cpp: 39 → 41
-  pal3/src/Effect/CEffModel.cpp: 11 ↓ 8
-  pal3/src/globals.cpp: 1 → 3
-  pal3/src/Effect/CEffGrid.cpp: 11 ↓ 9
-  pal3/src/Misc/CEffAction.cpp: 4 ↓ 2
-  pal3/src/Misc/UIBigMap.cpp: 37 ↓ 35
+  pal3/src/Combat/CUtil.cpp: 2 ↓ 1
+  pal3/src/GameBase/PAL3.cpp: 53 ↓ 47
+  pal3/src/Combat/CCBRoleState.cpp: 14 ↓ 10
+  pal3/src/Render/RenderTarget.cpp: 2 ↓ 1
+  pal3/src/Effect/CEffSParticle.cpp: 29 ↓ 27
+  pal3/src/Combat/CCBProtectWindow.cpp: 2 ↓ 1
+  pal3/src/Script/PalScript.cpp: 41 → 45
+  pal3/src/Effect/CEffShock.cpp: 10 ↓ 5
+  pal3/src/Misc/UIFrameContainer.cpp: 2 ↓ 1
+  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
+  pal3/src/Misc/UITitle_YXXX.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBItemWindow.cpp: 2 ↓ 1
+  pal3/src/UI/PropUI.cpp: 5 ↓ 4
+  pal3/src/Misc/UIScenePanel.cpp: 10 ↓ 5
+  pal3/src/Combat/CCBParabolaWindow.cpp: 4 ↓ 3
+  pal3/src/Misc/LineupUI.cpp: 16 ↓ 14
+  pal3/src/Effect/CEffCylinder.cpp: 12 ↓ 8
+  pal3/src/Misc/UICoverFrm.cpp: 82 ↓ 81
+  pal3/src/Combat/CCBStage.cpp: 29 ↓ 27
+  pal3/src/Combat/CCBStageScene.cpp: 5 ↓ 4
+  pal3/src/GameBase/GRPinput.cpp: 12 → 13
+  pal3/src/Effect/CEffgbParticle.cpp: 4 ↓ 2
+  pal3/src/Combat/CCBSkillWindow.cpp: 2 ↓ 1
+  pal3/src/Misc/SaleUI.cpp: 29 → 30
+  pal3/src/Misc/UITitle_ArcSave.cpp: 2 ↓ 1
+  pal3/src/Misc/CCBPanelSlot.cpp: 8 ↓ 1
+  pal3/src/Misc/MainPropUI.cpp: 3 ↓ 2
+  pal3/src/Misc/UIRoleSelectDialog.cpp: 1 → 4
+  pal3/src/Misc/UITitle_BBTY.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBControlWindow.cpp: 3 ↓ 1
+  pal3/src/Effect/CEffGrid.cpp: 9 ↓ 5
+  pal3/src/Role/Object3D.cpp: 20 ↓ 14
+  pal3/src/Effect/CEffModel.cpp: 8 ↓ 6
+  pal3/src/Misc/UIAnimateCtrlEX.cpp: 3 ↓ 2
+  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 ↓ 1
+  pal3/src/Misc/UIPushButton.cpp: 8 ↓ 7
+  pal3/src/UI/StateUI.cpp: 7 ↓ 6
+  pal3/src/GameBase/Config.cpp: 2 → 4
+  pal3/src/Misc/CCBFiveNimbusWindow.cpp: 2 ↓ 1
+  pal3/src/Role/RoleSystem.cpp: 49 ↓ 48
+  pal3/src/UI/UIListBox.cpp: 4 ↓ 2
+  pal3/src/Misc/UIButton.cpp: 3 ↓ 1
+  pal3/src/Misc/UICaption.cpp: 4 ↓ 1
+  pal3/src/Misc/UITitle_JDHY.cpp: 10 ↓ 6
+  pal3/src/Effect/CEffMeteor.cpp: 5 ↓ 1
+  pal3/src/Effect/CEffQuad.cpp: 5 ↓ 3
+  pal3/src/Misc/CScreenModeNode.cpp: 1 → 2
+  pal3/src/Misc/UIFrameWnd.cpp: 3 ↓ 1
+  pal3/src/Misc/UIProgressBar.cpp: 8 ↓ 7
+  pal3/src/Script/ScriptSystem.cpp: 11 → 13
+  pal3/src/Misc/UIEmote.cpp: 3 ↓ 2
+  pal3/src/Misc/UISceneFrm.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBLineupWindow.cpp: 2 ↓ 1
+  pal3/src/Effect/CEffExplosive.cpp: 8 ↓ 4
+  pal3/src/UI/EquipUI.cpp: 3 ↓ 2
+  pal3/src/Combat/CCBUI.cpp: 23 ↓ 16
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
-[vanished] 1 个失败单元从 census 蒸发(回归门视同回归):
-  pal3/src/Data/CGameData.cpp
 
 [Regression] diff vs latest baseline:
 
@@ -461,4 +485,4 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 [ERROR] probe s2 exited 1 — 本次 codegen 的编译普查未通过（新失败/退化，或 probe 自身出错）。
         修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'（会使 compile_regression 的结论失去意义）。
 [DEBUG-INC] unk_DBA134 typ='RoleCameraCtrl' has_header=True has_struct=True pointer_only=True
-[ret-N evidence] 指令级(asm) 3195 / 裸扫描回退 311 / 无证据 18
+[ret-N evidence] 指令级(asm) 3195 / 裸扫描回退 303 / 无证据 18

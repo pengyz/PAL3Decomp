@@ -156,18 +156,19 @@
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失 ⇒ `this[-1].m_SysLight.phi` 别名形弱型；A 级：0x42C6A0 访问 this->m_SysLight（gbLightObj@108 成员 ✓ 归属不变）",
    "evidence_level": "A",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "void *",
-      "name": null
+      "type": "gbAABBox *",
+      "name": "box"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "name_note": " | SDK对齐20261120(F81律): signed __int32(void*)→int(gbAABBox *box)——gbVisNode.h vtable[9] virtual int GetAABBox(gbAABBox*) 契约, SDK头权威 | SDK对齐修正20261120: int→void——gbSceneGraph.h:122 class gbLightObj 体内声明 void GetAABBox(gbAABBox *p)即0x42c6a0(PAL3-side非dll导出), SDK头权威(F81); batch4误套gbVisNode vtable[9] int形纠正"
   },
   "0x0042bee0": {
    "name": "IsIdle",

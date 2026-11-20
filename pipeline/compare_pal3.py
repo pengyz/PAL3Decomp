@@ -630,6 +630,10 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                     if tgt is not None and not exp_name:
                         exp_name = gc.fallback_autoname(tgt)
                         _ge2 = mangled_map.get(sym_name)
+                        # [多址聚合 2026-11-20] mangled_map 值=list(同签名多址),
+                        # 取首项(名在同签名兄弟间一致——签名键唯一性)
+                        if isinstance(_ge2, list):
+                            _ge2 = _ge2[0] if _ge2 else None
                         _gn2 = _ge2['name'] if _ge2 else gc.sym_direct_name(sym_name)
                         if exp_name and _gn2 and _rsite_names_match(exp_name, _gn2):
                             stats['rsite_ok'] = stats.get('rsite_ok', 0) + 1

@@ -3104,6 +3104,10 @@ def apply_annotations():
         # 后重跑即续。
         log("[5b] FAIL-LOUD: %d 个方法类型应用失败 — 数据病信号, 终止 apply。" % _sm_fail)
         log("       修复 data/annotations/structs 对应条目后重跑 (逐项清单见上方 [5b-fail] 行)。")
+        # [落盘 2026-11-20] qexit 前冲 log_lines——fail-loud 出口不走正常落盘点,
+        # 否则逐项清单随进程湮灭, 下轮读到上一正常轮的陈旧 log (b3 案: 误判读旧数据)
+        with open(LOG_FILE, 'w', encoding='utf-8') as _lf:
+            _lf.write('\n'.join(log_lines))
         idc.qexit(1)
 
     # --- 6. Function signatures (after structs so types are resolved) ---

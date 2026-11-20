@@ -490,9 +490,9 @@
    "name": "CreateScrollWidget",
    "ordinal": 7,
    "evidence_level": "unverified",
-   "name_note": "; 签名归一: 修饰名QAEPAVgbVFileSys→gbVFileSys*(slot裁决一致)",
+   "name_note": "; 签名归一: 修饰名QAEPAVgbVFileSys→gbVFileSys*(slot裁决一致) | REF修复20261120(batch3 D7): gbVFileSys→gbVFileSystem (全树gbVFileSys零声明——UIScene.h:17 fwd decl=emitter为本病打的补丁, 修后随codegen消亡; gbVFileSystem声明gbVFileSystem.h)",
    "sig_model": {
-    "return": "gbVFileSys *",
+    "return": "gbVFileSystem *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,

@@ -230,7 +230,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
@@ -238,7 +238,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CEffMeteor(??1/??_G析构族); decomp文件=CEffMeteor_~CEffMeteorvoid_004cb4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CEffMeteor(??1/??_G析构族); decomp文件=CEffMeteor_~CEffMeteorvoid_004cb4c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (C案: VC6律析构恒thiscall)"
   },
   "0x004cb5e0": {
    "name": "ResetState",

@@ -261,7 +261,7 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [
      {
       "type": "int *",
@@ -271,7 +271,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CountActiveParticles): int(int *,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CountActiveParticles): int(int *,int *); 原注解无",
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (A1案: 序言全程ECX=this基址([ecx+0x7BC]扫描循环)零EDX/栈参读取, thiscall直证; params原样保留(不新增断言))"
   },
   "0x004b5570": {
    "name": "Update",

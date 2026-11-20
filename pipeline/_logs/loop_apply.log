@@ -288,6 +288,7 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x542114:SceneVisNode_adjthunk_2114|Scen
 WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
+WARN: REF:gen 树(1795173756)早于最新注解(1795184178)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N13b:Array::_nearby_411ba0@0x00411ba0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CCBUI::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
@@ -300,6 +301,16 @@ WARN: N13b:ScreenEffectMgr::_todo_4BDF30@0x004bdf30 发射路由=注解methods�
 WARN: N13b:UICaption::Destroy2@0x0043a810 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UIMap::UIMap@0x004411d0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Rotate@0x0056a244 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Translate@0x0056a260 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::MultMatrix@0x0056a2a0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Rotate@0x0056a33c 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Translate@0x0056a370 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::GetTop@0x0056a570 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Push@0x0056a578 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::LoadIdentity@0x0056a57c 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::Pop@0x0056a588 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbMatrixStack::LoadMatrix@0x0056a5c0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:gbTexture::UpdateTexture@0x1001bea0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:gbVertPoolMgr::GetDynVertBuf@0x10021680 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: name_drift: globals[0x005BC914] 注解名'off_5BC914' != IDB名'dword_5BC914'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
@@ -352,12 +363,12 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 17 frozen(advisory), 335 warnings — PASS
+0 new errors + 17 frozen(advisory), 346 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：125 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）
@@ -379,7 +390,7 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：124 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：125 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）

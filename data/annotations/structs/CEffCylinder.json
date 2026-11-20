@@ -252,7 +252,7 @@
    "evidence_level": "A",
    "sig_model": {
     "return": "void",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
@@ -260,7 +260,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_3DD0(??1/??_G析构族); decomp文件=CEffCylinder_scalar_dtor_3DD0void_004c3dd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_3DD0(??1/??_G析构族); decomp文件=CEffCylinder_scalar_dtor_3DD0void_004c3dd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (C案: 标准VC6 dtor序言(SEH+push ecx存this)直证)"
   },
   "0x004c3eb0": {
    "name": "~CEffCylinder",
@@ -545,47 +546,6 @@
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_3DB0(??1/??_G析构族); decomp文件=CEffCylinder_scalar_dtor_3DB0int_004c3db0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_3D"
-  },
-  "0x004c2640": {
-   "name": "slot_4",
-   "declaration_only": true,
-   "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
-   "evidence_level": "binary_vtable_slot",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004c2660": {
-   "name": "ProcessData_2",
-   "declaration_only": true,
-   "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
-   "evidence_level": "binary_vtable_slot",
-   "name_note": "B6定谳(D组语义直读): 同上C8消歧",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004c2680": {
-   "name": "ProcessData_3",
-   "declaration_only": true,
-   "source": "ICF折叠体借用: decomp体=复制ProcessData, 实际体不同",
-   "evidence_level": "binary_vtable_slot",
-   "name_note": "B6定谳(D组语义直读): 同上C8消歧",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   },
   "0x004c2620": {
    "name": "ProcessData",

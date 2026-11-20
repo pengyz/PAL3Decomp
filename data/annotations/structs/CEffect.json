@@ -191,11 +191,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (D案: 零参成员ABI等价+VC6成员缺省thiscall)"
   },
   "0x0053d580": {
    "name": "ReleaseResources",
@@ -214,7 +215,7 @@
    "evidence_level": "A",
    "sig_model": {
     "return": "void",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
@@ -222,7 +223,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=~CEffect(??1/??_G析构族); decomp文件=CEffect_~CEffectvoid_004d3950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~CEffect(??1/??_G析构族); decomp文件=CEffect_~CEffectvoid_004d3950 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (C案: VC6律析构恒thiscall)"
   },
   "0x004c88b0": {
    "name": "CreateOnePartical_adjthunk",

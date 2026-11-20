@@ -233,7 +233,7 @@ struct GBAPI gbOBBox {
        text (OBBox alias normalized to gbOBBox by L-TYPEALIAS). [DBCS-safe: ASCII
        line endings -- GBK lead-byte at EOL would swallow the newline and splice
        the NEXT line into the comment, silently deleting this declaration.] */
-    gbOBBox * GetBBox(gbOBBox * thisa);
+    gbOBBox * GetBBox();
 };
 
 struct gbSphere {

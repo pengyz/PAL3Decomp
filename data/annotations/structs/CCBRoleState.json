@@ -2609,11 +2609,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (D案: 零参成员ABI等价+VC6成员缺省thiscall)"
   },
   "0x004ed870": {
    "name": "SyncSkillCent",

@@ -455,11 +455,12 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "GRPinput *",
-    "cc": "fastcall",
+    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (A2案: 序言读栈参[esp+4+var]→cl→[this+8]——fastcall首参走EDX绝不读栈, thiscall直证; 真参数数未定谳挂账(现params=[]待S4/语料定谳))"
   },
   "0x00402bf0": {
    "name": "~GRPinput",
@@ -1078,17 +1079,6 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_2BD0(??1/??_G析构族); decomp文件=GRPinput_scalar_dtor_2BD0void_00402bd0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
-  },
-  "0x0044ca70": {
-   "name": "_Split",
-   "source": "IDA语义分析 2026-11-11 C2039取证",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   }
  }
 }

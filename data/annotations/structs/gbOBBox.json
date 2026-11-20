@@ -43,7 +43,7 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": " | REF修复20261120: struct OBBox *→gbOBBox * (OBBox无档案无声明, gbOBBox声明gbengine_types.h:217, N8拼写)"
+   "name_note": " | REF修复20261120: struct OBBox *→gbOBBox * (OBBox无档案无声明, gbOBBox声明gbengine_types.h:217, N8拼写) | SDK对齐20261120(F81律): params[]→[gbOBBox *thisa]——gbengine_types.h:236 SDK声明形 gbOBBox* GetBBox(gbOBBox *thisa) | 二进制定谳20261120: params回退[]——尾字节mov eax,esi(EAX=this=返回gbOBBox*直证)+retn(零栈参直证); batch4的thisa系SDK头旧笔误牵连, SDK头同步修正(gbengine_types.h:236)"
   }
  }
 }
