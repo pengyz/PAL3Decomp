@@ -1,6 +1,6 @@
 {
  "name": "CCBUI",
- "binary_size": 100572,
+ "binary_size": 116,
  "known_members": {
   "0x48": {
    "name": "m_pAttackSequenBack",
@@ -14,335 +14,10 @@
    "offset": 76,
    "evidence_level": "unverified"
   },
-  "0x438": {
-   "name": "m_pRoleStateMP",
-   "type": "UIProgressBar *[4]",
-   "offset": 1080,
-   "evidence_level": "unverified"
-  },
-  "0x448": {
-   "name": "m_pRoleStateSword",
-   "type": "UIProgressBar *",
-   "offset": 1096,
-   "evidence_level": "unverified"
-  },
-  "0x44c": {
-   "name": "m_pTrickName",
-   "type": "UIStaticCB *",
-   "offset": 1100,
-   "evidence_level": "unverified"
-  },
-  "0x450": {
-   "name": "m_pTrickName2",
-   "type": "UIStaticCB *",
-   "offset": 1104,
-   "evidence_level": "unverified"
-  },
-  "0x454": {
-   "name": "m_pDialogBack",
-   "type": "UIStatic *",
-   "offset": 1108,
-   "evidence_level": "unverified"
-  },
-  "0x458": {
-   "name": "m_pResultLevelup",
-   "type": "UIStatic *",
-   "offset": 1112,
-   "evidence_level": "unverified"
-  },
-  "0x45c": {
-   "name": "m_pResultWindLvup",
-   "type": "UIStatic *",
-   "offset": 1116,
-   "evidence_level": "unverified"
-  },
-  "0x460": {
-   "name": "m_pResultThunderLvup",
-   "type": "UIStatic *",
-   "offset": 1120,
-   "evidence_level": "unverified"
-  },
-  "0x464": {
-   "name": "m_pResultWaterLvup",
-   "type": "UIStatic *",
-   "offset": 1124,
-   "evidence_level": "unverified"
-  },
-  "0x468": {
-   "name": "m_pResultFireLvup",
-   "type": "UIStatic *",
-   "offset": 1128,
-   "evidence_level": "unverified"
-  },
-  "0x46c": {
-   "name": "m_pResultEarthLvup",
-   "type": "UIStatic *",
-   "offset": 1132,
-   "evidence_level": "unverified"
-  },
-  "0x470": {
-   "name": "m_pResultDoubleLvup",
-   "type": "UIStatic *",
-   "offset": 1136,
-   "evidence_level": "unverified"
-  },
-  "0x474": {
-   "name": "m_pResultGetItem",
-   "type": "UIStatic *",
-   "offset": 1140,
-   "evidence_level": "unverified"
-  },
-  "0x478": {
-   "name": "m_pMain",
-   "type": "CCBControlWindow *",
-   "offset": 1144,
-   "evidence_level": "unverified"
-  },
-  "0x488": {
-   "name": "m_pSkillWindow",
-   "type": "CCBSkillWindow *",
-   "offset": 1160,
-   "evidence_level": "unverified"
-  },
-  "0x48c": {
-   "name": "m_pAIWindow",
-   "type": "CCBAIWindow *",
-   "offset": 1164,
-   "evidence_level": "unverified"
-  },
-  "0x490": {
-   "name": "m_pLineupWindow",
-   "type": "CCBLineupWindow *",
-   "offset": 1168,
-   "evidence_level": "unverified"
-  },
-  "0xa30": {
-   "name": "fp",
-   "type": "CCBUI_funcptr_t",
-   "source": "PAL3patch_verified",
-   "evidence_level": "unverified"
-  },
   "0x50": {
    "name": "m_pBattleFieldAttr",
    "type": "UIStatic *[6]",
    "offset": 80,
-   "evidence_level": "unverified"
-  },
-  "0x68": {
-   "name": "m_pAttackSequenFace",
-   "type": "UIStatic *[11]",
-   "offset": 104,
-   "evidence_level": "unverified"
-  },
-  "0x94": {
-   "name": "m_pRoleStatePanel",
-   "type": "UIStatic *[4]",
-   "offset": 148,
-   "evidence_level": "unverified"
-  },
-  "0xa4": {
-   "name": "m_pRoleStateFace",
-   "type": "UIStatic *[5]",
-   "offset": 164,
-   "evidence_level": "unverified"
-  },
-  "0xb8": {
-   "name": "m_pRoleStateFaceName",
-   "type": "UIStatic *[5]",
-   "offset": 184,
-   "evidence_level": "unverified"
-  },
-  "0xcc": {
-   "name": "m_pRoleStateAttackInc",
-   "type": "UIStatic *[11]",
-   "offset": 204,
-   "evidence_level": "unverified"
-  },
-  "0xf8": {
-   "name": "m_pRoleStateAttackDec",
-   "type": "UIStatic *[11]",
-   "offset": 248,
-   "evidence_level": "unverified"
-  },
-  "0x124": {
-   "name": "m_pRoleStateDefenceInc",
-   "type": "UIStatic *[11]",
-   "offset": 292,
-   "evidence_level": "unverified"
-  },
-  "0x150": {
-   "name": "m_pRoleStateDefenceDec",
-   "type": "UIStatic *[11]",
-   "offset": 336,
-   "evidence_level": "unverified"
-  },
-  "0x17c": {
-   "name": "m_pRoleStateLuckInc",
-   "type": "UIStatic *[11]",
-   "offset": 380,
-   "evidence_level": "unverified"
-  },
-  "0x1a8": {
-   "name": "m_pRoleStateLuckDec",
-   "type": "UIStatic *[11]",
-   "offset": 424,
-   "evidence_level": "unverified"
-  },
-  "0x1d4": {
-   "name": "m_pRoleStateSpeedInc",
-   "type": "UIStatic *[11]",
-   "offset": 468,
-   "evidence_level": "unverified"
-  },
-  "0x200": {
-   "name": "m_pRoleStateSpeedDec",
-   "type": "UIStatic *[11]",
-   "offset": 512,
-   "evidence_level": "unverified"
-  },
-  "0x22c": {
-   "name": "m_pRoleStateStable",
-   "type": "UIStatic *[11]",
-   "offset": 556,
-   "evidence_level": "unverified"
-  },
-  "0x258": {
-   "name": "m_pRoleStateBlank",
-   "type": "UIStatic *[11]",
-   "offset": 600,
-   "evidence_level": "unverified"
-  },
-  "0x284": {
-   "name": "m_pRoleStateForbid",
-   "type": "UIStatic *[11]",
-   "offset": 644,
-   "evidence_level": "unverified"
-  },
-  "0x2b0": {
-   "name": "m_pRoleStateSleep",
-   "type": "UIStatic *[11]",
-   "offset": 688,
-   "evidence_level": "unverified"
-  },
-  "0x2dc": {
-   "name": "m_pRoleStateChaos",
-   "type": "UIStatic *[11]",
-   "offset": 732,
-   "evidence_level": "unverified"
-  },
-  "0x308": {
-   "name": "m_pRoleStateMad",
-   "type": "UIStatic *[11]",
-   "offset": 776,
-   "evidence_level": "unverified"
-  },
-  "0x334": {
-   "name": "m_pRoleStateMirror",
-   "type": "UIStatic *[11]",
-   "offset": 820,
-   "evidence_level": "unverified"
-  },
-  "0x360": {
-   "name": "m_pRoleStateWall",
-   "type": "UIStatic *[11]",
-   "offset": 864,
-   "evidence_level": "unverified"
-  },
-  "0x38c": {
-   "name": "m_pRoleStateBound",
-   "type": "UIStatic *[11]",
-   "offset": 908,
-   "evidence_level": "unverified"
-  },
-  "0x3b8": {
-   "name": "m_pRoleStateHermit",
-   "type": "UIStatic *[11]",
-   "offset": 952,
-   "evidence_level": "unverified"
-  },
-  "0x3e4": {
-   "name": "m_pRoleStateImmunity",
-   "type": "UIStatic *[11]",
-   "offset": 996,
-   "evidence_level": "unverified"
-  },
-  "0x410": {
-   "name": "m_pWinPanel",
-   "type": "UIStatic *",
-   "offset": 1040,
-   "evidence_level": "unverified"
-  },
-  "0x414": {
-   "name": "m_pLosePanel",
-   "type": "UIStatic *",
-   "offset": 1044,
-   "evidence_level": "unverified"
-  },
-  "0x418": {
-   "name": "m_pRoleStateHP",
-   "type": "UIProgressBar *[4]",
-   "offset": 1048,
-   "evidence_level": "unverified"
-  },
-  "0x428": {
-   "name": "m_pRoleStateGP",
-   "type": "UIProgressBar *[4]",
-   "offset": 1064,
-   "evidence_level": "unverified"
-  },
-  "0x47c": {
-   "name": "m_pItemWindow",
-   "type": "CCBItemWindow *",
-   "offset": 1148,
-   "evidence_level": "unverified"
-  },
-  "0x480": {
-   "name": "m_pParabolaWindow",
-   "type": "CCBParabolaWindow *",
-   "offset": 1152,
-   "evidence_level": "unverified"
-  },
-  "0x484": {
-   "name": "m_pMagicWindow",
-   "type": "CCBMagicWindow *",
-   "offset": 1156,
-   "evidence_level": "unverified"
-  },
-  "0x494": {
-   "name": "m_pProtectWindow",
-   "type": "CCBProtectWindow *",
-   "offset": 1172,
-   "evidence_level": "unverified"
-  },
-  "0x498": {
-   "name": "m_pResultWindow",
-   "type": "CCBResultWindow *[4]",
-   "offset": 1176,
-   "evidence_level": "unverified"
-  },
-  "0x4a8": {
-   "name": "m_pFiveNimbusWindow",
-   "type": "CCBFiveNimbusWindow *",
-   "offset": 1192,
-   "evidence_level": "unverified"
-  },
-  "0x4ac": {
-   "name": "m_pCBSystem",
-   "type": "CCBSystem *",
-   "offset": 1196,
-   "evidence_level": "unverified"
-  },
-  "0x4b0": {
-   "name": "m_pUtil",
-   "type": "CUtil *",
-   "offset": 1200,
-   "evidence_level": "unverified"
-  },
-  "0x4b8": {
-   "name": "m_Task",
-   "type": "tagUITask[19]",
-   "offset": 1208,
-   "source": "+fix:overlap_correct_count | adjudicated:2026-10-15 A:19x72(tagUITask binary_size=72)=1368⇒1208..2576,next@2608 gap32B 无重叠,overlap_correct_count修正正确",
    "evidence_level": "unverified"
   }
  },
@@ -379,311 +54,6 @@
     "varargs": false,
     "pending": false
    }
-  },
-  "0x005177b0": {
-   "name": "Reset",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00517b30": {
-   "name": "CreateCombatPanel",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00517c10": {
-   "name": "CreateAttackSequen",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00517c80": {
-   "name": "CreateBattleFieldAttr",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00517d60": {
-   "name": "CreateControlWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00517df0": {
-   "name": "CreateItemWindow",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x005181e0": {
-   "name": "CreateParaWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x005183c0": {
-   "name": "CreateMagicWindow",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x005184c0": {
-   "name": "CreateSkillWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00518af0": {
-   "name": "CreateLineupWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00518b20": {
-   "name": "CreateProtectWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00518b30": {
-   "name": "CreateResultWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00518d40": {
-   "name": "CreateFiveNimbus",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00518e60": {
-   "name": "UpdateAnims",
-   "source": "pdb_ret",
-   "evidence_level": "verified",
-   "name_note": "语义裁定20261116: 体=NPC::UpdateAnim循环扫(m_pRoleStateAttackInc偏移数组, sin()*50.0动画参数, 4×4展开) → 真语义UpdateAnims; 原名HideAll=体漂移误名; 非槽函数(不在任何slot位)",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00518fe0": {
-   "name": "ShowBattleFieldAttr",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "attr"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ShowBattleField"
-  },
-  "0x00519080": {
-   "name": "ShowControlWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "bShow"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ShowControlWind"
-  },
-  "0x00519200": {
-   "name": "ShowDialogWindow",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00519230": {
-   "name": "ShowAIWindow",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nRoleIndex"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ShowAIWindow): "
-  },
-  "0x00519260": {
-   "name": "IsResultWindowClosed",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     },
-     {
-      "type": "int",
-      "name": "nVal4"
-     },
-     {
-      "type": "int",
-      "name": "nVal5"
-     },
-     {
-      "type": "int",
-      "name": "nVal6"
-     },
-     {
-      "type": "int",
-      "name": "nVal7"
-     },
-     {
-      "type": "const void *",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x005193d0": {
    "name": "ClearAttackSequence",
@@ -881,24 +251,6 @@
     "ctor"
    ],
    "flags_evidence": "IDA名字形态=CCBUI(??0构造); decomp文件=CCBUI_CCBUIvoid_00519310 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x005160a0": {
-   "name": "Method",
-   "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Method): int(vo"
   },
   "0x00442230": {
    "name": "SetSelection",
@@ -1250,23 +602,6 @@
     "pending": false
    }
   },
-  "0x005184e0": {
-   "name": "InitRoleDisplay",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "a_128"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitRoleDisplay): int(int,int); 原注解无"
-  },
   "0x00442200": {
    "name": "SetRoleStatePointers",
    "evidence_level": "unverified",
@@ -1551,40 +886,6 @@
     "pending": false
    }
   },
-  "0x00516a30": {
-   "name": "SetupAIWindow",
-   "_misattrib_evidence": "max_offset=1068>class_size=208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00526740": {
-   "name": "UpdateStatics",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "deltatime"
-     },
-     {
-      "type": "int",
-      "name": "haveinput"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": "语义裁定20261116: 体=逐帧UIStatic控件刷新(TickCount/deltatime/haveinput) 非虚覆写 → 让位slot2真Update(0x519660按键覆写); 原名Update=误名; 部分体证据(前260字符)置信中",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateStatics): int(int,int,int); 原注解无"
-  },
   "0x00469d40": {
    "name": "IsAddMode",
    "source": "| rename:_todo_→fn_",
@@ -1608,40 +909,6 @@
     "pending": false
    }
   },
-  "0x005257b0": {
-   "name": "InitSkillUI",
-   "_misattrib_evidence": "max_offset=100572>class_size=2632",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitSkillUI): int(int *,int); 原注解无"
-  },
-  "0x00525540": {
-   "name": "InitShopUI",
-   "_misattrib_evidence": "max_offset=100572>class_size=2632",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x005273d0": {
    "name": "PlayResultSound",
    "_misattrib_evidence": "max_offset=101028>class_size=2632",
@@ -1657,18 +924,6 @@
   "0x00527610": {
    "name": "UpdateCaptions",
    "_misattrib_evidence": "max_offset=99200>class_size=2632",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00516940": {
-   "name": "InitResultPanels",
-   "_misattrib_evidence": "max_offset=1016>class_size=208",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1788,20 +1043,6 @@
    "name": "Update_B8C0",
    "name_source": "IDA语义分析 2026-11-01 批16",
    "name_note": "从 decomp 推断",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00526660": {
-   "name": "CCBUI_Render",
-   "declaration_only": true,
-   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified",
-   "name_note": "B4定谳(高,全体现已读): 渲染CCBControlWindow+按状态选两套RT数组基址+循环36槽(步长584)对可见槽UIParticle::Apply(10/11)施放粒子+ResetGridState收尾; 采decomp证据名原形",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -1966,8 +1207,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBItemWindow",
-      "name": "Block"
+      "type": "int",
+      "name": null
      },
      {
       "type": "char",
@@ -1977,7 +1218,7 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending,  | mangle真值修正20261121: param0 CCBItemWindow→int (mangle ?CreateButtons@CCBUI@@QAEPAVUIWnd@@HD@Z 参数=H(int),D(char); 旧CCBItemWindow按值参数=误注解, 曾被m_pItemWindow成员的前置声明意外遮护, 四路拆分退赔成员后显形C2061×126)"
   },
   "0x0051b810": {
    "name": "~CCBParabolaWindow",
@@ -2146,5 +1387,6 @@
   }
  ],
  "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留 | binary_size修正20261121(L1金标准): 2648→100572——完全dtor(0x525540, IDB名InitShopUI换位artifact)体析构序列最大LEA偏移直证0x188DC(UIRoleDialog成员)+体尾=100572; 旧2648=ida_structs早期导出残留(与dtor偏移差40倍——CCBUI=~100KB复合UI类, 内嵌~20个UI窗口成员: UIFrameContainer×15+/UIScene数组×5/UIRoleDialog×2/PalScript×3/UIPushButton×2/UICaption/UITextArea/UIButton等——dtor析构序列全图=成员布局金标准, 逐成员offset→class对已提取归档)"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留 | binary_size修正20261121(L1金标准): 2648→100572——完全dtor(0x525540, IDB名InitShopUI换位artifact)体析构序列最大LEA偏移直证0x188DC(UIRoleDialog成员)+体尾=100572; 旧2648=ida_structs早期导出残留(与dtor偏移差40倍——CCBUI=~100KB复合UI类, 内嵌~20个UI窗口成员: UIFrameContainer×15+/UIScene数组×5/UIRoleDialog×2/PalScript×3/UIPushButton×2/UICaption/UITextArea/UIButton等——dtor析构序列全图=成员布局金标准, 逐成员offset→class对已提取归档) | 身份定谳20261121(A/B双类): 本类(0x5704C8表)=116B小类——分配硬锚0x74; 完全dtor=0x519380(删除式0x519360 slot5→调它); 零内嵌析构. 0x525540(InitShopUI)=B类(0x5706CC表,100572B混居池复合体)完全dtor, 已退赔——binary_size=100572/25成员布局图/m_Task池研究(placement-new租户)全部实为B的取证, 归档 archive/ccbui_identity_adjudication_20261121.json 待B注册后回迁. 成员retire 53条(几何不可能); 保留<116的['0x48', '0x4c', '0x50', '0x68']条待方法disp访问重推导. CCBUI名字归属(A vs B)挂账: 需corpus/调用流证据. | 补刀20261121: known_members[0x68] m_pAttackSequenFace UIStatic*[11]@104 末端148>116 退赔(类型算术, size字段缺失漏网) | 四路拆分20261121: 本类(0x5704C8表)=116B战斗板控制器——保留 ctor 0x519310/dtor对 0x519360+0x519380/表槽 Update+OnMessage/ClearAttackSequence/nimbus族/小disp族; 0x516xxx族+57成员集归 CCBProtectWindow(表0x5704A8/2632B, 其ctor=0x5160a0写表+this+0x488直证); 0x5257b0/0x526660/0x526740=B类(0x5706CC表/~100572B池复合体)槽函数, 退役挂账待B注册; Update/OnMessage 的 disp≤1160=[this+0x20]->+0x488 成员指针中介(非this直访), A自洽",
+ "size_evidence": "operator new(0x74)=116 @0x51ccfb(push 74h; call ??2@YAPAXI@Z) 紧跟 ctor ??0CCBUI@@QAE@XZ@0x51cd1a 调用(CCBAIWindow::Destroy@0x51cce0 SEH函数内)——分配硬锚. 历史: 2648=ida_structs早期残留; 100572=B类(0x5706CC表)完全dtor(0x525540)析构界错落给A, 20261121身份定谳后归还B(见 archive/ccbui_identity_adjudication_20261121.json). base 72(UIListBox) + 自有44B(≈指针槽), 与完全dtor(0x519380)零内嵌析构一致."
 }

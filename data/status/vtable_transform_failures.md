@@ -1144,3 +1144,14 @@
 | `RoleStatePanel::HideAll` | inline | `UITitle_XJTM` | 20 | self_arg_mismatch | `(*(int ( **)(UITitle_XJTM *, int))(*(_DWORD *)&m_pSubTab1->UIWnd + 20))(m_pSubTab1, 1)` |
 | `RoleStatePanel::HideAll` | inline | `void` | 20 | non_class_hint | `(*(int ( **)(void *, int))(*(_DWORD *)m_pSubTab2 + 20))(m_pSubTab2, 1)` |
 | `RoleStatePanel::HideAll` | inline | `int` | 20 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 20))(v6, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `UIProgressBar` | 20 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int))(*(_DWORD *)&v5->UIWnd + 20))(v5, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `UIStaticCB` | 20 | self_arg_mismatch | `(*(void ( **)(UIStaticCB *, int))(*(_DWORD *)&m_pTrickName->UIWnd + 20))(m_pTrickName, 1)` |
+| `CCBProtectWindow::HideAll` | inline | `CCBControlWindow` | 20 | self_arg_mismatch | `(*(void ( **)(CCBControlWindow *, int))(*(_DWORD *)&(*p_m_pMain)->UIWnd + 20))(*p_m_pMain, 1)` |
+| `CCBProtectWindow::InitResultPanels` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v4->UIWnd + 16))( v4, 800, &v8, this)` |
+| `CCBProtectWindow::SetupAIWindow` | inline | `int` | 16 | non_class_hint | `(*(void ( **)(int, int, int *, CCBProtectWindow *, int))(*(_DWORD *)v5 + 16))( v5, g_nItemTypeBase[v2], &v68, this, v67)` |
+| `CCBProtectWindow::SetupAIWindow` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v12->UIWnd + 16))( v12, v13, &v68, this)` |
+| `CCBProtectWindow::SetupAIWindow` | inline | `UIProgressBar` | 16 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v20->UIWnd + 16))( v20, 20, &v68, this)` |
+| `CCBProtectWindow::SetupAIWindow` | inline | `UIStatic` | 16 | self_arg_mismatch | `(*(void ( **)(UIStatic *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v21->UIWnd + 16))( v21, g_nSkillTabIDs[v17], &v68, this)` |
+| `CCBProtectWindow::SetupAIWindow` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBProtectWindow *))(*(_DWORD *)*(v24 - 11) + 16))( *(v24 - 11), 79, &v68, this)` |
+| `CCBProtectWindow::Reset` | inline | `UIProgressBar` | 16 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v8->UIWnd + 16))( v8, 784, &v10, this)` |
+| `CCBProtectWindow::CreateItemWindow` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v4->UIWnd + 16))( v4, 531, &v19, this)` |

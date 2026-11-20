@@ -1,0 +1,404 @@
+{
+ "_doc": "CCBUI 身份污染清偿 2026-11-21 (A=0x5704C8 116B / B=0x5706CC ~100572B 双类定谳)",
+ "ops": [
+  "C1 binary_size 100572 → 116 (分配硬锚 0x74)",
+  "C2 退赔 methods[0x00525540] InitShopUI (B类完全dtor: 写表0x5706CC≠0x5704C8; 删除式对 sub_525520→0x525540; 旧 _misattrib_evidence 旗升级实锤)",
+  "  退赔 known_members[0x94] m_pRoleStatePanel (起点越界(≥116))",
+  "  退赔 known_members[0xa4] m_pRoleStateFace (起点越界(≥116))",
+  "  退赔 known_members[0xb8] m_pRoleStateFaceName (起点越界(≥116))",
+  "  退赔 known_members[0xcc] m_pRoleStateAttackInc (起点越界(≥116))",
+  "  退赔 known_members[0xf8] m_pRoleStateAttackDec (起点越界(≥116))",
+  "  退赔 known_members[0x124] m_pRoleStateDefenceInc (起点越界(≥116))",
+  "  退赔 known_members[0x150] m_pRoleStateDefenceDec (起点越界(≥116))",
+  "  退赔 known_members[0x17c] m_pRoleStateLuckInc (起点越界(≥116))",
+  "  退赔 known_members[0x1a8] m_pRoleStateLuckDec (起点越界(≥116))",
+  "  退赔 known_members[0x1d4] m_pRoleStateSpeedInc (起点越界(≥116))",
+  "  退赔 known_members[0x200] m_pRoleStateSpeedDec (起点越界(≥116))",
+  "  退赔 known_members[0x22c] m_pRoleStateStable (起点越界(≥116))",
+  "  退赔 known_members[0x258] m_pRoleStateBlank (起点越界(≥116))",
+  "  退赔 known_members[0x284] m_pRoleStateForbid (起点越界(≥116))",
+  "  退赔 known_members[0x2b0] m_pRoleStateSleep (起点越界(≥116))",
+  "  退赔 known_members[0x2dc] m_pRoleStateChaos (起点越界(≥116))",
+  "  退赔 known_members[0x308] m_pRoleStateMad (起点越界(≥116))",
+  "  退赔 known_members[0x334] m_pRoleStateMirror (起点越界(≥116))",
+  "  退赔 known_members[0x360] m_pRoleStateWall (起点越界(≥116))",
+  "  退赔 known_members[0x38c] m_pRoleStateBound (起点越界(≥116))",
+  "  退赔 known_members[0x3b8] m_pRoleStateHermit (起点越界(≥116))",
+  "  退赔 known_members[0x3e4] m_pRoleStateImmunity (起点越界(≥116))",
+  "  退赔 known_members[0x410] m_pWinPanel (起点越界(≥116))",
+  "  退赔 known_members[0x414] m_pLosePanel (起点越界(≥116))",
+  "  退赔 known_members[0x418] m_pRoleStateHP (起点越界(≥116))",
+  "  退赔 known_members[0x428] m_pRoleStateGP (起点越界(≥116))",
+  "  退赔 known_members[0x438] m_pRoleStateMP (起点越界(≥116))",
+  "  退赔 known_members[0x448] m_pRoleStateSword (起点越界(≥116))",
+  "  退赔 known_members[0x44c] m_pTrickName (起点越界(≥116))",
+  "  退赔 known_members[0x450] m_pTrickName2 (起点越界(≥116))",
+  "  退赔 known_members[0x454] m_pDialogBack (起点越界(≥116))",
+  "  退赔 known_members[0x458] m_pResultLevelup (起点越界(≥116))",
+  "  退赔 known_members[0x45c] m_pResultWindLvup (起点越界(≥116))",
+  "  退赔 known_members[0x460] m_pResultThunderLvup (起点越界(≥116))",
+  "  退赔 known_members[0x464] m_pResultWaterLvup (起点越界(≥116))",
+  "  退赔 known_members[0x468] m_pResultFireLvup (起点越界(≥116))",
+  "  退赔 known_members[0x46c] m_pResultEarthLvup (起点越界(≥116))",
+  "  退赔 known_members[0x470] m_pResultDoubleLvup (起点越界(≥116))",
+  "  退赔 known_members[0x474] m_pResultGetItem (起点越界(≥116))",
+  "  退赔 known_members[0x478] m_pMain (起点越界(≥116))",
+  "  退赔 known_members[0x47c] m_pItemWindow (起点越界(≥116))",
+  "  退赔 known_members[0x480] m_pParabolaWindow (起点越界(≥116))",
+  "  退赔 known_members[0x484] m_pMagicWindow (起点越界(≥116))",
+  "  退赔 known_members[0x488] m_pSkillWindow (起点越界(≥116))",
+  "  退赔 known_members[0x48c] m_pAIWindow (起点越界(≥116))",
+  "  退赔 known_members[0x490] m_pLineupWindow (起点越界(≥116))",
+  "  退赔 known_members[0x494] m_pProtectWindow (起点越界(≥116))",
+  "  退赔 known_members[0x498] m_pResultWindow (起点越界(≥116))",
+  "  退赔 known_members[0x4a8] m_pFiveNimbusWindow (起点越界(≥116))",
+  "  退赔 known_members[0x4ac] m_pCBSystem (起点越界(≥116))",
+  "  退赔 known_members[0x4b0] m_pUtil (起点越界(≥116))",
+  "  退赔 known_members[0x4b8] m_Task (值数组语义证伪(AddTask=tagUITask*指针式)+零访问者+越界)",
+  "  退赔 known_members[0xa30] fp (起点越界(≥116))"
+ ],
+ "retired_members": {
+  "0x94": {
+   "name": "m_pRoleStatePanel",
+   "type": "UIStatic *[4]",
+   "offset": 148,
+   "evidence_level": "unverified"
+  },
+  "0xa4": {
+   "name": "m_pRoleStateFace",
+   "type": "UIStatic *[5]",
+   "offset": 164,
+   "evidence_level": "unverified"
+  },
+  "0xb8": {
+   "name": "m_pRoleStateFaceName",
+   "type": "UIStatic *[5]",
+   "offset": 184,
+   "evidence_level": "unverified"
+  },
+  "0xcc": {
+   "name": "m_pRoleStateAttackInc",
+   "type": "UIStatic *[11]",
+   "offset": 204,
+   "evidence_level": "unverified"
+  },
+  "0xf8": {
+   "name": "m_pRoleStateAttackDec",
+   "type": "UIStatic *[11]",
+   "offset": 248,
+   "evidence_level": "unverified"
+  },
+  "0x124": {
+   "name": "m_pRoleStateDefenceInc",
+   "type": "UIStatic *[11]",
+   "offset": 292,
+   "evidence_level": "unverified"
+  },
+  "0x150": {
+   "name": "m_pRoleStateDefenceDec",
+   "type": "UIStatic *[11]",
+   "offset": 336,
+   "evidence_level": "unverified"
+  },
+  "0x17c": {
+   "name": "m_pRoleStateLuckInc",
+   "type": "UIStatic *[11]",
+   "offset": 380,
+   "evidence_level": "unverified"
+  },
+  "0x1a8": {
+   "name": "m_pRoleStateLuckDec",
+   "type": "UIStatic *[11]",
+   "offset": 424,
+   "evidence_level": "unverified"
+  },
+  "0x1d4": {
+   "name": "m_pRoleStateSpeedInc",
+   "type": "UIStatic *[11]",
+   "offset": 468,
+   "evidence_level": "unverified"
+  },
+  "0x200": {
+   "name": "m_pRoleStateSpeedDec",
+   "type": "UIStatic *[11]",
+   "offset": 512,
+   "evidence_level": "unverified"
+  },
+  "0x22c": {
+   "name": "m_pRoleStateStable",
+   "type": "UIStatic *[11]",
+   "offset": 556,
+   "evidence_level": "unverified"
+  },
+  "0x258": {
+   "name": "m_pRoleStateBlank",
+   "type": "UIStatic *[11]",
+   "offset": 600,
+   "evidence_level": "unverified"
+  },
+  "0x284": {
+   "name": "m_pRoleStateForbid",
+   "type": "UIStatic *[11]",
+   "offset": 644,
+   "evidence_level": "unverified"
+  },
+  "0x2b0": {
+   "name": "m_pRoleStateSleep",
+   "type": "UIStatic *[11]",
+   "offset": 688,
+   "evidence_level": "unverified"
+  },
+  "0x2dc": {
+   "name": "m_pRoleStateChaos",
+   "type": "UIStatic *[11]",
+   "offset": 732,
+   "evidence_level": "unverified"
+  },
+  "0x308": {
+   "name": "m_pRoleStateMad",
+   "type": "UIStatic *[11]",
+   "offset": 776,
+   "evidence_level": "unverified"
+  },
+  "0x334": {
+   "name": "m_pRoleStateMirror",
+   "type": "UIStatic *[11]",
+   "offset": 820,
+   "evidence_level": "unverified"
+  },
+  "0x360": {
+   "name": "m_pRoleStateWall",
+   "type": "UIStatic *[11]",
+   "offset": 864,
+   "evidence_level": "unverified"
+  },
+  "0x38c": {
+   "name": "m_pRoleStateBound",
+   "type": "UIStatic *[11]",
+   "offset": 908,
+   "evidence_level": "unverified"
+  },
+  "0x3b8": {
+   "name": "m_pRoleStateHermit",
+   "type": "UIStatic *[11]",
+   "offset": 952,
+   "evidence_level": "unverified"
+  },
+  "0x3e4": {
+   "name": "m_pRoleStateImmunity",
+   "type": "UIStatic *[11]",
+   "offset": 996,
+   "evidence_level": "unverified"
+  },
+  "0x410": {
+   "name": "m_pWinPanel",
+   "type": "UIStatic *",
+   "offset": 1040,
+   "evidence_level": "unverified"
+  },
+  "0x414": {
+   "name": "m_pLosePanel",
+   "type": "UIStatic *",
+   "offset": 1044,
+   "evidence_level": "unverified"
+  },
+  "0x418": {
+   "name": "m_pRoleStateHP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1048,
+   "evidence_level": "unverified"
+  },
+  "0x428": {
+   "name": "m_pRoleStateGP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1064,
+   "evidence_level": "unverified"
+  },
+  "0x438": {
+   "name": "m_pRoleStateMP",
+   "type": "UIProgressBar *[4]",
+   "offset": 1080,
+   "evidence_level": "unverified"
+  },
+  "0x448": {
+   "name": "m_pRoleStateSword",
+   "type": "UIProgressBar *",
+   "offset": 1096,
+   "evidence_level": "unverified"
+  },
+  "0x44c": {
+   "name": "m_pTrickName",
+   "type": "UIStaticCB *",
+   "offset": 1100,
+   "evidence_level": "unverified"
+  },
+  "0x450": {
+   "name": "m_pTrickName2",
+   "type": "UIStaticCB *",
+   "offset": 1104,
+   "evidence_level": "unverified"
+  },
+  "0x454": {
+   "name": "m_pDialogBack",
+   "type": "UIStatic *",
+   "offset": 1108,
+   "evidence_level": "unverified"
+  },
+  "0x458": {
+   "name": "m_pResultLevelup",
+   "type": "UIStatic *",
+   "offset": 1112,
+   "evidence_level": "unverified"
+  },
+  "0x45c": {
+   "name": "m_pResultWindLvup",
+   "type": "UIStatic *",
+   "offset": 1116,
+   "evidence_level": "unverified"
+  },
+  "0x460": {
+   "name": "m_pResultThunderLvup",
+   "type": "UIStatic *",
+   "offset": 1120,
+   "evidence_level": "unverified"
+  },
+  "0x464": {
+   "name": "m_pResultWaterLvup",
+   "type": "UIStatic *",
+   "offset": 1124,
+   "evidence_level": "unverified"
+  },
+  "0x468": {
+   "name": "m_pResultFireLvup",
+   "type": "UIStatic *",
+   "offset": 1128,
+   "evidence_level": "unverified"
+  },
+  "0x46c": {
+   "name": "m_pResultEarthLvup",
+   "type": "UIStatic *",
+   "offset": 1132,
+   "evidence_level": "unverified"
+  },
+  "0x470": {
+   "name": "m_pResultDoubleLvup",
+   "type": "UIStatic *",
+   "offset": 1136,
+   "evidence_level": "unverified"
+  },
+  "0x474": {
+   "name": "m_pResultGetItem",
+   "type": "UIStatic *",
+   "offset": 1140,
+   "evidence_level": "unverified"
+  },
+  "0x478": {
+   "name": "m_pMain",
+   "type": "CCBControlWindow *",
+   "offset": 1144,
+   "evidence_level": "unverified"
+  },
+  "0x47c": {
+   "name": "m_pItemWindow",
+   "type": "CCBItemWindow *",
+   "offset": 1148,
+   "evidence_level": "unverified"
+  },
+  "0x480": {
+   "name": "m_pParabolaWindow",
+   "type": "CCBParabolaWindow *",
+   "offset": 1152,
+   "evidence_level": "unverified"
+  },
+  "0x484": {
+   "name": "m_pMagicWindow",
+   "type": "CCBMagicWindow *",
+   "offset": 1156,
+   "evidence_level": "unverified"
+  },
+  "0x488": {
+   "name": "m_pSkillWindow",
+   "type": "CCBSkillWindow *",
+   "offset": 1160,
+   "evidence_level": "unverified"
+  },
+  "0x48c": {
+   "name": "m_pAIWindow",
+   "type": "CCBAIWindow *",
+   "offset": 1164,
+   "evidence_level": "unverified"
+  },
+  "0x490": {
+   "name": "m_pLineupWindow",
+   "type": "CCBLineupWindow *",
+   "offset": 1168,
+   "evidence_level": "unverified"
+  },
+  "0x494": {
+   "name": "m_pProtectWindow",
+   "type": "CCBProtectWindow *",
+   "offset": 1172,
+   "evidence_level": "unverified"
+  },
+  "0x498": {
+   "name": "m_pResultWindow",
+   "type": "CCBResultWindow *[4]",
+   "offset": 1176,
+   "evidence_level": "unverified"
+  },
+  "0x4a8": {
+   "name": "m_pFiveNimbusWindow",
+   "type": "CCBFiveNimbusWindow *",
+   "offset": 1192,
+   "evidence_level": "unverified"
+  },
+  "0x4ac": {
+   "name": "m_pCBSystem",
+   "type": "CCBSystem *",
+   "offset": 1196,
+   "evidence_level": "unverified"
+  },
+  "0x4b0": {
+   "name": "m_pUtil",
+   "type": "CUtil *",
+   "offset": 1200,
+   "evidence_level": "unverified"
+  },
+  "0x4b8": {
+   "name": "m_Task",
+   "type": "tagUITask[19]",
+   "offset": 1208,
+   "source": "+fix:overlap_correct_count | adjudicated:2026-10-15 A:19x72(tagUITask binary_size=72)=1368⇒1208..2576,next@2608 gap32B 无重叠,overlap_correct_count修正正确",
+   "evidence_level": "unverified"
+  },
+  "0xa30": {
+   "name": "fp",
+   "type": "CCBUI_funcptr_t",
+   "source": "PAL3patch_verified",
+   "evidence_level": "unverified"
+  }
+ },
+ "kept_members": [
+  "0x48",
+  "0x4c",
+  "0x50",
+  "0x68"
+ ],
+ "B_adjudication": {
+  "vtable": "0x5706CC",
+  "slots": {
+   "0": "0x445e70 ShowClipped(UIWnd)",
+   "1": "0x526660 CCBUI_Render@CCBUI(名源非权威)",
+   "2": "0x526740 UpdateStatics@CCBUI",
+   "3": "0x43de40 Destroy",
+   "4": "0x445b90 Create(UIWnd)",
+   "5": "0x525520 删除式dtor",
+   "6": "0x526a40 sub_526A40"
+  },
+  "complete_dtor": "0x525540 (611B, 析构至+100572, ~UIListBox收尾)",
+  "size_evidence": "dtor析构界100572 (无独立ctor/堆分配点: InitUI@0x525120/InitSkillUI@0x5257b0 内联放置构造)",
+  "destroyed_members": "见 archive/ccbui_layout_map_20261121.json (25条, 待回迁)",
+  "identity": "未定谳——原始IDB名(@CCBUI簇)与A名冲突, 名字归属挂账"
+ },
+ "A_alloc_anchor": "push 74h @0x51ccfb → operator new → ctor 0x519310 @0x51cd1a (CCBAIWindow::Destroy@0x51cce0)"
+}
