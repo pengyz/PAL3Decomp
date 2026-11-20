@@ -1,10 +1,387 @@
+[vtable] 改进: 168 → 151 (update vtable_baseline.json)
+WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
+WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
+WARN: functions[0x00446030]: '__thiscall' without '::' in 'AddToArray' (sig: void __thiscall(_DWORD *newElement)) — likely member function, needs IDA investigation
+WARN: functions[0x00401da0]: '__thiscall' without '::' in 'FileSysDestory' (sig: gbVFileSystem * __thiscall()) — likely member function, needs IDA investigation
+WARN: functions[0x0046adf0]: '__thiscall' without '::' in 'GetCellStateByte' (sig: char __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x00523cb0]: '__thiscall' without '::' in 'Method_3CB0' (sig: int __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x0043a090]: '__thiscall' without '::' in 'NormalizeAngle' (sig: void __thiscall(int this, int a2, float a3)) — likely member function, needs IDA investigation
+WARN: functions[0x0043fd90]: '__thiscall' without '::' in 'SetFrameIndex' (sig: int __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x0043fdb0]: '__thiscall' without '::' in 'SetFrameCount' (sig: void __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x00445bf0]: '__thiscall' without '::' in 'SetArrayElement' (sig: void __thiscall(int this, int newElement)) — likely member function, needs IDA investigation
+WARN: functions[0x0044f130]: '__thiscall' without '::' in 'InitUIComponents' (sig: void __thiscall(int nVal)) — likely member function, needs IDA investigation
+WARN: functions[0x0045add0]: '__thiscall' without '::' in 'InitState' (sig: void __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
+WARN: functions[0x0047f590]: '__thiscall' without '::' in 'ProcessTree' (sig: int __thiscall(int parent, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x004912d0]: '__thiscall' without '::' in 'Destroy_912D0' (sig: void __thiscall(stdiobuf *this)) — likely member function, needs IDA investigation
+WARN: functions[0x004ab560]: '__thiscall' without '::' in 'Method_B560' (sig: bool __thiscall(_DWORD *this, int a2, int a3)) — likely member function, needs IDA investigation
+WARN: functions[0x004c4b00]: '__thiscall' without '::' in 'SetValue' (sig: int __thiscall(int this, int a2)) — likely member function, needs IDA investigation
+WARN: functions[0x005306a0]: '__thiscall' without '::' in 'Initialize_06A0' (sig: void __thiscall(int this, char *pszRoleDir)) — likely member function, needs IDA investigation
+WARN: functions[0x0057c068]: '__thiscall' without '::' in 'gbVec3D_ctor' (sig: gbVec3D *__thiscall(gbVec3D *this, float x, float y, float z) — likely member function, needs IDA investigation
+WARN: functions[0x0057c1ec]: '__thiscall' without '::' in 'gbVec3D_Normalize' (sig: void __thiscall(gbVec3D *this)) — likely member function, needs IDA investigation
+WARN: structs[Actor]: 'm_nCachedA' at offset 0x4c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_nCachedB' at offset 0x50 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_bUIFlagA' at offset 0x5c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_bUIFlagB' at offset 0x5d 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_fMatrixA' at offset 0xdc 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_fMatrixB' at offset 0xe0 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_fMatrixC' at offset 0xe4 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[Actor]: 'm_fMatrixE' at offset 0xf4 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBCamControl]: 'm_fCamBlendA' at offset 0x34 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBCamControl]: 'm_fCamBlendB' at offset 0x38 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBPanelSlot]: 'm_nEdgeB' at offset 0xc 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBPanelSlot]: 'm_nClipB' at offset 0x34 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_bScrollEnableA' at offset 0x55c8 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_bScrollEnableB' at offset 0x55c9 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffCurA' at offset 0x5064 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffCurB' at offset 0x5068 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffSwapA' at offset 0x507c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffSwapB' at offset 0x5080 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffCurC' at offset 0x5088 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffSwapC' at offset 0x508c 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffCurD' at offset 0x5090 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffCurE' at offset 0x5098 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBRoleState]: 'm_nEffSwapE' at offset 0x509c 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirSinC' at offset 0x334 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fBlendC' at offset 0x338 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirCosC' at offset 0x33c 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirSinD' at offset 0x340 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fBlendD' at offset 0x344 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirCosD' at offset 0x348 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirSinE' at offset 0x34c 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fBlendE' at offset 0x350 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirSinA' at offset 0x2ac 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fBlendA' at offset 0x2b0 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirSinB' at offset 0x2d0 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fBlendB' at offset 0x2d4 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBStageScene]: 'm_fDirCosB' at offset 0x2d8 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBTaskSlot208]: 'm_ptrC' at offset 0x90 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBUIPanel]: 'm_nSlotCalcA' at offset 0x4964 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBUIPanel]: 'm_nSlotCalcB' at offset 0x4968 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBUIPanel]: 'm_nSlotCalcC' at offset 0x496c 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CCBUIPanel]: 'm_nSlotCalcD' at offset 0x4970 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CScreenMode]: 'm_nProgressValA' at offset 0x78 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CScreenMode]: 'm_nProgressValB' at offset 0x7c 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CScreenMode]: 'm_wndAssistA' at offset 0xa4 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CScreenMode]: 'm_fProgressD' at offset 0xd0 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CameraCtrl]: 'm_nBlendWeightA' at offset 0x4a4 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CameraCtrl]: 'm_nBlendWeightB' at offset 0x4a8 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[CameraCtrl]: 'm_nBlendWeightC' at offset 0x4ac 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[MXTransport]: 'm_pEffectA' at offset 0xac 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[NPC]: 'm_pConditionA' at offset 0x38 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[NPC]: 'm_pConditionB' at offset 0x3c 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nSavedDataA' at offset 0xdc 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nSavedDataB' at offset 0xe0 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nLoopCountA' at offset 0x330 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nLoopCountB' at offset 0x334 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nLoopCountC' at offset 0x338 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nExecRangeA' at offset 0xe8 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nExecRangeB' at offset 0xec 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nExecRangeC' at offset 0xf0 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nExecRangeD' at offset 0xf4 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_pSubScriptB' at offset 0x340 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_pScriptInstA' at offset 0x2514 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_pScriptInstD' at offset 0x2518 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_pScriptInstE' at offset 0x251c 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nScriptResultA' at offset 0x2520 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nScriptResultB' at offset 0x2524 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_nScriptResultC' at offset 0x2528 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_fPopA' at offset 0x1c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PalScriptMgr]: 'm_fPopB' at offset 0x20 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PropUI]: 'm_szItemTextA' at offset 0x264 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PropUI]: 'm_szItemTextB' at offset 0x564 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[PropUI]: 'm_szItemTextC' at offset 0x864 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[RoleSystem]: 'm_bSpawnByteA' at offset 0x12c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[RoleSystem]: 'm_bSpawnByteB' at offset 0x12d 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[RoleSystem]: 'm_teamSlotsB' at offset 0xc00 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[ScriptSystemData]: 'm_fTimerA' at offset 0x8a8 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[ScriptSystemData]: 'm_fTimerB' at offset 0xbd8 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[TextureLib]: 'm_fColorModB' at offset 0x94 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[TextureLib]: 'm_fColorModA' at offset 0x98 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UICoverFrm]: 'm_mountainA' at offset 0x21d0 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UICoverFrm]: 'm_mountainB' at offset 0x2270 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UICoverFrm]: 'm_tjA' at offset 0x2458 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UICoverFrm]: 'm_tjB' at offset 0x2520 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UIFrameContainer]: 'm_bFlag96' at offset 0x60 looks like pseudo-semantic naming — suffix '96' is this field's own offset dressed up with a generic word (Val/Flag/State/...), no real semantic content added over _todo_/_field_. See CLAUDE.md 禁止伪语义命名.
+WARN: structs[UIGameFrm]: 'm_pGameObjB' at offset 0x6e18 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UIGameFrm]: 'm_fTimerC' at offset 0x1ba0 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UIParticle]: 'm_isSubA' at offset 0x50 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UIScenePanel]: 'm_bPanelFlagA' at offset 0x3630 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_subObjA' at offset 0x1ac 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_nScriptHandleA' at offset 0x2510 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_nScriptHandleB' at offset 0x2514 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_nScriptHandleC' at offset 0x2518 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_nScriptHandleD' at offset 0x251c 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: structs[UITitle]: 'm_nScriptHandleE' at offset 0x2520 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004b0520
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0045ae40
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b860
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c110
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c1b0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051f0a0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004c15d0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00485230
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004208a0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004209e0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x005279d0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450e90
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048ef80
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048eb40
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450ab0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b570
+WARN: CLAIM_GATE:member_counter_evidence:0x0051CAA0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051C9F0
+WARN: CLAIM_GATE:member_counter_evidence:0x00442390
+WARN: CLAIM_GATE:member_counter_evidence:0x00442FF0
+WARN: CLAIM_GATE:member_counter_evidence:0x004438F0
+WARN: CLAIM_GATE:member_counter_evidence:0x00443970
+WARN: CLAIM_GATE:member_counter_evidence:0x00443200
+WARN: CLAIM_GATE:member_counter_evidence:0x004382A0
+WARN: CLAIM_GATE:member_counter_evidence:0x00438110
+WARN: CLAIM_GATE:member_counter_evidence:0x00434D20
+WARN: CLAIM_GATE:member_counter_evidence:0x00434D40
+WARN: CLAIM_GATE:member_counter_evidence:0x00526A40
+WARN: CLAIM_GATE:member_counter_evidence:0x0043D920
+WARN: CLAIM_GATE:member_counter_evidence:0x004202A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004208A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004209E0
+WARN: CLAIM_GATE:member_counter_evidence:0x004202F0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C15D0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051B5D0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051C880
+WARN: CLAIM_GATE:member_counter_evidence:0x41b640
+WARN: CLAIM_GATE:member_counter_evidence:0x00438640
+WARN: CLAIM_GATE:member_counter_evidence:0x004B7AF0
+WARN: CLAIM_GATE:member_counter_evidence:0x0051F1B0
+WARN: CLAIM_GATE:member_counter_evidence:0x0043B660
+WARN: CLAIM_GATE:member_counter_evidence:0x0043B900
+WARN: CLAIM_GATE:member_counter_evidence:0x0043A870
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AD40
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x0044A870
+WARN: CLAIM_GATE:member_counter_evidence:0x0044A820
+WARN: CLAIM_GATE:member_counter_evidence:0x00527DC0
+WARN: CLAIM_GATE:member_counter_evidence:0x00454550
+WARN: CLAIM_GATE:member_counter_evidence:0x00454560
+WARN: CLAIM_GATE:member_counter_evidence:0x00454590
+WARN: CLAIM_GATE:member_counter_evidence:0x0046B4B0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5E80
+WARN: CLAIM_GATE:member_counter_evidence:0x004C6030
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5DB0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C5DE0
+WARN: CLAIM_GATE:member_counter_evidence:0x00438E30
+WARN: CLAIM_GATE:member_counter_evidence:0x00445B90
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x004C7680
+WARN: CLAIM_GATE:member_counter_evidence:0x00485230
+WARN: CLAIM_GATE:member_counter_evidence:0x00438540
+WARN: CLAIM_GATE:member_counter_evidence:0x004CFE20
+WARN: CLAIM_GATE:member_counter_evidence:0x004CFFB0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C15D0
+WARN: CLAIM_GATE:member_counter_evidence:0x00523B90
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AB00
+WARN: CLAIM_GATE:member_counter_evidence:0x0043AB20
+WARN: CLAIM_GATE:member_counter_evidence:0x005164D0
+WARN: CLAIM_GATE:member_counter_evidence:0x00519510
+WARN: CLAIM_GATE:member_counter_evidence:0x00519F50
+WARN: CLAIM_GATE:member_counter_evidence:0x0051A880
+WARN: CLAIM_GATE:member_counter_evidence:0x00445E70
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2600
+WARN: CLAIM_GATE:member_counter_evidence:0x004C1490
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2170
+WARN: CLAIM_GATE:member_counter_evidence:0x004C2600
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0640
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0740
+WARN: CLAIM_GATE:member_counter_evidence:0x004C0920
+WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C4060
+WARN: CLAIM_GATE:member_counter_evidence:0x004C4370
+WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C3EC0
+WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
+WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
+WARN: CXX_GATE:baseline_stale:same_addr:0x408BD0:DestroyEffect|NullCallback
+WARN: CXX_GATE:baseline_stale:same_addr:0x411B80:_scalar_dtor_1b80|slot_unk_1b80|slot_unk_1b80
+WARN: CXX_GATE:baseline_stale:same_addr:0x411BB0:_scalar_dtor_1bb0|slot_unk_1bb0|slot_unk_1bb0
+WARN: CXX_GATE:baseline_stale:same_addr:0x411BD0:_scalar_dtor_1BD0|slot_unk
+WARN: CXX_GATE:baseline_stale:same_addr:0x41C710:ProcessKeyboard|ProcessKeyboard
+WARN: CXX_GATE:baseline_stale:same_addr:0x434D50:_scalar_dtor_4D50|_scalar_dtor_4D50|~PalScriptBlendTimer|~PalScriptFadeInTimer|~PalScriptFadeOutTimer|~PalScriptProgressTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438100:CheckFlag0C|CheckFlag0C|IsAnimDone|IsAnimDone
+WARN: CXX_GATE:baseline_stale:same_addr:0x438110:UpdateWaitTimer|UpdateWaitTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438190:_scalar_dtor_8190|_scalar_dtor_8190
+WARN: CXX_GATE:baseline_stale:same_addr:0x4382A0:UpdateIdleTimer|UpdateIdleTimer
+WARN: CXX_GATE:baseline_stale:same_addr:0x438530:IsFadeDone|IsFadeDone
+WARN: CXX_GATE:baseline_stale:same_addr:0x43AD40:Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x43BB90:_scalar_dtor|_scalar_dtor_BB90|_scalar_dtor_BB90
+WARN: CXX_GATE:baseline_stale:same_addr:0x43BBC0:Update|Update
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:ForwardOnMessage|ForwardOnMessage|ForwardOnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x43D920:Destroy|Destroy
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DDF0:Render|Render|Render|Render|Render|Render|Render|Render|Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage
+WARN: CXX_GATE:baseline_stale:same_addr:0x442420:Destroy_2420|Destroy_2420|Destroy_2420|v1_slot_3
+WARN: CXX_GATE:baseline_stale:same_addr:0x442420:HideAll|HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x442E60:_scalar_dtor_2E60|_scalar_dtor_2E60
+WARN: CXX_GATE:baseline_stale:same_addr:0x442E90:RenderWithTexture|RenderWithTexture
+WARN: CXX_GATE:baseline_stale:same_addr:0x442FF0:Update_2ff0|Update_2ff0|Update_2ff0
+WARN: CXX_GATE:baseline_stale:same_addr:0x445B90:Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x445E70:ShowClipped|ShowClipped
+WARN: CXX_GATE:baseline_stale:same_addr:0x44AB00:GetType|GetType
+WARN: CXX_GATE:baseline_stale:same_addr:0x44E5C0:_sdtor_25|_sdtor_25
+WARN: CXX_GATE:baseline_stale:same_addr:0x44E980:OnVisible|OnVisible
+WARN: CXX_GATE:baseline_stale:same_addr:0x450F80:IsValid|IsValid
+WARN: CXX_GATE:baseline_stale:same_addr:0x4518E0:_scalar_dtor_18E0|~UIListBox
+WARN: CXX_GATE:baseline_stale:same_addr:0x451AA0:OnMessage_1AA0|OnMessage_1AA0
+WARN: CXX_GATE:baseline_stale:same_addr:0x451B40:ResizeToContent|UIListBox_ResizeToContent
+WARN: CXX_GATE:baseline_stale:same_addr:0x451C10:IsVisible|UIListBox_IsVisible
+WARN: CXX_GATE:baseline_stale:same_addr:0x4A14C0:HideAll|HideAll
+WARN: CXX_GATE:baseline_stale:same_addr:0x4A2150:_scalar_dtor|_scalar_dtor_2150
+WARN: CXX_GATE:baseline_stale:same_addr:0x4AF760:Update|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|slot_unk_f760|slot_unk_f760
+WARN: CXX_GATE:baseline_stale:same_addr:0x4B7BA0:_todo_4b7ba0|_todo_7BA0
+WARN: CXX_GATE:baseline_stale:same_addr:0x4BD850:_scalar_dtor_D850|_scalar_dtor_D850
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0500:OnTest|OnTest
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0510:GetEditorObjDescription|GetEditorObjDescription
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:AllocActionArray|AllocActionArray|Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:Create|Create|Create|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C15B0:AllocEffect|CreateEffAudio
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C15D0:UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C1640:~CEffBink|~EffAudioNode
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2170:AllocTargets|Create
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2620:ProcessData|RenderEffect
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2820:AllocEffect|CreateDeactivated
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2870:~CEffCallBack|~EffMultiPassNode
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C2930:InitTargetPos|ResetState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C29A0:UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C3BB0:AdvancePass|CheckState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5800:CreateTaskWrapper|sub_4C5800
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5810:_sdtor|_sdtor
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C5B90:SetEffectVisible|operator_
+WARN: CXX_GATE:baseline_stale:same_addr:0x4C88B0:CreateOnePartical_adjthunk|_todo_88B0
+WARN: CXX_GATE:baseline_stale:same_addr:0x4CB340:_sdtor_adj|slot_5_adjthunk
+WARN: CXX_GATE:baseline_stale:same_addr:0x4CB350:_todo_4CB350|_todo_4CB350
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D0C90:_nearby_4cffb0_adjthunk|_todo_004D0C90
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D3220:_sdtor_adj|sub_4D17D0_adjthunk
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D33A0:ResetIdle|ResetState|ResetState|ResetState
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DE0:_sdtor_adj|sub_4D3DC0_adjthunk
+WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DF0:_todo_4D4DF0|_todo_4D4DF0
+WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|ShowLineupWindow
+WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|~CCBUI
+WARN: CXX_GATE:baseline_stale:same_addr:0x519510:Destroy|Destroy
+WARN: CXX_GATE:baseline_stale:same_addr:0x5195E0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x519660:IsImbibeNimbusNotFinish|IsImbibeNimbusNotFinish
+WARN: CXX_GATE:baseline_stale:same_addr:0x51B570:HandleInput|HandleInput
+WARN: CXX_GATE:baseline_stale:same_addr:0x51B5D0:CreateWithTextures|~CCBLineupWindow
+WARN: CXX_GATE:baseline_stale:same_addr:0x51C9B0:OnMessage|OnMessage
+WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|Render|Render
+WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|slot_1
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9A0:_todo_52B9A0|_todo_52B9A0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9C0:_todo_52B9C0|_todo_52B9C0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52B9E0:_todo_52B9E0|_todo_52B9E0
+WARN: CXX_GATE:baseline_stale:same_addr:0x52BA00:_todo_52BA00|_todo_52BA00
+WARN: CXX_GATE:baseline_stale:same_addr:0x535930:LoadOverlayTexture|LoadOverlayTexture
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420D8:EnableShadow|EnableShadow
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420DE:GetAABBox|GetAABBox
+WARN: CXX_GATE:baseline_stale:same_addr:0x5420FC:ParticleVisNode_adjthunk_20FC|ParticleVisNode_adjthunk_20FC
+WARN: CXX_GATE:baseline_stale:same_addr:0x542102:SceneVisNode_adjthunk_2102|SceneVisNode_adjthunk_2102
+WARN: CXX_GATE:baseline_stale:same_addr:0x54210E:SceneVisNode_adjthunk_210E|SceneVisNode_adjthunk_210E
+WARN: CXX_GATE:baseline_stale:same_addr:0x542114:SceneVisNode_adjthunk_2114|SceneVisNode_adjthunk_2114
+WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
+WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
+WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
+WARN: N15[advisory普查]: 1个有vtable类无ctor证据=伪造候选(身份案队列): SkillUI
+WARN: REF:gen 树(1795210479)早于最新注解(1795210932)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: N13b:CCBUI::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:PalScript::ctor@0x0043a1f0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:RoleSystem::SetTargetRotation@0x00416490 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:SceneObj::_init_4530c0@0x004530c0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:ScreenEffectMgr::_todo_4BDF30@0x004bdf30 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UICaption::Destroy2@0x0043a810 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIMap::UIMap@0x004411d0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbTexture::UpdateTexture@0x1001bea0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:gbVertPoolMgr::GetDynVertBuf@0x10021680 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: name_drift: globals[0x005BC914] 注解名'off_5BC914' != IDB名'dword_5BC914'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005BC940] 注解名'off_5BC940' != IDB名'dword_5BC940'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87F0] 注解名'unk_5D87F0' != IDB名'byte_5D87F0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8800] 注解名'unk_5D8800' != IDB名'dword_5D8800'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8A3C] 注解名'off_5D8A3C' != IDB名'byte_5D8A3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8A6C] 注解名'unk_5D8A6C' != IDB名'byte_5D8A6C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8A90] 注解名'unk_5D8A90' != IDB名'byte_5D8A90'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8AD4] 注解名'unk_5D8AD4' != IDB名'byte_5D8AD4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8AF4] 注解名'unk_5D8AF4' != IDB名'byte_5D8AF4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8B14] 注解名'unk_5D8B14' != IDB名'byte_5D8B14'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8B3C] 注解名'unk_5D8B3C' != IDB名'byte_5D8B3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005DFDEB] 注解名'unk_5DFDEB' != IDB名'byte_5DFDEB'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00D8C1AC] 注解名'unk_D8C1AC' != IDB名'String'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D89BC] 注解名'off_5D89BC' != IDB名'byte_5D89BC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x0056B794] 注解名'off_56B794' != IDB名'stru_56B794'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005706CC] 注解名'off_5706CC' != IDB名'stru_5706CC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00580CFC] 注解名'off_580CFC' != IDB名'asc_580CFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8FEC] 注解名'off_5D8FEC' != IDB名'byte_5D8FEC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005DB9B0] 注解名'off_5DB9B0' != IDB名'byte_5DB9B0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00592E5C] 注解名'dword_592E5C' != IDB名'asc_592E5C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00C0E760] 注解名'unk_C0E760' != IDB名'dword_C0E760'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00C0EC50] 注解名'unk_C0EC50' != IDB名'dword_C0EC50'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87F8] 注解名'unk_5D87F8' != IDB名'dword_5D87F8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D87FC] 注解名'unk_5D87FC' != IDB名'dword_5D87FC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x00DBA25C] 注解名'byte_DBA25C' != IDB名'dword_DBA25C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x017A89E8] 注解名'byte_17A89E8' != IDB名'Buffer'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8E98] 注解名'unk_5D8E98' != IDB名'byte_5D8E98'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8EC8] 注解名'unk_5D8EC8' != IDB名'byte_5D8EC8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8EE0] 注解名'unk_5D8EE0' != IDB名'byte_5D8EE0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8EF8] 注解名'unk_5D8EF8' != IDB名'byte_5D8EF8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005D8F0C] 注解名'unk_5D8F0C' != IDB名'byte_5D8F0C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: 941 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
+FROZEN: globals[0x00DBA260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBA260] if intentional
+FROZEN: globals[0x00DBAF10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBAF10] if intentional
+FROZEN: globals[0x00DBB364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBB364] if intentional
+FROZEN: structs[MainPropUI]: member overlap: m_szListBuf(char[256], size=256)@104 ends@360 > next buf@108
+FROZEN: CANON:C7:CCBPanelSlot:0x00445b90:own CCBPanelSlot 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:CCBPanelSlot:0x00445d10:own CCBPanelSlot 自有槽 slot0 addr=0x00445d10 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:RenderTarget:0x00445b90:own RenderTarget 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C7:RenderTarget:0x00445e70:own RenderTarget 自有槽 slot0 addr=0x00445e70 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
+FROZEN: CANON:C9:CCBUI:0x00519660:sig CCBUI Update 签名与基类不一致: return_type: signed __int32 vs BOOL; param[0]: int vs CCBUI * *; 本=signed __int32 __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费
+FROZEN: CANON:C9:RoleSystem:0x004209e0:name RoleSystem slot6 名字与基类不一致: 本=ResetState(004209e0) 基=OnMessage(00445d10) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:SkillUI:0x00526740:sig SkillUI Update 签名与基类不一致: return_type: int vs BOOL; param[0]: int vs CCBUI * *; 本=int __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费
+FROZEN: CANON:C9:UIEmote:0x0044ab00:name UIEmote slot1 名字与基类不一致: 本=GetType(0044ab00) 基=Render(00445cd0) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:UIEmote:0x0044e980:name UIEmote slot5 名字与基类不一致: 本=OnVisible(0044e980) 基=~UIWnd(00445b20) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C9:UIEmote:0x0044eb40:name UIEmote slot0 名字与基类不一致: 本=Reset(0044eb40) 基=ShowClipped(00445e70) → 折叠载体名≠链律名, 语义名需定谳
+FROZEN: CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size 256) 重叠(非union) — 布局冲突
+FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基类gbCamera子对象区[0,376) — 布局冲突
+FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
+FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
+
+0 new errors + 18 frozen(advisory), 336 warnings — PASS
+
+[Invariants] advisory 模式（只报告计数，不影响退出码）...
+[D] PASS：113 个有 vtables 的类，生成头 +0x0 都有 vptr
+[A] PASS：没有任何 code 位置的 __vftable
+[B] PASS：155 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+
+[ADVISORY] 非门禁报告：以下计数不影响任何退出码
+编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）
+[ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
+
+[UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...
+union 按值成员类型共 4 个：FightItemScriptBlock, RoleAttRemarkSkills, tagRoleSlot, tagTeamSlotsBOverlay
+检查：这些类不得有 ctor/dtor 形态的方法（方法名 == 类名 或 ~类名）
+
+✅ 无 landmine：没有 union 按值成员类带 ctor/dtor
+
+[MemberExtent] **advisory**：检查「成员末端 < binary_size」（apply 拒绝的前置）...
+成员末端 < binary_size 的检查：越界 1 个
+   ✗ scVARIANT_data: binary_size=4 但成员末端=5（as_float@1）
+[WARN] MemberExtent 报出违反（advisory，不影响退出码）—— 见上方清单；已登记为既存缺陷（Comp_DonateUI m_state），未取证前不改注解 ✓
 APPLY: updating annotations in PAL3.exe.i64 ...
 -> OK: annotations applied
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] PASS：113 个有 vtables 的类，生成头 +0x0 都有 vptr
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：159 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：155 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）

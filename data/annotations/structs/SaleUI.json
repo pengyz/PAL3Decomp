@@ -376,17 +376,6 @@
   }
  },
  "methods": {
-  "0x00525120": {
-   "name": "InitUI",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x0045a7b0": {
    "name": "SaleUI",
    "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int __thiscall SaleUI::SaleUI() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox 等成员ctor",
@@ -930,5 +919,6 @@
    "name": "UIListBox",
    "offset": 0
   }
- ]
+ ],
+ "note": " | 删认领20261121: 0x525120 InitUI(name-pass错挂——该函数=SkillUI ctor1, new(0x18E34)@0x527b68直调; 真SaleUI表0x56B5CC/ctor 0x45A7B0/分配0x19DB8)"
 }

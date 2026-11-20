@@ -122,5 +122,14 @@
   ],
   "evidence": "ctor 0x44e530 两阶段写表直证: 基构造 0x44E555 写 [esi+0x44]=0x56A9C0(GameObject 原生表) → 派生构造 0x44E595 覆写 [esi+0x44]=0x56B044(UIEmote final 表, slot1=0x44AB00=UIEmote::GetType 直证). 原 PalScriptWaitObj@68 证伪: 0x44+4=0x48 即数据区(m_sub48/m_cur), 无 PalScriptWaitObj 子对象(8B)存留空间",
   "at": "2026-11-20"
+ },
+ "SkillUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor1 0x525120 (new(0x18E34)@0x527b68直调) 体含UIListBox族构造链; 完全dtor 0x525540 体尾 call ??1UIListBox@@QAE@XZ@0x52578e(基析构直证) + 序言写表0x5706CC@0x52555D",
+  "dtor_evidence": "删除式 sub_525520(slot5)→call 0x525540+operator delete@0x525530; 0x525540→~UIListBox@0x52578e",
+  "verdict_by": "本机idalib探针15/16/17(probe_ccbui系列)"
  }
 }

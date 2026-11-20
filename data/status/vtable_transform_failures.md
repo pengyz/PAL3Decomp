@@ -1155,3 +1155,5 @@
 | `CCBProtectWindow::SetupAIWindow` | inline | `_DWORD` | 16 | non_class_hint | `(*(void ( **)(_DWORD, int, int *, CCBProtectWindow *))(*(_DWORD *)*(v24 - 11) + 16))( *(v24 - 11), 79, &v68, this)` |
 | `CCBProtectWindow::Reset` | inline | `UIProgressBar` | 16 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v8->UIWnd + 16))( v8, 784, &v10, this)` |
 | `CCBProtectWindow::CreateItemWindow` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v4->UIWnd + 16))( v4, 531, &v19, this)` |
+| `SkillUI::InitSkillUI` | inline | `UIPushButton` | 28 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, const char *, _DWORD *, SkillUI *, char *, int))(*(_DWORD *)&v17->UIWnd + 28))( v17, *v16, v69, this, aSubgameApprais_3, v15)` |
+| `SkillUI::InitSkillUI` | inline | `PalScript` | 28 | slot_out_of_range | `(*(void ( **)(PalScript *, const char *, int *, SkillUI *, char *, _DWORD, int))(*(_DWORD *)v21 + 28))( v21, *v20, &v54, this, aSubgameApprais_5, 0, v19)` |

@@ -29,5 +29,6 @@
  "CXX_GATE:new_violation:same_name:RoleStatePanel:Render:x2",
  "CANON:C9:RoleStatePanel:0x004a5930:sig RoleStatePanel Render 签名与基类不一致: return_type: int vs void; 本=int __thiscall() 基=void __thiscall() → C2555前置; 取证=两侧函数体出口eax+调用点消费",
  "CANON:C9:RoleStatePanel:0x004a5b30:sig RoleStatePanel Update 签名与基类不一致: return_type: int vs BOOL; param_count: 0 vs 2; 本=int __thiscall() 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费",
- "CANON:C9:RoleStatePanel:0x004a6600:sig RoleStatePanel HideAll 签名与基类不一致: return_type: int vs void; 本=int __thiscall() 基=void __thiscall() → C2555前置; 取证=两侧函数体出口eax+调用点消费"
+ "CANON:C9:RoleStatePanel:0x004a6600:sig RoleStatePanel HideAll 签名与基类不一致: return_type: int vs void; 本=int __thiscall() 基=void __thiscall() → C2555前置; 取证=两侧函数体出口eax+调用点消费",
+ "CANON:C9:SkillUI:0x00526740:sig SkillUI Update 签名与基类不一致: return_type: int vs BOOL; param[0]: int vs CCBUI * *; 本=int __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费"
 ]
