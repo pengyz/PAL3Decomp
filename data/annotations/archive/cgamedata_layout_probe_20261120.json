@@ -171,5 +171,18 @@
   "CPK": "CPK 包文件管理器——结构完整闭合: 0x88+32768×0x1C(tagCPKTable)=0xE0088=m_pCPKFile ✓。大尺寸=CPKTable 资源表大数组(语义已知), 非缺口。",
   "audit口径注记": "字节口径 0% 覆盖=数组语义被吞(同 Scene roles 段)——audit 应对\"已语义命名的数组元素类型\"做子档案豁免",
   "verdict": "两定性完成: 无布局重划需求, 从缺口榜移除"
+ },
+ "binkvideo_verdict": {
+  "_doc": "gbBinkVideo 1836KB 定性 2026-11-20 (L0-L1)",
+  "layout": [
+   "0x4 m_pos tagPOINT",
+   "0xC m_hBink BINK* (DLL 句柄)",
+   "0x10 m_Cpk CPK (视频包)",
+   "0xE01CC m_Cpk2 CPK (音频包/第二分包)"
+  ],
+  "closure": "0xE01CC + 0xE01BC(CPK) = 0x1C0388 = binary_size ✓✓ 尺寸精确闭合",
+  "verdict": "Bink 视频播放器(双 CPK 分包管理器), 大尺寸=两个 CPKTable[32768] 数组(结构性合法)",
+  "methods": "方法=0: 方法体在 gbengine DLL(引擎接口类同 gbMatrixStack 家族)",
+  "verdict_final": "非缺口, 从榜移除"
  }
 }
