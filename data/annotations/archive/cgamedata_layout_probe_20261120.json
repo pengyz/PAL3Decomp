@@ -1,0 +1,61 @@
+{
+ "_doc": "CGameData 布局排查实操 2026-11-20 (方法论 docs/knowledge/methodology_layout_probe_20261120.md 首战)",
+ "ctor_verdict": {
+  "真 ctor": "0x44EF4F 函数(写表 0x44EFEC [esi]=0x56b094 收尾)——写表立即数全 exe 扫描仅 2 处(0x44efee/0x44f06f), 后者=dtor",
+  "0x44EB40 排除": "adjustor+独立函数(反汇编直证)"
+ },
+ "anchor_table": [
+  {
+   "off": "0x104",
+   "sub": "ArraySlots",
+   "evidence": "ctor 0x44a790(ArraySlots::ArraySlots) this=+0x104 直调 + 窗口 0x104+96B=0x164 精确闭合(今晚 ArraySlots 88→96 修正独立互证)"
+  },
+  {
+   "off": "0x164",
+   "sub": "RoleCameraCtrl",
+   "evidence": "RoleCameraCtrl::InitFrameUI(0x450a60) this=+0x164 + dtor InitBaseWidget cast——真尺寸待 InitFrameUI disp 判别(窗口 300B vs 注解 76B)"
+  },
+  {
+   "off": "0x290",
+   "sub": "UIListBox",
+   "evidence": "UIListBox::UIListBox_Init(0x451850) this=+0x290 + dtor DestroyContent cast——真尺寸待判(窗口 1488B vs 注解 72B)"
+  },
+  {
+   "off": "0x860",
+   "sub": "数组 5×0x160",
+   "evidence": "ctor call 0x553627(0x860,0x160,5,cb,cb) + 0x860+1760=0xF40 精确闭合"
+  },
+  {
+   "off": "0xF40",
+   "sub": "UISceneMap",
+   "evidence": "UISceneMap::Init(0x450dc0) this=+0xF40——dtor sub_450EB0 cast UIWnd=借用(非子对象身份)"
+  },
+  {
+   "off": "0x1394",
+   "sub": "UITitle",
+   "evidence": "UITitle::UITitle(0x44ab90) ctor 直调 + dtor 析构直调 + 9236B < 窗口 9520B 兼容"
+  },
+  {
+   "off": "0x38D0",
+   "sub": "数组 6×0x8E0",
+   "evidence": "ctor call 0x553627(0x38D0,0x8E0,6,cb,cb) + 0x38D0+13632=0x6E10(m_pGameObj) 精确闭合"
+  },
+  {
+   "off": "0x38C4",
+   "sub": "m_pSceneObjRef",
+   "evidence": "ctor 清零直证(mov [esi+0x38c4],0)"
+  },
+  {
+   "off": "0x6E14",
+   "sub": "m_nMode",
+   "evidence": "ctor 清零区 + SetMode/GetMode"
+  }
+ ],
+ "window_matrix": {
+  "精确闭合 5 处": "0x104+96=0x164 / 0x860+1760=0xF40 / 0x38D0+13632=0x6E10 / 0x164 链内 ArraySlots 96 / UITitle 9236<9520",
+  "待判别窗口": "0x164-0x28F(300B, RoleCameraCtrl 真尺寸?) / 0x290-0x85F(1488B, UIListBox 真尺寸?) / 0xF40-0x1393(1108B, UISceneMap 真尺寸?)",
+  "判别法": "Init 方法体 this 访问 disp 范围(L4 基座调用陷阱判别)——InitFrameUI/UIListBox_Init/UISceneMap::Init 三方法体取证"
+ },
+ "implication": "0x164-0x3744 的现有散成员大部分活在子对象内部(UITitle 9236B 单独覆盖 0x1394-0x3743)——重划=整块手术(锚点级 type 修正会撞 C10, 需窗口内散成员归并一并落)",
+ "next": "①三 Init 方法体 disp 判别(三类真尺寸) ②窗口内散成员归并清单 ③整块重划落盘"
+}
