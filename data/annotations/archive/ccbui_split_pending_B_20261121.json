@@ -5,7 +5,8 @@
   "M2 回迁 53 成员 → CCBProtectWindow (含 m_Task=tagUITask[19]@0x4b8→2576≤2632; 跳过 ['0x48', '0x4c', '0x50', '0xa30']: 0x48/4c/50 留A待证, 0xa30 fp挂账)",
   "M3 退役 3 条 B槽函数(0x5257b0构造点/0x526660表slot1/0x526740表slot2) → pending-B 归档",
   "M5 退役 CCBProtectWindow 三连误标: 0x51d6e0(浮点getter)/0x51d6f0(jmp桩)/0x51d700(浮点乘二helper, 假Reset)——真ctor=0x5160a0, 真dtor对=0x516100/0x516120(表slot5), 真Reset=0x5177b0; C8同名同签随之消解",
-  "M6 退役 0x51b810 ~CCBParabolaWindow(伪dtor形名于A+零双引用→C2084; 体disp证据留档供A成员重推导)"
+  "M6 退役 0x51b810 ~CCBParabolaWindow(伪dtor形名于A+零双引用→C2084; 体disp证据留档供A成员重推导)",
+  "M7 B构造流定谳归档: 102196B分配硬锚+分裂构造(0x525120/0x5257b0)+JusticeBookUI持有链+CCBUI名字归A裁决"
  ],
  "pending_B": {
   "functions": {
@@ -194,5 +195,15 @@
    "0x50 m_pBattleFieldAttr[6]",
    "(均=CCBAttackSequen碎片误入, 槽形与走查证据矛盾)"
   ]
+ },
+ "B_construction_flow_adjudication_20261121": {
+  "_doc": "B 构造流终局定谳 (探针15/16/17)",
+  "size_hard_anchor": "operator new(0x18E34)=102196 @0x527b68 → ctor1@0x525120 (dtor析构界100572≤102196自洽, 尾1624B非析构区)",
+  "two_phase_construction": "ctor1@0x525120(基础widget构造, ??_M销毁表装配: UIPushButton/UICaption/UISceneMap/UIListBox数组) + ctor2@0x5257b0(补skill构造, 消费g_PlayerAttBuffer) — 分裂构造模式, 同一new块顺序调",
+  "ownership": "B* 存于 0x527a80函数的this+0x6C0; 并交叉存入 JusticeBookUI+0x31CC (@0x527bb6)",
+  "construction_context": "0x527a80 函数: new(0xDB80)JusticeBookUI + ARC_PlayerAtt::Create + PAL_GDB::InitSkillDisplay + new(0x18E34)B + B双段构造 + 尾段gbAudioManager清理(此段致SoundContext错标)",
+  "semantic_chain": "ARC_PlayerAtt(角色属性UI) + InitSkillDisplay(技能显示) + g_PlayerAttBuffer(玩家属性缓冲) + B内嵌(UICaption/URoleDialog×2/UIFrameContainer×13/PalScript×3/UITextArea/UIPushButton×2/UISceneMap数组群)",
+  "name_verdict": "\"CCBUI\"名字归A(战斗棋盘语义: 五灵/攻击序列/AddTask)——B与CCB无关, @CCBUI标签(InitShopUI/InitSkillUI/CCBUI_Render/UpdateStatics)全为name-pass错挂; B真名待呈报(候选语义链: 技能/书册显示面板)",
+  "caller_identity_debt": "0x527a80 的 this=大管理器(this+0x6C0指针存储), \"SoundContext\"注册(binary_size=4桩)=退化误标, 真类待定谳"
  }
 }
