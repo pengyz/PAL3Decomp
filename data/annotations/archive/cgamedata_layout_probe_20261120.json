@@ -164,5 +164,12 @@
   "同名异物警示": "Scene::m_roles(Role[50] 战斗池) ≠ RoleStatePanel::m_roles(s_RoleState[5] 面板槽)——RoleStatePanel 方法族访问的是自己的成员(与 Scene 无关)",
   "verdict": "Scene=战斗场景容器(池区: 角色槽表64+角色池50), 无子对象聚合嫌疑——定性完成, 池区已建档",
   "pending": "roles 段 0x16C 差值归属(Role 元素 pad 或 Role.size 修正)"
+ },
+ "soundmgr_cpk_verdict": {
+  "_doc": "SoundMgr/CPK 定性 2026-11-20 (L0-L1)",
+  "SoundMgr": "音频管理器——13 成员全语义命名(脚本音乐/场景音乐/MusicTable/音量三件/CPK 包)。无缺口。",
+  "CPK": "CPK 包文件管理器——结构完整闭合: 0x88+32768×0x1C(tagCPKTable)=0xE0088=m_pCPKFile ✓。大尺寸=CPKTable 资源表大数组(语义已知), 非缺口。",
+  "audit口径注记": "字节口径 0% 覆盖=数组语义被吞(同 Scene roles 段)——audit 应对\"已语义命名的数组元素类型\"做子档案豁免",
+  "verdict": "两定性完成: 无布局重划需求, 从缺口榜移除"
  }
 }
