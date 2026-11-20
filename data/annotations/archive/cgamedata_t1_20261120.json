@@ -17,5 +17,15 @@
   "语义名已就位": "m_nMode/m_nPrevSceneState/m_pSceneObjRef/m_RoleDataX/m_ItemSlotX/m_nSceneLoadParam/m_bSceneLoaded/m_nSaveSlot/m_nPlayerMoney 等约 20 个",
   "挂账族": "9 个 m_nTodo_*(InitRoles 清零写入, 写侧零语义) + m_nField_044(零访问) + 剩余 ~50 零 this-> 访问成员(外部访问形态待查)"
  },
- "next": "跨类成员访问普查(((CGameData*)&g_gamefrm)->member 形态) + 双档案定谳(UIGameFrm vtable/ctor 证据) + mode 枚举语义(Load 参数 0-0xE)"
+ "next": "跨类成员访问普查(((CGameData*)&g_gamefrm)->member 形态) + 双档案定谳(UIGameFrm vtable/ctor 证据) + mode 枚举语义(Load 参数 0-0xE)",
+ "untouched_members_verdict": {
+  "50 零踪迹成员三层取证": {
+   "跨类成员形": "0 (51 个 g_gamefrm 文件零 g_gamefrm.<member>)",
+   "偏移算术形": "0 (g_GameData/D8E4C0 ± offset 全语料扫)",
+   "绝对地址全局项": "4/99 (flt_D8EB94/byte_D8EBBC/dword_D8EBF0/flt_D90060)"
+  },
+  "定谳": "访问者不可达(hexrays 渲染边界外: 寄存器中转基址/未导出函数)——名字证据链全部 unverified(binary abs refs 统计+猜测命名), 语义合理但零证据=伪语义精装版",
+  "处置": "保持现名+挂账(无证据推翻亦无证据支持; 退役无合规目标名); 反汇编 disp 探针(tools/probe 模式)为下一层取证手段",
+  "this->谱 49 成员": "语义名已就位约 20(m_nMode/m_nPrevSceneState/m_pSceneObjRef/m_RoleDataX/m_ItemSlotX/场景状态机三件套), 9 个 m_nTodo_*(InitRoles 清零, 写侧零语义)显式挂账"
+ }
 }

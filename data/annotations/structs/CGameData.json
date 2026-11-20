@@ -60,7 +60,7 @@
   "0xf40": {
    "name": "m_nRender",
    "type": "int",
-   "source": "gen_headers_9.2",
+   "source": "gen_headers_9.2 | 子对象嫌疑20261120(dtor cast直证: UIWnd)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
   "0x100": {
@@ -194,13 +194,13 @@
   "0x164": {
    "name": "m_nSaveSlot",
    "type": "int",
-   "source": "binary:10x abs refs (0x164)",
+   "source": "binary:10x abs refs (0x164) | 子对象嫌疑20261120(dtor cast直证: RoleCameraCtrl)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
   "0x290": {
    "name": "m_nGameMode",
    "type": "int",
-   "source": "binary:17x abs refs (0x290)",
+   "source": "binary:17x abs refs (0x290) | 子对象嫌疑20261120(dtor cast直证: UIListBox)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
   "0x77c": {
@@ -230,7 +230,7 @@
   "0x1394": {
    "name": "m_UITitle",
    "type": "int",
-   "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs",
+   "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs | 子对象嫌疑20261120(dtor cast直证: UITitle)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
   "0x179c": {
@@ -850,5 +850,6 @@
   }
  ],
  "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹) | 链法定谳20261117: dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace",
- "_ctor_entry_note": "0x56B094 ctor 错挂摘除20261120: 该地址=vtable 表址(vtables[0].addr 已登记), 写表普查产物误挂 methods; 真 ctor 待查(写表者函数址)"
+ "_ctor_entry_note": "0x56B094 ctor 错挂摘除20261120: 该地址=vtable 表址(vtables[0].addr 已登记), 写表普查产物误挂 methods; 真 ctor 待查(写表者函数址)",
+ "_subclass_verdict": "dtor 0x44f050 清理四子对象直证: 0x1394=UITitle(9236B!)/0xF40=UIWnd/0x290=UIListBox/0x164=RoleCameraCtrl(76B)——CGameData 真语义=游戏主框架窗口(g_gamefrm=game frame 名直证), 28KB 大部分=子对象区; \"Large game data container\" note=早期误读; 50 零踪迹成员多数=子对象区伪标量。type 回退原因: UITitle 9236B 覆盖 0x1394-0x3744 与现有散成员大面积冲突, RoleCameraCtrl 76B>52B 窗口——子对象布局重划=独立战役(牵动数十成员)挂账"
 }
