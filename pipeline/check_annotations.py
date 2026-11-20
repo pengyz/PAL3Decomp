@@ -828,7 +828,36 @@ def check(struct_dir=None):
     _run_n15_ctor_gate(errors, warnings)
     _run_n16_schema_gate(errors, warnings)
     _run_n17_addr_unique_gate(errors, warnings)
+    _run_type_resolve_gate(errors, warnings)
     return errors, warnings
+
+
+def _run_type_resolve_gate(errors, warnings):
+    """[REF 类型完备性门 2026-11-20·用户裁定] ref语义前置化——任何被引用类型
+    (含primitive)必须能resolve。pipeline/type_resolver.py 全量普查(17880位点/
+    注册表1198条/七类声明域), 首跑 2066→84 全部人工定性为真数据病(零假阳性:
+    *this污染×57/存储类污染×9/拼写病×9/return吞名×3/幽灵嵌套引用×5/gbOBBox
+    无声明×1), 84项的 [5b] 应用失败已在 apply fail-loud 实证同源。
+    未resolve数据病不容错(哑忍⇒hexrays重推断⇒C2511族重演)⇒硬错。
+    宇宙缺口(新类型域出现)时该门会以假阳性显形⇒届时补声明域再修数据。"""
+    try:
+        import type_resolver as _tr
+    except ImportError:
+        try:
+            from pipeline import type_resolver as _tr
+        except ImportError:
+            warnings.append('REF:type_resolver导入失败(门未生效)')
+            return
+    try:
+        _failures, _warns, _nrefs, _nreg = _tr.collect()
+    except Exception as _e:
+        errors.append('REF:internal_error %s' % _e)
+        return
+    for _w in _warns:
+        warnings.append('REF:%s' % _w)
+    for _src, _own, _fld, _ts, _base, _why in _failures:
+        errors.append('REF:%s:%s:%s type=%r 未resolve(%s)'
+                      % (_src, str(_own)[:14], _fld, str(_ts)[:50], _why))
 
 
 def _run_n17_addr_unique_gate(errors, warnings):
@@ -954,6 +983,11 @@ def _run_n16_schema_gate(errors, warnings):
                             '(Actor.h:239案), 出参占位void*/无参用params:[]'
                             % (_cls, _ea, _pi))
                         _n += 1
+                # [类型令牌/cc 校验已上移 2026-11-20·用户裁定] N21/N22 令牌黑名单
+                # 方案被否, 职责由 REF 类型完备性门(_run_type_resolve_gate,
+                # pipeline/type_resolver.py)承担——resolve不变量覆盖一切类型病;
+                # 成员cc规范(析构恒thiscall/非thiscall裁定队列)留待REF战役后
+                # 以独立小门回归。
         for _vt in (_d.get('vtables') or []):
             for _s in (_vt.get('slots') or []):
                 for _b in _sc['vtable_slot']['banned']:

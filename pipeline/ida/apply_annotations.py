@@ -2351,14 +2351,20 @@ def _try_apply_type_tinfo(addr, sig, info, til):
 
 
 def _apply_func_type_parse(addr, decl, til):
-    """Primary function-type application: parse_decl + apply_tinfo (TINFO_DEFINITE).
+    """唯一类型应用路径（2026-11-20 归一律·用户裁定）：parse_decl + apply_tinfo
+    (TINFO_DEFINITE)。函数与数据地址通用。
 
     Verified path (2026-08-29): Hex-Rays adopts the type as definite. idc.SetType
     silently fails on `ret __thiscall name(Cls *__hidden this, ...)` forms, which
     left Hex-Rays running on its own inference — the root cause of decomp-signature
-    divergence from annotations (~231 member/free conflicts in the export audit).
+    divergence from annotations (~231 member/free conflicts in the export audit;
+    2026-11-20 二次实证: [5b] 无名短形 SetType 93 方法失效 ⇒ C2511 族 47 站)。
     The `__hidden this` spelling is IDA's official representation for the C++
     this argument (docs.hex-rays.com: Set item type / C++ type details).
+    [归一律 2026-11-20·用户裁定] 弱路径(idc.SetType)退役的作用域=**函数型应用**
+    ([5b][6][6c][8-retry] 全量强路径化, T3 实证 fail 93→24)。**数据型应用保留
+    SetType**([2][5][6b][8b]): 它承担数据项创建/尺寸调整语义(apply_tinfo 无 item
+    魔法, T3 反证 [6b] fail 3→1216)——数据型 SetType 非"弱路径"。
     """
     try:
         tif = ida_typeinf.tinfo_t()
@@ -2546,6 +2552,9 @@ def apply_annotations():
             if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
                 g_named += 1
         # Set type for globals with explicit type annotations (skip "skip" and empty)
+        # [归一律 2026-11-20·修订] 数据型保留 SetType: 它承担**数据项创建/尺寸调整**
+        # 语义([6b] g_palScript unk_XXX 病实证), apply_tinfo 无 item 魔法(T3 实证
+        # [6b] fail 3→1216)。弱路径退役的作用域=函数型(静默不采纳实证病)。
         if name and gtype and gtype != "skip":
             if idc.SetType(addr, gtype):
                 g_typed += 1
@@ -2993,6 +3002,7 @@ def apply_annotations():
     # (Enums already applied in step 3b, before structs)
 
     # --- 5. Vtable .rdata typing ---
+    # [归一律 2026-11-20·修订] 数据型 SetType 保留(item 创建语义, 见[2]注)
     vt_applied = 0
     for vt_addr_hex, slots in vtable_jobs:
         if not slots:
@@ -3024,9 +3034,10 @@ def apply_annotations():
                 continue
             _owner_cnt[_au5] += 1
             if _sig_str_of(_m5):
-                _owner_sig.setdefault(_au5, (_sig_str_of(_m5), _m5.get('non_virtual'), _sd5.get('name', '')))
+                _owner_sig.setdefault(_au5, (_sig_str_of(_m5), _m5.get('non_virtual'),
+                                             _sd5.get('name', ''), _m5))
     _sm_ok = _sm_skip = _sm_fail = 0
-    for _au5, (_sig5, _nv5, _cls5) in sorted(_owner_sig.items()):
+    for _au5, (_sig5, _nv5, _cls5, _m5) in sorted(_owner_sig.items()):
         if _owner_cnt[_au5] > 1:
             _sm_skip += 1
             continue
@@ -3040,17 +3051,60 @@ def apply_annotations():
         if not _s5 or '(...)' in _s5:
             continue
         try:
-            if idc.SetType(_addr5, _s5):
+            # [5b强路径 2026-11-20] 类限定原型 parse_decl+apply_tinfo(TINFO_DEFINITE)
+            # ——Hex-Rays 采纳为确定型的唯一验证形态（section-6 E-3 先例：
+            # 'RET __thiscall Cls::Method(Cls *this, params)'）。
+            # 旧弱机制(idc.SetType 喂无名短形 'RET __thiscall(params)')对 93 方法
+            # 失效⇒hexrays 重推断, 导出原型偏离 sig_model ⇒ cpp 定义行与头声明
+            # 分裂(C2511 族 47 站实证: Update 族被重推断为 int/CCBUI*)。
+            # parse 失败/形态不支持 ⇒ 回落既有 SetType/funcarg 路径(行为不变)。
+            _qsig5 = None
+            _sm5 = _m5.get('sig_model') or {}
+            if (_sm5.get('return') and not _sm5.get('pending')
+                    and str(_sm5.get('cc') or '') == 'thiscall'):
+                _short5 = str(_m5.get('name') or '').split('::')[-1]
+                if _short5:
+                    _pl5 = []
+                    for _p5 in (_sm5.get('params') or []):
+                        _t5 = str(_p5.get('type') or '').strip()
+                        _n5 = str(_p5.get('name') or '').strip()
+                        _pl5.append(_t5 + (' ' + _n5 if _n5 else ''))
+                    _ps5 = ', '.join(_pl5)
+                    _qsig5 = '%s __thiscall %s::%s(%s *this%s)' % (
+                        _sm5['return'], _cls5, _short5, _cls5,
+                        (', ' + _ps5) if _ps5 else '')
+            _applied5 = False
+            if _qsig5 is not None:
+                _applied5 = _apply_func_type_parse(_addr5, _qsig5, til)
+            if not _applied5:
+                # [归一律 2026-11-20] SetType fallback 退役（静默不采纳病）——
+                # API 构建 tinfo + apply_tinfo(TINFO_DEFINITE) 仍属强路径级
+                _tif5 = _make_vtable_method_type(_s5, 'm', til, _cls5)
+                if _tif5 is not None and ida_typeinf.apply_tinfo(
+                        _addr5, _tif5, ida_typeinf.TINFO_DEFINITE):
+                    _applied5 = True
+            if _applied5:
                 _sm_ok += 1
             else:
-                _tif5 = _make_vtable_method_type(_s5, 'm', til, _cls5)
-                if _tif5 is not None and ida_typeinf.apply_tinfo(_addr5, _tif5, ida_typeinf.TINFO_DEFINITE):
-                    _sm_ok += 1
-                else:
-                    _sm_fail += 1
+                _sm_fail += 1
+                _f5 = _qsig5 or _s5
+                log("  [5b-fail] %s %s::%s -> %s" % (
+                    _au5, _cls5, str(_m5.get('name') or '?').split('::')[-1],
+                    str(_f5)[:90]))
         except Exception as _e5:
             _sm_fail += 1
+            log("  [5b-except] %s %s: %s" % (_au5, _cls5, str(_e5)[:60]))
     log("[5b] Struct-method types: ok=%d skip=%d(multi-claim/non_virtual) fail=%d" % (_sm_ok, _sm_skip, _sm_fail))
+    if _sm_fail:
+        # [fail-loud 2026-11-20·用户裁定] 数据病不容错: 失败=注解数据问题
+        # (return字段垃圾/cc标错/类型名错/解析形态未知), 机制已强路径化且
+        # 3548 同形成功 ⇒ 失败即数据病信号。收集(上方逐项[5b-fail]行)+
+        # 上报+终止脚本——哑忍会让 hexrays 继续对 24 个函数重推断, 重演
+        # C2511 族病。apply 幂等: 终止后 IDB 停于 [5b] 前缀态, 数据修复
+        # 后重跑即续。
+        log("[5b] FAIL-LOUD: %d 个方法类型应用失败 — 数据病信号, 终止 apply。" % _sm_fail)
+        log("       修复 data/annotations/structs 对应条目后重跑 (逐项清单见上方 [5b-fail] 行)。")
+        idc.qexit(1)
 
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
@@ -3197,12 +3251,12 @@ def apply_annotations():
             if _apply_func_type_parse(addr, _decl_parse, til):
                 sig_ok += 1
                 sig_parse_ok += 1
-            # Apply via idc.SetType — handles virtual, thiscall, etc.
-            elif idc.SetType(addr, sig_with_name):
-                sig_ok += 1
             else:
+                # [归一律 2026-11-20] SetType 两级 fallback 退役（静默不采纳病）。
+                # stripped 变体改走同一强路径; API tinfo 为强路径级终审。
                 stripped = sig_with_name.replace("struct ", "").replace("class ", "")
-                if stripped != sig_with_name and idc.SetType(addr, stripped):
+                if stripped != sig_with_name and _apply_func_type_parse(
+                        addr, stripped, til):
                     sig_ok += 1
                 else:
                     # Final fallback: apply via tinfo_t API (handles :: in types)
@@ -3333,8 +3387,9 @@ def apply_annotations():
                     if _cursz != _need:
                         # DELIT_EXPAND (not SIMPLE): SIMPLE refuses to undefine
                         # neighboring typed/named bytes, leaving the address a
-                        # 1-byte tail and SetType unable to resize the item.
+                        # 1-byte tail and type application unable to resize the item.
                         ida_bytes.del_items(addr, ida_bytes.DELIT_EXPAND, _need)
+                    # [归一律 2026-11-20·修订] 数据型保留 SetType(item 创建语义)
                     if idc.SetType(addr, type_str):
                         g_typed += 1
                         continue
@@ -3455,7 +3510,8 @@ def apply_annotations():
     for ea in idautils.Functions(0x00401000, 0x00560000):
         name = ida_name.get_name(ea) or ""
         if name in _CRT_SIGS:
-            if idc.SetType(ea, _CRT_SIGS[name]):
+            # [归一律 2026-11-20] SetType 退役 → parse_decl+apply_tinfo
+            if _apply_func_type_parse(ea, _CRT_SIGS[name], til):
                 crt_ok += 1
     if crt_ok:
         print("[6c] CRT function types set: %d" % crt_ok)
@@ -3472,11 +3528,12 @@ def apply_annotations():
     sig_retry = 0
     for addr_str, fname, sig_str in sig_fail:
         addr = int(addr_str, 16)
-        if idc.SetType(addr, sig_str):
+        # [归一律 2026-11-20] SetType 退役 → parse_decl+apply_tinfo
+        if _apply_func_type_parse(addr, sig_str, til):
             sig_retry += 1
         else:
             stripped = sig_str.replace("struct ", "").replace("class ", "")
-            if idc.SetType(addr, stripped):
+            if _apply_func_type_parse(addr, stripped, til):
                 sig_retry += 1
     log("[8] Signature retry: %d/%d recovered" % (sig_retry, len(sig_fail)))
 
@@ -3485,6 +3542,7 @@ def apply_annotations():
     for addr_str, gname, typ in g_type_fail:
         addr = int(addr_str, 16)
         type_str = typ.rstrip(";") + ";"
+        # [归一律 2026-11-20·修订] 数据型保留 SetType(item 创建语义)
         if idc.SetType(addr, type_str):
             g_type_retry += 1
         else:
