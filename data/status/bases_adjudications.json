@@ -96,5 +96,12 @@
   "date": "2026-11-17",
   "ctor_evidence": "幻影摘除: 无表/无语料/基类TextureLibDataBase方法机器访问实证成员归属",
   "verdict_by": "census碎片归并(方法访问密集实证)"
+ },
+ "RoleStatePanel": {
+  "bases": [
+   "UIWnd@0"
+  ],
+  "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖",
+  "at": "2026-11-20"
  }
 }

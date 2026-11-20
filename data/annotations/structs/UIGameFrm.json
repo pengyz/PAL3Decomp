@@ -165,51 +165,7 @@
    "evidence_level": "unverified"
   }
  },
- "methods": {
-  "0x004a6120": {
-   "name": "OnMessage",
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int nVal2, int nVal3): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
-  },
-  "0x004a6600": {
-   "name": "Destroy",
-   "_misattrib_evidence": "max_offset=176080>class_size=28188",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  }
- },
+ "methods": {},
  "base_size": 76,
  "bases": [
   {
@@ -220,5 +176,6 @@
    "name": "PalScriptWaitObj",
    "offset": 68
   }
- ]
+ ],
+ "_dossier_note": "幻影壳档案定谳20261120: 唯二方法(OnMessage/Destroy)迁出→RoleStatePanel (表0x56F040槽6/槽3, dtor 0x4a2450写表重置直证; 表族7槽中4槽原已属RoleStatePanel); bases PalScriptWaitObj@68 无证据待审; size 28448 无归属——档案保留观察, g_gamefrm真类名问题挂账(候选UIGameFrm: 实例名g_gamefrm+UI*Frm命名族+旧patch注)"
 }
