@@ -808,22 +808,6 @@
    },
    "evidence_level": "chain_unified",
    "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SceneUpdate=体读数命名 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census"
-  },
-  "0x0056b094": {
-   "name": "CGameData",
-   "flags": [
-    "ctor"
-   ],
-   "evidence_level": "binary_vtable_slot",
-   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056b094'])",
-   "flags_evidence": "ctor写表普查在册(census annotated=0x0056b094) 2026-11-17 机械补迁(P0-1-B缺口72类)",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": true
-   }
   }
  },
  "vtables": [
@@ -865,5 +849,6 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹) | 链法定谳20261117: dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace"
+ "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹) | 链法定谳20261117: dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace",
+ "_ctor_entry_note": "0x56B094 ctor 错挂摘除20261120: 该地址=vtable 表址(vtables[0].addr 已登记), 写表普查产物误挂 methods; 真 ctor 待查(写表者函数址)"
 }

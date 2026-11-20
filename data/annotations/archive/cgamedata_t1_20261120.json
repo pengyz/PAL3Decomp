@@ -1,0 +1,21 @@
+{
+ "_doc": "CGameData T1 取证归档 2026-11-20",
+ "instance_verdict": {
+  "CGameData 实例": "g_gamefrm@0x00DB9FD0 (38 个 CGameData::Load/SetMode/GetMode 调用点 (CGameData*)&g_gamefrm 直证)",
+  "g_GameData@0xD8E4C0": "CameraCtrl 实例 (CameraCtrl::UpdateTransition/IsAngleBelowTarget/SetupLerp 直证) — globals int 占位错挂已修正, 名字保留防引用断链",
+  "globals g_gamefrm": "type=int 占位, source 有旧线索 PAL3patch:UIGameFrm* — 双身份问题(见下)未闭合前不动"
+ },
+ "dual_dossier": {
+  "CGameData": "13 方法(Load/SetMode/GetMode/Update/Render/HideAll/InitRoles/InitItems/SetDefaultColors/dtor×2), 28268B, bases=[UIWnd], vtable=0x56B094 7槽",
+  "UIGameFrm": "2 方法(OnMessage/Destroy), 28448B, bases=[UIWnd,PalScriptWaitObj@68], 无 vtables 登记",
+  "关系": "同实例双档案(方法集互补零交集); 差 180B; MI 或窗口壳包数据体待定谳——核心问题挂账",
+  "ctor 错挂": "CGameData.json methods 0x56B094(=vtable 表址)写表普查误挂 ctor 已摘, 真 ctor 待查"
+ },
+ "access_spectrum": {
+  "this->member 覆盖": "49/99 (12 方法族语料)",
+  "方法族分工": "InitRoles=超大初始化(m_RoleDataA/B/C stride 0x168 + m_ItemSlotA/B/C/D stride 0x568 + 9个m_nTodo清零) | Load=场景状态机(m_nSceneLoadParam/m_bSceneLoaded/m_bSceneActive/m_nSceneTransFlag) | SetMode/GetMode=m_nMode 对 | Render/HideAll=m_nRender+m_pSceneObjRef",
+  "语义名已就位": "m_nMode/m_nPrevSceneState/m_pSceneObjRef/m_RoleDataX/m_ItemSlotX/m_nSceneLoadParam/m_bSceneLoaded/m_nSaveSlot/m_nPlayerMoney 等约 20 个",
+  "挂账族": "9 个 m_nTodo_*(InitRoles 清零写入, 写侧零语义) + m_nField_044(零访问) + 剩余 ~50 零 this-> 访问成员(外部访问形态待查)"
+ },
+ "next": "跨类成员访问普查(((CGameData*)&g_gamefrm)->member 形态) + 双档案定谳(UIGameFrm vtable/ctor 证据) + mode 枚举语义(Load 参数 0-0xE)"
+}
