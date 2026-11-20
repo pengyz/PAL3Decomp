@@ -4,9 +4,10 @@
   "0x44": {
    "name": "m_pVtable",
    "type": "char *",
-   "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int",
+   "source": "A:decomp CCBRoleState::ProcessActions uses this->m_pSceneMgr->m_rect.left as RoleSystem* -- offset 0 is vtable ptr, not int | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x48": {
    "name": "m_fStateX",
@@ -110,8 +111,9 @@
   "0x88": {
    "name": "m_fMoveZ",
    "type": "float",
-   "source": "binary_scan:50refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:50refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x8c": {
    "name": "m_pPathListHead",
@@ -200,8 +202,9 @@
   "0xaf": {
    "name": "m_bActionPause",
    "type": "unsigned char",
-   "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb0": {
    "name": "m_szModelName",
@@ -230,8 +233,9 @@
   "0xc0": {
    "name": "m_fMoveSpd",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x40c9cf | ida_xref",
-   "evidence_level": "unverified"
+   "source": "A:FPU_post_reattrib_0x40c9cf | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xce": {
    "name": "m_byStateArray",
@@ -242,20 +246,23 @@
   "0xd0": {
    "name": "m_bFlags",
    "type": "char",
-   "source": "manual_fix:shrink_to_gap | ida_xref",
-   "evidence_level": "unverified"
+   "source": "manual_fix:shrink_to_gap | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd1": {
    "name": "m_bActionState",
    "type": "unsigned char",
-   "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte)",
-   "evidence_level": "unverified"
+   "source": "decomp:_auto_42ad40_LOBYTE_set_from_multiple_sources(action_state_byte) | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd8": {
    "name": "m_fAngle",
    "type": "float",
-   "source": "binary:disp32_auto_42ad40",
-   "evidence_level": "unverified"
+   "source": "binary:disp32_auto_42ad40 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xdc": {
    "name": "m_fTileHeight",
@@ -272,20 +279,23 @@
   "0xe4": {
    "name": "m_nActionType",
    "type": "int",
-   "source": "binary_scan:4refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:4refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xe8": {
    "name": "m_nActionStep",
    "type": "int",
-   "source": "binary_scan:2refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xec": {
    "name": "m_fActionParam",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x44ce84 | ida_xref",
-   "evidence_level": "unverified"
+   "source": "A:FPU_post_reattrib_0x44ce84 | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xf0": {
    "name": "m_nSpawnFlags",
@@ -392,20 +402,23 @@
   "0x148": {
    "name": "m_nMoveSrc",
    "type": "int",
-   "source": "binary_scan:2refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x14c": {
    "name": "m_nMoveDst",
    "type": "int",
-   "source": "binary_scan:3refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x150": {
    "name": "m_nMoveStep",
    "type": "int",
-   "source": "binary_scan:2refs | ida_xref",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | ida_xref | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x160": {
    "name": "m_nSavedState",
@@ -428,8 +441,9 @@
   "0x169": {
    "name": "_gap_169",
    "type": "unsigned char[3]",
-   "source": "fix:gap_fill_for_decomp_naming",
-   "evidence_level": "unverified"
+   "source": "fix:gap_fill_for_decomp_naming | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x16c": {
    "name": "m_pWndFrame",
@@ -441,8 +455,9 @@
   "0x170": {
    "name": "m_nTodo_170",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x17c": {
    "name": "m_nActive",
@@ -987,14 +1002,16 @@
   "0x5a8": {
    "name": "m_bRenderFlag2",
    "type": "char",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+   "source": "gen_headers_9.2 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5ac": {
    "name": "m_nTodo_5AC",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5b0": {
    "name": "m_pCtrlPoint",
@@ -1072,8 +1089,9 @@
   "0x61c": {
    "name": "m_nTodo_61C",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x624": {
    "name": "m_nTodo_624",
@@ -1084,8 +1102,9 @@
   "0xb90": {
    "name": "m_nTodo_B90",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb98": {
    "name": "m_wndPanel",
@@ -1102,20 +1121,23 @@
   "0xfbc": {
    "name": "m_pScriptBuf",
    "type": "int",
-   "source": "binary_scan:4refs | ida_xref2",
-   "evidence_level": "unverified"
+   "source": "binary_scan:4refs | ida_xref2 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xfe4": {
    "name": "m_nField_FE4",
    "type": "int",
-   "source": "binary:gap_r3",
-   "evidence_level": "unverified"
+   "source": "binary:gap_r3 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xff8": {
    "name": "m_nTodo_FF8",
    "type": "void *",
-   "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs;batch_fix:int_to_v*_LEA_embed | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1000": {
    "name": "m_configData",
@@ -1143,44 +1165,51 @@
   "0x1184": {
    "name": "m_nTodo_1184",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1188": {
    "name": "m_nTodo_1188",
    "type": "int",
-   "source": "gap_fill:ida_decomp_access",
-   "evidence_level": "unverified"
+   "source": "gap_fill:ida_decomp_access | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x118c": {
    "name": "m_nMoveState1",
    "type": "int",
-   "source": "binary:_method_532410",
-   "evidence_level": "unverified"
+   "source": "binary:_method_532410 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1190": {
    "name": "m_nMoveState2",
    "type": "int",
-   "source": "binary:_method_532710",
-   "evidence_level": "unverified"
+   "source": "binary:_method_532710 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1194": {
    "name": "m_nMoveState3",
    "type": "int",
-   "source": "binary:_method_532710",
-   "evidence_level": "unverified"
+   "source": "binary:_method_532710 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1198": {
    "name": "m_bMoveFlag1",
    "type": "unsigned char",
-   "source": "binary:_method_532410",
-   "evidence_level": "unverified"
+   "source": "binary:_method_532410 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x119c": {
    "name": "m_nMoveParam1",
    "type": "int",
-   "source": "binary:_method_532710",
-   "evidence_level": "unverified"
+   "source": "binary:_method_532710 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x11a0": {
    "name": "m_nMoveParam2",
@@ -1254,8 +1283,9 @@
   "0x68c": {
    "name": "m_nTodo_68C",
    "type": "int",
-   "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676",
-   "evidence_level": "unverified"
+   "source": "Actor::UpdatePhysics accesses via this[1].m_nRoleState1+0x1B0 | normalize_key: 0x68C -> 1676 | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x690": {
    "name": "m_nTodo_690",

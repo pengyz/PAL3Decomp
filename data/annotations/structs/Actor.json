@@ -220,40 +220,46 @@
   "0x30": {
    "name": "m_nRoleParam0",
    "type": "int",
-   "source": "decomp:transfer_from_nVal+48 | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 2, 'evidence': '4024a1:\\t8b 5e 30 \\tmov 0x30(%esi),%ebx'}, {'form': 'float', 'count': 2, 'evidence': '402d88:\\td9 5f 30 \\tfstps 0x30(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = SINGLE_ASSIGN 9 站（mov reg int 存）非 FLOAT ⇒ 命名错 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "A"
+   "source": "decomp:transfer_from_nVal+48 | [P0-6 全用法形 2026-10-21· 安全] int → float · 全用法形扫描：[{'form': 'assign', 'count': 2, 'evidence': '4024a1:\\t8b 5e 30 \\tmov 0x30(%esi),%ebx'}, {'form': 'float', 'count': 2, 'evidence': '402d88:\\td9 5f 30 \\tfstps 0x30(%edi)'}]（仅 float 用法，无 arith/addr 混合）· None | [R55 回退 2026-10-21·verifier 严格 opcode 证伪] 前次改 float 的 verdict= **错**。严格 7 形扫描实证 = SINGLE_ASSIGN 9 站（mov reg int 存）非 FLOAT ⇒ 命名错 · 首扫误中栈/负位移假阳（0x4(%esp) / -0x4(%esi)），严格剔除后才现真相 ⇒ 剔除纪律必要。 · 原 type=float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "A",
+   "access_spectrum": "zero_access"
   },
   "0x34": {
    "name": "m_fRoleParam1",
    "type": "float",
-   "source": "decomp:transfer_from_nVal+52_float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "decomp:transfer_from_nVal+52_float | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x38": {
    "name": "m_fRoleParam",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_480",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_480 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x3c": {
    "name": "m_fRoleParam2",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_484 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_484 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x40": {
    "name": "m_fRoleParam3",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_488 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_488 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x44": {
    "name": "m_nRoleParam2",
    "type": "int",
-   "source": "decomp:transfer_from_nVal+68 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "decomp:transfer_from_nVal+68 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "Discovered by member_scan after disp8 fix.",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x48": {
    "name": "m_pRoleParam3",
@@ -265,85 +271,98 @@
   "0x4c": {
    "name": "m_nCachedA",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_500 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_500 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x50": {
    "name": "m_nCachedB",
    "type": "unsigned char",
-   "source": "A:mov_byte_ptr_in_class_method | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "A:mov_byte_ptr_in_class_method | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x54": {
    "name": "m_nTransform",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_508",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_508 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x58": {
    "name": "m_nRoleState0",
    "type": "int",
-   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5c": {
    "name": "m_bUIFlagA",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_516 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_516 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x5d": {
    "name": "m_bUIFlagB",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_517 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_517 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x60": {
    "name": "m_fAnimParam",
    "type": "float",
-   "source": "A:FPU_disp8_in_class_method",
-   "evidence_level": "unverified"
+   "source": "A:FPU_disp8_in_class_method | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x64": {
    "name": "m_szText",
    "type": "char",
-   "source": "A:FPU_disp8_in_class_method | 订正 2026-10-06：复核定型错标（名 sz=字符串区非 float——ByteContent 证）——char 形",
-   "evidence_level": "unverified"
+   "source": "A:FPU_disp8_in_class_method | 订正 2026-10-06：复核定型错标（名 sz=字符串区非 float——ByteContent 证）——char 形 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x70": {
    "name": "m_pResource",
    "type": "void *",
-   "source": "decomp:operator_delete_on_derived_ptr",
-   "evidence_level": "unverified"
+   "source": "decomp:operator_delete_on_derived_ptr | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x74": {
    "name": "m_nModelId",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x80": {
    "name": "m_nAnimParam0",
    "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+128 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "decomp:_nearby_53b890_from_nVal+128 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x84": {
    "name": "m_nAnimParam1",
    "type": "int",
-   "source": "decomp:_nearby_53b890_from_nVal+132 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "decomp:_nearby_53b890_from_nVal+132 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x88": {
    "name": "m_vecBonePos",
    "type": "gbVec3D",
-   "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3)",
-   "evidence_level": "unverified"
+   "source": "decomp:_nearby_53b890_gbVec3D_operator=_loop(p+=3) | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x94": {
    "name": "m_nPathBuffer",
    "type": "int",
-   "source": "binary_scan:11refs",
+   "source": "binary_scan:11refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -368,19 +387,22 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x98": {
    "name": "m_nAnimBuffer",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_576",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_576 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x9c": {
    "name": "m_nParticleBuffer",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_580",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_580 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xa0": {
    "name": "m_vecTargetPos",
@@ -415,13 +437,14 @@
   "0xac": {
    "name": "m_fInterpStart",
    "type": "float",
-   "source": "binary_scan:2refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:2refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xb0": {
    "name": "m_fInterpEnd",
    "type": "float",
-   "source": "binary_scan:2refs",
+   "source": "binary_scan:2refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -460,12 +483,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xb4": {
    "name": "m_nInterpFrames",
    "type": "int",
-   "source": "binary_scan:1refs",
+   "source": "binary_scan:1refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -490,48 +514,55 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xb8": {
    "name": "m_fActionSpeed",
    "type": "float",
-   "source": "binary_scan:3refs | ida_xref2",
-   "evidence_level": "unverified"
+   "source": "binary_scan:3refs | ida_xref2 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xbc": {
    "name": "m_nInterpCurrent",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc0": {
    "name": "m_nInterpState",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_616",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_616 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc4": {
    "name": "m_fInterpSpeed",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x53ac79",
-   "evidence_level": "unverified"
+   "source": "A:FPU_post_reattrib_0x53ac79 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xc8": {
    "name": "m_nModelLoadState",
    "type": "int",
-   "source": "binary_scan:1refs",
-   "evidence_level": "unverified"
+   "source": "binary_scan:1refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xcc": {
    "name": "m_nState",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_628",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_628 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0xd0": {
    "name": "m_pRoleObj",
    "type": "int",
-   "source": "B:naming_m_p+FPU_misattrib | T13-P2 retype char*->int: A 级 objdump 0x40b826 mov DWORD PTR ds:0xc05c18,esi（esi=0xd 立即数，0x40b814）+ 0x40b831/0x40b844/0x40b85c/0x40b869 四处 mov r32,[0xc05c18] 值载入喂 Calc*Init 实参（全库零解引用）⇒ 4 字节值槽非指针",
+   "source": "B:naming_m_p+FPU_misattrib | T13-P2 retype char*->int: A 级 objdump 0x40b826 mov DWORD PTR ds:0xc05c18,esi（esi=0xd 立即数，0x40b814）+ 0x40b831/0x40b844/0x40b85c/0x40b869 四处 mov r32,[0xc05c18] 值载入喂 Calc*Init 实参（全库零解引用）⇒ 4 字节值槽非指针 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": "replaced void* with char* (IDB struct compat)",
    "evidence_level": "A",
    "audit": {
@@ -550,12 +581,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xd4": {
    "name": "m_nPathEnabled",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_636",
+   "source": "transfer_from_RoleSystem_off_636 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -573,18 +605,20 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xd8": {
    "name": "m_fScale",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E3445 `*(DWORD*)(&m_fScale+v13)+=...` 取址 DWORD 算术（判据②/③）⇒ 位面复用；名 m_fScale 矛盾挂账 | evidence: 详前文 A 级形证",
-   "evidence_level": "A"
+   "source": "transfer_from_RoleSystem_off_640|A:binary_mov_byte_[eax+0D8h]_1 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E3445 `*(DWORD*)(&m_fScale+v13)+=...` 取址 DWORD 算术（判据②/③）⇒ 位面复用；名 m_fScale 矛盾挂账 | evidence: 详前文 A 级形证 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "A",
+   "access_spectrum": "zero_access"
   },
   "0xdc": {
    "name": "m_fMatrixA",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "transfer_from_RoleSystem_off_644|A:binary_mov_dword_0DC_0xA28_init | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -630,12 +664,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xe0": {
    "name": "m_fMatrixB",
    "type": "unsigned char",
-   "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E365D 同形取址 DWORD 算术 ⇒ 位面复用；名 m_fMatrixB 挂账 | evidence: 详前文 A 级形证 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "transfer_from_RoleSystem_off_648|A:binary_mov_byte_[eax+0E0h]_0 | 主攻点2续 2026-10-17（verifier·A 级逐条）：型保留 | 0x4E365D 同形取址 DWORD 算术 ⇒ 位面复用；名 m_fMatrixB 挂账 | evidence: 详前文 A 级形证 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "A",
    "audit": {
     "level": "contradicted",
@@ -681,12 +716,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xe4": {
    "name": "m_fMatrixC",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_652 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "transfer_from_RoleSystem_off_652 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -732,12 +768,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xe8": {
    "name": "m_nMatrixParam",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_656",
+   "source": "transfer_from_RoleSystem_off_656 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -762,12 +799,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xec": {
    "name": "m_fMatrixParamA",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x53b84e | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "A:FPU_post_reattrib_0x53b84e | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -799,12 +837,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xf0": {
    "name": "m_fMatrixParamB",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_664 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "transfer_from_RoleSystem_off_664 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -836,12 +875,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xf4": {
    "name": "m_fMatrixE",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_668",
+   "source": "transfer_from_RoleSystem_off_668 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -866,12 +906,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xf8": {
    "name": "m_fMatrixF",
    "type": "float",
-   "source": "transfer_from_RoleSystem_off_672",
+   "source": "transfer_from_RoleSystem_off_672 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -903,12 +944,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0xfc": {
    "name": "m_fMatrixParamC",
    "type": "float",
-   "source": "A:FPU_post_reattrib_0x5368f5 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "A:FPU_post_reattrib_0x5368f5 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -940,13 +982,15 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x100": {
    "name": "m_Actor",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_680 | T13-P2 retype Actor*->int: A 级 objdump 0x40b8e7 mov ds:0xc05c48,eax（DWORD 直存立即数 2）；全二进制仅此 1 处引用，零载入零解引用 ⇒ 4 字节值槽非指针（三段判据齐）",
-   "evidence_level": "A"
+   "source": "transfer_from_RoleSystem_off_680 | T13-P2 retype Actor*->int: A 级 objdump 0x40b8e7 mov ds:0xc05c48,eax（DWORD 直存立即数 2）；全二进制仅此 1 处引用，零载入零解引用 ⇒ 4 字节值槽非指针（三段判据齐） | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "A",
+   "access_spectrum": "zero_access"
   },
   "0x108": {
    "name": "m_nCmdParam",
@@ -1002,13 +1046,14 @@
   "0x110": {
    "name": "m_pActor",
    "type": "gbActor *",
-   "source": "transfer_from_RoleSystem_off_696",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_696 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x134": {
    "name": "m_vecLocalPos",
    "type": "gbVec3D",
-   "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3)",
+   "source": "A:lea+ctor_call(gbVec3D::default_ctor@0x4119C3) | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1054,13 +1099,15 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x148": {
    "name": "m_nAnimState",
    "type": "short",
-   "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328",
-   "evidence_level": "unverified"
+   "source": "decomp:_nearby_53b890_LOWORD_from_nVal+328 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x14c": {
    "name": "m_nActionType",
@@ -1071,8 +1118,9 @@
   "0x14d": {
    "name": "m_bActionFlag1",
    "type": "unsigned char",
-   "source": "binary:raw_CompareAction | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "binary:raw_CompareAction | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x150": {
    "name": "m_nActionParam",
@@ -1095,8 +1143,9 @@
   "0x153": {
    "name": "m_bActionActive",
    "type": "unsigned char",
-   "source": "binary:raw_7votes",
-   "evidence_level": "unverified"
+   "source": "binary:raw_7votes | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x154": {
    "name": "m_nActionState",
@@ -1143,69 +1192,79 @@
   "0x16c": {
    "name": "m_vecPos",
    "type": "gbVec3D",
-   "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x16C(120hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecPos,src+364)同构偏移+型gbVec3D一致",
+   "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x16C(120hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecPos,src+364)同构偏移+型gbVec3D一致 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": " | verified:2026-10-15",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x178": {
    "name": "m_vecRot",
    "type": "gbVec3D",
-   "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x178(84hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecRot,src+376)同构偏移+型gbVec3D一致",
+   "source": "binary:gap_r2 | verified:2026-10-15 A:disp32_0x178(84hits)+Actor::SetCurrentAction gbVec3D::operator=(&m_vecRot,src+376)同构偏移+型gbVec3D一致 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "note": " | verified:2026-10-15",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x184": {
    "name": "m_nCloneParam",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_nearby_53b890 = *(a2+388), 4 refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x188": {
    "name": "m_fActionAssignParam",
    "type": "float",
-   "source": "A:FPU_disp32_0x41c23e",
-   "evidence_level": "unverified"
+   "source": "A:FPU_disp32_0x41c23e | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x18c": {
    "name": "m_nCloneParamB",
    "type": "int",
-   "source": "transfer_from_RoleSystem_off_820 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "transfer_from_RoleSystem_off_820 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x190": {
    "name": "m_nCloneState",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_nearby_53b890 = *(a2+400), 6 refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x194": {
    "name": "m_nCloneFlag1",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_nearby_53b890 = *(a2+404), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x198": {
    "name": "m_nCloneFlag2",
    "type": "int",
-   "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_nearby_53b890 = *(a2+408), 4 refs | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x19c": {
    "name": "m_fFacingAngle",
    "type": "float",
-   "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base)",
-   "evidence_level": "unverified"
+   "source": "binary:gap_r2 | type_fix:int->float(A+:decomp *(float*)&this->_field_19C-m_vecRot.z in UpdateFrame (3x)) | name:m_fFacingAngle(A+:decomp =90.0 + used as rotation_delta_base) | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1a4": {
    "name": "m_nModelParamA",
    "type": "int",
-   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1ac": {
    "name": "m_nModelParamB",
    "type": "int",
-   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
+   "source": "binary:gap_r2 | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1223,18 +1282,20 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x1b0": {
    "name": "m_nRoleState1",
    "type": "int",
-   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。",
-   "evidence_level": "unverified"
+   "source": "decomp:transfer_from_RoleSystem | [R1-T5 2026-11-18] _todo_ 降级撤销(CLAUDE.md 命名铁律 525 全禁占位名); 存量伪语义名由台账登记合法化, 正名走 Actor 内嵌子对象身份战役 (语料实证: 0x3c 区虚调用+AllocObject / 0x40 区 UIPushButton::LoadTexture+CCBUI::SetRect / 0x58 区 ARC_PlayerAtt::Create+UIItem::SetData / 0x1b0 g_RoleSlotBuf 数组 stride 352)。 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1b4": {
    "name": "m_pEquipAtt0",
    "type": "RoleAtt *",
-   "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0",
+   "source": "binary:1_store_at_0x1B4,distinct_fields_at_0x1B8/0x1BC/0x1C0 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1280,7 +1341,8 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x1b8": {
    "name": "m_nAnimFrames",
@@ -1416,8 +1478,9 @@
   "0x1e4": {
    "name": "m_fBlendWeight",
    "type": "float",
-   "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:_auto_5309a0 *0.333 + self, 3 refs | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x1e8": {
    "name": "m_obbox",
@@ -1445,7 +1508,7 @@
   "0x1f0": {
    "name": "m_pSelfAtt",
    "type": "void*",
-   "source": "transfer_from_RoleSystem_off_920; type_fix:m_p*_int_to_void*",
+   "source": "transfer_from_RoleSystem_off_920; type_fix:m_p*_int_to_void* | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1491,12 +1554,13 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x1f4": {
    "name": "m_nAnimFrame",
    "type": "short",
-   "source": "A:66_prefix_word_access",
+   "source": "A:66_prefix_word_access | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
    "audit": {
     "level": "contradicted",
@@ -1542,7 +1606,8 @@
      }
     ],
     "timestamp": "2026-11-12"
-   }
+   },
+   "access_spectrum": "zero_access"
   },
   "0x200": {
    "name": "m_pParticleData",
@@ -1747,8 +1812,9 @@
   "0xd9": {
    "name": "m_bParamFlag",
    "type": "unsigned char",
-   "source": "A:binary_mov_byte_[eax+0D9h]_0",
-   "evidence_level": "unverified"
+   "source": "A:binary_mov_byte_[eax+0D9h]_0 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   },
   "0x2a8": {
    "name": "m_InnerActor",
@@ -1760,8 +1826,9 @@
   "0x274": {
    "name": "_overlap_RoleSystem_m_partyActor_m_nState",
    "type": "int",
-   "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition. | normalize_key: 0x274 -> 628",
-   "evidence_level": "unverified"
+   "source": "NOT A REAL FIELD. Actor::SetActionByName calls ((RoleSystem*)this)->NotifySceneChange() which writes this->m_partyActor.m_nState @ +0x1A8++0xCC=0x274. Actor has no vtable; RoleSystem methods are non-virtual. This is a C-style cast hack, not inheritance or composition. | normalize_key: 0x274 -> 628 | 零访问分型20261120: Actor 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
+   "evidence_level": "unverified",
+   "access_spectrum": "zero_access"
   }
  },
  "methods": {
