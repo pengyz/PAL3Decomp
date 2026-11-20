@@ -110,11 +110,12 @@ _STD_CONTAINERS = frozenset((
 
 # ---------------------------------------------------------------- 真产物解析域
 
-# 函数指针 typedef: 'typedef void (__cdecl *_PVFV)(void);' 名在 * 后 ( 前
-_TYPEDEF_FP_RE = re.compile(r'\btypedef\b[^;]*?\*\s*([A-Za-z_]\w*)\s*\(')
+# 函数指针 typedef: 'typedef void (__cdecl *_PVFV)(void);' 名在 * 后 ) 前
+_TYPEDEF_FP_RE = re.compile(r'\btypedef\b[^;]*?\*\s*([A-Za-z_]\w*)\s*\)')
 # 对象 typedef: 尾名 'typedef unsigned long _DWORD;'
 _TYPEDEF_RE = re.compile(r'\btypedef\b[^;]*?[\s*]([A-Za-z_]\w*)\s*;', )
-_DECL_RE = re.compile(r'\b(?:class|struct|enum)\s+(?:\w+\s+)?([A-Za-z_]\w*)')
+_DECL_RE = re.compile(
+    r'\b(?:class|struct|enum)\s+(?:\w+\s+)?([A-Za-z_]\w*)\s*(?::[^;{]*)?[{;]')
 
 
 def _parse_header_types(path, names_out, fp_typedef=True):
@@ -226,6 +227,28 @@ def build_registry():
     return reg
 
 
+def harvest_header_edges(directory, domain):
+    """[外部库引用边 2026-11-20·用户裁定] 外部导入库(gbengine)头文件真产物
+    解析→引用边补充。声明行类型token→registry resolve→edges(kind同规则)。
+    过近似可接受(假边=多余前向声明候选, 无害; 漏边=include缺失, 有害⇒宁滥)。"""
+    edges = []
+    for h in sorted(glob.glob(os.path.join(directory, '*.h'))):
+        try:
+            txt = open(h, encoding='utf-8', errors='replace').read()
+        except OSError:
+            continue
+        hdr = os.path.basename(h)
+        reg = build_registry()
+        # 类型样token: 类名形态标识符 + 可选指针/引用缀
+        for m in re.finditer(
+                r'\b((?:gb|GB|Gb)[A-Z]\w*|[A-Z]\w{2,})\s*((?:\*|&\s*)+)', txt):
+            name, ptrs = m.group(1), m.group(2)
+            if name in reg and reg[name][0] in ('gbengine', 'structs', 'gen'):
+                edges.append((hdr, name,
+                              'ref' if ptrs else 'value', domain))
+    return edges
+
+
 def freshness_check():
     """gen 树新鲜度: 任一注解文件晚于最新生成头 ⇒ 陈旧。返回 WARN 文本或 None。"""
     newest_ann = 0.0
@@ -279,6 +302,32 @@ def _split_top(s):
     return parts
 
 
+def classify_kind(t):
+    """[include优化语义 2026-11-20·用户裁定] 引用kind分类:
+    'value'=值类型(成员按值/基类子对象/值数组/值模板)——必须加include(完整定义);
+    'ref'=引用类型(指针/引用/函数指针/指针数组)——前向声明足够。
+    答案供头文件生成优化: value边→include, ref边→fwd decl候选。"""
+    if isinstance(t, dict):
+        return 'value'   # 内联struct/union=值
+    s = str(t or '').strip()
+    if not s:
+        return 'ref'
+    if '(' in s:
+        return 'ref'     # 函数指针
+    elem = re.sub(r'\[[^\]]*\]', '', s).strip()
+    if '*' in elem or '&' in elem:
+        return 'ref'     # 指针/引用(含指针数组)
+    tm = _TEMPLATE_RE.match(elem)
+    if tm:
+        short = tm.group(1).split('::')[-1]
+        if short in _STD_CONTAINERS:
+            args = _split_top(tm.group(2))
+            return 'value' if any(classify_kind(a) == 'value'
+                                  for a in args) else 'ref'
+        return 'value'
+    return 'value'
+
+
 def _base_token(t):
     """剥指针/引用/数组/const 后缀与修饰前缀 → 基型(供 registry 查)。"""
     s = str(t or '').strip()
@@ -297,27 +346,34 @@ def _base_token(t):
 def iter_type_refs(refs_out, refgraph):
     """遍历全部注解类型引用位点。
 
-    refs_out 收 (source, owner, field, type_str);
-    refgraph 收 (owner_class, referenced_base) 边。
+    refs_out 收 (source, owner, field, type_str, kind);
+    kind: classify_kind裁定('value'必须include/'ref'前向声明足够);
+    bases=基类子对象=值边(最强include契约, 2026-11-20补位点)。
     """
-    # structs: sig_model + known_members + nested
+    # structs: bases(值边) + sig_model + known_members + nested
     for sf in sorted(glob.glob(os.path.join(_STRUCTS_DIR, '*.json'))):
         cls = os.path.basename(sf)[:-5]
         try:
             d = json.load(open(sf, encoding='utf-8'))
         except (OSError, json.JSONDecodeError):
             continue
+        for b in (d.get('bases') or []):
+            bn = b.get('name') if isinstance(b, dict) else b
+            if bn:
+                refs_out.append((cls, 'base', 'base', str(bn), 'value'))
         for addr, m in (d.get('methods') or {}).items():
             sm = m.get('sig_model') or {}
             if sm.get('return'):
-                refs_out.append((cls, addr, 'sig.return', sm['return']))
+                refs_out.append((cls, addr, 'sig.return', sm['return'],
+                                 classify_kind(sm['return'])))
             for pi, p in enumerate(sm.get('params') or []):
                 if isinstance(p, dict) and p.get('type'):
-                    refs_out.append((cls, addr, 'sig.p%d' % pi, p['type']))
+                    refs_out.append((cls, addr, 'sig.p%d' % pi, p['type'],
+                                     classify_kind(p['type'])))
         for off, mm in (d.get('known_members') or {}).items():
             t = mm.get('type')
-            if isinstance(t, str) and t:
-                refs_out.append((cls, off, 'member', t))
+            if isinstance(t, (str, dict)) and t:
+                refs_out.append((cls, off, 'member', t, classify_kind(t)))
         _walk_nested(d.get('nested_types') or {}, cls, refs_out)
     # globals
     try:
@@ -326,7 +382,8 @@ def iter_type_refs(refs_out, refgraph):
         for addr, e in g.items():
             t = e.get('type')
             if isinstance(t, str) and t and t != 'skip':
-                refs_out.append(('globals', addr, 'type', t))
+                refs_out.append(('globals', addr, 'type', t,
+                                 classify_kind(t)))
     except (OSError, json.JSONDecodeError):
         pass
     # functions: legacy signature 串(尚未 sig_model 单源)
@@ -336,16 +393,19 @@ def iter_type_refs(refs_out, refgraph):
         for addr, e in fj.items():
             sig = e.get('signature') or ''
             if sig:
-                refs_out.append(('functions', addr, 'signature', sig))
+                refs_out.append(('functions', addr, 'signature', sig, 'ref'))
     except (OSError, json.JSONDecodeError):
         pass
 
 
 def _walk_nested(nested, cls, refs_out):
     for _nt, info in (nested or {}).items():
-        for mm in (info.get('members') or info.get('known_members') or {}):
-            pass  # nested 成员类型随 struct 头发射, gen 树已覆盖声明域
-        sub = info.get('nested_types')
+        for mm in ((info or {}).get('members')
+                   or (info or {}).get('known_members') or []):
+            if isinstance(mm, dict) and mm.get('type'):
+                refs_out.append((cls, _nt, 'nested.member', mm['type'],
+                                 classify_kind(mm['type'])))
+        sub = (info or {}).get('nested_types')
         if sub:
             _walk_nested(sub, cls, refs_out)
 
@@ -354,7 +414,8 @@ class Resolver:
     def __init__(self):
         self.reg = build_registry()
         self.failures = []      # (source, owner, field, type_str, base, reason)
-        self.refgraph = {}      # {cls: set(referenced base)}
+        self.refgraph = {}      # {cls: set(referenced base)} (兼容保留)
+        self.edges = []         # (owner, base, kind, field) [include优化语义]
 
     def _resolve_param(self, pt, source, owner, field):
         """签名参数串: 'TYPE NAME' 对——剥尾参数名后 resolve。
@@ -369,16 +430,23 @@ class Resolver:
             s = ' '.join(toks[:-1])
         self._resolve_one(s, source, owner, field)
 
-    def _resolve_one(self, t, source, owner, field):
-        """递归 resolve 单个类型串。失败登记 failures, 成功记 refgraph。"""
+    def _resolve_one(self, t, source, owner, field, kind=None):
+        """递归 resolve 单个类型串。失败登记 failures, 成功记 refgraph/edges。"""
+        raw = str(t or '')
+        if kind is None:
+            kind = classify_kind(raw) if raw.strip() else 'ref'
         if isinstance(t, dict):
-            # 内联 struct/union 对象: 递归其成员类型
+            # 内联 struct/union 对象: 递归其成员类型(内联=值)
             for mm in (t.get('struct') or t.get('union') or []):
                 if isinstance(mm, dict):
-                    self._resolve_one(mm.get('type'), source, owner, field)
+                    self._resolve_one(mm.get('type'), source, owner, field,
+                                      'value')
             return
         s = str(t or '').strip()
         if not s or s == 'skip':
+            return
+        s = re.sub(r'\s*&\s*$', '', s)   # 引用尾剥除(FP参数模板形实证)
+        if not s:
             return
         if _THIS_POLLUTE_RE.search(s):
             self.failures.append((source, owner, field, s, s,
@@ -439,6 +507,7 @@ class Resolver:
         if base in self.reg:
             if base[0].isupper() or base.startswith(('gb', 'tag', '_')):
                 self.refgraph.setdefault(source, set()).add(base)
+                self.edges.append((source, base, kind, field))
             return
         # [win32sdk 前缀信任] d3d9/d3dx/dinput 大族
         if base.startswith(_WIN32SDK_PREFIXES):
@@ -474,13 +543,18 @@ def collect():
     r = Resolver()
     refs = []
     iter_type_refs(refs, {})
-    for source, owner, field, t in refs:
-        r._resolve_one(t, source, owner, field)
-    return r.failures, warns, len(refs), len(r.reg)
+    for source, owner, field, t, kind in refs:
+        r._resolve_one(t, source, owner, field, kind)
+    return r.failures, warns, len(refs), len(r.reg), r.edges
 
 
 def run(hard=False):
-    failures, warns, nrefs, nreg = collect()
+    failures, warns, nrefs, nreg, edges = collect()
+    # [include优化语义·边统计] value边=必须include / ref边=前向声明候选
+    from collections import Counter as _C2
+    _ek = _C2(e[2] for e in edges)
+    print('[边] value(必须include)=%d / ref(前向声明候选)=%d'
+          % (_ek.get('value', 0), _ek.get('ref', 0)))
     # 汇总
     print('== ref resolve 普查 ==')
     print('类型引用位点: %d | 注册表条目: %d | 失败: %d'

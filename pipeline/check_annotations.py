@@ -849,7 +849,7 @@ def _run_type_resolve_gate(errors, warnings):
             warnings.append('REF:type_resolver导入失败(门未生效)')
             return
     try:
-        _failures, _warns, _nrefs, _nreg = _tr.collect()
+        _failures, _warns, _nrefs, _nreg, _edges = _tr.collect()
     except Exception as _e:
         errors.append('REF:internal_error %s' % _e)
         return
