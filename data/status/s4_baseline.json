@@ -18,28 +18,37 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 834,
-  "matched": 713,
-  "unmatched": 192,
-  "match_L1": 94,
-  "match_L1_semantic": 9,
-  "partial": 545,
+  "symbols": 916,
+  "matched": 778,
+  "unmatched": 227,
+  "match_L1": 90,
+  "match_L1_semantic": 11,
+  "partial": 588,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 74,
-  "reloc_total": 5396,
-  "reloc_ok": 1224,
+  "unresolved_synth": 100,
+  "reloc_total": 5816,
+  "reloc_ok": 1371,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4172,
-  "rsite_total": 5396,
-  "rsite_unaligned": 5153,
-  "l1_bytes": 3726,
-  "l1_hidden_reloc_bytes": 716,
-  "l1_reloc_covered_bytes": 972,
-  "rsite_ok": 44,
-  "rsite_class_ok": 184,
+  "reloc_unresolved": 4445,
+  "rsite_total": 5816,
+  "rsite_unaligned": 5545,
+  "l1_bytes": 3938,
+  "l1_hidden_reloc_bytes": 831,
+  "l1_reloc_covered_bytes": 1084,
+  "rsite_ok": 40,
+  "rsite_unresolved": 1,
+  "rsite_unresolved_samples": [
+   {
+    "va": "0x00444AC0",
+    "off": 2,
+    "tgt": "0x0056AE84",
+    "exp": "sub_56AE84",
+    "sym": "??_7CCBResultWindow@@6B@"
+   }
+  ],
   "tail_jump_downgrades": 3,
   "tail_jump_downgrade_samples": [
    {
@@ -61,63 +70,9 @@
     "orig": null
    }
   ],
-  "rsite_self_local": 8,
-  "rsite_unresolved": 1,
-  "rsite_unresolved_samples": [
-   {
-    "va": "0x004C5D50",
-    "off": 4,
-    "tgt": "0x004C5D70",
-    "exp": "sub_4C5D70",
-    "sym": "??1CEffectSystem@@UAE@XZ"
-   }
-  ],
-  "rsite_mismatch": 6,
-  "rsite_mismatch_samples": [
-   {
-    "va": "0x004BE060",
-    "off": 4,
-    "orig": "ScreenEffectMgr::ClearAllEffects(void)",
-    "ours": "ScreenEffect::~ScreenEffect",
-    "sym": "??1ScreenEffect@@UAE@XZ"
-   },
-   {
-    "va": "0x004BD850",
-    "off": 4,
-    "orig": "RenderTarget::GetManagedTexture(int)",
-    "ours": "ParticleEffect::~ParticleEffect",
-    "sym": "??1ParticleEffect@@UAE@XZ"
-   },
-   {
-    "va": "0x00450AB0",
-    "off": 4,
-    "orig": "RoleCameraCtrl::InitBaseWidget(void)",
-    "ours": "RoleCameraCtrl::~RoleCameraCtrl",
-    "sym": "??1RoleCameraCtrl@@UAE@XZ"
-   },
-   {
-    "va": "0x00454980",
-    "off": 4,
-    "orig": "TaskBookUI::Destroy(void)",
-    "ours": "TaskBookUI::~TaskBookUI",
-    "sym": "??1TaskBookUI@@UAE@XZ"
-   },
-   {
-    "va": "0x0043D860",
-    "off": 4,
-    "orig": "UIFrameWnd::__deleting_view(void)",
-    "ours": "UI3DCtrl::~UI3DCtrl",
-    "sym": "??1UI3DCtrl@@UAE@XZ"
-   },
-   {
-    "va": "0x00439110",
-    "off": 4,
-    "orig": "PalScript::Reset(void)",
-    "ours": "UIProgressBar::~UIProgressBar",
-    "sym": "??1UIProgressBar@@UAE@XZ"
-   }
-  ],
-  "rsite_ok_directname": 1
+  "rsite_class_ok": 221,
+  "rsite_self_local": 9,
+  "rsite_ok_directname": 2
  },
  "rows": [
   {
@@ -419,12 +374,12 @@
   },
   {
    "file": "pal3/src/Combat/CCBResultWindow.cpp",
-   "symbol": "??_GCCBResultWindow@@UAEPAXI@Z",
-   "name": "CCBResultWindow::`scalar deleting destructor'(uint)",
-   "va": "0x00444AA0",
+   "symbol": "??1CCBResultWindow@@UAE@XZ",
+   "name": "CCBResultWindow::~CCBResultWindow(void)",
+   "va": "0x00444AC0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 11
   },
   {
    "file": "pal3/src/Combat/CCBResultWindow.cpp",
@@ -823,6 +778,213 @@
    "size": 246
   },
   {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?AllocEffect@CEffExplosive@@UAEPAXXZ",
+   "name": "CEffExplosive::AllocEffect(void)",
+   "va": "0x004C6940",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?ResetState@CEffExplosive@@UAEXHHHH@Z",
+   "name": "CEffExplosive::ResetState(int,int,int,int)",
+   "va": "0x004C6A70",
+   "status": "partial",
+   "match_pct": 60.2,
+   "size": 415
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?Create@CEffExplosive@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffExplosive::Create(tagEffObjType *)",
+   "va": "0x004C6C10",
+   "status": "partial",
+   "match_pct": 14.1,
+   "size": 774
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?Destroy@CEffExplosive@@UAEXXZ",
+   "name": "CEffExplosive::Destroy(void)",
+   "va": "0x004C6F20",
+   "status": "partial",
+   "match_pct": 60.3,
+   "size": 506
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?UpdateFrame@CEffExplosive@@UAEXM@Z",
+   "name": "CEffExplosive::UpdateFrame(float)",
+   "va": "0x004C7150",
+   "status": "partial",
+   "match_pct": 11.8,
+   "size": 761
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?RenderEffectPass@CEffExplosive@@UAEXM@Z",
+   "name": "CEffExplosive::RenderEffectPass(float)",
+   "va": "0x004C7450",
+   "status": "partial",
+   "match_pct": 18.1,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffExplosive@@UAEPBDH@Z",
+   "name": "CEffExplosive::GetEditorTaskDescription(int)",
+   "va": "0x004C7A70",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 172
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?GetEditorObjDescription@CEffExplosive@@UAEPBDH@Z",
+   "name": "CEffExplosive::GetEditorObjDescription(int)",
+   "va": "0x004C7B70",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 104
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?InitDefaultUVSet@CEffExplosive@@QAEXHH@Z",
+   "name": "CEffExplosive::InitDefaultUVSet(int,int)",
+   "va": "0x004C7C00",
+   "status": "partial",
+   "match_pct": 12.3,
+   "size": 171
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?LoadTexture@CEffExplosive@@QAEPAHPAD@Z",
+   "name": "CEffExplosive::LoadTexture(char *)",
+   "va": "0x004C7CB0",
+   "status": "partial",
+   "match_pct": 21.5,
+   "size": 144
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?CreateGeom@CEffExplosive@@QAEXXZ",
+   "name": "CEffExplosive::CreateGeom(void)",
+   "va": "0x004C7D40",
+   "status": "partial",
+   "match_pct": 34.8,
+   "size": 276
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "?UpdateExplosive@CEffExplosive@@QAEXMH@Z",
+   "name": "CEffExplosive::UpdateExplosive(float,int)",
+   "va": "0x004C8370",
+   "status": "partial",
+   "match_pct": 8.9,
+   "size": 721
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?AllocEffect@CEffQuad@@UAEPAXXZ",
+   "name": "CEffQuad::AllocEffect(void)",
+   "va": "0x004D0D70",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "??_GCEffQuad@@UAEPAXI@Z",
+   "name": "CEffQuad::_sdtor_39",
+   "va": "0x004D3230",
+   "status": "partial",
+   "match_pct": 37.5,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?ResetState@CEffQuad@@UAEXHHHH@Z",
+   "name": "CEffQuad::ResetState(int,int,int,int)",
+   "va": "0x004D0EC0",
+   "status": "partial",
+   "match_pct": 44.2,
+   "size": 453
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?Create@CEffQuad@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffQuad::Create(tagEffObjType *)",
+   "va": "0x004D1090",
+   "status": "partial",
+   "match_pct": 13.8,
+   "size": 621
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?DestroyOneQuad@CEffQuad@@QAEXPBX@Z",
+   "name": "CEffQuad::DestroyOneQuad(void const *)",
+   "va": "0x004D1BE0",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 180
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?SetQuad@CEffQuad@@QAE_NH@Z",
+   "name": "CEffQuad::SetQuad(int)",
+   "va": "0x004D1CA0",
+   "status": "partial",
+   "match_pct": 98.1,
+   "size": 428
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?DestroyAllQuad@CEffQuad@@QAEPAHH@Z",
+   "name": "CEffQuad::DestroyAllQuad(int)",
+   "va": "0x004D1E50",
+   "status": "partial",
+   "match_pct": 49.7,
+   "size": 147
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?ToNextFrame@CEffQuad@@QAEPAHH@Z",
+   "name": "CEffQuad::ToNextFrame(int)",
+   "va": "0x004D1F30",
+   "status": "partial",
+   "match_pct": 22.2,
+   "size": 153
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?RenderEffectPass@CEffQuad@@UAEXM@Z",
+   "name": "CEffQuad::RenderEffectPass(float)",
+   "va": "0x004D2080",
+   "status": "partial",
+   "match_pct": 14.3,
+   "size": 624
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?ProcessDestroyPass@CEffQuad@@QAEHH@Z",
+   "name": "CEffQuad::ProcessDestroyPass(int)",
+   "va": "0x004D2E10",
+   "status": "partial",
+   "match_pct": 73.9,
+   "size": 188
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffQuad@@UAEPBDH@Z",
+   "name": "CEffQuad::GetEditorTaskDescription(int)",
+   "va": "0x004D2ED0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 220
+  },
+  {
    "file": "pal3/src/Effect/CEffQuake.cpp",
    "symbol": "?AllocEffect@CEffQuake@@UAEPAXXZ",
    "name": "CEffQuake::AllocEffect(void)",
@@ -977,6 +1139,24 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "?Activate@CEffectSystem@@UAEHXZ",
+   "name": "CEffectSystem::Activate",
+   "va": "0x004C5DB0",
+   "status": "partial",
+   "match_pct": 75.6,
+   "size": 41
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "?ReleaseTextures@CEffectSystem@@UAEXXZ",
+   "name": "CEffectSystem::ReleaseTextures",
+   "va": "0x004C5DE0",
+   "status": "partial",
+   "match_pct": 18.3,
+   "size": 60
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?slot_6@CEffectSystem@@UAEHXZ",
    "name": "CEffectSystem::slot_6(void)",
    "va": "0x004C5E20",
@@ -995,6 +1175,15 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "?ProcessEffects@CEffectSystem@@UAEHN@Z",
+   "name": "CEffectSystem::ProcessEffects",
+   "va": "0x004C5E80",
+   "status": "partial",
+   "match_pct": 12.1,
+   "size": 282
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?UpdateEffectState@CEffectSystem@@UAEHH@Z",
    "name": "CEffectSystem::UpdateEffectState(int)",
    "va": "0x004C6030",
@@ -1010,15 +1199,6 @@
    "status": "partial",
    "match_pct": 27.1,
    "size": 155
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
-   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
-   "va": "0x004C5D50",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
@@ -1147,159 +1327,6 @@
    "size": 1165
   },
   {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?ReleaseEffect@CEffgbParticle@@QAEXXZ",
-   "name": "CEffgbParticle::ReleaseEffect(void)",
-   "va": "0x004C6980",
-   "status": "partial",
-   "match_pct": 13.1,
-   "size": 237
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?SetData@CEffgbParticle@@QAEXHHHPAHHH@Z",
-   "name": "CEffgbParticle::SetData(int,int,int,int *,int,int)",
-   "va": "0x004C8650",
-   "status": "partial",
-   "match_pct": 10.3,
-   "size": 213
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Init@CEffgbParticle@@QAEHH@Z",
-   "name": "CEffgbParticle::Init(int)",
-   "va": "0x004C8830",
-   "status": "partial",
-   "match_pct": 95.0,
-   "size": 80
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Attach@CEffgbParticle@@UAEPADD@Z",
-   "name": "CEffgbParticle::Attach(char)",
-   "va": "0x004C88C0",
-   "status": "partial",
-   "match_pct": 0.0,
-   "size": 8
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Render@CEffgbParticle@@QAEXXZ",
-   "name": "CEffgbParticle::Render(void)",
-   "va": "0x004C88D0",
-   "status": "partial",
-   "match_pct": 3.7,
-   "size": 82
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?AllocEffect@CEffgbParticle@@UAEPAXXZ",
-   "name": "CEffgbParticle::AllocEffect(void)",
-   "va": "0x004C8930",
-   "status": "partial",
-   "match_pct": 16.7,
-   "size": 24
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Destroy__fastcall@CEffgbParticle@@QAEXXZ",
-   "name": "CEffgbParticle::Destroy__fastcall(void)",
-   "va": "0x004C8970",
-   "status": "partial",
-   "match_pct": 6.2,
-   "size": 194
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Create@CEffgbParticle@@UAEDPAVtagEffObjType@@@Z",
-   "name": "CEffgbParticle::Create(tagEffObjType *)",
-   "va": "0x004C8A40",
-   "status": "partial",
-   "match_pct": 25.2,
-   "size": 314
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?ResetState@CEffgbParticle@@UAEXHHHH@Z",
-   "name": "CEffgbParticle::ResetState(int,int,int,int)",
-   "va": "0x004C8B80",
-   "status": "partial",
-   "match_pct": 26.2,
-   "size": 103
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?UpdateFrame@CEffgbParticle@@UAEXM@Z",
-   "name": "CEffgbParticle::UpdateFrame(float)",
-   "va": "0x004C8BF0",
-   "status": "partial",
-   "match_pct": 14.1,
-   "size": 533
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?Destroy@CEffgbParticle@@UAEXXZ",
-   "name": "CEffgbParticle::Destroy(void)",
-   "va": "0x004C8E10",
-   "status": "partial",
-   "match_pct": 38.2,
-   "size": 102
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?GetEffect@CEffgbParticle@@UAEXM@Z",
-   "name": "CEffgbParticle::GetEffect(float)",
-   "va": "0x004C8E80",
-   "status": "partial",
-   "match_pct": 93.8,
-   "size": 16
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?RenderEffectPass@CEffgbParticle@@UAEXM@Z",
-   "name": "CEffgbParticle::RenderEffectPass(float)",
-   "va": "0x004C8E90",
-   "status": "partial",
-   "match_pct": 18.1,
-   "size": 559
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?GetEditorTaskDescription@CEffgbParticle@@UAEPBDH@Z",
-   "name": "CEffgbParticle::GetEditorTaskDescription(int)",
-   "va": "0x004C9260",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 120
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?CreateInstance@CEffgbParticle@@QAEHPAV1@H0@Z",
-   "name": "CEffgbParticle::CreateInstance(CEffgbParticle *,int,CEffgbParticle *)",
-   "va": "0x004CEB60",
-   "status": "partial",
-   "match_pct": 15.6,
-   "size": 276
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?DestroyEffect_FD40@CEffgbParticle@@SAHPAV1@@Z",
-   "name": "CEffgbParticle::DestroyEffect_FD40(void)",
-   "va": "0x004CFD40",
-   "status": "partial",
-   "match_pct": 5.2,
-   "size": 210
-  },
-  {
-   "file": "pal3/src/Effect/CEffgbParticle.cpp",
-   "symbol": "?DestroyEffect@CEffgbParticle@@UAEXXZ",
-   "name": "CEffgbParticle::DestroyEffect(void)",
-   "va": "0x004D0A60",
-   "status": "partial",
-   "match_pct": 32.0,
-   "size": 25
-  },
-  {
    "file": "pal3/src/Effect/CMeteorChain.cpp",
    "symbol": "??1CMeteorChain@@QAE@XZ",
    "name": "CMeteorChain::~CMeteorChain(void)",
@@ -1328,21 +1355,282 @@
   },
   {
    "file": "pal3/src/Effect/ScreenEffect.cpp",
-   "symbol": "??_GScreenEffect@@UAEPAXI@Z",
-   "name": "ScreenEffect::`scalar deleting destructor'(uint)",
-   "va": "0x004BE060",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Effect/ScreenEffect.cpp",
    "symbol": "?CopyParams@ScreenEffect@@QAEXPAH@Z",
    "name": "ScreenEffect::CopyParams(int *)",
    "va": "0x004BE830",
    "status": "partial",
    "match_pct": 2.9,
    "size": 34
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?IsScriptDelNeeded@ScreenEffectMgr@@QAEHXZ",
+   "name": "ScreenEffectMgr::IsScriptDelNeeded(void)",
+   "va": "0x004BDF60",
+   "status": "partial",
+   "match_pct": 75.0,
+   "size": 4
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?StartFade@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::StartFade(void)",
+   "va": "0x004BDF70",
+   "status": "partial",
+   "match_pct": 86.7,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?ClearAllEffects@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::ClearAllEffects(void)",
+   "va": "0x004BE080",
+   "status": "partial",
+   "match_pct": 12.8,
+   "size": 281
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?ProcessEffect@ScreenEffectMgr@@QAEHH@Z",
+   "name": "ScreenEffectMgr::ProcessEffect(int)",
+   "va": "0x004BE1A0",
+   "status": "partial",
+   "match_pct": 15.3,
+   "size": 686
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?UpdateFrontEffect@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::UpdateFrontEffect(void)",
+   "va": "0x004BE4A0",
+   "status": "partial",
+   "match_pct": 11.1,
+   "size": 234
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?GetInstance@ScreenEffectMgr@@QAEPAVScreenEffect@@XZ",
+   "name": "ScreenEffectMgr::GetInstance(void)",
+   "va": "0x004BE590",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 51
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?IsFadeWhiteHolding@ScreenEffectMgr@@QAE_NXZ",
+   "name": "ScreenEffectMgr::IsFadeWhiteHolding(void)",
+   "va": "0x004BE5E0",
+   "status": "partial",
+   "match_pct": 41.7,
+   "size": 12
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?DrainQueue@ScreenEffectMgr@@QAEHXZ",
+   "name": "ScreenEffectMgr::DrainQueue(void)",
+   "va": "0x004BE5F0",
+   "status": "partial",
+   "match_pct": 11.6,
+   "size": 181
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?AllocEffectBlock@ScreenEffectMgr@@QAEPADXZ",
+   "name": "ScreenEffectMgr::AllocEffectBlock(void)",
+   "va": "0x004BE6B0",
+   "status": "partial",
+   "match_pct": 14.8,
+   "size": 345
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?GetFadeFlags@ScreenEffectMgr@@QAEPAHXZ",
+   "name": "ScreenEffectMgr::GetFadeFlags(void)",
+   "va": "0x004BE810",
+   "status": "partial",
+   "match_pct": 29.6,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?RenderFadeOut@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::RenderFadeOut(void)",
+   "va": "0x004BE920",
+   "status": "partial",
+   "match_pct": 8.3,
+   "size": 145
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?ToggleFade@ScreenEffectMgr@@QAEXM@Z",
+   "name": "ScreenEffectMgr::ToggleFade(float)",
+   "va": "0x004BE9C0",
+   "status": "partial",
+   "match_pct": 93.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?StartFadeIn@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::StartFadeIn(void)",
+   "va": "0x004BE9E0",
+   "status": "partial",
+   "match_pct": 8.3,
+   "size": 12
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?RenderFadeIn@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::RenderFadeIn(void)",
+   "va": "0x004BEAB0",
+   "status": "partial",
+   "match_pct": 8.6,
+   "size": 139
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?RenderFadeWhiteOut@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::RenderFadeWhiteOut(void)",
+   "va": "0x004BEC00",
+   "status": "partial",
+   "match_pct": 82.1,
+   "size": 140
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "??1ScreenEffectMgr@@UAE@XZ",
+   "name": "ScreenEffectMgr::~ScreenEffectMgr(void)",
+   "va": "0x004BEBD0",
+   "status": "partial",
+   "match_pct": 43.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?RenderFadeWhiteIn@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::RenderFadeWhiteIn(void)",
+   "va": "0x004BED50",
+   "status": "partial",
+   "match_pct": 82.2,
+   "size": 146
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "??0ScreenEffectMgr@@QAE@XZ",
+   "name": "ScreenEffectMgr::ScreenEffectMgr(void)",
+   "va": "0x004BEE60",
+   "status": "partial",
+   "match_pct": 37.3,
+   "size": 193
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?_UIWnd@ScreenEffectMgr@@QAEXXZ",
+   "name": "ScreenEffectMgr::_UIWnd(void)",
+   "va": "0x004BEF50",
+   "status": "partial",
+   "match_pct": 18.9,
+   "size": 95
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?LoadResources@ScreenEffectMgr@@UAEPAVgbVFileSystem@@H@Z",
+   "name": "ScreenEffectMgr::LoadResources(int)",
+   "va": "0x004BEFB0",
+   "status": "partial",
+   "match_pct": 28.8,
+   "size": 438
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?CleanupTextures@ScreenEffectMgr@@UAEXXZ",
+   "name": "ScreenEffectMgr::CleanupTextures(void)",
+   "va": "0x004BF170",
+   "status": "partial",
+   "match_pct": 21.5,
+   "size": 65
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?Create@ScreenEffectMgr@@UAEXH@Z",
+   "name": "ScreenEffectMgr::Create(int)",
+   "va": "0x004BF1C0",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?Destroy@ScreenEffectMgr@@UAEHH@Z",
+   "name": "ScreenEffectMgr::Destroy(int)",
+   "va": "0x004BF1D0",
+   "status": "partial",
+   "match_pct": 53.5,
+   "size": 129
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?Render@ScreenEffectMgr@@UAEXH@Z",
+   "name": "ScreenEffectMgr::Render(int)",
+   "va": "0x004BF260",
+   "status": "partial",
+   "match_pct": 24.4,
+   "size": 652
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?UpdateAnimation@ScreenEffectMgr@@UAEXM@Z",
+   "name": "ScreenEffectMgr::UpdateAnimation(float)",
+   "va": "0x004BF4F0",
+   "status": "partial",
+   "match_pct": 38.5,
+   "size": 397
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?GetPageIndex@ScreenEffectMgr@@UAEHH@Z",
+   "name": "ScreenEffectMgr::GetPageIndex(int)",
+   "va": "0x004BF680",
+   "status": "partial",
+   "match_pct": 14.3,
+   "size": 49
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?SetFadeParams@ScreenEffectMgr@@UAEHPAUgbMatrix4@@@Z",
+   "name": "ScreenEffectMgr::SetFadeParams(gbMatrix4 *)",
+   "va": "0x004BF6C0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 35
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?ResetFadeState@ScreenEffectMgr@@QAEPAHXZ",
+   "name": "ScreenEffectMgr::ResetFadeState(void)",
+   "va": "0x004BF760",
+   "status": "partial",
+   "match_pct": 57.7,
+   "size": 26
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?ProcessInstance@ScreenEffectMgr@@QAEHXZ",
+   "name": "ScreenEffectMgr::ProcessInstance(void)",
+   "va": "0x0052F310",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 22
+  },
+  {
+   "file": "pal3/src/Effect/ScreenEffectMgr.cpp",
+   "symbol": "?IsFadeActive@ScreenEffectMgr@@QAEHXZ",
+   "name": "ScreenEffectMgr::IsFadeActive(void)",
+   "va": "0x0052F330",
+   "status": "partial",
+   "match_pct": 16.0,
+   "size": 25
   },
   {
    "file": "pal3/src/GameBase/InputSystem.cpp",
@@ -1561,6 +1849,33 @@
    "size": 125
   },
   {
+   "file": "pal3/src/Misc/CCBPanelSlot.cpp",
+   "symbol": "?HideAll@CCBPanelSlot@@UAEXXZ",
+   "name": "CCBPanelSlot::HideAll(void)",
+   "va": "0x00442420",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 87
+  },
+  {
+   "file": "pal3/src/Misc/CCBPanelSlot.cpp",
+   "symbol": "?Update_2ff0@CCBPanelSlot@@UAEHHH@Z",
+   "name": "CCBPanelSlot::Update_2ff0(int,int)",
+   "va": "0x00442FF0",
+   "status": "partial",
+   "match_pct": 22.0,
+   "size": 404
+  },
+  {
+   "file": "pal3/src/Misc/CCBPanelSlot.cpp",
+   "symbol": "?Render@CCBPanelSlot@@UAEXXZ",
+   "name": "CCBPanelSlot::Render(void)",
+   "va": "0x00443200",
+   "status": "partial",
+   "match_pct": 26.5,
+   "size": 378
+  },
+  {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
    "symbol": "??0CCBUIPanel@@QAE@XZ",
    "name": "CCBUIPanel::CCBUIPanel(void)",
@@ -1568,15 +1883,6 @@
    "status": "partial",
    "match_pct": 45.5,
    "size": 213
-  },
-  {
-   "file": "pal3/src/Misc/CCBUIPanel.cpp",
-   "symbol": "??_GCCBUIPanel@@UAEPAXI@Z",
-   "name": "CCBUIPanel::`scalar deleting destructor'(uint)",
-   "va": "0x004461D0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -2336,15 +2642,6 @@
   },
   {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
-   "symbol": "??_GJusticeBookUI@@UAEPAXI@Z",
-   "name": "JusticeBookUI::`scalar deleting destructor'(uint)",
-   "va": "0x005284C0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "??1JusticeBookUI@@UAE@XZ",
    "name": "JusticeBookUI::~JusticeBookUI(void)",
    "va": "0x005284E0",
@@ -2587,6 +2884,24 @@
    "size": 11
   },
   {
+   "file": "pal3/src/Misc/PalScriptFadeInTimer.cpp",
+   "symbol": "?UpdateFadeIn@PalScriptFadeInTimer@@UAEHHH@Z",
+   "name": "PalScriptFadeInTimer::UpdateFadeIn",
+   "va": "0x00438640",
+   "status": "partial",
+   "match_pct": 32.3,
+   "size": 93
+  },
+  {
+   "file": "pal3/src/Misc/PalScriptFadeOutTimer.cpp",
+   "symbol": "?UpdateFadeOut@PalScriptFadeOutTimer@@UAEHHH@Z",
+   "name": "PalScriptFadeOutTimer::UpdateFadeOut",
+   "va": "0x00438540",
+   "status": "partial",
+   "match_pct": 76.2,
+   "size": 84
+  },
+  {
    "file": "pal3/src/Misc/PalScriptProgressTimer.cpp",
    "symbol": "?UpdateWaitTimer@PalScriptProgressTimer@@UAEXXZ",
    "name": "PalScriptProgressTimer::UpdateWaitTimer(void)",
@@ -2687,15 +3002,6 @@
   },
   {
    "file": "pal3/src/Misc/ParticleEffect.cpp",
-   "symbol": "??_GParticleEffect@@UAEPAXI@Z",
-   "name": "ParticleEffect::`scalar deleting destructor'(uint)",
-   "va": "0x004BD850",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/ParticleEffect.cpp",
    "symbol": "?SetDeltaTime@ParticleEffect@@QAEHH@Z",
    "name": "ParticleEffect::SetDeltaTime(int)",
    "va": "0x004BC7E0",
@@ -2729,6 +3035,15 @@
    "status": "partial",
    "match_pct": 15.8,
    "size": 57
+  },
+  {
+   "file": "pal3/src/Misc/ParticleEffect.cpp",
+   "symbol": "??1ParticleEffect@@UAE@XZ",
+   "name": "ParticleEffect::~ParticleEffect(void)",
+   "va": "0x004BC790",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/ParticleEffect.cpp",
@@ -2882,15 +3197,6 @@
    "status": "partial",
    "match_pct": 54.5,
    "size": 11
-  },
-  {
-   "file": "pal3/src/Misc/RoleCameraCtrl.cpp",
-   "symbol": "??_GRoleCameraCtrl@@UAEPAXI@Z",
-   "name": "RoleCameraCtrl::`scalar deleting destructor'(uint)",
-   "va": "0x00450AB0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/RoleCameraCtrl.cpp",
@@ -3362,15 +3668,6 @@
   },
   {
    "file": "pal3/src/Misc/TaskBookUI.cpp",
-   "symbol": "??_GTaskBookUI@@UAEPAXI@Z",
-   "name": "TaskBookUI::`scalar deleting destructor'(uint)",
-   "va": "0x00454980",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/TaskBookUI.cpp",
    "symbol": "?Destroy@TaskBookUI@@QAEXXZ",
    "name": "TaskBookUI::Destroy(void)",
    "va": "0x00454BA0",
@@ -3605,15 +3902,6 @@
   },
   {
    "file": "pal3/src/Misc/UI3DCtrl.cpp",
-   "symbol": "??_GUI3DCtrl@@UAEPAXI@Z",
-   "name": "UI3DCtrl::`scalar deleting destructor'(uint)",
-   "va": "0x0043D860",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UI3DCtrl.cpp",
    "symbol": "?CreateWithTexture@UI3DCtrl@@UAEPAVgbVFileSystem@@HPAXHIH@Z",
    "name": "UI3DCtrl::CreateWithTexture(int,void *,int,uint,int)",
    "va": "0x0043D890",
@@ -3712,69 +4000,6 @@
    "size": 36
   },
   {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?SetEnable@UICaption@@QAEXHH@Z",
-   "name": "UICaption::SetEnable(int,int)",
-   "va": "0x004427C0",
-   "status": "partial",
-   "match_pct": 13.7,
-   "size": 205
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?DestroyPanel@UICaption@@QAEXXZ",
-   "name": "UICaption::DestroyPanel(void)",
-   "va": "0x004461F0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 8
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?DestroyAll@UICaption@@QAEXXZ",
-   "name": "UICaption::DestroyAll(void)",
-   "va": "0x0044BDA0",
-   "status": "partial",
-   "match_pct": 4.2,
-   "size": 95
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?LayoutDefault@UICaption@@QAEXXZ",
-   "name": "UICaption::LayoutDefault(void)",
-   "va": "0x00450320",
-   "status": "partial",
-   "match_pct": 19.1,
-   "size": 68
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?OnEvent@UICaption@@QAEXH@Z",
-   "name": "UICaption::OnEvent(int)",
-   "va": "0x004503C0",
-   "status": "partial",
-   "match_pct": 0.0,
-   "size": 4
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?RenderContent@UICaption@@QAEHXZ",
-   "name": "UICaption::RenderContent(void)",
-   "va": "0x00450440",
-   "status": "partial",
-   "match_pct": 8.6,
-   "size": 266
-  },
-  {
-   "file": "pal3/src/Misc/UICaption.cpp",
-   "symbol": "?IsOnScreen@UICaption@@QAEHHH@Z",
-   "name": "UICaption::IsOnScreen(int,int)",
-   "va": "0x00450560",
-   "status": "partial",
-   "match_pct": 42.5,
-   "size": 226
-  },
-  {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
    "symbol": "??0UILoadingFrm@@QAE@XZ",
    "name": "UILoadingFrm::UILoadingFrm(void)",
@@ -3782,24 +4007,6 @@
    "status": "partial",
    "match_pct": 39.3,
    "size": 84
-  },
-  {
-   "file": "pal3/src/Misc/UILoadingFrm.cpp",
-   "symbol": "??_GUILoadingFrm@@UAEPAXI@Z",
-   "name": "UILoadingFrm::`scalar deleting destructor'(uint)",
-   "va": "0x00450770",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UILoadingFrm.cpp",
-   "symbol": "??_GUIProgressBar@@UAEPAXI@Z",
-   "name": "UIProgressBar::`scalar deleting destructor'(uint)",
-   "va": "0x00439110",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/UILoadingFrm.cpp",
@@ -4063,6 +4270,78 @@
    "size": 62
   },
   {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?ctor@UIProgressBar@@QAEPAHXZ",
+   "name": "UIProgressBar::ctor(void)",
+   "va": "0x00439030",
+   "status": "partial",
+   "match_pct": 12.4,
+   "size": 209
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Render@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::Render(void)",
+   "va": "0x00439410",
+   "status": "partial",
+   "match_pct": 27.4,
+   "size": 814
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?HideAll@UIProgressBar@@UAEXXZ",
+   "name": "UIProgressBar::HideAll(void)",
+   "va": "0x00439810",
+   "status": "partial",
+   "match_pct": 72.6,
+   "size": 62
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?Update@UIProgressBar@@UAEHPAPAVCCBUI@@H@Z",
+   "name": "UIProgressBar::Update(CCBUI * *,int)",
+   "va": "0x00439A20",
+   "status": "partial",
+   "match_pct": 16.5,
+   "size": 1458
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetWidth@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetWidth(int)",
+   "va": "0x0043FDC0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetHeight@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetHeight(int)",
+   "va": "0x0043FDD0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?GetPosition@UIProgressBar@@QAEXH@Z",
+   "name": "UIProgressBar::GetPosition(int)",
+   "va": "0x0043FDE0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 13
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "?FindChildByName@UIProgressBar@@QAEXM@Z",
+   "name": "UIProgressBar::FindChildByName(float)",
+   "va": "0x0043FDF0",
+   "status": "partial",
+   "match_pct": 25.2,
+   "size": 159
+  },
+  {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
    "symbol": "??0UIRoleDialog@@QAE@XZ",
    "name": "UIRoleDialog::UIRoleDialog(void)",
@@ -4070,15 +4349,6 @@
    "status": "partial",
    "match_pct": 34.5,
    "size": 229
-  },
-  {
-   "file": "pal3/src/Misc/UIRoleDialog.cpp",
-   "symbol": "??_GUIRoleDialog@@UAEPAXI@Z",
-   "name": "UIRoleDialog::`scalar deleting destructor'(uint)",
-   "va": "0x004A13F0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/UIRoleDialog.cpp",
@@ -4196,15 +4466,6 @@
    "status": "partial",
    "match_pct": 48.6,
    "size": 142
-  },
-  {
-   "file": "pal3/src/Misc/UISceneMap.cpp",
-   "symbol": "??_GUISceneMap@@UAEPAXI@Z",
-   "name": "UISceneMap::`scalar deleting destructor'(uint)",
-   "va": "0x00450070",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Misc/UISceneMap.cpp",
@@ -4406,15 +4667,6 @@
   },
   {
    "file": "pal3/src/Misc/UITitle.cpp",
-   "symbol": "??_GUITitle@@UAEPAXI@Z",
-   "name": "UITitle::`scalar deleting destructor'(uint)",
-   "va": "0x0044ACC0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/UITitle.cpp",
    "symbol": "??1UITitle@@UAE@XZ",
    "name": "UITitle::~UITitle(void)",
    "va": "0x0044ACE0",
@@ -4592,6 +4844,15 @@
    "status": "partial",
    "match_pct": 8.6,
    "size": 336
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??1WeatherEffectNode@@UAE@XZ",
+   "name": "WeatherEffectNode::~WeatherEffectNode(void)",
+   "va": "0x00405560",
+   "status": "partial",
+   "match_pct": 12.9,
+   "size": 31
   },
   {
    "file": "pal3/src/Misc/_Console.cpp",
@@ -4781,6 +5042,24 @@
    "status": "partial",
    "match_pct": 34.8,
    "size": 89
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "??1TextureLib@@UAE@XZ",
+   "name": "TextureLib::~TextureLib(void)",
+   "va": "0x0053DC30",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "??_GTextureLib@@UAEPAXI@Z",
+   "name": "TextureLib::_sdtor_20",
+   "va": "0x0053F4D0",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Render/TextureLib.cpp",
@@ -5150,24 +5429,6 @@
    "status": "partial",
    "match_pct": 14.1,
    "size": 622
-  },
-  {
-   "file": "pal3/src/Role/Role.cpp",
-   "symbol": "??_GRole@@UAEPAXI@Z",
-   "name": "Role::`scalar deleting destructor'(uint)",
-   "va": "0x00411BD0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Role/Role.cpp",
-   "symbol": "??_GActor@@UAEPAXI@Z",
-   "name": "Actor::`scalar deleting destructor'(uint)",
-   "va": "0x004C9470",
-   "status": "partial",
-   "match_pct": 8.5,
-   "size": 129
   },
   {
    "file": "pal3/src/Role/Role.cpp",
@@ -5710,6 +5971,51 @@
    "size": 15
   },
   {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?Create@UINote@@QAEPAXHHHPAD@Z",
+   "name": "UINote::Create(int,int,int,char *)",
+   "va": "0x004450A0",
+   "status": "partial",
+   "match_pct": 35.3,
+   "size": 207
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?GetEntryPtr@UINote@@QAEHH@Z",
+   "name": "UINote::GetEntryPtr(int)",
+   "va": "0x00528D30",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 17
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?RenderIfVisible@UINote@@QAEHPAVgbMatrixStack@@@Z",
+   "name": "UINote::RenderIfVisible(gbMatrixStack *)",
+   "va": "0x0052AFC0",
+   "status": "partial",
+   "match_pct": 55.0,
+   "size": 40
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?RenderWithStack@UINote@@QAEXPAVgbMatrixStack@@@Z",
+   "name": "UINote::RenderWithStack(gbMatrixStack *)",
+   "va": "0x0052AFF0",
+   "status": "partial",
+   "match_pct": 42.1,
+   "size": 57
+  },
+  {
+   "file": "pal3/src/UI/UINote.cpp",
+   "symbol": "?CallVtableMethod@UINote@@QAEHN@Z",
+   "name": "UINote::CallVtableMethod(double)",
+   "va": "0x0052B030",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 22
+  },
+  {
    "file": "pal3/src/UI/UIQuadManager.cpp",
    "symbol": "?GetInstance@UIQuadManager@@SAPAV1@XZ",
    "name": "UIQuadManager::GetInstance(void)",
@@ -5872,18 +6178,485 @@
    "size": 166
   }
  ],
+ "l1_identity": [
+  [
+   "ArcSceneObject::InitFromConfig(void)",
+   5395648,
+   87
+  ],
+  [
+   "C2DSpark::CreateStars(void)",
+   5071264,
+   28
+  ],
+  [
+   "C2DSpark::~C2DSpark(void)",
+   5070272,
+   250
+  ],
+  [
+   "C3DSpark::DestroyAll(void)",
+   5073824,
+   28
+  ],
+  [
+   "C3DSpark::~C3DSpark(void)",
+   5073248,
+   250
+  ],
+  [
+   "CCBAttackSequen::CalcSpeed(int,int)",
+   5092928,
+   22
+  ],
+  [
+   "CCBControl::GetControl(void)",
+   5096880,
+   4
+  ],
+  [
+   "CCBMagicWindow::ClearMagicData(void)",
+   5356624,
+   27
+  ],
+  [
+   "CCBMagicWindow::Create(int)",
+   5356352,
+   10
+  ],
+  [
+   "CCBPanelSlot::HideAll(void)",
+   4465696,
+   87
+  ],
+  [
+   "CCBResultWindow::SetDirty(void)",
+   4476192,
+   8
+  ],
+  [
+   "CCBResultWindow::~CCBResultWindow(void)",
+   4475584,
+   11
+  ],
+  [
+   "CCBStageEffect::Create(void)",
+   5279824,
+   5
+  ],
+  [
+   "CCBStageEffect::Init(void)",
+   5279856,
+   5
+  ],
+  [
+   "CCBStageEffect::LoadLinker(void)",
+   5279968,
+   5
+  ],
+  [
+   "CCBStageEffect::PreLoadEffGroup(void)",
+   5279888,
+   5
+  ],
+  [
+   "CCBStageShadow::FillShadowQuad(void)",
+   5317376,
+   5
+  ],
+  [
+   "CCBUIPanel::FocusCurrentRole(void)",
+   4496272,
+   66
+  ],
+  [
+   "CCBUIPanel::HideAll(void)",
+   4495760,
+   5
+  ],
+  [
+   "CCBUIPanel::SetUserData(int)",
+   4495744,
+   13
+  ],
+  [
+   "CEffAction::AllocEffect(void)",
+   4982048,
+   24
+  ],
+  [
+   "CEffAction::GetEditorTaskDescription(int)",
+   4985456,
+   220
+  ],
+  [
+   "CEffAction::ResetState(int,int,int,int)",
+   4982336,
+   14
+  ],
+  [
+   "CEffBink::AllocEffect(void)",
+   4986288,
+   27
+  ],
+  [
+   "CEffBink::GetEditorTaskDescription(int)",
+   4988368,
+   112
+  ],
+  [
+   "CEffBink::ResetState(int,int,int,int)",
+   5059488,
+   7
+  ],
+  [
+   "CEffCallBack::AllocEffect(void)",
+   4991008,
+   24
+  ],
+  [
+   "CEffCallBack::GetEditorTaskDescription(int)",
+   4993376,
+   172
+  ],
+  [
+   "CEffCallBack::OnTest(void)",
+   4991040,
+   3
+  ],
+  [
+   "CEffExplosive::AllocEffect(void)",
+   5007680,
+   27
+  ],
+  [
+   "CEffExplosive::GetEditorObjDescription(int)",
+   5012336,
+   104
+  ],
+  [
+   "CEffExplosive::GetEditorTaskDescription(int)",
+   5012080,
+   172
+  ],
+  [
+   "CEffGroupNode::SetComponent(int)",
+   4944848,
+   10
+  ],
+  [
+   "CEffObj::Create(tagEffObjType *)",
+   4982272,
+   5
+  ],
+  [
+   "CEffObj::GetEditorObjDescription(int)",
+   4982032,
+   8
+  ],
+  [
+   "CEffObj::OnTest(void)",
+   4982016,
+   3
+  ],
+  [
+   "CEffObj::ResetState(int,int,int,int)",
+   4982288,
+   3
+  ],
+  [
+   "CEffQuad::AllocEffect(void)",
+   5049712,
+   27
+  ],
+  [
+   "CEffQuad::GetEditorTaskDescription(int)",
+   5058256,
+   220
+  ],
+  [
+   "CEffQuake::GetEditorTaskDescription(int)",
+   5060192,
+   64
+  ],
+  [
+   "CEffect::ReleaseResources(void)",
+   5494144,
+   68
+  ],
+  [
+   "CEffect::SetQuadParam(int)",
+   4970400,
+   28
+  ],
+  [
+   "CEffectSystem::GetEffectIndex(void)",
+   5006128,
+   5
+  ],
+  [
+   "CMeteorChain::~CMeteorChain(void)",
+   5034144,
+   46
+  ],
+  [
+   "CameraSystem::BindToRoleSlot(int)",
+   4315520,
+   24
+  ],
+  [
+   "Combat::ReleaseCompletedEffects(void)",
+   5036896,
+   8
+  ],
+  [
+   "MiniGame2Scene::GetOBBox(void)",
+   5438416,
+   82
+  ],
+  [
+   "NPC::GetBufferAt(int)",
+   4255824,
+   13
+  ],
+  [
+   "NPC::UpdateAnim(int)",
+   4481056,
+   10
+  ],
+  [
+   "NavFaceLayer::GetVertexNum(void)",
+   4531520,
+   5
+  ],
+  [
+   "ObjectCamera::Destroy(void)",
+   4704272,
+   26
+  ],
+  [
+   "ObjectCamera::GetCameraDirect(void)",
+   4703792,
+   5
+  ],
+  [
+   "OpenBaseFile::OpenBaseFile(void)",
+   4202320,
+   25
+  ],
+  [
+   "OpenSceneFile::~OpenSceneFile(void)",
+   4202304,
+   12
+  ],
+  [
+   "Parent_Data::GetSize(void)",
+   5504672,
+   5
+  ],
+  [
+   "Parent_Data::NewEffect(void)",
+   5504704,
+   224
+  ],
+  [
+   "Parent_Data::_CheckKeyWord(void)",
+   5504640,
+   5
+  ],
+  [
+   "ParticleVisNode::ForwardToImport(int)",
+   4262144,
+   31
+  ],
+  [
+   "RoleCamera::UpdateAudioListener(int,int)",
+   5459184,
+   95
+  ],
+  [
+   "RoleCameraCtrl::SetTargetDistance(int)",
+   4479248,
+   13
+  ],
+  [
+   "SceneMapPlayer::ClearName(void)",
+   4333808,
+   20
+  ],
+  [
+   "SceneMgr::GetValidPartyCount(void)",
+   4258928,
+   22
+  ],
+  [
+   "SceneVisNode::Remove(int)",
+   5421440,
+   31
+  ],
+  [
+   "ScreenEffectMgr::GetInstance(void)",
+   4973968,
+   51
+  ],
+  [
+   "ScreenEffectMgr::SetFadeParams(gbMatrix4 *)",
+   4978368,
+   35
+  ],
+  [
+   "TaskBookUI::Reset(void)",
+   4547104,
+   84
+  ],
+  [
+   "TextureLib::ClearAndJump(void)",
+   5502288,
+   10
+  ],
+  [
+   "TextureLib::LoadTexture(char *)",
+   4876592,
+   36
+  ],
+  [
+   "TextureLibDataBase::_TextureLib_Data(void)",
+   5504928,
+   193
+  ],
+  [
+   "TxtFile::TxtFile(void)",
+   4397168,
+   36
+  ],
+  [
+   "UI3DCtrl::HideAll(void)",
+   4446496,
+   25
+  ],
+  [
+   "UIDialog::ResetState(void)",
+   5418736,
+   35
+  ],
+  [
+   "UIDialog::Show(int)",
+   4523344,
+   10
+  ],
+  [
+   "UILoadingFrm::OnMessage(int,uint,int)",
+   4524432,
+   91
+  ],
+  [
+   "UIMap::OnMessage(int,uint,int)",
+   4464832,
+   51
+  ],
+  [
+   "UINote::GetEntryPtr(int)",
+   5410096,
+   17
+  ],
+  [
+   "UIProgressBar::GetHeight(int)",
+   4455888,
+   13
+  ],
+  [
+   "UIProgressBar::GetPosition(int)",
+   4455904,
+   13
+  ],
+  [
+   "UIProgressBar::GetWidth(int)",
+   4455872,
+   13
+  ],
+  [
+   "UIRoleDialog::HideAll(void)",
+   4854976,
+   5
+  ],
+  [
+   "UIRoleSelect::SetFieldLeft(int)",
+   5392736,
+   13
+  ],
+  [
+   "UISceneFace::ResetAllSlots(void)",
+   5427408,
+   25
+  ],
+  [
+   "UISceneMap::GetSceneInfo(void)",
+   5389920,
+   12
+  ],
+  [
+   "UISceneMap::ProcessSceneChange(float)",
+   4471968,
+   54
+  ],
+  [
+   "UISceneMap::SetColorIfValid(int)",
+   5462368,
+   14
+  ],
+  [
+   "UISceneMap::SetCurrentMapID(int)",
+   5438368,
+   13
+  ],
+  [
+   "UISceneMap::SetFieldIfValid(int)",
+   5463632,
+   17
+  ],
+  [
+   "UITextArea::ShowClipped(int)",
+   4478752,
+   57
+  ],
+  [
+   "UITitle::Render(void)",
+   4502624,
+   5
+  ],
+  [
+   "UIWnd::GetState(void)",
+   4527920,
+   7
+  ],
+  [
+   "UIWnd::OnMessage(int,uint,int)",
+   4480272,
+   5
+  ],
+  [
+   "_Console::SetActive(int)",
+   4309360,
+   32
+  ],
+  [
+   "gbLightObj::IsIdle(void)",
+   4374240,
+   11
+  ]
+ ],
  "rebaseline": {
-  "reason": "sig_model经[5b]强路径确定型落IDB——hexrays停止3562方法重推断, 渲染与原编译对齐: L1 50→94(+44)/matched 541→713(+172)/总体628→834; C2511族57→3+总错1157→1016",
-  "at": "2026-11-20T23:07:53",
+  "reason": "今日签名改革身份churn: fastcall→thiscall×11(mangle变)+gbMatrixStack引用形×3(AAU/PAU mangle变)+vtbl槽型传播(hexrays渲染位移)——CEffgbParticle整TU×16+UICaption×5+Role×1新破行, L1-4候选在其中待逐函数字节对照(身份差分工具本轮上线, 下轮起精确点名); 净效果: matched 713→778(+65)/population 834→916(+82)/L1+sem 103→101(-2待adjudicate)",
+  "at": "2026-11-21T00:41:15",
   "prev_match_L1": 94,
-  "cur_match_L1": 94,
+  "cur_match_L1": 90,
   "prev_population": {
    "matched": 713,
    "symbols": 834
   },
   "cur_population": {
-   "matched": 713,
-   "symbols": 834
+   "matched": 778,
+   "symbols": 916
   }
  }
 }

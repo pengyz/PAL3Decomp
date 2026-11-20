@@ -437,6 +437,9 @@ HYPOTHESIS_FLAGS = ['/O2', '/Ob2', '/Oi', '/Ot', '/Oy', '/GF', '/Gy',
                     '/GX', '/GR', '/MT', '/Gd']  # [T79/P0a 补] N1 证据同（导入表无 MSVCRT）
 
 
+_L1_IDS = set()   # [L1身份集 20261121] (name, va, size)——ratchet 身份差分用
+
+
 def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                   image_base, text, text_rva, text_raw_size=None):
     """Run the S4 byte-match over `passing` units with the given CL flags.
@@ -447,6 +450,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
     rows = []
     stats = {'symbols': 0, 'matched': 0, 'unmatched': 0,
              'match_L1': 0, 'match_L1_semantic': 0, 'partial': 0, 'oob': 0, 'compile_skip': 0,
+
             # R8：两种越界语义**不得合并计数**。
             #   oob_text_end —— 越过 `.text` 尾（真实代码区之外）⇒ 比对数据不可信
             #   oob_file_end —— 越过文件末尾 ⇒ 连字节都取不到
@@ -523,6 +527,8 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                                    verbose=False, relocs=relocs,
                                    reloc_type_map=reloc_type_map, va=e['va'])
             status = 'match_L1' if res['perfect'] else 'partial'
+            if status == 'match_L1':
+                _L1_IDS.add((e.get('name') or _sn, e['va'], size))
             # [PlanB-T3 2026-10-30] 尾跳 L1 空洞补环：尾跳族（5B E9）perfect 须叠加
             # 目标符号等同（rel32=reloc don't-care 致原判据只证 E9 一字节=假 L1 温床）。
             if status == 'match_L1' and gc.is_tail_jump_form(text[idx0:idx0 + size]):
@@ -855,7 +861,8 @@ def main():
     _base_p.parent.mkdir(parents=True, exist_ok=True)
     _base_p.write_text(json.dumps(
         {'generated_by': 'pipeline/compare_pal3.py', 'flags': flags,
-         'stats': stats, 'rows': rows},
+         'stats': stats, 'rows': rows,
+         'l1_identity': sorted(_L1_IDS)},   # [L1身份集 20261121] ratchet身份差分用
         indent=1, ensure_ascii=False))
     with open(_reg_p, 'w') as f:
         for r in rows:

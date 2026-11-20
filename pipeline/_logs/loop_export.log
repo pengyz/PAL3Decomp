@@ -13,12 +13,13 @@ EXPORT: decompiling to decomp/ ...
 [Consistency] 校验导出产物与注解的透传字段（vtables / methods）...
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **1 个**
+    UICaption                size=96       无 virtual、无 +0x0 vptr 也无 _gap_000
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：125 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：144 个 sub_ 符号的声明/调用形参数全部一致（另 106 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 1；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py codegen all

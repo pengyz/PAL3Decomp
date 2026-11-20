@@ -802,6 +802,31 @@ def cmd_match(args=()):
                           "寄存器分配迁移（非真退步），棘轮维持基线"
                           % (prev_l1, cur_l1, prev_l1 + prev_sem, cur_l1 + cur_sem))
                 else:
+                    # [L1身份差分 20261121] 丢失函数具名——身份集持久化后棘轮可精确点名
+                    _prev_ids = set(map(tuple, (cur_prev_ids := None) or []))  # placeholder
+                    try:
+                        _pj = json.loads(prev_text) if prev_text else {}
+                        _prev_ids = set(map(tuple, _pj.get('l1_identity') or []))
+                        _cj = json.loads(_det_path.read_text(encoding='utf-8')) \
+                            if _det_path.exists() else {}
+                        # 当前轮的 identity 在 compare 侧 _L1_IDS——经 detail?
+                        # compare 把 identity 写进 s4(未 restore 前)——此处读被
+                        # restore 覆盖前的 s4 不可得 ⇒ 用 archive 的 regressed
+                        # detail 不可行(L1行不入detail) ⇒ 读 match 侧落盘文件
+                        _cid_p = Path('data/status/s4_l1_identity_cur.json')
+                        if _cid_p.exists():
+                            _cur_ids = set(map(tuple, json.loads(
+                                _cid_p.read_text(encoding='utf-8'))))
+                            _lost = sorted(_prev_ids - _cur_ids)
+                            _gain = sorted(_cur_ids - _prev_ids)
+                            print("[L1 ratchet] 丢失函数 %d 个(身份差分):" % len(_lost))
+                            for _x in _lost[:12]:
+                                print("[L1 ratchet]   LOST %s @%s size=%s" % (_x[0], _x[1], _x[2]))
+                            if len(_lost) > 12:
+                                print("[L1 ratchet]   ... 共 %d" % len(_lost))
+                            print("[L1 ratchet] 新增 L1 %d 个" % len(_gain))
+                    except (json.JSONDecodeError, OSError, KeyError):
+                        print("[L1 ratchet] (身份差分不可用——旧基线无 l1_identity)")
                     # 真退步：旧基线+detail **成对**写回（2026-11-05 s4 源修——
                     # 单文件恢复=双文件异源病灶实证 161 vs 110；regressed detail 存档）
                     if prev_text is not None:
