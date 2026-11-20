@@ -18,20 +18,36 @@ SDIR = REPO / 'data/annotations/structs'
 
 # 简易类型尺寸表 (MSVC6 x86)
 PTR = 4
+# [R6 audit 改造 20261120] structs name→binary_size 索引——嵌套类型取真尺寸
+# (CPK.m_CPKTable[32768]×tagCPKTable(28)=0xE0000 等——老 type_size 对自定义类型
+#  返回 None→4 严重低估大数组实际尺寸, 是字节口径 0% 假象的根因之一)
+_struct_sizes = {}
+def _build_struct_sizes():
+    if _struct_sizes:
+        return
+    import glob as _g
+    for _fp in _g.glob(str(SDIR / '*.json')):
+        try:
+            _d = json.loads(Path(_fp).read_text(encoding='utf-8'))
+            _n, _b = _d.get('name'), _d.get('binary_size')
+            if _n and _b:
+                _struct_sizes[_n] = _b
+        except Exception:
+            pass
+
 def type_size(t):
     t = str(t).strip()
+    _build_struct_sizes()
     if t.endswith('*'):
-        # 指针; 数组指针 char[3] 已在下面处理——纯 '*' 尾即 4
-        m = re.match(r'^(.*)\[(\d+)\]$', t)
-        if m:
-            inner = type_size(m.group(1))
-            return (inner if inner else 0) * int(m.group(2))
         return PTR
     # 数组: TYPE[N] / TYPE[N][M]
     m = re.match(r'^(.*)\[(\d+)\]$', t)
     if m:
         inner = type_size(m.group(1))
         return (inner if inner else 0) * int(m.group(2))
+    # 嵌套类型: 查 structs 索引取 binary_size(真尺寸)
+    if t in _struct_sizes:
+        return _struct_sizes[t]
     base = {
         'char': 1, 'signed char': 1, 'unsigned char': 1, '_BYTE': 1, 'BYTE': 1, 'bool': 1,
         'short': 2, 'unsigned short': 2, 'short int': 2, '_WORD': 2, 'WORD': 2,
@@ -42,7 +58,6 @@ def type_size(t):
     }
     if t in base:
         return base[t]
-    # 未知类型名: 视为 4 (结构/类/指针退化) —— 标记为估算
     return None
 
 PSEUDO = re.compile(r'^(_todo_\w*|_field_\w*|_gap_\w*|unk_\w*|_nearby_\w*|slot_unk\w*|method_\w*|stru_\w*|byte_\w*|word_\w*|dword_\w*|off_\w*)$', re.I)
