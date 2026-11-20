@@ -66,7 +66,7 @@
   },
   "outstanding": [
    "hexrays局部变量静态型伪影族(UIGameFrm v10 CCBUI*实为UIScenePanel*/MiniGame3同族; 局部重型化transform待设计)",
-   "C2664/C2440残余三族(transform层, 2087024fa后): ①FP伪造类型对账×65(hexrays间接调用自造void(char*,...)形, 真被调方签名在注解——需fp类型对账机制) ②寄存器伪变量reg_EBP/reg_ESI ulong型收指针值×40(codegen渲染层retype/cast) ③别名词汇分裂(unsigned short*↔__int16*等×17——同内存型两层拼法不一, 需词汇表归一裁定)",
+   "C2664/C2440残余三族(transform层): ①FP伪造类型对账×65——T1深挖定谳: hexrays从vtbl结构体成员函数指针型伪造调用型, 槽sig解析失败回退int(*)()泛型时即伪造——下一战役=vtbl槽型传播审计(全vtbl成员vs槽sig_model差分, 量化泛型成员)+泛型成员槽sig补齐 ②寄存器伪变量reg_EBP/reg_ESI ulong收指针×40(codegen retype/cast) ③别名词汇分裂×17(词汇表归一裁定)",
    "RoleSystem槽1/2异常(AllocBuffer/_scalar_dtor占UIWnd镜像位, 表字节待验)",
    "UIGameFrm新TU 9错(C2511×1+局部型伪影×8——上条两战役的共同试验场)",
    "元素类建档待续(UIEmote 内部细粒度)",
