@@ -1,0 +1,38 @@
+{
+ "_doc": "CCB 语义定谳 + PAL3A-PDB 地面真值发现 + 0x5704A8/0x5704C8 归属翻案预备 2026-11-21",
+ "ccb_meaning": {
+  "verdict": "CCB = C(类前缀,MFC惯例) + CB(Combat战斗模块前缀)",
+  "evidence": [
+   "PAL3A.pdb.xml source_file_index: D:\\PAL3A\\PAL3\\Combat\\CBUI.cpp / CBRoleState.cpp / CBAttackSequen.cpp / CBSystem.cpp / cbuidefine.h",
+   "类符号 mangle 编译器产物: ?Update@CCBUI@@UAEHMH@Z 等 (CCB*=类名, 文件=CB*)",
+   "PAL3.exe/PAL3A.exe 二进制 'ccb' ASCII 0命中(非字面串)",
+   "GBK串: CBStage.cpp调试串'舞台任务系统任务数量超载'(CCBStage=战斗舞台)",
+   "作弊指令表 setfivenimbus/givemoney + '五灵法阵设置存盘'(CCBEditor=游戏内调试控制台)"
+  ],
+  "cb_literal_expansion": "OPEN——CB 字面展开无直证(候选 Combat Battle/Board 等); 模块语义=战斗系统确凿"
+ },
+ "pdb_ground_truth": {
+  "source": "original/PAL3A.pdb.xml (53MB) + data/pdb/pdb_export.json (functions 11412/classes 1251/enums 351/source_file_index 655)",
+  "killer_facts": [
+   "slot2家族真契约: Update(float deltatime, int haveinput)->int — UIWnd/UIListBox/CCBUI/CCB*Window 全家一致(全在CBUI.cpp)",
+   "CCBUI::CCBUI(CCBSystem* pCBSystem) 单参构造",
+   "CCBUI kind=union(伪)/size=3552: 成员表=57成员集逐位吻合(m_pAttackSequenBack@72...m_pUtil@1200,m_Task=tagUITask[32]@1208,m_fp@3520,mImbibeNimbusNum/m_pImbibeNimbus尾)",
+   "CCBProtectWindow size=96: 6成员@72..92(m_pBack/m_pWHFace/m_pWPXFace/m_pWHLove/m_pWPXLove/m_pOk)——与PAL3注册6成员吻合",
+   "CCBSystem size=90840: 39成员舞台总管(m_pUI/m_pStage/m_pAttackSequen/m_pRoleState/m_pAI/m_pEditor...)",
+   "CCBAttackSequen size=500: m_Sequen=tagAttackSequen[11]+m_eLockFlag[11]"
+  ],
+  "size_arithmetic": "PAL3A CCBUI 3552 - PAL3A m_Task[32](2304) + PAL3 m_Task[19](1368) = 2616+16 = PAL3 class-2 2632 ✓(19/32=两代任务槽差)"
+ },
+ "attribution_overturn": {
+  "verdict": "0x5704A8类(2632B)=CCBUI真身; 0x5704C8类(116B)≠CCBUI(真名悬空)",
+  "decisive": [
+   "ctor单参匹配: CCBUI::CCBUI(CCBSystem*) ↔ 0x5160a0 retn 4 + 分配点CCBSystem::ProcNormalAttack传this",
+   "PAL3A-CCBUI成员表↔57成员集逐位吻合(0x516xxx族访问m_pSkillWindow@1160等)",
+   "docs/pal3_symbols.md 早有 CCBUI_Create@0x5163d0(0x516xxx族内)"
+  ],
+  "wrong_today": "四路拆分(6c872f442)把0x5704A8表+0x516xxx族23方法+57成员+2632锚判给CCBProtectWindow=名字配反",
+  "a_identity": "0x5704C8(116B): nimbus家族(CreateImbibeNimbus/SetNimbus/WriteNimbusToPlayerMgr=PAL3A记CCBUI名下)+ClearAttackSequence(PAL3独有,PAL3A-PDB无)——PAL3重构新类, 真名待定(候选: PAL3版保护窗待裁)",
+  "transfer_pass_reveal": "原始name-pass=PAL3A符号→PAL3地址转移器(部分对齐部分错位)——IDB mangle显示名不可当独立证据(循环)"
+ },
+ "next_battle": "重转移战役: 0x5704A8表+0x516xxx族+57成员+2632锚从CCBProtectWindow.json回归CCBUI.json; A(0x5704C8)改挂待定名; CCBProtectWindow回归6成员真身(其PAL3表/dtor重裁); 全链验证"
+}
