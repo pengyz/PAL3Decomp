@@ -36,7 +36,7 @@
  "methods": {
   "0x00411bb0": {
    "name": "slot_unk_1bb0",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry | decl_only 20261120: IDA 槽残留名, VC6 从源码不产代码(根基层虚表已由派生类覆写), TU 蒸发合法",
    "evidence_level": "binary_vtable_slot",
    "name_note": "槽链传播: 同址语义名(slot_unk_1bb0)沿override链正名",
    "sig_model": {
@@ -45,11 +45,12 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "declaration_only": true
   },
   "0x00411b80": {
    "name": "slot_unk_1b80",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry | decl_only 20261120: IDA 槽残留名, VC6 从源码不产代码(根基层虚表已由派生类覆写), TU 蒸发合法",
    "evidence_level": "binary_vtable_slot",
    "name_note": "槽链传播: 同址语义名(slot_unk_1b80)沿override链正名",
    "sig_model": {
@@ -58,7 +59,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "declaration_only": true
   }
  },
  "vtables": [],
