@@ -152,5 +152,17 @@
   },
   "轨迹": "43(事件首晚)→46→47(修复轮)→44(今晚: dtor全家认领放大MI双??_G局限)——matched 同步 472→474 扩张",
   "处置": "簇1: S4 比对器多址同符号支持改造(挂账 R6 前); 簇2: 渲染债挂账"
+ },
+ "scene_verdict": {
+  "_doc": "Scene 493KB 定性 2026-11-20 (布局方法论 L0-L2)",
+  "layout": {
+   "段1 [0x4,0xE0)": "管理头(数据指针族/geomnode/lights/aabb/bbArray/objmap/numobj)",
+   "段2 [0xE0,0xE0E0)": "m_roleSlots tagRoleSlot[64] = 64×0x380=0xE000 ✓ 精确闭合",
+   "段3 [0xE0E4,0x78650)": "m_roles Role[50]——50×0x2200=0x6A400 vs 段 0x6A56C 差 0x16C(364B, Role 元素尾 pad 或 size 微误, 挂账)",
+   "尾段": "4 标量(0x78650-0x78660)"
+  },
+  "同名异物警示": "Scene::m_roles(Role[50] 战斗池) ≠ RoleStatePanel::m_roles(s_RoleState[5] 面板槽)——RoleStatePanel 方法族访问的是自己的成员(与 Scene 无关)",
+  "verdict": "Scene=战斗场景容器(池区: 角色槽表64+角色池50), 无子对象聚合嫌疑——定性完成, 池区已建档",
+  "pending": "roles 段 0x16C 差值归属(Role 元素 pad 或 Role.size 修正)"
  }
 }
