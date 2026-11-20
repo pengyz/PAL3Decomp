@@ -27,7 +27,22 @@
   "pseudo_pct": 0.0,
   "unnamed_pct": 9.5,
   "size_gt_1000_cover_lt_50": 32,
-  "note": "改造前 2.1% 是 type_size 对自定义类型返回 None→4 的严重低估(大数组/子对象真尺寸兑现后 90.5%)"
+  "note": "改造前 2.1% 是 type_size 对自定义类型返回 None→4 的严重低估(大数组/子对象真尺寸兑现后 90.5%)",
+  "解封战役20261120": {
+   "battle": "C2860级联解封+RoleStatePanel槽链契约",
+   "deliverables": [
+    "N19门禁(structs+functions双源, 活性验证先行)",
+    "两处void→void*",
+    "三sig对齐家族契约",
+    "0x4a4820退赔(N12律)",
+    "slots每槽一名同步"
+   ],
+   "laws": [
+    "C2860单行级联律(一个裸void参数封死整编译面)",
+    "C2555槽链契约律(表字节=裁决器+hexrays伪影双证+12族共识判别)",
+    "N12退赔律(非语义名禁入现役→退赔)"
+   ]
+  }
  },
  "campaign_final": {
   "battle": "语义收敛战役 R1-R6 + 事件响应 + R5+ 九批",
@@ -42,22 +57,28 @@
    "方法论": "布局排查 v1/弱名-子对象判别/MI 归属判据(写表偏移×bases 对齐)/A-B 共享 IDB 无效律/语料新鲜度读数律"
   },
   "readings": {
-   "总错误": "1085(基线) → 1086(恒定)",
-   "S2 编译过": "103/222",
-   "matched": "528/615 (+70)",
-   "L1": "49(棘轮守)",
+   "总错误": "1086 → 1157(C2860级联暴露修复后, 含此前被遮蔽的欠账显形)",
+   "S2 编译过": "104/222(级联解封: 0→104)",
+   "matched": "541/628 (+13 多址聚合)",
+   "L1": "50(棘轮+2真进, rebaseline留档)",
    "语义覆盖": "90.5%(字节口径, 改造后真实)",
    "基线冻结": "23 条(瘦身史 143→23)"
   },
   "outstanding": [
+   "C2511头/cpp签名同源化战役(57站/54单元: 定义行sig_model渲染+体参适配+fp cast重型; Update族全军: hexrays参型/返回型=用法推断, 真型=编译态mangle PAPAV证据)",
+   "hexrays局部变量静态型伪影族(UIGameFrm v10 CCBUI*实为UIScenePanel*/MiniGame3同族; 局部重型化transform待设计)",
+   "RoleSystem槽1/2异常(AllocBuffer/_scalar_dtor占UIWnd镜像位, 表字节待验)",
+   "UIGameFrm新TU 9错(C2511×1+局部型伪影×8——上条两战役的共同试验场)",
    "元素类建档待续(UIEmote 内部细粒度)",
    "基类表登记(PSWO/Glow)",
-   "RoleStatePanel C9 六条(语义名 vs 链律名)",
    "0x290 容器段+0x1AC UIStatic 段(布局重划)",
-   "UIGameFrm 新 TU 11 错(C9 族体债)",
    "roles 段 0x16C 差值",
    "毒注解余量(名泄漏 89 候选)",
    "L1 双墙(fmuls+TU 合并)"
+  ],
+  "resolved_20261120": [
+   "RoleStatePanel C9六条→槽链契约定谳(0769ebc52): 表字节0x56f040直证+12族共识+C2555硬错证伪\"MSVC6容忍说\"; 三sig对齐家族契约+0x4a4820退赔",
+   "N19裸void参数门禁(Actor 0x539700+CScreenMode 0x53ede0)——C2860级联解封: S2 0/222→104/222"
   ]
  }
 }
