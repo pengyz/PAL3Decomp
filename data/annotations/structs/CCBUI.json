@@ -1,6 +1,6 @@
 {
  "name": "CCBUI",
- "binary_size": 2648,
+ "binary_size": 100572,
  "known_members": {
   "0x48": {
    "name": "m_pAttackSequenBack",
@@ -2146,5 +2146,5 @@
   }
  ],
  "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留 | binary_size修正20261121(L1金标准): 2648→100572——完全dtor(0x525540, IDB名InitShopUI换位artifact)体析构序列最大LEA偏移直证0x188DC(UIRoleDialog成员)+体尾=100572; 旧2648=ida_structs早期导出残留(与dtor偏移差40倍——CCBUI=~100KB复合UI类, 内嵌~20个UI窗口成员: UIFrameContainer×15+/UIScene数组×5/UIRoleDialog×2/PalScript×3/UIPushButton×2/UICaption/UITextArea/UIButton等——dtor析构序列全图=成员布局金标准, 逐成员offset→class对已提取归档)"
 }
