@@ -225,87 +225,87 @@
    "evidence_level": "unverified"
   },
   "0x3290": {
-   "name": "m_nTodo_3290",
-   "type": "int",
-   "source": "ida_gap_2refs",
+   "name": "m_bLogoDone",
+   "type": "unsigned char",
+   "source": "正名20261120(R5第四批): Update: LOBYTE 门控+置1——Logo 阶段完成标志 | 原 m_nTodo_3290",
    "evidence_level": "unverified"
   },
   "0x3294": {
-   "name": "m_nTodo_3294",
+   "name": "m_hCoverEffect",
    "type": "int",
-   "source": "ida_gap_3refs",
+   "source": "正名20261120(R5第四批): Render/OnMessage: ScreenEffectMgr::ProcessEffect(2) 返回句柄 | 原 m_nTodo_3294",
    "evidence_level": "unverified"
   },
   "0x3299": {
-   "name": "m_nTodo_3299",
-   "type": "unsigned char[4]",
-   "source": "ida_gap_1refs",
+   "name": "m_bAnimFlags",
+   "type": "unsigned char[8]",
+   "source": "正名20261120(R5第四批): ctor [0]=1 + AnimateElements LOBYTE 读——元素动画标志组 | 原 m_nTodo_3299",
    "evidence_level": "unverified"
   },
   "0x3648": {
-   "name": "m_nTodo_3648",
-   "type": "int",
-   "source": "ida_gap_1refs",
+   "name": "m_bCoverTexSet",
+   "type": "unsigned char",
+   "source": "正名20261120(R5第四批): SetCoverTexture 置 1 | 原 m_nTodo_3648",
    "evidence_level": "unverified"
   },
   "0x364c": {
-   "name": "m_nTodo_364C",
+   "name": "m_pCoverTex",
    "type": "int",
-   "source": "ida_gap_1refs",
+   "source": "正名20261120(R5第四批): SetCoverTexture: nTexPtr 直存 | 原 m_nTodo_364C",
    "evidence_level": "unverified"
   },
   "0x36e8": {
-   "name": "m_nTodo_36E8",
-   "type": "int",
-   "source": "ida_gap_2refs",
+   "name": "m_rectCoverSrc",
+   "type": "tagRECT",
+   "source": "正名20261120(R5第四批): UpdateAnimation/SetDefaultValues: UIWnd::SetRect(&m_nTodo_3700, &this->m_nTodo_36E8) 源 rect | 原 m_nTodo_36E8",
    "evidence_level": "unverified"
   },
   "0x36ec": {
-   "name": "m_nTodo_36EC",
+   "name": "m_nCoverInitX",
    "type": "int",
-   "source": "ida_gap_2refs",
+   "source": "正名20261120(R5第四批): SetDefaultValues 518 初始 X | 原 m_nTodo_36EC",
    "evidence_level": "unverified"
   },
   "0x36f4": {
-   "name": "m_nTodo_36F4",
+   "name": "m_nCoverTargetX",
    "type": "int",
-   "source": "ida_gap_3refs",
+   "source": "正名20261120(R5第四批): SetDefaultValues 1542 + UpdateAnimation +1024 步进到 >36 终判——目标 X | 原 m_nTodo_36F4",
    "evidence_level": "unverified"
   },
   "0x36f8": {
-   "name": "m_nTodo_36F8",
-   "type": "int",
-   "source": "ida_gap_2refs",
+   "name": "m_fCoverStep",
+   "type": "float",
+   "source": "正名20261120(R5第四批): SetDefaultValues 1102409892=1.6f; Update: cur - fVal*step | 原 m_nTodo_36F8",
    "evidence_level": "unverified"
   },
   "0x36fc": {
-   "name": "m_nTodo_36FC",
-   "type": "int",
-   "source": "ida_gap_3refs",
+   "name": "m_fCoverCurX",
+   "type": "float",
+   "source": "正名20261120(R5第四批): Update: 自减主变量 | 原 m_nTodo_36FC",
    "evidence_level": "unverified"
   },
   "0x3700": {
-   "name": "m_nTodo_3700",
-   "type": "int",
-   "source": "ida_gap_2refs",
+   "name": "m_CoverWnd",
+   "type": "UIWnd",
+   "source": "正名20261120(R5第四批): UpdateAnimation: vtable 调用(&m_nTodo_3700)+SetRect(this)——内嵌 UIWnd 子对象(A级: vtable 直调) | 原 m_nTodo_3700",
    "evidence_level": "unverified"
   },
   "0x3798": {
-   "name": "m_nTodo_3798",
-   "type": "int",
-   "source": "ida_gap_2refs",
+   "name": "m_bCoverAnimDone",
+   "type": "unsigned char",
+   "source": "正名20261120(R5第四批): SetDefaultValues 1/UpdateAnimation 0 | 原 m_nTodo_3798",
    "evidence_level": "unverified"
   },
   "0x38d0": {
-   "name": "m_nTodo_38D0",
+   "name": "m_ActiveSlotBase",
    "type": "int",
-   "source": "ida_gap_1refs",
+   "source": "正名20261120(R5第四批): FindActiveSlot: &m_nTodo_38D0 + 568*v1——槽阵列基址 | 原 m_nTodo_38D0",
    "evidence_level": "unverified"
   },
   "0x3908": {
-   "name": "m_nTodo_3908",
+   "name": "m_ActiveSlotFlags",
    "type": "int",
-   "source": "ida_gap_1refs",
+   "source": "正名20261120(R5第四批): FindActiveSlot: for(*i; i+=568)——槽标志首元素(同 stride 互证) | 原 m_nTodo_3908",
    "evidence_level": "unverified"
   }
  },
