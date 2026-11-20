@@ -53,20 +53,20 @@
   "0x68": {
    "name": "m_OBJ",
    "type": "SceneObj[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | SceneObj[256] 256×0x6F8=0x6F800 精确闭合",
+   "evidence_level": "binary_layout_closure"
   },
   "0x6f868": {
    "name": "m_ObjHelper",
    "type": "OBJHELPER[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | OBJHELPER[256] 256×0x30=0x3000 精确闭合",
+   "evidence_level": "binary_layout_closure"
   },
   "0x72868": {
    "name": "m_OBJPARAM",
    "type": "ObjParam[9]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | ObjParam[9] 9×0x1C4 精确闭合",
+   "evidence_level": "binary_layout_closure"
   },
   "0x7384c": {
    "name": "m_GHOSTPARAM",
@@ -207,5 +207,6 @@
    "evidence_level": "unverified"
   }
  },
- "methods": {}
+ "methods": {},
+ "note": "布局定性20261120: CG编辑器场景容器, 三池算术全闭合(m_OBJ 256×0x6F8/ObjHelper 256×0x30/ObjParam 9×0x1C4), 非缺口"
 }

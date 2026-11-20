@@ -17,15 +17,16 @@
   "0x10": {
    "name": "m_Cpk",
    "type": "CPK",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | 双CPK视频包(ctor直证+算术闭合)",
+   "evidence_level": "binary_layout_closure"
   },
   "0xe01cc": {
    "name": "m_Cpk2",
    "type": "CPK",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | 双CPK第二分包(尺寸闭合直证)",
+   "evidence_level": "binary_layout_closure"
   }
  },
- "methods": {}
+ "methods": {},
+ "note": "布局定性20261120: Bink视频播放器(双CPK分包管理器), 尺寸精确闭合 0xE01CC+0xE01BC=0x1C0388✓✓, 结构完整非缺口"
 }

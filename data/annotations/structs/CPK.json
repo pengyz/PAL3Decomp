@@ -23,8 +23,8 @@
   "0x88": {
    "name": "m_CPKTable",
    "type": "tagCPKTable[32768]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation | CPKTable[32768] 32768×0x1C=0xE0000 精确闭合(0x88→0xE0088)",
+   "evidence_level": "binary_layout_closure"
   },
   "0xe0088": {
    "name": "m_pCPKFile",
@@ -147,5 +147,6 @@
     }
    ]
   }
- ]
+ ],
+ "note": "布局定性20261120: CPK 包文件管理器, 结构完整闭合 0x88+32768×0x1C=0xE0088=m_pCPKFile ✓, 非缺口"
 }
