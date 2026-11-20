@@ -4,7 +4,8 @@
   "M1 迁移 23 方法 → CCBProtectWindow (0x5160a0..0x5192ff 族, ctor 0x5160a0 锚)",
   "M2 回迁 53 成员 → CCBProtectWindow (含 m_Task=tagUITask[19]@0x4b8→2576≤2632; 跳过 ['0x48', '0x4c', '0x50', '0xa30']: 0x48/4c/50 留A待证, 0xa30 fp挂账)",
   "M3 退役 3 条 B槽函数(0x5257b0构造点/0x526660表slot1/0x526740表slot2) → pending-B 归档",
-  "M5 退役 CCBProtectWindow 三连误标: 0x51d6e0(浮点getter)/0x51d6f0(jmp桩)/0x51d700(浮点乘二helper, 假Reset)——真ctor=0x5160a0, 真dtor对=0x516100/0x516120(表slot5), 真Reset=0x5177b0; C8同名同签随之消解"
+  "M5 退役 CCBProtectWindow 三连误标: 0x51d6e0(浮点getter)/0x51d6f0(jmp桩)/0x51d700(浮点乘二helper, 假Reset)——真ctor=0x5160a0, 真dtor对=0x516100/0x516120(表slot5), 真Reset=0x5177b0; C8同名同签随之消解",
+  "M6 退役 0x51b810 ~CCBParabolaWindow(伪dtor形名于A+零双引用→C2084; 体disp证据留档供A成员重推导)"
  ],
  "pending_B": {
   "functions": {
@@ -150,5 +151,48 @@
   "0x4ac",
   "0x4b0",
   "0x4b8"
- ]
+ ],
+ "retired_from_A": {
+  "0x0051b810": {
+   "_doc": "0x51b810 退役 2026-11-21 (CCBUI 拆分暴露债修复)",
+   "addr": "0x51b810",
+   "former_name": "~CCBParabolaWindow",
+   "former_class": "CCBUI",
+   "flags": [
+    "dtor"
+   ],
+   "evidence": "伪dtor形名注册于CCBUI类下(发射渲染为CCBUI::~CCBParabolaWindow→编译器读作~CCBUI重定义→C2084); 零vtable表引用+零call引用(XrefsTo空); 名源=IDA名字形态??1/??_G析构族标签",
+   "body_evidence_for_A_rederivation": "66B: call Destroy(全局helper); this+0x5C 单指针(置0); this+0x60..0x74 stride4×5 指针槽(逐个[vtbl+0x14](1)后置0)——访问全落A的116B界内, 为A成员布局证据: 0x5C=92子对象指针 + 0x60..0x74五指针槽",
+   "former_entry": {
+    "name": "~CCBParabolaWindow",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "void",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
+    },
+    "flags": [
+     "dtor"
+    ],
+    "flags_evidence": "IDA名字形态=~CCBParabolaWindow(??1/??_G析构族); decomp文件=CCBUI_CCBParabolaWindowvoid_0051b810 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   }
+  }
+ },
+ "A_member_map_20261121": {
+  "census": "18函数this基址寄存器跟踪disp普查",
+  "slots": {
+   "0x48": "单指针(重用最重: CreateButton×8/AddTask×7/ImbibeNimbus×4)",
+   "0x4C..0x70": "均匀10槽(SetNimbus整体走查; Clear/HideAll全11走查)"
+  },
+  "closure": "72+44=116=0x74 双锚一致",
+  "landing": "_todo_48(UIWnd*) + _todo_4C(UIWnd*[10]) 显式降级占位+挂账",
+  "legacy_removed": [
+   "0x48 m_pAttackSequenBack",
+   "0x4c pPanel",
+   "0x50 m_pBattleFieldAttr[6]",
+   "(均=CCBAttackSequen碎片误入, 槽形与走查证据矛盾)"
+  ]
+ }
 }

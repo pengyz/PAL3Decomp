@@ -86,7 +86,9 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=CCBParabolaWindow_`scalar_deleting_destructoruint_0051c280 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=CCBParabolaWindow_`scalar_deleting_destructoruint_0051c280 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "declaration_only": true,
+   "name_note": " | declaration_only20261121: 完全dtor形=编译器产物(删除式0x51c260持表slot5发定义); 双body发射C2084显形——apply改IDB名→hexrays重渲染使0x51c260体由空转非空(抖动家族)"
   },
   "0x00440be0": {
    "name": "LoadResourceEx",
@@ -268,5 +270,6 @@
    "name": "UIFrameWnd",
    "offset": 0
   }
- ]
+ ],
+ "note": " | dtor对治理20261121: 0x51c280 declaration_only"
 }
