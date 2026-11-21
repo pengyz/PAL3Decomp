@@ -81,3 +81,30 @@ IDB 名内嵌 mangle（如 `QAEHPAX@Z`）可与机器码矛盾——**RET 弹栈
   （CCBResultWindow ??_G 丢+??1 得=净0，文件级隐形，符号级显形）。
 - **S4 全量行对比法**：diff detail 只含 partial 行，集合差是伪影；
   直接跑 compare_pal3 拿全量 rows 对拍（备份/恢复舞步保护棘轮对）。
+
+## 七、collect 过滤的第一性审查（2026-11-21 用户质询定谳）
+
+> 质询："当我们提到豁免，意味着特判，这种基本就是拟合。collect 就管收集，为什么要过滤？"
+
+判定：`_scalar_dtor` 泛化跳过=编译器理论写死在收集层——**层错位，该删**。
+与孪生协议/手写债/体不可信抑制同病族（管线代码藏数据层决定）。
+
+| 过滤点 | 判定 |
+|---|---|
+| `_scalar_dtor` 泛化跳过 | 非法(理论在机械层)——**待删，前置契约 S1/S2 就位后** |
+| `sub_` / 空单元跳过 | 机械边界合法，但静默丢弃须改计数可见 |
+| `skip_classes` | 合法(注解驱动参数) |
+
+载体链闭合（解释全部 55 符号现象）：
+```
+删除式单元在场 → header_facts.scalar_dtor_classes → emit_headers 插 virtual ~Cls()
++ 类内 dtor 定义（完全形定义；或删除式经 P-A5 改名+N18 源级化）
+→ MSVC 合成 ??1+??_G → S4 匹配
+```
+UIProgressBar 残丢根因=**跳过先于 P-A5**（backtick 命名 vintage 撞上顺序）；
+豁免实验失败根因=**N18 未接管直通体**（`~CameraCtrl(int)` 非法形，S2 −10 已回退）。
+
+拆除顺序（裸删=真空）：
+  S1 emit_headers 契约修复：decl_only dtor 条目头声明(含 virtual)必须照发
+  S2 数据层 dtor 发射意图完成（wrapper=decl_only / 源形=full；N20a 把关）
+  S3 collect 去过滤 + sub_/空单元计数可见 + N18 接管 scoped 验证(CODEGEN_CLASS 单类先行)
