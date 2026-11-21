@@ -1,29 +1,8 @@
 {
  "name": "scScriptInstance",
- "binary_size": 84,
- "known_members": {
-  "0x50": {
-   "name": "uservar",
-   "type": "scVARIANT *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  }
- },
+ "binary_size": 68,
+ "known_members": {},
  "methods": {
-  "0x0044e5e0": {
-   "name": "~scScriptInstance",
-   "flags": [
-    "dtor"
-   ],
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": "T3定谳20261121(UIEmote专项): 120B体=基析构+成员清理(全量反汇编语义清晰); 本类无独立ctor(内联进UIEmote ctor); 唯一派生类=UIEmote(写0x56b050扫描唯一)"
-  },
   "0x0044e980": {
    "name": "Update",
    "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
@@ -90,5 +69,6 @@
  ],
  "bases_note": "MI定谳20261117: ctor 0x44E530存表序列[0x56A9C0@+68, 0x56B050@+0, 0x56B044@+68] → UIWnd@0主基 + 0x56A9C0类@68次基(Object家族邻接表成员, 身份待Object家族建档); 0x56B044=本类次表(非UIEmote主表——UIEmote身份另案)",
  "table_adjudication_pending": "20261121(UIEmote专项T2): 注册vtable=0x56b050指向UIEmote完整对象表(0x56b044)中段slot3(slot0=ShowClipped/slot1=Render/slot2=OnVisible@0x44e980)——本类独立对象的真表头未被二进制观测(仅UIEmote构造场景可见本类子对象); 注册尺寸84与UIEmote布局矛盾(次表vptr@+68+成员72/76/80落入[0,84))——真尺寸待分配点定谳(UIEmote是唯一派生者?)",
- "note": " | UIEmote专项T2 20261121: 本类唯一实体场景=UIEmote基子对象(独立对象未见分配); UIEmote删除式dtor 0x44e5c0(次表slot8)的基dtor调用=??1scScriptInstance直证本类为UIEmote主基 | T3定谳20261121: 无独立ctor(内联); 真dtor=0x44e5e0(120B); 表0x56b050=组合表slot3起(scScriptInstance侧), slot0-2=GameObject侧(off_56B044); 注册尺寸84存疑(UIEmote布局证据≤68, 需本类分配点定谳——仅UIEmote派生可能无独立分配)"
+ "note": " | UIEmote专项T2 20261121: 本类唯一实体场景=UIEmote基子对象(独立对象未见分配); UIEmote删除式dtor 0x44e5c0(次表slot8)的基dtor调用=??1scScriptInstance直证本类为UIEmote主基 | T3定谳20261121: 无独立ctor(内联); 真dtor=0x44e5e0(120B); 表0x56b050=组合表slot3起(scScriptInstance侧), slot0-2=GameObject侧(off_56B044); 注册尺寸84存疑(UIEmote布局证据≤68, 需本类分配点定谳——仅UIEmote派生可能无独立分配) | 尺寸修正20261121: 84→68(=UIWnd基, 无自有数据成员——UIEmote布局证据: 次vptr@68紧接子对象末尾). 0x44e5e0(~scScriptInstance)=UIEmote完全dtor(mangle错挂基类名, 体销毁UIEmote成员PalScript[13]@0x50+双vptr写+Object族表恢复), 已迁出至UIEmote.json | 旧成员清理20261121: 移除 1 条offset≥68或缺失成员(=UIEmote成员误挂——scScriptInstance真尺寸68=UIWnd基+0自有成员, 自有数据仅PalScript[13]数组操作无自有存储)",
+ "size_evidence": "20261121修正: 84→68(=UIWnd基尺寸, 无自有数据成员)——UIEmote布局证据: 次表vptr@+68(紧接scScriptInstance子对象) + UIWnd binary_size=68(probe45直读); 旧84=UIEmote完全dtor(0x44e5e0)访问的UIEmote成员偏移误计入(转移器错挂基类dtor名)"
 }

@@ -219,6 +219,20 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(InitItems): int(int,int); 原注解无",
    "source": " | this普查20261120: this=edi 0x8E0-stride×6循环(0x44f2a5)——真归属=0x38D0数组元素类 MI(UIWnd@0, GameObject@0x44)[ctor 0x44e530 写0x56A9C0直证], 元素类未建档暂留守 | 迁回UIEmote 20261120: 0x44e530 ctor 写 GameObject 表直证(元素类=UIEmote, UIGameFrmElement 建档系重复已删)"
+  },
+  "0x0044e5e0": {
+   "name": "~UIEmote",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": "完全dtor(定义源)20261121(自scScriptInstance迁入): 体销毁PalScript[13]@[esi+0x50](eh vector dtor)+写双vptr([esi]=scScriptInstance表/[esi+44h]=off_56B044次表)+Object族表恢复——销毁全层级(UIEmote成员+基链)=完全dtor; mangle ??1scScriptInstance=转移器错挂基类名; 删除式0x44e5c0(slot8)call本形+operator delete=标准dtor对; 体120B含SEH框架+PalScript[13]析构=完整dtor ABI直证"
   }
  },
  "base_size": 76,
