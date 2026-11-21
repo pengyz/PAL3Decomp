@@ -415,6 +415,30 @@ def main():
             skip_data = _json.load(open(skip_file, encoding='utf-8'))
             skip_addrs = set(int(a, 16) for a in skip_data.keys())
 
+        # [第一性修正 20261121] 单一真值源: declaration_only(权威注册: structs+functions)
+        # 自动派生进 skip_addrs。发射抑制意图此前要求人工维护 skip_functions 孪生
+        # (双文件手工同步)——静默失效模式 = RenderTargetNode _ParticleEffect_0 C2039 案
+        # 根因(T4-P1-2)。此后孪生协议退役: skip_functions 仅存 legacy 条目(无害)与
+        # thunk 别名/非函数目录角色。
+        try:
+            import glob as _glob
+            _decl = set()
+            for _sf in _glob.glob(os.path.join(os.path.dirname(skip_file), 'structs', '*.json')):
+                _sd = _json.load(open(_sf, encoding='utf-8'))
+                for _a, _m in (_sd.get('methods') or {}).items():
+                    if isinstance(_m, dict) and _m.get('declaration_only'):
+                        _decl.add(int(_a, 16))
+            _ff = os.path.join(os.path.dirname(skip_file), 'functions.json')
+            if os.path.exists(_ff):
+                _fd = _json.load(open(_ff, encoding='utf-8'))
+                for _a, _v in _fd.items():
+                    if isinstance(_v, dict) and _v.get('declaration_only'):
+                        _decl.add(int(_a, 16))
+            skip_addrs |= _decl
+            log("[skip-derive] declaration_only auto-derived: %d addrs" % len(_decl))
+        except Exception as _e:
+            log("[!] declaration_only derive failed: %s" % _e)
+
         # Pre-pass: set mangled names for class methods so export uses clean unique names.
         # This ensures function names like ?Create@UINote@@... are used, not Create_37.
         # [t4-DECLARED-EXCEPTION] structs/*.json + functions.json → VC6 mangled 名
