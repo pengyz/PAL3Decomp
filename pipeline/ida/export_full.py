@@ -423,19 +423,32 @@ def main():
         try:
             import glob as _glob
             _decl = set()
+            _skipd = set()
             for _sf in _glob.glob(os.path.join(os.path.dirname(skip_file), 'structs', '*.json')):
                 _sd = _json.load(open(_sf, encoding='utf-8'))
                 for _a, _m in (_sd.get('methods') or {}).items():
-                    if isinstance(_m, dict) and _m.get('declaration_only'):
+                    if not isinstance(_m, dict):
+                        continue
+                    if _m.get('declaration_only'):
                         _decl.add(int(_a, 16))
+                    # [type=skip 派生 20261121] structs methods type='skip' 同属发射抑制意图
+                    # (此前只被 emit_headers 头抑制消费, export 不知情 → 单元每次 export
+                    #  复活、清仓打地鼠: UIRoleSelectDialog dtor 对 0x529770/0x529790 案)
+                    if _m.get('type') == 'skip':
+                        _skipd.add(int(_a, 16))
             _ff = os.path.join(os.path.dirname(skip_file), 'functions.json')
             if os.path.exists(_ff):
                 _fd = _json.load(open(_ff, encoding='utf-8'))
                 for _a, _v in _fd.items():
-                    if isinstance(_v, dict) and _v.get('declaration_only'):
-                        _decl.add(int(_a, 16))
+                    if isinstance(_v, dict):
+                        if _v.get('declaration_only'):
+                            _decl.add(int(_a, 16))
+                        if _v.get('type') == 'skip':
+                            _skipd.add(int(_a, 16))
             skip_addrs |= _decl
-            log("[skip-derive] declaration_only auto-derived: %d addrs" % len(_decl))
+            skip_addrs |= _skipd
+            log("[skip-derive] declaration_only auto-derived: %d addrs; type=skip derived: %d addrs"
+                % (len(_decl), len(_skipd)))
         except Exception as _e:
             log("[!] declaration_only derive failed: %s" % _e)
 

@@ -210,9 +210,16 @@ def run(code, ctx):
     code = '\n'.join(lines)
 
     # Pre-strip calling conventions from first line so tree-sitter can parse
+    # [保守形 20261121] 只剥**紧邻函数名(`标识符/~/限定名` + `(`)**前的 CC——
+    #   原整行剥法把定义行**形参表里** fnptr 声明器的 __stdcall 一并剥掉
+    #   (`void H(int (__stdcall *cb)(int))` 形态, UIRoleSelectDialog v7 同族)。
+    #   fnptr 形参 CC 剥除=语义变换(调用约定丢失)⇒ 赋值站 C2440。
+    #   tree-sitter 本可解析 ms_call_modifier(体侧保护靠变换#1 直接子节点判别)。
     first_lines = code.split('\n', 1)
     if first_lines:
-        first_lines[0] = re.sub(r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\b', '', first_lines[0])
+        first_lines[0] = re.sub(
+            r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\s+(?=[A-Za-z_~][\w:]*\s*\()',
+            '', first_lines[0])
         code = '\n'.join(first_lines)
 
     # 自由函数的形参名**不得是 `this`**（C++ 关键字 ⇒ MSVC 报
@@ -263,15 +270,18 @@ def run(code, ctx):
 
     # 1. Remove calling convention (ms_call_modifier or ERROR node with CC text)
     # Skip for ctor/dtor: step 4 removes the entire prefix including CC
+    # [体内 fnptr CC 保护 20261121] 只剥 function_definition **直接子节点**级的 CC
+    #   （定义行形态: type_identifier 与 function_declarator 之间的 ms_call_modifier）。
+    #   原全树递归把体内局部函数指针声明器的 __stdcall 一并剥掉——
+    #   `BOOL (__stdcall *v7)(const RECT *, POINT);` → `BOOL ( *v7)(...)` ⇒
+    #   `v7 = PtInRect` C2440（UIRoleSelectDialog Update 案，寄存器分配抖动显形）。
+    #   fnptr **形参**里的 CC（parameter_declaration 内）同样必须保留（语义=调用约定）。
     if not (ctx.is_ctor or ctx.is_dtor):
-        def _find_cc_nodes(node):
-            for child in node.children:
-                if child.type == 'ms_call_modifier':
-                    edits.append((child.start_byte, child.end_byte, b''))
-                elif child.type == 'ERROR' and child.text in (b'__thiscall', b'__cdecl', b'__stdcall', b'__fastcall'):
-                    edits.append((child.start_byte, child.end_byte, b''))
-                _find_cc_nodes(child)
-        _find_cc_nodes(func_def)
+        for child in func_def.children:
+            if child.type == 'ms_call_modifier':
+                edits.append((child.start_byte, child.end_byte, b''))
+            elif child.type == 'ERROR' and child.text in (b'__thiscall', b'__cdecl', b'__stdcall', b'__fastcall'):
+                edits.append((child.start_byte, child.end_byte, b''))
 
     # 2. Fix function name: sub_XXXXX → ClassName::Method
     def _find_declarator(node):

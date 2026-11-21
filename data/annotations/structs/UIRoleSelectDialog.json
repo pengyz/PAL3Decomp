@@ -148,10 +148,7 @@
    "name": "Update",
    "ordinal": 2,
    "evidence_level": "chain_unified",
-   "lvars": {
-    "v10": "BOOL (__stdcall *)(const RECT *, POINT)"
-   },
-   "lvars_source": "v10=PtInRect死存(×2站)持函数地址无读用; 与PtInRect型恒等; v10=0对指针型合法(null常量) | [修 2026-11-13] 文本对齐 PtInRect 恒等型(BOOL/RECT/POINT), 消除与 IDB 解析形的 codegen 侧互踩",
+   "lvars_source": "v10=PtInRect死存(×2站)持函数地址无读用; 与PtInRect型恒等; v10=0对指针型合法(null常量) | [修 2026-11-13] 文本对齐 PtInRect 恒等型(BOOL/RECT/POINT), 消除与 IDB 解析形的 codegen 侧互踩 | 退役20261121: v10 override(BOOL(__stdcall*)(const RECT*,POINT))与单元现行型矛盾(20261121 19:58 export 单元v10=DWORD+体v10=GetTickCount(), PtInRect死存形已消——抖动家族重定型). override强制注入非法声明形 BOOL(__stdcall*)(...) v10; → C2059/C2440×2/C2065(UIRoleSelectDialog.cpp L169/256/277/576). 律: 单元=导出快照, override与单元矛盾时退役override(20261113对齐注记的历史使命已尽)",
    "sig_model": {
     "return": "BOOL",
     "cc": "thiscall",
