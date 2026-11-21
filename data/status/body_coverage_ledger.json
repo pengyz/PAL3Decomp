@@ -634,10 +634,10 @@
    "total": 9
   },
   "CCBSystem": {
-   "body": 100,
-   "debt_pending": 1,
+   "body": 101,
    "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 101
   },
@@ -851,9 +851,9 @@
   },
   "CEffObj": {
    "body": 5,
-   "debt_pending": 1,
-   "compiler_regen": 0,
+   "compiler_regen": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 6
   },
@@ -875,9 +875,9 @@
   },
   "CEffSParticle": {
    "body": 12,
-   "debt_pending": 1,
-   "compiler_regen": 2,
+   "compiler_regen": 3,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 15
   },
@@ -2418,10 +2418,10 @@
    "total": 0
   },
   "MagicUI": {
-   "body": 13,
-   "debt_pending": 1,
+   "body": 14,
    "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 14
   },
@@ -3978,10 +3978,10 @@
    "total": 4
   },
   "UICaption": {
-   "body": 13,
-   "debt_pending": 1,
+   "body": 14,
    "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 14
   },
@@ -4154,11 +4154,11 @@
    "total": 2
   },
   "UIMap": {
-   "body": 6,
-   "debt_pending": 1,
+   "body": 7,
    "out_of_domain": 1,
    "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "total": 8
   },
   "UINote": {
@@ -7403,60 +7403,18 @@
   }
  },
  "totals": {
-  "body": 3619,
-  "compiler_regen": 129,
+  "body": 3623,
+  "compiler_regen": 131,
   "dll_import": 15,
-  "debt_pending": 8,
+  "debt_pending": 2,
   "out_of_domain": 62
  },
  "debt_detail": [
   {
    "kind": "method",
-   "class": "CCBSystem",
-   "addr": "0x005125e0",
-   "name": "ProcNormalAttack",
-   "hint": ""
-  },
-  {
-   "kind": "method",
    "class": "CEffMgr",
    "addr": "0x004cded0",
    "name": "InitEffClass",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "CEffObj",
-   "addr": "0x004c0620",
-   "name": "slot_0",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "CEffSParticle",
-   "addr": "0x004d5860",
-   "name": "CreateTask",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "MagicUI",
-   "addr": "0x00551c66",
-   "name": "InitComItem",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "UICaption",
-   "addr": "0x0043a810",
-   "name": "Destroy2",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "UIMap",
-   "addr": "0x004411d0",
-   "name": "UIMap",
    "hint": ""
   },
   {
@@ -7467,5 +7425,5 @@
    "hint": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:290"
   }
  ],
- "skip_catalog": 1925
+ "skip_catalog": 1923
 }

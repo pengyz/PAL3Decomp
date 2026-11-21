@@ -178,7 +178,7 @@
    }
   },
   "0x004c0620": {
-   "name": "slot_0",
+   "name": "~CEffObj",
    "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
    "evidence_level": "binary_vtable_slot",
    "declaration_only": true,
@@ -188,7 +188,12 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "name_note": " | C8正名20261121(真债批): 体=vptr写stru_56F62C+条件operator delete=删除式dtor ABI形; 旧名slot_0=槽位残留名(N12 grandfathered); 正名~CEffObj+decl_only(删除式形=编译器再生不发射)"
   }
  },
  "_adjudicated_tables": [
@@ -200,5 +205,6 @@
   }
  ],
  "bases": [],
- "bases_note": "基声明摘除20261116(置信HIGH~95%): 证据1尺寸算术12<56不可内嵌; 证据2派生类CEffAction ctor双写[eax]=主表+[eax+0xC]=次表(复核员实证) → MI第二基@0xC=第一基恰占12字节=CEffObj真尺寸; 原bases=[Object(56)]为census错挂"
+ "bases_note": "基声明摘除20261116(置信HIGH~95%): 证据1尺寸算术12<56不可内嵌; 证据2派生类CEffAction ctor双写[eax]=主表+[eax+0xC]=次表(复核员实证) → MI第二基@0xC=第一基恰占12字节=CEffObj真尺寸; 原bases=[Object(56)]为census错挂",
+ "note": " no_complete_form(20261121: 删除式0x4c0620的完全形已被VC6 /O1内联后丢弃——体直证: thunk体直呼基dtor无中间形; 源dtor体待手写=债登记)"
 }

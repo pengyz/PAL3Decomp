@@ -700,7 +700,6 @@
   "0x005125e0": {
    "name": "ProcNormalAttack",
    "evidence_level": "unverified",
-   "declaration_only": true,
    "source": " | declaration_only 20261115: decomp体含new this->非法语法(97条C2143级联源), 体不可用",
    "sig_model": {
     "return": "char",
@@ -708,7 +707,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿20261121(真债8条): 摘declaration_only——重反编译体7298字完整正常渲染(CCBUI/CCBRoleState/CCBAttackSequen/CCBStage全交互, hexrays状态演进自愈), 历史\"new this->非法语\"未再现"
   },
   "0x00512ba0": {
    "name": "ProcFling",

@@ -115,7 +115,6 @@
   "0x004411d0": {
    "name": "UIMap",
    "evidence_level": "unverified",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -126,7 +125,8 @@
    "flags": [
     "ctor"
    ],
-   "flags_evidence": "IDA名字形态=UIMap(??0构造); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=UIMap(??0构造); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | 债清偿20261121(真债批): 摘declaration_only——重反编译体253字正常(vptr写+HideAll+MoveWindow+基链=真ctor序列)"
   },
   "0x004411b0": {
    "name": "~UIMap",
