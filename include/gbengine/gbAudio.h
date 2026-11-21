@@ -110,6 +110,7 @@ public:
 
 class GBAPI gbSound2DNode {
 public:
+    void UIPostUpdate(); // [PAL3侧实现 20261122] PAL3.exe实现@0x41EB80(非导入,直接call实证)——原头漏声(重建不完整)
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (HSAMPLE)
     int nLoop;            // +0x08
