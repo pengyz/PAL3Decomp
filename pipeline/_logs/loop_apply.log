@@ -289,6 +289,10 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
+WARN: REF:gen 树(1795232619)早于最新注解(1795235166)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: C8:no_complete_family:CEffQuake:~CEffQuake CEffQuake ~CEffQuake 产物族(0x004d3860)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定；[T4-P0] 定义源形状违例: 0x004d32e0 含deleting flag(删除式不得立为定义源) — 无完全形族(源dtor体待手写, 债登记)
+WARN: C8:no_complete_family:ParticleEffect:~ParticleEffect ParticleEffect ~ParticleEffect 产物族(0x004bd850)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定；[T4-P0] 定义源形状违例: 0x004bc790 含deleting flag(删除式不得立为定义源) — 无完全形族(源dtor体待手写, 债登记)
+WARN: C8:no_complete_family:WeatherEffectNode:~WeatherEffectNode WeatherEffectNode ~WeatherEffectNode 产物族(0x00405310,0x00405580,0x00405560,0x00404d40)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
 WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
@@ -350,7 +354,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 334 warnings — PASS
+0 new errors + 16 frozen(advisory), 338 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr

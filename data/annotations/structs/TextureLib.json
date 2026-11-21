@@ -427,7 +427,9 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_F5C0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F5C0void_char_0053f5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_F5C0): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void "
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_F5C0): int(int,void *,char); 原注解2026-11-18 mangle硬真值定谳(HPAXD): int(void ",
+   "declaration_only": true,
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 删除式形=编译器产物→declaration_only; 定义源=完全形0x0053f4d0"
   },
   "0x0053f550": {
    "name": "ClearAndJump",
@@ -444,7 +446,6 @@
    "name": "~TextureLib",
    "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=TextureLib（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x53F4F0 写 vptr 0x570A58",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -455,7 +456,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_F4D0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F4D0void_0053f4d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_F4D0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F4D0void_0053f4d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
   }
  },
  "vtables": [

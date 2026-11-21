@@ -285,7 +285,6 @@
    "reason": "compiler-generated",
    "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -296,7 +295,8 @@
    "flags": [
     "dtor"
    ],
-   "flags_evidence": "IDA名字形态=_sdtor_adj(??1/??_G析构族); decomp文件=CEffModel_sdtor_adjvoid_004d3220 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_sdtor_adj(??1/??_G析构族); decomp文件=CEffModel_sdtor_adjvoid_004d3220 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
   },
   "0x004d0ca0": {
    "name": "~CEffModel",
@@ -337,7 +337,9 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~CEffModel(??1/??_G析构族); decomp文件=CEffModel_~CEffModelvoid_004cfd20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
+   "flags_evidence": "IDA名字形态=~CEffModel(??1/??_G析构族); decomp文件=CEffModel_~CEffModelvoid_004cfd20 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
+   "declaration_only": true,
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 删除式形=编译器产物→declaration_only; 定义源=完全形0x004d3220"
   },
   "0x004cfe20": {
    "name": "ResetState",

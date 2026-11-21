@@ -170,7 +170,6 @@
    "name": "~ParticleEffect",
    "source": "| [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56F4A0）：本体 56 8b f1 e8 18 00 00 00 | [批 3 阶段 2 2026-10-17 analyzer] 正名赋值（五面闭合证据卡）：①调用者面=本类 vtable 槽（虚析构入口）②被调用者面=wrapped dtor 0x4BC7B0 写 vptr 0x56F4A0（类 dtor）③成员访问面=析构清理语义 ④类归属面=写表 0x56F4A0→ParticleEffect（已认领）⑤交互模式面=deleting 三段式（flag test+operator delete）；原 IDB 名=无 误名 | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（vptr写表链）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=ParticleEffect（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=wrapped dtor 0x4BC7B0 写 vptr 0x56F4A0",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -182,7 +181,8 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_C790(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_C790void_004bc790 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_C790(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_C790void_004bc790 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
   },
   "0x004bd850": {
    "name": "~ParticleEffect",
@@ -205,7 +205,9 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_D850(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_D850int_004bd850 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标 2026-11-19] deleting 形机械判据: sig_model params 恰=1标量(this+flags形参), 与语料 (this,int) 渲染一致。",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_D850): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(_scalar_dtor_D850): int(int,int); 原注解无",
+   "declaration_only": true,
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 删除式形=编译器产物→declaration_only; 定义源=完全形0x004bc790"
   }
  },
  "base_size": 362832,
@@ -217,5 +219,6 @@
   }
  ],
  "members_note": "[R2 2026-11-19] 布局定谳: 基类 sg_particle_scene(362832B, IDA 27 名完备) 占 [0x0,0x58950) — econtrol sg_emission_control[4]@0x118→ecenable@0x24278→particle sg_particle[4]@0x2428C→emitter sg_emitter[4]@0x3939C→尾部参数群@0x588FC..0x58950; UpdateParticles(0x4bc7f0) 的 stride-36952 循环遍历的是**基类 econtrol[4]** (&this->econtrol[0]=this+0x118)。ParticleEffect 自有扩展 [0x58950,0x5896C) 28B: active_parnum/m_pTexture[4]/deltatime (已注)。R2 初版 econtrol[9]@0x763C 为余数凑数误落(无 disp 证据, 0x763C 实落基类 econtrol 区内), C10 门禁拦截后撤销。",
- "table_adjudication_pending": "20261121隔离(probe23+债清偿战役): 旧表0x56F4A0 8槽腐坏——slot1-3=非码值(0x00000000/0x9d353918/0x3f91df46probe23非指令直证)+slot0/slot4双scalar_dtor(单继承不可能)+slot7重复slot5——vptr_installs假阳产物(2026-10-16 analyzer认领链读自身伪)。真表待裁: ctor 0x4BC760写表链重验。旧表原文存archive/ccb_semantics_pdb_ground_truth_20261121.json同目录"
+ "table_adjudication_pending": "20261121隔离(probe23+债清偿战役): 旧表0x56F4A0 8槽腐坏——slot1-3=非码值(0x00000000/0x9d353918/0x3f91df46probe23非指令直证)+slot0/slot4双scalar_dtor(单继承不可能)+slot7重复slot5——vptr_installs假阳产物(2026-10-16 analyzer认领链读自身伪)。真表待裁: ctor 0x4BC760写表链重验。旧表原文存archive/ccb_semantics_pdb_ground_truth_20261121.json同目录",
+ "note": " no_complete_form(20261121 T4-P0批量: 翻转后门验证: 0x4bc790/0x4bd850均带deleting flag(腐坏表_scalar_dtor双label互证)——全删除式族; 源dtor体待手写=债登记)"
 }

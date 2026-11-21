@@ -1,6 +1,6 @@
 {
  "name": "SkillUI",
- "binary_size": 102196,
+ "binary_size": 101940,
  "base_size": 72,
  "bases": [
   {
@@ -8,7 +8,7 @@
    "offset": 0
   }
  ],
- "size_evidence": "分配硬锚20261121: push 18E34h(=102196)@0x527b68→operator new→ctor1 0x525120@0x527b87 (0x527a80工场函数内); dtor析构界100572≤102196自洽(尾1624B非析构区); 25成员布局图(archive/ccbui_layout_map_20261121.json)落[0..100572]",
+ "size_evidence": "分配硬锚20261121(T4-P1-1换算修正): push 18E34h@0x527b68 → operator new → ctor1 0x525120@0x527b87; 0x18E34=101940(初记102196=0x18F34为换算错); dtor析构界100572; 尾区101940-100572=1368=UIRoleDialog末成员自身跨度(T4闭环)",
  "vtables": [
   {
    "addr": "0x005706cc",
@@ -184,5 +184,5 @@
  },
  "known_members": {},
  "_naming_note": "类名标签 'SkillUI' 源自语义链假设(ctor2标签'InitSkillUI'+PAL_GDB::InitSkillDisplay呼应), 非权威——仅作标识符使用, 真名待corpus/游戏流证据定谳后可改(改名=单脚本)。类身份由二进制证据钉死: 分配0x18E34(0x527b68硬锚)、双段构造(0x525120/0x5257b0同块序贯)、dtor对(sub_525520→0x525540+operator delete)、表0x5706CC(完全dtor序言写)、JusticeBookUI+0x31CC持有(0x527bb6)、消费g_PlayerAttBuffer。",
- "note": " | 注册20261121: B类(0x5706CC/102196B)——四路拆分战役的B实体正式入库; 语义链: ARC_PlayerAtt::Create+PAL_GDB::InitSkillDisplay工场上下文(0x527a80)构造, JusticeBookUI持有, 内嵌UISceneMap数组群/UICaption/URoleDialog×2/UIFrameContainer×13/PalScript×3/UITextArea/UIPushButton×2(布局图25条归档待S2落成员); 与CCB战斗系无关——'CCBUI'名字归A裁决依据 | slot正名20261121: slot0=ShowClipped/slot4=Create(基继承规范名); slot6注册_todo_526a40(pending) | slot2名归链律Update+签名pending; slot6体定谳OnMessage; B层次(UIParabolaCtrl@0x188DC/CCBAttackSequen直传)挂账 | 收编0x527510 AdvanceToNextSlot(体disp判决∈本类); B与CCBAttackSequen=has-a关系"
+ "note": " | 注册20261121: B类(0x5706CC/101940B)——四路拆分战役的B实体正式入库; 语义链: ARC_PlayerAtt::Create+PAL_GDB::InitSkillDisplay工场上下文(0x527a80)构造, JusticeBookUI持有, 内嵌UISceneMap数组群/UICaption/URoleDialog×2/UIFrameContainer×13/PalScript×3/UITextArea/UIPushButton×2(布局图25条归档待S2落成员); 与CCB战斗系无关——'CCBUI'名字归A裁决依据 | slot正名20261121: slot0=ShowClipped/slot4=Create(基继承规范名); slot6注册_todo_526a40(pending) | slot2名归链律Update+签名pending; slot6体定谳OnMessage; B层次(UIParabolaCtrl@0x188DC/CCBAttackSequen直传)挂账 | 收编0x527510 AdvanceToNextSlot(体disp判决∈本类); B与CCBAttackSequen=has-a关系"
 }

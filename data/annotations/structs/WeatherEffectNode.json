@@ -26,7 +26,8 @@
     "deleting"
    ],
    "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "name_note": "; 摘declaration_only(本形=定义源)"
+   "name_note": "; 摘declaration_only(本形=定义源) | T4-P0修正20261121: 恢复declaration_only——T4亲验本形=删除式ABI(call ??1gbLightObj内联+test Block&1+operator delete+retn 4), 非完全形; 本类四形态全删除式(0x404d40/0x405310/0x405560/0x405580) 无完全形→走无完全形管线(全伴生decl_only+源dtor体待手写)",
+   "declaration_only": true
   },
   "0x00405580": {
    "name": "~WeatherEffectNode",
@@ -512,5 +513,5 @@
  ],
  "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账",
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
- "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00404d40→decl_only, 完全形0x00405310→定义源"
+ "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00404d40→decl_only, 完全形0x00405310→定义源 | T4-P0修正20261121: 退出C8翻转管线(无完全形可作定义源)——源dtor体待手写, 四形态全decl_only no_complete_form(20261121 T4-P0: 四形态全删除式, VC6 /O1内联完全形后丢弃独立完全形; 源dtor体待手写=债登记)"
 }

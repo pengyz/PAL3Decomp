@@ -475,9 +475,9 @@
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x005160a0": {
-   "name": "Method",
+   "name": "CCBUI",
    "name_source": "IDA语义分析 2026-11-01 批16",
-   "name_note": "从 decomp 推断",
+   "name_note": "从 decomp 推断 | T4-P1-3正名20261121: Method(伪语义占位)→CCBUI(真ctor), 补ctor flags",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -490,7 +490,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Method): int(vo"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Method): int(vo",
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "T4-P1-3亲验链: alloc call@0x5126bb→0x5160A0 + 写表stru_5704A8@0x5160CC + param→[esi+0x488]@0x5160DF + retn 4@0x5160F2(单参CCBSystem*)"
   },
   "0x00516940": {
    "name": "InitResultPanels",

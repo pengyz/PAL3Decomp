@@ -1,0 +1,114 @@
+{
+ "_doc": "C8 mass-apply 工作清单 2026-11-21 (T4复核后物化, P2-2)",
+ "pilot_done_5": [
+  "CCBUI",
+  "UISceneMap",
+  "UILoadingFrm",
+  "WeatherEffectNode→退出(无完全形)",
+  "CCBUICtrl"
+ ],
+ "inverted_fixed_6": [
+  "CCBParabolaWindow",
+  "CCBResultWindow",
+  "CEffModel",
+  "CEffQuake→退出(无完全形)",
+  "ParticleEffect→退出(无完全形)",
+  "TextureLib"
+ ],
+ "no_complete_form_3": [
+  "WeatherEffectNode",
+  "CEffQuake",
+  "ParticleEffect"
+ ],
+ "ident_fail_single_source_5": [
+  "Actor",
+  "CCBCamControl",
+  "ObjectCamera",
+  "UICaption",
+  "UICursor"
+ ],
+ "probe23_verdicts": {
+  "real_heads": [
+   "0x00408410",
+   "0x004b7030",
+   "0x004bdf30",
+   "0x004b7f60",
+   "0x004b81a0",
+   "0x004b7b60",
+   "0x00541dd9",
+   "0x00541ef6",
+   "0x00541de6",
+   "0x00541fde",
+   "0x00541f13",
+   "0x0052b9a0",
+   "0x0052b9e0",
+   "0x0052ba00"
+  ],
+  "phantom": [
+   "0x0052b9c0(0x52b9a0函数体内)"
+  ],
+  "import_thunks": [
+   "0x00542126",
+   "0x005420c0",
+   "0x005420d2"
+  ],
+  "garbage": [
+   "0x00000000",
+   "0x9d353918",
+   "0x3f91df46",
+   "0x00010000"
+  ]
+ },
+ "massapply_pending": [
+  "AStarPathFinder",
+  "CCBControlWindow",
+  "CCBFiveNimbusWindow",
+  "CCBItemWindow",
+  "CCBLineupWindow",
+  "CCBRoleState",
+  "CCBSkillWindow",
+  "CCBUIPanel",
+  "CEffCylinder",
+  "CEffGrid",
+  "CEffMeteor",
+  "CEffSParticle",
+  "CEffgbParticle",
+  "CScreenMode",
+  "EquipUI",
+  "GRPinput",
+  "JusticeBookUI",
+  "LineupUI",
+  "MainEquipUI",
+  "PropUI",
+  "PtrArray",
+  "RenderTarget",
+  "Role",
+  "RoleCameraCtrl",
+  "RoleStatePanel",
+  "RoleSystem",
+  "SaleUI",
+  "SceneObj",
+  "ScreenEffectNode",
+  "SkillUI",
+  "SystemUI",
+  "TaskBookUI",
+  "UI3DModelNode",
+  "UIAnimateCtrlEX",
+  "UIButton",
+  "UICoverFrm",
+  "UIFrameContainer",
+  "UIFrameWnd",
+  "UIGameFrm",
+  "UIListBox",
+  "UIPushButton",
+  "UIRoleDialog",
+  "UIRoleSelectDialog",
+  "UISceneFrm",
+  "UIScenePanel",
+  "UITitle",
+  "UITitle_ArcSave",
+  "UITitle_BBTY",
+  "UITitle_YXXX"
+ ],
+ "procedure": "逐类: ①摘完全形排除孪生 ②删除式(slot5)置declaration_only ③完全形摘declaration_only ④全链(apply导出新体→stage1 4d剥→codegen) ⑤单元读数验证"
+}

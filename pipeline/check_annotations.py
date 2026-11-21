@@ -1338,16 +1338,30 @@ def check_canonical_contract():
             else:
                 _seen_nm[bare] = a8
         # 产物族一致性: 每个析构名须有定义源(非产物成员), 否则=全伴生无主
+        # [T4-P0 20261121] 两向收紧: ①定义源形状校验(定义源不得含deleting flag——
+        #   WeatherEffectNode案: 删除式被立为定义源=双析构); ②no_complete_form豁免:
+        #   VC6 /O1 可将完全形内联进删除式后丢弃独立完全形(四形态全删除式实证),
+        #   类note含 no_complete_form 标记时孤儿降级warning+债登记(源dtor体待手写)
+        _ncf = 'no_complete_form' in str(d8.get('note') or '')
         for _fb, _faddrs in _dtor_family.items():
             _has_src = False
+            _src_bad = []
             for a9, m9 in ms8.items():
                 if str(m9.get('name') or '') == _fb and a9 not in _faddrs:
+                    if 'deleting' in str(m9.get('flags') or []):
+                        _src_bad.append(a9)
+                        continue
                     _has_src = True
                     break
             if not _has_src:
-                cur_viol['C8:%s:%s:orphan_family' % (cls8, _fb)] = (
-                    '%s %s 产物族(%s)无定义源条目——伴生标记缺失, 补 declaration_only/'
-                    'deleting 判定' % (cls8, _fb, ','.join(_faddrs)))
+                _msg = '%s %s 产物族(%s)无定义源条目——伴生标记缺失, 补 declaration_only/' \
+                       'deleting 判定' % (cls8, _fb, ','.join(_faddrs))
+                if _src_bad:
+                    _msg += '；[T4-P0] 定义源形状违例: %s 含deleting flag(删除式不得立为定义源)' % ','.join(_src_bad)
+                if _ncf:
+                    warnings.append('C8:no_complete_family:%s:%s %s — 无完全形族(源dtor体待手写, 债登记)' % (cls8, _fb, _msg))
+                else:
+                    cur_viol['C8:%s:%s:orphan_family' % (cls8, _fb)] = _msg
 
         # [C9 2026-11-16 v3 槽位感知·名字+签名双检] override链一致性:
         #   同槽位: 基/派生名字应一致(override=C++同名规则), 签名应兼容(C2555判据)

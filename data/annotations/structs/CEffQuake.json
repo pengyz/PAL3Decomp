@@ -44,7 +44,8 @@
    ],
    "flags_evidence": "IDA名字形态=_sdtor(??1/??_G析构族); decomp文件=CEffQuake_`scalar_deleting_destructoruint_004d3860 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
    "sig_note": " | [params清零v2 2026-11-19] ~Cls complete dtor 恒无参(VC6规则集); 语料渲染的参数为旧IDB名 deleting 调用的 hexrays 残留伪影, 清零。 | [R3-T5 复核回滚 2026-11-19] 恢复 params=[int] (deleting 形 1 参 ABI); v2 params清零误判——二进制 ret 0x4/adjustor thunk 硬证, 语料文本缺删尾≠非 deleting (adjustor/链式调用不直接含删尾)。",
-   "name_note": " | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥)"
+   "name_note": " | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥) | C8源模型修正20261121(T4-P0批量): 删除式形=编译器产物→declaration_only; 定义源=完全形0x004d32e0",
+   "declaration_only": true
   },
   "0x004d32e0": {
    "name": "~CEffQuake",
@@ -68,7 +69,7 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=~CEffQuake(??1/??_G析构族); decomp文件=CEffQuake_~CEffQuakeint_004d32e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "declaration_only": true
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
   },
   "0x004d32c0": {
    "name": "AllocEffect",
@@ -268,5 +269,5 @@
   }
  ],
  "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查",
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CEffQuake()再生(deleting/adjustor/ICF形态均再生); 槽绑定2+完整形0留"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CEffQuake()再生(deleting/adjustor/ICF形态均再生); 槽绑定2+完整形0留 no_complete_form(20261121 T4-P0批量: 翻转后门验证: 0x4d32e0/0x4d3860均带deleting flag——全删除式族(CEffQuake 48B push 0x30案已知dtor形态复杂); 源dtor体待手写=债登记)"
 }

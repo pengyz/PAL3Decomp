@@ -198,7 +198,7 @@
  },
  "B_construction_flow_adjudication_20261121": {
   "_doc": "B 构造流终局定谳 (探针15/16/17)",
-  "size_hard_anchor": "operator new(0x18E34)=102196 @0x527b68 → ctor1@0x525120 (dtor析构界100572≤102196自洽, 尾1624B非析构区)",
+  "size_hard_anchor": "operator new(0x18E34)=101940 @0x527b68 → ctor1@0x525120 (dtor析构界100572≤101940自洽, 尾1624B非析构区)（T4-P1-1: 0x18E34=101940, 初记102196=换算错已修正）",
   "two_phase_construction": "ctor1@0x525120(基础widget构造, ??_M销毁表装配: UIPushButton/UICaption/UISceneMap/UIListBox数组) + ctor2@0x5257b0(补skill构造, 消费g_PlayerAttBuffer) — 分裂构造模式, 同一new块顺序调",
   "ownership": "B* 存于 0x527a80函数的this+0x6C0; 并交叉存入 JusticeBookUI+0x31CC (@0x527bb6)",
   "construction_context": "0x527a80 函数: new(0xDB80)JusticeBookUI + ARC_PlayerAtt::Create + PAL_GDB::InitSkillDisplay + new(0x18E34)B + B双段构造 + 尾段gbAudioManager清理(此段致SoundContext错标)",
