@@ -141,18 +141,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(FindSequenceSlot): int(int,int); 原注解无"
   },
-  "0x00527510": {
-   "name": "AdvanceToNextSlot",
-   "_misattrib_evidence": "max_offset=15008>class_size=4280",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x004db640": {
    "name": "CalcSpeed",
    "_migrated_from": "CCBSystem",
@@ -227,5 +215,6 @@
     "pending": false
    }
   }
- }
+ },
+ "note": " | 迁出20261121: 0x527510 AdvanceToNextSlot(this直访disp 0x3AA0×11=14944, 越本类456B界, ∈SkillUI 102196B界→B自己的方法; \"@CCBAttackSequen\" mangle=转移错位; 同族0x5270c0 FindSequenceSlot disp≤0x1A4 fits 456 留守)"
 }

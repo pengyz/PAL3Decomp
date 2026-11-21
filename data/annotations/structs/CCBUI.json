@@ -667,7 +667,7 @@
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00518b20": {
-   "name": "CreateProtectWindow",
+   "name": "GetMainStateFlag",
    "source": "pdb_ret",
    "evidence_level": "unverified",
    "sig_model": {
@@ -676,7 +676,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 假名纠正20261121: 13B体= mov eax,[ecx+478h](m_pMain); mov al,[eax+0B0h]; retn——经m_pMain读状态字节的getter, \"CreateProtectWindow\"=name-pass错挂(无任何创建行为)"
   },
   "0x00518b30": {
    "name": "CreateResultWindow",

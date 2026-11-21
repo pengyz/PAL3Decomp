@@ -1094,14 +1094,32 @@ def generate_free_funcs_cpp(funcs, atexit_aliases=None):
         _fn_skip = _av.skip_functions(store=store) or {}
     except Exception:
         _fn_skip = {}
+    # [declaration_only 尊重 2026-11-21] functions.json 的 declaration_only=true 条目
+    #   不发定义体(头声明走 fwd-decl 通道)——StartCombat 0x4074c0 体借用双定义 C2084 实证:
+    #   functions.json 2026-10-16 已注册 declaration_only(体借用垃圾防波堤), 自由函数发射器未消费。
+    _fn_decl_only = set()
+    try:
+        import annotation_view as _av
+        _fns = _av.load_annotation_json('functions.json', store=store) or {}
+        for _ka, _ev in _fns.items():
+            if isinstance(_ev, dict) and _ev.get('declaration_only'):
+                try:
+                    _fn_decl_only.add('0x%08X' % int(_ka, 16))
+                except (ValueError, TypeError):
+                    pass
+    except Exception:
+        _fn_decl_only = set()
     def _is_skipped(f):
         _a = f.get('addr') or 0
         try:
             _ai = int(_a, 16) if isinstance(_a, str) else int(_a)
         except (ValueError, TypeError):
             return False
-        _e = _fn_skip.get('0x%08X' % _ai)
-        return bool(_e and _e.get('type') == 'skip')
+        _k = '0x%08X' % _ai
+        _e = _fn_skip.get(_k)
+        if _e and _e.get('type') == 'skip':
+            return True
+        return _k in _fn_decl_only
     funcs = [f for f in funcs if not _is_skipped(f)]
     for f in funcs:
         ctx = make_context('', f['name'], sig=f.get('sig', ''), is_free=True,

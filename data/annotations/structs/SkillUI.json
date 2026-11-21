@@ -167,9 +167,22 @@
     "pending": false
    },
    "name_note": "slot6体定谳20261121: switch 17 cases(基param-0x3E8, 消息号1003~1015)消息派发器——PlayResultSound/AudioSetPosition/SetSlotCaption/RefreshPartyStats/FindSequenceSlot; retn 0Ch=3参(家族OnMessage H,I,H标准形)"
+  },
+  "0x00527510": {
+   "name": "AdvanceToNextSlot",
+   "_misattrib_evidence": "max_offset=15008>class_size=4280",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | 归属定谳20261121: 本类方法(this直访0x3AA0×11∈102196界, 越CCBAttackSequen 456B界); 名=行为语义名(攻击序列槽位推进); B持有CCBAttackSequen子对象(B的Update驱动其状态)"
   }
  },
  "known_members": {},
  "_naming_note": "类名标签 'SkillUI' 源自语义链假设(ctor2标签'InitSkillUI'+PAL_GDB::InitSkillDisplay呼应), 非权威——仅作标识符使用, 真名待corpus/游戏流证据定谳后可改(改名=单脚本)。类身份由二进制证据钉死: 分配0x18E34(0x527b68硬锚)、双段构造(0x525120/0x5257b0同块序贯)、dtor对(sub_525520→0x525540+operator delete)、表0x5706CC(完全dtor序言写)、JusticeBookUI+0x31CC持有(0x527bb6)、消费g_PlayerAttBuffer。",
- "note": " | 注册20261121: B类(0x5706CC/102196B)——四路拆分战役的B实体正式入库; 语义链: ARC_PlayerAtt::Create+PAL_GDB::InitSkillDisplay工场上下文(0x527a80)构造, JusticeBookUI持有, 内嵌UISceneMap数组群/UICaption/URoleDialog×2/UIFrameContainer×13/PalScript×3/UITextArea/UIPushButton×2(布局图25条归档待S2落成员); 与CCB战斗系无关——'CCBUI'名字归A裁决依据 | slot正名20261121: slot0=ShowClipped/slot4=Create(基继承规范名); slot6注册_todo_526a40(pending) | slot2名归链律Update+签名pending; slot6体定谳OnMessage; B层次(UIParabolaCtrl@0x188DC/CCBAttackSequen直传)挂账"
+ "note": " | 注册20261121: B类(0x5706CC/102196B)——四路拆分战役的B实体正式入库; 语义链: ARC_PlayerAtt::Create+PAL_GDB::InitSkillDisplay工场上下文(0x527a80)构造, JusticeBookUI持有, 内嵌UISceneMap数组群/UICaption/URoleDialog×2/UIFrameContainer×13/PalScript×3/UITextArea/UIPushButton×2(布局图25条归档待S2落成员); 与CCB战斗系无关——'CCBUI'名字归A裁决依据 | slot正名20261121: slot0=ShowClipped/slot4=Create(基继承规范名); slot6注册_todo_526a40(pending) | slot2名归链律Update+签名pending; slot6体定谳OnMessage; B层次(UIParabolaCtrl@0x188DC/CCBAttackSequen直传)挂账 | 收编0x527510 AdvanceToNextSlot(体disp判决∈本类); B与CCBAttackSequen=has-a关系"
 }
