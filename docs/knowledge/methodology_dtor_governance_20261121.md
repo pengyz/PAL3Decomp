@@ -108,3 +108,12 @@ UIProgressBar 残丢根因=**跳过先于 P-A5**（backtick 命名 vintage 撞�
   S1 emit_headers 契约修复：decl_only dtor 条目头声明(含 virtual)必须照发
   S2 数据层 dtor 发射意图完成（wrapper=decl_only / 源形=full；N20a 把关）
   S3 collect 去过滤 + sub_/空单元计数可见 + N18 接管 scoped 验证(CODEGEN_CLASS 单类先行)
+
+## 八、模型勘误（对抗复核 2026-11-21 晚）
+
+§二"??_G 匹配载体=wrapper 定义单元发射体(非头声明 MSVC 合成)"**作废**。
+合成模型定谳：??_G = virtual 头声明 + TU 内任一 dtor 定义 → MSVC 合成
+（铁证：RoleCameraCtrl wrapper 从未发射，??_G@0x450AB0 仍 100.0% match_L1，
+定义来自完全形 0x450a25）。12/12 相关性的真机制=压制→单元不生成→类掉出
+scalar_dtor_classes→virtual 声明消失→合成停止。
+完备性改造方案见 plan_dtor_intent_reform_20261121.md（D1-D21/S0-S3/T1-T14）。
