@@ -325,9 +325,13 @@ def run(code, ctx):
                 # (ParticleEffect 0x4bd850 实证: flags=['dtor'] 无 deleting 而
                 # 语料呈 (this,int) → stage1 剥/其他层不剥)
                 _fl = getattr(ctx, 'flags', None)
-                if _fl is not None:
+                if _fl:
                     _is_del_dtor = 'deleting' in _fl
                 else:
+                    # [D6 [] 陷阱修复 20261121] flags=None(通道缺失)与 flags=[]
+                    # (通道在场但空)同为「无 flags 证据」→ 都降级 sig 启发式。
+                    # 原 `is not None` 判让 [] 静默判否(_ida_flags_for 对缺失地址
+                    # 返回 [])——启发式降级在类通路从未发生(复核 D6 死代码定谳)。
                     _sm = re.search(r'\((.*)\)\s*$', getattr(ctx, 'sig', '') or '')
                     _spl = [x.strip() for x in (_sm.group(1).split(',') if _sm else []) if x.strip()]
                     _nonthis = [x for x in _spl if not re.search(r'\bthis\s*$', x)]

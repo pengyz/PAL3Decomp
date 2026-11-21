@@ -178,11 +178,10 @@
     "pending": false
    },
    "flags": [
-    "dtor",
-    "deleting"
+    "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_C790(??1/??_G析构族); decomp文件=ParticleEffect_scalar_dtor_C790void_004bc790 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥) | S2 H-set首案20261121(plan_dtor_intent_reform): flags deleting→完全形——三证: ①sig_model 0参thiscall(VC6完全形ABI=??1 retn无栈参; 删除式必带1个flags参) ②单元名~ParticleEffectvoid后缀(void返=完全形; 0x4bd850=scalar_deleting_destructoruint=删除式) ③双形态地址相邻(0x4bc790/0x4bd850=经典dtor对). 误标致intent仲裁选错owner(T14交叉核捕获)——纠正后0x4bc790=complete_def(定义源), 0x4bd850=伴生declaration_only"
   },
   "0x004bd850": {
    "name": "~ParticleEffect",
