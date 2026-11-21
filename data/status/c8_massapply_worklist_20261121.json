@@ -135,5 +135,13 @@
    "scscriptinstance_debris": "scScriptInstance.json注册debris: \"0x56b050 scScriptInstance flags=ctor\"=表内slot区非代码地址被当函数注册; 其注册vtable=0x56b050指向表中段(非表头)——scScriptInstance注册待整(T2)",
    "alloc_pending": "scScriptInstance分配点定谳仍需(真ctor地址未定——0x56b050条目为debris非真ctor)"
   }
+ },
+ "uiemote_cpp_exposure_20261121": {
+  "_doc": "UIEmote.cpp 2条显形债定性(恢复真名后编译器走深的暴露, 非回归)",
+  "items": [
+   "L148: &this->m_ani[1]赋值——UIAnimateCtrl.h定义形(unsigned long[23])与binary_size=164不符的头文件定义债+UIScene可用性",
+   "L194: Reset@0x44eb40=8B adjustor thunk(sub ecx,44h; jmp _UIEmote ctor)——hexrays按IDB名渲染成2参构造调用, 真ctor=0参(bare retn直证)——名字错觉家族(与C2661同病)"
+  ],
+  "net": "N13a预测C2227族未现=修复净改善; 2条=UIEmote专项T3注册细节债"
  }
 }
