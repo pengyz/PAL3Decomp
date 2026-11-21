@@ -34,110 +34,7 @@
   }
  },
  "base_size": 24,
- "vtables": [
-  {
-   "addr": "external",
-   "external": true,
-   "slots": [
-    {
-     "addr": "0x1001bd30",
-     "name": "CreateFromMemory"
-    },
-    {
-     "addr": "0x1001bea0",
-     "name": "UpdateTexture"
-    },
-    {
-     "addr": "0x1001bf80",
-     "name": "CreateForRenderTarget"
-    },
-    {
-     "addr": "0x1001c010",
-     "name": "CreateFromFileMemory"
-    }
-   ],
-   "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 gbengine 接口头 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
-  }
- ],
  "methods": {
-  "0x1001bd30": {
-   "name": "CreateFromMemory",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "gbPixelFmtType",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "gbPixelFmtType",
-      "name": null
-     },
-     {
-      "type": "void *",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x1001bea0": {
-   "name": "UpdateTexture",
-   "source": "asm 导入声明 + 重整名（A 级证据 2026-09-21）",
-   "note": "真实签名由二进制确定：`original/PAL3.exe.asm:534569-534570` 的 extrn 声明及其重整名 `?UpdateTexture@gbTexture@@QAEXPAVgbImage2D@@@Z` ⇒ `QAE`=__thiscall 公有 · `X`=返回 void · `PAVgbImage2D@@`=gbImage2D*（1 参）；且两处调用点（asm:244390 / loc_4A6EDC）**均不使用 eax** ✓ ⇒ 原注解的 6 参 `(int,int,int,int,gbPixelFmtType,void*)` 全错 ✗。修此 ⇒ Hex-Rays 应产出正确调用。",
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "gbImage2D *",
-      "name": "pImage"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x1001bf80": {
-   "name": "CreateForRenderTarget",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "gbPixelFmtType",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x1001c010": {
    "name": "CreateFromFileMemory",
    "evidence_level": "unverified",
@@ -165,5 +62,6 @@
    "name": "gbResource",
    "offset": 0
   }
- ]
+ ],
+ "_vtables_retired_note": "20261122退役: 槽址含IAT序号/DLL空间址(0x1001bd30,0x1001bea0,0x1001bf80,0x1001c010)——该\"vtables\"=导入指向结构非PAL3真vtable(类=gbengine.dll实现, 布局非PAL3业务; IAT普查20261122发现, C7连锁实证)。暂缓域类(domain_exclude), vtables待定谳期不保留污染数据"
 }

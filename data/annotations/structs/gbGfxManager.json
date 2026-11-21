@@ -170,47 +170,6 @@
  },
  "base_size": 4,
  "methods": {
-  "0x00010002": {
-   "name": "NewTexture",
-   "ordinal": 2,
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "gbTexture *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "const char *",
-      "name": "name"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00010001": {
-   "name": "MsgProc",
-   "ordinal": 1,
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": null,
-    "cc": null,
-    "params": null,
-    "varargs": false,
-    "pending": true
-   }
-  },
-  "0x00010003": {
-   "name": "NewMesh",
-   "ordinal": 3,
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": null,
-    "cc": null,
-    "params": null,
-    "varargs": false,
-    "pending": true
-   }
-  },
   "0x00010004": {
    "name": "NewVertexPool",
    "ordinal": 4,
@@ -253,48 +212,12 @@
    "name_note": "外部DLL表序号占位(gbengine.dll): vtable槽addr=0x10000+n为槽序标记非地址, 槽名MsgProc/NewTexture等为真数据; 本条=占位满足C7定义路由(20261121退役回滚)"
   }
  },
- "vtables": [
-  {
-   "addr": "external",
-   "external": true,
-   "slots": [
-    {
-     "addr": "0x00010000",
-     "name": "_todo_010000"
-    },
-    {
-     "addr": "0x00010001",
-     "name": "MsgProc"
-    },
-    {
-     "addr": "0x00010002",
-     "name": "NewTexture"
-    },
-    {
-     "addr": "0x00010003",
-     "name": "NewMesh"
-    },
-    {
-     "addr": "0x00010004",
-     "name": "NewVertexPool"
-    },
-    {
-     "addr": "0x00010005",
-     "name": "NewIndexPool"
-    },
-    {
-     "addr": "0x00010006",
-     "name": "NewDynVertBuf"
-    }
-   ],
-   "source": "[外部 vtable 槽名表 2026-10-15] vtable 地址显式**不认领**（gbengine.dll 外部库类，表在 DLL 内；0032f2e35 移除的是编造的 vtable **地址**认领，槽序/槽名是真数据须保留供渲染链消费）。槽名经 methods[槽址].name 解析，名/序与 include/gbengine/gbGfxManager.h:144-153 一致。⚠️ 切勿回填编造 vtable 址（0x10000/0x100F57E8 族）。"
-  }
- ],
  "source": " | [vtable 治理 2026-10-15] 移除编造认领：认领 0x00010000 非任何映像地址（PAL3 映像界 0x401000-0x189C3CA；0x10000<0x401000）⇒ 垃圾值。gb*（gbengine.dll 外部库）类的 vtable 不在 PAL3 映像 ⇒ 认领即编造",
  "bases": [
   {
    "name": "gbSingleton_gbGfxManager",
    "offset": 0
   }
- ]
+ ],
+ "_vtables_retired_note": "20261122退役: 槽址含IAT序号/DLL空间址(0x00010000,0x00010001,0x00010002,0x00010003)——该\"vtables\"=导入指向结构非PAL3真vtable(类=gbengine.dll实现, 布局非PAL3业务; IAT普查20261122发现, C7连锁实证)。暂缓域类(domain_exclude), vtables待定谳期不保留污染数据"
 }

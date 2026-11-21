@@ -1,0 +1,173 @@
+{
+ "_doc": "IAT 全量普查 2026-11-22 (判据工具化: 域判定先查 IAT)",
+ "iat_total": 368,
+ "modules": {
+  "ADVAPI32": 6,
+  "DINPUT8": 1,
+  "KERNEL32": 67,
+  "USER32": 34,
+  "WINMM": 1,
+  "BINKW32": 10,
+  "GBENGINE": 249
+ },
+ "q1_misregistered": [
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a244",
+   "name": "Rotate",
+   "iat": [
+    "GBENGINE",
+    "?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a260",
+   "name": "Translate",
+   "iat": [
+    "GBENGINE",
+    "?Translate@gbMatrixStack@@QAEXAAUgbVec3D@@@Z"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a2a0",
+   "name": "MultMatrix",
+   "iat": [
+    "GBENGINE",
+    "?MultMatrix@gbMatrixStack@@QAEXPAUgbMatrix4@@@Z"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a33c",
+   "name": "Rotate",
+   "iat": [
+    "GBENGINE",
+    "?Rotate@gbMatrixStack@@QAEXAAUgbQuaternion@@@Z"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a370",
+   "name": "Translate",
+   "iat": [
+    "GBENGINE",
+    "?Translate@gbMatrixStack@@QAEXMMM@Z"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a570",
+   "name": "GetTop",
+   "iat": [
+    "GBENGINE",
+    "?GetTop@gbMatrixStack@@QAEPAUgbMatrix4@@XZ"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a578",
+   "name": "Push",
+   "iat": [
+    "GBENGINE",
+    "?Push@gbMatrixStack@@QAEXXZ"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a57c",
+   "name": "LoadIdentity",
+   "iat": [
+    "GBENGINE",
+    "?LoadIdentity@gbMatrixStack@@QAEXXZ"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a588",
+   "name": "Pop",
+   "iat": [
+    "GBENGINE",
+    "?Pop@gbMatrixStack@@QAEXXZ"
+   ]
+  },
+  {
+   "cls": "gbMatrixStack",
+   "addr": "0x0056a5c0",
+   "name": "LoadMatrix",
+   "iat": [
+    "GBENGINE",
+    "?LoadMatrix@gbMatrixStack@@QAEXPAUgbMatrix4@@@Z"
+   ]
+  }
+ ],
+ "q2_idata_range": [],
+ "q3_gbengine_classes": [
+  "CIniFile",
+  "CPK",
+  "IniFile",
+  "PK",
+  "bAABBox",
+  "bActorMgr",
+  "bAudioManager",
+  "bAudioMgrDesc",
+  "bCamera",
+  "bChain1D",
+  "bChain1DNode",
+  "bColorQuad",
+  "bGeomNode",
+  "bImage2D",
+  "bLightObj",
+  "bMatrix4",
+  "bOBBox",
+  "bParticleEffect",
+  "bRain",
+  "bSnow",
+  "bSound2DNode",
+  "bSound3DNode",
+  "bTextureArray",
+  "bTexture_D3D",
+  "bVFileSystem",
+  "bVec3D",
+  "bVisNode",
+  "bVolModNode",
+  "bVolumeModifier",
+  "gbActor",
+  "gbActorMgr",
+  "gbAudioManager",
+  "gbCamera",
+  "gbColorQuad",
+  "gbDropGroup",
+  "gbDynVertBuf",
+  "gbEffectMgr",
+  "gbGeomNode",
+  "gbGfxManager",
+  "gbGfxManager_D3D",
+  "gbImage2D",
+  "gbLightObj",
+  "gbMatrix4",
+  "gbMatrixStack",
+  "gbNBTreeNode",
+  "gbOBBox",
+  "gbPartEmitter",
+  "gbParticleEffect",
+  "gbQuaternion",
+  "gbRain",
+  "gbRay",
+  "gbRefObject",
+  "gbRenderEffect",
+  "gbSceneGraph",
+  "gbSnow",
+  "gbSound2DNode",
+  "gbSound3DNode",
+  "gbTexture",
+  "gbTexture_D3D",
+  "gbVFileSystem",
+  "gbVec3D",
+  "gbVertPoolMgr",
+  "gbVisNode",
+  "gbVolModNode",
+  "gbVolumeModifier"
+ ]
+}
