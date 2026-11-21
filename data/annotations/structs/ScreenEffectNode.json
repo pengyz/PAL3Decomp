@@ -215,6 +215,21 @@
    "offset": 0
   }
  ],
- "known_members": {},
+ "known_members": {
+  "0xa4": {
+   "name": "m_pTexture",
+   "type": "gbTexture *",
+   "offset": 164,
+   "size": 4,
+   "name_note": "用途定型20261121: NewTexture结果受体, 随后LoadTexture(1)调用(probe体证据); 裸DWORD戳无类型→gbRenderEffect*转换错L85的姊妹位"
+  },
+  "0xa8": {
+   "name": "m_pRenderEffect",
+   "type": "gbRenderEffect *",
+   "offset": 168,
+   "size": 4,
+   "name_note": "用途定型20261121: NewRenderEffect('gfxscript\\\\AdditiveBlend.gbf')受体(体证据)"
+  }
+ },
  "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查"
 }

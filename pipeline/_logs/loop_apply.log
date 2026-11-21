@@ -289,7 +289,7 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795227876)早于最新注解(1795229491)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795229682)早于最新注解(1795230357)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
@@ -297,7 +297,6 @@ WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直�
 WARN: N13b:PalScript::ctor@0x0043a1f0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:RoleSystem::SetTargetRotation@0x00416490 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:SceneObj::_init_4530c0@0x004530c0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:ScreenEffectMgr::_todo_4BDF30@0x004bdf30 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UICaption::Destroy2@0x0043a810 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UIMap::UIMap@0x004411d0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
@@ -352,7 +351,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 336 warnings — PASS
+0 new errors + 16 frozen(advisory), 335 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
