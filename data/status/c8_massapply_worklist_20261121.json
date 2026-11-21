@@ -120,7 +120,13 @@
    "注册表\"UIEmote slot5=0x44e980\"=跨类错挂; C9 frozen(对比基~UIWnd)=双重误导的误报",
    "slot5(0x44e980) 语义=可见性查询(int retn 8 二参), \"OnVisible\"名可能语义正确但归属 scScriptInstance"
   ],
-  "battle_scope": "UIEmote bases 纠正(+scScriptInstance C11裁决) + 表重审(slot5归属) + dtor对重建(0x44e5c0删除式decl_only+完全形寻址)",
-  "status": "挂账(专项战役, 非卫生项)"
+  "battle_scope": "UIEmote bases C11裁决(bases补scScriptInstance中间层) + dtor对重建(0x44e5c0正名~UIEmote+decl_only; 完全形寻址或无完全形管线) + slot5归属确认维持(注册正确)",
+  "status": "挂账(专项战役, 非卫生项)",
+  "correction_20261121_late": [
+   "更正: \"0x44e980跨类错挂\"系误报撤销——ctor写表链直证: 主[esi]=scScriptInstance表, 次[esi+44h]=off_56B044表; 注册表0x56b044与二进制逐槽吻合(slot5=OnVisible@UIEmote✓)",
+   "上轮误报根因: 表头对齐启发式(向前找slot0=0x445e70)撞巧合——0x56b050首值恰=0x445e70, 误把slot3位置当表头",
+   "新实证: 主表=scScriptInstance(ctor写符号直证→主基=scScriptInstance, 注册bases缺中间层=C11项); 次表off_56B044@+0x44=GameObject链(slot2=UpdateFrame@Role); PalScript数组成员(eh vector ctor)",
+   "dtor对: 删除式0x44e5c0=次表slot8(注册名_sdtor_25存量冻结形); 完全形待寻(0x44e5c0体=基dtor内联, 或无独立完全形→无完全形管线候选)"
+  ]
  }
 }
