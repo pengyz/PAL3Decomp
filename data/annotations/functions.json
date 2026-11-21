@@ -916,7 +916,8 @@
   "name": "ProcessKeyboard",
   "signature": "void __cdecl(int nVal)",
   "declaration_only": true,
-  "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查 | 路径修正20261121(用户裁定手写不需要): 体借用根因=j_跳板VA机械搜未果——正确路径=0x4074c0真身汇编定谳(探针头部=StartCombat借用体非本体)+j_跳板目标函数边界重界+sig验证, 不存在手写选项"
+  "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查 | 路径修正20261121(用户裁定手写不需要): 体借用根因=j_跳板VA机械搜未果——正确路径=0x4074c0真身汇编定谳(探针头部=StartCombat借用体非本体)+j_跳板目标函数边界重界+sig验证, 不存在手写选项 | 根因定谳20261121(probe43): 0x4074c0=StartCombat(0x407320..0x40755e, 574B)的中段内部地址(非独立函数, IDA get_func(0x4074c0)=StartCombat函数)——ProcessKeyboard名=转移器误挂; declaration_only=正确(压制幻影体); 调用站PalScript.cpp:2902=中段入口(字节一致重建限制, 挂账)",
+  "name_note": "中段入口(StartCombat内部偏移, 非独立函数)"
  },
  "0x0051dfd0": {
   "name": "Update",
