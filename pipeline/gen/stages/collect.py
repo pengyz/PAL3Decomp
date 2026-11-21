@@ -255,13 +255,9 @@ def collect_functions(decomp_dir=None):
             if cls in skip_classes:
                 continue
 
-            # Skip compiler-generated _scalar_dtor functions.
-            # These are vtable wrappers around virtual destructors; the compiler
-            # generates them automatically from 'virtual ~ClassName()' declarations.
-            # 【2026-09-15】`_vector_dtor` 同属编译器生成物，一并跳过
-            # （其名字由上面的规范化产生，见 `` `vector deleting destructor' `` → `_vector_dtor`）。
-            # [债 2026-11-10] scalar_dtor_classes 是 DEAD 集(零读者——真实现=
-            # emit_headers 的 header_facts 缓存)。continue 行为保留(跳过发射)。
+            # [D1 dtor 形路由 20261121] backtick 归一形/??_G 路由形/_sdtor_NN——
+            # 旧「编译器包装泛化跳过」理论过滤已退役(层错位, 用户第一性质询裁定;
+            # 12/12 字节证据证伪), 发射决策移交 dtor_intent 单点(见下)。
             if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
                 # [D1 泛化跳过退役→意图路由 20261121] "编译器包装无源体"理论过滤
                 # 层错位退役(用户第一性质询裁定; 12/12 字节证据证伪该理论)。
