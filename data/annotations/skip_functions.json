@@ -9686,5 +9686,17 @@
   "reason": "compiler-generated scalar deleting destructor, no game logic",
   "type": "skip",
   "signature": "void *__thiscall(void *Block, char a2)"
+ },
+ "0x0053C2B0": {
+  "name": "_sdtor_call_dtor",
+  "reason": "compiler_thunk",
+  "skip_reason": "S2回滚20261122: CPK案整体错判撤销——本对dtor=内嵌CPK成员的未知PAL3本地类(GBENGINE IAT实证: ??1CPK为DLL导入, 0x53C2D0体mov edi,ds:??1CPK@@QAE@XZ+call edi=跨DLL调成员类型析构非自身)。真类归属待定谳(线索: 调CScreenMode::CloseBinkVideo+CScreenMode.cpp m_Static_816成员CPK析构)",
+  "evidence_level": "A"
+ },
+ "0x0053C2D0": {
+  "name": "??1strstreambuf@std@@UAE@XZ",
+  "reason": "std_library",
+  "skip_reason": "S2回滚20261122: IDB名亦错(strstreambuf亦非真身)——真类归属待定谳(同上)",
+  "evidence_level": "A"
  }
 }
