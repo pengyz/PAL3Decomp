@@ -11,6 +11,7 @@
 分层纪律: 本模块=纯决策逻辑（零文件直读、零 IDA 依赖）；数据事实由调用方注入
 （annotation_view 单一读点 / ida_structs flags 通道 / header_facts / decomp 目录在场）。
 """
+import json
 import re
 from dataclasses import dataclass, field
 
@@ -84,13 +85,20 @@ def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
     suppressed = entry.get('type') == 'skip'
     decl_only = bool(entry.get('declaration_only'))
 
-    # sig-vs-deleting 交叉核（T14/ParticleEffect 0x4bc790 形）
+    # sig-vs-deleting 交叉核（T14/ParticleEffect 0x4bc790 形 + TextureLib 0x53f4d0 镜像）
     data_suspect = ''
     sm = entry.get('sig_model') or {}
-    if deleting and sm and not sm.get('pending'):
+    if sm and not sm.get('pending'):
         ps = sm.get('params') or []
-        if not ps:
+        _nonthis_p = [p for p in ps
+                      if 'this' not in json.dumps(p, ensure_ascii=False)]
+        if deleting and not ps:
             data_suspect = 'sig-vs-deleting: flags=deleting 但 sig 0参(完全形 ABI 形)——形态矛盾待定谳'
+        elif (not deleting) and _nonthis_p:
+            # 镜像(TextureLib 0x53f4d0 案): flags 无 deleting 但 sig 带非 this 参
+            # (删除式 ABI 形)——身份未定谳, 保守不发射(S2 定谳后解禁)
+            data_suspect = ('sig-vs-non-deleting: flags 无 deleting 但 sig 带非 this 参'
+                            '(删除式 ABI 形)——身份未定谳, 保守不发射')
 
     # ── 兄弟全集(含本条)与唯一源仲裁 ─────────────────────────────
     all_forms = [{'addr': entry_addr, 'entry': entry, 'unit_present': unit_present}] + list(siblings)
@@ -153,11 +161,20 @@ def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
             n18_strip = True
             reason = '删除式=唯一形态(deleted-form ABI) → N18 源级化承担定义源'
         else:
-            role = 'complete_def'
-            body_emit = True
-            decl_emit = True
-            n18_strip = False
-            reason = '完全形=定义源(4d 隐式析构剥离)'
+            if data_suspect.startswith('sig-vs-non-deleting'):
+                # [保守 20261121] 身份未定谳(flags/sig 矛盾) → 体不发射,
+                # 声明照发——发射未定谳体=以错身份编译(TextureLib C2511 实证)
+                role = 'declaration_only'
+                body_emit = False
+                decl_emit = True
+                n18_strip = False
+                reason = 'sig-vs-flags 矛盾未定谳 → 保守不发射(S2 定谳后解禁)'
+            else:
+                role = 'complete_def'
+                body_emit = True
+                decl_emit = True
+                n18_strip = False
+                reason = '完全形=定义源(4d 隐式析构剥离)'
 
     if name_note:
         reason = reason + '; ' + name_note

@@ -454,10 +454,11 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_F4D0(??1/??_G析构族); decomp文件=TextureLib_scalar_dtor_F4D0void_0053f4d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥) | S2纠正20261121: flags+=deleting——三证: ①本址体=标准wrapper形(call stub+test flags&1+条件operator delete+ret 4) ②被调0x53F4F0=7字节写表桩(mov [ecx],0x570A58;ret, ICF折叠被SceneObj::ProcessNearby名覆盖——折叠载体名非语义) ③地址模式=CameraCtrl同族(deleted-form ABI, 无成员析构完全形——trivial析构). 纠后intent: 本条=deleting_source(N18源级化), 0x53f5c0=伴生decl_only维持"
   }
  },
  "vtables": [

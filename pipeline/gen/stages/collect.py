@@ -142,6 +142,9 @@ def collect_functions(decomp_dir=None):
     skip_classes = _get_skip_classes()
     by_class = defaultdict(list)
     free_funcs = []
+    # [D2 计数可见 20261121] 静默丢弃改显式计数(5a7a3b86 静默吞教训同族)
+    _census = {'empty': 0, 'sub_': 0, 'dtor_reject_no_identity': 0,
+               'dtor_emit': 0, 'dtor_reject_intent': 0}
 
     for f in sorted(decomp_dir.glob("*.json")):
         try:
@@ -159,8 +162,10 @@ def collect_functions(decomp_dir=None):
         sig = d.get('signature', '')
 
         if not code or not name:
+            _census['empty'] += 1
             continue
         if name.startswith('sub_'):
+            _census['sub_'] += 1
             continue
 
 
@@ -176,6 +181,17 @@ def collect_functions(decomp_dir=None):
                 if at_pos > 0:
                     cls = rest[:at_pos]
                     method = cls if code_ch == '0' else '~' + cls
+            elif inner.startswith('?_G'):
+                # [??_G 路由 20261121] scalar deleting dtor 的 MSVC mangle 形——
+                # 原走通用 @-切分误路由为自由函数('?_GCls' 非法标识符垃圾发射)。
+                # 路由进类 dtor 家族, 归一形与 backtick 单元同路径;
+                # 发射决策在 D10 意图路由点统一仲裁(下文 dtor 形路由)。
+                _c = inner[3:].split('@')[0]
+                if _c:
+                    cls = _c
+                    method = '_scalar_dtor'
+                    code = re.sub(r'\?\?_G%s@@[^\n(]*' % re.escape(_c),
+                                  '%s::_scalar_dtor' % _c, code, count=1)
             else:
                 at_pos = inner.find('@')
                 if at_pos > 0:
@@ -228,7 +244,11 @@ def collect_functions(decomp_dir=None):
             from pipeline.gen.normalization import normalize_dtor_name as _ndn
             _norm = _ndn(method)  # 单点律收编
             if _norm and _norm != method:
-                code = re.sub(r'\b%s\b' % re.escape(method), _norm, code)
+                # [字面替换修复 20261121] 原 \b...\b 对反引号引导名永不命中
+                #   (` 为非词字符, '::`' 处无词边界)——重写从未发生; 旧无恙因单元
+                #   总被泛化跳过, S3 撕除跳过后暴露(UIProgressBar 无签名行案)。
+                #   字面替换: dtor 名唯一性足够, 无需词边界。
+                code = code.replace(method, _norm)
                 method = _norm
 
         if cls and method:
@@ -243,7 +263,52 @@ def collect_functions(decomp_dir=None):
             # [债 2026-11-10] scalar_dtor_classes 是 DEAD 集(零读者——真实现=
             # emit_headers 的 header_facts 缓存)。continue 行为保留(跳过发射)。
             if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
-                continue
+                # [D1 泛化跳过退役→意图路由 20261121] "编译器包装无源体"理论过滤
+                # 层错位退役(用户第一性质询裁定; 12/12 字节证据证伪该理论)。
+                # 发射决策移交 dtor_intent 单点:
+                #   有注解身份 → intent.body_emit 仲裁(唯一源律/decl_only/suppressed)
+                #   无注解身份 → 显式拒发+计数(无身份=无可发射, 非理论过滤)
+                # 命中本分支的单元: backtick 归一形 / ??_G mangle 路由形 / _sdtor_NN。
+                try:
+                    try:
+                        import annotation_view as _av_di
+                    except ImportError:
+                        from pipeline.gen import annotation_view as _av_di
+                    _sp = _av_di.struct_by_class(cls, store=store) if cls else None
+                    _mdi = (_sp.get('methods', {}) or {}) if _sp else {}
+                    _e = _mdi.get(addr)
+                    if _e is None:
+                        _au = str(addr).upper().replace('0X', '0x')
+                        for _k, _v in _mdi.items():
+                            if str(_k).upper() == _au:
+                                _e = _v
+                                break
+                    if _e is not None:
+                        from pipeline.gen.dtor_intent import resolve_dtor_intent as _rdi
+                        _sib = [{'addr': _ka, 'entry': _kv,
+                                 'unit_present': True}
+                                for _ka, _kv in _mdi.items()
+                                if _ka != addr and
+                                ('dtor' in (_kv.get('flags') or []) or
+                                 str(_kv.get('name') or '').startswith('~'))]
+                        _it = _rdi(cls=cls, entry_addr=addr, entry=_e,
+                                   siblings=_sib, unit_present=True,
+                                   unit_vintage='named', flags_channel=None,
+                                   header_facts_scalar=False, s4_symbols=None)
+                        if _it.body_emit:
+                            _census['dtor_emit'] += 1
+                            # 发射: 名规范化交 P-A5(注解名=唯一真值), N18 源级化
+                            # 由 emit_cpp ctx.flags 通道驱动(不在此重写签名)
+                        else:
+                            _census['dtor_reject_intent'] += 1
+                            continue   # 拒发: 体不发射(声明由头路径供给)
+                    else:
+                        _census['dtor_reject_no_identity'] += 1
+                        continue   # 拒发: 无注解身份(D12 自由 dtor 分类排队)
+                except Exception as _e_di:
+                    # 决策器故障 = fail-loud(静默回退=旧理论过滤复辟)
+                    print("  [collect-D1-ERR] %s %s: %s" % (cls, addr, _e_di))
+                    continue
 
             # Strip _misattrib_ prefix: put function back under the original class
             # with a comment marking it as misattributed (attribution unconfirmed)
@@ -334,6 +399,11 @@ def collect_functions(decomp_dir=None):
                     'sig': sig,
                 })
 
+    if any(_census.values()):
+        print('  [collect-census] 空/无名=%d sub_=%d | dtor形: 发射=%d 拒发(意图)=%d '
+              '拒发(无身份)=%d' % (
+                  _census['empty'], _census['sub_'], _census['dtor_emit'],
+                  _census['dtor_reject_intent'], _census['dtor_reject_no_identity']))
     return by_class, free_funcs
 
 

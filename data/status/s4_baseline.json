@@ -18,29 +18,29 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 976,
-  "matched": 829,
+  "symbols": 993,
+  "matched": 858,
   "unmatched": 227,
-  "match_L1": 116,
+  "match_L1": 119,
   "match_L1_semantic": 8,
-  "partial": 629,
+  "partial": 633,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 84,
-  "reloc_total": 6360,
-  "reloc_ok": 1516,
+  "unresolved_synth": 106,
+  "reloc_total": 6374,
+  "reloc_ok": 1523,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4844,
-  "rsite_total": 6360,
-  "rsite_unaligned": 6026,
-  "l1_bytes": 4813,
-  "l1_hidden_reloc_bytes": 982,
-  "l1_reloc_covered_bytes": 1336,
+  "reloc_unresolved": 4851,
+  "rsite_total": 6374,
+  "rsite_unaligned": 6034,
+  "l1_bytes": 4903,
+  "l1_hidden_reloc_bytes": 994,
+  "l1_reloc_covered_bytes": 1360,
   "rsite_ok": 55,
-  "rsite_class_ok": 255,
-  "rsite_unresolved": 5,
+  "rsite_class_ok": 258,
+  "rsite_unresolved": 4,
   "rsite_unresolved_samples": [
    {
     "va": "0x00444AC0",
@@ -48,13 +48,6 @@
     "tgt": "0x0056AE84",
     "exp": "sub_56AE84",
     "sym": "??_7CCBResultWindow@@6B@"
-   },
-   {
-    "va": "0x004C5D50",
-    "off": 4,
-    "tgt": "0x004C5D70",
-    "exp": "sub_4C5D70",
-    "sym": "??1CEffectSystem@@UAE@XZ"
    },
    {
     "va": "0x004461D0",
@@ -120,15 +113,35 @@
     "orig": null
    }
   ],
-  "rsite_self_local": 12,
-  "rsite_mismatch": 4,
+  "rsite_mismatch": 8,
   "rsite_mismatch_samples": [
    {
-    "va": "0x004BE060",
+    "va": "0x004C6960",
     "off": 4,
-    "orig": "ScreenEffectMgr::ClearAllEffects(void)",
-    "ours": "ScreenEffect::~ScreenEffect",
-    "sym": "??1ScreenEffect@@UAE@XZ"
+    "orig": "CEffgbParticle::ReleaseEffect(void)",
+    "ours": "CEffExplosive::~CEffExplosive",
+    "sym": "??1CEffExplosive@@UAE@XZ"
+   },
+   {
+    "va": "0x004D0D90",
+    "off": 4,
+    "orig": "CEffect::UpdateCallback(void)",
+    "ours": "CEffQuad::~CEffQuad",
+    "sym": "??1CEffQuad@@UAE@XZ"
+   },
+   {
+    "va": "0x004D32E0",
+    "off": 4,
+    "orig": "CEffQuake::Update(int)",
+    "ours": "CEffQuake::~CEffQuake",
+    "sym": "??1CEffQuake@@UAE@XZ"
+   },
+   {
+    "va": "0x004C0540",
+    "off": 4,
+    "orig": "RenderTarget2::ExecutePasses(void)",
+    "ours": "CEffAction::~CEffAction",
+    "sym": "??1CEffAction@@UAE@XZ"
    },
    {
     "va": "0x00450AB0",
@@ -150,8 +163,16 @@
     "orig": "UIFrameWnd::__deleting_view(void)",
     "ours": "UI3DCtrl::~UI3DCtrl",
     "sym": "??1UI3DCtrl@@UAE@XZ"
+   },
+   {
+    "va": "0x00439110",
+    "off": 4,
+    "orig": "PalScript::Reset(void)",
+    "ours": "UIProgressBar::~UIProgressBar",
+    "sym": "??1UIProgressBar@@UAE@XZ"
    }
   ],
+  "rsite_self_local": 12,
   "rsite_ok_directname": 2,
   "rsite_class_mismatch": 3
  },
@@ -860,6 +881,15 @@
   },
   {
    "file": "pal3/src/Effect/CEffExplosive.cpp",
+   "symbol": "??_GCEffExplosive@@UAEPAXI@Z",
+   "name": "CEffExplosive::`scalar deleting destructor'(uint)",
+   "va": "0x004C6960",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffExplosive.cpp",
    "symbol": "?ResetState@CEffExplosive@@UAEXHHHH@Z",
    "name": "CEffExplosive::ResetState(int,int,int,int)",
    "va": "0x004C6A70",
@@ -968,6 +998,24 @@
   },
   {
    "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "??_GCEffQuad@@UAEPAXI@Z",
+   "name": "CEffQuad::_sdtor_39",
+   "va": "0x004D3230",
+   "status": "partial",
+   "match_pct": 50.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
+   "symbol": "??_GCEffQuad@@UAEPAXI@Z",
+   "name": "CEffQuad::`scalar deleting destructor'(uint)",
+   "va": "0x004D0D90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuad.cpp",
    "symbol": "?ResetState@CEffQuad@@UAEXHHHH@Z",
    "name": "CEffQuad::ResetState(int,int,int,int)",
    "va": "0x004D0EC0",
@@ -1055,6 +1103,15 @@
    "status": "partial",
    "match_pct": 20.8,
    "size": 24
+  },
+  {
+   "file": "pal3/src/Effect/CEffQuake.cpp",
+   "symbol": "??_GCEffQuake@@UAEPAXI@Z",
+   "name": "CEffQuake::`scalar deleting destructor'(uint)",
+   "va": "0x004D32E0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Effect/CEffQuake.cpp",
@@ -1193,6 +1250,15 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
+   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
+   "va": "0x004C5D50",
+   "status": "partial",
+   "match_pct": 43.3,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?slot_1@CEffectSystem@@UAEHXZ",
    "name": "CEffectSystem::slot_1(void)",
    "va": "0x004C5D80",
@@ -1235,15 +1301,6 @@
    "status": "partial",
    "match_pct": 27.1,
    "size": 155
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
-   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
-   "va": "0x004C5D50",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
@@ -1547,8 +1604,8 @@
    "symbol": "??_GScreenEffect@@UAEPAXI@Z",
    "name": "ScreenEffect::`scalar deleting destructor'(uint)",
    "va": "0x004BE060",
-   "status": "match_L1",
-   "match_pct": 100.0,
+   "status": "partial",
+   "match_pct": 50.0,
    "size": 30
   },
   {
@@ -2261,6 +2318,15 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 24
+  },
+  {
+   "file": "pal3/src/Misc/CEffAction.cpp",
+   "symbol": "??_GCEffAction@@UAEPAXI@Z",
+   "name": "CEffAction::`scalar deleting destructor'(uint)",
+   "va": "0x004C0540",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/CEffAction.cpp",
@@ -4811,6 +4877,15 @@
   },
   {
    "file": "pal3/src/Misc/UIProgressBar.cpp",
+   "symbol": "??_GUIProgressBar@@UAEPAXI@Z",
+   "name": "UIProgressBar::`scalar deleting destructor'(uint)",
+   "va": "0x00439110",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIProgressBar.cpp",
    "symbol": "?Render@UIProgressBar@@UAEXXZ",
    "name": "UIProgressBar::Render(void)",
    "va": "0x00439410",
@@ -5699,6 +5774,15 @@
    "status": "partial",
    "match_pct": 14.6,
    "size": 609
+  },
+  {
+   "file": "pal3/src/Render/TextureLib.cpp",
+   "symbol": "??_GTextureLib@@UAEPAXI@Z",
+   "name": "TextureLib::_sdtor_20",
+   "va": "0x0053F4D0",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 30
   },
   {
    "file": "pal3/src/Render/TextureLib.cpp",
@@ -6989,6 +7073,11 @@
    14
   ],
   [
+   "CEffAction::`scalar deleting destructor'(uint)",
+   4982080,
+   30
+  ],
+  [
    "CEffBink::AllocEffect(void)",
    4986288,
    27
@@ -7034,6 +7123,11 @@
    172
   ],
   [
+   "CEffExplosive::`scalar deleting destructor'(uint)",
+   5007712,
+   30
+  ],
+  [
    "CEffGroupNode::SetComponent(int)",
    4944848,
    10
@@ -7069,9 +7163,19 @@
    220
   ],
   [
+   "CEffQuad::`scalar deleting destructor'(uint)",
+   5049744,
+   30
+  ],
+  [
    "CEffQuake::GetEditorTaskDescription(int)",
    5060192,
    64
+  ],
+  [
+   "CEffQuake::`scalar deleting destructor'(uint)",
+   5059296,
+   30
   ],
   [
    "CEffect::ReleaseResources(void)",
@@ -7087,11 +7191,6 @@
    "CEffectSystem::GetEffectIndex(void)",
    5006128,
    5
-  ],
-  [
-   "CEffectSystem::`scalar deleting destructor'(uint)",
-   5004624,
-   30
   ],
   [
    "CEffgbParticle::GetEditorTaskDescription(int)",
@@ -7224,11 +7323,6 @@
    31
   ],
   [
-   "ScreenEffect::`scalar deleting destructor'(uint)",
-   4972640,
-   30
-  ],
-  [
    "ScreenEffectMgr::GetInstance(void)",
    4973968,
    51
@@ -7342,6 +7436,11 @@
    "UIProgressBar::GetWidth(int)",
    4455872,
    13
+  ],
+  [
+   "UIProgressBar::`scalar deleting destructor'(uint)",
+   4428048,
+   30
   ],
   [
    "UIRoleDialog::HideAll(void)",

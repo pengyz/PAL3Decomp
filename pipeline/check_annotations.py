@@ -1343,12 +1343,23 @@ def check_canonical_contract():
         #   VC6 /O1 可将完全形内联进删除式后丢弃独立完全形(四形态全删除式实证),
         #   类note含 no_complete_form 标记时孤儿降级warning+债登记(源dtor体待手写)
         _ncf = 'no_complete_form' in str(d8.get('note') or '')
+        # [deleted-form ABI 判据 20261121] C8 旧模型"删除式不得立为定义源"已被
+        # S4 字节证据证伪(CameraCtrl/UI3DCtrl/TextureLib 族: 类内全为删除式形态,
+        # 完全形不存在(trivial析构/ICF折叠桩)——删除式=唯一 dtor=必须的定义源,
+        # N18 源级化承担体; 合成模型下 ??1/??_G 双符号自该定义再生)。
+        # 新判据: 族内无非删除条目时, 未压制的删除式条目=合法定义源。
         for _fb, _faddrs in _dtor_family.items():
+            _family_all_deleting = all(
+                'deleting' in str(m9.get('flags') or [])
+                for a9, m9 in ms8.items() if str(m9.get('name') or '') == _fb)
             _has_src = False
             _src_bad = []
             for a9, m9 in ms8.items():
                 if str(m9.get('name') or '') == _fb and a9 not in _faddrs:
                     if 'deleting' in str(m9.get('flags') or []):
+                        if _family_all_deleting:
+                            _has_src = True   # deleted-form ABI: 唯一形态=定义源
+                            break
                         _src_bad.append(a9)
                         continue
                     _has_src = True
