@@ -75,14 +75,14 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "删除式dtor(slot5)20261121: 体=call完全dtor 0x525540+operator delete(30B标准形); 表0x5706CC slot5绑定 | 签名修20261121: 删除式dtor源模型=裸形~SkillUI()(头声明无参; (this,flags)删除ABI=编译器层, 不入源签名)"
+   "name_note": "删除式dtor(slot5)20261121: 体=call完全dtor 0x525540+operator delete(30B标准形); 表0x5706CC slot5绑定 | 签名修20261121: 删除式dtor源模型=裸形~SkillUI()(头声明无参; (this,flags)删除ABI=编译器层, 不入源签名) | C8源模型修正20261121(mass-apply): 删除式形=编译器产物→declaration_only(注册时意图未落字段——本次补落; 定义源=完全形0x525540)",
+   "declaration_only": true
   },
   "0x00525540": {
    "name": "~SkillUI",
    "flags": [
     "dtor"
    ],
-   "declaration_only": true,
    "evidence_level": "verified",
    "sig_model": {
     "return": "void",
@@ -91,7 +91,7 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "完全dtor形20261121: 序言写表0x5706CC(0x52555D直证)+析构序列至+100572(~UIListBox收尾); declaration_only(C8: 删除式0x525520持slot发定义, 防同名对双body C2084——CCBParabolaWindow先例)"
+   "name_note": "完全dtor形20261121: 序言写表0x5706CC(0x52555D直证)+析构序列至+100572(~UIListBox收尾); declaration_only(C8: 删除式0x525520持slot发定义, 防同名对双body C2084——CCBParabolaWindow先例) | C8源模型修正20261121(mass-apply): 摘declaration_only(本形=完全形=源析构定义源, 体织入stage1 4d剥); 删除式0x525520保持decl_only"
   },
   "0x005257b0": {
    "name": "InitSkillUI",
