@@ -18,12 +18,12 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1035,
-  "matched": 893,
-  "unmatched": 238,
-  "match_L1": 123,
+  "symbols": 1041,
+  "matched": 896,
+  "unmatched": 241,
+  "match_L1": 125,
   "match_L1_semantic": 8,
-  "partial": 660,
+  "partial": 661,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
@@ -35,7 +35,7 @@
   "reloc_unresolved": 5191,
   "rsite_total": 6853,
   "rsite_unaligned": 6470,
-  "l1_bytes": 5298,
+  "l1_bytes": 5318,
   "l1_hidden_reloc_bytes": 1124,
   "l1_reloc_covered_bytes": 1532,
   "rsite_ok": 56,
@@ -3022,6 +3022,15 @@
    "size": 122
   },
   {
+   "file": "pal3/src/Misc/Iostream_init.cpp",
+   "symbol": "??0Iostream_init@@QAE@XZ",
+   "name": "Iostream_init::Iostream_init(void)",
+   "va": "0x00408BC0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 3
+  },
+  {
    "file": "pal3/src/Misc/JusticeBookUI.cpp",
    "symbol": "?Destroy@JusticeBookUI@@UAEXH@Z",
    "name": "JusticeBookUI::Destroy",
@@ -5920,6 +5929,15 @@
    "size": 211
   },
   {
+   "file": "pal3/src/Misc/exception.cpp",
+   "symbol": "??0exception@@QAE@XZ",
+   "name": "exception::exception(void)",
+   "va": "0x00408930",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 17
+  },
+  {
    "file": "pal3/src/Misc/gbLightObj.cpp",
    "symbol": "??1gbLightObj@@UAE@XZ",
    "name": "gbLightObj::~gbLightObj(void)",
@@ -5972,6 +5990,15 @@
    "status": "partial",
    "match_pct": 4.7,
    "size": 317
+  },
+  {
+   "file": "pal3/src/Misc/gbVec3D.cpp",
+   "symbol": "?Copy@gbVec3D@@QAEPAU1@HPAU1@@Z",
+   "name": "gbVec3D::Copy(int,gbVec3D *)",
+   "va": "0x0042FD40",
+   "status": "partial",
+   "match_pct": 8.8,
+   "size": 34
   },
   {
    "file": "pal3/src/Misc/s_RoleState.cpp",
@@ -7512,6 +7539,11 @@
    8
   ],
   [
+   "Iostream_init::Iostream_init(void)",
+   4230080,
+   3
+  ],
+  [
    "JusticeBookUI::`scalar deleting destructor'(uint)",
    5407936,
    30
@@ -7850,6 +7882,11 @@
    "_Console::SetActive(int)",
    4309360,
    32
+  ],
+  [
+   "exception::exception(void)",
+   4229424,
+   17
   ],
   [
    "gbLightObj::IsIdle(void)",

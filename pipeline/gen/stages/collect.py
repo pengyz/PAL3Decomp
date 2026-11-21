@@ -110,6 +110,24 @@ def _get_skip_classes():
                 # should not suppress the whole class -- they're individual stubs.
                 if '::' not in name and name.startswith('j_'):
                     skip.add(name[2:])
+    # [注解优先 20261122] gbengine 头自动侦测的 out-of-domain 判定让位于注解层——
+    #   structs/<Cls>.json 已注册(含 methods)的类 = PAL3 域内(数据层唯一真值)。
+    #   CPK 案: 头在 include/gbengine/ 但 vtable(0x570A04)/方法体全在 PAL3 .text
+    #   (探针实证) ⇒ 头共享实现本地, 自动侦测过判 ⇒ CPK 全类方法从未发射。
+    import glob as _g2
+    import json as _j2
+    import os as _os2
+    _ann_dir = _os2.path.join(_os2.path.dirname(_os2.path.dirname(
+        _os2.path.dirname(_os2.path.dirname(_os2.path.abspath(__file__))))),
+        'data', 'annotations', 'structs')
+    for _ap in _g2.glob(_os2.path.join(_ann_dir, '*.json')):
+        try:
+            _dsk = _j2.load(open(_ap, encoding='utf-8'))
+        except Exception:
+            continue
+        _cn = _dsk.get('name') or _os2.basename(_ap)[:-5]
+        if _dsk.get('methods'):
+            skip.discard(_cn)
     return skip
 
 

@@ -1167,3 +1167,4 @@
 | `CCBUICtrl::CreateButton` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, int, CCBUICtrl *, _DWORD, int, _DWORD))(*(_DWORD *)&(*v12)->UIWnd + 28))( *v12, *v11, parent, this, 0, 1, 0)` |
 | `CCBUICtrl::LineMove` | inline | `int` | 28 | non_class_hint | `(*(int ( **)(int, POINT *, int, CCBUICtrl *, int, _DWORD))(*(_DWORD *)v5 + 28))( v5, pEnd, v10, this, v11, 0)` |
 | `CCBUICtrl::AddTask` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, tagUITask *, CCBUICtrl *, _DWORD, int, _DWORD))(*(_DWORD *)&(*todo_4C)->UIWnd + 28))( *todo_4C, *v6, pTask, this, 0, 1, 0)` |
+| `filebuf::~filebuf` | inline | `_DWORD` | 20 | non_class_hint | `(*(void (**)(_DWORD, int))(*(_DWORD *)LODWORD(g_fGameSpeed) + 20))(LODWORD(g_fGameSpeed), 1)` |
