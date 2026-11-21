@@ -289,7 +289,7 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
 WARN: N15[advisory普查]: 1个有vtable类无ctor证据=伪造候选(身份案队列): SkillUI
-WARN: REF:gen 树(1795210479)早于最新注解(1795210932)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795211123)早于最新注解(1795224851)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N13b:CCBUI::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
@@ -343,9 +343,7 @@ FROZEN: CANON:C7:CCBPanelSlot:0x00445b90:own CCBPanelSlot 自有槽 slot0 addr=0
 FROZEN: CANON:C7:CCBPanelSlot:0x00445d10:own CCBPanelSlot 自有槽 slot0 addr=0x00445d10 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
 FROZEN: CANON:C7:RenderTarget:0x00445b90:own RenderTarget 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
 FROZEN: CANON:C7:RenderTarget:0x00445e70:own RenderTarget 自有槽 slot0 addr=0x00445e70 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
-FROZEN: CANON:C9:CCBUI:0x00519660:sig CCBUI Update 签名与基类不一致: return_type: signed __int32 vs BOOL; param[0]: int vs CCBUI * *; 本=signed __int32 __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费
 FROZEN: CANON:C9:RoleSystem:0x004209e0:name RoleSystem slot6 名字与基类不一致: 本=ResetState(004209e0) 基=OnMessage(00445d10) → 折叠载体名≠链律名, 语义名需定谳
-FROZEN: CANON:C9:SkillUI:0x00526740:sig SkillUI Update 签名与基类不一致: return_type: int vs BOOL; param[0]: int vs CCBUI * *; 本=int __thiscall(int, int) 基=BOOL __thiscall(CCBUI ** deltatime, int) → C2555前置; 取证=两侧函数体出口eax+调用点消费
 FROZEN: CANON:C9:UIEmote:0x0044ab00:name UIEmote slot1 名字与基类不一致: 本=GetType(0044ab00) 基=Render(00445cd0) → 折叠载体名≠链律名, 语义名需定谳
 FROZEN: CANON:C9:UIEmote:0x0044e980:name UIEmote slot5 名字与基类不一致: 本=OnVisible(0044e980) 基=~UIWnd(00445b20) → 折叠载体名≠链律名, 语义名需定谳
 FROZEN: CANON:C9:UIEmote:0x0044eb40:name UIEmote slot0 名字与基类不一致: 本=Reset(0044eb40) 基=ShowClipped(00445e70) → 折叠载体名≠链律名, 语义名需定谳
@@ -354,7 +352,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 18 frozen(advisory), 336 warnings — PASS
+0 new errors + 16 frozen(advisory), 336 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] PASS：113 个有 vtables 的类，生成头 +0x0 都有 vptr

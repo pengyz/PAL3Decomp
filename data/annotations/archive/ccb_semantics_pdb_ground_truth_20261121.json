@@ -21,10 +21,11 @@
    "CCBSystem size=90840: 39成员舞台总管(m_pUI/m_pStage/m_pAttackSequen/m_pRoleState/m_pAI/m_pEditor...)",
    "CCBAttackSequen size=500: m_Sequen=tagAttackSequen[11]+m_eLockFlag[11]"
   ],
-  "size_arithmetic": "PAL3A CCBUI 3552 - PAL3A m_Task[32](2304) + PAL3 m_Task[19](1368) = 2616+16 = PAL3 class-2 2632 ✓(19/32=两代任务槽差)"
+  "size_arithmetic": "PAL3A CCBUI 3552 - PAL3A m_Task[32](2304) + PAL3 m_Task[19](1368) = 2616+16 = PAL3 class-2 2632 ✓(19/32=两代任务槽差)",
+  "_status": "参考级(非真值)——参数名/成员名/mangle可作候选与线索, 不可作归属裁决"
  },
  "attribution_overturn": {
-  "verdict": "0x5704A8类(2632B)=CCBUI真身; 0x5704C8类(116B)≠CCBUI(真名悬空)",
+  "verdict": "降级20261121(用户裁定PDB仅参考非真值): 0x5704A8类=CCBUI为PDB参考指向(非定谳)——PAL3A-PDB描述另一二进制, 拿它裁PAL3身份=name-pass同款错误; 命名悬置待PAL3二进制证据",
   "decisive": [
    "ctor单参匹配: CCBUI::CCBUI(CCBSystem*) ↔ 0x5160a0 retn 4 + 分配点CCBSystem::ProcNormalAttack传this",
    "PAL3A-CCBUI成员表↔57成员集逐位吻合(0x516xxx族访问m_pSkillWindow@1160等)",
@@ -32,7 +33,13 @@
   ],
   "wrong_today": "四路拆分(6c872f442)把0x5704A8表+0x516xxx族23方法+57成员+2632锚判给CCBProtectWindow=名字配反",
   "a_identity": "0x5704C8(116B): nimbus家族(CreateImbibeNimbus/SetNimbus/WriteNimbusToPlayerMgr=PAL3A记CCBUI名下)+ClearAttackSequence(PAL3独有,PAL3A-PDB无)——PAL3重构新类, 真名待定(候选: PAL3版保护窗待裁)",
-  "transfer_pass_reveal": "原始name-pass=PAL3A符号→PAL3地址转移器(部分对齐部分错位)——IDB mangle显示名不可当独立证据(循环)"
+  "transfer_pass_reveal": "原始name-pass=PAL3A符号→PAL3地址转移器(部分对齐部分错位)——IDB mangle显示名不可当独立证据(循环)",
+  "status": "命名悬置(功能分组维持二进制定谳: ctor邻接/disp谱/分配锚)"
  },
- "next_battle": "重转移战役: 0x5704A8表+0x516xxx族+57成员+2632锚从CCBProtectWindow.json回归CCBUI.json; A(0x5704C8)改挂待定名; CCBProtectWindow回归6成员真身(其PAL3表/dtor重裁); 全链验证"
+ "next_battle": "重转移战役: 0x5704A8表+0x516xxx族+57成员+2632锚从CCBProtectWindow.json回归CCBUI.json; A(0x5704C8)改挂待定名; CCBProtectWindow回归6成员真身(其PAL3表/dtor重裁); 全链验证",
+ "slot2_family_truth": {
+  "binary_verdict": "0x445c60本体99B体定谳(20261121): retn 8(2参)+setz al(BOOL返回)+[this+0x24]子数组遍历count[this+0x28]逐个call [edx+8]子slot2派发聚合——UIWnd::Update=子树Update聚合器",
+  "param_truth": "param0体内从不解引用(纯转发)——CCBUI**=name-pass编造; PDB float dertatime=参考; 二进制仅钉死2参+BOOL返回, 参数类型不可从基体定",
+  "family_cleanup": "51条Update的param0 CCBUI**编造类型全库清根(基1+A1+SkillUI1+族48); A/SkillUI return→BOOL(体直证: call基直通/mov eax,1); 冤案冻结2条清除(32→30)"
+ }
 }

@@ -155,8 +155,8 @@
     "cc": "thiscall",
     "params": [
      {
-      "type": "CCBUI **",
-      "name": "deltatime"
+      "type": "int",
+      "name": null
      },
      {
       "type": "int",
@@ -166,7 +166,7 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal1,a3)铁证; 原名ProcessInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
    "flags": [
     "override"
    ],
