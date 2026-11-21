@@ -110,5 +110,17 @@
   "UITitle_BBTY",
   "UITitle_YXXX"
  ],
- "procedure": "逐类: ①摘完全形排除孪生 ②删除式(slot5)置declaration_only ③完全形摘declaration_only ④全链(apply导出新体→stage1 4d剥→codegen) ⑤单元读数验证"
+ "procedure": "逐类: ①摘完全形排除孪生 ②删除式(slot5)置declaration_only ③完全形摘declaration_only ④全链(apply导出新体→stage1 4d剥→codegen) ⑤单元读数验证",
+ "uiemote_identity_battle_20261121": {
+  "_doc": "UIEmote 身份战役发现登记(T4-P2并户调研升级为专项)",
+  "findings": [
+   "UIEmote 删除式 dtor 0x44e5c0 基析构调用=??1scScriptInstance → UIEmote 派生 scScriptInstance(其派生UIWnd)",
+   "注册 bases=[UIWnd,GameObject] 缺 scScriptInstance 中间层(C11 需裁决)",
+   "0x44e980 唯一引用=0x56b050=scScriptInstance 表 slot2(表头slot0=ShowClipped/slot1=Render可证)——是 scScriptInstance 自己的虚函数(可见性查询: 读[this+0x38]), 非 UIEmote slot5",
+   "注册表\"UIEmote slot5=0x44e980\"=跨类错挂; C9 frozen(对比基~UIWnd)=双重误导的误报",
+   "slot5(0x44e980) 语义=可见性查询(int retn 8 二参), \"OnVisible\"名可能语义正确但归属 scScriptInstance"
+  ],
+  "battle_scope": "UIEmote bases 纠正(+scScriptInstance C11裁决) + 表重审(slot5归属) + dtor对重建(0x44e5c0删除式decl_only+完全形寻址)",
+  "status": "挂账(专项战役, 非卫生项)"
+ }
 }
