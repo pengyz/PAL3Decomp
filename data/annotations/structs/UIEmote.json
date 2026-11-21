@@ -13,7 +13,7 @@
    "type": "UIAnimateCtrl[13]",
    "source": "annotation",
    "evidence_level": "unverified",
-   "name_note": " | 20261121体观察(挂账): ctor 0x44e530 eh vector ctor@0x44e57d(count=0xD=13, elem=0xA4=164B, 回调=PalScript名函数@0x44e563/68)——回调名与UIAnimateCtrl[13]矛盾: IDB回调名可能=转移错位(UIAnimateCtrl真步进=164与m_field...邻接吻合待验), 或旧注册UIAnimateCtrl[13]错; 真元素类型待定谳"
+   "name_note": " | 20261121体观察(挂账): ctor 0x44e530 eh vector ctor@0x44e57d(count=0xD=13, elem=0xA4=164B, 回调=PalScript名函数@0x44e563/68)——回调名与UIAnimateCtrl[13]矛盾: IDB回调名可能=转移错位(UIAnimateCtrl真步进=164与m_field...邻接吻合待验), 或旧注册UIAnimateCtrl[13]错; 真元素类型待定谳 | 矛盾解消20261121(ICF折叠实锤): ??0PalScript@0x43a160真ctor体=ZeroInitSelf68(清零68B=self)+写stru_56AC4C(PalScript自有6槽族表)——PalScript=68B基类; stride 164=UIAnimateCtrl binary_size精确一致→元素=UIAnimateCtrl(164B=PalScript68B基+96B派生); 回调PalScript名=ICF折叠(UIAnimateCtrl无额外构造行为→元素构造体与基ctor同体折叠); 引用者互证: CCBUIPanel/SaleUI ctor亦引用同函数(多PalScript派生类共享折叠基构造)"
   },
   "0x8a4": {
    "name": "m_role",
