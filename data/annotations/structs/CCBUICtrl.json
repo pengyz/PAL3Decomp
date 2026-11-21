@@ -932,7 +932,7 @@
    }
   },
   "0x00519380": {
-   "name": "Release",
+   "name": "~CCBUICtrl",
    "source": "batch:sub_fix_from_decomp_this_type",
    "evidence_level": "unverified",
    "sig_model": {
@@ -941,7 +941,12 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | C8源模型修正20261121: 正名~CCBUICtrl(原Release=完全形假名)",
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "C8源模型修正20261121: 完全dtor=源析构定义源(体: ClearAttackSequence+~UIListBox基析构); IDB名Release=假名已正名"
   },
   "0x004ea6d0": {
    "name": "DlgProcEffect_a6d0",
@@ -1274,8 +1279,8 @@
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x0043de40(UIListBox) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
   "0x00519360": {
-   "name": "~CCBUI",
-   "name_note": "G2条目补齐(0x5704C8真7槽): 体: Release后ShowLineupWindow装配 | C9sig基锚定20261117→void __thiscall()(基=UIListBox) | C9name定谳20261117→~CCBUI: dtor破案20261117: 语料名ShowLineupWindow(UIWnd*,char)=(this,char flags)删除式dtor ABI形; 0x519360/0x519380=删除式/complete对(UIWnd 0x445b20/0x445b40同模式); slot5=dtor位结构一致性要求此名; 原名ShowLineupWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥)",
+   "name": "~CCBUICtrl",
+   "name_note": "G2条目补齐(0x5704C8真7槽): 体: Release后ShowLineupWindow装配 | C9sig基锚定20261117→void __thiscall()(基=UIListBox) | C9name定谳20261117→~CCBUI: dtor破案20261117: 语料名ShowLineupWindow(UIWnd*,char)=(this,char flags)删除式dtor ABI形; 0x519360/0x519380=删除式/complete对(UIWnd 0x445b20/0x445b40同模式); slot5=dtor位结构一致性要求此名; 原名ShowLineupWindow留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥) | C8源模型修正20261121: 删除式形=编译器产物→declaration_only; 定义源=完全形0x00519380 | 名随类正名20261121: ~CCBUI→~CCBUICtrl(换牌后漏改; C8家族键对齐)",
    "sig_model": {
     "return": "void *",
     "cc": "thiscall",
@@ -1293,7 +1298,8 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~CCBUI(??1/??_G析构族); decomp文件=CCBResultWindow_ShowLineupWindowUIWnd_00519360 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
+   "flags_evidence": "IDA名字形态=~CCBUI(??1/??_G析构族); decomp文件=CCBResultWindow_ShowLineupWindowUIWnd_00519360 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+   "declaration_only": true
   },
   "0x005195e0": {
    "name": "OnMessage",
@@ -1355,7 +1361,7 @@
     },
     {
      "addr": "0x00519360",
-     "name": "~CCBUI"
+     "name": "~CCBUICtrl"
     },
     {
      "addr": "0x005195e0",
@@ -1372,7 +1378,7 @@
   }
  ],
  "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留 | binary_size修正20261121(L1金标准): 2648→100572——完全dtor(0x525540, IDB名InitShopUI换位artifact)体析构序列最大LEA偏移直证0x188DC(UIRoleDialog成员)+体尾=100572; 旧2648=ida_structs早期导出残留(与dtor偏移差40倍——CCBUI=~100KB复合UI类, 内嵌~20个UI窗口成员: UIFrameContainer×15+/UIScene数组×5/UIRoleDialog×2/PalScript×3/UIPushButton×2/UICaption/UITextArea/UIButton等——dtor析构序列全图=成员布局金标准, 逐成员offset→class对已提取归档) | 身份定谳20261121(A/B双类): 本类(0x5704C8表)=116B小类——分配硬锚0x74; 完全dtor=0x519380(删除式0x519360 slot5→调它); 零内嵌析构. 0x525540(InitShopUI)=B类(0x5706CC表,100572B混居池复合体)完全dtor, 已退赔——binary_size=100572/25成员布局图/m_Task池研究(placement-new租户)全部实为B的取证, 归档 archive/ccbui_identity_adjudication_20261121.json 待B注册后回迁. 成员retire 53条(几何不可能); 保留<116的['0x48', '0x4c', '0x50', '0x68']条待方法disp访问重推导. CCBUI名字归属(A vs B)挂账: 需corpus/调用流证据. | 补刀20261121: known_members[0x68] m_pAttackSequenFace UIStatic*[11]@104 末端148>116 退赔(类型算术, size字段缺失漏网) | 四路拆分20261121: 本类(0x5704C8表)=116B战斗板控制器——保留 ctor 0x519310/dtor对 0x519360+0x519380/表槽 Update+OnMessage/ClearAttackSequence/nimbus族/小disp族; 0x516xxx族+57成员集归 CCBProtectWindow(表0x5704A8/2632B, 其ctor=0x5160a0写表+this+0x488直证); 0x5257b0/0x526660/0x526740=B类(0x5706CC表/~100572B池复合体)槽函数, 退役挂账待B注册; Update/OnMessage 的 disp≤1160=[this+0x20]->+0x488 成员指针中介(非this直访), A自洽 | 退役20261121: 0x51b810 ~CCBParabolaWindow(伪dtor形名于A+零表引/零call引→C2084根因; 体disp证据[+0x5C/+0x60..0x74六指针槽]留档归档供成员重推导) | 成员图闭合20261121: this直访disp普查(基址寄存器跟踪, 18函数)——11连续指针槽0x48..0x70(ClearAttackSequence×11/HideAll×11全走查; SetNimbus 0x4C..0x70跳0x48); 算术闭合72(基)+44=116=分配锚0x74 双锚一致; 0x51b810退役函数体disp证据(+0x5C/+0x60..0x74)与图吻合 | 换牌20261121: 本文件名CCBUICtrl(原CCBUI名让位于战斗界面装配总管=0x5704A8类, 语义+PDB参考收敛); 本类语义角色=控制窗条目构建+五灵驱动(见_naming_note) | 槽正名20261121: slot0=ShowClipped/slot4=Create(基继承规范位)",
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留 | binary_size修正20261121(L1金标准): 2648→100572——完全dtor(0x525540, IDB名InitShopUI换位artifact)体析构序列最大LEA偏移直证0x188DC(UIRoleDialog成员)+体尾=100572; 旧2648=ida_structs早期导出残留(与dtor偏移差40倍——CCBUI=~100KB复合UI类, 内嵌~20个UI窗口成员: UIFrameContainer×15+/UIScene数组×5/UIRoleDialog×2/PalScript×3/UIPushButton×2/UICaption/UITextArea/UIButton等——dtor析构序列全图=成员布局金标准, 逐成员offset→class对已提取归档) | 身份定谳20261121(A/B双类): 本类(0x5704C8表)=116B小类——分配硬锚0x74; 完全dtor=0x519380(删除式0x519360 slot5→调它); 零内嵌析构. 0x525540(InitShopUI)=B类(0x5706CC表,100572B混居池复合体)完全dtor, 已退赔——binary_size=100572/25成员布局图/m_Task池研究(placement-new租户)全部实为B的取证, 归档 archive/ccbui_identity_adjudication_20261121.json 待B注册后回迁. 成员retire 53条(几何不可能); 保留<116的['0x48', '0x4c', '0x50', '0x68']条待方法disp访问重推导. CCBUI名字归属(A vs B)挂账: 需corpus/调用流证据. | 补刀20261121: known_members[0x68] m_pAttackSequenFace UIStatic*[11]@104 末端148>116 退赔(类型算术, size字段缺失漏网) | 四路拆分20261121: 本类(0x5704C8表)=116B战斗板控制器——保留 ctor 0x519310/dtor对 0x519360+0x519380/表槽 Update+OnMessage/ClearAttackSequence/nimbus族/小disp族; 0x516xxx族+57成员集归 CCBProtectWindow(表0x5704A8/2632B, 其ctor=0x5160a0写表+this+0x488直证); 0x5257b0/0x526660/0x526740=B类(0x5706CC表/~100572B池复合体)槽函数, 退役挂账待B注册; Update/OnMessage 的 disp≤1160=[this+0x20]->+0x488 成员指针中介(非this直访), A自洽 | 退役20261121: 0x51b810 ~CCBParabolaWindow(伪dtor形名于A+零表引/零call引→C2084根因; 体disp证据[+0x5C/+0x60..0x74六指针槽]留档归档供成员重推导) | 成员图闭合20261121: this直访disp普查(基址寄存器跟踪, 18函数)——11连续指针槽0x48..0x70(ClearAttackSequence×11/HideAll×11全走查; SetNimbus 0x4C..0x70跳0x48); 算术闭合72(基)+44=116=分配锚0x74 双锚一致; 0x51b810退役函数体disp证据(+0x5C/+0x60..0x74)与图吻合 | 换牌20261121: 本文件名CCBUICtrl(原CCBUI名让位于战斗界面装配总管=0x5704A8类, 语义+PDB参考收敛); 本类语义角色=控制窗条目构建+五灵驱动(见_naming_note) | 槽正名20261121: slot0=ShowClipped/slot4=Create(基继承规范位) | C8源模型修正20261121: dtor对翻转——删除式0x00519360→decl_only, 完全形0x00519380→定义源",
  "size_evidence": "双锚一致20261121: ①分配硬锚 push 74h@0x51ccfb→operator new→ctor 0x519310; ②算术闭合 base 72 + 11指针槽(0x48..0x70)×4 = 116",
  "_naming_note": "类名标签 \"CCBUICtrl\" = 假设标签+非权威声明(20261121换牌): 语义角色=战斗控制窗条目构建(AddTask/CreateButton: UIListBox选中项→UIPushButton模板+现场构造CCBControlWindow+scrollbar资源)+五灵法阵脚本流(CreateImbibeNimbus/SetNimbusToNimbusControl→OpenScript@PalScript/WriteNimbusToPlayerMgr写回PlayerMgr)+攻击序列状态(Clear/Count)+动画(GravityDown/LineMove); 真名待符号源。参考线: PAL3A-PDB记nimbus族为CCBUI方法(PAL3可能重构拆出——不可裁)。类身份二进制定谳: 表0x5704C8+分配0x74@0x51ccfb+dtor对0x519360(slot5)/0x519380+11槽成员图72+44=116"
 }

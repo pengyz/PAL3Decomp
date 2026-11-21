@@ -331,6 +331,30 @@ def run(code, ctx):
             if pre_end > pre_start:
                 edits.append((pre_start, pre_end, b''))
 
+    # 4d. [C8 源模型修正 2026-11-21] 隐式析构剥离（非删除式 dtor 定义）:
+    #   源模型唯一析构体=仅用户代码——hexrays 渲染的显式析构调用
+    #   (this->基::~基() / 成员 dtor 渲染 / ??_M 向量析构迭代器) 全为编译器
+    #   隐式再生物: 保留在源=双重析构(字节+语义双错, UISceneMap/CCBUICtrl
+    #   案实证)。删除判据: 语句为纯析构调用(整句 expression_statement 且
+    #   callee 含 '::~~' 形或 ??_M 族)。用户代码调用(ClearAttackSequence/
+    #   Reset 等)不受影响。删除式形(decl_only)不发射无需此剥。
+    if ctx.is_dtor and not _is_del_dtor:
+        _body_node = func_def.child_by_field_name('body')
+        if _body_node is not None:
+            for _st in _body_node.children:
+                if _st.type != 'expression_statement':
+                    continue
+                _t = _st.text.decode('utf-8')
+                _is_dtor_call = (('::~' in _t and re.search(r'~\w+\s*\(', _t))
+                                 or _t.lstrip().startswith('??_M'))
+                if _is_dtor_call:
+                    _s = _st.start_byte
+                    while _s > 0 and code_bytes[_s-1:_s] in (b' ', b'\t'):
+                        _s -= 1
+                    if _s > 0 and code_bytes[_s-1:_s] == b'\n':
+                        _s -= 1
+                    edits.append((_s, _st.end_byte, b''))
+
     # Apply edits in reverse order
     result = code_bytes
     for start, end, replacement in sorted(edits, reverse=True):

@@ -14,7 +14,6 @@
    "name": "~WeatherEffectNode",
    "source": "[vtable IMPOSSIBLE 族 2026-10-17 analyzer 证据账目制] A 级：删际析构（11 槽尾视图=gbLightObj+weather 基）",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -26,7 +25,8 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
+   "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+   "name_note": "; 摘declaration_only(本形=定义源)"
   },
   "0x00405580": {
    "name": "~WeatherEffectNode",
@@ -311,7 +311,9 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "[A 级 mangle 2026-11-19] ??1WeatherEffectNode@@QAE@PAVgbGeomNode@@D@Z = deleting dtor (PAVgbGeomNode@@D = gbGeomNode*,char flags 形参); 31B stub: call gbGeomNode::~gbGeomNode + test (*(_BYTE*)&Block&1) + operator delete(this) + return this = 织入物全谱; stage1 4c 剥离后发 ~WeatherEffectNode() 源级形"
+   "flags_evidence": "[A 级 mangle 2026-11-19] ??1WeatherEffectNode@@QAE@PAVgbGeomNode@@D@Z = deleting dtor (PAVgbGeomNode@@D = gbGeomNode*,char flags 形参); 31B stub: call gbGeomNode::~gbGeomNode + test (*(_BYTE*)&Block&1) + operator delete(this) + return this = 织入物全谱; stage1 4c 剥离后发 ~WeatherEffectNode() 源级形",
+   "declaration_only": true,
+   "name_note": " | C8源模型修正20261121: 删除式形=编译器产物→declaration_only; 定义源=完全形0x00405310"
   }
  },
  "vtables": [
@@ -509,5 +511,6 @@
   }
  ],
  "_size_note": "bs=8 几何最小界（主 vptr）；MI 子对象区真身锚（new/memset 跨度）挂账",
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
+ "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00404d40→decl_only, 完全形0x00405310→定义源"
 }

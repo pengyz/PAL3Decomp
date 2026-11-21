@@ -111,7 +111,8 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_0070(??1/??_G析构族); decomp文件=UISceneMap_`scalar_deleting_destructoruint_00450070 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_0070(??1/??_G析构族); decomp文件=UISceneMap_`scalar_deleting_destructoruint_00450070 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+   "name_note": " | C8源模型修正20261121: 删除式形=编译器产物→declaration_only(VC6自virtual ~X()再生); 定义源=完全形0x00450090(体织入由stage1剥)"
   },
   "0x00451200": {
    "name": "LoadCompass",
@@ -392,5 +393,6 @@
    "offset": 0
   }
  ],
- "bases_note": "; [疑点] 表slot3=0x408bd0(无操作ret)∉UIWnd槽——存在中间基X(其slot3=no-op), X身份待定谳"
+ "bases_note": "; [疑点] 表slot3=0x408bd0(无操作ret)∉UIWnd槽——存在中间基X(其slot3=no-op), X身份待定谳",
+ "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00450070→declaration_only, 完全形0x00450090→定义源(体织入stage1剥)"
 }

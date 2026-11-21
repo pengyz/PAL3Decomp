@@ -375,8 +375,7 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor(??1/??_G析构族); decomp文件=CCBProtectWindow_`scalar_deleting_destructoruint_00516120 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "declaration_only": true,
-   "name_note": " | 换牌正名20261121: ~CCBProtectWindow→~CCBUI"
+   "name_note": " | 换牌正名20261121: ~CCBProtectWindow→~CCBUI; 摘declaration_only(本形=定义源)"
   },
   "0x00518e30": {
    "name": "Update",
@@ -422,7 +421,8 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_6100(??1/??_G析构族); decomp文件=CCBProtectWindow_`scalar_deleting_destructoruint_00516100 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
-   "name_note": " | 换牌正名20261121: ~CCBProtectWindow→~CCBUI(类名随语义换牌); sig裸形化(源模型dtor无参无返回——(this,flags)删除ABI=编译器层; 旧void*(char)=IDA删除式渲染形)"
+   "name_note": " | 换牌正名20261121: ~CCBProtectWindow→~CCBUI(类名随语义换牌); sig裸形化(源模型dtor无参无返回——(this,flags)删除ABI=编译器层; 旧void*(char)=IDA删除式渲染形) | C8源模型修正20261121: 删除式形=编译器产物→declaration_only(VC6自virtual ~X()再生); 定义源=完全形0x00516120(体织入由stage1剥)",
+   "declaration_only": true
   },
   "0x0043d7a0": {
    "name": "OnMessage",
@@ -881,7 +881,7 @@
    "offset": 0
   }
  ],
- "note": " | 身份修正20261121: 0x5160a0=本类真实ctor(写表0x5704A8+this+0x488成员写入直证)——原注册ctor 0x51d6e0 与本ctor双ctor并存待裁; 0x516xxx~0x5192ff族23方法+52成员自CCBUI迁入(旧\"CCBUI\"注册=四路混血: 本类/A116B(0x5704C8)/B~100572B(0x5706CC)/编辑器DlgProc族); m_Task=tagUITask[19]@0x4b8 几何有效(→2576≤2632), 旧CCBTaskSlot[18]闭合2648系循环论证; 本类 binary_size=2632 待分配点硬锚 | 退役20261121: 0x0051d6e0 (读.rdata浮点dword_5705B0存全局dword_17AD59C——数据getter, 非ctor(零this使用/零vtable写/零call)) | 退役20261121: 0x0051d6f0 (jmp 0x51d700 跳转桩——非dtor) | 退役20261121: 0x0051d700 (fld dword_5705B0 / fadd st,st / fstp flt_17AD598——浮点乘二helper, 非Reset(name-pass误标; 真Reset=0x5177b0 671B战斗面板重建体)) | 分配锚20261121: 0xA48=2632硬锚@0x51269a(ProcNormalAttack分配本类) | 换牌20261121: 名CCBUI落地(三线收敛, 见_naming_note); bases修正UIListBox(完全dtor 0x516120尾call ??1UIListBox@0x51615a体证, 旧UIFrameWnd=legacy误标) | 换牌20261121: ValidateSlot@0x449be0留CCBProtectWindow残段(无类证据, 原注册惯性)",
+ "note": " | 身份修正20261121: 0x5160a0=本类真实ctor(写表0x5704A8+this+0x488成员写入直证)——原注册ctor 0x51d6e0 与本ctor双ctor并存待裁; 0x516xxx~0x5192ff族23方法+52成员自CCBUI迁入(旧\"CCBUI\"注册=四路混血: 本类/A116B(0x5704C8)/B~100572B(0x5706CC)/编辑器DlgProc族); m_Task=tagUITask[19]@0x4b8 几何有效(→2576≤2632), 旧CCBTaskSlot[18]闭合2648系循环论证; 本类 binary_size=2632 待分配点硬锚 | 退役20261121: 0x0051d6e0 (读.rdata浮点dword_5705B0存全局dword_17AD59C——数据getter, 非ctor(零this使用/零vtable写/零call)) | 退役20261121: 0x0051d6f0 (jmp 0x51d700 跳转桩——非dtor) | 退役20261121: 0x0051d700 (fld dword_5705B0 / fadd st,st / fstp flt_17AD598——浮点乘二helper, 非Reset(name-pass误标; 真Reset=0x5177b0 671B战斗面板重建体)) | 分配锚20261121: 0xA48=2632硬锚@0x51269a(ProcNormalAttack分配本类) | 换牌20261121: 名CCBUI落地(三线收敛, 见_naming_note); bases修正UIListBox(完全dtor 0x516120尾call ??1UIListBox@0x51615a体证, 旧UIFrameWnd=legacy误标) | 换牌20261121: ValidateSlot@0x449be0留CCBProtectWindow残段(无类证据, 原注册惯性) | C8源模型修正20261121: dtor对翻转——删除式0x00516100→declaration_only, 完全形0x00516120→定义源(体织入stage1剥)",
  "size_evidence": "分配硬锚20261121: push 0A48h(=2632)@0x51269a→operator new→ctor 0x5160a0@0x5126bb (CCBSystem::ProcNormalAttack内)——注册值2632精确命中; m_Task=tagUITask[19]@0x4b8→2576≤2632几何自洽",
  "_naming_note": "类名标签 \"CCBUI\" 落定20261121(语义+参考三线收敛, 换牌自CCBProtectWindow): 线1 PAL3函数语义=战斗界面装配总管(调用图建齐控制窗/攻击序列/战地属性/物品/仙术/技能/布阵/保护/战果/五灵/AI各子窗+五主角InitRoleDisplay串\"Jingtian/Xuejian/Longkui/Zixuan/Changqing\"∈PAL3本体+胜负流程); 线2 PAL3本体串 D:\\Project\\PAL3\\Combat\\CBUI.cpp; 线3 PAL3A-PDB参考: CCBUI成员表≡本类57成员集+CCBUI::CCBUI(CCBSystem*)单参↔ctor 0x5160a0 retn4+分配点ProcNormalAttack传this。类身份二进制定谳: 表0x5704A8+分配0xA48@0x51269a+dtor对0x516100(slot5)/0x516120+57成员访问谱。旧名CCBProtectWindow=name-pass槽标签误导(0x518b30等同族函数标签噪声)"
 }
