@@ -15,6 +15,90 @@ _lang = tree_sitter.Language(tscpp.language())
 _parser = tree_sitter.Parser(_lang)
 
 
+def _has_string_literal(node):
+    """[T4-P2 守卫] 调用内含 string_literal → 不剥(字面量 '::~~' 形假阳)。"""
+    if node.type == 'string_literal':
+        return True
+    return any(_has_string_literal(c) for c in node.children)
+
+
+def _callee_is_dtor_call(call_node):
+    """callee 是否析构调用: function 文本含 '::~~' 形, 或 ??_M 族
+    (向量析构迭代器——tree-sitter 对 ?? 开头可能解析失败, 文本兜底)。"""
+    fn = call_node.child_by_field_name('function')
+    if fn is None:
+        t = call_node.text.decode('utf-8', 'replace')
+        return t.lstrip().startswith('??_M')
+    ftext = fn.text.decode('utf-8', 'replace')
+    # 注意: function 字段文本不含调用括号(括号属 call 层)——拼 '(' 适配尾部判定
+    return ('::~' in ftext and re.search(r'~\w+\s*\(', ftext + '(')) or ftext.startswith('??_M')
+
+
+def _stmt_span(stmt, code_bytes):
+    """语句删除 span: 并吞前导空白/换行。"""
+    _s = stmt.start_byte
+    while _s > 0 and code_bytes[_s - 1:_s] in (b' ', b'\t'):
+        _s -= 1
+    if _s > 0 and code_bytes[_s - 1:_s] == b'\n':
+        _s -= 1
+    return (_s, stmt.end_byte)
+
+
+def _dtor_implicit_strip_spans(body_node, code_bytes):
+    """[C8 4d 纯函数] dtor 定义体的隐式析构剥离 span 集合(供单测)。
+
+    形状守卫(T4-P2): ①整句剥仅限 单一直接析构调用; ②调用内含 string_literal
+    不剥; ③逗号表达式=部分剥(析构部分+相邻逗号, 用户码保留); ④ERROR 节点
+    ??_M 开头文本兜底剥。用户码调用(Reset/ClearAttackSequence 等)永不剥。
+    """
+    spans = []
+    for stmt in body_node.children:
+        if stmt.type == 'ERROR':
+            # ??_M 形跨双节点: ERROR('??') + declaration(余行含';')——span 并入下一兄弟
+            t = stmt.text.decode('utf-8', 'replace')
+            if t.lstrip().startswith('??'):
+                _s, _e = stmt.start_byte, stmt.end_byte
+                nxt = stmt.next_sibling
+                if nxt is not None and nxt.type == 'declaration':
+                    _e = nxt.end_byte
+                _ws = _s
+                while _ws > 0 and code_bytes[_ws - 1:_ws] in (b' ', b'\t'):
+                    _ws -= 1
+                if _ws > 0 and code_bytes[_ws - 1:_ws] == b'\n':
+                    _ws -= 1
+                spans.append((_ws, _e))
+            continue
+        if stmt.type != 'expression_statement':
+            continue
+        exprs = [c for c in stmt.children if c.type != ';']
+        if len(exprs) == 1 and exprs[0].type == 'call_expression':
+            call = exprs[0]
+            if _callee_is_dtor_call(call) and not _has_string_literal(call):
+                spans.append(_stmt_span(stmt, code_bytes))
+            continue
+        if len(exprs) == 1 and exprs[0].type == 'comma_expression':
+            cx = exprs[0]
+            parts = [c for c in cx.children if c.type != ',']
+            dtor_parts = [p for p in parts
+                          if p.type == 'call_expression'
+                          and _callee_is_dtor_call(p)
+                          and not _has_string_literal(p)]
+            keep = [p for p in parts if p not in dtor_parts]
+            if dtor_parts and not keep:
+                spans.append(_stmt_span(stmt, code_bytes))
+            elif dtor_parts and keep:
+                for p in dtor_parts:
+                    prev_c, next_c = p.prev_sibling, p.next_sibling
+                    if prev_c is not None and prev_c.type == ',':
+                        spans.append((prev_c.start_byte, p.end_byte))
+                    elif next_c is not None and next_c.type == ',':
+                        spans.append((p.start_byte, next_c.end_byte))
+                    else:
+                        spans.append((p.start_byte, p.end_byte))
+            continue
+    return spans
+
+
 def free_function_has_this_param(code):
     """函数头（首个 `{` 之前）里是否出现 **`this` 标识符**（纯函数，供单测）。
 
@@ -341,19 +425,8 @@ def run(code, ctx):
     if ctx.is_dtor and not _is_del_dtor:
         _body_node = func_def.child_by_field_name('body')
         if _body_node is not None:
-            for _st in _body_node.children:
-                if _st.type != 'expression_statement':
-                    continue
-                _t = _st.text.decode('utf-8')
-                _is_dtor_call = (('::~' in _t and re.search(r'~\w+\s*\(', _t))
-                                 or _t.lstrip().startswith('??_M'))
-                if _is_dtor_call:
-                    _s = _st.start_byte
-                    while _s > 0 and code_bytes[_s-1:_s] in (b' ', b'\t'):
-                        _s -= 1
-                    if _s > 0 and code_bytes[_s-1:_s] == b'\n':
-                        _s -= 1
-                    edits.append((_s, _st.end_byte, b''))
+            for _s, _e in _dtor_implicit_strip_spans(_body_node, code_bytes):
+                edits.append((_s, _e, b''))
 
     # Apply edits in reverse order
     result = code_bytes
