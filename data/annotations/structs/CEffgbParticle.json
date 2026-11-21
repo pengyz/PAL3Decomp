@@ -111,18 +111,20 @@
    "name": "Attach",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "char *",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
       "type": "char",
-      "name": "pData"
+      "name": null
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(Attach): int(char *,char); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Attach): int(char *,char); 原注解无",
+   "declaration_only": true,
+   "name_note": " | C2661根因定谳20261121: 8B体=sub ecx,0Ch; jmp 0x4c6960(~CEffExplosive删除式)——删除式dtor的adjustor thunk(this-0xC调整); 旧名Attach=name-pass误挂; hexrays因旧IDB名形似ctor渲染成构造调用→C2661(名字错觉) | C2661根因定谳20261121: 8B体=sub ecx,0Ch; jmp 0x4c6960(~CEffExplosive删除式)——删除式dtor的adjustor thunk(this-0xC调整, 编译器产物); 旧名Attach=incumbent保留(N12); hexrays因旧IDB名形似ctor渲染成构造调用→C2661(名字错觉); decl_only后单元出域 | N12纠正20261121: CEffExplosive_dtor_adjthunk=非语义名禁入(N12)——恢复incumbent名Attach; decl_only保留(export派生排除)"
   },
   "0x004c88d0": {
    "name": "Render",
@@ -594,5 +596,6 @@
    "date": "2026-11-16",
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }
- ]
+ ],
+ "note": " | 20261121: 0x004c9540(删除式dtor的adjustor thunk)排除登记在functions.json declaration_only(自由函数域, N12不扫); 勿在structs重建(会触发N12)"
 }
