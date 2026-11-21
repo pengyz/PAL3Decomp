@@ -1999,6 +1999,115 @@ def check_name_drift():
     return errors, warnings
 
 
+def _n20_scan(cls_forms, s4_rows):
+    """[N20 纯函数核] (cls_forms, s4_rows) → (errors, warnings)。活性单测入口。
+
+    cls_forms: cls → {'del': [{'addr','suppressed'}], 'comp': [...]}
+    s4_rows: symbol → row(含 va/status)
+    判据精化(VA级): 压制地址 == L1 符号 va 才断载体
+    (Role 多删除式兄弟案: ??_G 载体由 VA 对应条目承担, 兄弟压制无害)。
+    """
+    errors, warnings = [], []
+    # 符号 → (cls, kind, va) 索引: 仅 match_L1 行
+    l1_by_cls = {}   # cls -> set of (kind, va_norm)
+    for s, r in s4_rows.items():
+        if r.get('status') != 'match_L1':
+            continue
+        m = re.match(r'^\?\?(_G|1)([A-Za-z_][\w]*)@@', s)
+        if not m:
+            continue
+        kind = 'del' if m.group(1) == '_G' else 'comp'
+        l1_by_cls.setdefault(m.group(2), set()).add((kind, r.get('va')))
+
+    def _norm(a):
+        try:
+            return '0x%08X' % int(str(a), 16)
+        except (ValueError, TypeError):
+            return a
+
+    for cls, recs in cls_forms.items():
+        l1set = l1_by_cls.get(cls) or set()
+        for kind, lst in (('del', recs['del']), ('comp', recs['comp'])):
+            for r in lst:
+                if not r['suppressed']:
+                    continue
+                va = _norm(r['addr'])
+                hit = [sv for kv, sv in l1set if kv == kind and sv == va]
+                if hit:
+                    errors.append(
+                        "N20a[%s]:%s %s 压制切断L1载体(注册符号 va=%s 当前 match_L1, "
+                        "100.0%%字节匹配=最高证据级; 恢复=解除declaration_only/type=skip)"
+                        % (cls, r['addr'], kind, hit[0]))
+        allr = recs['del'] + recs['comp']
+        if allr and all(r['suppressed'] for r in allr):
+            warnings.append(
+                "N20b[%s]: 类级载体全空(%d条dtor全压制) → ??1/??_G 符号双丢(债务可见)"
+                % (cls, len(allr)))
+        if recs['del'] and not recs['comp'] \
+                and all(not r['suppressed'] for r in recs['del']):
+            warnings.append(
+                "N20c[%s]: 删除式唯一形态未压制(collect 泛化跳过阻塞载体, 待N18联动通路)"
+                % cls)
+    return errors, warnings
+
+
+def check_dtor_carrier_gate(_selftest=False):
+    """[N20 dtor 载体门 2026-11-21] 压制 dtor 条目前置检出符号供给链断裂。
+
+    方法论: docs/knowledge/methodology_dtor_governance_20261121.md
+      ??_G 载体 = virtual ~Cls() 头声明(删除式条目供给) + 类内 dtor 定义 → MSVC 合成。
+      对删除式条目的压制(declaration_only/type='skip')会切断 virtual 供给 → ??_G 丢失。
+      12/12 实证(20261121 L1恢复战役: 03:17基线 ??_G 全部 100.0% 字节完美被 C8 批次压制蒸发)。
+
+    三级:
+      N20a HARD(errors): 压制删除式/完全形条目 且 压制地址==对应注册符号
+          (??_G/??1 <Cls>@@)的 match_L1 va → 压制=切断L1载体, 必须阻断。
+          (100.0% 字节匹配=最高证据级; VA级判据: Role 多删除式兄弟无害)
+      N20b WARN: 类级载体全空(类内所有 dtor 条目都被压制) → ??1/??_G 双丢债务可见。
+      N20c WARN: 删除式唯一形态未压制(载体被 collect backtick→_scalar_dtor 泛化跳过
+          阻塞的管线限制, UIProgressBar 案) → 提示待 N18 联动通路。
+    活性验证(N19协议): --selftest 走合成态断言三门触发(见 test_n20_dtor_carrier_gate)。
+
+    返回 (errors, warnings)
+    """
+    import glob as _glob
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    _s4_rows = {}
+    _s4p = os.path.join(root, 'data', 'status', 's4_baseline.json')
+    if os.path.exists(_s4p):
+        try:
+            _s4_rows = {x['symbol']: x for x in
+                        json.load(open(_s4p, encoding='utf-8')).get('rows', [])}
+        except Exception:
+            _s4_rows = {}
+
+    cls_forms = {}
+    for fp in sorted(_glob.glob(os.path.join(root, 'data', 'annotations', 'structs', '*.json'))):
+        try:
+            d = json.load(open(fp, encoding='utf-8'))
+        except Exception:
+            continue
+        cls = d.get('name') or os.path.basename(fp)[:-5]
+        recs = cls_forms.setdefault(cls, {'del': [], 'comp': []})
+        for a, m in (d.get('methods') or {}).items():
+            fl = m.get('flags') or []
+            nm = str(m.get('name') or '')
+            if not ('dtor' in fl or nm.startswith('~')):
+                continue
+            rec = {'addr': a, 'suppressed': m.get('type') == 'skip'
+                   or bool(m.get('declaration_only'))}
+            recs['del' if 'deleting' in fl else 'comp'].append(rec)
+
+    errors, warnings = _n20_scan(cls_forms, _s4_rows)
+    if _selftest:
+        print('[N20 selftest] 现役 N20a=%d N20b=%d N20c=%d (活性单测见 test_n20)'
+              % (len([e for e in errors if 'N20a' in e]),
+                 sum(1 for w in warnings if 'N20b' in w),
+                 sum(1 for w in warnings if 'N20c' in w)))
+    return errors, warnings
+
+
 if __name__ == '__main__':
     errors, warnings = check()
 
@@ -2009,6 +2118,12 @@ if __name__ == '__main__':
     _cc_errors, _cc_warnings = check_canonical_contract()
     errors.extend(_cc_errors)
     warnings.extend(_cc_warnings)
+
+    # [N20 dtor 载体门 2026-11-21] 压制切断 L1 载体前置检出(HARD)+债务可见(WARN)
+    #   硬纪律: 门禁必须活性验证(N19协议)——selftest 断言规则结构+当前触发数。
+    _n20_errors, _n20_warnings = check_dtor_carrier_gate(_selftest=True)
+    errors.extend(_n20_errors)
+    warnings.extend(_n20_warnings)
 
     # [L-CHK 2026-11-11] 名字漂移检查(decomp 引用 vs 注解名/IDB 名)
     try:
