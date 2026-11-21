@@ -16,11 +16,12 @@ CLS = 'CameraCtrl'
 
 
 def _run(entry, siblings=(), unit_present=True, vintage='named',
-         flags_channel=None, scalar=False, s4=None):
+         flags_channel=None, scalar=False, s4=None, vtable_slot_addrs=()):
     return resolve_dtor_intent(
         cls=CLS, entry_addr=entry.get('addr', '0x00000000'), entry=entry,
         siblings=list(siblings), unit_present=unit_present, unit_vintage=vintage,
-        flags_channel=flags_channel, header_facts_scalar=scalar, s4_symbols=s4)
+        flags_channel=flags_channel, header_facts_scalar=scalar, s4_symbols=s4,
+        vtable_slot_addrs=vtable_slot_addrs)
 
 
 class TestDtorIntentT1(unittest.TestCase):
@@ -85,12 +86,22 @@ class TestDtorIntentT3(unittest.TestCase):
     """T3: no_complete_form ABI(CEffObj 0x4c0620 形)。"""
 
     def test_decl_only_deleting_keeps_decl(self):
+        # 有槽证据 → virtual(合成载体)
         it = _run({'addr': '0x4c0620', 'name': '~CEffObj',
                    'flags': ['dtor', 'deleting'], 'declaration_only': True},
-                  flags_channel=['dtor', 'deleting'])
+                  flags_channel=['dtor', 'deleting'],
+                  vtable_slot_addrs={0x004C0620})
         self.assertFalse(it.body_emit)
         self.assertTrue(it.decl_emit)
         self.assertTrue(it.decl_virtual)
+
+    def test_no_slot_evidence_not_virtual(self):
+        # [virtual 证据律] flags 不可证虚——无槽证据 → decl_virtual=False
+        # (F5 31 类出处: 非槽 dtor 误标虚=vtable 布局灾难)
+        it = _run({'addr': '0x1', 'name': '~X', 'flags': ['dtor', 'deleting']},
+                  flags_channel=['dtor', 'deleting'])
+        self.assertTrue(it.decl_emit)
+        self.assertFalse(it.decl_virtual)
 
 
 class TestDtorIntentT5(unittest.TestCase):

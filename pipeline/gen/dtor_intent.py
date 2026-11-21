@@ -60,7 +60,7 @@ def _canon_name(cls, entry, flags_channel):
 
 def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
                         unit_vintage, flags_channel, header_facts_scalar,
-                        s4_symbols=None):
+                        s4_symbols=None, vtable_slot_addrs=()):
     """单条 dtor 条目 → 发射意图。
 
     参数(全部注入, 本函数零文件读):
@@ -72,6 +72,9 @@ def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
       flags_channel: ida_structs 侧 flags（TU 类条目; 通道缺失=None）
       header_facts_scalar: 类 ∈ header_facts.scalar_dtor_classes
       s4_symbols: {symbol: row} 冻结 S4 基线行（VA 级仲裁; 可 None）
+      vtable_slot_addrs: 类的 vtables 槽地址集合（virtual 的唯一真证据——
+        flags 不可用作 virtual 证据: 非虚 dtor 同样有 dtor flags，误标全类虚
+        =vtable 布局灾难）
     """
     name, name_note = _canon_name(cls, entry, flags_channel)
 
@@ -111,8 +114,12 @@ def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
                 key=lambda a: int(a, 16)) if (comp_emittable or del_emittable) else ''
 
     # ── 角色判定 ─────────────────────────────────────────────────
-    decl_virtual = is_dtor and bool(
-        (flags_channel is not None and 'dtor' in flags_channel) or 'dtor' in fl)
+    # [virtual 证据律 20261121] virtual 的唯一真证据=本址 ∈ vtable 槽地址
+    #   （与 emit_headers 槽循环所有权同源语义）。flags 只证 dtor 身份不证虚性。
+    _slot_set = {('0x%08X' % int(a, 16)) if isinstance(a, str) else '0x%08X' % a
+                 for a in (vtable_slot_addrs or ())}
+    decl_virtual = is_dtor and (
+        ('0x%08X' % int(entry_addr, 16)) in _slot_set)
 
     if suppressed:
         role = 'suppressed'
