@@ -920,6 +920,8 @@ def generate_class_cpp(cls_name, methods):
                     continue
             except Exception:
                 pass
+        if cls_name=='CameraCtrl' and '~' in str(m.get('method')):
+            print('[DBG-CAM]', m.get('addr'), repr(m.get('method')), 'flags=', _ida_flags_for(cls_name, m.get('addr','')), 'code前80:', repr((m.get('code') or '')[:80]))
         ctx = make_context(cls_name, m['method'], sig=m.get('sig', ''),
                            stub_registry=_stub_reg,
                            flags=_ida_flags_for(cls_name, m.get('addr', '')))

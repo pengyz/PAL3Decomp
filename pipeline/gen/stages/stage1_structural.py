@@ -215,10 +215,14 @@ def run(code, ctx):
     #   (`void H(int (__stdcall *cb)(int))` 形态, UIRoleSelectDialog v7 同族)。
     #   fnptr 形参 CC 剥除=语义变换(调用约定丢失)⇒ 赋值站 C2440。
     #   tree-sitter 本可解析 ms_call_modifier(体侧保护靠变换#1 直接子节点判别)。
+    # [限定名 ~ 修复 20261121·晚] 字符类 [\w:] 不含 `~` ⇒ 限定析构名前瞻失败
+    #   (`RET *__thiscall Cls::~Cls(` 不剥 → tree-sitter ERROR → regex fallback
+    #   → N18 4c 全跳 → 删尾残留(CameraCtrl 0x41cba0 案)——本日 fnptr 修复引入的
+    #   回归。修: [\w:~]。fnptr 形参形(`__stdcall *cb(`)前瞻仍拒(`*` 不在类)不回归。
     first_lines = code.split('\n', 1)
     if first_lines:
         first_lines[0] = re.sub(
-            r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\s+(?=[A-Za-z_~][\w:]*\s*\()',
+            r'\b(__thiscall|__cdecl|__stdcall|__fastcall)\s+(?=[A-Za-z_~][\w:~]*\s*\()',
             '', first_lines[0])
         code = '\n'.join(first_lines)
 
