@@ -115,44 +115,15 @@
   "0x00541dd9": {
    "name": "_todo_1DD9",
    "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=other:8b 41 10 85；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "void *",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 债清偿定谳20261121: debt_handwrite——真函数头(mov eax,[ecx+10h]/g_bActorFlag); hexrays渲染空+doubtful名——需手写 (probe23函数头验证+probe24就地反编译)"
-  },
-  "0x00541ef6": {
-   "name": "_todo_1EF6",
-   "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A78 认领（UICursor::IRender@0x541CC0+168/+635（同函数 ）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | 债清偿定谳20261121: compiler_regen——std throw helper(length_error构造+CxxThrowException)——库域, 非UICursor方法(转移错位) (probe23函数头验证+probe24就地反编译)"
-  },
-  "0x00541de6": {
-   "name": "_todo_1DE6",
-   "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570A98 认领（UICursor::IRender@0x541CC0+259/+340（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | 债清偿定谳20261121: compiler_regen——std throw helper(logic_error)——库域 (probe23函数头验证+probe24就地反编译)"
+   "name_note": " | 债清偿定谳20261121: debt_handwrite——真函数头(mov eax,[ecx+10h]/g_bActorFlag); hexrays渲染空+doubtful名——需手写 (probe23函数头验证+probe24就地反编译) | 债清偿定谳20261121(手写债消解): 13B体语义清晰——return [this+0x10] ? [this+0x10] : &g_bActorFlag(指针带回退选择器); hexrays空体+doubtful名根因=IDB缺签名——sig注册后自愈; 名_todo_1DD9=grandfathered保留(语义名待corpus线索)"
   },
   "0x00541e40": {
    "name": "~UICursor",
@@ -169,20 +140,6 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_1E40(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [idalib 2026-11-19] 28B ??_G形: call 基类dtor(unknown_libname_525)+test arg_0,1+operator delete(this)尾; 语料射程外(被/OPT:REF或过滤), 汇编探针实证。0x541ffb 同构 stub(call 527=不同基表链)为伴生。"
-  },
-  "0x00541fde": {
-   "name": "_todo_1FDE",
-   "source": "| [vtable 合并批 2026-10-16 analyzer] 槽注册 A 级本体=real-method；表 0x00570AA8 认领（UICursor::IRender@0x541CC0+724/+867（3 子对）连带 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | 债清偿定谳20261121: compiler_regen——std throw helper(out_of_range)——库域 (probe23函数头验证+probe24就地反编译)"
   },
   "0x00541ffb": {
    "name": "~UICursor",
@@ -215,5 +172,6 @@
    },
    "name_note": " | 债清偿定谳20261121: compiler_regen——删除式dtor形(unknown_libname_526=完全dtor+条件operator delete)——编译器产物 (probe23函数头验证+probe24就地反编译)"
   }
- }
+ },
+ "note": " | 退役20261121(债第二批): 0x00541ef6,0x00541de6,0x00541fde——std throw helper三连(length_error/logic_error/out_of_range构造+CxxThrowException)=CRT库域误挂UICursor(转移错位; 非槽绑定验后退役)"
 }

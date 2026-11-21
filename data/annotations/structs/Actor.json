@@ -3659,18 +3659,26 @@
    "flags_evidence": "IDA名字形态=_scalar_dtor_83B0(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x00408410": {
-   "name": "_todo_8410",
+   "name": "GetCellStateByte",
    "source": "| [97 族 ctor 注册解锁批 2026-10-16 analyzer] 槽注册 kind=method 表 0x0056A6D0 认领连带 | [method 27 余量批 2026-10-16 analyzer] 直接注册（表 0x56A6D0）：本体 8b 54 24 04 8b 41 18 85 | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "void",
+    "return": "BOOL",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
-   "name_note": " | 债清偿定谳20261121: debt_handwrite——真函数头(probe23: mov edx,arg/mov eax,[ecx+18h]); hexrays渲染空体(流异常)——需从asm手写 (probe23函数头验证+probe24就地反编译)"
+   "name_note": " | 债清偿定谳20261121: debt_handwrite——真函数头(probe23: mov edx,arg/mov eax,[ecx+18h]); hexrays渲染空体(流异常)——需从asm手写 (probe23函数头验证+probe24就地反编译) | 债清偿定谳20261121(手写债消解): 67B体全量反汇编语义清晰——边界检查x∈[0,[this+18]->98)/y∈[0,->9C)→越界false/网格字节读取[base+(y*stride+x)*8+4]&FF(8字节步进元素+4偏移取字节)——2D网格GetCellStateByte; 名=functions.json自由声明族呼应(GetCellStateByte@0x46adf0声明收编形正是类限定前置); hexrays空体渲染根因=IDB缺签名(xor al部分寄存器返回+无类型)——sig注册后反编译自愈, 无需手写"
   },
   "0x00538260": {
    "name": "ClearModelFlag",

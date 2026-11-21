@@ -389,7 +389,7 @@
    }
   },
   "0x004d4df0": {
-   "name": "_todo_4D4DF0",
+   "name": "dtor_thunk",
    "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
@@ -399,7 +399,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121(第二批): probe24就地反编译——8B级adjustor thunk(this-0xC调整尾跳CEffShock(this-12))——CEff族-12嵌入模式(与CEffgbParticle/CEffExplosive同族); 编译器产物→decl_only; 旧名_todo_4D4DF0=_todo占位(待decompile定真名任务清偿)"
   },
   "0x004d3ad0": {
    "name": "Create",

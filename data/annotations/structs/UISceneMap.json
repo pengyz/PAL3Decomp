@@ -339,7 +339,7 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(ProcessSceneChange): int(char,float); 原注解无"
   },
   "0x00451800": {
-   "name": "_todo_00451800",
+   "name": "dtor_thunk",
    "source": "[vtable 归属 2026-10-21·A 级] vtable ['0x0056B140'] 槽指向本函数 ⇒ 归属 UISceneMap。shape=adjustor · body_head=83 e9 48 e9 88 f6 ff ff cc cc cc cc。**命名冻结 _todo_**（conf<60 禁伪语义命名，需五面证据才正名）",
    "evidence_level": "A",
    "declaration_only": true,
@@ -351,7 +351,7 @@
     "pending": false
    },
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。",
-   "name_note": " | REF修复20261120: CCBFiveNimbusWindow *this参数删(this形永非sig_model合法项; adjustor thunk jmp转发, N6) | REF修复补刀20261120: *this子串形过滤修正后参数真删(before=['CCBFiveNimbusWindow *this']→after=[])"
+   "name_note": " | REF修复20261120: CCBFiveNimbusWindow *this参数删(this形永非sig_model合法项; adjustor thunk jmp转发, N6) | REF修复补刀20261120: *this子串形过滤修正后参数真删(before=['CCBFiveNimbusWindow *this']→after=[]) | 债清偿定谳20261121(第二批): probe24就地反编译——8B级adjustor thunk(this-0xC调整尾跳RoleAtt(this-12))——CEff族-12嵌入模式(与CEffgbParticle/CEffExplosive同族); 编译器产物→decl_only; 旧名_todo_00451800=_todo占位(待decompile定真名任务清偿)"
   }
  },
  "vtables": [
