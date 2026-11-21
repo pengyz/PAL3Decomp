@@ -467,12 +467,10 @@
   },
   "0x004461d0": {
    "name": "~CCBUIPanel",
-   "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "ordinal": 5,
    "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=CCBUIPanel（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56AF80）",
    "evidence_level": "A",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -490,7 +488,8 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_61D0(??1/??_G析构族); decomp文件=CCBUIPanel_scalar_dtor_61D0int_004461d0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_61"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_61",
+   "name_note": " | L1恢复20261121: S4字节证据证伪C8压制前提——03:17基线本wrapper定义编译产物=?_G注册符号100.0%字节完美; 20261121 C8批次(decl_only/type=skip)+清仓拔除单元后S4全量对比??_G丢失(12/12相关性). 删除declaration_only+type=skip, wrapper定义恢复发射. C8模型修正: ??_G匹配载体=wrapper定义单元(非头声明合成)"
   },
   "0x004462c0": {
    "name": "InitPanel",

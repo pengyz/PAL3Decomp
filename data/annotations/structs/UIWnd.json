@@ -168,16 +168,12 @@
    "sig_model": {
     "return": "int",
     "cc": "thiscall",
-    "params": [
-     {
-      "type": "void *",
-      "name": null
-     }
-    ],
+    "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。"
+   "sig_note": "ABI-RET定谳20261121(idalib探针probe_movewindow_abi): 体0x445F20 mov edi,ecx(this)+尾retn(弹栈0)=thiscall 0显式栈参; 调用站0x43A840 lea ecx,[esi+74h]无push(唯一this实参). 原params=[void*]=hexrays this分裂病(0x43a810单元体j_UIWnd::MoveWindow(ptr)的ptr=this本身). IDB名内嵌mangle QAEHPAX@Z与机器码矛盾(retn非retn 4)——名mangle非真值, RET弹栈才是. 修复后UICaption L28/UIMap L45 C2660消解, UIAnimateCtrlEX/free_functions同形调用站受益",
+   "source": " | ABI定谳20261121(见sig_note)"
   },
   "0x00450390": {
    "name": "DelegateRender",
