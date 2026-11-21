@@ -146,10 +146,10 @@
    "total": 15
   },
   "Actor": {
-   "body": 108,
+   "body": 109,
    "compiler_regen": 1,
-   "debt_pending": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 110
   },
@@ -1467,9 +1467,9 @@
   },
   "CameraCtrl": {
    "body": 47,
-   "debt_pending": 1,
-   "compiler_regen": 0,
+   "compiler_regen": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 48
   },
@@ -2682,10 +2682,10 @@
    "total": 0
   },
   "Object": {
-   "debt_pending": 2,
+   "compiler_regen": 2,
    "body": 0,
-   "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 2
   },
@@ -3107,10 +3107,10 @@
   },
   "RenderTarget2": {
    "body": 32,
-   "debt_pending": 2,
+   "compiler_regen": 2,
    "out_of_domain": 1,
-   "compiler_regen": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "total": 35
   },
   "RenderTarget3": {
@@ -3444,9 +3444,9 @@
   "SceneObj": {
    "body": 18,
    "out_of_domain": 2,
-   "debt_pending": 1,
-   "compiler_regen": 0,
+   "compiler_regen": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "total": 21
   },
   "SceneObjParam": {
@@ -3490,10 +3490,10 @@
    "total": 2
   },
   "SceneVisNode": {
-   "debt_pending": 1,
-   "compiler_regen": 3,
+   "compiler_regen": 4,
    "body": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 5
   },
@@ -4002,10 +4002,10 @@
    "total": 18
   },
   "UICursor": {
-   "body": 4,
-   "debt_pending": 1,
+   "body": 5,
    "compiler_regen": 2,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 7
   },
@@ -4484,9 +4484,9 @@
   "UITitle_BBTY": {
    "out_of_domain": 2,
    "body": 5,
-   "debt_pending": 1,
-   "compiler_regen": 0,
+   "compiler_regen": 1,
    "dll_import": 0,
+   "debt_pending": 0,
    "total": 8
   },
   "UITitle_JDHY": {
@@ -4570,10 +4570,10 @@
    "total": 0
   },
   "WeatherEffectNode": {
-   "compiler_regen": 19,
-   "debt_pending": 2,
+   "compiler_regen": 21,
    "body": 0,
    "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 21
   },
@@ -5827,9 +5827,9 @@
   },
   "gbMatrixStack": {
    "body": 1,
-   "debt_pending": 10,
+   "dll_import": 10,
    "compiler_regen": 0,
-   "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 11
   },
@@ -6074,10 +6074,10 @@
    "total": 0
   },
   "gbSound2DNode": {
-   "debt_pending": 1,
+   "dll_import": 1,
    "body": 0,
    "compiler_regen": 0,
-   "dll_import": 0,
+   "debt_pending": 0,
    "out_of_domain": 0,
    "total": 1
   },
@@ -7395,28 +7395,21 @@
   },
   "<free_functions>": {
    "body": 221,
-   "compiler_regen": 7,
-   "debt_pending": 12,
-   "dll_import": 4,
+   "compiler_regen": 19,
+   "dll_import": 3,
+   "debt_pending": 1,
    "out_of_domain": 0,
    "total": 244
   }
  },
  "totals": {
-  "body": 3617,
-  "compiler_regen": 107,
-  "dll_import": 5,
-  "debt_pending": 42,
+  "body": 3619,
+  "compiler_regen": 129,
+  "dll_import": 15,
+  "debt_pending": 8,
   "out_of_domain": 62
  },
  "debt_detail": [
-  {
-   "kind": "method",
-   "class": "Actor",
-   "addr": "0x00408410",
-   "name": "_todo_8410",
-   "hint": " | 债清偿定谳20261121: debt_handwrite——真函数头(probe23: mov edx,arg/mov eax,[ecx+18h]); "
-  },
   {
    "kind": "method",
    "class": "CCBSystem",
@@ -7447,58 +7440,9 @@
   },
   {
    "kind": "method",
-   "class": "CameraCtrl",
-   "addr": "0x0041cbc0",
-   "name": "_nearby_41cbc0",
-   "hint": ""
-  },
-  {
-   "kind": "method",
    "class": "MagicUI",
    "addr": "0x00551c66",
    "name": "InitComItem",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "Object",
-   "addr": "0x00411bb0",
-   "name": "slot_unk_1bb0",
-   "hint": "槽链传播: 同址语义名(slot_unk_1bb0)沿override链正名"
-  },
-  {
-   "kind": "method",
-   "class": "Object",
-   "addr": "0x00411b80",
-   "name": "slot_unk_1b80",
-   "hint": "槽链传播: 同址语义名(slot_unk_1b80)沿override链正名"
-  },
-  {
-   "kind": "method",
-   "class": "RenderTarget2",
-   "addr": "0x004c1550",
-   "name": "UpdateFrame",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "RenderTarget2",
-   "addr": "0x004c1560",
-   "name": "vfunc",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "SceneObj",
-   "addr": "0x004530c0",
-   "name": "_init_4530c0",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "SceneVisNode",
-   "addr": "0x00542126",
-   "name": "VisRender",
    "hint": ""
   },
   {
@@ -7510,192 +7454,10 @@
   },
   {
    "kind": "method",
-   "class": "UICursor",
-   "addr": "0x00541dd9",
-   "name": "_todo_1DD9",
-   "hint": " | 债清偿定谳20261121: debt_handwrite——真函数头(mov eax,[ecx+10h]/g_bActorFlag); hexrays渲"
-  },
-  {
-   "kind": "method",
    "class": "UIMap",
    "addr": "0x004411d0",
    "name": "UIMap",
    "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "UITitle_BBTY",
-   "addr": "0x00452570",
-   "name": "_nearby_452570",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "WeatherEffectNode",
-   "addr": "0x005420c0",
-   "name": "SnowDraw",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "WeatherEffectNode",
-   "addr": "0x005420d2",
-   "name": "RainUpdate",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a244",
-   "name": "Rotate",
-   "hint": " | mangle真值修正20261120: ['float', 'gbVec3D *']→['float', 'gbVec3D &'] (PAL3.exe导入"
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a260",
-   "name": "Translate",
-   "hint": " | mangle真值修正20261120: ['gbVec3D *']→['gbVec3D &'] (PAL3.exe导入表mangle QAEXAAUgbV"
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a2a0",
-   "name": "MultMatrix",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a33c",
-   "name": "Rotate",
-   "hint": " | mangle真值修正20261120: ['gbQuaternion *']→['gbQuaternion &'] (PAL3.exe导入表mangle "
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a370",
-   "name": "Translate",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a570",
-   "name": "GetTop",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a578",
-   "name": "Push",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a57c",
-   "name": "LoadIdentity",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a588",
-   "name": "Pop",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbMatrixStack",
-   "addr": "0x0056a5c0",
-   "name": "LoadMatrix",
-   "hint": ""
-  },
-  {
-   "kind": "method",
-   "class": "gbSound2DNode",
-   "addr": "0x0041eb80",
-   "name": "UIPostUpdate",
-   "hint": ""
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x004422e0",
-   "name": "ResetContainerState",
-   "hint": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ "
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x00452550",
-   "name": "accessor_00452550",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x0046adf0",
-   "name": "GetCellStateByte",
-   "hint": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x00431db0",
-   "name": "SingletonThunk_00431DB0",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x00431e70",
-   "name": "SingletonThunk_00431E70",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x00431ec0",
-   "name": "SingletonThunk_00431EC0",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x004b6d70",
-   "name": "SingletonThunk_004B6D70",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x004bfd60",
-   "name": "SingletonThunk_004BFD60",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x00450a30",
-   "name": "accessor_00450A30",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x004792d0",
-   "name": "accessor_004792D0",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
-  },
-  {
-   "kind": "free",
-   "class": "<free>",
-   "addr": "0x005415c0",
-   "name": "crt_sub_005415C0",
-   "hint": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射"
   },
   {
    "kind": "free",
@@ -7705,5 +7467,5 @@
    "hint": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:290"
   }
  ],
- "skip_catalog": 1926
+ "skip_catalog": 1925
 }

@@ -21,8 +21,8 @@ from pathlib import Path
 REPO = Path(__file__).parent.parent
 S = REPO / 'data' / 'annotations'
 
-DLL_HINT = re.compile(r'imported|dll|gbengine|D3DX|链接期', re.I)
-COMPILER_HINT = re.compile(r'compiler_init|compiler_generated|静态初始化|编译器', re.I)
+DLL_HINT = re.compile(r'imported|dll|gbengine|D3DX|链接期|导入表|import thunk|gbSound|gbV', re.I)
+COMPILER_HINT = re.compile(r'compiler_init|compiler_generated|静态初始化|编译器|收编形|accessor|写表桩|不产代码|槽残留|crt_|vtable_migrated|计算桩|adjustor', re.I)
 
 
 def classify_method(m):
