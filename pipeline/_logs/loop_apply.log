@@ -1,4 +1,4 @@
-[vtable] 改进: 168 → 151 (update vtable_baseline.json)
+[vtable] 改进: 168 → 150 (update vtable_baseline.json)
 WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
 WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
 WARN: functions[0x00446030]: '__thiscall' without '::' in 'AddToArray' (sig: void __thiscall(_DWORD *newElement)) — likely member function, needs IDA investigation
@@ -288,9 +288,9 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x542114:SceneVisNode_adjthunk_2114|Scen
 WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
-WARN: N15[advisory普查]: 1个有vtable类无ctor证据=伪造候选(身份案队列): SkillUI
-WARN: REF:gen 树(1795211123)早于最新注解(1795224851)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
-WARN: N13b:CCBUI::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
+WARN: REF:gen 树(1795226350)早于最新注解(1795226843)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直通(依赖apply新鲜度)

@@ -1157,3 +1157,13 @@
 | `CCBProtectWindow::CreateItemWindow` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int, int *, CCBProtectWindow *))(*(_DWORD *)&v4->UIWnd + 16))( v4, 531, &v19, this)` |
 | `SkillUI::InitSkillUI` | inline | `UIPushButton` | 28 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, const char *, _DWORD *, SkillUI *, char *, int))(*(_DWORD *)&v17->UIWnd + 28))( v17, *v16, v69, this, aSubgameApprais_3, v15)` |
 | `SkillUI::InitSkillUI` | inline | `PalScript` | 28 | slot_out_of_range | `(*(void ( **)(PalScript *, const char *, int *, SkillUI *, char *, _DWORD, int))(*(_DWORD *)v21 + 28))( v21, *v20, &v54, this, aSubgameApprais_5, 0, v19)` |
+| `CCBUI::HideAll` | inline | `UIPushButton` | 20 | self_arg_mismatch | `(*(void ( **)(UIPushButton *, int))(*(_DWORD *)&(*p_m_pWHFace)->UIWnd + 20))(*p_m_pWHFace, 1)` |
+| `CCBUI::HideAll` | inline | `UIProgressBar` | 20 | self_arg_mismatch | `(*(void ( **)(UIProgressBar *, int))(*(_DWORD *)&v5->UIWnd + 20))(v5, 1)` |
+| `CCBUI::HideAll` | inline | `int` | 20 | non_class_hint | `(*(void ( **)(int, int))(*(_DWORD *)v8 + 20))(v8, 1)` |
+| `CCBUI::HideAll` | inline | `UIStaticCB` | 20 | self_arg_mismatch | `(*(void ( **)(UIStaticCB *, int))(*(_DWORD *)&m_pTrickName->UIWnd + 20))(m_pTrickName, 1)` |
+| `CCBUI::HideAll` | inline | `CCBControlWindow` | 20 | self_arg_mismatch | `(*(void ( **)(CCBControlWindow *, int))(*(_DWORD *)&(*p_m_pMain)->UIWnd + 20))(*p_m_pMain, 1)` |
+| `CCBUICtrl::DlgProcEditor` | inline | `int` | 40 | non_class_hint | `(*(int ( **)(int, int))(*(_DWORD *)v6 + 40))(v6, v4)` |
+| `CCBUICtrl::WriteNimbusToPlayerMgr` | inline | `NameSys` | 28 | self_arg_mismatch | `(*(void ( **)(NameSys *, int, int, CCBUICtrl *, int, int, _DWORD))(*(_DWORD *)Sys->m_Flag + 28))( Sys, v7, v8, this, v9, 1, 0)` |
+| `CCBUICtrl::CreateButton` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, int, CCBUICtrl *, _DWORD, int, _DWORD))(*(_DWORD *)&(*v12)->UIWnd + 28))( *v12, *v11, parent, this, 0, 1, 0)` |
+| `CCBUICtrl::LineMove` | inline | `int` | 28 | non_class_hint | `(*(int ( **)(int, POINT *, int, CCBUICtrl *, int, _DWORD))(*(_DWORD *)v5 + 28))( v5, pEnd, v10, this, v11, 0)` |
+| `CCBUICtrl::AddTask` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, tagUITask *, CCBUICtrl *, _DWORD, int, _DWORD))(*(_DWORD *)&(*todo_4C)->UIWnd + 28))( *todo_4C, *v6, pTask, this, 0, 1, 0)` |

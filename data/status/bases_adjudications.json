@@ -71,9 +71,10 @@
   "bases": [
    "UIListBox"
   ],
-  "date": "2026-11-17",
-  "ctor_evidence": "ctor 0x519310 UIListBox ctor+存己表0x5704C8@+0; dtor 0x519380 UIListBox~ → 真基UIListBox",
-  "verdict_by": "base_chain_tracer+存表律"
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x5160a0 call UIListBox族构造 + 写表0x5704A8@0x51613d(完全dtor内同址复证)",
+  "dtor_evidence": "删除式0x516100(slot5)→完全dtor 0x516120 call ??1UIListBox@0x51615a + operator delete",
+  "verdict_by": "本机idalib探针21(probe_ccbui_identity系列)"
  },
  "UIRoleDialog": {
   "bases": [
@@ -131,5 +132,14 @@
   "ctor_evidence": "ctor1 0x525120 (new(0x18E34)@0x527b68直调) 体含UIListBox族构造链; 完全dtor 0x525540 体尾 call ??1UIListBox@@QAE@XZ@0x52578e(基析构直证) + 序言写表0x5706CC@0x52555D",
   "dtor_evidence": "删除式 sub_525520(slot5)→call 0x525540+operator delete@0x525530; 0x525540→~UIListBox@0x52578e",
   "verdict_by": "本机idalib探针15/16/17(probe_ccbui系列)"
+ },
+ "CCBUICtrl": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x519310 call ??0UIListBox@0x43dcd0@0x51932d + 写表0x5704C8@0x51933c",
+  "dtor_evidence": "删除式0x519360(slot5)→完全dtor 0x519380 call ??1UIListBox@0x43dd10@0x5193ba",
+  "verdict_by": "本机idalib探针(probe_ccbui_identity系列)"
  }
 }
