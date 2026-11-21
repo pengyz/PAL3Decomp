@@ -35,3 +35,8 @@
 3. skip_functions.json 新增仅限两种：type='skip'（真非函数目标）+ reason='thunk'+target_name（别名）
 4. C8 dtor 对：删除式（slot5）declaration_only；完全形=定义源（stage1 4d 剥隐式织入，20261121 试点）
 5. 每条 declaration_only 必须带证据注记（体借用/伴生/导入的成因）——无证据的 declaration_only = 死区候选
+6. **declaration_only 必须配 skip_functions 孪生**（20261121 T4-P1-2 实证）：export 的体排除通道 =
+   skip_functions 地址在场（export_full skip_addrs），structs/functions 的 declaration_only 不被
+   export 感知——缺孪生 → 历史反编译单元残留并被 collect 消费（RenderTargetNode._ParticleEffect_0
+   C2039 案）。孪生形：{"name", "reason": "decl_only_shadow", "declaration_only": true}
+   （地址在场即排除 + C8 冲突门豁免）；批量工具 tools/purge_stale_decomp_units_20261121.py
