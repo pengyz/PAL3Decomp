@@ -3197,16 +3197,21 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # 退役 _read_vtable_from_binary(管线读二进制=越权) 与 true_vtable_map 依赖:
         # 注解 slots 有序列表本身就是表边界(15条=15槽), 无需任何走读。
         _is_vts = ((_ann_s or {}).get('vtables') or [])
-        # [只发主表 2026-11-14] vtables[0]=主表槽契约; 第二基表槽位=adjustor/
-        # 第二链机制(B2路线parked) —— 逐位发射第二表 = 与主表同名声明C2535
-        # (RoleSystem::AllocSlotData 主表+第二表双声明实证) ⇒ 只发 vts[0]。
+        # [D8 全表声明 20261121] 「只发主表」(2026-11-14 parked)退役——MI 第二表
+        # 自有方法槽(如 UIScene vtables[1] Render/CheckMouseHit/ReleaseTexture/
+        # CreateScrollWidget)永不声明 ⇒ 定义侧 C2039 慢性病(UIScene 80错主体)。
+        # C2535 防护改为: ①按址去重(_slot_decl_addrs, 既有) ②按名去重(_slot_decl_names
+        # 新增——同名槽=同源方法(MI 双表指同一 override), 一名一声明) ③corpus
+        # 所有权守卫(基址基名槽照旧跳过)。
         _vt_slots_flat = []
         _slot_decl_addrs = set()   # [声明按址发射 2026-11-17] 已发声明地址集
+        _slot_decl_names = set()   # [D8 20261121] 已发声明名集(C2535 防护)
         # [真重复assert首猎#5修 2026-11-18] 槽名集前置初始化(槽循环登记生效名,
         #   方法循环守卫消费——原初始化在方法循环段=槽循环期不可见)
         _slot_names_by_addr = {}
         if _is_vts:
-            _vt_slots_flat.extend(_is_vts[0].get('slots') or [])
+            for _vt_all in _is_vts:
+                _vt_slots_flat.extend(_vt_all.get('slots') or [])
         def _norm_addr(_a):
             _a = str(_a)
             return '0x%08x' % int(_a, 16) if _a.lower().startswith('0x') else _a
@@ -3319,6 +3324,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 _nm = str(_nm).split('::')[-1]
             if not re.match(r'^[A-Za-z_]\w*$', str(_nm)):
                 _nm = 'slot_%d' % _vi
+            # [D8 按名去重 20261121] 同名槽=同源方法(MI 双表指同一 override)——
+            # 一名一声明(C2535 防护; RoleSystem::AllocSlotData 双声明实证同根因)。
+            # dtor 槽已由上方 has_dtor_decl 所有权处理, 不入本集。
+            # [登记先行 20261121] _slot_names_by_addr 必须对**所有**到访槽登记
+            #   (含被 corpus/去重 continue 的槽)——方法循环守卫按 (址,名) 双键消费,
+            #   漏登记=方法循环重声明(CEffgbParticle RenderEffectPass 实证)。
+            _slot_names_by_addr.setdefault(
+                str(_slot_addr_hex).lower(), set()).add(_nm)
             if not _sg:
                 # [槽签正名优先 2026-11-16] 优先级链修正: 槽sig(槽位契约) → 注解裁决形
                 # (ida_structs methods.signature = 正名账 canonical render(sig_model))
@@ -3384,6 +3397,14 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             if (_nm in _corpus_method_names
                     and str(_slot_addr_hex).lower() not in _corpus_addr_set):
                 continue
+            # [D8 按名去重 20261121] 同名槽=同源方法(MI 双表指同一 override)——
+            #   一名一声明(C2535 防护)。置于 corpus/址守卫后: 仅**实际发射**的槽
+            #   占名(corpus 跳过槽不占名——其名未声明, 同名自有槽仍需声明:
+            #   UIScene Render 案: t0 基址槽被 corpus 跳过, t1 自有槽须发)。
+            if str(_slot_addr_hex).lower() not in _flags_dtor_addrs:
+                if _nm in _slot_decl_names:
+                    continue
+                _slot_decl_names.add(_nm)
             _slot_decl_addrs.add(_slot_addr_hex.lower())
             # [真重复assert首猎#5修 2026-11-18] 登记槽循环"生效名"(未名槽回退链
             #   methods名/slot_N)→_slot_names_by_addr——方法循环同名防重复守卫
