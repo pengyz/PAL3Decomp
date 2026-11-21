@@ -47,22 +47,6 @@
     "pending": false
    },
    "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int a3) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int"
-  },
-  "0x0056b050": {
-   "name": "scScriptInstance",
-   "flags": [
-    "ctor"
-   ],
-   "evidence_level": "binary_vtable_slot",
-   "source": "ctor写表普查20261116(verdict=CONFIRMED, 写表['0x0056a9c0', '0x0056b050'])",
-   "flags_evidence": "ctor写表普查在册(census annotated=0x0056b050) 2026-11-17 机械补迁(P0-1-B缺口72类)",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": true
-   }
   }
  },
  "vtables": [
@@ -106,5 +90,7 @@
    "offset": 0
   }
  ],
- "bases_note": "MI定谳20261117: ctor 0x44E530存表序列[0x56A9C0@+68, 0x56B050@+0, 0x56B044@+68] → UIWnd@0主基 + 0x56A9C0类@68次基(Object家族邻接表成员, 身份待Object家族建档); 0x56B044=本类次表(非UIEmote主表——UIEmote身份另案)"
+ "bases_note": "MI定谳20261117: ctor 0x44E530存表序列[0x56A9C0@+68, 0x56B050@+0, 0x56B044@+68] → UIWnd@0主基 + 0x56A9C0类@68次基(Object家族邻接表成员, 身份待Object家族建档); 0x56B044=本类次表(非UIEmote主表——UIEmote身份另案)",
+ "table_adjudication_pending": "20261121(UIEmote专项T2): 注册vtable=0x56b050指向UIEmote完整对象表(0x56b044)中段slot3(slot0=ShowClipped/slot1=Render/slot2=OnVisible@0x44e980)——本类独立对象的真表头未被二进制观测(仅UIEmote构造场景可见本类子对象); 注册尺寸84与UIEmote布局矛盾(次表vptr@+68+成员72/76/80落入[0,84))——真尺寸待分配点定谳(UIEmote是唯一派生者?)",
+ "note": " | UIEmote专项T2 20261121: 本类唯一实体场景=UIEmote基子对象(独立对象未见分配); UIEmote删除式dtor 0x44e5c0(次表slot8)的基dtor调用=??1scScriptInstance直证本类为UIEmote主基"
 }

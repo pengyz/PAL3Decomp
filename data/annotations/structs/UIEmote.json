@@ -12,7 +12,8 @@
    "name": "m_ani",
    "type": "UIAnimateCtrl[13]",
    "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "name_note": " | 20261121体观察(挂账): ctor 0x44e530 eh vector ctor@0x44e57d(count=0xD=13, elem=0xA4=164B, 回调=PalScript名函数@0x44e563/68)——回调名与UIAnimateCtrl[13]矛盾: IDB回调名可能=转移错位(UIAnimateCtrl真步进=164与m_field...邻接吻合待验), 或旧注册UIAnimateCtrl[13]错; 真元素类型待定谳"
   },
   "0x8a4": {
    "name": "m_role",
@@ -233,5 +234,5 @@
  ],
  "bases_source": "A+C 两路线一致（纯二进制）：路线A=注解 ctor UIEmote 的 vfptr 安装序列；路线C=本类被注解函数里的非零位移安装。工具 tools/mi_base_offsets.py 可复现。",
  "bases_evidence": "修正20261120: 原 PalScriptWaitObj@68 无证据——ctor 0x44e530 写 [esi+0x44]=0x56A9C0(GameObject表, X族定谳)直证 GameObject@0x44",
- "note": " | C11裁决20261121(UIEmote专项): bases=[scScriptInstance@0, GameObject@+0x44(68)]——ctor 0x44e530 写表链直证: [esi]←scScriptInstance符号(主表0x56b050) + [esi+44h]←off_56B044(次表, slot2=UpdateFrame@Role/slot5=OnVisible/slot8=删除式dtor); PalScript数组成员(eh vector ctor@0x44e563-57d) | UIEmote专项T1(20261121): ctor写表链[esi]←scScriptInstance/[esi+44h]←off_56B044双表直证(探针33)——但scScriptInstance注册尺寸84与UIEmote布局矛盾(次表vptr@+68落在84内+成员m_sub48@72/m_cur@76/m_ani@80落入[0,84)C10×3)⇒scScriptInstance尺寸待其自身分配点定谳后才能裁bases; bases暂回滚, 专项继续挂账"
+ "note": " | C11裁决20261121(UIEmote专项): bases=[scScriptInstance@0, GameObject@+0x44(68)]——ctor 0x44e530 写表链直证: [esi]←scScriptInstance符号(主表0x56b050) + [esi+44h]←off_56B044(次表, slot2=UpdateFrame@Role/slot5=OnVisible/slot8=删除式dtor); PalScript数组成员(eh vector ctor@0x44e563-57d) | UIEmote专项T1(20261121): ctor写表链[esi]←scScriptInstance/[esi+44h]←off_56B044双表直证(探针33)——但scScriptInstance注册尺寸84与UIEmote布局矛盾(次表vptr@+68落在84内+成员m_sub48@72/m_cur@76/m_ani@80落入[0,84)C10×3)⇒scScriptInstance尺寸待其自身分配点定谳后才能裁bases; bases暂回滚, 专项继续挂账 | 布局观察20261121(体直证@ctor 0x44e530, 零clobber版): 双vptr——主[esi]=scScriptInstance符号表(slot2=OnVisible@0x44e980本类override), 次[esi+0x44]=off_56B044(GameObject侧, slot8=删除式dtor0x44e5c0); 0x50数组eh vector ctor: 13个×0xA4=164B步进(回调名PalScript=转移错位嫌疑, 与m_ani=UIAnimateCtrl[13]注册矛盾挂账); 尾部ctor清零[0x48=m_sub48]@0x44e560/[0x8a4=m_role]@0x44e586/[0x8a8=m_loopcount=2]@0x44e59c; 基构造写Object族表@0x44e555"
 }
