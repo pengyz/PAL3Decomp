@@ -1,0 +1,586 @@
+{
+ "_doc": "类级发射域排除注册(单一真值源, 20261122 从 collect.py SKIP_CLASSES+gbengine头自动侦测迁移)",
+ "_doc2": "语义=暂缓域(函数在PAL3 .text, 最终字节匹配目标; CRT内部/gb*依赖未备)。逐类定谳后可移除(移除=解禁发射, 需match验证)。structs注册类不可入本表(矛盾由check门禁告警)。",
+ "classes": {
+  "BEZIER": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CArrayList": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CD3DEnumeration": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CD3DSettings": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CPKFile": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CPKHeader": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "CPKTable": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "Concurrency": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  },
+  "D3DAdapterInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "D3DDeviceCombo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "D3DDeviceInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "D3DDriverBug": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "GBAPI": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "GeomNodeDesc": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "GetActorMgr": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "PalScript_Cleanup": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gb2DSampleSlot": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gb3DSampleSlot": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbAABBox": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbActionState": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbActor": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbActorDef": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbActorExpNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbAnimCurve": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbAnimNodeGroup": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbAudioManager": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbBaseMesh": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbBinaryTree": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbBinaryTreeNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbBladeEntry": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbBladeMgr": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbCamControler": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbCamQuakeControl": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbCamSpringControl": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbChain2D": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbChain2DNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbClearParam": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbColorFlt": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbCursorRes": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbDropDesc": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbDropGroup": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbDropUnit": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbDynVertBuf": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbEmitterData": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbEmitterSquare": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbExpNodeData": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbFogParam": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbGeomQuad": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbGfxCaps": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbGfxDriverInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbGfxStatistic": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbImage2DInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbIndexBubble": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbIndexPool": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbLight": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMatrix4": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMesh": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMeshLODKey": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMeshMemCache": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMeshSection": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbMixActInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbNBTree": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbNBTreeNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbNameVarBuf": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbNodeMsgObj": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPartGroupParam": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPartKeyframeCh0": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPartKeyframeCh1": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPartParamControl": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbParticleEffect": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbParticleGroup": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbParticleUnit": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPixelFormat": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPlane": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPrint3DStringInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPrintFont": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPrintFontMgr": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbPrintStringInfo": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbQuaternion": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbRenderEffect": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbRenderInfoObj": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbResManager": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbResManagerStub": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbResource": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbRotMatrix": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbSceneGraph": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbSound3DNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbSoundData": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbSphere": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbStaticChain": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbStaticChainNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbStaticMesh": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbTextureArray": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbTimeCounter": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbUIQuad": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbUIRect": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVFile": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVFile1": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVTextFile": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVec2D": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVec4D": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVertFormatEntry": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVertexBubble": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVertexElement": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVertexPool": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbViewPort": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVisNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVisNodeBase": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVolModNode": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "gbVolumeModifier": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "j_j_codecvt_base": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  },
+  "j_std": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  },
+  "nullsub_103": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "gbengine-header-detect",
+   "migrated": "2026-11-22"
+  },
+  "std": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  },
+  "stdiobuf": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  },
+  "type_info": {
+   "reason": "暂缓域(迁移自 collect.py 硬编码/头侦测——逐类定谳排队)",
+   "provenance": "CRT",
+   "migrated": "2026-11-22"
+  }
+ }
+}

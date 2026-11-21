@@ -924,6 +924,12 @@ if _GBENGINE_DIR.exists():
                 if _nm:
                     SKIP_CLASSES.add(_nm)
 
+# [语义分歧定谳 20261122] 本表≠collect.py 的域排除表(domain_exclude.json)——
+#   本表语义=头碰撞卫生(保留字/SDK 类型/gbengine 共享头类: 本地重发头与
+#   include/gbengine 真定义冲突 C2371/C2011)。gbengine 头自动侦测在本表**正确**:
+#   头在 include 树 ⇒ 本地头禁发(CPK.h 案: 注解优先误修致 S2 0/231 已回滚)。
+#   collect 侧的域语义(代码是否发射)走 domain_exclude.json+注解优先, 两表不可合并。
+
 # 枚举识别（2026-09-23）：MSVC6 无 sized enum ⇒ **枚举恒为 int（4 字节）**。
 # `ida_structs.json` 把枚举记为 size=1 是 **IDB 枚举导入伪影** ✗（实测：UIStaticFlex 的
 # `gbFontType m_fonttype@0xA0` 被当成 1 字节后插 `_gap_0A1[3]` ⇒ 与 4 字节枚举本体碰撞

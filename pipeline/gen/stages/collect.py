@@ -11,22 +11,11 @@ from pathlib import Path
 from data import store
 
 # Classes to skip entirely (CRT, STL, gbengine wrappers, thunk trampolines)
-SKIP_CLASSES = {
-    'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
-    'Iostream_init', 'Concurrency',
-    'j_std', 'j_j_codecvt_base',
-}
-
-# Auto-detect classes defined in gbengine headers
-import re as _re
-_GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengine"
-if _GBENGINE_DIR.exists():
-    for _hf in _GBENGINE_DIR.glob("*.h"):
-        with open(_hf, 'r', encoding='utf-8', errors='replace') as _fh:
-            for _line in _fh:
-                _m = _re.match(r'^(?:class|struct)\s+(\w+)', _line)
-                if _m:
-                    SKIP_CLASSES.add(_m.group(1))
+# [SKIP_CLASSES 常量+gbengine 头自动侦测 退役 20261122] 类级域排除迁移至
+# data/annotations/domain_exclude.json(数据层单一真值源, 带 provenance/定谳状态)。
+# 退役根因: ①常量=代码内遗留数据(层错位) ②头文件存在性推导域归属被 CPK 案证伪
+# (头在 include/gbengine/ 但实现全在 PAL3 .text——头共享实现本地, 自动侦测过判
+#  ⇒CPK 全类方法从未发射)。注解优先(structs 注册类不可入排除表)为本表不变式。
 
 # Organize classes into subdirectories by category
 CLASS_DIRS = {
@@ -91,7 +80,17 @@ def get_class_dir(cls_name):
 
 def _get_skip_classes():
     """Build the full skip set including thunk classes from annotations."""
-    skip = set(SKIP_CLASSES)
+    # [域排除单一真值源 20261122] 读 data/annotations/domain_exclude.json
+    #   (原 SKIP_CLASSES 常量+gbengine 头自动侦测已迁移, 见文件头注)
+    skip = set()
+    _dex_p = (Path(__file__).parent.parent.parent.parent
+              / 'data' / 'annotations' / 'domain_exclude.json')
+    if _dex_p.exists():
+        try:
+            _dex = json.loads(_dex_p.read_text(encoding='utf-8'))
+            skip.update((_dex.get('classes') or {}).keys())
+        except Exception as _e:
+            print('  [collect-DOMAIN-ERR] domain_exclude.json 读取失败: %s' % str(_e)[:60])
 
     # Add thunk class names from skip_functions.json
     # 2026-09-20 审计 P1-5（第二批）：直读收敛到单一读点 annotation_view。
