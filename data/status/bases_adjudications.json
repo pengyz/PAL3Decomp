@@ -129,5 +129,15 @@
   "ctor_evidence": "ctor 0x519310 call ??0UIListBox@0x43dcd0@0x51932d + 写表0x5704C8@0x51933c",
   "dtor_evidence": "删除式0x519360(slot5)→完全dtor 0x519380 call ??1UIListBox@0x43dd10@0x5193ba",
   "verdict_by": "本机idalib探针(probe_ccbui_identity系列)"
+ },
+ "UIEmote": {
+  "bases": [
+   "scScriptInstance",
+   "GameObject"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x44e530写表链: [esi]←scScriptInstance表@0x56b050(slot3起: ShowClipped/Render/OnVisible/HideAll/Create/dtor/OnMessage) @0x44e58f + [esi+44h]←off_56B044(slot0起: Reset/GetType/UpdateFrame) @0x44e595; 组合表10槽逐槽吻合二进制(T3 probe44)",
+  "dtor_evidence": "删除式0x44e5c0(次表slot8): call ??1scScriptInstance@0x44e5e0(基dtor)+flags&1+operator delete",
+  "verdict_by": "本机idalib探针31-44(UIEmote专项系列) + T4对抗复核七组声明全验证"
  }
 }

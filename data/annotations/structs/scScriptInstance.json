@@ -12,8 +12,9 @@
  "methods": {
   "0x0044e5e0": {
    "name": "~scScriptInstance",
-   "source": "| sig-normalized: double-cc/double-paren cleanup, applied form unchanged (apply [6] cleanup already stripped __cdecl)",
-   "evidence_level": "unverified",
+   "flags": [
+    "dtor"
+   ],
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -21,10 +22,7 @@
     "varargs": false,
     "pending": false
    },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~scScriptInstance(??1/??_G析构族); decomp文件=scScriptInstance_~scScriptInstancevoid_0044e5e0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "name_note": "T3定谳20261121(UIEmote专项): 120B体=基析构+成员清理(全量反汇编语义清晰); 本类无独立ctor(内联进UIEmote ctor); 唯一派生类=UIEmote(写0x56b050扫描唯一)"
   },
   "0x0044e980": {
    "name": "Update",
@@ -92,5 +90,5 @@
  ],
  "bases_note": "MI定谳20261117: ctor 0x44E530存表序列[0x56A9C0@+68, 0x56B050@+0, 0x56B044@+68] → UIWnd@0主基 + 0x56A9C0类@68次基(Object家族邻接表成员, 身份待Object家族建档); 0x56B044=本类次表(非UIEmote主表——UIEmote身份另案)",
  "table_adjudication_pending": "20261121(UIEmote专项T2): 注册vtable=0x56b050指向UIEmote完整对象表(0x56b044)中段slot3(slot0=ShowClipped/slot1=Render/slot2=OnVisible@0x44e980)——本类独立对象的真表头未被二进制观测(仅UIEmote构造场景可见本类子对象); 注册尺寸84与UIEmote布局矛盾(次表vptr@+68+成员72/76/80落入[0,84))——真尺寸待分配点定谳(UIEmote是唯一派生者?)",
- "note": " | UIEmote专项T2 20261121: 本类唯一实体场景=UIEmote基子对象(独立对象未见分配); UIEmote删除式dtor 0x44e5c0(次表slot8)的基dtor调用=??1scScriptInstance直证本类为UIEmote主基"
+ "note": " | UIEmote专项T2 20261121: 本类唯一实体场景=UIEmote基子对象(独立对象未见分配); UIEmote删除式dtor 0x44e5c0(次表slot8)的基dtor调用=??1scScriptInstance直证本类为UIEmote主基 | T3定谳20261121: 无独立ctor(内联); 真dtor=0x44e5e0(120B); 表0x56b050=组合表slot3起(scScriptInstance侧), slot0-2=GameObject侧(off_56B044); 注册尺寸84存疑(UIEmote布局证据≤68, 需本类分配点定谳——仅UIEmote派生可能无独立分配)"
 }
