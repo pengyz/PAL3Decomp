@@ -1,4 +1,4 @@
-[vtable] 改进: 168 → 150 (update vtable_baseline.json)
+[vtable] 改进: 168 → 148 (update vtable_baseline.json)
 WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
 WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
 WARN: functions[0x00446030]: '__thiscall' without '::' in 'AddToArray' (sig: void __thiscall(_DWORD *newElement)) — likely member function, needs IDA investigation
@@ -289,7 +289,7 @@ WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
 WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
 WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795227034)早于最新注解(1795227654)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795227876)早于最新注解(1795229491)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
@@ -355,7 +355,7 @@ FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['U
 0 new errors + 16 frozen(advisory), 336 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：113 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
 [A] PASS：没有任何 code 位置的 __vftable
 [B] PASS：155 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
@@ -377,7 +377,7 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 -> OK: annotations applied
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：113 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
 [A] PASS：没有任何 code 位置的 __vftable
 [B] PASS：155 个 sub_ 符号的声明/调用形参数全部一致（另 101 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 

@@ -446,7 +446,6 @@
   "0x004bdf30": {
    "name": "_todo_4BDF30",
    "source": "| [残余 14 条裁决 2026-10-16 analyzer] 本体 A 级：计时累加器 `+16 float 累加 >+12 阈值处理`（0x4BDF30 decompile 实证） | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only",
-   "declaration_only": true,
    "evidence_level": "A",
    "sig_model": {
     "return": "void",
@@ -460,7 +459,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_todo_4BDF30): "
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_todo_4BDF30): ",
+   "name_note": " | 债清偿定谳20261121: debt_ready——真体洁净: fadeIn life+=dt带钳制(淡入计时更新) (probe23函数头验证+probe24就地反编译) | 债清偿20261121: probe24就地反编译体洁净→摘declaration_only恢复体发射; skip孪生同步摘除"
   },
   "0x004bef50": {
    "name": "_UIWnd",

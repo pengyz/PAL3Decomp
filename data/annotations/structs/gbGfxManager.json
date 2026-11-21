@@ -250,15 +250,7 @@
   "0x00010000": {
    "name": "_todo_010000",
    "declaration_only": true,
-   "source": "修复 2026-10-17: 数据误检标记（vptr_installs 假阳——非码值）+ declaration_only",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   "name_note": "外部DLL表序号占位(gbengine.dll): vtable槽addr=0x10000+n为槽序标记非地址, 槽名MsgProc/NewTexture等为真数据; 本条=占位满足C7定义路由(20261121退役回滚)"
   }
  },
  "vtables": [

@@ -30,7 +30,6 @@
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
-   "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
    "sig_model": {
@@ -39,20 +38,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x0052b9c0": {
-   "name": "_todo_52B9C0",
-   "declaration_only": true,
-   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: debt_ready——真体洁净: 静态初始化守卫(g_bStaticInitFlags) (probe23函数头验证+probe24就地反编译) | 债清偿20261121: probe24体洁净(静态初始化守卫)→摘declaration_only; IDB mangle=ParticleVisNode真主, SceneVisNode同址=孪生声明(保留decl_only)"
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
@@ -65,7 +52,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: compiler_regen——浮点×2编译器桩(fld/fadd/fstp/retn, 同0x51d700族) (probe23函数头验证+probe24就地反编译)"
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
@@ -78,7 +66,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: compiler_regen——浮点×2编译器桩 (probe23函数头验证+probe24就地反编译)"
   },
   "0x00542108": {
    "name": "ParticleVisNode_adjthunk_2108",

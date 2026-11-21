@@ -25,7 +25,6 @@
   },
   "0x0052b9a0": {
    "name": "_todo_52B9A0",
-   "declaration_only": true,
    "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
    "evidence_level": "unverified",
    "sig_model": {
@@ -34,20 +33,9 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
-  },
-  "0x0052b9c0": {
-   "name": "_todo_52B9C0",
-   "declaration_only": true,
-   "source": "修复 2026-10-17: 待 idapro decompile 定真名 + declaration_only",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: debt_ready——真体洁净: 静态初始化守卫(g_bStaticInitFlags) (probe23函数头验证+probe24就地反编译) | 债清偿20261121: probe24就地反编译体洁净→摘declaration_only恢复体发射; skip孪生同步摘除",
+   "declaration_only": true
   },
   "0x0052b9e0": {
    "name": "_todo_52B9E0",
@@ -60,7 +48,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: compiler_regen——浮点×2编译器桩(fld/fadd/fstp/retn, 同0x51d700族) (probe23函数头验证+probe24就地反编译)"
   },
   "0x0052ba00": {
    "name": "_todo_52BA00",
@@ -73,7 +62,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": " | 债清偿定谳20261121: compiler_regen——浮点×2编译器桩 (probe23函数头验证+probe24就地反编译)"
   },
   "0x0052b980": {
    "name": "Remove",
@@ -132,5 +122,6 @@
   }
  ],
  "_size_note": "bs=8 最小界；真身锚挂账",
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
+ "note": " | 退役20261121: 0x52b9c0幻影(probe23: 非函数头, 属0x52b9a0函数体内; [5b]fail-loud抓漏——ParticleVisNode侧已同判退役)"
 }
