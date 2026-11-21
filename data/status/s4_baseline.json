@@ -18,28 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 974,
-  "matched": 824,
+  "symbols": 976,
+  "matched": 828,
   "unmatched": 228,
-  "match_L1": 114,
+  "match_L1": 115,
   "match_L1_semantic": 8,
-  "partial": 628,
+  "partial": 629,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 82,
-  "reloc_total": 6351,
-  "reloc_ok": 1505,
+  "unresolved_synth": 84,
+  "reloc_total": 6358,
+  "reloc_ok": 1512,
   "reloc_mismatch": 0,
   "reloc_unresolved": 4846,
-  "rsite_total": 6351,
-  "rsite_unaligned": 6021,
-  "l1_bytes": 4753,
-  "l1_hidden_reloc_bytes": 974,
-  "l1_reloc_covered_bytes": 1320,
-  "rsite_ok": 53,
-  "rsite_class_ok": 253,
+  "rsite_total": 6358,
+  "rsite_unaligned": 6026,
+  "l1_bytes": 4783,
+  "l1_hidden_reloc_bytes": 978,
+  "l1_reloc_covered_bytes": 1328,
+  "rsite_ok": 54,
+  "rsite_class_ok": 254,
   "rsite_unresolved": 5,
   "rsite_unresolved_samples": [
    {
@@ -3186,7 +3186,7 @@
    "name": "ParticleEffect::~ParticleEffect(void)",
    "va": "0x004BC790",
    "status": "partial",
-   "match_pct": 13.3,
+   "match_pct": 26.7,
    "size": 30
   },
   {
@@ -4455,7 +4455,7 @@
    "name": "UICaption::Destroy2(void)",
    "va": "0x0043A810",
    "status": "partial",
-   "match_pct": 14.1,
+   "match_pct": 13.0,
    "size": 92
   },
   {
@@ -4482,7 +4482,7 @@
    "name": "UICaption::DestroyAll(void)",
    "va": "0x0044BDA0",
    "status": "partial",
-   "match_pct": 13.7,
+   "match_pct": 12.6,
    "size": 95
   },
   {
@@ -5283,7 +5283,7 @@
    "name": "UITitle::~UITitle(void)",
    "va": "0x0044ACE0",
    "status": "partial",
-   "match_pct": 38.4,
+   "match_pct": 36.9,
    "size": 255
   },
   {
@@ -6710,6 +6710,24 @@
   },
   {
    "file": "pal3/src/UI/UIWnd.cpp",
+   "symbol": "??1UIWnd@@UAE@XZ",
+   "name": "UIWnd::~UIWnd(void)",
+   "va": "0x00445B40",
+   "status": "partial",
+   "match_pct": 37.5,
+   "size": 80
+  },
+  {
+   "file": "pal3/src/UI/UIWnd.cpp",
+   "symbol": "??_GUIWnd@@UAEPAXI@Z",
+   "name": "UIWnd::`scalar deleting destructor'(uint)",
+   "va": "0x00445B20",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/UI/UIWnd.cpp",
    "symbol": "?Create@UIWnd@@UAEHHPAUtagRECT@@PAV1@@Z",
    "name": "UIWnd::Create(int,tagRECT *,UIWnd *)",
    "va": "0x00445B90",
@@ -7410,6 +7428,11 @@
    "UIWnd::OnMessage(int,uint,int)",
    4480272,
    5
+  ],
+  [
+   "UIWnd::`scalar deleting destructor'(uint)",
+   4479776,
+   30
   ],
   [
    "_Console::SetActive(int)",

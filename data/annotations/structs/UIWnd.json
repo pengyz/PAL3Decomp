@@ -392,6 +392,22 @@
     "ctor"
    ],
    "flags_evidence": "IDA名字形态=UIWnd(??0构造); decomp文件=ClearSubArraySlot_00445aa0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+  },
+  "0x00445b40": {
+   "name": "~UIWnd",
+   "flags": [
+    "dtor"
+   ],
+   "evidence_level": "A",
+   "source": "S2 UIWnd旗舰案20261121: 完全形注册(定义源)",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": "完全形dtor定谳20261121(idalib探针): ①删除式0x445B20体内call sub_445B40(dtor对调用链身份=D1判据) ②本址0x445B40体 mov [esi],stru_56AEC8=写UIWnd vtable(写表身份=归属铁律) ③后调HideAll=析构清理语义 ④相邻地址0x445B20(+0x20前)=经典dtor对. sub_445B40未名→注册~UIWnd(定义源; 4d隐式织入剥离). 合成链: virtual声明(槽5在册)+本定义→??1/??_GUIWnd载体"
   }
  },
  "vtables": [
