@@ -19,9 +19,9 @@
  ],
  "stats": {
   "symbols": 976,
-  "matched": 828,
-  "unmatched": 228,
-  "match_L1": 115,
+  "matched": 829,
+  "unmatched": 227,
+  "match_L1": 116,
   "match_L1_semantic": 8,
   "partial": 629,
   "oob": 0,
@@ -29,17 +29,17 @@
   "oob_text_end": 0,
   "oob_file_end": 0,
   "unresolved_synth": 84,
-  "reloc_total": 6358,
-  "reloc_ok": 1512,
+  "reloc_total": 6360,
+  "reloc_ok": 1516,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 4846,
-  "rsite_total": 6358,
+  "reloc_unresolved": 4844,
+  "rsite_total": 6360,
   "rsite_unaligned": 6026,
-  "l1_bytes": 4783,
-  "l1_hidden_reloc_bytes": 978,
-  "l1_reloc_covered_bytes": 1328,
-  "rsite_ok": 54,
-  "rsite_class_ok": 254,
+  "l1_bytes": 4813,
+  "l1_hidden_reloc_bytes": 982,
+  "l1_reloc_covered_bytes": 1336,
+  "rsite_ok": 55,
+  "rsite_class_ok": 255,
   "rsite_unresolved": 5,
   "rsite_unresolved_samples": [
    {
@@ -4014,7 +4014,7 @@
    "name": "TaskBookUI::Destroy(void)",
    "va": "0x00454BA0",
    "status": "partial",
-   "match_pct": 16.9,
+   "match_pct": 17.4,
    "size": 242
   },
   {
@@ -4376,6 +4376,15 @@
    "status": "partial",
    "match_pct": 41.9,
    "size": 148
+  },
+  {
+   "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp",
+   "symbol": "??_GUIScene@@UAEPAXI@Z",
+   "name": "UIScene::`scalar deleting destructor'(uint)",
+   "va": "0x0043BE10",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
   },
   {
    "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp",
@@ -7353,6 +7362,11 @@
    "UIRoleSelectDialog::SubtractFromStats(void)",
    5417552,
    81
+  ],
+  [
+   "UIScene::`scalar deleting destructor'(uint)",
+   4439568,
+   30
   ],
   [
    "UISceneFace::ResetAllSlots(void)",
