@@ -137,9 +137,10 @@ public:
     // Static methods
     static void SetSunDirection(gbVec3D* direction);
 
-private:
     void UpdateExportNodes();
 
+    // [public 修正 2026-11-22] 语料证据: Actor.cpp 6+ 站从 gbActor 指针外部访问
+    // pBody(C2248 private 实证)——原 private 段=重建选择错误, 游戏侧访问=public 证据
     gbActorDef* pBody;           // +0x58
     int m_field_5C;                    // +0x5C
     gbActionState* m_pActions;         // +0x60
