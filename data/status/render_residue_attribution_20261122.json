@@ -1,0 +1,16 @@
+{
+ "_doc": "Timer实验回退后 render 残差归因面 2026-11-22",
+ "state": "S2 141/230(比 59418763c 时代少1绿单元); L1 142; 5个Timer引用单元各+1/+2错",
+ "regression_surface": [
+  "R1④ globals 38 条改名(off_/unk_→dword_/byte_, decomp引用名对齐)",
+  "R2 functions: gbVec3D_*幽灵删除(无关.)/FileSysDestory sig thiscall→cdecl(呼叫点CC变)/free_helper豁免(无render影响)",
+  "R2 structs: known_methods 22类(仅声明面)/gap_fill adjudication(无render影响)/PalScriptBlendTimer 0x434D50 sig void*→char参(呼叫点CC变)/Timer注释note变化(无)",
+  "R2.5 Timer 28B实验+回退(IDB两轮type重写, 已复原16B)"
+ ],
+ "bisect_plan": [
+  "①staged-loop: 逐面 checkout+loop 定位肇事面(每面~12min)",
+  "②嫌疑最大: FileSysDestory cdecl 修正(其呼叫单元=1个)+PalScriptBlendTimer sig(呼叫面)",
+  "③若render churn=同族错误重排(计数守恒), 按衰退定性协议判暴露非退化"
+ ],
+ "note": "S2 ok 总数 142→141(-1绿单元): 需定位翻车单元(下批首选)"
+}

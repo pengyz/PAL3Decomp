@@ -111,5 +111,6 @@
    ],
    "source": "[vtable 100 认领 2026-10-17 analyzer 证据账目制] 认领+再创作命名五面卡：①调用者面=xref 0x434D50@0x56abb8/0x56abc4 表内 ②被调用者面=del 链 ③成员访问面=+8/+12 浮点对 ④类归属面=独立小类（PalScript 族）⑤交互模式面=ctor 写点 Op_Idle+30（Op 域构造）⇒ **混合/过渡计时器**（Blend=混合进度语义：elapsed<duration 判 + 累加）evidence=[0x434D20/0x434D40 decompile,xrefs_to 0x434D50,writer Op_Idle+30] confidence=88"
   }
- ]
+ ],
+ "note": "| [尺寸修正 20261122] 16→28B: Update 方法读写 this[1] 后随 12B 混合参数三元组(vtable 群 PalScript Op_ 实证) | [回退 20261122] 28B 实验回退: this[1]=this+sizeof——扩类致 this[1] 从+16 漂到+28=字节回归。正解=后随12B 建独立类(指针类型保持 16B), timer_this1_semantics 档已录"
 }

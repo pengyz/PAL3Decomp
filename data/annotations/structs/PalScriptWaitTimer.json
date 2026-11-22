@@ -55,5 +55,6 @@
   }
  ],
  "binary_size": 16,
- "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账"
+ "_size_note": "[批 3 阶段 2 补形 2026-10-17 analyzer] bs=成员几何最小界（A 级 this+N 访问上确界）；真身锚（new/memset 跨度）挂账",
+ "note": "| [尺寸修正 20261122] 16→28B: Update 方法读写 this[1] 后随 12B 混合参数三元组(vtable 群 PalScript Op_ 实证) | [回退 20261122] 28B 实验回退: this[1]=this+sizeof——扩类致 this[1] 从+16 漂到+28=字节回归。正解=后随12B 建独立类(指针类型保持 16B), timer_this1_semantics 档已录"
 }
