@@ -574,6 +574,18 @@
    },
    "evidence_level": "chain_unified",
    "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名SceneUpdate=体读数命名 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int"
+  },
+  "0x0044f130": {
+   "name": "InitUIComponents",
+   "source": "[归属迁移 20261122] 自由函数→UIGameFrm 成员。铁证: ①调用点 mov ecx,0xdb9fd0=g_gamefrm(UIGameFrm 全局单例) ②体首 UIWnd::Create((UIWnd*)this,...) this 作基类传递 ③内嵌组件族布局全吻合: UIEmote@14544/CJ_FindFile@3904/UIDialog@2144/UIRoleSelectDialog@656/UITitle@5012/RoleStatePanel 槽@28180——g_gamefrm 内嵌 UI 组件初始化语义",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [

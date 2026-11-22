@@ -14,7 +14,27 @@
  "0x00422950": {
   "name": "LoadScene",
   "signature": "struct gbVFileSystem *__thiscall LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)",
-  "source": " | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）"
+  "source": " | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall） | [签名修正 20261122] 原签名 __thiscall(double) 全错——语料实证 void __cdecl LoadScene(char*,char*,char) 三参 cdecl (String2/desc/arg8)",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "char *",
+     "name": "pszSceneName"
+    },
+    {
+     "type": "char *",
+     "name": "pszDesc"
+    },
+    {
+     "type": "char",
+     "name": "bMode"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00423540": {
   "name": "CombatEnter",
@@ -80,9 +100,10 @@
  "0x00538260": {
   "name": "ClearModelFlag",
   "signature": "CHAR *__thiscall(CHAR *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·Actor LoadActorModel/DoSceneTransition 域",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·Actor LoadActorModel/DoSceneTransition 域 | [free_helper 确认 20261122] ArraySort(0x401810)=ForEach stride 批量调用器 push 0x538260 字面量回调 + 唯一调用点 mov ecx,esi (thiscall/fastcall 同形, 无成员专属形态) + free_functions.h:79 全局声明在册——classless thiscall 工具族五面确认",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[余 14 补面 2026-10-17·五面满卡] ClearModelFlag（①Actor::LoadActorModel + DoSceneTransition ✓ ③this[612]=0 零化 ✓ ④Actor ✓ ⑤模型载入态清 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=Actor（五面卡面证）"
+  "source_note": "[余 14 补面 2026-10-17·五面满卡] ClearModelFlag（①Actor::LoadActorModel + DoSceneTransition ✓ ③this[612]=0 零化 ✓ ④Actor ✓ ⑤模型载入态清 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=Actor（五面卡面证）",
+  "free_helper_confirmed": true
  },
  "0x00540070": {
   "name": "_todo_540070",
@@ -1123,12 +1144,6 @@
   "signature": "void __thiscall(int this, int newElement)",
   "name_source": "IDA语义分析 2026-11-01 批6",
   "name_note": "数组元素设置（PtrArray::SetAt）"
- },
- "0x0044f130": {
-  "name": "InitUIComponents",
-  "signature": "void __thiscall(int nVal)",
-  "name_source": "IDA语义分析 2026-11-01 批11",
-  "name_note": "UI 组件初始化（PropUI/RoleStatePanel/EquipUI）"
  },
  "0x00452df0": {
   "name": "LoadRoleData",
