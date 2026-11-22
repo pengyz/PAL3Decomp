@@ -971,8 +971,9 @@
  },
  "0x0053a340": {
   "name": "PtrVec_InsertN",
-  "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const char *pVal)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActArray_InsertN。[五面证据] ①调用者=Actor::BuildCollisionMesh、UIBigMap::SetElementVisible（`Actor::ActVec_Insert_char(v5, &v5->m_actarray_end->m_actarray_type, 1u, pszBuf2)` = 在容器末尾插 1 份）②被调用者=Actor::CopyConstruct_290（0x290 = 656B 元素的拷贝构造包装）、SetCurrentAction、Actor::CopyActionData、qmemcpy(0x290)、operator new/delete ③成员访问=m_a"
+  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const char *pVal)",
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActArray_InsertN。[五面证据] ①调用者=Actor::BuildCollisionMesh、UIBigMap::SetElementVisible（`Actor::ActVec_Insert_char(v5, &v5->m_actarray_end->m_actarray_type, 1u, pszBuf2)` = 在容器末尾插 1 份）②被调用者=Actor::CopyConstruct_290（0x290 = 656B 元素的拷贝构造包装）、SetCurrentAction、Actor::CopyActionData、qmemcpy(0x290)、operator new/delete ③成员访问=m_a",
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
  },
  "0x0053a6c0": {
   "name": "PtrVec_Insert_word",
@@ -981,13 +982,15 @@
  },
  "0x0053a8d0": {
   "name": "PtrVec_InsertN_elem",
-  "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const char *pEntry)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertN(this, &m_actarray_end->m_actarray_type, 1u, nY)`（容器 = Actor 的动作数组）②被调用者=VideoPlayer::SetRegion（拷贝构造包装）、Actor::ActArray_Assign(元素+132)、Actor::BoneIndexVec_Assign(元素+148)、Actor::ClearAllocBuffers（析构）、qmemcpy(dst,src,0x84)、operator new/delete ⇒ 元素 ="
+  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const char *pEntry)",
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertN(this, &m_actarray_end->m_actarray_type, 1u, nY)`（容器 = Actor 的动作数组）②被调用者=VideoPlayer::SetRegion（拷贝构造包装）、Actor::ActArray_Assign(元素+132)、Actor::BoneIndexVec_Assign(元素+148)、Actor::ClearAllocBuffers（析构）、qmemcpy(dst,src,0x84)、operator new/delete ⇒ 元素 =",
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
  },
  "0x0053aca0": {
   "name": "PtrVec_InsertN",
-  "signature": "char *__thiscall(Actor *this, char *pPos, unsigned int nCount, const void *pVal)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray"
+  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const void *pVal)",
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray",
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
  },
  "0x0044cb30": {
   "name": "InitParticles",

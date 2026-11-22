@@ -43,43 +43,40 @@ Generated 229 .cpp files (3493 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 141/230 ok | own-fail 89 | imported-only 0  (36s)
+S2 cpp: 141/230 ok | own-fail 89 | imported-only 0  (28s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261122_181058
-基线时间: 2026-11-22T18:10:58.789571
-检测时间: 2026-11-22T18:24:34.701194
+基线: 20261122_182819
+基线时间: 2026-11-22T18:28:19.520104
+检测时间: 2026-11-22T18:49:32.684840
 
 📊 摘要:
   总文件数: 1017
   新失败: 0
   新错误(真新增 (code,msg)): 0
-  已修复: 1
+  已修复: 0
   错误收敛(消失 (code,msg)): 1
   持续失败: 113
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2065    -2
+  C2248    -6
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Misc/ScriptVM.cpp: 29 -> 28  (消失 1)
-
-✅ 已修复 (之前失败，现在成功):
-----------------------------------------
-  pal3/src/Role/Role.cpp
+  pal3/src/Role/Actor.cpp: 20 -> 14  (消失 6)
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/ScriptVM.cpp: 29 ↓ 28
+  pal3/src/Role/Actor.cpp: 20 ↓ 14
+  pal3/src/free_functions.cpp: 102 ↓ 101
 
 ✅ 未检测到回归。
-✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_182434.json
+✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_184932.json
    总文件数: 1017
    成功: 904
    失败: 111
@@ -88,9 +85,9 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 [Baseline] refreshing latest baseline...
   Fingerprinting probe census...
-  Snapshot saved: 20261122_182434
-    S2 141/230, errors=682, pass=141/230
-  Pruned old snapshot: 20261119_031557
+  Snapshot saved: 20261122_184932
+    S2 141/230, errors=675, pass=141/230
+  Pruned old snapshot: 20261119_032442
 
 [codegen-invariant] OK（无新增不变量破坏）
 Compile Regression Report
