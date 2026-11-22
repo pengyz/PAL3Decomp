@@ -108,9 +108,16 @@ public:
 
 /* ======== gbSound2DNode ======== */
 
-class GBAPI gbSound2DNode {
+class gbSound2DNode {
 public:
-    void UIPostUpdate(); // [PAL3侧实现 20261122] PAL3.exe实现@0x41EB80(非导入,直接call实证)——原头漏声(重建不完整)
+    // [F70模式 20261122] 类级GBAPI退役→按成员GBAPI(dual-build安全):
+    //   DLL成员(Play/Stop/LoadFromFile/IsPlaying/Pause/Resume——GBENGINE IAT六符号实证)
+    //   =GBAPI(dllimport, PAL3调用点发射call ds:__imp_X匹配二进制IAT间接形);
+    //   PAL3侧成员(UIPostUpdate——非导入+直接call实证@0x41EB80)=普通声明(PAL3定义不缺,
+    //   DLL构建零导出义务)。类级GBAPI对此族错误(第127轮F70判例: dllimport类声明下
+    //   PAL3侧定义=C2491)。未在IAT的SetLoopNum/SetVolume/ctor/dtor/operator=:
+    //   保持普通(PAL3侧实现或未用, 逐个定谳排队)。
+    void UIPostUpdate(); // PAL3侧实现@0x41EB80(非导入, 直接call实证)
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (HSAMPLE)
     int nLoop;            // +0x08
@@ -122,12 +129,12 @@ public:
     ~gbSound2DNode();
     gbSound2DNode& operator=(const gbSound2DNode& other);
 
-    int LoadFromFile(char* filename);
-    void Play();
-    void Stop();
-    bool IsPlaying();
-    void Pause();
-    void Resume();
+    GBAPI int LoadFromFile(char* filename);
+    GBAPI void Play();
+    GBAPI void Stop();
+    GBAPI bool IsPlaying();
+    GBAPI void Pause();
+    GBAPI void Resume();
     void SetLoopNum(int num);
     void SetVolume(float vol);
 };

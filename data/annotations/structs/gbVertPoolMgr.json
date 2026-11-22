@@ -75,5 +75,24 @@
    "evidence_level": "unverified"
   }
  },
- "methods": {}
+ "methods": {
+  "0x10021680": {
+   "name": "GetDynVertBuf",
+   "sig_model": {
+    "return": "gbDynVertBuf *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "IAT普查20261122移除后回滚(同日): 本条=load-bearing声明源——CEffectSystem slot_6调用点 `gbVertPoolMgr::GetDynVertBuf(0x15u)` 依赖本声明(RHS=gbDynVertBuf*); 移除后调用回退异形声明→RHS类型变→C2440→单元编译断→GetEffectIndex(L1)掉出",
+   "name_note": "址0x10021680=gbengine.dll空间(疑跨二进制污染)——归属疑点另案定谳; 但声明角色承重(slot_6 L128编译依赖), 移除须先补等价声明通路",
+   "evidence_level": "A"
+  }
+ }
 }

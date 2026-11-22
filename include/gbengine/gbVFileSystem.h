@@ -158,6 +158,7 @@ public:
     //   CPK *__thiscall CPK::InitPackFiles() @0x0053C250
     CPK* Init();
     CPK* InitPackFiles();
+    CPK* GetInstance(); // [PAL3侧实现 20261122] @0x4CE0D0(非导入, 单例访问器: 构造静态CPK返回)
 
 private:
     static unsigned long CrcTable[256];
