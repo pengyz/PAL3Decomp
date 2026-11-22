@@ -1656,13 +1656,29 @@ def _run_inner(code, ctx):
         r'\b(v\d+\s*-\s*\d+)\->gbVec3D::gbVec3D\(([^;()]+)\);',
         r'new ((void *)(\1)) gbVec3D(\2);', code)
 
+    # P-A13d-2 (2026-11-22) 接收者前缀形态——P-A13d 宽门漏网修
+    #   (CScreenMode::SetMode / gbAudioManager 实证: IAT mangle
+    #   ??0gbAudioManager@@QAE@AAHPAUgbAudioMgrDesc@@@Z=(int&,desc*),
+    #   stage2 方法化后 `v3->gbAudioManager::gbAudioManager(&v9, &v13);`
+    #   被 P-A13d 在 `->` 后 `\b` 照样命中, `v3->` 残留 ⇒
+    #   `v3->v9 = gbAudioManager(&v13)` 假成员访问 C2039 级联)。
+    #   语义: PTR 上就地构造(C++ 无显式 ctor 语法) ⇒ placement new 兄弟形
+    #   (P-A13/P-A13b/P-A13e 同律)。窄门: PTR=\w+ 直接收者+首参 &V 提升为 V。
+    #   爆炸半径普查 20261122: 全树 decomp 层 this+引用参 ctor 站=1(本站)。
+    code = re.sub(
+        r'\b(\w+)->([A-Za-z_]\w*)::\2\(&([A-Za-z_][\w]*)(?:\[\d*\])?,\s*([^;()]+?)\);',
+        r'new ((void *)\1) \2(\3, \4);', code)
     # P-A13d (2026-11-12·复刻自丢失版) 就地构造统一律——
     #   `Cls::Cls(&obj, args...)` 显式调用(C++ 无此语法 ⇒ C2661 n-args)。
     #   等价: obj = Cls(args) (ctor+赋值, 同内存位图; VC6 合法形态)。
     #   (CCBStage L5509/5565/5605 三站 gbVec3D 复活实证; 上版随 git checkout
     #   停损误删, 本版为复刻。)
+    #   [lookbehind 守卫 2026-11-22] `(?<![.\w>])`: 接收者前缀形态
+    #   (`PTR->Cls::Cls(...)` / `obj.Cls::Cls(...)`) 不再被吞——由 P-A13d-2
+    #   placement new 化; 未覆盖形态留未改写=编译器可见(fail-loud),
+    #   不再静默产假成员赋值。自由形(行首/=/( 后)原语义不变。
     code = re.sub(
-        r'\b([A-Za-z_][\w]*)::\1\(&([A-Za-z_][\w]*)(?:\[\d*\])?,\s*([^;()]+?)\);',
+        r'(?<![.\w>])([A-Za-z_][\w]*)::\1\(&([A-Za-z_][\w]*)(?:\[\d*\])?,\s*([^;()]+?)\);',
         r'\2 = \1(\3);', code)
     # P-A13e (2026-11-12·窄门版) 指针算术接收者就地构造——
     #   `v3 - 1->gbVec3D::gbVec3D(0,0,0)` (游标指针数组逐元素构造, CCBStage:6892

@@ -1,0 +1,1312 @@
+{
+ "_doc": "gbengine 共享头完成度战役 T1 普查 2026-11-22",
+ "q1_member_gap": {
+  "gbSound2DNode": [
+   "UIPostUpdate"
+  ],
+  "gbMatrixStack": [
+   "SceneRenderWithRotation"
+  ],
+  "CIniFile": [
+   "m_bRead",
+   "m_fp"
+  ],
+  "gbChain1DNode": [
+   "Method"
+  ],
+  "gbAudioManager": [
+   "v9"
+  ]
+ },
+ "q1_err_by_code": {
+  "C2039": 13
+ },
+ "q1_err_units": {
+  "pal3/src/GameBase/PAL3.cpp": 6,
+  "pal3/src/Misc/CIniFile.cpp": 4,
+  "pal3/src/Misc/gbChain1DNode.cpp": 1,
+  "pal3/src/Misc/gbMatrixStack.cpp": 1,
+  "pal3/src/Render/CScreenMode.cpp": 1
+ },
+ "q2_use_shapes": {
+  "gbGfxManager": {
+   "bare": 11,
+   "decl_ptr": 11
+  },
+  "gbGeomNode": {
+   "bare": 15,
+   "decl_ptr": 22
+  },
+  "gbSceneGraph": {
+   "bare": 3,
+   "decl_ptr": 1
+  },
+  "gbVisNode": {
+   "bare": 10,
+   "decl_ptr": 4
+  },
+  "gbOBBox": {
+   "bare": 3,
+   "decl_ptr": 2
+  },
+  "gbMesh": {
+   "bare": 18
+  },
+  "gbActor": {
+   "bare": 1,
+   "decl_ptr": 2
+  },
+  "gbLightObj": {
+   "decl_ptr": 1
+  }
+ },
+ "q2_call_names": {},
+ "q3_gbengine_import_classes": [
+  "CIniFile",
+  "CPK",
+  "IniFile",
+  "PK",
+  "bAABBox",
+  "bActorMgr",
+  "bAudioManager",
+  "bAudioMgrDesc",
+  "bCamera",
+  "bChain1D",
+  "bChain1DNode",
+  "bColorQuad",
+  "bGeomNode",
+  "bImage2D",
+  "bLightObj",
+  "bMatrix4",
+  "bOBBox",
+  "bParticleEffect",
+  "bRain",
+  "bSnow",
+  "bSound2DNode",
+  "bSound3DNode",
+  "bTextureArray",
+  "bTexture_D3D",
+  "bVFileSystem",
+  "bVec3D",
+  "bVisNode",
+  "bVolModNode",
+  "bVolumeModifier",
+  "gbActor",
+  "gbActorMgr",
+  "gbAudioManager",
+  "gbCamera",
+  "gbColorQuad",
+  "gbDropGroup",
+  "gbDynVertBuf",
+  "gbEffectMgr",
+  "gbGeomNode",
+  "gbGfxManager",
+  "gbGfxManager_D3D",
+  "gbImage2D",
+  "gbLightObj",
+  "gbMatrix4",
+  "gbMatrixStack",
+  "gbNBTreeNode",
+  "gbOBBox",
+  "gbPartEmitter",
+  "gbParticleEffect",
+  "gbQuaternion",
+  "gbRain",
+  "gbRay",
+  "gbRefObject",
+  "gbRenderEffect",
+  "gbSceneGraph",
+  "gbSnow",
+  "gbSound2DNode",
+  "gbSound3DNode",
+  "gbTexture",
+  "gbTexture_D3D",
+  "gbVFileSystem",
+  "gbVec3D",
+  "gbVertPoolMgr",
+  "gbVisNode",
+  "gbVolModNode",
+  "gbVolumeModifier"
+ ],
+ "q4_api_vs_shared": {
+  "BEZIER": {
+   "api": 6,
+   "shared": 2,
+   "missing_in_shared": [
+    "BEZIER",
+    "GetControlPt",
+    "getInterpolatePoint",
+    "getTangentVector"
+   ],
+   "extra_in_shared": []
+  },
+  "CArrayList": {
+   "api": 0,
+   "shared": 10,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "Add",
+    "BuildDeviceInfoList",
+    "CheckConflictPairs",
+    "CheckDepthStencilFormats",
+    "CheckMultisampleTypes",
+    "CheckPresentIntervals",
+    "Cleanup",
+    "Enumerate",
+    "EnumerateDeviceComboFormats",
+    "GetPtr"
+   ]
+  },
+  "CIniFile": {
+   "api": 12,
+   "shared": 9,
+   "missing_in_shared": [
+    "OpenFileRead",
+    "OpenFileWrite",
+    "ReadLine",
+    "ReadSection",
+    "ReadStart",
+    "WriteSection"
+   ],
+   "extra_in_shared": [
+    "LoadData",
+    "LoadStructuredConfig",
+    "~CIniFile"
+   ]
+  },
+  "CPK": {
+   "api": 26,
+   "shared": 18,
+   "missing_in_shared": [
+    "Close",
+    "Compress",
+    "DeCompress",
+    "GetAllocationGranularity",
+    "GetCPKHandle",
+    "GetSize",
+    "IsValidCPK",
+    "Load",
+    "LoadFile",
+    "Open",
+    "Seek",
+    "SetOpenMode",
+    "Tell"
+   ],
+   "extra_in_shared": [
+    "GetInstance",
+    "Init",
+    "InitCrcTable",
+    "InitPackFiles",
+    "~CPK"
+   ]
+  },
+  "CPKFile": {
+   "api": 2,
+   "shared": 1,
+   "missing_in_shared": [
+    "CPKFile"
+   ],
+   "extra_in_shared": []
+  },
+  "gbAABBox": {
+   "api": 3,
+   "shared": 0,
+   "missing_in_shared": [
+    "IsColAABB",
+    "IsColPoint",
+    "Transform"
+   ],
+   "extra_in_shared": []
+  },
+  "gbActor": {
+   "api": 23,
+   "shared": 21,
+   "missing_in_shared": [
+    "GetActionDuration",
+    "GetEventTime",
+    "GetMixInfo",
+    "gbActor"
+   ],
+   "extra_in_shared": [
+    "SetSunDirection",
+    "~gbActor"
+   ]
+  },
+  "gbActorDef": {
+   "api": 0,
+   "shared": 15,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "AttachSelf",
+    "GetBoundSpherePtr",
+    "GetCollideAABBox",
+    "GetCollideOBB",
+    "GetNumExportNodes",
+    "LoadFromFile",
+    "RenderDef",
+    "RenderShadowVolumeDef",
+    "SetCurMaterial",
+    "UpdateBones",
+    "_vf2C",
+    "_vf30",
+    "_vf34",
+    "_vf38",
+    "~gbActorDef"
+   ]
+  },
+  "gbActorMgr": {
+   "api": 3,
+   "shared": 1,
+   "missing_in_shared": [
+    "LoadActorFile",
+    "gbActorMgr"
+   ],
+   "extra_in_shared": []
+  },
+  "gbAnimCurve": {
+   "api": 0,
+   "shared": 2,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "GetValue",
+    "~gbAnimCurve"
+   ]
+  },
+  "gbAnimNodeGroup": {
+   "api": 11,
+   "shared": 10,
+   "missing_in_shared": [
+    "Clone",
+    "gbAnimNodeGroup"
+   ],
+   "extra_in_shared": [
+    "SetSoundFileDir"
+   ]
+  },
+  "gbAudioManager": {
+   "api": 23,
+   "shared": 21,
+   "missing_in_shared": [
+    "Get3DProvider",
+    "gbAudioManager"
+   ],
+   "extra_in_shared": []
+  },
+  "gbAudioMgrDesc": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbAudioMgrDesc"
+   ],
+   "extra_in_shared": []
+  },
+  "gbBaseMesh": {
+   "api": 14,
+   "shared": 15,
+   "missing_in_shared": [
+    "GetFVF",
+    "GetObjectName",
+    "gbBaseMesh"
+   ],
+   "extra_in_shared": [
+    "DrawSubSetBase",
+    "Release",
+    "SetMeshTexDir",
+    "~gbBaseMesh"
+   ]
+  },
+  "gbBinaryTree": {
+   "api": 3,
+   "shared": 2,
+   "missing_in_shared": [
+    "gbBinaryTree"
+   ],
+   "extra_in_shared": []
+  },
+  "gbBinaryTreeNode": {
+   "api": 4,
+   "shared": 4,
+   "missing_in_shared": [
+    "gbBinaryTreeNode"
+   ],
+   "extra_in_shared": [
+    "~gbBinaryTreeNode"
+   ]
+  },
+  "gbBladeMgr": {
+   "api": 0,
+   "shared": 9,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "GetLastBladePos",
+    "Init",
+    "Render",
+    "Reset",
+    "SetBladeTime",
+    "SetBladeTimeScale",
+    "SetTimeScale",
+    "Submit",
+    "Update"
+   ]
+  },
+  "gbCamControler": {
+   "api": 1,
+   "shared": 2,
+   "missing_in_shared": [
+    "gbCamControler"
+   ],
+   "extra_in_shared": [
+    "Update",
+    "~gbCamControler"
+   ]
+  },
+  "gbCamQuakeControl": {
+   "api": 2,
+   "shared": 1,
+   "missing_in_shared": [
+    "gbCamQuakeControl"
+   ],
+   "extra_in_shared": []
+  },
+  "gbCamSpringControl": {
+   "api": 2,
+   "shared": 1,
+   "missing_in_shared": [
+    "gbCamSpringControl"
+   ],
+   "extra_in_shared": []
+  },
+  "gbCamera": {
+   "api": 39,
+   "shared": 41,
+   "missing_in_shared": [
+    "ClipAABBox",
+    "gbCamera"
+   ],
+   "extra_in_shared": [
+    "BuildFrustumPlanes",
+    "BuildProjMatrix",
+    "BuildViewFromQuaternion",
+    "RenderPost"
+   ]
+  },
+  "gbChain1D": {
+   "api": 12,
+   "shared": 11,
+   "missing_in_shared": [
+    "gbChain1D"
+   ],
+   "extra_in_shared": []
+  },
+  "gbChain1DNode": {
+   "api": 1,
+   "shared": 2,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "Process"
+   ]
+  },
+  "gbChain2D": {
+   "api": 7,
+   "shared": 6,
+   "missing_in_shared": [
+    "gbChain2D"
+   ],
+   "extra_in_shared": []
+  },
+  "gbChain2DNode": {
+   "api": 1,
+   "shared": 1,
+   "missing_in_shared": [
+    "gbChain2DNode"
+   ],
+   "extra_in_shared": [
+    "~gbChain2DNode"
+   ]
+  },
+  "gbColorFlt": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbColorFlt"
+   ],
+   "extra_in_shared": []
+  },
+  "gbColorQuad": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbColorQuad"
+   ],
+   "extra_in_shared": []
+  },
+  "gbDropGroup": {
+   "api": 3,
+   "shared": 5,
+   "missing_in_shared": [
+    "gbDropGroup"
+   ],
+   "extra_in_shared": [
+    "Draw",
+    "Update",
+    "~gbDropGroup"
+   ]
+  },
+  "gbDropUnit": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbDropUnit"
+   ],
+   "extra_in_shared": []
+  },
+  "gbDynVertBuf": {
+   "api": 13,
+   "shared": 18,
+   "missing_in_shared": [
+    "gbDynVertBuf"
+   ],
+   "extra_in_shared": [
+    "CreateVB",
+    "Draw",
+    "Lock",
+    "ReleaseVB",
+    "Unlock",
+    "~gbDynVertBuf"
+   ]
+  },
+  "gbEffectMgr": {
+   "api": 12,
+   "shared": 11,
+   "missing_in_shared": [
+    "gbEffectMgr"
+   ],
+   "extra_in_shared": []
+  },
+  "gbEmitterData": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbEmitterData"
+   ],
+   "extra_in_shared": []
+  },
+  "gbEmitterSquare": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbEmitterSquare"
+   ],
+   "extra_in_shared": []
+  },
+  "gbGeomNode": {
+   "api": 25,
+   "shared": 25,
+   "missing_in_shared": [
+    "gbGeomNode"
+   ],
+   "extra_in_shared": [
+    "~gbGeomNode"
+   ]
+  },
+  "gbGfxManager": {
+   "api": 39,
+   "shared": 58,
+   "missing_in_shared": [
+    "GetCurTick",
+    "GetDeltaTick",
+    "GetDriverInfo",
+    "GetGraphWnd",
+    "GetLight",
+    "GetViewMatrix",
+    "GetWorldMatrix",
+    "gbGfxManager"
+   ],
+   "extra_in_shared": [
+    "ApplyTransform",
+    "CreateDepthStencil",
+    "DrawIndexedPrimitive",
+    "DrawPrimitive",
+    "EndScene",
+    "GetFrustumPlanes",
+    "GetGammaRamp",
+    "LoadCursor",
+    "MsgProc",
+    "NewDynVertBuf",
+    "NewIndexPool",
+    "NewTexture",
+    "NewVertexPool",
+    "Present",
+    "RestoreDepthStencil",
+    "SetCursor",
+    "SetFrustum",
+    "SetGammaRamp",
+    "SetLight",
+    "SetMaterial",
+    "SetOrtho",
+    "SetRenderTarget",
+    "SetSoftwareVP",
+    "SetTransform",
+    "SetViewport",
+    "ShowCursor",
+    "~gbGfxManager"
+   ]
+  },
+  "gbGfxManager_D3D": {
+   "api": 1,
+   "shared": 39,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "ApplyTransform",
+    "BeginScene",
+    "BuildPresentParamsFromSettings",
+    "ChooseBestDevice",
+    "CreateD3DDevice",
+    "CreateDepthStencil",
+    "CreateDevice",
+    "DisplayErrorMsg",
+    "DrawIndexedPrimitive",
+    "DrawPrimitive",
+    "GetFrustumPlanes",
+    "GetGammaRamp",
+    "GetGfxCaps",
+    "HandleSizeChange",
+    "InitD3D",
+    "InitDeviceFullscreen",
+    "InitDeviceWindowed",
+    "InitSubsystems",
+    "LoadCursor",
+    "MsgProc",
+    "NewDynVertBuf",
+    "NewIndexPool",
+    "NewTexture",
+    "NewVertexPool",
+    "Present",
+    "ReleaseSubsystems",
+    "RestoreDepthStencil",
+    "SetCursor",
+    "SetFog",
+    "SetFrustum",
+    "SetGammaRamp",
+    "SetLight",
+    "SetMaterial",
+    "SetOrtho",
+    "SetRenderTarget",
+    "SetSoftwareVP",
+    "SetViewport",
+    "ShowCursor"
+   ]
+  },
+  "gbImage2D": {
+   "api": 15,
+   "shared": 17,
+   "missing_in_shared": [
+    "CreateImage",
+    "GetBits",
+    "gbImage2D"
+   ],
+   "extra_in_shared": [
+    "ConvertPaletteToRGB24",
+    "LoadBMPFile",
+    "LoadJPEGFile",
+    "LoadPCXFile",
+    "LoadTGAFile"
+   ]
+  },
+  "gbImage2DInfo": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "IsPreferAlpha"
+   ],
+   "extra_in_shared": []
+  },
+  "gbIndexBubble": {
+   "api": 6,
+   "shared": 0,
+   "missing_in_shared": [
+    "Lock16",
+    "Lock32",
+    "Set",
+    "SetRange",
+    "Unlock",
+    "gbIndexBubble"
+   ],
+   "extra_in_shared": []
+  },
+  "gbIndexPool": {
+   "api": 6,
+   "shared": 11,
+   "missing_in_shared": [
+    "gbIndexPool"
+   ],
+   "extra_in_shared": [
+    "Lock",
+    "Set",
+    "SetRange",
+    "Unlock",
+    "~gbIndexBubble",
+    "~gbIndexPool"
+   ]
+  },
+  "gbLightObj": {
+   "api": 8,
+   "shared": 12,
+   "missing_in_shared": [
+    "GetBoundSphere",
+    "gbLightObj"
+   ],
+   "extra_in_shared": [
+    "GetAABBox",
+    "GetCGEntry",
+    "IsIdle",
+    "Render",
+    "SetVolModObj",
+    "~gbLightObj"
+   ]
+  },
+  "gbMatrix4": {
+   "api": 23,
+   "shared": 0,
+   "missing_in_shared": [
+    "GetColumn",
+    "GetRow",
+    "Invert",
+    "IsIdentity",
+    "IsOrthonormal",
+    "IsValid",
+    "LeftMultiply",
+    "LeftScale",
+    "LeftTranslate",
+    "LoadIdentity",
+    "MakeMatrix",
+    "RightMultiply",
+    "RightScale",
+    "RightTranslate",
+    "Rotate",
+    "RotateIn",
+    "SetAxisAngle",
+    "Transform",
+    "TransformPlane",
+    "Transform_W",
+    "Transpose",
+    "gbMatrix4",
+    "operator"
+   ],
+   "extra_in_shared": []
+  },
+  "gbMatrixStack": {
+   "api": 11,
+   "shared": 9,
+   "missing_in_shared": [
+    "GetDepth",
+    "gbMatrixStack"
+   ],
+   "extra_in_shared": []
+  },
+  "gbMesh": {
+   "api": 0,
+   "shared": 5,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "ComputeShadowVolume",
+    "DrawSubSet",
+    "LoadFromFile",
+    "RenderShadowVolume",
+    "~gbMesh"
+   ]
+  },
+  "gbNBTree": {
+   "api": 3,
+   "shared": 2,
+   "missing_in_shared": [
+    "gbNBTree"
+   ],
+   "extra_in_shared": []
+  },
+  "gbNBTreeNode": {
+   "api": 12,
+   "shared": 12,
+   "missing_in_shared": [
+    "gbNBTreeNode"
+   ],
+   "extra_in_shared": [
+    "~gbNBTreeNode"
+   ]
+  },
+  "gbNameVarBuf": {
+   "api": 7,
+   "shared": 52,
+   "missing_in_shared": [
+    "gbNameVarBuf"
+   ],
+   "extra_in_shared": [
+    "ProfileBegin",
+    "ProfileDumpOutputToFile",
+    "ProfileEnd",
+    "ProfileInit",
+    "gbColorFlt_AddAssign",
+    "gbColorFlt_Assign",
+    "gbColorFlt_DefaultCtor",
+    "gbColorFlt_NotEqual",
+    "gbColorFlt_RGBACtor",
+    "gbColorFlt_RGBCtor",
+    "gbColorQuad_Assign",
+    "gbColorQuad_CopyCtor",
+    "gbColorQuad_DefaultCtor",
+    "gbColorQuad_RGBACtor",
+    "gbColorQuad_RGBCtor",
+    "gbCrc32Init",
+    "gbErrorBox",
+    "gbGetCurTime",
+    "gbGetDeltaTime",
+    "gbGetFrameRate",
+    "gbGetTime",
+    "gbIsMultiChar",
+    "gbIsMultiCharHead",
+    "gbIsMultiCharTail",
+    "gbLogInfo",
+    "gbMemCopy",
+    "gbMessageBox",
+    "gbNameVarBuf_Assign",
+    "gbNameVarBuf_Ctor",
+    "gbNameVarBuf_Dtor",
+    "gbNameVarBuf_GetVariant",
+    "gbNameVarBuf_IsVarExist",
+    "gbNameVarBuf_LockVariant",
+    "gbNameVarBuf_RegVariant",
+    "gbNameVarBuf_SetVariant",
+    "gbNameVarBuf_UnlockVariant",
+    "gbPopErrorBox",
+    "gbReportError",
+    "gbStrChr",
+    "gbStrRChr",
+    "gbStrToLowCase",
+    "gbTimeCounter_Off",
+    "gbTimeCounter_On",
+    "gbstrchr",
+    "gbstricmp",
+    "gbstrindex"
+   ]
+  },
+  "gbOBBox": {
+   "api": 8,
+   "shared": 0,
+   "missing_in_shared": [
+    "GetAABBox",
+    "GetCenter",
+    "GetRadius",
+    "GetRadiusInDirection",
+    "GetSphere",
+    "IsColOBB",
+    "IsColPoint",
+    "gbOBBox"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPartEmitter": {
+   "api": 6,
+   "shared": 5,
+   "missing_in_shared": [
+    "gbPartEmitter"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPartGroupParam": {
+   "api": 7,
+   "shared": 0,
+   "missing_in_shared": [
+    "ComputeAirResist",
+    "ComputeParticleParam",
+    "GetRenderEffect",
+    "GetTexture",
+    "InitParticleParam",
+    "LoadFromFile",
+    "gbPartGroupParam"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPartParamControl": {
+   "api": 3,
+   "shared": 7,
+   "missing_in_shared": [
+    "gbPartParamControl"
+   ],
+   "extra_in_shared": [
+    "ComputeAirResist",
+    "ComputeParticleParam",
+    "GetRenderEffect",
+    "GetTexture",
+    "InitParticleParam"
+   ]
+  },
+  "gbParticleEffect": {
+   "api": 13,
+   "shared": 13,
+   "missing_in_shared": [
+    "gbParticleEffect"
+   ],
+   "extra_in_shared": [
+    "~gbParticleEffect"
+   ]
+  },
+  "gbParticleGroup": {
+   "api": 11,
+   "shared": 10,
+   "missing_in_shared": [
+    "gbParticleGroup"
+   ],
+   "extra_in_shared": []
+  },
+  "gbParticleUnit": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbParticleUnit"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPlane": {
+   "api": 3,
+   "shared": 0,
+   "missing_in_shared": [
+    "IsColAABB",
+    "IsColOBB",
+    "gbPlane"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPrintFont": {
+   "api": 10,
+   "shared": 9,
+   "missing_in_shared": [
+    "gbPrintFont"
+   ],
+   "extra_in_shared": []
+  },
+  "gbPrintFontMgr": {
+   "api": 6,
+   "shared": 5,
+   "missing_in_shared": [
+    "gbPrintFontMgr"
+   ],
+   "extra_in_shared": []
+  },
+  "gbQuaternion": {
+   "api": 19,
+   "shared": 0,
+   "missing_in_shared": [
+    "GetAxisAngle",
+    "GetMatrix",
+    "GetVec3D",
+    "Inverse",
+    "IsNormal",
+    "IsUnit",
+    "IsValid",
+    "Magnitude",
+    "MultiplyBy",
+    "Normalize",
+    "RotateVector",
+    "SetAxisAngle",
+    "SetMatrix",
+    "SetTwoVector",
+    "SetUnit",
+    "SetVec3D",
+    "SetYawPitchRoll",
+    "Slerp",
+    "gbQuaternion"
+   ],
+   "extra_in_shared": []
+  },
+  "gbRain": {
+   "api": 3,
+   "shared": 3,
+   "missing_in_shared": [
+    "gbRain"
+   ],
+   "extra_in_shared": [
+    "~gbRain"
+   ]
+  },
+  "gbRay": {
+   "api": 8,
+   "shared": 0,
+   "missing_in_shared": [
+    "IntersectPlane",
+    "IsColAABB",
+    "IsColOBB",
+    "IsColOBB_H",
+    "IsColQuad",
+    "IsColSphere",
+    "IsColTriangle",
+    "gbRay"
+   ],
+   "extra_in_shared": []
+  },
+  "gbRefObject": {
+   "api": 5,
+   "shared": 5,
+   "missing_in_shared": [
+    "gbRefObject"
+   ],
+   "extra_in_shared": [
+    "~gbRefObject"
+   ]
+  },
+  "gbRenderEffect": {
+   "api": 12,
+   "shared": 11,
+   "missing_in_shared": [
+    "GetFlag",
+    "gbRenderEffect"
+   ],
+   "extra_in_shared": [
+    "~gbRenderEffect"
+   ]
+  },
+  "gbResManager": {
+   "api": 5,
+   "shared": 4,
+   "missing_in_shared": [
+    "gbResManager"
+   ],
+   "extra_in_shared": []
+  },
+  "gbResource": {
+   "api": 4,
+   "shared": 3,
+   "missing_in_shared": [
+    "GetName",
+    "GetNameCrc32",
+    "gbResource"
+   ],
+   "extra_in_shared": [
+    "IsPreferAlpha",
+    "~gbResource"
+   ]
+  },
+  "gbRotMatrix": {
+   "api": 5,
+   "shared": 0,
+   "missing_in_shared": [
+    "IsOrthonormal",
+    "IsValid",
+    "LoadIdentity",
+    "Rotate",
+    "gbRotMatrix"
+   ],
+   "extra_in_shared": []
+  },
+  "gbSceneGraph": {
+   "api": 12,
+   "shared": 11,
+   "missing_in_shared": [
+    "gbSceneGraph"
+   ],
+   "extra_in_shared": []
+  },
+  "gbSnow": {
+   "api": 3,
+   "shared": 3,
+   "missing_in_shared": [
+    "gbSnow"
+   ],
+   "extra_in_shared": [
+    "~gbSnow"
+   ]
+  },
+  "gbSound2DNode": {
+   "api": 9,
+   "shared": 5,
+   "missing_in_shared": [
+    "IsPlaying",
+    "LoadFromFile",
+    "Pause",
+    "Play",
+    "Resume",
+    "Stop",
+    "gbSound2DNode"
+   ],
+   "extra_in_shared": [
+    "Destroy",
+    "Init",
+    "UIPostUpdate"
+   ]
+  },
+  "gbSound3DNode": {
+   "api": 17,
+   "shared": 16,
+   "missing_in_shared": [
+    "gbSound3DNode"
+   ],
+   "extra_in_shared": []
+  },
+  "gbSoundData": {
+   "api": 0,
+   "shared": 4,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "IncRef",
+    "Load",
+    "Release",
+    "SetName"
+   ]
+  },
+  "gbSphere": {
+   "api": 4,
+   "shared": 0,
+   "missing_in_shared": [
+    "IsColPoint",
+    "IsColSphere",
+    "IsColTriangle",
+    "gbSphere"
+   ],
+   "extra_in_shared": []
+  },
+  "gbStaticChain": {
+   "api": 12,
+   "shared": 11,
+   "missing_in_shared": [
+    "gbStaticChain"
+   ],
+   "extra_in_shared": []
+  },
+  "gbStaticMesh": {
+   "api": 6,
+   "shared": 6,
+   "missing_in_shared": [
+    "gbStaticMesh"
+   ],
+   "extra_in_shared": [
+    "~gbStaticMesh"
+   ]
+  },
+  "gbTexture": {
+   "api": 12,
+   "shared": 63,
+   "missing_in_shared": [
+    "GetBits",
+    "GetPixelChannel",
+    "gbTexture"
+   ],
+   "extra_in_shared": [
+    "CreateForRenderTarget",
+    "CreateFromFileMemory",
+    "CreateFromMemory",
+    "GetAABBox",
+    "GetAxisAngle",
+    "GetMatrix",
+    "GetRadius",
+    "GetRadiusInDirection",
+    "GetSphere",
+    "GetTexture",
+    "GetVec3D",
+    "IntersectPlane",
+    "Inverse",
+    "Invert",
+    "IsColAABB",
+    "IsColOBB",
+    "IsColOBB_H",
+    "IsColPoint",
+    "IsColQuad",
+    "IsColSphere",
+    "IsColTriangle",
+    "IsIdentity",
+    "IsNormal",
+    "IsOrthonormal",
+    "IsValid",
+    "LeftMultiply",
+    "LeftScale",
+    "LeftTranslate",
+    "LengthSquare",
+    "LoadIdentity",
+    "MakeMatrix",
+    "MultiplyBy",
+    "Normalize",
+    "RightMultiply",
+    "RightScale",
+    "RightTranslate",
+    "Rotate",
+    "RotateIn",
+    "RotateVector",
+    "SetAxisAngle",
+    "SetMatrix",
+    "SetTwoVector",
+    "SetUnit",
+    "SetVec3D",
+    "SetYawPitchRoll",
+    "Slerp",
+    "Transform",
+    "TransformPlane",
+    "Transform_W",
+    "Transpose",
+    "Zero",
+    "gbVec3D",
+    "operator",
+    "~gbTexture"
+   ]
+  },
+  "gbTextureArray": {
+   "api": 2,
+   "shared": 0,
+   "missing_in_shared": [
+    "SetTexture",
+    "gbTextureArray"
+   ],
+   "extra_in_shared": []
+  },
+  "gbTexture_D3D": {
+   "api": 8,
+   "shared": 9,
+   "missing_in_shared": [
+    "GetByte",
+    "gbTexture_D3D"
+   ],
+   "extra_in_shared": [
+    "GetTexture",
+    "SetTexture",
+    "~gbTexture_D3D"
+   ]
+  },
+  "gbVFile": {
+   "api": 1,
+   "shared": 0,
+   "missing_in_shared": [
+    "gbVFile"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVFile1": {
+   "api": 5,
+   "shared": 4,
+   "missing_in_shared": [
+    "GetEntry"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVFileSystem": {
+   "api": 17,
+   "shared": 16,
+   "missing_in_shared": [
+    "gbVFileSystem"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVTextFile": {
+   "api": 5,
+   "shared": 3,
+   "missing_in_shared": [
+    "ReadLine",
+    "gbVTextFile"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVec3D": {
+   "api": 10,
+   "shared": 0,
+   "missing_in_shared": [
+    "CrossProduct",
+    "DotProduct",
+    "Inverse",
+    "IsNormal",
+    "IsValid",
+    "Length",
+    "LengthSquare",
+    "Normalize",
+    "Zero",
+    "gbVec3D"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVertPoolMgr": {
+   "api": 11,
+   "shared": 10,
+   "missing_in_shared": [
+    "gbVertPoolMgr"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVertexBubble": {
+   "api": 6,
+   "shared": 0,
+   "missing_in_shared": [
+    "ClearPointer",
+    "Lock",
+    "Set",
+    "StepVertexPtr",
+    "Unlock",
+    "gbVertexBubble"
+   ],
+   "extra_in_shared": []
+  },
+  "gbVertexPool": {
+   "api": 6,
+   "shared": 14,
+   "missing_in_shared": [
+    "GetVertType",
+    "gbVertexPool"
+   ],
+   "extra_in_shared": [
+    "ClearPointer",
+    "DrawIndexedPrimitive",
+    "Lock",
+    "OnLostDevice",
+    "OnResetDevice",
+    "Set",
+    "StepVertexPtr",
+    "Unlock",
+    "~gbVertexBubble",
+    "~gbVertexPool"
+   ]
+  },
+  "gbVisNode": {
+   "api": 24,
+   "shared": 24,
+   "missing_in_shared": [
+    "gbVisNode"
+   ],
+   "extra_in_shared": [
+    "~gbVisNode"
+   ]
+  },
+  "gbVisNodeBase": {
+   "api": 0,
+   "shared": 6,
+   "missing_in_shared": [],
+   "extra_in_shared": [
+    "Attach",
+    "GetBoundSphere",
+    "Render",
+    "Reset",
+    "Update",
+    "~gbVisNodeBase"
+   ]
+  },
+  "gbVolModNode": {
+   "api": 6,
+   "shared": 3,
+   "missing_in_shared": [
+    "GetLightObj",
+    "Render",
+    "SetVolModObj",
+    "gbVolModNode"
+   ],
+   "extra_in_shared": [
+    "~gbVolModNode"
+   ]
+  },
+  "gbVolumeModifier": {
+   "api": 1,
+   "shared": 4,
+   "missing_in_shared": [
+    "gbVolumeModifier"
+   ],
+   "extra_in_shared": [
+    "Compute",
+    "GetEffectOnPoint",
+    "GetType",
+    "~gbVolumeModifier"
+   ]
+  }
+ }
+}

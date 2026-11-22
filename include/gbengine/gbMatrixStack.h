@@ -1,5 +1,5 @@
 #pragma once
-// [重建 2026-11-18] gbengine内部类——注解known_members真值渲染
+// [重建 2026-11-18] gbengine内部类——注解known_members真值渲染 
 // (语料引用 pMatBuf×83/MaxVol×15/CurPos×3/ValidFlag 12 断链实证)
 #include "gbengine/gbengine_types.h"
 
@@ -29,7 +29,13 @@ public:
     void LoadMatrix(gbMatrix4 *m);                        // 0x0056a5c0
     // [Scale 补 20261120] 导出表 ?Scale@gbMatrixStack@@QAEXAAUgbVec3D@@@Z + QAEXMMM
     // (双重载; 语料限定调用 UIBigMap::RenderRole/UIProgressBar::Render/RoleSystem::RenderRole
-    // /CCBPanelSlot::Render/sub_442E90 五处实证)——头族重建时漏, N13c 预测兑现案
+    // /CCBPanelSlot::Render/sub_442E90 五处实证)——头族重建时漏, N13c 预测兑现案 
     void Scale(gbVec3D &v);                               // AAUgbVec3D 重载(mangle真值=引用; 指针形系旧注解牵连)
     void Scale(float x, float y, float z);                // MMM 重载
+
+    // [补 2026-11-22] PAL3侧扩展方法 @0x0052F2E0(非导入: PAL3 .text 直址,
+    // 不在 GBENGINE IAT——F70 普通声明)—— PAL3.cpp L1095 调用站 + decomp
+    // gbMatrixStack_SceneRenderWithRotationvoid_0052f2e0 体证(this->pMatBuf/
+    // this->ValidFlag=本类字段访问)。缺声明 ⇒ 定义侧 C2039+C2673 全链。 
+    void SceneRenderWithRotation();
 };

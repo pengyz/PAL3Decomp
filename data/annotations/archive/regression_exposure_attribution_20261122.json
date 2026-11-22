@@ -1,0 +1,17 @@
+{
+ "_doc": "回归暴露归因档 2026-11-22 (衰退定性协议 step4)",
+ "verdict": "暴露类(非本批引入)——全部 trace 到 11-21 晚波 commit(b99c49750 22:32/aac15224d 22:53/S3·D8 深夜波), 该波之后全量 probe 回归门 13h 未跑, 本 session 首个全量 loop(10:08) 首拦",
+ "evidence": [
+  "A/B(stash对照): UICaption 在 commit态+仅alias解阻 同样 fail(C2065 Destroy_29) — 本批无关",
+  "ParticleEffect.json 0x4BD850 decl_only 移除=b99c49750(git -S 追溯) → RenderTargetNode C2039 _ParticleEffect_0 ×6(跨类注解错档: RTN表注册于ParticleEffect.json)",
+  "C2084 dtor双定义×12: UIWnd 0x445B20 skip shadow 移除=aac15224d + D1路由名形条件漏 _UIWnd_0 归一形 — 已在本批修(判据扩面注解身份)",
+  "本批净贡献: S2 129→142/232; CIniFile/gbMatrixStack/gbSound2DNode 三单元绿; PAL3 -5; CScreenMode -3; 挂账 gbCamera C2440×1(结构体值铸成员集管道缺口)"
+ ],
+ "residual_exposure": {
+  "RenderTargetNode.cpp: 6错": "跨类注解错档(0x4BD850=RTN表dtor注册于ParticleEffect.json) — EffNode族余/MI深裁",
+  "UICaption.cpp: 1错": "Destroy_29(this) 裸调用无声明(该TU新发射时代产物) — 挂账方法化/自由声明通道",
+  "free_functions.cpp +21": "S3 撕除跳过后人口扩张暴露",
+  "CCBSystem C2248 codecvt ×7": "REF门 stdiobuf*→void* 参数化后渲染形变化 — Destroy_912D0 CRT域关联"
+ },
+ "baseline_action": "deliberate refresh(协议授权): 剩余暴露挂账到对应族战役, 不回滚"
+}

@@ -8,18 +8,13 @@
   "addr": "折叠载体地址（十六进制8位）",
   "evidence": "裁定证据链（必填，逐条可查）"
  },
+ "_retired_20261122": "UpdateDelta/EffCallBackNode 条目回退——机制三重不适格: ①0x4C2600体非空(delta计算8指令, 与空别名体不可能字节等价折叠, 机制前提=空体) ②证据链无atexit注册站(对照DestroyEffect 128站, 本条引的是vtable槽证据=机制错配) ③门禁契约不可满足(无methods条目cc=None, 地址属CEffSParticle唯一所有者)。20261122收尾时误归档且提交晚于最后一次codegen——门禁首跑即拦(fail-loud活性实证)。槽0归属深裁归EffNode族余战役(multi_claim_ledger双账在册)",
  "aliases": [
   {
    "name": "DestroyEffect",
    "qualifier": "CEffObj",
    "addr": "0x00401800",
    "evidence": "注解 methods[0x401800] source='binary:基表0x56F62C槽值(复核定谳: 叶dtor尾写0x56F62C 24处=真基表); retn (空实现)'；虚表槽3/4/6/7同址四名(DestroyEffect/RenderScenePass/Destroy/UpdateParticles)=ICF折叠载体实锤；atexit注册128站(MSVC6拒绝成员限定名做函数指针C2440实证)=原始注册符号与空虚成员折叠。原始符号名被折叠抹除，按体语义命名DestroyEffect。"
-  },
-  {
-   "name": "UpdateDelta",
-   "qualifier": "EffCallBackNode",
-   "addr": "0x004c2600",
-   "evidence": "槽5闭环探针20261122: EffCallBackNode真vtable表0x56F758槽0=0x4C2600(完全形0x4C3340体mov [esi],stru_56F758写表闭环实证)——该址已属CEffSParticle(唯一所有者, ICF折叠多类同址), EffCallBackNode槽0指同一折叠函数"
   }
  ]
 }

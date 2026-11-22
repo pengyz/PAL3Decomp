@@ -186,3 +186,28 @@ def resolve_dtor_intent(*, cls, entry_addr, entry, siblings, unit_present,
         decl_virtual=decl_virtual, decl_inline=bool(header_facts_scalar),
         name=name, definition_owner=owner, n18_strip=n18_strip,
         reason=reason, data_suspect=data_suspect)
+
+
+# ── D1 路由判据（公共函数 2026-11-22）─────────────────────────
+# UIWnd 0x445B20 案: decomp 名 `_UIWnd_0`(??_G/ICF 归一形)不被旧名形条件
+# (_scalar_dtor/_vector_dtor/_sdtor 前缀)命中 → P-A5 按注解名翻成 ~UIWnd 走
+# 通用路径发射 ⇒ 与完全形 0x445B40 双定义(C2084 ×12 单元, 11-21 晚波欠债)。
+# 名形=拟合; 注解身份(flags dtor / ~名)=唯一真值(双管线共享标注律)。
+# 发射决策必须对所有"将以 dtor 身份进 TU"的单元前置仲裁。
+def should_route_dtor(method, ann_entry):
+    """D1 路由判据: 本单元是否必须经 resolve_dtor_intent 仲裁。
+
+    method: decomp 原始方法名（名形路径——历史形态兼容）
+    ann_entry: 注解 methods[addr] 条目（身份路径——None=无注解）
+    返回 True ⇒ collect 走 dtor_intent 仲裁; False ⇒ 通用路径。
+    """
+    if not isinstance(method, str):
+        method = str(method or '')
+    if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
+        return True
+    if isinstance(ann_entry, dict):
+        if 'dtor' in (ann_entry.get('flags') or []):
+            return True
+        if str(ann_entry.get('name') or '').startswith('~'):
+            return True
+    return False

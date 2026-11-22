@@ -2122,6 +2122,25 @@ def check_dtor_carrier_gate(_selftest=False):
 if __name__ == '__main__':
     errors, warnings = check()
 
+    # [DBCS 吞行门 2026-11-22] VC6 预处理器 DBCS 配对(lead∈[0x81,0xFE]无条件吞
+    #   下一字节含\n)——头/源文件行尾配对余数=毒行, 声明被续行注释吞掉
+    #   (gbMatrixStack/gbVFileSystem/gbAudio 三头 6 毒行实证: Scale(gbVec3D&)/
+    #   SceneRenderWithRotation/UIPostUpdate/m_fp 声明全被吃, C2039 持续)。
+    #   检查器=tools/fix_vc6_dbcs_comment_splice.py(2026-11-09 建, 但从未接入门禁
+    #   ——上批补声明未跑它, 修复以死告终又被当新缺口立战役, 规模评估全程误导)。
+    #   接线=HARD: 毒行存在即 FAIL, 修法=行尾补 ASCII 空格(lead 配对空格, \n 释放)。
+    import subprocess as _sp_dbcs
+    _dbcs = _sp_dbcs.run(
+        [sys.executable, os.path.join(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), 'tools', 'fix_vc6_dbcs_comment_splice.py'),
+         '--check'],
+        capture_output=True, text=True)
+    if _dbcs.returncode != 0:
+        for _dl in (_dbcs.stdout or '').splitlines():
+            if _dl.startswith('[POISON]'):
+                errors.append('DATA:DBCS-SPLICE:%s 行尾配对毒行——声明将被续行注释吞掉, '
+                              '跑 tools/fix_vc6_dbcs_comment_splice.py 修复' % _dl)
+
     # [canonical 契约断言 2026-11-14] 四条非法态棘轮
     # [2026-11-16 吞异常拆除] except→warning曾把C9块NameError静默成PASS
     #   (门禁写了没跑过一次实证); 文件级加载错误已在块内各自守卫,

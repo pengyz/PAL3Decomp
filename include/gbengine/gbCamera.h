@@ -125,7 +125,8 @@ public:
     float GetZNear(void);
     float GetZFar(void);
     // 暴露批1 返工 2026-10-06：C2039 补（体证：this->ViewMatrix+0x94/Plane+0x64=gbCamera 布局内 ✓）
-    int RenderPost(int);  // PAL3 0x4BE460
+    int RenderPost(void *);  // PAL3 0x4BE460 [签名对齐 2026-11-22] decomp 快照
+                             // gbCamera_RenderPostvoid_004be460=void*形(int/void* ABI同宽, C2511 实证失配)
     float GetFOV(void);
     float GetOrthoSize(void);
     float GetAspect(void);

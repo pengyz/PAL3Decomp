@@ -295,8 +295,12 @@ extern GBAPI gbVFileSystem* g_pVFileSys;
 // 退化成"全局函数里的 this"（实测 C2673 ×4 + C2039 连锁）。 
 class CIniFile {
 public:
-    gbVFile*    m_pFile;        // +0x00: file handle
-    int         m_nState;       // +0x04: state (-1 = not opened)
+    // [成员名对齐 2026-11-22] 旧名 m_pFile/m_nState 是人写重建名, 与注解/IDA
+    // 结构真值(annotated structs/CIniFile.json: m_fp@0x0/m_bRead@0x4, size=8)
+    // 漂移 ⇒ decomp 渲染 m_fp/m_bRead 而头用旧名 ⇒ CIniFile.cpp C2039×4。 
+    // 双管线共享标注律: 注解=唯一共享真值, 头随注解。 
+    gbVFile*    m_fp;           // +0x00: file handle (IDA名, 注解对齐)
+    int         m_bRead;        // +0x04: read state flag (IDA名, 注解对齐)
 
     GBAPI CIniFile();
     GBAPI ~CIniFile();

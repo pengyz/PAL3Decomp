@@ -79,9 +79,14 @@ def get_class_dir(cls_name):
 
 
 def _get_skip_classes():
-    """Build the full skip set including thunk classes from annotations."""
-    # [域排除单一真值源 20261122] 读 data/annotations/domain_exclude.json
-    #   (原 SKIP_CLASSES 常量+gbengine 头自动侦测已迁移, 见文件头注)
+    """Build the full skip set from the data layer (collect 只管收集, 域裁决全在数据层).
+
+    [第一性复裁 2026-11-22 用户质询] 本函数只机械读 domain_exclude.json——
+    原此处的「注解 methods ⇒ discard 排除」覆盖规则(CPK 案 20261122 加)是
+    管线层决策=层错位, 已撤。域归属冲突的正解在数据层改裁决条目, 不在管线
+    加启发式。structs 注解与域排除正交: CRT/工具链类可以有注解 methods
+    (供参考/匹配), 不改变域归属。
+    """
     skip = set()
     _dex_p = (Path(__file__).parent.parent.parent.parent
               / 'data' / 'annotations' / 'domain_exclude.json')
@@ -109,33 +114,12 @@ def _get_skip_classes():
                 # should not suppress the whole class -- they're individual stubs.
                 if '::' not in name and name.startswith('j_'):
                     skip.add(name[2:])
-    # [注解优先 20261122] gbengine 头自动侦测的 out-of-domain 判定让位于注解层——
-    #   structs/<Cls>.json 已注册(含 methods)的类 = PAL3 域内(数据层唯一真值)。
-    #   CPK 案: 头在 include/gbengine/ 但 vtable(0x570A04)/方法体全在 PAL3 .text
-    #   (探针实证) ⇒ 头共享实现本地, 自动侦测过判 ⇒ CPK 全类方法从未发射。
-    import glob as _g2
-    import json as _j2
-    import os as _os2
-    _ann_dir = _os2.path.join(_os2.path.dirname(_os2.path.dirname(
-        _os2.path.dirname(_os2.path.dirname(_os2.path.abspath(__file__))))),
-        'data', 'annotations', 'structs')
-    for _ap in _g2.glob(_os2.path.join(_ann_dir, '*.json')):
-        try:
-            _dsk = _j2.load(open(_ap, encoding='utf-8'))
-        except Exception:
-            continue
-        _cn = _dsk.get('name') or _os2.basename(_ap)[:-5]
-        if _dsk.get('methods'):
-            skip.discard(_cn)
     return skip
 
 
 def _annotation_class_map():
     """[5a7a3b86 残渣清理] 此函数已无调用点（N1 路由已撤）——保留空壳仅为外部引用兼容。"""
     return {}
-
-
-_ANN_CLS_MAP = None
 
 
 _ANN_CLS_MAP = None
@@ -275,27 +259,39 @@ def collect_functions(decomp_dir=None):
             # [D1 dtor 形路由 20261121] backtick 归一形/??_G 路由形/_sdtor_NN——
             # 旧「编译器包装泛化跳过」理论过滤已退役(层错位, 用户第一性质询裁定;
             # 12/12 字节证据证伪), 发射决策移交 dtor_intent 单点(见下)。
-            if '_scalar_dtor' in method or '_vector_dtor' in method or method.startswith('_sdtor'):
+            # [判据扩面 20261122] 条件从"名形"改"注解身份"——UIWnd 0x445B20 案:
+            #   decomp 名 `_UIWnd_0`(??_G/ICF 归一形)不被名形条件命中, P-A5 按注解
+            #   名翻成 ~UIWnd 走通用路径发射 ⇒ 与完全形双定义(C2084 ×12, 11-21 晚波
+            #   欠债——shadow 移除后全量回归门 13h 未跑, 本 loop 首拦)。判据公共函数
+            #   should_route_dtor: 名形兼容 + 注解 flags dtor / ~名 身份路径。
+            try:
+                try:
+                    import annotation_view as _av_di
+                except ImportError:
+                    from pipeline.gen import annotation_view as _av_di
+                _sp = _av_di.struct_by_class(cls, store=store) if cls else None
+                _mdi = (_sp.get('methods', {}) or {}) if _sp else {}
+                _e = _mdi.get(addr)
+                if _e is None:
+                    _au = str(addr).upper().replace('0X', '0x')
+                    for _k, _v in _mdi.items():
+                        if str(_k).upper() == _au:
+                            _e = _v
+                            break
+            except Exception as _e_di:
+                # 决策器故障 = fail-loud(静默回退=旧理论过滤复辟)
+                print("  [collect-D1-ERR] %s %s: %s" % (cls, addr, _e_di))
+                continue
+            from pipeline.gen.dtor_intent import should_route_dtor as _srd
+            if _srd(method, _e):
                 # [D1 泛化跳过退役→意图路由 20261121] "编译器包装无源体"理论过滤
                 # 层错位退役(用户第一性质询裁定; 12/12 字节证据证伪该理论)。
                 # 发射决策移交 dtor_intent 单点:
                 #   有注解身份 → intent.body_emit 仲裁(唯一源律/decl_only/suppressed)
                 #   无注解身份 → 显式拒发+计数(无身份=无可发射, 非理论过滤)
-                # 命中本分支的单元: backtick 归一形 / ??_G mangle 路由形 / _sdtor_NN。
+                # 命中本分支的单元: backtick 归一形 / ??_G mangle 路由形 / _sdtor_NN
+                #   / 注解 dtor 身份(名形外归一形 _UIWnd_0 等)。
                 try:
-                    try:
-                        import annotation_view as _av_di
-                    except ImportError:
-                        from pipeline.gen import annotation_view as _av_di
-                    _sp = _av_di.struct_by_class(cls, store=store) if cls else None
-                    _mdi = (_sp.get('methods', {}) or {}) if _sp else {}
-                    _e = _mdi.get(addr)
-                    if _e is None:
-                        _au = str(addr).upper().replace('0X', '0x')
-                        for _k, _v in _mdi.items():
-                            if str(_k).upper() == _au:
-                                _e = _v
-                                break
                     if _e is not None:
                         from pipeline.gen.dtor_intent import resolve_dtor_intent as _rdi
                         _sib = [{'addr': _ka, 'entry': _kv,

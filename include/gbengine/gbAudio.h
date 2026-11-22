@@ -116,7 +116,7 @@ public:
     //   PAL3侧成员(UIPostUpdate——非导入+直接call实证@0x41EB80)=普通声明(PAL3定义不缺,
     //   DLL构建零导出义务)。类级GBAPI对此族错误(第127轮F70判例: dllimport类声明下
     //   PAL3侧定义=C2491)。未在IAT的SetLoopNum/SetVolume/ctor/dtor/operator=:
-    //   保持普通(PAL3侧实现或未用, 逐个定谳排队)。
+    //   保持普通(PAL3侧实现或未用, 逐个定谳排队)。 
     void UIPostUpdate(); // PAL3侧实现@0x41EB80(非导入, 直接call实证)
     gbSoundData* soundData;   // +0x00
     void* sampleHandle;       // +0x04 (HSAMPLE)
