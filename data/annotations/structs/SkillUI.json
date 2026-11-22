@@ -65,7 +65,8 @@
   "0x00525520": {
    "name": "~SkillUI",
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "evidence_level": "verified",
    "sig_model": {
@@ -75,7 +76,7 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "删除式dtor(slot5)20261121: 体=call完全dtor 0x525540+operator delete(30B标准形); 表0x5706CC slot5绑定 | 签名修20261121: 删除式dtor源模型=裸形~SkillUI()(头声明无参; (this,flags)删除ABI=编译器层, 不入源签名) | C8源模型修正20261121(mass-apply): 删除式形=编译器产物→declaration_only(注册时意图未落字段——本次补落; 定义源=完全形0x525540)",
+   "name_note": "删除式dtor(slot5)20261121: 体=call完全dtor 0x525540+operator delete(30B标准形); 表0x5706CC slot5绑定 | 签名修20261121: 删除式dtor源模型=裸形~SkillUI()(头声明无参; (this,flags)删除ABI=编译器层, 不入源签名) | C8源模型修正20261121(mass-apply): 删除式形=编译器产物→declaration_only(注册时意图未落字段——本次补落; 定义源=完全形0x525540) | [deleting 补标 20261122] 探针形判: 本址=标准形30B存根(568bf1前缀), 对偶 0x525540=完全形(他形)——经典 +0x20 对, 存根=删除式",
    "declaration_only": true
   },
   "0x00525540": {

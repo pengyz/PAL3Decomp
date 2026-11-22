@@ -993,6 +993,12 @@ def main():
                                 'size': r.get('size')}, ensure_ascii=False) + '\n')
     print('report -> %s' % _base_p)
     print('registry -> %s' % _reg_p)
+    # [审计 C5 死功能激活 2026-11-22] cli.py 棘轮身份差分读 s4_l1_identity_cur.json
+    #   ——此前全仓无写入点(有读无写), 差分恒静默。compare 侧是唯一权威产物方。
+    if not _sc:
+        (OUT_JSON.parent / 's4_l1_identity_cur.json').write_text(
+            json.dumps(sorted(_L1_IDS), ensure_ascii=False, indent=0),
+            encoding='utf-8')
     _detail_out = _det_p
     _detail_out.write_text(json.dumps(
         {'generated_by': 'pipeline/compare_pal3.py (ROI-1 byte-diff detail)',

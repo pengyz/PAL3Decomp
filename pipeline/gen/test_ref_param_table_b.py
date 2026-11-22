@@ -27,10 +27,15 @@ class TestRefParamTableB(unittest.TestCase):
 
     def test_type_key_followup_carries(self):
         # ③类型键随迁承重（C2100 +24 复燃面——`*stru_` 需 ref_type 触发 Case2b 地址形）
-        from stage5_fixup import _GB_REF_PARAM_TYPES as T
-        self.assertIn(('gbMatrixStack::Rotate', 1), T)
-        self.assertNotIn(('Rotate', 1), T)
-        self.assertIn(('gbRay::IsColOBB', 0), T)
+        # [刷新 2026-11-22 对齐 L-VAR 修复(2026-11-11)] 表键=**裸名**('Rotate',1)
+        #   ——限定名直接 get 落空曾是 3199 名失效族病灶；消费侧 ref_params.py:350
+        #   带 func_name.split('::')[-1] 裸名回退。原断言"限定名在表/裸名不在表"
+        #   是修复前旧世界。
+        from ref_params import _GB_REF_PARAM_TYPES as T
+        self.assertIn(('Rotate', 1), T)
+        self.assertEqual(T[('Rotate', 1)], 'struct gbVec3D')
+        self.assertIn(('Rotate', 0), T)
+        self.assertIn(('IsColOBB', 0), T)
 
     def test_pau_pointer_form_untouched(self):
         # ④PAU 指针形不动（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*) 出表）

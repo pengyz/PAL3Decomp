@@ -544,17 +544,9 @@ def main():
             _fid_rows, _fid_sus = _fid.build_identity(size_fn=_ida_size)
             _fid_out = os.path.join(PROJECT_ROOT, 'asm', 'pal3',
                                     'function_identity.json')
-            with open(_fid_out, 'w', encoding='utf-8') as _ffid:
-                _json.dump({
-                    '_doc': ('function_identity (O3 数据层身份清单)——?? 特形符号配对'
-                             '真值表；export_full 每轮以 IDA size 权威重生成'),
-                    '_law': ('决策在数据层, match 只机械 join (O5 结构解码); '
-                             '语料名=显示名非证据'),
-                    'count': len(_fid_rows), 'rows': _fid_rows,
-                    'suspects': _fid_sus}, _ffid, ensure_ascii=False, indent=1)
-            _fid_kinds = {}
-            for _fr in _fid_rows:
-                _fid_kinds[_fr['ann_kind']] = _fid_kinds.get(_fr['ann_kind'], 0) + 1
+            # [审计 C2 收敛 2026-11-22] 信封经 write_manifest 单源（防双写点漂移）
+            _fid_kinds = _fid.write_manifest(_fid_out, _fid_rows, _fid_sus,
+                                             size_source='ida')
             log("[*] function_identity: %d rows %s → %s (suspects=%d)"
                 % (len(_fid_rows), _fid_kinds, _fid_out, len(_fid_sus)))
 

@@ -5,7 +5,7 @@
  "binary_size": 48,
  "methods": {
   "0x004d3300": {
-   "name": "Update",
+   "name": "~CEffQuake",
    "evidence_level": "chain_unified",
    "sig_model": {
     "return": "BOOL",
@@ -19,8 +19,11 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,int); 原注解无"
+   "name_note": "; C2555修正: 返回型对齐基类void(CEffObj基体空函数无返回=void) | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | [dtor对偶探针 20261122] 删除式存根 0x004D32E0 call@3 REL32 目标=本址(编译器配对语义铁证, +0x20邻接)+挂账复核 V-P2 obj reloc 语义锚定——原名为 IDB 名形漂移产物, 真身=本类完全形 dtor",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Update): int(int,int); 原注解无",
+   "flags": [
+    "dtor"
+   ]
   },
   "0x004d3860": {
    "name": "~CEffQuake",

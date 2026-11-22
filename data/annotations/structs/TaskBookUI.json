@@ -280,22 +280,6 @@
   }
  },
  "methods": {
-  "0x00454830": {
-   "name": "~TaskBookUI",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~TaskBookUI(??1/??_G析构族); decomp文件=TaskBookUI_~TaskBookUIvoid_00454830 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
   "0x00454ca0": {
    "name": "CreateEntry",
    "_misattrib_evidence": "max_offset=133100>class_size=204",
@@ -510,16 +494,19 @@
    "name_note": " | L1恢复20261121: S4字节证据证伪C8压制前提——03:17基线本wrapper定义编译产物=?_G注册符号100.0%字节完美; 20261121 C8批次(decl_only/type=skip)+清仓拔除单元后S4全量对比??_G丢失(12/12相关性). 删除declaration_only+type=skip, wrapper定义恢复发射. C8模型修正: ??_G匹配载体=wrapper定义单元(非头声明合成)"
   },
   "0x00454ba0": {
-   "name": "Destroy",
+   "name": "~TaskBookUI",
    "name_source": "IDA语义分析 2026-11-01 批14",
-   "name_note": "从 decomp 推断（_TaskBookUI_4ba0）",
+   "name_note": "从 decomp 推断（_TaskBookUI_4ba0） | [dtor对偶探针 20261122] 删除式存根 0x00454980 call@3 REL32 目标=本址(编译器配对语义铁证, 非邻接邻接)+挂账复核 V-P2 obj reloc 语义锚定——原名为 IDB 名形漂移产物, 真身=本类完全形 dtor",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ]
   },
   "0x00456500": {
    "name": "Update",

@@ -124,7 +124,7 @@
  },
  "methods": {
   "0x00401000": {
-   "name": "~AStarPathFinder",
+   "name": "AStarPathFinder",
    "source": "| [ctor/dtor 二次改名 2026-10-16 an alyzer 66 条无家族取证] ~AStarPathFinder ⇒ AStarPathFinder（**真 ctor**，A 级 40 字节体铁证）：`401000 push esi; mov esi,ecx; push 8; push 1; 401007 mov [esi],stru_56A600(vptr 自写); 40100d call 0x552ED8; mov [esi+10h],eax; mov [esi+4/8/0Ch],0; mov eax,esi; ret`——①calloc(1,8) 结果存成员 +②成员三清零 +③返回 this = 初始化语义；**前版『call 0x552ed8 析构链』定性错误**：0x552ED8 本体 A 级实为 calloc（`mov esi,[esp+0Ch]; imul esi,[esp+14h]` count×size + 对齐 + HeapAlloc 形 `push 8; push [heap]; call [IAT]`）——分配器非释放链 ⇒ 401000 为 ctor（dtor 归 0x4013B0 族）。前版 source 保留可溯 | [隔离 A/B 2026-10-16] name 回退 ~AStarPathFinder（ctor 真身判据保留于前段 source；改名渲染联动嫌疑致 C2084 双体族 ⇒ 隔离实验回退）",
    "evidence_level": "A",
    "sig_model": {
@@ -135,9 +135,10 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "ctor"
    ],
-   "flags_evidence": "IDA名字形态=~AStarPathFinder(??1/??_G析构族); decomp文件=AStarPathFinder_~AStarPathFindervoid_00401000 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=~AStarPathFinder(??1/??_G析构族); decomp文件=AStarPathFinder_~AStarPathFindervoid_00401000 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": "| [dtor对偶裁决 20261122] 原~名与C8冲突; source自有铁证=真ctor(40B体 push 8/push 1/mov [esi],stru_——构造语义), 名形互换族正名→ctor。完全形=0x401050(0x401030删除式call@3目标, 探针铁证)"
   },
   "0x00401030": {
    "name": "~AStarPathFinder",
@@ -163,7 +164,7 @@
    "flags_evidence": "IDA名字形态=_scalar_dtor_1030(??1/??_G析构族); decomp文件=AStarPathFinder_`scalar_deleting_destructoruint_00401030 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
   },
   "0x00401050": {
-   "name": "ReleaseAll",
+   "name": "~AStarPathFinder",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -171,7 +172,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ],
+   "name_note": "| [dtor对偶探针 20261122] 删除式存根 0x00401030 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——原名 ReleaseAll=IDB 名形漂移产物"
   },
   "0x004014e0": {
    "name": "IsInBounds",

@@ -10,23 +10,6 @@
   }
  },
  "methods": {
-  "0x00450a25": {
-   "name": "~RoleCameraCtrl",
-   "source": "pdb",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~RoleCameraCtrl(??1/??_G析构族); decomp文件=RoleCameraCtrl_~RoleCameraCtrlvoid_00450a25 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
-  },
   "0x00445860": {
    "name": "SetName",
    "evidence_level": "unverified",
@@ -101,7 +84,7 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(SetTargetDistance): int(int,int); 原注解无"
   },
   "0x00450ad0": {
-   "name": "InitBaseWidget",
+   "name": "~RoleCameraCtrl",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -109,7 +92,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ],
+   "name_note": "| [dtor对偶探针 20261122] 删除式存根 0x00450AB0 call@3 REL32 目标=本址(编译器配对语义铁证, +0x20邻接)+挂账复核 V-P2 obj reloc 语义锚定——原名为 IDB 名形漂移产物, 真身=本类完全形 dtor"
   },
   "0x00450c60": {
    "name": "OnMessage",

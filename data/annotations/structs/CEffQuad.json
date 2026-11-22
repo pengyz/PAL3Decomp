@@ -395,6 +395,21 @@
    "override_of": "0x004c0510",
    "flags_evidence": "同名+同归一签名(int)+基槽0x004c0510(CEffObj)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x004d0db0": {
+   "name": "~CEffQuad",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": "[dtor对偶探针 20261122] 删除式存根 0x004D0D90 call@3 REL32 目标=本址(编译器配对语义铁证, +0x20邻接)+挂账复核 V-P2 obj reloc 语义锚定——原名为 IDB 名形漂移产物, 真身=本类完全形 dtor",
+   "evidence_level": "binary_dtor_call_target"
   }
  },
  "base_size": 16,

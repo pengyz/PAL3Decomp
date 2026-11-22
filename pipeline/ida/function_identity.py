@@ -137,24 +137,32 @@ def load_corpus_sizes(corpus_dir=CORPUS_DIR):
     return sizes
 
 
-def main():
-    sizes = load_corpus_sizes()
-    rows, suspects = build_identity(size_fn=lambda va: sizes.get(va))
+def write_manifest(path, rows, suspects, size_source='corpus'):
+    """统一信封写入（审计 C2 2026-11-22：export_full 与 CLI 双写点收敛——
+    信封字段单源，防 _doc/_law 漂移）。"""
+    kinds = {}
+    for r in rows:
+        kinds[r['ann_kind']] = kinds.get(r['ann_kind'], 0) + 1
     out = {
-        '_doc': ('function_identity 2026-11-22 (O3 数据层身份清单)——'
-                 '?? 特形符号配对的真值表；export_full 每轮以 IDA size 权威重生成，'
-                 '本文件可为 CLI 自举产物(语料 size 兜底)'),
+        '_doc': ('function_identity (O3 数据层身份清单)——?? 特形符号配对真值表；'
+                 'export_full 每轮以 IDA size 权威重生成'
+                 + ('' if size_source == 'ida' else '；本文件为 CLI 自举产物(语料 size 兜底)')),
         '_law': ('决策在数据层, match 只机械 join (O5 结构解码); 语料名=显示名非证据'
                  '(pipeline-data-flow-law); owners 多属主=ICF 共享(对齐 R6 多址聚合)'),
+        'size_source': size_source,
         'count': len(rows),
         'rows': rows,
         'suspects': suspects,
     }
-    with open(OUT_PATH, 'w', encoding='utf-8') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
-    kinds = {}
-    for r in rows:
-        kinds[r['ann_kind']] = kinds.get(r['ann_kind'], 0) + 1
+    return kinds
+
+
+def main():
+    sizes = load_corpus_sizes()
+    rows, suspects = build_identity(size_fn=lambda va: sizes.get(va))
+    kinds = write_manifest(OUT_PATH, rows, suspects, size_source='corpus')
     print('[function_identity] %d 行 → %s' % (len(rows), OUT_PATH))
     print('  kinds:', kinds, '| suspects:', len(suspects))
 

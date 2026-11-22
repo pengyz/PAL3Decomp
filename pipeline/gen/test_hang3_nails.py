@@ -25,7 +25,10 @@ class TestHang3Nails(unittest.TestCase):
         self.assertIn('_todo_', src)                           # 豁免在位
 
     def test_rename_fingerprint(self):
-        # 逐件体指纹（复核点名）：仅 AStarPathFinder 留 _scalar_dtor（标志参+operator delete）
+        # [刷新 2026-11-22 对齐语义退化禁令(2026-11-15)] _scalar_dtor/_sdtor 形名
+        # 全量退役(只收语义名)——原断言"AStarPathFinder 留 _scalar_dtor"是禁令前
+        # 旧世界。现契约: ①全库 methods 零 _scalar_dtor 形名 ②0x00401030 已正名
+        # ~AStarPathFinder 且 flags=deleting(20261122 dtor对偶探针)
         import json, glob
         hits = []
         for f in glob.glob(os.path.join(os.environ['PROJECT_ROOT'],
@@ -34,11 +37,13 @@ class TestHang3Nails(unittest.TestCase):
             for mk, mv in (d.get('methods') or {}).items():
                 if (mv or {}).get('name') == '_scalar_dtor':
                     hits.append((os.path.basename(f), mk))
-        self.assertIn(('AStarPathFinder.json', '0x00401030'), hits)
-        # 8 件重定谳后不得再是 _scalar_dtor（除 AStarPathFinder 与既有 UIListBox 先例族）
-        for bad in ('0x004FB9F0', '0x00504E60', '0x00456220', '0x00411CA0',
-                    '0x004a2450', '0x004B0540', '0x004909F0'):
-            self.assertNotIn(bad, [h[1] for h in hits], bad)
+        self.assertEqual(hits, [])   # 语义退化禁令: 零 _scalar_dtor 形名
+        asp = json.load(open(os.path.join(os.environ['PROJECT_ROOT'],
+                                          'data/annotations/structs/AStarPathFinder.json'),
+                             encoding='utf-8'))
+        m = (asp.get('methods') or {}).get('0x00401030') or {}
+        self.assertEqual(m.get('name'), '~AStarPathFinder')
+        self.assertIn('deleting', m.get('flags') or [])
 
 
 if __name__ == '__main__':

@@ -258,7 +258,7 @@
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004c6980": {
-   "name": "ReleaseEffect",
+   "name": "~CEffgbParticle",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -267,7 +267,10 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": " | cc修复20261120(batch2): fastcall→thiscall (D案: 零参成员ABI等价+VC6成员缺省thiscall)"
+   "name_note": "| cc修复20261120(batch2): fastcall→thiscall (D案: 零参成员ABI等价+VC6成员缺省thiscall) | [dtor对偶探针 20261122] 删除式存根 0x004C6960 call@3 REL32 目标=本址(编译器配对语义铁证, +0x20邻接)+挂账复核 V-P2 obj reloc 语义锚定——原名为 IDB 名形漂移产物, 真身=本类完全形 dtor",
+   "flags": [
+    "dtor"
+   ]
   },
   "0x004d0a60": {
    "name": "DestroyEffect",
@@ -441,20 +444,6 @@
     "pending": true
    },
    "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(DestroyEffect_FD40): int("
-  },
-  "0x004cb340": {
-   "name": "~CEffgbParticle",
-   "flags": [
-    "dtor"
-   ],
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": "| 回填20261121(batch6回退): 0x4cb340 IDB真名=slot_5_adjthunk@CEffGrid(错位嫌疑, idalib直证)——C8伴生治理战役统一裁定宿主与归属"
   },
   "0x004c8950": {
    "name": "~CEffgbParticle",
