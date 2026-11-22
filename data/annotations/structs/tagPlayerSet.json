@@ -21,5 +21,18 @@
    "evidence_level": "unverified"
   }
  },
- "methods": {}
+ "methods": {
+  "0x0045add0": {
+   "name": "InitState",
+   "source": "[归属迁移 20261123] 自由函数→tagPlayerSet 成员(verified)。证据链: ①imm32 引用 3 处全为地址传参(SaleUI 0x45A9CE/RenderTarget 0x486A8A/EquipUI 0x498B7F 宿主 push 0x45ADD0 给批量初始化器) ②调用全貌 f(esi+0x333E8, stride=0x34, count=5, cb=InitState, noop=0x401800)——stride 0x34=tagPlayerSet.size ✓ ③this 写面: mov [this],0x50=dwCmdKind=0x50(tagCmdData 首成员)+清 [0x24..0x30](tagCmdData 尾+两默认页)——重置玩家命令页配置语义精确吻合",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  }
+ }
 }

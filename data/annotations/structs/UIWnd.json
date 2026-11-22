@@ -408,6 +408,35 @@
     "pending": false
    },
    "name_note": "完全形dtor定谳20261121(idalib探针): ①删除式0x445B20体内call sub_445B40(dtor对调用链身份=D1判据) ②本址0x445B40体 mov [esi],stru_56AEC8=写UIWnd vtable(写表身份=归属铁律) ③后调HideAll=析构清理语义 ④相邻地址0x445B20(+0x20前)=经典dtor对. sub_445B40未名→注册~UIWnd(定义源; 4d隐式织入剥离). 合成链: virtual声明(槽5在册)+本定义→??1/??_GUIWnd载体"
+  },
+  "0x00446030": {
+   "name": "AddToArray",
+   "source": "[归属迁移 20261123] 自由函数→UIWnd 成员(verified)。UIWnd 树操作: this=子元素, [this+0x20]=m_pfather(UIWnd@0x20 实锤)→宿主+0x24=m_childs PtrArray——FindFirst+SetAt(newElement)=把自己注册进父 childs",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00445bf0": {
+   "name": "SetArrayElement",
+   "source": "[归属迁移 20261123] 自由函数→UIWnd 成员(verified)。UIWnd 树操作: this=父, this+0x24=m_childs PtrArray(UIWnd@0x24 实锤)+this+0x28=下标——PtrArray::SetAt 按下标设子元素; 调用点 UIWnd 域实锤",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "index"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [

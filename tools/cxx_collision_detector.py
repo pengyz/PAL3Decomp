@@ -44,6 +44,18 @@ def find_collisions(entries):
             for k, v in groups.items() if len(v) > 1]
 
 
+def _sm_text(m):
+    """[sig 退役收尾 20261123] sig_model 结构化标注→文本(cxx_sig_key 可解析形)。"""
+    sm = m.get('sig_model') or {}
+    if not sm:
+        return ''
+    ps = ', '.join(str(p.get('type') or '') for p in sm.get('params') or []
+                   if isinstance(p, dict))
+    cc = sm.get('cc') or ''
+    _ccp = ('__%s ' % cc) if cc else ''
+    return ('%s %s(%s)' % (sm.get('return') or 'void', _ccp, ps)).replace('  ', ' ')
+
+
 def main():
     entries = []
     for f in glob.glob(str(ROOT / 'data/annotations/structs/*.json')):
@@ -52,11 +64,11 @@ def main():
         for addr, m in (d.get('methods') or {}).items():
             if isinstance(m, dict) and m.get('name'):
                 entries.append({'class': cls, 'name': m['name'],
-                                'sig': m.get('signature') or '', 'addr': addr})
+                                'sig': _sm_text(m), 'addr': addr})
     for addr, m in (json.load(open(ROOT / 'data/annotations/functions.json'))).items():
         if isinstance(m, dict) and m.get('name'):
             entries.append({'class': '', 'name': m['name'],
-                            'sig': m.get('signature') or '', 'addr': addr})
+                            'sig': _sm_text(m), 'addr': addr})
     coll = find_collisions(entries)
     out = {'total_entries': len(entries), 'collision_groups': len(coll), 'groups': coll}
     Path(ROOT / 'data/status/cxx_collision_census.json').write_text(

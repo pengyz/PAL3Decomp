@@ -85,10 +85,15 @@ def load_entries():
     #   IDB名字滞后于注解=apply未跑的正常态, 计入same_addr=check永久FAIL→apply死锁
     #   (0x445B90四名误报实证)。same_addr执法域=structs层(注解claim=数据真值)。
     #   functions.json仍装载(其他规则消费), 仅不参与same_addr。
+    # [sig 退役收尾 20261123] signature 字段已 banned 删除——迁 sig_model
+    # (annotation_view.sm_text 同款, 作用条目本体——与 structs 域一致)
+    import sys as _s2, os as _o2
+    _s2.path.insert(0, str(ROOT / 'pipeline' / 'gen'))
+    from annotation_view import sm_text as _sm_text
     for addr, m in json.load(open(ROOT / 'data/annotations/functions.json', encoding='utf-8')).items():
         if isinstance(m, dict) and m.get('name'):
             entries.append({'addr': addr, 'class': '', 'name': m['name'],
-                            'sig': m.get('signature') or '', 'src': 'functions'})
+                            'sig': _sm_text(m), 'src': 'functions'})
     return entries
 
 

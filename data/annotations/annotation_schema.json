@@ -99,15 +99,21 @@
   }
  },
  "functions_json": {
-  "_doc": "IDB命名通道——只许自由函数; 类方法名/类方法签名禁止(归属structs层)",
+  "_doc": "IDB命名通道——只许自由函数; 类方法名/类方法签名禁止(归属structs层)。[sig 退役收尾 20261123] signature 字段硬禁(schema banned+校验执行)——sig_model 唯一真相源(structs 域 20261117 同律, 本域漏改补齐)",
   "entry_required": [
    "name"
   ],
   "entry_allowed": [
    "name",
-   "signature",
+   "sig_model",
    "lvars",
-   "type"
+   "type",
+   "free_helper_confirmed",
+   "adjudication",
+   "source",
+   "evidence_level",
+   "name_note",
+   "owner"
   ],
   "banned_values": {
    "name": "禁止含'::'(类方法须走structs层)"
@@ -115,6 +121,12 @@
   "key_format": "^0x[0-9a-f]{8}$",
   "signature_banned_substrings": [
    "= 0"
+  ],
+  "banned": [
+   "signature",
+   "sig",
+   "alt_name",
+   "pending_adjudication"
   ]
  }
 }

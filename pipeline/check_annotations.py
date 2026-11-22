@@ -255,18 +255,13 @@ def check(struct_dir=None):
             errors.append(f"functions[{addr}]: invalid address format")
         if not info.get('name'):
             errors.append(f"functions[{addr}]: missing name")
-        if not info.get('signature'):
-            errors.append(f"functions[{addr}]: missing signature (name={info.get('name')})")
+        # [sig 退役收尾 20261123] missing signature 校验退役——signature 字段
+        # 已 banned 删除, sig_model 唯一真相源(N16 required 走 sig_model_required)
         # Check for duplicate (name + normalized signature)
         name = info.get('name', '')
-        sig = info.get('signature', '')
+        sig = sm_text(info)
         if name and sig:
-            # Normalize: strip return type + calling convention + function name,
-            # keep just parameter list e.g. "void __thiscall(PalScript *this, int n)" -> "(int n)"
-            sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
-            sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
-            sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
-            key = (name, sig_norm)
+            key = (name, sig)
             if key in sig_index:
                 errors.append(
                     f"functions[{addr}]: duplicate function '{name}' with signature "
@@ -277,7 +272,7 @@ def check(struct_dir=None):
     # 2b. Thunk/virtual/attribution consistency checks
     for addr, info in funcs.items():
         name = info.get('name', '')
-        sig = info.get('signature', '')
+        sig = sm_text(info)
 
         # Check 1: 'virtual' on free function (Hex-Rays artifact, invalid C++)
         # These need class attribution to make 'virtual' valid. Functions with
@@ -350,7 +345,7 @@ def check(struct_dir=None):
             _ccd = _il.module_from_spec(_sp); _sp.loader.exec_module(_ccd)
             _sigs = defaultdict(list)
             for addr, name, _h in members:
-                _sigs[_ccd.cxx_sig_key((funcs.get(addr) or {}).get('signature') or '')].append((addr, name))
+                _sigs[_ccd.cxx_sig_key(sm_text(funcs.get(addr) or {}))].append((addr, name))
             for _sk, _ms in _sigs.items():
                 if len(_ms) > 1:
                     for addr, name in _ms:
@@ -370,11 +365,8 @@ def check(struct_dir=None):
         # All entries with __ovl_ and same base must have different signatures
         seen_sigs = {}
         for addr, name, _ in has_ovl:
-            sig = funcs[addr].get('signature', '')
-            sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
-            sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
-            sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
-            if sig_norm in seen_sigs:
+            sig = sm_text(funcs[addr])
+            if sig in seen_sigs:
                 errors.append(
                     f"functions[{addr}]: '{name}' shares signature '{sig_norm}' with "
                     f"'{seen_sigs[sig_norm]}' — forms duplicate, not overload, of '{base}'")
@@ -1092,6 +1084,13 @@ def _run_n16_schema_gate(errors, warnings):
         if '::' in _nm:
             errors.append('N16:functions.%s 类方法名 %r 禁止(structs层权威)' % (_ea, _nm[:40]))
             _n += 1
+        # [sig 退役收尾 20261123] schema banned/allowed 强制执行(signature
+        # 硬禁——sig_model 唯一真相源; 用户裁定「读取让它直接报错」)
+        for _banned in _fj.get('banned') or []:
+            if _banned in _e:
+                errors.append('N16:functions.%s 退役字段 %s 存在(sig_model 唯一真相源, '
+                              '见 annotation_schema.json functions_json.banned)' % (_ea, _banned))
+                _n += 1
         for _bad in _fj['signature_banned_substrings']:
             if _bad in str(_e.get('signature') or ''):
                 errors.append('N16:functions.%s signature含禁止子串 %r' % (_ea, _bad))

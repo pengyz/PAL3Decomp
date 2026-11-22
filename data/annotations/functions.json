@@ -1,19 +1,78 @@
 {
  "0x00401810": {
   "name": "ArraySort",
-  "signature": "int __stdcall(int base, int count, int elemSize, int compareFunc)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int",
+     "name": "base"
+    },
+    {
+     "type": "int",
+     "name": "count"
+    },
+    {
+     "type": "int",
+     "name": "elemSize"
+    },
+    {
+     "type": "int",
+     "name": "compareFunc"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00404310": {
   "name": "StrCopyRange",
-  "signature": "char *__stdcall(char *pStart, char *pEnd, char *pDest)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "char *pStart",
+     "name": null
+    },
+    {
+     "type": "char *pEnd",
+     "name": null
+    },
+    {
+     "type": "char *pDest",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00411220": {
   "name": "AssignInt",
-  "signature": "int *__cdecl AssignInt(int *pDst, int *pSrc)"
+  "sig_model": {
+   "return": "int *__cdecl AssignInt",
+   "cc": null,
+   "params": [
+    {
+     "type": "int *pDst",
+     "name": null
+    },
+    {
+     "type": "int *pSrc",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00422950": {
   "name": "LoadScene",
-  "signature": "struct gbVFileSystem *__thiscall LoadScene(double sceneNames, char *arg8, char *pszBuf, char pData, char pData2)",
   "source": " | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall） | [签名修正 20261122] 原签名 __thiscall(double) 全错——语料实证 void __cdecl LoadScene(char*,char*,char) 三参 cdecl (String2/desc/arg8)",
   "sig_model": {
    "return": "void",
@@ -38,1264 +97,3901 @@
  },
  "0x00423540": {
   "name": "CombatEnter",
-  "signature": "gbGfxManager *__cdecl()"
+  "sig_model": {
+   "return": "gbGfxManager *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00423600": {
   "name": "GetRoleDataOffset",
-  "signature": "int __cdecl(int nRoleIndex)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nRoleIndex"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00430180": {
   "name": "InitSceneScriptLoader",
-  "signature": "_BYTE *__thiscall(_BYTE *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [函数归属余3 2026-10-17] 归属挂账 4.5/5（IDB 名无限定前缀=类归属直证缺失）：①调用者=SingletonThunk_00404630（**静态初始化域**）②被调=PalScript* 构造/使用 ③字节谱 [0,1,8]（+8 疑 m_script 清零——PalScriptMgr 候选最强但谱撞 200+ 类唯一性不足）④类归属待定 ⑤静态初始化生命周期；IDB decompile 形 `InitSceneScriptLoader(_BYTE *this)` 无 Class:: 前缀",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [函数归属余3 2026-10-17] 归属挂账 4.5/5（IDB 名无限定前缀=类归属直证缺失）：①调用者=SingletonThunk_00404630（**静态初始化域**）②被调=PalScript* 构造/使用 ③字节谱 [0,1,8]（+8 疑 m_script 清零——PalScriptMgr 候选最强但谱撞 200+ 类唯一性不足）④类归属待定 ⑤静态初始化生命周期；IDB decompile 形 `InitSceneScriptLoader(_BYTE *this)` 无 Class:: 前缀 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
-  "source_note": " | [归属 2026-10-17·余 3] ④类归属薄（SingletonThunk 注册点 ✓ 但无类限定名/谱唯一匹配）⇒ **五面 4/5 挂账** ✓"
+  "source_note": " | [归属 2026-10-17·余 3] ④类归属薄（SingletonThunk 注册点 ✓ 但无类限定名/谱唯一匹配）⇒ **五面 4/5 挂账** ✓",
+  "sig_model": {
+   "return": "_BYTE *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00432600": {
   "name": "FindScriptEventByID",
-  "signature": "char __cdecl FindScriptEventByID(int nEventId)"
+  "sig_model": {
+   "return": "char FindScriptEventByID",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nEventId"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00432870": {
   "name": "GetOpcodeParamTypes",
-  "signature": "unsigned __int8 *__cdecl GetOpcodeParamTypes()"
+  "sig_model": {
+   "return": "unsigned __int8 *__cdecl GetOpcodeParamTypes",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00432890": {
   "name": "InitOpcodeEntry",
-  "signature": "void __cdecl InitOpcodeEntry()"
+  "sig_model": {
+   "return": "void InitOpcodeEntry",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00432930": {
   "name": "SetScriptInitFlag",
-  "signature": "void __cdecl SetScriptInitFlag()"
+  "sig_model": {
+   "return": "void SetScriptInitFlag",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00432990": {
   "name": "LoadScriptFile",
-  "signature": "int __cdecl LoadScriptFile(const char *pszFileName)"
+  "sig_model": {
+   "return": "int LoadScriptFile",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "const char *pszFileName",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00435350": {
   "name": "GetCurrentCamera",
-  "signature": "gbCamera *__cdecl GetCurrentCamera()"
+  "sig_model": {
+   "return": "gbCamera *__cdecl GetCurrentCamera",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00435380": {
   "name": "GetCamera4",
-  "signature": "gbCamera *__cdecl()"
+  "sig_model": {
+   "return": "gbCamera *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00438100": {
   "name": "IsAnimDone",
-  "signature": "virtual BOOL __thiscall(_BYTE *this)",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438100 ⇒ IsAnimDone：同址计时器族谓词（IsAnimDone/IsProgressDone/IsWaitDone 三名共址合法共槽）⇒ 副本同步主流名 | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓"
+  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438100 ⇒ IsAnimDone：同址计时器族谓词（IsAnimDone/IsProgressDone/IsWaitDone 三名共址合法共槽）⇒ 副本同步主流名 | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓ | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00438530": {
   "name": "IsFadeDone",
-  "signature": "virtual BOOL __thiscall(_BYTE *this)",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓"
+  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓ | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00450370": {
   "name": "_sdtor_15",
-  "signature": "void *__thiscall(void *Block, char a2)"
+  "sig_model": {
+   "return": "void *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *Block",
+     "name": null
+    },
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00456670": {
   "name": "ShowMessageBox",
-  "signature": "BOOL __cdecl(const char *szMessage, const char *szCaption)"
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "const char *szMessage",
+     "name": null
+    },
+    {
+     "type": "const char *szCaption",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00538260": {
   "name": "ClearModelFlag",
-  "signature": "CHAR *__thiscall(CHAR *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·Actor LoadActorModel/DoSceneTransition 域 | [free_helper 确认 20261122] ArraySort(0x401810)=ForEach stride 批量调用器 push 0x538260 字面量回调 + 唯一调用点 mov ecx,esi (thiscall/fastcall 同形, 无成员专属形态) + free_functions.h:79 全局声明在册——classless thiscall 工具族五面确认",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：域件·Actor LoadActorModel/DoSceneTransition 域 | [free_helper 确认 20261122] ArraySort(0x401810)=ForEach stride 批量调用器 push 0x538260 字面量回调 + 唯一调用点 mov ecx,esi (thiscall/fastcall 同形, 无成员专属形态) + free_functions.h:79 全局声明在册——classless thiscall 工具族五面确认 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
   "source_note": "[余 14 补面 2026-10-17·五面满卡] ClearModelFlag（①Actor::LoadActorModel + DoSceneTransition ✓ ③this[612]=0 零化 ✓ ④Actor ✓ ⑤模型载入态清 ✓）——face3 规则执行 · A 级 conf 92 | [归属 2026-10-17] 类=Actor（五面卡面证）",
-  "free_helper_confirmed": true
+  "free_helper_confirmed": true,
+  "sig_model": {
+   "return": "CHAR *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00540070": {
   "name": "_todo_540070",
-  "signature": "int __cdecl()",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00541160": {
   "name": "UIRenderPar",
-  "signature": "int __cdecl(int nX, int nY, int nW, int nH, gbColorQuad *pColor, gbTextureArray *pTex, _PlugInfo *pInfo)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nX"
+    },
+    {
+     "type": "int",
+     "name": "nY"
+    },
+    {
+     "type": "int",
+     "name": "nW"
+    },
+    {
+     "type": "int",
+     "name": "nH"
+    },
+    {
+     "type": "gbColorQuad *pColor",
+     "name": null
+    },
+    {
+     "type": "gbTextureArray *pTex",
+     "name": null
+    },
+    {
+     "type": "_PlugInfo *pInfo",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00541590": {
   "name": "_todo_541590",
-  "signature": "int __cdecl(int param_1)",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选)"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "param_1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00452580": {
   "name": "_todo_ctor",
-  "signature": "void *__thiscall()",
-  "source": " | 错位修正 2026-10-16（verifier A 级）：真身=0x56B1BC 三子对象复合体的 **ctor**（disasm 0x452580 SEH 序言 + 三子对象组装 UIListBox@0/UIAnimateCtrlEX@0x48/UITitle_BBTY@0x43C + 末位写自表 vtable 实证）；现名 GetFaceNum 为错位（返回 this 的 ctor 挂了 getter 名）；签名 `int __cdecl()` 亦错——真身 __thiscall（ecx=this 实证） 返回 this（mov eax,esi）⇒ 改 `void *__thiscall()`；真名待语义考（复合体挂账中），占位名 _todo_ 非伪语义（无地址后缀）"
+  "source": " | 错位修正 2026-10-16（verifier A 级）：真身=0x56B1BC 三子对象复合体的 **ctor**（disasm 0x452580 SEH 序言 + 三子对象组装 UIListBox@0/UIAnimateCtrlEX@0x48/UITitle_BBTY@0x43C + 末位写自表 vtable 实证）；现名 GetFaceNum 为错位（返回 this 的 ctor 挂了 getter 名）；签名 `int __cdecl()` 亦错——真身 __thiscall（ecx=this 实证） 返回 this（mov eax,esi）⇒ 改 `void *__thiscall()`；真名待语义考（复合体挂账中），占位名 _todo_ 非伪语义（无地址后缀） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445f60": {
   "name": "GetTableEntry16",
-  "signature": "int __cdecl(unsigned int a2)",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445F60（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：16 槽表下标读取器：`if (idx>=0x10) return 0; return this[idx]` 越界返 0（0x445F60 decompile）",
-  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] GetTableEntry16 保留（补面完成）：①调用者 25 站（PalScript::RenderUI/UICaption::Render 渲染族 ✓）②本体=unsigned int a2 索引查表 ✓ ③成员=cdecl 无 this（自由函数）④类归属=自由工具 ✓ ⑤交互=渲染路径查询 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）"
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445F60（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：16 槽表下标读取器：`if (idx>=0x10) return 0; return this[idx]` 越界返 0（0x445F60 decompile） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] GetTableEntry16 保留（补面完成）：①调用者 25 站（PalScript::RenderUI/UICaption::Render 渲染族 ✓）②本体=unsigned int a2 索引查表 ✓ ③成员=cdecl 无 this（自由函数）④类归属=自由工具 ✓ ⑤交互=渲染路径查询 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445aa0": {
   "name": "ClearSubArraySlot",
-  "signature": "int __cdecl()",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445AA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：槽位子数组清除：`PtrArray::Clear((PtrArray*)(this+36))`（0x445AA0 decompile）",
-  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ClearSubArraySlot 保留（补面完成）：①调用者 21 站（UIProgressBar::ctor/PalScript ctor/NameSys::GetSys 构造族 ✓）②本体=无参清形 ✓ ③成员=无 this ④类归属=自由工具 ✓ ⑤交互=构造期初始化 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）"
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445AA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：槽位子数组清除：`PtrArray::Clear((PtrArray*)(this+36))`（0x445AA0 decompile） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ClearSubArraySlot 保留（补面完成）：①调用者 21 站（UIProgressBar::ctor/PalScript ctor/NameSys::GetSys 构造族 ✓）②本体=无参清形 ✓ ③成员=无 this ④类归属=自由工具 ✓ ⑤交互=构造期初始化 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445ed0": {
   "name": "LoadUISceneTexture",
-  "signature": "int __cdecl(int a2, int a3)",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_445ED0 ⇒ LoadUISceneTexture | evidence: ①UIScene::LoadResource+UIScene_OpenAndLoadResource ②**gbTexture::LoadTexture** ③591B ④UI 资源域 ⑤资源加载链 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_445ED0 ⇒ LoadUISceneTexture | evidence: ①UIScene::LoadResource+UIScene_OpenAndLoadResource ②**gbTexture::LoadTexture** ③591B ④UI 资源域 ⑤资源加载链 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    },
+    {
+     "type": "int",
+     "name": "a3"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00442000": {
   "name": "CalcWeightedOffset",
-  "signature": "int __cdecl()",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_442000（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：加权插值算式：`(v[42]-v[41])` 分母 + `v[85]+v[79]+v[43]*(v[81]-2*v[85]-v[87]/2-v[79])/span` 加权位移计算（0x442000 decompile）",
-  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] CalcWeightedOffset 保留（补面完成）：①调用者 4 站（UIBigMap::SetScrollRange/UIMap::ProcessHitTest **滚动/命中测试族** ✓）②本体=计算形 ✓ ③成员=无 this ④类归属=自由工具 ✓ ⑤交互=坐标计算路径 ✓ **5/5 满卡**——体语义单面 → **机械补面**（调用者 xref 具名族 + 调用约定 + 交互路径）"
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_442000（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：加权插值算式：`(v[42]-v[41])` 分母 + `v[85]+v[79]+v[43]*(v[81]-2*v[85]-v[87]/2-v[79])/span` 加权位移计算（0x442000 decompile） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] CalcWeightedOffset 保留（补面完成）：①调用者 4 站（UIBigMap::SetScrollRange/UIMap::ProcessHitTest **滚动/命中测试族** ✓）②本体=计算形 ✓ ③成员=无 this ④类归属=自由工具 ✓ ⑤交互=坐标计算路径 ✓ **5/5 满卡**——体语义单面 → **机械补面**（调用者 xref 具名族 + 调用约定 + 交互路径）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00442100": {
   "name": "SyncState",
-  "signature": "int __cdecl()",
   "name_source": "IDA语义分析 2026-11-01 批6",
-  "name_note": "状态同步（v[4,5]→v[76,77]）"
+  "name_note": "状态同步（v[4,5]→v[76,77]）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004422e0": {
   "name": "ResetContainerState",
-  "signature": "void __thiscall(void *this)",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ResetContainerState 保留（补面完成）：①调用者 100 站（PalScript::Op_WaterMagic/UIPushButton::CtorWithFlag 广布 ✓）②本体=thiscall(this) 重置形 ✓ ③成员=this+N 触面 ✓ ④类归属=广泛基类 utility ✓ ⑤交互=构造/操作重置 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
-  "declaration_only": true
+  "declaration_only": true,
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445ea0": {
   "name": "ZeroInitSelf68",
-  "signature": "void *__cdecl()",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445EA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：对象清零构造：`memset(this, 0, 0x44); return this`（68B 零初始化，0x445EA0 decompile）",
-  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ZeroInitSelf68 保留（补面完成）：①调用者 5 站（PalScript/UIMap/NameSys ctor 族 ✓）②本体=void* 归零形 ✓ ③成员=0x68 偏移域零化 ✓ ④类归属=自由工具 ✓ ⑤交互=构造期零化 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）"
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_445EA0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：对象清零构造：`memset(this, 0, 0x44); return this`（68B 零初始化，0x445EA0 decompile） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ZeroInitSelf68 保留（补面完成）：①调用者 5 站（PalScript/UIMap/NameSys ctor 族 ✓）②本体=void* 归零形 ✓ ③成员=0x68 偏移域零化 ✓ ④类归属=自由工具 ✓ ⑤交互=构造期零化 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
+  "sig_model": {
+   "return": "void *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00446010": {
   "name": "AllocObject",
-  "signature": "void *__thiscall(void *a2)",
-  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：⚠️ 类限定挂账：调用者 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 双域、成员面 a2 指针形弱 ⇒ 归属不达五面不赋类 | [函数归属余3 2026-10-17] **归属确认=自由函数 ✓**（④类归属解析：100 站跨类创建域实证 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等）；⚠️ **名实复核旗标**：名 AllocObject（分配）vs 体 `a2[1]=*v2; return v2`（链写/挂接）=名实不符，正名待五面（③+4 指针槽链写语义未满）；五面 4.5/5 | [free_helper确认 20261122] 归属确认=自由函数(100站跨类创建域实证)+ECX呼叫点抽检",
+  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：⚠️ 类限定挂账：调用者 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 双域、成员面 a2 指针形弱 ⇒ 归属不达五面不赋类 | [函数归属余3 2026-10-17] **归属确认=自由函数 ✓**（④类归属解析：100 站跨类创建域实证 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等）；⚠️ **名实复核旗标**：名 AllocObject（分配）vs 体 `a2[1]=*v2; return v2`（链写/挂接）=名实不符，正名待五面（③+4 指针槽链写语义未满）；五面 4.5/5 | [free_helper确认 20261122] 归属确认=自由函数(100站跨类创建域实证)+ECX呼叫点抽检 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
   "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92 | [归属 2026-10-17·余 3] 归属=**自由工具**（100 站跨类：CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等 ✓ 非单类成员=归属已答 ✓ 无迁移目标）",
-  "free_helper_confirmed": true
+  "free_helper_confirmed": true,
+  "sig_model": {
+   "return": "void *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *a2",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0044e9f0": {
   "name": "ProjectWorldToScreen",
-  "signature": "int __cdecl()",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_44E9F0 ⇒ ProjectWorldToScreen | evidence: ①CScreenMode::HideUIBars+UIWnd ②**RoleSystem::GetDirection+gbCamera::PointWorldToScr** ③1537B ④UI/相机域 ⑤世界→屏幕投影计算 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_44E9F0 ⇒ ProjectWorldToScreen | evidence: ①CScreenMode::HideUIBars+UIWnd ②**RoleSystem::GetDirection+gbCamera::PointWorldToScr** ③1537B ④UI/相机域 ⑤世界→屏幕投影计算 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00484f10": {
   "name": "LoadStateUIRenderTarget",
-  "signature": "int __cdecl(int a2)",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_484F10 ⇒ LoadStateUIRenderTarget | evidence: ①StateUI::OnRender×2 ②**RenderTarget::LoadTexture+SetSize** ③2576B 加载体 ④StateUI 渲染域 ⑤渲染链纹理加载 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_484F10 ⇒ LoadStateUIRenderTarget | evidence: ①StateUI::OnRender×2 ②**RenderTarget::LoadTexture+SetSize** ③2576B 加载体 ④StateUI 渲染域 ⑤渲染链纹理加载 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00496dd0": {
   "name": "LoadBigMapRenderTarget",
-  "signature": "int __cdecl(int a2)",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_496DD0 ⇒ LoadBigMapRenderTarget | evidence: ①UIBigMap::OnMessage×2 ②LoadTexture+SetSize ③2550B ④UIBigMap 域 ⑤消息链纹理加载 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_496DD0 ⇒ LoadBigMapRenderTarget | evidence: ①UIBigMap::OnMessage×2 ②LoadTexture+SetSize ③2550B ④UIBigMap 域 ⑤消息链纹理加载 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004a5760": {
   "name": "LoadGameFrmRenderTarget",
-  "signature": "int __cdecl(int a2)",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_4A5760 ⇒ LoadGameFrmRenderTarget | evidence: ①UIGameFrm::OnMessage×2 ②LoadTexture+SetSize ③2572B ④UIGameFrm 域 ⑤消息链纹理加载 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_4A5760 ⇒ LoadGameFrmRenderTarget | evidence: ①UIGameFrm::OnMessage×2 ②LoadTexture+SetSize ③2572B ④UIGameFrm 域 ⑤消息链纹理加载 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004a8230": {
   "name": "ClampToRange",
-  "signature": "unsigned int __cdecl(unsigned int a2, int a3)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUI::CreatePanelUI+SwordUI::RenderSword ②被调=无 ③成员=+383216 8-stride 表读取+上界校验（a2<=result）④**类归属=双类跨用 ✗** ⑤交互=面板创建/剑气渲染；A 级体 `*(this+8*a3+383216)`；功能定性=表项上界校验读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①CCBUI::CreatePanelUI+SwordUI::RenderSword ②无 ③+383212/383216 双 DWORD range 对表 8-stride ④自由函数（调用形实证）⑤面板创建/渲染值域钳制；A 级=idapro 全体钳制形 `r=obj[8*a3+383216]; if(a2<=r){r=obj[8*a3+383212]; if(a2>=r) return a2;} return r`；原名 sub_4A8230 ⇒ ClampToRange"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUI::CreatePanelUI+SwordUI::RenderSword ②被调=无 ③成员=+383216 8-stride 表读取+上界校验（a2<=result）④**类归属=双类跨用 ✗** ⑤交互=面板创建/剑气渲染；A 级体 `*(this+8*a3+383216)`；功能定性=表项上界校验读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①CCBUI::CreatePanelUI+SwordUI::RenderSword ②无 ③+383212/383216 双 DWORD range 对表 8-stride ④自由函数（调用形实证）⑤面板创建/渲染值域钳制；A 级=idapro 全体钳制形 `r=obj[8*a3+383216]; if(a2<=r){r=obj[8*a3+383212]; if(a2>=r) return a2;} return r`；原名 sub_4A8230 ⇒ ClampToRange | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "unsigned int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned int",
+     "name": "a2"
+    },
+    {
+     "type": "int",
+     "name": "a3"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00504f40": {
   "name": "ReadStageCamConfig",
-  "signature": "char __cdecl()",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_504F40 ⇒ ReadStageCamConfig | evidence: ①CCBStageCam::UpdateEditorState+_todo_00504E60 ②**gbVFileSystem::Read×3+OpenBaseFile** ③1241B ④CCBStageCam 配置域 ⑤文件读取链 | confidence: high"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 sub_504F40 ⇒ ReadStageCamConfig | evidence: ①CCBStageCam::UpdateEditorState+_todo_00504E60 ②**gbVFileSystem::Read×3+OpenBaseFile** ③1241B ④CCBStageCam 配置域 ⑤文件读取链 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "char",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0052fc50": {
   "name": "GetTableEntry",
-  "signature": "int __cdecl(int a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账（不达五面不赋名 ✓）：①调用者=CScreenMode::InitEndScreen+Actor::UpdateFrame ×2 ②被调=无（纯读）③成员=+2212 int 表 4-stride 下标读取 ④**类归属=双类跨用 ✗**（Actor/CScreenMode 共享布局待裁）⑤交互=EndScreen 初始化/帧更新；A 级体 `return *(this+4*a2+2212)`；功能定性=表下标读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①Actor::UpdateFrame ×2（返回值 COERCE_FLOAT 位型消费）+CScreenMode::InitEndScreen ②无（纯读）③+2212 4-stride dword 表 ④自由函数（调用形实证）⑤帧更新/EndScreen 初始化读取；A 级=idapro 全体 `return *(obj+4*a2+2212)`；原名 sub_52FC50 ⇒ GetTableEntry"
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账（不达五面不赋名 ✓）：①调用者=CScreenMode::InitEndScreen+Actor::UpdateFrame ×2 ②被调=无（纯读）③成员=+2212 int 表 4-stride 下标读取 ④**类归属=双类跨用 ✗**（Actor/CScreenMode 共享布局待裁）⑤交互=EndScreen 初始化/帧更新；A 级体 `return *(this+4*a2+2212)`；功能定性=表下标读取器 | [主攻点2续2 2026-10-17] 五面满卡 5/5 正名：①Actor::UpdateFrame ×2（返回值 COERCE_FLOAT 位型消费）+CScreenMode::InitEndScreen ②无（纯读）③+2212 4-stride dword 表 ④自由函数（调用形实证）⑤帧更新/EndScreen 初始化读取；A 级=idapro 全体 `return *(obj+4*a2+2212)`；原名 sub_52FC50 ⇒ GetTableEntry | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00530270": {
   "name": "ZeroInitPair",
-  "signature": "void * __cdecl()",
-  "source": "[主攻点2 2026-10-17] 五面满卡 5/5（①调用者=CScreenMode::InitEndScreen 单类 ②被调=无 ③成员访问=this[0]/this[1] 双 DWORD 清零 ④类归属=CScreenMode 初始化域 ⑤交互=EndScreen 初始化即清零路径）；A 级=idapro decompile 全体 `v0[1]=0; *v0=0; return v0`（0x530270）+ xrefs 1 站；原名 sub_530270 ⇒ 再创作命名 ZeroInitPair（功能驱动：双槽清零初始化器）",
+  "source": "[主攻点2 2026-10-17] 五面满卡 5/5（①调用者=CScreenMode::InitEndScreen 单类 ②被调=无 ③成员访问=this[0]/this[1] 双 DWORD 清零 ④类归属=CScreenMode 初始化域 ⑤交互=EndScreen 初始化即清零路径）；A 级=idapro decompile 全体 `v0[1]=0; *v0=0; return v0`（0x530270）+ xrefs 1 站；原名 sub_530270 ⇒ 再创作命名 ZeroInitPair（功能驱动：双槽清零初始化器） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "void *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00541210": {
   "name": "_todo_541210",
-  "signature": "int __cdecl()",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选)"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00413800": {
   "name": "Vec3Cross",
-  "signature": "gbVec3D *__cdecl(gbVec3D *pOut, gbVec3D *pA, gbVec3D *pB)"
+  "sig_model": {
+   "return": "gbVec3D *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "gbVec3D *pOut",
+     "name": null
+    },
+    {
+     "type": "gbVec3D *pA",
+     "name": null
+    },
+    {
+     "type": "gbVec3D *pB",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00445010": {
   "name": "UITextArea_Destroy",
-  "signature": "void __cdecl()"
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0044a7f0": {
   "name": "UIWnd_RenderText",
-  "signature": "void __cdecl()"
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00450670": {
   "name": "UICaption_Destroy",
-  "signature": "void __cdecl()"
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c6370": {
   "name": "CEffectSystem_DestroyEffect",
-  "signature": "CEffectSystem *__cdecl()"
+  "sig_model": {
+   "return": "CEffectSystem *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004cc4c0": {
   "name": "CEffCylinder_Update",
-  "signature": "int __cdecl CEffCylinder::Update(int nVal)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004f2750": {
   "name": "CCBRoleState_CheckBoss",
-  "signature": "int __cdecl(int *arg0, int roleIdx)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int *arg0",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "roleIdx"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00508280": {
   "name": "CCBCamControl_Init",
-  "signature": "int __cdecl()"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00511690": {
   "name": "CCBStageScene_Update",
-  "signature": "char __cdecl()"
+  "sig_model": {
+   "return": "char",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0051b9a0": {
   "name": "CCBParabolaWindow_Update",
-  "signature": "int __cdecl(int deltatime, int haveinput)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "deltatime"
+    },
+    {
+     "type": "int",
+     "name": "haveinput"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0051dd80": {
   "name": "CCBProtectWindow_Destroy",
-  "signature": "void __cdecl()"
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00541630": {
   "name": "InitUIQuadManagerSingleton",
-  "signature": "void __cdecl unknown_libname_522(void)",
-  "source": "manual:atexit handler for UIQuadManager singleton cleanup, size=0xA | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 unknown_libname_522 ⇒ InitUIQuadManagerSingleton | evidence: ①UIQuadManager::GetInstance ②无 ③155B（MSVC unknown_libname_522 合成名=单例初始化壳）④✓ ⑤单例生命周期 | confidence: high"
+  "source": "manual:atexit handler for UIQuadManager singleton cleanup, size=0xA | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 unknown_libname_522 ⇒ InitUIQuadManagerSingleton | evidence: ①UIQuadManager::GetInstance ②无 ③155B（MSVC unknown_libname_522 合成名=单例初始化壳）④✓ ⑤单例生命周期 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void unknown_libname_522",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0052d770": {
   "name": "MiniGame2_ClearState",
-  "signature": "void __stdcall(void)",
-  "source": "2026-09-14 FLIRT de-screening: real code (mov eax,ecx; xor ecx,ecx; stores), callers MiniGame2Update+sub_530270; was unknown_libname_491"
+  "source": "2026-09-14 FLIRT de-screening: real code (mov eax,ecx; xor ecx,ecx; stores), callers MiniGame2Update+sub_530270; was unknown_libname_491 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "stdcall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00509230": {
   "name": "compiler_init_00509230",
-  "signature": "void __cdecl()",
   "declaration_only": true,
-  "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训）"
+  "source": "批5 返工 2026-10-07：0 参实参形（atexit void(*)() 兼容——变参形×atexit 参型爆教训） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00452550": {
   "name": "accessor_00452550",
-  "signature": "int __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 NavFaceLayer::GetVertexNum | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 NavFaceLayer::GetVertexNum | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00512420": {
   "name": "compiler_init_00512420",
-  "signature": "int __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBSystem::GetFreeID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBSystem::GetFreeID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00496190": {
   "name": "CreateSceneEntities",
-  "signature": "void __thiscall Actor::CreateSceneEntities(Actor *this, int nSceneId)",
   "source_note": "[试点 2026-10-20·五面证据] ②被调用者=CreateMonsterUI/CreateScriptAndCamera/CreateFromTemplate/LoadModel/AllocObject（场景实体创建族 ✓）③成员访问=m_vecPos/m_vecRot/m_nRoleState0/m_szText/m_nTransform（位姿+状态 ✓）④类归属=Actor（11 命中 0 未解析）⑤交互模式=字面量 `UI\\GameMainUI\\Equip\\SelRole0` / `Item\\%s\\%s.pol`（UI+模型资源路径）；返回值=void",
-  "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 CreateSceneEntities 为准（注解名 _todo_00496190 对齐）；类化签名供 apply 定型 | [归属撤销 2026-10-25·体证据否决] offset-match 实测：38 偏移中 26 个越 Actor 边界 820（最大 0x35A68），仅 7 命中且伴大量越界 ⇒ this 非 820 字节 Actor；原\"六连簇证\"为偏移相似性（弱形态）被体证据压制。撤 Actor 归属挂队列重裁"
+  "source": " | [G3 C1 2026-10-25] IDB 重定型：以 decomp 现名 CreateSceneEntities 为准（注解名 _todo_00496190 对齐）；类化签名供 apply 定型 | [归属撤销 2026-10-25·体证据否决] offset-match 实测：38 偏移中 26 个越 Actor 边界 820（最大 0x35A68），仅 7 命中且伴大量越界 ⇒ this 非 820 字节 Actor；原\"六连簇证\"为偏移相似性（弱形态）被体证据压制。撤 Actor 归属挂队列重裁 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "nSceneId"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00539700": {
   "name": "VecEntry_Write",
-  "signature": "void __thiscall(Actor *this, FILE *fp)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActionEntry_Write。[五面证据] ①调用者=sub_569320：外层按 164 步长遍历动作数组、逐条调用本函数 ⇒ `this` = 单个 164B ActionEntry ②被调用者=fwrite ×4 ③成员访问=m_vecBonePos(+0x88/+0x8C = 136/140，作 656B 元素向量的 begin/end)、m_nAnimBuffer/m_nParticleBuffer(+0x98/+0x9C = 152/156，作 2B 元素向量的 begin/end)（3 命中 0 未解析）④类归属=形式 Actor（3 命中 0 未解析），但①面证明 `this` = 164B ActionE"
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActionEntry_Write。[五面证据] ①调用者=sub_569320：外层按 164 步长遍历动作数组、逐条调用本函数 ⇒ `this` = 单个 164B ActionEntry ②被调用者=fwrite ×4 ③成员访问=m_vecBonePos(+0x88/+0x8C = 136/140，作 656B 元素向量的 begin/end)、m_nAnimBuffer/m_nParticleBuffer(+0x98/+0x9C = 152/156，作 2B 元素向量的 begin/end)（3 命中 0 未解析）④类归属=形式 Actor（3 命中 0 未解析），但①面证明 `this` = 164B ActionE",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "FILE *fp",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00536160": {
   "name": "SetParam",
-  "signature": "double __thiscall(Actor *this, double fVal)",
   "source_note": "[A 级汇编 2026-10-21·重核] retn 8（5361ed c2 08 00）=2 dword 槽 = **1 double**。调用点 53555f/535560 push %edi;push %ebx = double 分解双 push ✓。另 535451/535456 push $0x3fc... = double 位型常量对同证。**体零参数读**（参数未在函数体内使用）。⚠️ 原 `int nVal, int nVal2` **错**（double 被拆两 int）· 原 source 引用 IDA stack_frame=循环证据，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "double",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "double",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00537770": {
   "name": "LoadActions",
-  "signature": "int __thiscall(Actor *this, FILE *Stream, int *pnCount)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=ActVecUninitCopy/DestroyActionRange/Free/InitAction/**PtrVec_InsertN_64**（动作加载族；注意 PtrVec_* 是容器模板实例——本仓 2026-10-20 归属修正定谳）③成员访问=m_actarray_begin/end/m_name/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=FILE 流读取动作序列。ret=int（result）。名 LoadActions 与 LoadActions(FILE*,int*) 签名相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=ActVecUninitCopy/DestroyActionRange/Free/InitAction/**PtrVec_InsertN_64**（动作加载族；注意 PtrVec_* 是容器模板实例——本仓 2026-10-20 归属修正定谳）③成员访问=m_actarray_begin/end/m_name/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=FILE 流读取动作序列。ret=int（result）。名 LoadActions 与 LoadActions(FILE*,int*) 签名相符。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "FILE *Stream",
+     "name": null
+    },
+    {
+     "type": "int *pnCount",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00541900": {
   "name": "WinMain",
-  "signature": "int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)",
-  "source": "R121 修 2026-10-27：WinMain 标注为自由函数 | R122 修 2026-10-27：type: free_function 死信道退役"
+  "source": "R121 修 2026-10-27：WinMain 标注为自由函数 | R122 修 2026-10-27：type: free_function 死信道退役 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int WinMain",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "HINSTANCE",
+     "name": "hInstance"
+    },
+    {
+     "type": "HINSTANCE",
+     "name": "hPrevInstance"
+    },
+    {
+     "type": "LPSTR",
+     "name": "lpCmdLine"
+    },
+    {
+     "type": "int",
+     "name": "nCmdShow"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00542533": {
   "name": "D3DXVec3Normalize",
-  "signature": "D3DXVECTOR3 *__stdcall(D3DXVECTOR3 *pOut, const D3DXVECTOR3 *pV)",
-  "source": "[T1 修 2026-10-28·A 级] j_D3DXVec3TransformCoord_0 错名退役：PSGP 跳板 jmp [0x6090C4]，槽#7 default=0x5450B5 c_D3DXVec3Normalize（157B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXVec3Normalize（PSGP 入口 _D3DXVec3Normalize@8，lib_relink_ok 路由=系统库可重链接免定义体）| evidence: dx_static §2.2 槽位+字节 | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（cdecl 误写致 284 redefinition） | [修] declaration_only=真（声明收编形：d3dx9math.h 供原型，免定义体）",
-  "declaration_only": true
+  "source": "[T1 修 2026-10-28·A 级] j_D3DXVec3TransformCoord_0 错名退役：PSGP 跳板 jmp [0x6090C4]，槽#7 default=0x5450B5 c_D3DXVec3Normalize（157B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXVec3Normalize（PSGP 入口 _D3DXVec3Normalize@8，lib_relink_ok 路由=系统库可重链接免定义体）| evidence: dx_static §2.2 槽位+字节 | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（cdecl 误写致 284 redefinition） | [修] declaration_only=真（声明收编形：d3dx9math.h 供原型，免定义体） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "declaration_only": true,
+  "sig_model": {
+   "return": "D3DXVECTOR3 *",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "D3DXVECTOR3 *pOut",
+     "name": null
+    },
+    {
+     "type": "const D3DXVECTOR3 *pV",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00544771": {
   "name": "D3DXQuaternionSlerp",
-  "signature": "D3DXQUATERNION *__stdcall(D3DXQUATERNION *pOut, const D3DXQUATERNION *pQ1, const D3DXQUATERNION *pQ2, float t)",
-  "source": "[T1 修 2026-10-28·A 级] j_D3DXMatrixMultiply 错名退役：PSGP 跳板 jmp [0x609134]，槽#35 default=0x544777 c_D3DXQuaternionSlerp（227B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXQuaternionSlerp（_D3DXQuaternionSlerp@16，lib_relink_ok 路由）| evidence: dx_static §2.2 + 调用方 c_D3DXQuaternionSquad Slerp×3 对应 d3dx9math.h | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（同上） | [修] declaration_only=真（同上）",
-  "declaration_only": true
+  "source": "[T1 修 2026-10-28·A 级] j_D3DXMatrixMultiply 错名退役：PSGP 跳板 jmp [0x609134]，槽#35 default=0x544777 c_D3DXQuaternionSlerp（227B 逐字节）⇒ 声明走 <d3dx9math.h> D3DXQuaternionSlerp（_D3DXQuaternionSlerp@16，lib_relink_ok 路由）| evidence: dx_static §2.2 + 调用方 c_D3DXQuaternionSquad Slerp×3 对应 d3dx9math.h | confidence: high | [修 2026-10-28] cc 对齐 WINAPI（同上） | [修] declaration_only=真（同上） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "declaration_only": true,
+  "sig_model": {
+   "return": "D3DXQUATERNION *",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "D3DXQUATERNION *pOut",
+     "name": null
+    },
+    {
+     "type": "const D3DXQUATERNION *pQ1",
+     "name": null
+    },
+    {
+     "type": "const D3DXQUATERNION *pQ2",
+     "name": null
+    },
+    {
+     "type": "float",
+     "name": "t"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00541860": {
   "name": "PAL3_FindCDRomDrive",
-  "signature": "int __cdecl()",
-  "source": "[T2 2026-10-28·G 冤户] CD 盘扫描（118B sprintf %c:\\\\ + GetDriveTypeA==5；caller WinMain@0x5419A7）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high"
- },
- "0x00446030": {
-  "name": "AddToArray",
-  "signature": "void __thiscall(_DWORD *newElement)",
-  "name_source": "IDA语义分析 2026-11-01 批11",
-  "name_note": "数组添加（PtrArray::FindFirst+SetAt）"
+  "source": "[T2 2026-10-28·G 冤户] CD 盘扫描（118B sprintf %c:\\\\ + GetDriveTypeA==5；caller WinMain@0x5419A7）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00459080": {
   "name": "GetDataPtr1",
-  "signature": "int *()",
   "name_source": "IDA语义分析 2026-11-01 批12",
-  "name_note": "返回 dword_DE3490 数据指针"
+  "name_note": "返回 dword_DE3490 数据指针",
+  "sig_model": {
+   "return": "int *",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00528190": {
   "name": "Initialize_8190",
-  "signature": "bool(CHAR *lpSubKey, DWORD dwDisposition, ...)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "bool",
+   "cc": null,
+   "params": [
+    {
+     "type": "CHAR *lpSubKey",
+     "name": null
+    },
+    {
+     "type": "DWORD",
+     "name": "dwDisposition"
+    }
+   ],
+   "varargs": true,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00530200": {
   "name": "Initialize_0200",
-  "signature": "int()",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "int",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c9610": {
   "name": "AllocEffect",
-  "signature": "void* __thiscall()",
-  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源)",
+  "source": "canonical签名同步20261114 (struct methods=头真值, functions.json=IDB类型源) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "flags": [
    "pure_virtual"
-  ]
+  ],
+  "sig_model": {
+   "return": "void*",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00401c70": {
   "name": "?FileSysInit@@YAXXZ",
-  "signature": "int __cdecl()"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00401da0": {
   "name": "FileSysDestory",
-  "signature": "void __cdecl FileSysDestory()",
-  "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）",
-  "name_note": "| [sig修正 20261122] mangle ?FileSysDestory@@YAXXZ: Y=__cdecl(函数自身证据链)——原 __thiscall 标注系 mislabel"
+  "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "name_note": "| [sig修正 20261122] mangle ?FileSysDestory@@YAXXZ: Y=__cdecl(函数自身证据链)——原 __thiscall 标注系 mislabel",
+  "sig_model": {
+   "return": "void FileSysDestory",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004023d0": {
   "name": "EnumJoystick",
-  "signature": "int __stdcall()",
-  "source": " | 批12 改名 2026-09-29：?EnumJoystick@@YGHPBUDIDEVICEINSTANCEA@@PAX@Z→EnumJoystick（mangled 名不匹渲染调用形——自由函数纯名正确）"
+  "source": " | 批12 改名 2026-09-29：?EnumJoystick@@YGHPBUDIDEVICEINSTANCEA@@PAX@Z→EnumJoystick（mangled 名不匹渲染调用形——自由函数纯名正确） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00404d60": {
   "name": "WinProc",
-  "signature": "int __stdcall(HWND hWnd, UINT Msg, unsigned int pvParam, LPARAM lParam)",
-  "source": "[函数19登记批 2026-10-16] 名解码 ?WinProc@@YGJPAUHWND__@@IIJ@Z→WinProc（mangled 名致 decl 发射名不匹配⇒C2065；A 级 idapro 体 int __stdcall(HWND,UINT,UINT,LPARAM)+PAL3::CheckSystemRequire 调用面）"
+  "source": "[函数19登记批 2026-10-16] 名解码 ?WinProc@@YGJPAUHWND__@@IIJ@Z→WinProc（mangled 名致 decl 发射名不匹配⇒C2065；A 级 idapro 体 int __stdcall(HWND,UINT,UINT,LPARAM)+PAL3::CheckSystemRequire 调用面） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    },
+    {
+     "type": "UINT",
+     "name": "Msg"
+    },
+    {
+     "type": "unsigned int",
+     "name": "pvParam"
+    },
+    {
+     "type": "LPARAM",
+     "name": "lParam"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00408b60": {
   "name": "InitScriptObjArray",
-  "signature": "void __cdecl InitScriptObjArray()"
+  "sig_model": {
+   "return": "void InitScriptObjArray",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040c230": {
   "name": "ScriptUpdate",
-  "signature": "char *__cdecl(int dt)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "dt"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040de10": {
   "name": "MovePartyFollowers",
-  "signature": "char *__cdecl MovePartyFollowers(char *bNotifyScript)"
+  "sig_model": {
+   "return": "char *__cdecl MovePartyFollowers",
+   "cc": null,
+   "params": [
+    {
+     "type": "char *bNotifyScript",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040e0a0": {
   "name": "RestorePartyFollowMode",
-  "signature": "void __cdecl RestorePartyFollowMode(int bNotifyScript)"
+  "sig_model": {
+   "return": "void RestorePartyFollowMode",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "bNotifyScript"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040e110": {
   "name": "SetupPartyFormation",
-  "signature": "char __cdecl SetupPartyFormation(int bNotifyScript)"
+  "sig_model": {
+   "return": "char SetupPartyFormation",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "bNotifyScript"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040e3c0": {
   "name": "SetupPartyFormationWide",
-  "signature": "char __cdecl SetupPartyFormationWide(int bNotifyScript)"
+  "sig_model": {
+   "return": "char SetupPartyFormationWide",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "bNotifyScript"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040e840": {
   "name": "AddNPCToPartySlot",
-  "signature": "int *__cdecl AddNPCToPartySlot(int nRoleSlot, int nNpcId)"
+  "sig_model": {
+   "return": "int *__cdecl AddNPCToPartySlot",
+   "cc": null,
+   "params": [
+    {
+     "type": "int",
+     "name": "nRoleSlot"
+    },
+    {
+     "type": "int",
+     "name": "nNpcId"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040f0c0": {
   "name": "SaveGameState",
-  "signature": "void __cdecl SaveGameState(FILE *fp)"
+  "sig_model": {
+   "return": "void SaveGameState",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "FILE *fp",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040f230": {
   "name": "LoadGameState",
-  "signature": "int *__cdecl LoadGameState(FILE *fp)"
+  "sig_model": {
+   "return": "int *__cdecl LoadGameState",
+   "cc": null,
+   "params": [
+    {
+     "type": "FILE *fp",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040f4b0": {
   "name": "RefreshPartyRoleData",
-  "signature": "int __cdecl RefreshPartyRoleData()"
+  "sig_model": {
+   "return": "int RefreshPartyRoleData",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040fc90": {
   "name": "AddMoney",
-  "signature": "void __cdecl AddMoney(int nAmount)"
+  "sig_model": {
+   "return": "void AddMoney",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nAmount"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040ff70": {
   "name": "SetRoleLevelAndRefresh",
-  "signature": "char *__cdecl SetRoleLevelAndRefresh(int nRoleIdx, int nLevel)"
+  "sig_model": {
+   "return": "char *__cdecl SetRoleLevelAndRefresh",
+   "cc": null,
+   "params": [
+    {
+     "type": "int",
+     "name": "nRoleIdx"
+    },
+    {
+     "type": "int",
+     "name": "nLevel"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004105b0": {
   "name": "NPCAnimUpdate",
-  "signature": "int __cdecl(float fVal)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0041c280": {
   "name": "InputUpdate",
-  "signature": "int __stdcall(float fVal)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004226f0": {
   "name": "UISceneUpdate",
-  "signature": "struct Scene *__cdecl()",
-  "source": "2026-09-20 二次修正（F61 类型选择的最终裁定）：本 getter 返回 `0xC21FE8 + 状态*493156`（A 级：移位链算术 + 构造点三个字面量 `push 3`/`push 00078664h`/`push 00C21FE8h`），该数组的元素类经**7/7 成员偏移吻合 ctor 初始化**确认为 **Scene** ⇒ 返回类型应为 `Scene*`（F61 定成 `SceneMgr*` 是偏移巧合：0xe0e0 落在 493156 字节对象内部是另一个字段）。首次尝试改 `Scene*` 时暴露了`UIManager.cpp` 的 C2039（`'_vftable' is not a member of 'Scene'`），根因是 `Scene` 注解里**无据的 +0 _vftable**（其 ctor/dtor 都不装 vptr、`Scene.vtables=None`）—— 本批已同时移除该成员。"
+  "source": "2026-09-20 二次修正（F61 类型选择的最终裁定）：本 getter 返回 `0xC21FE8 + 状态*493156`（A 级：移位链算术 + 构造点三个字面量 `push 3`/`push 00078664h`/`push 00C21FE8h`），该数组的元素类经**7/7 成员偏移吻合 ctor 初始化**确认为 **Scene** ⇒ 返回类型应为 `Scene*`（F61 定成 `SceneMgr*` 是偏移巧合：0xe0e0 落在 493156 字节对象内部是另一个字段）。首次尝试改 `Scene*` 时暴露了`UIManager.cpp` 的 C2039（`'_vftable' is not a member of 'Scene'`），根因是 `Scene` 注解里**无据的 +0 _vftable**（其 ctor/dtor 都不装 vptr、`Scene.vtables=None`）—— 本批已同时移除该成员。 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "struct Scene *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00422e40": {
   "name": "EffectUpdate",
-  "signature": "void __cdecl(float fVal)"
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00426e80": {
   "name": "PointInRect",
-  "signature": "BOOL __cdecl PointInRect(int *pRect, int *pPoint)"
+  "sig_model": {
+   "return": "BOOL PointInRect",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int *pRect",
+     "name": null
+    },
+    {
+     "type": "int *pPoint",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00429ca0": {
   "name": "GetActorMgr",
-  "signature": "gbActorMgr *__cdecl()"
+  "sig_model": {
+   "return": "gbActorMgr *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00431e90": {
   "name": "ConditionalCleanup",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,04h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431E90() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2E8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PtrArray.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,04h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431E90() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2E8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PtrArray.__thiscall() 误归属；名 PDB 并入参考级挂账） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431ee0": {
   "name": "FindScript",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,08h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431EE0() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2C8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScriptMgr.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,08h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431EE0() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+unk_D8C2C8)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScriptMgr.__thiscall() 误归属；名 PDB 并入参考级挂账） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431f40": {
   "name": "ClearAllCamObj",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,10h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431F40() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+dword_D8C2BC 区)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScript.__thiscall() 误归属；名 PDB 并入参考级挂账）"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump 首两指令 mov cl,ds:0D8C324h;mov al,10h（ECX 作暂存读固定全局非 this）| IDA 注型 ; void __cdecl sub_431F40() + push offset ; void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(byte_D8C324 守卫位+dword_D8C2BC 区)零 this 使用 | plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 PalScript.__thiscall() 误归属；名 PDB 并入参考级挂账） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004328d0": {
   "name": "InitScriptEventArray",
-  "signature": "void __cdecl InitScriptEventArray()"
+  "sig_model": {
+   "return": "void InitScriptEventArray",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004329b0": {
   "name": "InitSceOpcodeTable",
-  "signature": "int __cdecl InitSceOpcodeTable()"
+  "sig_model": {
+   "return": "int InitSceOpcodeTable",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00433cd0": {
   "name": "FreeScriptInstance",
-  "signature": "void __cdecl FreeScriptInstance(int *pInstance)"
+  "sig_model": {
+   "return": "void FreeScriptInstance",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int *pInstance",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00434bd0": {
   "name": "GetSceneObject",
-  "signature": "void *__cdecl(unsigned short nObjID)"
+  "sig_model": {
+   "return": "void *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned short",
+     "name": "nObjID"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00434f60": {
   "name": "ConvertDirection",
-  "signature": "int __cdecl ConvertDirection(int nDir)"
+  "sig_model": {
+   "return": "int ConvertDirection",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nDir"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00437d90": {
   "name": "FindOpcodeByName",
-  "signature": "int __cdecl FindOpcodeByName(char *pszCmdName)"
+  "sig_model": {
+   "return": "int FindOpcodeByName",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "char *pszCmdName",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00437de0": {
   "name": "SetGameSwitch",
-  "signature": "void __cdecl SetGameSwitch(int nSwitchIdx)"
+  "sig_model": {
+   "return": "void SetGameSwitch",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nSwitchIdx"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00437f40": {
   "name": "LoadGameSwitches",
-  "signature": "char *__cdecl LoadGameSwitches()"
+  "sig_model": {
+   "return": "char *__cdecl LoadGameSwitches",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0044bd80": {
   "name": "SafeDeletePtr",
-  "signature": "void __cdecl SafeDeletePtr(void **pptr)"
+  "sig_model": {
+   "return": "void SafeDeletePtr",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void **pptr",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00456fc0": {
   "name": "ReadRegistryString",
-  "signature": "BOOL __cdecl(const char *szSubKey, const char *szValueName, char *szOutBuf)"
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "const char *szSubKey",
+     "name": null
+    },
+    {
+     "type": "const char *szValueName",
+     "name": null
+    },
+    {
+     "type": "char *szOutBuf",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0046adf0": {
   "name": "GetCellStateByte",
-  "signature": "char __thiscall(_BYTE *this)",
-  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [free_helper确认 20261122] 五面深读自由函数证据+ECX",
+  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [free_helper确认 20261122] 五面深读自由函数证据+ECX | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
   "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "declaration_only": true,
   "evidence_level": "B",
-  "free_helper_confirmed": true
+  "free_helper_confirmed": true,
+  "sig_model": {
+   "return": "char",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004a13e0": {
   "name": "SyncUIRoleDialogMembers",
-  "signature": "int __cdecl()",
-  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _sub_4A13E0 ⇒ SyncUIRoleDialogMembers | evidence: ①**UIRoleDialog ctor+dtor**（构造/析构双点=成员同步件）②无 ③117B ④UIRoleDialog ⑤生命周期伴生 | confidence: medium"
+  "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _sub_4A13E0 ⇒ SyncUIRoleDialogMembers | evidence: ①**UIRoleDialog ctor+dtor**（构造/析构双点=成员同步件）②无 ③117B ④UIRoleDialog ⑤生命周期伴生 | confidence: medium | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004a36b0": {
   "name": "FormatChineseNumber",
-  "signature": "LPSTR __cdecl FormatChineseNumber(int nVal, LPSTR lpBuf)"
+  "sig_model": {
+   "return": "LPSTR FormatChineseNumber",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "LPSTR",
+     "name": "lpBuf"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004afaa0": {
   "name": "CopyRoleData",
-  "signature": "void __cdecl CopyRoleData(int pDst, int pSrc)"
+  "sig_model": {
+   "return": "void CopyRoleData",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "pDst"
+    },
+    {
+     "type": "int",
+     "name": "pSrc"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004b0040": {
   "name": "SortTripletsByField",
-  "signature": "int *__cdecl SortTripletsByField(int *p_DWORD, int *p_DWORD2, int nVal)"
+  "sig_model": {
+   "return": "int *__cdecl SortTripletsByField",
+   "cc": null,
+   "params": [
+    {
+     "type": "int *p_DWORD",
+     "name": null
+    },
+    {
+     "type": "int *p_DWORD2",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "nVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004b65e0": {
   "name": "InitRenderTarget3Singleton",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE6A30h;jmp 004B6570h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(dword_DE6A30 区)零 this 使用 | 尾跳目标 004B6570 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004B65E0 ⇒ InitRenderTarget3Singleton | evidence: 五面①调用者=RenderTarget3::GetInstance ②被调=无(单例初始化体) ③255B init 体 ④RenderTarget3 单例域 ⑤单例生命周期——evidence: xref+体形 | confidence: high"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE6A30h;jmp 004B6570h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(dword_DE6A30 区)零 this 使用 | 尾跳目标 004B6570 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004B65E0 ⇒ InitRenderTarget3Singleton | evidence: 五面①调用者=RenderTarget3::GetInstance ②被调=无(单例初始化体) ③255B init 体 ④RenderTarget3 单例域 ⑤单例生命周期——evidence: xref+体形 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004bdb50": {
   "name": "InitPal3Singleton",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7AA0h;jmp 004BDAC0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&g_PAL3)零 this 使用 | 尾跳目标 004BDAC0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BDB50 ⇒ InitPal3Singleton | evidence: ①PAL3::GetInstance_db10 ②无 ③139B ④PAL3 全局单例 ⑤单例生命周期 | confidence: high"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7AA0h;jmp 004BDAC0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&g_PAL3)零 this 使用 | 尾跳目标 004BDAC0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BDB50 ⇒ InitPal3Singleton | evidence: ①PAL3::GetInstance_db10 ②无 ③139B ④PAL3 全局单例 ⑤单例生命周期 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004be5d0": {
   "name": "InitScreenEffectSingleton",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7DF8h;jmp 004BE080h（ECX 自装固定全局非入参）| IDA 注型 push offset unk ; void (__cdecl *)() + call _atexit | decomp 体仅访固定全局(&g_PAL3.m_gametime+51)零 this 使用 | 尾跳目标 004BE080=ScreenEffectMgr::ClearAllEffects plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属——偏移[116,148]系全局对象所属类成员非 Actor 拥有） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BE5D0 ⇒ InitScreenEffectSingleton | evidence: ①ScreenEffectMgr::GetInstance ②**ScreenEffectMgr::ClearAllEffects** ③165B ④✓ ⑤单例初始化+效果清理 | confidence: high"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7DF8h;jmp 004BE080h（ECX 自装固定全局非入参）| IDA 注型 push offset unk ; void (__cdecl *)() + call _atexit | decomp 体仅访固定全局(&g_PAL3.m_gametime+51)零 this 使用 | 尾跳目标 004BE080=ScreenEffectMgr::ClearAllEffects plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属——偏移[116,148]系全局对象所属类成员非 Actor 拥有） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BE5D0 ⇒ InitScreenEffectSingleton | evidence: ①ScreenEffectMgr::GetInstance ②**ScreenEffectMgr::ClearAllEffects** ③165B ④✓ ⑤单例初始化+效果清理 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004c5bb0": {
   "name": "CombatEffectUpdate",
-  "signature": "int __stdcall(double pData)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "double",
+     "name": "pData"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c6450": {
   "name": "PostDestroyAllEffects",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE93B0h;jmp 004C63F0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体空(this 零使用) | 尾跳目标 004C63F0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 CCBStageScene.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004C6450 ⇒ PostDestroyAllEffects | evidence: ①CEffectSystem::DestroyAllEffect ②无 ③87B 尾件 ④CEffectSystem ⑤销毁后置步 | confidence: medium"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE93B0h;jmp 004C63F0h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体空(this 零使用) | 尾跳目标 004C63F0 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 CCBStageScene.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004C6450 ⇒ PostDestroyAllEffects | evidence: ①CEffectSystem::DestroyAllEffect ②无 ③87B 尾件 ④CEffectSystem ⑤销毁后置步 | confidence: medium | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004cb350": {
   "name": "_sdtor_36",
-  "signature": "char *__thiscall(char *this, char a2)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004cd0d0": {
   "name": "LogCreateFailureReport",
-  "signature": "void __cdecl(int pEM, int nMaxTrail, int bNoHead, int pTextureArray)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_4CD0D0 ⇒ LogCreateFailureReport | evidence: 五面①调用者=CEffMeteor::Create 资源创建链 ②被调=**Logger::FormatException×4** ③4467B 格式化体（自由函数无 this 面=参数面代）④错误报告域 ⑤创建失败日志生命周期 | confidence: medium"
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_4CD0D0 ⇒ LogCreateFailureReport | evidence: 五面①调用者=CEffMeteor::Create 资源创建链 ②被调=**Logger::FormatException×4** ③4467B 格式化体（自由函数无 this 面=参数面代）④错误报告域 ⑤创建失败日志生命周期 | confidence: medium | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "pEM"
+    },
+    {
+     "type": "int",
+     "name": "nMaxTrail"
+    },
+    {
+     "type": "int",
+     "name": "bNoHead"
+    },
+    {
+     "type": "int",
+     "name": "pTextureArray"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004cda00": {
   "name": "_sdtor_37",
-  "signature": "char *__thiscall(char *this, char a2)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004cdb70": {
   "name": "SceneMgrUpdate",
-  "signature": "int __stdcall(float fVal)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004d0ca0": {
   "name": "_sdtor_38",
-  "signature": "char *__thiscall(char *this, char a2)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004d3230": {
   "name": "_sdtor_39",
-  "signature": "char *__thiscall(char *this, char a2)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004d4df0": {
   "name": "_sdtor_40",
-  "signature": "char *__thiscall(char *this, char a2)"
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e0a30": {
   "name": "DialogFunc",
-  "signature": "int __stdcall(HWND, UINT, WPARAM, LPARAM)",
-  "source": "ida_decomp",
+  "source": "ida_decomp | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "HWND",
+     "name": null
+    },
+    {
+     "type": "UINT",
+     "name": null
+    },
+    {
+     "type": "WPARAM",
+     "name": null
+    },
+    {
+     "type": "LPARAM",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004e5300": {
   "name": "EditBoxSetReadOnly",
-  "signature": "LRESULT __cdecl(HWND hWnd, BOOL bReadOnly)"
+  "sig_model": {
+   "return": "LRESULT",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    },
+    {
+     "type": "BOOL",
+     "name": "bReadOnly"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5330": {
   "name": "EditBoxIsModified",
-  "signature": "BOOL __cdecl(HWND hWnd)"
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5350": {
   "name": "EditBoxSetFloat",
-  "signature": "LRESULT __cdecl(HWND hWnd, float fValue)"
+  "sig_model": {
+   "return": "LRESULT",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    },
+    {
+     "type": "float",
+     "name": "fValue"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5390": {
   "name": "EditBoxSetInt",
-  "signature": "LRESULT __cdecl(HWND hWnd, int nValue)"
+  "sig_model": {
+   "return": "LRESULT",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    },
+    {
+     "type": "int",
+     "name": "nValue"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5410": {
   "name": "GetEditBoxText",
-  "signature": "char *__cdecl GetEditBoxText(HWND hWnd)"
+  "sig_model": {
+   "return": "char *__cdecl GetEditBoxText",
+   "cc": null,
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5430": {
   "name": "EditBoxGetFloat",
-  "signature": "double __cdecl(HWND hWnd)"
+  "sig_model": {
+   "return": "double",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e5460": {
   "name": "EditBoxGetInt",
-  "signature": "int __cdecl(HWND hWnd)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": "hWnd"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004ec480": {
   "name": "_nearby_4ec480",
-  "signature": "int __cdecl()",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件对·vtable 槽 getter/123B",
+  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：小件对·vtable 槽 getter/123B | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "face3_rule": "cdecl 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-  "source_note": " | [17 挂账补面 2026-10-17] 0x4EC480 ①调用者未具名 ③面未见 ⇒ **五面未满挂账**（不达五面不赋名 ✓）"
+  "source_note": " | [17 挂账补面 2026-10-17] 0x4EC480 ①调用者未具名 ③面未见 ⇒ **五面未满挂账**（不达五面不赋名 ✓）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004ec490": {
   "name": "Method_C490",
-  "signature": "void __cdecl()",
   "name_source": "IDA语义分析 2026-11-01 批15",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005269b0": {
   "name": "CreateDigitPair",
-  "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
+  "sig_model": {
+   "return": "void CreateDigitPair",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "UIWnd **ppTens",
+     "name": null
+    },
+    {
+     "type": "UIWnd **ppOnes",
+     "name": null
+    },
+    {
+     "type": "const char *pszTexBase",
+     "name": null
+    },
+    {
+     "type": "char",
+     "name": "bFlag"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0052b900": {
   "name": "MiniGame1Update",
-  "signature": "int __stdcall(double pData)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "double",
+     "name": "pData"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0052f350": {
   "name": "MiniGame2Update",
-  "signature": "void __cdecl(float fVal)",
-  "evidence_note": "ret 0x4=1 float stack param (stdcall would be ret 4=same but this is cdecl per call site cleanup)"
+  "evidence_note": "ret 0x4=1 float stack param (stdcall would be ret 4=same but this is cdecl per call site cleanup)",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00532cf0": {
   "name": "CalcAngleBetweenVectors",
-  "signature": "long double __cdecl CalcAngleBetweenVectors(int nX1, int nY1, int nZ1, int nX2, float fY2, float fZ2)"
+  "sig_model": {
+   "return": "long double CalcAngleBetweenVectors",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nX1"
+    },
+    {
+     "type": "int",
+     "name": "nY1"
+    },
+    {
+     "type": "int",
+     "name": "nZ1"
+    },
+    {
+     "type": "int",
+     "name": "nX2"
+    },
+    {
+     "type": "float",
+     "name": "fY2"
+    },
+    {
+     "type": "float",
+     "name": "fZ2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005353a0": {
   "name": "MiniGame3Update",
-  "signature": "int __stdcall(float fVal)"
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005382d0": {
   "name": "CheckDirectoryExists",
-  "signature": "BOOL __cdecl(LPCSTR lpFileName)"
+  "sig_model": {
+   "return": "BOOL",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "LPCSTR",
+     "name": "lpFileName"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005394f0": {
   "name": "GetSaveDataManager",
-  "signature": "void *__cdecl()"
+  "sig_model": {
+   "return": "void *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053b010": {
   "name": "ActVecUninitCopy",
-  "signature": "char ** __cdecl(int nVal, unsigned int *pdwVal, unsigned int *pdwVal2, char **a4)",
-  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::LoadActions",
+  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::LoadActions | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "char **",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "unsigned int *pdwVal",
+     "name": null
+    },
+    {
+     "type": "unsigned int *pdwVal2",
+     "name": null
+    },
+    {
+     "type": "char **a4",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053b2d0": {
   "name": "ActVecUninitCopy2",
-  "signature": "int * __cdecl(int nVal, int *p_DWORD, int *p_DWORD2, char **a4)",
-  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction ×2",
+  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction ×2 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "int *p_DWORD",
+     "name": null
+    },
+    {
+     "type": "int *p_DWORD2",
+     "name": null
+    },
+    {
+     "type": "char **a4",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053b4d0": {
   "name": "ActVecUninitFill",
-  "signature": "char ** __cdecl(int nVal, int nVal2, int nVal3, char **a4)",
-  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction",
+  "source": " | [函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）（修形：补约定前缀）；调用面 Actor::InsertAction | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "char **",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "int",
+     "name": "nVal2"
+    },
+    {
+     "type": "int",
+     "name": "nVal3"
+    },
+    {
+     "type": "char **a4",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053bee0": {
   "name": "ActVecReallocate",
-  "signature": "char * __cdecl(int nVal, char *pszBuf, char *pszBuf2, char *pszBuf3, int nVal2)",
-  "source": " | [函数19登记批 2026-10-16] 补 __cdecl 前缀"
+  "source": " | [函数19登记批 2026-10-16] 补 __cdecl 前缀 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "char *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "char *pszBuf",
+     "name": null
+    },
+    {
+     "type": "char *pszBuf2",
+     "name": null
+    },
+    {
+     "type": "char *pszBuf3",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "nVal2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053cf30": {
   "name": "TextureInfoFormatException",
-  "signature": "char *__cdecl Texture_Info_FormatException(char *ArgList, const char *pszName, const char *pszName2, const char *pszName3, int nVal)"
+  "sig_model": {
+   "return": "char *__cdecl Texture_Info_FormatException",
+   "cc": null,
+   "params": [
+    {
+     "type": "char *ArgList",
+     "name": null
+    },
+    {
+     "type": "const char *pszName",
+     "name": null
+    },
+    {
+     "type": "const char *pszName2",
+     "name": null
+    },
+    {
+     "type": "const char *pszName3",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "nVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053cf80": {
   "name": "InitLogFiles",
-  "signature": "FILE *__cdecl()"
+  "sig_model": {
+   "return": "FILE *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053d030": {
   "name": "LogMessage",
-  "signature": "FILE *__cdecl(char *Format, ...)"
+  "sig_model": {
+   "return": "FILE *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "char *Format",
+     "name": null
+    }
+   ],
+   "varargs": true,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053d190": {
   "name": "RefreshSoundListBox",
-  "signature": "void __cdecl()",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,017B3EB0h;jmp 0053D100h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&stru_17B3EB0)零 this 使用 | 尾跳目标 0053D100 主出口 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_0053D190 ⇒ RefreshSoundListBox | evidence: ①CScreenMode::GetSoundList ②**UIListBox::RefreshList** ③137B ④CScreenMode 声音域 ⑤列表刷新 | confidence: high"
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,017B3EB0h;jmp 0053D100h（ECX 自装固定全局非入参）| IDA 注型 void (__cdecl *)() atexit 注册 | decomp 体仅访固定全局(&stru_17B3EB0)零 this 使用 | 尾跳目标 0053D100 主出口 plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_0053D190 ⇒ RefreshSoundListBox | evidence: ①CScreenMode::GetSoundList ②**UIListBox::RefreshList** ③137B ④CScreenMode 声音域 ⑤列表刷新 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053f4d0": {
   "name": "_sdtor_20",
-  "signature": "void *__thiscall(void *Block, char a2)"
+  "sig_model": {
+   "return": "void *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *Block",
+     "name": null
+    },
+    {
+     "type": "char",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00540d20": {
   "name": "_todo_540d20",
-  "signature": "int __cdecl()",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00540dc0": {
   "name": "_todo_540dc0",
-  "signature": "int __cdecl()",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选)"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类(其中3个ecx-this证据); 改名待归属(归属候选) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00540fd0": {
   "name": "_todo_540fd0",
-  "signature": "int __cdecl()",
-  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属"
+  "source": "[去伪CRT标签 2026-11-13] 体内 gbUIQuad/gbGfxManager 调用=游戏函数非CRT(逐字节核实无CRT特征); 原名 crt_sub_* 系早期错误分类; 改名待归属 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004a1a7c": {
   "name": "GetGlobalUserVar",
-  "signature": "struct scGlobalUserVar *(char *a1)"
+  "sig_model": {
+   "return": "struct scGlobalUserVar *",
+   "cc": null,
+   "params": [
+    {
+     "type": "char *a1",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004518fe": {
   "name": "SetPitch",
-  "signature": "void(float a1)"
+  "sig_model": {
+   "return": "void",
+   "cc": null,
+   "params": [
+    {
+     "type": "float",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c6831": {
   "name": "SetRadiusWidth",
-  "signature": "void(int a1)"
+  "sig_model": {
+   "return": "void",
+   "cc": null,
+   "params": [
+    {
+     "type": "int",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004d589c": {
   "name": "SetRect0",
-  "signature": "void(tagRECT *a1)"
+  "sig_model": {
+   "return": "void",
+   "cc": null,
+   "params": [
+    {
+     "type": "tagRECT *a1",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0043c9d0": {
   "name": "fill",
-  "signature": "void(PlayerItem *a1, PlayerItem *a2, PlayerItem *a3)"
+  "sig_model": {
+   "return": "void",
+   "cc": null,
+   "params": [
+    {
+     "type": "PlayerItem *a1",
+     "name": null
+    },
+    {
+     "type": "PlayerItem *a2",
+     "name": null
+    },
+    {
+     "type": "PlayerItem *a3",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0040e050": {
   "name": "Vec3Lerp",
-  "signature": "float *__cdecl(float *pOut, float *pSrc, float fLerpFactor, float fMax)"
+  "sig_model": {
+   "return": "float *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "float *pOut",
+     "name": null
+    },
+    {
+     "type": "float *pSrc",
+     "name": null
+    },
+    {
+     "type": "float",
+     "name": "fLerpFactor"
+    },
+    {
+     "type": "float",
+     "name": "fMax"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005374e0": {
   "name": "Vec3CopyStruct",
-  "signature": "gbVec3D *__stdcall(gbVec3D *pDst, gbVec3D *pSrc, gbVec3D *pEnd)"
+  "sig_model": {
+   "return": "gbVec3D *",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "gbVec3D *pDst",
+     "name": null
+    },
+    {
+     "type": "gbVec3D *pSrc",
+     "name": null
+    },
+    {
+     "type": "gbVec3D *pEnd",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004a4770": {
   "name": "SetUIWndFlag",
-  "signature": "unsigned __int8 __stdcall(unsigned __int8 a1)",
-  "source": "[主攻点2 2026-10-17] 五面满卡 5/5（①调用者=PalScript::Op_StopMusic 脚本 Op 域 ②被调=无（直写全局）③成员访问=全局 g_bUIWnd_DE625A 赋值+返回值 ④类归属=自由函数·全局 setter ⑤交互=脚本停止音乐路径置 UI 窗标志）；A 级=idapro decompile 体 `g_bUIWnd_DE625A=a1; return a1`（0x4A4770）+ xrefs 1 站；原名 sub_4A4770（中性未名形）⇒ 再创作命名 SetUIWndFlag（功能驱动：UI 窗标志置位器）；⚠️ 旗标本名 g_bUIWnd_DE625A 含地址尾=伪语义族另账",
+  "source": "[主攻点2 2026-10-17] 五面满卡 5/5（①调用者=PalScript::Op_StopMusic 脚本 Op 域 ②被调=无（直写全局）③成员访问=全局 g_bUIWnd_DE625A 赋值+返回值 ④类归属=自由函数·全局 setter ⑤交互=脚本停止音乐路径置 UI 窗标志）；A 级=idapro decompile 体 `g_bUIWnd_DE625A=a1; return a1`（0x4A4770）+ xrefs 1 站；原名 sub_4A4770（中性未名形）⇒ 再创作命名 SetUIWndFlag（功能驱动：UI 窗标志置位器）；⚠️ 旗标本名 g_bUIWnd_DE625A 含地址尾=伪语义族另账 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "unsigned __int8",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "unsigned __int8",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00408bd0": {
   "name": "NullCallback",
-  "signature": "void __cdecl NullCallback(void *pData)",
-  "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits)"
+  "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void NullCallback",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *pData",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0043de40": {
   "name": "Destroy",
-  "signature": "void __fastcall(int self)",
-  "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high"
+  "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "fastcall",
+   "params": [
+    {
+     "type": "int",
+     "name": "self"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004323c0": {
   "name": "StopSceneScripts",
-  "signature": "void __cdecl(void)",
-  "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only.",
-  "evidence_note": "prologue ebp=global ds:0xd8c32c (not param), no [esp+X] access, 5 call sites all 0-arg; objdump 0x4323c0 ret (no ret N)"
+  "source": "reattributed from PalScriptMgr::RunSceneScript (false member): no this usage (operates on stru_D8C2B8 globals), callee bare retn + caller add esp,4 = cdecl; semantics: kill running scene-script instances matching pszScene and compact the slot array. _naming_note: descriptive label, binary evidence only. | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "evidence_note": "prologue ebp=global ds:0xd8c32c (not param), no [esp+X] access, 5 call sites all 0-arg; objdump 0x4323c0 ret (no ret N)",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445e10": {
   "name": "OffsetRect",
-  "signature": "int *__thiscall PalScript::OffsetRect(long *p_DWORD)",
-  "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7"
+  "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int *__thiscall",
+   "cc": null,
+   "params": [
+    {
+     "type": "long *p_DWORD",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00540b20": {
   "name": "UIInitSystem",
-  "signature": "void __cdecl(...)",
-  "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIInitSystem@@YAXXZ=void __cdecl(void) 修饰解读） | 订正 2026-09-29：YAXXZ(=PAL3A void(void)) 与 PAL3 调用点 5 元数/读 [esp+0x10] 证不符——按调用点元数订正（PAL3A 分歧实例） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正",
+  "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIInitSystem@@YAXXZ=void __cdecl(void) 修饰解读） | 订正 2026-09-29：YAXXZ(=PAL3A void(void)) 与 PAL3 调用点 5 元数/读 [esp+0x10] 证不符——按调用点元数订正（PAL3A 分歧实例） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": true,
+   "pending": false
+  }
  },
  "0x00540c60": {
   "name": "UIDestorySystem",
-  "signature": "void __cdecl(...)",
-  "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIDestorySystem@@YAXXZ 同解） | 订正 2026-09-29：同上（调用点 6 元数/读 [esp+0x38..0x44] 证） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正",
+  "source": "批12 收编 2026-09-29：skip_functions crt_runtime 误标转正（?UIDestorySystem@@YAXXZ 同解） | 订正 2026-09-29：同上（调用点 6 元数/读 [esp+0x38..0x44] 证） | 变参形 2026-09-29：参数型无证（skip 件未反编译）——调用点形参级证据逐参积累前用变参形（C++ `void f(...)` 合法）；真签名待批 A 解禁后按渲染订正 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": true,
+   "pending": false
+  }
  },
  "0x005090a0": {
   "name": "compiler_init_005090A0",
-  "signature": "void __cdecl()",
-  "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正） | [T56-分析驱动重试] 根因已诊断：slots 喂入断（自由函数不入 sig_slots map，门恒 None）+ 变参形槽数未知——两半均已补（stage2 free_func_sigs 喂入 + 0 参形）。A 级 0x509090 `e9 0b 00 00 00` jmp 形无实参设置 ✓ | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only（check:748 判据面）",
-  "declaration_only": true
+  "source": "批18 收编 2026-09-29：函数体证据（全访问全局址/零参数读）⇒ 0 参；CRT 初始化数组间接调用（.CRT$XCU）无直调点——调用点清理证据法失效（定谳） | 变参形 2026-10-06：调用点渲染名带 this 实参（0 参体证 vs 1 实参渲染）——变参形收（回波参待渲染面统一后订正） | [T56-分析驱动重试] 根因已诊断：slots 喂入断（自由函数不入 sig_slots map，门恒 None）+ 变参形槽数未知——两半均已补（stage2 free_func_sigs 喂入 + 0 参形）。A 级 0x509090 `e9 0b 00 00 00` jmp 形无实参设置 ✓ | 消双注 2026-10-17 verifier：skip_functions 同址=体排除面，本条=声明收编形 ⇒ declaration_only（check:748 判据面） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "declaration_only": true,
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0047e536": {
   "name": "HandleDllEntryUITitle",
-  "signature": "int __stdcall(int, int, int)",
-  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@UITitle_YXXX 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryUITitle | evidence: 五面①调用者=HandleMsgDLL@UITitle_YXXX（UI 标题域）②114B DLL 消息件 ③int(int,int,int) ④UITitle_YXXX 域 ⑤DLL 消息处理——与 0x5329BE 同签名硬撞 ⇒ 域后缀消歧 | confidence: high",
+  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@UITitle_YXXX 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryUITitle | evidence: 五面①调用者=HandleMsgDLL@UITitle_YXXX（UI 标题域）②114B DLL 消息件 ③int(int,int,int) ④UITitle_YXXX 域 ⑤DLL 消息处理——与 0x5329BE 同签名硬撞 ⇒ 域后缀消歧 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①UITitle_YXXX::HandleMsgDLL ✓ ②**DllMain 签名形**（HINSTANCE/DWORD/LPVOID ✓）③参数语义=HINSTANCE/原因码 ✓ ④UITitle_YXXX ✓ ⑤DLL 生命周期处理 ✓）· A 级 conf 92"
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①UITitle_YXXX::HandleMsgDLL ✓ ②**DllMain 签名形**（HINSTANCE/DWORD/LPVOID ✓）③参数语义=HINSTANCE/原因码 ✓ ④UITitle_YXXX ✓ ⑤DLL 生命周期处理 ✓）· A 级 conf 92",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x005329be": {
   "name": "HandleDllEntryRoleSystem",
-  "signature": "int __stdcall(int, int, int)",
-  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@RoleSystem 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryRoleSystem | evidence: 五面①调用者=HandleMsgDLL@RoleSystem（角色系统域）②114B 同形件 ③同签名 ④RoleSystem 域 ⑤DLL 消息处理 ⇒ 域后缀消歧（挂账19「双胞壳」收口） | confidence: high",
+  "source": "挂账③ E 案 2026-10-06：0x47E4E0 jz 尾跳目标（mov eax,1; retn 0xC）=stdcall 3 参回 1 桩——原名 _DllMain@12_* 无任何权威源（PAL3 字节串/PDB/FLIRT 三处零命中）疑跨库泄漏；改 _todo_ 真名未知形+实参形声明（元数=retn 0xC A 级；型保守 int 形） | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：双胞壳·HandleMsgDLL@RoleSystem 域 | 消双注+双胞壳收口 2026-10-17（verifier·五面：调用者域消歧）：原名 HandleDllEntry ⇒ HandleDllEntryRoleSystem | evidence: 五面①调用者=HandleMsgDLL@RoleSystem（角色系统域）②114B 同形件 ③同签名 ④RoleSystem 域 ⑤DLL 消息处理 ⇒ 域后缀消歧（挂账19「双胞壳」收口） | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "face3_rule": "stdcall 自由形 ⇒ 第③面=参数+offset 语义（降级判据 _RULE_face3_downgrade）",
-  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①RoleSystem::HandleMsgDLL ✓ ②DllMain 签名形 ✓ ③参数语义 ✓ ④RoleSystem ✓ ⑤DLL 生命周期 ✓）· A 级 conf 92"
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] HandleDllEntry（①RoleSystem::HandleMsgDLL ✓ ②DllMain 签名形 ✓ ③参数语义 ✓ ④RoleSystem ✓ ⑤DLL 生命周期 ✓）· A 级 conf 92",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431d90": {
   "name": "SingletonThunk_00431D90",
-  "signature": "Iostream_init * __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 return Iostream_init::Iostream_init(&unk_D8C338) 0 参 CRT iostream 静态初始化跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 return Iostream_init::Iostream_init(&unk_D8C338) 0 参 CRT iostream 静态初始化跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00D8C338",
   "source_owner": "Iostream_init 对称件",
-  "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）"
+  "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）",
+  "sig_model": {
+   "return": "Iostream_init *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431db0": {
   "name": "SingletonThunk_00431DB0",
-  "signature": "void __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参跳板；调用面 PalScript::_StaticInit | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00D8C338",
   "source_owner": "Iostream_init 对称件",
-  "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）"
+  "regen_path": "compiler_regenerated: atexit dtor thunk（Site1 对称证据）",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431e70": {
   "name": "SingletonThunk_00431E70",
-  "signature": "PtrArray * __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr ctor | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr ctor | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00D8C2E8",
   "source_owner": "手工单例（0xD8C324 位守卫）",
-  "regen_path": "PENDING: Site2 语义对（D2）——对象定义/ctor 归属待取证"
+  "regen_path": "PENDING: Site2 语义对（D2）——对象定义/ctor 归属待取证",
+  "sig_model": {
+   "return": "PtrArray *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00431ec0": {
   "name": "SingletonThunk_00431EC0",
-  "signature": "PtrArray * __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr::OpenSCE | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；返回 PtrArray* 0 参；调用面 PalScriptMgr::OpenSCE | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00D8C2C8",
   "source_owner": "手工单例（0xD8C324 位守卫）",
-  "regen_path": "PENDING: Site3 语义对（D2）——同上"
+  "regen_path": "PENDING: Site3 语义对（D2）——同上",
+  "sig_model": {
+   "return": "PtrArray *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004b6d70": {
   "name": "SingletonThunk_004B6D70",
-  "signature": "void __cdecl(void *pData)",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00DE6CD8",
   "source_owner": "g_RenderTarget3",
-  "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site4）"
+  "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site4）",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *pData",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004bfd60": {
   "name": "SingletonThunk_004BFD60",
-  "signature": "void __cdecl(void *pData)",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance_fd20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参；调用面 PAL3::GetInstance_fd20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "evidence_level": "B",
   "object_addr": "0x00DE8B40",
   "source_owner": "g_??（未名）",
-  "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site5）"
+  "regen_path": "compiler_regenerated: NullCallback 空跳胶水（Site5）",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *pData",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00450a30": {
   "name": "accessor_00450A30",
-  "signature": "int __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 dword_DC1B5C=1094713344 0 参访问器；调用面 RoleCameraCtrl dtor + thunk_00450A20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；体 dword_DC1B5C=1094713344 0 参访问器；调用面 RoleCameraCtrl dtor + thunk_00450A20 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004792d0": {
   "name": "accessor_004792D0",
-  "signature": "int __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 PAL_GDB::GDB_GetComboID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | 收编形(accessor双注冲突declaration_only)",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参访问器；调用面 PAL_GDB::GDB_GetComboID | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | 收编形(accessor双注冲突declaration_only) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00511ca0": {
   "name": "compiler_init_00511CA0",
-  "signature": "int __cdecl()",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBStageScene::SaveRolePos | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形）",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；0 参编译器初始化族；调用面 CCBStageScene::SaveRolePos | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x005415c0": {
   "name": "crt_sub_005415C0",
-  "signature": "void __cdecl(gbRefObject **p)",
-  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参 CRT 释放族（decomp 形 void __thiscall(gbRefObject **this)）；调用面 PAL3::Destroy + crt_sub_00541490 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [函数19登记批 收尾] __thiscall 自由函数声明致发射跳过（MSVC6 thiscall=成员限定）⇒ 改 __cdecl 声明形；⚠️ 调用约定字节面（ECX vs 栈传）挂账 A/B 对拍族",
+  "source": "[函数19登记批 2026-10-16] A 级：idapro decompile 本体 + xrefs 调用面（跨单元被调⇒全局函数面）；签名带约定前缀（发射器 decl 解析需前缀——无前缀致声明跳过⇒C2065，ArraySort/FileSysDestory 对照实证）；1 参 CRT 释放族（decomp 形 void __thiscall(gbRefObject **this)）；调用面 PAL3::Destroy + crt_sub_00541490 | [函数19登记批 收编形] declaration_only（双注冲突按门禁处方声明收编=extern 兜底形） | [函数19登记批 收尾] __thiscall 自由函数声明致发射跳过（MSVC6 thiscall=成员限定）⇒ 改 __cdecl 声明形；⚠️ 调用约定字节面（ECX vs 栈传）挂账 A/B 对拍族 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "declaration_only": true,
   "source_note": "[evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "gbRefObject **p",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004074c0": {
   "name": "ProcessKeyboard",
-  "signature": "void __cdecl(int nVal)",
   "declaration_only": true,
-  "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查 | 路径修正20261121(用户裁定手写不需要): 体借用根因=j_跳板VA机械搜未果——正确路径=0x4074c0真身汇编定谳(探针头部=StartCombat借用体非本体)+j_跳板目标函数边界重界+sig验证, 不存在手写选项 | 根因定谳20261121(probe43): 0x4074c0=StartCombat(0x407320..0x40755e, 574B)的中段内部地址(非独立函数, IDA get_func(0x4074c0)=StartCombat函数)——ProcessKeyboard名=转移器误挂; declaration_only=正确(压制幻影体); 调用站PalScript.cpp:2902=中段入口(字节一致重建限制, 挂账)",
-  "name_note": "中段入口(StartCombat内部偏移, 非独立函数)"
+  "source": "[函数19登记批 2026-10-16] declaration_only 兜底（j_ 跳板 VA 机械搜未果挂账）：调用站 PalScript.cpp:2902 渲染自由函数形 ProcessKeyboard_2(LODWORD(v7))；A 级=idapro 0x4074C0 本体+0x436190 调用面；跳板 j_InputSystem::ProcessKeyboard_2 VA 待查 | 路径修正20261121(用户裁定手写不需要): 体借用根因=j_跳板VA机械搜未果——正确路径=0x4074c0真身汇编定谳(探针头部=StartCombat借用体非本体)+j_跳板目标函数边界重界+sig验证, 不存在手写选项 | 根因定谳20261121(probe43): 0x4074c0=StartCombat(0x407320..0x40755e, 574B)的中段内部地址(非独立函数, IDA get_func(0x4074c0)=StartCombat函数)——ProcessKeyboard名=转移器误挂; declaration_only=正确(压制幻影体); 调用站PalScript.cpp:2902=中段入口(字节一致重建限制, 挂账) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "name_note": "中段入口(StartCombat内部偏移, 非独立函数)",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0051dfd0": {
   "name": "Update",
-  "signature": "void __thiscall(Actor *this, int nPanelId)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "nPanelId"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053b890": {
   "name": "SetCurrentAction",
-  "signature": "char *__thiscall(Actor *this, int nActionId)",
-  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_curact/m_actarray_begin/type/m_fActionAssignParam（动作数组域 ✓）④Actor（33 命中 0 未解析，**最强证据面**）；返回 `&this->m_actarray_type` ⇒ char* ✓ 与签名一致；名 SetCurrentAction 与访问域相符。"
+  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_curact/m_actarray_begin/type/m_fActionAssignParam（动作数组域 ✓）④Actor（33 命中 0 未解析，**最强证据面**）；返回 `&this->m_actarray_type` ⇒ char* ✓ 与签名一致；名 SetCurrentAction 与访问域相符。",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "nActionId"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005309a0": {
   "name": "ResetTransformState",
-  "signature": "int __thiscall(Actor *this)",
-  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_InnerActor/m_dwMatMsg/m_fAngleDeg/m_fBlendWeight/m_bChangedMat（变换/材质域 ✓）②被调用者=CheckDistance/SetMaterialName/lstrcpyA ④Actor（21 命中 0 未解析）；返回 result:int ✓；名与访问域相符。"
+  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_InnerActor/m_dwMatMsg/m_fAngleDeg/m_fBlendWeight/m_bChangedMat（变换/材质域 ✓）②被调用者=CheckDistance/SetMaterialName/lstrcpyA ④Actor（21 命中 0 未解析）；返回 result:int ✓；名与访问域相符。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00538ce0": {
   "name": "ClearActionFlags",
-  "signature": "int __thiscall(Actor *this)",
-  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。"
+  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_actarray_begin/end/capacity_end/m_pact/m_name/m_fScale ②被调用者=memset（清零）④Actor（7 命中 0 未解析）；返回 result:int ✓；名与 memset 清动作域相符。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005363a0": {
   "name": "ResetDefaultState",
-  "signature": "int __thiscall(Actor *this)",
-  "source_note": "[五面证据] ①调用者=SceneObj::CreateUI（初始化点）、SceneObj::CleanupInternal（清理点，且 `return Actor::ResetDefaultState((Actor*)this);` ⇒ 返回值被上抛）②被调用者=无 ③成员访问=m_nActionState(+0x154=340)/m_nActionType(+0x14C=332)/m_bActionFlag1(+0x14D=333) 三个动作域字段全部清零（3 命中 0 未解析；A 级 asm 逐条核对 `mov [ecx+154h],eax` / `mov [ecx+14Ch],al` / `mov [ecx+14Dh],al`）④类归属=Actor（3 命中 0 未解析）⑤交互模式=无字面量，纯清零。返回值=int（asm `xor eax,eax` 后 `retn`，0 个栈参；调用方 CleanupInternal 将其返回值上抛，故保留 int 而非 void）。名 ResetDefaultState 与「创建 + 清理两个生命周期点把动作三元组归零」相符。"
+  "source_note": "[五面证据] ①调用者=SceneObj::CreateUI（初始化点）、SceneObj::CleanupInternal（清理点，且 `return Actor::ResetDefaultState((Actor*)this);` ⇒ 返回值被上抛）②被调用者=无 ③成员访问=m_nActionState(+0x154=340)/m_nActionType(+0x14C=332)/m_bActionFlag1(+0x14D=333) 三个动作域字段全部清零（3 命中 0 未解析；A 级 asm 逐条核对 `mov [ecx+154h],eax` / `mov [ecx+14Ch],al` / `mov [ecx+14Dh],al`）④类归属=Actor（3 命中 0 未解析）⑤交互模式=无字面量，纯清零。返回值=int（asm `xor eax,eax` 后 `retn`，0 个栈参；调用方 CleanupInternal 将其返回值上抛，故保留 int 而非 void）。名 ResetDefaultState 与「创建 + 清理两个生命周期点把动作三元组归零」相符。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005371b0": {
   "name": "SetActionByName",
-  "signature": "void __thiscall(Actor *this, const char *pszAction, const char *pszOpt1, const char *pszOpt2)",
-  "source_note": "[五面证据] ①调用者=RoleSystem::PlayAction(char *pszAction,int) 传 `pszAction`（动作名串）、RoleSystem::GetCount 传 `aC08` 字面量、RoleSystem::StopAndResetPath 传 0（走 NULL 分支）、CCBStage::SetParam 传 `byte_17AB818`、CCBStage::GetPointerPos 传按索引取出的串 ⇒ ①面直接证明参 1 = **动作名字符串**（原签名标 `int bVisible` 与 strcpy/strlwr 用法矛盾）②被调用者=gbCrc32Compute(名字) → Actor::ValidateInput(this, crc, m_pact)（合法性校验）→ gbActor::GotoAction(m_pact, 名字, pszOpt1, pszOpt2)（切换动作）→ gbVisNode::PopMessage 循环排空消息 → 若 m_szTexture[0] 非空则 vcall(m_pact->pBody, m_szTexture, vtable+0x3C) ③成员访问=m_dwMatMsg(+0x21C=540，strcpy + _strlwr 小写化的名字缓冲)、m_pact(+0x10=16)、m_szTexture(+0x118=280)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析）⑤交互模式=动作名字面量 aC08 / byte_17AB818、_strlwr 小写化、gbCrc32Compute 哈希。返回值=void（asm `retn 0Ch` = **3 个栈参**）。⚠️ 原名 `SetVisible` 被证伪：函数体无任何可见性开关。参 2/3 原样转发给 gbActor::GotoAction(char*,char*,char*) 第 2/3 参，语义未定 ⇒ 取中性名 pszOpt1/pszOpt2。"
+  "source_note": "[五面证据] ①调用者=RoleSystem::PlayAction(char *pszAction,int) 传 `pszAction`（动作名串）、RoleSystem::GetCount 传 `aC08` 字面量、RoleSystem::StopAndResetPath 传 0（走 NULL 分支）、CCBStage::SetParam 传 `byte_17AB818`、CCBStage::GetPointerPos 传按索引取出的串 ⇒ ①面直接证明参 1 = **动作名字符串**（原签名标 `int bVisible` 与 strcpy/strlwr 用法矛盾）②被调用者=gbCrc32Compute(名字) → Actor::ValidateInput(this, crc, m_pact)（合法性校验）→ gbActor::GotoAction(m_pact, 名字, pszOpt1, pszOpt2)（切换动作）→ gbVisNode::PopMessage 循环排空消息 → 若 m_szTexture[0] 非空则 vcall(m_pact->pBody, m_szTexture, vtable+0x3C) ③成员访问=m_dwMatMsg(+0x21C=540，strcpy + _strlwr 小写化的名字缓冲)、m_pact(+0x10=16)、m_szTexture(+0x118=280)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析）⑤交互模式=动作名字面量 aC08 / byte_17AB818、_strlwr 小写化、gbCrc32Compute 哈希。返回值=void（asm `retn 0Ch` = **3 个栈参**）。⚠️ 原名 `SetVisible` 被证伪：函数体无任何可见性开关。参 2/3 原样转发给 gbActor::GotoAction(char*,char*,char*) 第 2/3 参，语义未定 ⇒ 取中性名 pszOpt1/pszOpt2。",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "const char *pszAction",
+     "name": null
+    },
+    {
+     "type": "const char *pszOpt1",
+     "name": null
+    },
+    {
+     "type": "const char *pszOpt2",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005372d0": {
   "name": "PtrVec_Insert_dword",
-  "signature": "int *__thiscall(Actor *this, int *pPos, unsigned int nCount, const int *pVal)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_dword。[五面证据] ①调用者=PtrArray::InsertAt（传 `(Actor*)&this->capacity` 作容器）、UIListBox::LoadListItems（传 `this->m_rowenable` 作容器）、LoadActionSequences（传 `this` 作容器、`this->m_actarray_end` 作插入位）⇒ 容器**非 Actor 专属** ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity_e"
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_dword。[五面证据] ①调用者=PtrArray::InsertAt（传 `(Actor*)&this->capacity` 作容器）、UIListBox::LoadListItems（传 `this->m_rowenable` 作容器）、LoadActionSequences（传 `this` 作容器、`this->m_actarray_end` 作插入位）⇒ 容器**非 Actor 专属** ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity_e",
+  "sig_model": {
+   "return": "int *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int *pPos",
+     "name": null
+    },
+    {
+     "type": "unsigned int",
+     "name": "nCount"
+    },
+    {
+     "type": "const int *pVal",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00539d60": {
   "name": "ClearAllActions",
-  "signature": "Actor *__thiscall(Actor *this)",
   "source_note": "[五面证据] ①调用者=asm/反编译全图 0 个直接调用点 ②被调用者=Actor::ClearAllocBuffers（逐元素析构，步长 164）③成员访问=m_name(+0x14/+0x18=20/24，`*(this+24)=*(this+20)` = 向量2 的 end=begin 清空)、m_actarray_begin/m_actarray_end(+4/+8，向量1，逐个 164B 元素析构后 end=begin)、m_pAllocBuf/m_fTransitionSpeed(+0x24/+0x28=36/40，向量3 的 end=begin)（3 命中 0 未解析）④类归属=Actor（3 命中 0 未解析）⑤交互模式=三组 begin/end 同时归位 + 164B ActionEntry 逐个析构 ⇒ 「清空动作数组族」。返回值=this（asm 尾 `mov eax,[esp+20h+var_8]` 取回保存的 this 后 `retn`，0 个栈参）。名 ClearAllActions 与「逐个析构 ActionEntry 并清空三个数组」相符。 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "Actor *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053a0c0": {
   "name": "Vec_InsertEntry",
-  "signature": "int *__thiscall(Actor *this, int *pPos, const int *pEntry)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=InsertAction。[五面证据] ①调用者=Actor::BuildCollisionMesh：`Actor::InsertAction(this, (int*)this->m_actarray_end, (char**)&v30.m_pact)`（在动作数组末尾插一条 ActionEntry）②被调用者=Actor::FindMatchingEntry / Actor::SetVideoRegions / ActVecUninitFill / ActVecUninitCopy2 / VideoPlayer::SetRegion / Actor::DestroyActionRange / Actor::GetAc"
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=InsertAction。[五面证据] ①调用者=Actor::BuildCollisionMesh：`Actor::InsertAction(this, (int*)this->m_actarray_end, (char**)&v30.m_pact)`（在动作数组末尾插一条 ActionEntry）②被调用者=Actor::FindMatchingEntry / Actor::SetVideoRegions / ActVecUninitFill / ActVecUninitCopy2 / VideoPlayer::SetRegion / Actor::DestroyActionRange / Actor::GetAc",
+  "sig_model": {
+   "return": "int *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int *pPos",
+     "name": null
+    },
+    {
+     "type": "const int *pEntry",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053a340": {
   "name": "PtrVec_InsertN",
-  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const char *pVal)",
   "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActArray_InsertN。[五面证据] ①调用者=Actor::BuildCollisionMesh、UIBigMap::SetElementVisible（`Actor::ActVec_Insert_char(v5, &v5->m_actarray_end->m_actarray_type, 1u, pszBuf2)` = 在容器末尾插 1 份）②被调用者=Actor::CopyConstruct_290（0x290 = 656B 元素的拷贝构造包装）、SetCurrentAction、Actor::CopyActionData、qmemcpy(0x290)、operator new/delete ③成员访问=m_a",
-  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *pPos",
+     "name": null
+    },
+    {
+     "type": "unsigned int",
+     "name": "nCount"
+    },
+    {
+     "type": "const char *pVal",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053a6c0": {
   "name": "PtrVec_Insert_word",
-  "signature": "_WORD *__thiscall(Actor *this, _WORD *pPos, unsigned int nCount, const _WORD *pVal)",
-  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_word。[五面证据] ①调用者=Actor::BuildCollisionMesh（`Actor::ActVec_Insert_word((Actor*)p_m_nPathBuffer, (_WORD*)p_m_nPathBuffer[2], 1u, &p_WORD2)` ⇒ 容器是 Actor+0x94=148 的 BoneIndexVec）、UIBigMap::SetElementVisible ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity"
+  "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_Insert_word。[五面证据] ①调用者=Actor::BuildCollisionMesh（`Actor::ActVec_Insert_word((Actor*)p_m_nPathBuffer, (_WORD*)p_m_nPathBuffer[2], 1u, &p_WORD2)` ⇒ 容器是 Actor+0x94=148 的 BoneIndexVec）、UIBigMap::SetElementVisible ②被调用者=operator new / operator delete ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray_capacity",
+  "sig_model": {
+   "return": "_WORD *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "_WORD *pPos",
+     "name": null
+    },
+    {
+     "type": "unsigned int",
+     "name": "nCount"
+    },
+    {
+     "type": "const _WORD *pVal",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053a8d0": {
   "name": "PtrVec_InsertN_elem",
-  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const char *pEntry)",
   "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertN(this, &m_actarray_end->m_actarray_type, 1u, nY)`（容器 = Actor 的动作数组）②被调用者=VideoPlayer::SetRegion（拷贝构造包装）、Actor::ActArray_Assign(元素+132)、Actor::BoneIndexVec_Assign(元素+148)、Actor::ClearAllocBuffers（析构）、qmemcpy(dst,src,0x84)、operator new/delete ⇒ 元素 =",
-  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *pPos",
+     "name": null
+    },
+    {
+     "type": "unsigned int",
+     "name": "nCount"
+    },
+    {
+     "type": "const char *pEntry",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0053aca0": {
   "name": "PtrVec_InsertN",
-  "signature": "char *__thiscall(Actor *this, void *pPos, unsigned int nCount, const void *pVal)",
   "source_note": "[归属修正 2026-10-20·块2 自查] **容器模板实例**，`this` 是 16B 向量子对象（tri 在 +4/+8/+0x0C），非 Actor 成员函数；调用点传 PtrArray/UIListBox/ActionEntry 内嵌向量作容器。按通用命名（非 Act* 族名）。原名=ActVec_InsertN_64。[五面证据] ①调用者=Actor::LoadActions：`Actor::ActVec_InsertRange(p_m_pact, &p_m_pact->m_actarray_end->m_actarray_type, 1u, pData, v14)`，其中 `pData` 是本地 `_BYTE pData[64]` 缓冲 ⇒ 一次插 1 份 64B 值 ②被调用者=operator new / operator delete / qmemcpy(dst, src, 0x40) ③成员访问=m_actarray_begin(+4)/m_actarray_end(+8)/m_actarray",
-  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连)"
+  "source": "| [pPos widening 20261122] char*→void*(ABI同4B; Actor.cpp 调用点 &m_actarray_type=unsigned char* C2664×7 实证——原 char 标注系 PtrArray 成员类型重建牵连) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *pPos",
+     "name": null
+    },
+    {
+     "type": "unsigned int",
+     "name": "nCount"
+    },
+    {
+     "type": "const void *pVal",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0044cb30": {
   "name": "InitParticles",
-  "signature": "int __thiscall(Actor *this)",
-  "source_note": "[五面证据] ①调用者=UIScenePanel::CreateSettingsUI（**调用面存疑**：与粒子初始化语境不符，疑为该调用者自身命名失真）②被调用者=RoleSystem_InitDefaultPositions、UIPushButton::CreateFromTemplate（逐元素创建）、rand（`%0x12`=18 取纹理索引 / `%255` / `%10+10` 再 `*0.1`）、RoleCamera::InitParticles(this)（尾部 `return` 上抛）③成员访问=m_pParticleData(+0x200=512，取址作 208B 步长数组基)、m_bDirFlag(+0x2AC=684，取址作另一 208B 步长数组基)（2 命中 0 未解析）④类归属=**存疑**：数组基 +512 起以 208B 步长迭代 22 个元素（off_59DD18..off_59DD70 边界），512 + 22*208 ≫ 820（Actor binary_size）⇒ 不是单个 Actor；且 +684 处又一个 208B 数组与之重叠 ⑤交互模式=off_59DD18 / 59DD60 / 59DD70（.data BSS 数组边界，运行期填充，非静态字符串表）、128×128 RECT、rand() 随机化。返回值=int（`return RoleCamera::InitParticles((RoleCamera*)this)`，asm `retn` = 0 个栈参）。名 InitParticles 与「m_pParticleData 域 + 随机参数逐元素初始化 + 尾部 RoleCamera::InitParticles」相符，但调用面/布局面存疑 ⇒ 未达 60，按铁律**不升为正名**（保留原名、conf<60）。"
+  "source_note": "[五面证据] ①调用者=UIScenePanel::CreateSettingsUI（**调用面存疑**：与粒子初始化语境不符，疑为该调用者自身命名失真）②被调用者=RoleSystem_InitDefaultPositions、UIPushButton::CreateFromTemplate（逐元素创建）、rand（`%0x12`=18 取纹理索引 / `%255` / `%10+10` 再 `*0.1`）、RoleCamera::InitParticles(this)（尾部 `return` 上抛）③成员访问=m_pParticleData(+0x200=512，取址作 208B 步长数组基)、m_bDirFlag(+0x2AC=684，取址作另一 208B 步长数组基)（2 命中 0 未解析）④类归属=**存疑**：数组基 +512 起以 208B 步长迭代 22 个元素（off_59DD18..off_59DD70 边界），512 + 22*208 ≫ 820（Actor binary_size）⇒ 不是单个 Actor；且 +684 处又一个 208B 数组与之重叠 ⑤交互模式=off_59DD18 / 59DD60 / 59DD70（.data BSS 数组边界，运行期填充，非静态字符串表）、128×128 RECT、rand() 随机化。返回值=int（`return RoleCamera::InitParticles((RoleCamera*)this)`，asm `retn` = 0 个栈参）。名 InitParticles 与「m_pParticleData 域 + 随机参数逐元素初始化 + 尾部 RoleCamera::InitParticles」相符，但调用面/布局面存疑 ⇒ 未达 60，按铁律**不升为正名**（保留原名、conf<60）。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004ba230": {
   "name": "_todo_004BA230",
-  "signature": "void __thiscall(Actor *this)",
   "source_note": "[五面证据] ①调用者=sub_4BA150+18（该调用者未反编译）②被调用者=sub_4B9E50（asm 尾 `jmp sub_4B9E50` 尾调；已核 sub_4B9E50 亦为 `retn` = 0 个栈参，与本函数 0 参一致）③成员访问=m_nRoleState0(+0x58=88，存 float 差值)、m_nCachedA(+0x4C=76，比较阈值)（2 命中 0 未解析）④类归属=**存疑**：`this+0x9050`(36944) 取指针、`this+0x9020`(36896) 写 0 ⇒ 对象远大于 Actor 的 binary_size 820 ⇒ 型别/归属不可信 ⑤交互模式=`p[0x9C] - p[0xA0]` 差值写入 `this+0x58`、与 `this+0x4C` 阈值比较、`p[0xA4]` 非零则尾调 sub_4B9E50 否则清 `this+0x9020`。返回值=void。⚠️ 签名修正（A 级）：asm `retn`（无操作数）⇒ **0 个栈参**，原签名 a2..a6 五参全为**幽灵参**（Hex-Rays 由尾调 sub_4B9E50 反推，但该函数同样 0 参），已删除。语义（阈值判定 + 分支派发）不足以 ≥60 ⇒ 按铁律冻结。 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c5b50": {
   "name": "_todo_004C5B50",
-  "signature": "bool __thiscall(Actor *this, int nKey)",
-  "source_note": "[五面证据] ①调用者=sub_4C5940+9（该调用者未反编译；位于 CEffectSystem / CEffect 版块 0x4C58C0(PAL3::CreateRenderEffects) .. 0x4C5B90 之间）②被调用者=无 ③成员访问=m_pActor(+0x114=276，用作数组计数)、m_szTexture(+0x118=280，用作指针数组基)（2 命中 0 未解析）④类归属=**存疑**：函数体按 4B 步长线性扫描 `*(ptr+8) == nKey`，而 m_szTexture 在 Actor 表是 `char[28]` ⇒ 型别冲突；所在版块是 CEffectSystem 族（邻居 PAL3::CreateRenderEffects / CEffectSystem::Create）⑤交互模式=无字面量，纯线性查找（找到即 break）。返回值=**bool**（A 级 asm：未命中 `xor al,al` / 命中 `mov al,1`，两路均 `retn 4` ⇒ 1 个栈参）。⚠️ 原签名标 void 有误，已改 bool；原名 `_todo_004C5B50`。语义（按 id 在元素数组中查是否存在）可信，但类归属存疑 ⇒ 按铁律冻结（conf<60，不伪语义命名）。"
+  "source_note": "[五面证据] ①调用者=sub_4C5940+9（该调用者未反编译；位于 CEffectSystem / CEffect 版块 0x4C58C0(PAL3::CreateRenderEffects) .. 0x4C5B90 之间）②被调用者=无 ③成员访问=m_pActor(+0x114=276，用作数组计数)、m_szTexture(+0x118=280，用作指针数组基)（2 命中 0 未解析）④类归属=**存疑**：函数体按 4B 步长线性扫描 `*(ptr+8) == nKey`，而 m_szTexture 在 Actor 表是 `char[28]` ⇒ 型别冲突；所在版块是 CEffectSystem 族（邻居 PAL3::CreateRenderEffects / CEffectSystem::Create）⑤交互模式=无字面量，纯线性查找（找到即 break）。返回值=**bool**（A 级 asm：未命中 `xor al,al` / 命中 `mov al,1`，两路均 `retn 4` ⇒ 1 个栈参）。⚠️ 原签名标 void 有误，已改 bool；原名 `_todo_004C5B50`。语义（按 id 在元素数组中查是否存在）可信，但类归属存疑 ⇒ 按铁律冻结（conf<60，不伪语义命名）。",
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "nKey"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00530f20": {
   "name": "IsWithinBoundRadius",
-  "signature": "bool __thiscall(Actor *this)",
-  "source_note": "[五面证据] ①调用者=Actor::UpdateFrame：`if ( Actor::GetBoundRadius(this) && this->m_bDirFlag ) { this->m_bStateFlag = 1; Actor::UpdateAnimState(this, 1); ... }` ⇒ 返回值被当**布尔门**使用 ②被调用者=sub_52FBD0（MiniGame2Scene::GetOBBox，取 p 的 OBBox）、gbOBBox::GetRadius、fabs ③成员访问=m_pRoleState(+0x308=776，作大对象指针 p)、m_fDistAccum(+0x290=656，作 float 参与差值)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=无路径/字面量。返回值=**bool**（A 级 asm：`fcomp` + `fnstsw ax; test ah,41h`，两路 `mov al,1` / `xor al,al` 后 `retn`，0 个栈参）。⚠️ 原名 `GetBoundRadius` 被证伪：函数不返回任何半径，返回的是 `gbOBBox::GetRadius(OBBox) > fabs(this->m_fDistAccum - p[0xE90])` 的**比较结果** ⇒ 改 `IsWithinBoundRadius`（判定自身是否落在包围半径内）。"
+  "source_note": "[五面证据] ①调用者=Actor::UpdateFrame：`if ( Actor::GetBoundRadius(this) && this->m_bDirFlag ) { this->m_bStateFlag = 1; Actor::UpdateAnimState(this, 1); ... }` ⇒ 返回值被当**布尔门**使用 ②被调用者=sub_52FBD0（MiniGame2Scene::GetOBBox，取 p 的 OBBox）、gbOBBox::GetRadius、fabs ③成员访问=m_pRoleState(+0x308=776，作大对象指针 p)、m_fDistAccum(+0x290=656，作 float 参与差值)（2 命中 0 未解析）④类归属=Actor（2 命中 0 未解析）⑤交互模式=无路径/字面量。返回值=**bool**（A 级 asm：`fcomp` + `fnstsw ax; test ah,41h`，两路 `mov al,1` / `xor al,al` 后 `retn`，0 个栈参）。⚠️ 原名 `GetBoundRadius` 被证伪：函数不返回任何半径，返回的是 `gbOBBox::GetRadius(OBBox) > fabs(this->m_fDistAccum - p[0xE90])` 的**比较结果** ⇒ 改 `IsWithinBoundRadius`（判定自身是否落在包围半径内）。",
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00536a80": {
   "name": "FastInit",
-  "signature": "void __thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零族）③成员访问=m_actarray_begin/end/capacity_end/type/m_name/m_szTexture/m_dwMatMsg（动作数组+名+纹理域全清）④类归属=Actor（7 命中 0 未解析）⑤交互模式=单次 memset 批量初始化。ret=void。名 FastInit 与 memset 全清域相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零族）③成员访问=m_actarray_begin/end/capacity_end/type/m_name/m_szTexture/m_dwMatMsg（动作数组+名+纹理域全清）④类归属=Actor（7 命中 0 未解析）⑤交互模式=单次 memset 批量初始化。ret=void。名 FastInit 与 memset 全清域相符。",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005381d0": {
   "name": "InitAnimSequence",
-  "signature": "char *__thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零）③成员访问=m_actarray_begin/end/capacity_end/type/m_fRoleParam2/m_fScale/m_name/m_pact（动作序列域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=memset + ret=&m_actarray_type。ret=**char***（`return &this->m_actarray_type`，:实证）。名 InitAnimSequence 与动作序列域相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=memset（清零）③成员访问=m_actarray_begin/end/capacity_end/type/m_fRoleParam2/m_fScale/m_name/m_pact（动作序列域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=memset + ret=&m_actarray_type。ret=**char***（`return &this->m_actarray_type`，:实证）。名 InitAnimSequence 与动作序列域相符。",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005375f0": {
   "name": "ClearPathBuffer",
-  "signature": "void __thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=Free/delete/nullsub_2（释放族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveSpeed/m_actarray_begin/end/capacity_end/m_name（路径缓冲+过渡参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=Free/delete 释放缓冲。ret=void。名 ClearPathBuffer 与释放 m_pAllocBuf 相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=Free/delete/nullsub_2（释放族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveSpeed/m_actarray_begin/end/capacity_end/m_name（路径缓冲+过渡参数域）④类归属=Actor（8 命中 0 未解析）⑤交互模式=Free/delete 释放缓冲。ret=void。名 ClearPathBuffer 与释放 m_pAllocBuf 相符。",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00536ac0": {
   "name": "SetMaterialName",
-  "signature": "int __thiscall(Actor *this, void *pszName, int nFlag)",
-  "source_note": "[五面·conf<60 保留原名未证实] ①调用者=RoleSystem::SetActorTexture（传 `role\\\\%s\\\\%s.tga` 完整路径）②被调用者=_strlwr（小写化）/gbCrc32Compute（CRC 校验）/ValidateInput/GotoAction/PopMessage/OpenBaseFile ③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact/m_szTexture ④类归属=Actor（5 命中 0 未解析）⑤交互模式=字符串小写+CRC+校验。ret=int（return 1/0 ⇒ 实为 bool 语义）。**原名 SetMaterialName 与用法存疑**（实为按名查找/校验动作），但证据不足以正名（conf 55）⇒ 保留标未证实。⚠️ 调用方传完整路径 strcpy 进 m_szTexture（表标 char[28]）⇒ **尺寸存疑**，需单独核。"
+  "source_note": "[五面·conf<60 保留原名未证实] ①调用者=RoleSystem::SetActorTexture（传 `role\\\\%s\\\\%s.tga` 完整路径）②被调用者=_strlwr（小写化）/gbCrc32Compute（CRC 校验）/ValidateInput/GotoAction/PopMessage/OpenBaseFile ③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact/m_szTexture ④类归属=Actor（5 命中 0 未解析）⑤交互模式=字符串小写+CRC+校验。ret=int（return 1/0 ⇒ 实为 bool 语义）。**原名 SetMaterialName 与用法存疑**（实为按名查找/校验动作），但证据不足以正名（conf 55）⇒ 保留标未证实。⚠️ 调用方传完整路径 strcpy 进 m_szTexture（表标 char[28]）⇒ **尺寸存疑**，需单独核。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *pszName",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "nFlag"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00530c00": {
   "name": "UpdateAnimState",
-  "signature": "bool __thiscall(Actor *this, char bForce)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=ProcessInstance/SetMaterialName/StopBlinkUI/UIAnimateCtrlEX_SwapBuffer（动画+UI 缓冲交换族）③成员访问=m_actarray_type/m_bDirFlag/m_dwMatMsg/m_nAnimCounter（动画计数+方向标志）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动画状态机推进。ret=bool（result）。名 UpdateAnimState 与 m_nAnimCounter/动画族相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=ProcessInstance/SetMaterialName/StopBlinkUI/UIAnimateCtrlEX_SwapBuffer（动画+UI 缓冲交换族）③成员访问=m_actarray_type/m_bDirFlag/m_dwMatMsg/m_nAnimCounter（动画计数+方向标志）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动画状态机推进。ret=bool（result）。名 UpdateAnimState 与 m_nAnimCounter/动画族相符。",
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": "bForce"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00536ff0": {
   "name": "UpdateAllActions",
-  "signature": "int __thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=DestroyActor（销毁族）③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=遍历动作数组 + 销毁。ret=int（result）。名 UpdateAllActions 与遍历 actarray 相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=DestroyActor（销毁族）③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=遍历动作数组 + 销毁。ret=int（result）。名 UpdateAllActions 与遍历 actarray 相符。",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005394d0": {
   "name": "ClearActionArrays",
-  "signature": "int *__thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归（清空逻辑）③成员访问=m_actarray_begin/end/capacity_end/m_name/m_pact（动作数组三元组 + 名）④类归属=Actor（5 命中 0 未解析）⑤交互模式=三元组 reset。ret=int*（result）。名 ClearActionArrays 与 actarray 三元组清空相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归（清空逻辑）③成员访问=m_actarray_begin/end/capacity_end/m_name/m_pact（动作数组三元组 + 名）④类归属=Actor（5 命中 0 未解析）⑤交互模式=三元组 reset。ret=int*（result）。名 ClearActionArrays 与 actarray 三元组清空相符。",
+  "sig_model": {
+   "return": "int *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00537a30": {
   "name": "ClearAllocBuffers",
-  "signature": "void __thiscall(Actor *this)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=delete（释放族）③成员访问=m_nAnimBuffer/m_nParticleBuffer/m_vecBonePos/m_vecTargetPos（分配缓冲+骨骼/目标位向量）④类归属=Actor（4 命中 0 未解析）⑤交互模式=逐个 delete 释放缓冲。ret=void。名 ClearAllocBuffers 与 delete 释放 m_*Buffer/m_vec* 相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=delete（释放族）③成员访问=m_nAnimBuffer/m_nParticleBuffer/m_vecBonePos/m_vecTargetPos（分配缓冲+骨骼/目标位向量）④类归属=Actor（4 命中 0 未解析）⑤交互模式=逐个 delete 释放缓冲。ret=void。名 ClearAllocBuffers 与 delete 释放 m_*Buffer/m_vec* 相符。",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053a060": {
   "name": "InitAction",
-  "signature": "int *__thiscall(Actor *this, _BYTE *pActionType)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归 ③成员访问=m_actarray_begin/end/capacity_end/type（动作数组三元组）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动作数组初始化。ret=int*（result）。名 InitAction 与 actarray 三元组初始化相符。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归 ③成员访问=m_actarray_begin/end/capacity_end/type（动作数组三元组）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动作数组初始化。ret=int*（result）。名 InitAction 与 actarray 三元组初始化相符。",
+  "sig_model": {
+   "return": "int *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "_BYTE *pActionType",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00539e70": {
   "name": "InsertAnimFrame",
-  "signature": "char *__thiscall(Actor *this, float fTime)",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。"
+  "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。",
+  "sig_model": {
+   "return": "char *",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "float",
+     "name": "fTime"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004dfaa0": {
   "name": "InitRound",
-  "signature": "int __thiscall(CCBStage *this, float fVal1, int nVal2, float fVal3, int nVal4)",
   "source_note": "[A 级汇编 2026-10-21·重核] retn 16（4dfb5f c2 10 00）=4 槽 ✓ 个数一致。opcode 实证：flds 0x14(%esp) = slot1 float · flds 0xc(%esp) = slot3 float。⚠️ 原 `int nVal1, int nVal3` **错**（实为 float）。slot2/4 类型待 opcode 核（暂 int）· 原 source 引 IDA stack_frame=循环，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "float",
+     "name": "fVal1"
+    },
+    {
+     "type": "int",
+     "name": "nVal2"
+    },
+    {
+     "type": "float",
+     "name": "fVal3"
+    },
+    {
+     "type": "int",
+     "name": "nVal4"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c6290": {
   "name": "Destroy",
-  "signature": "int __thiscall(int nMode)",
   "source_note": "[NEEDS_EVIDENCE 2026-10-21] retn=5 槽 ✓ 个数一致，但**类型零 opcode 实证**。xor %al,%al 形提示 FP 约定面 ⇒ 逐参 opcode 核（优先查 FP 参数）。暂标 needs_caller_evidence。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
   "evidence_level": "B",
-  "source": " | [R94 修 2026-10-23·8 errors] 补签名（Destroy 同族）"
+  "source": " | [R94 修 2026-10-23·8 errors] 补签名（Destroy 同族） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "nMode"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x005414a0": {
   "name": "PAL3_LoadUICursor",
-  "signature": "void __fastcall(int self)",
-  "source": "[T2 2026-10-28·G 冤户] UICursor 装载（235B SEH+\"ui\\cursor\\jt.tga\"+OpenBaseFile，thiscall mov ebp,ecx；caller sub_404800）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P2] ABI 载体改 __fastcall（thiscall 禁自由形；ecx 传 this=T1 同法，防 cdecl 栈传 ABI 错）"
+  "source": "[T2 2026-10-28·G 冤户] UICursor 装载（235B SEH+\"ui\\cursor\\jt.tga\"+OpenBaseFile，thiscall mov ebp,ecx；caller sub_404800）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P2] ABI 载体改 __fastcall（thiscall 禁自由形；ecx 传 this=T1 同法，防 cdecl 栈传 ABI 错） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "fastcall",
+   "params": [
+    {
+     "type": "int",
+     "name": "self"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00541c40": {
   "name": "PAL3_ReadRegistryStr",
-  "signature": "int __cdecl(const char *lpSubKey, const char *lpValueName, char *lpData)",
-  "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c）"
+  "source": "[T2 2026-10-28·G 冤户] 注册表读（114B RegOpenKeyExA HKLM+RegQueryValueEx；caller WinMain@0x54199B）unskip | evidence: research_crt_boundary §普查 反汇编+调用面 | confidence: high | [修 P1] 三参形定谳：WinMain@0x54199B 三 push（\"software\\softstar\\pal3\"@\"609010\"/\"CDriver\"@\"609028\"/&Data@\"1894970\")+add esp,0xC，体 mov ecx,[esp+4] 读参——原 0 参形=SetBlend 型误登（复核 ecf8025c） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "const char *lpSubKey",
+     "name": null
+    },
+    {
+     "type": "const char *lpValueName",
+     "name": null
+    },
+    {
+     "type": "char *lpData",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004339f0": {
   "name": "LoadResource",
-  "signature": "int __cdecl(char *a1)",
   "name_source": "IDA语义分析 2026-10-31 批4",
-  "name_note": "资源加载（gbVFile 读取）"
+  "name_note": "资源加载（gbVFile 读取）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "char *a1",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0043a090": {
   "name": "NormalizeAngle",
-  "signature": "void __thiscall(int this, int a2, float a3)",
   "name_source": "IDA语义分析 2026-10-31 批4",
   "name_note": "角度归一化（0-360 包裹）",
   "free_helper_confirmed": true,
-  "source": "| [free_helper确认 20261122] ECX呼叫点抽检 4/4 thiscall(mov ecx,edi;call)"
+  "source": "| [free_helper确认 20261122] ECX呼叫点抽检 4/4 thiscall(mov ecx,edi;call) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    },
+    {
+     "type": "float",
+     "name": "a3"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0043dca0": {
   "name": "SetMagicConstant",
-  "signature": "int()",
   "name_source": "IDA语义分析 2026-11-01 批6",
-  "name_note": "设置魔数常量 0x41414141"
- },
- "0x00445bf0": {
-  "name": "SetArrayElement",
-  "signature": "void __thiscall(int this, int newElement)",
-  "name_source": "IDA语义分析 2026-11-01 批6",
-  "name_note": "数组元素设置（PtrArray::SetAt）"
+  "name_note": "设置魔数常量 0x41414141",
+  "sig_model": {
+   "return": "int",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00452df0": {
   "name": "LoadRoleData",
-  "signature": "void __stdcall(int *a1, int nRoleIndex)",
   "name_source": "IDA语义分析 2026-11-01 批11",
-  "name_note": "角色数据加载（RoleData+texture+float）"
+  "name_note": "角色数据加载（RoleData+texture+float）",
+  "sig_model": {
+   "return": "void",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int *a1",
+     "name": null
+    },
+    {
+     "type": "int",
+     "name": "nRoleIndex"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00458f70": {
   "name": "ProcessString",
-  "signature": "CHAR *__cdecl(LPCSTR lpString, int a2, LPSTR lpString1)",
   "name_source": "IDA语义分析 2026-11-01 批12",
-  "name_note": "字符串处理（LPCSTR→LPSTR）"
+  "name_note": "字符串处理（LPCSTR→LPSTR）",
+  "sig_model": {
+   "return": "CHAR *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "LPCSTR",
+     "name": "lpString"
+    },
+    {
+     "type": "int",
+     "name": "a2"
+    },
+    {
+     "type": "LPSTR",
+     "name": "lpString1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004590b0": {
   "name": "GetDataPtr2",
-  "signature": "int *()",
   "name_source": "IDA语义分析 2026-11-01 批12",
-  "name_note": "返回 dword_DE3448 数据指针"
- },
- "0x0045add0": {
-  "name": "InitState",
-  "signature": "void __thiscall(_BYTE *this)",
-  "name_source": "IDA语义分析 2026-11-01 批13",
-  "name_note": "状态初始化（offset 0/36/40/44/48 设值）"
+  "name_note": "返回 dword_DE3448 数据指针",
+  "sig_model": {
+   "return": "int *",
+   "cc": null,
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0047f590": {
   "name": "ProcessTree",
-  "signature": "int __thiscall(int parent, int a2)",
   "name_source": "IDA语义分析 2026-11-01 批13",
-  "name_note": "树处理（parent+int 操作）"
+  "name_note": "树处理（parent+int 操作）",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "parent"
+    },
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004232d0": {
   "name": "AnimUpdate",
-  "signature": "int __cdecl()",
   "name_source": "IDA语义分析 2026-10-31 批1-2",
-  "name_note": "从 decomp 推断（sub_4232D0）"
+  "name_note": "从 decomp 推断（sub_4232D0）",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004ab560": {
   "name": "Method_B560",
-  "signature": "bool __thiscall(_DWORD *this, int a2, int a3)",
   "name_source": "IDA语义分析 2026-11-01 批14",
   "name_note": "从 decomp 推断（sub_4AB560）",
   "free_helper_confirmed": true,
-  "source": " | [free_helper 确认 20261123] 模式化比较器: [this]=mode(0/1/2) 分发比较 a2/a3 的域(0x260/0x270 排序键); this=调用者栈上配置描述符(lea ecx,[esp+0x18] 实证, 非业务对象); 多类共享调用(ArcLocaleRole×5+CCBUICtrl×2)=自由比较器; 调用者内联排序循环(ArcLocaleRole 0x4AFD80 实证)"
+  "source": " | [free_helper 确认 20261123] 模式化比较器: [this]=mode(0/1/2) 分发比较 a2/a3 的域(0x260/0x270 排序键); this=调用者栈上配置描述符(lea ecx,[esp+0x18] 实证, 非业务对象); 多类共享调用(ArcLocaleRole×5+CCBUICtrl×2)=自由比较器; 调用者内联排序循环(ArcLocaleRole 0x4AFD80 实证) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    },
+    {
+     "type": "int",
+     "name": "a3"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004b6d80": {
   "name": "Load",
-  "signature": "void __thiscall(_DWORD *this)",
   "name_source": "IDA语义分析 2026-11-01 批14",
-  "name_note": "从 decomp 推断（sub_4B6D80）"
+  "name_note": "从 decomp 推断（sub_4B6D80）",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004b8200": {
   "name": "RandLerpF",
-  "signature": "double __cdecl(float fFrom, float fTo)",
   "name_source": "IDA语义分析 2026-10-31 批1-2",
-  "name_note": "从 decomp 推断（j_D3DXVec3TransformCoord）"
+  "name_note": "从 decomp 推断（j_D3DXVec3TransformCoord）",
+  "sig_model": {
+   "return": "double",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "float",
+     "name": "fFrom"
+    },
+    {
+     "type": "float",
+     "name": "fTo"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004c4b00": {
   "name": "SetValue",
-  "signature": "int __thiscall(int this, int a2)",
   "name_source": "IDA语义分析 2026-11-01 批14",
-  "name_note": "从 decomp 推断（sub_4C4B00）"
+  "name_note": "从 decomp 推断（sub_4C4B00）",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004d0c90": {
   "name": "Method_0C90",
-  "signature": "virtual void __userpurge(int a1@<ecx>, CEffect *a2, float a3)",
   "name_source": "IDA语义分析 2026-11-01 批15",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "void __userpurge",
+   "cc": null,
+   "params": [
+    {
+     "type": "int a1@<ecx>",
+     "name": null
+    },
+    {
+     "type": "CEffect *a2",
+     "name": null
+    },
+    {
+     "type": "float",
+     "name": "a3"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0051cc20": {
   "name": "Method_CC20",
-  "signature": "char __stdcall(int **a1)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "char",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int **a1",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x005306a0": {
   "name": "Initialize_06A0",
-  "signature": "void __thiscall(int this, char *pszRoleDir)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char *pszRoleDir",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x0053edd0": {
   "name": "Method_EDD0",
-  "signature": "int __stdcall(int a1)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
+  "name_note": "从 decomp 推断",
+  "sig_model": {
+   "return": "int",
+   "cc": "stdcall",
+   "params": [
+    {
+     "type": "int",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00445fe0": {
   "name": "sub_445FE0",
-  "signature": "void * __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账",
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=UIListBox::CalScrollBarRange+UIMap::ProcessHitTest+UISceneMap::LoadCompass 等 21 站 ②被调=待全读 ③成员=+16 域访问 ④**类归属=跨类 ✗** ⑤交互=滚动/命中测试/罗盘多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+16 域语义未定 ⇒ 仍挂账 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "name_source": "P2 类型修 2026-11-02（调用方实证：解引用+数组访问=unsigned long*）",
-  "name_note": "字段拷贝（v1+16→a2）",
-  "alt_name": "CopyFields",
+  "name_note": "字段拷贝（v1+16→a2） | 曾用名/别名 alt_name=CopyFields(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
   "alt_signature": "unsigned long * __cdecl(void *a2)",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "sig_model": {
+   "return": "void *",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *a2",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x0043fec0": {
   "name": "sub_43FEC0",
-  "signature": "int __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账",
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CJ_FindFile::Create+UITitle_BBTY/UITitle_XJTM::LayoutGetRects 等 23 站 ②被调=待全读 ③成员=+76 域访问 ④**类归属=跨类 ✗** ⑤交互=文件/布局多域；功能定性=共享工具（raw-offset 族） | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③+76 域语义未定 ⇒ 仍挂账 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "name_source": "IDA语义分析 2026-11-01 批6",
-  "name_note": "字段拷贝（this+76/+16 ← a2）",
-  "alt_name": "CopyFieldsFrom",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "name_note": "字段拷贝（this+76/+16 ← a2） | 曾用名/别名 alt_name=CopyFieldsFrom(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *a2",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445db0": {
   "name": "sub_445DB0",
-  "signature": "int __cdecl(void *a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账",
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=PalScript::Op_WaterMagic+ShowTextBox+UIListBox_ResizeToContent ×2 ②被调=待全读 ③成员=width/height 寄存维度算 ④**类归属=跨类 ✗** ⑤交互=布局/尺寸域；A 级体头（width/height regs）；功能定性=尺寸/布局计算 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数；③布局域语义未定 ⇒ 仍挂账 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "name_source": "IDA语义分析 2026-11-01 批6",
-  "name_note": "尺寸计算（width/height）",
-  "alt_name": "CalcSize",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "name_note": "尺寸计算（width/height） | 曾用名/别名 alt_name=CalcSize(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "void *a2",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00445e50": {
   "name": "sub_445E50",
-  "signature": "int __thiscall(int a2)",
-  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账",
+  "source": "[主攻点2 2026-10-17] 五面 4/5 挂账：①调用者=CCBUIPanel_SetAllSlotsVisible/UpdateButtonVisibility **100 站**（热谓词）②被调=待全读 ③成员=+52 读取后分支 ④类归属=CCBUIPanel 可见性域 ✓ ⑤交互=槽/按钮可见性判定；**成员语义面弱**（+52 旗标语义未定）⇒ 挂账；功能定性=状态判定谓词 | [主攻点2续2 2026-10-17] 五面补面：④类归属补面 ✓=自由函数（调用形 sub(v2) 实证）；③+52 旗标语义未定（CCBUIPanel +52 未注解）⇒ 仍挂账 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "name_source": "IDA语义分析 2026-11-01 批11",
-  "name_note": "偏移 52 读取（矩形右边界）",
-  "alt_name": "GetRectRight",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "name_note": "偏移 52 读取（矩形右边界） | 曾用名/别名 alt_name=GetRectRight(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00521eb0": {
   "name": "CCBStageRole_DispatchUpdate_1eb0",
-  "signature": "int __cdecl(unsigned char nFlag)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断",
-  "alt_name": "Update_1EB0",
+  "name_note": "从 decomp 推断 | 曾用名/别名 alt_name=Update_1EB0(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned char",
+     "name": "nFlag"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00521ef0": {
   "name": "CCBStageRole_DispatchUpdate_1ef0",
-  "signature": "int __cdecl(unsigned char nFlag)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断",
-  "alt_name": "Update_1EF0",
+  "name_note": "从 decomp 推断 | 曾用名/别名 alt_name=Update_1EF0(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned char",
+     "name": "nFlag"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x00521f70": {
   "name": "CCBStageRole_DispatchUpdate_1f70",
-  "signature": "int __cdecl(unsigned char nFlag)",
   "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断",
-  "alt_name": "Update_1F70",
+  "name_note": "从 decomp 推断 | 曾用名/别名 alt_name=Update_1F70(20261123 字段退役, 信息转 name_note) | pending_adjudication=layer1-merge-conflict(2026-11-02 恢复)(20261123 字段退役, 信息转 name_note)",
   "alt_signature": "int __cdecl(unsigned __int8 nFlag)",
-  "pending_adjudication": "layer1-merge-conflict(2026-11-02 恢复)"
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "unsigned char",
+     "name": "nFlag"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
  "0x004e10e0": {
   "name": "CloseDialog",
-  "signature": "int __cdecl(HWND, UINT, WPARAM, LPARAM)",
-  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非CCBUI成员"
+  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非CCBUI成员 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": null
+    },
+    {
+     "type": "UINT",
+     "name": null
+    },
+    {
+     "type": "WPARAM",
+     "name": null
+    },
+    {
+     "type": "LPARAM",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004e5800": {
   "name": "PartySetupDialogProc",
-  "signature": "int __cdecl(HWND, UINT, WPARAM, LPARAM)",
-  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非PAL_GDB成员"
+  "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非PAL_GDB成员 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "HWND",
+     "name": null
+    },
+    {
+     "type": "UINT",
+     "name": null
+    },
+    {
+     "type": "WPARAM",
+     "name": null
+    },
+    {
+     "type": "LPARAM",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x004c9540": {
   "name": "sub_4C9540",
   "declaration_only": true,
-  "signature": "void __thiscall(char)",
-  "source": "C2661根因定谳20261121: 8B体=sub ecx,0Ch; jmp 0x4c8950(~CEffgbParticle删除式)——删除式dtor的adjustor thunk(编译器产物); 历史反编译单元以文件名前缀兜底进CEffgbParticle.cpp发射假名定义→C2661; decl_only后单元出域。注: thunk为CEffgbParticle成员性, functions.json登记=排除通道(生成器无置名需求)"
+  "source": "C2661根因定谳20261121: 8B体=sub ecx,0Ch; jmp 0x4c8950(~CEffgbParticle删除式)——删除式dtor的adjustor thunk(编译器产物); 历史反编译单元以文件名前缀兜底进CEffgbParticle.cpp发射假名定义→C2661; decl_only后单元出域。注: thunk为CEffgbParticle成员性, functions.json登记=排除通道(生成器无置名需求) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "char",
+     "name": null
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  },
  "0x00523cb0": {
   "name": "Method_3CB0",
-  "signature": "int __thiscall Method_3CB0(_BYTE *this)",
   "source": "[考证反转 20261122] 迁移尝试回滚: CUtil ctor 证明继承 UIListBox(bases 缺失待补)+m_nTodo_160@0x160 写入面=仅 ctor 清零(5B) ⇒ Method_3CB0 非零计数恒 0 ⇒ 调用者 cmp eax,5 恒走 B 分支(A 分支死逻辑)。无真语义可命名(N12 拦占位/编名=新伪语义)——保持自由条目, 警告=诚实现调查清单",
   "sig_model": {
    "return": "int",
