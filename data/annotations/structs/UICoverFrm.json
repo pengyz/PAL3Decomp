@@ -686,7 +686,8 @@
     "deleting"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_79d0(??1/??_G析构族); decomp文件=UICoverFrm_scalar_dtor_79d0_UICoverFrm_QAEPAVUIListBox_PAV3_ 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "adjudication": "confirmed"
   }
  },
  "vtables": [
@@ -763,5 +764,13 @@
    "offset": 0
   }
  ],
- "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起"
+ "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
+ "known_methods": {
+  "UICoverFrm": {
+   "name": "UICoverFrm",
+   "signature": "void __thiscall ()",
+   "address": "0x0052ba10",
+   "source": "manual:N13b 消解 20261122——语料限定引用 UICoverFrm, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

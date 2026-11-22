@@ -1,325 +1,167 @@
   Cleaned: /home/peng/workspace/PAL3Decomp/pal3/src/
 [clean] Done
   [R91] 重归属路由 28 条（scope=batch0）: ClearActionArrays, ClearActionFlags, ClearAllActions, ClearAllocBuffers, ClearPathBuffer, CreateChildWidget ...
-  [导入引擎接口族] IAT 槽方法合流路由 10 条: GetTop, LoadIdentity, LoadMatrix, MultMatrix, Pop, Push
 [C2011] ns-decls: 15 unique blocks, 4 byval-inc, 4 fwd-decls -> _ns_udts.h
 Generated 764 header files in /home/peng/workspace/PAL3Decomp/pal3/src
-  With annotation layout: 1293
-  With methods: 239
+  With annotation layout: 1294
+  With methods: 238
   Enums: 0
   Template stubs: 0
-  Phantom globals skipped: 30 (stru_570500, arr, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34, dword_D8BC38)
-    ... and 20 more
-  Annotation-skipped globals: 75
-  declared_globals refreshed post-emit: 2875
-  Globals: 3000 in globals.h
+  Phantom globals skipped: 29 (stru_570500, arr, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34, dword_D8BC38)
+    ... and 19 more
+  Annotation-skipped globals: 78
+  declared_globals refreshed post-emit: 2822
+  Globals: 2947 in globals.h
 
 [WARN] Header generation found 4 annotation conflicts (deduplicated):
+  DUPLICATE METHOD: AStarPathFinder::AStarPathFinder() (addr=0x0056a600)
   DUPLICATE METHOD: CCBCamControl::~CCBCamControl() (addr=0x005081e0)
   DUPLICATE METHOD: ObjectCamera::~ObjectCamera() (addr=0x0047c580)
-  DUPLICATE METHOD: ParticleEffect::~ParticleEffect() (addr=0x004bd850)
   DUPLICATE METHOD: UICursor::~UICursor() (addr=0x00541ffb)
-  Globals: 2910 in globals.cpp
-  Globals: 2910 in globals.cpp
+  Globals: 2856 in globals.cpp
+  Globals: 2856 in globals.cpp
   Scalar typedefs: 87(全集去重) in scalar_typedefs.h
 Collecting functions from decomp...
-  Classes with methods: 221
-  Free functions: 212
+  [collect-census] 空/无名=0 sub_=48 | dtor形: 发射=100 拒发(意图)=20 拒发(无身份)=1
+  Classes with methods: 228
+  Free functions: 208
   [fold-carrier] 折叠载体自由符号: CEffObj→DestroyEffect
+[DBG-CAM] 0x0041cba0 '~CameraCtrl' flags= ['dtor', 'deleting'] code前80: 'CCBAIWindow *__thiscall CameraCtrl(CameraCtrl *this, int a2)\n{\n  CameraCtrl::_ne'
 [L-VAR] WARN: 0x004442b0 覆盖 v9 但函数体内无声明行（参数变量？）
 [L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
-Generated 222 .cpp files (3525 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 229 .cpp files (3494 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 1 files
   Effect/: 18 files
   GameBase/: 7 files
   MiniGame/: 2 files
-  Misc/: 131 files
+  Misc/: 138 files
   Render/: 5 files
   Role/: 6 files
   Scene/: 6 files
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 130/223 ok | own-fail 93 | imported-only 0  (24s)
+S2 cpp: 142/230 ok | own-fail 88 | imported-only 0  (28s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261121_031708
-基线时间: 2026-11-21T03:17:08.301885
-检测时间: 2026-11-21T19:24:56.410200
+基线: 20261122_155959
+基线时间: 2026-11-22T15:59:59.449440
+检测时间: 2026-11-22T16:41:52.165035
 
 📊 摘要:
-  总文件数: 1011
-  新失败: 3
-  新错误(真新增 (code,msg)): 12
-  已修复: 2
-  错误收敛(消失 (code,msg)): 6
-  持续失败: 111
+  总文件数: 1017
+  新失败: 0
+  新错误(真新增 (code,msg)): 0
+  已修复: 0
+  错误收敛(消失 (code,msg)): 0
+  持续失败: 110
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
-🔢 逐错误码净增减 (正=增加，负=减少):
-----------------------------------------
-  C2664    -17
-  C2440    -9
-  C2065    +6  ⚠️ 增加
-  C2660    +4  ⚠️ 增加
-  C2248    +4  ⚠️ 增加
-  C2673    +3  ⚠️ 增加
-  C2661    +3  ⚠️ 增加
-  C2446    -1
-  C2040    -1
-  C2371    -1
-  C2556    -1
-  C2523    -1
-  C2631    -1
-  C2039    +1  ⚠️ 增加
-  C2227    +1  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C2027, C2039, C2065, C2227, C2248, C2660, C2661, C2673 —— 即使总错误数在下降也要逐条归因
-
-❌ 新失败 (之前成功，现在失败):
-----------------------------------------
-  pal3/src/Misc/UICaption.cpp
-    L34: C2065 - 'Destroy_29' : undeclared identifier
-    L35: C2660 - 'MoveWindow' : function does not take 0 parameters
-  pal3/src/Misc/scScriptInstance.cpp
-    L8: C2039 - '_UIEmote' : is not a member of 'scScriptInstance'
-    L10: C2673 - '_UIEmote' : global functions do not have 'this' pointers
-    L12: C2673 - '_UIEmote' : global functions do not have 'this' pointers
-    ... 还有 1 个错误
-  pal3/src/Misc/UIMap.cpp
-    L52: C2660 - 'MoveWindow' : function does not take 0 parameters
-
-⚠️  真新增错误 (同码出现数抵不掉消失数):
-----------------------------------------
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 22 -> 25  真新增 3 {'C2660': 3}
-    新增 L11962: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11965: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11971: C2660 - 'CheckActionValid' : function does not take 2 parameters
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 44 -> 45  真新增 1 {'C2065': 1}
-    新增 L7047: C2065 - 'RoleSystem_2' : undeclared identifier
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 1 -> 4  真新增 3 {'C2027': 1, 'C2227': 1, 'C2653': 1}
-    新增 L38: C2027 - use of undefined type 'basic_filebuf<char,struct std::char_traits<char
-    新增 L38: C2227 - left of '->filebuf' must point to class/struct/union
-    新增 L38: C2653 - 'filebuf' : is not a class or namespace name
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2065': 1}
-    新增 L3349: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 21 -> 20  真新增 1 {'C2660': 1}
-    新增 L2125: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
-  pal3/src/Misc/PalScriptBlendTimer.cpp
-    错误数: 2 -> 1  真新增 1 {'C2065': 1}
-    新增 L26: C2065 - 'nearby_411ba0' : undeclared identifier
-  pal3/src/Script/PalScript.cpp
-    错误数: 44 -> 45  真新增 1 {'C2065': 1}
-    新增 L2895: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 3 -> 5  真新增 2 {'C2440': 1, 'C2227': 1}
-    新增 L1059: C2440 - 'type cast' : cannot convert from 'double' to 'class TaskBookUI *'
-    新增 L1059: C2227 - left of '->_todo_456200' must point to class/struct/union
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 1 -> 2  真新增 1 {'C2661': 1}
-    新增 L195: C2661 - 'UIEmote::UIEmote' : no overloaded function takes 2 parameters
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 11 -> 18  真新增 7 {'C2248': 4, 'C2440': 1, 'C2661': 2}
-    新增 L1199: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1241: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1276: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1292: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1335: C2440 - '=' : cannot convert from 'int' to 'class C3DSpark *'
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 43 -> 44  真新增 1 {'C2065': 1}
-    新增 L619: C2065 - 'Update_55' : undeclared identifier
-  pal3/src/Effect/CEffModel.cpp
-    错误数: 3 -> 3  真新增 1 {'C2065': 1}
-    新增 L725: C2065 - 'UpdateFrame_7' : undeclared identifier
-
-🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
-----------------------------------------
-  pal3/src/globals.cpp: {'C2146': 1, 'C2501': 1}
-  pal3/src/GameBase/SoundContext.cpp: {'C2440': 1}
-
-🔧 错误收敛 (仍失败，但部分错误消失):
-----------------------------------------
-  pal3/src/globals.cpp: 3 -> 3  (消失 2)
-  pal3/src/Render/CScreenMode.cpp: 21 -> 20  (消失 2)
-  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 -> 1  (消失 2)
-  pal3/src/GameBase/SoundContext.cpp: 2 -> 2  (消失 1)
-  pal3/src/Combat/CCBUI.cpp: 31 -> 1  (消失 16)
-  pal3/src/Effect/CEffModel.cpp: 3 -> 3  (消失 1)
-
-✅ 已修复 (之前失败，现在成功):
-----------------------------------------
-  pal3/src/Misc/ScreenEffectNode.cpp
-  pal3/src/Combat/CCBProtectWindow.cpp
-
-📈 错误数量变化:
-----------------------------------------
-  pal3/src/Combat/CCBStage.cpp: 22 → 25
-  pal3/src/Role/RoleSystem.cpp: 44 → 45
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 1 → 4
-  pal3/src/free_functions.cpp: 82 → 102
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/Render/CScreenMode.cpp: 21 ↓ 20
-  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 ↓ 1
-  pal3/src/Script/PalScript.cpp: 44 → 45
-  pal3/src/Misc/UIScenePanel.cpp: 3 → 5
-  pal3/src/Combat/CCBUI.cpp: 31 ↓ 1
-  pal3/src/Misc/UIEmote.cpp: 1 → 2
-  pal3/src/Combat/CCBSystem.cpp: 11 → 18
-  pal3/src/GameBase/PAL3.cpp: 43 → 44
-
-🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
-================================================================================
-编译回归检测报告
-================================================================================
-基线: 20261121_031708
-基线时间: 2026-11-21T03:17:08.301885
-检测时间: 2026-11-21T19:24:56.448714
-
-📊 摘要:
-  总文件数: 1011
-  新失败: 3
-  新错误(真新增 (code,msg)): 12
-  已修复: 2
-  错误收敛(消失 (code,msg)): 6
-  持续失败: 111
-  ⚠️ C1003 截断单元(逐码增减不可测): 1
-
-🔢 逐错误码净增减 (正=增加，负=减少):
-----------------------------------------
-  C2664    -17
-  C2440    -9
-  C2065    +6  ⚠️ 增加
-  C2660    +4  ⚠️ 增加
-  C2248    +4  ⚠️ 增加
-  C2673    +3  ⚠️ 增加
-  C2661    +3  ⚠️ 增加
-  C2446    -1
-  C2040    -1
-  C2556    -1
-  C2371    -1
-  C2523    -1
-  C2631    -1
-  C2039    +1  ⚠️ 增加
-  C2227    +1  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C2027, C2039, C2065, C2227, C2248, C2660, C2661, C2673 —— 即使总错误数在下降也要逐条归因
-
-❌ 新失败 (之前成功，现在失败):
-----------------------------------------
-  pal3/src/Misc/UICaption.cpp
-    L34: C2065 - 'Destroy_29' : undeclared identifier
-    L35: C2660 - 'MoveWindow' : function does not take 0 parameters
-  pal3/src/Misc/scScriptInstance.cpp
-    L8: C2039 - '_UIEmote' : is not a member of 'scScriptInstance'
-    L10: C2673 - '_UIEmote' : global functions do not have 'this' pointers
-    L12: C2673 - '_UIEmote' : global functions do not have 'this' pointers
-    ... 还有 1 个错误
-  pal3/src/Misc/UIMap.cpp
-    L52: C2660 - 'MoveWindow' : function does not take 0 parameters
-
-⚠️  真新增错误 (同码出现数抵不掉消失数):
-----------------------------------------
-  pal3/src/Misc/UIEmote.cpp
-    错误数: 1 -> 2  真新增 1 {'C2661': 1}
-    新增 L195: C2661 - 'UIEmote::UIEmote' : no overloaded function takes 2 parameters
-  pal3/src/Misc/UIScenePanel.cpp
-    错误数: 3 -> 5  真新增 2 {'C2440': 1, 'C2227': 1}
-    新增 L1059: C2440 - 'type cast' : cannot convert from 'double' to 'class TaskBookUI *'
-    新增 L1059: C2227 - left of '->_todo_456200' must point to class/struct/union
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 22 -> 25  真新增 3 {'C2660': 3}
-    新增 L11962: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11965: C2660 - 'CheckActionValid' : function does not take 2 parameters
-    新增 L11971: C2660 - 'CheckActionValid' : function does not take 2 parameters
-  pal3/src/Script/PalScript.cpp
-    错误数: 44 -> 45  真新增 1 {'C2065': 1}
-    新增 L2895: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 21 -> 20  真新增 1 {'C2660': 1}
-    新增 L2125: C2660 - 'OpenBinkVideo' : function does not take 5 parameters
-  pal3/src/Misc/PalScriptAnimTimer.cpp
-    错误数: 1 -> 4  真新增 3 {'C2027': 1, 'C2227': 1, 'C2653': 1}
-    新增 L38: C2027 - use of undefined type 'basic_filebuf<char,struct std::char_traits<char
-    新增 L38: C2227 - left of '->filebuf' must point to class/struct/union
-    新增 L38: C2653 - 'filebuf' : is not a class or namespace name
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2065': 1}
-    新增 L3349: C2065 - 'CON_State' : undeclared identifier
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 44 -> 45  真新增 1 {'C2065': 1}
-    新增 L7047: C2065 - 'RoleSystem_2' : undeclared identifier
-  pal3/src/Misc/PalScriptBlendTimer.cpp
-    错误数: 2 -> 1  真新增 1 {'C2065': 1}
-    新增 L26: C2065 - 'nearby_411ba0' : undeclared identifier
-  pal3/src/Effect/CEffModel.cpp
-    错误数: 3 -> 3  真新增 1 {'C2065': 1}
-    新增 L725: C2065 - 'UpdateFrame_7' : undeclared identifier
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 43 -> 44  真新增 1 {'C2065': 1}
-    新增 L619: C2065 - 'Update_55' : undeclared identifier
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 11 -> 18  真新增 7 {'C2248': 4, 'C2440': 1, 'C2661': 2}
-    新增 L1199: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1241: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1276: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1292: C2248 - 'do_always_noconv' : cannot access protected member declared in class 
-    新增 L1335: C2440 - '=' : cannot convert from 'int' to 'class C3DSpark *'
-
-🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
-----------------------------------------
-  pal3/src/GameBase/SoundContext.cpp: {'C2440': 1}
-  pal3/src/globals.cpp: {'C2146': 1, 'C2501': 1}
-
-🔧 错误收敛 (仍失败，但部分错误消失):
-----------------------------------------
-  pal3/src/GameBase/SoundContext.cpp: 2 -> 2  (消失 1)
-  pal3/src/Combat/CCBUI.cpp: 31 -> 1  (消失 16)
-  pal3/src/Render/CScreenMode.cpp: 21 -> 20  (消失 2)
-  pal3/src/globals.cpp: 3 -> 3  (消失 2)
-  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 -> 1  (消失 2)
-  pal3/src/Effect/CEffModel.cpp: 3 -> 3  (消失 1)
-
-✅ 已修复 (之前失败，现在成功):
-----------------------------------------
-  pal3/src/Combat/CCBProtectWindow.cpp
-  pal3/src/Misc/ScreenEffectNode.cpp
-
-📈 错误数量变化:
-----------------------------------------
-  pal3/src/Misc/UIEmote.cpp: 1 → 2
-  pal3/src/Misc/UIScenePanel.cpp: 3 → 5
-  pal3/src/Combat/CCBStage.cpp: 22 → 25
-  pal3/src/Combat/CCBUI.cpp: 31 ↓ 1
-  pal3/src/Script/PalScript.cpp: 44 → 45
-  pal3/src/Render/CScreenMode.cpp: 21 ↓ 20
-  pal3/src/Misc/PalScriptAnimTimer.cpp: 1 → 4
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/Role/RoleSystem.cpp: 44 → 45
-  pal3/src/Misc/PalScriptBlendTimer.cpp: 2 ↓ 1
-  pal3/src/GameBase/PAL3.cpp: 43 → 44
-  pal3/src/Combat/CCBSystem.cpp: 11 → 18
-  pal3/src/free_functions.cpp: 82 → 102
-
-🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
+✅ 未检测到回归。
+✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_164152.json
+   总文件数: 1017
+   成功: 907
+   失败: 110
 
 [Regression] diff vs latest baseline:
 
-[Baseline] NOT refreshing: regressions detected (exit 1).
-        The baseline is intentionally left unchanged so the regression stays visible on the next run.
-        Evidence saved under pipeline/_logs/regression_detection/
-        After confirming the regressions are understood, refresh deliberately with:
-          python3 tools/regression_detector.py --save-baseline
+[Baseline] refreshing latest baseline...
+  Fingerprinting probe census...
+  Snapshot saved: 20261122_164152
+    S2 142/230, errors=674, pass=142/230
+  Pruned old snapshot: 20261119_023722
+
+[codegen-invariant] OK（无新增不变量破坏）
+Compile Regression Report
+==================================================
+Baseline: 2026-11-14T14:10:51.243291
+Baseline S2: 159/204
+Current S2: 142/230
+
+⚠️  REGRESSIONS (39 files):
+  - pal3/src/Combat/CCBAI.cpp
+  - pal3/src/Combat/CCBControlWindow.cpp
+  - pal3/src/Combat/CCBItemWindow.cpp
+  - pal3/src/Combat/CCBLineupWindow.cpp
+  - pal3/src/Combat/CCBParabolaWindow.cpp
+  - pal3/src/Combat/CCBSkillWindow.cpp
+  - pal3/src/Combat/CUtil.cpp
+  - pal3/src/Data/CGameData.cpp
+  - pal3/src/Effect/CEffGrid.cpp
+  - pal3/src/Effect/CEffMeteor.cpp
+  - pal3/src/Effect/CEffModel.cpp
+  - pal3/src/Effect/CEffSParticle.cpp
+  - pal3/src/Effect/CEffShock.cpp
+  - pal3/src/Misc/AStarPathFinder.cpp
+  - pal3/src/Misc/CCBFiveNimbusWindow.cpp
+  - pal3/src/Misc/CEffAudio.cpp
+  - pal3/src/Misc/CEffCustomShape.cpp
+  - pal3/src/Misc/CScreenModeNode.cpp
+  - pal3/src/Misc/MainPropUI.cpp
+  - pal3/src/Misc/MatrixStack.cpp
+  - pal3/src/Misc/Object.cpp
+  - pal3/src/Misc/PtrArray.cpp
+  - pal3/src/Misc/RenderTargetNode.cpp
+  - pal3/src/Misc/SystemUI.cpp
+  - pal3/src/Misc/UI3DModelNode.cpp
+  - pal3/src/Misc/UIButton.cpp
+  - pal3/src/Misc/UICaption.cpp
+  - pal3/src/Misc/UIFrameContainer.cpp
+  - pal3/src/Misc/UIGameFrm.cpp
+  - pal3/src/Misc/UIPushButton.cpp
+  - pal3/src/Misc/UISceneFrm.cpp
+  - pal3/src/Misc/UITabCtrl.cpp
+  - pal3/src/Misc/UITitle_ArcSave.cpp
+  - pal3/src/Misc/UITitle_BBTY.cpp
+  - pal3/src/Misc/scScriptInstance.cpp
+  - pal3/src/Render/RenderTarget2.cpp
+  - pal3/src/Scene/CameraCtrl.cpp
+  - pal3/src/UI/UIListBox.cpp
+  - pal3/src/globals.cpp
+
+🎉 IMPROVEMENTS (22 files):
+  + pal3/src/Effect/C2DSpark.cpp
+  + pal3/src/Effect/C3DSpark.cpp
+  + pal3/src/Effect/CEffect.cpp
+  + pal3/src/Misc/CEffBink.cpp
+  + pal3/src/Misc/CEffCallBack.cpp
+  + pal3/src/Misc/CIniFile.cpp
+  + pal3/src/Misc/CPK.cpp
+  + pal3/src/Misc/EffBinkNode.cpp
+  + pal3/src/Misc/EffMultiPassNode.cpp
+  + pal3/src/Misc/Iostream_init.cpp
+  + pal3/src/Misc/JusticeBookUI.cpp
+  + pal3/src/Misc/PalScriptFadeOutTimer.cpp
+  + pal3/src/Misc/PalScriptProgressTimer.cpp
+  + pal3/src/Misc/PalScriptWaitTimer.cpp
+  + pal3/src/Misc/SceneVisNode.cpp
+  + pal3/src/Misc/SkillUI.cpp
+  + pal3/src/Misc/UIRoleDialog.cpp
+  + pal3/src/Misc/UIRoleSelectDialog.cpp
+  + pal3/src/Misc/UITitle_YXXX.cpp
+  + pal3/src/Misc/gbMatrixStack.cpp
+  + pal3/src/Misc/gbSound2DNode.cpp
+  + pal3/src/Misc/gbVec3D.cpp
+
+Net change: -17 files
 
 [Probe] Running probe s2 so compile_regression sees THIS codegen's census...
-[ERROR] probe s2 exited 1 — 本次 codegen 的编译普查未通过（新失败/退化，或 probe 自身出错）。
-        修好退化后再跑；若确要只跑 codegen，可加 '--skip-probe'（会使 compile_regression 的结论失去意义）。
+
+[Snapshot] Capturing compile baseline...
+
+[Lint] Checking generated source for numeric parameter names...
+
+[Invariant] Checking generated source for cross-transform invariant breaks...
+
+[Regression] Checking for compile regressions...
+[ERROR] compile_regression.py exited 1.
+        If the ratchet baseline is stale, refresh it deliberately with
+        'python3 tools/compile_regression.py --update-baseline' after
+        confirming there is no real regression.
 [DEBUG-INC] unk_DBA134 typ='RoleCameraCtrl' has_header=True has_struct=True pointer_only=True
-[ret-N evidence] 指令级(asm) 3190 / 裸扫描回退 298 / 无证据 15
+[ret-N evidence] 指令级(asm) 3181 / 裸扫描回退 290 / 无证据 6

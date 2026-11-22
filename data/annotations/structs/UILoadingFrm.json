@@ -267,5 +267,13 @@
    "offset": 0
   }
  ],
- "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00450770→declaration_only, 完全形0x00450790→定义源(体织入stage1剥)"
+ "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00450770→declaration_only, 完全形0x00450790→定义源(体织入stage1剥)",
+ "known_methods": {
+  "UILoadingFrm": {
+   "name": "UILoadingFrm",
+   "signature": "void __thiscall ()",
+   "address": "0x00450710",
+   "source": "manual:N13b 消解 20261122——语料限定引用 UILoadingFrm, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

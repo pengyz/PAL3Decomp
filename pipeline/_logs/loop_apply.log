@@ -1,3 +1,4 @@
+[N20 selftest] 现役 N20a=0 N20b=17 N20c=0 (活性单测见 test_n20)
 [vtable] 改进: 168 → 148 (update vtable_baseline.json)
 WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
 WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
@@ -12,7 +13,6 @@ WARN: functions[0x00445bf0]: '__thiscall' without '::' in 'SetArrayElement' (sig
 WARN: functions[0x0044f130]: '__thiscall' without '::' in 'InitUIComponents' (sig: void __thiscall(int nVal)) — likely member function, needs IDA investigation
 WARN: functions[0x0045add0]: '__thiscall' without '::' in 'InitState' (sig: void __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
 WARN: functions[0x0047f590]: '__thiscall' without '::' in 'ProcessTree' (sig: int __thiscall(int parent, int a2)) — likely member function, needs IDA investigation
-WARN: functions[0x004912d0]: '__thiscall' without '::' in 'Destroy_912D0' (sig: void __thiscall(stdiobuf *this)) — likely member function, needs IDA investigation
 WARN: functions[0x004ab560]: '__thiscall' without '::' in 'Method_B560' (sig: bool __thiscall(_DWORD *this, int a2, int a3)) — likely member function, needs IDA investigation
 WARN: functions[0x004c4b00]: '__thiscall' without '::' in 'SetValue' (sig: int __thiscall(int this, int a2)) — likely member function, needs IDA investigation
 WARN: functions[0x005306a0]: '__thiscall' without '::' in 'Initialize_06A0' (sig: void __thiscall(int this, char *pszRoleDir)) — likely member function, needs IDA investigation
@@ -123,6 +123,7 @@ WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00485230
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004208a0
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004209e0
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x005279d0
+WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0044e5c0
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450e90
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048ef80
 WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048eb40
@@ -199,112 +200,61 @@ WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
 WARN: CLAIM_GATE:member_counter_evidence:0x004C3EC0
 WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
 WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
-WARN: CXX_GATE:baseline_stale:same_addr:0x408BD0:DestroyEffect|NullCallback
-WARN: CXX_GATE:baseline_stale:same_addr:0x411B80:_scalar_dtor_1b80|slot_unk_1b80|slot_unk_1b80
-WARN: CXX_GATE:baseline_stale:same_addr:0x411BB0:_scalar_dtor_1bb0|slot_unk_1bb0|slot_unk_1bb0
-WARN: CXX_GATE:baseline_stale:same_addr:0x411BD0:_scalar_dtor_1BD0|slot_unk
-WARN: CXX_GATE:baseline_stale:same_addr:0x41C710:ProcessKeyboard|ProcessKeyboard
-WARN: CXX_GATE:baseline_stale:same_addr:0x434D50:_scalar_dtor_4D50|_scalar_dtor_4D50|~PalScriptBlendTimer|~PalScriptFadeInTimer|~PalScriptFadeOutTimer|~PalScriptProgressTimer
-WARN: CXX_GATE:baseline_stale:same_addr:0x438100:CheckFlag0C|CheckFlag0C|IsAnimDone|IsAnimDone
-WARN: CXX_GATE:baseline_stale:same_addr:0x438110:UpdateWaitTimer|UpdateWaitTimer
-WARN: CXX_GATE:baseline_stale:same_addr:0x438190:_scalar_dtor_8190|_scalar_dtor_8190
-WARN: CXX_GATE:baseline_stale:same_addr:0x4382A0:UpdateIdleTimer|UpdateIdleTimer
-WARN: CXX_GATE:baseline_stale:same_addr:0x438530:IsFadeDone|IsFadeDone
-WARN: CXX_GATE:baseline_stale:same_addr:0x43AD40:Render|Render
-WARN: CXX_GATE:baseline_stale:same_addr:0x43BB90:_scalar_dtor|_scalar_dtor_BB90|_scalar_dtor_BB90
-WARN: CXX_GATE:baseline_stale:same_addr:0x43BBC0:Update|Update
-WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:ForwardOnMessage|ForwardOnMessage|ForwardOnMessage
-WARN: CXX_GATE:baseline_stale:same_addr:0x43D7A0:OnMessage|OnMessage
-WARN: CXX_GATE:baseline_stale:same_addr:0x43D920:Destroy|Destroy
-WARN: CXX_GATE:baseline_stale:same_addr:0x43DDF0:Render|Render|Render|Render|Render|Render|Render|Render|Render|Render
-WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll|HideAll
-WARN: CXX_GATE:baseline_stale:same_addr:0x43DE40:ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage|ReleaseTempStorage
-WARN: CXX_GATE:baseline_stale:same_addr:0x442420:Destroy_2420|Destroy_2420|Destroy_2420|v1_slot_3
-WARN: CXX_GATE:baseline_stale:same_addr:0x442420:HideAll|HideAll|HideAll
-WARN: CXX_GATE:baseline_stale:same_addr:0x442E60:_scalar_dtor_2E60|_scalar_dtor_2E60
-WARN: CXX_GATE:baseline_stale:same_addr:0x442E90:RenderWithTexture|RenderWithTexture
-WARN: CXX_GATE:baseline_stale:same_addr:0x442FF0:Update_2ff0|Update_2ff0|Update_2ff0
-WARN: CXX_GATE:baseline_stale:same_addr:0x445B90:Create|Create
-WARN: CXX_GATE:baseline_stale:same_addr:0x445E70:ShowClipped|ShowClipped
-WARN: CXX_GATE:baseline_stale:same_addr:0x44AB00:GetType|GetType
-WARN: CXX_GATE:baseline_stale:same_addr:0x44E5C0:_sdtor_25|_sdtor_25
-WARN: CXX_GATE:baseline_stale:same_addr:0x44E980:OnVisible|OnVisible
-WARN: CXX_GATE:baseline_stale:same_addr:0x450F80:IsValid|IsValid
-WARN: CXX_GATE:baseline_stale:same_addr:0x4518E0:_scalar_dtor_18E0|~UIListBox
-WARN: CXX_GATE:baseline_stale:same_addr:0x451AA0:OnMessage_1AA0|OnMessage_1AA0
-WARN: CXX_GATE:baseline_stale:same_addr:0x451B40:ResizeToContent|UIListBox_ResizeToContent
-WARN: CXX_GATE:baseline_stale:same_addr:0x451C10:IsVisible|UIListBox_IsVisible
-WARN: CXX_GATE:baseline_stale:same_addr:0x4A14C0:HideAll|HideAll
-WARN: CXX_GATE:baseline_stale:same_addr:0x4A2150:_scalar_dtor|_scalar_dtor_2150
-WARN: CXX_GATE:baseline_stale:same_addr:0x4AF760:Update|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|slot_unk_f760|slot_unk_f760
-WARN: CXX_GATE:baseline_stale:same_addr:0x4B7BA0:_todo_4b7ba0|_todo_7BA0
-WARN: CXX_GATE:baseline_stale:same_addr:0x4BD850:_scalar_dtor_D850|_scalar_dtor_D850
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C0500:OnTest|OnTest
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C0510:GetEditorObjDescription|GetEditorObjDescription
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:AllocActionArray|AllocActionArray|Create|Create
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C0650:Create|Create|Create|Create
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C15B0:AllocEffect|CreateEffAudio
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C15D0:UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles|UpdateParticles
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C1640:~CEffBink|~EffAudioNode
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C2170:AllocTargets|Create
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C2620:ProcessData|RenderEffect
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C2820:AllocEffect|CreateDeactivated
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C2870:~CEffCallBack|~EffMultiPassNode
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C2930:InitTargetPos|ResetState
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C29A0:UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame|UpdateFrame
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C3BB0:AdvancePass|CheckState
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C5800:CreateTaskWrapper|sub_4C5800
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C5810:_sdtor|_sdtor
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C5B90:SetEffectVisible|operator_
-WARN: CXX_GATE:baseline_stale:same_addr:0x4C88B0:CreateOnePartical_adjthunk|_todo_88B0
-WARN: CXX_GATE:baseline_stale:same_addr:0x4CB340:_sdtor_adj|slot_5_adjthunk
-WARN: CXX_GATE:baseline_stale:same_addr:0x4CB350:_todo_4CB350|_todo_4CB350
-WARN: CXX_GATE:baseline_stale:same_addr:0x4D0C90:_nearby_4cffb0_adjthunk|_todo_004D0C90
-WARN: CXX_GATE:baseline_stale:same_addr:0x4D3220:_sdtor_adj|sub_4D17D0_adjthunk
-WARN: CXX_GATE:baseline_stale:same_addr:0x4D33A0:ResetIdle|ResetState|ResetState|ResetState
-WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DE0:_sdtor_adj|sub_4D3DC0_adjthunk
-WARN: CXX_GATE:baseline_stale:same_addr:0x4D4DF0:_todo_4D4DF0|_todo_4D4DF0
-WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|ShowLineupWindow
-WARN: CXX_GATE:baseline_stale:same_addr:0x519360:ShowLineupWindow|~CCBUI
-WARN: CXX_GATE:baseline_stale:same_addr:0x519510:Destroy|Destroy
-WARN: CXX_GATE:baseline_stale:same_addr:0x5195E0:OnMessage|OnMessage
-WARN: CXX_GATE:baseline_stale:same_addr:0x519660:IsImbibeNimbusNotFinish|IsImbibeNimbusNotFinish
-WARN: CXX_GATE:baseline_stale:same_addr:0x51B570:HandleInput|HandleInput
-WARN: CXX_GATE:baseline_stale:same_addr:0x51B5D0:CreateWithTextures|~CCBLineupWindow
-WARN: CXX_GATE:baseline_stale:same_addr:0x51C9B0:OnMessage|OnMessage
-WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|Render|Render
-WARN: CXX_GATE:baseline_stale:same_addr:0x524970:Render|Render|Render|Render|slot_1
-WARN: CXX_GATE:baseline_stale:same_addr:0x52B9A0:_todo_52B9A0|_todo_52B9A0
-WARN: CXX_GATE:baseline_stale:same_addr:0x52B9C0:_todo_52B9C0|_todo_52B9C0
-WARN: CXX_GATE:baseline_stale:same_addr:0x52B9E0:_todo_52B9E0|_todo_52B9E0
-WARN: CXX_GATE:baseline_stale:same_addr:0x52BA00:_todo_52BA00|_todo_52BA00
-WARN: CXX_GATE:baseline_stale:same_addr:0x535930:LoadOverlayTexture|LoadOverlayTexture
-WARN: CXX_GATE:baseline_stale:same_addr:0x5420D8:EnableShadow|EnableShadow
-WARN: CXX_GATE:baseline_stale:same_addr:0x5420DE:GetAABBox|GetAABBox
-WARN: CXX_GATE:baseline_stale:same_addr:0x5420FC:ParticleVisNode_adjthunk_20FC|ParticleVisNode_adjthunk_20FC
-WARN: CXX_GATE:baseline_stale:same_addr:0x542102:SceneVisNode_adjthunk_2102|SceneVisNode_adjthunk_2102
-WARN: CXX_GATE:baseline_stale:same_addr:0x54210E:SceneVisNode_adjthunk_210E|SceneVisNode_adjthunk_210E
-WARN: CXX_GATE:baseline_stale:same_addr:0x542114:SceneVisNode_adjthunk_2114|SceneVisNode_adjthunk_2114
-WARN: CXX_GATE:baseline_stale:same_addr:0x54211A:VisUpdate|VisUpdate
-WARN: CXX_GATE:baseline_stale:same_addr:0x542120:CScreenModeNode_adjthunk_2120|CScreenModeNode_adjthunk_2120
-WARN: CXX_GATE:baseline_stale:same_addr:0x55434F:AllocEffect|slot_unk|slot_unk_434f|v2_slot_1
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795258659)早于最新注解(1795259953)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: C8:no_complete_family:CEffObj:~CEffObj CEffObj ~CEffObj 产物族(0x004c0620)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
-WARN: C8:no_complete_family:CEffQuake:~CEffQuake CEffQuake ~CEffQuake 产物族(0x004d3860)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定；[T4-P0] 定义源形状违例: 0x004d32e0 含deleting flag(删除式不得立为定义源) — 无完全形族(源dtor体待手写, 债登记)
-WARN: C8:no_complete_family:ParticleEffect:~ParticleEffect ParticleEffect ~ParticleEffect 产物族(0x004bd850)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定；[T4-P0] 定义源形状违例: 0x004bc790 含deleting flag(删除式不得立为定义源) — 无完全形族(源dtor体待手写, 债登记)
 WARN: C8:no_complete_family:WeatherEffectNode:~WeatherEffectNode WeatherEffectNode ~WeatherEffectNode 产物族(0x00405310,0x00405580,0x00405560,0x00404d40)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
+WARN: N13b:AStarPathFinder::AStarPathFinder@0x0056a600 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBResultWindow::ctor@0x00442e10 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:CCBUICtrl::CCBUI@0x00519310 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:PalScript::ctor@0x0043a1f0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:EquipUI::EquipUI@0x00498820 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:JusticeBookUI::JusticeBookUI@0x005282e0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:RenderTarget::InitChildPanels@0x004867f0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:RoleSystem::SetTargetRotation@0x00416490 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:SceneObj::ctor@0x00452fd0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:SceneObj::_init_4530c0@0x004530c0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:ScreenEffectMgr::_UIWnd@0x004bef50 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UICoverFrm::UICoverFrm@0x0052ba10 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIListBox::ctor@0x00527950 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UILoadingFrm::UILoadingFrm@0x00450710 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIProgressBar::ctor@0x00439030 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UIScene::ctor@0x0043bce0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UISceneFrm::UISceneFrm@0x004590d0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UISceneMap::UISceneMap@0x0044ffe0 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N13b:UITitle_ArcSave::UITitle_ArcSave@0x0047bbf0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:gbSound2DNode::UIPostUpdate@0x0041eb80 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:gbTexture::UpdateTexture@0x1001bea0 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N13b:gbVertPoolMgr::GetDynVertBuf@0x10021680 发射路由=注解methods直通(依赖apply新鲜度)
+WARN: N20a[Actor]:0x004083b0 del 压制态 L1 载体(注册符号 va=0x004083B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[CCBLineupWindow]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[CCBMagicWindow]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[CCBParabolaWindow]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[CEffObj]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20a[CEffgbParticle]:0x004c8950 del 压制态 L1 载体(注册符号 va=0x004C8950 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[EffCallBackNode]:0x004c34b0 del 压制态 L1 载体(注册符号 va=0x004C34B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[EquipUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[MainEquipUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[PalScript]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[PalScriptAnimTimer]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[PropUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[RenderTarget2]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20a[RoleStatePanel]:0x004a2150 del 压制态 L1 载体(注册符号 va=0x004A2150 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[SceneMgr]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20a[ScreenEffectNode]:0x004b7cc0 del 压制态 L1 载体(注册符号 va=0x004B7CC0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[UIAnimateCtrlEX]:0x00452830 del 压制态 L1 载体(注册符号 va=0x00452830 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[UICoverFrm]:0x0052bbb0 del 压制态 L1 载体(注册符号 va=0x0052BBB0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[UIGameFrm]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20a[UIMap]:0x004411b0 del 压制态 L1 载体(注册符号 va=0x004411B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[UIRoleSelectDialog]:0x00529770 del 压制态 L1 载体(注册符号 va=0x00529770 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[UIRoleSelectDialog]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[UIScenePanel]: 类级载体全空(3条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20b[UITitle_BBTY]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
+WARN: N20a[UITitle_YXXX]:0x0047dd70 del 压制态 L1 载体(注册符号 va=0x0047DD70 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20b[WeatherEffectNode]: 类级载体全空(4条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: name_drift: globals[0x005BC914] 注解名'off_5BC914' != IDB名'dword_5BC914'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x005BC940] 注解名'off_5BC940' != IDB名'dword_5BC940'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x005D87F0] 注解名'unk_5D87F0' != IDB名'byte_5D87F0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
@@ -354,15 +304,18 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 338 warnings — PASS
+0 new errors + 16 frozen(advisory), 287 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
+    CPK                      size=917948   (未找到生成头; 手写头 bad: include/pal3/gen/CPK.h)
+    gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
+    gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：158 个 sub_ 符号的声明/调用形参数全部一致（另 104 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：152 个 sub_ 符号的声明/调用形参数全部一致（另 102 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 [UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...
@@ -379,12 +332,15 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 -> OK: annotations applied
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] PASS：112 个有 vtables 的类，生成头 +0x0 都有 vptr
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
+    CPK                      size=917948   (未找到生成头; 手写头 bad: include/pal3/gen/CPK.h)
+    gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
+    gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：158 个 sub_ 符号的声明/调用形参数全部一致（另 104 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：152 个 sub_ 符号的声明/调用形参数全部一致（另 102 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 0；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py export

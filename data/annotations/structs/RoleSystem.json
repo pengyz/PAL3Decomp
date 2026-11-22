@@ -4304,7 +4304,8 @@
     "override"
    ],
    "override_of": "0x00445c10",
-   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445c10(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)",
+   "adjudication": "confirmed"
   },
   "0x004209e0": {
    "name": "ResetState",
@@ -4331,7 +4332,8 @@
     "pending": false
    },
    "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 个数对齐census 20261117: decomp=1 census ABI=0 (RET字节=硬证据) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→int __thiscall(int, unsigned int, int)",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ResetState): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ResetState): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un",
+   "adjudication": "confirmed"
   }
  },
  "vtables": [
@@ -4387,5 +4389,13 @@
    "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "known_methods": {
+  "SetTargetRotation": {
+   "name": "SetTargetRotation",
+   "signature": "void __thiscall (gbVec3D *)",
+   "address": "0x00416490",
+   "source": "manual:N13b 消解 20261122——语料限定引用 SetTargetRotation, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

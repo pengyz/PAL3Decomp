@@ -521,5 +521,13 @@
    "offset": 0
   }
  ],
- "members_note": "\n[R3 2026-11-19·复核P1-4修正] 尾区骨架: m_DialogState/m_Dialog(UIRoleDialog 1368B, 4B对齐隙)/m_ParticlesA[36] [0x372C,0x894C)精确/m_ParticlesB[36] [0x894C,0xDB6C)/m_FadeState[2] [0xDB7C,0xDB7E)。**未收口 18B**: B池尾洞 [0xDB6C,0xDB7C) 16B + 尾差 [0xDB7E,0xDB80) 2B——挂账(复核P1-4)。初版\"精确收口/0xDB7D+1=0xDB80\"为错算术已撤。中段 gap (800×2/640/2400) 挂账。"
+ "members_note": "\n[R3 2026-11-19·复核P1-4修正] 尾区骨架: m_DialogState/m_Dialog(UIRoleDialog 1368B, 4B对齐隙)/m_ParticlesA[36] [0x372C,0x894C)精确/m_ParticlesB[36] [0x894C,0xDB6C)/m_FadeState[2] [0xDB7C,0xDB7E)。**未收口 18B**: B池尾洞 [0xDB6C,0xDB7C) 16B + 尾差 [0xDB7E,0xDB80) 2B——挂账(复核P1-4)。初版\"精确收口/0xDB7D+1=0xDB80\"为错算术已撤。中段 gap (800×2/640/2400) 挂账。",
+ "known_methods": {
+  "JusticeBookUI": {
+   "name": "JusticeBookUI",
+   "signature": "void __thiscall ()",
+   "address": "0x005282e0",
+   "source": "manual:N13b 消解 20261122——语料限定引用 JusticeBookUI, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

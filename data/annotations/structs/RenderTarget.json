@@ -910,7 +910,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ValidateDevice): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ValidateDevice): int(int,int,int); 原注解无",
+   "adjudication": "transplant_valid"
   },
   "0x0048eb40": {
    "name": "RenderWithEffects",
@@ -923,7 +924,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "adjudication": "transplant_valid"
   }
  },
  "vtables": [
@@ -962,5 +964,13 @@
  ],
  "bases": [],
  "bases_note": "基声明摘除20261116(置信HIGH~92%): ①+0起=RenderTarget专属字段(m_iMode/m_Texture/m_nRenderX...零UIWnd重名) ②机器码位移直方图177/239命中 ③无ctor条目(Init模式)且~RenderTarget(0x4bdac0)直调无UIWnd dtor族(0x445b20/0x43bb90不在列) ④vtable槽值共享=ICF折叠旁系(本类slot1/2/5/6均为自有方法, slot0/3/4=同体折叠)",
- "base_size": null
+ "base_size": null,
+ "known_methods": {
+  "InitChildPanels": {
+   "name": "InitChildPanels",
+   "signature": "int __thiscall ()",
+   "address": "0x004867f0",
+   "source": "manual:N13b 消解 20261122——语料限定引用 InitChildPanels, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

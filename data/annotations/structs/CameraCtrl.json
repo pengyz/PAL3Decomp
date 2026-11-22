@@ -1483,5 +1483,13 @@
    ]
   }
  ],
- "_fix_note": "2026-09-22 删除编造的 std::stack（@0x1D0，注解步长 4 ✗✗ vs 发射 48 ⇒ emit 报 +0x2C）✓；二进制在该处是浮点访问（fadds/fstps ✓）⇒ 补 float ✓；⚠️ 键为**十进制**（0x1D0=464 ✓）"
+ "_fix_note": "2026-09-22 删除编造的 std::stack（@0x1D0，注解步长 4 ✗✗ vs 发射 48 ⇒ emit 报 +0x2C）✓；二进制在该处是浮点访问（fadds/fstps ✓）⇒ 补 float ✓；⚠️ 键为**十进制**（0x1D0=464 ✓）",
+ "known_methods": {
+  "_nearby_41cbc0": {
+   "name": "_nearby_41cbc0",
+   "signature": "void __thiscall ()",
+   "address": "0x0041cbc0",
+   "source": "manual:N13b 消解 20261122——语料限定引用 _nearby_41cbc0, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

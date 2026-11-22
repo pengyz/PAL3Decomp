@@ -392,5 +392,13 @@
   }
  ],
  "bases_note": "; [疑点] 表slot3=0x408bd0(无操作ret)∉UIWnd槽——存在中间基X(其slot3=no-op), X身份待定谳",
- "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00450070→declaration_only, 完全形0x00450090→定义源(体织入stage1剥)"
+ "note": " | C8源模型修正20261121: dtor对翻转——删除式0x00450070→declaration_only, 完全形0x00450090→定义源(体织入stage1剥)",
+ "known_methods": {
+  "UISceneMap": {
+   "name": "UISceneMap",
+   "signature": "void __thiscall ()",
+   "address": "0x0044ffe0",
+   "source": "manual:N13b 消解 20261122——语料限定引用 UISceneMap, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
+ }
 }

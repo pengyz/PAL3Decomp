@@ -94,5 +94,13 @@
    "name_note": "址0x10021680=gbengine.dll空间(疑跨二进制污染)——归属疑点另案定谳; 但声明角色承重(slot_6 L128编译依赖), 移除须先补等价声明通路",
    "evidence_level": "A"
   }
+ },
+ "known_methods": {
+  "GetDynVertBuf": {
+   "name": "GetDynVertBuf",
+   "signature": "gbDynVertBuf * __thiscall (unsigned int)",
+   "address": "0x10021680",
+   "source": "manual:N13b 消解 20261122——语料限定引用 GetDynVertBuf, 注解 methods 直通依赖显式化为 known_methods 记录"
+  }
  }
 }
