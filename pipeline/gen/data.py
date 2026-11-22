@@ -593,7 +593,8 @@ class DataStore:
                 if not isinstance(_info, dict):
                     continue
                 _name = _info.get('name', '')
-                _sig = _info.get('signature', '')
+                # [sig 退役收尾 20261123] signature→_sm_text(sig_model 唯一真相源)
+                _sig = _sm_text(_info)
                 if not _name or not _sig:
                     continue
                 if '::' in _name:

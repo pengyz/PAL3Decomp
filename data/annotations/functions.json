@@ -54,7 +54,7 @@
  "0x00411220": {
   "name": "AssignInt",
   "sig_model": {
-   "return": "int *__cdecl AssignInt",
+   "return": "int *",
    "cc": null,
    "params": [
     {
@@ -138,7 +138,7 @@
  "0x00432600": {
   "name": "FindScriptEventByID",
   "sig_model": {
-   "return": "char FindScriptEventByID",
+   "return": "char",
    "cc": "cdecl",
    "params": [
     {
@@ -154,7 +154,7 @@
  "0x00432870": {
   "name": "GetOpcodeParamTypes",
   "sig_model": {
-   "return": "unsigned __int8 *__cdecl GetOpcodeParamTypes",
+   "return": "unsigned __int8 *",
    "cc": null,
    "params": [],
    "varargs": false,
@@ -165,7 +165,7 @@
  "0x00432890": {
   "name": "InitOpcodeEntry",
   "sig_model": {
-   "return": "void InitOpcodeEntry",
+   "return": "void",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -176,7 +176,7 @@
  "0x00432930": {
   "name": "SetScriptInitFlag",
   "sig_model": {
-   "return": "void SetScriptInitFlag",
+   "return": "void",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -187,7 +187,7 @@
  "0x00432990": {
   "name": "LoadScriptFile",
   "sig_model": {
-   "return": "int LoadScriptFile",
+   "return": "int",
    "cc": "cdecl",
    "params": [
     {
@@ -203,7 +203,7 @@
  "0x00435350": {
   "name": "GetCurrentCamera",
   "sig_model": {
-   "return": "gbCamera *__cdecl GetCurrentCamera",
+   "return": "gbCamera *",
    "cc": null,
    "params": [],
    "varargs": false,
@@ -452,16 +452,22 @@
  },
  "0x004422e0": {
   "name": "ResetContainerState",
-  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "source": " | 非语义名再创作 2026-10-17（verifier·功能驱动·A 级 decompile 语义）：原名 sub_4422E0（地址后缀伪语义禁族）⇒ 再创作命名（功能驱动）：容器重置：调 `PtrArray::Clear` 系（sub_445AA0）+ 清零 this+96/+100/+104 三字段（0x4422E0 decompile） | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建 | [free_helper 确认 20261123] 跨类共享 init helper: 373 调用点全 thiscall 形(mov ecx,X;call), 调用者跨全 UI 家族(CCBAIWindow/Control/Result/RoleState ctor 族), 不写 vtable=非 ctor=普通公共 init; this=UIWnd 派生实例, 清 [0x60..0x80]=各派生类「子控件指针区」共同布局习惯(CCBAIWindow 按钮族@0x60 实证); 显式 this 参声明(free 形)调用点 1 参吻合",
   "source_note": "[非语义 5 条补面 2026-10-17·五面满卡] ResetContainerState 保留（补面完成）：①调用者 100 站（PalScript::Op_WaterMagic/UIPushButton::CtorWithFlag 广布 ✓）②本体=thiscall(this) 重置形 ✓ ③成员=this+N 触面 ✓ ④类归属=广泛基类 utility ✓ ⑤交互=构造/操作重置 ✓ 5/5 满卡——体语义单面 → 机械补面（调用者 xref 具名族 + 调用约定 + 交互路径）",
   "declaration_only": true,
   "sig_model": {
    "return": "void",
    "cc": "thiscall",
-   "params": [],
+   "params": [
+    {
+     "type": "UIWnd *",
+     "name": "pWnd"
+    }
+   ],
    "varargs": false,
    "pending": false
-  }
+  },
+  "free_helper_confirmed": true
  },
  "0x00445ea0": {
   "name": "ZeroInitSelf68",
@@ -920,7 +926,7 @@
   "name": "WinMain",
   "source": "R121 修 2026-10-27：WinMain 标注为自由函数 | R122 修 2026-10-27：type: free_function 死信道退役 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "sig_model": {
-   "return": "int WinMain",
+   "return": "int",
    "cc": "stdcall",
    "params": [
     {
@@ -1083,7 +1089,7 @@
   "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall） | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "name_note": "| [sig修正 20261122] mangle ?FileSysDestory@@YAXXZ: Y=__cdecl(函数自身证据链)——原 __thiscall 标注系 mislabel",
   "sig_model": {
-   "return": "void FileSysDestory",
+   "return": "void",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1132,7 +1138,7 @@
  "0x00408b60": {
   "name": "InitScriptObjArray",
   "sig_model": {
-   "return": "void InitScriptObjArray",
+   "return": "void",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1159,7 +1165,7 @@
  "0x0040de10": {
   "name": "MovePartyFollowers",
   "sig_model": {
-   "return": "char *__cdecl MovePartyFollowers",
+   "return": "char *",
    "cc": null,
    "params": [
     {
@@ -1175,7 +1181,7 @@
  "0x0040e0a0": {
   "name": "RestorePartyFollowMode",
   "sig_model": {
-   "return": "void RestorePartyFollowMode",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1191,7 +1197,7 @@
  "0x0040e110": {
   "name": "SetupPartyFormation",
   "sig_model": {
-   "return": "char SetupPartyFormation",
+   "return": "char",
    "cc": "cdecl",
    "params": [
     {
@@ -1207,7 +1213,7 @@
  "0x0040e3c0": {
   "name": "SetupPartyFormationWide",
   "sig_model": {
-   "return": "char SetupPartyFormationWide",
+   "return": "char",
    "cc": "cdecl",
    "params": [
     {
@@ -1223,7 +1229,7 @@
  "0x0040e840": {
   "name": "AddNPCToPartySlot",
   "sig_model": {
-   "return": "int *__cdecl AddNPCToPartySlot",
+   "return": "int *",
    "cc": null,
    "params": [
     {
@@ -1243,7 +1249,7 @@
  "0x0040f0c0": {
   "name": "SaveGameState",
   "sig_model": {
-   "return": "void SaveGameState",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1259,7 +1265,7 @@
  "0x0040f230": {
   "name": "LoadGameState",
   "sig_model": {
-   "return": "int *__cdecl LoadGameState",
+   "return": "int *",
    "cc": null,
    "params": [
     {
@@ -1275,7 +1281,7 @@
  "0x0040f4b0": {
   "name": "RefreshPartyRoleData",
   "sig_model": {
-   "return": "int RefreshPartyRoleData",
+   "return": "int",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1286,7 +1292,7 @@
  "0x0040fc90": {
   "name": "AddMoney",
   "sig_model": {
-   "return": "void AddMoney",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1302,7 +1308,7 @@
  "0x0040ff70": {
   "name": "SetRoleLevelAndRefresh",
   "sig_model": {
-   "return": "char *__cdecl SetRoleLevelAndRefresh",
+   "return": "char *",
    "cc": null,
    "params": [
     {
@@ -1381,7 +1387,7 @@
  "0x00426e80": {
   "name": "PointInRect",
   "sig_model": {
-   "return": "BOOL PointInRect",
+   "return": "BOOL",
    "cc": "cdecl",
    "params": [
     {
@@ -1445,7 +1451,7 @@
  "0x004328d0": {
   "name": "InitScriptEventArray",
   "sig_model": {
-   "return": "void InitScriptEventArray",
+   "return": "void",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1456,7 +1462,7 @@
  "0x004329b0": {
   "name": "InitSceOpcodeTable",
   "sig_model": {
-   "return": "int InitSceOpcodeTable",
+   "return": "int",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1467,7 +1473,7 @@
  "0x00433cd0": {
   "name": "FreeScriptInstance",
   "sig_model": {
-   "return": "void FreeScriptInstance",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1499,7 +1505,7 @@
  "0x00434f60": {
   "name": "ConvertDirection",
   "sig_model": {
-   "return": "int ConvertDirection",
+   "return": "int",
    "cc": "cdecl",
    "params": [
     {
@@ -1515,7 +1521,7 @@
  "0x00437d90": {
   "name": "FindOpcodeByName",
   "sig_model": {
-   "return": "int FindOpcodeByName",
+   "return": "int",
    "cc": "cdecl",
    "params": [
     {
@@ -1531,7 +1537,7 @@
  "0x00437de0": {
   "name": "SetGameSwitch",
   "sig_model": {
-   "return": "void SetGameSwitch",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1547,7 +1553,7 @@
  "0x00437f40": {
   "name": "LoadGameSwitches",
   "sig_model": {
-   "return": "char *__cdecl LoadGameSwitches",
+   "return": "char *",
    "cc": null,
    "params": [],
    "varargs": false,
@@ -1558,7 +1564,7 @@
  "0x0044bd80": {
   "name": "SafeDeletePtr",
   "sig_model": {
-   "return": "void SafeDeletePtr",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1625,7 +1631,7 @@
  "0x004a36b0": {
   "name": "FormatChineseNumber",
   "sig_model": {
-   "return": "LPSTR FormatChineseNumber",
+   "return": "LPSTR",
    "cc": "cdecl",
    "params": [
     {
@@ -1645,7 +1651,7 @@
  "0x004afaa0": {
   "name": "CopyRoleData",
   "sig_model": {
-   "return": "void CopyRoleData",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -1665,7 +1671,7 @@
  "0x004b0040": {
   "name": "SortTripletsByField",
   "sig_model": {
-   "return": "int *__cdecl SortTripletsByField",
+   "return": "int *",
    "cc": null,
    "params": [
     {
@@ -1979,7 +1985,7 @@
  "0x004e5410": {
   "name": "GetEditBoxText",
   "sig_model": {
-   "return": "char *__cdecl GetEditBoxText",
+   "return": "char *",
    "cc": null,
    "params": [
     {
@@ -2053,7 +2059,7 @@
  "0x005269b0": {
   "name": "CreateDigitPair",
   "sig_model": {
-   "return": "void CreateDigitPair",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -2118,7 +2124,7 @@
  "0x00532cf0": {
   "name": "CalcAngleBetweenVectors",
   "sig_model": {
-   "return": "long double CalcAngleBetweenVectors",
+   "return": "long double",
    "cc": "cdecl",
    "params": [
     {
@@ -2319,7 +2325,7 @@
  "0x0053cf30": {
   "name": "TextureInfoFormatException",
   "sig_model": {
-   "return": "char *__cdecl Texture_Info_FormatException",
+   "return": "char * Texture_Info_FormatException",
    "cc": null,
    "params": [
     {
@@ -2601,7 +2607,7 @@
   "name": "NullCallback",
   "source": " | cc __thiscall->__cdecl: free-function callback, not a member; __thiscall caused codegen to skip declaration in free_functions.h (9 C2065 undeclared hits) | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "sig_model": {
-   "return": "void NullCallback",
+   "return": "void",
    "cc": "cdecl",
    "params": [
     {
@@ -2645,7 +2651,7 @@
   "name": "OffsetRect",
   "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "sig_model": {
-   "return": "int *__thiscall",
+   "return": "int *",
    "cc": null,
    "params": [
     {

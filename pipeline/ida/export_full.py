@@ -503,7 +503,7 @@ def main():
             from pipeline.gen.annotation_view import sm_text as _sm_x
             for _addr_s, _info in _ann_funcs.items():
                 _name = _info.get('name', '')
-                _sig = _sm_x(_info) or str(_info.get('signature') or '')
+                _sig = _sm_x(_info)   # [sig 退役收尾 20261123] fallback 删(signature 已删)
                 if '::' not in _name or not _sig:
                     continue
                 try:

@@ -1470,7 +1470,7 @@ def collect_methods():
             _method = _minfo.get('name', '')
             if '::' in _method:
                 _method = _method.rsplit('::', 1)[-1]
-            _sig = _minfo.get('signature', '')
+            _sig = sm_text(_minfo)   # [sig 退役收尾 20261123]
             if _is_synthesized_member(_method) or _addr_str in _skip_addr_set():
                 continue   # [T4·修法D] supplement 闸：合成物声明禁复活
             # Skip vtable-only (destructor-style) placeholders
@@ -1498,7 +1498,7 @@ def collect_methods():
                 if not isinstance(_minfo, dict):
                     continue
                 _method = _minfo.get('name', '')
-                _sig = _minfo.get('signature', '')
+                _sig = sm_text(_minfo)   # [sig 退役收尾 20261123]
                 _addr = _minfo.get('address', '')
                 if not _method or not _addr:
                     continue
@@ -3559,7 +3559,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         for _mk, _mv in (_s16.get('methods', {}) or {}).items():
                             if str(_mk).upper() == _au:
                                 _am = _mv; break
-                if _am and 'static' in str(_am.get('signature', '')):
+                if _am and (_am.get('static') or 'static' in sm_text(_am)):
+                    # [sig 退役收尾 20261123] static 判定迁条目 static 字段优先(signature 已删)
                     is_static = True
                     is_thiscall = False
             except Exception as _e16:
@@ -5538,6 +5539,11 @@ def generate_globals_cpp():
         addr = int(addr_s, 16)
         nm = info.get('name', '')
         tp = info.get('type', '')
+        # [vtbl_ 定义滤除 20261123] .rdata vtable 符号(type=vtbl_ADDR)误入 globals
+        # 定义段 ⇒ `vtbl_ADDR NAME;` 无类型声明(全库无 vtbl_ 类型声明域——vtable
+        # 是 .rdata 常量非 .data 定义域)。滤除(AStarPathFinder_0@0x56A600 实证)
+        if tp.startswith('vtbl_'):
+            continue
         ann_key = '0x%08x' % addr  # [对抗复核修正] 构建侧(:4412)键为 :08x 小写——P-A5g 曾改 %08X 大写致查表永不命中(name覆盖/ann skip过滤/orig_type复活三处全灭, +5 C2040/C2371 实证)
         ann_info = ann.get(ann_key, {})
         if info.get('_synthesized'):

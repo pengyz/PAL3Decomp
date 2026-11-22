@@ -1168,3 +1168,14 @@
 | `CCBUICtrl::LineMove` | inline | `int` | 28 | non_class_hint | `(*(int ( **)(int, POINT *, int, CCBUICtrl *, int, _DWORD))(*(_DWORD *)v5 + 28))( v5, pEnd, v10, this, v11, 0)` |
 | `CCBUICtrl::AddTask` | inline | `UIListBox` | 28 | self_arg_mismatch | `(*(void ( **)(UIListBox *, int, tagUITask *, CCBUICtrl *, _DWORD, int, _DWORD))(*(_DWORD *)&(*todo_4C)->UIWnd + 28))( *todo_4C, *v6, pTask, this, 0, 1, 0)` |
 | `filebuf::~filebuf` | inline | `_DWORD` | 20 | non_class_hint | `(*(void (**)(_DWORD, int))(*(_DWORD *)LODWORD(g_fGameSpeed) + 20))(LODWORD(g_fGameSpeed), 1)` |
+| `PalScriptAnimTimer::~PalScriptAnimTimer` | inline | `_DWORD` | 20 | non_class_hint | `(*(void (**)(_DWORD, int))(*(_DWORD *)LODWORD(g_fGameSpeed) + 20))(LODWORD(g_fGameSpeed), 1)` |
+| `::CreateSceneEntities` | inline | `int` | 16 | non_class_hint | `(*(void (**)(int, int, int *, int))(*(_DWORD *)(nSceneId + 384) + 16))(nSceneId + 384, 161, &v76, nSceneId)` |
+| `::CreateSceneEntities` | vftable_local | `int` | 16 | non_class_hint | `(*(void (**)(int, int, int *, int))(v6 + 16))(nSceneId + 536, 161, &v76, nSceneId)` |
+| `::CreateSceneEntities` | vftable_local | `int` | 28 | non_class_hint | `(*(void (**)(int, char *, _DWORD *, int, char *, int, void *))(v17 + 28))( v14 - 452, byte_A00319, v85, nSceneId, aUiGamemainuiEq_20, 1, v16)` |
+| `::Update` | inline | `int` | 16 | non_class_hint | `(*(void (**)(int, char *, int *, int))(*(_DWORD *)(nPanelId + 360) + 16))( nPanelId + 360, &byte_A01B00, v2, nPanelId)` |
+| `::Update` | vftable_local | `int` | 16 | non_class_hint | `(*(void (**)(int, char *, int *, int))(v5 + 16))(nPanelId + 512, &byte_A01B00, &v120, nPanelId)` |
+| `::Update` | inline | `int` | 28 | non_class_hint | `(*(void (**)(int, char *, int, int, char *, _DWORD, int))(*(_DWORD *)(nPanelId + 1744) + 28))( nPanelId + 1744, &byte_A01B01, nPanelId + 1728, nPanelId, aSubgameHocksho_0, 0, v10)` |
+| `::Update` | vftable_local | `int` | 28 | non_class_hint | `(*(void (**)(int, char *, int, int, char *, int))(v53 + 28))( nPanelId + 3976, &byte_A01B10, nPanelId + 3712, nPanelId, aSubgameHocksho_0, v50)` |
+| `::Update` | vftable_local | `char` | 28 | self_arg_mismatch | `(*(void (__stdcall **)(char *, int, int, char *, int))(v89 + 28))( &byte_A01B21, nPanelId + 6240, nPanelId, aSubgameHocksho_0, v91)` |
+| `::Update` | inline | `char` | 28 | self_arg_mismatch | `(*(void (__stdcall **)(char *, int, int, char *, int))(*(_DWORD *)(nPanelId + 7512) + 28))( &byte_A01B24, nPanelId + 7000, nPanelId, aSubgameHocksho_0, v98)` |
+| `::SetParam` | inline | `float` | 20 | self_arg_mismatch | `(*(int (**)(float))(*(_DWORD *)LODWORD(x) + 20))(_pal3_coerce_f32(LODWORD(x)))` |

@@ -3167,13 +3167,31 @@ def apply_annotations():
     # NOT for setting IDB function types — sharing same address across classes corrupts SetType)
     _sig_entries = list(funcs.items())
 
+    def _sm_full_decl(name, sm):
+        """[sig 退役收尾 20261123] sig_model → 含名全渲染形(RET __cc NAME(params))。
+        下游流水线(this 注入/类限定双拼/parse_decl)按全形设计——原样兼容。"""
+        if not isinstance(sm, dict) or not sm or sm.get('pending'):
+            return ''
+        ret = str(sm.get('return') or 'void').strip()
+        cc = str(sm.get('cc') or '').strip()
+        ps = []
+        for p in (sm.get('params') or []):
+            if not isinstance(p, dict):
+                continue
+            t = str(p.get('type') or '').strip()
+            if not t:
+                continue
+            pn = p.get('name')
+            ps.append('%s %s' % (t, pn) if pn else t)
+        _ccp = ('__%s ' % cc) if cc else ''
+        return ('%s %s%s(%s)' % (ret, _ccp, name, ', '.join(ps))).replace('  ', ' ')
+
     for addr_str, info in _sig_entries:
         addr = int(addr_str, 16)
-        # Skip entries listed in skip_functions.json (compiler-generated, etc.)
         if addr_str in skip_funcs:
             continue
-        sig = info.get("signature", "")
         name = info.get("name", "")
+        sig = _sm_full_decl(name, info.get("sig_model"))
         if not sig:
             continue
         # Skip placeholder signatures (IDA-unknown params, no value to apply)
@@ -3325,7 +3343,7 @@ def apply_annotations():
         log("[!] Signature failures logged: %s" % sig_fail_log)
         for addr_str, fname, sig_str in sig_fail[:5]:
             log("  [!] %s %s → %s" % (addr_str, fname[:40], sig_str[:60]))
-    log("[6] Signatures: %d/%d (parse_tinfo=%d, fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("signature")]), sig_parse_ok, len(sig_fail), sig_skip_placeholder))
+    log("[6] Signatures: %d/%d (parse_tinfo=%d, fail=%d, placeholder=%d)" % (sig_ok, len([f for f in funcs.values() if f.get("sig_model")]), sig_parse_ok, len(sig_fail), sig_skip_placeholder))
     if sig_fail:
         for _addr_s, _fname_s, _err_s in sig_fail[:20]:
             log("  [!] %s: %s → %s" % (_addr_s, _fname_s[:40], _err_s[:60]))
@@ -3346,7 +3364,7 @@ def apply_annotations():
     for _taddr, _tinfo_entry in funcs.items():
         if not isinstance(_tinfo_entry, dict):
             continue
-        _tsig = _tinfo_entry.get('signature')
+        _tsig = _sm_full_decl(_tinfo_entry.get('name', ''), _tinfo_entry.get('sig_model'))
         if not _tsig:
             continue
         try:

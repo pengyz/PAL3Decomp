@@ -830,7 +830,7 @@ def _void_ret_calls():
                         s.add((cls.lower(), cn.split('::')[-1]))
             fns = _av.load_annotation_json('functions.json') or {}
             for _a, e in fns.items():
-                sig = e.get('signature', '')
+                sig = _av.sm_text(e)   # [sig 退役收尾 20261123]
                 nm = e.get('name', '')
                 if nm and (sig.startswith('void *') or sig.startswith('void*')):
                     s.add(('', nm))

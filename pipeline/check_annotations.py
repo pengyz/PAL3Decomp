@@ -426,14 +426,11 @@ def check(struct_dir=None):
     stripped_sigs = {}  # (stripped_name, sig_norm) -> addr
     for addr, info in funcs.items():
         name = info.get('name', '')
-        sig = info.get('signature', '')
+        sig = sm_text(info)
         if not name or not sig:
             continue
         stripped = strip_stamp(name)   # [D7] 单源
-        sig_norm = re.sub(r'^.*?__thiscall\(', '(this, ', sig)
-        sig_norm = re.sub(r'^.*?__cdecl\(', '(', sig_norm)
-        sig_norm = re.sub(r'^.*?__stdcall\(', '(', sig_norm)
-        key = (stripped, sig_norm)
+        key = (stripped, sig)
         if key in stripped_sigs:
             errors.append(
                 f"functions[{addr}]: '{name}' collides with '{stripped_sigs[key]}' "
@@ -1091,10 +1088,9 @@ def _run_n16_schema_gate(errors, warnings):
                 errors.append('N16:functions.%s 退役字段 %s 存在(sig_model 唯一真相源, '
                               '见 annotation_schema.json functions_json.banned)' % (_ea, _banned))
                 _n += 1
-        for _bad in _fj['signature_banned_substrings']:
-            if _bad in str(_e.get('signature') or ''):
-                errors.append('N16:functions.%s signature含禁止子串 %r' % (_ea, _bad))
-                _n += 1
+        # [sig 退役收尾 20261123] signature_banned_substrings 检查退役——
+        # 它读 signature 字段(已 banned 删除恒空)=死检查; 字段级 banned 检查
+        # (上方)已全覆盖
         # [N19 裸void参数禁令 2026-11-20] 同structs侧——sig_model与legacy signature
         # 双源都查(Actor.h:239 C2860级联案, S2 ok 0/222)。
         _fsm = _e.get('sig_model')

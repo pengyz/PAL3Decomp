@@ -400,8 +400,11 @@ def iter_type_refs(refs_out, refgraph):
     try:
         fj = json.load(open(os.path.join(_PROJECT_ROOT, 'data', 'annotations',
                                          'functions.json'), encoding='utf-8'))
+        from pipeline.gen.annotation_view import sm_text as _sm_r
         for addr, e in fj.items():
-            sig = e.get('signature') or ''
+            if not isinstance(e, dict):
+                continue
+            sig = _sm_r(e)   # [sig 退役收尾 20261123] signature→sm_text
             if sig:
                 refs_out.append(('functions', addr, 'signature', sig, 'ref'))
     except (OSError, json.JSONDecodeError):
