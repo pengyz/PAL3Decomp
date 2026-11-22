@@ -18,10 +18,10 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1013,
-  "matched": 896,
+  "symbols": 1012,
+  "matched": 895,
   "unmatched": 222,
-  "match_L1": 139,
+  "match_L1": 138,
   "match_L1_semantic": 8,
   "partial": 651,
   "oob": 0,
@@ -29,17 +29,17 @@
   "oob_text_end": 0,
   "oob_file_end": 0,
   "unresolved_synth": 106,
-  "reloc_total": 6897,
-  "reloc_ok": 1698,
+  "reloc_total": 6894,
+  "reloc_ok": 1696,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5199,
-  "rsite_total": 6897,
-  "rsite_unaligned": 6477,
-  "l1_bytes": 5778,
-  "l1_hidden_reloc_bytes": 1200,
-  "l1_reloc_covered_bytes": 1680,
+  "reloc_unresolved": 5198,
+  "rsite_total": 6894,
+  "rsite_unaligned": 6476,
+  "l1_bytes": 5748,
+  "l1_hidden_reloc_bytes": 1196,
+  "l1_reloc_covered_bytes": 1672,
   "rsite_ok": 71,
-  "rsite_class_ok": 314,
+  "rsite_class_ok": 313,
   "rsite_unresolved": 7,
   "rsite_unresolved_samples": [
    {
@@ -135,7 +135,7 @@
    }
   ],
   "rsite_self_local": 14,
-  "rsite_mismatch": 11,
+  "rsite_mismatch": 10,
   "rsite_mismatch_samples": [
    {
     "va": "0x004C8950",
@@ -206,13 +206,6 @@
     "orig": "PalScript::Reset(void)",
     "ours": "UIProgressBar::~UIProgressBar",
     "sym": "??1UIProgressBar@@UAE@XZ"
-   },
-   {
-    "va": "0x004083B0",
-    "off": 4,
-    "orig": "Actor::ReleasePath(int)",
-    "ours": "Actor::~Actor",
-    "sym": "??1Actor@@UAE@XZ"
    }
   ],
   "rsite_ok_directname": 2,
@@ -226,12 +219,13 @@
   "rsite_class_mismatch": 3,
   "carrier": {
    "expected": 204,
-   "paired": 67,
-   "unpaired": 137,
+   "paired": 66,
+   "unpaired": 138,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
     "??1Actor@@UAE@XZ",
+    "??_GActor@@UAEPAXI@Z",
     "??1CCBControlWindow@@UAE@XZ",
     "??_GCCBControlWindow@@UAEPAXI@Z",
     "??1CCBFiveNimbusWindow@@UAE@XZ",
@@ -251,8 +245,7 @@
     "??_GCCBStage@@UAEPAXI@Z",
     "??1CCBStageCam@@UAE@XZ",
     "??_GCCBStageCam@@UAEPAXI@Z",
-    "??1CCBUI@@UAE@XZ",
-    "??_GCCBUI@@UAEPAXI@Z"
+    "??1CCBUI@@UAE@XZ"
    ]
   },
   "carrier_suspect_l1_n": 1
@@ -6717,7 +6710,7 @@
    "name": "Role::Role(void)",
    "va": "0x00411900",
    "status": "partial",
-   "match_pct": 14.1,
+   "match_pct": 15.0,
    "size": 622
   },
   {
@@ -6725,15 +6718,6 @@
    "symbol": "??_GRole@@UAEPAXI@Z",
    "name": "Role::`scalar deleting destructor'(uint)",
    "va": "0x00411BD0",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Role/Role.cpp",
-   "symbol": "??_GActor@@UAEPAXI@Z",
-   "name": "Actor::`scalar deleting destructor'(uint)",
-   "va": "0x004083B0",
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
@@ -7370,11 +7354,6 @@
   }
  ],
  "l1_identity": [
-  [
-   "Actor::`scalar deleting destructor'(uint)",
-   4228016,
-   30
-  ],
   [
    "ArcSceneObject::InitFromConfig(void)",
    5395648,
@@ -8067,17 +8046,17 @@
   ]
  ],
  "rebaseline": {
-  "reason": "render churn 残差(带归因): Timer 28B实验的 IDB type 两轮重写波及 Actor.cpp(20错翻车, 丢3删除式载体配对)+UIWnd.cpp(1错)——render_residue_attribution_20261122.json expansion_v2 在册; 非语义回归(字节证据在 archive/regressed detail 可复核); 恢复路径=下会话 Actor.cpp 逐错归因(渲染形变 forensics); 本日语义成果(六误名正名/10址完全形/SkillUI前置/三门前置检出)不受影响; Confidence=high",
-  "at": "2026-11-22T18:40:13",
-  "prev_match_L1": 142,
-  "cur_match_L1": 139,
+  "reason": "Actor 死类布局定谳代价: vtables 0x56A6D0 退役(三证封闭:ctor零引用/.rdata零挂载/dtor对偶自封闭, tools/actor_layout_probe_20261122.py) → ~Actor 虚性解除 → VC6 不再合成 scalar deleting dtor stub → 0x4083B0(30B) L1 挂账。收复路径=死类壳战役(死族4函数归独立带虚dtor壳类, 类名无PDB证据需发明, 涟漪面大挂账)。交换收益: Actor.cpp 11→3错(嵌合体解除+C2102×4+C2440×3+PtrVec清偿)",
+  "at": "2026-11-22T21:07:14",
+  "prev_match_L1": 139,
+  "cur_match_L1": 138,
   "prev_population": {
-   "matched": 914,
-   "symbols": 1031
-  },
-  "cur_population": {
    "matched": 896,
    "symbols": 1013
+  },
+  "cur_population": {
+   "matched": 895,
+   "symbols": 1012
   }
  }
 }

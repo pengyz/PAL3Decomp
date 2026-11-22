@@ -1479,6 +1479,18 @@ def _run_inner(code, ctx):
         code = re.sub(r'(\w+)\s*->\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
         code = re.sub(r'(\w+)\s*\.\s*' + _dtor_pat + r'\s*\(\s*0\s*\)', r'', code)
 
+    # P-ACTOR-1 (2026-11-22) HIBYTE(this) 宏展开炸点——句内形态合法化(值语义恒等):
+    #   hexrays 把「对 spill 槽 this 的字节读取」渲染为 HIBYTE(this)(值语义忠实);
+    #   但 HIBYTE 宏 = LOBYTE(HIWORD(x)), HIWORD 对右值取址 ⇒ VC6 C2102
+    #   (Actor.cpp×4 + GRPinput/RenderTarget3/ScriptSystem 等跨单元)。
+    #   原二进制字节指纹(push ecx; mov al,[esp+3] = VC6 对 ((BYTE*)&p)[3]
+    #   的 spill 开译, 见 tools/actor_layout_probe_20261122.py)对应的源码
+    #   lvalue 形态 hexrays 已合并丢失, 就地合法等价形只有移位式。
+    #   (BYTE)((DWORD)this >> 24) 与 HIBYTE(this) 值恒等, 句内替换零结构改动。
+    #   L1 差异挂账: VC6 源码形态未复原(data/status/l1_hunt_queue_20261119
+    #   同域), 7 函数修复前零 L1 无损失。
+    code = code.replace('HIBYTE(this)', '(BYTE)((DWORD)this >> 24)')
+
     # P-A16 (2026-11-10) 单点歼灭批次——13 个 1 错单元(影响面排序)
     # ①CEffModel: placement ctor return 变体(P-A13 return 形态)
     code = code.replace(

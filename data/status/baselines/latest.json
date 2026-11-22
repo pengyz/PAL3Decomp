@@ -1,6 +1,6 @@
 {
-  "name": "20261122_182819",
-  "timestamp": "2026-11-22T18:28:19.520104",
+  "name": "20261122_205533",
+  "timestamp": "2026-11-22T20:55:33.933483",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -18,7 +18,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBCamControl.h": {
-      "status": "harness_error",
+      "status": "ok",
       "error_count": 0,
       "errors": []
     },
@@ -28,7 +28,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBControlWindow.h": {
-      "status": "harness_error",
+      "status": "ok",
       "error_count": 0,
       "errors": []
     },
@@ -5117,13 +5117,8 @@
     },
     "pal3/src/GameBase/GRPinput.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 11,
       "errors": [
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 567
-        },
         {
           "code": "C2259",
           "msg": "'IDirectInputDevice8A' : cannot instantiate abstract class due to following members:",
@@ -5153,11 +5148,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int' to 'struct IDirectInputDevice8A'",
           "line": 829
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1604
         },
         {
           "code": "C2664",
@@ -6648,7 +6638,7 @@
     },
     "pal3/src/Misc/UIBigMap.cpp": {
       "status": "fail",
-      "error_count": 10,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2143",
@@ -6689,11 +6679,6 @@
           "code": "C2664",
           "msg": "'void (int *,unsigned long)' : cannot convert parameter 1 from 'long *' to 'int *'",
           "line": 1793
-        },
-        {
-          "code": "C2664",
-          "msg": "'PtrVec_InsertN' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 1874
         },
         {
           "code": "C2664",
@@ -7310,13 +7295,8 @@
     },
     "pal3/src/Render/RenderTarget3.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 1,
       "errors": [
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 103
-        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
@@ -7331,73 +7311,8 @@
     },
     "pal3/src/Role/Actor.cpp": {
       "status": "fail",
-      "error_count": 20,
+      "error_count": 3,
       "errors": [
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1271
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1342
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1342
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1492
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1493
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1552
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 1553
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1602
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1606
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1610
-        },
-        {
-          "code": "C2664",
-          "msg": "'PtrVec_InsertN_elem' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 1729
-        },
-        {
-          "code": "C2664",
-          "msg": "'PtrVec_InsertN_0' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 1764
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'int (__thiscall Actor::*)(void)' to 'int'",
-          "line": 1909
-        },
         {
           "code": "C2664",
           "msg": "'_strcmpi' : cannot convert parameter 1 from 'char' to 'const char *'",
@@ -7409,29 +7324,9 @@
           "line": 2016
         },
         {
-          "code": "C2440",
-          "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2141
-        },
-        {
           "code": "C2664",
           "msg": "'strcpy' : cannot convert parameter 2 from 'char' to 'const char *'",
           "line": 2273
-        },
-        {
-          "code": "C2664",
-          "msg": "'PtrVec_InsertN' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 2577
-        },
-        {
-          "code": "C2664",
-          "msg": "'PtrVec_Insert_word' : cannot convert parameter 4 from '__int16 *' to 'const unsigned short *'",
-          "line": 2596
-        },
-        {
-          "code": "C2440",
-          "msg": "'return' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3392
         }
       ]
     },
@@ -7801,7 +7696,7 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 45,
+      "error_count": 44,
       "errors": [
         {
           "code": "C2039",
@@ -7892,11 +7787,6 @@
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 1452
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 1472
         },
         {
           "code": "C2146",
@@ -8063,22 +7953,12 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 13,
+      "error_count": 11,
       "errors": [
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
           "line": 108
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 180
-        },
-        {
-          "code": "C2102",
-          "msg": "'&' requires l-value",
-          "line": 184
         },
         {
           "code": "C2446",
@@ -8789,89 +8669,89 @@
           "line": 8860
         },
         {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 8925
-        },
-        {
-          "code": "C2248",
-          "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 8925
-        },
-        {
           "code": "C2230",
           "msg": "'-' : indirection to different types",
-          "line": 9013
+          "line": 9019
         },
         {
           "code": "C2065",
           "msg": "'SingletonThunk_00539530' : undeclared identifier",
-          "line": 9155
+          "line": 9161
+        },
+        {
+          "code": "C2446",
+          "msg": "'!=' : no conversion from 'const char *' to 'void *'",
+          "line": 9463
         },
         {
           "code": "C2113",
           "msg": "pointer can only be subtracted from another pointer",
-          "line": 9478
+          "line": 9484
         },
         {
           "code": "C2113",
           "msg": "pointer can only be subtracted from another pointer",
-          "line": 10460
+          "line": 10467
         },
         {
           "code": "C2065",
           "msg": "'_strdate' : undeclared identifier",
-          "line": 10604
+          "line": 10611
         },
         {
           "code": "C2065",
           "msg": "'_strtime' : undeclared identifier",
-          "line": 10606
+          "line": 10613
         },
         {
           "code": "C2373",
           "msg": "'PAL3_LoadUICursor' : redefinition; different type modifiers",
-          "line": 11040
+          "line": 11047
         },
         {
           "code": "C2065",
           "msg": "'crt_sub_00541490' : undeclared identifier",
-          "line": 11122
+          "line": 11129
         },
         {
           "code": "C2065",
           "msg": "'v13' : undeclared identifier",
-          "line": 11161
+          "line": 11168
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'void *(__cdecl *)(class CCBSystem *,int)'",
-          "line": 11161
+          "line": 11168
         },
         {
           "code": "C2065",
           "msg": "'fn' : undeclared identifier",
-          "line": 11188
+          "line": 11195
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class CCBSystem *' to 'int'",
-          "line": 11235
+          "line": 11242
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 11235
+          "line": 11242
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 11236
+          "line": 11243
+        },
+        {
+          "code": "C2181",
+          "msg": "illegal else without matching if",
+          "line": 11248
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 11236
+          "line": 11248
         }
       ]
     },

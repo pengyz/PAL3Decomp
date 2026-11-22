@@ -4,8 +4,8 @@
  "known_members": {
   "0x0": {
    "name": "m_actarray_type",
-   "type": "unsigned char",
-   "source": "decomp:FastInit=m_actarray[0]=HIBYTE(this)/InitAction=actionType",
+   "type": "char",
+   "source": "decomp:FastInit=m_actarray[0]=HIBYTE(this)/InitAction=actionType | [type修正 20261122] unsigned char→char(return &this->m_actarray_type 期望 char*——C2440×2 实证; HIBYTE 渲染=byte 值语义 char 对齐)",
    "evidence_level": "unverified"
   },
   "0x4": {
@@ -3098,7 +3098,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(BuildCollisionM"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(BuildCollisionM",
+   "lvars": {
+    "pVal": "_WORD"
+   },
+   "lvars_note": "[F5 2026-11-22] PtrVec_Insert_word 调用点 C2664(__int16*→const _WORD*)根因=hexrays 按 IDB lvar 默认类型渲染 decl __int16; lvar 标注 _WORD → apply→set_lvar_type→re-export 后语料渲染 _WORD pVal // BYREF, &pVal 自然对型。零管线补丁, 数据层正解(L-VAR 链先例 CameraCtrl v7)。"
   },
   "0x0053beb0": {
    "name": "GetActionCountEx",
@@ -3682,18 +3686,6 @@
    },
    "name_note": " | 债清偿定谳20261121: debt_handwrite——真函数头(probe23: mov edx,arg/mov eax,[ecx+18h]); hexrays渲染空体(流异常)——需从asm手写 (probe23函数头验证+probe24就地反编译) | 债清偿定谳20261121(手写债消解): 67B体全量反汇编语义清晰——边界检查x∈[0,[this+18]->98)/y∈[0,->9C)→越界false/网格字节读取[base+(y*stride+x)*8+4]&FF(8字节步进元素+4偏移取字节)——2D网格GetCellStateByte; 名=functions.json自由声明族呼应(GetCellStateByte@0x46adf0声明收编形正是类限定前置); hexrays空体渲染根因=IDB缺签名(xor al部分寄存器返回+无类型)——sig注册后反编译自愈, 无需手写"
   },
-  "0x00538260": {
-   "name": "ClearModelFlag",
-   "source": "[函数归属 2026-10-17·主攻点 2 终] Actor——面卡④类=Actor（LoadActorModel/DoSceneTransition ✓）（五面卡类归属面 ✓ decomp member access 证）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x004083e0": {
    "name": "CheckSceneCollision",
    "evidence_level": "unverified",
@@ -3716,26 +3708,48 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckSceneCollision): int(int,int *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHH): int(int *"
   }
  },
- "vtables": [
-  {
-   "addr": "0x0056a6d0",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x004083b0",
-     "name": "_scalar_dtor_83B0"
-    },
-    {
-     "addr": "0x004083e0",
-     "name": "CheckSceneCollision"
-    },
-    {
-     "addr": "0x00408410",
-     "name": "_todo_8410"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~Actor()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留",
+ "_retired_vtables_20261122": {
+  "entries": [
+   {
+    "addr": "0x0056a6d0",
+    "base": null,
+    "slots": [
+     {
+      "addr": "0x004083b0",
+      "name": "_scalar_dtor_83B0"
+     },
+     {
+      "addr": "0x004083e0",
+      "name": "CheckSceneCollision"
+     },
+     {
+      "addr": "0x00408410",
+      "name": "_todo_8410"
+     }
+    ],
+    "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x4083D0 开头写（ctor 形）+PathObj::CalcLength+1498 reinit；ctor 已注册 Actor::_todo_004083D0 解锁"
+   }
+  ],
+  "retired_date": "2026-11-22",
+  "verdict": "死类裁决(写表铁律+引用图封闭): vtable 0x56A6D0 三证——①ctor 0x408390 全镜像零引用(imm32/E8 双普查, IDA 未识别独立函数起点) ②.rdata/.data 零挂载(无对象模板/无全局实例) ③dtor 对偶 0x4083B0↔0x4083D0 自封闭(唯一互引)。活类=FastInit@0x536A80 548B 容器(push 0x224→new→mov ecx,eax→call, 5 跨域调用点 Role/PalScript/Object3D/CCBStage/CScreenMode), +0x0=m_actarray_type byte flag 非 vptr。slot 函数(+0x18 map/+0x1C/+0x20 byte=0xFF 布局)属死族, 4 函数注解保留(0x4083B0/D0/E0/410)仅退役 vtables 条目。探针: tools/actor_layout_probe_20261122.py"
+ },
+ "_retired_methods_20261122": {
+  "0x00538260": {
+   "entry": {
+    "name": "ClearModelFlag",
+    "source": "[函数归属 2026-10-17·主攻点 2 终] Actor——面卡④类=Actor（LoadActorModel/DoSceneTransition ✓）（五面卡类归属面 ✓ decomp member access 证）",
+    "evidence_level": "unverified",
+    "sig_model": {
+     "return": "int",
+     "cc": "thiscall",
+     "params": [],
+     "varargs": false,
+     "pending": false
     }
-   ],
-   "source": "[97 族 ctor 注册解锁批 2026-10-16 analyzer] 认领 A 级：ctor 0x4083D0 开头写（ctor 形）+PathObj::CalcLength+1498 reinit；ctor 已注册 Actor::_todo_004083D0 解锁"
+   },
+   "retired_date": "2026-11-22",
+   "verdict": "遮蔽解除: functions.json 0x538260 自由条目在册(free_functions.h:79 CHAR* ClearModelFlag(CHAR*)), Actor.h:231 成员声明遮蔽全局 ⇒ (int)ClearModelFlag@DoSceneTransition 解析成员 → VC6 C2440 (成员fn不可转int)。机器码: ArraySort(0x401810)=ForEach stride 批量调用器 push 0x538260 字面量 + 唯一调用点 mov ecx,esi;call (thiscall/__fastcall 同形, 无成员专属形态)。数据层双账清除, 与 RTN 跨类错档同模式。"
   }
- ],
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~Actor()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形1留"
+ }
 }
