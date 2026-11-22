@@ -713,17 +713,13 @@ def check(struct_dir=None):
                     # Skip overlap for same-offset union variants
                     if off1 == off2:
                         continue
-                    # CCBStage.m_Task[256] is an intentional union overlay
-                    if sname == 'CCBStage' and m1.get('name') == 'm_Task':
-                        continue
-                    # SceneMgr has multiple memory views (flexible layout);
-                    # m_pRoleSystemArrayEnd at +50814 is part of a different view
-                    # than m_partyInitData at +50816 — intentional overlap.
-                    if sname == 'SceneMgr' and m1.get('name') in ('m_pRoleSystemArrayEnd',):
-                        continue
-                    # Skip if either member's source explicitly mentions overlap
-                    if 'overlap' in (m1.get('source', '') + sorted_m[i+1][1].get('source', '')).lower():
-                        continue
+                    # [豁免退役 2026-11-22·用户裁定 魔法关键词=反模式] 原 three
+                    # 豁免已删: ①硬编码 CCBStage.m_Task/SceneMgr.m_pRoleSystemArrayEnd
+                    # ——实测零触发(死分支); ②source 含 'overlap' 子串豁免——147
+                    # 成员/30 类标注中真实依赖仅 MainPropUI 1 对且已 FROZEN(frozen
+                    # 机制接管, 行为零变化)。真实意图重叠的正道=union 视图(dict
+                    # type, m_animStateU 先例)或 is_union 独立类; 未来新重叠逐案
+                    # 裁决, 报错可见。
                     msg = (f"structs[{sname}]: member overlap: " 
                            f"{m1.get('name')}({m1.get('type')}, size={size1})@{off1} " 
                            f"ends@{end1} > next {sorted_m[i+1][1].get('name')}@{off2}")
