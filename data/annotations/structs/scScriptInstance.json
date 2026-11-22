@@ -5,7 +5,7 @@
  "methods": {
   "0x0044e980": {
    "name": "Update",
-   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry",
+   "source": "own_slot_backfill 20261115: 槽声明存在但实现条目缺(converge迁移/历史缺口); 名签=槽位契约/registry | [ICF 裁决 20261122] 0x44E980 双账: UIEmote::OnVisible(语料 hexrays 名+4 成员访问面全吻合) vs scScriptInstance::Update(slot2 回填)。/OPT:ICF 字节相同合并, 两类 vtable slot 共享同一实现=shared_impl。guard RED(this->成员∈UIEmote)=共享实现操作宿主数据, 非归属错误",
    "evidence_level": "chain_unified",
    "sig_model": {
     "return": "BOOL",
@@ -23,7 +23,8 @@
     "varargs": false,
     "pending": false
    },
-   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int a3) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int"
+   "name_note": "C9级联正名20261116: slot2位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Update(基类同槽); 原名OnVisible=体读数命名 | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int a3) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+   "adjudication": "shared_impl"
   }
  },
  "vtables": [

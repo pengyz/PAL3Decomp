@@ -40,13 +40,42 @@ def build_member_index(ida_structs, structs_jsons):
         for m in items:
             if isinstance(m, dict) and m.get('name'):
                 s.add(m['name'])
+                # [union 变体名 2026-11-22] dict 型 type(union/struct 视图)的变体名
+                # 同为可引用成员(匿名提升, 发射器 _emit_member 展开)——递归收集,
+                # 与 check N13a 门同款(RoleSystem m_animStateU union 落地实证:
+                # 原索引丢 m_nAnimState/m_bActionPause ⇒ 14 引用单元 RED 误报)
+                _stk = [m.get('type')]
+                while _stk:
+                    _t = _stk.pop()
+                    if not isinstance(_t, dict):
+                        continue
+                    for _vk in ('union', 'struct'):
+                        for _vv in _t.get(_vk) or []:
+                            _vn = str(_vv.get('name') or '')
+                            if _vn:
+                                s.add(_vn)
+                            _stk.append(_vv.get('type'))
         idx[nm] = s
-    # R3: 继承闭包（bases 链成员并入）
-    for nm, d in (structs_jsons or {}).items():
-        for b in (d or {}).get('bases') or []:
-            bn = b.get('name') if isinstance(b, dict) else b
-            if bn and bn in idx:
-                idx[nm] |= idx[bn]
+    # R3: 继承闭包（bases 链成员并入）——[迭代不动点 2026-11-22] 原单层并入断链
+    # 实证: CCBParabolaWindow→UIFrameWnd→UIWnd, m_bvisible 族在 UIWnd(两层深)
+    # ⇒ 16 RED 误报。首版 BFS 时序 bug(叶子先于基处理, 拿到未闭包基索引)——
+    # 迭代至不动点(方向无关, 防御环): 任一轮有成员新增则再扫一轮
+    _names = list((structs_jsons or {}).keys())
+    for _round in range(16):   # 继承深度上限冗余(实测最深≤6)
+        _changed = False
+        for nm in _names:
+            _s = idx.get(nm)
+            if _s is None:
+                continue
+            _before = len(_s)
+            for b in (structs_jsons.get(nm) or {}).get('bases') or []:
+                bn = b.get('name') if isinstance(b, dict) else b
+                if bn and bn in idx:
+                    _s |= idx[bn]
+            if len(_s) != _before:
+                _changed = True
+        if not _changed:
+            break
     return idx
 
 
@@ -87,6 +116,13 @@ def main():
     for nm, d in structs.items():
         for addr, info in (d.get('methods') or {}).items():
             if not isinstance(info, dict):
+                continue
+            # [已裁定豁免 2026-11-22] adjudication ∈ 合法裁定集(claim_gate
+            # VALID_ADJ 同源)的条目=归属已定谳(ICF shared_impl/confirmed/
+            # transplant_valid 等)——guard 的成员反证针对「未裁定的误归属
+            # 嫌疑」, 已裁定条目不再产 RED(避免裁定后警报恒挂)
+            if info.get('adjudication') in ('confirmed', 'rejected',
+                                            'shared_impl', 'transplant_valid'):
                 continue
             body = ''
             for f in glob.glob(str(ROOT / ('asm/pal3/decomp/*%s*.json' % addr[-6:].lower()))):
