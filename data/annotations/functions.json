@@ -1167,7 +1167,9 @@
   "name": "Method_B560",
   "signature": "bool __thiscall(_DWORD *this, int a2, int a3)",
   "name_source": "IDA语义分析 2026-11-01 批14",
-  "name_note": "从 decomp 推断（sub_4AB560）"
+  "name_note": "从 decomp 推断（sub_4AB560）",
+  "free_helper_confirmed": true,
+  "source": " | [free_helper 确认 20261123] 模式化比较器: [this]=mode(0/1/2) 分发比较 a2/a3 的域(0x260/0x270 排序键); this=调用者栈上配置描述符(lea ecx,[esp+0x18] 实证, 非业务对象); 多类共享调用(ArcLocaleRole×5+CCBUICtrl×2)=自由比较器; 调用者内联排序循环(ArcLocaleRole 0x4AFD80 实证)"
  },
  "0x004b6d80": {
   "name": "Load",
