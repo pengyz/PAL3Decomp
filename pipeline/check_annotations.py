@@ -2065,11 +2065,14 @@ def _n20_scan(cls_forms, s4_rows):
             warnings.append(
                 "N20b[%s]: 类级载体全空(%d条dtor全压制) → ??1/??_G 符号双丢(债务可见)"
                 % (cls, len(allr)))
-        if recs['del'] and not recs['comp'] \
-                and all(not r['suppressed'] for r in recs['del']):
-            warnings.append(
-                "N20c[%s]: 删除式唯一形态未压制(collect 泛化跳过阻塞载体, 待N18联动通路)"
-                % cls)
+        # [N20c 退役 2026-11-22] 原警告"删除式唯一形态未压制(collect 泛化跳过阻塞
+        #   载体)"引用的机制已退役——S3 改革(dtor_intent 路由, collect.py D1 注释
+        #   12/12 字节证据证伪旧理论)后, "类仅删除式且未压制"=deleted-form ABI
+        #   **合法定义源态**(resolve_dtor_intent deleting_source body_emit=True,
+        #   N18 源级化)。该数据态不再是债务, 警告退役(plan_dtor_intent_reform
+        #   第145行自列此债)。扫描面扩 vtable slots(D14)由 N20a/b 的
+        #   cls_forms 构建侧吸收——slot 声明型条目已入 del/comp 计数。
+
     return errors, warnings
 
 

@@ -1167,9 +1167,9 @@
   "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
  },
  "0x005BC914": {
-  "name": "off_5BC914",
+  "name": "dword_5BC914",
   "type": "int",
-  "source": "C2065:skip_to_int | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）",
+  "source": "C2065:skip_to_int | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [name_drift对齐 20261122] 注解名 'off_5BC914' → IDB名 'dword_5BC914'(decomp引用真值, pipeline-data-flow-law)",
   "category": "ptr_table"
  },
  "0x005BC918": {
@@ -1179,9 +1179,9 @@
   "category": "const_data"
  },
  "0x005BC940": {
-  "name": "off_5BC940",
+  "name": "dword_5BC940",
   "type": "int",
-  "source": "C2065:skip_to_int | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）",
+  "source": "C2065:skip_to_int | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [name_drift对齐 20261122] 注解名 'off_5BC940' → IDB名 'dword_5BC940'(decomp引用真值, pipeline-data-flow-law)",
   "category": "ptr_table"
  },
  "0x005BEE3C": {
@@ -1494,11 +1494,11 @@
   "note": "alias of CEffMgr.m_nTargetSlot (same bytes; member authoritative)"
  },
  "0x005D87F0": {
-  "name": "unk_5D87F0",
+  "name": "byte_5D87F0",
   "reason": "CCBStageCam data area element",
   "type": "int",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 2026-11-11 type=skip→int: decomp引用byte_前缀,C2065×3实证=活变量"
+  "source": "| categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 2026-11-11 type=skip→int: decomp引用byte_前缀,C2065×3实证=活变量 | [name_drift对齐 20261122] 注解名 'unk_5D87F0' → IDB名 'byte_5D87F0'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x005D87F4": {
   "name": "roleIdx",
@@ -1508,11 +1508,11 @@
   "note": "alias of CEffMgr.roleIdx (same bytes; member authoritative)"
  },
  "0x005D8800": {
-  "name": "unk_5D8800",
+  "name": "dword_5D8800",
   "reason": "CCBStageCam data area element",
   "type": "int",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 2026-11-11 type=skip→int: decomp引用byte_前缀,C2065×3实证=活变量"
+  "source": "| categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | 2026-11-11 type=skip→int: decomp引用byte_前缀,C2065×3实证=活变量 | [name_drift对齐 20261122] 注解名 'unk_5D8800' → IDB名 'dword_5D8800'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x005D8808": {
   "name": "byte_5D8808",
@@ -1725,11 +1725,11 @@
   "category": "const_data"
  },
  "0x005D8A3C": {
-  "name": "off_5D8A3C",
+  "name": "byte_5D8A3C",
   "reason": "CCBStageCam data area element",
   "type": "char[4]",
   "category": "const_data",
-  "source": " | L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='Yes'; 原 unk_5D8A3C/skip 退役",
+  "source": "| L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='Yes'; 原 unk_5D8A3C/skip 退役 | [name_drift对齐 20261122] 注解名 'off_5D8A3C' → IDB名 'byte_5D8A3C'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8A40": {
@@ -1775,19 +1775,19 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x005D8A6C": {
-  "name": "unk_5D8A6C",
+  "name": "byte_5D8A6C",
   "reason": "CCBStageCam data area element",
   "type": "char[35]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='读取将会覆盖本次所作修改，确定吗？'; 原 unk_5D8A6C/skip 退役",
+  "source": "| L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='读取将会覆盖本次所作修改，确定吗？'; 原 unk_5D8A6C/skip 退役 | [name_drift对齐 20261122] 注解名 'unk_5D8A6C' → IDB名 'byte_5D8A6C'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8A90": {
-  "name": "unk_5D8A90",
+  "name": "byte_5D8A90",
   "reason": "CCBStageCam data area element",
   "type": "char[27]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='确定删除本列表所有任务吗？'; 原 unk_5D8A90/skip 退役",
+  "source": "| L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='确定删除本列表所有任务吗？'; 原 unk_5D8A90/skip 退役 | [name_drift对齐 20261122] 注解名 'unk_5D8A90' → IDB名 'byte_5D8A90'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8AB4": {
@@ -1818,19 +1818,19 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x005D8AD4": {
-  "name": "unk_5D8AD4",
+  "name": "byte_5D8AD4",
   "reason": "CCBStageCam data area element",
   "type": "char[29]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='时间、目标点、初速度全部已知'; 原 unk_5D8AD4/skip 退役",
+  "source": "| L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='时间、目标点、初速度全部已知'; 原 unk_5D8AD4/skip 退役 | [name_drift对齐 20261122] 注解名 'unk_5D8AD4' → IDB名 'byte_5D8AD4'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8AF4": {
-  "name": "unk_5D8AF4",
+  "name": "byte_5D8AF4",
   "reason": "CCBStageCam data area element",
   "type": "char[9]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='逻辑错误'; 原 unk_5D8AF4/skip 退役",
+  "source": "| L-VAR 2026-11-11g exe 字节 GBK 直读: CCBStageCam 调试对话框字符串池(23条全表定谳); 本条内容='逻辑错误'; 原 unk_5D8AF4/skip 退役 | [name_drift对齐 20261122] 注解名 'unk_5D8AF4' → IDB名 'byte_5D8AF4'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8B00": {
@@ -1855,19 +1855,19 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x005D8B14": {
-  "name": "unk_5D8B14",
+  "name": "byte_5D8B14",
   "reason": "CCBStageCam data area element",
   "type": "char[37]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框字符串池(23条全表定谳)同批补标; 内容='确定要读盘吗？将会覆盖刚才所做的修改'",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框字符串池(23条全表定谳)同批补标; 内容='确定要读盘吗？将会覆盖刚才所做的修改' | [name_drift对齐 20261122] 注解名 'unk_5D8B14' → IDB名 'byte_5D8B14'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8B3C": {
-  "name": "unk_5D8B3C",
+  "name": "byte_5D8B3C",
   "reason": "CCBStageCam data area element",
   "type": "char[5]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框字符串池(23条全表定谳)同批补标; 内容='注意'",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框字符串池(23条全表定谳)同批补标; 内容='注意' | [name_drift对齐 20261122] 注解名 'unk_5D8B3C' → IDB名 'byte_5D8B3C'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "A"
  },
  "0x005D8B44": {
@@ -2057,9 +2057,9 @@
   "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：仅"
  },
  "0x005DFDEB": {
-  "name": "unk_5DFDEB",
+  "name": "byte_5DFDEB",
   "type": "int",
-  "source": "C2065:skip_to_int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
+  "source": "C2065:skip_to_int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [name_drift对齐 20261122] 注解名 'unk_5DFDEB' → IDB名 'byte_5DFDEB'(decomp引用真值, pipeline-data-flow-law)",
   "category": "game_state"
  },
  "0x005DFDEC": {
@@ -3132,10 +3132,10 @@
   "note": "alias of ScriptSystemData.m_fScriptTileSize2 (same bytes; member authoritative)"
  },
  "0x00D8C1AC": {
-  "name": "unk_D8C1AC",
+  "name": "String",
   "type": "CHAR[260]",
   "category": "pending",
-  "source": "binary:A 级证据 Config::ReadSectionAsInt@0x42FDE0: push 0xff(=255)/push 0xd8c1ac/call ds:0x56a050(GetPrivateProfileStringA) → lpReturnedString 缓冲(260B); strcmp/atoi 其后。原名 String 无任何 binary 证据(source 以 \" | \" 起始=空源), 且与 data/annotations/structs/String.json 的 class String(0x4326A0) 撞名⇒ 5 单元 C2059。改中性名 unk_D8C1AC(同文件 90 条 unk_<ADDR> 先例), 语义证据留档待命名战役。"
+  "source": "binary:A 级证据 Config::ReadSectionAsInt@0x42FDE0: push 0xff(=255)/push 0xd8c1ac/call ds:0x56a050(GetPrivateProfileStringA) → lpReturnedString 缓冲(260B); strcmp/atoi 其后。原名 String 无任何 binary 证据(source 以 \" | \" 起始=空源), 且与 data/annotations/structs/String.json 的 class String(0x4326A0) 撞名⇒ 5 单元 C2059。改中性名 unk_D8C1AC(同文件 90 条 unk_<ADDR> 先例), 语义证据留档待命名战役。 | [name_drift对齐 20261122] 注解名 'unk_D8C1AC' → IDB名 'String'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00D8E468": {
   "name": "g_pLoadBuffer",
@@ -4151,11 +4151,11 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x005D89BC": {
-  "name": "off_5D89BC",
+  "name": "byte_5D89BC",
   "type": "char[3]",
   "reason": "inferred from decomp usage",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "source": "| categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [name_drift对齐 20261122] 注解名 'off_5D89BC' → IDB名 'byte_5D89BC'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x005D89C0": {
   "name": "aSmp",
@@ -4576,25 +4576,25 @@
   "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
  },
  "0x0056B794": {
-  "name": "off_56B794",
+  "name": "stru_56B794",
   "type": "const char *",
   "reason": ".rdata string constant",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": "| categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [name_drift对齐 20261122] 注解名 'off_56B794' → IDB名 'stru_56B794'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x005706CC": {
-  "name": "off_5706CC",
+  "name": "stru_5706CC",
   "type": "const char *",
   "reason": ".rdata string constant",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": "| categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [name_drift对齐 20261122] 注解名 'off_5706CC' → IDB名 'stru_5706CC'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00580CFC": {
-  "name": "off_580CFC",
+  "name": "asc_580CFC",
   "type": "const char *",
   "reason": "inferred from decomp usage",
   "category": "pending",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待"
+  "source": "| categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待 | [name_drift对齐 20261122] 注解名 'off_580CFC' → IDB名 'asc_580CFC'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00592E58": {
   "name": "off_592E58",
@@ -4604,18 +4604,18 @@
   "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待"
  },
  "0x005D8FEC": {
-  "name": "off_5D8FEC",
+  "name": "byte_5D8FEC",
   "type": "char[3]",
   "reason": "inferred from decomp usage",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "source": "| categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [name_drift对齐 20261122] 注解名 'off_5D8FEC' → IDB名 'byte_5D8FEC'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x005DB9B0": {
-  "name": "off_5DB9B0",
+  "name": "byte_5DB9B0",
   "type": "char[3]",
   "reason": "inferred from decomp usage",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "source": "| categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [name_drift对齐 20261122] 注解名 'off_5DB9B0' → IDB名 'byte_5DB9B0'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x0060113C": {
   "name": "off_60113C",
@@ -5567,9 +5567,9 @@
   "category": "const_data"
  },
  "0x00592E5C": {
-  "name": "dword_592E5C",
+  "name": "asc_592E5C",
   "type": "int",
-  "source": "phantom_auto | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待",
+  "source": "phantom_auto | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待 | [name_drift对齐 20261122] 注解名 'dword_592E5C' → IDB名 'asc_592E5C'(decomp引用真值, pipeline-data-flow-law)",
   "category": "pending"
  },
  "0x00DC483C": {
@@ -6351,15 +6351,15 @@
   "category": "const_data"
  },
  "0x00C0E760": {
-  "name": "unk_C0E760",
+  "name": "dword_C0E760",
   "type": "int",
-  "source": "phantom_auto | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账）",
+  "source": "phantom_auto | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账） | [name_drift对齐 20261122] 注解名 'unk_C0E760' → IDB名 'dword_C0E760'(decomp引用真值, pipeline-data-flow-law)",
   "category": "const_data"
  },
  "0x00C0EC50": {
-  "name": "unk_C0EC50",
+  "name": "dword_C0EC50",
   "type": "int",
-  "source": "phantom_auto | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待",
+  "source": "phantom_auto | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待 | [name_drift对齐 20261122] 注解名 'unk_C0EC50' → IDB名 'dword_C0EC50'(decomp引用真值, pipeline-data-flow-law)",
   "category": "pending"
  },
  "0x005F4B9C": {
@@ -6669,15 +6669,15 @@
   "category": "const_data"
  },
  "0x005D87F8": {
-  "name": "unk_5D87F8",
+  "name": "dword_5D87F8",
   "type": "int",
-  "source": "export_reimport | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
+  "source": "export_reimport | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [name_drift对齐 20261122] 注解名 'unk_5D87F8' → IDB名 'dword_5D87F8'(decomp引用真值, pipeline-data-flow-law)",
   "category": "game_state"
  },
  "0x005D87FC": {
-  "name": "unk_5D87FC",
+  "name": "dword_5D87FC",
   "type": "int",
-  "source": "export_reimport | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
+  "source": "export_reimport | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | [name_drift对齐 20261122] 注解名 'unk_5D87FC' → IDB名 'dword_5D87FC'(decomp引用真值, pipeline-data-flow-law)",
   "category": "game_state"
  },
  "0x005D897C": {
@@ -7665,9 +7665,9 @@
   "category": "game_state"
  },
  "0x00DBA25C": {
-  "name": "byte_DBA25C",
+  "name": "dword_DBA25C",
   "type": "int",
-  "source": "CRT init: converted from skip to int | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账）",
+  "source": "CRT init: converted from skip to int | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账） | [name_drift对齐 20261122] 注解名 'byte_DBA25C' → IDB名 'dword_DBA25C'(decomp引用真值, pipeline-data-flow-law)",
   "category": "const_data"
  },
  "0x00DC25F4": {
@@ -7707,9 +7707,9 @@
   "category": "const_data"
  },
  "0x017A89E8": {
-  "name": "byte_17A89E8",
+  "name": "Buffer",
   "type": "char[256]",
-  "source": "export_reimport | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账）",
+  "source": "export_reimport | categorize: G3 分类标注：零写点+数据访问=常量表/初值（注册内入账） | [name_drift对齐 20261122] 注解名 'byte_17A89E8' → IDB名 'Buffer'(decomp引用真值, pipeline-data-flow-law)",
   "category": "const_data"
  },
  "0x017AA91C": {
@@ -7892,9 +7892,9 @@
   "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
  },
  "0x00C11438": {
-  "name": "unk_C11438",
+  "name": "dword_C11438",
   "type": "int",
-  "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：锚",
+  "source": "CRT init: converted from skip to int | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：锚 | [name_drift对齐 20261122] 注解名 'unk_C11438' → IDB名 'dword_C11438'(decomp引用真值, pipeline-data-flow-law)",
   "category": "anchor_object"
  },
  "0x00580000": {
@@ -7904,34 +7904,34 @@
   "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
  },
  "0x005809E8": {
-  "name": "crt_initterm",
+  "name": "crt_initterm_0",
   "type": "skip",
   "category": "const_data",
-  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+  "source": "| categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [name_drift对齐 20261122] 注解名 'crt_initterm' → IDB名 'crt_initterm_0'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00580A04": {
-  "name": "crt_initterm",
+  "name": "crt_initterm_1",
   "type": "skip",
   "category": "const_data",
-  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+  "source": "| categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [name_drift对齐 20261122] 注解名 'crt_initterm' → IDB名 'crt_initterm_1'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00580A0C": {
-  "name": "crt_initterm",
+  "name": "crt_initterm_2",
   "type": "skip",
   "category": "const_data",
-  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+  "source": "| categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [name_drift对齐 20261122] 注解名 'crt_initterm' → IDB名 'crt_initterm_2'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00580A10": {
-  "name": "crt_initterm",
+  "name": "crt_initterm_3",
   "type": "skip",
   "category": "const_data",
-  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+  "source": "| categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、 | [name_drift对齐 20261122] 注解名 'crt_initterm' → IDB名 'crt_initterm_3'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00580A18": {
-  "name": "crt_initterm",
+  "name": "crt_initterm_4",
   "type": "skip",
   "category": "string_literal",
-  "source": " | categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入"
+  "source": "| categorize: G2 分类标注：串指纹三条件（可打印+NUL 收尾+指针实参）命中；注册内条目入 | [name_drift对齐 20261122] 注解名 'crt_initterm' → IDB名 'crt_initterm_4'(decomp引用真值, pipeline-data-flow-law)"
  },
  "0x00586194": {
   "type": "char *",
@@ -7985,36 +7985,36 @@
  "0x005D8E98": {
   "type": "char[21]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗指令有特殊功能'",
-  "name": "unk_5D8E98",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗指令有特殊功能' | [name_drift对齐 20261122] 注解名 'unk_5D8E98' → IDB名 'byte_5D8E98'(decomp引用真值, pipeline-data-flow-law)",
+  "name": "byte_5D8E98",
   "evidence_level": "A"
  },
  "0x005D8EC8": {
   "type": "char[23]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='数据库战斗技能范围有误'",
-  "name": "unk_5D8EC8",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='数据库战斗技能范围有误' | [name_drift对齐 20261122] 注解名 'unk_5D8EC8' → IDB名 'byte_5D8EC8'(decomp引用真值, pipeline-data-flow-law)",
+  "name": "byte_5D8EC8",
   "evidence_level": "A"
  },
  "0x005D8EE0": {
   "type": "char[23]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗技能消耗五灵属性'",
-  "name": "unk_5D8EE0",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗技能消耗五灵属性' | [name_drift对齐 20261122] 注解名 'unk_5D8EE0' → IDB名 'byte_5D8EE0'(decomp引用真值, pipeline-data-flow-law)",
+  "name": "byte_5D8EE0",
   "evidence_level": "A"
  },
  "0x005D8EF8": {
   "type": "char[19]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='战斗技能降低等级！'",
-  "name": "unk_5D8EF8",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='战斗技能降低等级！' | [name_drift对齐 20261122] 注解名 'unk_5D8EF8' → IDB名 'byte_5D8EF8'(decomp引用真值, pipeline-data-flow-law)",
+  "name": "byte_5D8EF8",
   "evidence_level": "A"
  },
  "0x005D8F0C": {
   "type": "char[25]",
   "category": "string_literal",
-  "source": " | L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗技能有奇怪的消耗值'",
-  "name": "unk_5D8F0C",
+  "source": "| L-VAR 2026-11-11g CCBStageCam对话框池余部 exe字节GBK直读(ida _globals 无此条, 新导出引用); 内容='此战斗技能有奇怪的消耗值' | [name_drift对齐 20261122] 注解名 'unk_5D8F0C' → IDB名 'byte_5D8F0C'(decomp引用真值, pipeline-data-flow-law)",
+  "name": "byte_5D8F0C",
   "evidence_level": "A"
  },
  "0x005DB6C4": {
@@ -8644,10 +8644,10 @@
   "name_note": "CEffectSystem 单例对象 BSS 存储(懒初始化包装: 首次调用构造+atexit 注册析构+返回地址)。全二进制仅 3 处引用(0x4c641e/0x4c643d/0x4c6450, 全在 0x4c6410)。真型 CEffectSystem*——CEffectSystem.cpp L125 返回单例地址(GetInstance 语义)。类型修正后 C2440 int→int* 自愈。"
  },
  "0x0058B770": {
-  "name": "nIndex",
+  "name": "nIndex_0",
   "type": "int",
   "category": "pending",
-  "source": " | L-VAR 2026-11-11: 类型定谳 int——全树使用点全 int 语境(循环上界/追加式 SetAt 首参/-1 算术), 与 g_pScriptObjArray 配对=count",
+  "source": "| L-VAR 2026-11-11: 类型定谳 int——全树使用点全 int 语境(循环上界/追加式 SetAt 首参/-1 算术), 与 g_pScriptObjArray 配对=count | [name_drift对齐 20261122] 注解名 'nIndex' → IDB名 'nIndex_0'(decomp引用真值, pipeline-data-flow-law)",
   "evidence_level": "use_site_majority"
  },
  "0x00580AFC": {

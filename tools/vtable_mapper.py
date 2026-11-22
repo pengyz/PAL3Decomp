@@ -115,6 +115,13 @@ def check(cls_name=None, structs=None, verbose=False):
             
             for si, slot in enumerate(slots):
                 addr = slot.get('addr', '')
+                # [空addr守卫 2026-11-22] 唯一所有者律去址槽(声明型, EffCallBackNode
+                # slot0/1 先例: 0x4C2600=CEffSParticle双账在册)——合法形态, 声明型
+                # 槽不参与地址闭环验证, 跳过且不中断整表校验(此前空串int()异常
+                # 中断整表=门禁对全库失效)
+                if not addr:
+                    stats['decl_slots'] = stats.get('decl_slots', 0) + 1
+                    continue
                 addr_int = int(addr, 16) if isinstance(addr, str) else addr
                 addr_hex = '0x%08X' % addr_int
                 # [from退役 2026-11-16] 继承=地址∈祖先链(推导, _in_chain已确认

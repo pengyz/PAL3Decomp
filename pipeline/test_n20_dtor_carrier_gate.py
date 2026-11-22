@@ -56,11 +56,13 @@ class TestN20DtorCarrierGate(unittest.TestCase):
         self.assertTrue(any('N20b' in w and 'X' in w for w in warns), warns)
 
     def test_t4_deleting_only_unsuppressed_warns(self):
-        _, warns = _n20_scan(
+        # [N20c 退役 2026-11-22] 原"泛化跳过阻塞载体"警告退役——S3 改革后
+        #   "类仅删除式且未压制"=deleted-form ABI 合法定义源态(resolve_dtor_intent
+        #   deleting_source body_emit=True), 非债务。现契约: 同数据态零警告。
+        errs, warns = _n20_scan(
             {'UIProgressBar': {'del': [{'addr': '0x439110', 'suppressed': False}],
                                'comp': []}}, self.ROWS)
-        self.assertTrue(any('N20c' in w and 'UIProgressBar' in w for w in warns),
-                        warns)
+        self.assertFalse([w for w in warns if 'N20c' in w], warns)
 
     def test_t5_healthy_silent(self):
         errs, _ = _n20_scan(
