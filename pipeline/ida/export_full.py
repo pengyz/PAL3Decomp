@@ -525,6 +525,39 @@ def main():
         except Exception as _me:
             log("[!] Mangler pre-pass error: %s" % str(_me)[:80])
 
+        # [O3 数据层身份清单 2026-11-22] asm/pal3/function_identity.json——
+        #   ?? 特形符号 match 配对的真值表（数据层定谳, compare_pal3 O5 解码器
+        #   机械 join）。全量模式产出（scoped 不写——主产物共享资产）。
+        #   单一构建源=pipeline/ida/function_identity.build_identity, 此处以
+        #   IDA func size 为权威 size_fn。
+        if not _sc_active:
+            try:
+                import function_identity as _fid
+            except ImportError:
+                _sys.path.insert(0, SCRIPT_DIR)
+                import function_identity as _fid
+
+            def _ida_size(_va):
+                _f = ida_funcs.get_func(_va)
+                return _f.size() if _f else None
+
+            _fid_rows, _fid_sus = _fid.build_identity(size_fn=_ida_size)
+            _fid_out = os.path.join(PROJECT_ROOT, 'asm', 'pal3',
+                                    'function_identity.json')
+            with open(_fid_out, 'w', encoding='utf-8') as _ffid:
+                _json.dump({
+                    '_doc': ('function_identity (O3 数据层身份清单)——?? 特形符号配对'
+                             '真值表；export_full 每轮以 IDA size 权威重生成'),
+                    '_law': ('决策在数据层, match 只机械 join (O5 结构解码); '
+                             '语料名=显示名非证据'),
+                    'count': len(_fid_rows), 'rows': _fid_rows,
+                    'suspects': _fid_sus}, _ffid, ensure_ascii=False, indent=1)
+            _fid_kinds = {}
+            for _fr in _fid_rows:
+                _fid_kinds[_fr['ann_kind']] = _fid_kinds.get(_fr['ann_kind'], 0) + 1
+            log("[*] function_identity: %d rows %s → %s (suspects=%d)"
+                % (len(_fid_rows), _fid_kinds, _fid_out, len(_fid_sus)))
+
         targets = []
         target_addrs = set()
         for ea in idautils.Functions(TEXT_START, TEXT_END):

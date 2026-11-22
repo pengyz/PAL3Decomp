@@ -2038,17 +2038,28 @@ def _n20_scan(cls_forms, s4_rows):
 
     for cls, recs in cls_forms.items():
         l1set = l1_by_cls.get(cls) or set()
+        # [O5 重校准 2026-11-22] 身份清单架构(function_identity manifest +
+        # compare_pal3 O5 结构解码)下, 删除式的配对=数据层真值 join + 编译器
+        # 合成——**都与语料压制无关**(实证: 33 L1 deleting 全部为压制态且
+        # 100% 配对; 2 例"唯一载体压制"亦经未注解语料路径存活)。N20a 对 del
+        # 降级为 advisory(载体若真死, coverage 棘轮接住); comp 压制保持 HARD
+        # (定义源切断=合成消失, 真实 P0)。
+        comp_alive = any(not r['suppressed'] for r in recs['comp'])
         for kind, lst in (('del', recs['del']), ('comp', recs['comp'])):
             for r in lst:
                 if not r['suppressed']:
                     continue
                 va = _norm(r['addr'])
                 hit = [sv for kv, sv in l1set if kv == kind and sv == va]
-                if hit:
-                    errors.append(
-                        "N20a[%s]:%s %s 压制切断L1载体(注册符号 va=%s 当前 match_L1, "
-                        "100.0%%字节匹配=最高证据级; 恢复=解除declaration_only/type=skip)"
+                if not hit:
+                    continue
+                _msg = ("N20a[%s]:%s %s 压制态 L1 载体(注册符号 va=%s 当前 match_L1, "
+                        "字节匹配=最高证据级; O5 架构下配对与压制正交"
                         % (cls, r['addr'], kind, hit[0]))
+                if kind == 'del':
+                    warnings.append(_msg + '——del 压制 advisory(coverage 棘轮兜底))')
+                else:
+                    errors.append(_msg + '; 恢复=解除declaration_only/type=skip)')
         allr = recs['del'] + recs['comp']
         if allr and all(r['suppressed'] for r in allr):
             warnings.append(

@@ -341,14 +341,94 @@ def build_basename_index(decomp_idx):
     return {k: v[0] for k, v in by_base.items() if len(v) == 1}
 
 
+# ─── [O5 结构解码 2026-11-22] ?? 特形符号统一解码 + 数据层身份清单 join ───
+# 架构定谳（对抗复核+架构审计双报告, 用户裁决路线）：??_G 删除式的配对键
+# 唯一供给曾是语料名形（每 loop 重导出的 IDB 名快照，漂移即断——18 载体
+# L1 断裂实证；mangled_map 现仅 2 个 ??_G 键 vs 缓存 obj 62 个 DEFINED
+# ??_G=配对 97% 死亡）。修复=**决策在数据层、管线机械 join**：
+#   asm/pal3/function_identity.json（pipeline/ida/function_identity.py 构建）
+#   = 真值表；本解码器从 obj 符号**结构解码** (kind, cls) 后按身份 join。
+# 语料名降级为显示名（pipeline-data-flow-law：导出快照非独立证据）。
+# 这同时是全部 ?? 特形（??0/??1/??_G/??_E）的统一解——mangler 不再单点。
+_SPECIAL_SYM_RE = re.compile(r'^\?\?(_[0-9A-Za-z]|[0-9A-Za-z])([A-Za-z_]\w*)(?:@[A-Za-z_]\w*)*@@')
+_SPECIAL_KIND = {'0': 'ctor', '1': 'complete_dtor', '_G': 'deleting_dtor',
+                 '_E': 'vector_dtor'}
+_SPECIAL_DISPLAY = {
+    'deleting_dtor': "`scalar deleting destructor'(uint)",
+    'vector_dtor': "`vector deleting destructor'(uint)",
+}
+_FUNCTION_IDENTITY = None
+_FUNCTION_IDENTITY_BY_ID = None
+
+
+def _load_function_identity():
+    """function_identity.json → (mangled→row, (ann_class,ann_kind)→[rows]) 双索引。"""
+    global _FUNCTION_IDENTITY, _FUNCTION_IDENTITY_BY_ID
+    if _FUNCTION_IDENTITY is None:
+        p = REPO / 'asm' / 'pal3' / 'function_identity.json'
+        rows = []
+        try:
+            rows = json.loads(p.read_text(encoding='utf-8')).get('rows') or []
+        except Exception:
+            pass
+        by_id = {}
+        for r in rows:
+            by_id.setdefault((r.get('ann_class'), r.get('ann_kind')), []).append(r)
+        _FUNCTION_IDENTITY, _FUNCTION_IDENTITY_BY_ID = rows, by_id
+    return _FUNCTION_IDENTITY
+
+
+def _decode_special_sym(sym):
+    """?? 特形符号 → (kind, cls)｜None。无类名段的全局特形(??_H/??3)不匹配。"""
+    m = _SPECIAL_SYM_RE.match(sym)
+    if not m:
+        return None
+    kind = _SPECIAL_KIND.get(m.group(1))
+    if not kind:
+        return None
+    return kind, m.group(2)
+
+
+def _identity_candidates(kind, cls):
+    """真值表 join：(kind, cls) → 配对候选条目（va/size 形状与语料通道一致）。
+
+    多行同键（MI 双址/ICF 共享/adjustor 双条目）→ 候选 list, compare_units
+    按 R6 多址机制逐址择优——字节比对裁决, 名层不裁决。"""
+    _load_function_identity()
+    out = []
+    for r in (_FUNCTION_IDENTITY_BY_ID or {}).get((cls, kind), ()):
+        if r.get('data_suspect'):
+            continue   # 外类条目不赋身份（function_identity 构建侧已降级, 双保险）
+        disp = _SPECIAL_DISPLAY.get(kind, '~%s' % cls if kind == 'complete_dtor' else cls)
+        _rv = r.get('va')
+        e = {'name': '%s::%s' % (cls, disp),
+             'va': _rv if isinstance(_rv, int) else int(str(_rv), 16),
+             '_from': 'function_identity'}
+        if isinstance(r.get('size'), int) and r['size'] > 0:
+            e['size'] = r['size']
+        out.append(e)
+    return out
+
+
 def match_symbols(funcs, mangled_map, base_idx):
     # [R6 签名键 20261120] 值=list(entry)——mangled 串=唯一身份键;
     # 同签名多址(MI 双 ??_G)聚合为 list, 交 compare_units 逐址择优
     matched = {}
     for sym in funcs:
+        # [O5] ?? 特形符号: 结构解码 → 身份清单 join（与 mangled_map 候选按
+        # va 去重合并——语料通道绑定与真值表冲突时由字节比对裁决）
+        dec = _decode_special_sym(sym)
+        ident_cand = _identity_candidates(*dec) if dec else None
         if sym in mangled_map:
             v = mangled_map[sym]
-            matched[sym] = v if isinstance(v, list) else [v]
+            lst = v if isinstance(v, list) else [v]
+            if ident_cand:
+                seen = {e['va'] for e in lst if isinstance(e, dict) and 'va' in e}
+                lst = lst + [e for e in ident_cand if e['va'] not in seen]
+            matched[sym] = lst
+            continue
+        if dec and ident_cand:
+            matched[sym] = ident_cand
             continue
         if sym.startswith('?'):
             # [T80/P0b] mangled 名解码兜底（N2 根因：修饰名返回型写法差异

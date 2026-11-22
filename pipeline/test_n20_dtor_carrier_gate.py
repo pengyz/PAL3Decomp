@@ -25,10 +25,21 @@ class TestN20DtorCarrierGate(unittest.TestCase):
     }
 
     def test_t1_suppress_va_hit_fires(self):
-        errs, _ = _n20_scan(
+        # [O5 重校准 2026-11-22] del 压制+L1=advisory(配对与压制正——manifest
+        # 数据层+编译器合成均不受语料压制影响, 33 L1 deleting 压制态实证);
+        # comp 压制+L1=HARD(定义源切断=合成消失, T6 保留)。
+        errs, warns = _n20_scan(
             {'Role': {'del': [{'addr': '0x00411bd0', 'suppressed': True}],
                       'comp': []}}, self.ROWS)
-        self.assertTrue(any('N20a' in e and 'Role' in e for e in errs), errs)
+        self.assertFalse([e for e in errs if 'N20a' in e], errs)
+        self.assertTrue(any('N20a' in w and 'Role' in w for w in warns), warns)
+
+    def test_t1b_comp_suppress_va_hit_hard(self):
+        errs, _ = _n20_scan(
+            {'UIProgressBar': {'del': [],
+                               'comp': [{'addr': '0x00439150', 'suppressed': True}]}},
+            self.ROWS)
+        self.assertTrue(any('N20a' in e and 'UIProgressBar' in e for e in errs), errs)
 
     def test_t2_sibling_suppress_no_fire(self):
         # 压制的是 0x411bb0(VA兄弟), 载体 0x411bd0 未压制 → 不报
