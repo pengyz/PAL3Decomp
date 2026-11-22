@@ -98,16 +98,22 @@
    "evidence_level": "unverified"
   },
   "0x84": {
-   "name": "m_nPosX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
+   "name": "m_fPosX",
+   "type": "float",
+   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float: 三链一致实证 ①SetPosX(0x43FD90) fild/fstp float 写 ②CheckMouseHit (double)m_nPosX 浮点比较读 ③(__int64)v24 截断写; 名 n→f 前缀语义一致",
+   "evidence_level": "unverified",
+   "former_names": [
+    "m_nPosX"
+   ]
   },
   "0x88": {
-   "name": "m_nPosY",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
+   "name": "m_fPosY",
+   "type": "float",
+   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float 同 0x84 链; n→f 前缀",
+   "evidence_level": "unverified",
+   "former_names": [
+    "m_nPosY"
+   ]
   },
   "0x8c": {
    "name": "m_nLoadResource",
@@ -940,6 +946,40 @@
     "pending": false
    },
    "name_note": "完全形dtor定谳20261121(idalib探针): ①删除式0x43BE10体内call sub_43BE30(D1调用链判据) ②本址体 mov [esi],stru_56ACD8=写UIScene vtable表1(写表身份铁律;表1=已注册vtables[1]槽5=0x43be10~UIScene同表互证) ③后调ReleaseTexture(析构清理语义)④地址相邻(0x43BE10+0x20). sub_43BE30未名→注册~UIScene(定义源; 4d织入剥离). 合成链: vtables槽证据+本定义→??1/??_GUIScene载体"
+  },
+  "0x0043fd90": {
+   "name": "SetPosX",
+   "source": "[归属迁移+正名 20261123] 原 SetFrameIndex(批6 推断误名——「帧」语义无据)。真语义: 设 UIScene 浮点坐标 X(写 this+0x84=m_fPosX, fild/fstp int→float)。调用点=各池元素内 UIScene 子对象(池步距 0x131C, 子对象@+0x34198 实证)",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nX"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0043fdb0": {
+   "name": "SetPosY",
+   "source": "[归属迁移+正名 20261123] 原 SetFrameCount(推断误名)。真语义: 设浮点坐标 Y(写 this+0x88=m_fPosY)",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nY"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [

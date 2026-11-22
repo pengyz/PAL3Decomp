@@ -1832,6 +1832,11 @@ def check_canonical_contract():
                 _n13 = _v13.get('name')
                 if _n13:
                     names.add(str(_n13))
+                # [former_names 改名过渡 2026-11-23] 改名迁移的过渡契约:
+                # 语料引用旧名(IDB 旧名渲染)到 apply+export 跟齐新名之间,
+                # 旧名仍是合法引用——结构化改名链记录(非豁免)
+                for _fn13 in (_v13.get('former_names') or []):
+                    names.add(str(_fn13))
                 # [union 变体名 2026-11-22] dict 型 type(union/struct 视图)的
                 # 变体名同样是可引用名(匿名 union/struct 成员提升到宿主作用域,
                 # 发射器 _emit_member 变体层展开)——递归收集, RoleSystem
