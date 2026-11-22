@@ -746,8 +746,12 @@ def cmd_match(args=()):
             prev_l1 = _pd.get('stats', {}).get('match_L1', 0)
             prev_sem = _pd.get('stats', {}).get('match_L1_semantic', 0)
             prev_pop = (_pd.get('stats', {}).get('matched'), _pd.get('stats', {}).get('symbols'))
-        except (json.JSONDecodeError, OSError):
-            pass
+        except (json.JSONDecodeError, OSError) as _pe:
+            # [审计 C5 2026-11-22] 基线存在但不可解析(截断/损坏)——静默 pass 会让
+            #   prev_l1=0 使本轮任意 L1 "不降"=无信号重锚。fail-loud 修复。
+            print("[ERROR] s4_baseline.json 存在但不可解析: %s" % _pe)
+            print("  棘轮拒绝无信号重锚——修复或删除该基线后重跑。")
+            sys.exit(1)
     script = os.path.join(_PIPELINE_DIR, 'compare_pal3.py')
     flags = "/nologo /TP /c /W3 /O2 /Ob2 /Oi /Ot /Oy /GF /Gy /GX /GR /MT /Gd"
     rc = subprocess.run([sys.executable, script, '--flags', flags]).returncode
@@ -817,31 +821,43 @@ def cmd_match(args=()):
                           "寄存器分配迁移（非真退步），棘轮维持基线"
                           % (prev_l1, cur_l1, prev_l1 + prev_sem, cur_l1 + cur_sem))
                 else:
-                    # [双账分账 2026-11-22 架构审计 B4] L1 降而 coverage 同降
-                    #   (matched 或 carrier.paired)=配对/测量域事件——字节从未被
-                    #   证明回归, 自动对齐并记 category=pairing-infra(不沉淀假地板,
-                    #   不消耗人工 rebaseline); coverage 稳才是真字节回归(hard fail)。
+                    # [双账分账 2026-11-22 架构审计 B4 + C1a 复核修正] L1 降而
+                    #   coverage 同降=配对/测量域事件——**仅当总体稳定**
+                    #   (pop_changed=False)才允许自动对齐: 总体变化(单元蒸发/人口
+                    #   收缩)下的同降可能是真损失(唯一定义源族压制), 审计实证
+                    #   probe 门只拦失败单元蒸发、绿单元蒸发无人拦 → 一律要求
+                    #   显式 rebaseline, 不得静默赦免。coverage 稳才是真字节回归。
                     _cov_drop = (
                         (prev_pop[0] is not None and cur_pop[0] is not None
                          and cur_pop[0] < prev_pop[0])
                         or (_prev_carrier is not None and _cur_carrier is not None
                             and _cur_carrier < _prev_carrier))
-                    if _cov_drop:
+                    if _cov_drop and not pop_changed:
                         _cat = {'category': 'pairing-infra',
+                                'prev_match_L1': prev_l1, 'cur_match_L1': cur_l1,
+                                'prev_population': {'matched': prev_pop[0],
+                                                    'symbols': prev_pop[1]},
+                                'cur_population': {'matched': cur_pop[0],
+                                                   'symbols': cur_pop[1]},
+                                'prev_carrier_paired': _prev_carrier,
+                                'cur_carrier_paired': _cur_carrier,
                                 'reason': ('L1 %d→%d 且 coverage 同降(matched %s→%s, '
-                                           'carrier.paired %s→%s)=配对/测量域事件——'
-                                           '双账自动对齐; 字节域棘轮不受影响'
+                                           'carrier.paired %s→%s)=配对/测量域事件且总体'
+                                           '稳定——双账自动对齐; 字节域棘轮不受影响'
                                            % (prev_l1, cur_l1, prev_pop[0], cur_pop[0],
                                               _prev_carrier, _cur_carrier)),
                                 'at': time.strftime('%Y-%m-%dT%H:%M:%S')}
                         cur['rebaseline'] = _cat
                         s4.write_text(json.dumps(cur, ensure_ascii=False, indent=1),
                                       encoding='utf-8')
-                        print("[L1 ratchet] ⚖️ 配对域事件(coverage 同降)——自动对齐至 %d, "
+                        print("[L1 ratchet] ⚖️ 配对域事件(coverage 同降且总体稳定)——自动对齐至 %d, "
                               "category=pairing-infra 已记档(字节域不变)" % cur_l1)
-                    elif prev_text is None or not prev_text:
-                        pass
                     else:
+                        if _cov_drop and pop_changed:
+                            print("[L1 ratchet] 🚨 L1 %d→%d 且 coverage 同降**且总体变化**——"
+                                  "可能是真损失(单元蒸发/唯一定义源压制, 审计 C1a masking "
+                                  "场景)被洗成配对域; 拒绝自动对齐, 须显式 --rebaseline 并逐条"
+                                  "归因" % (prev_l1, cur_l1))
                         # [L1身份差分 20261121] 丢失函数具名——身份集持久化后棘轮可精确点名
                         _prev_ids = set(map(tuple, (cur_prev_ids := None) or []))  # placeholder
                         try:

@@ -404,6 +404,10 @@ def _identity_candidates(kind, cls):
         e = {'name': '%s::%s' % (cls, disp),
              'va': _rv if isinstance(_rv, int) else int(str(_rv), 16),
              '_from': 'function_identity'}
+        # [审计 C1b 消费闭环 2026-11-22] slot_verified 透传——L1 命中无槽 deleting
+        #   时由 compare_units 计入 suspect 桶(可见化, 不阻断; 字节+语义锚定仍裁决)
+        if kind == 'deleting_dtor':
+            e['slot_verified'] = bool(r.get('slot_verified'))
         if isinstance(r.get('size'), int) and r['size'] > 0:
             e['size'] = r['size']
         out.append(e)
@@ -608,7 +612,13 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                                    reloc_type_map=reloc_type_map, va=e['va'])
             status = 'match_L1' if res['perfect'] else 'partial'
             if status == 'match_L1':
-                _L1_IDS.add((e.get('name') or _sn, e['va'], size))
+                _L1_IDS.add((e.get('name') or 'sym@%08X' % e['va'], e['va'], size))
+                # [审计 C1b 消费闭环 2026-11-22] 无槽 deleting 获 L1 → suspect 桶
+                #   (标准形跨类字节不可检, P0-1——slot_verified=唯一的静态锚定信号,
+                #   此前有产出零消费; 显式可见化, 不阻断——字节+reloc 语义已裁决)
+                if e.get('_from') == 'function_identity' and e.get('slot_verified') is False:
+                    stats.setdefault('carrier_suspect_l1', []).append(
+                        {'symbol': sym, 'name': e.get('name'), 'va': '0x%08X' % e['va']})
             # [PlanB-T3 2026-10-30] 尾跳 L1 空洞补环：尾跳族（5B E9）perfect 须叠加
             # 目标符号等同（rel32=reloc don't-care 致原判据只证 E9 一字节=假 L1 温床）。
             if status == 'match_L1' and gc.is_tail_jump_form(text[idx0:idx0 + size]):
@@ -631,6 +641,10 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                     stats.setdefault('tail_jump_downgrade_samples', []).append(
                         {'va': '0x%08X' % e['va'], 'name': e['name'],
                          'our': _our_t, 'orig': _orig_t})
+                    # [审计 C5 2026-11-22] 尾跳降级后从身份集摘除——否则 l1_identity
+                    #   虚胖(142 vs 139, 3 条幻影), 棘轮身份差分失真
+                    _L1_IDS.discard((e.get('name') or 'sym@%08X' % e['va'],
+                                     e['va'], size))
             # [R94d] 寄存器归一化分类（分析指标，不改 status）：
             # partial 的 diff 字节按 XOR 分类为 reg_diff（<0x3F）vs real_diff
             _sem_reg = 0; _sem_real = 0
@@ -942,6 +956,12 @@ def main():
                             'unpaired': len(_un), 'unpaired_syms': _un[:24]}
         print('carrier inventory: expected=%d paired=%d unpaired=%d'
               % (len(_expected), len(_ep), len(_un)))
+        _sus = stats.get('carrier_suspect_l1') or []
+        if _sus:
+            stats['carrier_suspect_l1_n'] = len(_sus)
+            print('carrier suspect L1 (deleting 无槽证据——标准形 P0-1 静态锚定缺失): %d' % len(_sus))
+            for _sr in _sus[:8]:
+                print('  suspect: %s %s @%s' % (_sr['symbol'][:34], _sr['name'][:36], _sr['va']))
         for _s in _un[:12]:
             print('  carrier unpaired: %s' % _s)
     except (OSError, json.JSONDecodeError) as _ce:

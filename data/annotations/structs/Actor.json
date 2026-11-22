@@ -3654,9 +3654,11 @@
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_83B0(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+   "flags_evidence": "IDA名字形态=_scalar_dtor_83B0(??1/??_G析构族); decomp文件=无独立decomp 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+   "name_note": "| [deleting 补标 2026-11-22 对抗复核V-P1] 三重铁证: exe vtable 0x56A6D0 slot0=0x4083B0(字节直读) + 30B标准形存根(568bf1前缀, 33/33全量字节核验在册) + obj ??_GActor@@UAEPAXI@Z DEFINED(s4_a659249d.obj sec59)——原flags缺deleting致 manifest kind=complete_dtor, ??_GActor 配对被阻(真断链)"
   },
   "0x00408410": {
    "name": "GetCellStateByte",

@@ -19,27 +19,27 @@
  ],
  "stats": {
   "symbols": 1034,
-  "matched": 915,
-  "unmatched": 224,
-  "match_L1": 139,
-  "match_L1_semantic": 9,
+  "matched": 916,
+  "unmatched": 223,
+  "match_L1": 140,
+  "match_L1_semantic": 8,
   "partial": 668,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
   "unresolved_synth": 108,
-  "reloc_total": 6924,
-  "reloc_ok": 1700,
+  "reloc_total": 6964,
+  "reloc_ok": 1706,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5224,
-  "rsite_total": 6924,
-  "rsite_unaligned": 6509,
-  "l1_bytes": 5771,
-  "l1_hidden_reloc_bytes": 1188,
-  "l1_reloc_covered_bytes": 1660,
+  "reloc_unresolved": 5258,
+  "rsite_total": 6964,
+  "rsite_unaligned": 6547,
+  "l1_bytes": 5825,
+  "l1_hidden_reloc_bytes": 1192,
+  "l1_reloc_covered_bytes": 1668,
   "rsite_ok": 66,
-  "rsite_class_ok": 313,
+  "rsite_class_ok": 314,
   "rsite_unresolved": 5,
   "rsite_unresolved_samples": [
    {
@@ -121,7 +121,7 @@
    }
   ],
   "rsite_self_local": 14,
-  "rsite_mismatch": 14,
+  "rsite_mismatch": 15,
   "rsite_mismatch_samples": [
    {
     "va": "0x004C6960",
@@ -220,19 +220,32 @@
     "orig": "PalScript::Reset(void)",
     "ours": "UIProgressBar::~UIProgressBar",
     "sym": "??1UIProgressBar@@UAE@XZ"
+   },
+   {
+    "va": "0x004083B0",
+    "off": 4,
+    "orig": "Actor::ReleasePath(int)",
+    "ours": "Actor::~Actor",
+    "sym": "??1Actor@@UAE@XZ"
    }
   ],
   "rsite_ok_directname": 2,
+  "carrier_suspect_l1": [
+   {
+    "symbol": "??_GEffCallBackNode@@UAEPAXI@Z",
+    "name": "EffCallBackNode::`scalar deleting destructor'(uint)",
+    "va": "0x004C34B0"
+   }
+  ],
   "rsite_class_mismatch": 3,
   "carrier": {
    "expected": 204,
-   "paired": 64,
-   "unpaired": 140,
+   "paired": 65,
+   "unpaired": 139,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
     "??1Actor@@UAE@XZ",
-    "??_GActor@@UAEPAXI@Z",
     "??1CCBControlWindow@@UAE@XZ",
     "??_GCCBControlWindow@@UAEPAXI@Z",
     "??1CCBFiveNimbusWindow@@UAE@XZ",
@@ -252,9 +265,11 @@
     "??_GCCBStage@@UAEPAXI@Z",
     "??1CCBStageCam@@UAE@XZ",
     "??_GCCBStageCam@@UAEPAXI@Z",
-    "??1CCBUI@@UAE@XZ"
+    "??1CCBUI@@UAE@XZ",
+    "??_GCCBUI@@UAEPAXI@Z"
    ]
-  }
+  },
+  "carrier_suspect_l1_n": 1
  },
  "rows": [
   {
@@ -1001,8 +1016,8 @@
    "name": "CEffCylinder::~CEffCylinder",
    "va": "0x004C3EB0",
    "status": "partial",
-   "match_pct": 57.1,
-   "size": 7
+   "match_pct": 19.6,
+   "size": 240
   },
   {
    "file": "pal3/src/Effect/CEffCylinder.cpp",
@@ -1011,7 +1026,7 @@
    "va": "0x004C3DB0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Effect/CEffCylinder.cpp",
@@ -1019,8 +1034,8 @@
    "name": "CEffCylinder::`scalar deleting destructor'(uint)",
    "va": "0x004C5810",
    "status": "partial",
-   "match_pct": 50.0,
-   "size": 8
+   "match_pct": 28.1,
+   "size": 32
   },
   {
    "file": "pal3/src/Effect/CEffCylinder.cpp",
@@ -1370,8 +1385,8 @@
    "name": "CEffQuake::`scalar deleting destructor'(uint)",
    "va": "0x004D3860",
    "status": "partial",
-   "match_pct": 50.0,
-   "size": 8
+   "match_pct": 25.0,
+   "size": 32
   },
   {
    "file": "pal3/src/Effect/CEffQuake.cpp",
@@ -2424,7 +2439,7 @@
    "va": "0x004431B0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -2432,8 +2447,8 @@
    "name": "CCBUIPanel::~CCBUIPanel",
    "va": "0x00446200",
    "status": "partial",
-   "match_pct": 42.0,
-   "size": 188
+   "match_pct": 43.2,
+   "size": 192
   },
   {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -2441,8 +2456,8 @@
    "name": "CCBUIPanel::~CCBUIPanel",
    "va": "0x00453E70",
    "status": "partial",
-   "match_pct": 25.5,
-   "size": 290
+   "match_pct": 38.5,
+   "size": 192
   },
   {
    "file": "pal3/src/Misc/CCBUIPanel.cpp",
@@ -3153,7 +3168,7 @@
    "va": "0x004C34B0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/EffCallBackNode.cpp",
@@ -3963,7 +3978,7 @@
    "va": "0x004A2150",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/RoleStatePanel.cpp",
@@ -4278,7 +4293,7 @@
    "va": "0x004B7CC0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/ScreenEffectNode.cpp",
@@ -4385,8 +4400,8 @@
    "name": "SkillUI::~SkillUI",
    "va": "0x00525520",
    "status": "partial",
-   "match_pct": 43.3,
-   "size": 30
+   "match_pct": 38.3,
+   "size": 128
   },
   {
    "file": "pal3/src/Misc/SkillUI.cpp",
@@ -4854,7 +4869,7 @@
    "va": "0x00452830",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp",
@@ -5025,7 +5040,7 @@
    "va": "0x005279D0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UICoverFrm.cpp",
@@ -5034,7 +5049,7 @@
    "va": "0x0052BBB0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UICoverFrm.cpp",
@@ -5196,7 +5211,7 @@
    "va": "0x004411B0",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UIMap.cpp",
@@ -5547,7 +5562,7 @@
    "va": "0x00529770",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
@@ -6077,8 +6092,8 @@
    "name": "UITitle_YXXX::~UITitle_YXXX",
    "va": "0x0047E570",
    "status": "partial",
-   "match_pct": 50.0,
-   "size": 8
+   "match_pct": 31.2,
+   "size": 240
   },
   {
    "file": "pal3/src/Misc/UITitle_YXXX.cpp",
@@ -6087,7 +6102,7 @@
    "va": "0x0047DD70",
    "status": "match_L1",
    "match_pct": 100.0,
-   "size": 30
+   "size": 32
   },
   {
    "file": "pal3/src/Misc/UITitle_YXXX.cpp",
@@ -6338,8 +6353,8 @@
    "name": "TextureLib::`scalar deleting destructor'(uint)",
    "va": "0x0053F5C0",
    "status": "partial",
-   "match_pct": 33.3,
-   "size": 30
+   "match_pct": 29.2,
+   "size": 48
   },
   {
    "file": "pal3/src/Render/TextureLib.cpp",
@@ -6590,8 +6605,8 @@
    "name": "ObjectCamera::~ObjectCamera",
    "va": "0x0047C570",
    "status": "partial",
-   "match_pct": 60.0,
-   "size": 5
+   "match_pct": 56.2,
+   "size": 16
   },
   {
    "file": "pal3/src/Role/ObjectCamera.cpp",
@@ -6745,6 +6760,15 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 30
+  },
+  {
+   "file": "pal3/src/Role/Role.cpp",
+   "symbol": "??_GActor@@UAEPAXI@Z",
+   "name": "Actor::`scalar deleting destructor'(uint)",
+   "va": "0x004083B0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 32
   },
   {
    "file": "pal3/src/Role/Role.cpp",
@@ -7523,6 +7547,11 @@
  ],
  "l1_identity": [
   [
+   "Actor::`scalar deleting destructor'(uint)",
+   4228016,
+   32
+  ],
+  [
    "ArcSceneObject::InitFromConfig(void)",
    5395648,
    87
@@ -7575,7 +7604,7 @@
   [
    "CCBPanelSlot::`scalar deleting destructor'(uint)",
    4469168,
-   30
+   32
   ],
   [
    "CCBResultWindow::SetDirty(void)",
@@ -7608,11 +7637,6 @@
    5
   ],
   [
-   "CCBStageEffect::PreLoadEffGroup(void)",
-   5279888,
-   5
-  ],
-  [
    "CCBStageShadow::FillShadowQuad(void)",
    5317376,
    5
@@ -7621,11 +7645,6 @@
    "CCBUIPanel::FocusCurrentRole(void)",
    4496272,
    66
-  ],
-  [
-   "CCBUIPanel::HideAll(void)",
-   4495760,
-   5
   ],
   [
    "CCBUIPanel::SetUserData(int)",
@@ -7715,7 +7734,7 @@
   [
    "CEffCylinder::`scalar deleting destructor'(uint)",
    4996528,
-   30
+   32
   ],
   [
    "CEffExplosive::AllocEffect(void)",
@@ -7835,7 +7854,7 @@
   [
    "EffCallBackNode::`scalar deleting destructor'(uint)",
    4994224,
-   30
+   32
   ],
   [
    "Iostream_init::Iostream_init(void)",
@@ -7861,11 +7880,6 @@
    "NPC::UpdateAnim(int)",
    4481056,
    10
-  ],
-  [
-   "NavFaceLayer::GetVertexNum(void)",
-   4531520,
-   5
   ],
   [
    "ObjectCamera::Destroy(void)",
@@ -7940,7 +7954,7 @@
   [
    "RoleStatePanel::`scalar deleting destructor'(uint)",
    4858192,
-   30
+   32
   ],
   [
    "SceneMapPlayer::ClearName(void)",
@@ -7970,7 +7984,7 @@
   [
    "ScreenEffectNode::`scalar deleting destructor'(uint)",
    4947136,
-   30
+   32
   ],
   [
    "TaskBookUI::Reset(void)",
@@ -8020,7 +8034,7 @@
   [
    "UIAnimateCtrlEX::`scalar deleting destructor'(uint)",
    4532272,
-   30
+   32
   ],
   [
    "UICoverFrm::SetCoverTexture(int)",
@@ -8030,12 +8044,12 @@
   [
    "UICoverFrm::`scalar deleting destructor'(uint)",
    5405136,
-   30
+   32
   ],
   [
    "UICoverFrm::`scalar deleting destructor'(uint)",
    5422000,
-   30
+   32
   ],
   [
    "UIDialog::ResetState(void)",
@@ -8075,7 +8089,7 @@
   [
    "UIMap::`scalar deleting destructor'(uint)",
    4460976,
-   30
+   32
   ],
   [
    "UINote::GetEntryPtr(int)",
@@ -8125,7 +8139,7 @@
   [
    "UIRoleSelectDialog::`scalar deleting destructor'(uint)",
    5412720,
-   30
+   32
   ],
   [
    "UIScene::`scalar deleting destructor'(uint)",
@@ -8195,7 +8209,7 @@
   [
    "UITitle_YXXX::`scalar deleting destructor'(uint)",
    4709744,
-   30
+   32
   ],
   [
    "UIWnd::GetState(void)",
