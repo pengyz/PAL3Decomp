@@ -139,5 +139,15 @@
   "ctor_evidence": "ctor 0x44e530写表链: [esi]←scScriptInstance表@0x56b050(slot3起: ShowClipped/Render/OnVisible/HideAll/Create/dtor/OnMessage) @0x44e58f + [esi+44h]←off_56B044(slot0起: Reset/GetType/UpdateFrame) @0x44e595; 组合表10槽逐槽吻合二进制(T3 probe44)",
   "dtor_evidence": "删除式0x44e5c0(次表slot8): call ??1scScriptInstance@0x44e5e0(基dtor)+flags&1+operator delete",
   "verdict_by": "本机idalib探针31-44(UIEmote专项系列) + T4对抗复核七组声明全验证"
+ },
+ "CUtil": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-22",
+  "ctor_evidence": "0x52314E call 0x43DCD0(UIListBox ctor, identity ann_class=UIListBox kind=ctor 实锤)——CUtil::CUtil@0x523130 首指令基构造直调, this 直传",
+  "dtor_evidence": "~CUtil 语料单元@0x5230F0 错位(hexrays thunk 语义跟随渲染为 CUtil::Create(this); 0x5230F0..0x523130 区域=4 个 3 指令 init thunk 全挂 CUtil 名族=语料名漂移区, 新挂账待真 dtor 定位)——ctor 侧单证据先行, dtor 侧随真 dtor 定位补强",
+  "verdict_by": "本机capstone验证+identity join",
+  "note": "CUtil=管理中心类(继承 UIListBox+内嵌 UIRoleDialog@m_uiItemSlot); bases 缺失导致 guard 继承闭包/member 索引断链(C11 补齐联动归属考证)"
  }
 }

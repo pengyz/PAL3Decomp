@@ -2,46 +2,10 @@
  "name": "CUtil",
  "binary_size": 1772,
  "known_members": {
-  "0x0": {
-   "name": "m_bCanWarp",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x4": {
-   "name": "m_nRandHolder",
-   "type": "short",
-   "source": "A:66_prefix_word_access_in_class_method",
-   "evidence_level": "unverified"
-  },
-  "0x8": {
-   "name": "m_nRandCallCount",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_fLog",
-   "type": "FILE *",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_sLogFileName",
-   "type": "char *",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
   "0x118": {
    "name": "m_pDefaultString",
    "type": "char *",
    "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x14": {
-   "name": "m_szLogPath",
-   "type": "char[260]",
-   "source": "binary:MAX_PATH_buffer_0x104",
    "evidence_level": "unverified"
   },
   "0x170": {
@@ -110,6 +74,42 @@
    "name": "m_nRenderMode",
    "type": "int",
    "source": "decomp:UpdateParabola_switch(0..4)_selects_which_subsystem_renders",
+   "evidence_level": "unverified"
+  },
+  "0x0": {
+   "name": "m_bCanWarp",
+   "type": "unsigned char",
+   "source": "annotation",
+   "evidence_level": "unverified"
+  },
+  "0x4": {
+   "name": "m_nRandHolder",
+   "type": "short",
+   "source": "A:66_prefix_word_access_in_class_method",
+   "evidence_level": "unverified"
+  },
+  "0x8": {
+   "name": "m_nRandCallCount",
+   "type": "int",
+   "source": "gen_headers_9.2",
+   "evidence_level": "unverified"
+  },
+  "0xc": {
+   "name": "m_fLog",
+   "type": "FILE *",
+   "source": "gen_headers_9.2",
+   "evidence_level": "unverified"
+  },
+  "0x10": {
+   "name": "m_sLogFileName",
+   "type": "char *",
+   "source": "gen_headers_9.2",
+   "evidence_level": "unverified"
+  },
+  "0x14": {
+   "name": "m_szLogPath",
+   "type": "char[260]",
+   "source": "binary:MAX_PATH_buffer_0x104",
    "evidence_level": "unverified"
   }
  },
@@ -333,5 +333,9 @@
    "evidence_level": "binary_ctor_write"
   }
  ],
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CUtil()再生(deleting/adjustor/ICF形态均再生); 槽绑定0+完整形1留"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CUtil()再生(deleting/adjustor/ICF形态均再生); 槽绑定0+完整形1留",
+ "_cutil_layout_rebuild_pending_20261122": {
+  "verdict": "继承 UIListBox@0 铁证已采(ctor 0x52314E call 0x43DCD0 基构造+基 vtable 0x56AD20+派生 vtable 0x5705F4 覆盖@0 完整链写序; adjudication 已入 bases_adjudications.json)——落地阻塞: known_members 低偏移 6 成员(m_bCanWarp@0/m_nRandHolder@4/m_nRandCallCount@8/m_fLog@c/m_sLogFileName@10/m_szLogPath@14[260])与基区冲突, 但语料引用这些名(N13a 断链)且真实偏移未知(IDB 错布局环形论证无法直读)。前置工程=CUtil 全布局重建(ctor 写序已采: 0x58 屏宽 0x5C 屏高 0x168/0x16C 已正/0x6C8..0x6DC 指针组/0x6E8 byte; 另需日志域 fopen/strcpy 写入点定位真实偏移), 完成后 bases+成员一并落地",
+  "date": "2026-11-22"
+ }
 }
