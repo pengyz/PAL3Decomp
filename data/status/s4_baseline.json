@@ -18,23 +18,23 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1106,
-  "matched": 970,
-  "unmatched": 241,
+  "symbols": 1111,
+  "matched": 983,
+  "unmatched": 242,
   "match_L1": 144,
   "match_L1_semantic": 13,
-  "partial": 720,
+  "partial": 727,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 106,
-  "reloc_total": 7411,
-  "reloc_ok": 1801,
+  "unresolved_synth": 112,
+  "reloc_total": 7443,
+  "reloc_ok": 1816,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5610,
-  "rsite_total": 7411,
-  "rsite_unaligned": 6987,
+  "reloc_unresolved": 5627,
+  "rsite_total": 7443,
+  "rsite_unaligned": 7019,
   "l1_bytes": 5965,
   "l1_hidden_reloc_bytes": 1211,
   "l1_reloc_covered_bytes": 1696,
@@ -225,8 +225,8 @@
   "rsite_class_mismatch": 3,
   "carrier": {
    "expected": 204,
-   "paired": 66,
-   "unpaired": 138,
+   "paired": 69,
+   "unpaired": 135,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -439,6 +439,15 @@
   },
   {
    "file": "pal3/src/Combat/CCBMagicWindow.cpp",
+   "symbol": "??1CCBMagicWindow@@UAE@XZ",
+   "name": "CCBMagicWindow::~CCBMagicWindow(void)",
+   "va": "0x0051B690",
+   "status": "partial",
+   "match_pct": 63.3,
+   "size": 79
+  },
+  {
+   "file": "pal3/src/Combat/CCBMagicWindow.cpp",
    "symbol": "??0CCBMagicWindow@@QAE@HHPAH@Z",
    "name": "CCBMagicWindow::CCBMagicWindow(int,int,int *)",
    "va": "0x0051B9F0",
@@ -497,7 +506,7 @@
    "name": "CCBMagicWindow::CreateButton(int *,int)",
    "va": "0x0051BC70",
    "status": "partial",
-   "match_pct": 28.2,
+   "match_pct": 27.2,
    "size": 1184
   },
   {
@@ -2936,7 +2945,7 @@
    "name": "CJ_FindFile::Create(int,void *,int,char *)",
    "va": "0x00450F90",
    "status": "partial",
-   "match_pct": 16.6,
+   "match_pct": 16.1,
    "size": 610
   },
   {
@@ -4385,7 +4394,7 @@
    "name": "SkillUI::InitSkillUI(int)",
    "va": "0x005257B0",
    "status": "partial",
-   "match_pct": 15.4,
+   "match_pct": 14.3,
    "size": 2891
   },
   {
@@ -5533,6 +5542,15 @@
   },
   {
    "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "??1UIRoleSelectDialog@@UAE@XZ",
+   "name": "UIRoleSelectDialog::~UIRoleSelectDialog",
+   "va": "0x00529790",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 213
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
    "symbol": "?Render@UIRoleSelectDialog@@UAEXXZ",
    "name": "UIRoleSelectDialog::Render(void)",
    "va": "0x00529CF0",
@@ -5987,7 +6005,7 @@
    "name": "UITitle_XJTM::UpdateMonsterEntry2(int,int *)",
    "va": "0x004999D0",
    "status": "partial",
-   "match_pct": 21.3,
+   "match_pct": 20.9,
    "size": 752
   },
   {
@@ -6115,6 +6133,51 @@
    "status": "partial",
    "match_pct": 8.6,
    "size": 336
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??1WeatherEffectNode@@UAE@XZ",
+   "name": "WeatherEffectNode::~WeatherEffectNode(void)",
+   "va": "0x00405310",
+   "status": "partial",
+   "match_pct": 25.8,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??_GWeatherEffectNode@@UAEPAXI@Z",
+   "name": "WeatherEffectNode::`scalar deleting destructor'(uint)",
+   "va": "0x00404D40",
+   "status": "partial",
+   "match_pct": 48.4,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??_GWeatherEffectNode@@UAEPAXI@Z",
+   "name": "WeatherEffectNode::`scalar deleting destructor'(uint)",
+   "va": "0x00405310",
+   "status": "partial",
+   "match_pct": 48.4,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??_GWeatherEffectNode@@UAEPAXI@Z",
+   "name": "WeatherEffectNode::`scalar deleting destructor'(uint)",
+   "va": "0x00405560",
+   "status": "partial",
+   "match_pct": 48.4,
+   "size": 31
+  },
+  {
+   "file": "pal3/src/Misc/WeatherEffectNode.cpp",
+   "symbol": "??_GWeatherEffectNode@@UAEPAXI@Z",
+   "name": "WeatherEffectNode::`scalar deleting destructor'(uint)",
+   "va": "0x00405580",
+   "status": "partial",
+   "match_pct": 48.4,
+   "size": 31
   },
   {
    "file": "pal3/src/Misc/_Console.cpp",
@@ -6644,7 +6707,7 @@
    "name": "Actor::ProcessActorFrame(void)",
    "va": "0x00536560",
    "status": "partial",
-   "match_pct": 14.5,
+   "match_pct": 15.2,
    "size": 825
   },
   {
@@ -8755,5 +8818,19 @@
    5436128,
    28
   ]
- ]
+ ],
+ "rebaseline": {
+  "reason": "PalScriptAnimTimer filebuf 误标清除(0x438EB0=PalScriptAnimTimer complete dtor 铁证: 写派生 vtable 0x56AC08+清单例 0xBFDA34+写基表 0x56A9C0, 原 filebuf.json ~filebuf unverified 机械迁移误标清除)+complete 条目补齐(定义源形态) → 语料重导 pairing 域微扩(983/1111)+coverage 66→69(+3 PalScriptAnimTimer 域新配对)。L1 144 平稳零复丢。附带: check 警告 25→22(误标警报链清偿)",
+  "at": "2026-11-23T00:39:58",
+  "prev_match_L1": 144,
+  "cur_match_L1": 144,
+  "prev_population": {
+   "matched": 983,
+   "symbols": 1111
+  },
+  "cur_population": {
+   "matched": 983,
+   "symbols": 1111
+  }
+ }
 }

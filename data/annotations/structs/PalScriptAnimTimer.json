@@ -73,6 +73,22 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x00438eb0": {
+   "name": "~PalScriptAnimTimer",
+   "source": "[误标清除 20261123] 原 filebuf.json ~filebuf 误标(旧 IDB 名机械迁移)。机器码铁证 complete dtor: 写派生 vtable 0x56AC08(slots=0x438E90 deleting/0x438100 IsAnimDone/0x438E30 AccumulateTime)+清全局单例 0xBFDA34(单例注销)+写基表 0x56A9C0——完整 dtor 链序; declaration_only=产物族成员(C8 豁免, deleting 条目 0x00438E90=定义源) | complete 条目=定义源(非产物成员): 族内含非删除式(complete) ⇒ 删除式 0x438E90 不得立为定义源(T4-P0), 定义源=本条目 (deleted-form ABI 判据仅适用于全删除式族)",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA 形态=??1 PalScriptAnimTimer complete dtor(写双 vtable 链序)"
   }
  },
  "vtables": [
