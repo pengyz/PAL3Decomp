@@ -88,3 +88,42 @@ class TestN20DtorCarrierGate(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class TestN22PairClosureGate(unittest.TestCase):
+    """N22 对偶闭环门活性(N19)——门首跑即捕 35+42(与本会话案件批一致)。"""
+
+    def test_n22_aggregate_warning_fires(self):
+        # 门为文件驱动(exe 字节+注解全量)——空输入也跑 → 聚合警告必在
+        errs, warns = _n20_scan({}, {})
+        self.assertTrue(any('N22' in w for w in warns),
+                        'N22 聚合警告消失——门失效')
+        self.assertTrue(any('完全形缺失' in w for w in warns))
+
+    def test_n22_worklist_written(self):
+        import json as _j
+        wl_p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            'data', 'status', 'n22_pair_closure.json')
+        self.assertTrue(os.path.exists(wl_p), '工作清单未落盘')
+        d = _j.load(open(wl_p, encoding='utf-8'))
+        self.assertIn('n22a_complete_missing', d)
+        self.assertIn('n22b_naked_complete', d)
+
+
+class TestExeTextSpan(unittest.TestCase):
+    def test_real_exe_bounds(self):
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from check_annotations import _exe_text_span
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        span = _exe_text_span(os.path.join(root, 'original', 'PAL3.exe'))
+        self.assertIsNotNone(span)
+        va, body = span
+        self.assertEqual(va, 0x401000)
+        self.assertGreater(len(body), 0x100000)   # .text > 1MB
+
+    def test_missing_exe_none(self):
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from check_annotations import _exe_text_span
+        self.assertIsNone(_exe_text_span('/nonexistent.exe'))

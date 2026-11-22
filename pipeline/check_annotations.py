@@ -13,6 +13,7 @@
 """
 
 import json
+import glob
 import os
 import re
 try:
@@ -29,6 +30,29 @@ from pipeline.gen.annotation_view import iter_struct_files, iter_structs, load_s
 from pipeline.ida.vc6_mangler import strip_stamp   # [D7] 单源
 
 ANN_DIR = os.path.join(_PROJECT_ROOT, 'data', 'annotations')
+
+def _exe_text_span(exe_path):
+    """读 exe .text (VA, body)——N22 对偶闭环/N24 地址域门共用。异常返回 None。"""
+    import struct as _s22x
+    try:
+        _d = open(exe_path, 'rb').read()
+    except OSError:
+        return None
+    try:
+        _e = _s22x.unpack_from('<I', _d, 0x3C)[0]
+        _ns = _s22x.unpack_from('<H', _d, _e + 6)[0]
+        _opt = _s22x.unpack_from('<H', _d, _e + 20)[0]
+        for _i in range(_ns):
+            _s = _e + 24 + _opt + 40 * _i
+            if _d[_s:_s + 8].rstrip(b'\0') == b'.text':
+                _vs, _va, _rs, _ra = _s22x.unpack_from('<IIII', _d, _s + 8)
+                return (_va + 0x400000, _d[_ra:_ra + _rs])
+    except Exception:
+        pass
+    return None
+
+
+
 
 
 
@@ -251,6 +275,21 @@ def check(struct_dir=None):
                 warnings.append(
                     f"functions[{addr}]: 'virtual' in free function '{name}' "
                     f"(sig: {sig[:60]}) — generic this type, cannot determine class")
+
+        # [N24 地址域门 2026-11-22] functions 条目地址必须落在 .text——
+        #   .rdata/数据区"函数"=IDA 误析幽灵(本会话 gbVec3D_ctor size=3B 实证:
+        #   字节=指针数组, 零呼叫者)。ERROR 级: 数据区无代码语义。
+        _exe_span24 = _exe_text_span(os.path.join(_PROJECT_ROOT, 'original', 'PAL3.exe'))
+        try:
+            _addr24 = int(addr, 16)
+        except (ValueError, TypeError):
+            _addr24 = None
+        if _exe_span24 and _addr24 is not None:
+            _t24va, _t24body = _exe_span24
+            if not (_t24va <= _addr24 < _t24va + len(_t24body)):
+                errors.append(
+                    f"functions[{addr}]: 地址不在 .text 段({nm} in "
+                    f"{hex(_t24va)}-{hex(_t24va + len(_t24body))})——数据区幽灵条目, 删除")
 
         # Check 2: __thiscall without :: suggests misattributed member function
         # （判据修正 2026-10-17 verifier：签名含 '::' 不报——R15 纯函数）
@@ -2077,6 +2116,80 @@ def _n20_scan(cls_forms, s4_rows):
         #   N18 源级化)。该数据态不再是债务, 警告退役(plan_dtor_intent_reform
         #   第145行自列此债)。扫描面扩 vtable slots(D14)由 N20a/b 的
         #   cls_forms 构建侧吸收——slot 声明型条目已入 del/comp 计数。
+
+    # [N22 dtor 对偶闭环门 2026-11-22] 本会话深层发现的产线化:
+    #   删除式存根(标准形 568bf1+E8) call@3 REL32 目标=同类完全形真址(编译器
+    #   配对语义, 与名字标签无关=最硬锚定)。双向闭环:
+    #   N22a 删除式→完全形: slot-verified 删除式的 call 目标必须存在同类 ~Cls
+    #        complete_dtor 注解条目——缺失=完全形缺失/误名预测(本会话 24 案
+    #        MULTI_CLAIM+6 误名+Actor 全为此形态)
+    #   N22b 完全形→删除式锚定: complete_dtor 条目未被同类删除式 call@3 锚定
+    #        =裸 claim 预测(CEffect::UpdateCallback 0x4D0DB0 案)
+    # 裁决三态先例(正名/退役/暂留)逐案消费本清单, 警告聚合单条防反弹。
+    import struct as _s22
+    _n22_span = _exe_text_span(os.path.join(_PROJECT_ROOT, 'original', 'PAL3.exe'))
+    if _n22_span:
+        _tva, _tbody = _n22_span
+        _STUB = b'\x56\x8b\xf1\xe8'
+        # ①索引: 删除式(标准形)与其 call 目标; 完全形注解址
+        _del_rows = []   # (cls, del_va, target_va, slot_verified)
+        _comp_addrs = {}  # (cls) → set(va) kind=complete_dtor 且非 decl 产物
+        for _sf in sorted(glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations',
+                                                  'structs', '*.json'))):
+            try:
+                _sd22 = json.load(open(_sf, encoding='utf-8'))
+            except Exception:
+                continue
+            _cn22 = _sd22.get('name') or os.path.basename(_sf)[:-5]
+            for _a22, _m22 in (_sd22.get('methods') or {}).items():
+                if (_m22 or {}).get('adjudication') == 'rejected':
+                    continue
+                _fl = _m22.get('flags') or []
+                try:
+                    _va = int(_a22, 16)
+                except (ValueError, TypeError):
+                    continue
+                if 'dtor' not in _fl:
+                    continue
+                if 'deleting' in _fl:
+                    _off = _va - _tva
+                    if 0 <= _off < len(_tbody) - 30:
+                        _b = _tbody[_off:_off + 30]
+                        if _b[:4] == _STUB:
+                            _rel = _s22.unpack('<i', _b[4:8])[0]
+                            _del_rows.append((_cn22, _va, _va + 8 + _rel,
+                                              _m22.get('slot_verified') is True))
+                else:
+                    _comp_addrs.setdefault(_cn22, set()).add(_va)
+
+        _n22a_miss, _n22b_naked = [], []
+        for _cn, _dva, _tva22, _sv in _del_rows:
+            if _tva22 in _comp_addrs.get(_cn, ()):
+                continue
+            _n22a_miss.append({'cls': _cn, 'deleting_va': '0x%08x' % _dva,
+                               'target_va': '0x%08x' % _tva22,
+                               'slot_verified': _sv,
+                               'predict': '该址=同类完全形真址(编译器配对), '
+                                          '未注解或误名——正名/退役/暂留三态裁决'})
+        for _cn, _cset in _comp_addrs.items():
+            _anchored = {t for _, t, _, _ in _del_rows if _cn == _}
+            # ②反向: 完全形注解址未被同类任一删除式锚定 → 裸 claim
+            _del_targets = {t for _, _, t, _ in _del_rows}
+            for _cva in _cset:
+                if _cva not in _del_targets:
+                    _n22b_naked.append({'cls': _cn, 'va': '0x%08x' % _cva})
+        if _n22a_miss or _n22b_naked:
+            _wl = {'_doc': ('N22 dtor 对偶闭环工作清单 2026-11-22——三态裁决'
+                            '(正名/退役/暂留)逐案消费'),
+                   'n22a_complete_missing': _n22a_miss,
+                   'n22b_naked_complete': _n22b_naked}
+            _wl_p = os.path.join(_PROJECT_ROOT, 'data', 'status', 'n22_pair_closure.json')
+            with open(_wl_p, 'w', encoding='utf-8') as _f22:
+                json.dump(_wl, _f22, ensure_ascii=False, indent=1)
+            warnings.append(
+                'N22[dtor对偶闭环]: N22a 完全形缺失/误名 %d + N22b 裸claim %d '
+                '——工作清单 data/status/n22_pair_closure.json(三态裁决逐案)'
+                % (len(_n22a_miss), len(_n22b_naked)))
 
     return errors, warnings
 
