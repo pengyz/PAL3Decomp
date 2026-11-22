@@ -304,6 +304,20 @@
     "name": "m_nState2",
     "type": "int[26]",
     "size": 104
+   },
+   {
+    "offset": "0x5098",
+    "name": "m_nEffCurE",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x509c",
+    "name": "m_nEffSwapE",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
    }
   ],
   "CCBStageScene": [
@@ -372,6 +386,20 @@
     "name": "m_fDirCosB",
     "type": "float",
     "size": 4
+   },
+   {
+    "offset": "0x34c",
+    "name": "m_fDirSinE",
+    "type": "float",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x350",
+    "name": "m_fBlendE",
+    "type": "float",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
    }
   ],
   "CCBTaskSlot": [
@@ -890,6 +918,27 @@
     "name": "m_nRoleParam3",
     "type": "int",
     "size": 4
+   },
+   {
+    "offset": "0x251c",
+    "name": "m_pScriptInstE",
+    "type": "void *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x1c",
+    "name": "m_fPopA",
+    "type": "float",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x20",
+    "name": "m_fPopB",
+    "type": "float",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
    }
   ],
   "PropUI": [
@@ -898,6 +947,27 @@
     "name": "m_OutFrameB",
     "type": "UIStatic",
     "size": 152
+   },
+   {
+    "offset": "0x264",
+    "name": "m_szItemTextA",
+    "type": "char *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x564",
+    "name": "m_szItemTextB",
+    "type": "char *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x864",
+    "name": "m_szItemTextC",
+    "type": "char *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
    }
   ],
   "RoleSystem": [
@@ -1926,11 +1996,102 @@
     "type": "float",
     "size": 4
    }
+  ],
+  "CCBUIPanel": [
+   {
+    "offset": "0x4964",
+    "name": "m_nSlotCalcA",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x4968",
+    "name": "m_nSlotCalcB",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x496c",
+    "name": "m_nSlotCalcC",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x4970",
+    "name": "m_nSlotCalcD",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   }
+  ],
+  "UIGameFrm": [
+   {
+    "offset": "0x6e18",
+    "name": "m_pGameObjB",
+    "type": "void *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x1ba0",
+    "name": "m_fTimerC",
+    "type": "float",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   }
+  ],
+  "UITitle": [
+   {
+    "offset": "0x1ac",
+    "name": "m_subObjA",
+    "type": "void *",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x2510",
+    "name": "m_nScriptHandleA",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x2514",
+    "name": "m_nScriptHandleB",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x2518",
+    "name": "m_nScriptHandleC",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x251c",
+    "name": "m_nScriptHandleD",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   },
+   {
+    "offset": "0x2520",
+    "name": "m_nScriptHandleE",
+    "type": "int",
+    "size": 4,
+    "backfill": "20261122 同族漏登补齐(连号族部分字母在案, 判据同 criteria A-E)"
+   }
   ]
  },
  "adjudication_r1": "2026-11-18 R1-T5 裁定: _todo_ 降级撤销 (CLAUDE.md:525 命名铁律全禁占位名); 存量伪语义名以本台账登记为合法过渡态 (CLAUDE.md 已补记条款), 禁止新增; 正名逐类走取证战役 (Actor=内嵌子对象身份战役)。复核 P1-8 补录 7 名漏网。",
  "progress": {
   "R2": "tagCombatTaskData 2 名正名(m_fEffDirX/Z); ScriptSystemData 31/34 零语料引用→保持台账",
-  "R4": "tag簇三合一裁决: tagPAL3GameState 15名=纯幻影(0锚)退役; tagCombatTaskData 17名=虚构型(408B数组行窗口)暂留过渡条款待T2b重造; tagStageRoleData 14名=真实唯一(160B尺寸闭合)→T2c正名清单; 普查\"三合一\"结论撤诉(循环论证), 详见 tagcluster_3in1_adjudication_20261119.json"
+  "R4": "tag簇三合一裁决: tagPAL3GameState 15名=纯幻影(0锚)退役; tagCombatTaskData 17名=虚构型(408B数组行窗口)暂留过渡条款待T2b重造; tagStageRoleData 14名=真实唯一(160B尺寸闭合)→T2c正名清单; 普查\"三合一\"结论撤诉(循环论证), 详见 tagcluster_3in1_adjudication_20261119.json",
+  "R6": "20261122 台账补齐 22 个连号族漏登成员(EffCurE/EffSwapE/DirSinE/BlendE/SlotCalcA-D/ScriptInstE/fPopA-B/ItemTextA-C/GameObjB/TimerC/subObjA/ScriptHandleA-E)——R6 门接台账豁免联动(在档=已管理, 门只报未登记新增); UIFrameContainer m_bFlag96 补登"
  }
 }

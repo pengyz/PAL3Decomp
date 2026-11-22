@@ -116,6 +116,25 @@ def load_annotations(struct_dir=None):
         enums = json.load(open(enums_path, encoding='utf-8'))
     return {'functions': funcs, 'globals': globs, 'structs': structs, 'enums': enums}
 
+_pseudo_ledger_cache = None
+
+
+def _psdo_in_ledger(cls, off, mname):
+    """伪语义台账(archive/pseudo_semantic_names_20261118.json)在档判定。"""
+    global _pseudo_ledger_cache
+    if _pseudo_ledger_cache is None:
+        _lp = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                           'data', 'annotations', 'archive',
+                           'pseudo_semantic_names_20261118.json')
+        try:
+            _d = json.load(open(_lp, encoding='utf-8'))
+            _pseudo_ledger_cache = _d.get('names') or {}
+        except Exception:
+            _pseudo_ledger_cache = {}
+    _lst = _pseudo_ledger_cache.get(cls) or []
+    return any(e.get('name') == mname for e in _lst)
+
+
 def _estimate_member_size(mtype, structs):
     """Estimate member size for overlap detection."""
     if isinstance(mtype, dict):
@@ -607,20 +626,28 @@ def check(struct_dir=None):
                 mname,
             )
             if _tail_upper:
-                warnings.append(
-                    f"structs[{sname}]: '{mname}' at offset {off} 尾部大写单字母 "
-                    f"'{_tail_upper.group(1)}'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, "
-                    f"禁止新增(R6 门禁升级登记)"
-                )
+                # [台账驱动豁免 2026-11-22] archive/pseudo_semantic_names_20261118
+                # 的 names 名单=审计裁决真相域(结构化, 非文本关键词)——在档成员=
+                # 已登记已管理(R6 门头语义「禁止新增」: 只报未登记的新增伪语义;
+                # 存量正名由台账驱动的战役逐个清, 台账即工作清单)
+                if not _psdo_in_ledger(sname, off, mname):
+                    warnings.append(
+                        f"structs[{sname}]: '{mname}' at offset {off} 尾部大写单字母 "
+                        f"'{_tail_upper.group(1)}'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, "
+                        f"禁止新增(R6 门禁升级登记)"
+                    )
                 continue  # 已报, 不重复走 hollow 判定
             if _hollow_sep:
-                warnings.append(
-                    f"structs[{sname}]: '{mname}' at offset {off} 下划线分隔伪语义形"
-                    f"(HOLLOW_词_序号)——CLAUDE.md 禁止伪语义命名(R6 门禁升级登记)"
-                )
+                # [台账驱动豁免 2026-11-22] 同 _tail_upper 分支(在档=已管理)
+                if not _psdo_in_ledger(sname, off, mname):
+                    warnings.append(
+                        f"structs[{sname}]: '{mname}' at offset {off} 下划线分隔伪语义形"
+                        f"(HOLLOW_词_序号)——CLAUDE.md 禁止伪语义命名(R6 门禁升级登记)"
+                    )
                 continue
             if _hollow:
                 _suffix = _hollow.group(1)
+                _psdo_ledgered = _psdo_in_ledger(sname, off, mname)
                 try:
                     _off_dec = int(off.split('_')[0], 16)
                 except ValueError:
@@ -630,7 +657,7 @@ def check(struct_dir=None):
                     _suffix.upper() == format(_off_dec, 'x').upper()
                 )
                 _matches_dec = _off_dec is not None and _suffix == str(_off_dec)
-                if _matches_hex or _matches_dec:
+                if (_matches_hex or _matches_dec) and not _psdo_ledgered:
                     warnings.append(
                         f"structs[{sname}]: '{mname}' at offset {off} looks like pseudo-semantic "
                         f"naming — suffix '{_suffix}' is this field's own offset dressed up with a "
