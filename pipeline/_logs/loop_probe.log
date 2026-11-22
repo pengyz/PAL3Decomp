@@ -1,4 +1,4 @@
-S1 headers: 765/787 ok  (79s)
+S1 headers: 763/787 ok  (102s)
   FAIL pal3/src/Misc/ArcLocale.h                C2039: 'PoisonState' : is not a member of '`global namespace''
   FAIL pal3/src/Misc/DICOLORSET.h               C2371: 'DICOLORSET' : redefinition; different basic types
   FAIL pal3/src/Misc/DIDEVCAPS.h                C2011: 'DIDEVCAPS' : 'struct' type redefinition
@@ -21,15 +21,15 @@ S1 headers: 765/787 ok  (79s)
   FAIL pal3/src/Misc/_Cvtvec.h                  C2011: '_Cvtvec' : 'struct' type redefinition
   FAIL pal3/src/Misc/lconv.h                    C2011: 'lconv' : 'struct' type redefinition
   FAIL pal3/src/_ns_udts.h                      C2146: syntax error : missing ';' before identifier 'rc'
-S2 cpp: 142/230 ok | own-fail 88 | imported-only 0  (30s)
+S2 cpp: 141/230 ok | own-fail 89 | imported-only 0  (30s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261122_164152
-基线时间: 2026-11-22T16:41:52.194030
-检测时间: 2026-11-22T16:43:44.749930
+基线: 20261122_182434
+基线时间: 2026-11-22T18:24:34.728858
+检测时间: 2026-11-22T18:26:50.932459
 
 📊 摘要:
   总文件数: 1017
@@ -37,42 +37,47 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
   新错误(真新增 (code,msg)): 0
   已修复: 0
   错误收敛(消失 (code,msg)): 0
-  持续失败: 110
+  持续失败: 113
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
 ✅ 未检测到回归。
-✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_164344.json
+✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_182650.json
    总文件数: 1017
-   成功: 907
-   失败: 110
-S2-passing units to link: 142
-compiled 142/142 objs (0 skipped)
-linking 142 objs ...
+   成功: 904
+   失败: 111
+S2-passing units to link: 141
+compiled 141/141 objs (0 skipped)
+linking 141 objs ...
 
 === link census ===
-linker errors by code: {'LNK2001': 1992, 'LNK1120': 1}
-unresolved external symbols: 1130 (referenced by 1992 sites)
+linker errors by code: {'LNK2001': 2092, 'LNK1120': 1}
+unresolved external symbols: 1136 (referenced by 2092 sites)
    23x  (?gfxMgr@@3PAVgbGfxManager@@A)
+   19x  (?SetRect@UIWnd@@QAEHPAX@Z)
+   18x  (?Update@UIWnd@@UAEHHH@Z)
    18x  (?g_RoleSlotBuf@@3VRoleSystem@@A)
    17x  (?CreateFromTemplate@UIPushButton@@QAEXPAXH@Z)
-   16x  (__imp_?Release@gbRefObject@@QAEXXZ)
+   17x  (??1UIWnd@@UAE@XZ)
+   15x  (__imp_?Release@gbRefObject@@QAEXXZ)
+   15x  (?OnMessage@UIWnd@@UAEHHIH@Z)
    15x  (?SetEnable@UICaption@@QAEXHH@Z)
    14x  (?ResetContainerState@@YAXPAX@Z)
    14x  (?g_DrvInfo@@3UgbGfxDriverInfo@@A)
+   13x  (?Create@UIWnd@@UAEHHPAUtagRECT@@PAV1@@Z)
    13x  (?g_Input@@3VGRPinput@@A)
    13x  (__imp_?LoadTexture@gbTexture@@QAEXH@Z)
-   13x  (?m_pData@PtrArray@@2PADA)
    12x  (?g_EffMgrData@@3VtagEffMgrData@@A)
-   12x  (__imp_?GetDynVertBuf@gbVertPoolMgr@@QAEPAVgbDynVertBuf@@I@Z)
-   12x  (?Pop@gbMatrixStack@@QAEXXZ)
-   12x  (?Push@gbMatrixStack@@QAEXXZ)
-   11x  (?_TI1_AV_Exception__@@3U_s__ThrowInfo@@A)
 duplicate definitions: 0 symbols
-[link-gate] ✓ 无链接层回归（duplicates/unresolved 均未恶化）
-report -> /home/peng/workspace/PAL3Decomp/data/status/link_census.json
+[link-gate] ❌ LINK 层回归（对照 2026-11-22T16:49:14）:
+      - unresolved externs: 1130 -> 1136 (units_linked 142 -> 141 未增)
+[link-gate] NOT refreshing link_census.json（保持退化可见）。
+           确认后用 --rebaseline "<理由>" 显式重新对齐。
+report NOT written (ratchet holds previous baseline)
 
 [Regression] diff vs latest baseline:
 
 [Baseline] refreshing latest baseline...
 
 [Link] link-layer probe (LNK census, ratchet gate)...
+[ERROR] link_probe --check exited 1 —— 链接层回归（LNK2005 重复定义增长 / 未解析符号增长），基线未刷新。
+        确认后重锚：python3 pipeline/link_probe.py --rebaseline "<理由>"

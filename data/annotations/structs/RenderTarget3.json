@@ -231,7 +231,7 @@
   "0x004b6ca0": {
    "name": "OnEvent",
    "name_source": "IDA语义分析 2026-10-31 批5",
-   "name_note": "空覆盖虚方法",
+   "name_note": "空覆盖虚方法 | [dtor对偶探针 20261122] 删除式存根 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义)——'OnEvent'=同类误名 | [回退 20261122] ~改名呼叫点涟漪实证(Role.cpp RenderTarget3_0 C2065)——同类别名也有呼叫者, 需呼叫点迁移后再正名",
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -244,7 +244,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "flags": []
   }
  },
  "vtables": [

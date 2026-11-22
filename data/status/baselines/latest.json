@@ -1,6 +1,6 @@
 {
-  "name": "20261122_164344",
-  "timestamp": "2026-11-22T16:43:44.778391",
+  "name": "20261122_182819",
+  "timestamp": "2026-11-22T18:28:19.520104",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -18,7 +18,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBCamControl.h": {
-      "status": "ok",
+      "status": "harness_error",
       "error_count": 0,
       "errors": []
     },
@@ -28,7 +28,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBControlWindow.h": {
-      "status": "ok",
+      "status": "harness_error",
       "error_count": 0,
       "errors": []
     },
@@ -5209,7 +5209,7 @@
     },
     "pal3/src/GameBase/PAL3.cpp": {
       "status": "fail",
-      "error_count": 37,
+      "error_count": 38,
       "errors": [
         {
           "code": "C2440",
@@ -5395,6 +5395,11 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
           "line": 3509
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3996
         }
       ]
     },
@@ -6070,8 +6075,13 @@
     },
     "pal3/src/Misc/PtrArray.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 4,
       "errors": [
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 473
+        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
@@ -6081,6 +6091,11 @@
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
           "line": 709
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 766
         }
       ]
     },
@@ -7786,7 +7801,7 @@
     },
     "pal3/src/Script/PalScript.cpp": {
       "status": "fail",
-      "error_count": 44,
+      "error_count": 45,
       "errors": [
         {
           "code": "C2039",
@@ -7872,6 +7887,11 @@
           "code": "C2660",
           "msg": "'_Tidy' : function does not take 2 parameters",
           "line": 1113
+        },
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 1452
         },
         {
           "code": "C2102",
@@ -8012,7 +8032,7 @@
     },
     "pal3/src/Script/PalScriptMgr.cpp": {
       "status": "fail",
-      "error_count": 4,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2102",
@@ -8030,6 +8050,11 @@
           "line": 3333
         },
         {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 3337
+        },
+        {
           "code": "C2065",
           "msg": "'CON_State' : undeclared identifier",
           "line": 3349
@@ -8038,8 +8063,13 @@
     },
     "pal3/src/Script/ScriptSystem.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 13,
       "errors": [
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 108
+        },
         {
           "code": "C2102",
           "msg": "'&' requires l-value",
@@ -8207,8 +8237,13 @@
     },
     "pal3/src/UI/UIListBox.cpp": {
       "status": "fail",
-      "error_count": 2,
+      "error_count": 3,
       "errors": [
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 202
+        },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long *' to 'unsigned long'",
@@ -8314,9 +8349,15 @@
       "errors": []
     },
     "pal3/src/UI/UIWnd.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
+      "status": "fail",
+      "error_count": 1,
+      "errors": [
+        {
+          "code": "C2059",
+          "msg": "syntax error : ')'",
+          "line": 54
+        }
+      ]
     },
     "pal3/src/free_functions.cpp": {
       "status": "fail",
@@ -8330,507 +8371,507 @@
         {
           "code": "C2065",
           "msg": "'VFileSystem' : undeclared identifier",
-          "line": 2020
+          "line": 2013
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2020
+          "line": 2013
         },
         {
           "code": "C2653",
           "msg": "'VFileSystem' : is not a class or namespace name",
-          "line": 2020
+          "line": 2013
         },
         {
           "code": "C2065",
           "msg": "'SLOBYTE' : undeclared identifier",
-          "line": 2071
+          "line": 2064
         },
         {
           "code": "C2027",
           "msg": "use of undefined type 'scAsmDecoder'",
-          "line": 2088
+          "line": 2081
         },
         {
           "code": "C2227",
           "msg": "left of '->scAsmDecoder' must point to class/struct/union",
-          "line": 2088
+          "line": 2081
         },
         {
           "code": "C2653",
           "msg": "'scAsmDecoder' : is not a class or namespace name",
-          "line": 2088
+          "line": 2081
         },
         {
           "code": "C2446",
           "msg": "'>=' : no conversion from 'unsigned int' to 'char *'",
-          "line": 2585
+          "line": 2578
         },
         {
           "code": "C2040",
           "msg": "'>=' : 'char *' differs in levels of indirection from 'unsigned int'",
-          "line": 2585
+          "line": 2578
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2638
+          "line": 2631
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2665
+          "line": 2658
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'void *'",
-          "line": 2666
+          "line": 2659
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3649
+          "line": 3642
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3650
+          "line": 3643
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char []' to 'unsigned long'",
-          "line": 3653
+          "line": 3646
         },
         {
           "code": "C2166",
           "msg": "l-value specifies const object",
-          "line": 4675
+          "line": 4668
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 4699
+          "line": 4692
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'int *'",
-          "line": 4719
+          "line": 4712
         },
         {
           "code": "C2065",
           "msg": "'UIPushButton_SetParam' : undeclared identifier",
-          "line": 4822
+          "line": 4815
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int,int *,class Actor *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 5027
+          "line": 5020
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void ** ' to 'char (** )[3]'",
-          "line": 5058
+          "line": 5051
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5088
+          "line": 5081
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,unsigned long *,class Actor *,char *,int,void *)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
-          "line": 5104
+          "line": 5097
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5120
+          "line": 5113
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5138
+          "line": 5131
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5156
+          "line": 5149
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5272
+          "line": 5265
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5284
+          "line": 5277
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5296
+          "line": 5289
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 5296
+          "line": 5289
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,unsigned long *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5308
+          "line": 5301
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,unsigned long *,char *,unsigned long,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 5334
+          "line": 5327
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbTexture *' to 'unsigned long'",
-          "line": 5824
+          "line": 5817
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 6853
+          "line": 6846
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 6874
+          "line": 6867
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 6897
+          "line": 6890
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 6967
+          "line": 6960
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 6984
+          "line": 6977
         },
         {
           "code": "C2664",
           "msg": "'GetDlgItem' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7279
+          "line": 7272
         },
         {
           "code": "C2664",
           "msg": "'SendWindowMessage' : cannot convert parameter 1 from 'class CCBUICtrl *' to 'struct HWND__ *'",
-          "line": 7299
+          "line": 7292
         },
         {
           "code": "C2664",
           "msg": "'SendWindowMessage' : cannot convert parameter 1 from 'class CCBUICtrl *' to 'struct HWND__ *'",
-          "line": 7301
+          "line": 7294
         },
         {
           "code": "C2664",
           "msg": "'DlgProcEffect_a6d0' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7305
+          "line": 7298
         },
         {
           "code": "C2664",
           "msg": "'DlgProcInput' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7311
+          "line": 7304
         },
         {
           "code": "C2664",
           "msg": "'EndDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7314
+          "line": 7307
         },
         {
           "code": "C2664",
           "msg": "'EndDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7320
+          "line": 7313
         },
         {
           "code": "C2664",
           "msg": "'ShowCameraDialog' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 7474
+          "line": 7467
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7782
+          "line": 7775
         },
         {
           "code": "C2664",
           "msg": "'void (void ** ,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7796
+          "line": 7789
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7814
+          "line": 7807
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7826
+          "line": 7819
         },
         {
           "code": "C2664",
           "msg": "'int (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7844
+          "line": 7837
         },
         {
           "code": "C2664",
           "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7856
+          "line": 7849
         },
         {
           "code": "C2664",
           "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7882
+          "line": 7875
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7894
+          "line": 7887
         },
         {
           "code": "C2664",
           "msg": "'int (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7912
+          "line": 7905
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
-          "line": 7923
+          "line": 7916
         },
         {
           "code": "C2664",
           "msg": "'int (int *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7941
+          "line": 7934
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *,char *,unsigned long,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7952
+          "line": 7945
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,char ** ,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7959
+          "line": 7952
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7979
+          "line": 7972
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 7990
+          "line": 7983
         },
         {
           "code": "C2664",
           "msg": "'void (class RoleAtt ** ,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
-          "line": 8011
+          "line": 8004
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8035
+          "line": 8028
         },
         {
           "code": "C2664",
           "msg": "'void (char *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 8035
+          "line": 8028
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8060
+          "line": 8053
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8085
+          "line": 8078
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,char *,class Actor *,char *,class RoleAtt *)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8107
+          "line": 8100
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,char *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8122
+          "line": 8115
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,char *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8141
+          "line": 8134
         },
         {
           "code": "C2664",
           "msg": "'void (unsigned int *,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8154
+          "line": 8147
         },
         {
           "code": "C2664",
           "msg": "'void (class Actor ** ,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8169
+          "line": 8162
         },
         {
           "code": "C2664",
           "msg": "'void (float *,char *,unsigned int *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8188
+          "line": 8181
         },
         {
           "code": "C2664",
           "msg": "'void (void ** ,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 3 from 'short *' to '__int16 *'",
-          "line": 8201
+          "line": 8194
         },
         {
           "code": "C2664",
           "msg": "'void (void ** ,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char' to 'char *'",
-          "line": 8201
+          "line": 8194
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 3 from 'short *' to '__int16 *'",
-          "line": 8216
+          "line": 8209
         },
         {
           "code": "C2664",
           "msg": "'void (int *,char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'unsigned char *' to 'char *'",
-          "line": 8216
+          "line": 8209
         },
         {
           "code": "C2664",
           "msg": "'void (char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 2 from 'short *' to '__int16 *'",
-          "line": 8234
+          "line": 8227
         },
         {
           "code": "C2664",
           "msg": "'void (char *,__int16 *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 8234
+          "line": 8227
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 8247
+          "line": 8240
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 8263
+          "line": 8256
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 8278
+          "line": 8271
         },
         {
           "code": "C2664",
           "msg": "'void (char *,int *,class Actor *,char *,int)' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 8294
+          "line": 8287
         },
         {
           "code": "C2065",
           "msg": "'COERCE_UNSIGNED_INT64' : undeclared identifier",
-          "line": 8865
+          "line": 8858
         },
         {
           "code": "C2065",
           "msg": "'nearby_5359B0' : undeclared identifier",
-          "line": 8867
+          "line": 8860
         },
         {
           "code": "C2248",
           "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 8932
+          "line": 8925
         },
         {
           "code": "C2248",
           "msg": "'pBody' : cannot access private member declared in class 'gbActor'",
-          "line": 8932
+          "line": 8925
         },
         {
           "code": "C2230",
           "msg": "'-' : indirection to different types",
-          "line": 9020
+          "line": 9013
         },
         {
           "code": "C2065",
           "msg": "'SingletonThunk_00539530' : undeclared identifier",
-          "line": 9162
+          "line": 9155
         },
         {
           "code": "C2113",
           "msg": "pointer can only be subtracted from another pointer",
-          "line": 9485
+          "line": 9478
         },
         {
           "code": "C2113",
           "msg": "pointer can only be subtracted from another pointer",
-          "line": 10467
+          "line": 10460
         },
         {
           "code": "C2065",
           "msg": "'_strdate' : undeclared identifier",
-          "line": 10611
+          "line": 10604
         },
         {
           "code": "C2065",
           "msg": "'_strtime' : undeclared identifier",
-          "line": 10613
+          "line": 10606
         },
         {
           "code": "C2373",
           "msg": "'PAL3_LoadUICursor' : redefinition; different type modifiers",
-          "line": 11047
+          "line": 11040
         },
         {
           "code": "C2065",
           "msg": "'crt_sub_00541490' : undeclared identifier",
-          "line": 11129
+          "line": 11122
         },
         {
           "code": "C2065",
           "msg": "'v13' : undeclared identifier",
-          "line": 11168
+          "line": 11161
         },
         {
           "code": "C2296",
           "msg": "'*' : illegal, left operand has type 'void *(__cdecl *)(class CCBSystem *,int)'",
-          "line": 11168
+          "line": 11161
         },
         {
           "code": "C2065",
           "msg": "'fn' : undeclared identifier",
-          "line": 11195
+          "line": 11188
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class CCBSystem *' to 'int'",
-          "line": 11242
+          "line": 11235
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 11242
+          "line": 11235
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '{'",
-          "line": 11243
+          "line": 11236
         },
         {
           "code": "C1003",
           "msg": "error count exceeds 100; stopping compilation",
-          "line": 11243
+          "line": 11236
         }
       ]
     },

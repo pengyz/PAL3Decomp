@@ -12,5 +12,17 @@
   "②嫌疑最大: FileSysDestory cdecl 修正(其呼叫单元=1个)+PalScriptBlendTimer sig(呼叫面)",
   "③若render churn=同族错误重排(计数守恒), 按衰退定性协议判暴露非退化"
  ],
- "note": "S2 ok 总数 142→141(-1绿单元): 需定位翻车单元(下批首选)"
+ "note": "S2 ok 总数 142→141(-1绿单元): 需定位翻车单元(下批首选)",
+ "expansion_20261122_v2": {
+  "新增翻转单元": {
+   "Actor.cpp": "20错(C2102/C2248 pBody private——gbActor 类型渲染churn)",
+   "UIWnd.cpp": "1错(C2059 L54 String::Assign 渲染形)"
+  },
+  "已恢复": {
+   "Role.cpp": "RenderTarget3 改名回退后恢复ok(呼叫点涟漪实证)",
+   "SceneObjParam.cpp": "FlushCommands 零呼叫者=改名安全保留"
+  },
+  "根因": "Timer 28B apply→回退 的 IDB struct type 两轮重写——hexrays 对 Timer引用单元(Actor/Role/UIWnd 同域)的渲染发生持久形变, 注解回退不逆转(IDB type 重写波及非 Timer 单元)",
+  "resolution": "Actor.cpp 20错需逐错归因(下会话); UIWnd 1错 L54 String::Assign 渲染形检查"
+ }
 }

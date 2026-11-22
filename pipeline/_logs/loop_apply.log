@@ -1,12 +1,8 @@
 [N20 selftest] 现役 N20a=0 N20b=17 N20c=0 (活性单测见 test_n20)
 [vtable] 改进: 168 → 148 (update vtable_baseline.json)
 WARN: functions[0x00422950]: '__thiscall' without '::' in 'LoadScene' (sig: struct gbVFileSystem *__thiscall LoadScene(double sceneNames) — likely member function, needs IDA investigation
-WARN: functions[0x00446010]: '__thiscall' without '::' in 'AllocObject' (sig: void *__thiscall(void *a2)) — likely member function, needs IDA investigation
 WARN: functions[0x00446030]: '__thiscall' without '::' in 'AddToArray' (sig: void __thiscall(_DWORD *newElement)) — likely member function, needs IDA investigation
-WARN: functions[0x00401da0]: '__thiscall' without '::' in 'FileSysDestory' (sig: gbVFileSystem * __thiscall()) — likely member function, needs IDA investigation
-WARN: functions[0x0046adf0]: '__thiscall' without '::' in 'GetCellStateByte' (sig: char __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
 WARN: functions[0x00523cb0]: '__thiscall' without '::' in 'Method_3CB0' (sig: int __thiscall(_BYTE *this)) — likely member function, needs IDA investigation
-WARN: functions[0x0043a090]: '__thiscall' without '::' in 'NormalizeAngle' (sig: void __thiscall(int this, int a2, float a3)) — likely member function, needs IDA investigation
 WARN: functions[0x0043fd90]: '__thiscall' without '::' in 'SetFrameIndex' (sig: int __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
 WARN: functions[0x0043fdb0]: '__thiscall' without '::' in 'SetFrameCount' (sig: void __thiscall(float *this, int a2)) — likely member function, needs IDA investigation
 WARN: functions[0x00445bf0]: '__thiscall' without '::' in 'SetArrayElement' (sig: void __thiscall(int this, int newElement)) — likely member function, needs IDA investigation
@@ -16,8 +12,6 @@ WARN: functions[0x0047f590]: '__thiscall' without '::' in 'ProcessTree' (sig: in
 WARN: functions[0x004ab560]: '__thiscall' without '::' in 'Method_B560' (sig: bool __thiscall(_DWORD *this, int a2, int a3)) — likely member function, needs IDA investigation
 WARN: functions[0x004c4b00]: '__thiscall' without '::' in 'SetValue' (sig: int __thiscall(int this, int a2)) — likely member function, needs IDA investigation
 WARN: functions[0x005306a0]: '__thiscall' without '::' in 'Initialize_06A0' (sig: void __thiscall(int this, char *pszRoleDir)) — likely member function, needs IDA investigation
-WARN: functions[0x0057c068]: '__thiscall' without '::' in 'gbVec3D_ctor' (sig: gbVec3D *__thiscall(gbVec3D *this, float x, float y, float z) — likely member function, needs IDA investigation
-WARN: functions[0x0057c1ec]: '__thiscall' without '::' in 'gbVec3D_Normalize' (sig: void __thiscall(gbVec3D *this)) — likely member function, needs IDA investigation
 WARN: structs[Actor]: 'm_nCachedA' at offset 0x4c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
 WARN: structs[Actor]: 'm_nCachedB' at offset 0x50 尾部大写单字母 'B'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
 WARN: structs[Actor]: 'm_bUIFlagA' at offset 0x5c 尾部大写单字母 'A'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
@@ -112,23 +106,6 @@ WARN: structs[UITitle]: 'm_nScriptHandleB' at offset 0x2514 尾部大写单字�
 WARN: structs[UITitle]: 'm_nScriptHandleC' at offset 0x2518 尾部大写单字母 'C'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
 WARN: structs[UITitle]: 'm_nScriptHandleD' at offset 0x251c 尾部大写单字母 'D'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
 WARN: structs[UITitle]: 'm_nScriptHandleE' at offset 0x2520 尾部大写单字母 'E'(A-E)——伪语义台账 20261118 CachedA/B 族残种形态, 禁止新增(R6 门禁升级登记)
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004b0520
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0045ae40
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b860
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c110
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051c1b0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051f0a0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004c15d0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00485230
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004208a0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x004209e0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x005279d0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0044e5c0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450e90
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048ef80
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0048eb40
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x00450ab0
-WARN: CLAIM_GATE:gap_fill_unadjudicated:0x0051b570
 WARN: CLAIM_GATE:member_counter_evidence:0x0051CAA0
 WARN: CLAIM_GATE:member_counter_evidence:0x0051C9F0
 WARN: CLAIM_GATE:member_counter_evidence:0x00442390
@@ -201,32 +178,9 @@ WARN: CLAIM_GATE:member_counter_evidence:0x004C3EC0
 WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
 WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
+WARN: REF:gen 树(1795341918)早于最新注解(1795342664)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: C8:no_complete_family:CEffObj:~CEffObj CEffObj ~CEffObj 产物族(0x004c0620)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
 WARN: C8:no_complete_family:WeatherEffectNode:~WeatherEffectNode WeatherEffectNode ~WeatherEffectNode 产物族(0x00405310,0x00405580,0x00405560,0x00404d40)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
-WARN: N13b:AStarPathFinder::AStarPathFinder@0x0056a600 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CCBResultWindow::ctor@0x00442e10 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CCBUICtrl::CCBUI@0x00519310 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CCBUICtrl::CloseCommandDialog@0x004e4d50 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CEffGroupNode::nullsub@0x004b7f70 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CEffMgr::InitEffClass@0x004cded0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:CameraCtrl::_nearby_41cbc0@0x0041cbc0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:EquipUI::EquipUI@0x00498820 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:JusticeBookUI::JusticeBookUI@0x005282e0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:RenderTarget::InitChildPanels@0x004867f0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:RoleSystem::SetTargetRotation@0x00416490 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:SceneObj::ctor@0x00452fd0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:SceneObj::_init_4530c0@0x004530c0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:ScreenEffectMgr::_UIWnd@0x004bef50 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UICoverFrm::UICoverFrm@0x0052ba10 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UIListBox::ctor@0x00527950 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UILoadingFrm::UILoadingFrm@0x00450710 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UIProgressBar::ctor@0x00439030 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UIScene::ctor@0x0043bce0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UISceneFrm::UISceneFrm@0x004590d0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UISceneMap::UISceneMap@0x0044ffe0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UITitle_ArcSave::UITitle_ArcSave@0x0047bbf0 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:UITitle_BBTY::_nearby_452570@0x00452570 发射路由=注解methods直通(依赖apply新鲜度)
-WARN: N13b:gbVertPoolMgr::GetDynVertBuf@0x10021680 发射路由=注解methods直通(依赖apply新鲜度)
 WARN: N20a[Actor]:0x004083b0 del 压制态 L1 载体(注册符号 va=0x004083B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBLineupWindow]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20b[CCBMagicWindow]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
@@ -255,37 +209,7 @@ WARN: N20b[UIScenePanel]: 类级载体全空(3条dtor全压制) → ??1/??_G 符
 WARN: N20b[UITitle_BBTY]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20a[UITitle_YXXX]:0x0047dd70 del 压制态 L1 载体(注册符号 va=0x0047DD70 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[WeatherEffectNode]: 类级载体全空(4条dtor全压制) → ??1/??_G 符号双丢(债务可见)
-WARN: name_drift: globals[0x005BC914] 注解名'off_5BC914' != IDB名'dword_5BC914'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005BC940] 注解名'off_5BC940' != IDB名'dword_5BC940'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D87F0] 注解名'unk_5D87F0' != IDB名'byte_5D87F0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8800] 注解名'unk_5D8800' != IDB名'dword_5D8800'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8A3C] 注解名'off_5D8A3C' != IDB名'byte_5D8A3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8A6C] 注解名'unk_5D8A6C' != IDB名'byte_5D8A6C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8A90] 注解名'unk_5D8A90' != IDB名'byte_5D8A90'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8AD4] 注解名'unk_5D8AD4' != IDB名'byte_5D8AD4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8AF4] 注解名'unk_5D8AF4' != IDB名'byte_5D8AF4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8B14] 注解名'unk_5D8B14' != IDB名'byte_5D8B14'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8B3C] 注解名'unk_5D8B3C' != IDB名'byte_5D8B3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005DFDEB] 注解名'unk_5DFDEB' != IDB名'byte_5DFDEB'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00D8C1AC] 注解名'unk_D8C1AC' != IDB名'String'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D89BC] 注解名'off_5D89BC' != IDB名'byte_5D89BC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x0056B794] 注解名'off_56B794' != IDB名'stru_56B794'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005706CC] 注解名'off_5706CC' != IDB名'stru_5706CC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00580CFC] 注解名'off_580CFC' != IDB名'asc_580CFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8FEC] 注解名'off_5D8FEC' != IDB名'byte_5D8FEC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005DB9B0] 注解名'off_5DB9B0' != IDB名'byte_5DB9B0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00592E5C] 注解名'dword_592E5C' != IDB名'asc_592E5C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00C0E760] 注解名'unk_C0E760' != IDB名'dword_C0E760'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00C0EC50] 注解名'unk_C0EC50' != IDB名'dword_C0EC50'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D87F8] 注解名'unk_5D87F8' != IDB名'dword_5D87F8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D87FC] 注解名'unk_5D87FC' != IDB名'dword_5D87FC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x00DBA25C] 注解名'byte_DBA25C' != IDB名'dword_DBA25C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x017A89E8] 注解名'byte_17A89E8' != IDB名'Buffer'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8E98] 注解名'unk_5D8E98' != IDB名'byte_5D8E98'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8EC8] 注解名'unk_5D8EC8' != IDB名'byte_5D8EC8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8EE0] 注解名'unk_5D8EE0' != IDB名'byte_5D8EE0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8EF8] 注解名'unk_5D8EF8' != IDB名'byte_5D8EF8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: globals[0x005D8F0C] 注解名'unk_5D8F0C' != IDB名'byte_5D8F0C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: N22[dtor对偶闭环]: N22a 完全形缺失/误名 34 + N22b 裸claim 25 ——工作清单 data/status/n22_pair_closure.json(三态裁决逐案)
 WARN: name_drift: 941 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
 FROZEN: globals[0x00DBA260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBA260] if intentional
 FROZEN: globals[0x00DBAF10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBAF10] if intentional
@@ -304,7 +228,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 287 warnings — PASS
+0 new errors + 16 frozen(advisory), 211 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**

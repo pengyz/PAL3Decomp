@@ -46,7 +46,7 @@
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00533da0": {
-   "name": "FlushCommands",
+   "name": "~SceneObjParam",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -54,7 +54,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ],
+   "name_note": "| [dtor对偶探针 20261122] 删除式存根 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义)——'FlushCommands'=同类误名"
   },
   "0x00533d80": {
    "name": "~SceneObjParam",

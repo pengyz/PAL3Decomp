@@ -2171,12 +2171,22 @@ def _n20_scan(cls_forms, s4_rows):
                                'slot_verified': _sv,
                                'predict': '该址=同类完全形真址(编译器配对), '
                                           '未注解或误名——正名/退役/暂留三态裁决'})
+        # [N22b 字节证据豁免 20261122] s4_rows 配对(match_L1/partial)=该址字节已证
+        #   ——锚定定义漏 adjustor/ICF 链的假阳豁免(18/42 实测)
+        _paired_vas = set()
+        for _r22 in s4_rows.values():
+            try:
+                if _r22.get('status') in ('match_L1', 'partial'):
+                    _paired_vas.add(int(str(_r22.get('va')), 16))
+            except (ValueError, TypeError):
+                pass
         for _cn, _cset in _comp_addrs.items():
-            _anchored = {t for _, t, _, _ in _del_rows if _cn == _}
             # ②反向: 完全形注解址未被同类任一删除式锚定 → 裸 claim
+            # [字节证据豁免 20261122] s4_rows 配对(match_L1/partial)=该址字节已证
+            #   ——锚定定义漏 adjustor/ICF 链的假阳豁免(18/42 实测)
             _del_targets = {t for _, _, t, _ in _del_rows}
             for _cva in _cset:
-                if _cva not in _del_targets:
+                if _cva not in _del_targets and _cva not in _paired_vas:
                     _n22b_naked.append({'cls': _cn, 'va': '0x%08x' % _cva})
         if _n22a_miss or _n22b_naked:
             _wl = {'_doc': ('N22 dtor 对偶闭环工作清单 2026-11-22——三态裁决'

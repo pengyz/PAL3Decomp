@@ -10,19 +10,19 @@ Generated 764 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   Phantom globals skipped: 29 (stru_570500, arr, unk_C0A40E, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34, dword_D8BC38)
     ... and 19 more
   Annotation-skipped globals: 78
-  declared_globals refreshed post-emit: 2822
-  Globals: 2947 in globals.h
+  declared_globals refreshed post-emit: 2823
+  Globals: 2948 in globals.h
 
 [WARN] Header generation found 4 annotation conflicts (deduplicated):
   DUPLICATE METHOD: AStarPathFinder::AStarPathFinder() (addr=0x0056a600)
   DUPLICATE METHOD: CCBCamControl::~CCBCamControl() (addr=0x005081e0)
   DUPLICATE METHOD: ObjectCamera::~ObjectCamera() (addr=0x0047c580)
   DUPLICATE METHOD: UICursor::~UICursor() (addr=0x00541ffb)
-  Globals: 2856 in globals.cpp
-  Globals: 2856 in globals.cpp
+  Globals: 2859 in globals.cpp
+  Globals: 2859 in globals.cpp
   Scalar typedefs: 87(全集去重) in scalar_typedefs.h
 Collecting functions from decomp...
-  [collect-census] 空/无名=0 sub_=48 | dtor形: 发射=100 拒发(意图)=20 拒发(无身份)=1
+  [collect-census] 空/无名=0 sub_=48 | dtor形: 发射=100 拒发(意图)=21 拒发(无身份)=1
   Classes with methods: 228
   Free functions: 208
   [fold-carrier] 折叠载体自由符号: CEffObj→DestroyEffect
@@ -30,7 +30,7 @@ Collecting functions from decomp...
 [L-VAR] WARN: 0x004442b0 覆盖 v9 但函数体内无声明行（参数变量？）
 [L-VAR] WARN: 0x0052aab0 覆盖 v5 但函数体内无声明行（参数变量？）
 
-Generated 229 .cpp files (3494 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
+Generated 229 .cpp files (3493 functions) in /home/peng/workspace/PAL3Decomp/pal3/src
   Combat/: 25 files
   Data/: 1 files
   Effect/: 18 files
@@ -43,47 +43,63 @@ Generated 229 .cpp files (3494 functions) in /home/peng/workspace/PAL3Decomp/pal
   Script/: 3 files
   UI/: 17 files
 [phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）
-S2 cpp: 142/230 ok | own-fail 88 | imported-only 0  (28s)
+S2 cpp: 141/230 ok | own-fail 89 | imported-only 0  (36s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
-基线: 20261122_155959
-基线时间: 2026-11-22T15:59:59.449440
-检测时间: 2026-11-22T16:41:52.165035
+基线: 20261122_181058
+基线时间: 2026-11-22T18:10:58.789571
+检测时间: 2026-11-22T18:24:34.701194
 
 📊 摘要:
   总文件数: 1017
   新失败: 0
   新错误(真新增 (code,msg)): 0
-  已修复: 0
-  错误收敛(消失 (code,msg)): 0
-  持续失败: 110
+  已修复: 1
+  错误收敛(消失 (code,msg)): 1
+  持续失败: 113
   ⚠️ C1003 截断单元(逐码增减不可测): 1
 
+🔢 逐错误码净增减 (正=增加，负=减少):
+----------------------------------------
+  C2065    -2
+
+🔧 错误收敛 (仍失败，但部分错误消失):
+----------------------------------------
+  pal3/src/Misc/ScriptVM.cpp: 29 -> 28  (消失 1)
+
+✅ 已修复 (之前失败，现在成功):
+----------------------------------------
+  pal3/src/Role/Role.cpp
+
+📈 错误数量变化:
+----------------------------------------
+  pal3/src/Misc/ScriptVM.cpp: 29 ↓ 28
+
 ✅ 未检测到回归。
-✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_164152.json
+✅ 基线已保存: /home/peng/workspace/PAL3Decomp/data/status/baselines/20261122_182434.json
    总文件数: 1017
-   成功: 907
-   失败: 110
+   成功: 904
+   失败: 111
 
 [Regression] diff vs latest baseline:
 
 [Baseline] refreshing latest baseline...
   Fingerprinting probe census...
-  Snapshot saved: 20261122_164152
-    S2 142/230, errors=674, pass=142/230
-  Pruned old snapshot: 20261119_023722
+  Snapshot saved: 20261122_182434
+    S2 141/230, errors=682, pass=141/230
+  Pruned old snapshot: 20261119_031557
 
 [codegen-invariant] OK（无新增不变量破坏）
 Compile Regression Report
 ==================================================
 Baseline: 2026-11-14T14:10:51.243291
 Baseline S2: 159/204
-Current S2: 142/230
+Current S2: 141/230
 
-⚠️  REGRESSIONS (39 files):
+⚠️  REGRESSIONS (40 files):
   - pal3/src/Combat/CCBAI.cpp
   - pal3/src/Combat/CCBControlWindow.cpp
   - pal3/src/Combat/CCBItemWindow.cpp
@@ -122,6 +138,7 @@ Current S2: 142/230
   - pal3/src/Render/RenderTarget2.cpp
   - pal3/src/Scene/CameraCtrl.cpp
   - pal3/src/UI/UIListBox.cpp
+  - pal3/src/UI/UIWnd.cpp
   - pal3/src/globals.cpp
 
 🎉 IMPROVEMENTS (22 files):
@@ -148,7 +165,7 @@ Current S2: 142/230
   + pal3/src/Misc/gbSound2DNode.cpp
   + pal3/src/Misc/gbVec3D.cpp
 
-Net change: -17 files
+Net change: -18 files
 
 [Probe] Running probe s2 so compile_regression sees THIS codegen's census...
 
@@ -164,4 +181,4 @@ Net change: -17 files
         'python3 tools/compile_regression.py --update-baseline' after
         confirming there is no real regression.
 [DEBUG-INC] unk_DBA134 typ='RoleCameraCtrl' has_header=True has_struct=True pointer_only=True
-[ret-N evidence] 指令级(asm) 3181 / 裸扫描回退 290 / 无证据 6
+[ret-N evidence] 指令级(asm) 3181 / 裸扫描回退 289 / 无证据 6

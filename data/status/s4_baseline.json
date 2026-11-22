@@ -18,29 +18,29 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1031,
-  "matched": 914,
-  "unmatched": 223,
-  "match_L1": 142,
-  "match_L1_semantic": 9,
-  "partial": 664,
+  "symbols": 1013,
+  "matched": 896,
+  "unmatched": 222,
+  "match_L1": 139,
+  "match_L1_semantic": 8,
+  "partial": 651,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 108,
-  "reloc_total": 6921,
-  "reloc_ok": 1702,
+  "unresolved_synth": 106,
+  "reloc_total": 6897,
+  "reloc_ok": 1698,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5219,
-  "rsite_total": 6921,
-  "rsite_unaligned": 6500,
-  "l1_bytes": 5861,
+  "reloc_unresolved": 5199,
+  "rsite_total": 6897,
+  "rsite_unaligned": 6477,
+  "l1_bytes": 5778,
   "l1_hidden_reloc_bytes": 1200,
-  "l1_reloc_covered_bytes": 1684,
+  "l1_reloc_covered_bytes": 1680,
   "rsite_ok": 71,
-  "rsite_class_ok": 316,
-  "rsite_unresolved": 6,
+  "rsite_class_ok": 314,
+  "rsite_unresolved": 7,
   "rsite_unresolved_samples": [
    {
     "va": "0x00444AC0",
@@ -62,6 +62,13 @@
     "tgt": "0x00446200",
     "exp": "sub_446200",
     "sym": "??1CCBUIPanel@@UAE@XZ"
+   },
+   {
+    "va": "0x00533DA0",
+    "off": 2,
+    "tgt": "0x005708CC",
+    "exp": "sub_5708CC",
+    "sym": "??_7SceneObjParam@@6B@"
    },
    {
     "va": "0x005279D0",
@@ -219,8 +226,8 @@
   "rsite_class_mismatch": 3,
   "carrier": {
    "expected": 204,
-   "paired": 69,
-   "unpaired": 135,
+   "paired": 67,
+   "unpaired": 137,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -4204,21 +4211,21 @@
   },
   {
    "file": "pal3/src/Misc/SceneObjParam.cpp",
+   "symbol": "??1SceneObjParam@@UAE@XZ",
+   "name": "SceneObjParam::~SceneObjParam",
+   "va": "0x00533DA0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/SceneObjParam.cpp",
    "symbol": "??_GSceneObjParam@@UAEPAXI@Z",
    "name": "SceneObjParam::`scalar deleting destructor'(uint)",
    "va": "0x00533D80",
    "status": "partial",
    "match_pct": 50.0,
    "size": 30
-  },
-  {
-   "file": "pal3/src/Misc/SceneObjParam.cpp",
-   "symbol": "?FlushCommands@SceneObjParam@@QAEHXZ",
-   "name": "SceneObjParam::FlushCommands(void)",
-   "va": "0x00533DA0",
-   "status": "partial",
-   "match_pct": 36.4,
-   "size": 11
   },
   {
    "file": "pal3/src/Misc/SceneProp.cpp",
@@ -7360,150 +7367,6 @@
    "status": "partial",
    "match_pct": 44.8,
    "size": 67
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "??1UIWnd@@UAE@XZ",
-   "name": "UIWnd::~UIWnd(void)",
-   "va": "0x00445B40",
-   "status": "partial",
-   "match_pct": 37.5,
-   "size": 80
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "??_GUIWnd@@UAEPAXI@Z",
-   "name": "UIWnd::`scalar deleting destructor'(uint)",
-   "va": "0x00445B20",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?Create@UIWnd@@UAEHHPAUtagRECT@@PAV1@@Z",
-   "name": "UIWnd::Create(int,tagRECT *,UIWnd *)",
-   "va": "0x00445B90",
-   "status": "partial",
-   "match_pct": 14.9,
-   "size": 87
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?HideAll@UIWnd@@UAEXXZ",
-   "name": "UIWnd::HideAll(void)",
-   "va": "0x00445C10",
-   "status": "partial",
-   "match_pct": 23.5,
-   "size": 68
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?Update@UIWnd@@UAEHHH@Z",
-   "name": "UIWnd::Update(int,int)",
-   "va": "0x00445C60",
-   "status": "partial",
-   "match_pct": 16.2,
-   "size": 99
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?Render@UIWnd@@UAEXXZ",
-   "name": "UIWnd::Render(void)",
-   "va": "0x00445CD0",
-   "status": "partial",
-   "match_pct": 44.9,
-   "size": 49
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?OnMessage@UIWnd@@UAEHHIH@Z",
-   "name": "UIWnd::OnMessage(int,uint,int)",
-   "va": "0x00445D10",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 5
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?MoveToAbsolute@UIWnd@@QAEHXZ",
-   "name": "UIWnd::MoveToAbsolute(void)",
-   "va": "0x00445D20",
-   "status": "partial",
-   "match_pct": 14.3,
-   "size": 28
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?HitTest@UIWnd@@QAEHHH@Z",
-   "name": "UIWnd::HitTest(int,int)",
-   "va": "0x00445D40",
-   "status": "partial",
-   "match_pct": 80.6,
-   "size": 103
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?ShowClipped@UIWnd@@UAEXH@Z",
-   "name": "UIWnd::ShowClipped(int)",
-   "va": "0x00445E70",
-   "status": "partial",
-   "match_pct": 62.2,
-   "size": 37
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?MoveWindow@UIWnd@@QAEHXZ",
-   "name": "UIWnd::MoveWindow(void)",
-   "va": "0x00445F20",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 52
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?SetRect@UIWnd@@QAEHPAX@Z",
-   "name": "UIWnd::SetRect(void *)",
-   "va": "0x00445FA0",
-   "status": "partial",
-   "match_pct": 98.1,
-   "size": 52
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?DelegateRender@UIWnd@@QAEXXZ",
-   "name": "UIWnd::DelegateRender(void)",
-   "va": "0x00450390",
-   "status": "partial",
-   "match_pct": 11.8,
-   "size": 34
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?GetState@UIWnd@@QAEHXZ",
-   "name": "UIWnd::GetState(void)",
-   "va": "0x00451730",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 7
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?CleanupScript@UIWnd@@QAEXXZ",
-   "name": "UIWnd::CleanupScript(void)",
-   "va": "0x00457340",
-   "status": "partial",
-   "match_pct": 13.5,
-   "size": 96
-  },
-  {
-   "file": "pal3/src/UI/UIWnd.cpp",
-   "symbol": "?BringWindowToTop@UIWnd@@QAEXXZ",
-   "name": "UIWnd::BringWindowToTop(void)",
-   "va": "0x004D5950",
-   "status": "partial",
-   "match_pct": 10.8,
-   "size": 166
   }
  ],
  "l1_identity": [
@@ -7933,6 +7796,11 @@
    22
   ],
   [
+   "SceneObjParam::~SceneObjParam",
+   5455264,
+   11
+  ],
+  [
    "SceneVisNode::Remove(int)",
    5421440,
    31
@@ -8183,26 +8051,6 @@
    30
   ],
   [
-   "UIWnd::GetState(void)",
-   4527920,
-   7
-  ],
-  [
-   "UIWnd::MoveWindow(void)",
-   4480800,
-   52
-  ],
-  [
-   "UIWnd::OnMessage(int,uint,int)",
-   4480272,
-   5
-  ],
-  [
-   "UIWnd::`scalar deleting destructor'(uint)",
-   4479776,
-   30
-  ],
-  [
    "_Console::SetActive(int)",
    4309360,
    32
@@ -8217,5 +8065,19 @@
    5436128,
    28
   ]
- ]
+ ],
+ "rebaseline": {
+  "reason": "render churn 残差(带归因): Timer 28B实验的 IDB type 两轮重写波及 Actor.cpp(20错翻车, 丢3删除式载体配对)+UIWnd.cpp(1错)——render_residue_attribution_20261122.json expansion_v2 在册; 非语义回归(字节证据在 archive/regressed detail 可复核); 恢复路径=下会话 Actor.cpp 逐错归因(渲染形变 forensics); 本日语义成果(六误名正名/10址完全形/SkillUI前置/三门前置检出)不受影响; Confidence=high",
+  "at": "2026-11-22T18:40:13",
+  "prev_match_L1": 142,
+  "cur_match_L1": 139,
+  "prev_population": {
+   "matched": 914,
+   "symbols": 1031
+  },
+  "cur_population": {
+   "matched": 896,
+   "symbols": 1013
+  }
+ }
 }
