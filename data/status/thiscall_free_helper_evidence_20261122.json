@@ -1,0 +1,155 @@
+{
+ "LoadScene": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x436519",
+    "push    1; pData"
+   ],
+   [
+    "0x535745",
+    "push    ebx; pszBuf"
+   ]
+  ]
+ },
+ "AddToArray": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x4dbe0c",
+    "mov     byte ptr [ebp+var_4], al"
+   ]
+  ]
+ },
+ "FileSysDestory": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x4062f7",
+    "push    1"
+   ]
+  ]
+ },
+ "GetCellStateByte": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x46b046",
+    "push    esi; unsigned __int32"
+   ]
+  ]
+ },
+ "Method_3CB0": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x523cd3",
+    "align 10h"
+   ],
+   [
+    "0x523d23",
+    "align 10h"
+   ]
+  ]
+ },
+ "SetFrameIndex": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x487cf1",
+    "mov     byte ptr [edi+0A9h], 0CDh"
+   ],
+   [
+    "0x487d87",
+    "mov     byte ptr [edi+0ABh], 0FFh"
+   ]
+  ]
+ },
+ "SetArrayElement": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x445bc6",
+    "mov     [esi+20h], ecx"
+   ]
+  ]
+ },
+ "InitUIComponents": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x404b22",
+    "test    al, al"
+   ],
+   [
+    "0x404b7f",
+    "test    al, al"
+   ]
+  ]
+ },
+ "InitState": {
+  "verdict": "深裁",
+  "samples": []
+ },
+ "ProcessTree": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x4a4734",
+    "call    ?InitEquipUI@EquipUI@@QAEHH@Z; Equip"
+   ]
+  ]
+ },
+ "Method_B560": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x4ab3f1",
+    "mov     [esp+5Ch+var_24], edx"
+   ],
+   [
+    "0x4ab41b",
+    "sub     edi, 0Ch"
+   ]
+  ]
+ },
+ "SetValue": {
+  "verdict": "深裁",
+  "samples": []
+ },
+ "Initialize_06A0": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x53081d",
+    "push    edi; char *"
+   ]
+  ]
+ },
+ "NormalizeAngle": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x45e6e3",
+    "push    0; a3"
+   ],
+   [
+    "0x46eb70",
+    "push    0; a3"
+   ]
+  ]
+ },
+ "AllocObject": {
+  "verdict": "深裁",
+  "samples": [
+   [
+    "0x451094",
+    "mov     byte ptr [esp+1Ch+pRect+3], cl"
+   ],
+   [
+    "0x451a5a",
+    "lea     eax, [esp+1Ch+parent]"
+   ]
+  ]
+ }
+}
