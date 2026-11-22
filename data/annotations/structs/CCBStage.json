@@ -4151,6 +4151,21 @@
    "override_of": "0x00445c60",
    "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x0051dda0": {
+   "name": "~CCBStage",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_dtor_call_target",
+   "name_note": "[dtor对偶探针 20261122] 删除式存根 0x0051dd80 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——完全形补注(deleted-form 模型精化: 完全形缺失=注解缺口非 ABI 真相)"
   }
  },
  "vtables": [

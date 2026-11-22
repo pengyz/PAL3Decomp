@@ -803,6 +803,21 @@
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
+  },
+  "0x004912d0": {
+   "name": "~MainPropUI",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_dtor_call_target",
+   "name_note": "[dtor对偶探针 20261122/D12解链] MainPropUI 删除式存根 0x00490E70 call@3 REL32 目标=本址——Destroy_912D0=CRT域误判解链: 真身=MainPropUI 完全形 dtor"
   }
  },
  "vtables": [

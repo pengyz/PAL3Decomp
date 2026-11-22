@@ -709,6 +709,21 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x00450eb0": {
+   "name": "~RoleAtt",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_dtor_call_target",
+   "name_note": "[dtor对偶探针 20261122] 删除式存根 0x00450e90 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——完全形补注(deleted-form 模型精化: 完全形缺失=注解缺口非 ABI 真相)"
   }
  },
  "vtables": [

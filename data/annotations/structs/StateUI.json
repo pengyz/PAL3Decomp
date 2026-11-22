@@ -401,7 +401,7 @@
  },
  "methods": {
   "0x00483380": {
-   "name": "ctor",
+   "name": "~StateUI",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
@@ -411,7 +411,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ],
+   "name_note": "[dtor对偶探针 20261122] 删除式存根 0x00483260 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——_nearby 占位正名为完全形"
   },
   "0x00480450": {
    "name": "DispatchCmd",

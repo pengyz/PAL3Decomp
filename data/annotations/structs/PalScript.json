@@ -815,18 +815,21 @@
    "flags_evidence": "IDA名字形态=PalScript(??0构造); decomp文件=PalScript_PalScriptvoid_0043a160 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
   },
   "0x0043a1f0": {
-   "name": "ctor",
+   "name": "~PalScript",
    "type": "skip",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic",
    "evidence_level": "unverified",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "dtor"
+   ],
+   "name_note": "[dtor对偶探针 20261122] 删除式存根 0x0043a1d0 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——_nearby 占位正名为完全形 | [摘decl_only 20261122] decl_only→skip_addrs派生→语料单元永缺=自我强化; 摘后下轮export 产出语料, 定义源回归完全形"
   },
   "0x004318a0": {
    "name": "Cleanup",

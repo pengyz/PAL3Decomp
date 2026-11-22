@@ -1158,24 +1158,6 @@
   "name_source": "IDA语义分析 2026-10-31 批1-2",
   "name_note": "从 decomp 推断（sub_4232D0）"
  },
- "0x004912d0": {
-  "name": "Destroy_912D0",
-  "name_source": "IDA语义分析 2026-11-01 批14",
-  "name_note": "从 decomp 推断（sub_4912D0） | REF修复20261122: signature串含stdiobuf*(CRT类, SKIP_CLASSES域, include树无定义)→REF门resolve失败(新爆发, 共享头声明链无此类型)。sig_model迁移(void*this参数化——stdiobuf*this=透明this形) + signature字段退役。Destroy_912D0=decomp推断名(2026-11-01批14), 真身待定谳(低危挂账) | REF修复20261122: this型stdiobuf*→void*(stdiobuf=CRT类SKIP_CLASSES域, include树无定义→REF门resolve永失败)。真身=析构族(名Destroy_912D0=decomp推断未验), CRT域待定谳(D12族)",
-  "sig_model": {
-   "return": "void",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "void *",
-     "name": "this"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "signature": "void __thiscall(void *this)"
- },
  "0x004ab560": {
   "name": "Method_B560",
   "signature": "bool __thiscall(_DWORD *this, int a2, int a3)",

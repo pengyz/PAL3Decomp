@@ -18,29 +18,29 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1029,
-  "matched": 914,
+  "symbols": 1028,
+  "matched": 912,
   "unmatched": 222,
-  "match_L1": 141,
+  "match_L1": 142,
   "match_L1_semantic": 9,
-  "partial": 663,
+  "partial": 662,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 110,
+  "unresolved_synth": 108,
   "reloc_total": 6921,
-  "reloc_ok": 1700,
+  "reloc_ok": 1702,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5221,
+  "reloc_unresolved": 5219,
   "rsite_total": 6921,
-  "rsite_unaligned": 6502,
-  "l1_bytes": 5831,
-  "l1_hidden_reloc_bytes": 1196,
-  "l1_reloc_covered_bytes": 1676,
+  "rsite_unaligned": 6500,
+  "l1_bytes": 5861,
+  "l1_hidden_reloc_bytes": 1200,
+  "l1_reloc_covered_bytes": 1684,
   "rsite_ok": 71,
-  "rsite_class_ok": 315,
-  "rsite_unresolved": 5,
+  "rsite_class_ok": 316,
+  "rsite_unresolved": 6,
   "rsite_unresolved_samples": [
    {
     "va": "0x00444AC0",
@@ -48,6 +48,13 @@
     "tgt": "0x0056AE84",
     "exp": "sub_56AE84",
     "sym": "??_7CCBResultWindow@@6B@"
+   },
+   {
+    "va": "0x004C5D50",
+    "off": 4,
+    "tgt": "0x004C5D70",
+    "exp": "sub_4C5D70",
+    "sym": "??1CEffectSystem@@UAE@XZ"
    },
    {
     "va": "0x004461D0",
@@ -1470,15 +1477,6 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
-   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
-   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
-   "va": "0x004C5D50",
-   "status": "partial",
-   "match_pct": 43.3,
-   "size": 30
-  },
-  {
-   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?slot_1@CEffectSystem@@UAEHXZ",
    "name": "CEffectSystem::slot_1(void)",
    "va": "0x004C5D80",
@@ -1551,6 +1549,15 @@
   },
   {
    "file": "pal3/src/Effect/CEffectSystem.cpp",
+   "symbol": "??_GCEffectSystem@@UAEPAXI@Z",
+   "name": "CEffectSystem::`scalar deleting destructor'(uint)",
+   "va": "0x004C5D50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffectSystem.cpp",
    "symbol": "?InitVertexBuffer@CEffectSystem@@QAEPAHH@Z",
    "name": "CEffectSystem::InitVertexBuffer(int)",
    "va": "0x004C6240",
@@ -1564,7 +1571,7 @@
    "name": "CEffectSystem::Init(void)",
    "va": "0x004C6280",
    "status": "partial",
-   "match_pct": 40.0,
+   "match_pct": 0.0,
    "size": 5
   },
   {
@@ -7756,6 +7763,11 @@
    "CEffectSystem::GetEffectIndex(void)",
    5006128,
    5
+  ],
+  [
+   "CEffectSystem::`scalar deleting destructor'(uint)",
+   5004624,
+   30
   ],
   [
    "CEffgbParticle::GetEditorTaskDescription(int)",
