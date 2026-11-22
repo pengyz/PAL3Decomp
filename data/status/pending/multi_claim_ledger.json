@@ -1407,6 +1407,11 @@
    "addr": "RoleSystem",
    "answer": "深chimera立案: 151成员含全局地址成员dword_17AA450@0x1968, 成员末端6508>SceneMgr区间5444(m_nTodo_C059A0@0x1610类型RoleSystem值/指针存疑); 需独立定谳",
    "adjudicated": true
+  },
+  {
+   "addr": "0x004c2600",
+   "answer": "唯一所有者=CEffSParticle; EffCallBackNode槽0指折叠同址(ICF)—— EffCallBackNode真vtable表0x56F758槽0实证(完全形0x4C3340写表闭环); fold_carrier_aliases已登记(qualifier=EffCallBackNode)",
+   "adjudicated": true
   }
  ],
  "entries": [
@@ -2318,6 +2323,17 @@
     "ScriptObj"
    ],
    "evidence": "decomp体this型/member归属+ctor普查+槽引用分布+IDA注册名; 逐例见archive/multi_claim_deletions_2026-11-17.json",
+   "pending_note": null
+  },
+  {
+   "addr": "0x004c2600",
+   "owner": "CEffSParticle",
+   "verdict": "fold_carrier_single_owner",
+   "kept": "CEffSParticle",
+   "related_classes": [
+    "EffCallBackNode"
+   ],
+   "evidence": "槽5闭环探针20261122: EffCallBackNode真vtable表0x56F758槽0=0x4C2600(完全形0x4C3340体mov [esi],stru_56F758写表闭环实证)——该址已属CEffSParticle(ICF折叠多类同址), EffCallBackNode槽0指同一折叠函数",
    "pending_note": null
   }
  ],
