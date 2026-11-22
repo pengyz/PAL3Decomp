@@ -254,7 +254,12 @@ def check(struct_dir=None):
 
         # Check 2: __thiscall without :: suggests misattributed member function
         # （判据修正 2026-10-17 verifier：签名含 '::' 不报——R15 纯函数）
-        if addr not in _struct_method_addrs and needs_member_attr_warning(name, sig):
+        # [free_helper 豁免 2026-11-22] 数据层字段 free_helper_confirmed=true = 该
+        #   __thiscall 自由助手已经五面/ECX 呼叫点取证确认（AllocObject 100 站案）
+        #   ——PAL3 存在无类全局 thiscall 工具函数族，门禁机械尊重数据层标记
+        _free_helper = bool(info.get('free_helper_confirmed'))
+        if addr not in _struct_method_addrs and not _free_helper \
+                and needs_member_attr_warning(name, sig):
                 warnings.append(
                     f"functions[{addr}]: '__thiscall' without '::' in '{name}' "
                     f"(sig: {sig[:60]}) — likely member function, needs IDA investigation")

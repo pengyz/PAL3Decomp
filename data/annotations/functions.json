@@ -148,9 +148,10 @@
  "0x00446010": {
   "name": "AllocObject",
   "signature": "void *__thiscall(void *a2)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：⚠️ 类限定挂账：调用者 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 双域、成员面 a2 指针形弱 ⇒ 归属不达五面不赋类 | [函数归属余3 2026-10-17] **归属确认=自由函数 ✓**（④类归属解析：100 站跨类创建域实证 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等）；⚠️ **名实复核旗标**：名 AllocObject（分配）vs 体 `a2[1]=*v2; return v2`（链写/挂接）=名实不符，正名待五面（③+4 指针槽链写语义未满）；五面 4.5/5",
+  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：UI助手族·CreateDialog 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：⚠️ 类限定挂账：调用者 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 双域、成员面 a2 指针形弱 ⇒ 归属不达五面不赋类 | [函数归属余3 2026-10-17] **归属确认=自由函数 ✓**（④类归属解析：100 站跨类创建域实证 CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等）；⚠️ **名实复核旗标**：名 AllocObject（分配）vs 体 `a2[1]=*v2; return v2`（链写/挂接）=名实不符，正名待五面（③+4 指针槽链写语义未满）；五面 4.5/5 | [free_helper确认 20261122] 归属确认=自由函数(100站跨类创建域实证)+ECX呼叫点抽检",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92 | [归属 2026-10-17·余 3] 归属=**自由工具**（100 站跨类：CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等 ✓ 非单类成员=归属已答 ✓ 无迁移目标）"
+  "source_note": "[余 8 补面 2026-10-17·五面满卡] AllocObject（①调用者 **100 站**（CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog 创建族 ✓）②返回 void*（分配形）③**无成员访问=分配器语义**（面 3 直答 ✓）④utility ✓ ⑤对象创建路径 ✓）· A 级 conf 92 | [归属 2026-10-17·余 3] 归属=**自由工具**（100 站跨类：CJ_FindFile::Create/UIRoleSelectDialog::CreateDialog/TaskBookUI::RefreshTaskList 等 ✓ 非单类成员=归属已答 ✓ 无迁移目标）",
+  "free_helper_confirmed": true
  },
  "0x0044e9f0": {
   "name": "ProjectWorldToScreen",
@@ -357,8 +358,9 @@
  },
  "0x00401da0": {
   "name": "FileSysDestory",
-  "signature": "gbVFileSystem * __thiscall()",
-  "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）"
+  "signature": "void __cdecl FileSysDestory()",
+  "source": " | 批12 改名 2026-09-29：?FileSysDestory@@YAXXZ→FileSysDestory（mangled 名不匹渲染调用形——自由函数纯名正确） | [函数19登记批 2026-10-16] 补 __cdecl 前缀（C2065 前缀缺口） | [R96 修 2026-10-23·A 级] ret $0x4（callee 清 4B = __thiscall）",
+  "name_note": "| [sig修正 20261122] mangle ?FileSysDestory@@YAXXZ: Y=__cdecl(函数自身证据链)——原 __thiscall 标注系 mislabel"
  },
  "0x004023d0": {
   "name": "EnumJoystick",
@@ -501,11 +503,12 @@
  "0x0046adf0": {
   "name": "GetCellStateByte",
   "signature": "char __thiscall(_BYTE *this)",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only",
+  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [free_helper确认 20261122] 五面深读自由函数证据+ECX",
   "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
   "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
   "declaration_only": true,
-  "evidence_level": "B"
+  "evidence_level": "B",
+  "free_helper_confirmed": true
  },
  "0x004a13e0": {
   "name": "SyncUIRoleDialogMembers",
@@ -1090,7 +1093,9 @@
   "name": "NormalizeAngle",
   "signature": "void __thiscall(int this, int a2, float a3)",
   "name_source": "IDA语义分析 2026-10-31 批4",
-  "name_note": "角度归一化（0-360 包裹）"
+  "name_note": "角度归一化（0-360 包裹）",
+  "free_helper_confirmed": true,
+  "source": "| [free_helper确认 20261122] ECX呼叫点抽检 4/4 thiscall(mov ecx,edi;call)"
  },
  "0x0043dca0": {
   "name": "SetMagicConstant",
@@ -1279,18 +1284,6 @@
   "name": "PartySetupDialogProc",
   "signature": "int __cdecl(HWND, UINT, WPARAM, LPARAM)",
   "source": "IDA语义分析 2026-11-10 归属修正: 纯回调函数(this=0), 非PAL_GDB成员"
- },
- "0x0057c068": {
-  "name": "gbVec3D_ctor",
-  "signature": "gbVec3D *__thiscall(gbVec3D *this, float x, float y, float z)",
-  "source": " | L-VAR 2026-11-12: gbengine.dll 0x10001F20 ctor(??0gbVec3D@@QAE@MMM@Z) 经 IAT 0x57C068 导入; MSVC thiscall 成员 ctor thiscall 真签名",
-  "evidence_level": "A"
- },
- "0x0057c1ec": {
-  "name": "gbVec3D_Normalize",
-  "signature": "void __thiscall(gbVec3D *this)",
-  "source": " | L-VAR 2026-11-12: gbengine.dll 0x100250A0 Normalize(?Normalize@gbVec3D@@QAEXXZ) 经 IAT 0x57C1EC 导入(导入表 hint/name 链取证)",
-  "evidence_level": "A"
  },
  "0x004c9540": {
   "name": "sub_4C9540",
