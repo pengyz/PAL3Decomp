@@ -57,9 +57,14 @@
    "name": "~PalScriptBlendTimer",
    "name_note": "G2条目补齐(PalScript计时器族): slot0删除式dtor位, ICF折叠入PalScript scalar dtor 0x434d50(体=Array清理)",
    "sig_model": {
-    "return": "void",
+    "return": "void *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
@@ -67,7 +72,23 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=~PalScriptBlendTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。"
+   "flags_evidence": "IDA名字形态=~PalScriptBlendTimer(??1/??_G析构族); decomp文件=PalScript_scalar_dtor_4D50void_00434d50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
+   "sig_note": "| [形态正判 20261122] 旧注\"ICF折叠入PalScript\"证伪: 本存根 call@3 目标=0x411BA0(本类平凡完全形)≠PalScript 的 0x43A1F0——字节不同=未折叠。异签消 C8, 完全形=0x411BA0(mov [ecx],vptr; ret 平凡体)"
+  },
+  "0x00411ba0": {
+   "name": "~PalScriptBlendTimer",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_dtor_call_target",
+   "name_note": "[dtor对偶探针+案件runner 20261122] PalScriptBlendTimer 删除式存根 call@3 目标=本址(SAFE_AUTO: 锚定①vtable/②call语义③误名claim零呼叫者)——_nearby 占位claim删除"
   }
  },
  "vtables": [

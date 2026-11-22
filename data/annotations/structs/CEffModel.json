@@ -286,17 +286,24 @@
    "source": "| [vtable 治理·未注册族 2026-10-16 analyzer] A 级本体判读：adjustor 跳板 compiler-generated",
    "evidence_level": "A",
    "sig_model": {
-    "return": "void",
+    "return": "void *",
     "cc": "thiscall",
-    "params": [],
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
     "varargs": false,
     "pending": false
    },
    "flags": [
-    "dtor"
+    "dtor",
+    "deleting"
    ],
    "flags_evidence": "IDA名字形态=_sdtor_adj(??1/??_G析构族); decomp文件=CEffModel_sdtor_adjvoid_004d3220 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
-   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)"
+   "name_note": " | C8源模型修正20261121(T4-P0批量): 摘declaration_only(本形=定义源, 体织入stage1 4d剥)",
+   "sig_note": "| [形态正判 20261122] 字节=83e90c.e9=adjustor跳板(this-0xC后jmp)=删除式MI变体——异签消C8, 完全形=0x4CFD40(SEH体形, 本批注)"
   },
   "0x004d0ca0": {
    "name": "~CEffModel",
@@ -413,6 +420,21 @@
     "pending": false
    },
    "restore_note": "2026-11-17 T1b事故恢复: owner条目误删后还原; HEAD恢复+退役字段剥离"
+  },
+  "0x004cfd40": {
+   "name": "~CEffModel",
+   "flags": [
+    "dtor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "evidence_level": "binary_dtor_call_target",
+   "name_note": "[dtor对偶探针+案件runner 20261122] CEffModel 删除式存根 call@3 目标=本址(SAFE_AUTO)——DestroyEffect_FD40 裸claim删除(让位编译器配对铁证)"
   }
  },
  "vtables": [

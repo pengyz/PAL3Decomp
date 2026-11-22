@@ -1,0 +1,602 @@
+{
+ "_doc": "MULTI_CLAIM 24 案件 runner 分拣 20261122",
+ "cases": [
+  {
+   "cls": "Camera",
+   "va": "0x0041c090",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x0041bfc0",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RoleSystem",
+     "FlushCommandQueue",
+     null
+    ]
+   ],
+   "callers": {
+    "RoleSystem::FlushCommandQueue": [
+     "CCBStageCam_~CCBStageCamvoid_00504080.json",
+     "Camera_~Cameravoid_0041bfc0.json",
+     "RoleSystem_FlushCommandQueuevoid_0041c090.json",
+     "SceneObjParam_FlushCommandsvoid_00533da0.json"
+    ]
+   }
+  },
+  {
+   "cls": "gbLightObj",
+   "va": "0x00423880",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x00423860",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "ScriptVM",
+     "ProcessFrame",
+     null
+    ]
+   ],
+   "callers": {
+    "ScriptVM::ProcessFrame": [
+     "ScriptVM_ProcessFramevoid_00423880.json",
+     "gbLightObj_~gbLightObjvoid_00423860.json"
+    ]
+   }
+  },
+  {
+   "cls": "PalScriptBlendTimer",
+   "va": "0x00411ba0",
+   "verdict": "SAFE_AUTO",
+   "anchor": {
+    "del_va": "0x00434d50",
+    "slot_verified": true,
+    "rdata_mounts": 5
+   },
+   "claims": [
+    [
+     "Array",
+     "_nearby_411ba0",
+     null
+    ]
+   ],
+   "callers": {
+    "Array::_nearby_411ba0": []
+   }
+  },
+  {
+   "cls": "PalScriptProgressTimer",
+   "va": "0x004381b0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x00438190",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "PalScript",
+     "ClearFloatParams",
+     null
+    ]
+   ],
+   "callers": {
+    "PalScript::ClearFloatParams": [
+     "PalScriptProgressTimer_~PalScriptProgressTimervoid_00438190.json",
+     "PalScript_ClearFloatParamsvoid_004381b0.json"
+    ]
+   }
+  },
+  {
+   "cls": "PalScriptAnimTimer",
+   "va": "0x00438eb0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x00438e90",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "filebuf",
+     "~filebuf",
+     [
+      "dtor"
+     ]
+    ]
+   ],
+   "callers": {
+    "filebuf::~filebuf": [
+     "filebuf_~filebufvoid_00438eb0.json"
+    ]
+   }
+  },
+  {
+   "cls": "UIProgressBar",
+   "va": "0x00439130",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x00439110",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "PalScript",
+     "Reset",
+     null
+    ]
+   ],
+   "callers": {
+    "PalScript::Reset": [
+     "JusticeBookUI_~JusticeBookUIvoid_005284e0.json",
+     "LineupUI_~LineupUIvoid_00470f40.json",
+     "MainPropUI_~MainPropUIvoid_004912d0.json",
+     "PalScript_Resetvoid_00439130.json",
+     "RenderTarget_InitNPCPanelvoid_004870c0.json",
+     "SaleUI_~SaleUIvoid_0045ae60.json",
+     "SkillUI_~SkillUIvoid_00525540.json",
+     "SystemUI_~SystemUIvoid_004a7690.json",
+     "UIProgressBar_UIProgressBar_00439110.json"
+    ]
+   }
+  },
+  {
+   "cls": "UI3DCtrl",
+   "va": "0x0043d880",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x0043d860",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "UIFrameWnd",
+     "__deleting_view",
+     null
+    ]
+   ],
+   "callers": {
+    "UIFrameWnd::__deleting_view": [
+     "LineupUI_~LineupUIvoid_00470f40.json",
+     "MainPropUI_~MainPropUIvoid_004912d0.json",
+     "RenderTarget_InitNPCPanelvoid_004870c0.json",
+     "SaleUI_~SaleUIvoid_0045ae60.json",
+     "SystemUI_~SystemUIvoid_004a7690.json",
+     "UI3DCtrl_UI3DCtrl_0043d860.json",
+     "UIFrameWnd_deleting_viewvoid_0043d880.json",
+     "UIMap_~UIMapvoid_004411d0.json"
+    ]
+   }
+  },
+  {
+   "cls": "CCBPanelSlot",
+   "va": "0x004431d0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004431b0",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "UIFrameWnd",
+     "DestroyCallingCtor",
+     null
+    ]
+   ],
+   "callers": {
+    "UIFrameWnd::DestroyCallingCtor": [
+     "UIFrameWnd_DestroyCallingCtorint_004431d0.json"
+    ]
+   }
+  },
+  {
+   "cls": "UIScenePanel",
+   "va": "0x0044bda0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x0044be00",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "UICaption",
+     "DestroyAll",
+     null
+    ]
+   ],
+   "callers": {
+    "UICaption::DestroyAll": [
+     "UICaption_DestroyAllvoid_0044bda0.json"
+    ]
+   }
+  },
+  {
+   "cls": "PAL3VisNode",
+   "va": "0x004b6fb0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004b6f90",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "gbChain1DNode",
+     "Process",
+     null
+    ]
+   ],
+   "callers": {
+    "gbChain1DNode::Process": [
+     "Actor_ProcessChainint_004b7330.json",
+     "PAL3VisNode_~PAL3VisNodevoid_004b6f90.json",
+     "RenderTarget_GetManagedTextureint_004bd870.json",
+     "ScreenEffectNode_~ScreenEffectNodevoid_004b7ce0.json",
+     "UI3DModelNode_~UI3DModelNodevoid_004b7510.json",
+     "gbChain1DNode_Processvoid_004b6fb0.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffGroupNode",
+   "va": "0x004b7330",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004b7310",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "Actor",
+     "ProcessChain",
+     null
+    ]
+   ],
+   "callers": {
+    "Actor::ProcessChain": [
+     "Actor_ProcessChainint_004b7330.json",
+     "CEffGroupNode_~CEffGroupNodevoid_004b7310.json"
+    ]
+   }
+  },
+  {
+   "cls": "ParticleEffect",
+   "va": "0x004bd870",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004bd850",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget",
+     "GetManagedTexture",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget::GetManagedTexture": [
+     "RenderTargetNode_ParticleEffect_0_004bd850.json",
+     "RenderTarget_GetManagedTextureint_004bd870.json"
+    ]
+   }
+  },
+  {
+   "cls": "ScreenEffect",
+   "va": "0x004be080",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004be060",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "ScreenEffectMgr",
+     "ClearAllEffects",
+     null
+    ]
+   ],
+   "callers": {
+    "ScreenEffectMgr::ClearAllEffects": [
+     "InitScreenEffectSingleton_004be5d0.json",
+     "ScreenEffectMgr_ClearAllEffectsvoid_004be080.json",
+     "ScreenEffect_ScreenEffect_004be060.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffAction",
+   "va": "0x004c0560",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c0540",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget2",
+     "ExecutePasses",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget2::ExecutePasses": [
+     "CEffAction_CEffAction_004c0540.json",
+     "RenderTarget2_ExecutePassesvoid_004c0560.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffBink",
+   "va": "0x004c1660",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c1640",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget2",
+     "DestroyEffBase",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget2::DestroyEffBase": [
+     "CEffBink_~CEffBinkvoid_004c1640.json",
+     "RenderTarget2_DestroyEffBasevoid_004c1660.json"
+    ]
+   }
+  },
+  {
+   "cls": "EffBinkNode",
+   "va": "0x004c20d0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c20b0",
+    "slot_verified": false,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget2",
+     "DestroyEffBink",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget2::DestroyEffBink": [
+     "EffBinkNode_~EffBinkNodevoid_004c20b0.json",
+     "RenderTarget2_DestroyEffBinkvoid_004c20d0.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffCallBack",
+   "va": "0x004c2890",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c2870",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget2",
+     "BeginMultiPass",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget2::BeginMultiPass": [
+     "CEffCallBack_~CEffCallBackvoid_004c2870.json",
+     "RenderTarget2_BeginMultiPassvoid_004c2890.json"
+    ]
+   }
+  },
+  {
+   "cls": "EffCallBackNode",
+   "va": "0x004c34d0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c34b0",
+    "slot_verified": false,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "RenderTarget2",
+     "DestroyEffCallBack",
+     null
+    ]
+   ],
+   "callers": {
+    "RenderTarget2::DestroyEffCallBack": [
+     "RenderTarget2_DestroyEffCallBackvoid_004c34d0.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffExplosive",
+   "va": "0x004c6980",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004c6960",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "CEffgbParticle",
+     "~CEffgbParticle",
+     [
+      "dtor"
+     ]
+    ]
+   ],
+   "callers": {
+    "CEffgbParticle::~CEffgbParticle": [
+     "CEffExplosive_CEffExplosive_004c6960.json",
+     "CEffgbParticle_~CEffgbParticlevoid_004c6980.json"
+    ]
+   }
+  },
+  {
+   "cls": "CEffModel",
+   "va": "0x004cfd40",
+   "verdict": "SAFE_AUTO",
+   "anchor": {
+    "del_va": "0x004cfd20",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "CEffgbParticle",
+     "DestroyEffect_FD40",
+     null
+    ]
+   ],
+   "callers": {
+    "CEffgbParticle::DestroyEffect_FD40": []
+   }
+  },
+  {
+   "cls": "CEffShock",
+   "va": "0x004d3950",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x004d3930",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "CEffect",
+     "~CEffect",
+     [
+      "dtor"
+     ]
+    ]
+   ],
+   "callers": {
+    "CEffect::~CEffect": [
+     "CEffShock_CEffShock_004d3930.json",
+     "CEffect_~CEffectvoid_004d3950.json"
+    ]
+   }
+  },
+  {
+   "cls": "CCBSystem",
+   "va": "0x00408bd0",
+   "verdict": "SAFE_AUTO",
+   "anchor": {
+    "del_va": "0x00515dd0",
+    "slot_verified": false,
+    "rdata_mounts": 0
+   },
+   "claims": [
+    [
+     "CEffSParticle",
+     "DestroyEffect",
+     [
+      "override"
+     ]
+    ]
+   ],
+   "callers": {
+    "CEffSParticle::DestroyEffect": []
+   }
+  },
+  {
+   "cls": "UICoverFrm",
+   "va": "0x005279f0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x005279d0",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "UIListBox",
+     "~UIListBox",
+     [
+      "dtor"
+     ]
+    ]
+   ],
+   "callers": {
+    "UIListBox::~UIListBox": [
+     "Actor_DestroyInternalDatavoid_00536310.json",
+     "CCBControlWindow_~CCBControlWindowvoid_0051acb0.json",
+     "CCBFiveNimbusWindow_~CCBFiveNimbusWindowvoid_00519b60.json",
+     "CCBItemWindow_~CCBItemWindowvoid_0051a3b0.json",
+     "CCBRoleState_~CCBRoleStatevoid_00456b80.json",
+     "CCBSkillWindow_~CCBSkillWindowvoid_0051bc00.json",
+     "CCBStage_~CCBStagevoid_0051dda0.json",
+     "CCBUICtrl_~CCBUICtrlvoid_00519380.json",
+     "CScreenMode_~CScreenModevoid_00524130.json",
+     "CUtil_Methodvoid_005231f0.json",
+     "JusticeBookUI_~JusticeBookUIvoid_005284e0.json",
+     "LineupUI_~LineupUIvoid_00470f40.json",
+     "MainPropUI_~MainPropUIvoid_004912d0.json",
+     "RenderTarget_InitNPCPanelvoid_004870c0.json",
+     "RoleStatePanel_~RoleStatePanelvoid_004a2450.json",
+     "SaleUI_~SaleUIvoid_0045ae60.json",
+     "SkillUI_~SkillUIvoid_00525540.json",
+     "SystemUI_~SystemUIvoid_004a7690.json",
+     "TaskBookUI_~TaskBookUIvoid_00454ba0.json",
+     "UICoverFrm_~UICoverFrmvoid_0052bd50.json",
+     "UIListBox_~UIListBoxvoid_0043dd10.json",
+     "UILoadingFrm_~UILoadingFrmvoid_00450790.json",
+     "UISceneFrm_~UISceneFrmvoid_00459260.json",
+     "UISceneMap_~UISceneMapvoid_00450090.json",
+     "UITitle_ArcSave_~UITitle_ArcSavevoid_0047bd20.json",
+     "UITitle_JDHY_~UITitle_JDHYvoid_004b0540.json",
+     "UITitle_YXXX_~UITitle_YXXXvoid_0047dd90.json",
+     "sub_4525E0_004525e0.json",
+     "sub_531E70_00531e70.json"
+    ]
+   }
+  },
+  {
+   "cls": "TextureLib",
+   "va": "0x0053f4f0",
+   "verdict": "MANUAL",
+   "anchor": {
+    "del_va": "0x0053f4d0",
+    "slot_verified": true,
+    "rdata_mounts": 1
+   },
+   "claims": [
+    [
+     "SceneObj",
+     "ProcessNearby",
+     null
+    ]
+   ],
+   "callers": {
+    "SceneObj::ProcessNearby": [
+     "SceneObj_ProcessNearby_DWORD_0053f4f0.json",
+     "TextureLib_FreeTexturevoid_0053f5e0.json",
+     "TextureLib_sdtor_20_0053f4d0.json"
+    ]
+   }
+  }
+ ]
+}
