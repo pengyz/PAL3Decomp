@@ -179,10 +179,9 @@ WARN: CLAIM_GATE:member_counter_evidence:0x004C3EC0
 WARN: CLAIM_GATE:member_counter_evidence:0x004D33A0
 WARN: CLAIM_GATE:member_counter_evidence:0x004C29A0
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795351219)早于最新注解(1795351449)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795356632)早于最新注解(1795356859)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: C8:no_complete_family:CEffObj:~CEffObj CEffObj ~CEffObj 产物族(0x004c0620)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
 WARN: C8:no_complete_family:WeatherEffectNode:~WeatherEffectNode WeatherEffectNode ~WeatherEffectNode 产物族(0x00405310,0x00405580,0x00405560,0x00404d40)无定义源条目——伴生标记缺失, 补 declaration_only/deleting 判定 — 无完全形族(源dtor体待手写, 债登记)
-WARN: N20a[Actor]:0x004083b0 del 压制态 L1 载体(注册符号 va=0x004083B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBLineupWindow]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20b[CCBMagicWindow]: 类级载体全空(1条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20b[CCBParabolaWindow]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
@@ -229,7 +228,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 212 warnings — PASS
+0 new errors + 16 frozen(advisory), 211 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
@@ -237,14 +236,14 @@ FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['U
     gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
     gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：152 个 sub_ 符号的声明/调用形参数全部一致（另 102 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：145 个 sub_ 符号的声明/调用形参数全部一致（另 95 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 [UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...
-union 按值成员类型共 4 个：FightItemScriptBlock, RoleAttRemarkSkills, tagRoleSlot, tagTeamSlotsBOverlay
+union 按值成员类型共 5 个：FightItemScriptBlock, RoleAttRemarkSkills, tagAnimStateSplit, tagRoleSlot, tagTeamSlotsBOverlay
 检查：这些类不得有 ctor/dtor 形态的方法（方法名 == 类名 或 ~类名）
 
 ✅ 无 landmine：没有 union 按值成员类带 ctor/dtor
@@ -262,7 +261,7 @@ APPLY: updating annotations in PAL3.exe.i64 ...
     gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
     gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
-[B] PASS：152 个 sub_ 符号的声明/调用形参数全部一致（另 102 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+[B] PASS：145 个 sub_ 符号的声明/调用形参数全部一致（另 95 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
 编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）

@@ -1491,6 +1491,15 @@ def _run_inner(code, ctx):
     #   同域), 7 函数修复前零 L1 无损失。
     code = code.replace('HIBYTE(this)', '(BYTE)((DWORD)this >> 24)')
 
+    # P-ACTOR-2 (2026-11-22) (&E)[0] → E[0]——hexrays 渲染形态 × 成员类型变化的
+    #   语义漂移修正(通用恒等, 非特设):
+    #   旧 char 标量时代 `(&x)[0]` = x[0] = x 本值(hexrays 对标量取址下标的惯用
+    #   渲染); 成员类型变 char[2](union 视图)后 `&x` = char(*)[2], `[0]` 解引用
+    #   得整个数组 ⇒ 与标量比较/赋值炸(C2040/C2440, RoleSystem 1070/1079/6278/
+    #   8460 实证)。C 语义: `(&E)[0]` ≡ *(&E+0) ≡ E; 替换为 `E[0]` 在标量时恒等、
+    #   数组时恢复「取首元素」原意 ⇒ 两型皆忠实。
+    code = re.sub(r'\(&([A-Za-z_][\w.>\[\]()-]*)\)\[0\]', r'\1[0]', code)
+
     # P-A16 (2026-11-10) 单点歼灭批次——13 个 1 错单元(影响面排序)
     # ①CEffModel: placement ctor return 变体(P-A13 return 形态)
     code = code.replace(

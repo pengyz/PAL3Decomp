@@ -194,17 +194,21 @@
    "evidence_level": "unverified"
   },
   "0xae": {
-   "name": "m_nAnimState",
-   "type": "char",
-   "source": "gen_headers_9.2 | [F3 回滚 20261122] char[2] 试验撤回: 语料 strcmpi/strcpy 无&渲染与 m_bActionPause byte 读@0xAF 分属不同 IDB 导出时代(语料漂移拼贴), 不能互证数组; strcpy 写入动作名(>2B)进 0xAE/AF 两字节域=溢写疑云未定谳。挂账: m_nAnimState 域布局裁决待深取证(SetActionState 全函数+ExecuteAction word 写上下文+实际内容)。C2664×3 strcmpi/strcpy 随之挂账。",
-   "evidence_level": "unverified"
-  },
-  "0xaf": {
-   "name": "m_bActionPause",
-   "type": "unsigned char",
-   "source": "ida_decomp:_auto_42ad40 copied to +209, if(!this), 2 refs | 零访问分型20261120: RoleSystem 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "name": "m_animStateU",
+   "type": {
+    "union": [
+     {
+      "type": "char[2]",
+      "name": "m_nAnimState"
+     },
+     {
+      "type": "tagAnimStateSplit",
+      "name": "split"
+     }
+    ]
+   },
+   "source": "[union 落地 20261122·宿主名非空正道] 字符串缓冲区铁证: strcmpi 全局 push 0xC0A40E(@0x40E7A9)+sprintf(\"%s_3\")/atoi+word 写(SetCurrentAction 相邻打包合并); 0xAF=m_bActionPause byte 读(SetActionState)=低字节复用。形态=m_teamSlotsB 先例(宿主名非空+独立类型引用); name 空匿名不可行(apply 合成名残缺实证, 见计划检查点 20261122 深夜IV)",
+   "evidence_level": "verified"
   },
   "0xb0": {
    "name": "m_szModelName",

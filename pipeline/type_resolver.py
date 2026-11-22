@@ -186,6 +186,14 @@ def build_registry():
         owner = str(d.get('name') or os.path.basename(sf)[:-5])
         stems.add(owner)
         stems.add(os.path.basename(sf)[:-5])
+        # [顶层 stem 入域 2026-11-22] structs/*.json 本身=类型声明真相域——
+        # 原 registry 只收 __ 嵌套变体与 nested_types, 顶层名依赖「生成头已进
+        # gen 域」(存量型先例 REF 门引入前头已在) ⇒ 新类型首引入鸡生蛋
+        # (tagAnimStateSplit 案: codegen 前置 check 必拦)。补齐: 顶层名同登
+        # structs 域, 与既有 ('structs', ...) 标签一致。
+        reg.setdefault(owner, ('structs', os.path.basename(sf)))
+        reg.setdefault(os.path.basename(sf)[:-5],
+                       ('structs', os.path.basename(sf)))
         if '__' in owner:
             reg.setdefault(owner.replace('__', '::', 1),
                            ('structs', os.path.basename(sf)))

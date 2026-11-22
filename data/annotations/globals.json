@@ -8842,5 +8842,15 @@
   "type": "int",
   "source": "补条目20261120: UISceneUpdate 返回 (Scene*)(493156*(dword_DBBEC==1)+0xC21FE8)——Scene 双缓冲数组基址(实例0@0xC21FE8/实例1@+0x78664); 0x41f8c0=Scene 数组元素方法(此前渲染 PalScriptMgr* 为 hexrays 无注解默认推断错挂) | 名修正20261120: g_SceneArray撞0xC04380已有名(被迫_S0后缀→hexrays渲染断链), 改g_SceneBuf",
   "category": "anchor_object"
+ },
+ "0x00C0A360": {
+  "name": "stru_C0A360",
+  "type": "RoleSystem",
+  "category": "anchor_object",
+  "source": "[SetType 条目 20261122] 全局 RoleSystem 实例(0xC0A360)。name=stru_C0A360=SetType 后 IDA typed-struct 惯例稳定名——set_name 与 SetType 同名⇒幂等, 零管线改动。原 unk_C0A360=无类型时代hexrays 合成名, 类型已知(RoleSystem)后 unk_ 语义过时退役。union 落地后 hexrays 渲染 stru_C0A360.m_animStateU.m_nAnimState (char[2] 退化 char*) ⇒ Actor.cpp C2664×3(strcmpi/strcpy)消解; overlaps g_SceneMgr 大池区(门指引声明)",
+  "evidence_level": "verified",
+  "overlaps_with": [
+   "g_SceneMgr"
+  ]
  }
 }

@@ -1,0 +1,18 @@
+{
+ "name": "tagAnimStateSplit",
+ "binary_size": 2,
+ "known_members": {
+  "0x0": {
+   "name": "_anim0",
+   "type": "char",
+   "source": "[union 视图 20261122] m_nAnimState[0] = 动作状态字节",
+   "evidence_level": "verified"
+  },
+  "0x1": {
+   "name": "m_bActionPause",
+   "type": "unsigned char",
+   "source": "[union 视图 20261122] m_nAnimState[1] = pause 标志打包复用; byte 读实证 RoleSystem::SetActionState(现役 IDB 渲染 this->m_bActionPause); 域语义铁证: 0xAE=动作名字符串缓冲区(strcmpi push 0xC0A40E @0x40E7A9 / sprintf %s_3 / atoi), word 写=SetCurrentAction 相邻打包合并",
+   "evidence_level": "verified"
+  }
+ }
+}
