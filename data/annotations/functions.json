@@ -649,12 +649,6 @@
   "name_source": "IDA语义分析 2026-11-01 批15",
   "name_note": "从 decomp 推断"
  },
- "0x00523cb0": {
-  "name": "Method_3CB0",
-  "signature": "int __thiscall(_BYTE *this)",
-  "name_source": "IDA语义分析 2026-11-01 批16",
-  "name_note": "从 decomp 推断"
- },
  "0x005269b0": {
   "name": "CreateDigitPair",
   "signature": "void __cdecl CreateDigitPair(int nVal, UIWnd **ppTens, UIWnd **ppOnes, const char *pszTexBase, char bFlag)"
@@ -1308,5 +1302,18 @@
   "declaration_only": true,
   "signature": "void __thiscall(char)",
   "source": "C2661根因定谳20261121: 8B体=sub ecx,0Ch; jmp 0x4c8950(~CEffgbParticle删除式)——删除式dtor的adjustor thunk(编译器产物); 历史反编译单元以文件名前缀兜底进CEffgbParticle.cpp发射假名定义→C2661; decl_only后单元出域。注: thunk为CEffgbParticle成员性, functions.json登记=排除通道(生成器无置名需求)"
+ },
+ "0x00523cb0": {
+  "name": "Method_3CB0",
+  "signature": "int __thiscall Method_3CB0(_BYTE *this)",
+  "source": "[考证反转 20261122] 迁移尝试回滚: CUtil ctor 证明继承 UIListBox(bases 缺失待补)+m_nTodo_160@0x160 写入面=仅 ctor 清零(5B) ⇒ Method_3CB0 非零计数恒 0 ⇒ 调用者 cmp eax,5 恒走 B 分支(A 分支死逻辑)。无真语义可命名(N12 拦占位/编名=新伪语义)——保持自由条目, 警告=诚实现调查清单",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "evidence_level": "verified"
  }
 }
