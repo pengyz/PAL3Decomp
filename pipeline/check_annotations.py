@@ -1809,6 +1809,21 @@ def check_canonical_contract():
                 _n13 = _v13.get('name')
                 if _n13:
                     names.add(str(_n13))
+                # [union 变体名 2026-11-22] dict 型 type(union/struct 视图)的
+                # 变体名同样是可引用名(匿名 union/struct 成员提升到宿主作用域,
+                # 发射器 _emit_member 变体层展开)——递归收集, RoleSystem
+                # m_nAnimState/m_bActionPause 打包复用 union 实证
+                _stk13 = [_v13.get('type')]
+                while _stk13:
+                    _t13 = _stk13.pop()
+                    if not isinstance(_t13, dict):
+                        continue
+                    for _vk13 in ('union', 'struct'):
+                        for _vv13 in _t13.get(_vk13) or []:
+                            _vn13 = str(_vv13.get('name') or '')
+                            if _vn13:
+                                names.add(_vn13)
+                            _stk13.append(_vv13.get('type'))
             for _b13 in (_dd.get('bases') or []):
                 _bn13 = _b13.get('name') if isinstance(_b13, dict) else _b13
                 if _bn13:
