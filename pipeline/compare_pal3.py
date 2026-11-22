@@ -926,6 +926,27 @@ def main():
         print('L1 rate over matched: %d/%d = %.1f%%'
               % (stats['match_L1'], total, 100.0 * stats['match_L1'] / total))
 
+    # [O4 载体盘点 2026-11-22] expected_symbols(生成树 virtual ~Cls 的 VC6 确定性
+    # 合成期望) × 实配对符号 → coverage 维度可见化(棘轮双账的 coverage 侧)。
+    # unpaired ≠ 必然事故：S2 编译债单元的符号天然缺席（coverage 棘轮语义）。
+    try:
+        _exp_doc = json.loads((REPO / 'data' / 'status' / 'expected_symbols.json')
+                              .read_text(encoding='utf-8'))
+        _expected = []
+        for _r in (_exp_doc.get('rows') or []):
+            _expected.extend(_r.get('expected') or [])
+        _paired_syms = {r.get('symbol') for r in rows}
+        _ep = [s for s in _expected if s in _paired_syms]
+        _un = [s for s in _expected if s not in _paired_syms]
+        stats['carrier'] = {'expected': len(_expected), 'paired': len(_ep),
+                            'unpaired': len(_un), 'unpaired_syms': _un[:24]}
+        print('carrier inventory: expected=%d paired=%d unpaired=%d'
+              % (len(_expected), len(_ep), len(_un)))
+        for _s in _un[:12]:
+            print('  carrier unpaired: %s' % _s)
+    except (OSError, json.JSONDecodeError) as _ce:
+        print('[carrier] expected_symbols.json 不可读——载体盘点跳过 (%s)' % str(_ce)[:60])
+
     # P0-3（多路分析，v2）：**三个生产写入点全部射程感知**
     # 射程写 s4_scoped_<name>{,_registry.jsonl,_diff_detail.json}，
     # 严禁写 s4_baseline.json / pal3_registry.jsonl / s4_diff_detail.json

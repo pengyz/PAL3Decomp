@@ -768,6 +768,18 @@ def cmd_match(args=()):
             cur_l1 = cur.get('stats', {}).get('match_L1', 0)
             cur_sem = cur.get('stats', {}).get('match_L1_semantic', 0)
             cur_pop = (cur.get('stats', {}).get('matched'), cur.get('stats', {}).get('symbols'))
+            # [双账分账 2026-11-22] coverage 侧=matched/carrier.paired(配对域) vs
+            #   byte 侧=稳定身份域上的 L1(字节域)。L1 降而 coverage 同降=配对域
+            #   事件(自动对齐, category=pairing-infra); L1 降而 coverage 稳=真
+            #   字节回归(hard fail)。架构审计 B4 推荐的最小集。
+            _cur_carrier = (cur.get('stats', {}).get('carrier') or {}).get('paired')
+            _prev_carrier = None
+            if prev_text:
+                try:
+                    _prev_carrier = (json.loads(prev_text).get('stats', {})
+                                     .get('carrier') or {}).get('paired')
+                except (json.JSONDecodeError, OSError):
+                    pass
             print()
             print("[L1 ratchet] previous %d -> current %d" % (prev_l1, cur_l1))
             print("[L1 ratchet] semantic: previous %d -> current %d (L1+sem: %d -> %d)"
@@ -777,6 +789,9 @@ def cmd_match(args=()):
             # 实况 symbols=319 ⇒ 38→35 很大程度是总体收缩，不是丢了逐字节函数）。
             print("[L1 ratchet] population: previous matched=%s/%s -> current matched=%s/%s"
                   % (prev_pop[0], prev_pop[1], cur_pop[0], cur_pop[1]))
+            if _prev_carrier is not None or _cur_carrier is not None:
+                print("[L1 ratchet] coverage: previous carrier.paired=%s -> current %s"
+                      % (_prev_carrier, _cur_carrier))
             pop_changed = prev_pop[1] is not None and cur_pop[1] is not None and prev_pop != cur_pop
             if pop_changed:
                 print("[L1 ratchet] ⚠️ 可比总体**已变化** ⇒ 两次 L1 不可直接比较；"
@@ -802,52 +817,77 @@ def cmd_match(args=()):
                           "寄存器分配迁移（非真退步），棘轮维持基线"
                           % (prev_l1, cur_l1, prev_l1 + prev_sem, cur_l1 + cur_sem))
                 else:
-                    # [L1身份差分 20261121] 丢失函数具名——身份集持久化后棘轮可精确点名
-                    _prev_ids = set(map(tuple, (cur_prev_ids := None) or []))  # placeholder
-                    try:
-                        _pj = json.loads(prev_text) if prev_text else {}
-                        _prev_ids = set(map(tuple, _pj.get('l1_identity') or []))
-                        _cj = json.loads(_det_path.read_text(encoding='utf-8')) \
-                            if _det_path.exists() else {}
-                        # 当前轮的 identity 在 compare 侧 _L1_IDS——经 detail?
-                        # compare 把 identity 写进 s4(未 restore 前)——此处读被
-                        # restore 覆盖前的 s4 不可得 ⇒ 用 archive 的 regressed
-                        # detail 不可行(L1行不入detail) ⇒ 读 match 侧落盘文件
-                        _cid_p = Path('data/status/s4_l1_identity_cur.json')
-                        if _cid_p.exists():
-                            _cur_ids = set(map(tuple, json.loads(
-                                _cid_p.read_text(encoding='utf-8'))))
-                            _lost = sorted(_prev_ids - _cur_ids)
-                            _gain = sorted(_cur_ids - _prev_ids)
-                            print("[L1 ratchet] 丢失函数 %d 个(身份差分):" % len(_lost))
-                            for _x in _lost[:12]:
-                                print("[L1 ratchet]   LOST %s @%s size=%s" % (_x[0], _x[1], _x[2]))
-                            if len(_lost) > 12:
-                                print("[L1 ratchet]   ... 共 %d" % len(_lost))
-                            print("[L1 ratchet] 新增 L1 %d 个" % len(_gain))
-                    except (json.JSONDecodeError, OSError, KeyError):
-                        print("[L1 ratchet] (身份差分不可用——旧基线无 l1_identity)")
-                    # 真退步：旧基线+detail **成对**写回（2026-11-05 s4 源修——
-                    # 单文件恢复=双文件异源病灶实证 161 vs 110；regressed detail 存档）
-                    if prev_text is not None:
+                    # [双账分账 2026-11-22 架构审计 B4] L1 降而 coverage 同降
+                    #   (matched 或 carrier.paired)=配对/测量域事件——字节从未被
+                    #   证明回归, 自动对齐并记 category=pairing-infra(不沉淀假地板,
+                    #   不消耗人工 rebaseline); coverage 稳才是真字节回归(hard fail)。
+                    _cov_drop = (
+                        (prev_pop[0] is not None and cur_pop[0] is not None
+                         and cur_pop[0] < prev_pop[0])
+                        or (_prev_carrier is not None and _cur_carrier is not None
+                            and _cur_carrier < _prev_carrier))
+                    if _cov_drop:
+                        _cat = {'category': 'pairing-infra',
+                                'reason': ('L1 %d→%d 且 coverage 同降(matched %s→%s, '
+                                           'carrier.paired %s→%s)=配对/测量域事件——'
+                                           '双账自动对齐; 字节域棘轮不受影响'
+                                           % (prev_l1, cur_l1, prev_pop[0], cur_pop[0],
+                                              _prev_carrier, _cur_carrier)),
+                                'at': time.strftime('%Y-%m-%dT%H:%M:%S')}
+                        cur['rebaseline'] = _cat
+                        s4.write_text(json.dumps(cur, ensure_ascii=False, indent=1),
+                                      encoding='utf-8')
+                        print("[L1 ratchet] ⚖️ 配对域事件(coverage 同降)——自动对齐至 %d, "
+                              "category=pairing-infra 已记档(字节域不变)" % cur_l1)
+                    elif prev_text is None or not prev_text:
+                        pass
+                    else:
+                        # [L1身份差分 20261121] 丢失函数具名——身份集持久化后棘轮可精确点名
+                        _prev_ids = set(map(tuple, (cur_prev_ids := None) or []))  # placeholder
                         try:
-                            from s4_pair import restore_pair
-                            _r = restore_pair(
-                                str(s4), str(_det_path),
-                                prev_s4_text=prev_text,
-                                prev_detail_text=prev_detail_text,
-                                cur_detail_text=_det_path.read_text(encoding='utf-8')
-                                if _det_path.exists() else None,
-                                archive_dir='data/status/archive')
-                            print("[L1 ratchet] baseline+detail pair restored to "
-                                  "previous run (ratchet may only advance explicitly)"
-                                  + (" · regressed detail → %s" % _r['archived']
-                                     if _r['archived'] else ''))
-                        except OSError as e:
-                            print("[L1 ratchet] WARN: could not restore pair: %s" % e)
-                    print("[L1 ratchet] REGRESSION: byte-perfect functions lost — "
-                          "investigate before committing")
-                    sys.exit(1)
+                            _pj = json.loads(prev_text) if prev_text else {}
+                            _prev_ids = set(map(tuple, _pj.get('l1_identity') or []))
+                            _cj = json.loads(_det_path.read_text(encoding='utf-8')) \
+                                if _det_path.exists() else {}
+                            # 当前轮的 identity 在 compare 侧 _L1_IDS——经 detail?
+                            # compare 把 identity 写进 s4(未 restore 前)——此处读被
+                            # restore 覆盖前的 s4 不可得 ⇒ 用 archive 的 regressed
+                            # detail 不可行(L1行不入detail) ⇒ 读 match 侧落盘文件
+                            _cid_p = Path('data/status/s4_l1_identity_cur.json')
+                            if _cid_p.exists():
+                                _cur_ids = set(map(tuple, json.loads(
+                                    _cid_p.read_text(encoding='utf-8'))))
+                                _lost = sorted(_prev_ids - _cur_ids)
+                                _gain = sorted(_cur_ids - _prev_ids)
+                                print("[L1 ratchet] 丢失函数 %d 个(身份差分):" % len(_lost))
+                                for _x in _lost[:12]:
+                                    print("[L1 ratchet]   LOST %s @%s size=%s" % (_x[0], _x[1], _x[2]))
+                                if len(_lost) > 12:
+                                    print("[L1 ratchet]   ... 共 %d" % len(_lost))
+                                print("[L1 ratchet] 新增 L1 %d 个" % len(_gain))
+                        except (json.JSONDecodeError, OSError, KeyError):
+                            print("[L1 ratchet] (身份差分不可用——旧基线无 l1_identity)")
+                        # 真退步：旧基线+detail **成对**写回（2026-11-05 s4 源修——
+                        # 单文件恢复=双文件异源病灶实证 161 vs 110；regressed detail 存档）
+                        if prev_text is not None:
+                            try:
+                                from s4_pair import restore_pair
+                                _r = restore_pair(
+                                    str(s4), str(_det_path),
+                                    prev_s4_text=prev_text,
+                                    prev_detail_text=prev_detail_text,
+                                    cur_detail_text=_det_path.read_text(encoding='utf-8')
+                                    if _det_path.exists() else None,
+                                    archive_dir='data/status/archive')
+                                print("[L1 ratchet] baseline+detail pair restored to "
+                                      "previous run (ratchet may only advance explicitly)"
+                                      + (" · regressed detail → %s" % _r['archived']
+                                         if _r['archived'] else ''))
+                            except OSError as e:
+                                print("[L1 ratchet] WARN: could not restore pair: %s" % e)
+                        print("[L1 ratchet] REGRESSION: byte-perfect functions lost — "
+                              "investigate before committing")
+                        sys.exit(1)
         except (json.JSONDecodeError, OSError):
             pass
 
