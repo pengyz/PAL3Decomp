@@ -27,7 +27,7 @@
    ],
    "flags_evidence": "[A 级字节 2026-11-19] 31B ??1 stub 与 0x404d40 差异@+5=call 基类 dtor disp → 兄弟类 complete dtor, IDA 名互覆后缀污染(_0/_1) 真类名不可考; 基调: 0x405310=gbLightObj(本体)/0x405560=gbSnow/0x405580=gbRain。挂账: 兄弟类名考古(vtable 写表链)。 | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
    "name_note": "; 摘declaration_only(本形=定义源) | T4-P0修正20261121: 恢复declaration_only——T4亲验本形=删除式ABI(call ??1gbLightObj内联+test Block&1+operator delete+retn 4), 非完全形; 本类四形态全删除式(0x404d40/0x405310/0x405560/0x405580) 无完全形→走无完全形管线(全伴生decl_only+源dtor体待手写)",
-   "declaration_only": true
+   "reason": "[N20b 修复 20261122] 解除压制: deleted-form ABI 删除式可当定义源——??1/??_G 载体恢复(类级载体全空债务清偿)"
   },
   "0x00405580": {
    "name": "~WeatherEffectNode",

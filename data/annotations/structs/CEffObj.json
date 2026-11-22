@@ -181,7 +181,6 @@
    "name": "~CEffObj",
    "source": "binary:基表0x56F62C slot0=删除式dtor(基类自有) | declaration_only:skip_functions中RenderTarget2::scalar_deleting_dtor为族dtor吸收错名, 真归属=基表slot0删除式dtor(叶dtor尾写0x56F62C证据), 声明收编",
    "evidence_level": "binary_vtable_slot",
-   "declaration_only": true,
    "sig_model": {
     "return": "void",
     "cc": "thiscall",
@@ -193,7 +192,8 @@
     "dtor",
     "deleting"
    ],
-   "name_note": " | C8正名20261121(真债批): 体=vptr写stru_56F62C+条件operator delete=删除式dtor ABI形; 旧名slot_0=槽位残留名(N12 grandfathered); 正名~CEffObj+decl_only(删除式形=编译器再生不发射)"
+   "name_note": " | C8正名20261121(真债批): 体=vptr写stru_56F62C+条件operator delete=删除式dtor ABI形; 旧名slot_0=槽位残留名(N12 grandfathered); 正名~CEffObj+decl_only(删除式形=编译器再生不发射)",
+   "reason": "[N20b 修复 20261122] 解除压制: deleted-form ABI 删除式可当定义源——??1/??_G 载体恢复(类级载体全空债务清偿)"
   }
  },
  "_adjudicated_tables": [

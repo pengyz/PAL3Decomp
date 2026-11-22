@@ -420,8 +420,8 @@
     "dtor",
     "deleting"
    ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_6100(??1/??_G析构族); decomp文件=CCBProtectWindow_`scalar_deleting_destructoruint_00516100 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [N18 补标v2 2026-11-19] 体证据判据: 语料含条件 operator delete(this) 尾(flags 位测) = deleting 形铁证(织入物在体), 参数个数无关。",
    "name_note": " | 换牌正名20261121: ~CCBProtectWindow→~CCBUI(类名随语义换牌); sig裸形化(源模型dtor无参无返回——(this,flags)删除ABI=编译器层; 旧void*(char)=IDA删除式渲染形) | C8源模型修正20261121: 删除式形=编译器产物→declaration_only(VC6自virtual ~X()再生); 定义源=完全形0x00516120(体织入由stage1剥)",
+   "reason": "[N20b 修复 20261122] 解除压制: deleted-form ABI 删除式可当定义源——??1/??_G 载体恢复(类级载体全空债务清偿)",
    "declaration_only": true
   },
   "0x0043d7a0": {
