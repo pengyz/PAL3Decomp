@@ -31,14 +31,14 @@ def test_static_obj_ctor_thunk_form_12():
     d = _load('thunk_registry.json')
     form = {a for a, e in d.items()
             if not a.startswith('_') and e.get('form') == 'static_obj_ctor_thunk_to_import'}
-    expect = {'0x00401BC0', '0x00401BE0', '0x00401C00', '0x00401C20', '0x00401C40',
-              '0x00401C60', '0x00404530', '0x00404550', '0x00404670', '0x004046A4',
-              '0x004CE0D0', '0x004CE0F0'}
+    expect = {'0x00401bc0', '0x00401be0', '0x00401c00', '0x00401c20', '0x00401c40',
+              '0x00401c60', '0x00404530', '0x00404550', '0x00404670', '0x004046a4',
+              '0x004ce0d0', '0x004ce0f0'}  # [KEYCASE 20261123] 十六进制字面量规范小写
     assert form == expect, form
     for a in expect:
         assert d[a]['boundary'] == 'compiler_synthesized', (a, d[a])
     # 内容锁（篡改实验靶点）：首件 IAT 目标 = gbVFileSystem ctor
-    assert '??0gbVFileSystem' in d['0x00401BC0']['note'], d['0x00401BC0']
+    assert '??0gbVFileSystem' in d['0x00401bc0']['note'], d['0x00401bc0']
 
 
 def test_73_slot_pairing_and_content():
@@ -91,7 +91,7 @@ def test_spec4_schema_closure():
     fixes = {e['addr']: e['to'] for e in nc}
     assert fixes['0x00542533'] == '_D3DXVec3Normalize@8', fixes
     assert fixes['0x00544771'] == '_D3DXQuaternionSlerp@16', fixes
-    assert 'RandLerpF' in fixes['0x004B8200'], fixes
+    assert 'RandLerpF' in fixes['0x004b8200'], fixes
     # 地址区间（review_dx 数字审计实测）+ libs flags/disposition
     r = d['d3dx9_psgp_table'].get('exe_ranges') or {}
     assert r.get('live_table') == '0x6090A8-0x6091CB' and r.get('template_table') == '0x6091D0-0x6092F3', r
