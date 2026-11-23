@@ -1,0 +1,30 @@
+CEffMgr methods: 34
+有成员访问的方法: 27 / 34
+
+TOP-15 max disp:
+  UpdateTimedTrigger             0x70 (9 站)
+  SetEffectClass                 0x70 (7 站)
+  UpdateEffect                   0x8C (13 站)
+  UpdateParticlePositions        0x90 (19 站)
+  EmitParticles                  0xBC (21 站)
+  Reset                          0x408 (3 站)
+  Render                         0x928 (1 站)
+  ReleaseAllRefs                 0x92C (6 站)
+  RenderAll                      0x92C (1 站)
+  RenderUpdate                   0x92C (1 站)
+  CreateEffect                   0xA91C (4 站)
+  ReleaseCompletedEffects        0xA91C (3 站)
+  SceneMgrUpdate                 0xA928 (7 站)
+  Create                         0xA92C (20 站)
+  SetEffectsTimeScale            0xA92C (2 站)
+
+全类 disp >= 0x1000 清单:
+  0x0A91C x5  Create+0x42: mov     [esi+0A91Ch], ebx | CreateEffect+0x99: mov     eax, [edi+0A91Ch]
+  0x0A920 x3  Create+0x48: mov     [esi+0A920h], ebx | SceneMgrUpdate+0x4: fsub    dword ptr [ecx+0A920h]
+  0x0A924 x3  Create+0x4e: mov     [esi+0A924h], ebx | SceneMgrUpdate+0x1d: fstp    dword ptr [ecx+0A924h]
+  0x0A928 x3  Create+0x54: mov     [esi+0A928h], ebx | SceneMgrUpdate+0x23: fld     dword ptr [ecx+0A928h]
+  0x0A92C x2  Create+0x5a: mov     dword ptr [esi+0A92Ch], 3F800000h | SetEffectsTimeScale+0x7: mov     [ecx+0A92Ch], eax
+
+disp 直方(4K 桶):
+  0x0k:36, 0xA000k:5
+全类 max disp = 0xA92C (binary_size=0xA930)

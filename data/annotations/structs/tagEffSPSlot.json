@@ -1,0 +1,37 @@
+{
+ "name": "tagEffSPSlot",
+ "binary_size": 20,
+ "known_members": {
+  "0x0": {
+   "name": "m_nParam",
+   "type": "int",
+   "source": "binary A 级 20261124: CreateEffect(0x4CDCA0) +0x21 mov ebp, g_EffTable[eax*8]/+0x54 cmp [eax], ebp —— 槽参数须与 g_EffTable 参数表项匹配",
+   "evidence_level": "verified"
+  },
+  "0x4": {
+   "name": "m_nID",
+   "type": "int",
+   "source": "binary A 级 20261124: CreateEffect +0x49 mov ecx,[esp+nVal]/+0x50 cmp edx,[eax+4] —— 请求效果 ID 匹配(SetEffectsTimeScale 同域)",
+   "evidence_level": "verified"
+  },
+  "0xc": {
+   "name": "m_bActive",
+   "type": "BYTE",
+   "source": "binary A 级 20261124: SetEffectsTimeScale(0x4CDC50) +0x1a mov al,[esi-4]/test (esi=槽+0x10, -4=+0xC) 非零才派发; CreateEffect +0x58 test [eax+0Ch]",
+   "evidence_level": "verified"
+  },
+  "0xd": {
+   "name": "m_bInUse",
+   "type": "BYTE",
+   "source": "binary A 级 20261124: CreateEffect +0x5f/+0x62 test [eax+0Dh] —— 与 +0xC 同为非零门槛(槽可复用需双标志), 第二状态字节",
+   "evidence_level": "verified"
+  },
+  "0x10": {
+   "name": "m_pEffect",
+   "type": "CEffObj *",
+   "source": "binary A 级 20261124: SetEffectsTimeScale +0x2a mov ecx,[esi](=+0x10)/+0x2d mov edx,[ecx]/+0x2f call [edx+2Ch] —— vtable 派发=多态效果对象(CEffObj 族)",
+   "evidence_level": "verified"
+  }
+ },
+ "members_note": "20B SP 效果实例槽: 0x91C..0xA91C 共 2048 条(CreateEffect +0x43 lea [edi+91Ch]/+0x6e add eax,14h/+0x71 cmp esi,800h; SetEffectsTimeScale +0x0d lea [ecx+92Ch](首个 obj)/+0x13 mov ebx,800h/+0x43 add esi,14h 双 walk 同构互证)。"
+}

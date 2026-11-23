@@ -2,11 +2,17 @@
  "name": "CEffMgr",
  "binary_size": 43312,
  "known_members": {
-  "0x0": {
-   "name": "_tail_000",
-   "type": "char[43312]",
-   "interim": true,
-   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+  "0x91c": {
+   "name": "m_spSlots",
+   "type": "tagEffSPSlot[2048]",
+   "source": "binary A 级 20261124: 0x91C..0xA91C=2048×20B, CreateEffect/SetEffectsTimeScale 双 walk 同构互证(见 tagEffSPSlot.members_note)",
+   "evidence_level": "verified"
+  },
+  "0xa92c": {
+   "name": "m_fTimeScale",
+   "type": "float",
+   "source": "binary A 级 20261124: SetEffectsTimeScale +0x07 mov [ecx+0A92Ch],eax 直写参数; Create+0x5a 初始化 3F800000h(=1.0f); 方法名直证语义",
+   "evidence_level": "verified"
   }
  },
  "methods": {
@@ -692,7 +698,7 @@
  },
  "_flexible": true,
  "_phantom_clear": "[容器级幻影传播族治理 2026-10-16 analyzer] 成员全清 38 条：成员存在性报告（object_phantom 容器 + aggregates=phantom 100%）+ 根容器 g_EffMgr@0x5D5484 A 级字节=`quake\\0\\0\\0bink\\0\\0\\0\\0shock…` VC6 池化字符串表（c34f38aa 复核一致）——非对象存储 ⇒ 子成员全幻影。⚠️ binary_size 证据化收缩挂账（真身重定位按 this/ctor/atexit 锚另账）；methods/vtables 保留",
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
+ "members_note": "普查 20261124(探针 #7+语料+raw disasm 三证): 成员访问域 = 头部 0x0-0x92C(36 站) + 尾域 0xA91C-0xA92C(浮点组), max disp=0xA92C 距 binary_size 0xA930 仅 4B(尺寸自洽). 已落: 0x91C SP 实例槽表/0xA92C 时间标度. 稀疏表挂账(不可稠密 C 表达): 0x58..0x91C = 效果类槽登记 32 条×72B pitch, 每条仅头 8B 有 A 级证据(flag BYTE@+0 FindEffSlot mov bl,[ecx-4] test 门槛 / ID int@+4 cmp [ecx],edx 匹配), pitch 内 64B 未普查——稠密 C 数组会与 m_spSlots@0x91C 撞(C10 已拦截), 待 64B 语义取证后再定元素结构. 未普查: ①头部 0x0-0x58(管理域) ②0xA91C..0xA92C(dword@0xA91C=CreateEffect +0x99 读; float×3@0xA920-0xA928=SceneMgrUpdate fld/fsub/fstp 时间累计组). 原 _tail_000 interim(20261117) 退役——真成员语义普查替换.",
  "known_methods": {
   "InitEffClass": {
    "name": "InitEffClass",

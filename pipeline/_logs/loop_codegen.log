@@ -2,16 +2,16 @@
 [clean] Done
   [R91] 重归属路由 26 条（scope=batch0）: AddToArray, ClearActionArrays, ClearActionFlags, ClearAllActions, ClearAllocBuffers, ClearPathBuffer ...
 [C2011] ns-decls: 16 unique blocks, 5 byval-inc, 4 fwd-decls -> _ns_udts.h
-Generated 766 header files in /home/peng/workspace/PAL3Decomp/pal3/src
-  With annotation layout: 1298
+Generated 767 header files in /home/peng/workspace/PAL3Decomp/pal3/src
+  With annotation layout: 1299
   With methods: 238
   Enums: 0
   Template stubs: 0
   Phantom globals skipped: 28 (stru_570500, arr, dword_C10A08, flt_D8BBC0, dword_D8BBEC, dword_D8BBF0, dword_D8BC30, dword_D8BC34, dword_D8BC38, dword_D8BEEC)
     ... and 18 more
-  Annotation-skipped globals: 74
-  declared_globals refreshed post-emit: 2824
-  Globals: 2948 in globals.h
+  Annotation-skipped globals: 113
+  declared_globals refreshed post-emit: 2778
+  Globals: 2902 in globals.h
 
 [WARN] Header generation found 5 annotation conflicts (deduplicated):
   DUPLICATE METHOD: AStarPathFinder::AStarPathFinder() (addr=0x0056a600)
@@ -19,8 +19,8 @@ Generated 766 header files in /home/peng/workspace/PAL3Decomp/pal3/src
   DUPLICATE METHOD: CCBCamControl::~CCBCamControl() (addr=0x005081e0)
   DUPLICATE METHOD: ObjectCamera::~ObjectCamera() (addr=0x0047c580)
   DUPLICATE METHOD: UICursor::~UICursor() (addr=0x00541ffb)
-  Globals: 2846 in globals.cpp
-  Globals: 2846 in globals.cpp
+  Globals: 2800 in globals.cpp
+  Globals: 2800 in globals.cpp
   Scalar typedefs: 87(全集去重) in scalar_typedefs.h
 Collecting functions from decomp...
   [collect-census] 空/无名=0 sub_=49 | dtor形: 发射=113 拒发(意图)=22 拒发(无身份)=1
@@ -43,7 +43,7 @@ Generated 231 .cpp files (3512 functions) in /home/peng/workspace/PAL3Decomp/pal
   Scene/: 5 files
   Script/: 3 files
   UI/: 17 files
-S2 cpp: 155/232 ok | own-fail 77 | imported-only 0  (32s)
+S2 cpp: 154/232 ok | own-fail 78 | imported-only 0  (31s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
@@ -51,33 +51,43 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261124_013305
 基线时间: 2026-11-24T01:33:05.535098
-检测时间: 2026-11-24T03:06:25.228408
+检测时间: 2026-11-24T03:33:34.753205
 
 📊 摘要:
   总文件数: 1022
-  新失败: 3
-  新错误(真新增 (code,msg)): 14
+  新失败: 4
+  新错误(真新增 (code,msg)): 21
   已修复: 0
   错误收敛(消失 (code,msg)): 1
   持续失败: 96
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
+  C2664    +65  ⚠️ 增加
   C2100    +34  ⚠️ 增加
-  C2440    +5  ⚠️ 增加
+  C2440    +22  ⚠️ 增加
+  C2679    +9  ⚠️ 增加
+  C2676    +9  ⚠️ 增加
+  C2227    +5  ⚠️ 增加
   C2501    +4  ⚠️ 增加
   C2665    -3
-  C2664    +3  ⚠️ 增加
   C2109    +3  ⚠️ 增加
   C2102    -2
   C2107    -2
-  C2143    +2  ⚠️ 增加
   C2297    +2  ⚠️ 增加
+  C2143    +2  ⚠️ 增加
   C2086    +1  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C2086, C2100, C2109, C2143, C2297, C2440, C2501, C2664 —— 即使总错误数在下降也要逐条归因
+  ⚠️ 注意: 以下错误码**净增** C2086, C2100, C2109, C2143, C2227, C2297, C2440, C2501, C2664, C2676, C2679 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
+  pal3/src/Misc/UITitle_YXXX.cpp
+    L308: C2440 - '=' : cannot convert from 'const int' to 'int *'
+    L401: C2440 - '=' : cannot convert from 'const int' to 'int *'
+  pal3/src/Misc/CIniFile.cpp
+    L61: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
+    L62: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
+    L63: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
   pal3/src/Misc/CCBUIPanel.cpp
     L2308: C2440 - '=' : cannot convert from 'const int' to 'int *'
     L2428: C2440 - '=' : cannot convert from 'const int' to 'int *'
@@ -85,41 +95,98 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     ... 还有 1 个错误
   pal3/src/Misc/UITitle_XJTM.cpp
     L623: C2100 - illegal indirection
-  pal3/src/Misc/UITitle_YXXX.cpp
-    L308: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    L401: C2440 - '=' : cannot convert from 'const int' to 'int *'
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/MainPropUI.cpp
-    错误数: 2 -> 5  真新增 3 {'C2100': 3}
-    新增 L888: C2100 - illegal indirection
-    新增 L896: C2100 - illegal indirection
-    新增 L1116: C2100 - illegal indirection
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 8 -> 9  真新增 1 {'C2100': 1}
-    新增 L1594: C2100 - illegal indirection
-  pal3/src/Misc/SaleUI.cpp
-    错误数: 28 -> 47  真新增 19 {'C2100': 19}
-    新增 L777: C2100 - illegal indirection
-    新增 L795: C2100 - illegal indirection
-    新增 L808: C2100 - illegal indirection
-    新增 L821: C2100 - illegal indirection
-    新增 L834: C2100 - illegal indirection
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 45 -> 47  真新增 2 {'C2100': 2}
-    新增 L6293: C2100 - illegal indirection
-    新增 L6294: C2100 - illegal indirection
+  pal3/src/UI/PropUI.cpp
+    错误数: 3 -> 4  真新增 1 {'C2100': 1}
+    新增 L759: C2100 - illegal indirection
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 5 -> 6  真新增 1 {'C2109': 1}
+    新增 L2099: C2109 - subscript requires array or pointer type
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 13 -> 16  真新增 3 {'C2100': 2, 'C2440': 1}
+    新增 L2019: C2100 - illegal indirection
+    新增 L2031: C2100 - illegal indirection
+    新增 L4208: C2440 - '=' : cannot convert from 'const int' to 'int *'
+  pal3/src/UI/StateUI.cpp
+    错误数: 6 -> 8  真新增 2 {'C2109': 2}
+    新增 L2339: C2109 - subscript requires array or pointer type
+    新增 L2499: C2109 - subscript requires array or pointer type
+    新增 L2529: C2109 - subscript requires array or pointer type
   pal3/src/GameBase/GRPinput.cpp
     错误数: 11 -> 15  真新增 4 {'C2664': 4}
     新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
     新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
     新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
     新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
+  pal3/src/Misc/CCBUICtrl.cpp
+    错误数: 12 -> 29  真新增 17 {'C2679': 8, 'C2440': 3, 'C2664': 6}
+    新增 L585: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L796: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L960: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L965: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L974: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+  pal3/src/free_functions.cpp
+    错误数: 84 -> 89  真新增 5 {'C2440': 3, 'C2664': 2}
+    新增 L6842: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L6843: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L6919: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L7315: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L7428: C2664 - 'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlo
   pal3/src/GameBase/PAL3.cpp
     错误数: 36 -> 25  真新增 2 {'C2297': 2}
     新增 L3143: C2297 - '*' : illegal, right operand has type 'char *'
     新增 L3191: C2297 - '*' : illegal, right operand has type 'char *'
+  pal3/src/Combat/CCBCamControl.cpp
+    错误数: 1 -> 3  真新增 2 {'C2664': 2}
+    新增 L1052: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'int' to 'const ch
+    新增 L1053: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'unsigned char' to
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 4 -> 11  真新增 7 {'C2440': 2, 'C2227': 5}
+    新增 L623: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+    新增 L667: C2227 - left of '->DestroyEffect' must point to class/struct/union
+    新增 L729: C2227 - left of '->DestroyEffect' must point to class/struct/union
+    新增 L750: C2227 - left of '->DestroyEffect' must point to class/struct/union
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 4 -> 11  真新增 7 {'C2664': 7}
+    新增 L237: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class CEffObj *' to '
+    新增 L249: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'unsigned char' to 'co
+    新增 L952: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L1370: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L1657: C2664 - 'sprintf' : cannot convert parameter 2 from 'class CEffObj *' to 'cons
+  pal3/src/Data/PAL_GDB.cpp
+    错误数: 2 -> 8  真新增 6 {'C2664': 6}
+    新增 L1066: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1076: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1078: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1081: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1084: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 8 -> 9  真新增 1 {'C2100': 1}
+    新增 L1594: C2100 - illegal indirection
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 45 -> 47  真新增 2 {'C2100': 2}
+    新增 L6293: C2100 - illegal indirection
+    新增 L6294: C2100 - illegal indirection
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 29 -> 35  真新增 6 {'C2664': 5, 'C2100': 1}
+    新增 L2016: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'class tagEffSPSlot *'
+    新增 L5435: C2664 - 'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'c
+    新增 L6213: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+    新增 L6214: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+    新增 L6215: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+  pal3/src/Misc/MainPropUI.cpp
+    错误数: 2 -> 5  真新增 3 {'C2100': 3}
+    新增 L888: C2100 - illegal indirection
+    新增 L896: C2100 - illegal indirection
+    新增 L1116: C2100 - illegal indirection
+  pal3/src/Combat/CCBStageScene.cpp
+    错误数: 4 -> 7  真新增 3 {'C2664': 3}
+    新增 L1416: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
+    新增 L1429: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
+    新增 L1449: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
   pal3/src/UI/EquipUI.cpp
     错误数: 2 -> 7  真新增 5 {'C2100': 4, 'C2440': 1}
     新增 L814: C2100 - illegal indirection
@@ -127,36 +194,27 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L1052: C2440 - '=' : cannot convert from 'const int' to 'int *'
     新增 L1269: C2100 - illegal indirection
     新增 L1614: C2100 - illegal indirection
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 5 -> 6  真新增 1 {'C2109': 1}
-    新增 L2099: C2109 - subscript requires array or pointer type
-  pal3/src/UI/StateUI.cpp
-    错误数: 6 -> 8  真新增 2 {'C2109': 2}
-    新增 L2339: C2109 - subscript requires array or pointer type
-    新增 L2499: C2109 - subscript requires array or pointer type
-    新增 L2529: C2109 - subscript requires array or pointer type
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 4 -> 6  真新增 2 {'C2440': 2}
-    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L625: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 29 -> 30  真新增 1 {'C2100': 1}
-    新增 L7459: C2100 - illegal indirection
   pal3/src/globals.cpp
     错误数: 1 -> 8  真新增 7 {'C2143': 2, 'C2501': 4, 'C2086': 1}
-    新增 L1396: C2143 - syntax error : missing ';' before '*'
-    新增 L1396: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
-    新增 L1396: C2501 - 'dword_00DBA24C' : missing storage-class or type specifiers
-    新增 L1398: C2143 - syntax error : missing ';' before '*'
-    新增 L1398: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 13 -> 16  真新增 3 {'C2100': 2, 'C2440': 1}
-    新增 L2019: C2100 - illegal indirection
-    新增 L2031: C2100 - illegal indirection
-    新增 L4208: C2440 - '=' : cannot convert from 'const int' to 'int *'
-  pal3/src/UI/PropUI.cpp
-    错误数: 3 -> 4  真新增 1 {'C2100': 1}
-    新增 L759: C2100 - illegal indirection
+    新增 L1357: C2143 - syntax error : missing ';' before '*'
+    新增 L1357: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
+    新增 L1357: C2501 - 'dword_DBA24C' : missing storage-class or type specifiers
+    新增 L1359: C2143 - syntax error : missing ';' before '*'
+    新增 L1359: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 10 -> 59  真新增 49 {'C2440': 11, 'C2664': 28, 'C2676': 9, 'C2679': 1}
+    新增 L2365: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L2516: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+    新增 L2519: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+    新增 L2522: C2664 - 'sprintf' : cannot convert parameter 2 from 'unsigned char' to 'const 
+    新增 L2525: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 28 -> 47  真新增 19 {'C2100': 19}
+    新增 L777: C2100 - illegal indirection
+    新增 L795: C2100 - illegal indirection
+    新增 L808: C2100 - illegal indirection
+    新增 L821: C2100 - illegal indirection
+    新增 L834: C2100 - illegal indirection
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
@@ -168,20 +226,27 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/MainPropUI.cpp: 2 → 5
-  pal3/src/Misc/UIBigMap.cpp: 8 → 9
-  pal3/src/Misc/SaleUI.cpp: 28 → 47
-  pal3/src/Role/RoleSystem.cpp: 45 → 47
-  pal3/src/GameBase/GRPinput.cpp: 11 → 15
-  pal3/src/GameBase/PAL3.cpp: 36 ↓ 25
-  pal3/src/UI/EquipUI.cpp: 2 → 7
-  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
-  pal3/src/UI/StateUI.cpp: 6 → 8
-  pal3/src/Effect/CEffMgr.cpp: 4 → 6
-  pal3/src/Combat/CCBStage.cpp: 29 → 30
-  pal3/src/globals.cpp: 1 → 8
-  pal3/src/Misc/LineupUI.cpp: 13 → 16
   pal3/src/UI/PropUI.cpp: 3 → 4
+  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
+  pal3/src/Misc/LineupUI.cpp: 13 → 16
+  pal3/src/UI/StateUI.cpp: 6 → 8
+  pal3/src/GameBase/GRPinput.cpp: 11 → 15
+  pal3/src/Misc/CCBUICtrl.cpp: 12 → 29
+  pal3/src/free_functions.cpp: 84 → 89
+  pal3/src/GameBase/PAL3.cpp: 36 ↓ 25
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
+  pal3/src/Effect/CEffMgr.cpp: 4 → 11
+  pal3/src/Combat/CCBStageCam.cpp: 4 → 11
+  pal3/src/Data/PAL_GDB.cpp: 2 → 8
+  pal3/src/Misc/UIBigMap.cpp: 8 → 9
+  pal3/src/Role/RoleSystem.cpp: 45 → 47
+  pal3/src/Combat/CCBStage.cpp: 29 → 35
+  pal3/src/Misc/MainPropUI.cpp: 2 → 5
+  pal3/src/Combat/CCBStageScene.cpp: 4 → 7
+  pal3/src/UI/EquipUI.cpp: 2 → 7
+  pal3/src/globals.cpp: 1 → 8
+  pal3/src/Combat/CCBRoleState.cpp: 10 → 59
+  pal3/src/Misc/SaleUI.cpp: 28 → 47
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 ================================================================================
@@ -189,33 +254,42 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261124_013305
 基线时间: 2026-11-24T01:33:05.535098
-检测时间: 2026-11-24T03:06:25.268030
+检测时间: 2026-11-24T03:33:34.789606
 
 📊 摘要:
   总文件数: 1022
-  新失败: 3
-  新错误(真新增 (code,msg)): 14
+  新失败: 4
+  新错误(真新增 (code,msg)): 21
   已修复: 0
   错误收敛(消失 (code,msg)): 1
   持续失败: 96
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
+  C2664    +65  ⚠️ 增加
   C2100    +34  ⚠️ 增加
-  C2440    +5  ⚠️ 增加
+  C2440    +22  ⚠️ 增加
+  C2676    +9  ⚠️ 增加
+  C2679    +9  ⚠️ 增加
+  C2227    +5  ⚠️ 增加
   C2501    +4  ⚠️ 增加
   C2665    -3
-  C2664    +3  ⚠️ 增加
   C2109    +3  ⚠️ 增加
   C2102    -2
   C2107    -2
   C2297    +2  ⚠️ 增加
   C2143    +2  ⚠️ 增加
   C2086    +1  ⚠️ 增加
-  ⚠️ 注意: 以下错误码**净增** C2086, C2100, C2109, C2143, C2297, C2440, C2501, C2664 —— 即使总错误数在下降也要逐条归因
+  ⚠️ 注意: 以下错误码**净增** C2086, C2100, C2109, C2143, C2227, C2297, C2440, C2501, C2664, C2676, C2679 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
+  pal3/src/Misc/UITitle_XJTM.cpp
+    L623: C2100 - illegal indirection
+  pal3/src/Misc/CIniFile.cpp
+    L61: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
+    L62: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
+    L63: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
   pal3/src/Misc/CCBUIPanel.cpp
     L2308: C2440 - '=' : cannot convert from 'const int' to 'int *'
     L2428: C2440 - '=' : cannot convert from 'const int' to 'int *'
@@ -224,67 +298,73 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
   pal3/src/Misc/UITitle_YXXX.cpp
     L308: C2440 - '=' : cannot convert from 'const int' to 'int *'
     L401: C2440 - '=' : cannot convert from 'const int' to 'int *'
-  pal3/src/Misc/UITitle_XJTM.cpp
-    L623: C2100 - illegal indirection
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
+  pal3/src/Combat/CCBStageScene.cpp
+    错误数: 4 -> 7  真新增 3 {'C2664': 3}
+    新增 L1416: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
+    新增 L1429: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
+    新增 L1449: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 36 -> 25  真新增 2 {'C2297': 2}
+    新增 L3143: C2297 - '*' : illegal, right operand has type 'char *'
+    新增 L3191: C2297 - '*' : illegal, right operand has type 'char *'
+  pal3/src/globals.cpp
+    错误数: 1 -> 8  真新增 7 {'C2143': 2, 'C2501': 4, 'C2086': 1}
+    新增 L1357: C2143 - syntax error : missing ';' before '*'
+    新增 L1357: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
+    新增 L1357: C2501 - 'dword_DBA24C' : missing storage-class or type specifiers
+    新增 L1359: C2143 - syntax error : missing ';' before '*'
+    新增 L1359: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 5 -> 6  真新增 1 {'C2109': 1}
+    新增 L2099: C2109 - subscript requires array or pointer type
+  pal3/src/free_functions.cpp
+    错误数: 84 -> 89  真新增 5 {'C2440': 3, 'C2664': 2}
+    新增 L6842: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L6843: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L6919: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L7315: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L7428: C2664 - 'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlo
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 8 -> 9  真新增 1 {'C2100': 1}
+    新增 L1594: C2100 - illegal indirection
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 10 -> 59  真新增 49 {'C2440': 11, 'C2664': 28, 'C2676': 9, 'C2679': 1}
+    新增 L2365: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L2516: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+    新增 L2519: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+    新增 L2522: C2664 - 'sprintf' : cannot convert parameter 2 from 'unsigned char' to 'const 
+    新增 L2525: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
+  pal3/src/UI/StateUI.cpp
+    错误数: 6 -> 8  真新增 2 {'C2109': 2}
+    新增 L2339: C2109 - subscript requires array or pointer type
+    新增 L2499: C2109 - subscript requires array or pointer type
+    新增 L2529: C2109 - subscript requires array or pointer type
+  pal3/src/Data/PAL_GDB.cpp
+    错误数: 2 -> 8  真新增 6 {'C2664': 6}
+    新增 L1066: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1076: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1078: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1081: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    新增 L1084: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+  pal3/src/Misc/CCBUICtrl.cpp
+    错误数: 12 -> 29  真新增 17 {'C2679': 8, 'C2440': 3, 'C2664': 6}
+    新增 L585: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L796: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
+    新增 L960: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L965: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+    新增 L974: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+  pal3/src/UI/PropUI.cpp
+    错误数: 3 -> 4  真新增 1 {'C2100': 1}
+    新增 L759: C2100 - illegal indirection
   pal3/src/GameBase/GRPinput.cpp
     错误数: 11 -> 15  真新增 4 {'C2664': 4}
     新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
     新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
     新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
     新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
-  pal3/src/Misc/MainPropUI.cpp
-    错误数: 2 -> 5  真新增 3 {'C2100': 3}
-    新增 L888: C2100 - illegal indirection
-    新增 L896: C2100 - illegal indirection
-    新增 L1116: C2100 - illegal indirection
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 5 -> 6  真新增 1 {'C2109': 1}
-    新增 L2099: C2109 - subscript requires array or pointer type
-  pal3/src/UI/StateUI.cpp
-    错误数: 6 -> 8  真新增 2 {'C2109': 2}
-    新增 L2339: C2109 - subscript requires array or pointer type
-    新增 L2499: C2109 - subscript requires array or pointer type
-    新增 L2529: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 8 -> 9  真新增 1 {'C2100': 1}
-    新增 L1594: C2100 - illegal indirection
-  pal3/src/UI/EquipUI.cpp
-    错误数: 2 -> 7  真新增 5 {'C2100': 4, 'C2440': 1}
-    新增 L814: C2100 - illegal indirection
-    新增 L832: C2100 - illegal indirection
-    新增 L1052: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    新增 L1269: C2100 - illegal indirection
-    新增 L1614: C2100 - illegal indirection
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 45 -> 47  真新增 2 {'C2100': 2}
-    新增 L6293: C2100 - illegal indirection
-    新增 L6294: C2100 - illegal indirection
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 13 -> 16  真新增 3 {'C2100': 2, 'C2440': 1}
-    新增 L2019: C2100 - illegal indirection
-    新增 L2031: C2100 - illegal indirection
-    新增 L4208: C2440 - '=' : cannot convert from 'const int' to 'int *'
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 36 -> 25  真新增 2 {'C2297': 2}
-    新增 L3143: C2297 - '*' : illegal, right operand has type 'char *'
-    新增 L3191: C2297 - '*' : illegal, right operand has type 'char *'
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 4 -> 6  真新增 2 {'C2440': 2}
-    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L625: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 29 -> 30  真新增 1 {'C2100': 1}
-    新增 L7459: C2100 - illegal indirection
-  pal3/src/globals.cpp
-    错误数: 1 -> 8  真新增 7 {'C2143': 2, 'C2501': 4, 'C2086': 1}
-    新增 L1396: C2143 - syntax error : missing ';' before '*'
-    新增 L1396: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
-    新增 L1396: C2501 - 'dword_00DBA24C' : missing storage-class or type specifiers
-    新增 L1398: C2143 - syntax error : missing ';' before '*'
-    新增 L1398: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
   pal3/src/Misc/SaleUI.cpp
     错误数: 28 -> 47  真新增 19 {'C2100': 19}
     新增 L777: C2100 - illegal indirection
@@ -292,9 +372,52 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L808: C2100 - illegal indirection
     新增 L821: C2100 - illegal indirection
     新增 L834: C2100 - illegal indirection
-  pal3/src/UI/PropUI.cpp
-    错误数: 3 -> 4  真新增 1 {'C2100': 1}
-    新增 L759: C2100 - illegal indirection
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 45 -> 47  真新增 2 {'C2100': 2}
+    新增 L6293: C2100 - illegal indirection
+    新增 L6294: C2100 - illegal indirection
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 29 -> 35  真新增 6 {'C2664': 5, 'C2100': 1}
+    新增 L2016: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'class tagEffSPSlot *'
+    新增 L5435: C2664 - 'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'c
+    新增 L6213: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+    新增 L6214: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+    新增 L6215: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 4 -> 11  真新增 7 {'C2664': 7}
+    新增 L237: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class CEffObj *' to '
+    新增 L249: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'unsigned char' to 'co
+    新增 L952: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L1370: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    新增 L1657: C2664 - 'sprintf' : cannot convert parameter 2 from 'class CEffObj *' to 'cons
+  pal3/src/Combat/CCBCamControl.cpp
+    错误数: 1 -> 3  真新增 2 {'C2664': 2}
+    新增 L1052: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'int' to 'const ch
+    新增 L1053: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'unsigned char' to
+  pal3/src/UI/EquipUI.cpp
+    错误数: 2 -> 7  真新增 5 {'C2100': 4, 'C2440': 1}
+    新增 L814: C2100 - illegal indirection
+    新增 L832: C2100 - illegal indirection
+    新增 L1052: C2440 - '=' : cannot convert from 'const int' to 'int *'
+    新增 L1269: C2100 - illegal indirection
+    新增 L1614: C2100 - illegal indirection
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 13 -> 16  真新增 3 {'C2100': 2, 'C2440': 1}
+    新增 L2019: C2100 - illegal indirection
+    新增 L2031: C2100 - illegal indirection
+    新增 L4208: C2440 - '=' : cannot convert from 'const int' to 'int *'
+  pal3/src/Misc/MainPropUI.cpp
+    错误数: 2 -> 5  真新增 3 {'C2100': 3}
+    新增 L888: C2100 - illegal indirection
+    新增 L896: C2100 - illegal indirection
+    新增 L1116: C2100 - illegal indirection
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 4 -> 11  真新增 7 {'C2440': 2, 'C2227': 5}
+    新增 L623: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+    新增 L667: C2227 - left of '->DestroyEffect' must point to class/struct/union
+    新增 L729: C2227 - left of '->DestroyEffect' must point to class/struct/union
+    新增 L750: C2227 - left of '->DestroyEffect' must point to class/struct/union
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
@@ -306,20 +429,27 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/GameBase/GRPinput.cpp: 11 → 15
-  pal3/src/Misc/MainPropUI.cpp: 2 → 5
-  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
-  pal3/src/UI/StateUI.cpp: 6 → 8
-  pal3/src/Misc/UIBigMap.cpp: 8 → 9
-  pal3/src/UI/EquipUI.cpp: 2 → 7
-  pal3/src/Role/RoleSystem.cpp: 45 → 47
-  pal3/src/Misc/LineupUI.cpp: 13 → 16
+  pal3/src/Combat/CCBStageScene.cpp: 4 → 7
   pal3/src/GameBase/PAL3.cpp: 36 ↓ 25
-  pal3/src/Effect/CEffMgr.cpp: 4 → 6
-  pal3/src/Combat/CCBStage.cpp: 29 → 30
   pal3/src/globals.cpp: 1 → 8
-  pal3/src/Misc/SaleUI.cpp: 28 → 47
+  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
+  pal3/src/free_functions.cpp: 84 → 89
+  pal3/src/Misc/UIBigMap.cpp: 8 → 9
+  pal3/src/Combat/CCBRoleState.cpp: 10 → 59
+  pal3/src/UI/StateUI.cpp: 6 → 8
+  pal3/src/Data/PAL_GDB.cpp: 2 → 8
+  pal3/src/Misc/CCBUICtrl.cpp: 12 → 29
   pal3/src/UI/PropUI.cpp: 3 → 4
+  pal3/src/GameBase/GRPinput.cpp: 11 → 15
+  pal3/src/Misc/SaleUI.cpp: 28 → 47
+  pal3/src/Role/RoleSystem.cpp: 45 → 47
+  pal3/src/Combat/CCBStage.cpp: 29 → 35
+  pal3/src/Combat/CCBStageCam.cpp: 4 → 11
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 3
+  pal3/src/UI/EquipUI.cpp: 2 → 7
+  pal3/src/Misc/LineupUI.cpp: 13 → 16
+  pal3/src/Misc/MainPropUI.cpp: 2 → 5
+  pal3/src/Effect/CEffMgr.cpp: 4 → 11
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 

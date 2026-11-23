@@ -1181,3 +1181,5 @@
 | `::SetParam` | inline | `float` | 20 | self_arg_mismatch | `(*(int (**)(float))(*(_DWORD *)LODWORD(x) + 20))(_pal3_coerce_f32(LODWORD(x)))` |
 | `SaleUI::GetCellStateByte` | inline | `SaleUI` | 24 | self_arg_mismatch | `(*(int (**)(SaleUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 262, 0)` |
 | `CEffMgr::SceneMgrUpdate` | inline | `int` | 20 | non_class_hint | `(*(int (**)(int, _DWORD))(*(_DWORD *)*v4 + 20))(*v4, LODWORD(fVal))` |
+| `CEffMgr::SetEffectsTimeScale` | inline | `CEffObj` | 44 | name_not_declared_for_class | `(*(int (**)(CEffObj *, int))(*(_DWORD *)*p_m_pEffect + 44))(*p_m_pEffect, nVal)` |
+| `CEffMgr::Init` | inline | `CEffObj` | 48 | name_not_declared_for_class | `(*(void (**)(CEffObj *, int *))(*(_DWORD *)this->m_spSlots[Effect].m_pEffect + 48))( this->m_spSlots[Effect].m_pEffect, v8)` |
