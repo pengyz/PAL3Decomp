@@ -122,19 +122,6 @@
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
- "0x00430180": {
-  "name": "InitSceneScriptLoader",
-  "source": " | 25账目续 2026-10-17（verifier·五面深读·证据账目制）：原名 sub_430180 ⇒ InitSceneScriptLoader | evidence: 五面①调用者=SingletonThunk_00404630 ②被调=无（init 体）③**成员 m_bLoadSceneScript/m_pinst/m_nTodo_02C** ④场景脚本加载域 ⑤单例加载生命周期——evidence: 成员语义+调用者+体形 | confidence: high | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [函数归属余3 2026-10-17] 归属挂账 4.5/5（IDB 名无限定前缀=类归属直证缺失）：①调用者=SingletonThunk_00404630（**静态初始化域**）②被调=PalScript* 构造/使用 ③字节谱 [0,1,8]（+8 疑 m_script 清零——PalScriptMgr 候选最强但谱撞 200+ 类唯一性不足）④类归属待定 ⑤静态初始化生命周期；IDB decompile 形 `InitSceneScriptLoader(_BYTE *this)` 无 Class:: 前缀 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
-  "declaration_only": true,
-  "source_note": " | [归属 2026-10-17·余 3] ④类归属薄（SingletonThunk 注册点 ✓ 但无类限定名/谱唯一匹配）⇒ **五面 4/5 挂账** ✓",
-  "sig_model": {
-   "return": "_BYTE *",
-   "cc": "thiscall",
-   "params": [],
-   "varargs": false,
-   "pending": false
-  }
- },
  "0x00432600": {
   "name": "FindScriptEventByID",
   "sig_model": {
@@ -221,28 +208,6 @@
    "pending": false
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x00438100": {
-  "name": "IsAnimDone",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438100 ⇒ IsAnimDone：同址计时器族谓词（IsAnimDone/IsProgressDone/IsWaitDone 三名共址合法共槽）⇒ 副本同步主流名 | [4 条补面 2026-10-17·五面满卡] ③面 return this[12]==0（完成判 ✓）+ 三证法 3 面 ⇒ 5/5 ——保留命名 ✓ | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
-  "sig_model": {
-   "return": "BOOL",
-   "cc": "thiscall",
-   "params": [],
-   "varargs": false,
-   "pending": false
-  }
- },
- "0x00438530": {
-  "name": "IsFadeDone",
-  "source": " | 46五面专轮 2026-10-17（verifier·双注册同址名同步）：原名 _sub_438530 ⇒ IsFadeDone：同址淡变谓词（IsFadeDone）⇒ 副本同步 | [4 条补面 2026-10-17·五面满卡] ③面 return this[16]==0（淡出完成判 ✓）⇒ 5/5 ——保留命名 ✓ | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
-  "sig_model": {
-   "return": "BOOL",
-   "cc": "thiscall",
-   "params": [],
-   "varargs": false,
-   "pending": false
-  }
  },
  "0x00450370": {
   "name": "_sdtor_15",
@@ -875,45 +840,6 @@
    "params": [
     {
      "type": "FILE *fp",
-     "name": null
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x00536160": {
-  "name": "SetParam",
-  "source_note": "[A 级汇编 2026-10-21·重核] retn 8（5361ed c2 08 00）=2 dword 槽 = **1 double**。调用点 53555f/535560 push %edi;push %ebx = double 分解双 push ✓。另 535451/535456 push $0x3fc... = double 位型常量对同证。**体零参数读**（参数未在函数体内使用）。⚠️ 原 `int nVal, int nVal2` **错**（double 被拆两 int）· 原 source 引用 IDA stack_frame=循环证据，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-  "evidence_level": "B",
-  "sig_model": {
-   "return": "double",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "double",
-     "name": "fVal"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x00537770": {
-  "name": "LoadActions",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=ActVecUninitCopy/DestroyActionRange/Free/InitAction/**PtrVec_InsertN_64**（动作加载族；注意 PtrVec_* 是容器模板实例——本仓 2026-10-20 归属修正定谳）③成员访问=m_actarray_begin/end/m_name/m_pact（动作数组域）④类归属=Actor（4 命中 0 未解析）⑤交互模式=FILE 流读取动作序列。ret=int（result）。名 LoadActions 与 LoadActions(FILE*,int*) 签名相符。",
-  "sig_model": {
-   "return": "int",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "FILE *Stream",
-     "name": null
-    },
-    {
-     "type": "int *pnCount",
      "name": null
     }
    ],
@@ -3274,27 +3200,6 @@
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
- "0x00536ac0": {
-  "name": "SetMaterialName",
-  "source_note": "[五面·conf<60 保留原名未证实] ①调用者=RoleSystem::SetActorTexture（传 `role\\\\%s\\\\%s.tga` 完整路径）②被调用者=_strlwr（小写化）/gbCrc32Compute（CRC 校验）/ValidateInput/GotoAction/PopMessage/OpenBaseFile ③成员访问=m_actarray_begin/end/m_dwMatMsg/m_pact/m_szTexture ④类归属=Actor（5 命中 0 未解析）⑤交互模式=字符串小写+CRC+校验。ret=int（return 1/0 ⇒ 实为 bool 语义）。**原名 SetMaterialName 与用法存疑**（实为按名查找/校验动作），但证据不足以正名（conf 55）⇒ 保留标未证实。⚠️ 调用方传完整路径 strcpy 进 m_szTexture（表标 char[28]）⇒ **尺寸存疑**，需单独核。",
-  "sig_model": {
-   "return": "int",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "void *pszName",
-     "name": null
-    },
-    {
-     "type": "int",
-     "name": "nFlag"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
  "0x00530c00": {
   "name": "UpdateAnimState",
   "source_note": "[五面] ①调用者=待补 ②被调用者=ProcessInstance/SetMaterialName/StopBlinkUI/UIAnimateCtrlEX_SwapBuffer（动画+UI 缓冲交换族）③成员访问=m_actarray_type/m_bDirFlag/m_dwMatMsg/m_nAnimCounter（动画计数+方向标志）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动画状态机推进。ret=bool（result）。名 UpdateAnimState 与 m_nAnimCounter/动画族相符。",
@@ -3343,53 +3248,6 @@
    "return": "void",
    "cc": "thiscall",
    "params": [],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x00539e70": {
-  "name": "InsertAnimFrame",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。",
-  "sig_model": {
-   "return": "char *",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "float",
-     "name": "fTime"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x004dfaa0": {
-  "name": "InitRound",
-  "source_note": "[A 级汇编 2026-10-21·重核] retn 16（4dfb5f c2 10 00）=4 槽 ✓ 个数一致。opcode 实证：flds 0x14(%esp) = slot1 float · flds 0xc(%esp) = slot3 float。⚠️ 原 `int nVal1, int nVal3` **错**（实为 float）。slot2/4 类型待 opcode 核（暂 int）· 原 source 引 IDA stack_frame=循环，已弃。 | [evidence:B 2026-10-21·降级] 原证据引用 IDA stack_frame 参数名/型 = **循环**（apply_annotations SetType 写 IDB 后 stack_frame 读回）。降 **B 级**。**待补 A 级**：调用点 push opcode / flds/fstps / 位型常量。",
-  "evidence_level": "B",
-  "sig_model": {
-   "return": "int",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "float",
-     "name": "fVal1"
-    },
-    {
-     "type": "int",
-     "name": "nVal2"
-    },
-    {
-     "type": "float",
-     "name": "fVal3"
-    },
-    {
-     "type": "int",
-     "name": "nVal4"
-    }
-   ],
    "varargs": false,
    "pending": false
   },

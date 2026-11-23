@@ -128,7 +128,7 @@
  "methods": {
   "0x004dfaa0": {
    "name": "InitRound",
-   "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)（A 级 ret-N 证据：ret $0x10 ⇒ 4 栈参；int 占位·nVal 序号惯例）",
+   "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 0——补 4 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [签名层修复 2026-10-16] 占位签名 int __thiscall(int nVal1) ⇒ int __thiscall(int nVal1, int nVal2, int nVal3, int nVal4)（A 级 ret-N 证据：ret $0x10 ⇒ 4 栈参；int 占位·nVal 序号惯例） | [owner 声明 20261123] N20b 同族迁移完成判据①——functions.json 自由条目不被 structs 合并覆盖(合并条件 owner==sname) ⇒ this 注入跳过 ⇒ 运行期 thiscall 语义丢失风险(SetCurrentAction 同款)",
    "evidence_level": "A",
    "sig_model": {
     "return": "int",
@@ -153,7 +153,8 @@
     ],
     "varargs": false,
     "pending": false
-   }
+   },
+   "owner": "CCBStage"
   },
   "0x004dfe00": {
    "name": "AddTextLabel",
