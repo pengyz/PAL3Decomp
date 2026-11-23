@@ -1405,9 +1405,15 @@
     ],
     "timestamp": "2026-11-12"
    }
+  },
+  "0x21f4": {
+   "name": "m_vTargetRotation",
+   "type": "gbVec3D",
+   "source": "binary A 级 20261124: SetTargetRotation(0x416490) mov [ecx+21F4h/21F8h/21FCh],edx/eax/edx = 12B gbVec3D 目标向量复制; 真尺寸三向证据: 本成员末端 0x2200 + Extra0→Extra1 间距 0x2200 + g_SceneBuf 角色槽步距 0x2200 三点闭合 → sizeof(RoleSystem)=0x2200",
+   "evidence_level": "verified"
   }
  },
- "binary_size": 7600,
+ "binary_size": 8704,
  "base_size": 68,
  "note": " | binary_size set to 8704 (stride from binary, was 8908) | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~RoleSystem()再生(deleting/adjustor/ICF形态均再生); 槽绑定4+完整形0留",
  "methods": {
@@ -4413,5 +4419,7 @@
    "address": "0x00416490",
    "source": "manual:N13b 消解 20261122——语料限定引用 SetTargetRotation, 注解 methods 直通依赖显式化为 known_methods 记录"
   }
- }
+ },
+ "binary_size_old": 7600,
+ "members_note": "尺寸矫正 20261124: binary_size 0x1DB0→0x2200(8704B). 三向证据: ①SetTargetRotation 尾写 m_vTargetRotation@0x21F4(12B) 止于 0x2200 ②g_RoleSystemExtra0→Extra1 间距 0x2200 ③g_SceneBuf 场景角色槽步距 0x2200(=sizeof(RoleSystem)——场景槽元素疑似 RoleSystem 实例, 独立战役待接收者证据). extent 审计 0x21FC 与本结论一致(修正 EXTENT-OVERFLOW 假警). 0x1DB0..0x21F4 区(0x444B)零访问证据留 gap——普查后再名. g_fScriptTimeAccum@Main+0x21F0 双名待查三."
 }
