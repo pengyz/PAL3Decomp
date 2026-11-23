@@ -279,7 +279,27 @@ for t, a in sorted(anchors.items()):
                     ta = ea2
         if ta and ta not in seen_t and ta != a['base']:
             seen_t.add(ta)
-            methods.append(ta)
+            tnm = ida_name.get_name(ta) or ''
+            tcls = mangle_class(tnm)
+            if tcls == a['name']:
+                methods.append(ta)
+                continue
+            # 无名 callee: thiscall 序言形状守卫(前 12 条内 mov eX,ecx/[ecx...] 先于 call)
+            tfs, tfe = func_range(ta)
+            cur2 = tfs
+            shaped = False
+            for _ in range(12):
+                if cur2 >= tfe or not ida_bytes.is_code(ida_bytes.get_flags(cur2)):
+                    break
+                tx = (idc.generate_disasm_line(cur2, 0) or '').strip()
+                if re.match(r'(call|jmp)', tx):
+                    break
+                if re.search(r'mov\s+e[a-z]{2}\s*,\s*ecx', tx) or '[ecx' in tx:
+                    shaped = True
+                    break
+                cur2 = idc.next_head(cur2, tfe)
+            if shaped:
+                methods.append(ta)
     mx = 0
     for ta in methods[:12]:
         d = this_disp_max(ta)
@@ -318,10 +338,32 @@ for dirpath, _, files in os.walk(cdir):
             except Exception:
                 pass
 corpus_all = '\n'.join(corpus_text)
+# body-only 语料(排除 globals.h/cpp 定义)
+_body_texts = []
+for dirpath, _, files in os.walk(cdir):
+    for f in files:
+        if f.endswith(('.cpp', '.h')) and f not in ('globals.cpp', 'globals.h'):
+            try:
+                _body_texts.append(open(os.path.join(dirpath, f), encoding='utf-8',
+                                        errors='replace').read())
+            except Exception:
+                pass
+corpus_body = '\n'.join(_body_texts)
 
 
-def count_pat(pat):
-    return len(re.findall(pat, corpus_all))
+def count_pat(pat, text=None):
+    return len(re.findall(pat, text if text is not None else corpus_all))
+
+
+# 每锚实例名集 = 锚类名 + 全部 type==锚 的 globals 名
+def instance_names(cls, base_addr):
+    names = {cls}
+    for k, e in gj.items():
+        if isinstance(e, dict) and str(e.get('type', '')).strip() == cls:
+            n = str(e.get('name', ''))
+            if n:
+                names.add(n)
+    return names
 
 
 for t, a in sorted(anchors.items()):
@@ -339,11 +381,19 @@ for t, a in sorted(anchors.items()):
             continue
         gname = str(ge.get('name', ''))
         mname = str(v.get('name', ''))
+        gtype = str(ge.get('type', '')).strip()
         if not gname or not mname or gname == mname:
             continue
-        # 全局形: 裸名(排除 struct 限定形); 成员形: Base.member
-        gp = count_pat(r'(?<![\w.])%s\b(?!\s*\.)' % re.escape(gname))
-        mp = count_pat(r'%s\.%s\b' % (re.escape(t), re.escape(mname)))
+        # 同型实例假双名排除: global 条目 type == 锚类 → 实例名 vs 成员, 非竞争身份
+        if gtype == t:
+            continue
+        insts = instance_names(t, a['base'])
+        inst_pat = '|'.join(re.escape(n) for n in sorted(insts))
+        # 全局形: 裸名 body 引用(排除定义文件)
+        gp = count_pat(r'(?<![\w.])%s\b(?!\s*\.)' % re.escape(gname), corpus_body)
+        # 成员形: 限定形 + 实例形 + 箭头形(->member, 指针解引用活引用)
+        mp = count_pat(r'(?:%s)\.%s\b' % (inst_pat, re.escape(mname)))
+        mp += count_pat(r'->\s*%s\b' % re.escape(mname))
         if gp or mp:
             duals.append({
                 'addr': kk, 'offset': '0x%X' % off,
