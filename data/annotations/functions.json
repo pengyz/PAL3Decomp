@@ -2530,7 +2530,7 @@
   }
  },
  "0x0043de40": {
-  "name": "Destroy",
+  "name": "HideAll_3DE40",
   "source": " | [R93 修 2026-10-23·8 errors] 命名碰撞 => __ovl_03 | [T1 修 2026-10-28] 归属定谳+签名载体：27 vtable 槽全量扫描（26×槽3@+0x0C + 0x56B898@+0x18 十槽 MI 复合表嵌套族槽3；「双命中表」分解经复核证伪）；vtable 同形簇实证（四表 0x56ACFC/0x56AD20/0x56AEC8/0x56B200 前缀同形，slot6=0x445D10 亦同）；UIWnd 槽3 基体=SceneObj::HideAll@0x445c10（PDB 名）⇒ 此体=SceneObj 族槽3 虚方法的跨域共享 override（同体 override 簇 vs 单一中间类二进制不可判定——COMDAT 折叠等价，源形态=推断非定论；17 处直调支持具名共享体读法；UIWnd 本体不 override）【复核勘误 f814bc0b 2026-10-28】。签名 __fastcall(int self)：32B 体 mov esi,ecx（this 入 ecx）+bare ret（无栈参）⇒ ABI 等价载体（MSVC6 禁自由 __thiscall；fastcall int 参恰走 ecx），调用形 Destroy__ovl_03((int)this) 保持不变 | evidence: IDA vtable 字节扫描 27 槽 + 五表前缀比对 + 0x445c10/0x43DE40 反汇编 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "sig_model": {
    "return": "void",
@@ -2543,7 +2543,8 @@
    ],
    "varargs": false,
    "pending": false
-  }
+  },
+  "name_note": "[撞名改名 20261123] Destroy→HideAll_3DE40: R93时代__ovl_03戳被20261104剥除退役后真撞名显形——UIFrameWnd::Destroy(CCBFiveNimbusWindow*)成员名(CCBUI继承链内)遮蔽自由名⇒17站Destroy((int)this)中8站C2664/C2660。语义定谳再实锤: 17个调用站全为*_HideAll覆写体首行调基类共享体=slot3 HideAll链基体(T1定谳不变); 成员名HideAll同撞(覆写体内裸名递归)⇒自由载体名=链语义+地址消歧HideAll_3DE40(_sdtor_NN先例形); __fastcall(int self)载体不变(ecx=this ABI等价)"
  },
  "0x004323c0": {
   "name": "StopSceneScripts",

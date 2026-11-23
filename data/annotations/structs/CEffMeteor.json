@@ -465,6 +465,21 @@
     "pending": false
    },
    "name_note": " | 债清偿定谳20261121(第二批): probe24就地反编译——8B级adjustor thunk(this-0xC调整尾跳CEffMeteor_0(this-12))——CEff族-12嵌入模式(与CEffgbParticle/CEffExplosive同族); 编译器产物→decl_only; 旧名_todo_4CDA00=_todo占位(待decompile定真名任务清偿)"
+  },
+  "0x004cb3a0": {
+   "name": "CEffMeteor",
+   "flags": [
+    "ctor"
+   ],
+   "evidence_level": "verified",
+   "source": " | [ctor定谳 20261123] 工厂尾跳铁证: AllocEffect(虚工厂slot)原始汇编 new后 mov ecx,eax+jmp本址(=return new T 的VC6编译形); 本体mov e?,ecx(this=ecx)+域清零+vptr写(0x56f978)=ctor写表铁律; corpus sub_未型致工厂体 return int→void* C2440",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
