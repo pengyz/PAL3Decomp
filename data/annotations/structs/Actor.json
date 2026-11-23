@@ -2348,7 +2348,6 @@
   },
   "0x0053b2a0": {
    "name": "SelectPointer",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
@@ -2370,7 +2369,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectPointer): int(int *,int *,int *,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectPointer): int(int *,int *,int *,int *); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00419690": {
    "name": "UpdatePhysics",
@@ -2687,7 +2690,6 @@
   },
   "0x00538d20": {
    "name": "CompareModelName",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "BOOL",
@@ -2705,7 +2707,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CompareModelName): int(int,char *,char *); 原注解2026-11-18 mangle硬真值定谳(HPADPAD): int(cha"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CompareModelName): int(int,char *,char *); 原注解2026-11-18 mangle硬真值定谳(HPADPAD): int(cha",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x005392c0": {
    "name": "ActionEntry_Assign",
@@ -3227,7 +3230,6 @@
   },
   "0x0053b6e0": {
    "name": "CopyConstruct_1C",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -3245,11 +3247,14 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0053b700": {
    "name": "CopyConstruct_290",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -3271,11 +3276,14 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0053b870": {
    "name": "CopyConstruct",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -3297,7 +3305,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00536d20": {
    "name": "LoadActionSequences",

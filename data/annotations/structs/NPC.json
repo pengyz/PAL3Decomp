@@ -122,7 +122,6 @@
  "methods": {
   "0x0040eb90": {
    "name": "Create",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "unsigned int",
@@ -136,11 +135,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(Create): int(unsigned int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Create): int(unsigned int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0040ec20": {
    "name": "Init",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void *",
@@ -154,11 +156,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(Init): int(void *,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Init): int(void *,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0040f060": {
    "name": "SetRoleMode",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -172,11 +177,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetRoleMode): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetRoleMode): int(int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0040f620": {
    "name": "InitAll",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -184,7 +192,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00446020": {
    "name": "UpdateAnim",

@@ -13,7 +13,6 @@
  "methods": {
   "0x0041c540": {
    "name": "ProcessMouse",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -27,11 +26,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouse): "
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouse): ",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00410360": {
    "name": "ProcessFrame",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -45,7 +47,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessFrame): "
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessFrame): ",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   }
  },
  "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"

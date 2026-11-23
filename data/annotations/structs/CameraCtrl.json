@@ -1053,7 +1053,6 @@
   },
   "0x0041e720": {
    "name": "AttachToRole",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1067,11 +1066,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(AttachToRole): "
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(AttachToRole): ",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0041eb50": {
    "name": "GetModeByIndex",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -1085,11 +1087,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetModeByIndex): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetModeByIndex): int(int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0041ef30": {
    "name": "InitPathState",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -1097,7 +1102,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00487480": {
    "name": "ResetToDefaults",

@@ -1691,7 +1691,6 @@
   },
   "0x004e05b0": {
    "name": "CreatePreview",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1705,7 +1704,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CreatePreview):"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(CreatePreview):",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004e0650": {
    "name": "DestroyPreviewWindow",
@@ -3871,7 +3874,6 @@
   },
   "0x00521a80": {
    "name": "CheckActionValid",
-   "static": true,
    "evidence_level": "unverified",
    "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
    "sig_model": {
@@ -3886,7 +3888,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(CheckActionValid): int(?_"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(CheckActionValid): int(?_",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x005220e0": {
    "name": "ClearRoleState",

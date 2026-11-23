@@ -11,7 +11,6 @@
  "methods": {
   "0x0053b720": {
    "name": "SetRegion",
-   "static": true,
    "evidence_level": "unverified",
    "lvars": {
     "v5": "char *"
@@ -33,7 +32,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetRegion): int"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetRegion): int",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   }
  },
  "binary_size": 4,

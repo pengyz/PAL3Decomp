@@ -11,7 +11,6 @@
  "methods": {
   "0x0041d980": {
    "name": "BindToRoleSlot",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -25,7 +24,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(BindToRoleSlot): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(BindToRoleSlot): int(int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   }
  },
  "binary_size": 4,

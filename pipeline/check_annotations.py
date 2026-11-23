@@ -1034,6 +1034,22 @@ def _run_n16_schema_gate(errors, warnings):
                     'N18:structs[%s].%s deleting须与dtor同现(deleting=析构的'
                     '编译器形态标记, 不能独立存在)' % (_cls, _ea))
                 _n += 1
+            # [N23 static+thiscall 矛盾禁准入 2026-11-23·用户裁定] static语义
+            #   (无this) 与 cc=thiscall (ecx载this) 硬矛盾——apply链恢复后语料
+            #   signature渲染使矛盾显形(C2511头/体分裂+C2660调用点族)。裁决:
+            #   调用点ecx纪律=ABI真值(tools/static_thiscall_adjudicator_20261123.py)
+            #   ⇒ thiscall真值条目已删static(19条), static真值条目已改cc cdecl/
+            #   stdcall(7条: ProcessMouse在库先例)——此后矛盾组合一律拒准入。
+            #   static字段本身已退役迁flags(schema methods.banned)。
+            if 'static' in _fl:
+                _sm23 = _m.get('sig_model') or {}
+                if _sm23.get('cc') == 'thiscall':
+                    errors.append(
+                        'N23:structs[%s].%s flags含static但sig_model.cc=thiscall'
+                        '——硬矛盾(static无this/thiscall的ecx即this), 裁决先于准入:'
+                        'thiscall真值删static或static真值改cc cdecl/stdcall'
+                        % (_cls, _ea))
+                    _n += 1
             _sm = _m.get('sig_model')
             if _sm is not None:
                 for _r in _me['sig_model_required']:

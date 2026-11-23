@@ -562,7 +562,6 @@
   },
   "0x0053ef60": {
    "name": "LoadFromConfig",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -584,7 +583,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadFromConfig): int(int,int *,int *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHPAHH): int(in"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadFromConfig): int(int,int *,int *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHPAHH): int(in",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x00453a70": {
    "name": "InsertAt",

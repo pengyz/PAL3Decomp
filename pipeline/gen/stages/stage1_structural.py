@@ -154,9 +154,11 @@ def _ensure_stdcall_def(code, ctx):
     `C2373 redefinition; different type modifiers`（实测 ArraySort/EnumJoystick/
     WinProc/StrCopyRange/InputUpdate 5 处，free_functions.cpp）。
     判据：ctx.is_free_function 且 sig 明写 __stdcall ⇒ 定义行名字前回填。
+    [成员扩 20261123] __stdcall **成员函数**(CCBStageCam::DlgProc→DLGPROC 案)
+    同病：剥 cc 无害性论证只覆盖 thiscall(隐式)/cdecl(默认)——stdcall 非默认,
+    声明侧(emit_headers static cc 拼写 20261123)有、定义侧无 ⇒ C2373
+    different type modifiers。限定名前缀含 `::` ⇒ 字符类补 `:`。
     """
-    if not getattr(ctx, 'is_free_function', False):
-        return code
     if '__stdcall' not in (ctx.sig or ''):
         return code
     _fn = re.escape(getattr(ctx, 'method_name', '') or '')
@@ -164,9 +166,12 @@ def _ensure_stdcall_def(code, ctx):
         return code
     out = code.split('\n')
     for i, l in enumerate(out):
-        if re.match(r'^\s*[A-Za-z_][\w \t\*&]*?\b%s\s*\(' % _fn, l) \
+        if re.match(r'^\s*[A-Za-z_][\w \t\*&:]*?\b%s\s*\(' % _fn, l) \
                 and '__stdcall' not in l:
-            out[i] = re.sub(r'(\b%s\s*\()' % _fn, r'__stdcall \1', l, count=1)
+            # [成员限定名 20261123·晚] cc 须插在**限定名整体之前**——
+            #   `Cls::Name(` 前名直插成 `Cls::__stdcall Name(`(非法);
+            #   捕获 `Cls::Name(` 全形回填 ⇒ `__stdcall Cls::Name(`。
+            out[i] = re.sub(r'((?:\b\w+::)*\b%s\s*\()' % _fn, r'__stdcall \1', l, count=1)
             break
     return '\n'.join(out)
 

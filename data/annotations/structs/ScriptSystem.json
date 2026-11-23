@@ -395,7 +395,6 @@
   },
   "0x004101f0": {
    "name": "RunWithDelay",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -417,7 +416,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunWithDelay): int(int,float,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunWithDelay): int(int,float,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00410470": {
    "name": "RunEvent",
@@ -442,7 +445,6 @@
   },
   "0x00411f60": {
    "name": "UpdateTimers",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -456,11 +458,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateTimers): int(int,float); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateTimers): int(int,float); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004194c0": {
    "name": "UpdateObjects",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -474,7 +479,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateObjects): int(int,float); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateObjects): int(int,float); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0041efa0": {
    "name": "Init",
@@ -489,7 +498,6 @@
   },
   "0x0040cb80": {
    "name": "GetMainRoleSystem",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "RoleSystem *",
@@ -503,15 +511,18 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(GetMainRoleSystem): int(?"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(GetMainRoleSystem): int(?",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0040cbb0": {
    "name": "GetScriptContext",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "thiscall",
+    "cc": "cdecl",
     "params": [
      {
       "type": "unsigned short",
@@ -525,11 +536,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetScriptContext): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetScriptContext): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x0040cbd0": {
    "name": "PassThrough",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -551,15 +565,15 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(PassThrough): int(int,unsigned short,int,int); 原注解2026-11-18 mangle硬真值定谳(HGHH): int(unsign"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(PassThrough): int(int,unsigned short,int,int); 原注解2026-11-18 mangle硬真值定谳(HGHH): int(unsign",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x0040cc00": {
    "name": "CheckEventType",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
-    "cc": "thiscall",
+    "cc": "cdecl",
     "params": [
      {
       "type": "unsigned short",
@@ -573,7 +587,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckEventType): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckEventType): int(int,unsigned short,int); 原注解2026-11-18 mangle硬真值定谳(HGH): int(unsigne",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x0040cc60": {
    "name": "ClearTimerSlot",

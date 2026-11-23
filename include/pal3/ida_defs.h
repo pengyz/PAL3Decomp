@@ -47,6 +47,14 @@
 // 挂账⑥ C2065 补 2026-10-06：IDA 符号字宏（HIWORD 同款解引用形——位保持） 
 #define SLOWORD(x)  (*(((__int16*)&(x))))
 #define SHIWORD(x)  (*(((__int16*)&(x))+1))
+// [SLOBYTE 族补 20261123] hexrays 对**有符号**窄读渲染 SLOBYTE/SHIBYTE
+//   (RoleSystem.cpp L9957 UpdateAnimState(SLOBYTE(m_nMovement)) 实证)—— 
+//   旧表只有 LOBYTE/HIWORD 族, 有符号变体缺位 ⇒ C2065。解引用形=位保持,
+//   符号性由消费上下文(int 提升前 short 截断)承接, 与 hexrays 值语义一致。 
+#define SLOBYTE(x)  (*(((__int8*)&(x))))
+#define SHIBYTE(x)  (*(((__int8*)&(x))+1))
+#define SLODWORD(x) (*(((__int32*)&(x))))
+#define SHIDWORD(x) (*(((__int32*)&(x))+1))
 // 挂账⑥ 2026-10-06：三方 Bink API 声明（调用点 2 参证：handle+volume）——无址导入表形
 extern "C" int __cdecl BinkSetVolume(int hBink, __int64 volume);
 // 阶2批 2026-10-06：MMX 型（MagicUI __m64 C2065 族——MSVC6 内建型缺声明；`__int64` MSVC6 形）

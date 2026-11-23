@@ -305,45 +305,53 @@
   },
   "0x0040ca40": {
    "name": "InitSceneRoles",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
     "cc": "cdecl",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00408850": {
-   "name": "ResetPlayerAtts",
-   "static": true,
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "cdecl",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00423500": {
-   "name": "ClearInactiveRoles",
-   "source": "F61(2026-09-19): 原为 int 返回 ⇒ Hex-Rays 把 result 钉成 int，只能发 *(int*)/*(_DWORD*) 裸指针算术，同一表达式两处符号性不一致（jl vs jb）。二进制 0x423500 尾部无 mov eax（eax 一直保留 UISceneUpdate() 的返回指针），故返回 SceneMgr* 与二进制相容；唯一引用者是 Logger.cpp:216 的取地址（cast 成 void(*)()，不受返回类型影响）。",
-   "static": true,
-   "evidence_level": "B",
-   "sig_model": {
-    "return": "struct SceneMgr *",
-    "cc": "thiscall",
     "params": [],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
+  },
+  "0x00408850": {
+   "name": "ResetPlayerAtts",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
+  },
+  "0x00423500": {
+   "name": "ClearInactiveRoles",
+   "source": "F61(2026-09-19): 原为 int 返回 ⇒ Hex-Rays 把 result 钉成 int，只能发 *(int*)/*(_DWORD*) 裸指针算术，同一表达式两处符号性不一致（jl vs jb）。二进制 0x423500 尾部无 mov eax（eax 一直保留 UISceneUpdate() 的返回指针），故返回 SceneMgr* 与二进制相容；唯一引用者是 Logger.cpp:216 的取地址（cast 成 void(*)()，不受返回类型影响）。",
+   "evidence_level": "B",
+   "sig_model": {
+    "return": "struct SceneMgr *",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x0040fc70": {
    "name": "GetValidPartyCount",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -351,11 +359,14 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004236b0": {
    "name": "ResetSceneFlags",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -363,7 +374,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00421c40": {
    "name": "UINotifyUpdate",

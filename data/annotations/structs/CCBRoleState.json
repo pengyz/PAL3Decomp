@@ -4220,7 +4220,6 @@
   },
   "0x004e5110": {
    "name": "GetTargetCommand",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -4228,7 +4227,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004f3bc0": {
    "name": "GetRoleHP",

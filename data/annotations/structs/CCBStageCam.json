@@ -551,12 +551,11 @@
   },
   "0x004ea590": {
    "name": "DlgProc",
-   "static": true,
    "evidence_level": "A",
    "source": " | L-VAR 2026-11-11h 反汇编定谳: 入口栈读参[esp+8/0xc/0x10]无ecx-this(ecx后从全局0x17A94E0装); 用作CreateDialogParamA DLGPROC(API契约stdcall); 原 thiscall 系 IDB 归属惯性",
    "sig_model": {
     "return": "int",
-    "cc": "thiscall",
+    "cc": "stdcall",
     "params": [
      {
       "type": "HWND",
@@ -579,7 +578,10 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(DlgProc): int(int,int,unsigned int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHIHH): int(int,u",
-   "name_note": " | REF修复20261120: static int→int (存储类关键字污染剥除, N2)"
+   "name_note": "REF修复20261120: static int→int (存储类关键字污染剥除, N2) | [static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→stdcall(IDB归属惯性矫正)",
+   "flags": [
+    "static"
+   ]
   },
   "0x00504060": {
    "name": "~CCBStageCam",

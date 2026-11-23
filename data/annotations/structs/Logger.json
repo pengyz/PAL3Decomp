@@ -160,12 +160,11 @@
   },
   "0x0053ce20": {
    "name": "WriteRoleNames",
-   "static": true,
    "evidence_level": "unverified",
    "source": "[C2671修 2026-11-13] __cdecl→__thiscall: 函数体L216用this->Logger::Write()调成员函数(this引用存在⇒thiscall成员非cdecl独立函数); decomp sig已确认char*保留",
    "sig_model": {
     "return": "char *",
-    "cc": "thiscall",
+    "cc": "cdecl",
     "params": [
      {
       "type": "char *",
@@ -175,7 +174,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(WriteRoleNames): int(char *,char *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(WriteRoleNames): int(char *,char *); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x0053cb10": {
    "name": "WinProc_HWND_InputLine",

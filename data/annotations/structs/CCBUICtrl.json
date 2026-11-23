@@ -831,7 +831,6 @@
   },
   "0x004e53c0": {
    "name": "SendWindowMessage",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "LRESULT",
@@ -849,11 +848,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SendWindowMessage): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SendWindowMessage): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004e53e0": {
    "name": "FormatCombatBuffer",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "LRESULT",
@@ -871,7 +870,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(FormatCombatBuffer): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(FormatCombatBuffer): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004e5490": {
    "name": "StartMagicThread",

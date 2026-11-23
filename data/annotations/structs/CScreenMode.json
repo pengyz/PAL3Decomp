@@ -427,7 +427,6 @@
  "methods": {
   "0x0040eb10": {
    "name": "ProcessGameMode",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -445,7 +444,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessGameMode"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessGameMode",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0043afa0": {
    "name": "SetTooltipText",
@@ -1068,7 +1071,6 @@
   },
   "0x0053df80": {
    "name": "GetByteParam",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "BOOL",
@@ -1086,7 +1088,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetByteParam): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetByteParam): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0053dfb0": {
    "name": "PlaySoundStream",
@@ -1442,7 +1448,6 @@
   },
   "0x00569320": {
    "name": "LoadAudioFromFile",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -1464,7 +1469,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(LoadAudioFromFile): int(i"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(LoadAudioFromFile): int(i",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x005694f0": {
    "name": "OpenBinkVideo",
@@ -1553,7 +1562,6 @@
   },
   "0x0053df70": {
    "name": "GetInstance",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "CScreenMode *",
@@ -1561,7 +1569,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00494250": {
    "name": "ResetProgressList",

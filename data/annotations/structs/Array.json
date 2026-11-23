@@ -111,7 +111,6 @@
   },
   "0x00411240": {
    "name": "Copy",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void *",
@@ -125,7 +124,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(Copy): int(void *,void *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(Copy): int(void *,void *); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0049cf80": {
    "name": "HandleItemPage",
@@ -191,7 +194,6 @@
   },
   "0x004115c0": {
    "name": "PartialSort",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "unsigned int *",
@@ -225,7 +227,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(PartialSort): int(unsigne"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(PartialSort): int(unsigne",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004af450": {
    "name": "InsertBlocks",

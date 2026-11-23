@@ -662,7 +662,6 @@
   "0x004068c0": {
    "name": "HasCommandLineParam",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "BOOL",
@@ -670,7 +669,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00406980": {
    "name": "GetCommandLineParam",
@@ -730,7 +733,6 @@
   "0x00406ff0": {
    "name": "SnapScreen",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -738,16 +740,19 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00407180": {
    "name": "StartWolf",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
-    "cc": "thiscall",
+    "cc": "cdecl",
     "params": [
      {
       "type": "HKEY",
@@ -761,11 +766,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(StartWolf): int"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(StartWolf): int",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x004071c0": {
    "name": "EndWolf",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -773,7 +781,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004072d0": {
    "name": "StartHideFight",
@@ -802,7 +814,6 @@
   "0x00407320": {
    "name": "StartCombat",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -828,11 +839,14 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00407560": {
    "name": "StartCombatFromNPC",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
@@ -854,7 +868,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(StartCombatFromNPC): int("
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(StartCombatFromNPC): int(",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00407640": {
    "name": "EntryCatchGhost",
@@ -871,7 +889,6 @@
   "0x00407740": {
    "name": "IfHideFightSucceed",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -879,7 +896,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00408be0": {
    "name": "InitSubsystems",
@@ -1032,7 +1053,6 @@
   },
   "0x004070a0": {
    "name": "ReadRegistryValue",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1050,7 +1070,11 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ReadRegistryValue): int(?"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ReadRegistryValue): int(?",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0041f9f0": {
    "name": "LoadingTimerCallback",
@@ -1065,7 +1089,6 @@
   },
   "0x00437e60": {
    "name": "WriteRegistryValue",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1083,11 +1106,14 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryValue): int("
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryValue): int(",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0044e2b0": {
    "name": "WriteRegistryDword",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1105,11 +1131,14 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDword): int("
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDword): int(",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00456590": {
    "name": "WriteRegistryKey",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1127,7 +1156,11 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryKey): int(?_"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryKey): int(?_",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00459860": {
    "name": "HandleDeviceReset",
@@ -1154,7 +1187,6 @@
   },
   "0x004b2840": {
    "name": "WriteRegistry",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1172,11 +1204,14 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistry): int(?_,do"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistry): int(?_,do",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0052f570": {
    "name": "WriteRegistryDwordEx",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "bool",
@@ -1194,11 +1229,14 @@
     "varargs": true,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDwordEx): in"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(WriteRegistryDwordEx): in",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0044e390": {
    "name": "LoadRoleByIndex",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1212,7 +1250,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(LoadRoleByIndex"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(LoadRoleByIndex",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0044e410": {
    "name": "LoadUnlockFlags",
@@ -1286,7 +1328,6 @@
   },
   "0x00569110": {
    "name": "ResetForNewScene",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1294,7 +1335,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004bda60": {
    "name": "CreateTextures",
@@ -1353,7 +1398,6 @@
   },
   "0x00569020": {
    "name": "RandomPickValues",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -1376,7 +1420,10 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(RandomPickValues): int(int,int,int,int); 原注解无",
-   "name_note": " | REF修复20261120: int RandomPickValues→int (名吞return剥名, N3)"
+   "name_note": "REF修复20261120: int RandomPickValues→int (名吞return剥名, N3) | [static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变",
+   "flags": [
+    "static"
+   ]
   },
   "0x00404800": {
    "name": "InitGame",

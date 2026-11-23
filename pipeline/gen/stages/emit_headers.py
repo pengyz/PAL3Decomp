@@ -3559,8 +3559,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         for _mk, _mv in (_s16.get('methods', {}) or {}).items():
                             if str(_mk).upper() == _au:
                                 _am = _mv; break
-                if _am and (_am.get('static') or 'static' in sm_text(_am)):
-                    # [sig 退役收尾 20261123] static 判定迁条目 static 字段优先(signature 已删)
+                if _am and 'static' in (_am.get('flags') or []):
+                    # [static→flags 迁移 20261123·用户裁定] static 字段退役,
+                    #   flags 唯一决策源(N23 门禁 static+thiscall 矛盾拒准入,
+                    #   在库 static 条目 cc 必为 cdecl/stdcall ⇒ 成员静态形)
                     is_static = True
                     is_thiscall = False
             except Exception as _e16:
@@ -3694,7 +3696,16 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     # IDA [thunk] 签名自带 'static'（如 GetCGEntry）——is_static 分支
                     # 已显式加 static，不剥会成 `static static`（C2159，CG_Entry.h）。
                     ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
-                    decl = "    static %s %s(%s)%s;" % (ret, _mn, params, ret_right)
+                    # [static cc 拼写 20261123] static 成员默认 __cdecl 隐含,
+                    #   cc=stdcall 必须显拼——否则取函数指针赋 DLGPROC 型形参时
+                    #   fnptr 类型 cdecl≠stdcall(WINDOWS.H) ⇒ C2664
+                    #   (CCBStageCam::DlgProc CreateDialogParamA 实证)。
+                    #   [VC6 形 20261123·晚] cc 须放返回型**之后**名之前——
+                    #   `static __stdcall T * f()` 触发 C2165(can't modify
+                    #   pointers to data, IsTaskValidButNotFinish 28 单元实证);
+                    #   `static T * __stdcall f()` 为 VC6 安全形。
+                    _cc_kw = '__stdcall ' if '__stdcall' in (cc or '') else ''
+                    decl = "    static %s %s%s(%s)%s;" % (ret, _cc_kw, _mn, params, ret_right)
                 else:
                     # [每槽位置发射 2026-11-14 / 生产者不相交化 2026-11-17] vtable地址
                     # 已由槽位块按址声明——地址已覆盖且名与槽名匹配 ⇒ 槽位块所有, 跳过
@@ -3716,7 +3727,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             elif is_static:
                 ret = re.sub(r'\bvirtual\b', '', ret).strip()
                 ret = re.sub(r'\bstatic\b\s*', '', ret).strip()
-                decl = "    static %s %s(%s);" % (ret, _mn, params)
+                _cc_kw = '__stdcall ' if '__stdcall' in (cc or '') else ''
+                decl = "    static %s %s%s(%s);" % (ret, _cc_kw, _mn, params)
             else:
                 # vtable 方法强制 virtual（编译器 vptr 分发）——slot0 dtor 由槽位块/注解non_virtual处理
                 # [生产者不相交化 2026-11-17] 同上: 地址覆盖+名匹配 ⇒ 槽位块所有, 跳过
@@ -4542,7 +4554,13 @@ def main():
                     if _m and _m.group(1) in set(_byval_needed)}
             _leaf_blocks = [b for b in _ordered_blocks if not _block_byval_deps(b)]
             _dep_blocks = [b for b in _ordered_blocks if _block_byval_deps(b)]
-            _head = ['#pragma once',
+            # [守卫替代 pragma once 20261123] 双址镜像(include/pal3/gen + pal3/src)
+            #   同内容不同路径——#pragma once 按路径去重, 跨路径双 include 不防
+            #   (RoleAttRemarkSkills.h 内嵌 "pal3/gen/_ns_udts.h" 又被
+            #   pal3/src/_ns_udts.h 收入 ⇒ s1 TU 内全类型 C2011, RoleSystem
+            #   union m_animStateU 落地日显形)。宏守卫跨路径幂等。
+            _head = ['#ifndef PAL3_NS_UDTS_H_',
+                     '#define PAL3_NS_UDTS_H_',
                      '// Auto-generated: shared ns-scope UDT declarations (C2011 dedup)']
             if _fwd_lines:
                 _head.append('// Forward declarations for types referenced by pointer below')
@@ -4552,6 +4570,7 @@ def main():
                 _payload.append('// Full definitions required by by-value members below')
                 _payload.extend(_byval_inc)
             _payload += [x for _b in _dep_blocks for x in _b]
+            _payload.append('#endif  // PAL3_NS_UDTS_H_')
 
             # 双址写出（主子 include/pal3/gen + 镜像 pal3/src，C2143 根治同法 ✓）
             for _target in (PROJECT_ROOT / 'include' / 'pal3' / 'gen' / '_ns_udts.h',

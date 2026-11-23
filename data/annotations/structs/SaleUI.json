@@ -876,6 +876,18 @@
    ],
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+  },
+  "0x0046adf0": {
+   "name": "GetCellStateByte",
+   "evidence_level": "verified",
+   "source": " | [成员迁移 20261123] functions.json自由条目→成员(迁移判据六步: 自由条目删/幽灵声明清偿/语料重导类限定)。证据: 五面满卡face①调用者SaleUI::ProcessCellAnimations✓face③this[95265]偏移读(thiscall ABI=ecx成员)✓face④类=SaleUI✓; this偏移95265<SaleUI binary_size 105912界内互证; 现役SaleUI C2660(裸this实参=成员调用渲染, 自由形无处安放)。free_helper_confirmed标记(20261122)与face④竞争, 本次以调用点ABI+界内互证裁决成员形",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [

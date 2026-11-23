@@ -1,0 +1,343 @@
+{
+ "Actor.CompareModelName": {
+  "addr": "0x00538D20",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 3,
+  "real_ecx": 3,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, 0x21",
+   "lea ecx, [esp + 0x18]",
+   "lea ecx, [esp + 0x14]"
+  ]
+ },
+ "ArcLocaleRole.ParseLocaleData": {
+  "addr": "0x004AFD80",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存dword ptr [esp + 0x3c]但0x200B窗内未用",
+  "n_callers": 3,
+  "real_ecx": 3,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, edx",
+   "mov ecx, dword ptr [esp + 0x64]",
+   "mov ecx, dword ptr [esp + 0x64]"
+  ]
+ },
+ "Array.PartialSort": {
+  "addr": "0x004115C0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [edx + 4]"
+  ]
+ },
+ "CCBLineupWindow.SetFaceLineup": {
+  "addr": "0x0051D610",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存dword ptr [eax]但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, esp"
+  ]
+ },
+ "CCBStageCam.DlgProc": {
+  "addr": "0x004EA590",
+  "verdict": "无直调(待溯间接)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 0,
+  "real_ecx": 0,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "CCBUICtrl.SendWindowMessage": {
+  "addr": "0x004E53C0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 6,
+  "real_ecx": 6,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [eax + edi + 0x60]",
+   "mov ecx, dword ptr [ecx + ebx + 0x60]",
+   "mov ecx, dword ptr [esp + 0x1c]",
+   "mov ecx, dword ptr [edx + 0x2c]"
+  ]
+ },
+ "CCBUICtrl.FormatCombatBuffer": {
+  "addr": "0x004E53E0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 4,
+  "real_ecx": 4,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [esp + 0x68]",
+   "xor ecx, ecx",
+   "mov ecx, dword ptr [esp + 0xa0]",
+   "mov ecx, dword ptr [esp + 0xa0]"
+  ]
+ },
+ "CEffModel.AllocEffect": {
+  "addr": "0x004CFD00",
+  "verdict": "无直调(待溯间接)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存esi但0x200B窗内未用",
+  "n_callers": 0,
+  "real_ecx": 0,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "Camera.CheckCollision1": {
+  "addr": "0x0041E7D0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [0xbfc5f8]"
+  ]
+ },
+ "Camera.CheckCollision2": {
+  "addr": "0x0041EA00",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 5,
+  "real_ecx": 5,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [eax + 0x274]",
+   "lea ecx, [esp + 0x20]",
+   "lea ecx, [esp + 0x20]",
+   "lea ecx, [esp + 0x20]"
+  ]
+ },
+ "InputSystem.ProcessFrame": {
+  "addr": "0x00410360",
+  "verdict": "MIXED thiscall17/static1/nop4",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 22,
+  "real_ecx": 17,
+  "carry_in": 1,
+  "nop_form": 4,
+  "ecx_forms": [
+   "mov ecx, eax",
+   "lea ecx, [esp + 8]",
+   "mov ecx, eax",
+   "mov ecx, 0x8acd30"
+  ]
+ },
+ "Logger.WriteRoleNames": {
+  "addr": "0x0053CE20",
+  "verdict": "无直调(待溯间接)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 0,
+  "real_ecx": 0,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "PAL3.StartWolf": {
+  "addr": "0x00407180",
+  "verdict": "STATIC形(全调用点无ecx写)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 7,
+  "real_ecx": 0,
+  "carry_in": 7,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "PalScript.ProcessGBKString": {
+  "addr": "0x00433F90",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存dword ptr [edx + 8]但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [eax + 0x44]"
+  ]
+ },
+ "PtrArray.CompareValues": {
+  "addr": "0x0040DCD0",
+  "verdict": "STATIC形(全调用点无ecx写)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存ebx但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 0,
+  "carry_in": 1,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "PtrArray.CopyRange": {
+  "addr": "0x00433DC0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [esp + 8]"
+  ]
+ },
+ "RoleSystem.RenderMainRole": {
+  "addr": "0x00410430",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, edi"
+  ]
+ },
+ "RoleSystem.GetAnimOffset": {
+  "addr": "0x004126D0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [esp + 0x10]"
+  ]
+ },
+ "RoleSystem.ScaleVector": {
+  "addr": "0x004161E0",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存esi但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [ebx + 8]"
+  ]
+ },
+ "RoleSystem.ScaleValue": {
+  "addr": "0x00532960",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存dword ptr [edx]但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [esi + 0x51c]"
+  ]
+ },
+ "SceneMgr.ClearInactiveRoles": {
+  "addr": "0x00423500",
+  "verdict": "无直调(待溯间接)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 0,
+  "real_ecx": 0,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "SceneObj.LoadFromConfig": {
+  "addr": "0x0053EF60",
+  "verdict": "THISCALL(全调用点ecx装载)",
+  "body_uses_this": false,
+  "body_why": "ecx缓存ebx但0x200B窗内未用",
+  "n_callers": 1,
+  "real_ecx": 1,
+  "carry_in": 0,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, esi"
+  ]
+ },
+ "ScriptSystem.GetScriptContext": {
+  "addr": "0x0040CBB0",
+  "verdict": "STATIC形(全调用点无ecx写)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 2,
+  "real_ecx": 0,
+  "carry_in": 2,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "ScriptSystem.PassThrough": {
+  "addr": "0x0040CBD0",
+  "verdict": "MIXED thiscall1/static1/nop0",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 2,
+  "real_ecx": 1,
+  "carry_in": 1,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, dword ptr [edi + 4]"
+  ]
+ },
+ "ScriptSystem.CheckEventType": {
+  "addr": "0x0040CC00",
+  "verdict": "STATIC形(全调用点无ecx写)",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 4,
+  "real_ecx": 0,
+  "carry_in": 4,
+  "nop_form": 0,
+  "ecx_forms": []
+ },
+ "UIScene.ProcessInput": {
+  "addr": "0x004235B0",
+  "verdict": "MIXED thiscall22/static6/nop0",
+  "body_uses_this": false,
+  "body_why": "头0x60B无ecx缓存",
+  "n_callers": 28,
+  "real_ecx": 22,
+  "carry_in": 6,
+  "nop_form": 0,
+  "ecx_forms": [
+   "mov ecx, eax",
+   "mov ecx, eax",
+   "mov ecx, eax",
+   "mov ecx, dword ptr [0xd8bbec]"
+  ]
+ }
+}

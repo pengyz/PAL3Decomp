@@ -190,7 +190,6 @@
   "0x004cfd00": {
    "name": "AllocEffect",
    "source": "vtable_migrated | [T19] return-type retype int->CEffModel *: A 级 objdump 0x40CFD00 内 4cfd00 push 0x68/call new、4cfd0a test eax,eax、4cfd0e mov ecx,eax 跳 ctor —— 返回值=operator new 分配体（EAX 直通）；体 `return v0;` 指针语义实证",
-   "static": true,
    "evidence_level": "A",
    "sig_model": {
     "return": "void*",
@@ -203,7 +202,8 @@
     "override"
    ],
    "override_of": "0x0055434f",
-   "flags_evidence": "sig_model同名+同参数结构()+基槽0x0055434f(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x0055434f(CEffObj) 2026-11-17 机械推导(sig退役后纯结构化判定)",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004d0390": {
    "name": "GetEffect",

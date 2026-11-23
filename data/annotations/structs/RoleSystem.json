@@ -1441,7 +1441,6 @@
   },
   "0x00410e40": {
    "name": "CheckVisible",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -1449,7 +1448,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00412400": {
    "name": "RenderRole",
@@ -2462,7 +2465,6 @@
   },
   "0x00410430": {
    "name": "RenderMainRole",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -2476,7 +2478,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderMainRole)"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderMainRole)",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004132b0": {
    "name": "MoveToTileCheck",
@@ -3017,7 +3020,6 @@
   },
   "0x0040c9a0": {
    "name": "ForceStopRole",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -3031,11 +3033,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ForceStopRole): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ForceStopRole): int(int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004126d0": {
    "name": "GetAnimOffset",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -3053,7 +3058,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetAnimOffset): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetAnimOffset): int(int,int,int); 原注解2026-11-18 mangle硬真值定谳(HHH): int(int,int",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x00412c30": {
    "name": "SetPathWaypoint",
@@ -3642,7 +3648,6 @@
   },
   "0x00422430": {
    "name": "SetAnimBlend",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
@@ -3656,7 +3661,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAnimBlend): int(char,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAnimBlend): int(char,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00422540": {
    "name": "SetAnimFrame",
@@ -3682,7 +3691,6 @@
   },
   "0x004234a0": {
    "name": "SetCameraMode",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -3696,7 +3704,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCameraMode): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCameraMode): int(int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0042ad40": {
    "name": "SetActionState",
@@ -3860,7 +3872,6 @@
   },
   "0x00532960": {
    "name": "ScaleValue",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -3882,7 +3893,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ScaleValue): int(int,int,int *,int *); 原注解2026-11-18 mangle硬真值定谳(HHPAHPAH): int(in"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ScaleValue): int(int,int,int *,int *); 原注解2026-11-18 mangle硬真值定谳(HHPAHPAH): int(in",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x005329a0": {
    "name": "HandleMsgDLL",
@@ -3976,7 +3988,6 @@
   },
   "0x004161e0": {
    "name": "ScaleVector",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -3994,7 +4005,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ScaleVector): i"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ScaleVector): i",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x004207d0": {
    "name": "LoadRoleImage",

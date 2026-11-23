@@ -112,7 +112,6 @@
   },
   "0x004b63c0": {
    "name": "GenerateRingMesh",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -150,7 +149,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GenerateRingMesh): int(int,float,float,int,int,int,int,float); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GenerateRingMesh): int(int,float,float,int,int,int,int,float); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004b6550": {
    "name": "InitStruct",

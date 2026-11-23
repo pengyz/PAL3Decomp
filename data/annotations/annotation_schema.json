@@ -60,7 +60,8 @@
     "alt_name",
     "pending_adjudication",
     "semantic_sig",
-    "semantic_name"
+    "semantic_name",
+    "static"
    ],
    "sig_model_required": [
     "return",
@@ -81,6 +82,7 @@
     "dtor": "name须呈dtor形态(~/_sdtor/scalar_dtor)或override_of有基dtor槽",
     "ctor": "name须=类名或override_of有基ctor",
     "override": "override_of必填且指向祖先槽址",
+    "static": "2026-11-23 字段退役迁flags: static+sig_model.cc=thiscall矛盾组合禁准入(N23门); static成员cc必须cdecl/stdcall(编译器语义, ProcessMouse在库先例)",
     "deleting": "必须与dtor同现; =该类唯一源码析构~X的deleting形二进制产物(??_G/??_E), 体裹编译器织入物(flags形参/条件删尾/vptr写序/return this)——stage1提取源码体时剥, emit_headers永不发独立声明(virtual ~X()唯一所有者=槽位循环)"
    },
    "key_format": "^0x[0-9a-f]{8}$"

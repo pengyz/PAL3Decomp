@@ -138,7 +138,6 @@
   },
   "0x004343b0": {
    "name": "SetAtGrow",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char *",
@@ -156,7 +155,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAtGrow): int(char *,unsigned short,int *); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAtGrow): int(char *,unsigned short,int *); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004343f0": {
    "name": "FindByName",
@@ -355,7 +358,6 @@
   },
   "0x00411290": {
    "name": "ParseStringPair",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "unsigned int",
@@ -377,7 +379,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ParseStringPair): int(uns"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(ParseStringPair): int(uns",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004327f0": {
    "name": "FindFirst",
@@ -398,7 +404,6 @@
   },
   "0x00433dc0": {
    "name": "CopyRange",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
@@ -420,7 +425,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(CopyRange): int(int *,int"
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(CopyRange): int(int *,int",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x0053d0b0": {
    "name": "ClearBoth",
@@ -435,11 +441,10 @@
   },
   "0x0040dcd0": {
    "name": "CompareValues",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "BOOL",
-    "cc": "thiscall",
+    "cc": "cdecl",
     "params": [
      {
       "type": "int *",
@@ -453,7 +458,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CompareValues): int(int,int *,int *); 原注解2026-11-18 mangle硬真值定谳(HPAHPAH): int(int"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CompareValues): int(int,int *,int *); 原注解2026-11-18 mangle硬真值定谳(HPAHPAH): int(int",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
   },
   "0x00431cb0": {
    "name": "Reset",
@@ -469,7 +478,6 @@
   },
   "0x004325a0": {
    "name": "IsArrayReady",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -477,7 +485,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00434670": {
    "name": "DestroyAll",
@@ -509,7 +521,6 @@
   },
   "0x00433c50": {
    "name": "ReadFromVFile",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -527,7 +538,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004019b0": {
    "name": "ReleasePtrArray",

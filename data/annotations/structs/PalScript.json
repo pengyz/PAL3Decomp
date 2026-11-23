@@ -3120,23 +3120,6 @@
     "pending": false
    }
   },
-  "0x00445e10": {
-   "name": "OffsetRect",
-   "source": "| sig-type-fix 2026-09-28: int*→long*（调用点全 &RECT.left 型 long*（CCBItemWindow:34 等 RECT 坐标族）——4B 同槽字节等价；证据: 多调用点 B 级）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "long *",
-      "name": "p_DWORD"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x0052be40": {
    "name": "LoadEncampConfig",
    "evidence_level": "unverified",
@@ -3314,7 +3297,6 @@
   },
   "0x00433f90": {
    "name": "ProcessGBKString",
-   "static": true,
    "source": "| ⑤型补强 2026-10-16（verifier A 级·签名 this 型补全）：C2228 根：this 型缺失（原 __cdecl 形）；A 级：0x433F90 链 m_nTodo_1050[i].mData（PalScript 成员）",
    "evidence_level": "A",
    "sig_model": {
@@ -3323,7 +3305,8 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x00421560": {
    "name": "SetAction",

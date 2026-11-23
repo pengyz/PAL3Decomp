@@ -234,7 +234,6 @@
   },
   "0x0051d610": {
    "name": "SetFaceLineup",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
@@ -280,7 +279,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetFaceLineup): int(char,int,int,int,int,int,int,int,int,int *); 原注解2026-11-18 mangle硬真值定谳(DHHHHHHHHPAH): ch"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetFaceLineup): int(char,int,int,int,int,int,int,int,int,int *); 原注解2026-11-18 mangle硬真值定谳(DHHHHHHHHPAH): ch",
+   "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 调用点ecx装载实锤=thiscall ABI真值, static标记删除(静态形调用点push实参无ecx=运行期ABI坏). cc=thiscall保留"
   },
   "0x0051d6d0": {
    "name": "RefreshFacePos",

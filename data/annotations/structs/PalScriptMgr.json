@@ -1379,7 +1379,6 @@
   },
   "0x004320a0": {
    "name": "Update",
-   "static": true,
    "evidence_level": "chain_unified",
    "sig_model": {
     "return": "BOOL",
@@ -1393,8 +1392,11 @@
     "varargs": false,
     "pending": true
    },
-   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(Update): int(int,?P,?B,ch"
+   "name_note": "链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | [static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变",
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(Update): int(int,?P,?B,ch",
+   "flags": [
+    "static"
+   ]
   },
   "0x00432170": {
    "name": "Destroy",
@@ -1409,7 +1411,6 @@
   },
   "0x00432260": {
    "name": "_CON_State",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "const char **",
@@ -1423,7 +1424,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(_CON_State): int(?P,?A,?P"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(_CON_State): int(?P,?A,?P",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004322a0": {
    "name": "IfAnyScriptRunning",
@@ -1486,7 +1491,6 @@
   "0x004324b0": {
    "name": "ClearAllScript",
    "source": "pdb_ret",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1494,11 +1498,14 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00432500": {
    "name": "FindScriptByDesc",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int *",
@@ -1516,7 +1523,11 @@
     "varargs": false,
     "pending": true
    },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(FindScriptByDesc): int(in"
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(FindScriptByDesc): int(in",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00432550": {
    "name": "IfHaveScript",
@@ -1531,7 +1542,6 @@
   },
   "0x00434c40": {
    "name": "NotifyEvent",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1539,7 +1549,11 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0042ebe0": {
    "name": "ExecuteOpcode",
@@ -1723,7 +1737,6 @@
   },
   "0x0042bef0": {
    "name": "HandleGetItem",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1737,7 +1750,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HandleGetItem):"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HandleGetItem):",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0042c280": {
    "name": "LoadSceneGeometry",
@@ -2138,7 +2155,6 @@
   },
   "0x00434c80": {
    "name": "UpdateLoadProgress",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void *",
@@ -2146,11 +2162,14 @@
     "params": [],
     "varargs": false,
     "pending": false
-   }
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x004100a0": {
    "name": "RunScript",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -2172,7 +2191,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunScript): int(int,int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(RunScript): int(int,int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x0042c440": {
    "name": "RunCommand",

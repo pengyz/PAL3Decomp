@@ -1527,22 +1527,6 @@
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
- "0x0046adf0": {
-  "name": "GetCellStateByte",
-  "source": "| 25账目续 2026-10-17（verifier·五面深读·证据账目制）：⚠️ 五面未满（raw-offset 自由函数成员面不可达）⇒ 挂账不赋名；已记调用者/被调面：大计算体双胞1·ProcessCellAnimations 域 | check warnings 清理 2026-10-17（verifier·类限定补全·证据账目制）：类限定补全后本条=声明收编形 ⇒ declaration_only | [free_helper确认 20261122] 五面深读自由函数证据+ECX | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
-  "face3_rule": "thiscall ⇒ 第③面=this[+N] 形（成员偏移 ✓ 本不需降级）",
-  "source_note": "[17 挂账补面 2026-10-17·五面满卡] GetCellStateByte（五面满卡：①调用者 SaleUI::ProcessCellAnimations ✓ ②本体=字节读 ✓ ③this[95265] 偏移读 （_BYTE* this 形）④类=SaleUI ✓ ⑤交互=动画处理状态查询 ✓）——face3_rule 降级判据执行（thiscall=this[+N] 形）· 证据账目：A 级（decompile+xref）conf 92 | [evidence:B 2026-10-21·降级] 原证据引用 decomp/Hex-Rays 文本 = **循环**（decomp 依赖 IDB 类型=我们写入的投影）。按证据分级规则降 **B 级**（可落盘但须标注）。**待补 A 级**：objdump opcode / 访问形 / ret N / 值位型常量。",
-  "declaration_only": true,
-  "evidence_level": "B",
-  "free_helper_confirmed": true,
-  "sig_model": {
-   "return": "char",
-   "cc": "thiscall",
-   "params": [],
-   "varargs": false,
-   "pending": false
-  }
- },
  "0x004a13e0": {
   "name": "SyncUIRoleDialogMembers",
   "source": " | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _sub_4A13E0 ⇒ SyncUIRoleDialogMembers | evidence: ①**UIRoleDialog ctor+dtor**（构造/析构双点=成员同步件）②无 ③117B ④UIRoleDialog ⑤生命周期伴生 | confidence: medium | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
@@ -2569,22 +2553,6 @@
    "return": "void",
    "cc": "cdecl",
    "params": [],
-   "varargs": false,
-   "pending": false
-  }
- },
- "0x00445e10": {
-  "name": "OffsetRect",
-  "source": "N1 条目复置（S2-100 实证形：无 class、有类限定签名——喂 method_sigs 窄 map 供重写触发） | [G7 队列搁置 2026-10-25] 加 class 触发 apply 函数级定型，但 apply 对 long* 形参解析产出 int*（decomp 重渲染 int*，压过 ida_structs 9-28 long* 修 ⇒ UIWnd C2664 翻转）——待 apply_annotations 参数类型 bug 修复后重走 G7 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
-  "sig_model": {
-   "return": "int *",
-   "cc": null,
-   "params": [
-    {
-     "type": "long *p_DWORD",
-     "name": null
-    }
-   ],
    "varargs": false,
    "pending": false
   }

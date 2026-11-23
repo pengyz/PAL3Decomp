@@ -437,6 +437,23 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x00445e10": {
+   "name": "OffsetRect",
+   "evidence_level": "verified",
+   "source": " | [成员迁移 20261123] 原functions.json自由条目名撞USER32 API。原始二进制调用点0x445BCB铁证: mov ecx,[esi+0x20](parent UIWnd)+push &child_rect+call——thiscall成员ABI真值; 体读this->+0x10/+0x14(=m_rect, ctor edi=esi+0x10互证)加到形参rect四边=父原点偏移语义; 迁移判据: functions.json自由条目(成员函数禁自由层schema语义)+调用点C2665(OffsetRect重载不匹配=API名撞车渲染) | [N17唯一所有者裁决 20261123] PalScript.json 2026-09-28认领=误归属(其证据面=形参&RECT类型非接收者身份; 接收者=UIWnd::Create m_pfather链+体读this->m_rect@+0x10=UIWnd ctor edi=esi+0x10互证; CCB*窗族调用点接收者=UIWnd基类子对象)——删认领保留UIWnd唯一所有者; 2026-09-28形参类型贡献收编: tagRECT*(体四边+0/+4/+8/+0xC=RECT布局)",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "tagRECT *",
+      "name": "pRect"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [

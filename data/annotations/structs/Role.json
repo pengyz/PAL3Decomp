@@ -358,7 +358,6 @@
  "methods": {
   "0x00408d10": {
    "name": "CalcXueJianInit",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -376,11 +375,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcXueJianInit): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcXueJianInit): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00408d80": {
    "name": "CalcLongKuiInit",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -398,11 +400,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcLongKuiInit): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcLongKuiInit): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00408e30": {
    "name": "CalcZiXuanInit",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -420,11 +425,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcZiXuanInit): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcZiXuanInit): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00408e90": {
    "name": "CalcChangQingInit",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -442,11 +450,14 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcChangQingInit): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcChangQingInit): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00408f30": {
    "name": "CalcHuaYingInit",
-   "static": true,
    "evidence_level": "unverified",
    "sig_model": {
     "return": "int",
@@ -464,7 +475,11 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcHuaYingInit): int(int,int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CalcHuaYingInit): int(int,int,int); 原注解无",
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
   "0x00418170": {
    "name": "CheckOBBCollision",
