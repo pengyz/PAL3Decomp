@@ -50,6 +50,8 @@ ROUTED_BATCH0_NAMES = frozenset([
     'RenderActorGeometry', 'RenderActorTransform', 'RenderActorTransform2',
     'ResetAll', 'ResetDefaultState', 'ResetNameField', 'ResetTransformState',
     'SetCurrentAction', 'SetParam', 'operator_',
+    'InitAction',   # [补名 20261123] 零裸调用验证(8 处全为调用, G6 过)——
+                    # Actor.cpp ::InitAction 裸形转写缺口案
 ])
 
 EXCLUDED_PENDING_ADJUDICATION = frozenset([
