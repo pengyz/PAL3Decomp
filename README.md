@@ -31,10 +31,9 @@ data/annotations/（标注=唯一真相源）
 | `include/` | pal3/gen 头镜像（生成）+ gbengine 头 | 混合 |
 | `gbengine/` `topo/` `lib/` `cmake/` | 构建组件（topo→gbengine→PAL3 链） | tracked |
 | `original/` | 原始游戏输入（PAL3.exe 等，只读） | 部分跟踪 |
-| `thirdparty/` | 外部工具子模块（ghidra-mcp 等） | submodule |
+| `thirdparty/` | 外部子模块（ghidra-mcp/ghidra-reconstruct/pal3-redivivus B面研究线/PAL3patch 参考） | submodule |
 | `tools/` | 工具箱（审计/取证/构建辅助脚本 + MSVC6/Ghidra 工具链） | 脚本 tracked |
 | `experiments/` | 实验线（ghidra_track 双轨验证——VERIFICATION-ONLY） | tracked |
-| `extra/` | 参考资料（PAL3patch 分辨率补丁子模块） | submodule |
 | `tests/` `docs/` | 测试与知识库 | tracked |
 | `build/` | CMake 产物 | gitignored |
 
