@@ -1503,7 +1503,13 @@ def rewrite_unqualified_member_call(code, methods_by_cls, exclude=None, slots_by
     return pat.sub(_sub, code)
 
 
-def rewrite_routed_free_calls(code, routed_by_name):
+def rewrite_routed_free_calls(code, routed_by_name, param_types=None):
+    """
+    [Step1 20261123·对抗复核采纳] param_types: {name: [形参类型,...](recv 之外)}
+    ——发射侧实参 cast 对齐（复核报告 Step1）：实参表达式与形参指针类型不同宽
+    （如 lvar Array* 实参 vs _BYTE* 形参）⇒ C2664。同宽度指针→指针 cast 不改
+    机器码（L1 零漂移）；已有 cast 的实参跳过；非指针形参不 cast。"""
+    param_types = param_types or {}
     """[R91 2026-10-24·重归属战役 Phase 1a] 路由名调用形转写（成对闭合的调用侧）。
 
     背景：地址已归属某类方法的自由函数（spec v2：89 条地址级）路由进类后，
@@ -1590,6 +1596,29 @@ def rewrite_routed_free_calls(code, routed_by_name):
         _rc = re.match(r'^\(\s*\w+\s*\*\s*\)\s*(.+)$', recv, re.S)
         if _rc:
             recv = _rc.group(1).strip()
+        # [Step1 20261123·对抗复核采纳] 形参类型表 cast 对齐：指针形参 vs 实参
+        # 无 cast 且类型前缀不同 ⇒ 包 (T)（同宽度指针→指针不改机器码, L1 零漂移；
+        # 已有 cast 实参跳过；非指针形参不 cast）。C2664@Actor.cpp:2320
+        # (&pVal Array* vs _BYTE* 形参)实证。
+        _ptypes = param_types.get(name) or []
+        if len(rest) != len(_ptypes) or not _ptypes:
+            _ptypes = []
+            _rest2 = rest   # 形参表缺/不齐 ⇒ 实参原样(禁丢参——首版 zip 空 bug 实证)
+        else:
+            _rest2 = []
+            for _arg, _pt in zip(rest, _ptypes):
+                if not _pt or '*' not in _pt:
+                    _rest2.append(_arg)
+                    continue
+                if _arg.startswith('('):
+                    _rest2.append(_arg)
+                    continue
+                _base = re.sub(r'\s*\*.*$', '', _pt).strip()
+                if re.match(r'^[A-Za-z_]\w*$', _base):
+                    _rest2.append('(%s *)%s' % (_base, _arg))
+                else:
+                    _rest2.append(_arg)
+        rest = _rest2
         out.append(code[i:m.start()])
         # [__ovl_ 剥离退役 2026-11-04] 调用形不再剥戳（戳归一下沉 annotation 层，原样透传）。
         _method = method

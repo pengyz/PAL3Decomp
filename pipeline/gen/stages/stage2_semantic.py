@@ -6,6 +6,7 @@ This is the only stage that produces NEW patterns (->ClassName(), ->__vftable->)
 from annotation_view import base_names as _base_names, base_entries as _base_entries
 import sys
 import os
+import re
 
 # Ensure ast_transform is importable
 _gen_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,8 +139,20 @@ def run(code, ctx):
     # stage5 自然跳过 ⇒ 不产生 ::Name( 形态（复核 B 顾虑的 16 站由此消解）。
     try:
         from ast_transform import rewrite_routed_free_calls
+        # [Step1 20261123·对抗复核采纳] 形参类型表: 路由名 -> recv 之外的形参类型
+        # 列表(method_sigs['Cls::Name'] 逗号切分, 复核报告 Step1——同宽度指针->
+        # 指针 cast 不改机器码 L1 零漂移; Actor.cpp C2664@2320 &pVal Array* vs
+        # _BYTE* 形参实证)
+        _rfbn = dict(getattr(store, 'routed_free_by_name', None) or {})
+        _ptypes = {}
+        for _rn, (_rc, _rm, _np) in _rfbn.items():
+            _sigtxt = (getattr(store, 'method_sigs', None) or {}).get('%s::%s' % (_rc, _rm)) or ''
+            _pa = _sigtxt[_sigtxt.find('('):] if '(' in _sigtxt else ''
+            _ps2 = [x.strip() for x in _pa.strip('()').split(',') if x.strip()]
+            _ps3 = [x for x in _ps2 if not re.search(r'\*\s*(?:this|_this)\s*$', x)]
+            _ptypes[_rn] = _ps3
         code = rewrite_routed_free_calls(
-            code, dict(getattr(store, 'routed_free_by_name', None) or {}))
+            code, _rfbn, param_types=_ptypes)
     except Exception:
         pass
     # 【批 E C2660 族】echo 形剔除（(int)this 回波首参 + ret-N/签名槽数证据门）
