@@ -52,6 +52,10 @@ ROUTED_BATCH0_NAMES = frozenset([
     'SetCurrentAction', 'SetParam', 'operator_',
     'InitAction',   # [补名 20261123] 零裸调用验证(8 处全为调用, G6 过)——
                     # Actor.cpp ::InitAction 裸形转写缺口案
+    # PtrVec_Insert_word 暂缓入名单(20261123): hexrays 渲染省略 this(3 实参)
+    # vs 转写器门 nparams+1(假定实参含 this)形态冲突——入名单则不转写+free
+    # 声明撤 ⇒ C2065 恶化。挂账: 转写器「省略 this 渲染」形态支持(与复核
+    # P5 SetCurrentAction 族同批, 需行为级考证+先例回归)
 ])
 
 EXCLUDED_PENDING_ADJUDICATION = frozenset([
