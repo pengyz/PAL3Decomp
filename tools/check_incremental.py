@@ -80,7 +80,7 @@ def compute_inputs():
     # [R60 用户纪律] **管线脚本改动必须强制重生成**
     # 否则增量会用旧逻辑（改了 stage1-5/emit_headers 等但 hash 未含 ⇒ 跳过 codegen = 错）
     # [R73 修 2026-10-22·TDD 复核 must-fix ①] hash 覆盖 13 项漏项
-    # 漏掉 pipeline/cli.py / phase2/overlay / cmake/toolchain 等 ⇒ 改这些文件不会强制全跑
+    # 漏掉 pipeline/cli.py / cmake/toolchain 等 ⇒ 改这些文件不会强制全跑
     return {
         # 数据输入
         'annotations': _hash_dir(os.path.join(ROOT, 'data', 'annotations'), pattern='.json'),
@@ -96,8 +96,6 @@ def compute_inputs():
         'pipeline_cli': _hash_file(os.path.join(ROOT, 'pipeline', 'cli.py')),
         'pipeline_other': _hash_dir(os.path.join(ROOT, 'pipeline'), pattern='.py'),
         'tools': _hash_dir(os.path.join(ROOT, 'tools'), pattern='.py'),
-        # phase2 overlay（手工 fix ⇒ 影响 codegen 输出）
-        'phase2_overlay': _hash_dir(os.path.join(ROOT, 'phase2'), pattern='*'),
         # 构建配置（影响编译）
         'cmake_toolchain': _hash_file(os.path.join(ROOT, 'cmake', 'toolchain-vc6.cmake')),
         'pal3_cmake': _hash_file(os.path.join(ROOT, 'pal3', 'CMakeLists.txt')),

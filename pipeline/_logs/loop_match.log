@@ -1,153 +1,168 @@
-S2-passing units: 142
-decomp entries: 3565 | mangled methods: 9950 (mangle-fail 0) | unambiguous bases: 3561
+S2-passing units: 157
+decomp entries: 3581 | mangled methods: 10016 (mangle-fail 0) | unambiguous bases: 3577
 exe .text: base 0x400000 rva 0x1000 captured 1478656 bytes
   [  1] pal3/src/Combat/CCBAIWindow.cpp               funcs=  6 matched=  5 L1= 0 partial= 5
   [  2] pal3/src/Combat/CCBAttackSequen.cpp           funcs= 12 matched= 11 L1= 1 partial=10
   [  3] pal3/src/Combat/CCBControl.cpp                funcs=  5 matched=  4 L1= 1 partial= 3
-  [  4] pal3/src/Combat/CCBMagicWindow.cpp            funcs= 10 matched=  8 L1= 2 partial= 6
-  [  5] pal3/src/Combat/CCBProtectWindow.cpp          funcs=  2 matched=  1 L1= 0 partial= 1
-  [  6] pal3/src/Combat/CCBResultWindow.cpp           funcs=  9 matched=  9 L1= 3 partial= 6
-  [  7] pal3/src/Combat/CCBStageEffect.cpp            funcs= 10 matched=  8 L1= 3 partial= 5
-  [  8] pal3/src/Combat/CCBStageRole.cpp              funcs=  3 matched=  2 L1= 0 partial= 2
-  [  9] pal3/src/Combat/CCBStageShadow.cpp            funcs= 12 matched=  9 L1= 1 partial= 8
-  [ 10] pal3/src/Combat/Combat.cpp                    funcs=  5 matched=  4 L1= 1 partial= 3
-  [ 11] pal3/src/Effect/C2DSpark.cpp                  funcs= 10 matched=  9 L1= 2 partial= 7
-  [ 12] pal3/src/Effect/C3DSpark.cpp                  funcs= 10 matched=  7 L1= 2 partial= 5
-  [ 13] pal3/src/Effect/CEffCylinder.cpp              funcs= 18 matched= 17 L1= 4 partial=15
-  [ 14] pal3/src/Effect/CEffExplosive.cpp             funcs= 15 matched= 14 L1= 4 partial= 9
-  [ 15] pal3/src/Effect/CEffQuad.cpp                  funcs= 15 matched= 12 L1= 3 partial=10
-  [ 16] pal3/src/Effect/CEffQuake.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
-  [ 17] pal3/src/Effect/CEffect.cpp                   funcs=  9 matched=  8 L1= 2 partial= 6
-  [ 18] pal3/src/Effect/CEffectSystem.cpp             funcs= 27 matched= 26 L1= 2 partial=24
-  [ 19] pal3/src/Effect/CEffgbParticle.cpp            funcs= 17 matched= 16 L1= 3 partial=13
-  [ 20] pal3/src/Effect/CMeteorChain.cpp              funcs=  3 matched=  2 L1= 1 partial= 1
-  [ 21] pal3/src/Effect/ScreenEffect.cpp              funcs=  5 matched=  4 L1= 0 partial= 3
-  [ 22] pal3/src/Effect/ScreenEffectMgr.cpp           funcs= 40 matched= 30 L1= 2 partial=27
-  [ 23] pal3/src/GameBase/InputSystem.cpp             funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 24] pal3/src/GameBase/SoundSystem.cpp             funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 25] pal3/src/MiniGame/MiniGame1.cpp               funcs=  3 matched=  1 L1= 0 partial= 1
-  [ 26] pal3/src/Misc/ARC_PlayerAtt.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 27] pal3/src/Misc/ArcPastScene.cpp                funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 28] pal3/src/Misc/ArcSceneMonster.cpp             funcs=  7 matched=  6 L1= 0 partial= 6
-  [ 29] pal3/src/Misc/ArcSceneObject.cpp              funcs=  5 matched=  4 L1= 1 partial= 3
-  [ 30] pal3/src/Misc/ArraySlots.cpp                  funcs=  4 matched=  1 L1= 0 partial= 1
-  [ 31] pal3/src/Misc/BINK.cpp                        funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 32] pal3/src/Misc/CCBEditor.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 33] pal3/src/Misc/CCBPanelSlot.cpp                funcs=  4 matched=  3 L1= 1 partial= 2
-  [ 34] pal3/src/Misc/CCBUIPanel.cpp                  funcs= 28 matched= 23 L1= 4 partial=20
-  [ 35] pal3/src/Misc/CEffAction.cpp                  funcs= 11 matched= 10 L1= 4 partial= 5
-  [ 36] pal3/src/Misc/CEffBink.cpp                    funcs= 10 matched=  9 L1= 4 partial= 5
-  [ 37] pal3/src/Misc/CEffCallBack.cpp                funcs=  9 matched=  8 L1= 4 partial= 4
-  [ 38] pal3/src/Misc/CEffGroupNode.cpp               funcs=  5 matched=  4 L1= 2 partial= 2
-  [ 39] pal3/src/Misc/CEffObj.cpp                     funcs=  5 matched=  4 L1= 4 partial= 0
-  [ 40] pal3/src/Misc/CG_Entry.cpp                    funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 41] pal3/src/Misc/CIniFile.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 42] pal3/src/Misc/CJ_FindFile.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 43] pal3/src/Misc/CPK.cpp                         funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 44] pal3/src/Misc/ChoseCompose.cpp                funcs= 11 matched=  7 L1= 0 partial= 7
-  [ 45] pal3/src/Misc/Comp_Donate.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 46] pal3/src/Misc/Comp_DonateUI.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 47] pal3/src/Misc/ComposeUI.cpp                   funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 48] pal3/src/Misc/DealData.cpp                    funcs=  5 matched=  3 L1= 0 partial= 2
-  [ 49] pal3/src/Misc/EffBinkNode.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 50] pal3/src/Misc/EffCallBackNode.cpp             funcs=  5 matched=  4 L1= 1 partial= 3
-  [ 51] pal3/src/Misc/EffMultiPassNode.cpp            funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 52] pal3/src/Misc/EffObjectPool.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 53] pal3/src/Misc/EffTargetPool.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 54] pal3/src/Misc/ExternalStatistics.cpp          funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 55] pal3/src/Misc/Iostream_init.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 56] pal3/src/Misc/JusticeBookUI.cpp               funcs= 10 matched=  7 L1= 1 partial= 6
-  [ 57] pal3/src/Misc/LineupComp.cpp                  funcs= 11 matched=  8 L1= 0 partial= 7
-  [ 58] pal3/src/Misc/MUIDialog.cpp                   funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 59] pal3/src/Misc/MiniGame2Scene.cpp              funcs=  3 matched=  2 L1= 1 partial= 1
-  [ 60] pal3/src/Misc/NameSys.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 61] pal3/src/Misc/NavFaceLayer.cpp                funcs=  4 matched=  2 L1= 0 partial= 2
-  [ 62] pal3/src/Misc/OpenBaseFile.cpp                funcs=  3 matched=  2 L1= 1 partial= 1
-  [ 63] pal3/src/Misc/OpenNULLFile.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 64] pal3/src/Misc/OpenSceneFile.cpp               funcs=  3 matched=  2 L1= 1 partial= 1
-  [ 65] pal3/src/Misc/PAL3VisNode.cpp                 funcs=  5 matched=  4 L1= 1 partial= 3
-  [ 66] pal3/src/Misc/PalScriptBlendTimer.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 67] pal3/src/Misc/PalScriptFadeInTimer.cpp        funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 68] pal3/src/Misc/PalScriptFadeOutTimer.cpp       funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 69] pal3/src/Misc/PalScriptProgressTimer.cpp      funcs=  4 matched=  3 L1= 0 partial= 3
-  [ 70] pal3/src/Misc/PalScriptWaitObj.cpp            funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 71] pal3/src/Misc/PalScriptWaitTimer.cpp          funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 72] pal3/src/Misc/Parent_Data.cpp                 funcs=  6 matched=  5 L1= 3 partial= 2
-  [ 73] pal3/src/Misc/ParticleEffect.cpp              funcs= 11 matched=  8 L1= 1 partial= 7
-  [ 74] pal3/src/Misc/ParticleVisNode.cpp             funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 75] pal3/src/Misc/PathObj.cpp                     funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 76] pal3/src/Misc/PlayerAtt.cpp                   funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 77] pal3/src/Misc/RoleCamera.cpp                  funcs=  4 matched=  3 L1= 1 partial= 2
-  [ 78] pal3/src/Misc/RoleCameraCtrl.cpp              funcs= 11 matched= 11 L1= 2 partial= 9
-  [ 79] pal3/src/Misc/RoleShadow.cpp                  funcs=  6 matched=  5 L1= 0 partial= 5
-  [ 80] pal3/src/Misc/RoleStatePanel.cpp              funcs= 21 matched= 18 L1= 1 partial=17
-  [ 81] pal3/src/Misc/SceneInfo.cpp                   funcs= 11 matched= 10 L1= 0 partial=10
-  [ 82] pal3/src/Misc/SceneMapPlayer.cpp              funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 83] pal3/src/Misc/SceneObjParam.cpp               funcs=  5 matched=  4 L1= 0 partial= 4
-  [ 84] pal3/src/Misc/SceneProp.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 85] pal3/src/Misc/SceneVisNode.cpp                funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 86] pal3/src/Misc/ScreenEffectNode.cpp            funcs= 13 matched= 10 L1= 1 partial= 9
-  [ 87] pal3/src/Misc/ScriptPoolPage.cpp              funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 88] pal3/src/Misc/SkillUI.cpp                     funcs=  9 matched=  8 L1= 1 partial= 7
-  [ 89] pal3/src/Misc/SoundMgr.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
-  [ 90] pal3/src/Misc/SwordUI.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 91] pal3/src/Misc/TaskBookUI.cpp                  funcs= 24 matched= 14 L1= 2 partial=12
-  [ 92] pal3/src/Misc/TextureLibDataBase.cpp          funcs= 12 matched= 11 L1= 1 partial=10
-  [ 93] pal3/src/Misc/TxtFile.cpp                     funcs=  2 matched=  1 L1= 1 partial= 0
-  [ 94] pal3/src/Misc/UI3DCtrl.cpp                    funcs= 17 matched= 13 L1= 2 partial=10
-  [ 95] pal3/src/Misc/UIAnimateCtrl.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [ 96] pal3/src/Misc/UIAnimateCtrlEX.cpp             funcs= 17 matched= 13 L1= 3 partial=10
-  [ 97] pal3/src/Misc/UICoverFrm.cpp                  funcs= 23 matched= 15 L1= 3 partial=13
-  [ 98] pal3/src/Misc/UILoadingFrm.cpp                funcs= 11 matched= 10 L1= 3 partial= 7
-  [ 99] pal3/src/Misc/UIMap.cpp                       funcs=  9 matched=  8 L1= 3 partial= 5
-  [100] pal3/src/Misc/UIParticle.cpp                  funcs= 16 matched= 14 L1= 0 partial=14
-  [101] pal3/src/Misc/UIProgressBar.cpp               funcs= 10 matched=  9 L1= 4 partial= 4
-  [102] pal3/src/Misc/UIRoleDialog.cpp                funcs=  9 matched=  7 L1= 2 partial= 5
-  [103] pal3/src/Misc/UIRoleSelect.cpp                funcs=  3 matched=  2 L1= 1 partial= 1
-  [104] pal3/src/Misc/UIRoleSelectDialog.cpp          funcs= 20 matched= 10 L1= 2 partial= 8
-  [105] pal3/src/Misc/UISceneFace.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
-  [106] pal3/src/Misc/UISceneMap.cpp                  funcs= 19 matched= 16 L1= 6 partial=10
-  [107] pal3/src/Misc/UIScrollBar.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [108] pal3/src/Misc/UITextArea.cpp                  funcs=  9 matched=  7 L1= 2 partial= 4
-  [109] pal3/src/Misc/UITitle.cpp                     funcs= 12 matched=  7 L1= 2 partial= 5
-  [110] pal3/src/Misc/UITitle_QCYM.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
-  [111] pal3/src/Misc/UITitle_XJTM.cpp                funcs= 14 matched= 13 L1= 0 partial=13
-  [112] pal3/src/Misc/UITitle_YXXX.cpp                funcs= 11 matched=  9 L1= 2 partial= 8
-  [113] pal3/src/Misc/VideoPlayer.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [114] pal3/src/Misc/_Console.cpp                    funcs=  3 matched=  2 L1= 1 partial= 1
-  [115] pal3/src/Misc/_Texture_Info.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [116] pal3/src/Misc/gbLightObj.cpp                  funcs=  6 matched=  5 L1= 1 partial= 4
-  [117] pal3/src/Misc/gbMatrixStack.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [118] pal3/src/Misc/gbOBBox.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [119] pal3/src/Misc/gbSound2DNode.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [120] pal3/src/Misc/gbVec3D.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [121] pal3/src/Misc/s_RoleState.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
-  [122] pal3/src/Misc/sg_emission_control.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
-  [123] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
-  [124] pal3/src/Render/TextureLib.cpp                funcs= 13 matched= 11 L1= 2 partial= 9
-  [125] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
-  [126] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial=10
-  [127] pal3/src/Role/Role.cpp                        funcs= 16 matched= 14 L1= 2 partial=12
-  [128] pal3/src/Scene/Camera.cpp                     funcs= 12 matched= 10 L1= 0 partial=10
-  [129] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [130] pal3/src/Scene/Scene.cpp                      funcs=  6 matched=  5 L1= 0 partial= 5
-  [131] pal3/src/Scene/SceneMgr.cpp                   funcs= 14 matched= 13 L1= 1 partial=12
-  [132] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
-  [133] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
-  [134] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
-  [135] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
-  [136] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
-  [137] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
-  [138] pal3/src/UI/UINote.cpp                        funcs=  6 matched=  5 L1= 1 partial= 4
-  [139] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [140] pal3/src/UI/UIRenderObj.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
-  [141] pal3/src/UI/UISystem.cpp                      funcs=  2 matched=  1 L1= 0 partial= 1
-  [142] pal3/src/UI/UIWnd.cpp                         funcs= 17 matched= 16 L1= 4 partial=12
-matched 914/1031 symbols | L1 142 | partial 664 | oob 0 (text_end 0 / file_end 0) | unmatched 223 | compile-skip 0 | unresolved-synth 108
-L1 rate over matched: 142/806 = 17.6%
-[metric] L1 字节 5861 | 重定位覆盖字节 1684 (28.7%) | 被跳过且双侧不同的隐藏差异字节 1200 (20.5% 的 L1 字节 / 71.3% 的重定位字节)
-[metric] 重定位站点值核对：total=6921 ok=1702 mismatch=0 unresolved=5219
-[metric] 重定位目标核对（符号法）：total=6921 ok=71 mismatch=11 unresolved=6 unaligned=6500
+  [  4] pal3/src/Combat/CCBControlWindow.cpp          funcs= 15 matched= 14 L1= 2 partial=12
+  [  5] pal3/src/Combat/CCBItemWindow.cpp             funcs= 11 matched=  9 L1= 3 partial= 6
+  [  6] pal3/src/Combat/CCBLineupWindow.cpp           funcs= 20 matched= 19 L1= 6 partial=13
+  [  7] pal3/src/Combat/CCBMagicWindow.cpp            funcs= 11 matched=  9 L1= 2 partial= 7
+  [  8] pal3/src/Combat/CCBProtectWindow.cpp          funcs=  2 matched=  1 L1= 0 partial= 1
+  [  9] pal3/src/Combat/CCBResultWindow.cpp           funcs=  9 matched=  9 L1= 3 partial= 6
+  [ 10] pal3/src/Combat/CCBSkillWindow.cpp            funcs=  8 matched=  7 L1= 4 partial= 3
+  [ 11] pal3/src/Combat/CCBStageEffect.cpp            funcs= 10 matched=  8 L1= 3 partial= 5
+  [ 12] pal3/src/Combat/CCBStageRole.cpp              funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 13] pal3/src/Combat/CCBStageShadow.cpp            funcs= 12 matched=  9 L1= 1 partial= 8
+  [ 14] pal3/src/Combat/CCBUI.cpp                     funcs= 28 matched= 26 L1= 1 partial=25
+  [ 15] pal3/src/Combat/Combat.cpp                    funcs=  5 matched=  4 L1= 1 partial= 3
+  [ 16] pal3/src/Effect/C2DSpark.cpp                  funcs= 10 matched=  9 L1= 2 partial= 7
+  [ 17] pal3/src/Effect/C3DSpark.cpp                  funcs= 10 matched=  7 L1= 2 partial= 5
+  [ 18] pal3/src/Effect/CEffCylinder.cpp              funcs= 18 matched= 17 L1= 4 partial=15
+  [ 19] pal3/src/Effect/CEffExplosive.cpp             funcs= 15 matched= 14 L1= 4 partial= 9
+  [ 20] pal3/src/Effect/CEffQuad.cpp                  funcs= 15 matched= 12 L1= 3 partial=10
+  [ 21] pal3/src/Effect/CEffQuake.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
+  [ 22] pal3/src/Effect/CEffect.cpp                   funcs=  9 matched=  8 L1= 2 partial= 6
+  [ 23] pal3/src/Effect/CEffectSystem.cpp             funcs= 27 matched= 26 L1= 2 partial=24
+  [ 24] pal3/src/Effect/CEffgbParticle.cpp            funcs= 17 matched= 16 L1= 3 partial=13
+  [ 25] pal3/src/Effect/CMeteorChain.cpp              funcs=  3 matched=  2 L1= 1 partial= 1
+  [ 26] pal3/src/Effect/ScreenEffect.cpp              funcs=  5 matched=  4 L1= 0 partial= 3
+  [ 27] pal3/src/Effect/ScreenEffectMgr.cpp           funcs= 40 matched= 30 L1= 2 partial=27
+  [ 28] pal3/src/GameBase/InputSystem.cpp             funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 29] pal3/src/GameBase/Logger.cpp                  funcs= 10 matched=  9 L1= 0 partial= 9
+  [ 30] pal3/src/GameBase/SoundSystem.cpp             funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 31] pal3/src/MiniGame/MiniGame1.cpp               funcs=  3 matched=  1 L1= 0 partial= 1
+  [ 32] pal3/src/Misc/ARC_PlayerAtt.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 33] pal3/src/Misc/ArcLocaleRole.cpp               funcs= 10 matched=  9 L1= 0 partial= 9
+  [ 34] pal3/src/Misc/ArcPastScene.cpp                funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 35] pal3/src/Misc/ArcSceneMonster.cpp             funcs=  7 matched=  6 L1= 0 partial= 6
+  [ 36] pal3/src/Misc/ArcSceneObject.cpp              funcs=  5 matched=  4 L1= 1 partial= 3
+  [ 37] pal3/src/Misc/ArraySlots.cpp                  funcs=  4 matched=  1 L1= 0 partial= 1
+  [ 38] pal3/src/Misc/BINK.cpp                        funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 39] pal3/src/Misc/CCBEditor.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 40] pal3/src/Misc/CCBFiveNimbusWindow.cpp         funcs= 19 matched= 18 L1= 6 partial=12
+  [ 41] pal3/src/Misc/CCBPanelSlot.cpp                funcs=  4 matched=  3 L1= 1 partial= 2
+  [ 42] pal3/src/Misc/CCBUIPanel.cpp                  funcs= 28 matched= 23 L1= 4 partial=20
+  [ 43] pal3/src/Misc/CEffAction.cpp                  funcs= 11 matched= 10 L1= 4 partial= 5
+  [ 44] pal3/src/Misc/CEffBink.cpp                    funcs= 10 matched=  9 L1= 4 partial= 5
+  [ 45] pal3/src/Misc/CEffCallBack.cpp                funcs=  9 matched=  8 L1= 4 partial= 4
+  [ 46] pal3/src/Misc/CEffGroupNode.cpp               funcs=  5 matched=  4 L1= 2 partial= 2
+  [ 47] pal3/src/Misc/CEffObj.cpp                     funcs=  5 matched=  4 L1= 4 partial= 0
+  [ 48] pal3/src/Misc/CG_Entry.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 49] pal3/src/Misc/CIniFile.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 50] pal3/src/Misc/CJ_FindFile.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 51] pal3/src/Misc/CPK.cpp                         funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 52] pal3/src/Misc/ChoseCompose.cpp                funcs= 11 matched=  7 L1= 0 partial= 7
+  [ 53] pal3/src/Misc/Comp_Donate.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 54] pal3/src/Misc/Comp_DonateUI.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 55] pal3/src/Misc/ComposeUI.cpp                   funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 56] pal3/src/Misc/DealData.cpp                    funcs=  5 matched=  3 L1= 0 partial= 2
+  [ 57] pal3/src/Misc/EffBinkNode.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 58] pal3/src/Misc/EffCallBackNode.cpp             funcs=  5 matched=  4 L1= 1 partial= 3
+  [ 59] pal3/src/Misc/EffMultiPassNode.cpp            funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 60] pal3/src/Misc/EffObjectPool.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 61] pal3/src/Misc/EffTargetPool.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 62] pal3/src/Misc/ExternalStatistics.cpp          funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 63] pal3/src/Misc/Iostream_init.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [ 64] pal3/src/Misc/JusticeBookUI.cpp               funcs= 10 matched=  7 L1= 1 partial= 6
+  [ 65] pal3/src/Misc/LineupComp.cpp                  funcs= 11 matched=  8 L1= 0 partial= 7
+  [ 66] pal3/src/Misc/MUIDialog.cpp                   funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 67] pal3/src/Misc/MiniGame2Scene.cpp              funcs=  3 matched=  2 L1= 1 partial= 1
+  [ 68] pal3/src/Misc/NameSys.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 69] pal3/src/Misc/NavFaceLayer.cpp                funcs=  4 matched=  2 L1= 0 partial= 2
+  [ 70] pal3/src/Misc/OpenBaseFile.cpp                funcs=  3 matched=  2 L1= 1 partial= 1
+  [ 71] pal3/src/Misc/OpenNULLFile.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 72] pal3/src/Misc/OpenSceneFile.cpp               funcs=  3 matched=  2 L1= 1 partial= 1
+  [ 73] pal3/src/Misc/PAL3VisNode.cpp                 funcs=  5 matched=  4 L1= 1 partial= 3
+  [ 74] pal3/src/Misc/PalScriptAnimTimer.cpp          funcs=  5 matched=  4 L1= 1 partial= 3
+  [ 75] pal3/src/Misc/PalScriptBlendTimer.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 76] pal3/src/Misc/PalScriptFadeInTimer.cpp        funcs=  3 matched=  2 L1= 1 partial= 1
+  [ 77] pal3/src/Misc/PalScriptFadeOutTimer.cpp       funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 78] pal3/src/Misc/PalScriptProgressTimer.cpp      funcs=  4 matched=  3 L1= 0 partial= 3
+  [ 79] pal3/src/Misc/PalScriptWaitObj.cpp            funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 80] pal3/src/Misc/PalScriptWaitTimer.cpp          funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 81] pal3/src/Misc/Parent_Data.cpp                 funcs=  6 matched=  5 L1= 3 partial= 2
+  [ 82] pal3/src/Misc/ParticleEffect.cpp              funcs= 11 matched=  8 L1= 1 partial= 7
+  [ 83] pal3/src/Misc/ParticleVisNode.cpp             funcs=  2 matched=  1 L1= 1 partial= 0
+  [ 84] pal3/src/Misc/PathObj.cpp                     funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 85] pal3/src/Misc/PlayerAtt.cpp                   funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 86] pal3/src/Misc/PtrVec.cpp                      funcs=  2 matched=  0 L1= 0 partial= 0
+  [ 87] pal3/src/Misc/RoleCamera.cpp                  funcs=  4 matched=  3 L1= 1 partial= 2
+  [ 88] pal3/src/Misc/RoleCameraCtrl.cpp              funcs= 11 matched= 11 L1= 2 partial= 9
+  [ 89] pal3/src/Misc/RoleShadow.cpp                  funcs=  6 matched=  5 L1= 0 partial= 5
+  [ 90] pal3/src/Misc/RoleStatePanel.cpp              funcs= 21 matched= 18 L1= 1 partial=17
+  [ 91] pal3/src/Misc/SceneInfo.cpp                   funcs= 11 matched= 10 L1= 0 partial=10
+  [ 92] pal3/src/Misc/SceneMapPlayer.cpp              funcs=  2 matched=  1 L1= 1 partial= 0
+  [ 93] pal3/src/Misc/SceneObjParam.cpp               funcs=  4 matched=  3 L1= 1 partial= 3
+  [ 94] pal3/src/Misc/SceneProp.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
+  [ 95] pal3/src/Misc/SceneVisNode.cpp                funcs=  2 matched=  1 L1= 1 partial= 0
+  [ 96] pal3/src/Misc/ScreenEffectNode.cpp            funcs= 13 matched= 10 L1= 1 partial= 9
+  [ 97] pal3/src/Misc/ScriptPoolPage.cpp              funcs=  2 matched=  1 L1= 0 partial= 1
+  [ 98] pal3/src/Misc/SkillUI.cpp                     funcs=  9 matched=  8 L1= 1 partial= 7
+  [ 99] pal3/src/Misc/SoundMgr.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
+  [100] pal3/src/Misc/SwordUI.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [101] pal3/src/Misc/TaskBookUI.cpp                  funcs= 24 matched= 14 L1= 2 partial=12
+  [102] pal3/src/Misc/TextureLibDataBase.cpp          funcs= 12 matched= 11 L1= 1 partial=10
+  [103] pal3/src/Misc/TxtFile.cpp                     funcs=  2 matched=  1 L1= 1 partial= 0
+  [104] pal3/src/Misc/UI3DCtrl.cpp                    funcs= 17 matched= 13 L1= 2 partial=10
+  [105] pal3/src/Misc/UIAnimateCtrl.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [106] pal3/src/Misc/UIAnimateCtrlEX.cpp             funcs= 17 matched= 13 L1= 3 partial=10
+  [107] pal3/src/Misc/UICoverFrm.cpp                  funcs= 23 matched= 15 L1= 3 partial=13
+  [108] pal3/src/Misc/UILoadingFrm.cpp                funcs= 11 matched= 10 L1= 3 partial= 7
+  [109] pal3/src/Misc/UIMap.cpp                       funcs=  9 matched=  8 L1= 3 partial= 5
+  [110] pal3/src/Misc/UIParticle.cpp                  funcs= 16 matched= 14 L1= 0 partial=14
+  [111] pal3/src/Misc/UIProgressBar.cpp               funcs= 10 matched=  9 L1= 4 partial= 4
+  [112] pal3/src/Misc/UIRoleDialog.cpp                funcs=  9 matched=  7 L1= 2 partial= 5
+  [113] pal3/src/Misc/UIRoleSelect.cpp                funcs=  3 matched=  2 L1= 1 partial= 1
+  [114] pal3/src/Misc/UIRoleSelectDialog.cpp          funcs= 21 matched= 11 L1= 2 partial= 9
+  [115] pal3/src/Misc/UISceneFace.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
+  [116] pal3/src/Misc/UISceneFrm.cpp                  funcs= 24 matched= 21 L1= 2 partial=19
+  [117] pal3/src/Misc/UISceneMap.cpp                  funcs= 19 matched= 16 L1= 6 partial=10
+  [118] pal3/src/Misc/UIScrollBar.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [119] pal3/src/Misc/UITextArea.cpp                  funcs=  9 matched=  7 L1= 2 partial= 4
+  [120] pal3/src/Misc/UITitle.cpp                     funcs= 12 matched=  7 L1= 2 partial= 5
+  [121] pal3/src/Misc/UITitle_ArcSave.cpp             funcs= 11 matched=  6 L1= 1 partial= 5
+  [122] pal3/src/Misc/UITitle_QCYM.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
+  [123] pal3/src/Misc/UITitle_XJTM.cpp                funcs= 14 matched= 13 L1= 0 partial=13
+  [124] pal3/src/Misc/UITitle_YXXX.cpp                funcs= 11 matched=  9 L1= 2 partial= 8
+  [125] pal3/src/Misc/VideoPlayer.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [126] pal3/src/Misc/WeatherEffectNode.cpp           funcs=  3 matched=  2 L1= 0 partial= 5
+  [127] pal3/src/Misc/_Console.cpp                    funcs=  3 matched=  2 L1= 1 partial= 1
+  [128] pal3/src/Misc/_Texture_Info.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [129] pal3/src/Misc/gbLightObj.cpp                  funcs=  6 matched=  5 L1= 1 partial= 4
+  [130] pal3/src/Misc/gbMatrixStack.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [131] pal3/src/Misc/gbOBBox.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [132] pal3/src/Misc/gbSound2DNode.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [133] pal3/src/Misc/gbVec3D.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [134] pal3/src/Misc/s_RoleState.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
+  [135] pal3/src/Misc/scAsmDecoder.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
+  [136] pal3/src/Misc/sg_emission_control.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
+  [137] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
+  [138] pal3/src/Misc/tagPlayerSet.cpp                funcs=  2 matched=  0 L1= 0 partial= 0
+  [139] pal3/src/Render/TextureLib.cpp                funcs= 13 matched= 11 L1= 2 partial= 9
+  [140] pal3/src/Role/Actor.cpp                       funcs= 91 matched= 79 L1= 6 partial=73
+  [141] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
+  [142] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial=10
+  [143] pal3/src/Role/Role.cpp                        funcs= 15 matched= 13 L1= 1 partial=12
+  [144] pal3/src/Scene/Camera.cpp                     funcs= 12 matched= 10 L1= 0 partial=10
+  [145] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [146] pal3/src/Scene/Scene.cpp                      funcs=  6 matched=  5 L1= 0 partial= 5
+  [147] pal3/src/Scene/SceneMgr.cpp                   funcs= 14 matched= 13 L1= 1 partial=12
+  [148] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
+  [149] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
+  [150] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
+  [151] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
+  [152] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
+  [153] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
+  [154] pal3/src/UI/UINote.cpp                        funcs=  6 matched=  5 L1= 1 partial= 4
+  [155] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [156] pal3/src/UI/UIRenderObj.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
+  [157] pal3/src/UI/UISystem.cpp                      funcs=  2 matched=  1 L1= 0 partial= 1
+matched 1147/1276 symbols | L1 171 | partial 848 | oob 0 (text_end 0 / file_end 0) | unmatched 259 | compile-skip 0 | unresolved-synth 128
+L1 rate over matched: 171/1019 = 16.8%
+[metric] L1 字节 7230 | 重定位覆盖字节 1980 (27.4%) | 被跳过且双侧不同的隐藏差异字节 1406 (19.4% 的 L1 字节 / 71.0% 的重定位字节)
+[metric] 重定位站点值核对：total=8631 ok=2117 mismatch=0 unresolved=6514
+[metric] 重定位目标核对（符号法）：total=8631 ok=97 mismatch=10 unresolved=10 unaligned=8136
     [mismatch] 0x004C8950 off=4 orig=CEffgbParticle::Destroy__fastcall(void) ours=CEffgbParticle::~CEffgbParticle (??1CEffgbParticle@@UAE@XZ)
     [mismatch] 0x004431B0 off=4 orig=UIFrameWnd::DestroyCallingCtor(int) ours=CCBPanelSlot::~CCBPanelSlot (??1CCBPanelSlot@@UAE@XZ)
     [mismatch] 0x004C0540 off=4 orig=RenderTarget2::ExecutePasses(void) ours=CEffAction::~CEffAction (??1CEffAction@@UAE@XZ)
@@ -156,27 +171,28 @@ L1 rate over matched: 142/806 = 17.6%
     [mismatch] 0x004B7310 off=4 orig=Actor::ProcessChain(int) ours=CEffGroupNode::~CEffGroupNode (??1CEffGroupNode@@UAE@XZ)
     [mismatch] 0x004C34B0 off=4 orig=RenderTarget2::DestroyEffCallBack(void) ours=EffCallBackNode::~EffCallBackNode (??1EffCallBackNode@@UAE@XZ)
     [mismatch] 0x004B6F90 off=4 orig=gbChain1DNode::Process(void) ours=PAL3VisNode::~PAL3VisNode (??1PAL3VisNode@@UAE@XZ)
-L1 rate over matched: 142/806 = 17.6%
-carrier inventory: expected=204 paired=69 unpaired=135
+L1 rate over matched: 171/1019 = 16.8%
+carrier inventory: expected=204 paired=86 unpaired=118
 carrier suspect L1 (deleting 无槽证据——标准形 P0-1 静态锚定缺失): 1
   suspect: ??_GEffCallBackNode@@UAEPAXI@Z EffCallBackNode::`scalar deleting de @0x004C34B0
   carrier unpaired: ??1AStarPathFinder@@UAE@XZ
   carrier unpaired: ??_GAStarPathFinder@@UAEPAXI@Z
   carrier unpaired: ??1Actor@@UAE@XZ
-  carrier unpaired: ??1CCBControlWindow@@UAE@XZ
-  carrier unpaired: ??_GCCBControlWindow@@UAEPAXI@Z
-  carrier unpaired: ??1CCBFiveNimbusWindow@@UAE@XZ
-  carrier unpaired: ??_GCCBFiveNimbusWindow@@UAEPAXI@Z
-  carrier unpaired: ??1CCBItemWindow@@UAE@XZ
-  carrier unpaired: ??_GCCBItemWindow@@UAEPAXI@Z
-  carrier unpaired: ??1CCBLineupWindow@@UAE@XZ
-  carrier unpaired: ??_GCCBLineupWindow@@UAEPAXI@Z
+  carrier unpaired: ??_GActor@@UAEPAXI@Z
   carrier unpaired: ??1CCBPanelSlot@@UAE@XZ
+  carrier unpaired: ??1CCBParabolaWindow@@UAE@XZ
+  carrier unpaired: ??_GCCBParabolaWindow@@UAEPAXI@Z
+  carrier unpaired: ??1CCBRoleState@@UAE@XZ
+  carrier unpaired: ??_GCCBRoleState@@UAEPAXI@Z
+  carrier unpaired: ??1CCBStage@@UAE@XZ
+  carrier unpaired: ??_GCCBStage@@UAEPAXI@Z
+  carrier unpaired: ??1CCBStageCam@@UAE@XZ
 report -> /home/peng/workspace/PAL3Decomp/data/status/s4_baseline.json
 registry -> /home/peng/workspace/PAL3Decomp/data/status/pal3_registry.jsonl
-diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (661 partial rows in 134 units)
+diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (844 partial rows in 147 units)
 
-[L1 ratchet] previous 142 -> current 142
-[L1 ratchet] semantic: previous 9 -> current 9 (L1+sem: 151 -> 151)
-[L1 ratchet] population: previous matched=914/1031 -> current matched=914/1031
-[L1 ratchet] coverage: previous carrier.paired=69 -> current 69
+[L1 ratchet] previous 146 -> current 171
+[L1 ratchet] semantic: previous 13 -> current 13 (L1+sem: 159 -> 184)
+[L1 ratchet] population: previous matched=1013/1140 -> current matched=1147/1276
+[L1 ratchet] coverage: previous carrier.paired=71 -> current 86
+[L1 ratchet] ⚠️ 可比总体**已变化** ⇒ 两次 L1 不可直接比较；若确认可接受，用 `cli.py match --rebaseline "<理由>"` 显式重新对齐

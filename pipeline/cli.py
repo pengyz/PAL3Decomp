@@ -1065,20 +1065,6 @@ def cmd_status(argv):
     from pipeline import preflight
     state = preflight.collect_state()
     print(preflight.render(state))
-    # [方案 v2 D2/S4 2026-10-31] stub↔S2 三读数（覆盖率四元组口径 + 存量 + retire_due）
-    try:
-        sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
-            os.path.abspath(__file__))), 'tools'))
-        import stub_retire as _sr
-        _cov = _sr.census_reading()
-        _cls, _due, _missing, _orphan = _sr.reconcile()
-        print('[stub_retire] 覆盖率 %d/%d = %.0f%%（unit_set %s · census %s）'
-              % (_cov['ok'], _cov['total'], 100.0 * _cov['ok'] / max(_cov['total'], 1),
-                 _cov['unit_set_hash'], _cov['generated_at']))
-        print('[stub_retire] 存量: unit %d · 符号 %d | retire_due %d | 缺 stub %d'
-              % (len(_cls['unit']), _sr.stub_symbol_count(), len(_due), len(_missing)))
-    except Exception as e:                       # 只读展示，坏了不阻断 status
-        print('[stub_retire] 读数不可用: %s' % e)
     if '--strict' in argv:
         rows = preflight.baseline_rows(state)
         inconsistent = (rows[0]['ok'] is not None and rows[1]['ok'] is not None
@@ -1131,7 +1117,6 @@ def cmd_loop(argv):
         python pipeline/cli.py loop                        # 全链路
         python pipeline/cli.py loop --stages probe,match   # 只跑部分
         python pipeline/cli.py loop --dry-run              # 只打印计划
-        python pipeline/cli.py loop --use-overlay           # codegen 后套用 phase2 补丁（编译攻坚）
         python pipeline/cli.py loop --expect-s2 75/205 --expect-errors 2150 --expect-l1 35
     """
     from pipeline import preflight
@@ -1143,7 +1128,6 @@ def cmd_loop(argv):
         sys.exit(0)
 
     stages = LOOP_ORDER
-    use_overlay = '--use-overlay' in argv
     for i, a in enumerate(argv):
         if a == '--stages' and i + 1 < len(argv):
             stages = [x.strip() for x in argv[i + 1].split(',') if x.strip()]
@@ -1185,10 +1169,6 @@ def cmd_loop(argv):
     report = {'stages': {}, 'expect': exp, 'tolerated': [], 'failed': []}
     for name in stages:
         cmd = [sys.executable, os.path.join(_PIPELINE_DIR, 'cli.py'), name] + LOOP_STAGES[name]
-        # [2026-10-27] overlay 补丁按需启用：--use-overlay 透传给 codegen 阶段。
-        # 默认纯真身——overlay 补丁会让 match/L1/基线读数漂移（goal 批注法的代价显式化）。
-        if use_overlay and name == 'codegen':
-            cmd.append('--use-overlay')
         print('=' * 72)
         print('[loop] %s: %s' % (name, ' '.join(cmd[2:])))
         t0 = time.time()
@@ -1232,24 +1212,8 @@ def cmd_loop(argv):
             print('[loop] 出现**非容错**失败（%s）⇒ 中止后续阶段' % ', '.join(report['failed']))
             break
 
-    # [Phase2 留存 2026-10-15] retain 状态可见性（条目数/漂移数——verifier 步骤 3）
-    try:
-        _tp = os.path.join(_PROJECT_DIR, 'tools')
-        if _tp not in sys.path:
-            sys.path.insert(0, _tp)
-        import phase2_retain as _pr
-        _ctx = _pr.Ctx(os.path.join(_PROJECT_DIR, 'pal3', 'src'),
-                       os.path.join(_PROJECT_DIR, 'phase2'))
-        _m = _pr.load_manifest(_ctx.manifest_path)
-        if _m['entries']:
-            _plan = _pr.plan_apply(_m, _ctx.root_hashes(), _ctx.overlay_hashes())
-            print('[loop] phase2-retain: 条目 %d · 在位 %d · 待套 %d · 漂移 %d'
-                  % (len(_m['entries']), len(_plan['inplace']),
-                     len(_plan['actions']), len(_plan['drift'])))
-        else:
-            print('[loop] phase2-retain: 条目 0（no-op）')
-    except Exception as _e:
-        print('[loop] phase2-retain: 状态不可读（%s）' % _e)
+    # [Phase2 overlay 体系退役 2026-11-23·用户裁定] retain 状态块拆除——
+    #   overlay 34/34 全漂移从未在现役树生效(纯态运行), phase2/ 目录+工具链整体退役
 
     # 汇总 + 断言
     print()

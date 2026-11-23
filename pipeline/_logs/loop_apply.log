@@ -6,23 +6,34 @@ WARN: functions[0x004c4b00]: '__thiscall' without '::' in 'SetValue' (sig: int _
 WARN: functions[0x005306a0]: '__thiscall' without '::' in 'Initialize_06A0' (sig: void __thiscall (char *pszRoleDir)) — likely member function, needs IDA investigation
 WARN: functions[0x00523cb0]: '__thiscall' without '::' in 'Method_3CB0' (sig: int __thiscall ()) — likely member function, needs IDA investigation
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795405114)早于最新注解(1795406078)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795424401)早于最新注解(1795426536)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: N20a[CCBUI]:0x00516100 del 压制态 L1 载体(注册符号 va=0x00516100 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
-WARN: N20a[CEffgbParticle]:0x004c8950 del 压制态 L1 载体(注册符号 va=0x004C8950 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[EffCallBackNode]:0x004c34b0 del 压制态 L1 载体(注册符号 va=0x004C34B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[RoleStatePanel]:0x004a2150 del 压制态 L1 载体(注册符号 va=0x004A2150 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[ScreenEffectNode]:0x004b7cc0 del 压制态 L1 载体(注册符号 va=0x004B7CC0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20a[UIAnimateCtrlEX]:0x00452830 del 压制态 L1 载体(注册符号 va=0x00452830 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[UICoverFrm]:0x0052bbb0 del 压制态 L1 载体(注册符号 va=0x0052BBB0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[UIMap]:0x004411b0 del 压制态 L1 载体(注册符号 va=0x004411B0 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
-WARN: N20a[UITitle_YXXX]:0x0047dd70 del 压制态 L1 载体(注册符号 va=0x0047DD70 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
+WARN: N20a[UISceneFrm]:0x00459240 del 压制态 L1 载体(注册符号 va=0x00459240 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N22[dtor对偶闭环]: N22a 完全形缺失/误名 33 + N22b 裸claim 24 ——工作清单 data/status/n22_pair_closure.json(三态裁决逐案)
-WARN: name_drift: 941 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
-FROZEN: globals[0x00DBA260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBA260] if intentional
-FROZEN: globals[0x00DBAF10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBAF10] if intentional
-FROZEN: globals[0x00DBB364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00DBB364] if intentional
+WARN: name_drift: 944 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
+FROZEN: globals[0x00dba260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dba260] if intentional
+FROZEN: globals[0x00dbaf10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbaf10] if intentional
+FROZEN: globals[0x00dbb364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbb364] if intentional
 FROZEN: structs[MainPropUI]: member overlap: m_szListBuf(char[256], size=256)@104 ends@360 > next buf@108
+FROZEN: skip_functions[0x00411ba0] 'Array::_nearby_411ba0' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004b7ba0] 'sub_4B7BA0' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004b7f70] 'nullsub_11' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004c5d70] 'sub_4C5D70' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x0053d3f0] 'sub_53D3F0' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x00541dd9] 'std_logic_error_vf1_logic_error' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x00541e40] 'std_logic_error_vf0_logic_error' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x005420fc] 'SceneVisNode_adjthunk_20FC' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004c0620] 'RenderTarget2::scalar_deleting_dtor' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x0054211a] '?Update@gbVisNode@@UAEXXZ' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004c27c0] 'sub_4C27C0' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004506c0] 'sub_4506C0' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x004431b0] '_sdtor_call_dtor' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x00551c66] 'MagicUI::InitComItem' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x0054210e] 'SceneVisNode_adjthunk_210E' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
+FROZEN: skip_functions[0x0053c2b0] '_sdtor_call_dtor' also exists in struct methods or functions.json — 真双注（同为定义意图）；若为声明收编形请标 declaration_only 或变参签名
 FROZEN: CANON:C7:CCBPanelSlot:0x00445b90:own CCBPanelSlot 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
 FROZEN: CANON:C7:CCBPanelSlot:0x00445d10:own CCBPanelSlot 自有槽 slot0 addr=0x00445d10 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
 FROZEN: CANON:C7:RenderTarget:0x00445b90:own RenderTarget 自有槽 slot0 addr=0x00445b90 但本类 methods 无条目(定义路由断链→C2039; 地址∉祖先表=自有)
@@ -36,7 +47,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 16 frozen(advisory), 19 warnings — PASS
+0 new errors + 32 frozen(advisory), 14 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**

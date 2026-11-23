@@ -118,34 +118,6 @@ def cmd_cpp(filter_classes=None):
     run_cpp_generation(filter_classes=filter_classes)
 
 
-def _retain_apply(use_overlay=False):
-    """[Phase2 留存 2026-10-15 · 2026-10-27 开关翻转] codegen 产物落盘后套用 phase2/overlay 手工 fix。
-
-    零管线侵入钩子（verifier 方案 A'）：manifest 空 = no-op；rc 原样传播
-    （override 漂移 = exit 2 fail-loud）。仅挂 headers/cpp/all 三分支
-    （clean/config 不挂——clean 无产物可套，config 不产码）。
-
-    【2026-10-27 开关翻转】默认**不套用**（纯真身产物）——overlay 补丁会让
-    管线验证（match/L1/基线）读数漂移；`--use-overlay` 按需启用（编译攻坚）。
-    `--no-retain` 保留为兼容别名（等价默认跳过）。
-    """
-    if not use_overlay:
-        print('[phase2-retain] 未启用 --use-overlay ⇒ 跳过 overlay 套用（纯真身产物）')
-        return 0
-    try:
-        _tools = os.path.join(os.path.dirname(os.path.dirname(
-            os.path.dirname(os.path.abspath(__file__)))), 'tools')
-        if _tools not in sys.path:
-            sys.path.insert(0, _tools)
-        import phase2_retain as pr
-    except Exception as e:  # 工具缺失不得拖垮 codegen（但要出声）
-        print('[phase2-retain][WARN] phase2_retain 不可用（%s）⇒ 跳过' % e)
-        return 0
-    from pipeline.config import PROJECT_ROOT as _PR
-    ctx = pr.Ctx(str(_PR / 'pal3' / 'src'), str(_PR / 'phase2'))
-    return pr.cmd_apply(ctx)
-
-
 def main():
     args = sys.argv[1:]
     if not args or args[0] in ('-h', '--help', 'help'):
@@ -154,13 +126,8 @@ def main():
 
     command = args[0]
     filter_classes = set()
-    use_overlay = False
     for arg in args[1:]:
-        if arg == '--use-overlay':
-            use_overlay = True
-        elif arg == '--no-retain':
-            pass  # 兼容别名：默认即跳过套用（2026-10-27 开关翻转）
-        elif not arg.startswith('-'):
+        if not arg.startswith('-'):
             filter_classes.add(arg)
 
     rc = 0
@@ -170,15 +137,12 @@ def main():
         cmd_clean()
     elif command == 'headers':
         cmd_headers()
-        rc = _retain_apply(use_overlay)
     elif command == 'cpp':
         cmd_cpp(filter_classes=filter_classes or None)
-        rc = _retain_apply(use_overlay)
     elif command == 'all':
         cmd_clean()
         cmd_headers()
         cmd_cpp(filter_classes=filter_classes or None)
-        rc = _retain_apply(use_overlay)
     else:
         print("Unknown command: %s" % command)
         print("Run with --help for usage.")
