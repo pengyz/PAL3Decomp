@@ -20,27 +20,30 @@ FN = json.load(open(ROOT / 'data/annotations/functions.json'))
 
 
 def test_4b8200_randlerpf_semantic_name_and_signature():
-    e = FN['0x004B8200']
+    e = FN['0x004b8200']
     assert e['name'] == 'RandLerpF'                      # 语义名（行为证据：random-lerp）
     assert e['name'] != 'j_D3DXVec3TransformCoord'       # 错名退役
-    assert 'float' in e['signature'] and 'void *' not in e['signature']  # 真形 float(float,float)
-    assert '__cdecl' in e['signature'] and '__stdcall' not in e['signature']  # plain ret=cdecl（P3 约定锁）
+    _sm = e.get('sig_model') or {}
+    assert _sm.get('return') == 'double' and len(_sm.get('params') or []) == 2  # 真形 double(float,float)
+    assert (e.get('sig_model') or {}).get('cc') == 'cdecl'  # plain ret=cdecl（P3 约定锁）
     assert '_todo_' not in e['name'] and 'j_' not in e['name']
 
 
 def test_542533_routes_d3dxvec3normalize():
     e = FN.get('0x00542533')
     assert e and e['name'] == 'D3DXVec3Normalize'        # 槽#7 157B 逐字节证据
-    assert 'D3DXVec3Normalize' in e['signature'] or 'D3DXVECTOR3' in e['signature']
+    _sm53 = e.get('sig_model') or {}
+    assert 'D3DXVECTOR3' in str(_sm53.get('return') or '') or 'D3DXVECTOR3' in str(_sm53.get('params') or '')  # PSGP 跳板声明走 D3DX
     assert 'd3dx9math' in e.get('source', '')            # 声明路由证据入账
-    assert '__stdcall' in e['signature']                  # WINAPI 约定锁（P1/P3，map YG 实证）
+    assert (e.get('sig_model') or {}).get('cc') == 'stdcall'  # WINAPI 约定锁（P1/P3，map YG 实证）
     assert e.get('declaration_only') is True              # 声明收编形（防真双注）
 
 
 def test_544771_routes_d3dxquaternionslerp():
     e = FN.get('0x00544771')
     assert e and e['name'] == 'D3DXQuaternionSlerp'      # 槽#35 227B 逐字节证据
-    assert 'D3DXQuaternionSlerp' in e['signature'] or 'D3DXQUATERNION' in e['signature']
+    _sm471 = e.get('sig_model') or {}
+    assert 'D3DXQUATERNION' in str(_sm471.get('return') or '') or 'D3DXQUATERNION' in str(_sm471.get('params') or '')  # PSGP 跳板声明走 D3DX
     assert 'd3dx9math' in e.get('source', '')
-    assert '__stdcall' in e['signature']                  # WINAPI 约定锁
+    assert (e.get('sig_model') or {}).get('cc') == 'stdcall'  # WINAPI 约定锁
     assert e.get('declaration_only') is True              # 声明收编形

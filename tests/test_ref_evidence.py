@@ -12,7 +12,7 @@ def test_ref_table_has_aa_evidence():
     from ref_params import _GB_REF_PARAM_TYPES
     # 从 gbengine.def 读证据
     ref_funcs = set()
-    with open('gbengine/gbengine.def', encoding='utf-8', errors='replace') as f:
+    with open('modules/gbengine/gbengine.def', encoding='utf-8', errors='replace') as f:
         for line in f:
             if '?' in line and re.search(r'A[A-B]U', line):
                 m = re.search(r'\?(\w+)@\w+@@', line)
@@ -28,7 +28,7 @@ def test_ref_table_no_pa_entries():
     """PAU（指针）函数不应在表中。"""
     from ref_params import _GB_REF_PARAM_TYPES
     ptr_funcs = set()
-    with open('gbengine/gbengine.def', encoding='utf-8', errors='replace') as f:
+    with open('modules/gbengine/gbengine.def', encoding='utf-8', errors='replace') as f:
         for line in f:
             if '?' in line and re.search(r'P[A-B]U', line):
                 m = re.search(r'\?(\w+)@\w+@@', line)

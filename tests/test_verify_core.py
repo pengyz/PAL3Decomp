@@ -99,7 +99,7 @@ def test_norm_facts_addr_keys_int():
 
 
 def test_verify_core_has_no_converter_imports():
-    src = pathlib.Path('ghidra_track/verify_core.py').read_text()
+    src = pathlib.Path('experiments/ghidra_track/verify_core.py').read_text()
     tree = ast.parse(src)
     for node in ast.walk(tree):
         if isinstance(node, ast.ImportFrom):
