@@ -3819,5 +3819,22 @@
   "name": "InitState",
   "name_source": "IDA语义分析 2026-11-01 批13",
   "name_note": "状态初始化（offset 0/36/40/44/48 设值）"
+ },
+ "0x0043a0e0": {
+  "name": "UIPushButton_SetParam",
+  "declaration_only": true,
+  "source": " | [声明收编 20261123] skip(misattributed in struct, removed)+本条=声明收编形(批12合法共存): 语料2调用站(SystemUI::Update/ProcessTree)单值实参形(0x41CC0000=float位模式25.5)+skip自带sig int __cdecl(int)——调用ABI=cdecl值传递自洽; 命名UIPushButton_SetParam=IDA时代名(归属已裁误, 名暂留待真名)",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  }
  }
 }

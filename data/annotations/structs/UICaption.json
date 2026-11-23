@@ -188,9 +188,8 @@
   },
   "0x0043ab00": {
    "name": "Destroy",
-   "source": "vtable_gap_fill_v1(from UICaption.json)",
-   "evidence_level": "unverified",
-   "adjudication": "rejected",
+   "source": "vtable_gap_fill_v1(from UICaption.json) | [重裁决 20261123] 撤销 rejected(gap-fill时代拒绝前提=槽证据缺失, 现已存在): ①UIScenePanel vtable 0x56b018 slot#3=0x43ab00 在册(五面卡:base(UICaption) ctor三写MI组装) ②hexrays this型=UICaption*(IDB类型互证) ③家族面=UICaption::Destroy2(0x43a810)调本址+DestroyPanel/DestroyAll兄弟; IDB名Destroy_27=UIScenePanel时代编号残留→apply改名后语料限定形渲染, UICaption.cpp C2065清偿",
+   "evidence_level": "verified",
    "sig_model": {
     "return": "int",
     "cc": "thiscall",

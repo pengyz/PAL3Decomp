@@ -1994,6 +1994,11 @@ def _fix_gbengine_import_slots():
 # C2664（Object3D.cpp L26/L31/L89；SoundMgr.cpp L21/L23）。新增四条按修饰名
 # （A 级，data/gbengine_registry.jsonl:911-913/1044）注入 enum 形参。
 _GB_IMPORT_SIGS = {
+    # [数据槽 20261123] 静态成员数据导入(非函数): mangle 2HA=static private int
+    # (iat_census 0x56a558 + gbengine_types.h `static int ColorQuadFmt` 声明互证)。
+    # 槽未定型 ⇒ hexrays 以 void*const 渲染赋值 ⇒ UIButton L49 C2440。
+    "?ColorQuadFmt@gbColorQuad@@2HA":
+        "int;",
     "?Rotate@gbMatrixStack@@QAEXMAAUgbVec3D@@@Z":
         "void __thiscall(gbMatrixStack *, float, gbVec3D &);",
     "?Rotate@gbMatrixStack@@QAEXAAUgbQuaternion@@@Z":
