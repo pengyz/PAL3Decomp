@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <malloc.h>
+#include <time.h>   // [CRT 声明 20261123] _strdate/_strtime 语料渲染(Logger 域)+auto-include 检测不覆盖 CRT 头 ⇒ C2065
 
 #include "pal3/pal3_stl.h"
 #include "gbengine/gbengine_types.h"
