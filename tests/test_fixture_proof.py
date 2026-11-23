@@ -11,7 +11,7 @@ import pathlib
 from ghidra_track.fixture_proof import run_fixture
 
 _ROOT = pathlib.Path(__file__).resolve().parent.parent
-_CASES = _ROOT / 'ghidra_track' / 'fixture' / 'cases'
+_CASES = _ROOT / 'experiments' / 'ghidra_track' / 'fixture' / 'cases'
 
 
 def test_case01_oracle_zero_diff():

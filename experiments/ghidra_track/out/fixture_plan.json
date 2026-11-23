@@ -1,0 +1,253 @@
+[
+ {
+  "kind": "set_name",
+  "addr": "0x0@Base",
+  "name": "update"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x0@Base",
+  "name": "update",
+  "conv": "__thiscall",
+  "ret": "int",
+  "params": [
+   "int"
+  ],
+  "cls": "Base"
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x0@Derived",
+  "name": "update"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x0@Derived",
+  "name": "update",
+  "conv": "__thiscall",
+  "ret": "int",
+  "params": [
+   "int"
+  ],
+  "cls": "Derived"
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x1000",
+  "name": "fixture_init"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x1000",
+  "name": "fixture_init",
+  "conv": "__cdecl",
+  "ret": "void",
+  "params": [],
+  "cls": null
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x1010",
+  "name": "?fixture_get@@YAHXZ"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x1010",
+  "name": "?fixture_get@@YAHXZ",
+  "conv": "__cdecl",
+  "ret": "int",
+  "params": [],
+  "cls": null
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x1020",
+  "name": "fixture_tick"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x1020",
+  "name": "fixture_tick",
+  "conv": "__cdecl",
+  "ret": "void",
+  "params": [
+   "int"
+  ],
+  "cls": null
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x1030",
+  "name": "main"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x1030",
+  "name": "main",
+  "conv": "__cdecl",
+  "ret": "int",
+  "params": [],
+  "cls": null
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x1@Derived",
+  "name": "render"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x1@Derived",
+  "name": "render",
+  "conv": "__thiscall",
+  "ret": "void",
+  "params": [
+   "Complex *"
+  ],
+  "cls": "Derived"
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x2@Derived",
+  "name": "calc"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x2@Derived",
+  "name": "calc",
+  "conv": "__thiscall",
+  "ret": "int",
+  "params": [
+   "int",
+   "int"
+  ],
+  "cls": "Derived"
+ },
+ {
+  "kind": "set_name",
+  "addr": "0x3@Derived",
+  "name": "calc"
+ },
+ {
+  "kind": "set_func_sig",
+  "addr": "0x3@Derived",
+  "name": "calc",
+  "conv": "__thiscall",
+  "ret": "double",
+  "params": [
+   "double"
+  ],
+  "cls": "Derived"
+ },
+ {
+  "kind": "define_struct",
+  "name": "Base",
+  "size": 16,
+  "members": [
+   {
+    "offset": 8,
+    "name": "m_baseVal",
+    "type": "int"
+   }
+  ]
+ },
+ {
+  "kind": "define_struct",
+  "name": "Complex",
+  "size": 36,
+  "members": [
+   {
+    "offset": 0,
+    "name": "id",
+    "type": "int"
+   },
+   {
+    "offset": 4,
+    "name": "pos",
+    "type": "Vec3"
+   },
+   {
+    "offset": 16,
+    "name": "fval",
+    "type": {
+     "union": [
+      {
+       "type": "float",
+       "name": "fval"
+      },
+      {
+       "type": "int",
+       "name": "ival"
+      }
+     ]
+    }
+   },
+   {
+    "offset": 20,
+    "name": "name",
+    "type": "char[16]"
+   }
+  ]
+ },
+ {
+  "kind": "define_struct",
+  "name": "Derived",
+  "size": 64,
+  "members": [
+   {
+    "offset": 12,
+    "name": "m_complex",
+    "type": "Complex"
+   },
+   {
+    "offset": 48,
+    "name": "m_pNext",
+    "type": "Derived *"
+   },
+   {
+    "offset": 56,
+    "name": "m_flags",
+    "type": "int"
+   }
+  ]
+ },
+ {
+  "kind": "define_struct",
+  "name": "Vec3",
+  "size": 12,
+  "members": [
+   {
+    "offset": 0,
+    "name": "x",
+    "type": "float"
+   },
+   {
+    "offset": 4,
+    "name": "y",
+    "type": "float"
+   },
+   {
+    "offset": 8,
+    "name": "z",
+    "type": "float"
+   }
+  ]
+ },
+ {
+  "kind": "define_global",
+  "addr": "0x2000",
+  "name": "g_root",
+  "type": "Derived"
+ },
+ {
+  "kind": "define_global",
+  "addr": "0x2040",
+  "name": "g_counter",
+  "type": "int"
+ },
+ {
+  "kind": "define_global",
+  "addr": "0x2048",
+  "name": "g_message",
+  "type": "char *"
+ }
+]

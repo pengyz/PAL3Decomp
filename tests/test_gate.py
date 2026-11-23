@@ -8,7 +8,7 @@ import pathlib
 import subprocess
 
 _ROOT = pathlib.Path(__file__).resolve().parent.parent
-_GATE = _ROOT / 'ghidra_track' / 'gate.sh'
+_GATE = _ROOT / 'experiments' / 'ghidra_track' / 'gate.sh'
 _HOOK = _ROOT / '.git' / 'hooks' / 'pre-commit'
 
 
@@ -35,12 +35,12 @@ def test_hook_wired_with_trigger():
     assert 'ghidra_track' in txt and 'import_annotation' in txt, '触发面正则缺席'
     # 触发面真命中（钩内同款 grep 对样本）
     hit = subprocess.run(
-        "grep -qE '^ghidra_track/(import_annotation|gen_plan|plan_to_changeset|"
+        "grep -qE '^experiments/ghidra_track/(import_annotation|gen_plan|plan_to_changeset|"
         "import_standard|verify_core|verify_b_import|fixture_proof|mutation_proof|"
-        "proof_matrix)\\.py$' <<< 'ghidra_track/gen_plan.py'",
+        "proof_matrix)\\.py$' <<< 'experiments/ghidra_track/gen_plan.py'",
         shell=True, executable='/bin/bash')
     assert hit.returncode == 0, '触发面正则必须命中 gen_plan.py'
     miss = subprocess.run(
-        "grep -qE '^ghidra_track/(import_annotation|gen_plan)\\.py$' <<< 'pal3/src/UI/StateUI.cpp'",
+        "grep -qE '^experiments/ghidra_track/(import_annotation|gen_plan)\\.py$' <<< 'pal3/src/UI/StateUI.cpp'",
         shell=True, executable='/bin/bash')
     assert miss.returncode != 0, '非触发面文件不得命中（防全量拦）'

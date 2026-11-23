@@ -10,7 +10,7 @@ import pathlib
 from ghidra_track.proof_matrix import build_matrix, scan_corpus_keys
 
 _ROOT = pathlib.Path(__file__).resolve().parent.parent
-_FIXTURE = _ROOT / 'ghidra_track' / 'fixture' / 'cases' / 'case-01-struct-union-overload' / 'annotations'
+_FIXTURE = _ROOT / 'experiments' / 'ghidra_track' / 'fixture' / 'cases' / 'case-01-struct-union-overload' / 'annotations'
 _REAL = _ROOT / 'data' / 'annotations'
 
 
@@ -41,6 +41,6 @@ def test_build_matrix_complete_when_all_disposed():
 
 def test_real_corpus_full_coverage():
     """Step 4 绿的单测化：真语料 data/annotations 全键在 proof_matrix.json 有条目。"""
-    mp = json.loads((_ROOT / 'ghidra_track' / 'proof_matrix.json').read_text())
+    mp = json.loads((_ROOT / 'experiments' / 'ghidra_track' / 'proof_matrix.json').read_text())
     r = build_matrix(str(_REAL), dispositions=mp)
     assert r['missing'] == [], '真语料键缺条目（schema 演进未入矩阵=红）: %s' % r['missing'][:5]

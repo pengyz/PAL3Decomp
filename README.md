@@ -1,67 +1,46 @@
 # PAL3 反编译项目
 
-**目标**：从 PAL3.exe（MSVC 6.0 SP0 编译）生成可运行的 C++ 源码，逐步实现字节一致。
+**目标**：从 PAL3.exe（MSVC 6.0 SP0）重建字节一致的 C++ 源码（L1 字节匹配为验收硬线）。
 
-## ⚠️ 方向转向（2026-10-27）
-
-**从"字节匹配优先"转向"逐步代换（可运行优先）"**：
+## 管线（唯一真相链）
 
 ```
-原方向：codegen 全量输出 → 字节比对 → 修复 → 字节一致
-新方向：主入口（WinMain）→ mock 解锁 → 可编译 → 调用链推进 → 可运行 → 函数迁移（字节一致）
+data/annotations/（标注=唯一真相源）
+  → pipeline apply   （注入 IDB：命名+类型+结构）
+  → export           （Hex-Rays 语料 asm/pal3/decomp/）
+  → codegen          （生成 pal3/src/ 生成树，含 include/pal3/gen/ 头镜像）
+  → probe            （MSVC6 编译普查，S2 读数）
+  → match            （编译产物 vs 原 exe 字节对拍，L1 棘轮）
 ```
 
-**理由**：
-1. **字节一致缺口大**（S2 135/209·L1 184/571）——信心不足
-2. **游戏不可运行**（链接层盲区）——隐患
-3. **增量可编译**（每步验证）——信心逐步建立
+日常入口：`python3 pipeline/cli.py loop`（五阶段全链）；门禁：`python3 pipeline/check_annotations.py`。
 
-**策略**：逐步代换（codegen 成果吸收+增量验证+字节一致收敛）
+## 当前读数（2026-11-23）
 
-## 迁移路径
+- S2 编译单元 160/233 ok（fail 73）· L1 字节匹配 181 · check 13 警告（起点 210）
 
-### 阶段 1：可编译基（主入口+mock）
-- [x] WinMain 定位（`_WinMain@16` @ 0x541900）
-- [x] platform/windows/WinMain.cpp 建立（迁移起点）
-- [ ] 关键接口 mock（窗口/消息/资源）
-- [ ] 编译+链接（MSVC 6.0）
+## 模块导览
 
-### 阶段 2：可运行（调用链推进）
-- [ ] 游戏部署（编译产物→游戏目录替换 exe）
-- [ ] 调用链迁移（WinMain→初始化→主循环）
-- [ ] 运行验证（游戏启动→无崩溃）
+| 目录 | 用途 | 版控 |
+|---|---|---|
+| `pipeline/` | 管线代码（check/apply/export/codegen/probe/match + 门禁） | tracked |
+| `data/annotations/` | **标注真值层**（structs/functions/globals/skip + schema/allowlist 族） | tracked |
+| `data/status/` | 运行状态对账层（棘轮基线+裁决台账+pending 队列） | tracked(latest) |
+| `asm/` | IDB 工作区+Hex-Rays 语料（管线工作数据） | gitignored |
+| `pal3/` | 生成树 src/（codegen 覆盖，gitignored）+ CMake | src gitignored |
+| `include/` | pal3/gen 头镜像（生成）+ gbengine 头 | 混合 |
+| `gbengine/` `topo/` `lib/` `cmake/` | 构建组件（topo→gbengine→PAL3 链） | tracked |
+| `original/` | 原始游戏输入（PAL3.exe 等，只读） | 部分跟踪 |
+| `thirdparty/` | 外部工具子模块（ghidra-mcp 等） | submodule |
+| `tools/` | 工具箱（审计/取证/构建辅助脚本 + MSVC6/Ghidra 工具链） | 脚本 tracked |
+| `experiments/` | 实验线（ghidra_track 双轨验证——VERIFICATION-ONLY） | tracked |
+| `extra/` | 参考资料（PAL3patch 分辨率补丁子模块） | submodule |
+| `tests/` `docs/` | 测试与知识库 | tracked |
+| `build/` | CMake 产物 | gitignored |
 
-### 阶段 3：字节一致（函数迁移）
-- [ ] 函数级迁移（codegen→byte-identical）
-- [ ] 字节比对（每函数 L1）
-- [ ] 全量收敛（字节匹配）
+## 纪律（2026-11-23 目录治理后）
 
-## 平台分层
-
-```
-pal3/src/platform/
-├── windows/    # Windows 入口（WinMain）——当前
-├── linux/      # Linux 适配——后续
-└── android/    # Android 适配——后续
-pal3/src/core/  # 平台无关（游戏逻辑）
-```
-
-## 构建
-
-```bash
-# codegen（全量）
-python pipeline/cli.py codegen all
-
-# 部署（游戏目录）
-python pipeline/cli.py deploy
-
-# 字节比对
-python pipeline/cli.py match
-```
-
-## 纪律
-
-- **annotation=真值源**（git 版控）——IDB=派生物（可重建）
-- **病灶层检查**（动手前）——消费者读哪个文件/声明
-- **验证前全链**（apply→export→codegen→probe）
-- **衰退分析**（先分析后回退）——修复优先
+- **平行手写层已全部退役**（phase2 overlay / manual / src_fake / src_error / stubs）——修复只走 annotation 层，禁直改 pal3/src（codegen 覆盖）
+- **KEYCASE 门**：在用 JSON 十六进制字面量一律小写规范形（check 强制）
+- **status 生命周期**：活基线/台账入白名单跟踪；运行输出→`pipeline/_logs/`；一次性调查→`data/status/archive/`
+- `*.obj` 与编译实验残物不入库（.gitignore 在册）

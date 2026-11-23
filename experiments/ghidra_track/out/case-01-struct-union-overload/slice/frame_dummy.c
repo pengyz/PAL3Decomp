@@ -1,0 +1,8 @@
+
+void frame_dummy(void)
+
+{
+  register_tm_clones();
+  return;
+}
+

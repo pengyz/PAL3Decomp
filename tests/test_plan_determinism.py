@@ -21,7 +21,7 @@ from ghidra_track.plan_to_changeset import norm_key_addr, plan_to_changesets
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # brief 逐字 fixture 路径（锚到仓库根，禁依赖 cwd）
-_ANN = os.path.join(_ROOT, 'ghidra_track', 'fixture', 'cases',
+_ANN = os.path.join(_ROOT, 'experiments', 'ghidra_track', 'fixture', 'cases',
                     'case-01-struct-union-overload', 'annotations')
 
 
