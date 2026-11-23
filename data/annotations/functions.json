@@ -3043,8 +3043,8 @@
    "cc": "thiscall",
    "params": [
     {
-     "type": "_WORD *pPos",
-     "name": null
+     "type": "void *",
+     "name": "pPos"
     },
     {
      "type": "unsigned int",
@@ -3058,7 +3058,7 @@
    "varargs": false,
    "pending": false
   },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
+  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建 | [params[0] 对抗复核修正 20261123] _WORD*→void* (同族 PtrVec_InsertN 20261122 widening 先例同操作同理由): 调用点 int*/char* → _WORD* C2664 两处(Actor.cpp:2607/UIBigMap.cpp:1885)。机器 ABI 终考(对抗复核 87 取证): 0x53A6C0 = 16B 向量子对象 Insert_word(this=容器{begin/end/cap @+4/+8/+C}, 栈参[迭代器 pPos, 数量 nCount, 源指针 pVal], ret 0xC)——IDB 类型缺第 3 栈参(截断类型吞掉源指针形参), params[0] 类型宽窄是 this 槽误标首参的类型选择(Stage B 终局: PtrVec owner 类+4 形参 ABI 补齐, 挂账)"
  },
  "0x0053a8d0": {
   "name": "PtrVec_InsertN_elem",
