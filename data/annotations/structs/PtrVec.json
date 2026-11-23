@@ -1,0 +1,75 @@
+{
+ "name": "PtrVec",
+ "binary_size": 16,
+ "known_members": {
+  "0x0": {
+   "name": "m_bInitFlag",
+   "type": "unsigned char",
+   "source": "[布局重建 20261123] InitAction@0x53A060 写 [this]=1B(mov [eax],dl)——首字节 init 标记",
+   "evidence_level": "verified"
+  },
+  "0x4": {
+   "name": "m_begin",
+   "type": "void *",
+   "source": "[布局重建 20261123] Insert_word 族机器码 [edi+4]=begin(拷贝边界起点)",
+   "evidence_level": "verified"
+  },
+  "0x8": {
+   "name": "m_end",
+   "type": "void *",
+   "source": "[布局重建 20261123] Insert_word 族机器码 [edi+8]=end(迭代器上界)",
+   "evidence_level": "verified"
+  },
+  "0xc": {
+   "name": "m_cap",
+   "type": "void *",
+   "source": "[布局重建 20261123] Insert_word 族机器码 [edi+0xC]=cap(容量边界)",
+   "evidence_level": "verified"
+  }
+ },
+ "methods": {
+  "0x0053a060": {
+   "name": "InitAction",
+   "source": "[收编 20261123] 布局铁证: mov eax,ecx(this=目标)+mov ecx,[esp+4](栈参=源指针)+mov dl,[ecx]+mov [eax],dl(拷贝源首字节)+清 [this+4/8/C]=0——布局{byte@0, dword@4/8/C}与 Insert_word 族容器{+4 begin,+8 end,+C cap}同构; 调用点 lea ecx,局部×3(BuildCollisionMesh 三个局部 PtrVec 实例 init)",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "_BYTE *",
+      "name": "pSrc"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0053a6c0": {
+   "name": "Insert_word",
+   "source": "[收编 20261123] 机器 ABI: this=16B 容器+栈参[迭代器 pPos(begin 起), 数量 nCount, 源指针 pVal], ret 0xC; 体访问 [edi+4/8/+C]=begin/end/cap 三元组(edi=ecx=this); 调用点 2 处(Actor BuildCollisionMesh/UIBigMap SetElementVisible)全 lea ecx,子对象+push×3 形",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "_WORD *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "_WORD *",
+      "name": "pPos"
+     },
+     {
+      "type": "unsigned int",
+      "name": "nCount"
+     },
+     {
+      "type": "const _WORD *",
+      "name": "pVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   }
+  }
+ },
+ "_doc": "PtrVec = 16B 向量子对象容器类(布局 {byte init标记@0? + begin/end/cap 三元组@4/8/C})——对抗复核 87 取证(族内五员 ret 0xC 同构+容器三元组+无 vtable)+InitAction 布局同构实证。Stage B 终局战役载体(复核报告 Stage B 设计)。"
+}

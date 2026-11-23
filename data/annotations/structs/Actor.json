@@ -2838,23 +2838,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(IterateAllocBuffer): int(char,int); 原注解无"
   },
-  "0x0053a060": {
-   "name": "InitAction",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "_BYTE *",
-      "name": "pActionType"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
-  },
   "0x0053a080": {
    "name": "GetActionArrayEnd",
    "evidence_level": "unverified",
@@ -3184,30 +3167,6 @@
      {
       "type": "char *",
       "name": "pszBuf2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053a6c0": {
-   "name": "ActVec_Insert_word",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "_WORD *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "_WORD *",
-      "name": "p_WORD"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwVal"
-     },
-     {
-      "type": "_WORD *",
-      "name": "p_WORD2"
      }
     ],
     "varargs": false,

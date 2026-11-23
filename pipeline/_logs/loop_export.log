@@ -1,9 +1,9 @@
 导出产物 vs 注解 一致性校验（[t4-DECLARED-EXCEPTION] 的透传字段）
 ========================================================================
-  两侧都有 struct: 862   仅导出侧: 443   仅注解侧: 63
+  两侧都有 struct: 863   仅导出侧: 443   仅注解侧: 63
   vtables  不一致: 0
   methods  不一致: 0
-  _variants 键不一致: 849  （**仅提示**：两侧表示不同，不参与失败判定）
+  _variants 键不一致: 850  （**仅提示**：两侧表示不同，不参与失败判定）
     [_variants] ARC_ArcBrief, ARC_ArcHeader, ARC_ArcLocaleRole, ARC_ArcMsic, ARC_ComboAttack, ARC_FightItem, ARC_FightSkill, ARC_Inventory, ARC_MonsterStar, ARC_OutFile …
 
 ✅ 一致：导出产物中这些字段与注解**逐字段等值**（与 export_full.py 头部自述的 761/761 相符）
