@@ -2964,23 +2964,6 @@
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
- "0x0053b890": {
-  "name": "SetCurrentAction",
-  "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_curact/m_actarray_begin/type/m_fActionAssignParam（动作数组域 ✓）④Actor（33 命中 0 未解析，**最强证据面**）；返回 `&this->m_actarray_type` ⇒ char* ✓ 与签名一致；名 SetCurrentAction 与访问域相符。",
-  "sig_model": {
-   "return": "char *",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "int",
-     "name": "nActionId"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
  "0x005309a0": {
   "name": "ResetTransformState",
   "source_note": "[试点 2026-10-20·签名核验] ③成员访问=m_InnerActor/m_dwMatMsg/m_fAngleDeg/m_fBlendWeight/m_bChangedMat（变换/材质域 ✓）②被调用者=CheckDistance/SetMaterialName/lstrcpyA ④Actor（21 命中 0 未解析）；返回 result:int ✓；名与访问域相符。",
