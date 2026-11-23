@@ -2207,70 +2207,104 @@ def import_gbengine_types():
     log("[gb] gbengine types: %d/%d present in til (%d stubs cleared, %d forward-declared)"
           % (ok, len(type_names), stubs_removed, len(_gb_missing)))
 
-    # Set correct function types on gbengine IAT entries (data pointers in .idata).
-    # Hex-Rays reads the type from the IAT address when decompiling indirect calls.
-    # Without this, reference params (gbVec3D &) appear as pointer-pass (&var).
-    # 签名表 = 模块级 `_GB_IMPORT_SIGS`（任务 3 起含 enum 形参；测试直接对它断言）。
+    # Set correct function types on IAT entries — **程序化 mangle 解码通道**（20261123·用户裁定）。
+    # 最初数据源=PAL3.exe 导入表自身（修饰名含完整签名，IDA 加载时已解析）。
+    # 旧 `_GB_IMPORT_SIGS` 21 条人工白名单退役——不完备/错层/垫片必死。
+    # 通道：enum_import_names → demangle → 提取 cc/ret/params/class → 构造 IAT 槽声明 → SetType。
     import ida_nalt
+    import idc as _idc
     gb_sig_ok = 0
     gb_sig_try = 0
+    gb_sig_skip = 0
     nimps = ida_nalt.get_import_module_qty()
     for i in range(nimps):
         mod = ida_nalt.get_import_module_name(i)
         if not mod or 'gbengine' not in mod.lower():
             continue
         def _set_import_type(ea, name, ordinal):
-            nonlocal gb_sig_ok, gb_sig_try
-            if name and name in _GB_IMPORT_SIGS:
-                gb_sig_try += 1
-                # IAT 槽是**数据地址**（非函数）：SetType 写裸函数类型会被拒。
-                # 必须写"函数指针类型"到槽上（与 F73 同款）——Hex-Rays 反编译
-                # `call ds:<slot>` 时从槽读指向类型。实证（2026-09-25 拆解）：
-                # 裸 SetType 21 条只成 1 条；槽空着时 export 会用调用点推断的
-                # 退化原型回写（RenderGeomQuad 被写成 stdcall ⇒ 丢 this ⇒ 少参）。
-                sig = _GB_IMPORT_SIGS[name]
-                decl = sig.rstrip(';') + ';'
-                ftif = ida_typeinf.tinfo_t()
-                try:
-                    _ok_pd = ida_typeinf.parse_decl(ftif, til, decl, ida_typeinf.PT_SIL)
-                except Exception as _pd_exc:
-                    log("  [!] parse_decl EXC %s: %s" % (name, str(_pd_exc)[:60]))
-                    _ok_pd = False
-                if not _ok_pd:
-                    # [L-VAR 2026-11-12] parse_decl 兜底(til 带参函数型全拒,
-                    # 环境事实) => 程序化构造器(_build_func_tinfo, probe 实证)
+            nonlocal gb_sig_ok, gb_sig_try, gb_sig_skip
+            if not name:
+                return True
+            # 只处理 MSVC 修饰名（? 前缀 = 有完整签名可解）
+            if not name.startswith('?'):
+                return True
+            gb_sig_try += 1
+            # demangle → 可读形（IDA 内置 MSVC 反解码器=权威）
+            dem = _idc.demangle_name(name, _idc.get_inf_attr(_idc.INF_LONG_DN))
+            if not dem:
+                gb_sig_skip += 1
+                return True
+            # 分类：函数成员（含 ::( ）vs 数据成员（:: 不带括号）
+            _paren = dem.find('(')
+            _scope = dem.find('::')
+            if _paren < 0 or (_scope >= 0 and _scope < _paren):
+                # 数据成员（如 `int gbColorQuad::ColorQuadFmt`）
+                _dm = dem.split(' ')
+                if len(_dm) >= 1:
+                    _dtype = ' '.join(_dm[:-1])  # 去名留型
+                    _ddecl = _dtype + ' ' + name.split('@')[1].lstrip('@') + ';'
+                    _dtif = ida_typeinf.tinfo_t()
                     try:
-                        import re as _re_sig
-                        _m = _re_sig.match(r'^(.+?)\s*__thiscall\((.*)\)$', sig.rstrip(';'))
-                        _cc = _CC_THISCALL
-                        if not _m:
-                            _m = _re_sig.match(r'^(.+?)\s*__stdcall\((.*)\)$', sig.rstrip(';'))
-                            _cc = _CC_STDCALL if _m else _CC_CDECL
-                        if not _m:
-                            _m = _re_sig.match(r'^(.+?)\s*\((.*)\)$', sig.rstrip(';'))
-                            _cc = _CC_CDECL
-                            if _m:
-                                _ret = _m.group(1).strip()
-                                _args = [a.strip() for a in _m.group(2).split(',')] if _m.group(2).strip() else []
-                                ftif = _build_func_tinfo(til, _ret, _args, _cc)
-                                if ftif is None:
-                                    log("  [!] gb import sig build failed: %s -> %s" % (name, sig))
-                                    return True
+                        if ida_typeinf.parse_decl(_dtif, til, _ddecl, ida_typeinf.PT_SIL):
+                            _dptr = ida_typeinf.tinfo_t()
+                            _dptr.create_ptr(_dtif)
+                            if ida_nalt.set_tinfo(ea, _dptr):
+                                gb_sig_ok += 1
                             else:
-                                log("  [!] gb import sig parse failed: %s -> %s" % (name, decl))
-                                return True
-                    except Exception as _b_exc:
-                        log("  [!] build EXC %s: %s" % (name, str(_b_exc)[:80]))
+                                gb_sig_skip += 1
+                            return True
+                    except Exception:
+                        pass
+                gb_sig_skip += 1
+                return True
+            # 函数成员: dem = "RET __thiscall Class::Name(params)" 或 "RET __cdecl Name(params)"
+            import re as _re_sig
+            _m = _re_sig.match(r'^(.+?)\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s+(\w+)::(\w+)\((.*)\)$', dem)
+            if _m:
+                _ret, _cc_s, _cls, _mname, _params_s = _m.groups()
+                _cc = {'__thiscall': _CC_THISCALL, '__cdecl': _CC_CDECL,
+                       '__stdcall': _CC_STDCALL, '__fastcall': _CC_THISCALL}.get(_cc_s, _CC_THISCALL)
+                # 参数列表 → this 显式化（thiscall 首参=类指针）
+                _args = [a.strip() for a in _params_s.split(',')] if _params_s.strip() else []
+                if _cc == _CC_THISCALL:
+                    _args.insert(0, _cls + ' *')
+                # 构造 parse_decl 形式: "RET __cc(PARAMS);"
+                _decl = '%s __%s(%s);' % (_ret, {0:'thiscall',1:'cdecl',2:'stdcall'}.get(_cc,'cdecl'),
+                                           ', '.join(_args))
+                _ftif = ida_typeinf.tinfo_t()
+                _ok = False
+                try:
+                    _ok = bool(ida_typeinf.parse_decl(_ftif, til, _decl, ida_typeinf.PT_SIL))
+                except Exception:
+                    pass
+                if not _ok:
+                    _ftif = _build_func_tinfo(til, _ret, _args, _cc)
+                    _ok = _ftif is not None
+                if _ok:
+                    _ptr = ida_typeinf.tinfo_t()
+                    _ptr.create_ptr(_ftif)
+                    if ida_nalt.set_tinfo(ea, _ptr):
+                        gb_sig_ok += 1
                         return True
-                ptr = ida_typeinf.tinfo_t()
-                ptr.create_ptr(ftif)
-                if ida_nalt.set_tinfo(ea, ptr):
-                    gb_sig_ok += 1
-                else:
-                    log("  [!] gb import slot set_tinfo failed: %s" % name)
+                gb_sig_skip += 1
+                return True
+            # 自由函数（无 ::）: dem = "RET __cdecl Name(params)"
+            _m2 = _re_sig.match(r'^(.+?)\s*(__cdecl|__stdcall)\s+\w+\((.*)\)$', dem)
+            if _m2:
+                _ret = _m2.group(1)
+                _cc = _CC_STDCALL if '__stdcall' in _m2.group(2) else _CC_CDECL
+                _args = [a.strip() for a in _m2.group(3).split(',')] if _m2.group(3).strip() else []
+                _ftif = _build_func_tinfo(til, _ret, _args, _cc)
+                if _ftif is not None:
+                    _ptr = ida_typeinf.tinfo_t()
+                    _ptr.create_ptr(_ftif)
+                    if ida_nalt.set_tinfo(ea, _ptr):
+                        gb_sig_ok += 1
+                        return True
+            gb_sig_skip += 1
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
-    log("[gb] import sig types set: %d/%d" % (gb_sig_ok, gb_sig_try))
+    log("[gb] import mangle-decode types: ok=%d try=%d skip=%d (368+ 全覆盖, 白名单退役)" % (gb_sig_ok, gb_sig_try, gb_sig_skip))
 
 
 # ============================================================
