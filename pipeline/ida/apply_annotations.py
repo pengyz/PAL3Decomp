@@ -3811,6 +3811,45 @@ def apply_annotations():
     except Exception as _e_slot:
         log("[!] import slot signature pass raised: %s" % _e_slot)
 
+
+    # --- [字面量池类型注入 20261124] literal_pool.json → IDB SetType ---
+    # hexrays 从 IDB 类型自动正确渲染(字符串→char[]引用, float→浮点常量)
+    # 零 codegen 替换/零 dump/零中间文件——类型从 IDB 一路流到最终产物
+    def _apply_literal_pool_types():
+        """literal_pool.json(标注: addr+type) → apply_tinfo + create_strlit 到 IDB。"""
+        import json as _json
+        _ann_path = os.path.join(PROJECT_ROOT, 'data', 'annotations', 'literal_pool.json')
+        if not os.path.exists(_ann_path):
+            log("[lit-pool] literal_pool.json 不存在, 跳过")
+            return
+        _ann = _json.load(open(_ann_path, encoding='utf-8'))
+        _entries = _ann.get('entries') or {}
+        if not _entries:
+            return
+        _ok, _skip = 0, 0
+        for _addr_s, _info in _entries.items():
+            try:
+                _va = int(_addr_s, 16)
+            except ValueError:
+                _skip += 1; continue
+            _typ = _info.get('type', 'char[4]')
+            _tif = ida_typeinf.tinfo_t()
+            _decl = _typ + ';'
+            try:
+                if not ida_typeinf.parse_decl(_tif, til, _decl, ida_typeinf.PT_SIL):
+                    _skip += 1; continue
+            except Exception:
+                _skip += 1; continue
+            ida_typeinf.apply_tinfo(_va, _tif, ida_typeinf.TINFO_DEFINITE)
+            if _typ.startswith('char'):
+                import re as _re_sz
+                _m_sz = _re_sz.match(r'char\[(\d+)\]', _typ)
+                _sz = int(_m_sz.group(1)) if _m_sz else 4
+                ida_bytes.create_strlit(_va, _sz, ida_nalt.STRTYPE_C)
+            _ok += 1
+        log("[lit-pool] literal pool types: ok=%d skip=%d (total=%d)" % (_ok, _skip, len(_entries)))
+
+    _apply_literal_pool_types()
     idc.save_database(idc.get_idb_path(), 0)
     log("[*] Done. Database saved.")
 
