@@ -910,8 +910,31 @@ def check(struct_dir=None):
     _run_n16_schema_gate(errors, warnings)
     _run_n17_addr_unique_gate(errors, warnings)
     _run_keycase_gate(errors, warnings)
+    _run_pool_global_mutex_gate(errors, warnings)
     _run_type_resolve_gate(errors, warnings)
     return errors, warnings
+
+
+def _run_pool_global_mutex_gate(errors, warnings):
+    """[POOL-GLOBAL 互斥门 20261124·用户裁定] literal_pool.json 与 globals.json 互斥。
+    字面量不是全局变量。同一地址不得同时出现在两个文件——双重注解=类型源不确定。
+    违规=硬错。撤 globals 侧条目（字面量归 literal_pool）。"""
+    _lp_path = os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'literal_pool.json')
+    _g_path = os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'globals.json')
+    if not os.path.exists(_lp_path) or not os.path.exists(_g_path):
+        return
+    try:
+        _lp = json.load(open(_lp_path, encoding='utf-8'))
+        _g = json.load(open(_g_path, encoding='utf-8'))
+    except Exception:
+        return
+    _lp_addrs = set(_lp.get('entries', {}).keys())
+    _overlap = _lp_addrs & set(_g.keys())
+    for _k in sorted(_overlap):
+        errors.append(
+            'POOL-GLOBAL-MUTEX: 0x%s 同时存在于 literal_pool.json 和 globals.json'
+            '——字面量不是全局变量, 互斥。撤 globals 侧条目（字面量归 literal_pool）'
+            % _k.replace('0x', ''))
 
 
 def _run_type_resolve_gate(errors, warnings):
