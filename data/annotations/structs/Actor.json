@@ -3019,7 +3019,9 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只",
+   "owner": "Actor",
+   "source": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只 | [owner 声明 20261123] functions.json 自由条目不被 structs 合并覆盖(合并条件 owner==sname) ⇒ apply [6] _cls=None ⇒ this 注入/类限定双拼跳过 ⇒ IDB 类型无 this ⇒ hexrays 渲染丢 ecx 接收者 ⇒ G7 拒 ⇒ 运行期 cdecl 调用破损(free_functions.cpp:10521 char* SetCurrentAction(int) 编译绿行为崩实证)。owner=Actor 声明(归属 A 级证据在册: functions.json source_note 成员访问面 33 命中 0 未解析)⇒ 合并覆盖链恢复"
   },
   "0x0053bae0": {
    "name": "ActArray_Assign",
