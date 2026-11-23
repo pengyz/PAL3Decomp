@@ -18,29 +18,29 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1317,
-  "matched": 1188,
-  "unmatched": 264,
-  "match_L1": 181,
+  "symbols": 1358,
+  "matched": 1219,
+  "unmatched": 276,
+  "match_L1": 185,
   "match_L1_semantic": 13,
-  "partial": 873,
+  "partial": 898,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 134,
-  "reloc_total": 9043,
-  "reloc_ok": 2294,
+  "unresolved_synth": 136,
+  "reloc_total": 9764,
+  "reloc_ok": 2410,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 6749,
-  "rsite_total": 9043,
-  "rsite_unaligned": 8438,
-  "l1_bytes": 8331,
-  "l1_hidden_reloc_bytes": 1730,
-  "l1_reloc_covered_bytes": 2420,
-  "rsite_ok": 100,
-  "rsite_class_ok": 458,
-  "rsite_unresolved": 10,
+  "reloc_unresolved": 7354,
+  "rsite_total": 9764,
+  "rsite_unaligned": 9155,
+  "l1_bytes": 8496,
+  "l1_hidden_reloc_bytes": 1742,
+  "l1_reloc_covered_bytes": 2436,
+  "rsite_ok": 102,
+  "rsite_class_ok": 459,
+  "rsite_unresolved": 11,
   "rsite_unresolved_samples": [
    {
     "va": "0x0051b160",
@@ -111,6 +111,13 @@
     "tgt": "0x005708cc",
     "exp": "sub_5708CC",
     "sym": "??_7SceneObjParam@@6B@"
+   },
+   {
+    "va": "0x004461f0",
+    "off": 4,
+    "tgt": "0x0043b4d0",
+    "exp": "sub_43B4D0",
+    "sym": "??1UIScenePanel@@UAE@XZ"
    },
    {
     "va": "0x005279d0",
@@ -267,8 +274,8 @@
   ],
   "carrier": {
    "expected": 204,
-   "paired": 91,
-   "unpaired": 113,
+   "paired": 93,
+   "unpaired": 111,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -5862,6 +5869,177 @@
    "size": 1290
   },
   {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?Reset@SystemUI@@QAEXXZ",
+   "name": "SystemUI::Reset(void)",
+   "va": "0x0041f6f0",
+   "status": "partial",
+   "match_pct": 7.9,
+   "size": 267
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?Close@SystemUI@@QAEXXZ",
+   "name": "SystemUI::Close(void)",
+   "va": "0x0041f800",
+   "status": "partial",
+   "match_pct": 7.3,
+   "size": 177
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?ProcessNoteMap@SystemUI@@QAEHH@Z",
+   "name": "SystemUI::ProcessNoteMap(int)",
+   "va": "0x004200a0",
+   "status": "partial",
+   "match_pct": 34.8,
+   "size": 112
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?RenderWithStack@SystemUI@@QAEHPAX@Z",
+   "name": "SystemUI::RenderWithStack(void *)",
+   "va": "0x00420110",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 62
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?UIUpdate@SystemUI@@QAENNN@Z",
+   "name": "SystemUI::UIUpdate(double,double)",
+   "va": "0x00420150",
+   "status": "partial",
+   "match_pct": 12.9,
+   "size": 163
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?GetNoteItemData@SystemUI@@QAEHPAH@Z",
+   "name": "SystemUI::GetNoteItemData(int *)",
+   "va": "0x00421a40",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 65
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "??1SystemUI@@UAE@XZ",
+   "name": "SystemUI::~SystemUI(void)",
+   "va": "0x004a7690",
+   "status": "partial",
+   "match_pct": 26.4,
+   "size": 1441
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "??_GSystemUI@@UAEPAXI@Z",
+   "name": "SystemUI::`scalar deleting destructor'(uint)",
+   "va": "0x004a7670",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?LayoutWidgets@SystemUI@@QAEHXZ",
+   "name": "SystemUI::LayoutWidgets(void)",
+   "va": "0x004a7c40",
+   "status": "partial",
+   "match_pct": 19.4,
+   "size": 1281
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?ShowPage@SystemUI@@QAEHXZ",
+   "name": "SystemUI::ShowPage(void)",
+   "va": "0x004a8150",
+   "status": "partial",
+   "match_pct": 41.1,
+   "size": 219
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?CreateNoteEntry@SystemUI@@QAEDHHHDHH_E@Z",
+   "name": "SystemUI::CreateNoteEntry(int,int,int,char,int,int,uchar)",
+   "va": "0x004a8260",
+   "status": "partial",
+   "match_pct": 11.1,
+   "size": 1293
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?ReplaceTextures@SystemUI@@QAEXXZ",
+   "name": "SystemUI::ReplaceTextures(void)",
+   "va": "0x004ac8b0",
+   "status": "partial",
+   "match_pct": 15.1,
+   "size": 836
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?InitSlotEffects@SystemUI@@QAEHH@Z",
+   "name": "SystemUI::InitSlotEffects(int)",
+   "va": "0x004acc10",
+   "status": "partial",
+   "match_pct": 20.4,
+   "size": 460
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?UpdateNoteScroll@SystemUI@@QAEHXZ",
+   "name": "SystemUI::UpdateNoteScroll(void)",
+   "va": "0x004acde0",
+   "status": "partial",
+   "match_pct": 29.6,
+   "size": 423
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?UpdateNoteScrollAlt@SystemUI@@QAEHXZ",
+   "name": "SystemUI::UpdateNoteScrollAlt(void)",
+   "va": "0x004acf90",
+   "status": "partial",
+   "match_pct": 31.7,
+   "size": 420
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?Render@SystemUI@@UAEXXZ",
+   "name": "SystemUI::Render(void)",
+   "va": "0x004ad140",
+   "status": "partial",
+   "match_pct": 20.4,
+   "size": 1022
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?Update@SystemUI@@UAEHHH@Z",
+   "name": "SystemUI::Update(int,int)",
+   "va": "0x004ad540",
+   "status": "partial",
+   "match_pct": 19.9,
+   "size": 1770
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?OnMessage@SystemUI@@UAEHHIH@Z",
+   "name": "SystemUI::OnMessage(int,uint,int)",
+   "va": "0x004adc30",
+   "status": "partial",
+   "match_pct": 28.3,
+   "size": 5548
+  },
+  {
+   "file": "pal3/src/Misc/SystemUI.cpp",
+   "symbol": "?UpdateParticles@SystemUI@@QAEHXZ",
+   "name": "SystemUI::UpdateParticles(void)",
+   "va": "0x0051f130",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 120
+  },
+  {
    "file": "pal3/src/Misc/TaskBookUI.cpp",
    "symbol": "??1TaskBookUI@@UAE@XZ",
    "name": "TaskBookUI::~TaskBookUI(void)",
@@ -6328,6 +6506,96 @@
    "status": "partial",
    "match_pct": 30.3,
    "size": 155
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?Destroy2@UICaption@@QAEXXZ",
+   "name": "UICaption::Destroy2(void)",
+   "va": "0x0043a810",
+   "status": "partial",
+   "match_pct": 17.4,
+   "size": 92
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?Destroy@UICaption@@UAEHXZ",
+   "name": "UICaption::Destroy(void)",
+   "va": "0x0043ab00",
+   "status": "partial",
+   "match_pct": 40.0,
+   "size": 20
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?SetEnable@UICaption@@QAEXHH@Z",
+   "name": "UICaption::SetEnable(int,int)",
+   "va": "0x004427c0",
+   "status": "partial",
+   "match_pct": 13.7,
+   "size": 205
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyPanel@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyPanel(void)",
+   "va": "0x004461f0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?_ArraySlots@UICaption@@UAEPAVCCBAIWindow@@H@Z",
+   "name": "UICaption::_ArraySlots",
+   "va": "0x0044ab40",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 8
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?DestroyAll@UICaption@@QAEXXZ",
+   "name": "UICaption::DestroyAll(void)",
+   "va": "0x0044bda0",
+   "status": "partial",
+   "match_pct": 16.8,
+   "size": 95
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?LayoutDefault@UICaption@@QAEXXZ",
+   "name": "UICaption::LayoutDefault(void)",
+   "va": "0x00450320",
+   "status": "partial",
+   "match_pct": 19.1,
+   "size": 68
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?OnEvent@UICaption@@QAEXH@Z",
+   "name": "UICaption::OnEvent(int)",
+   "va": "0x004503c0",
+   "status": "partial",
+   "match_pct": 0.0,
+   "size": 4
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?RenderContent@UICaption@@QAEHXZ",
+   "name": "UICaption::RenderContent(void)",
+   "va": "0x00450440",
+   "status": "partial",
+   "match_pct": 8.6,
+   "size": 266
+  },
+  {
+   "file": "pal3/src/Misc/UICaption.cpp",
+   "symbol": "?IsOnScreen@UICaption@@QAEHHH@Z",
+   "name": "UICaption::IsOnScreen(int,int)",
+   "va": "0x00450560",
+   "status": "partial",
+   "match_pct": 42.5,
+   "size": 226
   },
   {
    "file": "pal3/src/Misc/UICoverFrm.cpp",
@@ -10438,6 +10706,21 @@
    30
   ],
   [
+   "SystemUI::GetNoteItemData(int *)",
+   4332096,
+   65
+  ],
+  [
+   "SystemUI::RenderWithStack(void *)",
+   4325648,
+   62
+  ],
+  [
+   "SystemUI::`scalar deleting destructor'(uint)",
+   4879984,
+   30
+  ],
+  [
    "TaskBookUI::Reset(void)",
    4547104,
    84
@@ -10486,6 +10769,11 @@
    "UIAnimateCtrlEX::`scalar deleting destructor'(uint)",
    4532272,
    30
+  ],
+  [
+   "UICaption::DestroyPanel(void)",
+   4481520,
+   8
   ],
   [
    "UICoverFrm::SetCoverTexture(int)",

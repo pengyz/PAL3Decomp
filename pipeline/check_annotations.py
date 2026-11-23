@@ -960,7 +960,7 @@ def _run_keycase_gate(errors, warnings):
                 'canonical_contract_baseline.json', 'check_baseline_errors.json',
                 'dossier_pending.json', 'n12_grandfathered.json',
                 'n22_pair_closure.json', 's4_baseline.json',
-                'true_vtable_map_20261114.json',
+                'true_vtable_map.json',
                 'iat_mangle_map.json'):
         _p = os.path.join(_PROJECT_ROOT, 'data', 'status', _nm)
         if os.path.exists(_p):
@@ -1195,7 +1195,7 @@ def _run_n15_ctor_gate(errors, warnings):
     逐例裁定清零后升硬失败(房规)。"""
     try:
         _reg_p = os.path.join(_PROJECT_ROOT, 'data', 'status',
-                              'ctor_evidence_registry_20261117.json')
+                              'ctor_evidence_registry.json')
         _reg = set(json.load(open(_reg_p, encoding='utf-8')).get('classes') or {})
         _ida_p = os.path.join(_PROJECT_ROOT, 'asm', 'pal3', 'ida_structs.json')
         _ida = json.load(open(_ida_p, encoding='utf-8'))
@@ -1639,7 +1639,7 @@ def check_canonical_contract():
             cur_viol['V1:%s:%d' % (cls, len(vts))] = '%s: %d表但多态基数%d(单链多表=邻接派生表误挂/普查产物, MSVC每多态子对象恰1表)' % (
                 cls, len(vts), poly)
         if len(vts) >= 2:
-            _tvm = os.path.join(root, 'data', 'status', 'true_vtable_map_20261114.json')
+            _tvm = os.path.join(root, 'data', 'status', 'true_vtable_map.json')
             _ev = set()
             try:
                 for _r5 in json.load(open(_tvm, encoding='utf-8')):
