@@ -1500,6 +1500,28 @@ def _run_inner(code, ctx):
     #   数组时恢复「取首元素」原意 ⇒ 两型皆忠实。
     code = re.sub(r'\(&([A-Za-z_][\w.>\[\]()-]*)\)\[0\]', r'\1[0]', code)
 
+    # P-ACTOR-4 v2 (20261123) hexrays 数组基址赋值渲染伪影——C2440 数组名赋值:
+    #   `*(_DWORD*)&槽 = ARRNAME;`(ARRNAME 为 decl 数组名)——C 数组不可赋值
+    #   (C2106/C2440), 真语义=取数组首地址存槽(Actor.cpp 1911 pnCount=int[44]/
+    #   2001 pSrc=ulong[7] 实证)。
+    #   v1 教训: 盲加 (unsigned long) 对收 char*/int* 的槽产新 C2440×N(LHS
+    #   类型不可知)。v2: RHS 改 `= (int)&NAME[0];`(取首元素地址→(int) 显式
+    #   转换, C++ 合法, 类型自动适配任意 LHS 槽; decl 表驱动只对真数组名替换,
+    #   标量名不误伤)。误伤残留: 合法标量赋值若同名 decl 数组——文本层不可
+    #   分(低概率: 同名 decl 数组+同名标量并存)。
+    # v3 (20261123 收敛): 仅匹配 DWORD 槽 LHS 形态(*(_DWORD*)&X[N] = ARR;)
+    #   ——char* 槽的 = ARR 本来合法(数组退化), 盲改反而炸(反向 C2440 教训);
+    #   cast 用 (DWORD)&ARR[0](取首元素地址→DWORD 显式转换, C++ 合法)
+    _arr_decls = {}
+    for _m4 in re.finditer(
+            r'\b\w+\s+([A-Za-z_]\w*)\s*\[\d+\]\s*(?:;|//)',
+            code):
+        _arr_decls[_m4.group(1)] = True
+    for _an4 in _arr_decls:
+        code = re.sub(
+            r'(\*\(_DWORD \*\)&\w+\[\d+\]) = %s;' % re.escape(_an4),
+            r'\1 = (DWORD)&%s[0];' % _an4, code)
+
     # P-A16 (2026-11-10) 单点歼灭批次——13 个 1 错单元(影响面排序)
     # ①CEffModel: placement ctor return 变体(P-A13 return 形态)
     code = code.replace(

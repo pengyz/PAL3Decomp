@@ -71,5 +71,23 @@
    }
   }
  },
- "_doc": "PtrVec = 16B 向量子对象容器类(布局 {byte init标记@0? + begin/end/cap 三元组@4/8/C})——对抗复核 87 取证(族内五员 ret 0xC 同构+容器三元组+无 vtable)+InitAction 布局同构实证。Stage B 终局战役载体(复核报告 Stage B 设计)。"
+ "_doc": "PtrVec = 16B 向量子对象容器类(布局 {byte init标记@0? + begin/end/cap 三元组@4/8/C})——对抗复核 87 取证(族内五员 ret 0xC 同构+容器三元组+无 vtable)+InitAction 布局同构实证。Stage B 终局战役载体(复核报告 Stage B 设计)。",
+ "_naming_pending": {
+  "verdict": "命名待证据(20261123 裁定): 类名 PtrVec=推断名(复核示例+functions.json 20261020 通用化前缀延续, 零 PDB/字符串证据); 方法名 InitAction=历史归属残留(布局重建后 Action 语义基础消失); 复数 InitActions 拒绝(单容器实例 init 应单数)。业务语义(容器存的 word=路径点/动画帧/碰撞索引?)待调用语境数据内容考证后正名",
+  "evidence_gaps": [
+   "无 PDB 符号",
+   "无字符串证据",
+   "调用语境数据内容未考"
+  ],
+  "candidates": {
+   "类名": [
+    "ActVec(原名前缀, 动作向量语义)",
+    "PtrVec(现名, 元素类型语义——但元素是 _WORD 非指针, 名实矛盾)"
+   ],
+   "方法": [
+    "Insert_word(元素类型语义 ✓)",
+    "InitAction(历史名, Action 语义待考)"
+   ]
+  }
+ }
 }

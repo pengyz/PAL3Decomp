@@ -18,28 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1111,
-  "matched": 983,
-  "unmatched": 242,
-  "match_L1": 144,
+  "symbols": 1106,
+  "matched": 984,
+  "unmatched": 238,
+  "match_L1": 145,
   "match_L1_semantic": 13,
-  "partial": 727,
+  "partial": 725,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 112,
-  "reloc_total": 7443,
-  "reloc_ok": 1816,
+  "unresolved_synth": 114,
+  "reloc_total": 7417,
+  "reloc_ok": 1796,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5627,
-  "rsite_total": 7443,
-  "rsite_unaligned": 7019,
+  "reloc_unresolved": 5621,
+  "rsite_total": 7417,
+  "rsite_unaligned": 6994,
   "l1_bytes": 5965,
-  "l1_hidden_reloc_bytes": 1211,
-  "l1_reloc_covered_bytes": 1696,
+  "l1_hidden_reloc_bytes": 1208,
+  "l1_reloc_covered_bytes": 1692,
   "rsite_ok": 74,
-  "rsite_class_ok": 316,
+  "rsite_class_ok": 315,
   "rsite_unresolved": 7,
   "rsite_unresolved_samples": [
    {
@@ -214,7 +214,7 @@
     "sym": "??1UIProgressBar@@UAE@XZ"
    }
   ],
-  "rsite_ok_directname": 3,
+  "rsite_ok_directname": 2,
   "carrier_suspect_l1": [
    {
     "symbol": "??_GEffCallBackNode@@UAEPAXI@Z",
@@ -225,8 +225,8 @@
   "rsite_class_mismatch": 3,
   "carrier": {
    "expected": 204,
-   "paired": 69,
-   "unpaired": 135,
+   "paired": 71,
+   "unpaired": 133,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -380,7 +380,7 @@
    "name": "CCBAttackSequen::AdvanceStep(void)",
    "va": "0x004DBD40",
    "status": "partial",
-   "match_pct": 14.2,
+   "match_pct": 15.7,
    "size": 274
   },
   {
@@ -2148,24 +2148,6 @@
    "size": 25
   },
   {
-   "file": "pal3/src/GameBase/InputSystem.cpp",
-   "symbol": "?ProcessFrame@InputSystem@@QAEXPAD@Z",
-   "name": "InputSystem::ProcessFrame(char *)",
-   "va": "0x00410360",
-   "status": "partial",
-   "match_pct": 27.0,
-   "size": 204
-  },
-  {
-   "file": "pal3/src/GameBase/InputSystem.cpp",
-   "symbol": "?ProcessMouse@InputSystem@@SAXH@Z",
-   "name": "InputSystem::ProcessMouse(int)",
-   "va": "0x0041C540",
-   "status": "partial",
-   "match_pct": 14.5,
-   "size": 234
-  },
-  {
    "file": "pal3/src/GameBase/SoundSystem.cpp",
    "symbol": "?Init@SoundSystem@@QAEHXZ",
    "name": "SoundSystem::Init(void)",
@@ -2191,6 +2173,87 @@
    "status": "partial",
    "match_pct": 13.9,
    "size": 956
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?HandleKeyInput@ArcLocaleRole@@QAEHXZ",
+   "name": "ArcLocaleRole::HandleKeyInput(void)",
+   "va": "0x0047F930",
+   "status": "partial",
+   "match_pct": 61.0,
+   "size": 59
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?Release@ArcLocaleRole@@QAEHXZ",
+   "name": "ArcLocaleRole::Release(void)",
+   "va": "0x004A6C70",
+   "status": "partial",
+   "match_pct": 11.8,
+   "size": 34
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?IterateColors@ArcLocaleRole@@QAEHXZ",
+   "name": "ArcLocaleRole::IterateColors(void)",
+   "va": "0x004AF410",
+   "status": "partial",
+   "match_pct": 7.1,
+   "size": 56
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?CalcPosition@ArcLocaleRole@@QAEPAHPAH@Z",
+   "name": "ArcLocaleRole::CalcPosition(int *)",
+   "va": "0x004AFB60",
+   "status": "partial",
+   "match_pct": 6.4,
+   "size": 487
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?ParseLocaleData@ArcLocaleRole@@QAEIPAD0H@Z",
+   "name": "ArcLocaleRole::ParseLocaleData(char *,char *,int)",
+   "va": "0x004AFD80",
+   "status": "partial",
+   "match_pct": 8.6,
+   "size": 700
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?DispatchActive@ArcLocaleRole@@QAEHH@Z",
+   "name": "ArcLocaleRole::DispatchActive(int)",
+   "va": "0x005303C0",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 10
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?Destroy@ArcLocaleRole@@QAEHXZ",
+   "name": "ArcLocaleRole::Destroy(void)",
+   "va": "0x00535030",
+   "status": "partial",
+   "match_pct": 28.8,
+   "size": 132
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?GetScreenLeft@ArcLocaleRole@@QAEXN@Z",
+   "name": "ArcLocaleRole::GetScreenLeft(double)",
+   "va": "0x005350C0",
+   "status": "partial",
+   "match_pct": 26.5,
+   "size": 83
+  },
+  {
+   "file": "pal3/src/Misc/ArcLocaleRole.cpp",
+   "symbol": "?TransformPoint@ArcLocaleRole@@QAEPAXPAMMMM@Z",
+   "name": "ArcLocaleRole::TransformPoint(float *,float,float,float)",
+   "va": "0x00535FD0",
+   "status": "partial",
+   "match_pct": 5.7,
+   "size": 386
   },
   {
    "file": "pal3/src/Misc/ArcPastScene.cpp",
@@ -2913,15 +2976,6 @@
    "size": 3
   },
   {
-   "file": "pal3/src/Misc/CG_Entry.cpp",
-   "symbol": "?GetCGEntry@CG_Entry@@QAEPAV1@XZ",
-   "name": "CG_Entry::GetCGEntry(void)",
-   "va": "0x0042C920",
-   "status": "partial",
-   "match_pct": 0.0,
-   "size": 44
-  },
-  {
    "file": "pal3/src/Misc/CIniFile.cpp",
    "symbol": "?LoadData@CIniFile@@QAEDXZ",
    "name": "CIniFile::LoadData(void)",
@@ -3055,33 +3109,6 @@
    "status": "partial",
    "match_pct": 22.4,
    "size": 228
-  },
-  {
-   "file": "pal3/src/Misc/ComposeUI.cpp",
-   "symbol": "?RefreshRecipeList@ComposeUI@@QAEHH@Z",
-   "name": "ComposeUI::RefreshRecipeList(int)",
-   "va": "0x0047E030",
-   "status": "partial",
-   "match_pct": 22.7,
-   "size": 348
-  },
-  {
-   "file": "pal3/src/Misc/ComposeUI.cpp",
-   "symbol": "?ProcessFrame@ComposeUI@@QAEHH@Z",
-   "name": "ComposeUI::ProcessFrame(int)",
-   "va": "0x0047E190",
-   "status": "partial",
-   "match_pct": 45.1,
-   "size": 490
-  },
-  {
-   "file": "pal3/src/Misc/ComposeUI.cpp",
-   "symbol": "?ProcessChildItem@ComposeUI@@QAEHHPAH@Z",
-   "name": "ComposeUI::ProcessChildItem(int,int *)",
-   "va": "0x004A3730",
-   "status": "partial",
-   "match_pct": 38.1,
-   "size": 454
   },
   {
    "file": "pal3/src/Misc/DealData.cpp",
@@ -3525,6 +3552,42 @@
    "size": 28
   },
   {
+   "file": "pal3/src/Misc/PalScriptAnimTimer.cpp",
+   "symbol": "?IsAnimDone@PalScriptAnimTimer@@UAEHXZ",
+   "name": "PalScriptAnimTimer::IsAnimDone(void)",
+   "va": "0x00438100",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Misc/PalScriptAnimTimer.cpp",
+   "symbol": "?AccumulateTime@PalScriptAnimTimer@@UAEHHH@Z",
+   "name": "PalScriptAnimTimer::AccumulateTime",
+   "va": "0x00438E30",
+   "status": "partial",
+   "match_pct": 78.0,
+   "size": 91
+  },
+  {
+   "file": "pal3/src/Misc/PalScriptAnimTimer.cpp",
+   "symbol": "??1PalScriptAnimTimer@@UAE@XZ",
+   "name": "PalScriptAnimTimer::~PalScriptAnimTimer(void)",
+   "va": "0x00438EB0",
+   "status": "partial",
+   "match_pct": 15.2,
+   "size": 92
+  },
+  {
+   "file": "pal3/src/Misc/PalScriptAnimTimer.cpp",
+   "symbol": "??_GPalScriptAnimTimer@@UAEPAXI@Z",
+   "name": "PalScriptAnimTimer::`scalar deleting destructor'(uint)",
+   "va": "0x00438E90",
+   "status": "partial",
+   "match_pct": 36.7,
+   "size": 30
+  },
+  {
    "file": "pal3/src/Misc/PalScriptBlendTimer.cpp",
    "symbol": "?IsBlendComplete@PalScriptBlendTimer@@UAEHXZ",
    "name": "PalScriptBlendTimer::IsBlendComplete",
@@ -3545,10 +3608,10 @@
   {
    "file": "pal3/src/Misc/PalScriptFadeInTimer.cpp",
    "symbol": "?IsFadeDone@PalScriptFadeInTimer@@UAEHXZ",
-   "name": "PalScriptFadeInTimer::IsFadeDone",
+   "name": "PalScriptFadeInTimer::IsFadeDone(void)",
    "va": "0x00438530",
-   "status": "partial",
-   "match_pct": 9.1,
+   "status": "match_L1",
+   "match_pct": 100.0,
    "size": 11
   },
   {
@@ -4394,7 +4457,7 @@
    "name": "SkillUI::InitSkillUI(int)",
    "va": "0x005257B0",
    "status": "partial",
-   "match_pct": 14.3,
+   "match_pct": 15.2,
    "size": 2891
   },
   {
@@ -6626,7 +6689,7 @@
    "name": "Actor::UpdateFrame(float)",
    "va": "0x00531260",
    "status": "partial",
-   "match_pct": 21.0,
+   "match_pct": 19.9,
    "size": 2594
   },
   {
@@ -6637,6 +6700,15 @@
    "status": "partial",
    "match_pct": 100.0,
    "size": 5
+  },
+  {
+   "file": "pal3/src/Role/Actor.cpp",
+   "symbol": "?SetParam@Actor@@QAEHHH@Z",
+   "name": "Actor::SetParam(int,int)",
+   "va": "0x00536160",
+   "status": "partial",
+   "match_pct": 53.5,
+   "size": 144
   },
   {
    "file": "pal3/src/Role/Actor.cpp",
@@ -6745,6 +6817,15 @@
    "status": "partial",
    "match_pct": 33.3,
    "size": 15
+  },
+  {
+   "file": "pal3/src/Role/Actor.cpp",
+   "symbol": "?SetMaterialName@Actor@@QAEHPAXH@Z",
+   "name": "Actor::SetMaterialName(void *,int)",
+   "va": "0x00536AC0",
+   "status": "partial",
+   "match_pct": 7.2,
+   "size": 389
   },
   {
    "file": "pal3/src/Role/Actor.cpp",
@@ -6874,6 +6955,15 @@
   },
   {
    "file": "pal3/src/Role/Actor.cpp",
+   "symbol": "?LoadActions@Actor@@QAEHU_iobuf@@PAH@Z",
+   "name": "Actor::LoadActions(int,int *)",
+   "va": "0x00537770",
+   "status": "partial",
+   "match_pct": 16.0,
+   "size": 702
+  },
+  {
+   "file": "pal3/src/Role/Actor.cpp",
    "symbol": "?DoSceneTransition@Actor@@QAEPAU_iobuf@@NH@Z",
    "name": "Actor::DoSceneTransition(double,int)",
    "va": "0x00537A90",
@@ -6914,7 +7004,7 @@
    "name": "Actor::BuildCollisionMesh(int *)",
    "va": "0x00538FA0",
    "status": "partial",
-   "match_pct": 14.1,
+   "match_pct": 18.5,
    "size": 800
   },
   {
@@ -6932,7 +7022,7 @@
    "name": "Actor::AddActionByName(char const *,char const *,int)",
    "va": "0x00539540",
    "status": "partial",
-   "match_pct": 8.5,
+   "match_pct": 13.4,
    "size": 448
   },
   {
@@ -6961,6 +7051,15 @@
    "status": "partial",
    "match_pct": 13.4,
    "size": 621
+  },
+  {
+   "file": "pal3/src/Role/Actor.cpp",
+   "symbol": "?InsertAnimFrame@Actor@@QAEPADM@Z",
+   "name": "Actor::InsertAnimFrame(float)",
+   "va": "0x00539E70",
+   "status": "partial",
+   "match_pct": 7.7,
+   "size": 427
   },
   {
    "file": "pal3/src/Role/Actor.cpp",
@@ -7069,6 +7168,15 @@
    "status": "partial",
    "match_pct": 52.6,
    "size": 38
+  },
+  {
+   "file": "pal3/src/Role/Actor.cpp",
+   "symbol": "?SetCurrentAction@Actor@@QAEPADH@Z",
+   "name": "Actor::SetCurrentAction(int)",
+   "va": "0x0053B890",
+   "status": "partial",
+   "match_pct": 6.8,
+   "size": 592
   },
   {
    "file": "pal3/src/Role/Actor.cpp",
@@ -7663,123 +7771,6 @@
    "status": "partial",
    "match_pct": 92.5,
    "size": 53
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?ResetPlayerAtts@SceneMgr@@SAHXZ",
-   "name": "SceneMgr::ResetPlayerAtts(void)",
-   "va": "0x00408850",
-   "status": "partial",
-   "match_pct": 23.0,
-   "size": 213
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?InitSceneRoles@SceneMgr@@SAHXZ",
-   "name": "SceneMgr::InitSceneRoles(void)",
-   "va": "0x0040CA40",
-   "status": "partial",
-   "match_pct": 12.5,
-   "size": 320
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?GetValidPartyCount@SceneMgr@@SAHXZ",
-   "name": "SceneMgr::GetValidPartyCount(void)",
-   "va": "0x0040FC70",
-   "status": "match_L1",
-   "match_pct": 100.0,
-   "size": 22
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?RenderActiveRoles@SceneMgr@@QAEHXZ",
-   "name": "SceneMgr::RenderActiveRoles(void)",
-   "va": "0x00421C00",
-   "status": "partial",
-   "match_pct": 71.7,
-   "size": 60
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?UINotifyUpdate@SceneMgr@@QAEHXZ",
-   "name": "SceneMgr::UINotifyUpdate(void)",
-   "va": "0x00421C40",
-   "status": "partial",
-   "match_pct": 42.0,
-   "size": 88
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?FindRoleByState@SceneMgr@@QAEPAHD@Z",
-   "name": "SceneMgr::FindRoleByState(char)",
-   "va": "0x00422050",
-   "status": "partial",
-   "match_pct": 5.7,
-   "size": 70
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?ClearInactiveRoles@SceneMgr@@QAEPAV1@XZ",
-   "name": "SceneMgr::ClearInactiveRoles(void)",
-   "va": "0x00423500",
-   "status": "partial",
-   "match_pct": 89.7,
-   "size": 58
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?ResetSceneFlags@SceneMgr@@SAHXZ",
-   "name": "SceneMgr::ResetSceneFlags(void)",
-   "va": "0x004236B0",
-   "status": "partial",
-   "match_pct": 64.0,
-   "size": 25
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?Create@SceneMgr@@QAEPAVCEffMgr@@HHH@Z",
-   "name": "SceneMgr::Create(int,int,int)",
-   "va": "0x004CDA10",
-   "status": "partial",
-   "match_pct": 85.2,
-   "size": 196
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?RenderAll@SceneMgr@@QAEDXZ",
-   "name": "SceneMgr::RenderAll(void)",
-   "va": "0x004CDBF0",
-   "status": "partial",
-   "match_pct": 55.6,
-   "size": 36
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?RenderUpdate@SceneMgr@@QAEDXZ",
-   "name": "SceneMgr::RenderUpdate(void)",
-   "va": "0x004CDC20",
-   "status": "partial",
-   "match_pct": 55.6,
-   "size": 36
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?LoadMainUITexture@SceneMgr@@QAEHXZ",
-   "name": "SceneMgr::LoadMainUITexture(void)",
-   "va": "0x00528D50",
-   "status": "partial",
-   "match_pct": 22.7,
-   "size": 374
-  },
-  {
-   "file": "pal3/src/Scene/SceneMgr.cpp",
-   "symbol": "?GetCurrentNode@SceneMgr@@QAEPAHXZ",
-   "name": "SceneMgr::GetCurrentNode(void)",
-   "va": "0x0052EC90",
-   "status": "partial",
-   "match_pct": 2.9,
-   "size": 70
   },
   {
    "file": "pal3/src/UI/MagicUI.cpp",
@@ -8489,6 +8480,16 @@
    30
   ],
   [
+   "PalScriptAnimTimer::IsAnimDone(void)",
+   4423936,
+   11
+  ],
+  [
+   "PalScriptFadeInTimer::IsFadeDone(void)",
+   4425008,
+   11
+  ],
+  [
    "Parent_Data::GetSize(void)",
    5504672,
    5
@@ -8542,11 +8543,6 @@
    "SceneMapPlayer::ClearName(void)",
    4333808,
    20
-  ],
-  [
-   "SceneMgr::GetValidPartyCount(void)",
-   4258928,
-   22
   ],
   [
    "SceneObjParam::~SceneObjParam",
@@ -8820,17 +8816,17 @@
   ]
  ],
  "rebaseline": {
-  "reason": "PalScriptAnimTimer filebuf 误标清除(0x438EB0=PalScriptAnimTimer complete dtor 铁证: 写派生 vtable 0x56AC08+清单例 0xBFDA34+写基表 0x56A9C0, 原 filebuf.json ~filebuf unverified 机械迁移误标清除)+complete 条目补齐(定义源形态) → 语料重导 pairing 域微扩(983/1111)+coverage 66→69(+3 PalScriptAnimTimer 域新配对)。L1 144 平稳零复丢。附带: check 警告 25→22(误标警报链清偿)",
-  "at": "2026-11-23T00:39:58",
-  "prev_match_L1": 144,
-  "cur_match_L1": 144,
+  "reason": "Actor.cpp 归零+C2440 数组名赋值修复(v3 收敛: DWORD 槽 LHS 限定+取首元素地址 cast)+SetMaterialName 等旧错清偿——L1 144→145 自然过闸(+1 PtrVec_InitAction 新配对), 全库 671→667 错, 警告 18",
+  "at": "2026-11-23T13:06:46",
+  "prev_match_L1": 145,
+  "cur_match_L1": 145,
   "prev_population": {
-   "matched": 983,
-   "symbols": 1111
+   "matched": 984,
+   "symbols": 1106
   },
   "cur_population": {
-   "matched": 983,
-   "symbols": 1111
+   "matched": 984,
+   "symbols": 1106
   }
  }
 }
