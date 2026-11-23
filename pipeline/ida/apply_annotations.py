@@ -2210,7 +2210,8 @@ def import_gbengine_types():
     # Set correct function types on IAT entries — **程序化 mangle 解码通道**（20261123·用户裁定）。
     # 最初数据源=PAL3.exe 导入表自身（修饰名含完整签名，IDA 加载时已解析）。
     # 旧 `_GB_IMPORT_SIGS` 21 条人工白名单退役——不完备/错层/垫片必死。
-    # 通道：enum_import_names → demangle → 提取 cc/ret/params/class → 构造 IAT 槽声明 → SetType。
+    # 解码: enum_import_names → idc.demangle_name → _split_demangled_member(复用: 前缀剥离
+    # +末括号参数提取+cc 剥离) → _split_param_list(顶层逗号切分) → this 显式化 → SetType。
     import ida_nalt
     import idc as _idc
     gb_sig_ok = 0
@@ -2223,88 +2224,70 @@ def import_gbengine_types():
             continue
         def _set_import_type(ea, name, ordinal):
             nonlocal gb_sig_ok, gb_sig_try, gb_sig_skip
-            if not name:
-                return True
-            # 只处理 MSVC 修饰名（? 前缀 = 有完整签名可解）
-            if not name.startswith('?'):
-                return True
+            if not name or not name.startswith('?'):
+                return True  # 非 MSVC 修饰名(CRT/系统 DLL)跳过
             gb_sig_try += 1
-            # demangle → 可读形（IDA 内置 MSVC 反解码器=权威）
             dem = _idc.demangle_name(name, _idc.get_inf_attr(_idc.INF_LONG_DN))
             if not dem:
                 gb_sig_skip += 1
                 return True
-            # 分类：函数成员（含 ::( ）vs 数据成员（:: 不带括号）
-            _paren = dem.find('(')
-            _scope = dem.find('::')
-            if _paren < 0 or (_scope >= 0 and _scope < _paren):
-                # 数据成员（如 `int gbColorQuad::ColorQuadFmt`）
-                _dm = dem.split(' ')
-                if len(_dm) >= 1:
-                    _dtype = ' '.join(_dm[:-1])  # 去名留型
-                    _ddecl = _dtype + ' ' + name.split('@')[1].lstrip('@') + ';'
-                    _dtif = ida_typeinf.tinfo_t()
-                    try:
-                        if ida_typeinf.parse_decl(_dtif, til, _ddecl, ida_typeinf.PT_SIL):
-                            _dptr = ida_typeinf.tinfo_t()
-                            _dptr.create_ptr(_dtif)
-                            if ida_nalt.set_tinfo(ea, _dptr):
-                                gb_sig_ok += 1
-                            else:
-                                gb_sig_skip += 1
-                            return True
-                    except Exception:
-                        pass
-                gb_sig_skip += 1
-                return True
-            # 函数成员: dem = "RET __thiscall Class::Name(params)" 或 "RET __cdecl Name(params)"
-            import re as _re_sig
-            _m = _re_sig.match(r'^(.+?)\s*(__thiscall|__cdecl|__stdcall|__fastcall)\s+(\w+)::(\w+)\((.*)\)$', dem)
-            if _m:
-                _ret, _cc_s, _cls, _mname, _params_s = _m.groups()
-                _cc = {'__thiscall': _CC_THISCALL, '__cdecl': _CC_CDECL,
-                       '__stdcall': _CC_STDCALL, '__fastcall': _CC_THISCALL}.get(_cc_s, _CC_THISCALL)
-                # 参数列表 → this 显式化（thiscall 首参=类指针）
-                _args = [a.strip() for a in _params_s.split(',')] if _params_s.strip() else []
-                if _cc == _CC_THISCALL:
-                    _args.insert(0, _cls + ' *')
-                # 构造 parse_decl 形式: "RET __cc(PARAMS);"
-                _decl = '%s __%s(%s);' % (_ret, {0:'thiscall',1:'cdecl',2:'stdcall'}.get(_cc,'cdecl'),
-                                           ', '.join(_args))
-                _ftif = ida_typeinf.tinfo_t()
-                _ok = False
+            # 提取参数表原文（最后一个括号组内，含嵌套）
+            _paren_open = dem.rfind('(')
+            _paren_close = dem.rfind(')')
+            if _paren_open < 0:
+                # 无括号 = 数据成员（如 `int gbColorQuad::ColorQuadFmt`）
+                _dm_sp = dem.split(' ')
+                _dtype = ' '.join(_dm_sp[:-1])
+                _dname = name.lstrip('?').split('@')[0]  # 成员名=修饰名首段去?
+                _ddecl = _dtype + ' ' + _dname + ';'
+                _dtif = ida_typeinf.tinfo_t()
                 try:
-                    _ok = bool(ida_typeinf.parse_decl(_ftif, til, _decl, ida_typeinf.PT_SIL))
+                    if ida_typeinf.parse_decl(_dtif, til, _ddecl, ida_typeinf.PT_SIL):
+                        _dptr = ida_typeinf.tinfo_t()
+                        _dptr.create_ptr(_dtif)
+                        if ida_nalt.set_tinfo(ea, _dptr):
+                            gb_sig_ok += 1
+                        else:
+                            gb_sig_skip += 1
+                        return True
                 except Exception:
                     pass
-                if not _ok:
-                    _ftif = _build_func_tinfo(til, _ret, _args, _cc)
-                    _ok = _ftif is not None
-                if _ok:
-                    _ptr = ida_typeinf.tinfo_t()
-                    _ptr.create_ptr(_ftif)
-                    if ida_nalt.set_tinfo(ea, _ptr):
-                        gb_sig_ok += 1
-                        return True
                 gb_sig_skip += 1
                 return True
-            # 自由函数（无 ::）: dem = "RET __cdecl Name(params)"
-            _m2 = _re_sig.match(r'^(.+?)\s*(__cdecl|__stdcall)\s+\w+\((.*)\)$', dem)
-            if _m2:
-                _ret = _m2.group(1)
-                _cc = _CC_STDCALL if '__stdcall' in _m2.group(2) else _CC_CDECL
-                _args = [a.strip() for a in _m2.group(3).split(',')] if _m2.group(3).strip() else []
-                _ftif = _build_func_tinfo(til, _ret, _args, _cc)
-                if _ftif is not None:
-                    _ptr = ida_typeinf.tinfo_t()
-                    _ptr.create_ptr(_ftif)
-                    if ida_nalt.set_tinfo(ea, _ptr):
-                        gb_sig_ok += 1
-                        return True
-            gb_sig_skip += 1
+            # 函数成员/自由函数: 用 _split_demangled_member 解 (ret, qualified_name, params_str)
+            _parsed = _split_demangled_member(dem)
+            if _parsed is None:
+                gb_sig_skip += 1
+                return True
+            _ret, _qual_name, _params_str = _parsed
+            # 提取 cc: _split_demangled_member 已剥离 __thiscall/__cdecl 等到 ret 里再剥——
+            # 它从 head 末尾剥 cc。重新组装: dem 里显式 __thiscall → thiscall cc
+            _cc = _CC_CDECL
+            if '__thiscall' in dem:
+                _cc = _CC_THISCALL
+            elif '__stdcall' in dem:
+                _cc = _CC_STDCALL
+            # 类名提取: qualified_name = "Class::Method" → Class
+            _cls = _qual_name.split('::')[0] if '::' in _qual_name else ''
+            # 参数列表切分（顶层逗号）+ (void) 归一化
+            _params = _split_param_list(_params_str)
+            if len(_params) == 1 and _params[0] in ('void', ''):
+                _params = []
+            # this 显式化: thiscall 首参=类指针
+            if _cc == _CC_THISCALL and _cls:
+                _params.insert(0, _cls + ' *')
+            _ftif = _build_func_tinfo(til, _ret, _params, _cc)
+            if _ftif is None:
+                gb_sig_skip += 1
+                return True
+            _ptr = ida_typeinf.tinfo_t()
+            _ptr.create_ptr(_ftif)
+            if ida_nalt.set_tinfo(ea, _ptr):
+                gb_sig_ok += 1
+            else:
+                gb_sig_skip += 1
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
-    log("[gb] import mangle-decode types: ok=%d try=%d skip=%d (368+ 全覆盖, 白名单退役)" % (gb_sig_ok, gb_sig_try, gb_sig_skip))
 
 
 # ============================================================
