@@ -43,16 +43,16 @@ if(WIN32)
 endif()
 
 # ========================================================================
-# topo.dll — 数学库
+# topo.dll — 数学库（modules/topo）
 # ========================================================================
 message(STATUS "Configuring topo.dll")
-add_subdirectory(topo)
+add_subdirectory(modules/topo)
 
 # ========================================================================
-# gbengine.dll — 引擎核心 (depends on topo)
+# gbengine.dll — 引擎核心 (depends on topo；modules/gbengine)
 # ========================================================================
 message(STATUS "Configuring gbengine.dll")
-add_subdirectory(gbengine)
+add_subdirectory(modules/gbengine)
 
 # ========================================================================
 # PAL3.exe — 游戏逻辑 (depends on gbengine)

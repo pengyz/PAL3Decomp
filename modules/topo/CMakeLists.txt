@@ -15,10 +15,10 @@ if(TOPO_SOURCES)
     target_link_libraries(topo LIBCMT kernel32.lib)
     if(MSVC_VERSION EQUAL 1200)
         set_target_properties(topo PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/topo/topo.def\" /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
+            LINK_FLAGS "/DEF:\"${CMAKE_CURRENT_LIST_DIR}/topo.def\" /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
     else()
         set_target_properties(topo PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/topo/topo.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
+            LINK_FLAGS "/DEF:\"${CMAKE_CURRENT_LIST_DIR}/topo.def\" /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/topo.map\"")
         target_link_libraries(topo vcruntime.lib ucrt.lib)
         target_link_options(topo PRIVATE /FORCE:MULTIPLE)
     endif()

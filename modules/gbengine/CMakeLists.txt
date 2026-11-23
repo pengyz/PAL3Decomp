@@ -26,10 +26,10 @@ if(GBENGINE_SOURCES)
     target_compile_options(gbengine PRIVATE ${TOPO_GBENGINE_COMPILE_FLAGS})
     if(MSVC_VERSION EQUAL 1200)
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/gbengine/gbengine.def\" /BASE:0x10000000 /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
+            LINK_FLAGS "/DEF:\"${CMAKE_CURRENT_LIST_DIR}/gbengine.def\" /BASE:0x10000000 /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
     else()
         set_target_properties(gbengine PROPERTIES
-            LINK_FLAGS "/DEF:\"${CMAKE_SOURCE_DIR}/gbengine/gbengine.def\" /BASE:0x10000000 /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
+            LINK_FLAGS "/DEF:\"${CMAKE_CURRENT_LIST_DIR}/gbengine.def\" /BASE:0x10000000 /SAFESEH:NO /MAP:\"${CMAKE_BINARY_DIR}/gbengine.map\"")
         target_link_libraries(gbengine vcruntime.lib ucrt.lib)
         target_link_options(gbengine PRIVATE /FORCE:MULTIPLE)
     endif()
