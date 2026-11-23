@@ -1,0 +1,1096 @@
+{
+ "generated": "2026-11-24",
+ "anchors": {
+  "ARC_PlayerAtt": {
+   "base": "0x00aa0b00",
+   "claimed_size": 1412,
+   "claimed_end": 11145348,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "AStarPathFinder": {
+   "base": "0x00c10df0",
+   "claimed_size": 24,
+   "claimed_end": 12652040,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "Actor": {
+   "base": "0x017b1550",
+   "claimed_size": 820,
+   "claimed_end": 24844420,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017b1550",
+     "offset": "0x0",
+     "global": "g_ActorSaveData",
+     "member": "m_actarray_type",
+     "global_form": 4,
+     "member_form": 2,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "Array": {
+   "base": "0x00c04350",
+   "claimed_size": 16,
+   "claimed_end": 12600160,
+   "receivers": 11,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 4,
+   "verdict": [
+    "EXTENT-GAP: this-form max disp 0x4 << binary_size 0x10 (数组计算指针访问或超界, 待查三)",
+    "DUAL-NAMES: 4 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 4,
+   "dual_names": [
+    {
+     "addr": "0x00c04358",
+     "offset": "0x8",
+     "global": "g_RoleTeam2",
+     "member": "m_pData",
+     "global_form": 0,
+     "member_form": 62,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c04350",
+     "offset": "0x0",
+     "global": "g_SceneMgrPrefix",
+     "member": "m_pDataStart",
+     "global_form": 33,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00c04354",
+     "offset": "0x4",
+     "global": "g_RoleTeam1",
+     "member": "m_nSize",
+     "global_form": 0,
+     "member_form": 31,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c0435c",
+     "offset": "0xC",
+     "global": "g_pRoleTeam0_Capacity",
+     "member": "m_nCapacity",
+     "global_form": 0,
+     "member_form": 10,
+     "pref": "MEMBER"
+    }
+   ],
+   "dual_names_total": 4
+  },
+  "CCBEditor": {
+   "base": "0x00dbb364",
+   "claimed_size": 9624,
+   "claimed_end": 14407932,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x00dbb364",
+     "offset": "0x0",
+     "global": "g_CCBEditorInst",
+     "member": "m_fpThis",
+     "global_form": 3,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "CScreenMode": {
+   "base": "0x00a3a7d8",
+   "claimed_size": 5496,
+   "claimed_end": 10730832,
+   "receivers": 18,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x00a3a7d8",
+     "offset": 0,
+     "target": "?InitPackFiles@CPK@@QAEPAV1@XZ",
+     "class": "CPK"
+    },
+    {
+     "imm": "0x00a3a7d8",
+     "offset": 0,
+     "target": "??1strstreambuf@std@@UAE@XZ",
+     "class": "std"
+    },
+    {
+     "imm": "0x00a3a7d8",
+     "offset": 0,
+     "target": "?InitCPK@SoundMgr@@QAEDHH@Z",
+     "class": "SoundMgr"
+    }
+   ],
+   "method_extent_max": 12,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 3 外来类绑定(CPK,SoundMgr,std) → 超界嫌疑",
+    "EXTENT-GAP: this-form max disp 0xC << binary_size 0x1578 (数组计算指针访问或超界, 待查三)"
+   ],
+   "methods_scanned": 5,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "CameraCtrl": {
+   "base": "0x00d8e4c0",
+   "claimed_size": 4088,
+   "claimed_end": 14218424,
+   "receivers": 13,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 72,
+   "verdict": [
+    "EXTENT-GAP: this-form max disp 0x48 << binary_size 0xFF8 (数组计算指针访问或超界, 待查三)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 10,
+   "dual_names": [
+    {
+     "addr": "0x00d8e4c0",
+     "offset": "0x0",
+     "global": "g_GameData",
+     "member": "m_pCamera",
+     "global_form": 11,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "GRPinput": {
+   "base": "0x00bfad70",
+   "claimed_size": 10584,
+   "claimed_end": 12572360,
+   "receivers": 91,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 76,
+   "verdict": [
+    "EXTENT-GAP: this-form max disp 0x4C << binary_size 0x2958 (数组计算指针访问或超界, 待查三)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 12,
+   "dual_names": [
+    {
+     "addr": "0x00bfad70",
+     "offset": "0x0",
+     "global": "g_Input",
+     "member": "m_lpDI",
+     "global_form": 89,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "Logger": {
+   "base": "0x005d550c",
+   "claimed_size": 6360,
+   "claimed_end": 6122980,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x005d550c",
+     "offset": "0x0",
+     "global": "stru_5D550C",
+     "member": "m_nCallbackCount",
+     "global_form": 70,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "PAL3": {
+   "base": "0x008acbf0",
+   "claimed_size": 4936,
+   "claimed_end": 9101112,
+   "receivers": 2,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x008acd40",
+     "offset": 336,
+     "target": "?CleanupScript@UIWnd@@QAEXXZ",
+     "class": "UIWnd"
+    },
+    {
+     "imm": "0x008acd30",
+     "offset": 320,
+     "target": "?InitSceneScriptLoader@CG_Entry@@QAEPACXZ",
+     "class": "CG_Entry"
+    },
+    {
+     "imm": "0x008acd30",
+     "offset": 320,
+     "target": "?LoadScript@PalScript@@QAEHH@Z",
+     "class": "PalScript"
+    },
+    {
+     "imm": "0x008acd40",
+     "offset": 336,
+     "target": "?LoadLanguage@PAL_GDB@@QAEDPAD@Z",
+     "class": "PAL_GDB"
+    },
+    {
+     "imm": "0x008acbf8",
+     "offset": 8,
+     "target": "?UpdateAutoDelete@SceneObj@@QAEDI@Z",
+     "class": "SceneObj"
+    },
+    {
+     "imm": "0x008acbf8",
+     "offset": 8,
+     "target": "?PollInputState@GRPinput@@QAEPAV_BYTE@@I@Z",
+     "class": "GRPinput"
+    },
+    {
+     "imm": "0x008acd40",
+     "offset": 336,
+     "target": "?LoadStoreConfig@DealData@@QAEHPAD@Z",
+     "class": "DealData"
+    },
+    {
+     "imm": "0x008acd40",
+     "offset": 336,
+     "target": "?FreeScriptBuffers@PalScript@@QAEXXZ",
+     "class": "PalScript"
+    }
+   ],
+   "method_extent_max": 0,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 8 外来类绑定(CG_Entry,DealData,GRPinput,PAL_GDB) → 超界嫌疑",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 2,
+   "dual_names": [
+    {
+     "addr": "0x008acbf0",
+     "offset": "0x0",
+     "global": "g_PAL3_Instance",
+     "member": "m_snaph",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "PalScript": {
+   "base": "0x00c10968",
+   "claimed_size": 2176,
+   "claimed_end": 12653032,
+   "receivers": 5,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x00c10968",
+     "offset": 0,
+     "target": "?Create@UIWnd@@QAEHHPAVtagRECT@@PAV1@@Z",
+     "class": "UIWnd"
+    },
+    {
+     "imm": "0x00c10968",
+     "offset": 0,
+     "target": "?LoadResource@UIScene@@QAEXPAX@Z",
+     "class": "UIScene"
+    },
+    {
+     "imm": "0x00c10df0",
+     "offset": 1160,
+     "target": "?ReleasePath@Actor@@QAEXH@Z",
+     "class": "Actor"
+    },
+    {
+     "imm": "0x00c10df0",
+     "offset": 1160,
+     "target": "?BindRoleToScene@RoleSystem@@QAEHHPAMPAMHD@Z",
+     "class": "RoleSystem"
+    }
+   ],
+   "method_extent_max": 56,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 4 外来类绑定(Actor,RoleSystem,UIScene,UIWnd) → 超界嫌疑",
+    "EXTENT-GAP: this-form max disp 0x38 << binary_size 0x880 (数组计算指针访问或超界, 待查三)"
+   ],
+   "methods_scanned": 5,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "RenderTarget3": {
+   "base": "0x00de6cd8",
+   "claimed_size": 24,
+   "claimed_end": 14576880,
+   "receivers": 2,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "CLEAN: 无外来绑定, 接收者 2"
+   ],
+   "methods_scanned": 2,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "RoleSystem": {
+   "base": "0x00bfdbb0",
+   "claimed_size": 7600,
+   "claimed_end": 12581216,
+   "receivers": 8,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x00bfdbb0",
+     "offset": 0,
+     "target": "?InitFromScene@Camera@@QAEXPBD@Z",
+     "class": "Camera"
+    },
+    {
+     "imm": "0x00bfdbb0",
+     "offset": 0,
+     "target": "?UpdateTimers@ScriptSystem@@QACHM@Z",
+     "class": "ScriptSystem"
+    }
+   ],
+   "method_extent_max": 8700,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 2 外来类绑定(Camera,ScriptSystem) → 超界嫌疑",
+    "EXTENT-OVERFLOW: this-form max disp 0x21FC > binary_size 0x1DB0"
+   ],
+   "methods_scanned": 7,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "ScriptSystemData": {
+   "base": "0x00d8b318",
+   "claimed_size": 4128,
+   "claimed_end": 14205752,
+   "receivers": 0,
+   "embedded_calls": 7,
+   "foreign_bindings": [
+    {
+     "imm": "0x00d8c328",
+     "offset": 4112,
+     "target": "?ReleaseVtable@UIListBox@@QAEHXZ",
+     "class": "UIListBox"
+    },
+    {
+     "imm": "0x00d8c308",
+     "offset": 4080,
+     "target": "?Remove@PtrArray@@QAEXXZ",
+     "class": "PtrArray"
+    },
+    {
+     "imm": "0x00d8c2e8",
+     "offset": 4048,
+     "target": "?Remove@PtrArray@@QAEXXZ",
+     "class": "PtrArray"
+    },
+    {
+     "imm": "0x00d8c2c8",
+     "offset": 4016,
+     "target": "?Remove@PtrArray@@QAEXXZ",
+     "class": "PtrArray"
+    },
+    {
+     "imm": "0x00d8c2b8",
+     "offset": 4000,
+     "target": "?PollInputState@GRPinput@@QAEPAV_BYTE@@I@Z",
+     "class": "GRPinput"
+    },
+    {
+     "imm": "0x00d8c328",
+     "offset": 4112,
+     "target": "?Assign@String@@QAEXPADH@Z",
+     "class": "String"
+    },
+    {
+     "imm": "0x00d8b318",
+     "offset": 0,
+     "target": "?HideAll@RoleSystem@@QAEXXZ",
+     "class": "RoleSystem"
+    },
+    {
+     "imm": "0x00d8b4a0",
+     "offset": 392,
+     "target": "?HideAll@RoleSystem@@QAEXXZ",
+     "class": "RoleSystem"
+    }
+   ],
+   "method_extent_max": 0,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 8 外来类绑定(GRPinput,PtrArray,RoleSystem,String) → 超界嫌疑",
+    "DUAL-NAMES: 9 双名地址(2 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x00d8c1ac",
+     "offset": "0xE94",
+     "global": "String",
+     "member": "m_String",
+     "global_form": 596,
+     "member_form": 6,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00d8bec4",
+     "offset": "0xBAC",
+     "global": "g_fScriptTileSize",
+     "member": "m_g_fTimeDelta",
+     "global_form": 10,
+     "member_form": 35,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c2b0",
+     "offset": "0xF98",
+     "global": "dword_D8C2B0",
+     "member": "m_pCurrentBlock",
+     "global_form": 1,
+     "member_form": 19,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bc38",
+     "offset": "0x920",
+     "global": "dword_D8BC38",
+     "member": "m_nScriptFlag",
+     "global_form": 1,
+     "member_form": 12,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8b318",
+     "offset": "0x0",
+     "global": "g_ScriptSystemData",
+     "member": "m_mapPlayer",
+     "global_form": 4,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00d8bc30",
+     "offset": "0x918",
+     "global": "dword_D8BC30",
+     "member": "m_nScriptCounter0",
+     "global_form": 1,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bc34",
+     "offset": "0x91C",
+     "global": "dword_D8BC34",
+     "member": "m_nScriptCounter1",
+     "global_form": 1,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bbc0",
+     "offset": "0x8A8",
+     "global": "flt_D8BBC0",
+     "member": "m_fTimerA",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bef0",
+     "offset": "0xBD8",
+     "global": "flt_D8BEF0",
+     "member": "m_fTimerB",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    }
+   ],
+   "dual_names_total": 9
+  },
+  "UIGameFrm": {
+   "base": "0x00db9fd0",
+   "claimed_size": 28268,
+   "claimed_end": 14421564,
+   "receivers": 74,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x00dba134",
+     "offset": 356,
+     "target": "?ShowClipped@RoleCameraCtrl@@QAEXH@Z",
+     "class": "RoleCameraCtrl"
+    },
+    {
+     "imm": "0x00dba134",
+     "offset": 356,
+     "target": "?ShowTextBox@PalScriptMgr@@QAEHPBD@Z",
+     "class": "PalScriptMgr"
+    },
+    {
+     "imm": "0x00dbaf10",
+     "offset": 3904,
+     "target": "?LoadCompass@UISceneMap@@QAEHPBDH@Z",
+     "class": "UISceneMap"
+    },
+    {
+     "imm": "0x00dba260",
+     "offset": 656,
+     "target": "?ReinitScrollbar@UIListBox@@QAEHXZ",
+     "class": "UIListBox"
+    },
+    {
+     "imm": "0x00dbaf10",
+     "offset": 3904,
+     "target": "?MoveToAbsolute@UIWnd@@QAEHXZ",
+     "class": "UIWnd"
+    },
+    {
+     "imm": "0x00dbaf10",
+     "offset": 3904,
+     "target": "?nullsub@CEffGroupNode@@QAEHXZ",
+     "class": "CEffGroupNode"
+    },
+    {
+     "imm": "0x00dbb364",
+     "offset": 5012,
+     "target": "?UpdateItemScript@CCBEditor@@QAEHPADHHH@Z",
+     "class": "CCBEditor"
+    },
+    {
+     "imm": "0x00dbaf10",
+     "offset": 3904,
+     "target": "?LayoutBinkVideo@UIBigMap@@QAEHHH@Z",
+     "class": "UIBigMap"
+    },
+    {
+     "imm": "0x00db9fd0",
+     "offset": 0,
+     "target": "?FindActiveSlot@UICoverFrm@@QAEPAHXZ",
+     "class": "UICoverFrm"
+    },
+    {
+     "imm": "0x00dba0d4",
+     "offset": 260,
+     "target": "?LoadScriptTexture@PalScriptIdleObj@@QAEPAVgbVFileSystem@@HH",
+     "class": "PalScriptIdleObj"
+    }
+   ],
+   "method_extent_max": 14540,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 10 外来类绑定(CCBEditor,CEffGroupNode,PalScriptIdleObj,PalScriptMgr) → 超界嫌疑",
+    "EXTENT-OK: max disp 0x38CC ≈ binary_size 0x6E6C",
+    "DUAL-NAMES: 13 双名地址(13 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 7,
+   "dual_names": [
+    {
+     "addr": "0x00dbaf10",
+     "offset": "0xF40",
+     "global": "g_UISceneMapDlg",
+     "member": "m_nRender",
+     "global_form": 29,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba260",
+     "offset": "0x290",
+     "global": "g_UIListBoxDlg",
+     "member": "m_nGameMode",
+     "global_form": 6,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dbb364",
+     "offset": "0x1394",
+     "global": "g_CCBEditorInst",
+     "member": "m_UITitle",
+     "global_form": 3,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba250",
+     "offset": "0x280",
+     "global": "g_dwUISettings",
+     "member": "m_nTodo_280",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dc0de8",
+     "offset": "0x6E18",
+     "global": "g_pComposeUI",
+     "member": "m_pGameObjB",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba014",
+     "offset": "0x44",
+     "global": "g_pSceneTransitionBegin",
+     "member": "m_nField_044",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba118",
+     "offset": "0x148",
+     "global": "dword_DBA118",
+     "member": "m_nField_148",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba240",
+     "offset": "0x270",
+     "global": "dword_DBA240",
+     "member": "m_nPlayerMoney",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba244",
+     "offset": "0x274",
+     "global": "dword_DBA244",
+     "member": "m_nMoneyAdd",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba248",
+     "offset": "0x278",
+     "global": "dword_DBA248",
+     "member": "m_nMoneySub",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba24c",
+     "offset": "0x27C",
+     "global": "dword_DBA24C",
+     "member": "m_nStorePriceMod",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00dba254",
+     "offset": "0x284",
+     "global": "dword_DBA254",
+     "member": "m_nReputation",
+     "global_form": 1,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 13
+  },
+  "UIListBox": {
+   "base": "0x00dba260",
+   "claimed_size": 72,
+   "claimed_end": 14394024,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "UIManager": {
+   "base": "0x00c11758",
+   "claimed_size": 4,
+   "claimed_end": 12654428,
+   "receivers": 3,
+   "embedded_calls": 0,
+   "foreign_bindings": [
+    {
+     "imm": "0x00c11758",
+     "offset": 0,
+     "target": "?OnEvent@Actor@@QAEXHH@Z",
+     "class": "Actor"
+    }
+   ],
+   "method_extent_max": 0,
+   "verdict": [
+    "PLACEMENT-CONFLICT: 1 外来类绑定(Actor) → 超界嫌疑",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 3,
+   "dual_names": [
+    {
+     "addr": "0x00c11758",
+     "offset": "0x0",
+     "global": "g_UIManager",
+     "member": "_tail_000",
+     "global_form": 4,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "UISceneMap": {
+   "base": "0x00dbaf10",
+   "claimed_size": 1012,
+   "claimed_end": 14398212,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "gbGfxDriverInfo": {
+   "base": "0x00bfd6c8",
+   "claimed_size": 184,
+   "claimed_end": 12572544,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x00bfd6c8",
+     "offset": "0x0",
+     "global": "g_DrvInfo",
+     "member": "type",
+     "global_form": 5,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "gbVec3D": {
+   "base": "0x00d8bc20",
+   "claimed_size": 12,
+   "claimed_end": 14203948,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x00d8bc20",
+     "offset": "0x0",
+     "global": "g_vRotateAxis",
+     "member": "x",
+     "global_form": 10,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tag17A7BData": {
+   "base": "0x017a7b54",
+   "claimed_size": 48,
+   "claimed_end": 24804228,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017a7b54",
+     "offset": "0x0",
+     "global": "g_17A7BData",
+     "member": "m_nEffParamBase",
+     "global_form": 3,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tag17A8Data": {
+   "base": "0x017a8440",
+   "claimed_size": 52,
+   "claimed_end": 24806516,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017a8440",
+     "offset": "0x0",
+     "global": "g_17A8Data",
+     "member": "m_nEffParamBase",
+     "global_form": 3,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagC10Data": {
+   "base": "0x00c042f8",
+   "claimed_size": 60,
+   "claimed_end": 12600116,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x00c042f8",
+     "offset": "0x0",
+     "global": "g_C10Data",
+     "member": "m_nEffParamBase",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagCCBStageData": {
+   "base": "0x005888a8",
+   "claimed_size": 44,
+   "claimed_end": 5802196,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x005888a8",
+     "offset": "0x0",
+     "global": "g_CCBStageData",
+     "member": "m_nEffParamBase0",
+     "global_form": 3,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagCombatTaskData": {
+   "base": "0x017aad4c",
+   "claimed_size": 384,
+   "claimed_end": 24817356,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017aad4c",
+     "offset": "0x0",
+     "global": "g_CombatTaskData",
+     "member": "m_nEffParamBase",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagEffMgrData": {
+   "base": "0x005d4dac",
+   "claimed_size": 1500,
+   "claimed_end": 6116232,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x005d4dac",
+     "offset": "0x0",
+     "global": "g_EffMgrData",
+     "member": "_tail_000",
+     "global_form": 10,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagEffSParticleSys": {
+   "base": "0x017a8118",
+   "claimed_size": 808,
+   "claimed_end": 24806464,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017a8118",
+     "offset": "0x0",
+     "global": "g_SParticleSys",
+     "member": "m_nEffCount",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagRoleSystemData": {
+   "base": "0x0058b260",
+   "claimed_size": 404,
+   "claimed_end": 5813236,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x0058b260",
+     "offset": "0x0",
+     "global": "g_RoleSystemData",
+     "member": "m_nEffParamBase0",
+     "global_form": 4,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  },
+  "tagStageRoleData": {
+   "base": "0x017abc60",
+   "claimed_size": 160,
+   "claimed_end": 24820992,
+   "receivers": 0,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)",
+    "DUAL-NAMES: 1 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [
+    {
+     "addr": "0x017abc60",
+     "offset": "0x0",
+     "global": "g_StageRoleData",
+     "member": "m_nEffParamBase0",
+     "global_form": 2,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    }
+   ],
+   "dual_names_total": 1
+  }
+ }
+}
