@@ -12,9 +12,9 @@
 |---|---|
 | 导出产物 | `asm/pal3/ida_structs.json` |
 | 注解目录 | `data/annotations/structs`（926 个 JSON） |
-| export 时间戳 | 2026-11-23 17:39:51 +0800（epoch 1795426791.300997） |
-| 注解最新改动 | 2026-11-23 17:31:21 +0800（epoch 1795426281.830256） |
-| 注解最新改动文件 | `data/annotations/structs/UIWnd.json` |
+| export 时间戳 | 2026-11-23 22:09:43 +0800（epoch 1795442983.817306） |
+| 注解最新改动 | 2026-11-23 21:11:02 +0800（epoch 1795439462.844459） |
+| 注解最新改动文件 | `data/annotations/structs/UICaption.json` |
 | 陈旧判定 | FRESH（export 不早于注解最新改动） |
 
 ## 1. 量化统计

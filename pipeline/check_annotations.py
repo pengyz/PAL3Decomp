@@ -961,7 +961,7 @@ def _run_keycase_gate(errors, warnings):
                 'dossier_pending.json', 'n12_grandfathered.json',
                 'n22_pair_closure.json', 's4_baseline.json',
                 'true_vtable_map.json',
-                'iat_mangle_map.json'):
+                ):
         _p = os.path.join(_PROJECT_ROOT, 'data', 'status', _nm)
         if os.path.exists(_p):
             _files.append(_p)
