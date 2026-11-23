@@ -197,3 +197,6 @@ ghidra_track/**/__pycache__/
 tools/ghidra/*.zip
 ghidra_track/config/parser-errors.log
 ghidra_track/**/parser-errors.log
+
+# [防再膨胀 20261123] 编译基线时间戳快照不入库(git 历史即归档), 只跟踪 latest.json
+data/status/baselines/2*.json

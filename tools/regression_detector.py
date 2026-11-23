@@ -151,6 +151,19 @@ class RegressionDetector:
         baseline_file = self.baselines_dir / f"{name}.json"
         with open(baseline_file, 'w', encoding='utf-8') as f:
             json.dump(baseline.to_dict(), f, indent=2, ensure_ascii=False)
+
+        # [防再膨胀 20261123·用户裁定] 时间戳快照保留策略：latest + 最近 N=5 个
+        # 快照，更早的 prune（196MB/696 快照死重成因——原先无条件落盘永不清理）。
+        # 显式命名基线（name 非 %Y%m%d_%H%M%S 形）不受 prune 影响。
+        import re as _re
+        _snap_re = _re.compile(r'^\d{8}_\d{6}$')
+        _snaps = sorted(p for p in self.baselines_dir.glob('*.json')
+                        if p.name != 'latest.json' and _snap_re.match(p.stem))
+        for _old in _snaps[:-5]:
+            try:
+                _old.unlink()
+            except OSError:
+                pass
         
         # latest.json 一律写成**普通文件**（不是符号链接）。
         #
