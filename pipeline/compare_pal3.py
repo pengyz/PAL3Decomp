@@ -599,7 +599,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 else:
                     stats['oob_text_end'] += 1
                 rows.append({'file': unit, 'symbol': sym, 'name': e['name'],
-                             'va': '0x%08X' % e['va'], 'status': 'out_of_range', 'size': size})
+                             'va': '0x%08x' % e['va'], 'status': 'out_of_range', 'size': size})
                 continue
             compiled = info['bytes'][:size]
             relocs = {r for r in info['relocs'] if r < size}
@@ -618,7 +618,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 #   此前有产出零消费; 显式可见化, 不阻断——字节+reloc 语义已裁决)
                 if e.get('_from') == 'function_identity' and e.get('slot_verified') is False:
                     stats.setdefault('carrier_suspect_l1', []).append(
-                        {'symbol': sym, 'name': e.get('name'), 'va': '0x%08X' % e['va']})
+                        {'symbol': sym, 'name': e.get('name'), 'va': '0x%08x' % e['va']})
             # [PlanB-T3 2026-10-30] 尾跳 L1 空洞补环：尾跳族（5B E9）perfect 须叠加
             # 目标符号等同（rel32=reloc don't-care 致原判据只证 E9 一字节=假 L1 温床）。
             if status == 'match_L1' and gc.is_tail_jump_form(text[idx0:idx0 + size]):
@@ -639,7 +639,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 if status == 'partial':
                     stats['tail_jump_downgrades'] = stats.get('tail_jump_downgrades', 0) + 1
                     stats.setdefault('tail_jump_downgrade_samples', []).append(
-                        {'va': '0x%08X' % e['va'], 'name': e['name'],
+                        {'va': '0x%08x' % e['va'], 'name': e['name'],
                          'our': _our_t, 'orig': _orig_t})
                     # [审计 C5 2026-11-22] 尾跳降级后从身份集摘除——否则 l1_identity
                     #   虚胖(142 vs 139, 3 条幻影), 棘轮身份差分失真
@@ -716,7 +716,7 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                 elif bucket == 'mismatch':
                     stats['rsite_mismatch'] = stats.get('rsite_mismatch', 0) + 1
                     stats.setdefault('rsite_mismatch_samples', []).append(
-                        {'va': '0x%08X' % e['va'], 'off': off,
+                        {'va': '0x%08x' % e['va'], 'off': off,
                          'orig': exp_name, 'ours': got_name, 'sym': sym_name[:60]})
                 else:
                     # [PlanB-T2a 2026-10-30] exp 缺名时双证类别桶（纯计量）
@@ -761,19 +761,19 @@ def compare_units(passing, flags, decomp_idx, mangled_map, base_idx,
                     # [PlanB-T2 2026-10-30] unresolved 取样（纯计量）：解析收敛诊断
                     if len(stats.setdefault('rsite_unresolved_samples', [])) < 60:
                         stats['rsite_unresolved_samples'].append(
-                            {'va': '0x%08X' % e['va'], 'off': off,
-                             'tgt': ('0x%08X' % tgt) if tgt is not None else None,
+                            {'va': '0x%08x' % e['va'], 'off': off,
+                             'tgt': ('0x%08x' % tgt) if tgt is not None else None,
                              'exp': exp_name, 'sym': (sym_name or '')[:60]})
             if status == 'match_L1':
                 p1 += 1
             else:
                 pp += 1
             rows.append({'file': unit, 'symbol': sym[:80], 'name': e['name'],
-                         'va': '0x%08X' % e['va'], 'status': status,
+                         'va': '0x%08x' % e['va'], 'status': status,
                          'match_pct': round(res['match_pct'], 1), 'size': size})
             if not res['perfect']:
                 detail.setdefault(unit, []).append({
-                    'symbol': sym[:80], 'name': e['name'], 'va': '0x%08X' % e['va'],
+                    'symbol': sym[:80], 'name': e['name'], 'va': '0x%08x' % e['va'],
                     'size': size, 'obj': obj, 'compiled_len': res['compiled_size'],
                     'n_diff': len(res['diffs']), 'first_diff': res['first_diff'],
                     'sem_reg': res.get('sem_reg',0), 'sem_real': res.get('sem_real',0),

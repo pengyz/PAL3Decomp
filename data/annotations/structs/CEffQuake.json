@@ -247,7 +247,7 @@
  "bases_source": "A: ctor `mov [reg+0Ch], offset <vtable>` (CEffModel sub_4CFC70 / CEffCylinder sub_4C3DD0)；PDB 全族 CTaskTpl 基 = 12；template_bases.json 记载 18 个 CEff* 共享该模板布局；二进制另有 58 处 `sub ecx,0Ch` 的 this 调整",
  "_attribution_migrations": [
   {
-   "0x004AF760": {
+   "0x004af760": {
     "name": "Update",
     "signature": "int __thiscall(int)",
     "source": "vtable_gap_fill_v1(from CEffCylinder.json) | [T101] 归属迁移：0x4AF760 decomp 类归属=Object::Update（成员访问证据：空体 stub + Object this 型）——本类误挂条目移除（T15/T18 归属族；禁止仅凭 signature this——decomp 归属+成员证据双证）"
@@ -258,7 +258,7 @@
  ],
  "_phantom_tables_removed": [
   {
-   "addr": "0x0056FA7C",
+   "addr": "0x0056fa7c",
    "keep": "0056fa88",
    "date": "2026-11-16",
    "evidence": "移位视图+ctor写后址(census)"
@@ -266,7 +266,7 @@
  ],
  "_purge_reverted": [
   {
-   "addr": "0x0056FA7C",
+   "addr": "0x0056fa7c",
    "date": "2026-11-16",
    "reason": "对抗复核P0-1: 12字节移位视图=MI次基类表(adjustor thunk指纹+ctor双写), 原purge误判为普查伪影; 从二进制重建"
   }

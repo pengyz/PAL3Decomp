@@ -862,19 +862,31 @@ def check(struct_dir=None):
     if os.path.exists(skip_path):
         skip_data = json.load(open(skip_path, encoding='utf-8'))
         # Build set of all method addresses from structs + functions
+        # [KEYCASE 20261123] int 归一比较——键大小写漂移不再能击败本门
+        #   (0x004CB3A0 vs 0x004cb3a0 三类ctor案教训); KEYCASE 门另管数据规范形
         method_addrs = set()
         for sname, sinfo in structs.items():
             for addr in sinfo.get('methods', {}):
-                method_addrs.add(addr)
+                try:
+                    method_addrs.add(int(addr, 16))
+                except (ValueError, TypeError):
+                    method_addrs.add(addr)
         for addr in funcs:
-            method_addrs.add(addr)
+            try:
+                method_addrs.add(int(addr, 16))
+            except (ValueError, TypeError):
+                method_addrs.add(addr)
         # A function must not be in both skip_functions AND struct methods/functions
         # **unless the registration is declaration-only**（批 12-13 形：skip=体排除、
         # functions.json=声明收编（C2065 修）——语义不同源、共存合法。round 7 教训：
         # 误删 skip 侧=意外解禁（C2556/2373 ×144 爆）——标记形（declaration_only 或
         # 变参签名 `(...)`）即认可；真双注（同为定义意图）才旗）。
         for addr in skip_data:
-            if addr in method_addrs:
+            try:
+                _an = int(addr, 16)
+            except (ValueError, TypeError):
+                _an = addr
+            if _an in method_addrs:
                 _reg = funcs.get(addr) or {}
                 if not _reg:
                     for _sdat in structs.values():
@@ -897,6 +909,7 @@ def check(struct_dir=None):
     _run_n15_ctor_gate(errors, warnings)
     _run_n16_schema_gate(errors, warnings)
     _run_n17_addr_unique_gate(errors, warnings)
+    _run_keycase_gate(errors, warnings)
     _run_type_resolve_gate(errors, warnings)
     return errors, warnings
 
@@ -927,6 +940,58 @@ def _run_type_resolve_gate(errors, warnings):
     for _src, _own, _fld, _ts, _base, _why in _failures:
         errors.append('REF:%s:%s:%s type=%r 未resolve(%s)'
                       % (_src, str(_own)[:14], _fld, str(_ts)[:50], _why))
+
+
+def _run_keycase_gate(errors, warnings):
+    """[KEYCASE 通用强制门 2026-11-23·用户裁定] 所有在用 JSON 十六进制字面量
+    一律小写规范形——键 `^0x[0-9a-f]+$`; 值=纯十六进制字面量字符串同规。
+    起因: skip_functions 键 '0x004CB3A0'(大写) vs structs methods 键
+    '0x004cb3a0'(小写)——第5条 skip×methods 冲突门裸字符串比较被大小写击败
+    (三类 ctor 的 skip 双注未检出, ctor 射程缺失)。消费侧 int() 免疫是使用侧
+    的事, 检查必须强制(数据规范形是标注层纪律, 不随消费方实现浮动)。
+    范围: data/annotations/**.json(非 archive) + 门禁消费 status 台账。
+    迁移工具: tools/keycase_normalize_20261123.py(幂等)。
+    """
+    import glob as _glob
+    _hx = re.compile(r'^0[xX][0-9a-fA-F]+$')
+    _files = [f for f in _glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations', '**', '*.json'), recursive=True)
+              if os.sep + 'archive' + os.sep not in f]
+    for _nm in ('bases_adjudications.json', 'bases_snapshot.json',
+                'canonical_contract_baseline.json', 'check_baseline_errors.json',
+                'dossier_pending.json', 'n12_grandfathered.json',
+                'n22_pair_closure.json', 's4_baseline.json',
+                'true_vtable_map_20261114.json'):
+        _p = os.path.join(_PROJECT_ROOT, 'data', 'status', _nm)
+        if os.path.exists(_p):
+            _files.append(_p)
+    _n = [0]
+
+    def _walk(_rel, _o):
+        if isinstance(_o, dict):
+            for _k, _v in _o.items():
+                if isinstance(_k, str) and _hx.match(_k) and _k != _k.lower():
+                    errors.append("KEYCASE:%s 键 %r 非规范小写"
+                                  "——十六进制字面量键一律 ^0x[0-9a-f]+$"
+                                  " (迁移: tools/keycase_normalize_20261123.py)"
+                                  % (_rel, _k))
+                    _n[0] += 1
+                _walk(_rel, _v)
+        elif isinstance(_o, list):
+            for _v in _o:
+                _walk(_rel, _v)
+        elif isinstance(_o, str) and _hx.match(_o) and _o != _o.lower():
+            errors.append("KEYCASE:%s 值 %r 非规范小写(纯十六进制字面量字符串)"
+                          % (_rel, _o))
+            _n[0] += 1
+
+    for _fp in sorted(_files):
+        try:
+            _d = json.load(open(_fp, encoding='utf-8'))
+        except Exception:
+            continue
+        _walk(os.path.relpath(_fp, _PROJECT_ROOT), _d)
+    if _n[0]:
+        warnings.insert(0, 'KEYCASE[键值大小写]: %d 处非规范十六进制字面量(计入errors硬失败)' % _n[0])
 
 
 def _run_n17_addr_unique_gate(errors, warnings):
