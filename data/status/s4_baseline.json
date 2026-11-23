@@ -18,28 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1276,
-  "matched": 1147,
-  "unmatched": 259,
-  "match_L1": 171,
+  "symbols": 1317,
+  "matched": 1188,
+  "unmatched": 264,
+  "match_L1": 181,
   "match_L1_semantic": 13,
-  "partial": 848,
+  "partial": 873,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 128,
-  "reloc_total": 8631,
-  "reloc_ok": 2117,
+  "unresolved_synth": 134,
+  "reloc_total": 9043,
+  "reloc_ok": 2294,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 6514,
-  "rsite_total": 8631,
-  "rsite_unaligned": 8136,
-  "l1_bytes": 7230,
-  "l1_hidden_reloc_bytes": 1406,
-  "l1_reloc_covered_bytes": 1980,
-  "rsite_ok": 97,
-  "rsite_class_ok": 357,
+  "reloc_unresolved": 6749,
+  "rsite_total": 9043,
+  "rsite_unaligned": 8438,
+  "l1_bytes": 8331,
+  "l1_hidden_reloc_bytes": 1730,
+  "l1_reloc_covered_bytes": 2420,
+  "rsite_ok": 100,
+  "rsite_class_ok": 458,
   "rsite_unresolved": 10,
   "rsite_unresolved_samples": [
    {
@@ -155,7 +155,7 @@
     "sym": "??1UIRoleSelectDialog@@UAE@XZ"
    }
   ],
-  "rsite_self_local": 15,
+  "rsite_self_local": 21,
   "rsite_class_mismatch": 6,
   "tail_jump_downgrades": 4,
   "tail_jump_downgrade_samples": [
@@ -267,8 +267,8 @@
   ],
   "carrier": {
    "expected": 204,
-   "paired": 86,
-   "unpaired": 118,
+   "paired": 91,
+   "unpaired": 113,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -288,12 +288,12 @@
     "??_GCCBUICtrl@@UAEPAXI@Z",
     "??1CEffAction@@UAE@XZ",
     "??1CEffExplosive@@UAE@XZ",
-    "??1CEffGrid@@UAE@XZ",
-    "??_GCEffGrid@@UAEPAXI@Z",
-    "??1CEffMeteor@@UAE@XZ",
-    "??_GCEffMeteor@@UAEPAXI@Z",
     "??1CEffModel@@UAE@XZ",
-    "??_GCEffModel@@UAEPAXI@Z"
+    "??_GCEffModel@@UAEPAXI@Z",
+    "??1CEffObj@@UAE@XZ",
+    "??_GCEffObj@@UAEPAXI@Z",
+    "??1CEffQuake@@UAE@XZ",
+    "??_GCEffQuake@@UAEPAXI@Z"
    ]
   },
   "carrier_suspect_l1_n": 1
@@ -1965,6 +1965,204 @@
    "size": 721
   },
   {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "??0CEffGrid@@QAE@XZ",
+   "name": "CEffGrid::CEffGrid(void)",
+   "va": "0x004c9550",
+   "status": "partial",
+   "match_pct": 21.6,
+   "size": 190
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "??_GCEffGrid@@UAEPAXI@Z",
+   "name": "CEffGrid::`scalar deleting destructor'(uint)",
+   "va": "0x004c9630",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?AllocEffect@CEffGrid@@UAEPAXXZ",
+   "name": "CEffGrid::AllocEffect",
+   "va": "0x004c9610",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "??1CEffGrid@@UAE@XZ",
+   "name": "CEffGrid::~CEffGrid(void)",
+   "va": "0x004c9650",
+   "status": "partial",
+   "match_pct": 27.7,
+   "size": 253
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?ResetState@CEffGrid@@UAEXHHHH@Z",
+   "name": "CEffGrid::ResetState(int,int,int,int)",
+   "va": "0x004c9750",
+   "status": "partial",
+   "match_pct": 60.0,
+   "size": 408
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?Create@CEffGrid@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffGrid::Create(tagEffObjType *)",
+   "va": "0x004c98f0",
+   "status": "partial",
+   "match_pct": 14.8,
+   "size": 942
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?Destroy@CEffGrid@@UAEXXZ",
+   "name": "CEffGrid::Destroy(void)",
+   "va": "0x004c9ca0",
+   "status": "partial",
+   "match_pct": 60.5,
+   "size": 506
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?UpdateFrame@CEffGrid@@UAEXM@Z",
+   "name": "CEffGrid::UpdateFrame(float)",
+   "va": "0x004c9ed0",
+   "status": "partial",
+   "match_pct": 12.1,
+   "size": 759
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?RenderEffectPass@CEffGrid@@UAEXM@Z",
+   "name": "CEffGrid::RenderEffectPass(float)",
+   "va": "0x004ca1d0",
+   "status": "partial",
+   "match_pct": 17.2,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffGrid@@UAEPBDH@Z",
+   "name": "CEffGrid::GetEditorTaskDescription(int)",
+   "va": "0x004ca9a0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 188
+  },
+  {
+   "file": "pal3/src/Effect/CEffGrid.cpp",
+   "symbol": "?GetEditorObjDescription@CEffGrid@@UAEPBDH@Z",
+   "name": "CEffGrid::GetEditorObjDescription(int)",
+   "va": "0x004caab0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 88
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "??0CEffMeteor@@QAE@XZ",
+   "name": "CEffMeteor::CEffMeteor(void)",
+   "va": "0x004cb3a0",
+   "status": "partial",
+   "match_pct": 23.3,
+   "size": 223
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "??_GCEffMeteor@@UAEPAXI@Z",
+   "name": "CEffMeteor::`scalar deleting destructor'(uint)",
+   "va": "0x004cb4a0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?AllocEffect@CEffMeteor@@UAEPAXXZ",
+   "name": "CEffMeteor::AllocEffect(void)",
+   "va": "0x004cb480",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "??1CEffMeteor@@UAE@XZ",
+   "name": "CEffMeteor::~CEffMeteor(void)",
+   "va": "0x004cb4c0",
+   "status": "partial",
+   "match_pct": 26.4,
+   "size": 273
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?ResetState@CEffMeteor@@UAEXHHHH@Z",
+   "name": "CEffMeteor::ResetState(int,int,int,int)",
+   "va": "0x004cb5e0",
+   "status": "partial",
+   "match_pct": 54.2,
+   "size": 544
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?Create@CEffMeteor@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffMeteor::Create(tagEffObjType *)",
+   "va": "0x004cb800",
+   "status": "partial",
+   "match_pct": 14.6,
+   "size": 1095
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?Destroy@CEffMeteor@@UAEXXZ",
+   "name": "CEffMeteor::Destroy(void)",
+   "va": "0x004cbc50",
+   "status": "partial",
+   "match_pct": 17.1,
+   "size": 820
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?UpdateFrame@CEffMeteor@@UAEXM@Z",
+   "name": "CEffMeteor::UpdateFrame(float)",
+   "va": "0x004cbfc0",
+   "status": "partial",
+   "match_pct": 11.6,
+   "size": 717
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?RenderEffectPass@CEffMeteor@@UAEXM@Z",
+   "name": "CEffMeteor::RenderEffectPass(float)",
+   "va": "0x004cc290",
+   "status": "partial",
+   "match_pct": 18.1,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffMeteor@@UAEPBDH@Z",
+   "name": "CEffMeteor::GetEditorTaskDescription(int)",
+   "va": "0x004cca90",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 188
+  },
+  {
+   "file": "pal3/src/Effect/CEffMeteor.cpp",
+   "symbol": "?GetEditorObjDescription@CEffMeteor@@UAEPBDH@Z",
+   "name": "CEffMeteor::GetEditorObjDescription(int)",
+   "va": "0x004ccba0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 128
+  },
+  {
    "file": "pal3/src/Effect/CEffQuad.cpp",
    "symbol": "?AllocEffect@CEffQuad@@UAEPAXXZ",
    "name": "CEffQuad::AllocEffect(void)",
@@ -2107,6 +2305,123 @@
    "status": "match_L1",
    "match_pct": 100.0,
    "size": 64
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?GetEditorTaskDescription_3280@CEffShock@@QAEPBDH@Z",
+   "name": "CEffShock::GetEditorTaskDescription_3280(int)",
+   "va": "0x004d3280",
+   "status": "partial",
+   "match_pct": 63.8,
+   "size": 58
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "??0CEffShock@@QAE@XZ",
+   "name": "CEffShock::CEffShock(void)",
+   "va": "0x004d3870",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 150
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "??_GCEffShock@@UAEPAXI@Z",
+   "name": "CEffShock::`scalar deleting destructor'(uint)",
+   "va": "0x004d3930",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?AllocEffect@CEffShock@@UAEPAXXZ",
+   "name": "CEffShock::AllocEffect(void)",
+   "va": "0x004d3910",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 27
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?ResetState@CEffShock@@UAEXHHHH@Z",
+   "name": "CEffShock::ResetState(int,int,int,int)",
+   "va": "0x004d3a50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 119
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?Create@CEffShock@@UAEDPAVtagEffObjType@@@Z",
+   "name": "CEffShock::Create(tagEffObjType *)",
+   "va": "0x004d3ad0",
+   "status": "partial",
+   "match_pct": 18.5,
+   "size": 752
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?RenderEffectPass@CEffShock@@UAEXM@Z",
+   "name": "CEffShock::RenderEffectPass(float)",
+   "va": "0x004d4340",
+   "status": "partial",
+   "match_pct": 17.2,
+   "size": 559
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?UpdateSegment@CEffShock@@QAEHH@Z",
+   "name": "CEffShock::UpdateSegment(int)",
+   "va": "0x004d4570",
+   "status": "partial",
+   "match_pct": 10.4,
+   "size": 96
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?StartShock@CEffShock@@QAEXH@Z",
+   "name": "CEffShock::StartShock(int)",
+   "va": "0x004d45d0",
+   "status": "partial",
+   "match_pct": 24.3,
+   "size": 301
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?GetEditorTaskDescription@CEffShock@@UAEPBDH@Z",
+   "name": "CEffShock::GetEditorTaskDescription(int)",
+   "va": "0x004d4700",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 220
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?GetEditorObjDescription@CEffShock@@UAEPBDH@Z",
+   "name": "CEffShock::GetEditorObjDescription(int)",
+   "va": "0x004d4840",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 80
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?CreateGeom@CEffShock@@QAEXHH@Z",
+   "name": "CEffShock::CreateGeom(int,int)",
+   "va": "0x004d49f0",
+   "status": "partial",
+   "match_pct": 18.8,
+   "size": 186
+  },
+  {
+   "file": "pal3/src/Effect/CEffShock.cpp",
+   "symbol": "?LoadTexture@CEffShock@@QAEXHHHPAHHH@Z",
+   "name": "CEffShock::LoadTexture(int,int,int,int *,int,int)",
+   "va": "0x004d4b50",
+   "status": "partial",
+   "match_pct": 9.9,
+   "size": 213
   },
   {
    "file": "pal3/src/Effect/CEffect.cpp",
@@ -5507,7 +5822,7 @@
    "name": "SkillUI::OnMessage(int,uint,int)",
    "va": "0x00526a40",
    "status": "partial",
-   "match_pct": 17.9,
+   "match_pct": 19.2,
    "size": 1607
   },
   {
@@ -9818,6 +10133,21 @@
    30
   ],
   [
+   "CEffGrid::GetEditorObjDescription(int)",
+   5024432,
+   88
+  ],
+  [
+   "CEffGrid::GetEditorTaskDescription(int)",
+   5024160,
+   188
+  ],
+  [
+   "CEffGrid::`scalar deleting destructor'(uint)",
+   5019184,
+   30
+  ],
+  [
    "CEffGroupNode::SetComponent(int)",
    4944848,
    10
@@ -9825,6 +10155,21 @@
   [
    "CEffGroupNode::`scalar deleting destructor'(uint)",
    4944656,
+   30
+  ],
+  [
+   "CEffMeteor::GetEditorObjDescription(int)",
+   5032864,
+   128
+  ],
+  [
+   "CEffMeteor::GetEditorTaskDescription(int)",
+   5032592,
+   188
+  ],
+  [
+   "CEffMeteor::`scalar deleting destructor'(uint)",
+   5026976,
    30
   ],
   [
@@ -9866,6 +10211,26 @@
    "CEffQuake::GetEditorTaskDescription(int)",
    5060192,
    64
+  ],
+  [
+   "CEffShock::GetEditorObjDescription(int)",
+   5064768,
+   80
+  ],
+  [
+   "CEffShock::GetEditorTaskDescription(int)",
+   5064448,
+   220
+  ],
+  [
+   "CEffShock::ResetState(int,int,int,int)",
+   5061200,
+   119
+  ],
+  [
+   "CEffShock::`scalar deleting destructor'(uint)",
+   5060912,
+   30
   ],
   [
    "CEffect::ReleaseResources(void)",
