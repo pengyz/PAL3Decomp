@@ -5,10 +5,10 @@
 
 ## 布局
 - 活跃脚本（顶层 *.py）— 逐件用途见各自 docstring（`head -20`）
-- `archive/` — 已退役脚本归档
 - `compilers/` `vc6/` — MSVC 6.0 工具链（wine 运行）
 - `ghidra/` — Ghidra 发行版（12.1.2/11.2.1，~1.5G vendored，untracked）+ 导出脚本
 - `ida/` — IDA 侧脚本（apply_annotations/export_full 等的 idat -S 载体）
+- 纪律（2026-11-23）：**annotation 即真值，一次性过程脚本不保留**（git 历史即归档）；只收编有复用价值的工具
 - `t2/` `probe/` — 专项探针
 
 ---
