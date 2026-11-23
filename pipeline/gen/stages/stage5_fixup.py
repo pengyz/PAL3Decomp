@@ -1498,7 +1498,17 @@ def _run_inner(code, ctx):
     #   得整个数组 ⇒ 与标量比较/赋值炸(C2040/C2440, RoleSystem 1070/1079/6278/
     #   8460 实证)。C 语义: `(&E)[0]` ≡ *(&E+0) ≡ E; 替换为 `E[0]` 在标量时恒等、
     #   数组时恢复「取首元素」原意 ⇒ 两型皆忠实。
-    code = re.sub(r'\(&([A-Za-z_][\w.>\[\]()-]*)\)\[0\]', r'\1[0]', code)
+    #   [守卫 20261123] 仅成员路径(E 含 '.'/'->'): 裸标识符 E 对**标量/void* 全局**
+    #   (off_/dword_ 族)时 `E[0]` 不合法——`(&E)[0]`=E 本值(合法) vs `E[0]`=解引用
+    #   E(C2036 void* unknown size, SkillUI/PropUI/StateUI 新增34错实证)。
+    #   「标量时恒等」论证对裸标识符不成立=标量 E[0] 本就不合法。union 裁决的
+    #   实证站点全为成员路径 ⇒ 收窄成员路径, 裸名保持原样(现形归因另案)。
+    def _pa2_rewrite(m):
+        _e = m.group(1)
+        if ('.' in _e) or ('->' in _e):
+            return _e + '[0]'
+        return m.group(0)
+    code = re.sub(r'\(&([A-Za-z_][\w.>\[\]()-]*)\)\[0\]', _pa2_rewrite, code)
 
     # P-ACTOR-4 v2 (20261123) hexrays 数组基址赋值渲染伪影——C2440 数组名赋值:
     #   `*(_DWORD*)&槽 = ARRNAME;`(ARRNAME 为 decl 数组名)——C 数组不可赋值

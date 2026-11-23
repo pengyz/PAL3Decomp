@@ -35,7 +35,8 @@
   "reason": "rdata offset: codegen auto-substitutes",
   "type": "const char *",
   "category": "ptr_table",
-  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
+  "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、",
+  "name_note": "[ptr_table类目 20261123] 语料使用点取址下标渲染(&off)[i](=连续指针表走读)+与const char*比较(C2446现形=emission丢型)——category=ptr_table开R93类型覆盖门, 注解型const char *不变(&锚定寻址语义保真)"
  },
  "0x0056af80": {
   "name": "stru_56AF80",
@@ -85,7 +86,8 @@
   "reason": "rdata offset: codegen auto-substitutes",
   "type": "const char *",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）",
+  "name_note": "[ptr_table类目 20261123] 语料使用点取址下标渲染(&off)[i](=连续指针表走读)+与const char*比较(C2446现形=emission丢型)——category=ptr_table开R93类型覆盖门, 注解型const char *不变(&锚定寻址语义保真)"
  },
  "0x0056ba08": {
   "name": "off_56BA08",
@@ -136,7 +138,8 @@
   "reason": "rdata offset: codegen auto-substitutes",
   "type": "const char *",
   "category": "ptr_table",
-  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）"
+  "source": " | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账）",
+  "name_note": "[ptr_table类目 20261123] 语料使用点取址下标渲染(&off)[i](=连续指针表走读)+与const char*比较(C2446现形=emission丢型)——category=ptr_table开R93类型覆盖门, 注解型const char *不变(&锚定寻址语义保真)"
  },
  "0x0056e15c": {
   "name": "g_ArcSceneMonsterTable2",
@@ -1117,7 +1120,8 @@
   "type": "skip",
   "source": "fix:_SPropValue_type_undefined_in_codebase | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [R93 2026-10-25·墓碑复活] orig_type=char *[]（元素 char*）：decomp 引用点用法 [PropUI.cpp:1667/1755 v92/v93(char*)=off[0]] ⇒ 串指针表；void* 标量形致 off[0] 取 void ⇒ C2440",
   "category": "ptr_table",
-  "orig_type": "char *[]"
+  "orig_type": "char * *",
+  "name_note": "[ptr_table复活 20261123] 语料直接索引渲染 off_X[0](指针读, 单消费单元PropUI)+原type=skip(G4零写点=未定型非非表)——orig_type=char * *复活(W3路径): [0]=读首指针=表语义ABI真值; category=ptr_table开类型覆盖门(R93)"
  },
  "0x005b7660": {
   "name": "off_5B7660",
@@ -1220,7 +1224,8 @@
   "type": "skip",
   "source": "fix:_SPropValue_type_undefined_in_codebase | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [R93 2026-10-25·墓碑复活] orig_type=char *[]（元素 char*）：decomp 引用点用法 [StateUI.cpp:1329 v42(char*)=off[0]] ⇒ 串指针表；void* 标量形致 off[0] 取 void ⇒ C2440",
   "category": "ptr_table",
-  "orig_type": "char *[]"
+  "orig_type": "char * *",
+  "name_note": "[ptr_table复活 20261123] 语料直接索引渲染 off_X[0](指针读, 单消费单元StateUI)+原type=skip(G4零写点=未定型非非表)——orig_type=char * *复活(W3路径): [0]=读首指针=表语义ABI真值; category=ptr_table开类型覆盖门(R93)"
  },
  "0x005c5ec8": {
   "name": "off_5C5EC8",
@@ -2117,7 +2122,8 @@
   "type": "skip",
   "source": "fix:_SPropValue_type_undefined_in_codebase | categorize: G4 分类标注：零写点+off_ 形=指针表/导入槽（注册内入账） | [R93 2026-10-25·墓碑复活] orig_type=char *[]（元素 char*）：decomp 引用点用法 [CCBUI.cpp:5320/5324 v26(char*)=off[0]] ⇒ 串指针表；void* 标量形致 off[0] 取 void ⇒ C2440",
   "category": "ptr_table",
-  "orig_type": "char *[]"
+  "orig_type": "char * *",
+  "name_note": "[ptr_table复活 20261123] 语料直接索引渲染 off_X[0](指针读, 单消费单元SkillUI_OnMessage)+原type=skip(G4零写点=未定型非非表)——orig_type=char * *复活(W3路径): [0]=读首指针=表语义ABI真值; category=ptr_table开类型覆盖门(R93)"
  },
  "0x005e7f20": {
   "name": "off_5E7F20",

@@ -1117,7 +1117,7 @@ def generate_free_funcs_cpp(funcs, atexit_aliases=None):
             _ai = int(_a, 16) if isinstance(_a, str) else int(_a)
         except (ValueError, TypeError):
             return False
-        _k = '0x%08X' % _ai
+        _k = ('0x%08X' % _ai).lower()  # [KEYCASE 20261123] skip键已规范小写, 查找侧归一
         _e = _fn_skip.get(_k)
         if _e and _e.get('type') == 'skip':
             return True

@@ -2164,7 +2164,7 @@ def check_name_drift():
         if t in idb_names or t in ann_names:
             continue
         m2 = addr_re.match(t)
-        if m2 and ('0x%08X' % int(m2.group(1), 16)) not in ann:
+        if m2 and (('0x%08X' % int(m2.group(1), 16)).lower()) not in ann:
             orphan.append(t)
     if orphan:
         warnings.append(

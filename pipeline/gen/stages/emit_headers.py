@@ -4933,7 +4933,7 @@ def generate_globals():
         _ann_filtered = []
         for _addr_s, _ginfo in sorted_globs:
             _addr = int(_addr_s, 16)
-            _ann_key = '0x%08X' % _addr
+            _ann_key = ('0x%08X' % _addr).lower()  # [KEYCASE 20261123] 注解键规范小写, 查找侧归一(大写键查找=迁移前旧病, 41文件归一后全断链实录)
             _ann_entry = _ann_data.get(_ann_key, {})
             if _ann_entry.get('type') == 'skip' \
                     and _ginfo.get('name') not in _forced_names:
@@ -4980,7 +4980,7 @@ def generate_globals():
             # 债4 (2026-11-10): 合成条目并入后补 annotation name 覆盖
             # (与上方 _ann_filtered 循环同键同语义——语义改名的引用改写
             #  靠 globals_map,头 extern 若仍用合成 IDA 名 → 名字分叉 C2065)
-            _ann_key_h = '0x%08X' % int(_addr_s, 16)
+            _ann_key_h = ('0x%08X' % int(_addr_s, 16)).lower()  # [KEYCASE 20261123] 同上
             _ann_e_h = _ann_data.get(_ann_key_h, {})
             if _ann_e_h.get('name'):
                 _ginfo = dict(_ginfo, name=_ann_e_h['name'])
@@ -5010,7 +5010,7 @@ def generate_globals():
     if _catmap:
         for _addr_s, _ginfo in sorted_globs:
             if not _ginfo.get('category'):
-                _c = _catmap.get('0x%08X' % int(_addr_s, 16))
+                _c = _catmap.get(('0x%08X' % int(_addr_s, 16)).lower())  # [KEYCASE 20261123] 同上
                 if _c:
                     _ginfo['category'] = _c
     # **组内保持地址序**；globals.cpp 定义序不动（:3763 地址序）⇒ CRT/静态初始化序不变。
