@@ -1,0 +1,30 @@
+=== D1: .text 内 0xD8B318/0xD8C338 立即数引用全景 ===
+g_ScriptSystemData(0xD8B318): 6 处, 形态:
+   x2 mov     ecx, offset g_ScriptSystemData; this
+   x2 push    offset g_ScriptSystemData; void *
+   x1 mov     esi, offset g_ScriptSystemData
+   x1 lea     eax, ds:#[ecx*8]
+     sub_407790+0x7B: mov     ecx, offset g_ScriptSystemData; this
+     SingletonThunk_00422560+0x51: push    offset g_ScriptSystemData; void *
+     SingletonThunk_00422560+0x8A: push    offset g_ScriptSystemData; void *
+     ?Destroy@UISystem@@QAEXXZ+0x27: mov     esi, offset g_ScriptSystemData
+     GetRoleDataOffset+0x16: lea     eax, ds:0D8B318h[ecx*8]
+     ?ResetForNewScene@PAL3@@QACXXZ+0x0: mov     ecx, offset g_ScriptSystemData; this
+
+Iostream_init(0xD8C338): 2 处, 形态:
+   x2 mov     ecx, offset unk_D8C338; this
+     SingletonThunk_00431D90+0x0: mov     ecx, offset unk_D8C338; this
+     SingletonThunk_00431DB0+0x0: mov     ecx, offset unk_D8C338; this
+
+=== D2: mov ecx,0xD8B318 接收点 → this-form 成员 disp ===
+mov ecx 接收点: 2
+this-form disp: []
+
+=== D3: XrefsTo(0xD8C338) ===
+  SingletonThunk_00431D90+0x0: mov     ecx, offset unk_D8C338; this
+  SingletonThunk_00431DB0+0x0: mov     ecx, offset unk_D8C338; this
+xrefs: 2
+
+=== D4: CRT init 表条目归属 ===
+
+[probe8] done

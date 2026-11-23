@@ -2989,12 +2989,6 @@
   "category": "pending",
   "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待"
  },
- "0x00d8bbec": {
-  "name": "dword_D8BBEC",
-  "source": "binary: compared to 2 in game mode checks; ScriptSystemData+0x8D4 | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
-  "type": "int",
-  "category": "game_state"
- },
  "0x00d8bc20": {
   "name": "g_vRotateAxis",
   "overlaps_with": [
@@ -3004,13 +2998,6 @@
   "type": "gbVec3D",
   "category": "function_static",
   "note": "alias of ScriptSystemData.g_vRotateAxis (same bytes; member authoritative)"
- },
- "0x00d8bc2c": {
-  "name": "g_bMapRenderFlags",
-  "source": "binary: UIBigMap_RenderRole: (g_bMapRenderFlags & 1)==0 check | categorize: G5 分类标注：static 块三元组命中（注册内入账） | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_bMapRenderFlags(+0x914) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
-  "type": "unsigned char",
-  "category": "function_static",
-  "note": "alias of ScriptSystemData.m_bMapRenderFlags (same bytes; member authoritative)"
  },
  "0x00d8bc30": {
   "name": "dword_D8BC30",
@@ -3038,13 +3025,6 @@
   "source": "binary: used as float divisor in RoleSystem position calc; ScriptSystemData+0xBAC | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真",
   "type": "float",
   "category": "game_state"
- },
- "0x00d8c17c": {
-  "name": "g_fScriptTileSize2",
-  "source": "binary: PalScriptMgr_ExecuteFrame: position/*(float*)&val division; tile size divisor | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真 | alias:2026-10-15 同址符号别名=类成员 ScriptSystemData.m_fScriptTileSize2(+0xE64) 的全局视图,同字节双声明;治理=成员名权威,本条仅别名标注(非union场景,无字段级复用)",
-  "type": "float",
-  "category": "game_state",
-  "note": "alias of ScriptSystemData.m_fScriptTileSize2 (same bytes; member authoritative)"
  },
  "0x00d8c1ac": {
   "name": "String",
@@ -7850,11 +7830,6 @@
   "category": "object_interior",
   "source": " | tombstone(无名): G8-a Array 内部 已删条目复归墓碑（C2 硬条件：删除须留 skip ",
   "orig_type": "void *"
- },
- "0x00d8c2b8": {
-  "name": "g_InputStateBuf",
-  "type": "unsigned char",
-  "source": "global_add: G8-b 正名（ida-only 条目改 global_add 注册）：GRPinput::PollInputState(&X,v3) 唯一用法=输入轮询填充目标——输入状态缓冲"
  },
  "0x00c10ba0": {
   "name": "dword_C10BA0",
