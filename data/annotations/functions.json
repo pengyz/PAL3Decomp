@@ -3365,23 +3365,6 @@
   },
   "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
  },
- "0x0053a060": {
-  "name": "InitAction",
-  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归 ③成员访问=m_actarray_begin/end/capacity_end/type（动作数组三元组）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动作数组初始化。ret=int*（result）。名 InitAction 与 actarray 三元组初始化相符。",
-  "sig_model": {
-   "return": "int *",
-   "cc": "thiscall",
-   "params": [
-    {
-     "type": "_BYTE *pActionType",
-     "name": null
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
  "0x00539e70": {
   "name": "InsertAnimFrame",
   "source_note": "[五面] ①调用者=待补 ②被调用者=AssignInt/StoreParam/Vec3CopyStruct/new/delete（参数存储+向量拷贝族）③成员访问=m_pAllocBuf/m_fTransitionPos/m_fTransitionSpeed/m_fMoveRange（分配缓冲+过渡/移动参数）④类归属=Actor（4 命中 0 未解析）⑤交互模式=new 分配 + Vec3 拷贝 + 参数存储。ret=char*（result）。名 InsertAnimFrame 与帧插入相符（conf 65：无字面量，五面⑤弱）。",
@@ -4007,5 +3990,24 @@
    "pending": false
   },
   "evidence_level": "verified"
+ },
+ "0x0053a060": {
+  "name": "InitAction",
+  "source_note": "[五面] ①调用者=待补 ②被调用者=仅自身递归 ③成员访问=m_actarray_begin/end/capacity_end/type（动作数组三元组）④类归属=Actor（4 命中 0 未解析）⑤交互模式=动作数组初始化。ret=int*（result）。名 InitAction 与 actarray 三元组初始化相符。"
+ },
+ "0x00446030": {
+  "name": "AddToArray",
+  "name_source": "IDA语义分析 2026-11-01 批11",
+  "name_note": "数组添加（PtrArray::FindFirst+SetAt）"
+ },
+ "0x00445bf0": {
+  "name": "SetArrayElement",
+  "name_source": "IDA语义分析 2026-11-01 批6",
+  "name_note": "数组元素设置（PtrArray::SetAt）"
+ },
+ "0x0045add0": {
+  "name": "InitState",
+  "name_source": "IDA语义分析 2026-11-01 批13",
+  "name_note": "状态初始化（offset 0/36/40/44/48 设值）"
  }
 }

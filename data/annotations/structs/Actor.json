@@ -3100,9 +3100,9 @@
    },
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(BuildCollisionM",
    "lvars": {
-    "pVal": "_WORD"
+    "pVal": "Array"
    },
-   "lvars_note": "[F5 2026-11-22] PtrVec_Insert_word 调用点 C2664(__int16*→const _WORD*)根因=hexrays 按 IDB lvar 默认类型渲染 decl __int16; lvar 标注 _WORD → apply→set_lvar_type→re-export 后语料渲染 _WORD pVal // BYREF, &pVal 自然对型。零管线补丁, 数据层正解(L-VAR 链先例 CameraCtrl v7)。"
+   "lvars_note": "[修正 20261123] _WORD→Array: 语料三链实证 Array::Free(&pVal)+memset(&pVal.m_nSize,0,12)+LOBYTE(pVal.m_pDataStart)=v23 (Array 布局 m_pDataStart@0/m_nSize@4 实锤); _WORD 原标注(20261122 PtrVec C2664 修正)与 Array::Free 语义矛盾——PtrVec_Insert_word(&pVal) 侧=把 Array 首址当 word 传(原程序真貌, 调用点 cast 语义非类型语义)"
   },
   "0x0053beb0": {
    "name": "GetActionCountEx",
