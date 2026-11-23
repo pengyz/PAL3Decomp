@@ -1,9 +1,9 @@
 {
-  "name": "20261123_205720",
-  "timestamp": "2026-11-23T20:57:20.625090",
+  "name": "20261124_002438",
+  "timestamp": "2026-11-24T00:24:38.924184",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
-      "status": "harness_error",
+      "status": "ok",
       "error_count": 0,
       "errors": []
     },
@@ -28,7 +28,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBControlWindow.h": {
-      "status": "harness_error",
+      "status": "ok",
       "error_count": 0,
       "errors": []
     },
@@ -5754,19 +5754,52 @@
       "errors": []
     },
     "pal3/src/Misc/OpenBaseFile.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
+      "status": "fail",
+      "error_count": 2,
+      "errors": [
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 12
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 20
+        }
+      ]
     },
     "pal3/src/Misc/OpenNULLFile.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
+      "status": "fail",
+      "error_count": 1,
+      "errors": [
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 11
+        }
+      ]
     },
     "pal3/src/Misc/OpenSceneFile.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
+      "status": "fail",
+      "error_count": 3,
+      "errors": [
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 27
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 31
+        },
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 39
+        }
+      ]
     },
     "pal3/src/Misc/PAL3VisNode.cpp": {
       "status": "ok",
@@ -7979,6 +8012,11 @@
       "error_count": 98,
       "errors": [
         {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'class gbVFileSystem ** ' to 'class gbVFileSystem *'",
+          "line": 163
+        },
+        {
           "code": "C2660",
           "msg": "'Init' : function does not take 2 parameters",
           "line": 164
@@ -8404,16 +8442,6 @@
           "line": 10229
         },
         {
-          "code": "C2065",
-          "msg": "'_strdate' : undeclared identifier",
-          "line": 10373
-        },
-        {
-          "code": "C2065",
-          "msg": "'_strtime' : undeclared identifier",
-          "line": 10375
-        },
-        {
           "code": "C2373",
           "msg": "'PAL3_LoadUICursor' : redefinition; different type modifiers",
           "line": 10808
@@ -8437,6 +8465,11 @@
           "code": "C2065",
           "msg": "'fn' : undeclared identifier",
           "line": 10956
+        },
+        {
+          "code": "C2440",
+          "msg": "'type cast' : cannot convert from 'double' to 'class PAL3 *'",
+          "line": 10998
         },
         {
           "code": "C2440",
