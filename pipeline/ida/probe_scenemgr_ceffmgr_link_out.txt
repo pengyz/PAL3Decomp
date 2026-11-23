@@ -1,0 +1,48 @@
+CEffMgr 方法: 30 (ctor=0x4CE100)
+
+=== D1: InitGame +0x270..+0x2E0 线性流 ===
+  +0x273 push    offset __TI1?AV_Exception@@; pThrowInfo
+  +0x278 push    eax; pExceptionObject
+  +0x279 rep movsd
+  +0x27b call    __CxxThrowException@8; _CxxThrowException(x,x)
+  +0x280 mov     ecx, eax; this
+  +0x282 call    ProcNormalAttack
+  +0x287 push    0A930h; Size
+  +0x28c call    ??2@YAPAXI@Z; operator new(uint)
+  +0x291 add     esp, 4
+  +0x294 mov     [esp+958h+var_950], eax; signed __int32
+  +0x298 test    eax, eax
+  +0x29a mov     [esp+958h+var_4], 1
+  +0x2a5 jz      short loc_404ACB
+  +0x2a7 mov     ecx, g_pCameraCtrl
+  +0x2ad test    ecx, ecx
+  +0x2af jz      short loc_404AB6
+  +0x2b1 add     ecx, 4
+  +0x2b4 jmp     short loc_404AB8
+  +0x2b6 xor     ecx, ecx
+  +0x2b8 push    0; nVal
+  +0x2ba push    ecx; cam
+  +0x2bb mov     ecx, gfxMgr
+  +0x2c1 push    ecx; gfxMgr
+  +0x2c2 mov     ecx, eax; this
+  +0x2c4 call    Create_33   <<< sub_C
+  +0x2c9 jmp     short loc_404ACD
+  +0x2cb xor     eax, eax
+  +0x2cd test    eax, eax
+  +0x2cf mov     [esp+958h+var_4], esi
+  +0x2d6 mov     g_pSceneManager, eax   <<< 工厂赋值
+  +0x2db jnz     short loc_404B14
+  +0x2dd push    0DEh; line
+
+=== D2: g_pSceneManager 调用目标对照 ===
+  Update_35+0x396 -> [call    SceneMgrUpdate]  (非直呼)
+  Render_21+0x309 -> [call    RenderUpdate]  (非直呼)
+  Render_21+0x337 -> [call    RenderAll]  (非直呼)
+  Op_CEft_Role+0xC -> [push    eax; nVal]  (非直呼)
+  Op_FogH+0x23 -> [push    edx; nVal]  (非直呼)
+  UpdateTimedTrigger+0x19 -> [push    eax; nVal]  (非直呼)
+  UpdateTimedTrigger+0x3D -> [call    Init_8]  (非直呼)
+  UpdateTimedTrigger+0x6A -> [push    113h; nVal]  (非直呼)
+  SetEffectClass+0x24 -> [push    edx; nVal2]  (非直呼)
+  ResetForNewScene+0x2F -> [call    sub_4CE5C0]  (非直呼)
+  ResetForNewScene+0x3A -> [call    ReleaseCompletedEffects]  (非直呼)

@@ -1287,7 +1287,7 @@
   "name": "UISceneUpdate",
   "source": "2026-09-20 二次修正（F61 类型选择的最终裁定）：本 getter 返回 `0xC21FE8 + 状态*493156`（A 级：移位链算术 + 构造点三个字面量 `push 3`/`push 00078664h`/`push 00C21FE8h`），该数组的元素类经**7/7 成员偏移吻合 ctor 初始化**确认为 **Scene** ⇒ 返回类型应为 `Scene*`（F61 定成 `SceneMgr*` 是偏移巧合：0xe0e0 落在 493156 字节对象内部是另一个字段）。首次尝试改 `Scene*` 时暴露了`UIManager.cpp` 的 C2039（`'_vftable' is not a member of 'Scene'`），根因是 `Scene` 注解里**无据的 +0 _vftable**（其 ctor/dtor 都不装 vptr、`Scene.vtables=None`）—— 本批已同时移除该成员。 | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
   "sig_model": {
-   "return": "struct Scene *",
+   "return": "Scene *",
    "cc": "cdecl",
    "params": [],
    "varargs": false,
@@ -1715,22 +1715,6 @@
     {
      "type": "char",
      "name": "a2"
-    }
-   ],
-   "varargs": false,
-   "pending": false
-  },
-  "source": " | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建"
- },
- "0x004cdb70": {
-  "name": "SceneMgrUpdate",
-  "sig_model": {
-   "return": "int",
-   "cc": "stdcall",
-   "params": [
-    {
-     "type": "float",
-     "name": "fVal"
     }
    ],
    "varargs": false,
@@ -3836,5 +3820,92 @@
    "varargs": false,
    "pending": false
   }
+ },
+ "0x00408850": {
+  "name": "ResetPlayerAtts",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "name_note": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); static helper 无 this,类退役归位自由函数"
+ },
+ "0x0040ca40": {
+  "name": "InitSceneRoles",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "name_note": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); static helper 无 this,类退役归位自由函数"
+ },
+ "0x0040fc70": {
+  "name": "GetValidPartyCount",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "name_note": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); static helper 无 this,类退役归位自由函数"
+ },
+ "0x004236b0": {
+  "name": "ResetSceneFlags",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "name_note": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); static helper 无 this,类退役归位自由函数"
+ },
+ "0x00423500": {
+  "name": "ClearInactiveRoles",
+  "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 静态 helper 返回当前 Scene(UISceneUpdate 结果), 语料唯一引用者 Logger.cpp 取地址不受 ret 影响(原 F61 note 沿用)",
+  "evidence_level": "B",
+  "sig_model": {
+   "return": "Scene *",
+   "cc": "cdecl",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只",
+  "name_note": "[static裁决 20261123] 探针 static_thiscall_adjudicator_20261123 全调用点无ecx写/fn指针值传递/DLGPROC API契约——static成员形正确(ProcessMouse在库先例), sig_model cc thiscall→cdecl(IDB归属惯性矫正)"
+ },
+ "0x00528d50": {
+  "name": "LoadMainUITexture",
+  "_misattrib_evidence": "max_offset=56180>class_size=200",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 挂账: thiscall 接收者未证(LoadMainUITexture this=Render_14/OnMessage_12 局部 ebx; GetCurrentNode this=_init_44f8d0 局部 eax)——归位自由条目待接收者溯源后重归属"
+ },
+ "0x0052ec90": {
+  "name": "GetCurrentNode",
+  "evidence_level": "unverified",
+  "sig_model": {
+   "return": "int *",
+   "cc": "thiscall",
+   "params": [],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 挂账: thiscall 接收者未证(LoadMainUITexture this=Render_14/OnMessage_12 局部 ebx; GetCurrentNode this=_init_44f8d0 局部 eax)——归位自由条目待接收者溯源后重归属"
  }
 }

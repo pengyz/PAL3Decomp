@@ -622,6 +622,72 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x004cda10": {
+   "name": "Create",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "CEffMgr *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "gfxMgr"
+     },
+     {
+      "type": "int",
+      "name": "cam"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": "工厂 ABI 终审 20261124: InitGame+0x287 push 0xA930(=CEffMgr.binary_size)+operator new+本函数收 raw new 指针 thiscall(gfxMgr,cam,0)=A2 构造形态; +0xb7 call 0x4CE100(在册ctor)=A2→base 配对. 前 20261115 g_pSceneManager 改判 CEffMgr* 的方法链闭环."
+  },
+  "0x004cdbf0": {
+   "name": "RenderAll",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 接收者=mov ecx,g_pSceneManager(Render_21+0x337) A 级"
+  },
+  "0x004cdc20": {
+   "name": "RenderUpdate",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 接收者=mov ecx,g_pSceneManager(Render_21+0x309) A 级"
+  },
+  "0x004cdb70": {
+   "name": "SceneMgrUpdate",
+   "sig_model": {
+    "return": "int",
+    "cc": "stdcall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 接收者=mov ecx,g_pSceneManager(Update_35+0x396) A 级; 自 functions.json 迁入"
   }
  },
  "_flexible": true,

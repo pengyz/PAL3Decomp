@@ -1180,3 +1180,4 @@
 | `::Update` | inline | `char` | 28 | self_arg_mismatch | `(*(void (__stdcall **)(char *, int, int, char *, int))(*(_DWORD *)(nPanelId + 7512) + 28))( &byte_A01B24, nPanelId + 7000, nPanelId, aSubgameHocksho_0, v98)` |
 | `::SetParam` | inline | `float` | 20 | self_arg_mismatch | `(*(int (**)(float))(*(_DWORD *)LODWORD(x) + 20))(_pal3_coerce_f32(LODWORD(x)))` |
 | `SaleUI::GetCellStateByte` | inline | `SaleUI` | 24 | self_arg_mismatch | `(*(int (**)(SaleUI *, int, int, _DWORD))(*(_DWORD *)&this->UIWnd + 24))(this, 1001, 262, 0)` |
+| `CEffMgr::SceneMgrUpdate` | inline | `int` | 20 | non_class_hint | `(*(int (**)(int, _DWORD))(*(_DWORD *)*v4 + 20))(*v4, LODWORD(fVal))` |

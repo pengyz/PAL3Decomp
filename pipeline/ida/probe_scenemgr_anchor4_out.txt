@@ -1,0 +1,36 @@
+=== D1: g_pSceneManager 等符号真身 ===
+  g_pSceneManager        @ 0x00BFDA78 = 0xFFFFFFFF (data/ptr?)
+  g_SceneMgr             @ 0x00C04390 = 0xFFFFFFFF (data/ptr?)
+  g_pSceneArrayEnd2      @ 0x00C0439C = 0xFFFFFFFF (data/ptr?)
+  g_SceneArray           @ 0x00C04380 = 0xFFFFFFFF (data/ptr?)
+  g_RoleSlotBuf          @ 0x00C043A0 = 0xFFFFFFFF (data/ptr?)
+
+--- g_pSceneManager xrefs ---
+  InitGame+0x2D6: mov     g_pSceneManager, eax
+  Update_35+0x396: mov     ecx, g_pSceneManager
+  Render_21+0x309: mov     ecx, g_pSceneManager; this
+  Render_21+0x337: mov     ecx, g_pSceneManager; this
+  Op_CEft_Role+0xC: mov     ecx, g_pSceneManager; this
+  Op_FogH+0x23: mov     ecx, g_pSceneManager; this
+  UpdateTimedTrigger+0x19: mov     ecx, g_pSceneManager; this
+  UpdateTimedTrigger+0x3D: mov     ecx, g_pSceneManager; this
+  UpdateTimedTrigger+0x6A: mov     ecx, g_pSceneManager; this
+  SetEffectClass+0x24: mov     ecx, g_pSceneManager; this
+  ResetForNewScene+0x2F: mov     ecx, g_pSceneManager
+  ResetForNewScene+0x3A: mov     ecx, g_pSceneManager; this
+
+=== D2: 0xC21FE8 身份 ===
+IDA name(0xC21FE8) = g_SceneBuf
+  0x00C21FE8 g_SceneBuf (+0x0)
+  0x00C300C8 dword_C300C8 (+0xe0e0)
+  0x00C9A63C dword_C9A63C (+0x78654)
+0xC21FE8..+0x78664 命名条目: 3
+stride = 123289*4 = 493156 = 0x78664
+
+=== D3: 二进制 SceneMgr/SceneManager 字符串 ===
+
+=== D4: 0xC04390 16B 原始内容(Array 布局验证) ===
+raw: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+dwords: ['0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF']
+g_RoleTeamArray@0xC04360 raw: ['0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF']
+g_SceneArray@0xC04380   raw: ['0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF', '0xFFFFFFFF']

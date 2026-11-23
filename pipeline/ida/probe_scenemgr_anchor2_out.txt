@@ -1,0 +1,558 @@
+========== A: 接收点后内联访问窗口 ==========
+
+-- FullInit+0x21D0 --
+   +0x21d5 push    ebp; void *
+   +0x21d6 push    esi; pEnd
+   +0x21d7 push    eax; pElem
+   +0x21d8 call    Insert
+
+-- FullInit+0x21E9 --
+   +0x21ee call    Erase
+
+-- FullInit+0x21FF --
+   +0x2204 push    edx; void *
+   +0x2205 push    eax; pEnd
+   +0x2206 push    esi; pElem
+   +0x2207 call    Insert
+
+-- FullInit+0x221A --
+   +0x221f call    nullsub_2
+
+-- FullInit+0x229B --
+   +0x22a0 call    Insert
+
+-- FullInit+0x22C4 --
+   +0x22c9 sub     ebp, edx
+   +0x22cb push    ebp; nCount
+   +0x22cc push    edi; nIndex
+   +0x22cd call    Erase
+
+-- FullInit+0x2300 --
+   +0x2305 call    Insert
+
+-- FullInit+0x2451 --
+   +0x2456 push    eax; signed __int32
+   +0x2457 push    1; nCount
+   +0x2459 push    edi; nIndex
+   +0x245a call    Erase
+
+-- FullInit+0x246B --
+   +0x2470 call    Insert
+
+-- FullInit+0x2482 --
+   +0x2487 call    nullsub_2
+
+-- FullInit+0x24A3 --
+   +0x24a8 lea     edx, [eax+eax*2]
+   +0x24ab lea     eax, [esi+edx*4]
+   +0x24ae mov     g_pSceneArrayEnd2, eax
+   +0x24b3 call    Size
+
+-- FullInit+0x24EF --
+   +0x24f4 call    Insert
+
+-- FullInit+0x251D --
+   +0x2522 sub     eax, edx
+   +0x2524 push    eax; nCount
+   +0x2525 push    edi; nIndex
+   +0x2526 call    Erase
+
+-- FullInit+0x2559 --
+   +0x255e call    Insert
+
+-- FullInit+0x26AA --
+   +0x26af push    eax; signed __int32
+   +0x26b0 push    1; nCount
+   +0x26b2 push    edi; nIndex
+   +0x26b3 call    Erase
+
+-- FullInit+0x26C4 --
+   +0x26c9 call    Insert
+
+-- FullInit+0x26DB --
+   +0x26e0 call    nullsub_2
+
+-- FullInit+0x26FC --
+   +0x2701 lea     edx, [eax+eax*2]
+   +0x2704 lea     eax, [esi+edx*4]
+   +0x2707 mov     g_pSceneArrayEnd2, eax
+   +0x270c call    Size
+
+-- FullInit+0x2748 --
+   +0x274d call    Insert
+
+-- FullInit+0x2776 --
+   +0x277b sub     eax, edx
+   +0x277d push    eax; nCount
+   +0x277e push    edi; nIndex
+   +0x277f call    Erase
+
+-- FullInit+0x27B2 --
+   +0x27b7 call    Insert
+
+-- FullInit+0x283A --
+   +0x283f call    AddRoleEntry
+
+接收点后 [ecx+disp] 汇总: []
+
+========== B: +0xE0E0 宿主函数指针来源追踪 ==========
+宿主函数: 18 个
+
+== Render2 (0x40C7D0) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 sub     esp, 98h
+   +0x06 mov     ecx, offset dword_BFDAB0; this
+   +0x0b push    esi
+   +0x0c call    Render_53
+   +0x11 mov     eax, nIndex
+   +0x16 xor     esi, esi
+   +0x18 test    eax, eax
+   +0x1a jle     short loc_40C803
+   +0x1c mov     eax, g_pScriptObjArray
+   +0x21 mov     ecx, [eax+esi*4]; this
+   +0x24 call    SetMouseSensitivity
+   +0x29 mov     eax, nIndex
+   +0x2e inc     esi
+   +0x2f cmp     esi, eax
+   +0x31 jl      short loc_40C7EC
+   +0x33 mov     ecx, offset g_palScript; this
+   +0x38 call    Render_22
+   +0x3d mov     al, g_RoleSlotBuf.m_partyActor.m_szTexture+9
+   +0x42 test    al, al
+   +0x44 jz      loc_40C956
+   +0x4a fild    g_DrvInfo.height
+   +0x50 mov     ecx, gfxMgr
+   +0x56 push    ebx
+   +0x57 push    ebp
+
+== Render_42 (0x41F370) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 sub     esp, 11Ch
+   +0x06 push    ebx
+   +0x07 mov     ebx, ecx
+   +0x09 push    ebp
+   +0x0a push    esi; float *
+   +0x0b mov     eax, [ebx+4]
+   +0x0e push    edi; haveinput
+   +0x0f mov     [esp+12Ch+var_84.nTex], 1
+   +0x1a mov     [esp+12Ch+var_84.pTexPt], eax
+   +0x21 call    UISceneUpdate
+   +0x26 mov     ecx, [eax+0E0E0h]
+   +0x2c xor     edi, edi
+   +0x2e test    ecx, ecx
+   +0x30 mov     [esp+12Ch+var_11C], edi
+   +0x34 jle     short loc_41F407
+   +0x36 lea     esi, [ebx+40h]
+   +0x39 lea     ebp, [eax+0E174h]
+   +0x3f mov     [esp+12Ch+var_11C], ecx
+   +0x43 mov     eax, [ebp+1E8h]
+   +0x49 test    eax, eax
+   +0x4b jz      short loc_41F3F2
+   +0x4d cmp     dword ptr [ebp+0], 0
+   +0x51 jz      short loc_41F3F2
+   +0x53 lea     ecx, [esi-30h]
+
+== Reset_23 (0x41F6F0) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    0FFFFFFFFh
+   +0x02 push    offset SEH_41F6F0
+   +0x07 mov     eax, large fs:0
+   +0x0d push    eax
+   +0x0e mov     large fs:0, esp
+   +0x15 push    ecx
+   +0x16 push    esi
+   +0x17 push    edi
+   +0x18 mov     esi, ecx
+   +0x1a xor     edi, edi
+   +0x1c mov     [esp+18h+var_10], esi
+   +0x20 mov     [esi+8Ch], edi
+   +0x26 mov     [esi+90h], edi
+   +0x2c mov     [esi+94h], edi
+   +0x32 lea     ecx, [esi+0A4h]; this
+   +0x38 mov     [esi+98h], edi
+   +0x3e mov     [esi+9Ch], edi
+   +0x44 mov     [esi+0A0h], edi
+   +0x4a call    Clear
+   +0x4f push    offset InitInternal; void (__thiscall *)(void *)
+   +0x54 push    offset sub_4208F0; void (__thiscall *)(void *)
+   +0x59 push    2; int
+   +0x5b lea     eax, [esi+0B4h]
+   +0x61 push    14h; unsigned int
+
+== sub_41F8C0 (0x41F8C0) e0e0命中 +0xE0E0锚:{} 调用者3个(含C04390:0)
+   +0x00 push    ebp
+   +0x01 push    esi
+   +0x02 mov     esi, ecx
+   +0x04 xor     ebp, ebp
+   +0x06 mov     ecx, [esi+84h]
+   +0x0c mov     [esi+78660h], ebp
+   +0x12 cmp     ecx, ebp
+   +0x14 mov     byte ptr [esi+7865Ch], 0FFh
+   +0x1b jz      short loc_41F8E9
+   +0x1d mov     eax, [ecx]
+   +0x1f push    1
+   +0x21 call    dword ptr [eax]
+   +0x23 mov     [esi+84h], ebp
+   +0x29 mov     ecx, [esi+78650h]
+   +0x2f cmp     ecx, ebp
+   +0x31 jz      short loc_41F8FF
+   +0x33 mov     edx, [ecx]
+   +0x35 push    1
+   +0x37 call    dword ptr [edx]
+   +0x39 mov     [esi+78650h], ebp
+   +0x3f mov     eax, [esi+0E0E0h]
+   +0x45 push    ebx
+   +0x46 push    edi; nVal
+   +0x47 xor     edi, edi
+
+== sub_41FA90 (0x41FA90) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    0FFFFFFFFh
+   +0x02 push    offset SEH_41FA90
+   +0x07 mov     eax, large fs:0
+   +0x0d push    eax
+   +0x0e mov     large fs:0, esp
+   +0x15 push    ecx
+   +0x16 mov     eax, g_nsub_41FA90_DC10FC
+   +0x1b push    ebp
+   +0x1c test    eax, eax
+   +0x1e push    esi; char
+   +0x1f mov     ebp, ecx
+   +0x21 mov     g_nLastUpdateTime, 0
+   +0x2b mov     g_lastupdateloading, 0
+   +0x35 jz      short loc_41FAD4
+   +0x37 push    3F800000h; fValue
+   +0x3c lea     ecx, [eax+48h]; this
+   +0x3f call    SetRange_0
+   +0x44 mov     eax, [esp+18h+arg_4]
+   +0x48 push    ebx
+   +0x49 mov     ebx, [esp+1Ch+arg_0]
+   +0x4d push    edi; float *
+   +0x4e mov     ecx, 21h ; '!'
+   +0x53 mov     esi, ebx
+   +0x55 mov     edi, ebp
+
+== RenderWithStack (0x420110) e0e0命中 +0xE0E0锚:{} 调用者2个(含C04390:0)
+   +0x00 push    ebx
+   +0x01 mov     ebx, ecx
+   +0x03 push    esi; signed __int32
+   +0x04 xor     esi, esi
+   +0x06 mov     eax, [ebx+0E0E0h]
+   +0x0c test    eax, eax
+   +0x0e jle     short loc_420149
+   +0x10 push    ebp
+   +0x11 mov     ebp, [esp+0Ch+nVal]
+   +0x15 push    edi; signed __int32
+   +0x16 lea     edi, [ebx+0E0E4h]
+   +0x1c push    0; nVal
+   +0x1e push    ebp; pStack
+   +0x1f mov     ecx, edi; this
+   +0x21 call    RenderRole
+   +0x26 mov     eax, [ebx+0E0E0h]
+   +0x2c inc     esi
+   +0x2d add     edi, 2200h
+   +0x33 cmp     esi, eax
+   +0x35 jl      short loc_42012C
+   +0x37 pop     edi
+   +0x38 pop     ebp
+   +0x39 pop     esi
+   +0x3a pop     ebx
+
+== UIUpdate (0x420150) e0e0命中 +0xE0E0锚:{} 调用者4个(含C04390:0)
+   +0x00 push    ecx
+   +0x01 push    ebx
+   +0x02 push    ebp
+   +0x03 push    esi
+   +0x04 mov     esi, ecx
+   +0x06 push    edi; float
+   +0x07 mov     eax, [esi+78654h]
+   +0x0d test    eax, eax
+   +0x0f jz      loc_4201EB
+   +0x15 mov     ecx, [esi+78650h]
+   +0x1b test    ecx, ecx
+   +0x1d jz      short loc_420174
+   +0x1f mov     eax, [ecx]
+   +0x21 call    dword ptr [eax+14h]
+   +0x24 mov     eax, [esi+0E0E0h]
+   +0x2a xor     edi, edi
+   +0x2c test    eax, eax
+   +0x2e jle     short loc_4201AB
+   +0x30 fld     [esp+14h+result]
+   +0x34 lea     ebx, [esi+0E0E4h]
+   +0x3a fstp    [esp+14h+dt]
+   +0x3e mov     ebp, [esp+14h+dt]
+   +0x42 push    ebp; dt
+   +0x43 mov     ecx, ebx; this
+
+== sub_420200 (0x420200) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    ebx
+   +0x01 push    esi
+   +0x02 mov     esi, [ecx+0E0E0h]
+   +0x08 xor     eax, eax
+   +0x0a test    esi, esi
+   +0x0c push    edi
+   +0x0d jle     short loc_42022E
+   +0x0f mov     di, [esp+0Ch+arg_0]
+   +0x14 lea     edx, [ecx+0E190h]
+   +0x1a movzx   bx, byte ptr [edx]
+   +0x1e cmp     bx, di
+   +0x21 jz      short loc_420236
+   +0x23 inc     eax
+   +0x24 add     edx, 2200h
+   +0x2a cmp     eax, esi
+   +0x2c jl      short loc_42021A
+   +0x2e pop     edi
+   +0x2f pop     esi
+   +0x30 xor     eax, eax
+   +0x32 pop     ebx
+   +0x33 retn    4
+   +0x36 mov     edx, eax
+   +0x38 pop     edi
+   +0x39 shl     edx, 4
+
+== RenderActiveRoles (0x421C00) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    ebp
+   +0x01 mov     ebp, ecx
+   +0x03 push    edi
+   +0x04 xor     edi, edi
+   +0x06 mov     eax, [ebp+0E0E0h]
+   +0x0c test    eax, eax
+   +0x0e jle     short loc_421C39
+   +0x10 push    esi
+   +0x11 lea     esi, [ebp+0E0E4h]
+   +0x17 cmp     byte ptr [esi+0ADh], 4
+   +0x1e jnz     short loc_421C27
+   +0x20 mov     ecx, esi; this
+   +0x22 call    RenderVertexPool
+   +0x27 mov     eax, [ebp+0E0E0h]
+   +0x2d inc     edi
+   +0x2e add     esi, 2200h
+   +0x34 cmp     edi, eax
+   +0x36 jl      short loc_421C17
+   +0x38 pop     esi
+   +0x39 pop     edi
+   +0x3a pop     ebp
+   +0x3b retn
+
+== UINotifyUpdate (0x421C40) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    ebx
+   +0x01 mov     ebx, g_pRoleSystem
+   +0x07 push    ebp
+   +0x08 mov     ebp, ecx
+   +0x0a push    esi
+   +0x0b push    edi; float *
+   +0x0c mov     eax, [ebp+0E0E0h]
+   +0x12 xor     edi, edi
+   +0x14 test    eax, eax
+   +0x16 jle     short loc_421C87
+   +0x18 lea     esi, [ebp+0E0E4h]
+   +0x1e cmp     byte ptr [esi+0ADh], 4
+   +0x25 jnz     short loc_421C76
+   +0x27 lea     eax, [ebx+4]
+   +0x2a mov     ecx, esi; this
+   +0x2c push    eax; pfVal
+   +0x2d call    AdvancePathStep
+   +0x32 test    eax, eax
+   +0x34 jnz     short loc_421C8E
+   +0x36 mov     eax, [ebp+0E0E0h]
+   +0x3c inc     edi
+   +0x3d add     esi, 2200h
+   +0x43 cmp     edi, eax
+   +0x45 jl      short loc_421C5E
+
+== FindRoleByState (0x422050) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 push    esi
+   +0x01 push    edi
+   +0x02 mov     edi, ecx
+   +0x04 xor     eax, eax
+   +0x06 mov     esi, [edi+0E0E0h]
+   +0x0c test    esi, esi
+   +0x0e jle     short loc_422079
+   +0x10 mov     cl, byte ptr [esp+8+nVal]
+   +0x14 lea     edx, [edi+0E190h]
+   +0x1a cmp     [edx], cl
+   +0x1c jz      short loc_422080
+   +0x1e inc     eax
+   +0x1f add     edx, 2200h
+   +0x25 cmp     eax, esi
+   +0x27 jl      short loc_42206A
+   +0x29 pop     edi
+   +0x2a pop     esi
+   +0x2b xor     eax, eax
+   +0x2d retn    4
+   +0x30 mov     ecx, eax
+   +0x32 shl     ecx, 4
+   +0x35 add     ecx, eax
+   +0x37 shl     ecx, 9
+   +0x3a lea     eax, [ecx+edi+0E0E4h]
+
+== EffectUpdate (0x422E40) e0e0命中 +0xE0E0锚:{} 调用者4个(含C04390:0)
+   +0x00 fld     g_fEffectTimer
+   +0x06 fadd    [esp+fVal]
+   +0x0a mov     eax, g_nunknown_libname_331_C12B3C
+   +0x0f sub     esp, 8
+   +0x12 test    eax, eax
+   +0x14 fstp    g_fEffectTimer
+   +0x1a jz      short loc_422EC2
+   +0x1c push    eax
+   +0x1d call    ClearAllScript
+   +0x22 add     esp, 4
+   +0x25 test    eax, eax
+   +0x27 jnz     short loc_422EC2
+   +0x29 mov     al, byte ptr g_nunknown_libname_331_C12B38
+   +0x2e cmp     al, 6
+   +0x30 jz      short loc_422E76
+   +0x32 cmp     al, 0Eh
+   +0x34 jnz     short loc_422EB1
+   +0x36 mov     ecx, g_pRoleSystem; this
+   +0x3c push    0; nVal1
+   +0x3e call    GetMoveState
+   +0x43 mov     eax, g_nunknown_libname_331_C12B40
+   +0x48 cmp     dword ptr [eax+58h], 3
+   +0x4c jnz     short loc_422EAD
+   +0x4e mov     ecx, [eax+5Ch]; gbVisNode *
+
+== FindNearestTarget (0x4230D0) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 sub     esp, 1Ch
+   +0x03 mov     eax, dword_D8BBEC
+   +0x08 push    ebp
+   +0x09 xor     ebp, ebp
+   +0x0b mov     [esp+20h+var_1C], 7F7FFFFFh
+   +0x13 sub     eax, ebp
+   +0x15 jz      short loc_4230EF
+   +0x17 dec     eax
+   +0x18 jz      loc_4231CC
+   +0x1e dec     eax
+   +0x1f xor     ecx, ecx
+   +0x21 lea     eax, [ecx+ecx*4]
+   +0x24 push    ebx
+   +0x25 shl     eax, 6
+   +0x28 add     eax, ecx
+   +0x2a push    esi
+   +0x2b shl     eax, 4
+   +0x2e add     eax, ecx
+   +0x30 push    edi; char
+   +0x31 xor     ebx, ebx
+   +0x33 lea     eax, [eax+eax*2]
+   +0x36 lea     ecx, [ecx+eax*8]
+   +0x39 mov     eax, dword_C300C8[ecx*4]
+   +0x40 test    eax, eax
+
+== AnimUpdate (0x4232D0) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 sub     esp, 8
+   +0x03 mov     eax, dword_D8BBEC
+   +0x08 mov     [esp+8+var_8], 7F7FFFFFh
+   +0x10 sub     eax, 0
+   +0x13 mov     [esp+8+var_4], 0FFFFFFFFh
+   +0x1b jz      short loc_4232F5
+   +0x1d dec     eax
+   +0x1e jz      loc_42339F
+   +0x24 dec     eax
+   +0x25 xor     ecx, ecx
+   +0x27 lea     eax, [ecx+ecx*4]
+   +0x2a push    ebx
+   +0x2b shl     eax, 6
+   +0x2e add     eax, ecx
+   +0x30 push    ebp
+   +0x31 shl     eax, 4
+   +0x34 add     eax, ecx
+   +0x36 push    esi
+   +0x37 push    edi
+   +0x38 xor     edi, edi
+   +0x3a lea     eax, [eax+eax*2]
+   +0x3d mov     bl, 1
+   +0x3f lea     ecx, [ecx+eax*8]
+   +0x42 mov     eax, dword_C300C8[ecx*4]
+
+== ClearInactiveRoles (0x423500) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 call    UISceneUpdate
+   +0x05 mov     ecx, [eax+0E0E0h]
+   +0x0b xor     edx, edx
+   +0x0d test    ecx, ecx
+   +0x0f jle     short locret_423539
+   +0x11 push    esi
+   +0x12 lea     ecx, [eax+0E35Ch]
+   +0x18 cmp     byte ptr [ecx-1CBh], 2
+   +0x1f jnz     short loc_423527
+   +0x21 mov     dword ptr [ecx], 0
+   +0x27 mov     esi, [eax+0E0E0h]
+   +0x2d inc     edx
+   +0x2e add     ecx, 2200h
+   +0x34 cmp     edx, esi
+   +0x36 jl      short loc_423518
+   +0x38 pop     esi
+   +0x39 retn
+
+== CheckViewCollision (0x532F60) e0e0命中 +0xE0E0锚:{} 调用者1个(含C04390:0)
+   +0x00 sub     esp, 78h
+   +0x03 push    ebx
+   +0x04 push    ebp; signed __int32
+   +0x05 push    esi; unsigned __int32
+   +0x06 push    edi; char
+   +0x07 mov     ebp, ecx
+   +0x09 call    UISceneUpdate
+   +0x0e mov     ecx, [eax+0E0E0h]
+   +0x14 mov     [esp+88h+var_78], 0
+   +0x1c test    ecx, ecx
+   +0x1e mov     [esp+88h+var_74], ecx
+   +0x22 jle     loc_533068
+   +0x28 lea     ebx, [eax+0E35Ch]
+   +0x2e lea     eax, [ebx-278h]
+   +0x34 mov     [ebp+8Ch], eax
+   +0x3a mov     eax, [ebx-1E8h]
+   +0x40 test    eax, eax
+   +0x42 jz      loc_533051
+   +0x48 cmp     dword ptr [ebx], 0
+   +0x4b jz      loc_533051
+   +0x51 mov     [esp+88h+var_70.x], 0
+   +0x59 mov     [esp+88h+var_70.y], 0
+   +0x61 mov     [esp+88h+var_70.z], 0
+   +0x69 fld     dword ptr [ebx-274h]
+
+== LoadActorModel (0x538500) e0e0命中 +0xE0E0锚:{'stru_C0A360': 1} 调用者1个(含C04390:0)
+   +0x00 push    0FFFFFFFFh
+   +0x02 mov     eax, large fs:0
+   +0x08 push    offset loc_568C2B
+   +0x0d push    eax
+   +0x0e mov     eax, 282A4h
+   +0x13 mov     large fs:0, esp
+   +0x1a call    __alloca_probe
+   +0x1f push    ebx
+   +0x20 push    ebp; unsigned __int32
+   +0x21 push    esi; unsigned __int32
+   +0x22 push    edi; int
+   +0x23 mov     [esp+282C0h+var_282AC], ecx
+   +0x27 call    EnsureDirectory
+   +0x2c test    eax, eax
+   +0x2e jz      loc_538CC2
+   +0x34 call    UISceneUpdate
+   +0x39 mov     dl, byte ptr g_RoleSlotBuf+1BBCh
+   +0x3f mov     ebx, eax
+   +0x41 mov     ecx, 37h ; '7'
+   +0x46 xor     eax, eax
+   +0x48 lea     edi, [esp+282C0h+Buffer+1FCh]
+   +0x4f rep stosd
+   +0x51 mov     eax, g_fGameTimer
+   +0x56 mov     ecx, dword ptr g_RoleSlotBuf+1BB8h
+
+== BuildCollisionMesh (0x538FA0) e0e0命中 +0xE0E0锚:{} 调用者2个(含C04390:0)
+   +0x00 push    0FFFFFFFFh
+   +0x02 push    offset SEH_538FA0
+   +0x07 mov     eax, large fs:0
+   +0x0d push    eax
+   +0x0e mov     large fs:0, esp
+   +0x15 sub     esp, 3E0h
+   +0x1b mov     al, [esp+3ECh+pActionType]
+   +0x1f push    ebx
+   +0x20 push    ebp
+   +0x21 xor     ebp, ebp
+   +0x23 push    esi; nVal2
+   +0x24 push    edi; pszBuf3
+   +0x25 mov     ebx, ecx
+   +0x27 mov     byte ptr [esp+3FCh+var_360.m_pDataStart], al
+   +0x2e mov     [esp+3FCh+var_360.m_nSize], ebp
+   +0x35 mov     [esp+3FCh+var_360.m_pData], ebp
+   +0x3c mov     [esp+3FCh+var_360.m_nCapacity], ebp
+   +0x43 lea     ecx, [esp+3FCh+pActionType]
+   +0x47 mov     [esp+3FCh+var_4], ebp
+   +0x4e push    ecx; pSrc
+   +0x4f lea     ecx, [esp+400h+var_350]; this
+   +0x56 call    InitAction
+   +0x5b mov     esi, [esp+3FCh+pOut]
+   +0x62 mov     ecx, 21h ; '!'

@@ -1,0 +1,745 @@
+UISceneUpdate @ 0x4226F0
+=== D1: UISceneUpdate 体 (50 B) ===
+  +0x000 mov     eax, dword_D8BBEC   <<<
+  +0x005 sub     eax, 0
+  +0x008 jz      short loc_4226FE
+  +0x00a dec     eax
+  +0x00b jz      short loc_42271B
+  +0x00d dec     eax
+  +0x00e xor     ecx, ecx
+  +0x010 lea     eax, [ecx+ecx*4]
+  +0x013 shl     eax, 6
+  +0x016 add     eax, ecx
+  +0x018 shl     eax, 4
+  +0x01b add     eax, ecx
+  +0x01d lea     eax, [eax+eax*2]
+  +0x020 lea     ecx, [ecx+eax*8]
+  +0x023 lea     eax, ds:0C21FE8h[ecx*4]
+  +0x02a retn   <<<
+  +0x02b mov     ecx, 1
+  +0x030 jmp     short loc_422700
+
+=== D3: UISceneUpdate 调用者返回值用法 ===
+
+-- Update_35+0x137 --
+   mov     ecx, eax; this
+   call    UIUpdate
+   push    edi; fVal
+   call    EffectUpdate
+   mov     eax, g_fDeltaTime
+
+-- Update_35+0x259 --
+   mov     ecx, eax; this
+   call    UIUpdate
+   push    edi; fVal
+   call    EffectUpdate
+   add     esp, 4
+
+-- Update_35+0x293 --
+   mov     ecx, eax; this
+   call    UINotifyUpdate
+   test    eax, eax
+   jz      def_405676; jumptable 00405676 default case
+   mov     ecx, g_pRoleSystem; this
+
+-- Update_35+0x37A --
+   mov     ecx, eax; this
+   call    UIUpdate
+   push    edi; fVal
+   call    EffectUpdate
+   mov     ecx, g_fTimeScale
+
+-- Render_21+0x139 --
+   cmp     dword ptr [eax+64h], 1
+   jz      loc_405E05
+   lea     edx, [esp+8Ch+var_54]
+   mov     [esp+8Ch+var_3C.z], ebx
+   mov     [esp+8Ch+var_3C.y], ebx
+
+-- Render_21+0x244 --
+   mov     ecx, eax; this
+   call    RenderWithStack
+   cmp     g_nSceneState, 9
+   jz      short loc_405E62
+   push    esi; pMatrixStack
+
+-- Render_21+0x2BE --
+   mov     ecx, eax; this
+   call    NotifyRender
+   mov     eax, g_pCameraCtrl
+   test    eax, eax
+   jz      short loc_405ED8
+
+-- Render_21+0x2EC --
+   cmp     dword ptr [eax+64h], 1
+   jz      short loc_405EFC
+   call    CombatCheck
+   push    esi; nVal
+   call    UISceneUpdate
+
+-- Render_21+0x2FD --
+   mov     ecx, eax; this
+   call    ProcessNoteMap
+   mov     ecx, g_pSceneManager; this
+   call    RenderUpdate
+   mov     ecx, edi; gbSceneGraph *
+
+-- Render_21+0x321 --
+   mov     ecx, eax; this
+   call    RenderActiveRoles
+   mov     ecx, offset g_UIManager; this
+   call    Render_42
+   mov     ecx, g_pSceneManager; this
+
+-- Render_21+0x36D --
+   mov     ecx, eax; this
+   call    OverlayRender
+   mov     ecx, edi; gbSceneGraph *
+   call    ebp ; gbSceneGraph::End(void); gbSceneGraph::End(void)
+   call    GetInstance_1
+
+-- StartCombat+0x3E --
+   mov     ecx, [ebx+274h]
+   push    ecx; index
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [ebx+4]
+
+-- StartCombat+0xC8 --
+   mov     edi, eax
+   call    UISceneUpdate
+   add     edi, 20h ; ' '
+   push    edi
+   push    eax
+
+-- StartCombat+0xCF --
+   add     edi, 20h ; ' '
+   push    edi
+   push    eax
+   lea     eax, [ebp+Buffer]
+   push    (offset aFivemagic+18h); Format
+
+-- StartCombat+0x1F5 --
+   mov     esi, eax
+   call    GetInstance_0
+   push    esi; pszSceneName
+   mov     ecx, eax; this
+   call    PlayCombatMusic
+
+-- EntryCatchGhost+0x79 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- CheckSceneCollision+0x12 --
+   mov     ecx, eax; this
+   call    CheckCollision
+   retn    8
+
+-- BindRoleToScene+0x18 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     ebx, [esp+24h+nVal]
+   mov     ebp, [esp+24h+pfVal]
+   mov     [esi+18h], eax
+
+-- BindRoleToScene+0xE6 --
+   mov     ecx, eax; this
+   call    ValidatePath
+   mov     eax, [esp+24h+a7]
+   mov     ecx, [esp+24h+var_8]
+   jmp     short loc_408564
+
+-- Render2+0x9D --
+   mov     ebx, eax
+   xor     ebp, ebp
+   mov     eax, [ebx+0E0E0h]
+   test    eax, eax
+   jle     loc_40C94C
+
+-- LoadYlfScript+0x6 --
+   lea     ecx, [eax+20h]
+   lea     edx, [esp+80h+Buffer]
+   push    ecx
+   push    eax
+   push    offset aYlfSS; "_ylf_%s_%s"
+
+-- SetMoveSpeed+0x3C --
+   mov     ecx, eax; this
+   call    SetRoleParam
+   mov     eax, [esp+4+fSpeed]
+   fstp    dword ptr [esi+98h]
+   test    eax, eax
+
+-- NotifySceneChange+0x3 --
+   mov     eax, [esp+4+nVal1]
+   mov     [esi+274h], eax
+   pop     esi
+   retn    4
+
+-- MoveToTile+0x27 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- MoveRole+0x76 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     ebx, eax
+   fsub    dword ptr [ebx+80h]
+
+-- MoveRole+0xF0 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   test    eax, eax
+   pop     ebp
+   jz      short loc_412FAA
+
+-- UpdateRole+0x33 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [ebx+4]
+   mov     ebp, eax
+   mov     [esp+44h+var_2C], ebp
+
+-- MoveToTileCheck+0x27 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- PlaceAtRegion+0x13 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     esi, eax
+   mov     eax, [esp+18h+nRegion]
+   shl     eax, 4
+
+-- UpdateMovement_4350+0x9 --
+   mov     ebp, eax
+   mov     eax, [esi+274h]
+   push    eax; index
+   mov     ecx, ebp; this
+   call    GetRolePtr
+
+-- PathFind+0xFC --
+   mov     ecx, eax; this
+   call    SetRoleParam
+   fstp    dword ptr [esi+4DCh]
+   mov     al, g_bPathEnabled
+   test    al, al
+
+-- PathFind+0x122 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- PathFind+0x1A2 --
+   mov     ecx, eax; this
+   call    GetPathTarget
+   test    eax, eax
+   jnz     loc_414C80
+   fld     ds:flt_56A644
+
+-- PathFind+0x23E --
+   mov     ecx, eax; this
+   call    GetTileHeight
+   fstp    dword ptr [esi+4DCh]
+   xor     ebx, ebx
+   mov     edx, [ebp+0]
+
+-- UpdateActionState+0xC2A --
+   mov     ecx, eax; this
+   call    CheckTileScript
+   fld     [esp+28h+fVal]
+   fadd    dword ptr [esi+4E8h]
+   pop     edi
+
+-- CheckMoveCollisionDist+0x124 --
+   mov     ecx, eax; this
+   call    CheckMoveCollision
+   test    eax, eax
+   jz      short loc_4163A2
+   mov     eax, [esi+0A0h]
+
+-- CalcTileDistance+0xE --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fild    [esp+20h+nTileX]
+   mov     edx, [esp+20h+nTileX]
+   mov     [esp+20h+var_14], 0
+
+-- UpdateAnimation_1+0x1DA --
+   mov     ebx, eax
+   mov     eax, [edi+274h]
+   push    eax; index
+   mov     ecx, ebx; this
+   call    GetRolePtr
+
+-- CheckVisibility+0x176 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- CheckVisibility+0x1F1 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   neg     eax
+   pop     edi
+   pop     ebp
+
+-- SetState_1+0x22 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     eax, [ebx+0ECh]
+   mov     esi, [ebx+0E4h]
+   mov     ecx, [ebx+0F0h]
+
+-- SetState_1+0x88 --
+   mov     ecx, eax; this
+   call    CheckCollision
+   test    eax, eax
+   jnz     short loc_417B7C
+   mov     eax, [esp+18h+state]
+
+-- StartPathMove+0x1F --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     edi, eax
+   push    1
+   jmp     short loc_418A0D
+
+-- StartPathMove+0x38 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     ecx, [esi+274h]
+   mov     edi, eax
+   push    ecx; index
+
+-- StartPathMove+0x4D --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fild    [esp+40h+pszBuf]
+   mov     ecx, [esp+40h+pszBuf]
+   mov     ebx, eax
+
+-- StartPathMove+0x1FC --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- StartPathMove+0x247 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   test    eax, eax
+   jz      loc_418CD4
+   lea     ecx, [esp+40h+pTargetPos]
+
+-- StartPathMove+0x2BD --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- StartPathMove+0x304 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   test    eax, eax
+   jnz     short loc_418CF8
+   push    offset aOutdist; name
+
+-- TryMoveToTarget+0xB --
+   mov     ecx, eax; this
+   call    SetAction
+   test    eax, eax
+   mov     [esi+584h], eax
+   jnz     short loc_418DEA
+
+-- TryMoveToTarget+0x15F --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- TryMoveToTarget+0x1D6 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   pop     edi
+   pop     ebp
+   test    eax, eax
+
+-- GetActorState+0x2E --
+   mov     ecx, eax; this
+   call    SetRoleParam
+   mov     ecx, [esp+10h+nVal]
+   lea     edx, [esp+10h+pfVal]
+   fstp    [esp+10h+var_8]
+
+-- RenderVertexPool+0x17A --
+   mov     ecx, eax; this
+   call    SetRoleParam
+   fstp    dword ptr [ebx]
+   mov     edx, [edi+0A0h]
+   lea     ebp, [esi+20h]
+
+-- RenderVertexPool+0x260 --
+   mov     ecx, eax; this
+   call    SetRoleParam
+   fstp    dword ptr [esi+24h]
+   mov     eax, 3
+   mov     dl, 0C8h
+
+-- AdvancePathStep+0xD9 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [esi+4]
+   mov     edi, eax
+   fsub    dword ptr [edi+80h]
+
+-- AdvancePathStep+0x150 --
+   mov     ecx, eax; this
+   call    AdvanceOnPath
+   neg     eax
+   pop     ebp
+   pop     ebx
+
+-- ScanMoveDirections+0x12 --
+   mov     ecx, [esi+274h]
+   mov     ebp, eax
+   push    ecx; index
+   mov     ecx, ebp; this
+   call    GetRolePtr
+
+-- ApproachTarget+0x10 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [edi+4]
+   mov     ebx, eax
+   fsub    dword ptr [ebx+80h]
+
+-- ApproachTarget+0xD1 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   fld     dword ptr [edi+4]
+   mov     ebx, eax
+   fsub    dword ptr [ebx+80h]
+
+-- ProcessMouse+0x3B --
+   mov     ecx, eax; this
+   call    GetNoteItemData
+   test    eax, eax
+   jz      loc_41C623
+   fld     [esp+20h+var_C]
+
+-- UpdateInternal+0x3ED --
+   mov     ecx, eax
+   call    FindVisible
+   mov     esi, eax
+   test    esi, esi
+   jz      loc_41DEF9
+
+-- UpdateInternal+0x9EB --
+   mov     ecx, eax; this
+   call    FindNearest
+   test    eax, eax
+   jz      short loc_41E3C8
+   mov     ecx, g_pRoleSystem; this
+
+-- CheckCollision1+0x12 --
+   mov     ebx, eax
+   mov     eax, [esp+4Ch+pPos]
+   lea     ecx, [esp+4Ch+pTarget]
+   push    eax; pPos
+   push    ecx; pTarget
+
+-- CheckCollision1+0x148 --
+   mov     ecx, eax
+   add     ecx, 78630h; this
+   call    GetState_1
+   test    eax, eax
+   jz      short loc_41E93B
+
+-- CheckCollision2+0xB --
+   mov     ecx, eax; this
+   call    GetMapNodePtr
+   mov     ecx, [esp+48h+pPos]
+   lea     edx, [esp+48h+pTarget]
+   push    ecx; pPos
+
+-- UIPostUpdate+0x17 --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     ebx, g_pRoleSystem
+   mov     esi, eax
+   fld     dword ptr [ebx+4]
+
+-- IsTransitioning+0xF --
+   mov     ecx, eax; this
+   call    GetRolePtr
+   mov     edi, g_pRoleSystem
+   mov     esi, eax
+   fld     dword ptr [edi+4]
+
+-- IsTransitioning+0x56 --
+   mov     ecx, eax; this
+   call    IsTileInBounds
+   pop     edi
+   pop     esi
+   test    eax, eax
+
+-- Render_42+0x21 --
+   mov     ecx, [eax+0E0E0h]
+   xor     edi, edi
+   test    ecx, ecx
+   mov     [esp+12Ch+var_11C], edi
+   jle     short loc_41F407
+
+-- Destroy_32+0x1 --
+   mov     ecx, eax; this
+   call    RemoveVisNode
+   mov     esi, offset g_SceneBuf
+   mov     ecx, esi
+   call    sub_41F8C0
+
+-- CombatCheck+0x0 --
+   mov     ecx, [eax+88h]
+   test    ecx, ecx
+   jnz     short loc_4234E2
+   xor     eax, eax
+   retn
+
+-- CombatCheck+0x12 --
+   mov     eax, [eax+88h]
+   push    0
+   mov     ecx, eax
+   mov     edx, [eax]
+   call    dword ptr [edx+10h]
+
+-- ClearInactiveRoles+0x0 --
+   mov     ecx, [eax+0E0E0h]
+   xor     edx, edx
+   test    ecx, ecx
+   jle     short locret_423539
+   push    esi
+
+-- CombatEnter+0x0 --
+   cmp     dword ptr [eax+64h], 1
+   jnz     short loc_423594
+   push    0; pszBuf
+   push    offset aM19_0; String1
+   call    ProcessInput_2
+
+-- ProcessInput_2+0x2 --
+   mov     esi, eax
+   mov     eax, [esp+8+String1]
+   push    esi; String2
+   push    eax; String1
+   call    __strcmpi
+
+-- ProcessRoleLoading+0x32 --
+   push    eax; pszName
+   call    GetSaveDataManager
+   mov     ecx, eax; this
+   call    AddActionByName
+   test    eax, eax
+
+-- ProcessRoleLoading+0xB8 --
+   mov     ecx, eax; this
+   call    NotifyPathEnd
+   push    0
+   mov     ecx, edi; this
+   mov     [edi+31Ch], eax
+
+-- UpdateScriptRoles+0x51 --
+   push    eax; String1
+   call    __strcmpi
+   add     esp, 8
+   test    eax, eax
+   jz      loc_42BE1B
+
+-- OpenSceneScript+0x20 --
+   push    eax
+   mov     eax, ds:off_56AB14; "scene\\"
+   push    eax
+   lea     ecx, [esp+128h+Buffer]
+   push    offset aSS; Format
+
+-- ExecuteFrame+0x377 --
+   mov     ecx, eax; this
+   call    SetAction
+   test    eax, eax
+   jz      loc_42FA21
+   mov     ecx, eax; this
+
+-- GetSceneObject+0x20 --
+   mov     ecx, eax
+   call    sub_420200
+   retn
+
+-- Op_RolePathOut+0x63 --
+   mov     edx, [esi+274h]
+   mov     ecx, [eax+784E4h]
+   cmp     edx, ecx
+   jl      short loc_434E12
+   mov     dword ptr [esi+274h], 0
+
+-- GetCurrentCamera+0xE --
+   mov     ecx, eax; this
+   call    SetAction
+   mov     ecx, g_pCameraCtrl; this
+   push    eax; nVal
+   call    SetInactive
+
+-- Op_ShowActAutoStand+0xC --
+   mov     eax, g_pRoleSystem
+   mov     ecx, g_pCameraCtrl; this
+   push    eax; nVal
+   call    SetActive
+   mov     ecx, [esi+4]
+
+-- Op_RoleEmote+0x25 --
+   mov     ecx, eax; this
+   call    SetAction
+   mov     esi, eax
+   test    esi, esi
+   jz      loc_4378D1
+
+-- Op_HaveItem+0x2C --
+   mov     ecx, eax; this
+   call    SetAction
+   mov     esi, eax
+   test    esi, esi
+   jz      loc_437A73
+
+-- Op_Climb+0xF --
+   mov     ecx, eax; this
+   call    SetAction
+   mov     esi, eax
+   test    esi, esi
+   jz      short loc_437AB1
+
+-- Op_Enable_JusticeBook+0x0 --
+   mov     ecx, eax; this
+   jmp     BindRolesToStage
+
+-- Op_GetHS_ManageType+0xE --
+   mov     ecx, eax; this
+   call    SetAction
+   test    eax, eax
+   jz      short locret_438385
+   mov     ecx, g_pRoleSystem
+
+-- Op_GetHS_Accrual_type+0x1B --
+   mov     edi, [esp+14h+var_C]
+   mov     esi, eax
+   mov     eax, [edi+4]
+   lea     ecx, [esi+20h]
+   push    eax; String2
+
+-- Op_LoadAct+0x33 --
+   mov     ecx, [esi+4]
+   and     ecx, 1
+   mov     [esi+4], ecx
+   push    ecx; index
+   mov     ecx, eax; this
+
+-- Op_CameraYaw+0x21 --
+   mov     ecx, eax; this
+   call    SetAction
+   add     eax, 0ACh
+   jmp     short loc_438F9A
+   push    offset pszName2; pszName2
+
+-- Render_35+0x62 --
+   mov     esi, eax
+   mov     eax, [esi+784E4h]
+   add     esi, 784E4h
+   xor     ebx, ebx
+   test    eax, eax
+
+-- HandleItemPage+0x3D5 --
+   mov     ecx, eax; this
+   call    ResetTransition
+   mov     ecx, [esi+290h]; this
+   push    9; a1
+   call    HandleMessage
+
+-- CheckViewCollision+0x9 --
+   mov     ecx, [eax+0E0E0h]
+   mov     [esp+88h+var_78], 0
+   test    ecx, ecx
+   mov     [esp+88h+var_74], ecx
+   jle     loc_533068
+
+-- LoadVisNode+0x3D --
+   mov     [ebp+0], eax
+   mov     edi, ds:off_5708DC; "scene\\"
+   or      ecx, 0FFFFFFFFh
+   xor     eax, eax
+   repne scasb
+
+-- PushPopStack+0xE --
+   mov     ecx, eax; this
+   call    ProcessNoteMap
+   push    esi; pStack
+   call    UISceneUpdate
+   mov     ecx, eax; this
+
+-- PushPopStack+0x1B --
+   mov     ecx, eax; this
+   call    RenderWithStack
+   mov     ecx, esi; this
+   call    ds:?Pop@gbMatrixStack@@QAEXXZ; gbMatrixStack::Pop(void)
+   pop     esi
+
+-- DoSceneTransition+0x65E --
+   mov     edi, eax
+   mov     eax, [edi+784E4h]
+   add     edi, 784E4h
+   xor     esi, esi
+   test    eax, eax
+
+-- DoSceneTransition+0x6D6 --
+   mov     ecx, [esp+280A0h+var_28090]
+   mov     [esp+280A0h+var_28080.pTargetActor], esi
+   cmp     ecx, esi
+   mov     [esp+280A0h+var_28080.targetY], esi
+   mov     [esp+280A0h+var_28080.targetZ], esi
+
+-- LoadActorModel+0x34 --
+   mov     dl, byte ptr g_RoleSlotBuf+1BBCh
+   mov     ebx, eax
+   mov     ecx, 37h ; '7'
+   xor     eax, eax
+   lea     edi, [esp+282C0h+Buffer+1FCh]
+
+-- AudioStopAll+0x5 --
+   add     eax, 20h ; ' '
+   push    eax; pszArea
+   call    UISceneUpdate
+   push    eax; pszScene
+   mov     ecx, esi; this
+
+-- AudioStopAll+0xE --
+   push    eax; pszScene
+   mov     ecx, esi; this
+   call    PlaySceneMusic
+   pop     esi
+   retn
+
+=== D2: stride-0x2200 数组模式归属扫描 ===
+[seg] .data 0x580000-0x1897000

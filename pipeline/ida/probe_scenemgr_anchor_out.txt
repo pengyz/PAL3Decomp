@@ -1,0 +1,66 @@
+
+========== D1a: mov ecx, 0xC04390 字节扫 → 方法集 ==========
+mov ecx, 0xC04390 站点: 22
+紧跟 call 的目标数: 2 (去重); 非直呼形态: 20
+  method sub_E (0xE) x1
+  method sub_ADD (0xADD) x1
+
+========== D1b: 方法集体内 [ecx+disp] 扫描 ==========
+方法集 2 个中有 [ecx+disp] 访问: 0
+TOP-15 max disp:
+max disp >= 0xD364(docs 尾): 0 个方法
+max disp >= 0xE544(ann 尾): 0 个方法
+全类 disp>=0x4000 清单: []
+
+========== D1c: 偏移 0xE0E0 触达指令字节扫 ==========
+  Render2+0xA6: mov     eax, [ebx+0E0E0h]
+  Render2+0x167: mov     eax, [ebx+0E0E0h]
+  Render_42+0x26: mov     ecx, [eax+0E0E0h]
+  Reset_23+0xCB: mov     [esi+0E0E0h], edi
+  sub_41F8C0+0x3F: mov     eax, [esi+0E0E0h]
+  sub_41F8C0+0x5A: mov     eax, [esi+0E0E0h]
+  sub_41F8C0+0x75: mov     [esi+0E0E0h], ebp
+  sub_41FA90+0x1CB: mov     [ebp+0E0E0h], eax
+  sub_41FA90+0x23F: fidiv   dword ptr [ebp+0E0E0h]
+  sub_41FA90+0x256: mov     eax, [ebp+0E0E0h]
+  RenderWithStack+0x6: mov     eax, [ebx+0E0E0h]
+  RenderWithStack+0x26: mov     eax, [ebx+0E0E0h]
+  UIUpdate+0x24: mov     eax, [esi+0E0E0h]
+  UIUpdate+0x4A: mov     eax, [esi+0E0E0h]
+  sub_420200+0x2: mov     esi, [ecx+0E0E0h]
+  RenderActiveRoles+0x6: mov     eax, [ebp+0E0E0h]
+  RenderActiveRoles+0x27: mov     eax, [ebp+0E0E0h]
+  UINotifyUpdate+0xC: mov     eax, [ebp+0E0E0h]
+  UINotifyUpdate+0x36: mov     eax, [ebp+0E0E0h]
+  FindRoleByState+0x6: mov     esi, [edi+0E0E0h]
+  EffectUpdate+0xD7: mov     eax, [ebx+0E0E0h]
+  EffectUpdate+0x143: mov     eax, [ebx+0E0E0h]
+  EffectUpdate+0x1CA: mov     eax, [ebp+0E0E0h]
+  EffectUpdate+0x1F7: mov     eax, [ebp+0E0E0h]
+  FindNearestTarget+0x108: mov     eax, [edi+0E0E0h]
+  AnimUpdate+0xDB: mov     eax, [ebp+0E0E0h]
+  ClearInactiveRoles+0x5: mov     ecx, [eax+0E0E0h]
+  ClearInactiveRoles+0x27: mov     esi, [eax+0E0E0h]
+  CheckViewCollision+0xE: mov     ecx, [eax+0E0E0h]
+  LoadActorModel+0x6DD: mov     eax, [ebx+0E0E0h]
+  BuildCollisionMesh+0x267: mov     ecx, [eax+0E0E0h]
+  BuildCollisionMesh+0x2B1: mov     ecx, [eax+0E0E0h]
+0xE0E0 触达指令: 32 处 (32 去重)
+
+========== D2: CRT init 表 → SceneMgr ctor ==========
+CRT init 表中引用 0xC04390 的条目: 0
+
+========== D3: XrefsTo(0xC12470) ==========
+绝对引用数: 0
+注: 0xC12470 - g_UIManager(0xC11758) = 0xD18
+
+========== D4: 尾界区 [0xC116F4, 0xC1D284) IDA 命名条目 ==========
+  0x00C116F4 g_pCurrentBGM                              data (SceneMgr+0xd364)
+  0x00C116F8 g_fCameraBlendWeight                       data (SceneMgr+0xd368)
+  0x00C11700 g_nPartyRoles                              data (SceneMgr+0xd370)
+  0x00C11718 g_nPartyCount                              data (SceneMgr+0xd388)
+  0x00C11744 g_nMonsterType                             data (SceneMgr+0xd3b4)
+  0x00C11754 g_pCombatRole                              data (SceneMgr+0xd3c4)
+  0x00C11758 g_UIManager                                data (SceneMgr+0xd3c8)
+  0x00C12888 flt_C12888                                 data (SceneMgr+0xe4f8)
+尾界区语义命名条目: 8

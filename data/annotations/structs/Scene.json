@@ -65,10 +65,10 @@
    "evidence_level": "unverified"
   },
   "0xe0e0": {
-   "name": "m_nTodo_e0e0",
+   "name": "m_nRoleCount",
    "type": "int",
-   "source": "ctor 0x0041F6F0: mov [esi+0E0E0h],0",
-   "evidence_level": "unverified"
+   "source": "binary 20261124: ClearInactiveRoles 读 [this+0xE0E0]=计数, walk this+0xE35C 步距 0x2200(sub_420xxx shl 链 idx*8704+0xE0E4 内联槽首); FindNearestTarget/AnimUpdate 等 32 站同域. 原 SceneMgr.m_nRoleCount 误归属纠正.",
+   "evidence_level": "verified"
   },
   "0x78650": {
    "name": "m_nTodo_78650",
@@ -209,6 +209,50 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x00421c00": {
+   "name": "RenderActiveRoles",
+   "_misattrib_evidence": "max_offset=57572>class_size=204",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); this=UISceneUpdate 返回值(call UISceneUpdate;mov ecx,eax;call 本函数 3+ 站 A 级); [this+0xE0E0] 域访问 32 站"
+  },
+  "0x00421c40": {
+   "name": "UINotifyUpdate",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); this=UISceneUpdate 返回值(call UISceneUpdate;mov ecx,eax;call 本函数 3+ 站 A 级); [this+0xE0E0] 域访问 32 站"
+  },
+  "0x00422050": {
+   "name": "FindRoleByState",
+   "_misattrib_evidence": "max_offset=57744>class_size=8684",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "nState"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(FindRoleByState): int(int",
+   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); this=UISceneUpdate 返回值(call UISceneUpdate;mov ecx,eax;call 本函数 3+ 站 A 级); [this+0xE0E0] 域访问 32 站"
   }
  }
 }

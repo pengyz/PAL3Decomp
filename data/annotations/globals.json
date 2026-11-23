@@ -2808,10 +2808,12 @@
   "category": "game_state"
  },
  "0x00c04390": {
-  "name": "g_SceneMgr",
-  "type": "SceneMgr",
+  "name": "g_SceneArray2",
+  "type": "Array",
   "category": "pending",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待"
+  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：待 | 裁决 20261124: SceneMgr 捏造实锤(五面取证)退役——22 个 mov ecx,0xC04390 全部 Array::Insert/Erase/Size/AddRoleEntry 接收点; +0xC=g_pSceneArrayEnd2(FullInit 12B 步距尾指针写); 语料 /12 算术自证 (PAL3.cpp:3059). 0xC04390 缩回 Array 真身, 邻接 g_SceneArray@0xC04380 16B 不重叠. m_pAlphaEffect2 误名随类退役.",
+  "name_old": "g_SceneMgr",
+  "type_old": "SceneMgr"
  },
  "0x00c0439c": {
   "name": "g_pSceneArrayEnd2",
@@ -8364,5 +8366,17 @@
   "overlaps_with": [
    "g_SceneMgr"
   ]
+ },
+ "0x00dba24c": {
+  "name": "dword_DBA24C",
+  "type": "PalScriptMgr *",
+  "source": "可见性修复 20261124: IDB 快照型 PalScriptMgr*(定义侧已渲染), 原 globals.h 经 SceneMgr.h(m_pScriptCtrl 指针成员)传递前向声明——SceneMgr 捏造类退役断链后 globals.cpp L1396/1398 C2501×6. 全树零语料引用(纯 .data 定义), 注解=镜像导出 IDB 型恢复声明侧 fwd_classes 前向声明.",
+  "category": "game_state"
+ },
+ "0x00dba254": {
+  "name": "dword_DBA254",
+  "type": "PalScriptMgr *",
+  "source": "可见性修复 20261124: IDB 快照型 PalScriptMgr*(定义侧已渲染), 原 globals.h 经 SceneMgr.h(m_pScriptCtrl 指针成员)传递前向声明——SceneMgr 捏造类退役断链后 globals.cpp L1396/1398 C2501×6. 全树零语料引用(纯 .data 定义), 注解=镜像导出 IDB 型恢复声明侧 fwd_classes 前向声明.",
+  "category": "game_state"
  }
 }

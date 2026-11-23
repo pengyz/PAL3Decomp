@@ -392,5 +392,29 @@
    }
   }
  },
- "members_note": "\n[R3 2026-11-19 C10消解] 0x2b54/0x2b58/0x2b60 三成员删除——均落 RoleSystem值成员@0x1610 区间 [5648,13248) 内, 且证据链全空: 0x2b54 零汇编disp+零语料+source引不存在全局名(g_CCBStageRoleFind); 0x2b58 同(global_analysis 名g_bRoleSlotValid 不在 globals.json); 0x2b60 source 自裁\"真偏移0x2BA0 与本址互斥\"(97挂账裁决遗留)。0x2BA0 修正+RoleSystem 内部归属取证挂账。"
+ "members_note": "\n[R3 2026-11-19 C10消解] 0x2b54/0x2b58/0x2b60 三成员删除——均落 RoleSystem值成员@0x1610 区间 [5648,13248) 内, 且证据链全空: 0x2b54 零汇编disp+零语料+source引不存在全局名(g_CCBStageRoleFind); 0x2b58 同(global_analysis 名g_bRoleSlotValid 不在 globals.json); 0x2b60 source 自裁\"真偏移0x2BA0 与本址互斥\"(97挂账裁决遗留)。0x2BA0 修正+RoleSystem 内部归属取证挂账。",
+ "_retired": {
+  "date": "2026-11-24",
+  "verdict": "捏造类实锤退役——五面取证: (1)CRT init 零条目引用 0xC04390=无构造; (2)+0xE0E0 绝对引用=0=无静态成员访问; (3)22 个 mov ecx,0xC04390 全部是 Array::Insert/Erase/Size/AddRoleEntry 接收点=运行时真身 Array 头(+0xC=g_pSceneArrayEnd2 独立符号+语料 /12 元素步距算术 PAL3.cpp:3059); (4)m_nRoleCount(+0xE0E0) 真归属=UISceneUpdate 返回值=&g_SceneBuf[state](Scene 结构 20260920 七偏移定谳在册); (5)二进制零 SceneMgr 字符串/无 PDB. 工厂 ABI: InitGame push 0xA930+operator new=CEffMgr.binary_size, Create(0x4CDA10) 收 raw new 指针=A2 构造(+0xb7 call 0x4CE100 配对). docs 54116 与 annotation 58692 均为折叠产物, 吞并/overlap 补丁皆同源症状.",
+  "methods_rehomed": {
+   "0x004cda10": "CEffMgr (Create, A2 构造)",
+   "0x004cdbf0": "CEffMgr (RenderAll, g_pSceneManager 接收者)",
+   "0x004cdc20": "CEffMgr (RenderUpdate, g_pSceneManager 接收者)",
+   "0x004cdb70": "CEffMgr (SceneMgrUpdate, 自 functions.json 迁入)",
+   "0x00421c00": "Scene (RenderActiveRoles, this=UISceneUpdate 返回)",
+   "0x00421c40": "Scene (UINotifyUpdate, 同上)",
+   "0x00422050": "Scene (FindRoleByState, 同上)",
+   "0x00423500": "functions.json (ClearInactiveRoles, static helper 返回 Scene*)",
+   "0x00408850": "functions.json (ResetPlayerAtts, static)",
+   "0x0040ca40": "functions.json (InitSceneRoles, static)",
+   "0x0040fc70": "functions.json (GetValidPartyCount, static)",
+   "0x004236b0": "functions.json (ResetSceneFlags, static)",
+   "0x00528d50": "functions.json (LoadMainUITexture, 接收者未证挂账)",
+   "0x0052ec90": "functions.json (GetCurrentNode, 接收者未证挂账)"
+  },
+  "dropped": {
+   "0x004cd930": "~SceneMgr(deleting) 零 xref 死函数, 体仅 operator delete×3, 与 0x4CE2A0 配对未证——不再注解(死码无语料引用), 挂账备查"
+  },
+  "members_verdict": "20 个 known_members 全灭: +0..+0x14=Array 16B 槽位误名(m_pAlphaEffect2=+0xC 尾指针=语料 /12 算术实证); 0x160E/0x1610=g_RoleSlotBuf(0xC043A0 RoleSystem)内部; 0xC5D4..0xD0D4=g_RoleSystemArrayEnd/g_palScript/g_pAmbientTable 内部(吞并机制实证); 0xE0E0=Scene 成员; 0xc67e_0=绝对地址误标."
+ }
 }

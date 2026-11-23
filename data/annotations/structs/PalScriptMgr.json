@@ -238,10 +238,11 @@
    "evidence_level": "unverified"
   },
   "0x320": {
-   "name": "m_pSceneMgr",
+   "name": "m_pRoleSystem",
    "type": "RoleSystem *",
-   "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer",
-   "evidence_level": "unverified"
+   "source": "ida_decomp:ExecuteOpcode GetRolePtr(*(this+16)), 33 refs+codegen_infer | 名修正 20261124: m_pSceneMgr 名型冲突(SceneMgr 类已退役实锤; 本槽型=RoleSystem*), 名随型对齐",
+   "evidence_level": "unverified",
+   "name_old": "m_pSceneMgr"
   },
   "0x324": {
    "name": "m_bRoleCmd",
