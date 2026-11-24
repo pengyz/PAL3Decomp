@@ -1,0 +1,26 @@
+{
+ "_doc": "[模板映射表 20261124 用户枖架指令] hexrays/IDA til 无模板语法(名字打平化: gbSingleton<gbGfxManager>→gbSingleton_gbGfxManager, PAL3A PDB 尖括号同源互证)。codegen 消费: ①generate_header 拦 mapped 类发模板定义+实例化别名头(声明还原) ②stage5 透明指针规则(semantics.transparent_pointer_param → 用法退化到 args[param])。模板定义为人工语法还原(非原封罕) —— 原源码真实形态的注解层位重建。",
+ "templates": {
+  "gbSingleton": {
+   "kind": "class_template",
+   "decl_lines": [
+    "template <class T> class gbSingleton {",
+    "public:",
+    "    static T *pSingleton;",
+    "};"
+   ],
+   "semantics": {
+    "transparent_pointer_param": 0
+   },
+   "evidence": "PAL3A PDB classes gbSingleton<gbGfxManager>: size=1 data_members=[] static_members=[pSingleton: gbGfxManager *] bases=null —— 空类+静态单例槽。"
+  }
+ },
+ "instantiations": {
+  "gbSingleton_gbGfxManager": {
+   "template": "gbSingleton",
+   "args": [
+    "gbGfxManager"
+   ]
+  }
+ }
+}

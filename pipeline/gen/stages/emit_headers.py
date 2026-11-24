@@ -443,12 +443,10 @@ def _is_system_type(name):
 _RAW_SLOT_RE = re.compile(r"^(dword|byte|word|float|qword|double|int|char|unk)_[0-9A-Fa-f]+$")
 
 def _pod_scalar_names():
-    """POD typedef = IDA raw data slots ONLY (2026-11-24 user ruling).
-    Named types (project/engine classes, enums) belong to the ANNOTATION
-    layer (opaque struct / enum json); gaps are exposed by the REF gate,
-    never masked by typedef. All historical incidents (11-17 C2371,
-    11-18 SKIP-class, today gbSingleton C2440 x3-4; PlayerMgr/gbOctree
-    typedef uchar proven) root-cause to this misclassification."""
+    """POD typedef = 布局必要的无成员命名类型(1B 状态/枚举存储等)
+    —— 用户裁定: 这些 typedef 留在 scalar_typedefs.h 头文件。
+    排除三类: 系统库标记(domain_exclude.types)/有注解 json 的真类
+    (注解拥有权——gbSingleton/PlayerMgr/gbOctree 案)/非容器尺寸。"""
     global _pod_scalar_names_cache
     if _pod_scalar_names_cache is not None:
         return _pod_scalar_names_cache
@@ -456,30 +454,25 @@ def _pod_scalar_names():
     for _n, _e in (_get_ida_structs() or {}).items():
         if not isinstance(_e, dict):
             continue
+        # 系统库标记(domain_exclude.types)不入 POD typedef
         if _is_system_type(_n):
             continue
-        if not _RAW_SLOT_RE.match(_n):
-            continue
-    _out = set()
-    for _n, _e in (_get_ida_structs() or {}).items():
-        if not isinstance(_e, dict):
-            continue
-        # [系统库标记 20261124] domain_exclude.types 系统型不入 POD typedef
-        if _is_system_type(_n):
-            continue
-        # [注解真类 20261124] 有注解 json 的类=项目数据非标量
-        #   (gbSingleton_gbGfxManager 案: 4B 无成员型被 typedef DWORD, "
-        #   "实为带虚表真 gbengine 类→ C2440 ×3-4 单元)
+        # 注解真类: 有注解 json 的类=项目数据非标量
+        #   (gbSingleton_gbGfxManager 案: 4B 无成员型被 typedef DWORD → C2440 ×3-4)
         if _ann_struct_path(_n) is not None:
             continue
         _sz = _e.get('size')
         if _sz not in (1, 2, 4, 8):
             continue
-        _real_dm = [m for m in (_e.get('data_members') or [])
-                    if not str(m.get('name', '')).startswith('_tail')]
-        if _real_dm or _e.get('vtables') or _e.get('methods'):
-            continue
         _out.add(_n)
+    _pod_scalar_names_cache = _out
+    return _pod_scalar_names_cache
+
+
+    _pod_scalar_names_cache = _out
+    return _pod_scalar_names_cache
+
+
     # [第三证据源 2026-11-17 对抗复核P1-1] template_bases 成员指针=成员函数铁证:
     #   "unsigned long (__thiscall CEffCamera::*)(...)" 出现在模板实参 ⇒ 该类
     #   有成员函数（成员指针存在即类成立）。UISystem 事故同构判据漏项——
@@ -1155,6 +1148,31 @@ def _nested_kind(cls_name, nested_name):
         return 'struct'
 
 
+_SYSTEM_TYPES_CACHE = None
+
+
+def _system_types():
+    """[数据驱动 20261124] domain_exclude.json types 段懒加载——
+    names/prefixes/suffixes 三集(export 与 emit 共享同一标记)。"""
+    global _SYSTEM_TYPES_CACHE
+    if _SYSTEM_TYPES_CACHE is None:
+        import json as _j
+        _d = {}
+        try:
+            _dex = _j.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'domain_exclude.json',
+                                encoding='utf-8'))
+            _ty = _dex.get('types', {})
+            _d = {
+                'names': set(_ty.get('system_names') or []),
+                'prefixes': tuple(_ty.get('system_prefixes') or []),
+                'suffixes': tuple(_ty.get('system_suffixes') or []),
+            }
+        except Exception:
+            _d = {'names': set(), 'prefixes': (), 'suffixes': ()}
+        _SYSTEM_TYPES_CACHE = _d
+    return _SYSTEM_TYPES_CACHE
+
+
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type).
 
@@ -1172,17 +1190,19 @@ def should_skip_class(name):
         return True
     if name.startswith(SKIP_PREFIXES):
         return True
-    # 2026-09-26：IDA 侧伪类工件，非真实 C++ 类型（无任何消费方）：
-    # ① `*_vtbl` 后缀 = vtable 基建批次写入 IDB 的每类 vtable 辅助结构体
-    #    （成员类型带 `__hidden this` 等 IDA 伪语法，VC6 无法编译）；
-    # ② `gbSingleton*` = 模板特化结构体（PDB/vtable 导入产物），
-    #    生成的显式特化语法 MSVC6 报 C2913。
-    if name.endswith('_vtbl'):
+    # [数据驱动 20261124 用户裁定: 过滤归注解层] domain_exclude.json types 段
+    #   (system_names/system_prefixes/system_suffixes)——原 SKIP_CLASSES/
+    #   SDK_PLATFORM_TYPES/SKIP_PREFIXES/`gbSingleton*` blanket 四硬编码集合并迁移。
+    #   gbSingleton blanket 规则退役: 注解 json 存在的类=注解拥有(普通空 struct
+    #   非 C2913 模板特化, 历史风险不适用), should_skip 前置注解存在性检查。
+    if name in _system_types()['names']:
         return True
-    if name.startswith('gbSingleton'):
-        return True
-    if name.startswith('_inline_'):
-        return True
+    for _p in _system_types()['prefixes']:
+        if name.startswith(_p):
+            return True
+    for _s in _system_types()['suffixes']:
+        if name.endswith(_s):
+            return True
     return False
 
 # Type mapping for header output (includes IDA internal type names)
@@ -1910,6 +1930,28 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     #   (CEffCamera反例: template_bases成员指针证明有成员函数, 内联条件却会typedef)。
     #   decomp methods在main()已收窄预扫描集, 此处再查methods形参兜底。
     _pod_size = (ida_struct or {}).get('size') or 0
+    # [模板映射消费 20261124 用户枖架指令] mapped 模板实例化:
+    #   发模板定义(一次)+实例化别名头 —— 声明还原, 不走普通 struct 渲染
+    try:
+        _tpl_map = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
+                                  encoding='utf-8'))
+        _inst = _tpl_map.get('instantiations', {}).get(cls_name)
+    except Exception:
+        _inst = None
+    if _inst is not None:
+        _tdef = (_tpl_map.get('templates', {}).get(_inst.get('template', '')) or {}).get('decl_lines') or []
+        _args = _inst.get('args') or []
+        _full = ', '.join(_args)
+        _alias = _inst.get('alias') or cls_name
+        _lines = ['#pragma once',
+                  '// [模板还原 20261124] %s<%s> → %s (映射表消费)' % (
+                      _inst.get('template', ''), _full, cls_name),
+                  '#include "pal3/ida_defs.h"', '']
+        _lines.extend(_tdef)
+        if _inst.get('alias', True):
+            _lines.append('typedef %s<%s> %s;' % (_inst['template'], _full, _alias))
+        return '\n'.join(_lines) + '\n'
+
     if cls_name in _pod_scalar_names() and not (methods or []):
         _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
         _pod_type = _pod_map.get(_pod_size, 'DWORD')
@@ -4319,6 +4361,27 @@ def main():
     embedded_enums = set()  # enum names already embedded in a class header
 
     for cls_name in sorted(all_classes):
+        if cls_name == 'gbSingleton_gbGfxManager':
+            import sys as _s_dbg
+            _why = []
+            if name_in := (cls_name in SKIP_CLASSES):
+                _why.append('SKIP_CLASSES')
+            if cls_name in SDK_PLATFORM_TYPES:
+                _why.append('SDK')
+            for _p in SKIP_PREFIXES:
+                if cls_name.startswith(_p):
+                    _why.append('PREFIX:' + _p)
+            _st = _system_types()
+            if cls_name in _st['names']:
+                _why.append('DATA:names')
+            for _p in _st['prefixes']:
+                if cls_name.startswith(_p):
+                    _why.append('DATA-PFX:' + _p)
+            for _s in _st['suffixes']:
+                if cls_name.endswith(_s):
+                    _why.append('DATA-SFX:' + _s)
+            print('[DBG-GS] why=%s SKIP_CLASSES_size=%d' % (
+                _why or 'none-pass', len(SKIP_CLASSES)), file=_s_dbg.stderr)
         if should_skip_class(cls_name):
             continue
         # :: names are nested types — emitted inside parent via scope tree
@@ -5336,6 +5399,19 @@ def generate_globals():
 
     # Remove from fwd_classes anything already in includes_needed
     fwd_classes -= includes_needed
+
+    # [模板实例化前向声明 2026-11-24] templates.json instantiations 键——
+    #   映射表消费: 模板实例化类(布局未知, 指针形语料为主)
+    #   → globals.h 前向声明 230/230 TU 覆盖(子agent复核最小正确方案)
+    try:
+        _tpl_map = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
+                                  encoding='utf-8'))
+        for _inst_name in (_tpl_map.get('instantiations') or {}):
+            if _inst_name not in [g for g in h_lines if g.startswith('class ')]:
+                h_lines.insert(insert_pos, 'class %s;' % _inst_name)
+                insert_pos += 1
+    except Exception:
+        pass
 
     # Insert #include for types needing full definition
     insert_pos = 8  # after #include <windows.h> and blank line

@@ -1189,3 +1189,13 @@
 | `Scene::ProcessNoteMap` | inline | `int` | 16 | non_class_hint | `(*(void (**)(int, _DWORD))(*(_DWORD *)this->m_nTodo_78650 + 16))(this->m_nTodo_78650, 0)` |
 | `Scene::UIUpdate` | inline | `int` | 20 | non_class_hint | `(*(void (**)(int))(*(_DWORD *)m_nTodo_78650 + 20))(m_nTodo_78650)` |
 | `Scene::~Scene` | inline | `char` | 12 | non_class_hint | `(*(void (**)(char *))(*(_DWORD *)&this->m_roles[13].m_path_region[5696] + 12))(&this->m_roles[13].m_path_region[5696])` |
+| `PalScriptIdleObj::LoadScriptTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, nTexID)` |
+| `ParticleEffect::LoadTextures` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, Buffer)` |
+| `ScreenEffectNode::LoadTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectSaveTga)` |
+| `UI3DModelNode::LoadActorVisual` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, Buffer)` |
+| `::LoadUISceneTexture` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, a2)` |
+| `::Load` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, char *))(*(_DWORD *)gfxMgr->_tail_000 + 8))( gfxMgr, aEffectscnFrame)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 8 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 8))(gfxMgr, *v4)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 96 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 96))( gfxMgr, *(_DWORD *)((char *)v7 + (_DWORD)v10 - self), 0, 0)` |
+| `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 104 | no_vtables_declaration | `(*(void (**)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 104))(gfxMgr, 1)` |
+| `::_todo_541590` | inline | `gbGfxManager` | 100 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 100))( gfxMgr, *(_DWORD *)(result + 4 * param_1))` |

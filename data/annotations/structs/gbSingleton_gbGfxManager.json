@@ -1,6 +1,7 @@
 {
  "name": "gbSingleton_gbGfxManager",
- "binary_size": 4,
+ "binary_size": 1,
  "known_members": {},
- "_doc": "[真类化 20261124] gbSingleton<T> 模板实例(gbengine 单例包装)。render 证据: 语料 ~90 处 `(gbSingleton_gbGfxManager *)gfxMgr` 强转+使用 `*(_DWORD *)&v + 60` = 读 gfxMgr vtable 槽(经包装指针透传, 包装本体从不解引用)。此前 scalar_typedefs 将 4B 无成员型 typedef 成 DWORD → 语料强转=(unsigned long*) → 赋值 C2440 ×3-4 单元(CCBParabolaWindow/UIFrameWnd/RenderTarget2/CCBRoleState)。真类化(空成员 struct)→hexrays 推断包装指针型→C2440 清。布局未知留空(诚实)——sizeof=4 与 IDB til[884] 一致。 | [20261124 用户裁定] 占位成员方案撤(为过编译乱定义=禁止)——布局未知=opaque 前向声明, 缺口该暴露暴露"
+ "_doc": "[真类定谳 20261124, 子agent对抗复核纠像] PAL3A PDB classes gbSingleton<gbGfxManager>: size=1 data_members=[] static_members=[pSingleton: gbGfxManager *] bases=null —— 空类+静态单例槽(静态成员不占对象)。子agent复核另半: gbGfxManager bases 含 gbSingleton<gbGfxManager> @offset 8 —— 空基类 EBCO, 经典 CRTP 式自指单例: class gbGfxManager : public gbSingleton<gbGfxManager>。[撤销的评释] 旧 _doc 的 '静态槽写入 pSingleton=gfxMgr' 与 'operator T* 语义' 均为评释错误(PDB methods=[]; 语料 114 处全为局部指针赋值+读回虚调用, 无全局 store)。当前处理: globals.h 前向声明(instantiations 键)+stage5 按值→指针规则化; 模板定义全量还原无当前消费者(0 odr-use), 挂账。",
+ "binary_size_old": 4
 }

@@ -1227,6 +1227,25 @@ def _fix_float_literal_form(code, ctx):
     return '\n'.join(out)
 
 
+def _fix_singleton_byvalue_decls(code):
+    """[family rule 20261124] gbSingleton_<T> instances (PAL3A PDB: empty
+    class size=1 + static pSingleton) hold a transparent wrapper pointer.
+    hexrays misdeclares small-type locals by value (corpus
+    `gbSingleton_X vN; // ebp`) -> normalize by-value decls to pointer
+    decls. Later *(_DWORD*)&vN reads keep identical semantics."""
+    if "gbSingleton_" not in code:
+        return code
+    out = []
+    for line in code.split("\n"):
+        m2 = re.match(r"^(\s*)gbSingleton_(\w+)\s+(\w+)\s*;(\s*//.*)?$", line)
+        if m2:
+            line = "%sgbSingleton_%s *%s; // %s" % (
+                m2.group(1), m2.group(2), m2.group(3),
+                (m2.group(4) or "").strip())
+        out.append(line)
+    return "\n".join(out)
+
+
 def _fix_c2440_casts(code, ctx):
     """Insert explicit casts where Hex-Rays relies on implicit pointer
     conversions MSVC6 rejects (C2440).
@@ -1907,6 +1926,7 @@ def _run_inner(code, ctx):
     code, _new_hits = _rewrite_new_expression(code)
 
     # C2440 cast insertion: pointer RHS into DWORD slots + ptr/ptr sign
+    code = _fix_singleton_byvalue_decls(code)
     code = _fix_c2440_casts(code, ctx)
 
     # 浮点字面量形态：float 目标赋值表达式的 double 字面量/cast → float 形态
