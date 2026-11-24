@@ -20,6 +20,7 @@ typedef unsigned __int64 _QWORD;
 
 // Hex-Rays type aliases (unsigned char -> uchar, unsigned int -> uint)
 typedef unsigned char uchar;
+typedef unsigned char unchar;  // IDA ttl dialect alias (same family as uchar)
 typedef unsigned int uint;
 
 // [POD typedef集中管理 2026-11-17] 标量类型别名全局可用

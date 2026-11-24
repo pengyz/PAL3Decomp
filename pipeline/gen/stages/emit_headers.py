@@ -440,7 +440,15 @@ def _is_system_type(name):
     return False
 
 
+_RAW_SLOT_RE = re.compile(r"^(dword|byte|word|float|qword|double|int|char|unk)_[0-9A-Fa-f]+$")
+
 def _pod_scalar_names():
+    """POD typedef = IDA raw data slots ONLY (2026-11-24 user ruling).
+    Named types (project/engine classes, enums) belong to the ANNOTATION
+    layer (opaque struct / enum json); gaps are exposed by the REF gate,
+    never masked by typedef. All historical incidents (11-17 C2371,
+    11-18 SKIP-class, today gbSingleton C2440 x3-4; PlayerMgr/gbOctree
+    typedef uchar proven) root-cause to this misclassification."""
     global _pod_scalar_names_cache
     if _pod_scalar_names_cache is not None:
         return _pod_scalar_names_cache
@@ -448,8 +456,21 @@ def _pod_scalar_names():
     for _n, _e in (_get_ida_structs() or {}).items():
         if not isinstance(_e, dict):
             continue
+        if _is_system_type(_n):
+            continue
+        if not _RAW_SLOT_RE.match(_n):
+            continue
+    _out = set()
+    for _n, _e in (_get_ida_structs() or {}).items():
+        if not isinstance(_e, dict):
+            continue
         # [系统库标记 20261124] domain_exclude.types 系统型不入 POD typedef
         if _is_system_type(_n):
+            continue
+        # [注解真类 20261124] 有注解 json 的类=项目数据非标量
+        #   (gbSingleton_gbGfxManager 案: 4B 无成员型被 typedef DWORD, "
+        #   "实为带虚表真 gbengine 类→ C2440 ×3-4 单元)
+        if _ann_struct_path(_n) is not None:
             continue
         _sz = _e.get('size')
         if _sz not in (1, 2, 4, 8):

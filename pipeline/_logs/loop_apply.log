@@ -8,6 +8,7 @@ WARN: functions[0x00523cb0]: '__thiscall' without '::' in 'Method_3CB0' (sig: in
 WARN: functions[0x00528d50]: '__thiscall' without '::' in 'LoadMainUITexture' (sig: int __thiscall ()) — likely member function, needs IDA investigation
 WARN: functions[0x0052ec90]: '__thiscall' without '::' in 'GetCurrentNode' (sig: int * __thiscall ()) — likely member function, needs IDA investigation
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
+WARN: REF:gen 树(1795498302)早于最新注解(1795499266)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N20a[CCBUI]:0x00516100 del 压制态 L1 载体(注册符号 va=0x00516100 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
@@ -20,7 +21,7 @@ WARN: name_drift: globals[0x005dfdeb] 注解名'byte_5DFDEB' != IDB名'dword_5DF
 WARN: name_drift: globals[0x00580cfc] 注解名'asc_580CFC' != IDB名'off_580CFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00592e5c] 注解名'asc_592E5C' != IDB名'dword_592E5C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00d8b938] 注解名'unk_D8B938' != IDB名'dword_D8B938'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: 983 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
+WARN: name_drift: 990 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00002, byte_A00319, byte_A00320, byte_A00321, byte_A00322, byte_A00326
 FROZEN: globals[0x00dba260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dba260] if intentional
 FROZEN: globals[0x00dbaf10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbaf10] if intentional
 FROZEN: globals[0x00dbb364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbb364] if intentional
@@ -54,7 +55,7 @@ FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基�
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
 
-0 new errors + 32 frozen(advisory), 21 warnings — PASS
+0 new errors + 32 frozen(advisory), 22 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
