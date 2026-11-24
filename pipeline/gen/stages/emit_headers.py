@@ -854,7 +854,7 @@ def _template_callform_map():
             else:
                 _tid = re.sub(r'\s+', ' ', _expr)
             _m[_flat] = {'template_id': _tid,
-                         'def_header': '%s.h' % _sanitize_filename(_expr)}
+                         'def_header': '%s.h' % _sanitize_filename(_flat)}
     except Exception:
         pass
     try:
@@ -865,7 +865,7 @@ def _template_callform_map():
             _args = _info.get('args') or []
             _m.setdefault(_flat, {
                 'template_id': '%s<%s>' % (_tname, ', '.join(_args)),
-                'def_header': '%s.h' % _sanitize_filename('%s<%s>' % (_tname, ', '.join(_args))),
+                'def_header': '%s.h' % _sanitize_filename(_flat),
             })
     except Exception:
         pass
@@ -4382,7 +4382,9 @@ def main():
                     _tpl_subdir = get_class_dir(cls_name)
                     _tpl_subdir_path = OUTPUT_DIR / _tpl_subdir
                     _tpl_subdir_path.mkdir(parents=True, exist_ok=True)
-                    output_path = _tpl_subdir_path / ("%s.h" % _sanitize_filename(_tpl_expr))
+                    # [用户裁定 2026-11-24] 定义头文件名=实例类名(规则与非模板
+                    #   文件一致: get_class_dir/<类名>.h)——扁平化长名退役
+                    output_path = _tpl_subdir_path / ("%s.h" % _sanitize_filename(cls_name))
                     with open(output_path, 'w', encoding='utf-8') as f:
                         f.write(content)
                     expected_outputs.add(str(output_path))

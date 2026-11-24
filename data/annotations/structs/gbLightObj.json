@@ -325,5 +325,26 @@
    "name": "gbVolumeModifier",
    "offset": 0
   }
- ]
+ ],
+ "nested_types": {
+  "DECAY_TYPE": {
+   "kind": "enum",
+   "binary_size": 4,
+   "values": {
+    "DECAY_NONE": 0,
+    "DECAY_DIST": 1,
+    "DECAY_SQUARE": 2
+   },
+   "evidence": "[2026-11-24 用户裁定·类属枚举跟类走] 自 enums.json 嵌套键迁入(定义到类 json, 生成的 h 与类一体, 不单独发头)。"
+  },
+  "LIGHT_SHAPE": {
+   "kind": "enum",
+   "binary_size": 4,
+   "values": {
+    "SHAPE_CONE": 0,
+    "SHAPE_SQUARE": 1
+   },
+   "evidence": "[2026-11-24 用户裁定·类属枚举跟类走] 自 enums.json 嵌套键迁入(定义到类 json, 生成的 h 与类一体, 不单独发头)。"
+  }
+ }
 }

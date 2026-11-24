@@ -263,13 +263,6 @@
    "EM_NUM": "14"
   }
  },
- "UIPushButton::UIPUSHBUTTON_STATE": {
-  "values": {
-   "PUSH_UP": "0",
-   "PUSH_DOWN": "1",
-   "NUMSTATE": "2"
-  }
- },
  "UIS_RM_Mode": {
   "values": {
    "RM_DEFAULT": "0",
@@ -445,54 +438,11 @@
    "eRB": "9"
   }
  },
- "gbFogParam::gbFogMode": {
-  "values": {
-   "FOGMODE_LINEAR": "0",
-   "FOGMODE_EXP": "1",
-   "FOGMODE_EXP2": "2"
-  }
- },
- "gbFogParam::gbFogType": {
-  "values": {
-   "FOGTYPE_NULL": "0",
-   "FOGTYPE_DIST": "1",
-   "FOGTYPE_PLANE": "2",
-   "FOGTYPE_SPHERE": "3"
-  }
- },
  "gbKeyType": {
   "values": {
    "GB_KEY_TCB": "1",
    "GB_KEY_BEZIER": "2",
    "GB_KEY_LINEAR": "3"
-  }
- },
- "gbLight::gbLightType": {
-  "values": {
-   "GBLIGHT_POINT": "1",
-   "GBLIGHT_SPOT": "2",
-   "GBLIGHT_DIRECT": "3"
-  }
- },
- "gbLightObj::DECAY_TYPE": {
-  "values": {
-   "DECAY_NONE": "0",
-   "DECAY_DIST": "1",
-   "DECAY_SQUARE": "2"
-  }
- },
- "gbLightObj::LIGHT_SHAPE": {
-  "values": {
-   "SHAPE_CONE": "0",
-   "SHAPE_SQUARE": "1"
-  }
- },
- "gbMixActInfo::__unnamed": {
-  "values": {
-   "ACT_STATE_NULL": "0",
-   "ACT_STATE_INC": "1",
-   "ACT_STATE_DEC": "2",
-   "ACT_STATE_LOCK": "3"
   }
  },
  "gbPixelFmtType": {
@@ -868,37 +818,5 @@
    "CBBFA_End": "6"
   },
   "source": "PAL3A_PDB"
- },
- "Comp_DonateUI::CDState": {
-  "values": {
-   "CD_NONE": "0",
-   "CD_HASKEY": "1",
-   "CD_DONATED": "2",
-   "CD_NOSOURCE": "3",
-   "CD_NOINTIMACY": "4",
-   "CD_CANCOMPOSE": "5",
-   "CD_COMPOSED": "6",
-   "CD_NUM": "7"
-  },
-  "source": "[apply 41-failure 修 2026-10-16 analyzer] 悬挂类型定义补全（root cause=FATAL 族成员类型引用未定义枚举/结构 ⇒ add_udt 推入失败 ⇒ 空壳 UDT）——PDB 形 B 级参考（PAL3A 值形；语义常量非地址/偏移，PAL3 值差异风险低，值形需访问点复核标挂账）"
- },
- "UIStaticFlex::State": {
-  "values": {
-   "OPENING": "0",
-   "CLOSING": "1",
-   "NORMAL": "2"
-  },
-  "scope": "nested",
-  "evidence": "[2026-11-24 S3-A 用户裁定·平铺键迁嵌套] PAL3A PDB 实证真类(方法族在册), 原件=类作用域枚举(UIPushBtn::UIPUSHBUTTON_STATE 先例同构); 平铺 NORMAL(2) vs NORMAL(0) 经 globals.h 链 C2371×230 全TU 毒化——键名原样律以 PDB 原件形态为准。"
- },
- "UIButton::UIBUTTON_STATE": {
-  "values": {
-   "NORMAL": "0",
-   "MOUSEON": "1",
-   "MOUSEDOWN": "2",
-   "NUMSTATE": "3"
-  },
-  "scope": "nested",
-  "evidence": "[2026-11-24 S3-A 用户裁定·平铺键迁嵌套] PAL3A PDB 实证真类(方法族在册), 原件=类作用域枚举(UIPushBtn::UIPUSHBUTTON_STATE 先例同构); 平铺 NORMAL(2) vs NORMAL(0) 经 globals.h 链 C2371×230 全TU 毒化——键名原样律以 PDB 原件形态为准。"
  }
 }

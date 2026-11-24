@@ -56,5 +56,18 @@
    "source": "annotation|fix:unsigned_long_to_int",
    "evidence_level": "unverified"
   }
+ },
+ "nested_types": {
+  "__unnamed": {
+   "kind": "enum",
+   "binary_size": 4,
+   "values": {
+    "ACT_STATE_NULL": 0,
+    "ACT_STATE_INC": 1,
+    "ACT_STATE_DEC": 2,
+    "ACT_STATE_LOCK": 3
+   },
+   "evidence": "[2026-11-24 用户裁定·类属枚举跟类走] 自 enums.json 嵌套键迁入(定义到类 json, 生成的 h 与类一体, 不单独发头)。"
+  }
  }
 }

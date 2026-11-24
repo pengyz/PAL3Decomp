@@ -132,6 +132,36 @@ class TypeRegistry(object):
                 except Exception:
                     pass
 
+        # 3.4 [类属枚举数据家 2026-11-24·用户裁定] 嵌套(类属)枚举唯一数据家 =
+        #   类 json nested_types(kind=enum, 定义跟着类走, 生成的 h 与类一体,
+        #   不单独发头)。enums.json 只承载全局平铺枚举(通用枚举)。
+        #   gbengine 属主类 → header_path 指外部头(不产 pal3 侧头)。
+        try:
+            import glob as _g2
+            for _sp in sorted(_g2.glob(os.path.join(ann_dir, 'structs', '*.json'))):
+                try:
+                    with open(_sp, encoding='utf-8') as f:
+                        _sd = json.load(f)
+                except Exception:
+                    continue
+                _owner = _sd.get('name') or os.path.basename(_sp)[:-5]
+                for _short, _nt in (_sd.get('nested_types') or {}).items():
+                    if not isinstance(_nt, dict) or _nt.get('kind') != 'enum':
+                        continue
+                    _vals = {m: _parse_int(v)
+                             for m, v in (_nt.get('values') or {}).items()}
+                    if not _vals:
+                        continue
+                    _full = '%s::%s' % (_owner, _short)
+                    # 类 json = 类属枚举权威家: 覆盖同键(enums.json 残留/迁移期双源)
+                    reg.enums[_full] = {
+                        'name': _full, 'values': _vals, 'form': 'nested',
+                        'owner_cls': _owner, 'short_name': _short,
+                        'source': 'annotation-struct', 'header_path': None,
+                    }
+        except Exception:
+            pass
+
         # 3.5 [external 域 2026-11-24·用户批准②] 平台提供型两个数据源:
         #   a) sdk_types.json 带 provided_by 的条目(对抗复核v2 迁册, 99 条)
         #   b) prelude(include/pal3/ida_types.h)typedef 行扫描(gbengine 同款
@@ -167,8 +197,12 @@ class TypeRegistry(object):
             if e['form'] == 'flat':
                 e['header_path'] = '%s/%s.h' % (get_class_dir(name), name)
             else:
-                e['header_path'] = '%s/%s.h' % (get_class_dir(e['owner_cls']),
-                                                e['owner_cls'])
+                # [类属枚举] gbengine 属主类 → 外部头(无 pal3 侧头); 其余随类头
+                if e['owner_cls'] in reg.gbengine_types:
+                    e['header_path'] = reg.gbengine_types[e['owner_cls']]
+                else:
+                    e['header_path'] = '%s/%s.h' % (get_class_dir(e['owner_cls']),
+                                                    e['owner_cls'])
         for cls in (class_roots or ()):
             reg.class_headers[cls] = '%s/%s.h' % (get_class_dir(cls), cls)
 
