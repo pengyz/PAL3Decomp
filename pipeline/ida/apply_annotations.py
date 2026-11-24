@@ -117,6 +117,35 @@ def _normalize_type(mtype_str):
     return mtype_str
 
 
+_TIL_NAME2ORD = None
+
+
+def _til_name2ord_index(til):
+    """[单趟全量 2026-11-24 用户指令] name→ordinal 全索引(每趟懒建一次)——
+    序号句柄状态无关, 名字查表失败走序号回退(会话态缺口免疫)。"""
+    global _TIL_NAME2ORD
+    if _TIL_NAME2ORD is None:
+        _TIL_NAME2ORD = {}
+        try:
+            n = ida_typeinf.get_ordinal_count(til)
+            for _o in range(1, n):
+                _nm = ida_typeinf.get_numbered_type_name(til, _o)
+                if _nm and _nm not in _TIL_NAME2ORD:
+                    _TIL_NAME2ORD[_nm] = _o
+        except Exception:
+            pass
+    return _TIL_NAME2ORD
+
+
+def _resolve_named_tif(tinfo, til, name):
+    if tinfo.get_named_type(til, name):
+        return True
+    _o = _til_name2ord_index(til).get(name)
+    if _o is not None:
+        return tinfo.get_numbered_type(til, _o)
+    return False
+
+
 def _resolve_member_type(mtype_str, til):
     """将成员类型字符串解析为 tinfo_t（纯 API，不用 parse_decl）。
 
@@ -150,7 +179,7 @@ def _resolve_member_type(mtype_str, til):
                 pass
         base = re.split(r'[<(]', s)[0].strip()
         tinfo = ida_typeinf.tinfo_t()
-        if tinfo.get_named_type(til, base):
+        if _resolve_named_tif(tinfo, til, base):
             return tinfo
         return None
 
@@ -196,7 +225,7 @@ def _resolve_member_type(mtype_str, til):
         return tinfo
 
     tinfo = ida_typeinf.tinfo_t()
-    if tinfo.get_named_type(til, s):
+    if _resolve_named_tif(tinfo, til, s):
         for _ in range(ptr_count):
             p = ida_typeinf.tinfo_t()
             if not p.create_ptr(tinfo):
@@ -2335,6 +2364,68 @@ def _try_apply_type_tinfo(addr, sig, info, til):
         return False
 
 
+def _build_method_tinfo_prog(sm, cls, til):
+    """[程序化主路径 2026-11-24 用户架构指令] sig_model 节点 → tinfo_t 纯 API 构建。
+
+    零 parse_decl 零 til 名字串解析——类型引用经 _resolve_member_type(含序号
+    回退)状态无关解析。可行性已验证: 程序化 tinfo 经 apply_tinfo(TINFO_DEFINITE)
+    被 hexrays 确定性采纳(0x4C20B0/0x4C34B0 双点实验, 原型行渲染 thiscall+正确
+    this 型)。返回 (tinfo_t|None, err)。"""
+    try:
+        ftd = ida_typeinf.func_type_data_t()
+        cc_map = {'thiscall': ida_typeinf.CM_CC_THISCALL,
+                  'stdcall': ida_typeinf.CM_CC_STDCALL,
+                  'cdecl': ida_typeinf.CM_CC_CDECL}
+        cc = cc_map.get(str(sm.get('cc') or 'thiscall'),
+                        ida_typeinf.CM_CC_THISCALL)
+        ftd.cc = cc
+        # this 参数(thiscall 隐含)
+        if cc == ida_typeinf.CM_CC_THISCALL and cls:
+            cls_tif = ida_typeinf.tinfo_t()
+            if _resolve_named_tif(cls_tif, til, cls):
+                ptr = ida_typeinf.tinfo_t()
+                if not ptr.create_ptr(cls_tif):
+                    return None, 'cls ptr fail'
+                _arg = ida_typeinf.funcarg_t()
+                _arg.type = ptr
+                _arg.name = 'this'
+                _arg.flags = ida_typeinf.FAI_HIDDEN
+                ftd.push_back(_arg)
+            else:
+                return None, 'cls %s unresolvable' % cls
+        # 形参
+        for _p in (sm.get('params') or []):
+            _pt = str(_p.get('type') or '').strip()
+            if not _pt:
+                continue
+            _pt_tif = _resolve_member_type(_pt, til)
+            if _pt_tif is None:
+                return None, 'param %r unresolvable' % _pt
+            _arg = ida_typeinf.funcarg_t()
+            _arg.type = _pt_tif
+            _arg.name = str(_p.get('name') or '')
+            ftd.push_back(_arg)
+        # 返回值
+        _rt = str(sm.get('return') or 'void').strip()
+        if sm.get('pending'):
+            return None, 'pending'
+        if _rt == 'void':
+            _rt_tif = ida_typeinf.tinfo_t()
+            _rt_tif.create_simple_type(ida_typeinf.BTF_VOID)
+            ftd.rettype = _rt_tif
+        else:
+            _rt_tif = _resolve_member_type(_rt, til)
+            if _rt_tif is None:
+                return None, 'return %r unresolvable' % _rt
+            ftd.rettype = _rt_tif
+        mtif = ida_typeinf.tinfo_t()
+        if not mtif.create_func(ftd):
+            return None, 'create_func fail'
+        return mtif, None
+    except Exception as _e:
+        return None, str(_e)[:60]
+
+
 def _apply_func_type_parse(addr, decl, til):
     """唯一类型应用路径（2026-11-20 归一律·用户裁定）：parse_decl + apply_tinfo
     (TINFO_DEFINITE)。函数与数据地址通用。
@@ -3044,7 +3135,17 @@ def apply_annotations():
                         _sm5['return'], _cls5, _short5, _cls5,
                         (', ' + _ps5) if _ps5 else '')
             _applied5 = False
-            if _qsig5 is not None:
+            # [程序化主路径 2026-11-24 用户架构指令] sig_model→tinfo_t 纯构建
+            # (状态无关), parse_decl 退居 fallback(til 会话态名字解析依赖)。
+            _sm5b = _m5.get('sig_model') or {}
+            if _sm5b and not _sm5b.get('pending') and _cls5:
+                _ptif, _perr = _build_method_tinfo_prog(_sm5b, _cls5, til)
+                if _ptif is not None:
+                    _applied5 = bool(ida_typeinf.apply_tinfo(
+                        _addr5, _ptif, ida_typeinf.TINFO_DEFINITE))
+                elif _au5 in ('0x004c20b0', '0x004c34b0'):
+                    log("  [5b-PROG-ERR] %s: %s" % (_au5, _perr))
+            if not _applied5 and _qsig5 is not None:
                 _applied5 = _apply_func_type_parse(_addr5, _qsig5, til)
             if not _applied5:
                 # [归一律 2026-11-20] SetType fallback 退役（静默不采纳病）——

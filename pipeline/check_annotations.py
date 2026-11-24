@@ -969,8 +969,10 @@ def _run_type_resolve_gate(errors, warnings):
     try:
         import json as _jg
         import datetime as _dt
+        # [decomp 目录 2026-11-24 用户裁定] 依赖图=导出派生产物非维护数据——
+        #   与 ida_structs.json 同级(asm/pal3/), 随导出链生命周期
         _gpath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                              'data', 'status', 'annotation_dep_graph.json')
+                              'asm', 'pal3', 'annotation_dep_graph.json')
         _jg.dump({
             'generated': _dt.datetime.now().isoformat(timespec='seconds'),
             'nrefs': _nrefs, 'nreg': _nreg,
