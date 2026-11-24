@@ -1091,6 +1091,51 @@ def _run_n16_schema_gate(errors, warnings):
     _sc = _sch['structs_class']
     _me = _sc['methods_entry']
     _n = 0
+    # [type_aliases 门 2026-11-24·用户批准重设计 P1a] 显式别名表唯一通道校验:
+    #   1) 结构: aliases dict, 每条 base+evidence 必填(无证据=启发式=拒准)
+    #   2) 枚举名禁入(enums.json 唯一真相, 平铺键+嵌套短名双查)
+    #   3) 真类名禁入(data/annotations/structs/*.json 有真成员者按结构渲染)
+    _ta_p = os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'type_aliases.json')
+    try:
+        _ta = json.load(open(_ta_p, encoding='utf-8'))
+        _ta_aliases = _ta.get('aliases')
+        if not isinstance(_ta_aliases, dict):
+            raise ValueError('aliases 必须为 dict')
+        _enum_keys = set()
+        try:
+            _ej = json.load(open(os.path.join(_PROJECT_ROOT, 'data', 'annotations',
+                                              'enums.json'), encoding='utf-8'))
+            for _ek in _ej:
+                if _ek.startswith('_'):
+                    continue
+                _enum_keys.add(_ek)
+                if '::' in _ek:
+                    _enum_keys.add(_ek.rsplit('::', 1)[-1])
+        except Exception:
+            pass
+        _struct_names = set()
+        for _sp in _glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations',
+                                           'structs', '*.json')):
+            try:
+                _struct_names.add(json.load(open(_sp, encoding='utf-8')).get('name') or '')
+            except Exception:
+                pass
+        for _an, _ae in _ta_aliases.items():
+            if not isinstance(_ae, dict) or not _ae.get('base') or not _ae.get('evidence'):
+                errors.append('N16:type_aliases[%s] 缺 base/evidence(无证据=启发式, '
+                              'POD 扫描已退役禁复辟)' % _an)
+                _n += 1
+            if _an in _enum_keys:
+                errors.append('N16:type_aliases[%s] 枚举名禁入别名表(enums.json '
+                              '唯一真相, 双形式=C2011 温床)' % _an)
+                _n += 1
+            if _an in _struct_names:
+                errors.append('N16:type_aliases[%s] 与 structs 注解真类同名冲突'
+                              % _an)
+                _n += 1
+    except Exception as _e:
+        errors.append('N16:type_aliases_unreadable %s' % _e)
+        _n += 1
     for _fp in _glob.glob(os.path.join(_PROJECT_ROOT, 'data', 'annotations', 'structs', '*.json')):
         _cls = os.path.basename(_fp)[:-5]
         try:

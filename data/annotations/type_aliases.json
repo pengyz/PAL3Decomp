@@ -1,0 +1,9 @@
+{
+ "_doc": "显式标量别名表（原码 typedef 证据）——唯一允许进 scalar_typedefs.h 的通道。[2026-11-24 用户批准·模板/枚举端到端重设计 P1a]。禁止收录: 枚举名（enums.json 是枚举唯一真相, 键名原样）/ 有真成员的结构（RTTI 族按真结构渲染暴露真值, _s_CatchableTypeArray/TypeDescriptor 先例）/ 无证据的启发式归类（POD 扫描机制已退役, 启发式=静默降级温床）。",
+ "aliases": {
+  "unchar": {
+   "base": "unsigned char",
+   "evidence": "IDA til 名 unchar size1（scalar_typedefs.h 2026-11-24 前史既有条目）; gbengine 原码字节别名方言, 与 hexrays ttl 词 uchar 同族; 仅铸形/声明用, 不参与布局"
+  }
+ }
+}
