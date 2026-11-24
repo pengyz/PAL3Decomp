@@ -30,7 +30,8 @@
    "_verdicts",
    "_naming",
    "_misattrib_evidence",
-   "base_class"
+   "base_class",
+   "critical"
   ],
   "methods_entry": {
    "required": [
@@ -98,7 +99,8 @@
     "sig"
    ],
    "flags_note": "2026-11-18 T1善后: 条目退役后槽级身份flags(dtor), 消费端emit_headers槽扫描读取"
-  }
+  },
+  "_doc": "[critical 退役 20261124] 导出完整性断言普遍化(known_members 非空⇒导出必含成员, export_full 全量推导)——opt-in 字段禁入。"
  },
  "functions_json": {
   "_doc": "IDB命名通道——只许自由函数; 类方法名/类方法签名禁止(归属structs层)。[sig 退役收尾 20261123] signature 字段硬禁(schema banned+校验执行)——sig_model 唯一真相源(structs 域 20261117 同律, 本域漏改补齐)",

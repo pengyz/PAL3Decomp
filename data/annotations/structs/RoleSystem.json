@@ -4148,6 +4148,5 @@
   }
  },
  "binary_size_old": 7600,
- "members_note": "尺寸矫正 20261124: binary_size 0x1DB0→0x2200(8704B). 三向证据: ①SetTargetRotation 尾写 m_vTargetRotation@0x21F4(12B) 止于 0x2200 ②g_RoleSystemExtra0→Extra1 间距 0x2200 ③g_SceneBuf 场景角色槽步距 0x2200(=sizeof(RoleSystem)——场景槽元素疑似 RoleSystem 实例, 独立战役待接收者证据). extent 审计 0x21FC 与本结论一致(修正 EXTENT-OVERFLOW 假警). 0x1DB0..0x21F4 区(0x444B)零访问证据留 gap——普查后再名. g_fScriptTimeAccum@Main+0x21F0 双名待查三.",
- "critical": true
+ "members_note": "尺寸矫正 20261124: binary_size 0x1DB0→0x2200(8704B). 三向证据: ①SetTargetRotation 尾写 m_vTargetRotation@0x21F4(12B) 止于 0x2200 ②g_RoleSystemExtra0→Extra1 间距 0x2200 ③g_SceneBuf 场景角色槽步距 0x2200(=sizeof(RoleSystem)——场景槽元素疑似 RoleSystem 实例, 独立战役待接收者证据). extent 审计 0x21FC 与本结论一致(修正 EXTENT-OVERFLOW 假警). 0x1DB0..0x21F4 区(0x444B)零访问证据留 gap——普查后再名. g_fScriptTimeAccum@Main+0x21F0 双名待查三."
 }

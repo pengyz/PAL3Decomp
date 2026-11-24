@@ -1328,30 +1328,26 @@ def export_structs(log):
     log("[*] Types exported: %d structs, %d enums (skipped %d) → ida_structs.json" %
         (struct_count, enum_count, skipped_count))
 
-    # Validate: key structs must have data_members (0 members = TAUDT_FIXED/export bug)
-    # [过滤在注解层 2026-11-24 用户裁定] critical 集由注解 json 的 "critical":true
-    # 字段声明(管线零硬编码)——类退役自动出集(SceneMgr 案: 硬编码清单在类退役后
-    # 残留拦截导出的教训)
-    _critical_structs = sorted(
-        _cn for _cn, _am in (_ann_structs.items() if isinstance(_ann_structs, dict) else [])
-        if isinstance(_am, dict) and _am.get('critical'))
+    # [断言普遍化 2026-11-24 用户裁定] critical opt-in 字段退役——不变量从注解数据
+    #   全量推导: 注解声明 known_members 非空(且非 _phantom_clear 故意空)的结构,
+    #   导出必须存在且含成员, 否则中止。零声明零机制, 类退役自动出集。
     _zero_member = []
-    for _cn in _critical_structs:
-        _cm = result.get(_cn, {})
-        _am = _ann_structs.get(_cn, {}) if isinstance(_ann_structs, dict) else {}
-        # [named 顶替后门语义更新 2026-10-17] 具名实体由 annotation 权威承载（supersede 不再进
-        # ida_structs）⇒ 双源皆空才算 0 员失效；任一源有成员即有效。
-        if not _cm.get('data_members') and not _am.get('known_members'):
-            # [幻影清账豁免 2026-10-17] CEffMgr 等成员全清系容器级幻影定谳（根容器=字符串表
-            # A 级铁证）⇒ _phantom_clear 注记 = 故意空，非遗漏。
-            if _am.get('_phantom_clear'):
-                log('  [phantom-exempt] %s: _phantom_clear 注记（幻影清账故意空）——门豁免' % _cn)
-            else:
-                _zero_member.append(_cn)
+    for _cn, _am in (_ann_structs.items() if isinstance(_ann_structs, dict) else []):
+        if not isinstance(_am, dict):
+            continue
+        # [幻影清账豁免 2026-10-17] _phantom_clear 注记 = 故意空（容器级幻影定谳）
+        if _am.get('_phantom_clear'):
+            continue
+        if not _am.get('known_members'):
+            continue  # 注解未声明布局 → 无断言
+        _cm = result.get(_cn)
+        if not _cm or not _cm.get('data_members'):
+            _zero_member.append(_cn)
     if _zero_member:
-        log("[FATAL] %d critical structs have 0 exported members: %s" % (
+        log("[FATAL] %d annotated structs export 0 members: %s" % (
             len(_zero_member), ', '.join(_zero_member)))
-        log("[FATAL] This indicates TAUDT_FIXED or export failure. Fix struct annotations first.")
+        log("[FATAL] 注解声明了布局但导出为空 = apply/export 缺口, 先补注解或查导出。")
+        import os as _os
         import os as _os
         _os._exit(1)
 
