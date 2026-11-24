@@ -1,0 +1,4 @@
+{
+ "_doc": "[2026-11-24 已全量回滚·作废] Family B 池缓冲区 globals 批注 122 条——用户质询字面量/全局存储规则后自查作废: ①键形混入正则伪影(0x1010101/0x1234567 非地址)与 .data 初始化段地址(0x5dfdeb/0xd8c 系)误标 BSS; ②正确家=literal_pool(FNPTR_ARG_SLOT 手工先例 0xa00326/0xa00330/0xa01b00 char[4] \"语料37站fnptr char*参型调用点实参,IDA未检出\")——串槽语义归池不归 globals; ③未逐缓冲取证(禁止猜测填充违例)。Family B 正解=按池手工先例模式逐缓冲定谳(下轮)。",
+ "reverted_count": 122
+}

@@ -29,12 +29,12 @@
   "oob_text_end": 0,
   "oob_file_end": 0,
   "unresolved_synth": 114,
-  "reloc_total": 7084,
-  "reloc_ok": 1712,
+  "reloc_total": 7088,
+  "reloc_ok": 1710,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5372,
-  "rsite_total": 7084,
-  "rsite_unaligned": 6559,
+  "reloc_unresolved": 5378,
+  "rsite_total": 7088,
+  "rsite_unaligned": 6563,
   "l1_bytes": 7195,
   "l1_hidden_reloc_bytes": 1508,
   "l1_reloc_covered_bytes": 2100,
@@ -386,7 +386,7 @@
    "name": "CCBAttackSequen::CalcTurnOrder(void)",
    "va": "0x004dbb80",
    "status": "partial",
-   "match_pct": 19.0,
+   "match_pct": 17.2,
    "size": 442
   },
   {
@@ -5669,7 +5669,7 @@
    "name": "UIFrameWnd::RollProbability(float)",
    "va": "0x0048cfb0",
    "status": "partial",
-   "match_pct": 25.2,
+   "match_pct": 29.0,
    "size": 131
   },
   {
@@ -6092,7 +6092,7 @@
    "name": "UIRoleSelectDialog::OnMessage(int,uint,int)",
    "va": "0x0052aab0",
    "status": "partial",
-   "match_pct": 20.0,
+   "match_pct": 20.7,
    "size": 965
   },
   {
@@ -8696,19 +8696,5 @@
    5436128,
    28
   ]
- ],
- "rebaseline": {
-  "reason": "Family A 修复增量结算: IDB 孤儿全局 pEffMgr(CEffMgr)@0x5D54E0 置换(效果名字符串池字节定谳)——tagEffSPSlot 77 站全灭, C2664 274→152, S2 143→145, L1 155→158 纯增(域同构扩张)",
-  "at": "2026-11-24T22:23:27",
-  "prev_match_L1": 158,
-  "cur_match_L1": 158,
-  "prev_population": {
-   "matched": 962,
-   "symbols": 1068
-  },
-  "cur_population": {
-   "matched": 962,
-   "symbols": 1068
-  }
- }
+ ]
 }
