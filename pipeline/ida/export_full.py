@@ -1329,7 +1329,12 @@ def export_structs(log):
         (struct_count, enum_count, skipped_count))
 
     # Validate: key structs must have data_members (0 members = TAUDT_FIXED/export bug)
-    _critical_structs = ['SceneMgr', 'RoleSystem', 'CCBRoleState', 'CEffMgr']
+    # [过滤在注解层 2026-11-24 用户裁定] critical 集由注解 json 的 "critical":true
+    # 字段声明(管线零硬编码)——类退役自动出集(SceneMgr 案: 硬编码清单在类退役后
+    # 残留拦截导出的教训)
+    _critical_structs = sorted(
+        _cn for _cn, _am in (_ann_structs.items() if isinstance(_ann_structs, dict) else [])
+        if isinstance(_am, dict) and _am.get('critical'))
     _zero_member = []
     for _cn in _critical_structs:
         _cm = result.get(_cn, {})

@@ -1774,28 +1774,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetMoveState): int(int,int); 原注解无"
   },
-  "0x00421020": {
-   "name": "CheckCollision",
-   "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 2——补 2 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int *",
-      "name": "pResult"
-     },
-     {
-      "type": "int",
-      "name": "nFlag"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckCollision): int(int,int *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHH): int(int *"
-  },
   "0x00412b60": {
    "name": "SetMoveTarget",
    "evidence_level": "unverified",
@@ -2236,31 +2214,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetCurrentID): int(int,int *,char); 原注解2026-11-18 mangle硬真值定谳(HPAHD): int(int *"
   },
-  "0x00420a10": {
-   "name": "IsTileInBounds",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nY"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(IsTileInBounds): int(int *,int,int,int); 原注解无"
-  },
   "0x00420a90": {
    "name": "SetRoleGridPosition",
    "evidence_level": "unverified",
@@ -2368,23 +2321,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(ValidatePathIndex): int(int,int,int,int); 原注解无"
-  },
-  "0x00421bf0": {
-   "name": "NotifyPathEnd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(NotifyPathEnd): int(char *,int); 原注解无"
   },
   "0x0042a950": {
    "name": "CheckScriptTrigger",
@@ -2753,142 +2689,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(IsRoleInRange): int(int,int,int *,int); 原注解2026-11-18 mangle硬真值定谳(HHPAHH): int(int,"
   },
-  "0x00421440": {
-   "name": "SetRoleParam",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "index"
-     },
-     {
-      "type": "float *",
-      "name": "pfVal"
-     },
-     {
-      "type": "int *",
-      "name": "pnVal"
-     },
-     {
-      "type": "int *",
-      "name": "p_DWORD"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetRoleParam): "
-  },
-  "0x004215b0": {
-   "name": "AdvanceOnPath",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int *",
-      "name": "pResult"
-     },
-     {
-      "type": "char *",
-      "name": "nFlag"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "char *",
-      "name": "pszBuf"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(AdvanceOnPath): int(int,int *,char *,int,char *,int); 原注解2026-11-18 mangle硬真值定谳(HPAHPADHPADH): in"
-  },
-  "0x00421710": {
-   "name": "ValidatePath",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int *",
-      "name": "pResult"
-     },
-     {
-      "type": "int *",
-      "name": "nFlag"
-     },
-     {
-      "type": "int *",
-      "name": "pnVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int **",
-      "name": "a7"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x004218b0": {
-   "name": "GetPathTarget",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int *",
-      "name": "pResult"
-     },
-     {
-      "type": "int *",
-      "name": "nFlag"
-     },
-     {
-      "type": "int *",
-      "name": "pnVal"
-     },
-     {
-      "type": "char *",
-      "name": "pszBuf"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int **",
-      "name": "a7"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
   "0x00421a90": {
    "name": "UpdatePathProgress",
    "evidence_level": "unverified",
@@ -2946,17 +2746,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(BuildPathSegment): int(int *,int *,char); 原注解无"
-  },
-  "0x00421ea0": {
-   "name": "ResetTransition",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   },
   "0x0042dbd0": {
    "name": "ExecScriptDataA",
@@ -3516,23 +3305,6 @@
     "pending": false
    }
   },
-  "0x0041c190": {
-   "name": "SetInactive",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetInactive): int(int,int); 原注解无"
-  },
   "0x0041d220": {
    "name": "AddCameraKeyframe",
    "evidence_level": "unverified",
@@ -3543,23 +3315,6 @@
     "varargs": false,
     "pending": false
    }
-  },
-  "0x00420f50": {
-   "name": "GetMapNodePtr",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nIndex"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(GetMapNodePtr): int(char "
   },
   "0x00421dd0": {
    "name": "ClearWaypointBuffer",
@@ -3617,23 +3372,6 @@
      {
       "type": "FILE",
       "name": "Buffer"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00422000": {
-   "name": "BuildModelPath",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "const char *",
-      "name": "pszName"
      }
     ],
     "varargs": false,
@@ -4410,5 +4148,6 @@
   }
  },
  "binary_size_old": 7600,
- "members_note": "尺寸矫正 20261124: binary_size 0x1DB0→0x2200(8704B). 三向证据: ①SetTargetRotation 尾写 m_vTargetRotation@0x21F4(12B) 止于 0x2200 ②g_RoleSystemExtra0→Extra1 间距 0x2200 ③g_SceneBuf 场景角色槽步距 0x2200(=sizeof(RoleSystem)——场景槽元素疑似 RoleSystem 实例, 独立战役待接收者证据). extent 审计 0x21FC 与本结论一致(修正 EXTENT-OVERFLOW 假警). 0x1DB0..0x21F4 区(0x444B)零访问证据留 gap——普查后再名. g_fScriptTimeAccum@Main+0x21F0 双名待查三."
+ "members_note": "尺寸矫正 20261124: binary_size 0x1DB0→0x2200(8704B). 三向证据: ①SetTargetRotation 尾写 m_vTargetRotation@0x21F4(12B) 止于 0x2200 ②g_RoleSystemExtra0→Extra1 间距 0x2200 ③g_SceneBuf 场景角色槽步距 0x2200(=sizeof(RoleSystem)——场景槽元素疑似 RoleSystem 实例, 独立战役待接收者证据). extent 审计 0x21FC 与本结论一致(修正 EXTENT-OVERFLOW 假警). 0x1DB0..0x21F4 区(0x444B)零访问证据留 gap——普查后再名. g_fScriptTimeAccum@Main+0x21F0 双名待查三.",
+ "critical": true
 }

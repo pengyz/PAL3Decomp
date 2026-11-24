@@ -1186,3 +1186,6 @@
 | `UIGameFrm::HideAll` | inline | `_BYTE` | 12 | non_class_hint | `(*(void (**)(_BYTE *))(*(_DWORD *)(&this->m_bDialogActive + 75) + 12))(&this->m_bDialogActive + 75)` |
 | `UIGameFrm::Update` | inline | `_BYTE` | 8 | non_class_hint | `(*(int (**)(_BYTE *, int, int))(*(_DWORD *)(&this->m_bDialogActive + 75) + 8))( &this->m_bDialogActive + 75, nVal, nVal2)` |
 | `UIGameFrm::Render` | inline | `_BYTE` | 4 | non_class_hint | `(*(void (**)(_BYTE *))(*(_DWORD *)(&this->m_bDialogActive + 75) + 4))(&this->m_bDialogActive + 75)` |
+| `Scene::ProcessNoteMap` | inline | `int` | 16 | non_class_hint | `(*(void (**)(int, _DWORD))(*(_DWORD *)this->m_nTodo_78650 + 16))(this->m_nTodo_78650, 0)` |
+| `Scene::UIUpdate` | inline | `int` | 20 | non_class_hint | `(*(void (**)(int))(*(_DWORD *)m_nTodo_78650 + 20))(m_nTodo_78650)` |
+| `Scene::~Scene` | inline | `char` | 12 | non_class_hint | `(*(void (**)(char *))(*(_DWORD *)&this->m_roles[13].m_path_region[5696] + 12))(&this->m_roles[13].m_path_region[5696])` |
