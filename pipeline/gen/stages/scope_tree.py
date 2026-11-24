@@ -125,6 +125,19 @@ class ScopeTree:
             if pkey and pkey in self._nodes:
                 self._nodes[pkey].children.append(node)
 
+        # 5b. [嵌套枚举伪影消解 20261124] 类作用域枚举的 IDA 顶层打平化伪影:
+        #   类内 enum 定义(P::X, 带值)与顶层同名 struct 占位(X, size 1)双记录——
+        #   PAL3A PDB 反证(PDB 只有类内形): 顶层 struct 形 = 伪影 → 不渲染
+        #   (同 TU class X; fwd + enum X{} = C2011 ×61 单元实证)。通用规则:
+        #   嵌套枚举真定义存在时, 同 short_name 的顶层标量记录不渲染。
+        for key, edata in ida_enums.items():
+            if '::' not in key:
+                continue
+            short = key.split('::')[-1]
+            _flat = self._nodes.get(short)
+            if _flat is not None and _flat.is_root and not _flat.is_skipped:
+                _flat.is_skipped = True
+
         # 6. Collect valid roots
         self.roots = [n for n in self._nodes.values() if n.is_root and not n.is_skipped]
 

@@ -2710,13 +2710,44 @@ def apply_annotations():
         if not values:
             continue
         eid = idc.get_enum(ename)
-        if eid == -1:
-            eid = idc.add_enum(-1, ename, 1)
-            if eid != -1:
-                for k, v in values.items():
-                    val = int(v, 0) if isinstance(v, str) else v
+        # [IDA 9.1 修 20261124] get_enum 对不存在枚举返回 BADADDR(2**64-1 大正整数,
+        #   Python 侧 != -1)——旧比较 `== -1` 永不命中 ⇒ 创建路径从未生效
+        #   (61 个 enums.json 枚举从未进 IDB 的真根因)。判等改 BADADDR 常数。
+        if eid == idc.BADADDR:
+            # [til 占位升级 20261124] PDB 导入把枚举物化成非枚举 til 占位
+            #   (probe: 35 名全 kind=other)——同名 add_enum 必名字冲突 BADADDR。
+            #   正解 = 程序化构建枚举 tinfo(PDB 真值) → set_named_type(NTF_REPLACE)
+            #   占位升级为真枚举 → export is_enum() → 枚举头/hexrays 成员名渲染。
+            try:
+                _til3b = ida_typeinf.get_idati()   # 本函数作用域无 til 句柄(P-A5 教训: except-pass 吞 NameError)
+                _tif_old = ida_typeinf.tinfo_t()
+                if _tif_old.get_named_type(_til3b, ename) and not _tif_old.is_enum():
+                    _edt = ida_typeinf.enum_type_data_t()
+                    for k, v in values.items():
+                        _em = ida_typeinf.edm_t()
+                        _em.name = k
+                        _em.value = int(v, 0) if isinstance(v, str) else v
+                        _edt.append(_em)
+                    _new_tif = ida_typeinf.tinfo_t()
+                    if _new_tif.create_enum(_edt) and _new_tif.set_named_type(
+                            _til3b, ename, ida_typeinf.NTF_REPLACE):
+                        e_ok += 1
+                        continue
+            except Exception:
+                pass
+            # [IDA 9.1 修 20261124] add_enum 失败同样返回 BADADDR(大正整数 ≠ -1)
+            #   ——显式校验, 坏 eid 不进成员循环(旧 `!= -1` 判等同族陷阱)
+            eid = idc.add_enum(-1, ename, 0)
+            if eid == idc.BADADDR:
+                enum_notes.append('%s: add_enum 失败(BADADDR)' % ename)
+                continue
+            for k, v in values.items():
+                val = int(v, 0) if isinstance(v, str) else v
+                try:
                     idc.add_enum_member(eid, k, val)
-                e_ok += 1
+                except Exception:
+                    pass
+            e_ok += 1
             continue
         if idc.get_enum_name(eid) is None:
             # IDA 9.1 实测：`idc.get_enum` 对**不存在**的 enum 返回 BADADDR（≠ -1）

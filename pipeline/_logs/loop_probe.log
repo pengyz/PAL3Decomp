@@ -1,4 +1,25 @@
-S1 headers: 737/760 ok  (69s)
+S1 headers: 685/769 ok  (71s)
+  FAIL pal3/src/Combat/CCBAI.h                  C1083: Cannot open include file: 'Misc/ECBVAKind.h': No such file or directory
+  FAIL pal3/src/Combat/CCBStage.h               C2061: syntax error : identifier 'ECBStageTaskState'
+  FAIL pal3/src/Combat/CCBStageRole.h           C1083: Cannot open include file: 'Misc/ACTION_KIND.h': No such file or directory
+  FAIL pal3/src/Combat/CCBStageScene.h          C1083: Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or directory
+  FAIL pal3/src/Combat/CCBSystem.h              C1083: Cannot open include file: 'Misc/ECBCombatResult.h': No such file or directory
+  FAIL pal3/src/Data/PAL_GDB.h                  C1083: Cannot open include file: 'Misc/FightState.h': No such file or directory
+  FAIL pal3/src/Effect/CEffect.h                C1083: Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  FAIL pal3/src/Misc/ARC_ArcMsic.h              C1083: Cannot open include file: 'Misc/ARC_WuLing.h': No such file or directory
+  FAIL pal3/src/Misc/ARC_ComboAttack.h          C1083: Cannot open include file: 'Misc/FightState.h': No such file or directory
+  FAIL pal3/src/Misc/ARC_PAL_GDB.h              C1083: Cannot open include file: 'Misc/FightState.h': No such file or directory
+  FAIL pal3/src/Misc/ArcLocale.h                C1083: Cannot open include file: 'Misc/SCENE_TYPE.h': No such file or directory
+  FAIL pal3/src/Misc/ArcScene.h                 C1083: Cannot open include file: 'Misc/SCENE_TYPE.h': No such file or directory
+  FAIL pal3/src/Misc/BtnGroup.h                 C1083: Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  FAIL pal3/src/Misc/CCBDisplayChain.h          C1083: Cannot open include file: 'Misc/ECBShowItemKind.h': No such file or directory
+  FAIL pal3/src/Misc/CCBRoleStatePanel.h        C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/CCBRoleStatePanelM.h       C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/CCBRoleStatePanelS.h       C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/CG_Entry.h                 C1083: Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directory
+  FAIL pal3/src/Misc/CG_Scene.h                 C1083: Cannot open include file: 'Misc/CG_PROPINFO.h': No such file or directory
+  FAIL pal3/src/Misc/CG_UI.h                    C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/ComboAttack.h              C1083: Cannot open include file: 'Misc/FightState.h': No such file or directory
   FAIL pal3/src/Misc/DICOLORSET.h               C2371: 'DICOLORSET' : redefinition; different basic types
   FAIL pal3/src/Misc/DIDEVCAPS.h                C2011: 'DIDEVCAPS' : 'struct' type redefinition
   FAIL pal3/src/Misc/DIDEVICEINSTANCEA.h        C2011: 'DIDEVICEINSTANCEA' : 'struct' type redefinition
@@ -11,294 +32,452 @@ S1 headers: 737/760 ok  (69s)
   FAIL pal3/src/Misc/DIFILEEFFECT.h             C2011: 'DIFILEEFFECT' : 'struct' type redefinition
   FAIL pal3/src/Misc/DIPROPDWORD.h              C2011: 'DIPROPHEADER' : 'struct' type redefinition
   FAIL pal3/src/Misc/DIPROPHEADER.h             C2011: 'DIPROPHEADER' : 'struct' type redefinition
+  FAIL pal3/src/Misc/DealData.h                 C1083: Cannot open include file: 'Misc/FightState.h': No such file or directory
+  FAIL pal3/src/Misc/EffModeParam.h             C1083: Cannot open include file: 'Misc/eSkyEffPos.h': No such file or directory
+  FAIL pal3/src/Misc/FightInfo.h                C1083: Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or directory
+  FAIL pal3/src/Misc/JusticeBookUI.h            C1083: Cannot open include file: 'Misc/JB_TYPE.h': No such file or directory
+  FAIL pal3/src/Misc/LineupUI.h                 C2011: 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+  FAIL pal3/src/Misc/MainEquipUI.h              C1083: Cannot open include file: 'Misc/PlayerItem_Type.h': No such file or directory
+  FAIL pal3/src/Misc/MainPropUI.h               C2011: 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+  FAIL pal3/src/Misc/NPCInfo.h                  C1083: Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such file or directory
   FAIL pal3/src/Misc/PlayerAtt.h                C2146: syntax error : missing ';' before identifier 'skillCount'
+  FAIL pal3/src/Misc/ProtectPanel.h             C2011: 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
   FAIL pal3/src/Misc/RoleAtt.h                  C2146: syntax error : missing ';' before identifier 'skillCount'
   FAIL pal3/src/Misc/RoleAttRemarkSkills.h      C2146: syntax error : missing ';' before identifier 'skillCount'
+  FAIL pal3/src/Misc/RoleStatePanel.h           C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/SCNFile.h                  C1083: Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such file or directory
   FAIL pal3/src/Misc/SaleUI.h                   C2440: '=' : cannot convert from 'int' to 'char [4]'
   FAIL pal3/src/Misc/SaleUI_SortData.h          C2440: '=' : cannot convert from 'int' to 'char [4]'
+  FAIL pal3/src/Misc/SceneInfo.h                C1083: Cannot open include file: 'Misc/SCENE_TYPE.h': No such file or directory
+  FAIL pal3/src/Misc/ScriptWaitFrm.h            C1083: Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directory
+  FAIL pal3/src/Misc/SkyboxEff.h                C1083: Cannot open include file: 'Misc/eSkyEffPos.h': No such file or directory
+  FAIL pal3/src/Misc/SwordUI.h                  C1083: Cannot open include file: 'Misc/WuLing.h': No such file or directory
+  FAIL pal3/src/Misc/UIBigMap.h                 C1083: Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such file or directory
+  FAIL pal3/src/Misc/UICoverFrm.h               C1083: Cannot open include file: 'Misc/MENU_TYPE.h': No such file or directory
+  FAIL pal3/src/Misc/UILoadingFrm.h             C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/UIProgressBar.h            C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/UIPushButton.h             C2011: 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+  FAIL pal3/src/Misc/UISceneFace.h              C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/UISceneFrm.h               C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/UITitle_JDHY.h             C1083: Cannot open include file: 'Misc/NOTE_STATE.h': No such file or directory
   FAIL pal3/src/Misc/_Collvec.h                 C2011: '_Collvec' : 'struct' type redefinition
   FAIL pal3/src/Misc/_Ctypevec.h                C2011: '_Ctypevec' : 'struct' type redefinition
   FAIL pal3/src/Misc/_Cvtvec.h                  C2011: '_Cvtvec' : 'struct' type redefinition
   FAIL pal3/src/Misc/lconv.h                    C2011: 'lconv' : 'struct' type redefinition
+  FAIL pal3/src/Misc/m_RoleState.h              C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/me_RoleState.h             C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/p_RoleState.h              C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  FAIL pal3/src/Misc/sCollision.h               C1083: Cannot open include file: 'Misc/CollisionType.h': No such file or directory
+  FAIL pal3/src/Misc/s_RoleState.h              C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
   FAIL pal3/src/Misc/tagEffClass.h              C2440: '=' : cannot convert from 'int' to 'char [4]'
+  FAIL pal3/src/Misc/tagImbibeNimbus.h          C1083: Cannot open include file: 'Misc/ECBFiveNimbus.h': No such file or directory
+  FAIL pal3/src/Misc/tagRoleTask.h              C1083: Cannot open include file: 'Misc/ECBRoleTaskMode.h': No such file or directory
+  FAIL pal3/src/Misc/tagShowItem.h              C1083: Cannot open include file: 'Misc/ECBShowItemKind.h': No such file or directory
+  FAIL pal3/src/Misc/tagStageSubTask.h          C1083: Cannot open include file: 'Misc/ECBStageTaskState.h': No such file or directory
+  FAIL pal3/src/Misc/tagStageTask.h             C1083: Cannot open include file: 'Misc/ECBStageTask.h': No such file or directory
+  FAIL pal3/src/Misc/tagVA.h                    C1083: Cannot open include file: 'Misc/ECBVAKind.h': No such file or directory
+  FAIL pal3/src/Role/Role.h                     C1083: Cannot open include file: 'Misc/ACTION_KIND.h': No such file or directory
+  FAIL pal3/src/Scene/Scene.h                   C1083: Cannot open include file: 'Misc/ACTION_KIND.h': No such file or directory
+  FAIL pal3/src/UI/EquipUI.h                    C1083: Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  FAIL pal3/src/UI/MagicUI.h                    C1083: Cannot open include file: 'Misc/DLG_MSG.h': No such file or directory
+  FAIL pal3/src/UI/PropUI.h                     C1083: Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  FAIL pal3/src/UI/StateUI.h                    C1083: Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
   FAIL pal3/src/_ns_udts.h                      C2146: syntax error : missing ';' before identifier 'rc'
-S2 cpp: 146/230 ok | own-fail 83 | imported-only 1  (26s)
+S2 cpp: 81/230 ok | own-fail 30 | imported-only 119  (23s)
 Top root-cause headers (files blocked):
-  pal3/src/Misc/SaleUI_SortData.h               blocks   7 cpp
+  pal3/src/Combat/CCBStage.h                    blocks  25 cpp
+  pal3/src/Effect/CEffect.h                     blocks  19 cpp
+  pal3/src/Misc/UIPushButton.h                  blocks  18 cpp
+  pal3/src/Misc/UIProgressBar.h                 blocks  16 cpp
+  pal3/src/Combat/CCBSystem.h                   blocks  13 cpp
+  pal3/src/Misc/tagVA.h                         blocks  12 cpp
+  pal3/src/Role/Role.h                          blocks  12 cpp
+  pal3/src/Misc/ComboAttack.h                   blocks   6 cpp
+  pal3/src/Misc/BtnGroup.h                      blocks   4 cpp
+  pal3/src/Misc/UIBigMap.h                      blocks   4 cpp
+  pal3/src/Combat/CCBStageRole.h                blocks   3 cpp
+  pal3/src/Misc/JusticeBookUI.h                 blocks   3 cpp
+  pal3/src/Misc/MainEquipUI.h                   blocks   3 cpp
+  pal3/src/Misc/CG_Entry.h                      blocks   3 cpp
+  pal3/src/Misc/SceneInfo.h                     blocks   2 cpp
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 编译回归检测报告
 ================================================================================
 基线: 20261124_013305
 基线时间: 2026-11-24T01:33:05.535098
-检测时间: 2026-11-24T15:45:22.128088
+检测时间: 2026-11-24T16:35:28.846675
 
 📊 摘要:
-  总文件数: 1023
-  新失败: 18
-  新错误(真新增 (code,msg)): 33
-  已修复: 6
-  错误收敛(消失 (code,msg)): 25
-  持续失败: 89
+  总文件数: 1066
+  新失败: 140
+  新错误(真新增 (code,msg)): 56
+  已修复: 2
+  错误收敛(消失 (code,msg)): 56
+  持续失败: 93
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2664    +174  ⚠️ 增加
-  C2109    +45  ⚠️ 增加
-  C2679    +20  ⚠️ 增加
-  C2228    -19
-  C2677    +13  ⚠️ 增加
-  C2676    +10  ⚠️ 增加
-  C2065    +8  ⚠️ 增加
-  C2440    +7  ⚠️ 增加
-  C2041    -6
-  C2227    +6  ⚠️ 增加
-  C2446    +6  ⚠️ 增加
-  C2040    +6  ⚠️ 增加
-  C2660    +5  ⚠️ 增加
-  C2146    -4
-  C2102    -3
-  ⚠️ 注意: 以下错误码**净增** C1903, C2036, C2040, C2065, C2086, C2109, C2227, C2297, C2440, C2446, C2501, C2653, C2660, C2664, C2676, C2677, C2679 —— 即使总错误数在下降也要逐条归因
+  C2440    -172
+  C1083    +164  ⚠️ 增加
+  C2664    -88
+  C2061    +26  ⚠️ 增加
+  C2109    -25
+  C2228    -22
+  C2011    +22  ⚠️ 增加
+  C2079    +22  ⚠️ 增加
+  C2660    -19
+  C2065    -19
+  C2059    -18
+  C2106    -12
+  C2446    -12
+  C2040    -11
+  C2248    -11
+  ⚠️ 注意: 以下错误码**净增** C1083, C2011, C2061, C2079, C2086, C2501 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  s1:pal3/src/Misc/SaleUI.h
-    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Combat/CCBResultWindow.cpp
-    L146: C2660 - '_Eos' : function does not take 0 parameters
-  pal3/src/Misc/CCBFiveNimbusWindow.cpp
-    L171: C2664 - 'sub_519BB0' : cannot convert parameter 1 from 'class CCBFiv
   pal3/src/Misc/SkillUI.cpp
-    L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Misc/UITitle_YXXX.cpp
-    L308: C2440 - '=' : cannot convert from 'int' to 'int *'
-    L397: C2664 - 'HandleDllEntryUITitle' : cannot convert parameter 1 from 's
-    L401: C2440 - '=' : cannot convert from 'int' to 'int *'
-  pal3/src/Role/Actor.cpp
-    L1954: C2440 - '=' : cannot convert from 'int' to 'int *'
-    L2333: C2664 - 'LoadAudioFromFile' : cannot convert parameter 2 from 'int' 
-    L2382: C2440 - '=' : cannot convert from 'int' to 'int *'
-  s1:pal3/src/Misc/tagEffClass.h
-    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Scene/Scene.cpp
-    L81: C2446 - '<' : no conversion from 'void *' to 'int'
-    L81: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    L1060: C2664 - 'void (unsigned __int16 *,int,unsigned long *,class Scene *)
-    ... 还有 21 个错误
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L235: C2440 - '=' : cannot convert from 'const float' to 'void *'
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/MainPropUI.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/CG_UI.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/ArcScene.h
+    L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  pal3/src/Combat/CCBMagicWindow.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UISceneFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/ComposeUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
   pal3/src/Misc/UITitle_XJTM.cpp
-    L623: C2109 - subscript requires array or pointer type
-  s1:pal3/src/Misc/SaleUI_SortData.h
-    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/NPCInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such f
+  pal3/src/Misc/UILoadingFrm.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Combat/CCBAI.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  s1:pal3/src/Misc/ARC_ComboAttack.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/SCNFile.h
+    L0: C1083 - Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such f
+  s1:pal3/src/Misc/tagVA.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  s1:pal3/src/Misc/DealData.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/UI/EquipUI.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/Combat/CCBSkillWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/ArcLocaleRole.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/ParticleEffect.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/CCBRoleStatePanelS.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/SceneInfo.cpp
+    L5: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  pal3/src/Misc/ArraySlots.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Combat/CCBSystem.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Data/PAL_GDB.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/tagShowItem.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBShowItemKind.h': No such 
+  s1:pal3/src/UI/MagicUI.h
+    L0: C1083 - Cannot open include file: 'Misc/DLG_MSG.h': No such file or 
+  pal3/src/Misc/CEffAction.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Combat/CCBControlWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Effect/CEffgbParticle.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/CJ_FindFile.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/ScriptPoolPage.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Combat/CCBLineupWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/p_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/UICoverFrm.cpp
+    L10: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  pal3/src/Misc/SwordUI.cpp
+    L18: C1083 - Cannot open include file: 'Misc/WuLing.h': No such file or d
+  pal3/src/Misc/UIRoleSelectDialog.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/ProtectPanel.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/UI/PropUI.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/Combat/CCBStageShadow.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/FightInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No su
+  s1:pal3/src/Misc/me_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Effect/CEffQuake.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Role/NPC.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Effect/CEffect.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
   pal3/src/Effect/ScreenEffectMgr.cpp
     L805: C2440 - '=' : cannot convert from 'const float' to 'void *'
-  pal3/src/Misc/CCBUIPanel.cpp
-    L2432: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    L2448: C2065 - 'off_56B22C' : undeclared identifier
-    L2475: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    ... 还有 1 个错误
-  pal3/src/GameBase/InputSystem.cpp
-    L33: C2036 - 'void *' : unknown size
-    L33: C2440 - '=' : cannot convert from 'void *' to 'int'
-    L34: C2036 - 'void *' : unknown size
-    ... 还有 1 个错误
-  pal3/src/Combat/CCBStageEffect.cpp
-    L26: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
-    L30: C2664 - 'FormatException' : cannot convert parameter 1 from 'unsigne
-    L52: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
-    ... 还有 1 个错误
+  s1:pal3/src/Misc/ARC_PAL_GDB.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Combat/CCBStage.h
+    L0: C2061 - syntax error : identifier 'ECBStageTaskState'
+  s1:pal3/src/Misc/tagEffClass.h
+    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+  pal3/src/Combat/CCBUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  s1:pal3/src/Misc/sCollision.h
+    L0: C1083 - Cannot open include file: 'Misc/CollisionType.h': No such fi
+  pal3/src/Misc/UISceneFrm.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/UIProgressBar.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Effect/CEffect.h
+    L0: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/CG_Entry.cpp
+    L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
+  pal3/src/Effect/CEffExplosive.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/DealData.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Combat/CCBItemWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Effect/CEffCylinder.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/UIBigMap.h
+    L0: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  pal3/src/Misc/CCBFiveNimbusWindow.cpp
+    L171: C2664 - 'sub_519BB0' : cannot convert parameter 1 from 'class CCBFiv
   pal3/src/Misc/CIniFile.cpp
     L59: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     L60: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     L61: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     ... 还有 2 个错误
+  pal3/src/Misc/UI3DCtrl.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/UI/StateUI.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/EffModeParam.h
+    L0: C1083 - Cannot open include file: 'Misc/eSkyEffPos.h': No such file 
+  pal3/src/Combat/CCBStageEffect.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L26: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
+    L30: C2664 - 'FormatException' : cannot convert parameter 1 from 'unsigne
+    ... 还有 2 个错误
+  s1:pal3/src/Misc/BtnGroup.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/Combat/CCBProtectWindow.cpp
+    L5: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  pal3/src/Misc/CCBUIPanel.cpp
+    L10: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  pal3/src/Misc/TaskBookUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  s1:pal3/src/Misc/CCBRoleStatePanel.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/UIAnimateCtrlEX.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Misc/UISceneFace.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L235: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Misc/JusticeBookUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or 
+  pal3/src/Misc/UISceneMap.cpp
+    L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  s1:pal3/src/Misc/ARC_ArcMsic.h
+    L0: C1083 - Cannot open include file: 'Misc/ARC_WuLing.h': No such file 
+  pal3/src/UI/MagicUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/DLG_MSG.h': No such file or 
+  pal3/src/Scene/Camera.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/UILoadingFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/UI/UICursor.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Combat/CCBResultWindow.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Effect/CEffShock.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Effect/CEffQuad.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/SaleUI_SortData.h
+    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+  s1:pal3/src/Misc/UIProgressBar.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
   pal3/src/Misc/RoleStatePanel.cpp
-    L476: C2664 - 'sub_4A4820' : cannot convert parameter 1 from 'class RoleSt
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/tagImbibeNimbus.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBFiveNimbus.h': No such fi
+  s1:pal3/src/Role/Role.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Role/Actor.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  s1:pal3/src/Misc/ScriptWaitFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
+  s1:pal3/src/Misc/MainEquipUI.h
+    L0: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such 
+  s1:pal3/src/Misc/UIPushButton.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/ARC_PlayerAtt.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/gbLightObj.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  pal3/src/GameBase/InputSystem.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/tagRoleTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBRoleTaskMode.h': No such 
+  pal3/src/Misc/Comp_DonateUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  s1:pal3/src/Misc/UITitle_JDHY.h
+    L0: C1083 - Cannot open include file: 'Misc/NOTE_STATE.h': No such file 
+  s1:pal3/src/Misc/JusticeBookUI.h
+    L0: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or 
+  s1:pal3/src/Misc/SkyboxEff.h
+    L0: C1083 - Cannot open include file: 'Misc/eSkyEffPos.h': No such file 
+  s1:pal3/src/Misc/LineupUI.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/CCBDisplayChain.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBShowItemKind.h': No such 
+  pal3/src/Misc/ArcSceneObject.cpp
+    L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such 
   pal3/src/Misc/RoleShadow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
     L127: C2109 - subscript requires array or pointer type
+  s1:pal3/src/Misc/tagStageTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBStageTask.h': No such fil
+  s1:pal3/src/Misc/SceneInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  pal3/src/Misc/RoleCamera.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Combat/CCBAttackSequen.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Combat/Combat.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Misc/ArcSceneMonster.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/CCBRoleStatePanelM.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/CEffBink.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/SceneObjParam.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Effect/CEffMeteor.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Combat/CCBStageScene.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No su
+  s1:pal3/src/Misc/UICoverFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  s1:pal3/src/Misc/m_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UISceneFace.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Combat/CCBStageRole.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Combat/CCBControl.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/CG_Entry.h
+    L0: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
+  pal3/src/Misc/UITitle_YXXX.cpp
+    L308: C2440 - '=' : cannot convert from 'int' to 'int *'
+    L397: C2664 - 'HandleDllEntryUITitle' : cannot convert parameter 1 from 's
+    L401: C2440 - '=' : cannot convert from 'int' to 'int *'
+  s1:pal3/src/Misc/ComboAttack.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/SwordUI.h
+    L0: C1083 - Cannot open include file: 'Misc/WuLing.h': No such file or d
+  pal3/src/Misc/CEffCallBack.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Effect/CEffGrid.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/UITitle.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/_Console.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/s_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/SaleUI.h
+    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+  pal3/src/Role/Role.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/RoleStatePanel.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Scene/Scene.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Misc/LineupComp.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/tagStageSubTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBStageTaskState.h': No suc
+  pal3/src/Misc/s_RoleState.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Combat/CCBStageRole.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Effect/CEffectSystem.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/CG_Scene.h
+    L0: C1083 - Cannot open include file: 'Misc/CG_PROPINFO.h': No such file
+  pal3/src/Scene/Scene.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Misc/UIGameFrm.cpp
-    错误数: 10 -> 12  真新增 2 {'C2664': 2}
-    新增 L223: C2664 - 'void (char *)' : cannot convert parameter 1 from 'unsigned char *' to
-    新增 L284: C2664 - 'int (char *,int,int)' : cannot convert parameter 1 from 'unsigned cha
-    新增 L311: C2664 - 'void (char *)' : cannot convert parameter 1 from 'unsigned char *' to
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 36 -> 24  真新增 5 {'C2664': 1, 'C2109': 1, 'C2065': 1, 'C2297': 2}
-    新增 L421: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L801: C2109 - subscript requires array or pointer type
-    新增 L834: C2065 - 'dword_C1096C' : undeclared identifier
-    新增 L1201: C2664 - 'crt_sub_005415C0' : cannot convert parameter 1 from 'class UIQuadMana
-    新增 L3094: C2297 - '*' : illegal, right operand has type 'char *'
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 13 -> 23  真新增 10 {'C2109': 8, 'C2440': 1, 'C2065': 1}
-    新增 L262: C2109 - subscript requires array or pointer type
-    新增 L270: C2109 - subscript requires array or pointer type
-    新增 L280: C2109 - subscript requires array or pointer type
-    新增 L290: C2109 - subscript requires array or pointer type
-    新增 L300: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 8 -> 15  真新增 7 {'C2440': 1, 'C2228': 2, 'C2664': 3, 'C2109': 1}
-    新增 L730: C2440 - 'type cast' : cannot convert from 'unsigned long *' to 'class OpenScen
-    新增 L883: C2228 - left of '.x' must have class/struct/union type
-    新增 L891: C2228 - left of '.x' must have class/struct/union type
-    新增 L951: C2228 - left of '.x' must have class/struct/union type
-    新增 L984: C2664 - 'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &)' : cann
-  pal3/src/GameBase/GRPinput.cpp
-    错误数: 11 -> 15  真新增 4 {'C2664': 4}
-    新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
-    新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
-    新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
-    新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
   pal3/src/UI/EquipUI.cpp
-    错误数: 2 -> 8  真新增 6 {'C2440': 2, 'C2109': 4}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L811: C2109 - subscript requires array or pointer type
-    新增 L828: C2109 - subscript requires array or pointer type
-    新增 L1048: C2440 - '=' : cannot convert from 'const unsigned int' to 'int *'
-    新增 L1265: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 5 -> 6  真新增 1 {'C2109': 1}
-    新增 L2096: C2109 - subscript requires array or pointer type
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 29 -> 71  真新增 45 {'C2440': 1, 'C2664': 39, 'C2676': 1, 'C2109': 1, 'C2065': 2, 'C1903': 1}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L2026: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'class tagEffSPSlot *'
-    新增 L5439: C2664 - 'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'c
-    新增 L6215: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
-    新增 L6216: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
-  pal3/src/Misc/MainPropUI.cpp
-    错误数: 2 -> 5  真新增 3 {'C2109': 3}
-    新增 L886: C2109 - subscript requires array or pointer type
-    新增 L893: C2109 - subscript requires array or pointer type
-    新增 L1113: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 4 -> 5  真新增 1 {'C2664': 1}
-    新增 L717: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-  pal3/src/Data/PAL_GDB.cpp
-    错误数: 2 -> 9  真新增 7 {'C2065': 1, 'C2664': 6}
-    新增 L1047: C2065 - 'index_0' : undeclared identifier
-    新增 L1066: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1076: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1078: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1081: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
   pal3/src/Role/RoleSystem.cpp
-    错误数: 45 -> 43  真新增 4 {'C2109': 2, 'C2440': 1, 'C2664': 1}
-    新增 L778: C2109 - subscript requires array or pointer type
-    新增 L785: C2109 - subscript requires array or pointer type
-    新增 L1783: C2109 - subscript requires array or pointer type
-    新增 L1789: C2109 - subscript requires array or pointer type
-    新增 L2030: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/SaleUI.cpp
-    错误数: 28 -> 37  真新增 29 {'C2440': 10, 'C2109': 19}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L779: C2109 - subscript requires array or pointer type
-    新增 L783: C2109 - subscript requires array or pointer type
-    新增 L797: C2109 - subscript requires array or pointer type
-    新增 L807: C2440 - 'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdec
-  pal3/src/UI/UIListBox.cpp
-    错误数: 3 -> 3  真新增 2 {'C2660': 1, 'C2664': 1}
-    新增 L702: C2660 - 'UIDestorySystem' : function does not take 6 parameters
-    新增 L2350: C2664 - 'sub_519BB0' : cannot convert parameter 1 from 'class UIListBox *const
-  pal3/src/Script/ScriptSystem.cpp
-    错误数: 11 -> 14  真新增 3 {'C2446': 1, 'C2040': 1, 'C2664': 1}
-    新增 L102: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L102: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    新增 L243: C2664 - 'SetAt' : cannot convert parameter 1 from 'void *' to 'int'
-  pal3/src/free_functions.cpp
-    错误数: 84 -> 101  真新增 23 {'C2065': 1, 'C2446': 4, 'C2040': 4, 'C2679': 2, 'C2664': 10, 'C2227': 1, 'C2653': 1}
-    新增 L895: C2065 - 'dword_C1096C' : undeclared identifier
-    新增 L1655: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L1655: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    新增 L1662: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L1662: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-  pal3/src/Misc/CCBUICtrl.cpp
-    错误数: 12 -> 31  真新增 20 {'C2440': 2, 'C2679': 8, 'C2664': 7, 'C2065': 2, 'C2660': 1}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L587: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L611: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBU
-    新增 L800: C2065 - 'dword_5D8808' : undeclared identifier
-    新增 L962: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/Render/RenderTarget.cpp
-    错误数: 1 -> 1  真新增 1 {'C2440': 1}
-    新增 L1229: C2440 - '=' : cannot convert from 'int' to 'const char ** '
-  pal3/src/Combat/CCBRoleState.cpp
-    错误数: 10 -> 58  真新增 48 {'C2440': 10, 'C2664': 28, 'C2676': 9, 'C2679': 1}
-    新增 L2364: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
-    新增 L2515: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L2518: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L2521: C2664 - 'sprintf' : cannot convert parameter 2 from 'unsigned char' to 'const 
-    新增 L2524: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-  pal3/src/Combat/CCBStageScene.cpp
-    错误数: 4 -> 24  真新增 20 {'C2664': 20}
-    新增 L381: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'class tagEffSPSlo
-    新增 L418: C2664 - 'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlo
-    新增 L1355: C2664 - 'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' t
-    新增 L1373: C2664 - 'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' t
-    新增 L1375: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 4 -> 12  真新增 8 {'C2660': 1, 'C2664': 7}
-    新增 L127: C2660 - 'UpdateCamera' : function does not take 0 parameters
-    新增 L237: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class CEffObj *' to '
-    新增 L249: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'unsigned char' to 'co
-    新增 L952: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
-    新增 L1370: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
-  pal3/src/Scene/SceneObj.cpp
-    错误数: 3 -> 7  真新增 4 {'C2660': 4}
-    新增 L244: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L480: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L493: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L845: C2660 - '_Eos' : function does not take 0 parameters
+    错误数: 45 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directo
+  pal3/src/UI/PropUI.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
   pal3/src/Misc/UIPushButton.cpp
-    错误数: 7 -> 4  真新增 4 {'C2660': 4}
+    错误数: 7 -> 6  真新增 6 {'C2011': 1, 'C2079': 1, 'C2660': 4}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
     新增 L653: C2660 - 'UIInitSystem' : function does not take 5 parameters
     新增 L661: C2660 - 'UIInitSystem' : function does not take 5 parameters
     新增 L674: C2660 - 'UIInitSystem' : function does not take 5 parameters
-    新增 L682: C2660 - 'UIInitSystem' : function does not take 5 parameters
-  pal3/src/Script/PalScript.cpp
-    错误数: 44 -> 34  真新增 5 {'C2679': 5}
-    新增 L5096: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5101: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5234: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5254: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5291: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/Combat/CCBCamControl.cpp
-    错误数: 1 -> 6  真新增 5 {'C2664': 5}
-    新增 L369: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L1037: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L1057: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'int' to 'const ch
-    新增 L1058: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'unsigned char' to
-    新增 L1101: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 18 -> 36  真新增 18 {'C2679': 3, 'C2678': 1, 'C2664': 1, 'C2677': 13}
-    新增 L2071: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L2134: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L2139: C2678 - binary '!=' : no operator defined which takes a left-hand operand of t
-    新增 L2141: C2664 - 'GetRoleField' : cannot convert parameter 1 from 'class tagEffSPSlot' 
-    新增 L2152: C2677 - binary '[' : no global operator defined which takes type 'class tagEff
-  pal3/src/UI/StateUI.cpp
-    错误数: 6 -> 7  真新增 2 {'C2109': 2}
-    新增 L2385: C2109 - subscript requires array or pointer type
-    新增 L2545: C2109 - subscript requires array or pointer type
-    新增 L2575: C2109 - subscript requires array or pointer type
-  pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2664': 1}
-    新增 L107: C2664 - 'SetAt' : cannot convert parameter 1 from 'void *' to 'int'
-  pal3/src/UI/PropUI.cpp
-    错误数: 3 -> 5  真新增 2 {'C2109': 1, 'C2440': 1}
-    新增 L763: C2109 - subscript requires array or pointer type
-    新增 L767: C2109 - subscript requires array or pointer type
-    新增 L865: C2440 - 'type cast' : cannot convert from 'char *' to 'class UIButton_UIBUTTON
-  pal3/src/Misc/PtrArray.cpp
-    错误数: 4 -> 4  真新增 1 {'C2679': 1}
-    新增 L773: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/Render/CScreenMode.cpp
-    错误数: 18 -> 21  真新增 3 {'C2440': 1, 'C2664': 2}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L1633: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L2688: C2664 - 'AddSoundEntry' : cannot convert parameter 2 from 'unsigned char *' to
+  pal3/src/GameBase/SoundContext.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or directory
   pal3/src/globals.cpp
     错误数: 1 -> 10  真新增 7 {'C2501': 6, 'C2086': 1}
     新增 L1268: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
@@ -306,93 +485,264 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L1269: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
     新增 L1269: C2086 - 'PalScriptMgr' : redefinition
     新增 L1269: C2501 - 'dword_DBA254' : missing storage-class or type specifiers
+  pal3/src/Combat/CCBCamControl.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Combat/CCCTData.cpp
+    错误数: 22 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Effect/CEffModel.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/UI/UIManager.cpp
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/GameBase/GRPinput.cpp
+    错误数: 11 -> 15  真新增 4 {'C2664': 4}
+    新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
+    新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
+    新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
+    新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
+  pal3/src/Effect/CEffSParticle.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 36 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/UIGameOver.cpp
+    错误数: 1 -> 3  真新增 2 {'C2011': 1, 'C2079': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or directory
+  s1:pal3/src/Misc/ArcLocale.h
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file or directo
+  pal3/src/Misc/UIEmote.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/free_functions.cpp
+    错误数: 84 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 10 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Script/PalScriptMgr.cpp
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 13 -> 4  真新增 4 {'C2011': 1, 'C2079': 1, 'C2061': 1, 'C1083': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such file or di
+  pal3/src/Misc/Array.cpp
+    错误数: 3 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  pal3/src/Misc/UITitle_BBTY.cpp
+    错误数: 1 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Script/PalScript.cpp
+    错误数: 44 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 8 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such file or di
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 11 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/UI/UIScene.cpp
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Combat/CCBAI.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
   pal3/src/Effect/CEffMgr.cpp
-    错误数: 4 -> 10  真新增 6 {'C2440': 1, 'C2227': 5}
-    新增 L623: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L667: C2227 - left of '->DestroyEffect' must point to class/struct/union
-    新增 L729: C2227 - left of '->DestroyEffect' must point to class/struct/union
-    新增 L750: C2227 - left of '->DestroyEffect' must point to class/struct/union
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Misc/ScriptVM.cpp
+    错误数: 28 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directo
+  pal3/src/Misc/UITabCtrl.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/UIGameFrm.cpp
+    错误数: 10 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or
+  pal3/src/Render/RenderTarget2.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Misc/MainPropUI.cpp
+    错误数: 2 -> 3  真新增 3 {'C2011': 1, 'C2079': 1, 'C1083': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Misc/CCBUICtrl.cpp
+    错误数: 12 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Scene/SceneObj.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Scene/CameraCtrl.cpp
+    错误数: 8 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Combat/CCBParabolaWindow.cpp
+    错误数: 1 -> 3  真新增 3 {'C2061': 1, 'C2011': 1, 'C2079': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/PtrArray.cpp
+    错误数: 4 -> 4  真新增 1 {'C2679': 1}
+    新增 L773: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
+  pal3/src/Render/RenderTarget.cpp
+    错误数: 1 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Combat/CUtil.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/UI/StateUI.cpp
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Data/PAL_GDB.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file or directo
+  pal3/src/Misc/PalScriptIdleObj.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/UI/UIListBox.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Combat/CCBStageScene.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or
+  pal3/src/Role/Object3D.cpp
+    错误数: 5 -> 7  真新增 2 {'C2011': 1, 'C2079': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Render/CScreenMode.cpp
+    错误数: 18 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such file or di
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/NOTE_STATE.h': No such file or directo
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 28 -> 3  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 29 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/MiniGame/MiniGame3.cpp
+    错误数: 7 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/RoleAtt.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file or directo
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Misc/UIGameFrm.cpp: {'C2664': 1}
-  pal3/src/GameBase/PAL3.cpp: {'C2440': 3, 'C2664': 1}
-  pal3/src/GameBase/Config.cpp: {'C2660': 2}
-  pal3/src/Combat/CCBStage.cpp: {'C2664': 1, 'C2660': 1}
-  pal3/src/Misc/SaleUI.cpp: {'C2440': 4}
-  pal3/src/free_functions.cpp: {'C2440': 4, 'C2664': 8}
-  pal3/src/Combat/CCBRoleState.cpp: {'C2440': 1}
   pal3/src/Misc/UI3DModelNode.cpp: {'C2440': 1}
-  pal3/src/Script/PalScript.cpp: {'C2660': 5}
+  pal3/src/GameBase/Config.cpp: {'C2660': 2}
   pal3/src/Misc/PtrArray.cpp: {'C2440': 1}
-  pal3/src/Render/CScreenMode.cpp: {'C2660': 1}
-  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1}
+  pal3/src/Misc/SaleUI.cpp: {'C2440': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Misc/UIGameFrm.cpp: 10 -> 12  (消失 1)
-  pal3/src/GameBase/PAL3.cpp: 36 -> 24  (消失 23)
-  pal3/src/GameBase/Config.cpp: 4 -> 4  (消失 2)
-  pal3/src/Misc/MainEquipUI.cpp: 3 -> 2  (消失 1)
-  pal3/src/Combat/CCBStage.cpp: 29 -> 71  (消失 4)
-  pal3/src/MiniGame/MiniGame3.cpp: 7 -> 6  (消失 1)
-  pal3/src/Effect/CEffSParticle.cpp: 3 -> 2  (消失 1)
-  pal3/src/Role/RoleSystem.cpp: 45 -> 43  (消失 6)
-  pal3/src/Misc/SaleUI.cpp: 28 -> 37  (消失 22)
-  pal3/src/UI/UIListBox.cpp: 3 -> 3  (消失 2)
-  pal3/src/free_functions.cpp: 84 -> 101  (消失 21)
-  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 31  (消失 4)
-  pal3/src/Render/RenderTarget.cpp: 1 -> 1  (消失 1)
-  pal3/src/Combat/CCBRoleState.cpp: 10 -> 58  (消失 1)
-  s1:pal3/src/_ns_udts.h: 24 -> 18  (消失 10)
+  pal3/src/UI/EquipUI.cpp: 2 -> 1  (消失 2)
+  pal3/src/Role/RoleSystem.cpp: 45 -> 2  (消失 36)
+  pal3/src/UI/PropUI.cpp: 3 -> 1  (消失 2)
+  pal3/src/Misc/UIPushButton.cpp: 7 -> 6  (消失 7)
+  pal3/src/GameBase/SoundContext.cpp: 2 -> 1  (消失 2)
+  pal3/src/globals.cpp: 1 -> 10  (消失 1)
+  pal3/src/Combat/CCBCamControl.cpp: 1 -> 2  (消失 1)
+  pal3/src/Combat/CCCTData.cpp: 22 -> 2  (消失 22)
+  pal3/src/Effect/CEffModel.cpp: 2 -> 1  (消失 2)
+  pal3/src/UI/UIManager.cpp: 6 -> 1  (消失 6)
+  pal3/src/Effect/CEffSParticle.cpp: 3 -> 1  (消失 3)
+  pal3/src/GameBase/PAL3.cpp: 36 -> 1  (消失 36)
+  pal3/src/Misc/UIScenePanel.cpp: 5 -> 1  (消失 4)
+  s1:pal3/src/Misc/ArcLocale.h: 3 -> 1  (消失 2)
+  pal3/src/Misc/UIEmote.cpp: 2 -> 1  (消失 2)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  pal3/src/Render/RenderTarget2.cpp
   pal3/src/Misc/UIButton.cpp
-  s1:pal3/src/Misc/ArcLocale.h
   pal3/src/Misc/UIFrameWnd.cpp
-  pal3/src/Combat/CCBParabolaWindow.cpp
-  pal3/src/Misc/PalScriptIdleObj.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Misc/UIGameFrm.cpp: 10 → 12
-  pal3/src/GameBase/PAL3.cpp: 36 ↓ 24
-  pal3/src/Misc/LineupUI.cpp: 13 → 23
-  pal3/src/Misc/UIBigMap.cpp: 8 → 15
-  pal3/src/Misc/MainEquipUI.cpp: 3 ↓ 2
-  pal3/src/GameBase/GRPinput.cpp: 11 → 15
-  pal3/src/UI/EquipUI.cpp: 2 → 8
-  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
-  pal3/src/Combat/CCBStage.cpp: 29 → 71
-  pal3/src/MiniGame/MiniGame3.cpp: 7 ↓ 6
-  pal3/src/Effect/CEffSParticle.cpp: 3 ↓ 2
-  pal3/src/Misc/MainPropUI.cpp: 2 → 5
-  pal3/src/Misc/RoleAtt.cpp: 4 → 5
-  pal3/src/Data/PAL_GDB.cpp: 2 → 9
-  pal3/src/Role/RoleSystem.cpp: 45 ↓ 43
-  pal3/src/Misc/SaleUI.cpp: 28 → 37
-  pal3/src/Script/ScriptSystem.cpp: 11 → 14
-  pal3/src/free_functions.cpp: 84 → 101
-  pal3/src/Misc/CCBUICtrl.cpp: 12 → 31
-  pal3/src/Combat/CCBRoleState.cpp: 10 → 58
-  s1:pal3/src/_ns_udts.h: 24 ↓ 18
-  pal3/src/Combat/CCBStageScene.cpp: 4 → 24
-  pal3/src/Combat/CCBStageCam.cpp: 4 → 12
-  pal3/src/Scene/SceneObj.cpp: 3 → 7
-  pal3/src/Misc/UIPushButton.cpp: 7 ↓ 4
-  pal3/src/Script/PalScript.cpp: 44 ↓ 34
-  pal3/src/UI/UIScene.cpp: 6 ↓ 1
-  pal3/src/Combat/CCBCamControl.cpp: 1 → 6
-  pal3/src/Combat/CCBSystem.cpp: 18 → 36
-  pal3/src/UI/StateUI.cpp: 6 → 7
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/UI/PropUI.cpp: 3 → 5
-  pal3/src/Render/CScreenMode.cpp: 18 → 21
+  pal3/src/UI/EquipUI.cpp: 2 ↓ 1
+  pal3/src/Role/RoleSystem.cpp: 45 ↓ 2
+  pal3/src/UI/PropUI.cpp: 3 ↓ 1
+  pal3/src/Misc/UIPushButton.cpp: 7 ↓ 6
+  pal3/src/GameBase/SoundContext.cpp: 2 ↓ 1
   pal3/src/globals.cpp: 1 → 10
-  pal3/src/Effect/CEffMgr.cpp: 4 → 10
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 2
+  pal3/src/Combat/CCCTData.cpp: 22 ↓ 2
+  pal3/src/Effect/CEffModel.cpp: 2 ↓ 1
+  pal3/src/UI/UIManager.cpp: 6 ↓ 1
+  pal3/src/GameBase/GRPinput.cpp: 11 → 15
+  pal3/src/Effect/CEffSParticle.cpp: 3 ↓ 1
+  pal3/src/GameBase/PAL3.cpp: 36 ↓ 1
+  pal3/src/Misc/UIGameOver.cpp: 1 → 3
+  pal3/src/Misc/UIScenePanel.cpp: 5 ↓ 1
+  s1:pal3/src/Misc/ArcLocale.h: 3 ↓ 1
+  pal3/src/Misc/UIEmote.cpp: 2 ↓ 1
+  pal3/src/free_functions.cpp: 84 ↓ 1
+  pal3/src/Combat/CCBRoleState.cpp: 10 ↓ 1
+  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 1
+  pal3/src/Misc/LineupUI.cpp: 13 ↓ 4
+  pal3/src/Misc/Array.cpp: 3 ↓ 2
+  pal3/src/Script/PalScript.cpp: 44 ↓ 1
+  pal3/src/Combat/CCBStageCam.cpp: 4 ↓ 1
+  pal3/src/Misc/UIBigMap.cpp: 8 ↓ 1
+  pal3/src/Script/ScriptSystem.cpp: 11 ↓ 1
+  pal3/src/UI/UIScene.cpp: 6 ↓ 1
+  pal3/src/Combat/CCBAI.cpp: 4 ↓ 1
+  pal3/src/Effect/CEffMgr.cpp: 4 ↓ 1
+  pal3/src/Misc/ScriptVM.cpp: 28 ↓ 1
+  pal3/src/Misc/UITabCtrl.cpp: 3 ↓ 1
+  pal3/src/Misc/UIGameFrm.cpp: 10 ↓ 2
+  pal3/src/Render/RenderTarget2.cpp: 1 → 2
+  pal3/src/Misc/MainPropUI.cpp: 2 → 3
+  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 1
+  pal3/src/Scene/SceneObj.cpp: 3 ↓ 1
+  pal3/src/Scene/CameraCtrl.cpp: 8 ↓ 1
+  pal3/src/Combat/CCBParabolaWindow.cpp: 1 → 3
+  pal3/src/Combat/CUtil.cpp: 1 → 2
+  pal3/src/UI/StateUI.cpp: 6 ↓ 1
+  pal3/src/Data/PAL_GDB.cpp: 2 ↓ 1
+  pal3/src/Misc/PalScriptIdleObj.cpp: 2 ↓ 1
+  pal3/src/UI/UIListBox.cpp: 3 ↓ 1
+  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 1
+  pal3/src/Role/Object3D.cpp: 5 → 7
+  pal3/src/Render/CScreenMode.cpp: 18 ↓ 2
+  pal3/src/Misc/MainEquipUI.cpp: 3 ↓ 1
+  pal3/src/Misc/UITitle_JDHY.cpp: 5 ↓ 1
+  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 1
+  pal3/src/Misc/SaleUI.cpp: 28 ↓ 3
+  pal3/src/Combat/CCBStage.cpp: 29 ↓ 2
+  pal3/src/MiniGame/MiniGame3.cpp: 7 ↓ 1
+  s1:pal3/src/_ns_udts.h: 24 ↓ 18
+  pal3/src/Misc/RoleAtt.cpp: 4 ↓ 1
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 [vanished] 1 个失败单元从 census 蒸发(回归门视同回归):
@@ -402,266 +752,395 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261124_013305
 基线时间: 2026-11-24T01:33:05.535098
-检测时间: 2026-11-24T15:45:22.166528
+检测时间: 2026-11-24T16:35:28.882552
 
 📊 摘要:
-  总文件数: 1023
-  新失败: 18
-  新错误(真新增 (code,msg)): 33
-  已修复: 6
-  错误收敛(消失 (code,msg)): 25
-  持续失败: 89
+  总文件数: 1066
+  新失败: 140
+  新错误(真新增 (code,msg)): 56
+  已修复: 2
+  错误收敛(消失 (code,msg)): 56
+  持续失败: 93
 
 🔢 逐错误码净增减 (正=增加，负=减少):
 ----------------------------------------
-  C2664    +174  ⚠️ 增加
-  C2109    +45  ⚠️ 增加
-  C2679    +20  ⚠️ 增加
-  C2228    -19
-  C2677    +13  ⚠️ 增加
-  C2676    +10  ⚠️ 增加
-  C2065    +8  ⚠️ 增加
-  C2440    +7  ⚠️ 增加
-  C2041    -6
-  C2446    +6  ⚠️ 增加
-  C2040    +6  ⚠️ 增加
-  C2227    +6  ⚠️ 增加
-  C2660    +5  ⚠️ 增加
-  C2146    -4
-  C2102    -3
-  ⚠️ 注意: 以下错误码**净增** C1903, C2036, C2040, C2065, C2086, C2109, C2227, C2297, C2440, C2446, C2501, C2653, C2660, C2664, C2676, C2677, C2679 —— 即使总错误数在下降也要逐条归因
+  C2440    -172
+  C1083    +164  ⚠️ 增加
+  C2664    -88
+  C2061    +26  ⚠️ 增加
+  C2109    -25
+  C2228    -22
+  C2011    +22  ⚠️ 增加
+  C2079    +22  ⚠️ 增加
+  C2660    -19
+  C2065    -19
+  C2059    -18
+  C2446    -12
+  C2106    -12
+  C2040    -11
+  C2248    -11
+  ⚠️ 注意: 以下错误码**净增** C1083, C2011, C2061, C2079, C2086, C2501 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  s1:pal3/src/Misc/tagEffClass.h
-    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Misc/RoleShadow.cpp
-    L127: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/SkillUI.cpp
-    L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Misc/ScreenEffectNode.cpp
-    L235: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  s1:pal3/src/Misc/CCBRoleStatePanel.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/EffModeParam.h
+    L0: C1083 - Cannot open include file: 'Misc/eSkyEffPos.h': No such file 
+  s1:pal3/src/Misc/CG_Entry.h
+    L0: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
   pal3/src/Effect/ScreenEffectMgr.cpp
     L805: C2440 - '=' : cannot convert from 'const float' to 'void *'
-  pal3/src/Combat/CCBResultWindow.cpp
-    L146: C2660 - '_Eos' : function does not take 0 parameters
+  s1:pal3/src/Scene/Scene.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/UI/MagicUI.h
+    L0: C1083 - Cannot open include file: 'Misc/DLG_MSG.h': No such file or 
+  s1:pal3/src/Misc/me_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UITitle_JDHY.h
+    L0: C1083 - Cannot open include file: 'Misc/NOTE_STATE.h': No such file 
   pal3/src/Misc/RoleStatePanel.cpp
-    L476: C2664 - 'sub_4A4820' : cannot convert parameter 1 from 'class RoleSt
-  s1:pal3/src/Misc/SaleUI.h
-    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Scene/Scene.cpp
-    L81: C2446 - '<' : no conversion from 'void *' to 'int'
-    L81: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    L1060: C2664 - 'void (unsigned __int16 *,int,unsigned long *,class Scene *)
-    ... 还有 21 个错误
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UISceneFace.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/JusticeBookUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or 
+  s1:pal3/src/Misc/ProtectPanel.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/UICoverFrm.cpp
+    L10: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  s1:pal3/src/Misc/CCBRoleStatePanelS.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Effect/CEffExplosive.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
   pal3/src/GameBase/InputSystem.cpp
-    L33: C2036 - 'void *' : unknown size
-    L33: C2440 - '=' : cannot convert from 'void *' to 'int'
-    L34: C2036 - 'void *' : unknown size
-    ... 还有 1 个错误
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Combat/Combat.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Misc/CEffAction.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Combat/CCBLineupWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/FightInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No su
+  s1:pal3/src/Combat/CCBAI.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  pal3/src/Misc/ArraySlots.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/SkyboxEff.h
+    L0: C1083 - Cannot open include file: 'Misc/eSkyEffPos.h': No such file 
+  pal3/src/Role/Actor.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  pal3/src/Misc/s_RoleState.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/CJ_FindFile.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Combat/CCBStageShadow.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/CCBRoleStatePanelM.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
   s1:pal3/src/Misc/SaleUI_SortData.h
     L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-  pal3/src/Combat/CCBStageEffect.cpp
-    L26: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
-    L30: C2664 - 'FormatException' : cannot convert parameter 1 from 'unsigne
-    L52: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
-    ... 还有 1 个错误
   pal3/src/Misc/CCBFiveNimbusWindow.cpp
     L171: C2664 - 'sub_519BB0' : cannot convert parameter 1 from 'class CCBFiv
-  pal3/src/Role/Actor.cpp
-    L1954: C2440 - '=' : cannot convert from 'int' to 'int *'
-    L2333: C2664 - 'LoadAudioFromFile' : cannot convert parameter 2 from 'int' 
-    L2382: C2440 - '=' : cannot convert from 'int' to 'int *'
-  pal3/src/Misc/UITitle_XJTM.cpp
-    L623: C2109 - subscript requires array or pointer type
+  pal3/src/Combat/CCBStageRole.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Data/PAL_GDB.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
   pal3/src/Misc/CIniFile.cpp
     L59: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     L60: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     L61: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : ca
     ... 还有 2 个错误
+  pal3/src/Misc/CCBUIPanel.cpp
+    L10: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  pal3/src/Effect/CEffect.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/Comp_DonateUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  pal3/src/UI/UICursor.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/ScriptWaitFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
+  pal3/src/Misc/UITitle.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Combat/CCBAttackSequen.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/SaleUI.h
+    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+  pal3/src/Misc/LineupComp.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/ScreenEffectNode.cpp
+    L235: C2440 - '=' : cannot convert from 'const float' to 'void *'
+  pal3/src/Effect/CEffgbParticle.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/UI/PropUI.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  s1:pal3/src/Misc/DealData.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Role/NPC.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/tagVA.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  s1:pal3/src/Misc/ArcScene.h
+    L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  s1:pal3/src/Misc/UIProgressBar.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/UIAnimateCtrlEX.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Misc/ParticleEffect.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/ARC_PAL_GDB.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Effect/CEffectSystem.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/BtnGroup.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/Effect/CEffCylinder.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/SceneObjParam.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Combat/CCBUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file o
+  pal3/src/Misc/RoleShadow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    L127: C2109 - subscript requires array or pointer type
+  pal3/src/Misc/TaskBookUI.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  pal3/src/Combat/CCBControl.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Role/Role.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/p_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/UI3DCtrl.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/LineupUI.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/UISceneMap.cpp
+    L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/UI/MagicUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/DLG_MSG.h': No such file or 
+  s1:pal3/src/Misc/tagImbibeNimbus.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBFiveNimbus.h': No such fi
+  pal3/src/Misc/ComposeUI.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Misc/SceneInfo.cpp
+    L5: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  s1:pal3/src/Misc/tagStageTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBStageTask.h': No such fil
+  pal3/src/Misc/UILoadingFrm.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/ScriptPoolPage.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Misc/UISceneFrm.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Effect/CEffGrid.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/_Console.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  s1:pal3/src/Misc/MainPropUI.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Combat/CCBProtectWindow.cpp
+    L5: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  pal3/src/Misc/UIRoleSelectDialog.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/sCollision.h
+    L0: C1083 - Cannot open include file: 'Misc/CollisionType.h': No such fi
+  s1:pal3/src/Misc/MainEquipUI.h
+    L0: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such 
+  pal3/src/Effect/CEffShock.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/UI/StateUI.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
   pal3/src/Misc/UITitle_YXXX.cpp
     L308: C2440 - '=' : cannot convert from 'int' to 'int *'
     L397: C2664 - 'HandleDllEntryUITitle' : cannot convert parameter 1 from 's
     L401: C2440 - '=' : cannot convert from 'int' to 'int *'
-  pal3/src/Misc/CCBUIPanel.cpp
-    L2432: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    L2448: C2065 - 'off_56B22C' : undeclared identifier
-    L2475: C2440 - '=' : cannot convert from 'const int' to 'int *'
-    ... 还有 1 个错误
+  s1:pal3/src/Effect/CEffect.h
+    L0: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/tagEffClass.h
+    L0: C2440 - '=' : cannot convert from 'int' to 'char [4]'
+  s1:pal3/src/Misc/s_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/tagRoleTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBRoleTaskMode.h': No such 
+  s1:pal3/src/Misc/ARC_ArcMsic.h
+    L0: C1083 - Cannot open include file: 'Misc/ARC_WuLing.h': No such file 
+  s1:pal3/src/Combat/CCBStage.h
+    L0: C2061 - syntax error : identifier 'ECBStageTaskState'
+  s1:pal3/src/Misc/UIPushButton.h
+    L0: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L0: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/m_RoleState.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/ComboAttack.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Misc/UIProgressBar.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/CCBDisplayChain.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBShowItemKind.h': No such 
+  pal3/src/Combat/CCBItemWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Combat/CCBStageScene.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No su
+  pal3/src/Misc/UITitle_XJTM.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/CG_Entry.cpp
+    L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file 
+  pal3/src/Combat/CCBSkillWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/ArcSceneObject.cpp
+    L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such 
+  s1:pal3/src/Misc/ARC_ComboAttack.h
+    L0: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  s1:pal3/src/Misc/UISceneFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/CEffBink.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Scene/Scene.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/NPCInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such f
+  s1:pal3/src/Misc/CG_UI.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/SCNFile.h
+    L0: C1083 - Cannot open include file: 'Misc/ROLE_BEHAVIOUR.h': No such f
+  s1:pal3/src/Misc/tagStageSubTask.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBStageTaskState.h': No suc
+  pal3/src/Misc/UISceneFace.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Effect/CEffQuake.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Scene/Camera.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  pal3/src/Effect/CEffQuad.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  pal3/src/Misc/SwordUI.cpp
+    L18: C1083 - Cannot open include file: 'Misc/WuLing.h': No such file or d
+  s1:pal3/src/Misc/SwordUI.h
+    L0: C1083 - Cannot open include file: 'Misc/WuLing.h': No such file or d
+  pal3/src/Role/Role.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Misc/UICoverFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/MENU_TYPE.h': No such file o
+  s1:pal3/src/UI/EquipUI.h
+    L0: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or dir
+  pal3/src/Misc/CEffCallBack.cpp
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
+  s1:pal3/src/Misc/JusticeBookUI.h
+    L0: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or 
+  pal3/src/Combat/CCBMagicWindow.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UILoadingFrm.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/tagShowItem.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBShowItemKind.h': No such 
+  pal3/src/Misc/gbLightObj.cpp
+    L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  pal3/src/Misc/SkillUI.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Combat/CCBStageEffect.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L26: C2664 - 'OpenFile' : cannot convert parameter 1 from 'class CEffObj 
+    L30: C2664 - 'FormatException' : cannot convert parameter 1 from 'unsigne
+    ... 还有 2 个错误
+  s1:pal3/src/Misc/CG_Scene.h
+    L0: C1083 - Cannot open include file: 'Misc/CG_PROPINFO.h': No such file
+  pal3/src/Misc/ArcSceneMonster.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  s1:pal3/src/Misc/SceneInfo.h
+    L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file 
+  s1:pal3/src/Combat/CCBStageRole.h
+    L0: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file
+  s1:pal3/src/Combat/CCBSystem.h
+    L0: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Misc/ArcLocaleRole.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Combat/CCBResultWindow.cpp
+    L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  s1:pal3/src/Misc/UIBigMap.h
+    L0: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such 
+  s1:pal3/src/Misc/RoleStatePanel.h
+    L0: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or
+  pal3/src/Misc/DealData.cpp
+    L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file 
+  pal3/src/Misc/ARC_PlayerAtt.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Combat/CCBControlWindow.cpp
+    L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/RoleCamera.cpp
+    L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such 
+  pal3/src/Effect/CEffMeteor.cpp
+    L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or 
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/UI/EquipUI.cpp
-    错误数: 2 -> 8  真新增 6 {'C2440': 2, 'C2109': 4}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L811: C2109 - subscript requires array or pointer type
-    新增 L828: C2109 - subscript requires array or pointer type
-    新增 L1048: C2440 - '=' : cannot convert from 'const unsigned int' to 'int *'
-    新增 L1265: C2109 - subscript requires array or pointer type
-  pal3/src/UI/PropUI.cpp
-    错误数: 3 -> 5  真新增 2 {'C2109': 1, 'C2440': 1}
-    新增 L763: C2109 - subscript requires array or pointer type
-    新增 L767: C2109 - subscript requires array or pointer type
-    新增 L865: C2440 - 'type cast' : cannot convert from 'char *' to 'class UIButton_UIBUTTON
-  pal3/src/Script/ScriptSystem.cpp
-    错误数: 11 -> 14  真新增 3 {'C2446': 1, 'C2040': 1, 'C2664': 1}
-    新增 L102: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L102: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    新增 L243: C2664 - 'SetAt' : cannot convert parameter 1 from 'void *' to 'int'
-  pal3/src/Scene/SceneObj.cpp
-    错误数: 3 -> 7  真新增 4 {'C2660': 4}
-    新增 L244: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L480: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L493: C2660 - '_Eos' : function does not take 0 parameters
-    新增 L845: C2660 - '_Eos' : function does not take 0 parameters
-  pal3/src/free_functions.cpp
-    错误数: 84 -> 101  真新增 23 {'C2065': 1, 'C2446': 4, 'C2040': 4, 'C2679': 2, 'C2664': 10, 'C2227': 1, 'C2653': 1}
-    新增 L895: C2065 - 'dword_C1096C' : undeclared identifier
-    新增 L1655: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L1655: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-    新增 L1662: C2446 - '<' : no conversion from 'void *' to 'int'
-    新增 L1662: C2040 - '<' : 'int' differs in levels of indirection from 'void *'
-  pal3/src/GameBase/GRPinput.cpp
-    错误数: 11 -> 15  真新增 4 {'C2664': 4}
-    新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
-    新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
-    新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
-    新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
   pal3/src/UI/StateUI.cpp
-    错误数: 6 -> 7  真新增 2 {'C2109': 2}
-    新增 L2385: C2109 - subscript requires array or pointer type
-    新增 L2545: C2109 - subscript requires array or pointer type
-    新增 L2575: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/MainPropUI.cpp
-    错误数: 2 -> 5  真新增 3 {'C2109': 3}
-    新增 L886: C2109 - subscript requires array or pointer type
-    新增 L893: C2109 - subscript requires array or pointer type
-    新增 L1113: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/UIBigMap.cpp
-    错误数: 8 -> 15  真新增 7 {'C2440': 1, 'C2228': 2, 'C2664': 3, 'C2109': 1}
-    新增 L730: C2440 - 'type cast' : cannot convert from 'unsigned long *' to 'class OpenScen
-    新增 L883: C2228 - left of '.x' must have class/struct/union type
-    新增 L891: C2228 - left of '.x' must have class/struct/union type
-    新增 L951: C2228 - left of '.x' must have class/struct/union type
-    新增 L984: C2664 - 'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &)' : cann
-  pal3/src/Combat/CCBStageCam.cpp
-    错误数: 4 -> 12  真新增 8 {'C2660': 1, 'C2664': 7}
-    新增 L127: C2660 - 'UpdateCamera' : function does not take 0 parameters
-    新增 L237: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class CEffObj *' to '
-    新增 L249: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'unsigned char' to 'co
-    新增 L952: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
-    新增 L1370: C2664 - 'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' t
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
   pal3/src/Data/PAL_GDB.cpp
-    错误数: 2 -> 9  真新增 7 {'C2065': 1, 'C2664': 6}
-    新增 L1047: C2065 - 'index_0' : undeclared identifier
-    新增 L1066: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1076: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1078: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-    新增 L1081: C2664 - 'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CE
-  pal3/src/Effect/CEffMgr.cpp
-    错误数: 4 -> 10  真新增 6 {'C2440': 1, 'C2227': 5}
-    新增 L623: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L624: C2440 - '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
-    新增 L667: C2227 - left of '->DestroyEffect' must point to class/struct/union
-    新增 L729: C2227 - left of '->DestroyEffect' must point to class/struct/union
-    新增 L750: C2227 - left of '->DestroyEffect' must point to class/struct/union
-  pal3/src/Misc/CCBUICtrl.cpp
-    错误数: 12 -> 31  真新增 20 {'C2440': 2, 'C2679': 8, 'C2664': 7, 'C2065': 2, 'C2660': 1}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L587: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L611: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBU
-    新增 L800: C2065 - 'dword_5D8808' : undeclared identifier
-    新增 L962: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/Combat/CCBCamControl.cpp
-    错误数: 1 -> 6  真新增 5 {'C2664': 5}
-    新增 L369: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L1037: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L1057: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'int' to 'const ch
-    新增 L1058: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'unsigned char' to
-    新增 L1101: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 29 -> 71  真新增 45 {'C2440': 1, 'C2664': 39, 'C2676': 1, 'C2109': 1, 'C2065': 2, 'C1903': 1}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L2026: C2664 - 'CreateUIObj' : cannot convert parameter 1 from 'class tagEffSPSlot *'
-    新增 L5439: C2664 - 'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'c
-    新增 L6215: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
-    新增 L6216: C2664 - 'void __thiscall CIniFile::WriteLine(const char *,const char *)' : can
-  pal3/src/Misc/LineupUI.cpp
-    错误数: 13 -> 23  真新增 10 {'C2109': 8, 'C2440': 1, 'C2065': 1}
-    新增 L262: C2109 - subscript requires array or pointer type
-    新增 L270: C2109 - subscript requires array or pointer type
-    新增 L280: C2109 - subscript requires array or pointer type
-    新增 L290: C2109 - subscript requires array or pointer type
-    新增 L300: C2109 - subscript requires array or pointer type
-  pal3/src/Combat/CCBStageScene.cpp
-    错误数: 4 -> 24  真新增 20 {'C2664': 20}
-    新增 L381: C2664 - 'NewRenderEffect' : cannot convert parameter 1 from 'class tagEffSPSlo
-    新增 L418: C2664 - 'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlo
-    新增 L1355: C2664 - 'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' t
-    新增 L1373: C2664 - 'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' t
-    新增 L1375: C2664 - 'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot conve
-  pal3/src/Misc/UIGameFrm.cpp
-    错误数: 10 -> 12  真新增 2 {'C2664': 2}
-    新增 L223: C2664 - 'void (char *)' : cannot convert parameter 1 from 'unsigned char *' to
-    新增 L284: C2664 - 'int (char *,int,int)' : cannot convert parameter 1 from 'unsigned cha
-    新增 L311: C2664 - 'void (char *)' : cannot convert parameter 1 from 'unsigned char *' to
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file or directo
+  pal3/src/Scene/CameraCtrl.cpp
+    错误数: 8 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/Array.cpp
+    错误数: 3 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  pal3/src/Combat/CCBStageCam.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Script/ScriptSystem.cpp
+    错误数: 11 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Combat/CCBParabolaWindow.cpp
+    错误数: 1 -> 3  真新增 3 {'C2061': 1, 'C2011': 1, 'C2079': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
   pal3/src/Script/PalScriptMgr.cpp
-    错误数: 5 -> 4  真新增 1 {'C2664': 1}
-    新增 L107: C2664 - 'SetAt' : cannot convert parameter 1 from 'void *' to 'int'
-  pal3/src/Combat/CCBSystem.cpp
-    错误数: 18 -> 36  真新增 18 {'C2679': 3, 'C2678': 1, 'C2664': 1, 'C2677': 13}
-    新增 L2071: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L2134: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L2139: C2678 - binary '!=' : no operator defined which takes a left-hand operand of t
-    新增 L2141: C2664 - 'GetRoleField' : cannot convert parameter 1 from 'class tagEffSPSlot' 
-    新增 L2152: C2677 - binary '[' : no global operator defined which takes type 'class tagEff
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 45 -> 43  真新增 4 {'C2109': 2, 'C2440': 1, 'C2664': 1}
-    新增 L778: C2109 - subscript requires array or pointer type
-    新增 L785: C2109 - subscript requires array or pointer type
-    新增 L1783: C2109 - subscript requires array or pointer type
-    新增 L1789: C2109 - subscript requires array or pointer type
-    新增 L2030: C2109 - subscript requires array or pointer type
-  pal3/src/Script/PalScript.cpp
-    错误数: 44 -> 34  真新增 5 {'C2679': 5}
-    新增 L5096: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5101: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5234: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5254: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-    新增 L5291: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/Misc/SaleUI.cpp
-    错误数: 28 -> 37  真新增 29 {'C2440': 10, 'C2109': 19}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L779: C2109 - subscript requires array or pointer type
-    新增 L783: C2109 - subscript requires array or pointer type
-    新增 L797: C2109 - subscript requires array or pointer type
-    新增 L807: C2440 - 'type cast' : cannot convert from 'class Parent_Data' to 'void (__cdec
-  pal3/src/Render/RenderTarget.cpp
-    错误数: 1 -> 1  真新增 1 {'C2440': 1}
-    新增 L1229: C2440 - '=' : cannot convert from 'int' to 'const char ** '
-  pal3/src/UI/UIListBox.cpp
-    错误数: 3 -> 3  真新增 2 {'C2660': 1, 'C2664': 1}
-    新增 L702: C2660 - 'UIDestorySystem' : function does not take 6 parameters
-    新增 L2350: C2664 - 'sub_519BB0' : cannot convert parameter 1 from 'class UIListBox *const
-  pal3/src/Combat/CCBRoleState.cpp
-    错误数: 10 -> 58  真新增 48 {'C2440': 10, 'C2664': 28, 'C2676': 9, 'C2679': 1}
-    新增 L2364: C2440 - 'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'
-    新增 L2515: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L2518: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-    新增 L2521: C2664 - 'sprintf' : cannot convert parameter 2 from 'unsigned char' to 'const 
-    新增 L2524: C2664 - 'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'c
-  pal3/src/Misc/UITitle_JDHY.cpp
-    错误数: 5 -> 6  真新增 1 {'C2109': 1}
-    新增 L2096: C2109 - subscript requires array or pointer type
-  pal3/src/Misc/UIPushButton.cpp
-    错误数: 7 -> 4  真新增 4 {'C2660': 4}
-    新增 L653: C2660 - 'UIInitSystem' : function does not take 5 parameters
-    新增 L661: C2660 - 'UIInitSystem' : function does not take 5 parameters
-    新增 L674: C2660 - 'UIInitSystem' : function does not take 5 parameters
-    新增 L682: C2660 - 'UIInitSystem' : function does not take 5 parameters
-  pal3/src/Misc/RoleAtt.cpp
-    错误数: 4 -> 5  真新增 1 {'C2664': 1}
-    新增 L717: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Combat/CCBCamControl.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Misc/CCBUICtrl.cpp
+    错误数: 12 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/UI/PropUI.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
   pal3/src/globals.cpp
     错误数: 1 -> 10  真新增 7 {'C2501': 6, 'C2086': 1}
     新增 L1268: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
@@ -669,101 +1148,247 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L1269: C2501 - 'PalScriptMgr' : missing storage-class or type specifiers
     新增 L1269: C2086 - 'PalScriptMgr' : redefinition
     新增 L1269: C2501 - 'dword_DBA254' : missing storage-class or type specifiers
+  pal3/src/Misc/UIGameOver.cpp
+    错误数: 1 -> 3  真新增 2 {'C2011': 1, 'C2079': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Render/RenderTarget.cpp
+    错误数: 1 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Combat/CCBSystem.cpp
+    错误数: 18 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  s1:pal3/src/Misc/ArcLocale.h
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L0: C1083 - Cannot open include file: 'Misc/SCENE_TYPE.h': No such file or directo
+  pal3/src/Effect/CEffSParticle.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
   pal3/src/Render/CScreenMode.cpp
-    错误数: 18 -> 21  真新增 3 {'C2440': 1, 'C2664': 2}
-    新增 L16: C2440 - '=' : cannot convert from 'int' to 'char [4]'
-    新增 L1633: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L2688: C2664 - 'AddSoundEntry' : cannot convert parameter 2 from 'unsigned char *' to
+    错误数: 18 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/UIPushButton.cpp
+    错误数: 7 -> 6  真新增 6 {'C2011': 1, 'C2079': 1, 'C2660': 4}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    新增 L653: C2660 - 'UIInitSystem' : function does not take 5 parameters
+    新增 L661: C2660 - 'UIInitSystem' : function does not take 5 parameters
+    新增 L674: C2660 - 'UIInitSystem' : function does not take 5 parameters
+  pal3/src/GameBase/SoundContext.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or directory
+  pal3/src/Misc/ScriptVM.cpp
+    错误数: 28 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directo
+  pal3/src/GameBase/GRPinput.cpp
+    错误数: 11 -> 15  真新增 4 {'C2664': 4}
+    新增 L39: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
+    新增 L43: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
+    新增 L58: C2664 - 'int (struct IDirectInput8A *,int *,struct IDirectInputDevice8A ** ,un
+    新增 L62: C2664 - 'void (struct IDirectInputDevice8A *,int *)' : cannot convert paramete
+  pal3/src/Render/RenderTarget2.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Combat/CCCTData.cpp
+    错误数: 22 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/UI/UIListBox.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/UI/EquipUI.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L6: C1083 - Cannot open include file: 'Misc/_BGM.h': No such file or directory
+  pal3/src/Role/Object3D.cpp
+    错误数: 5 -> 7  真新增 2 {'C2011': 1, 'C2079': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+  pal3/src/Misc/SaleUI.cpp
+    错误数: 28 -> 3  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Script/PalScript.cpp
+    错误数: 44 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/UIGameFrm.cpp
+    错误数: 10 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or
+  pal3/src/GameBase/PAL3.cpp
+    错误数: 36 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/UITabCtrl.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/UITitle_BBTY.cpp
+    错误数: 1 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Misc/PalScriptIdleObj.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 29 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Scene/SceneObj.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
+  pal3/src/Effect/CEffMgr.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/Misc/UIEmote.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/UI/UIManager.cpp
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Misc/MainPropUI.cpp
+    错误数: 2 -> 3  真新增 3 {'C2011': 1, 'C2079': 1, 'C1083': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    新增 L9: C1083 - Cannot open include file: 'Misc/PGR_MODE.h': No such file or directory
   pal3/src/Misc/PtrArray.cpp
     错误数: 4 -> 4  真新增 1 {'C2679': 1}
     新增 L773: C2679 - binary '=' : no operator defined which takes a right-hand operand of t
-  pal3/src/GameBase/PAL3.cpp
-    错误数: 36 -> 24  真新增 5 {'C2664': 1, 'C2109': 1, 'C2065': 1, 'C2297': 2}
-    新增 L421: C2664 - 'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LG
-    新增 L801: C2109 - subscript requires array or pointer type
-    新增 L834: C2065 - 'dword_C1096C' : undeclared identifier
-    新增 L1201: C2664 - 'crt_sub_005415C0' : cannot convert parameter 1 from 'class UIQuadMana
-    新增 L3094: C2297 - '*' : illegal, right operand has type 'char *'
+  pal3/src/Effect/CEffModel.cpp
+    错误数: 2 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/EEffect.h': No such file or directory
+  pal3/src/UI/UIScene.cpp
+    错误数: 6 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/MiniGame/MiniGame3.cpp
+    错误数: 7 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 45 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L6: C1083 - Cannot open include file: 'Misc/PAL3_FRAME.h': No such file or directo
+  pal3/src/Misc/UIScenePanel.cpp
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/JB_TYPE.h': No such file or directory
+  pal3/src/Misc/RoleAtt.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/FightState.h': No such file or directo
+  pal3/src/Misc/MainEquipUI.cpp
+    错误数: 3 -> 1  真新增 1 {'C1083': 1}
+    新增 L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such file or di
+  pal3/src/Misc/UIBigMap.cpp
+    错误数: 8 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/_BIGMAP_ELEMENT.h': No such file or di
+  pal3/src/Combat/CUtil.cpp
+    错误数: 1 -> 2  真新增 2 {'C2061': 1, 'C1083': 1}
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L5: C1083 - Cannot open include file: 'Misc/ACTION_KIND.h': No such file or direct
+  pal3/src/Combat/CCBRoleState.cpp
+    错误数: 10 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Combat/CCBStageScene.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBBattleFieldAttr.h': No such file or
+  pal3/src/Combat/CCBAI.cpp
+    错误数: 4 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBVAKind.h': No such file or director
+  pal3/src/Misc/LineupUI.cpp
+    错误数: 13 -> 4  真新增 4 {'C2011': 1, 'C2079': 1, 'C2061': 1, 'C1083': 1}
+    新增 L26: C2011 - 'UIPUSHBUTTON_STATE' : 'struct' type redefinition
+    新增 L36: C2079 - 'm_state' uses undefined struct 'UIPUSHBUTTON_STATE'
+    新增 L115: C2061 - syntax error : identifier 'ECBStageTaskState'
+    新增 L10: C1083 - Cannot open include file: 'Misc/PlayerItem_Type.h': No such file or di
+  pal3/src/free_functions.cpp
+    错误数: 84 -> 1  真新增 1 {'C1083': 1}
+    新增 L5: C1083 - Cannot open include file: 'Misc/ECBCombatResult.h': No such file or di
+  pal3/src/Misc/UITitle_JDHY.cpp
+    错误数: 5 -> 1  真新增 1 {'C1083': 1}
+    新增 L9: C1083 - Cannot open include file: 'Misc/NOTE_STATE.h': No such file or directo
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/free_functions.cpp: {'C2440': 4, 'C2664': 8}
   pal3/src/GameBase/Config.cpp: {'C2660': 2}
-  pal3/src/Effect/CEffMgr.cpp: {'C2440': 1}
-  pal3/src/Combat/CCBStage.cpp: {'C2664': 1, 'C2660': 1}
-  pal3/src/Misc/UIGameFrm.cpp: {'C2664': 1}
-  pal3/src/Script/PalScript.cpp: {'C2660': 5}
-  pal3/src/Misc/SaleUI.cpp: {'C2440': 4}
-  pal3/src/Combat/CCBRoleState.cpp: {'C2440': 1}
-  pal3/src/Misc/UI3DModelNode.cpp: {'C2440': 1}
-  pal3/src/Render/CScreenMode.cpp: {'C2660': 1}
+  pal3/src/Misc/SaleUI.cpp: {'C2440': 1}
   pal3/src/Misc/PtrArray.cpp: {'C2440': 1}
-  pal3/src/GameBase/PAL3.cpp: {'C2440': 3, 'C2664': 1}
+  pal3/src/Misc/UI3DModelNode.cpp: {'C2440': 1}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/MiniGame/MiniGame3.cpp: 7 -> 6  (消失 1)
-  pal3/src/free_functions.cpp: 84 -> 101  (消失 21)
+  pal3/src/UI/StateUI.cpp: 6 -> 1  (消失 5)
+  pal3/src/Data/PAL_GDB.cpp: 2 -> 1  (消失 2)
+  pal3/src/Scene/CameraCtrl.cpp: 8 -> 1  (消失 8)
+  pal3/src/Misc/Array.cpp: 3 -> 2  (消失 3)
   s1:pal3/src/_ns_udts.h: 24 -> 18  (消失 10)
-  pal3/src/Effect/CEffSParticle.cpp: 3 -> 2  (消失 1)
-  pal3/src/UI/StateUI.cpp: 6 -> 7  (消失 1)
-  pal3/src/Misc/MainEquipUI.cpp: 3 -> 2  (消失 1)
-  pal3/src/GameBase/Config.cpp: 4 -> 4  (消失 2)
-  pal3/src/Effect/CEffMgr.cpp: 4 -> 10  (消失 1)
-  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 31  (消失 4)
-  pal3/src/Combat/CCBStage.cpp: 29 -> 71  (消失 4)
-  pal3/src/UI/UIScene.cpp: 6 -> 1  (消失 5)
-  pal3/src/Misc/UIGameFrm.cpp: 10 -> 12  (消失 1)
-  pal3/src/Script/PalScriptMgr.cpp: 5 -> 4  (消失 2)
-  pal3/src/Role/RoleSystem.cpp: 45 -> 43  (消失 6)
-  pal3/src/Script/PalScript.cpp: 44 -> 34  (消失 20)
+  pal3/src/Combat/CCBStageCam.cpp: 4 -> 1  (消失 4)
+  pal3/src/Script/ScriptSystem.cpp: 11 -> 1  (消失 11)
+  pal3/src/Combat/CCBParabolaWindow.cpp: 1 -> 3  (消失 1)
+  pal3/src/Script/PalScriptMgr.cpp: 5 -> 1  (消失 5)
+  pal3/src/Combat/CCBCamControl.cpp: 1 -> 2  (消失 1)
+  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 1  (消失 12)
+  pal3/src/UI/PropUI.cpp: 3 -> 1  (消失 2)
+  pal3/src/globals.cpp: 1 -> 10  (消失 1)
+  pal3/src/Render/RenderTarget.cpp: 1 -> 1  (消失 1)
+  pal3/src/Combat/CCBSystem.cpp: 18 -> 1  (消失 18)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
   pal3/src/Misc/UIButton.cpp
-  s1:pal3/src/Misc/ArcLocale.h
-  pal3/src/Combat/CCBParabolaWindow.cpp
-  pal3/src/Misc/PalScriptIdleObj.cpp
-  pal3/src/Render/RenderTarget2.cpp
   pal3/src/Misc/UIFrameWnd.cpp
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/UI/EquipUI.cpp: 2 → 8
-  pal3/src/MiniGame/MiniGame3.cpp: 7 ↓ 6
-  pal3/src/UI/PropUI.cpp: 3 → 5
-  pal3/src/Script/ScriptSystem.cpp: 11 → 14
-  pal3/src/Scene/SceneObj.cpp: 3 → 7
-  pal3/src/free_functions.cpp: 84 → 101
-  pal3/src/GameBase/GRPinput.cpp: 11 → 15
+  pal3/src/UI/StateUI.cpp: 6 ↓ 1
+  pal3/src/Data/PAL_GDB.cpp: 2 ↓ 1
+  pal3/src/Scene/CameraCtrl.cpp: 8 ↓ 1
+  pal3/src/Misc/Array.cpp: 3 ↓ 2
   s1:pal3/src/_ns_udts.h: 24 ↓ 18
-  pal3/src/Effect/CEffSParticle.cpp: 3 ↓ 2
-  pal3/src/UI/StateUI.cpp: 6 → 7
-  pal3/src/Misc/MainPropUI.cpp: 2 → 5
-  pal3/src/Misc/UIBigMap.cpp: 8 → 15
-  pal3/src/Combat/CCBStageCam.cpp: 4 → 12
-  pal3/src/Misc/MainEquipUI.cpp: 3 ↓ 2
-  pal3/src/Data/PAL_GDB.cpp: 2 → 9
-  pal3/src/Effect/CEffMgr.cpp: 4 → 10
-  pal3/src/Misc/CCBUICtrl.cpp: 12 → 31
-  pal3/src/Combat/CCBCamControl.cpp: 1 → 6
-  pal3/src/Combat/CCBStage.cpp: 29 → 71
-  pal3/src/Misc/LineupUI.cpp: 13 → 23
-  pal3/src/Combat/CCBStageScene.cpp: 4 → 24
-  pal3/src/UI/UIScene.cpp: 6 ↓ 1
-  pal3/src/Misc/UIGameFrm.cpp: 10 → 12
-  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 4
-  pal3/src/Combat/CCBSystem.cpp: 18 → 36
-  pal3/src/Role/RoleSystem.cpp: 45 ↓ 43
-  pal3/src/Script/PalScript.cpp: 44 ↓ 34
-  pal3/src/Misc/SaleUI.cpp: 28 → 37
-  pal3/src/Combat/CCBRoleState.cpp: 10 → 58
-  pal3/src/Misc/UITitle_JDHY.cpp: 5 → 6
-  pal3/src/Misc/UIPushButton.cpp: 7 ↓ 4
-  pal3/src/Misc/RoleAtt.cpp: 4 → 5
+  pal3/src/Combat/CCBStageCam.cpp: 4 ↓ 1
+  pal3/src/Script/ScriptSystem.cpp: 11 ↓ 1
+  pal3/src/Combat/CCBParabolaWindow.cpp: 1 → 3
+  pal3/src/Script/PalScriptMgr.cpp: 5 ↓ 1
+  pal3/src/Combat/CCBCamControl.cpp: 1 → 2
+  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 1
+  pal3/src/UI/PropUI.cpp: 3 ↓ 1
   pal3/src/globals.cpp: 1 → 10
-  pal3/src/Render/CScreenMode.cpp: 18 → 21
-  pal3/src/GameBase/PAL3.cpp: 36 ↓ 24
+  pal3/src/Misc/UIGameOver.cpp: 1 → 3
+  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 1
+  s1:pal3/src/Misc/ArcLocale.h: 3 ↓ 1
+  pal3/src/Effect/CEffSParticle.cpp: 3 ↓ 1
+  pal3/src/Render/CScreenMode.cpp: 18 ↓ 2
+  pal3/src/Misc/UIPushButton.cpp: 7 ↓ 6
+  pal3/src/GameBase/SoundContext.cpp: 2 ↓ 1
+  pal3/src/Misc/ScriptVM.cpp: 28 ↓ 1
+  pal3/src/GameBase/GRPinput.cpp: 11 → 15
+  pal3/src/Render/RenderTarget2.cpp: 1 → 2
+  pal3/src/Combat/CCCTData.cpp: 22 ↓ 2
+  pal3/src/UI/UIListBox.cpp: 3 ↓ 1
+  pal3/src/UI/EquipUI.cpp: 2 ↓ 1
+  pal3/src/Role/Object3D.cpp: 5 → 7
+  pal3/src/Misc/SaleUI.cpp: 28 ↓ 3
+  pal3/src/Script/PalScript.cpp: 44 ↓ 1
+  pal3/src/Misc/UIGameFrm.cpp: 10 ↓ 2
+  pal3/src/GameBase/PAL3.cpp: 36 ↓ 1
+  pal3/src/Misc/UITabCtrl.cpp: 3 ↓ 1
+  pal3/src/Misc/PalScriptIdleObj.cpp: 2 ↓ 1
+  pal3/src/Combat/CCBStage.cpp: 29 ↓ 2
+  pal3/src/Scene/SceneObj.cpp: 3 ↓ 1
+  pal3/src/Effect/CEffMgr.cpp: 4 ↓ 1
+  pal3/src/Misc/UIEmote.cpp: 2 ↓ 1
+  pal3/src/UI/UIManager.cpp: 6 ↓ 1
+  pal3/src/Misc/MainPropUI.cpp: 2 → 3
+  pal3/src/Effect/CEffModel.cpp: 2 ↓ 1
+  pal3/src/UI/UIScene.cpp: 6 ↓ 1
+  pal3/src/MiniGame/MiniGame3.cpp: 7 ↓ 1
+  pal3/src/Role/RoleSystem.cpp: 45 ↓ 2
+  pal3/src/Misc/UIScenePanel.cpp: 5 ↓ 1
+  pal3/src/Misc/RoleAtt.cpp: 4 ↓ 1
+  pal3/src/Misc/MainEquipUI.cpp: 3 ↓ 1
+  pal3/src/Misc/UIBigMap.cpp: 8 ↓ 1
+  pal3/src/Combat/CUtil.cpp: 1 → 2
+  pal3/src/Combat/CCBRoleState.cpp: 10 ↓ 1
+  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 1
+  pal3/src/Combat/CCBAI.cpp: 4 ↓ 1
+  pal3/src/Misc/LineupUI.cpp: 13 ↓ 4
+  pal3/src/free_functions.cpp: 84 ↓ 1
+  pal3/src/Misc/UITitle_JDHY.cpp: 5 ↓ 1
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 [vanished] 1 个失败单元从 census 蒸发(回归门视同回归):

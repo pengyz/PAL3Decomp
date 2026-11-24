@@ -1173,6 +1173,26 @@ def _system_types():
     return _SYSTEM_TYPES_CACHE
 
 
+_MAPPED_INSTS_CACHE = None
+
+
+def _mapped_instantiations():
+    """templates.json instantiations keys - ownership beats system prefix."""
+    global _MAPPED_INSTS_CACHE
+    if _MAPPED_INSTS_CACHE is not None:
+        return _MAPPED_INSTS_CACHE
+    _names = set()
+    try:
+        import json as _j
+        _d = _j.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
+                          encoding='utf-8'))
+        _names = set((_d.get('instantiations') or {}).keys())
+    except Exception:
+        pass
+    _MAPPED_INSTS_CACHE = _names
+    return _names
+
+
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type).
 
@@ -1181,6 +1201,11 @@ def should_skip_class(name):
     """
     if not name or len(name) <= 1:
         return True
+    # [mapping-table-ownership 20261124] mapped instantiation classes are NOT
+    # skipped - their declarations come from the mapping-table consumption path
+    # (template def + alias header); system prefixes ('gb' etc.) do not block
+    if name in _mapped_instantiations():
+        return False
     if name in SKIP_CLASSES:
         return True
     if name in SDK_PLATFORM_TYPES:
@@ -4504,7 +4529,10 @@ def main():
         lines.append('};')
         lines.append('')
 
-        out_path = OUTPUT_DIR / ('%s.h' % name)
+        _edir = get_class_dir(name)
+        _edir_path = OUTPUT_DIR / _edir if _edir else OUTPUT_DIR
+        _edir_path.mkdir(parents=True, exist_ok=True)
+        out_path = _edir_path / ('%s.h' % name)
         # Skip if already embedded in a class header during class generation
         if name in embedded_enums:
             enum_count += 1
@@ -5385,7 +5413,10 @@ def generate_globals():
     try:
         _tpl_map = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
                                   encoding='utf-8'))
+        _enum_hdr_names = set((_get_ida_structs() or {}).get('_enums', {}) or {})
         for _inst_name in (_tpl_map.get('instantiations') or {}):
+            if _inst_name in _enum_hdr_names:
+                continue
             if _inst_name not in [g for g in h_lines if g.startswith('class ')]:
                 h_lines.insert(insert_pos, 'class %s;' % _inst_name)
                 insert_pos += 1
@@ -5831,12 +5862,17 @@ def generate_globals_cpp():
         _f.write('#include "pal3/ida_defs.h"\n')
         _td_lines = []
         _covered = set()
+        # [枚举让位 20261124] IDB 枚举名由枚举头承载(enum X {...} 同名
+        #   typedef = C2371 重定义冲突防除)
+        _idb_enum_names = set((_get_ida_structs() or {}).get('_enums', {}) or {})
         for _td in sorted(set(_POD_TYPEDEFS)):
+            if _td.split()[-1].rstrip(';') in _idb_enum_names:
+                continue
             _td_lines.append(_td + '\n')
             _covered.add(_td.split()[-1].rstrip(';'))
         _is_data_g = _get_ida_structs() or {}
         for _pn in _pod_all:
-            if _pn in _covered:
+            if _pn in _covered or _pn in _idb_enum_names:
                 continue
             # [嵌套限定名过滤 2026-11-18] typedef Cls::Nested非法C++(顶层名形式)
             #   →PlayerMgr::PoisonState写入=PlayerMgr未声明级联C2065×251实证
