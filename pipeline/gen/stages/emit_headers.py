@@ -864,58 +864,11 @@ def class_vtable_slots(cls_name, with_addr=False, vtables=None, methods=None):
     return names
 
 
-# Skip STL/CRT/Windows types (already defined by system headers)
-SKIP_CLASSES = {
-    'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
-    'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
-    '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
-    # C/C++ reserved words that IDA may use as class names
-    'float', 'int', 'char', 'void', 'double', 'long', 'short', 'bool',
-    # Windows SDK typedefs that clash with IDA struct names
-    'DOUBLE', 'FLOAT', 'INT', 'CHAR', 'VOID', 'LONG', 'SHORT', 'BOOL',
-    'BYTE', 'WORD', 'DWORD', 'UINT', 'ULONG',
-    # Windows types
-    'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
-    'tagRGBQUAD', 'RGBQUAD',
-    'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
-    '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
-    '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
-    '_GUID', 'GUID', 'IID',
-    'tagNMHDR', 'tagNMITEMACTIVATE', 'tagLVCOLUMNA', 'tagLVITEMA',
-    'tagTCITEMA', 'tagCOPYDATASTRUCT', 'tagPALETTEENTRY',
-    'tagKBDLLHOOKSTRUCT',
-    # Windows handle types (HXXX__)
-    'HICON__', 'HWND__', 'HDC__', 'HINSTANCE__', 'HBRUSH__',
-    'HHOOK__', 'HKEY__', 'HMONITOR__', 'HWAVEOUT__',
-    # COM/OLE enums and types (defined by platform SDK)
-    'tagCLSCTX', 'tagCOINIT', 'tagCALLCONV', 'tagCALLTYPE',
-    'tagFUNCKIND', 'tagFUNCFLAGS', 'tagINVOKEKIND', 'tagVARKIND',
-    'tagVARFLAGS', 'tagTYPEKIND', 'tagTYPEFLAGS', 'tagSYSKIND',
-    'tagLIBFLAGS', 'tagDESCKIND', 'tagCHANGEKIND', 'tagTYMED',
-    'tagDVASPECT', 'tagSTGTY', 'tagSTGC', 'tagSTGMOVE',
-    'tagSTATFLAG', 'tagLOCKTYPE', 'tagSTREAM_SEEK', 'tagBIND_FLAGS',
-    'tagMKSYS', 'tagMKREDUCE', 'tagADVF', 'tagSF_TYPE',
-    'tagREGCLS', 'tagPENDINGMSG', 'tagPENDINGTYPE', 'tagSERVERCALL',
-    'tagMEMCTX', 'tagMSHCTX', 'tagMSHLFLAGS', 'tagSTDMSHLFLAGS',
-    'tagEXTCONN', 'tagBINDSPEED', 'tagBINDSTATUS', 'tagBINDSTRING',
-    'tagOLERENDER', 'tagOLEUPDATE', 'tagOLEVERBATTRIB', 'tagOLEMISC',
-    'tagOLECLOSE', 'tagOLECONTF', 'tagOLEGETMONIKER', 'tagOLEWHICHMK',
-    'tagOLELINKBIND', 'tagUSERCLASSTYPE', 'tagDISCARDCACHE',
-    'tagURLZONE', 'tagURLTEMPLATE', 'tagCOWAIT_FLAGS',
-    'tagDCOM_CALL_STATE', 'tagDATADIR',
-    'tagEOLE_AUTHENTICATION_CAPABILITIES', 'tagExtendedErrorParamTypes',
-    'tagDOMNodeType', 'tagXMLEMEM_TYPE', 'tagShutdownType',
-    'tagApplicationType',
-    'HandlerType',
-    # CRT / Runtime
-    '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
-    'Concurrency',
-    # DirectX / DirectInput
-    '_DIMOUSESTATE2',
-    # IDA template instantiation artifacts
-    'primitive', 'uint',
-    # gbengine (separate library) — auto-populated below
-}
+# [P1b 域排除收敛 2026-11-24·用户批准重设计] SKIP_CLASSES/SDK_PLATFORM_TYPES
+#   硬编码集退役——全部内容已并入 data/annotations/domain_exclude.json types 段
+#   (system_names/prefixes/suffixes)，消费统一走 should_skip_class 数据驱动路径。
+#   本集仅保留 gbengine 头自动侦测（外部项目头=数据源非硬编码，下方扫描填充）。
+_GBENGINE_CLASSES: set = set()
 
 # Auto-detect classes defined in gbengine headers
 _GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengine"
@@ -971,13 +924,13 @@ if _GBENGINE_DIR.exists():
             for _line in _fh:
                 _nm = _class_decl_name(_line)
                 if _nm:
-                    SKIP_CLASSES.add(_nm)
+                    _GBENGINE_CLASSES.add(_nm)
 
-# [语义分歧定谳 20261122] 本表≠collect.py 的域排除表(domain_exclude.json)——
-#   本表语义=头碰撞卫生(保留字/SDK 类型/gbengine 共享头类: 本地重发头与
-#   include/gbengine 真定义冲突 C2371/C2011)。gbengine 头自动侦测在本表**正确**:
-#   头在 include 树 ⇒ 本地头禁发(CPK.h 案: 注解优先误修致 S2 0/231 已回滚)。
-#   collect 侧的域语义(代码是否发射)走 domain_exclude.json+注解优先, 两表不可合并。
+# [语义分歧定谳 20261122 → P1b 收敛 20261124] 头碰撞卫生与域排除语义统一:
+#   「跳过的从头到尾都是系统库」(用户裁定 20261124)——gbengine 头侦测保留为
+#   数据源(外部项目头在 include 树 ⇒ 本地头禁发防 C2011, CPK.h 案实证)。
+#   类名级事实归 domain_exclude.types.system_names + classes 显式清单,
+#   本扫描=增量防线(新增 gbengine 头自动进集)。
 
 # 枚举识别（2026-09-23）：MSVC6 无 sized enum ⇒ **枚举恒为 int（4 字节）**。
 # `ida_structs.json` 把枚举记为 size=1 是 **IDB 枚举导入伪影** ✗（实测：UIStaticFlex 的
@@ -1099,35 +1052,8 @@ def _type_extent(t):
     return _estimate_member_size(t) * n
 
 
-# Prefix patterns for system/library types that should never be generated
-SKIP_PREFIXES = (
-    'D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown',
-    'CD3D',  # D3D helper classes from SDK samples
-    'D3DX',  # D3DX math types
-    # 'gb' removed: gbengine types have no external headers in this project;
-    # generating them here prevents C2039 'not a member' errors from cpp files
-    # that reference gb* struct members/methods. 2026-08-31.
-    'vtbl_', # IDA vtable structs (not real C++ types)
-    '_DI',   # DirectInput internal structs (defined by dinput.h)
-    '_IMAGE',# PE header structs (defined by winnt.h)
-    '_Crt',  # CRT debug internals
-    'std',   # C++ standard library (provided by MSVC CRT)
-)
-
-
-# Platform types leaking from PDB/IDA TIL into the struct export table.
-# Never emit headers for them: <windows.h> (via ida_types.h) and the VC6
-# headers define the real layouts the original binary was built against.
-SDK_PLATFORM_TYPES = {
-    'CONTEXT', 'CPPEH_RECORD', 'EH3_EXCEPTION_REGISTRATION', 'FILETIME',
-    'FLOATING_SAVE_AREA', 'IMAGE_DATA_DIRECTORY', 'IMAGE_FILE_HEADER',
-    'IMAGE_OPTIONAL_HEADER32', 'LARGE_INTEGER', 'NMHDR', 'RGNDATAHEADER',
-    'WAVEFORMAT', '_CONTEXT', '_EH3_EXCEPTION_REGISTRATION',
-    '_EXCEPTION_POINTERS', '_FLOATING_SAVE_AREA', '_LARGE_INTEGER', '_PMD',
-    '_RGNDATA', '_RGNDATAHEADER', '_TypeDescriptor', '_s__CatchableType',
-    '_s__CatchableTypeArray', 'pcmwaveformat_tag', 'waveformat_tag',
-    'wavehdr_tag',
-}
+# [P1b 2026-11-24] SKIP_PREFIXES/SDK_PLATFORM_TYPES 已退役——内容并入
+#   domain_exclude.json types.system_prefixes / system_names，见 should_skip_class。
 
 
 def _nested_kind(cls_name, nested_name):
@@ -1196,6 +1122,12 @@ def _mapped_instantiations():
 def should_skip_class(name):
     """Check if a class name should be skipped (system/library type).
 
+    [P1b 域排除收敛 2026-11-24·用户批准重设计] 唯一数据源 =
+    domain_exclude.json types 段 + gbengine 头自动侦测（外部数据源）。
+    硬编码 SKIP_CLASSES/SKIP_PREFIXES/SDK_PLATFORM_TYPES 三集已退役。
+    语义统一裁定（用户 20261124）：跳过的从头到尾都是系统库——头碰撞卫生
+    与域排除不再两表分权。
+
     Note: :: names are NOT skipped here — they are nested types handled
     by the scope tree and filtered in the main generation loop.
     """
@@ -1206,26 +1138,15 @@ def should_skip_class(name):
     # (template def + alias header); system prefixes ('gb' etc.) do not block
     if name in _mapped_instantiations():
         return False
-    if name in SKIP_CLASSES:
+    _st = _system_types()
+    if name in _st['names']:
         return True
-    if name in SDK_PLATFORM_TYPES:
-        # Provided by <windows.h>/VC6 headers (ida_types.h includes it).
-        # Re-emitting them collides with the real definitions (C2371/C2011);
-        # the SDK versions are ground truth for code MSVC6 built.
+    if name in _GBENGINE_CLASSES:
         return True
-    if name.startswith(SKIP_PREFIXES):
-        return True
-    # [数据驱动 20261124 用户裁定: 过滤归注解层] domain_exclude.json types 段
-    #   (system_names/system_prefixes/system_suffixes)——原 SKIP_CLASSES/
-    #   SDK_PLATFORM_TYPES/SKIP_PREFIXES/`gbSingleton*` blanket 四硬编码集合并迁移。
-    #   gbSingleton blanket 规则退役: 注解 json 存在的类=注解拥有(普通空 struct
-    #   非 C2913 模板特化, 历史风险不适用), should_skip 前置注解存在性检查。
-    if name in _system_types()['names']:
-        return True
-    for _p in _system_types()['prefixes']:
+    for _p in _st['prefixes']:
         if name.startswith(_p):
             return True
-    for _s in _system_types()['suffixes']:
+    for _s in _st['suffixes']:
         if name.endswith(_s):
             return True
     return False
@@ -4284,7 +4205,8 @@ def main():
     # Build scope tree from ida_structs.json for type-to-header mapping.
     scope_tree = ScopeTree()
     scope_tree.build(_is_data if isinstance(_is_data, dict) else {},
-                     SKIP_CLASSES, SKIP_PREFIXES, ida_enums=ida_enums)
+                     _system_types()['names'] | _GBENGINE_CLASSES,
+                     _system_types()['prefixes'], ida_enums=ida_enums)
 
     # Build all_classes from export + decomp + annotation (for complete coverage)
     all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs

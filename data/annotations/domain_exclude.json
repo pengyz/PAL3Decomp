@@ -709,7 +709,7 @@
  },
  "_doc3": "域字段律 2026-11-22(用户第一性质询裁决): 每条目应带 domain 显式标注(crt=VC6 CRT/STL 静态链接工具链域 | dll=GBENGINE 等引擎DLL域 | engine-header=引擎共享头类(逐类定谳排队) | deferred=暂缓未定谳)。collect 只机械读本表键集, 无任何 override/字段嗅探逻辑(管线只管收集)。域裁决变更=改本表, 不改管线。structs 注解与域排除正交: CRT/DLL 类可有注解 methods(供参考/匹配), 不改变域归属。",
  "types": {
-  "_doc": "[系统库标记 20261124 用户裁定: 跳过系统库不导出=通用规则, 标记归注解层——与 globals type=skip/classes 域排除同语义不同粒度。消费方: export_full Types 导出跳过 + emit_headers should_skip_class/generate_header POD 卫标。含原 SKIP_CLASSES/SDK_PLATFORM_TYPES/SKIP_NAMES/SKIP_PREFIXES 四硬编码集合并(均为系统库指定, 20261124 迁移)。注解 json 存在的类拥有权——不被本表 skip(gbSingleton_gbGfxManager 案: 旧 blanket 规则废弃, 新注解形=普通空 struct 非模板特化无 C2913 风险)。",
+  "_doc": "系统库标记(通用规则, 用户裁定 20261124: 跳过的从头到尾都是系统库)——收集/导出/发射三面共读唯一数据源。P1b 收敛: emit_headers SKIP_CLASSES/SKIP_PREFIXES/SDK_PLATFORM_TYPES 硬编码内容并入 system_names/prefixes; 'gb' 前缀退役(域归属由 classes 显式清单+gbengine 头扫描承载, 未列名 gb* 走裁决队列), \"not a member\" 导入垃圾清除。",
   "system_names": [
    "BOOL",
    "BYTE",
@@ -897,9 +897,11 @@
    "IUnknown",
    "_D3D",
    "_inline_",
-   "gb",
-   "not a member",
-   "vtbl_"
+   "vtbl_",
+   "_DI",
+   "_IMAGE",
+   "_Crt",
+   "std"
   ],
   "system_suffixes": [
    "_vtbl"
