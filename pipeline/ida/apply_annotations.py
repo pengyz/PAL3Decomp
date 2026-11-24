@@ -2718,6 +2718,10 @@ def apply_annotations():
             #   (probe: 35 名全 kind=other)——同名 add_enum 必名字冲突 BADADDR。
             #   正解 = 程序化构建枚举 tinfo(PDB 真值) → set_named_type(NTF_REPLACE)
             #   占位升级为真枚举 → export is_enum() → 枚举头/hexrays 成员名渲染。
+            # [P2b 碰撞硬化 20261124] IDA 枚举成员名全局唯一: create_enum 对与其他
+            #   枚举撞名的成员**静默丢弃**(Comp_DonateUI_CDState 8员→0员空壳实证)。
+            #   ⇒ 创建后必须回读, 缺员走 idc.add_enum_member 逐个补(捕获 ValueError
+            #   竞争者名)——补不进的留 reconcile collision 台账, 不静默。
             try:
                 _til3b = ida_typeinf.get_idati()   # 本函数作用域无 til 句柄(P-A5 教训: except-pass 吞 NameError)
                 _tif_old = ida_typeinf.tinfo_t()
@@ -2731,6 +2735,26 @@ def apply_annotations():
                     _new_tif = ida_typeinf.tinfo_t()
                     if _new_tif.create_enum(_edt) and _new_tif.set_named_type(
                             _til3b, ename, ida_typeinf.NTF_REPLACE):
+                        # 回读校验: 静默丢员检测(碰撞成员 0 员空壳防御)
+                        _rb = ida_typeinf.tinfo_t()
+                        _dropped = []
+                        if _rb.get_named_type(_til3b, ename) and _rb.is_enum():
+                            _rdt = ida_typeinf.enum_type_data_t()
+                            if _rb.get_enum_details(_rdt):
+                                _have = {_rdt[_i].name for _i in range(_rdt.size())}
+                                _dropped = [k for k in values if k not in _have]
+                        if _dropped:
+                            _ge = idc.get_enum(ename)
+                            if _ge != idc.BADADDR:
+                                for _k in _dropped:
+                                    _v = values[_k]
+                                    _vv = int(_v, 0) if isinstance(_v, str) else _v
+                                    try:
+                                        idc.add_enum_member(_ge, _k, _vv)
+                                    except Exception as _exc:
+                                        enum_notes.append(
+                                            '%s: %s member-collision (%s)'
+                                            % (ename, _k, str(_exc)[:90]))
                         e_ok += 1
                         continue
             except Exception:
@@ -2780,6 +2804,126 @@ def apply_annotations():
         % (e_ok, len(enums), e_merged, len(enum_notes)))
     for _n in enum_notes[:40]:
         log("     enum-note: %s" % _n)
+
+    # --- 3b-R [P2b 对账后置 2026-11-24·用户批准重设计] ---------------------
+    # 升级/merge 完成后逐枚举对账: IDB 成员值集 vs enums.json(注解值保号解析,
+    # '-1'→-1)。缺失成员补 add(NUMSTATE 先例: IDB 只有 PUSH_UP/DOWN, 注解有
+    # NUMSTATE=2); 值冲突只记录不改(注解层唯一真相律, 分歧=呈报项非静默取边)。
+    # 产物 data/status/enum_reconcile.json 逐名:
+    #   landed=注解成员集完备且零值差 / merged=本轮补了成员(补后完备) /
+    #   collision=部分成员因 IDA 枚举成员名全局唯一被竞争枚举占用(附竞争者名) /
+    #   value-diff=成员齐但值不一致(只记录) / failed=枚举不在 IDB 或读不回。
+    # [已知缺口挂账 20261124] apply 期枚举写入不跨会话持久化(gbAxis 两轮 apply
+    #   同一 added_members=每轮重做实证; 与"首趟 2 dtor 状态依赖谜案"同族)。
+    #   本 ledger 记录 apply 期真值; codegen 真值=注解层 registry(P3a), 不依赖
+    #   IDB 枚举完备性——持久化缺口待专项(2dtor 谜案家族)解决, 不阻塞本战役。
+    def _read_idb_enum_values(_nm):
+        """til 直读枚举成员值(保号规范化); 非 enum/读不回返回 None。"""
+        _t = ida_typeinf.tinfo_t()
+        if not _t.get_named_type(ida_typeinf.get_idati(), _nm) or not _t.is_enum():
+            return None
+        _dt = ida_typeinf.enum_type_data_t()
+        if not _t.get_enum_details(_dt):
+            return None
+        out = {}
+        for _i in range(_dt.size()):
+            _m = _dt[_i]
+            _v = _m.value
+            if _v >= 2**63:
+                _v -= 2**64
+            elif _v >= 2**31:
+                _v -= 2**32
+            out[_m.name] = _v
+        return out
+
+    def _enum_reconcile():
+        _recon = {}
+        for _ename, _einfo in enums.items():
+            _values = _einfo.get("values") or {}
+            if not _values:
+                continue
+            _ann_vals = {k: (int(v, 0) if isinstance(v, str) else v)
+                         for k, v in _values.items()}
+            _idb_vals = _read_idb_enum_values(_ename)
+            if _idb_vals is None:
+                _recon[_ename] = {'status': 'failed',
+                                  'reason': 'enum-not-in-idb-or-not-readable'}
+                continue
+            _missing = {m: v for m, v in _ann_vals.items() if m not in _idb_vals}
+            _merged_now = False
+            if _missing:
+                _eid = idc.get_enum(_ename)
+                if _eid != idc.BADADDR:
+                    for _m, _v in _missing.items():
+                        try:
+                            if idc.add_enum_member(_eid, _m, _v) == 0:
+                                _merged_now = True
+                        except Exception:
+                            pass
+                else:
+                    # 嵌套名/til 形无 idc enum id——成员缺失只能呈报(升级路径已
+                    # 全量写值, 理论上不缺; 缺=升级路径漏, 呈报裁决)
+                    _merged_now = False
+            _idb_vals2 = _read_idb_enum_values(_ename) or _idb_vals
+            _vd = {m: [_idb_vals2[m], _ann_vals[m]] for m in _ann_vals
+                   if m in _idb_vals2 and _idb_vals2[m] != _ann_vals[m]}
+            _still_missing = sorted(m for m in _ann_vals if m not in _idb_vals2)
+            _extra = sorted(m for m in _idb_vals2 if m not in _ann_vals)
+            # [collision 语义] 缺失成员的竞争者取证: 捕获 add 的 ValueError 文本
+            #   ("enum member name is used in another enum 'X'")——显式台账非静默。
+            _collisions = {}
+            if _still_missing:
+                _eid_c = idc.get_enum(_ename)
+                if _eid_c != idc.BADADDR:
+                    for _m in _still_missing:
+                        _v_c = _ann_vals[_m]
+                        try:
+                            if idc.add_enum_member(_eid_c, _m, _v_c) == 0:
+                                _idb_vals2 = _read_idb_enum_values(_ename) or _idb_vals2
+                            else:
+                                _collisions[_m] = 'add_enum_member rc!=0'
+                        except Exception as _exc:
+                            _msg = str(_exc)
+                            _cm = re.search(r"another enum '([^']+)'", _msg)
+                            _collisions[_m] = _cm.group(1) if _cm else _msg[:80]
+                    _still_missing = sorted(m for m in _ann_vals if m not in _idb_vals2)
+                    _vd = {m: [_idb_vals2[m], _ann_vals[m]] for m in _ann_vals
+                           if m in _idb_vals2 and _idb_vals2[m] != _ann_vals[m]}
+            if _still_missing:
+                _st = 'collision' if _collisions else 'failed'
+            elif _vd:
+                _st = 'value-diff'
+            elif _merged_now or _collisions:
+                _st = 'merged'
+            else:
+                _st = 'landed'
+            _recon[_ename] = {'status': _st,
+                              'added_members': sorted(_missing) if _missing else [],
+                              'value_diff': _vd, 'extra_in_idb': _extra,
+                              **({'collisions': _collisions} if _collisions else {}),
+                              **({'reason': 'members-unaddable-no-enum-id'}
+                                 if _still_missing and not _collisions else {})}
+        _rj = {'generated': '2026-11-24', 'phase': 'P2b-reconcile',
+               'total': len(_recon), 'ok': sum(1 for x in _recon.values()
+                                               if x['status'] in ('landed', 'merged')),
+               'collisions': sum(1 for x in _recon.values() if x['status'] == 'collision'),
+               'failed': sum(1 for x in _recon.values() if x['status'] == 'failed'),
+               'value_diffs': sum(1 for x in _recon.values()
+                                  if x['status'] == 'value-diff'),
+               'enums': _recon}
+        _rp = os.path.join(PROJECT_ROOT, 'data', 'status', 'enum_reconcile.json')
+        with open(_rp, 'w', encoding='utf-8') as _f:
+            json.dump(_rj, _f, ensure_ascii=False, indent=1)
+        log('[3b-R] reconcile: ok=%d/%d collision=%d failed=%d value-diff=%d → %s'
+            % (_rj['ok'], _rj['total'], _rj['collisions'], _rj['failed'],
+               _rj['value_diffs'], _rp))
+        for _bad, _info in sorted(_rj['enums'].items()):
+            if _info['status'] in ('failed', 'collision', 'value-diff'):
+                log('     reconcile-note: %s %s %s' % (_info['status'], _bad,
+                    _info.get('reason') or _info.get('collisions')
+                    or _info.get('value_diff') or ''))
+
+    _enum_reconcile()
 
     # Topological sort: dependencies (base classes + value-type members) first
     import re as _re2

@@ -1010,8 +1010,7 @@ def export_structs(log):
     #   标记归 domain_exclude.json types 段(与 globals type=skip/classes 域排除
     #   同语义不同粒度)。PRIMITIVE_NAMES=类型系统词汇表, 留代码。
     try:
-        _dex = json.load(open(os.path.join(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        _dex = json.load(open(os.path.join(PROJECT_ROOT,
             'data', 'annotations', 'domain_exclude.json')))
         _ty = _dex.get('types', {})
         SKIP_NAMES = set(_ty.get('system_names') or [])
@@ -1020,6 +1019,22 @@ def export_structs(log):
         log("[!] domain_exclude types 读取失败(%s)——硬编码兜底退役, 跳过集为空" % _e_dex)
         SKIP_NAMES = set()
         SKIP_PREFIXES = ()
+    # [P2a 对账面 2026-11-24·用户批准重设计] enums.json = 枚举唯一真相(注解层)。
+    #   供 _shadowed 遮蔽裁决 / _enum_divergence 对账(IDB↔注解, 只报不改真相)。
+    _ann_enums = {}
+    try:
+        _aej = json.load(open(os.path.join(PROJECT_ROOT,
+            'data', 'annotations', 'enums.json')))
+        _ann_enums = {k: v for k, v in _aej.items() if not k.startswith('_')}
+    except Exception as _e_ae:
+        log("[!] enums.json 读取失败(%s)——遮蔽/对账面降级为空" % _e_ae)
+    _enum_shadow_names = set(_ann_enums.keys())
+    for _k in [k for k in _ann_enums if '::' in k]:
+        _enum_shadow_names.add(_k.rsplit('::', 1)[-1])
+    _enum_shadow_lower = {}
+    for _n in _enum_shadow_names:
+        _enum_shadow_lower.setdefault(_n.lower(), _n)
+    _shadowed = []
     # System types that are primitives — skip
     PRIMITIVE_NAMES = {
         'int', 'char', 'float', 'double', 'long', 'short', 'void',
@@ -1064,7 +1079,15 @@ def export_structs(log):
                 values = {}
                 for ei in range(evec.size()):
                     em = evec[ei]
-                    values[em.name] = em.value
+                    # [P2a 值保号 2026-11-24] IDA edm_t.value u64 存储伪影: -1 存为
+                    #   2**64-1(实测 JB_NULL/DLG_MSG_NONE=18446744073709551615)。
+                    #   MSVC6 枚举恒 int(4B) → 按符号 32 位规范化(PDB 真值 -1)。
+                    v = em.value
+                    if v >= 2**63:
+                        v -= 2**64
+                    elif v >= 2**31:
+                        v -= 2**32
+                    values[em.name] = v
                 enums[type_name] = {'values': values}
                 enum_count += 1
             continue
@@ -1072,6 +1095,20 @@ def export_structs(log):
         # --- STRUCT/UNION export ---
         if not tif.is_struct() and not tif.is_union():
             continue  # skip other types (typedefs, etc.)
+
+        # [P2a _shadowed 2026-11-24] 平铺 struct 伪影被枚举名遮蔽:
+        #   类作用域枚举的 IDA 顶层打平化占位(til ordinal762 形 size1-4)/注解枚举
+        #   同名伪影——与 registry 任一枚举名(平铺键/嵌套短名/大小写折叠)同名 ⇒
+        #   不导出为 struct(显式留痕, codegen 可证明性跳过; 双形式=C2011 温床)。
+        #   casefold 匹配仅对无自身注解 json 的名字生效(真类有 json 不误遮)。
+        if (type_name in _enum_shadow_names
+                or (type_name.lower() in _enum_shadow_lower
+                    and type_name not in _ann_structs)):
+            _shadowed.append({'name': type_name, 'ordinal': ordinal,
+                              'shadow_kind': 'enum-shadow'})
+            skipped_count += 1
+            _export_skipped_names.add(type_name)
+            continue
 
         size = tif.get_size()
         _ann_cur = _ann_structs.get(type_name, {}) if isinstance(_ann_structs, dict) else {}
@@ -1224,6 +1261,40 @@ def export_structs(log):
     # Attach enums as a special section
     if enums:
         result['_enums'] = enums
+
+    # [P2a 留痕面 2026-11-24] _shadowed(遮蔽裁决) + _enum_divergence(IDB↔注解
+    #   双向对账, 只报不改真相——注解层唯一真相律, 分歧=管线呈报项非静默取边)。
+    if _shadowed:
+        result['_shadowed'] = _shadowed
+        log('[_shadowed] %d 个平铺伪影被枚举名遮蔽: %s'
+            % (len(_shadowed), ', '.join(_s['name'] for _s in _shadowed[:12])))
+    _ann_enum_flat = {k for k in _ann_enums if '::' not in k}
+    _idb_enum_names = set(enums.keys())
+
+    def _ann_int(v):
+        try:
+            return int(str(v), 0)
+        except Exception:
+            return v
+
+    _val_diff = []
+    for _n in sorted(_idb_enum_names & _ann_enum_flat):
+        _av = {m: _ann_int(v) for m, v in (_ann_enums[_n].get('values') or {}).items()}
+        _iv = dict(enums[_n].get('values') or {})
+        _dd = {m: [_iv[m], _av[m]] for m in _iv if m in _av and _iv[m] != _av[m]}
+        _missing = sorted(m for m in _av if m not in _iv)
+        _extra = sorted(m for m in _iv if m not in _av)
+        if _dd or _missing or _extra:
+            _val_diff.append({'enum': _n, 'value_diff': _dd,
+                              'missing_in_idb': _missing, 'idb_only_members': _extra})
+    result['_enum_divergence'] = {
+        'annotation_only': sorted(_ann_enum_flat - _idb_enum_names),
+        'idb_only': sorted(_idb_enum_names - _ann_enum_flat),
+        'nested_annotation': sorted(k for k in _ann_enums if '::' in k),
+        'value_diff': _val_diff,
+    }
+    if _val_diff:
+        log('[_enum_divergence] %d 个枚举存在 IDB↔注解 分歧(缺失/值差/多余)' % len(_val_diff))
 
     # Export globals from the IDB (names and types set by apply_annotations.py)
     _globals = {}

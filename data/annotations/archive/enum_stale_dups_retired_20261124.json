@@ -1,0 +1,113 @@
+{
+ "_doc": "enums.json 陈旧重复键退役台账 2026-11-24 (重设计 P2b 定谳)。IDA 枚举成员名全局唯一约束下, 双声明竞争者必有一个被静默丢成 0 成员空壳——退役重复声明, 唯一真相胜者见各 evidence。",
+ "retired": {
+  "Comp_DonateUI_CDState": {
+   "verdict": "陈旧平铺重复——嵌套形为真",
+   "evidence": [
+    "Comp_DonateUI.json nested_types.CDState 自带完整值表(8成员) + m_state: 'Comp_DonateUI::CDState[10]' 成员注解(结构注解=所有权)",
+    "IDB/PDB 已落地嵌套形 Comp_DonateUI::CDState(真枚举, 8成员)",
+    "IDA 枚举成员名全局唯一: CD_* 已被嵌套形占用, 平铺形 create_enum 静默丢成员(实盘 0 成员空壳)",
+    "R76 时代按嵌套形发射(Comp_DonateUI.h 类体内)"
+   ]
+  },
+  "gbLightObj::LIGHT_TYPE": {
+   "verdict": "陈旧嵌套注解——gbengine 头 LGT_TYPE 平铺形为真",
+   "evidence": [
+    "include/gbengine/gbSceneGraph.h:95 enum LGT_TYPE {LGT_OMNI=0,LGT_SPOT=1,LGT_DIRECT=2} 已裁定提升(L-VAR 战役, 头注释自带证据链)",
+    "语料 CCBCamControl Init(LGT_OMNI) 非限定引用",
+    "IDB 平铺 LGT_TYPE(PDB) 已占用 LGT_* 成员名, 嵌套形 create_enum 静默丢成 0 成员空壳"
+   ]
+  },
+  "gbVFileSystem::__unnamed": {
+   "verdict": "陈旧匿名嵌套注解——gbengine 头 gbVFSType 平铺形为真",
+   "evidence": [
+    "include/gbengine/gbVFileSystem.h:236 enum gbVFSType {VFSYS_DISKFILE=0,...} 在册",
+    "IDB gbVFSType(PDB) 已占用 VFSYS_* 成员名",
+    "结构 +0x0C 字段类型=gbVFSType(头注释)"
+   ]
+  },
+  "_light_type_semantic": {
+   "verdict": "陈旧辅助注解——gbengine 头 LIGHT_TYPE 平铺形为真",
+   "evidence": [
+    "include/gbengine/gbSceneGraph.h:85 enum LIGHT_TYPE {LIGHT_POINT=1,...,LIGHT_DIRECTIONAL=3} L-VAR 提升裁定",
+    "语料三 TU 非限定引用 LIGHT_SPOT(PAL3.cpp:421/CScreenMode.cpp:1633/RoleAtt.cpp:717)",
+    "IDB 平铺 LIGHT_TYPE(PDB) 已占用 LIGHT_* 成员名",
+    "值形不一致(本键 values 为 int 非 str, 全 enums.json 唯一)"
+   ]
+  },
+  "gbAxis": {
+   "verdict": "gbengine 域——头所有权",
+   "evidence": [
+    "include/gbengine/gbengine_types.h:11 enum gbAxis {GB_AXIS_X=0,...} 在册(成员语义名 X/Y/Z)",
+    "注解成员名 GB_AXIS_0/1/2 为 pre-header 时代非语义名(正名律冲突)",
+    "枚举名本身 A 级证据(mangle ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z)已由头签名 :141 同款承载"
+   ]
+  },
+  "gbPrimType": {
+   "verdict": "gbengine 域——头所有权(值表冲突留档)",
+   "evidence": [
+    "include/gbengine/gbMesh.h:21 enum gbPrimType {GB_PRIM_LINELIST=2,...} 在册",
+    "成员名形冲突: 注解 GB_PRIM_LINE_LIST vs 头 GB_PRIM_LINELIST",
+    "值表冲突: 注解 TRIANGLE_LIST=1 vs 头 LINELIST=2——头赢(gbengine 域律), 差异留档待头值核证",
+    "语料仅 (gbPrimType) 铸形用法, 零成员名依赖"
+   ]
+  }
+ },
+ "removed_values": {
+  "Comp_DonateUI_CDState": {
+   "values": {
+    "CD_NONE": "0",
+    "CD_HASKEY": "1",
+    "CD_DONATED": "2",
+    "CD_NOSOURCE": "3",
+    "CD_NOINTIMACY": "4",
+    "CD_CANCOMPOSE": "5",
+    "CD_COMPOSED": "6",
+    "CD_NUM": "7"
+   }
+  },
+  "gbLightObj::LIGHT_TYPE": {
+   "values": {
+    "LGT_OMNI": "0",
+    "LGT_SPOT": "1",
+    "LGT_DIRECT": "2"
+   }
+  },
+  "gbVFileSystem::__unnamed": {
+   "values": {
+    "VFSYS_DISKFILE": "0",
+    "VFSYS_PACKFILE": "1",
+    "VFSYS_MEMIMAGE": "2"
+   }
+  },
+  "_light_type_semantic": {
+   "values": {
+    "LIGHT_POINT": 1,
+    "LIGHT_SPOT": 2,
+    "LIGHT_DIRECTIONAL": 3
+   },
+   "scope": "global",
+   "evidence": "decomp三TU非限定引用LIGHT_SPOT(PAL3/RoleAtt/CScreenMode); enums全局GBLIGHT_SPOT=2对照; 枚举无存储ABI中性",
+   "source": " | L-VAR 2026-11-11 双管线迁移账: A面头已按此实现, B面解冻时同构实现"
+  },
+  "gbAxis": {
+   "values": {
+    "GB_AXIS_0": "0",
+    "GB_AXIS_1": "1",
+    "GB_AXIS_2": "2"
+   },
+   "source": "mangled ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z 编码了 enum 类型(A级)；值 0/1/2 由 PAL3.exe 调用点立即数实证(0x429F2F push 2 / 0x429F47 push 0 / 0x429F5B push 1)；topo/src/gbMatrix4.cpp:366 仅作参考（重建源非二进制证据，且 0x10025910 是 topo.dll 地址非 PAL3.exe）；常量名无二进制证据故用中性名 GB_AXIS_0/1/2（禁伪语义命名）"
+  },
+  "gbPrimType": {
+   "values": {
+    "GB_PRIM_NULL": "0",
+    "GB_PRIM_TRIANGLE_LIST": "1",
+    "GB_PRIM_TRIANGLE_FAN": "2",
+    "GB_PRIM_TRIANGLE_STRIP": "3",
+    "GB_PRIM_LINE_LIST": "4",
+    "GB_PRIM_LINE_STRIP": "5",
+    "GB_PRIM_POINT_LIST": "6"
+   }
+  }
+ }
+}

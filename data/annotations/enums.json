@@ -42,18 +42,6 @@
    "CT_EMBEDDED": "4"
   }
  },
- "Comp_DonateUI_CDState": {
-  "values": {
-   "CD_NONE": "0",
-   "CD_HASKEY": "1",
-   "CD_DONATED": "2",
-   "CD_NOSOURCE": "3",
-   "CD_NOINTIMACY": "4",
-   "CD_CANCOMPOSE": "5",
-   "CD_COMPOSED": "6",
-   "CD_NUM": "7"
-  }
- },
  "DLG_MSG": {
   "values": {
    "DLG_MSG_NONE": "-1",
@@ -466,14 +454,6 @@
    "eRB": "9"
   }
  },
- "gbAxis": {
-  "values": {
-   "GB_AXIS_0": "0",
-   "GB_AXIS_1": "1",
-   "GB_AXIS_2": "2"
-  },
-  "source": "mangled ?SetAxisAngle@gbMatrix4@@QAEXW4gbAxis@@M@Z 编码了 enum 类型(A级)；值 0/1/2 由 PAL3.exe 调用点立即数实证(0x429F2F push 2 / 0x429F47 push 0 / 0x429F5B push 1)；topo/src/gbMatrix4.cpp:366 仅作参考（重建源非二进制证据，且 0x10025910 是 topo.dll 地址非 PAL3.exe）；常量名无二进制证据故用中性名 GB_AXIS_0/1/2（禁伪语义命名）"
- },
  "gbFogParam::gbFogMode": {
   "values": {
    "FOGMODE_LINEAR": "0",
@@ -516,13 +496,6 @@
    "SHAPE_SQUARE": "1"
   }
  },
- "gbLightObj::LIGHT_TYPE": {
-  "values": {
-   "LGT_OMNI": "0",
-   "LGT_SPOT": "1",
-   "LGT_DIRECT": "2"
-  }
- },
  "gbMixActInfo::__unnamed": {
   "values": {
    "ACT_STATE_NULL": "0",
@@ -544,24 +517,6 @@
    "GB_PFT_X8R8G8B8": "8",
    "GB_PFT_X1R5G5B5": "9",
    "GB_PFT_X4R4G4B4": "10"
-  }
- },
- "gbPrimType": {
-  "values": {
-   "GB_PRIM_NULL": "0",
-   "GB_PRIM_TRIANGLE_LIST": "1",
-   "GB_PRIM_TRIANGLE_FAN": "2",
-   "GB_PRIM_TRIANGLE_STRIP": "3",
-   "GB_PRIM_LINE_LIST": "4",
-   "GB_PRIM_LINE_STRIP": "5",
-   "GB_PRIM_POINT_LIST": "6"
-  }
- },
- "gbVFileSystem::__unnamed": {
-  "values": {
-   "VFSYS_DISKFILE": "0",
-   "VFSYS_PACKFILE": "1",
-   "VFSYS_MEMIMAGE": "2"
   }
  },
  "ECBVAKind": {
@@ -935,15 +890,5 @@
    "CD_NUM": "7"
   },
   "source": "[apply 41-failure 修 2026-10-16 analyzer] 悬挂类型定义补全（root cause=FATAL 族成员类型引用未定义枚举/结构 ⇒ add_udt 推入失败 ⇒ 空壳 UDT）——PDB 形 B 级参考（PAL3A 值形；语义常量非地址/偏移，PAL3 值差异风险低，值形需访问点复核标挂账）"
- },
- "_light_type_semantic": {
-  "values": {
-   "LIGHT_POINT": 1,
-   "LIGHT_SPOT": 2,
-   "LIGHT_DIRECTIONAL": 3
-  },
-  "scope": "global",
-  "evidence": "decomp三TU非限定引用LIGHT_SPOT(PAL3/RoleAtt/CScreenMode); enums全局GBLIGHT_SPOT=2对照; 枚举无存储ABI中性",
-  "source": " | L-VAR 2026-11-11 双管线迁移账: A面头已按此实现, B面解冻时同构实现"
  }
 }
