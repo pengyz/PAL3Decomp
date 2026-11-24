@@ -1,3 +1,27 @@
+导出产物 vs 注解 一致性校验（[t4-DECLARED-EXCEPTION] 的透传字段）
+========================================================================
+  两侧都有 struct: 921   仅导出侧: 280   仅注解侧: 3
+  vtables  不一致: 0
+  methods  不一致: 0
+  _variants 键不一致: 908  （**仅提示**：两侧表示不同，不参与失败判定）
+    [_variants] ARC_ArcBrief, ARC_ArcHeader, ARC_ArcLocaleRole, ARC_ArcMsic, ARC_ComboAttack, ARC_FightItem, ARC_FightSkill, ARC_Inventory, ARC_MonsterStar, ARC_OutFile …
+
+✅ 一致：导出产物中这些字段与注解**逐字段等值**（与 export_full.py 头部自述的 761/761 相符）
 EXPORT: decompiling to decomp/ ...
--> ERROR: export FAILED (export_full.py exited non-zero).
-   The decomp JSON is stale/incomplete; codegen would produce source that does not match the IDB. Stopping the chain here.
+-> OK: decomp JSON exported
+
+[Consistency] 校验导出产物与注解的透传字段（vtables / methods）...
+
+[Invariants] advisory 模式（只报告计数，不影响退出码）...
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
+    CPK                      size=917948   (未找到生成头; 手写头 bad: include/pal3/gen/CPK.h)
+    gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
+    gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
+[A] PASS：没有任何 code 位置的 __vftable
+[B] PASS：145 个 sub_ 符号的声明/调用形参数全部一致（另 99 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
+
+[ADVISORY] 非门禁报告：以下计数不影响任何退出码
+编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
+[ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
+
+Next: python pipeline/cli.py codegen all
