@@ -80,9 +80,6 @@
    "flags": [
     "ctor"
    ],
-   "former_names": [
-    "RoleSystem::InitRoleImage"
-   ],
    "evidence_level": "verified",
    "sig_model": {
     "return": "void",
@@ -91,7 +88,7 @@
     "varargs": false,
     "pending": false
    },
-   "source": "归属纠错 20261124: ①ehvec_ctor 元素构造器字面量(SingletonThunk 0x4225A5 push offset 本函数, 元素 392B=SceneMapPlayer.binary_size 精确) ②this-form 全域 ≤0x185(392 内) ③vptr 写表 [this+0]=0x56AAD8(写表铁律) ④成员逐域吻合: +0x10 m_nLayerIndex←0/+0x100 m_layer←0/+0x105 m_szName rep stosd 128B/+0x38 gbImage2D 子对象构造(ds:??0gbImage2D@@ A 级)"
+   "source": "归属纠错 20261124: ①ehvec_ctor 元素构造器字面量(SingletonThunk 0x4225A5 push offset 本函数, 元素 392B=SceneMapPlayer.binary_size 精确) ②this-form 全域 ≤0x185(392 内) ③vptr 写表 [this+0]=0x56AAD8(写表铁律) ④成员逐域吻合: +0x10 m_nLayerIndex←0/+0x100 m_layer←0/+0x105 m_szName rep stosd 128B/+0x38 gbImage2D 子对象构造(ds:??0gbImage2D@@ A 级) | 旧名 RoleSystem::InitRoleImage(改名链史归 archive 台账)"
   }
  },
  "base_size": 16,

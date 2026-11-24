@@ -100,20 +100,14 @@
   "0x84": {
    "name": "m_fPosX",
    "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float: 三链一致实证 ①SetPosX(0x43FD90) fild/fstp float 写 ②CheckMouseHit (double)m_nPosX 浮点比较读 ③(__int64)v24 截断写; 名 n→f 前缀语义一致",
-   "evidence_level": "unverified",
-   "former_names": [
-    "m_nPosX"
-   ]
+   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float: 三链一致实证 ①SetPosX(0x43FD90) fild/fstp float 写 ②CheckMouseHit (double)m_nPosX 浮点比较读 ③(__int64)v24 截断写; 名 n→f 前缀语义一致 | 旧名 m_nPosX(退役 20261124)",
+   "evidence_level": "unverified"
   },
   "0x88": {
    "name": "m_fPosY",
    "type": "float",
-   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float 同 0x84 链; n→f 前缀",
-   "evidence_level": "unverified",
-   "former_names": [
-    "m_nPosY"
-   ]
+   "source": "B:naming_m_n+FPU_misattrib | [类型修正 20261123] int→float 同 0x84 链; n→f 前缀 | 旧名 m_nPosY(退役 20261124)",
+   "evidence_level": "unverified"
   },
   "0x8c": {
    "name": "m_nLoadResource",
