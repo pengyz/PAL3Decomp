@@ -35,5 +35,58 @@
   "DEL_GLOBAL gbGfxDriverInfo g_nScreenWidth (成员 newwindow 1 refs 胜)",
   "DEL_GLOBAL gbGfxDriverInfo g_nScreenHeight (成员 waitforverticalblank 1 refs 胜)",
   "DEL_GLOBAL tagEffSParticleSys qword_17A8438 (成员 m_ptLastSpawn 3 refs 胜)"
+ ],
+ "adjudications": [
+  {
+   "round": "折叠战役回归 2026-11-24",
+   "anchor": "ScriptSystemData",
+   "cases": [
+    {
+     "addr": "0x00d8c1ac",
+     "global": "String(589)",
+     "member": "m_String(6)",
+     "verdict": "GLOBAL 胜→删成员",
+     "note": "类型名碰撞命名债在册"
+    },
+    {
+     "addr": "0x00d8bec4",
+     "global": "g_fScriptTileSize(8)",
+     "member": "m_g_fTimeDelta(35)",
+     "verdict": "MEMBER 胜→删全局"
+    },
+    {
+     "addr": "0x00d8c2b8",
+     "global": "byte_D8C2B8(24)",
+     "member": "m_nCmdFA0(0)",
+     "verdict": "GLOBAL 胜→删成员"
+    },
+    {
+     "addr": "0x00d8b938",
+     "global": "unk_D8B938(0)",
+     "member": "m_scriptArray(1)",
+     "verdict": "MEMBER 胜→删全局(零引用)"
+    }
+   ],
+   "removed_members": [
+    [
+     "0xe94",
+     "m_String"
+    ],
+    [
+     "0xfa0",
+     "m_nCmdFA0"
+    ]
+   ],
+   "removed_globals": [
+    [
+     "0x00d8bec4",
+     "g_fScriptTileSize"
+    ],
+    [
+     "0x00d8b938",
+     "unk_D8B938"
+    ]
+   ]
+  }
  ]
 }

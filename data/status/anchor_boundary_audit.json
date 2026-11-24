@@ -364,7 +364,7 @@
    "method_extent_max": 0,
    "verdict": [
     "PLACEMENT-CONFLICT: 8 外来类绑定(GRPinput,PtrArray,RoleSystem,String) → 超界嫌疑",
-    "DUAL-NAMES: 2 双名地址(1 裸全局形胜出) → 对称裁决待执行"
+    "DUAL-NAMES: 4 双名地址(2 裸全局形胜出) → 对称裁决待执行"
    ],
    "methods_scanned": 0,
    "dual_names": [
@@ -373,7 +373,7 @@
      "offset": "0xE94",
      "global": "String",
      "member": "m_String",
-     "global_form": 594,
+     "global_form": 589,
      "member_form": 6,
      "pref": "GLOBAL"
     },
@@ -385,9 +385,27 @@
      "global_form": 8,
      "member_form": 35,
      "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c2b8",
+     "offset": "0xFA0",
+     "global": "byte_D8C2B8",
+     "member": "m_nCmdFA0",
+     "global_form": 24,
+     "member_form": 0,
+     "pref": "GLOBAL"
+    },
+    {
+     "addr": "0x00d8b938",
+     "offset": "0x620",
+     "global": "unk_D8B938",
+     "member": "m_scriptArray",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
     }
    ],
-   "dual_names_total": 2
+   "dual_names_total": 4
   },
   "UIGameFrm": {
    "base": "0x00db9fd0",
@@ -460,40 +478,11 @@
    "method_extent_max": 14540,
    "verdict": [
     "PLACEMENT-CONFLICT: 10 外来类绑定(CCBEditor,CEffGroupNode,PalScriptIdleObj,PalScriptMgr) → 超界嫌疑",
-    "EXTENT-OK: max disp 0x38CC ≈ binary_size 0x6E6C",
-    "DUAL-NAMES: 3 双名地址(2 裸全局形胜出) → 对称裁决待执行"
+    "EXTENT-OK: max disp 0x38CC ≈ binary_size 0x6E6C"
    ],
    "methods_scanned": 7,
-   "dual_names": [
-    {
-     "addr": "0x00dbaf10",
-     "offset": "0xF40",
-     "global": "g_UISceneMapDlg",
-     "member": "m_nRender",
-     "global_form": 27,
-     "member_form": 16,
-     "pref": "GLOBAL"
-    },
-    {
-     "addr": "0x00dba260",
-     "offset": "0x290",
-     "global": "g_UIListBoxDlg",
-     "member": "m_nGameMode",
-     "global_form": 4,
-     "member_form": 1,
-     "pref": "GLOBAL"
-    },
-    {
-     "addr": "0x00dbb364",
-     "offset": "0x1394",
-     "global": "g_CCBEditorInst",
-     "member": "m_UITitle",
-     "global_form": 1,
-     "member_form": 1,
-     "pref": "TIE"
-    }
-   ],
-   "dual_names_total": 3
+   "dual_names": [],
+   "dual_names_total": 0
   },
   "UIListBox": {
    "base": "0x00dba260",

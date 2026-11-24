@@ -416,29 +416,6 @@
    "source": "auto:overlap_g_ScriptSystemData_at_+0xE64",
    "evidence_level": "unverified"
   },
-  "0xe94": {
-   "name": "m_String",
-   "type": "char[96]",
-   "source": "globals_merge | layout_fix:span_mismatch",
-   "evidence_level": "unverified",
-   "audit": {
-    "level": "contradicted",
-    "method": "use_site_enumeration",
-    "sites_checked": 6,
-    "sites_consistent": 0,
-    "sites_contradicted": 1,
-    "contradictions": [
-     {
-      "file": "free_functions.cpp",
-      "line": 2598,
-      "expected": "char[96]",
-      "actual": "_DWORD",
-      "detail": "cast 型别不一致"
-     }
-    ],
-    "timestamp": "2026-11-12"
-   }
-  },
   "0xef4": {
    "name": "m_nCmdParamCount",
    "type": "int",
@@ -611,29 +588,6 @@
       "line": 982,
       "expected": "PalScript",
       "actual": "int",
-      "detail": "cast 型别不一致"
-     }
-    ],
-    "timestamp": "2026-11-12"
-   }
-  },
-  "0xfa0": {
-   "name": "m_nCmdFA0",
-   "type": "short",
-   "source": "binary:4x abs refs (0xFA0)",
-   "evidence_level": "unverified",
-   "audit": {
-    "level": "contradicted",
-    "method": "use_site_enumeration",
-    "sites_checked": 4,
-    "sites_consistent": 0,
-    "sites_contradicted": 1,
-    "contradictions": [
-     {
-      "file": "Script/PalScriptMgr.cpp",
-      "line": 3198,
-      "expected": "short",
-      "actual": "GRPinput",
       "detail": "cast 型别不一致"
      }
     ],
