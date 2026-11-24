@@ -3,13 +3,24 @@
  "pdb_size": 4,
  "known_members": {
   "0x0": {
-   "name": "_tail_000",
-   "type": "char[4]",
+   "name": "__vftable",
+   "type": "void *",
+   "source": "binary A 级: ctor 0x41F32F mov [ebx], offset off_56AAC4 (写表铁律); 表=单槽 {??1Actor@@QAE@XZ @0x41F340} (/OPT:ICF 同名 dtor 体折叠嫌疑——Actor 血统/OnEvent 接收点开放案)"
+  },
+  "0x4": {
+   "name": "_gap_004",
+   "type": "char[12]",
    "interim": true,
-   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+   "note": "ctor 三 dword 清零([+4][+8][+C]), 语义未普查"
+  },
+  "0x10": {
+   "name": "_slots_010",
+   "type": "char[3740]",
+   "interim": true,
+   "note": "ctor 槽循环: ArraySort(base=this+0x10, count=12, elemSize=4, compareFunc=gbVec3D ctor closure) ×55 槽, 步距 0x44 (每槽 0x30=48B gbVec3D 组初始化+0x14 尾); esi 终值 0x10+55×0x44=0xEAC=对象终点(编译器写满证据)。槽语义未普查——Render(走查 ≤0xC8)/LoadShadowTexture(≤0xC8) 只触首槽区"
   }
  },
- "binary_size": 4,
+ "binary_size": 3756,
  "methods": {
   "0x0041f370": {
    "name": "Render",
@@ -35,5 +46,7 @@
   }
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@UIManager@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
+ "source_note": "",
+ "layout_evidence": "[2026-11-25 桩定谳] binary_size 4→0xEAC(3756): ctor 0x41F300 全解码——+0 vtable off_56AAC4(单槽 ??1Actor)/+4..F 三 dword 清零/+0x10 起 55×0x44 槽(ArraySort gbVec3D 初始化)。Render 0xC4/LoadShadowTexture 0xC8 走查≤首槽区。审计残留: Actor::OnEvent 接收点(ecx=g_UIManager)=ICF 折叠或 Actor 血统——开放案。"
 }
