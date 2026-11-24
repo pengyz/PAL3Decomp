@@ -455,6 +455,8 @@ def generate_forward_decls(all_code):
 
 
 def _detect_needed_includes(cls_name, methods):
+    from stages.emit_headers import get_type_registry
+    _reg_gb = get_type_registry()   # [S5] gb 前缀残余→registry 域判定(本函数作用域)
     """Auto-detect additional #include headers needed from code content."""
     header_dir = store.header_dir
     all_code_preview = '\n'.join(m['code'] for m in methods)
@@ -534,7 +536,7 @@ def _detect_needed_includes(cls_name, methods):
                 _fwd = re.match(r'^\s*class\s+(\w+)\s*;\s*', _hl)
                 if _fwd:
                     _t = _fwd.group(1)
-                    if _t in known_headers and not _t.startswith('gb'):
+                    if _t in known_headers and not _reg_gb.is_gbengine(_t):
                         # Check: exact class name, g_p+Name, or g_+Name in code
                         _in_code = _t in all_code_preview
                         _in_code = _in_code or ('g_p' + _t in all_code_preview)
@@ -550,7 +552,7 @@ def _detect_needed_includes(cls_name, methods):
                 if _ext:
                     _ext_type = _ext.group(1)
                     _ext_var = _ext.group(2)
-                    if _ext_type in known_headers and not _ext_type.startswith('gb'):
+                    if _ext_type in known_headers and not _reg_gb.is_gbengine(_ext_type):
                         _extern_map[_ext_var] = _ext_type
             # Check if any extern variable is used in the code with member access
             for _var, _typ in _extern_map.items():
@@ -580,7 +582,7 @@ def _detect_needed_includes(cls_name, methods):
                 if fwd_m:
                     fwd_type = fwd_m.group(1)
                     if fwd_type in known_headers and fwd_type not in all_included \
-                            and not fwd_type.startswith('gb'):
+                            and not _reg_gb.is_gbengine(fwd_type):
                         # Check if the type is used: exact name, member access, or field type
                         _used = fwd_type in all_code_preview
                         # Check if any struct member type matches (e.g., ObjectCamera as field type)
@@ -950,15 +952,13 @@ def generate_class_cpp(cls_name, methods):
     # Auto-detect additional includes (on TRANSFORMED code)
     needed_classes = _detect_needed_includes(cls_name, transformed_methods)
 
-    # CRT/system types that should never be included
-    _SKIP_INCLUDE = {
-        '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
-        '_s_ThrowInfo', '_s__ThrowInfo',
-        'string', 'exception', 'type_info', 'stdiobuf', 'filebuf',
-        'ios_base', 'facet', 'codecvt_base', 'strstreambuf',
-    }
+    # [S5 退役 2026-11-24·用户批准v2] _SKIP_INCLUDE 局部集退役——14 名已全部
+    #   在 domain_exclude system_names(逐名核对属实), 改消费统一标记。
+    from stages.emit_headers import _is_system_type as _sys_inc, get_type_registry
+    _reg_gb = get_type_registry()
+
     for c in sorted(needed_classes):
-        if c.startswith('vtbl_') or c in _SKIP_INCLUDE:
+        if c.startswith('vtbl_') or _sys_inc(c):
             continue
         _c_subdir = get_class_dir(c)
         if _c_subdir:

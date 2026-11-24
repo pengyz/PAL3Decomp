@@ -528,26 +528,8 @@ def _get_sdk_type_sizes():
     return out
 
 _header_errors = []
-# Map IDA ordinal types to their actual type names
-ORDINAL_MAP = {
-    '#1472': 'gbTexture',
-    '#1461': 'gbGeomNode',
-    '#1455': 'gbAudioManager',
-    '#1465': 'gbRenderEffect',
-}
-
-
-ORDINAL_MAP = {
-    '#1472': 'gbTexture',
-    '#1461': 'gbGeomNode',
-    '#1455': 'gbAudioManager',
-    '#1465': 'gbRenderEffect',
-}
-
-def _resolve_ordinal_type(t):
-    for k, v in ORDINAL_MAP.items():
-        t = t.replace(k, v)
-    return t
+# [S5 退役 2026-11-24] ORDINAL_MAP/_resolve_ordinal_type 退役——#ordinal 形引用全库=0
+#   (apply 程序化 tinfo/DAG 化后消亡), 死码删除(双重定义实锤)。
 
 
 def _sanitize_filename(name):
@@ -1953,23 +1935,11 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                   'virtual', 'inline', 'register', 'volatile', 'mutable',
                   '__thiscall', '__cdecl', '__stdcall', '__fastcall'}
 
-    # Types provided by windows.h / CRT — already available, no include/fwd needed
-    # NOTE: Do NOT include gbengine types here — they need include/fwd-declare
-    WINDOWS_CRT_TYPES = {
-        'std', 'stdiobuf', 'exception', 'type_info', 'filebuf',
-        'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG', 'RECT', 'POINT', 'SIZE',
-        'HWND', 'HINSTANCE', 'HICON', 'HBRUSH', 'HDC', 'HANDLE', 'LPVOID',
-        'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA', '_GUID', 'GUID', 'IID',
-        '_iobuf', 'FILE', '_cpinfo', '_EXCEPTION_RECORD', 'EXCEPTION_RECORD',
-        '_DIMOUSESTATE2', '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS',
-        '_SECURITY_ATTRIBUTES', '_OSVERSIONINFOA', '_STARTUPINFOA',
-        '_WIN32_FIND_DATAA',
-        'CRITICAL_SECTION', 'HRESULT', 'BOOL', 'LPCSTR', 'LPSTR',
-        'HICON__', 'LRESULT', 'HCURSOR', 'LPARAM', 'WPARAM', 'LCID',
-        'IDirectInput8A', 'IDirectInputDevice8A',
-        'INT_PTR', 'UINT_PTR', 'LONG_PTR', 'ULONG_PTR', 'DWORD_PTR',
-    }
-    SYSTEM_TYPES = WINDOWS_CRT_TYPES
+    # [S5 退役 2026-11-24·用户批准v2] WINDOWS_CRT_TYPES 硬编码集退役——
+    #   数据源 = registry external 域(sdk_types provided_by 迁册 + prelude 扫描)。
+    #   局部名保留使 ~30 消费点零改动; 等价性=五集合并集 ⊆ registry.external
+    #   机械断言 + S2 读数/头 diff 把关。
+    SYSTEM_TYPES = set(get_type_registry().external.keys())
 
     # gbengine types — have headers in include/gbengine/, need include or fwd-declare
     # Build mapping: type_name -> header file path (relative to include/)
@@ -2047,7 +2017,6 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                         fwd_types.add(at)
                 continue
             base = re.sub(r'\[(?:0x[0-9a-fA-F]+|\d+)\]', '', mtype).replace('*', '').strip()
-            base = _resolve_ordinal_type(base)
             # [C2501 修 2026-10-19·include 面] 顶替前置：合成名→具名后再分类
             # （原按合成名分类 ⇒ 顶替后名**未入 include 面** ✗ C2501 missing
             # storage-class ×1534——值员需全定义非前向 ✓ include_types 走）
@@ -5381,15 +5350,19 @@ def generate_globals():
     #   b) 非法类名(含空格/括号的畸形抽取形) — 非C++标识符
     #   c) Windows typedef族(HANDLE/HWND等, 已在_GLOBALS_PRIMITIVES排除)
     import re as _re_fwd
-    _IDA_TYPE_ALIASES = {'WCHAR', '_BYTE', '_WORD', '_DWORD', '_QWORD', '_PVFV',
-                         '_UNKNOWN', '_CF_?', '_WORD16', 'char const', 'int const'}
+    # [S5 退役 2026-11-24] _IDA_TYPE_ALIASES 退役——真成员(WCHAR/_BYTE/_WORD/
+    #   _DWORD/_QWORD/_PVFV/_UNKNOWN)已被 registry external 域(prelude 扫描+迁册)
+    #   覆盖; 垃圾条目('_CF_?'/'char const'/'int const')=调试疤痕(标识符正则本拒)。
+    #   同点位已有 _scalar_alias_names gate(数据驱动)。
     _fwd_emitted = []
     if fwd_classes:
         for cls in sorted(fwd_classes):
             if not _re_fwd.match(r'^[A-Za-z_]\w*$', cls) or ' ' in cls:
                 continue  # 非法类名(畸形抽取形), 跳过
-            if cls in _IDA_TYPE_ALIASES:
-                continue  # ida_types.h已知别名, 编译器已有typedef
+            _ext_kind = get_type_registry().external_kind(cls)
+            if _ext_kind in ('typedef', 'macro', 'enum') or cls in _scalar_alias_names():
+                continue  # [S5] external typedef/macro/enum 抑制(前置必炸/已供);
+                         #   class-kind 放行(pre-S5 语义: tagPOINT 族前置合法在用)
             if cls in _scalar_alias_names():
                 continue  # [P3b] 别名表型(scalar_typedefs.h 已供名)
             h_lines.insert(insert_pos, 'class %s;' % cls)

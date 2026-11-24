@@ -1138,5 +1138,75 @@
   "provided_by": "windows.h",
   "domain": "platform",
   "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "BOOL",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "BYTE",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "CHAR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "DWORD",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "INT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "LONG",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "UINT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "ULONG",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "WORD",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "五集合并集 E1 补册(两域共存律): 名∈system_names 亦可∈external——BOOL 漏册实证(减法笔误)。typedef: class 前置必炸抑制"
+ },
+ {
+  "name": "_PVFV",
+  "kind": "typedef",
+  "provided_by": "pal3/globals.h",
+  "domain": "platform",
+  "evidence": "CRT 函数指针 typedef(void(__cdecl*)(void)); globals.h #ifndef _PVFV 守卫自带定义; class _PVFV; 前置=MSVC6 C1001 ICE(230 TU 实证); 原 _IDA_TYPE_ALIASES 成员迁册补漏"
  }
 ]
