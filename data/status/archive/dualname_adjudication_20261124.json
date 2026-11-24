@@ -44,6 +44,18 @@
     "InitFromScene 方法体走查(163B): disp[16,680,1284,1356,1456]——RoleSystem 命中2(1284/1456)+Camera 命中1(16)+未知2=混合归属, 单方法证据不足定谳"
    ],
    "verdict": "开放案: Extra0 身份竞争(RoleSystem 成员用法 vs Camera 接收者)——需 InitFromScene 全族+Extra0/Extra1 完整走查聚类"
+  },
+  {
+   "date": "2026-11-25",
+   "case": "B案 115 DERIVED-ONLY 迁移假设证伪 + Scene Role[50] 定谳",
+   "findings": [
+    "disp 普查: 115 方法全部 max this-disp ≤ 0x21FC, 零 Scene-tail 触碰 → 迁移假设证伪(注解留在 RoleSystem.json 正确)",
+    "Scene::Reset ehvec A 级: Role[50] @+0xE0E4(元素 0x2200, ??0/??1Role 对偶); m_nRoleCount@0xE0E0 紧贴= int count; Role roles[50] 完美布局",
+    "Scene::Reset 无 ??0RoleSystem 调用 — Scene 头部=布局同构非 RoleSystem 实例/继承",
+    "Scene 子对象图: BINK 组@+0xE0 / GRPinput@+0x784E4(GetRolePtr 0x784E8 实为其成员域—归属重考线索)",
+    "开放案: Role(0x2200) vs RoleSystem(0x2200) 同尺寸身份结——Extra0/Extra1 双方法族(Camera+RoleSystem)宿主待定谳"
+   ],
+   "verdict": "B 案方向修正: 115 方法不迁移; Scene bases 裁决需全 Scene ctor(非 Reset)基构造链"
   }
  ],
  "adjudications": [
