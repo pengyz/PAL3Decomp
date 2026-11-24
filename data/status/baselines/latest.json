@@ -1,6 +1,6 @@
 {
-  "name": "20261124_214445",
-  "timestamp": "2026-11-24T21:44:45.136260",
+  "name": "20261124_221121",
+  "timestamp": "2026-11-24T22:11:21.073273",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -5328,27 +5328,12 @@
     },
     "pal3/src/Combat/CCBCamControl.cpp": {
       "status": "fail",
-      "error_count": 6,
+      "error_count": 3,
       "errors": [
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 369
-        },
         {
           "code": "C2664",
           "msg": "'Init' : cannot convert parameter 1 from 'enum LIGHT_TYPE' to 'enum LGT_TYPE'",
           "line": 1037
-        },
-        {
-          "code": "C2664",
-          "msg": "'NewRenderEffect' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 1057
-        },
-        {
-          "code": "C2664",
-          "msg": "'NewRenderEffect' : cannot convert parameter 1 from 'unsigned char' to 'const char *'",
-          "line": 1058
         },
         {
           "code": "C2664",
@@ -5410,297 +5395,52 @@
     },
     "pal3/src/Combat/CCBRoleState.cpp": {
       "status": "fail",
-      "error_count": 58,
+      "error_count": 9,
       "errors": [
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'class UIWnd' to 'void (__cdecl ** )(class UIWnd *,unsigned long)'",
-          "line": 382
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 2362
+          "line": 381
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2406
+          "line": 2405
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2422
+          "line": 2421
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
-          "line": 2435
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 2513
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 2516
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'unsigned char' to 'const char *'",
-          "line": 2519
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 2522
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class CEffObj *' to 'const char *'",
-          "line": 2525
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'int' to 'const char *'",
-          "line": 2536
+          "line": 2434
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3354
+          "line": 3353
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 3418
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 4674
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'class CCBUI ** '",
-          "line": 4781
+          "line": 3417
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'",
-          "line": 5029
+          "line": 5028
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned short *' to 'unsigned __int16 *'",
-          "line": 5035
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 6827
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'class CCBUI ** '",
-          "line": 6871
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'class CCBUI ** '",
-          "line": 6888
+          "line": 5034
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 9983
-        },
-        {
-          "code": "C2664",
-          "msg": "'LoadModel' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 10731
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 10848
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 10933
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 11031
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 11195
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 11221
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 11245
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 11369
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 11398
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11800
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11803
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 11810
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11820
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11822
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11825
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11828
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11831
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11833
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 11835
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12553
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12559
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12565
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12572
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12578
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 12641
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 12651
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 12658
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 12747
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 12752
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 12757
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 12763
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 12768
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12855
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12862
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12869
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12876
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 12883
+          "line": 9982
         }
       ]
     },
@@ -5711,7 +5451,7 @@
     },
     "pal3/src/Combat/CCBStage.cpp": {
       "status": "fail",
-      "error_count": 71,
+      "error_count": 30,
       "errors": [
         {
           "code": "C2440",
@@ -5721,446 +5461,185 @@
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
-          "line": 1587
+          "line": 1588
         },
         {
           "code": "C2065",
           "msg": "'j_j_codecvt_base' : undeclared identifier",
-          "line": 1599
+          "line": 1600
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1599
+          "line": 1600
         },
         {
           "code": "C2653",
           "msg": "'j_j_codecvt_base' : is not a class or namespace name",
-          "line": 1599
+          "line": 1600
         },
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
-          "line": 1606
-        },
-        {
-          "code": "C2664",
-          "msg": "'CreateUIObj' : cannot convert parameter 1 from 'class tagEffSPSlot *' to 'class CCBUI ** '",
-          "line": 2023
+          "line": 1607
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2025
+          "line": 2026
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2066
+          "line": 2067
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__cdecl *)(class CCBStage *,int)' to 'unsigned long'",
-          "line": 2249
+          "line": 2250
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'unsigned long'",
-          "line": 2251
+          "line": 2252
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned char *' to 'char *'",
-          "line": 2317
+          "line": 2318
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'void (__thiscall CCBStage::*)(int)' to 'unsigned long'",
-          "line": 2337
+          "line": 2338
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'unsigned int (__cdecl *)(class CCBStage *,int)'",
-          "line": 5252
+          "line": 5253
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long' to 'unsigned int (__thiscall CCBStage::*)(class CCBStage *,int)'",
-          "line": 5256
+          "line": 5257
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'unsigned int (__thiscall CCBStage::*)(class CCBStage *,int)' to 'int'",
-          "line": 5258
-        },
-        {
-          "code": "C2664",
-          "msg": "'SetAppName' : cannot convert parameter 1 from 'class CEffObj *' to 'char *'",
-          "line": 5436
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 6203
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 6204
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 6205
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 6206
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 6207
+          "line": 5259
         },
         {
           "code": "C2660",
           "msg": "'ProcessKeyboard' : function does not take 6 parameters",
-          "line": 6568
-        },
-        {
-          "code": "C2664",
-          "msg": "'LoadActionSequences' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 7206
-        },
-        {
-          "code": "C2664",
-          "msg": "'strlen' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 7207
-        },
-        {
-          "code": "C2664",
-          "msg": "'memcpy' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 7208
-        },
-        {
-          "code": "C2676",
-          "msg": "binary '[' : 'class tagEffSPSlot' does not define this operator or a conversion to a type acceptable to the predefined operator",
-          "line": 7209
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 7341
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 7346
+          "line": 6569
         },
         {
           "code": "C2109",
           "msg": "subscript requires array or pointer type",
-          "line": 7451
+          "line": 7452
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ',' before '*'",
-          "line": 7917
+          "line": 7918
         },
         {
           "code": "C2059",
           "msg": "syntax error : '*'",
-          "line": 7917
+          "line": 7918
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'struct gbVec3D *(__cdecl *)(struct gbVec3D *)'",
-          "line": 7917
+          "line": 7918
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
-          "line": 8083
+          "line": 8084
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [3]' to 'int *'",
-          "line": 8204
+          "line": 8205
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'char'",
-          "line": 8336
+          "line": 8337
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int (__cdecl *)(char *,int)' to 'int (__thiscall CCBStage::*)(int)'",
-          "line": 8348
+          "line": 8349
         },
         {
           "code": "C2440",
           "msg": "'type cast' : cannot convert from 'int (__thiscall CCBStage::*)(int)' to 'char'",
-          "line": 8351
+          "line": 8352
         },
         {
           "code": "C2064",
           "msg": "term does not evaluate to a function",
-          "line": 8626
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 8809
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 8822
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 8829
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 8876
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 8897
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 8903
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 8915
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 8920
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 9055
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 9068
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 9075
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9122
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9143
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9149
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9161
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9166
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'int' to 'const void *'",
-          "line": 9265
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'int' to 'char *'",
-          "line": 9278
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'int' to 'char *'",
-          "line": 9302
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const void *'",
-          "line": 9451
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'unsigned char' to 'const void *'",
-          "line": 9456
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9520
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 9525
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 9538
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 9543
-        },
-        {
-          "code": "C2664",
-          "msg": "'AudioSetPosition' : cannot convert parameter 1 from 'unsigned char' to 'const void *'",
-          "line": 9684
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 9752
-        },
-        {
-          "code": "C2664",
-          "msg": "'PlaySoundA' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 9765
+          "line": 8627
         },
         {
           "code": "C2065",
           "msg": "'aWd' : undeclared identifier",
-          "line": 10304
+          "line": 10305
         },
         {
           "code": "C2065",
           "msg": "'aWe' : undeclared identifier",
-          "line": 10515
+          "line": 10516
         },
         {
           "code": "C2660",
           "msg": "'CheckActionValid' : function does not take 1 parameters",
-          "line": 11961
+          "line": 11962
         },
         {
           "code": "C1903",
           "msg": "unable to recover from previous error(s); stopping compilation",
-          "line": 11961
+          "line": 11962
         }
       ]
     },
     "pal3/src/Combat/CCBStageCam.cpp": {
       "status": "fail",
-      "error_count": 12,
+      "error_count": 5,
       "errors": [
         {
           "code": "C2660",
           "msg": "'UpdateCamera' : function does not take 0 parameters",
-          "line": 123
-        },
-        {
-          "code": "C2664",
-          "msg": "'MessageBoxA' : cannot convert parameter 2 from 'class CEffObj *' to 'const char *'",
-          "line": 233
-        },
-        {
-          "code": "C2664",
-          "msg": "'MessageBoxA' : cannot convert parameter 2 from 'unsigned char' to 'const char *'",
-          "line": 245
+          "line": 121
         },
         {
           "code": "C2227",
           "msg": "left of '->CCCTData' must point to class/struct/union",
-          "line": 570
+          "line": 568
         },
         {
           "code": "C2653",
           "msg": "'CCCTData' : is not a class or namespace name",
-          "line": 570
-        },
-        {
-          "code": "C2664",
-          "msg": "'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 948
-        },
-        {
-          "code": "C2664",
-          "msg": "'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1366
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class CEffObj *' to 'const char *'",
-          "line": 1653
+          "line": 568
         },
         {
           "code": "C2512",
           "msg": "'RoleCamera' : no appropriate default constructor available",
-          "line": 2002
-        },
-        {
-          "code": "C2664",
-          "msg": "'fopen' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 2009
-        },
-        {
-          "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 2012
+          "line": 2000
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 2234
+          "line": 2232
         }
       ]
     },
     "pal3/src/Combat/CCBStageEffect.cpp": {
-      "status": "fail",
-      "error_count": 4,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'OpenFile' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 25
-        },
-        {
-          "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'unsigned char' to 'char *'",
-          "line": 29
-        },
-        {
-          "code": "C2664",
-          "msg": "'OpenFile' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 51
-        },
-        {
-          "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 55
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Combat/CCBStageRole.cpp": {
       "status": "ok",
@@ -6169,127 +5648,27 @@
     },
     "pal3/src/Combat/CCBStageScene.cpp": {
       "status": "fail",
-      "error_count": 24,
+      "error_count": 4,
       "errors": [
         {
           "code": "C2248",
           "msg": "'do_always_noconv' : cannot access protected member declared in class 'std::codecvt_base'",
-          "line": 164
-        },
-        {
-          "code": "C2664",
-          "msg": "'NewRenderEffect' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 381
-        },
-        {
-          "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 418
+          "line": 162
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'class gbVisNode *'",
-          "line": 1313
-        },
-        {
-          "code": "C2664",
-          "msg": "'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 1355
-        },
-        {
-          "code": "C2664",
-          "msg": "'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 1373
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1375
-        },
-        {
-          "code": "C2664",
-          "msg": "'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 1415
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 1417
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1418
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1419
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1421
-        },
-        {
-          "code": "C2664",
-          "msg": "'ReadSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 1429
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 1431
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1432
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1433
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1434
-        },
-        {
-          "code": "C2664",
-          "msg": "'WriteSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1449
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 1451
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1452
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1453
-        },
-        {
-          "code": "C2664",
-          "msg": "'void __thiscall CIniFile::WriteLine(const char *,const char *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1454
+          "line": 1311
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1704
+          "line": 1702
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1790
+          "line": 1788
         }
       ]
     },
@@ -6300,7 +5679,7 @@
     },
     "pal3/src/Combat/CCBSystem.cpp": {
       "status": "fail",
-      "error_count": 36,
+      "error_count": 18,
       "errors": [
         {
           "code": "C2248",
@@ -6361,96 +5740,6 @@
           "code": "C2664",
           "msg": "'EditorUpdate' : cannot convert parameter 1 from 'class CCBStage *' to 'float'",
           "line": 1668
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'int' (or there is no acceptable conversion)",
-          "line": 2071
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2134
-        },
-        {
-          "code": "C2678",
-          "msg": "binary '!=' : no operator defined which takes a left-hand operand of type 'int' (or there is no acceptable conversion)",
-          "line": 2139
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetRoleField' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 2141
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2152
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2153
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2157
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2158
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2162
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2163
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2167
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2168
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2177
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2178
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2182
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2183
-        },
-        {
-          "code": "C2677",
-          "msg": "binary '[' : no global operator defined which takes type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 2187
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 2193
         },
         {
           "code": "C2446",
@@ -6623,52 +5912,22 @@
     },
     "pal3/src/Data/PAL_GDB.cpp": {
       "status": "fail",
-      "error_count": 9,
+      "error_count": 3,
       "errors": [
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'unsigned int *'",
-          "line": 748
+          "line": 746
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'unsigned long [5]' to 'unsigned int *'",
-          "line": 760
+          "line": 758
         },
         {
           "code": "C2065",
           "msg": "'index_0' : undeclared identifier",
-          "line": 1047
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1066
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1076
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1078
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1081
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1084
-        },
-        {
-          "code": "C2664",
-          "msg": "'GetPrivateProfileStringA' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 1087
+          "line": 1045
         }
       ]
     },
@@ -6709,27 +5968,27 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
-          "line": 622
+          "line": 623
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
-          "line": 623
+          "line": 624
         },
         {
           "code": "C2065",
           "msg": "'_E68' : undeclared identifier",
-          "line": 842
+          "line": 843
         },
         {
           "code": "C2070",
           "msg": "illegal sizeof operand",
-          "line": 969
+          "line": 970
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'int' to 'class CEffModel *'",
-          "line": 1365
+          "line": 1366
         }
       ]
     },
@@ -7237,7 +6496,7 @@
     },
     "pal3/src/Misc/CCBUICtrl.cpp": {
       "status": "fail",
-      "error_count": 27,
+      "error_count": 12,
       "errors": [
         {
           "code": "C2440",
@@ -7245,134 +6504,59 @@
           "line": 16
         },
         {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 586
-        },
-        {
           "code": "C2664",
           "msg": "'CreateUIObj' : cannot convert parameter 1 from 'int *' to 'class CCBUI ** '",
-          "line": 610
+          "line": 611
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 621
+          "line": 622
         },
         {
           "code": "C2065",
           "msg": "'dword_5D8808' : undeclared identifier",
-          "line": 799
+          "line": 800
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 810
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 961
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 966
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 975
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 982
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'const int' (or there is no acceptable conversion)",
-          "line": 985
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'unsigned int' (or there is no acceptable conversion)",
-          "line": 1097
-        },
-        {
-          "code": "C2440",
-          "msg": "'=' : cannot convert from 'unsigned long' to 'class CEffObj *'",
-          "line": 1178
+          "line": 811
         },
         {
           "code": "C2065",
           "msg": "'index_0' : undeclared identifier",
-          "line": 1187
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'class tagEffSPSlot' (or there is no acceptable conversion)",
-          "line": 1459
-        },
-        {
-          "code": "C2664",
-          "msg": "'InitUI' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 1463
-        },
-        {
-          "code": "C2664",
-          "msg": "'InitUI' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 1465
-        },
-        {
-          "code": "C2664",
-          "msg": "'InitUI' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 1469
+          "line": 1188
         },
         {
           "code": "C2664",
           "msg": "'void (struct HWND__ *,unsigned int,unsigned int,long)' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 1539
-        },
-        {
-          "code": "C2664",
-          "msg": "'InitUI' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 1543
-        },
-        {
-          "code": "C2664",
-          "msg": "'InitUI' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'int'",
-          "line": 1544
+          "line": 1540
         },
         {
           "code": "C2664",
           "msg": "'SendMessageA' : cannot convert parameter 1 from 'void *' to 'struct HWND__ *'",
-          "line": 1666
+          "line": 1667
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'struct HWND__ *' to 'unsigned long'",
-          "line": 1913
-        },
-        {
-          "code": "C2664",
-          "msg": "'sprintf' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 1964
+          "line": 1914
         },
         {
           "code": "C2059",
           "msg": "syntax error : ')'",
-          "line": 1976
+          "line": 1977
         },
         {
           "code": "C2664",
           "msg": "'FormatCombatBuffer' : cannot convert parameter 1 from 'class CCBUICtrl *' to 'struct HWND__ *'",
-          "line": 2156
+          "line": 2157
         },
         {
           "code": "C2660",
           "msg": "'DlgProcCameraConfig' : function does not take 5 parameters",
-          "line": 2420
+          "line": 2421
         }
       ]
     },
@@ -7433,35 +6617,9 @@
       "errors": []
     },
     "pal3/src/Misc/CIniFile.cpp": {
-      "status": "fail",
-      "error_count": 5,
-      "errors": [
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'int' to 'const char *'",
-          "line": 59
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 60
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class CEffObj *' to 'const char *'",
-          "line": 61
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 62
-        },
-        {
-          "code": "C2664",
-          "msg": "'int __thiscall CIniFile::ReadLine(const char *,int *)' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 63
-        }
-      ]
+      "status": "ok",
+      "error_count": 0,
+      "errors": []
     },
     "pal3/src/Misc/CJ_FindFile.cpp": {
       "status": "ok",
@@ -9325,7 +8483,7 @@
         },
         {
           "code": "C2664",
-          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'int' to 'struct _iobuf *'",
+          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'struct _iobuf *' to 'int'",
           "line": 2330
         },
         {
@@ -10347,7 +9505,7 @@
     },
     "pal3/src/free_functions.cpp": {
       "status": "fail",
-      "error_count": 101,
+      "error_count": 96,
       "errors": [
         {
           "code": "C2440",
@@ -10556,16 +9714,6 @@
         },
         {
           "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 6727
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 6728
-        },
-        {
-          "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 6749
         },
@@ -10573,11 +9721,6 @@
           "code": "C2440",
           "msg": "'type cast' : cannot convert from '' to 'int (__stdcall *)(struct HWND__ *,unsigned int,unsigned int,long)'",
           "line": 6766
-        },
-        {
-          "code": "C2440",
-          "msg": "'type cast' : cannot convert from 'class tagEffSPSlot' to 'char'",
-          "line": 6804
         },
         {
           "code": "C2664",
@@ -10588,21 +9731,6 @@
           "code": "C2664",
           "msg": "'SendWindowMessage' : cannot convert parameter 1 from 'class CCBUICtrl *' to 'struct HWND__ *'",
           "line": 7071
-        },
-        {
-          "code": "C2664",
-          "msg": "'MessageBoxA' : cannot convert parameter 2 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 7179
-        },
-        {
-          "code": "C2664",
-          "msg": "'FormatException' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'char *'",
-          "line": 7292
-        },
-        {
-          "code": "C2664",
-          "msg": "'WriteSection' : cannot convert parameter 1 from 'class tagEffSPSlot' to 'const char *'",
-          "line": 7332
         },
         {
           "code": "C2664",
@@ -10853,6 +9981,11 @@
           "code": "C2664",
           "msg": "'BinkOpen' : cannot convert parameter 1 from 'const char *' to 'void *'",
           "line": 11155
+        },
+        {
+          "code": "C2664",
+          "msg": "'BinkOpen' : cannot convert parameter 1 from 'int' to 'void *'",
+          "line": 11172
         }
       ]
     },
@@ -10863,52 +9996,52 @@
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '*'",
-          "line": 1268
+          "line": 1305
         },
         {
           "code": "C2501",
           "msg": "'PalScriptMgr' : missing storage-class or type specifiers",
-          "line": 1268
+          "line": 1305
         },
         {
           "code": "C2501",
           "msg": "'dword_DBA24C' : missing storage-class or type specifiers",
-          "line": 1268
+          "line": 1305
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '*'",
-          "line": 1269
+          "line": 1306
         },
         {
           "code": "C2501",
           "msg": "'PalScriptMgr' : missing storage-class or type specifiers",
-          "line": 1269
+          "line": 1306
         },
         {
           "code": "C2086",
           "msg": "'PalScriptMgr' : redefinition",
-          "line": 1269
+          "line": 1306
         },
         {
           "code": "C2501",
           "msg": "'dword_DBA254' : missing storage-class or type specifiers",
-          "line": 1269
+          "line": 1306
         },
         {
           "code": "C2143",
           "msg": "syntax error : missing ';' before '*'",
-          "line": 1274
+          "line": 1311
         },
         {
           "code": "C2501",
           "msg": "'ComposeUI' : missing storage-class or type specifiers",
-          "line": 1274
+          "line": 1311
         },
         {
           "code": "C2501",
           "msg": "'dword_DC0DE8' : missing storage-class or type specifiers",
-          "line": 1274
+          "line": 1311
         }
       ]
     }

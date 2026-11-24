@@ -8164,5 +8164,12 @@
   "type": "int",
   "category": "game_state",
   "source": "类型覆盖 20261124: IDB 旧 apply 遗留 UISystem 型(孪生已退役)→STRICT-MODE 硬停。本址=ScriptSystemData+0x620 内区(ScriptSystemData@0xD8B318 尺寸 0x1020), SingletonThunk_00422560 头 mov ecx,offset 本址→0x4226C0 方法(清零场景态全局 g_nunknown_C12B38/3C/40 并返回 this)。真类身份未取证(小对象)→诚实 int 占位, 身份战役挂账"
+ },
+ "0x005d54e0": {
+  "name": "byte_5D54E0",
+  "type": "char[]",
+  "category": "const_data",
+  "reason": "效果名字符串池(time/camera/action/quad...)——IDB 孤儿符号 pEffMgr(CEffMgr) = PDB/旧 apply 残留误型, CEffMgr 0xA930 跨度罩住整个池(0x5D5484..0x5D8Bxx) → hexrays 对池内全部引用渲染 pEffMgr.m_spSlots[N] 成员走查 → C2664×77 站 (Family A)。字节证据: 首 dword=\"time\" 文本非 vtable 指针(CEffMgr 实例全是 堆分配 push 0xA930+operator new, InitGame 工厂证据)。char[] 不完整形置换 (0x5D5484 g_EffMgr 同款先例), 独立字面量条目照常渲染。",
+  "source": "| 2026-11-24 Family A 归因(用户质疑 hexrays 推导能力→真根因=IDB 孤儿全局, 非 lvar 层): exe 字节直读+算术闭合(0x5D54E0+0x35F4=0x5D8AD4 精确命中 m_spSlots[574])"
  }
 }

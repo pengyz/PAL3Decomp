@@ -18,27 +18,27 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1055,
-  "matched": 950,
-  "unmatched": 217,
-  "match_L1": 155,
+  "symbols": 1068,
+  "matched": 962,
+  "unmatched": 220,
+  "match_L1": 158,
   "match_L1_semantic": 7,
-  "partial": 683,
+  "partial": 690,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 112,
-  "reloc_total": 7002,
-  "reloc_ok": 1694,
+  "unresolved_synth": 114,
+  "reloc_total": 7084,
+  "reloc_ok": 1712,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5308,
-  "rsite_total": 7002,
-  "rsite_unaligned": 6480,
-  "l1_bytes": 7180,
-  "l1_hidden_reloc_bytes": 1505,
-  "l1_reloc_covered_bytes": 2088,
-  "rsite_ok": 79,
+  "reloc_unresolved": 5372,
+  "rsite_total": 7084,
+  "rsite_unaligned": 6559,
+  "l1_bytes": 7195,
+  "l1_hidden_reloc_bytes": 1508,
+  "l1_reloc_covered_bytes": 2100,
+  "rsite_ok": 82,
   "rsite_class_ok": 401,
   "rsite_unresolved": 10,
   "rsite_unresolved_samples": [
@@ -134,13 +134,19 @@
     "sym": "??1UIRoleSelectDialog@@UAE@XZ"
    }
   ],
-  "tail_jump_downgrades": 2,
+  "tail_jump_downgrades": 3,
   "tail_jump_downgrade_samples": [
    {
     "va": "0x0051d6d0",
     "name": "CCBLineupWindow::RefreshFacePos(void)",
     "our": null,
     "orig": "sub_51D6E0"
+   },
+   {
+    "va": "0x00509090",
+    "name": "CCBStageEffect::PreLoadEffGroup(void)",
+    "our": null,
+    "orig": null
    },
    {
     "va": "0x00452540",
@@ -749,7 +755,7 @@
    "name": "CCBLineupWindow::OnMessage_d340(int *)",
    "va": "0x0051d340",
    "status": "partial",
-   "match_pct": 54.0,
+   "match_pct": 53.4,
    "size": 176
   },
   {
@@ -1057,6 +1063,78 @@
    "status": "partial",
    "match_pct": 23.2,
    "size": 1354
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "??0CCBStageEffect@@QAE@XZ",
+   "name": "CCBStageEffect::CCBStageEffect(void)",
+   "va": "0x00508e30",
+   "status": "partial",
+   "match_pct": 41.2,
+   "size": 250
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "??1CCBStageEffect@@QAE@XZ",
+   "name": "CCBStageEffect::~CCBStageEffect(void)",
+   "va": "0x00508f30",
+   "status": "partial",
+   "match_pct": 42.1,
+   "size": 240
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?Create@CCBStageEffect@@QAE_NXZ",
+   "name": "CCBStageEffect::Create(void)",
+   "va": "0x00509050",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?Destroy@CCBStageEffect@@QAE_NXZ",
+   "name": "CCBStageEffect::Destroy(void)",
+   "va": "0x00509060",
+   "status": "partial",
+   "match_pct": 36.4,
+   "size": 11
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?Init@CCBStageEffect@@QAEXXZ",
+   "name": "CCBStageEffect::Init(void)",
+   "va": "0x00509070",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?GetLinkerIndex@CCBStageEffect@@QAEXXZ",
+   "name": "CCBStageEffect::GetLinkerIndex(void)",
+   "va": "0x00509080",
+   "status": "partial",
+   "match_pct": 33.3,
+   "size": 15
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?PreLoadEffGroup@CCBStageEffect@@QAEXXZ",
+   "name": "CCBStageEffect::PreLoadEffGroup(void)",
+   "va": "0x00509090",
+   "status": "partial",
+   "match_pct": 100.0,
+   "size": 5
+  },
+  {
+   "file": "pal3/src/Combat/CCBStageEffect.cpp",
+   "symbol": "?LoadLinker@CCBStageEffect@@QAEXXZ",
+   "name": "CCBStageEffect::LoadLinker(void)",
+   "va": "0x005090e0",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 5
   },
   {
    "file": "pal3/src/Combat/CCBStageRole.cpp",
@@ -3525,6 +3603,24 @@
    "size": 163
   },
   {
+   "file": "pal3/src/Misc/CIniFile.cpp",
+   "symbol": "?LoadData@CIniFile@@QAEDXZ",
+   "name": "CIniFile::LoadData(void)",
+   "va": "0x004ec700",
+   "status": "partial",
+   "match_pct": 39.9,
+   "size": 203
+  },
+  {
+   "file": "pal3/src/Misc/CIniFile.cpp",
+   "symbol": "?LoadStructuredConfig@CIniFile@@QAEXXZ",
+   "name": "CIniFile::LoadStructuredConfig(void)",
+   "va": "0x00504130",
+   "status": "partial",
+   "match_pct": 45.6,
+   "size": 261
+  },
+  {
    "file": "pal3/src/Misc/CJ_FindFile.cpp",
    "symbol": "?Create@CJ_FindFile@@QAEHHPAXHPAD@Z",
    "name": "CJ_FindFile::Create(int,void *,int,char *)",
@@ -3872,7 +3968,7 @@
    "name": "JusticeBookUI::Render(void)",
    "va": "0x00528ed0",
    "status": "partial",
-   "match_pct": 64.0,
+   "match_pct": 63.2,
    "size": 125
   },
   {
@@ -7946,6 +8042,21 @@
    79
   ],
   [
+   "CCBStageEffect::Create(void)",
+   5279824,
+   5
+  ],
+  [
+   "CCBStageEffect::Init(void)",
+   5279856,
+   5
+  ],
+  [
+   "CCBStageEffect::LoadLinker(void)",
+   5279968,
+   5
+  ],
+  [
    "CCBStageShadow::FillShadowQuad(void)",
    5317376,
    5
@@ -8587,17 +8698,17 @@
   ]
  ],
  "rebaseline": {
-  "reason": "架构过渡结算(+方向): 删除形dtor发射形修复(flags通道留痕守卫+C2631归一)后 11 单元回巢——S2 143/230, L1 127→162(+35), 载体 62→76, matched 823→950。域扩张型变化, 增量可比性在新域上成立",
-  "at": "2026-11-24T21:44:18",
-  "prev_match_L1": 155,
-  "cur_match_L1": 155,
+  "reason": "Family A 修复增量结算: IDB 孤儿全局 pEffMgr(CEffMgr)@0x5D54E0 置换(效果名字符串池字节定谳)——tagEffSPSlot 77 站全灭, C2664 274→152, S2 143→145, L1 155→158 纯增(域同构扩张)",
+  "at": "2026-11-24T22:23:27",
+  "prev_match_L1": 158,
+  "cur_match_L1": 158,
   "prev_population": {
-   "matched": 950,
-   "symbols": 1055
+   "matched": 962,
+   "symbols": 1068
   },
   "cur_population": {
-   "matched": 950,
-   "symbols": 1055
+   "matched": 962,
+   "symbols": 1068
   }
  }
 }
