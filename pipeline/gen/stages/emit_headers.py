@@ -265,15 +265,9 @@ def _get_scalar_dtor_classes_scan_impl():
 
 # Module-level cache for underscore-to-bare typedef aliases (populated lazily)
 _underscore_aliases = None  # dict: '_Texture_Info' -> 'Texture_Info', etc.
-# 批B 2026-10-06：模块级白名单（_Console 等真类型——方法发射路径（:909）与类型路径（:2813）共用）
-_UNDERSCORE_TYPES = {
-    '_Texture_Info', '_Console', '_Texture_uv', '_Tex_uv',
-    '_Item_List_Info', '_MapElement', '_Item', '_UIPOS',
-    '_PlugInfo', '_FLOORPARAM', '_PURGE_INFO', '_TimeMgr',
-    '_btnOPTDATA', '_CLOUD', '_CONTEXT', '_SAMPLE',
-    '_STREAM', '_SUBMAP', '_FLTPROVIDER', '_DIG_DRIVER',
-    '_Collvec', '_Console__ConCmd', '_Btn_BtnID',
-}
+# [S6 退役 2026-11-24·用户批准③] _UNDERSCORE_TYPES 白名单退役——23 名全有
+#   注解 json(注解所有权判真), 2 死条目实锤名单漂移; '_' 一刀切同步退役,
+#   判据=should_skip_class 数据驱动。
 
 def _get_underscore_aliases():
     """Detect _X -> X typedef aliases from decomp filename/signal evidence.
@@ -825,7 +819,8 @@ _GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengi
 # F53（第 105 轮）：gbengine 头用 `class GBAPI Foo` / `struct __declspec(dllimport) Foo`
 # 声明导出类型。扫描类型名时必须跳过导出宏/declspec，否则该类型不再被认作 gbengine 类型，
 # codegen 会为它再生成一份 pal3 侧头文件 ⇒ 与 include/gbengine 里的定义冲突（C2011）。
-_EXPORT_MACROS = ('GBAPI', 'DLLAPI', 'DLLEXPORT', 'DECLSPEC', 'EXPORT', 'API')
+# [S7 去重 2026-11-24] _EXPORT_MACROS 单一定义点 = pipeline/gen/type_registry.py
+from pipeline.gen.type_registry import _EXPORT_MACROS
 _CLASS_DECL_RE = re.compile(r'^(?:class|struct|enum)\s+(\w+)')
 
 
@@ -1433,9 +1428,9 @@ def collect_methods():
     for _sname, _sinfo in _ida_s.items():
         if not isinstance(_sinfo, dict) or not _sinfo.get('methods'):
             continue
-        # Filter out system/nested types (same critera as collect.py)
-        # 批B 修 2026-10-06：白名单豁免（_Console 等真类型——:2813 同名单）
-        if _sname.startswith('_') and _sname not in _UNDERSCORE_TYPES:
+        # [S6 判据切换 2026-11-24·用户批准③] '_' 一刀切+白名单退役——
+        #   统一走 should_skip_class(系统库∧伪影判定, 数据驱动)
+        if should_skip_class(_sname):
             continue
         if '<' in _sname or '$' in _sname:
             continue
@@ -4136,12 +4131,9 @@ def main():
                 size = s.get('size', 0)
                 if not sname:
                     continue
-                # Underscore-prefixed types: most are Win32 SDK internals
-                # (_D3D*, _DI*, _IMAGE*, _EXCEPTION_*, etc.) that should
-                # NOT get generated headers. Project-internal types like
-                # _Texture_Info and _Console DO need headers — whitelist.
-                _UNDERSCORE_WHITELIST = _UNDERSCORE_TYPES   # 批B：模块级共用（去重）
-                if sname.startswith('_') and sname not in _UNDERSCORE_WHITELIST:
+                # [S6 判据切换 2026-11-24·用户批准③] '_' 一刀切+白名单退役——
+                #   should_skip_class 数据驱动(系统库∧伪影), 注解真类自动放行。
+                if should_skip_class(sname):
                     continue
                 if size <= 0 or size == 0xFFFFFFFFFFFFFFFF:
                     continue
