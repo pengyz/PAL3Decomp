@@ -17,6 +17,7 @@ NO raw PDB data is read. The IDB export is the single source of truth.
 
 from annotation_view import base_names as _base_names, base_entries as _base_entries, sm_text
 import json
+import time
 import os
 import re
 
@@ -25,6 +26,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from pipeline.gen.stages.scope_tree import ScopeTree
+from pipeline.gen.type_registry import TypeRegistry
 from pipeline.gen.stages.collect import get_class_dir
 from tools.format_non_slot_decl import format_non_slot_decl as _format_non_slot_decl  # G1b 格式函数(20用例钉死)
 
@@ -396,18 +398,11 @@ def _get_ida_structs():
     return _ida_structs_cache
 
 
-# [POD标量预扫描 2026-11-17] 确定性POD typedef名单——替代增量累积(_POD_TYPEDEFS)。
+# [P3b 别名语义 2026-11-24·用户批准重设计] 标量名唯一来源 = type_aliases.json
+#   (POD 扫描启发式已退役——启发式=静默降级温床; N16 门强制 base+evidence)。
 # 事故复盘：原实现依赖类处理顺序（P<UIScene 才能排除），且 `_tail_000` 过滤把
 # 「唯一成员是合成尾」的4字节类误判为零成员 → 67个typedef，其中19个注解层有methods
 # （UISystem/UIManager/SoundSystem/Parent_Data…真类）→ C2371×1147 + 语义破坏。
-# 判据（全部满足才入名单）：
-#   a) ida_structs size ∈ {1,2,4,8}（正值，排除 -1/缺失）
-#   b) 非tail真成员为空（_tail_000合成尾不算成员）
-#   c) vtables 空
-#   d) 注解层 methods 空（真类铁律：二进制有成员函数=类）
-_pod_scalar_names_cache = None
-
-
 def _system_type_names():
     """[系统库标记统一消费 2026-11-24 用户裁定] domain_exclude.json types 段
     (系统库名单+前缀)——export/下游头生成统一消费同一标记。"""
@@ -440,88 +435,47 @@ def _is_system_type(name):
     return False
 
 
-_RAW_SLOT_RE = re.compile(r"^(dword|byte|word|float|qword|double|int|char|unk)_[0-9A-Fa-f]+$")
+# [P3b 2026-11-24] _RAW_SLOT_RE/_pod_scalar_names/_pod_has_real_definition 全退役
+#   ——POD 扫描判据(启发式)整体废除, 标量名唯一通道 = type_aliases.json。
+#   原 6 个消费点(免 class 前置/参数分类)语义等价迁移: "别名表已有名"。
 
-def _pod_scalar_names():
-    """POD typedef = 布局必要的无成员命名类型(1B 状态/枚举存储等)
-    —— 用户裁定: 这些 typedef 留在 scalar_typedefs.h 头文件。
-    排除三类: 系统库标记(domain_exclude.types)/有注解 json 的真类
-    (注解拥有权——gbSingleton/PlayerMgr/gbOctree 案)/非容器尺寸。"""
-    global _pod_scalar_names_cache
-    if _pod_scalar_names_cache is not None:
-        return _pod_scalar_names_cache
-    _out = set()
-    for _n, _e in (_get_ida_structs() or {}).items():
-        if not isinstance(_e, dict):
-            continue
-        # 系统库标记(domain_exclude.types)不入 POD typedef
-        if _is_system_type(_n):
-            continue
-        # 注解真类: 有注解 json 的类=项目数据非标量
-        #   (gbSingleton_gbGfxManager 案: 4B 无成员型被 typedef DWORD → C2440 ×3-4)
-        if _ann_struct_path(_n) is not None:
-            continue
-        _sz = _e.get('size')
-        if _sz not in (1, 2, 4, 8):
-            continue
-        _out.add(_n)
-    _pod_scalar_names_cache = _out
-    return _pod_scalar_names_cache
+_SCALAR_ALIAS_CACHE = None
+
+_TYPE_REGISTRY_CACHE = None
 
 
-    _pod_scalar_names_cache = _out
-    return _pod_scalar_names_cache
+def get_type_registry():
+    """TypeRegistry 进程级单例(P3a 四消费面共用; main() 以 class_roots 重建)。"""
+    global _TYPE_REGISTRY_CACHE
+    if _TYPE_REGISTRY_CACHE is None:
+        try:
+            _ida_g = _get_ida_structs() or {}
+        except Exception:
+            _ida_g = {}
+        _TYPE_REGISTRY_CACHE = TypeRegistry.build(PROJECT_ROOT, ida_enums=_ida_g.get('_enums', {}))
+    return _TYPE_REGISTRY_CACHE
 
 
-    # [第三证据源 2026-11-17 对抗复核P1-1] template_bases 成员指针=成员函数铁证:
-    #   "unsigned long (__thiscall CEffCamera::*)(...)" 出现在模板实参 ⇒ 该类
-    #   有成员函数（成员指针存在即类成立）。UISystem 事故同构判据漏项——
-    #   template_bases.json 里 18 个 CEff* 全被此通道证明是真类。
-    try:
-        _tpl = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'template_bases.json',
-                              encoding='utf-8'))
-        import re as _re_t
-        for _v in _tpl.values():
-            _tv = _v.get('template', '') if isinstance(_v, dict) else str(_v)
-            for _m in _re_t.finditer(r'(\w+)::\*', _tv):
-                _out.discard(_m.group(1))
-    except (OSError, ValueError) as _e_tb:
-        print('[WARN] _pod_scalar_names: template_bases.json 不可读(%s)——'
-              '成员指针证据源缺席, 仅布局判据生效' % str(_e_tb)[:60])
-    _pod_scalar_names_cache = _out
-    return _pod_scalar_names_cache
+def _set_type_registry(reg):
+    """main() 构建版(含 class_roots)回填单例——P-A5 教训: 函数内裸赋值是局部绑定。"""
+    global _TYPE_REGISTRY_CACHE
+    _TYPE_REGISTRY_CACHE = reg
 
 
-
-
-_pod_real_def_cache = None
-
-
-def _pod_has_real_definition(name):
-    """[真定义冲突过滤 2026-11-18] 该名字是否已有手写/遗留头的 class/struct X { 真定义。
-    遗留参考头(gbengine_api.h/pal3_structs.h/topo_api.h)与手写件(gbGeomNode.h族)
-    的真定义优先于POD typedef(gbVolumeModifier/BEZIER C2371实证)。带缓存。"""
-    global _pod_real_def_cache
-    if _pod_real_def_cache is None:
-        _cache = set()
-        from data import store as _store_root
-        _proj = str(_store_root.project_root)
-        _roots = [os.path.join(_proj, 'include'), os.path.join(_proj, 'pal3', 'src')]
-        import re as _re_scan
-        _rx = _re_scan.compile(r'(?:class|struct)\s+(\w+)\s*(?::[^{]+)?\{')
-        for _root in _roots:
-            for _dirpath, _dirnames, _files in os.walk(_root):
-                for _fn in _files:
-                    if not _fn.endswith('.h'):
-                        continue
-                    _fp = os.path.join(_dirpath, _fn)
-                    try:
-                        _t = open(_fp, encoding='utf-8', errors='replace').read()
-                    except Exception:
-                        continue
-                    _cache.update(_mm.group(1) for _mm in _rx.finditer(_t))
-        _pod_real_def_cache = _cache
-    return name in _pod_real_def_cache
+def _scalar_alias_names():
+    """type_aliases.json 显式别名集(scalar_typedefs.h 唯一写入源)。"""
+    global _SCALAR_ALIAS_CACHE
+    if _SCALAR_ALIAS_CACHE is None:
+        try:
+            with open(PROJECT_ROOT / 'data' / 'annotations' / 'type_aliases.json',
+                      encoding='utf-8') as _f:
+                import json as _j
+                _d = _j.load(_f)
+            _SCALAR_ALIAS_CACHE = set(k for k in (_d.get('aliases') or {})
+                                      if not k.startswith('_'))
+        except Exception:
+            _SCALAR_ALIAS_CACHE = set()
+    return _SCALAR_ALIAS_CACHE
 
 
 # SDK 类型尺寸（`data/annotations/sdk_types.json`）。
@@ -687,6 +641,8 @@ def _family_graph():
     _is = _get_ida_structs() or {}
     adj = {}
     for cls, info in _is.items():
+        if not isinstance(info, dict):
+            continue  # [P2a 留痕段守卫] _shadowed(list) 等非条目段
         names = []
         for b in (info.get('bases') or []):
             bn = b.get('name') if isinstance(b, dict) else b
@@ -1478,7 +1434,7 @@ def collect_methods():
     # (tiny helpers like PopStack whose Hex-Rays decomp is too small to export)
     _ida_s = _get_ida_structs()
     for _sname, _sinfo in _ida_s.items():
-        if not _sinfo.get('methods'):
+        if not isinstance(_sinfo, dict) or not _sinfo.get('methods'):
             continue
         # Filter out system/nested types (same critera as collect.py)
         # 批B 修 2026-10-06：白名单豁免（_Console 等真类型——:2813 同名单）
@@ -1659,7 +1615,7 @@ def _estimate_member_size(mtype):
     return 4
 
 
-def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent=4, ida_enums=None):
+def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent=4):
     """Recursively emit nested struct/enum definition with members + methods.
     
     Args:
@@ -1668,35 +1624,34 @@ def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent
         is_data: ida_structs.json data dict
         parent_name: parent class name (for this param stripping)
         indent: base indentation level (4 per nesting level)
-        ida_enums: _enums dict from ida_structs.json
     
     Returns:
         list of lines (str) for the nested struct/enum definition(s)
     """
-    if ida_enums is None:
-        _ida_enums_local = _get_ida_structs().get('_enums', {})
-        ida_enums = _ida_enums_local
+    _reg = get_type_registry()
     lines = []
     for _child in scope_node.children:
         _nt_full = _child.full_name
         _indent = " " * indent
-        
-        # Check if this is an enum
-        _enum_data = ida_enums.get(_nt_full, {})
-        if _enum_data.get('values'):
-            # Emit as enum
+
+        # [R-4 2026-11-24·用户批准重设计] 嵌套枚举值源 = registry(注解唯一真相,
+        #   保号值直写)。IDB _enums 不再是值源(NUMSTATE 丢失/u64 伪影教训)。
+        #   registry 无条目且无结构内容 → 不渲染(gbengine 头/裁决队列所有;
+        #   空壳渲染=伪值静默降级, 废除)。
+        _reg_e = _reg.enum_entry(_nt_full) or _reg.by_short(_child.short_name)
+        _nt_struct = is_data.get(_nt_full, {})
+        _nt_members = _nt_struct.get('data_members', [])
+        _nt_methods = (nested_methods or {}).get(_child.short_name, [])
+        if _reg_e is not None and _reg_e.get('values'):
             lines.append("")
             lines.append("%senum %s {" % (_indent, _child.short_name))
-            for _vk in sorted(_enum_data['values'].keys(),
-                             key=lambda k: int(_enum_data['values'][k])):
-                _vv = _enum_data['values'][_vk]
+            for _vk in sorted(_reg_e['values'].keys(),
+                             key=lambda k: _reg_e['values'][k]):
+                _vv = _reg_e['values'][_vk]
                 lines.append("%s    %s = %s," % (_indent, _vk, _vv))
             lines.append("%s};" % _indent)
-        else:
+        elif _nt_members or _nt_struct.get('size'):
             # Emit as struct (original logic)
-            _nt_struct = is_data.get(_nt_full, {})
-            _nt_members = _nt_struct.get('data_members', [])
-            _nt_methods = (nested_methods or {}).get(_child.short_name, [])
             
             lines.append("")
             lines.append("%sstruct %s {" % (_indent, _child.short_name))
@@ -1744,7 +1699,7 @@ def _emit_nested_struct(scope_node, nested_methods, is_data, parent_name, indent
             # Recursive
             if _child.children:
                 lines.extend(_emit_nested_struct(_child, nested_methods, is_data,
-                                                  parent_name, indent + 4, ida_enums))
+                                                  parent_name, indent + 4))
             
             lines.append("%s};" % _indent)
     
@@ -1828,7 +1783,6 @@ def _offset0_vptr_placeholder(cls_name):
         and str(cand.get('type') or '') == 'void *'
 
 
-_POD_TYPEDEFS = []
 _dup_reports = []   # [真重复collect 2026-11-17] generate_header全程收集, main末尾统一assert(APPLY_GATE_OFF可关)
 
 
@@ -1870,13 +1824,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         pass
     lines = ["#pragma once"]
 
-    # [POD标量早退 2026-11-17] 判据唯一化: 以_pod_scalar_names()预扫描为准
-    #   (布局判据+注解methods+template_bases成员指针三证据源, 对抗复核P1-1)。
-    #   与四路前向声明排除同源——杜绝"预扫描判真类/内联判typedef"双向分歧
-    #   (CEffCamera反例: template_bases成员指针证明有成员函数, 内联条件却会typedef)。
-    #   decomp methods在main()已收窄预扫描集, 此处再查methods形参兜底。
-    _pod_size = (ida_struct or {}).get('size') or 0
-    # [模板映射消费 20261124 用户枖架指令] mapped 模板实例化:
+    # [模板映射消费 20261124] mapped 模板实例化:
     #   发模板定义(一次)+实例化别名头 —— 声明还原, 不走普通 struct 渲染
     try:
         _tpl_map = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
@@ -1898,12 +1846,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             _lines.append('typedef %s<%s> %s;' % (_inst['template'], _full, _alias))
         return '\n'.join(_lines) + '\n'
 
-    if cls_name in _pod_scalar_names() and not (methods or []):
-        _pod_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
-        _pod_type = _pod_map.get(_pod_size, 'DWORD')
-        _pod_td = 'typedef %s %s;' % (_pod_type, cls_name)
-        _POD_TYPEDEFS.append(_pod_td)
-        return '#pragma once\n// POD scalar: centralized in scalar_typedefs.h\n#include "scalar_typedefs.h"\n'
+    # [P3b POD 早退退役 2026-11-24] 无成员伪类不再 typedef 化(静默降级废除):
+    #   枚举伪影→registry 枚举头(R-4); RTTI 真结构→按真成员渲染(暴露原则);
+    #   标量别名→type_aliases.json 唯一通道。真值渲染或显式留痕, 无第三态。
     lines.append('// Auto-generated: %s' % (
         template_expr if template_expr else cls_name))
     # standalone-compile base: Win32 primitives + Hex-Rays ttl aliases
@@ -2180,7 +2125,28 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if ret_match:
                     rt = ret_match.group(1)
                     if rt not in PRIMITIVES and rt not in SYSTEM_TYPES and rt != cls_name and rt != 'void':
-                        fwd_types.add(rt)
+                        include_types.add(rt)   # 按值返回=需完整定义
+                # [R-5 2026-11-24·用户批准重设计] 按值参数逐参 token 化入
+                #   include/fwd 面——旧正则只匹配 `Type *` 指针形, 按值参数
+                #   (ECBStageTaskState 实证)不入接线 = C2061×46 族根因。
+                #   按值语义 ⇒ include_types(完整定义); 解析失败跳过(容错不掩盖)。
+                try:
+                    _ret2, _cc2, _params2, _rr2 = parse_signature(_scan_sig)
+                    if _params2:
+                        for _pt in split_params(_params2):
+                            _bt = re.sub(r'\[[^\]]*\]', '', _pt)
+                            _bt = re.sub(r'\b(?:const|unsigned|signed|struct|class|enum|union|volatile)\b',
+                                         '', _bt)
+                            _bm = re.match(r'\s*([A-Za-z_][A-Za-z0-9_]*)', _bt.strip())
+                            if not _bm:
+                                continue
+                            _bt = _bm.group(1)
+                            if (_bt == cls_name or _bt in PRIMITIVES
+                                    or _bt in SYSTEM_TYPES or '::' in _bt or '<' in _bt):
+                                continue
+                            include_types.add(_bt)
+                except Exception:
+                    pass
 
     # Don't forward-declare what we're including
     fwd_types -= include_types
@@ -2196,16 +2162,15 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # Resolve include paths: gbengine types -> "gbengine/xxx.h", pal3 gen types -> "xxx.h"
     # Types needing full definition but no header -> demote to fwd_types
     if known_classes is not None:
+        # [R-5 2026-11-24] TYPE_HEADER_MAP 纯内存解析——registry 命中(枚举恒
+        #   include/gbengine/类根)或 known_classes(本次运行确定发射头集)。
+        #   文件系统探测退役(上轮 stale 产物判真=运行间状态依赖病灶)。
         resolved_includes = set()
-        header_dir = OUTPUT_DIR
+        _reg_r = get_type_registry()
         for t in include_types:
-            if t in _gbengine_type_to_header:
+            if _reg_r.header_for(t) is not None:
                 resolved_includes.add(t)
             elif t in known_classes:
-                resolved_includes.add(t)
-            elif (header_dir / ('%s.h' % t)).exists():
-                resolved_includes.add(t)
-            elif (header_dir / get_class_dir(t) / ('%s.h' % t)).exists():
                 resolved_includes.add(t)
             else:
                 fwd_types.add(t)
@@ -2218,33 +2183,32 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             fwd_types.discard(_t)
             include_types.add(_t)
 
-    # Emit includes
+    # Emit includes — [R-5] 头路径 = registry.header_for(TYPE_HEADER_MAP),
+    #   自含 include 守卫(嵌套枚举容器头=本文件时跳过)。
+    _reg_inc = get_type_registry()
+    _self_hdr_rel = '%s/%s.h' % (get_class_dir(cls_name), cls_name)
     if needs_stl:
         lines.append('#include "pal3/pal3_stl.h"')
     for t in sorted(include_types):
-        if t in _gbengine_type_to_header:
-            lines.append('#include "%s"' % _gbengine_type_to_header[t])
-        else:
-            _sub = get_class_dir(t)
-            if _sub:
-                lines.append('#include "%s/%s.h"' % (_sub, t))
-            else:
-                lines.append('#include "%s.h"' % t)
+        _hp = _reg_inc.header_for(t)
+        if _hp is None:
+            _hp = '%s/%s.h' % (get_class_dir(t), t)
+        if _hp == _self_hdr_rel:
+            continue
+        lines.append('#include "%s"' % _hp)
     if include_types or needs_stl:
         lines.append("")
 
     # Enums can't be forward-declared in VC6 — promote to include
+    #   [R-5] 路径 = registry(嵌套枚举→容器头; 平铺枚举→独立头; gbengine→外部头)
     if enum_names:
         enum_fwd = fwd_types & enum_names
         for t in sorted(enum_fwd):
-            if t in _gbengine_type_to_header:
-                lines.append('#include "%s"' % _gbengine_type_to_header[t])
-            else:
-                _sub = get_class_dir(t)
-                if _sub:
-                    lines.append('#include "%s/%s.h"' % (_sub, t))
-                else:
-                    lines.append('#include "%s.h"' % t)
+            _hp = _reg_inc.header_for(t)
+            if _hp is None:
+                _hp = '%s/%s.h' % (get_class_dir(t), t)
+            if _hp != _self_hdr_rel:
+                lines.append('#include "%s"' % _hp)
         fwd_types -= enum_fwd
 
     # DirectX D3DX system types: extern SDK types, not game classes.
@@ -2267,7 +2231,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     fwd_types = {t for t in fwd_types if t.split('::')[-1] not in _nested_names}
     # [C2371 修 2026-11-17] POD标量typedef型排除：scalar_typedefs.h已有typedef
     # （经ida_types.h全域可见），再发 `class X;` ⇒ C2371 redefinition; different basic types
-    fwd_types = {t for t in fwd_types if t not in _pod_scalar_names()}
+    fwd_types = {t for t in fwd_types if t not in _scalar_alias_names()}
     for t in sorted(fwd_types):
         lines.append("class %s;" % t)
     if fwd_types:
@@ -2455,7 +2419,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                     else:
                         # [C2371修 2026-11-17] POD typedef型排除(scalar_typedefs.h已有,
                         #   ida_types.h全域可见)——对抗复核P1-1漏接点
-                        if param in _pod_scalar_names():
+                        if param in _scalar_alias_names():
                             continue
                         fwd_line = 'class %s;' % param
                         if fwd_line not in lines:
@@ -2586,7 +2550,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 # [C2371修 2026-11-17] POD typedef型不发class前置(对抗复核P1-1)。
                 #   正常输入下成员指针模板类已被template_bases证据源判真类,
                 #   此守卫防矛盾输入(POD名出现在成员指针模板=注解层错误)。
-                if _td_cls not in _pod_scalar_names():
+                if _td_cls not in _scalar_alias_names():
                     lines.append('class %s;' % _td_cls)
                 lines.append('typedef %s;' % _td_type_named)
                 _base_tpl = template_expr.split('<')[0]
@@ -2621,18 +2585,10 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         lines.append("class %s%s {" % (cls_name, bases_str))
     else:
         lines.append("class %s%s {" % (cls_name, bases_str))
-    # [C2143 修·T56 #14 收口 2026-10-19] **类内嵌套前向**（全局排除+类内补发双满足 ✓）
-    # ——C2143 禁的是**全局** class X; 与嵌套 struct X 混用 ✗；类内 `struct X;` 前向合法 ✓
-    # （test_emit_nested 规格 ✓ 代码回归修复）。
-    # [R76 修 2026-10-22·C2079 根因] 嵌套前向声明按 kind 分派
-    # 原恒发 struct %s; => enum CDState 定义与 struct CDState 前向冲突（C2011/C2079）
-    # 修：enum kind 发 enum %s;，其余发 struct %s;
-    for _nt in (nested_types or []):
-        _nt_name = _nt.split('::')[-1]
-        _nt_kind = _nested_kind(cls_name, _nt_name) or 'struct'
-        lines.append("    %s %s;" % (_nt_kind, _nt_name))
-    if nested_types:
-        lines.append("")
+    # [R-4 2026-11-24·用户批准重设计] 类内嵌套前向声明**永不发射**:
+    #   VC6 无 enum fwd(enum X; 硬非法——R76 形态废除); struct/union 定义恒在
+    #   类体内(紧随本行之后渲染), 前向冗余且是 C2011 风险源(UIPUSHBUTTON_STATE
+    #   struct fwd + enum def 同 TU 实证 ×61)。
     lines.append("public:")
 
     # Virtual methods from vtable (must be first, order matches vtable layout)
@@ -2687,19 +2643,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     except:
         pass
 
-    # Forward-declare nested types used as pointer members
-    if scope_node and scope_node.children:
-        for _child in scope_node.children:
-            _nt_full = _child.full_name
-            _enum_data = _get_ida_structs().get('_enums', {}).get(_nt_full, {})
-            if _enum_data.get('values'):
-                continue  # can't forward-declare enums in VC6
-            # [C1001 修] 去重：nested_types 已生成的不再重复
-            if _child.short_name in _nested_names:
-                continue
-            _ck = _nested_kind(cls_name, _child.short_name) or 'struct'
-            lines.append("    %s %s;" % (_ck, _child.short_name))
-        lines.append("")
+    # [R-4 2026-11-24] B 路指针成员嵌套 fwd 退役——嵌套定义已在类体上方渲染,
+    #   fwd 冗余; registry 无内容的嵌套名不渲染也不前向(gbengine/裁决所有)。
 
     # Nested type definitions (before data members so types are known)
     if scope_node and scope_node.children:
@@ -3301,7 +3246,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
             #   三证据源)——旧增量_POD_TYPEDEFS_SET: ①顺序依赖(ASCII序大写类
             #   先于gb*类生成时typedef未入表) ②正则`typedef \w+`对多词基类型
             #   (unsigned char/__int64)不匹配, 61/112名漏保护(gbVFile实测)
-            if _t0 in _pod_scalar_names():
+            if _t0 in _scalar_alias_names():
                 continue
             lines.insert(0, '')
             lines.insert(0, 'class %s;' % _t0)
@@ -4149,19 +4094,18 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
 def main():
     # Load export data (ida_structs.json) — the ONLY legitimate source for struct info
     _is_data = _get_ida_structs()
-    vtable_classes = set(name for name, sinfo in _is_data.items()
+    # [P2a 留痕段守卫] _shadowed(list)/_enum_divergence(dict) 等非条目段跳过
+    _is_entries = {k: v for k, v in _is_data.items()
+                   if not k.startswith('_') and isinstance(v, dict)}
+    vtable_classes = set(name for name, sinfo in _is_entries.items()
                          if sinfo.get('vtables'))
-    ann_structs = set(name for name, sinfo in _is_data.items()
+    ann_structs = set(name for name, sinfo in _is_entries.items()
                       if sinfo.get('data_members') or sinfo.get('size', 0))
 
     # Collect methods from decomp JSONs (function bodies with class attribution)
     methods_by_class = collect_methods()
-    # [POD预扫描收窄 2026-11-17] decomp有methods但注解层暂无 ⇒ 真类, 从POD名单剔除
-    #   （否则其前向声明被误压制 ⇒ 无头包含的TU引用断链）。generate_header 内部
-    #   另有 methods 形参独立判定, 两处判据一致。
-    #   注: 原地变异(无global声明时重绑定不写回模块缓存——P-A5同类教训)
-    _pod_scalar_names_cache = _pod_scalar_names()
-    _pod_scalar_names_cache -= set(methods_by_class.keys())
+    # [P3b POD 预扫描退役 2026-11-24] _pod_scalar_names 机制整体废除——
+    #   decomp methods 真类不再需要从启发式名单剔除(无名单可剔)。
 
     # Load struct definitions from export output (ida_structs.json).
     # This is the legitimate data source for codegen — it's the export stage's output,
@@ -4207,6 +4151,19 @@ def main():
     scope_tree.build(_is_data if isinstance(_is_data, dict) else {},
                      _system_types()['names'] | _GBENGINE_CLASSES,
                      _system_types()['prefixes'], ida_enums=ida_enums)
+
+    # [P3a TypeRegistry 2026-11-24·用户批准重设计] 单一类型注册表——注解枚举
+    #   唯一真相 + gbengine 域 + 别名表。IDB _enums 对账只报不改(面2):
+    #   无主枚举 adjudication-required 呈报(渲染不生成), 大小写同盘名构建期呈报。
+    _registry = TypeRegistry.build(
+        PROJECT_ROOT, ida_enums=ida_enums,
+        class_roots=[n.full_name for n in scope_tree.roots])
+    _set_type_registry(_registry)  # main 构建版(含 class_roots)回填单例
+    for _nm in sorted(_registry.adjudication_required):
+        print('[adjudication-required] IDB 枚举无主(注解/gbengine 均无): %s '
+              '——不渲染, 待定谳(enums.json 或 domain_exclude)' % _nm)
+    for _low, _ns in sorted(_registry.case_collisions.items()):
+        print('[case-collision] 大小写同盘名(注册表构建期呈报): %s' % ', '.join(_ns))
 
     # Build all_classes from export + decomp + annotation (for complete coverage)
     all_classes = set(ida_classes.keys()) | set(methods_by_class.keys()) | vtable_classes | ann_structs
@@ -4289,16 +4246,19 @@ def main():
     for base_name in template_classes:
         if not should_skip_class(base_name):
             classes_with_headers.add(base_name)
+    # [P3a 枚举源切换 2026-11-24] 枚举面 = registry(注解唯一真相)。
+    #   IDB _enums 不再是枚举发射源(对账面已呈报无主名); GAME_ENUMS_UNDERSCORE
+    #   等首字符猜测机件随源切换一并废除(registry 命中即发射)。
     enum_names = set()
     enum_by_name = {}  # name -> {values: {name: val}}
-    for ename, edata in ida_enums.items():
-        values = edata.get('values', {})
-        if not values:
+    for _ename, _e in _registry.enums.items():
+        if _e['form'] != 'flat' or not _e['values']:
             continue
-        if ename and (ename[0].isalpha() or ename[0] == '_') and '<' not in ename and '::' not in ename:
-            classes_with_headers.add(ename)
-            enum_names.add(ename)
-            enum_by_name[ename] = {'name': ename, 'values': values}
+        if should_skip_class(_ename):
+            continue
+        classes_with_headers.add(_ename)
+        enum_names.add(_ename)
+        enum_by_name[_ename] = {'name': _ename, 'values': _e['values']}
 
     # Build case-insensitive enum lookup for collision detection
     enum_by_lower = {}
@@ -4306,6 +4266,11 @@ def main():
         enum_by_lower.setdefault(ename.lower(), []).append((ename, edata))
 
     embedded_enums = set()  # enum names already embedded in a class header
+
+    # [R-6 产物集先知 2026-11-24·用户批准重设计] 一次 codegen 运行的全部头产物
+    #   写点即登记; 清理=现存−expected−基建名单; manifest 落盘
+    #   (运行间无顺序依赖, 清理不用启发式)。
+    expected_outputs = set()
 
     for cls_name in sorted(all_classes):
         if should_skip_class(cls_name):
@@ -4332,25 +4297,27 @@ def main():
                     output_path = _tpl_subdir_path / ("%s.h" % _sanitize_filename(_tpl_expr))
                     with open(output_path, 'w', encoding='utf-8') as f:
                         f.write(content)
+                    expected_outputs.add(str(output_path))
                     generated += 1
                     _fallback = _tpl_subdir_path / ("%s.h" % _sanitize_filename(cls_name))
-                    if not _fallback.exists():
-                        with open(_fallback, 'w', encoding='utf-8') as f:
-                            f.write('#pragma once\n')
-                            f.write('#include "%s"\n' % output_path.name)
-                            # Provide concrete typedef for the specialization
-                            # e.g. typedef CTaskTpl<tagEffTaskParam, _CEffModel_cb> CTaskTpl_tagEffTaskParam_CEffModel;
-                            _fb_mfp = re.search(r'__thiscall\s+(\w+)\s*::\s*\*', _tpl_expr)
-                            if _fb_mfp:
-                                _fb_cls = _fb_mfp.group(1)
-                                _fb_name = '_{}_cb'.format(_fb_cls)
-                                _fb_tpl_name = _tpl_expr.split('<')[0]
-                                _fb_params = _tpl_expr.split('<', 1)[1].rsplit('>', 1)[0]
-                                _fb_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', _tpl_expr)
-                                if _fb_full:
-                                    _fb_type = _fb_full.group(0)
-                                    _fb_params_san = _fb_params.replace(_fb_type, _fb_name)
-                                    f.write('typedef %s<%s> %s;\n' % (_fb_tpl_name, _fb_params_san, cls_name))
+                    # [R-6] 写点即登记; exists() 探测退役(先知化——本次运行幂等重写)
+                    with open(_fallback, 'w', encoding='utf-8') as f:
+                        f.write('#pragma once\n')
+                        f.write('#include "%s"\n' % output_path.name)
+                        # Provide concrete typedef for the specialization
+                        # e.g. typedef CTaskTpl<tagEffTaskParam, _CEffModel_cb> CTaskTpl_tagEffTaskParam_CEffModel;
+                        _fb_mfp = re.search(r'__thiscall\s+(\w+)\s*::\s*\*', _tpl_expr)
+                        if _fb_mfp:
+                            _fb_cls = _fb_mfp.group(1)
+                            _fb_name = '_{}_cb'.format(_fb_cls)
+                            _fb_tpl_name = _tpl_expr.split('<')[0]
+                            _fb_params = _tpl_expr.split('<', 1)[1].rsplit('>', 1)[0]
+                            _fb_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', _tpl_expr)
+                            if _fb_full:
+                                _fb_type = _fb_full.group(0)
+                                _fb_params_san = _fb_params.replace(_fb_type, _fb_name)
+                                f.write('typedef %s<%s> %s;\n' % (_fb_tpl_name, _fb_params_san, cls_name))
+                    expected_outputs.add(str(_fallback))
                     continue
             continue
         ann_struct = _is_data.get(cls_name, {})
@@ -4377,12 +4344,6 @@ def main():
         has_ann_size = bool(ann_struct.get('size'))
         if not has_members and not has_methods and not has_vtable and not has_ann_members and not has_ann_size:
             continue
-
-        # Skip class generation if name conflicts with an enum and class is just an enum wrapper
-        if cls_name in enum_names:
-            ann_size = ann_struct.get('size', 0)
-            if ann_size and ann_size <= 4 and not has_ann_members:
-                continue
 
         # Embed enums that would collide with this class header on disk:
         # - case-insensitive match (UIEMOTE vs UIEmote) — Windows FS collision
@@ -4411,6 +4372,7 @@ def main():
         output_path = _subdir_path / ("%s.h" % _sanitize_filename(cls_name))
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(content)
+        expected_outputs.add(str(output_path))
         # [C2143 根治·T56 #13 修 2026-10-19] **include 垫片**（非全副本！）
         # 全副本镜像=C2011 新源（双定义 ×213 TU ×20 类 ✗✗ 我的 C2143 修引入）——
         # 垫片形：include/pal3/gen/X.h = `#include` 指向 pal3/src/ 权威件（单定义 ✓）。
@@ -4427,25 +4389,22 @@ def main():
             pass  # 垫片失败不阻主产物（pal3/src/ 权威 ✓）
         generated += 1
 
-    # Generate enum headers from ida_structs.json._enums
+    # Generate enum headers — [P3a] registry(注解唯一真相)供源, 保号值直写。
+    #   (旧源 ida_structs.json._enums + GAME_ENUMS_UNDERSCORE 白名单退役;
+    #    IDB 独有游戏枚举已 E-1 定谳入 enums.json——_BGM/_BIGMAP_ELEMENT/_FLIP)
     enum_count = 0
-    for name, edata in sorted(ida_enums.items()):
-        values = edata.get('values', {})
+    for name in sorted(_registry.flat_enum_names()):
+        _eflat = _registry.enums[name]
+        values = _eflat['values']
         if not values:
-            continue
-        if '<' in name or '::' in name:
-            continue
-        # Allow _-prefixed game enums, skip system _-prefixed ones
-        GAME_ENUMS_UNDERSCORE = {'_BGM', '_FLIP', '_BIGMAP_ELEMENT', '_MU_R_STATE'}
-        if not name[0].isalpha() and name not in GAME_ENUMS_UNDERSCORE:
             continue
         if should_skip_class(name):
             continue
 
-        lines = ['#pragma once', '// Auto-generated: %s enum' % name, '',
+        lines = ['#pragma once', '// Auto-generated: %s enum (annotation enums.json)' % name, '',
                  '#include "pal3/ida_types.h"', '']
         lines.append('enum %s {' % name)
-        sorted_vals = sorted(values.items(), key=lambda x: int(x[1]))
+        sorted_vals = sorted(values.items(), key=lambda x: x[1])
         for vname, vval in sorted_vals:
             lines.append('    %s = %s,' % (vname, vval))
         lines.append('};')
@@ -4461,6 +4420,7 @@ def main():
             continue
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
+        expected_outputs.add(str(out_path))
         enum_count += 1
 
     # Generate template class stubs (simplified, non-template version)
@@ -4501,26 +4461,31 @@ def main():
 
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
+        expected_outputs.add(str(out_path))
         tmpl_count += 1
 
-    # Clean stale headers.
-    # [清理判据修正 2026-10-20] 原判据「类名在 SKIP_CLASSES」只清「类被跳过」的文件，
-    # 不清「已不在产出地址/已不产出」的文件 ⇒ 旧版双址镜像残留的
-    # `include/pal3/*.h`（791 个同类陈旧副本）永不清理 ⇒ 三副本分叉：
-    # 同一类在 `include/pal3/X.h`（旧·class）与 `pal3/src/Misc/X.h`（新·typedef）
-    # 冲突，2026-10-20 实测引发 S2 121→0 的级联。
-    # 正判据：**本次未产出的 .h 一律清掉**（产出地址由 codegen 全权拥有）。
-    # 基础设施头（手写、非产出）须排除。
-    # [保守回退 2026-10-20·当场读] 用「本次未产出」判据会误删**模板实例化头**
-    #   （CTaskTpl_tagEffTaskParam__unsigned_long_… 由 tmpl 路径产出、不在 all_classes）
-    #   ⇒ C1083 ×214 全线打不开头文件。判据回退为保守的 SKIP_CLASSES 形；
-    #   旧地址孤儿问题已用**手动清理 include/pal3/*.h 791 个**解决。
+    # Clean stale headers — [R-6 差集清理 2026-11-24·用户批准重设计]
+    #   正判据 = 本次未产出的 .h 一律清掉(2026-10-20 级联教训);
+    #   模板实例化头已入 expected(写点即登记, 保守回退条件消失);
+    #   基建名单(手写/非产出)显式排除; 差集逐条日志 + manifest 落盘。
+    _INFRA_HEADERS = {'globals.h', 'globals.cpp', 'free_functions.h',
+                      'free_functions.cpp', 'scalar_typedefs.h', '_ns_udts.h'}
     stale_removed = 0
+    _stale_names = []
     for hf in OUTPUT_DIR.rglob("*.h"):
-        stem = hf.stem
-        if should_skip_class(stem) and stem not in (enum_names or ()):
-            hf.unlink()
-            stale_removed += 1
+        if str(hf) in expected_outputs or hf.name in _INFRA_HEADERS:
+            continue
+        hf.unlink()
+        stale_removed += 1
+        _stale_names.append(str(hf.relative_to(OUTPUT_DIR)))
+    if _stale_names:
+        print('  [cleanup] %d 个陈旧头移除(差集): %s%s'
+              % (stale_removed, ', '.join(_stale_names[:10]),
+                 ' ...' if len(_stale_names) > 10 else ''))
+    with open(OUTPUT_DIR / '_manifest.json', 'w', encoding='utf-8') as _mf:
+        json.dump({'generated_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                   'expected_outputs': sorted(expected_outputs),
+                   'stale_removed': _stale_names}, _mf, ensure_ascii=False, indent=1)
 
     # [C2011 修 2026-10-19·P0-A] 共享 ns-decl 头写出（声明层唯一化收口）
     try:
@@ -4553,7 +4518,7 @@ def main():
             _fwd_needed = sorted(
                 t for t in ((_ptr_types - _defined_here) - _builtin)
                 if not should_skip_class(t)   # SDK 型来自 ida_types.h，勿再声明
-                and t not in _pod_scalar_names())  # [C2371修 2026-11-17] POD typedef型
+                and t not in _scalar_alias_names())  # [P3b] 别名表型(scalar_typedefs.h 已供名)
             _fwd_lines = ['class %s;' % _t for _t in _fwd_needed]
 
             # [C2146 修 2026-10-19] 按值引用类型须**完整定义**（前向声明不够）
@@ -5372,8 +5337,8 @@ def generate_globals():
                 continue  # 非法类名(畸形抽取形), 跳过
             if cls in _IDA_TYPE_ALIASES:
                 continue  # ida_types.h已知别名, 编译器已有typedef
-            if cls in _pod_scalar_names():
-                continue  # [C2371修 2026-11-17] POD typedef型(scalar_typedefs.h已有)
+            if cls in _scalar_alias_names():
+                continue  # [P3b] 别名表型(scalar_typedefs.h 已供名)
             h_lines.insert(insert_pos, 'class %s;' % cls)
             _fwd_emitted.append(cls)
             insert_pos += 1
@@ -5765,50 +5730,21 @@ def generate_globals_cpp():
     out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print("  Globals: %d in globals.cpp" % inc)
 
-    # [POD typedef集中管理 2026-11-17] 写出scalar_typedefs.h
-    # [SKIP类并入 2026-11-18] _pod_scalar_names全集含被SKIP的cast用4字节类
-    #   (gbSingleton_gbGfxManager实证: cast形语料需类型名, POD typedef合法路径
-    #   但generate_header不产出→typedef缺失→C2065)。写入源=预扫描全集按size映射。
-    # [SKIP类并入 2026-11-18] _pod_scalar_names全集含被SKIP的cast用4字节类
-    #   (gbSingleton_gbGfxManager实证: cast形语料需类型名)。写入源=预扫描全集,
-    #   基型按各**自身size**映射(修同名基型冲突: ACTION_KIND uchar vs DWORD
-    #   双typedef实证), 排序去重保证幂等。
-    _sz_map = {1: 'unsigned char', 2: 'unsigned short', 4: 'DWORD', 8: 'unsigned __int64'}
-    _pod_all = sorted(_pod_scalar_names())
+    # [P3b 2026-11-24·用户批准重设计] scalar_typedefs.h 唯一内容 =
+    #   type_aliases.json 显式别名(POD 扫描/_POD_TYPEDEFS 增量通道退役)。
+    #   产出恒定 = 别名表条目数, 回归可断言。枚举让位/真定义过滤等粘合剂全废
+    #   (registry 保证枚举名不入别名表——N16 门强制)。
     _std_path = OUTPUT_DIR / "scalar_typedefs.h"
+    _reg_g = get_type_registry()
     with open(_std_path, 'w', encoding='utf-8') as _f:
         _f.write('#pragma once\n')
-        _f.write('// POD scalar typedefs (centralized management)\n')
-        # [P0.5 2026-11-18] 独立编译基座: DWORD/uchar等基型来自ida_defs.h链
-        #   (S1 90头C2146首行即炸实证: typedef DWORD X; 无DWORD定义)
+        _f.write('// Explicit scalar aliases — single channel: data/annotations/type_aliases.json\n')
+        _f.write('// (POD scan heuristic retired 2026-11-24; N16 gate enforces base+evidence)\n')
         _f.write('#include "pal3/ida_defs.h"\n')
-        _td_lines = []
-        _covered = set()
-        # [枚举让位 20261124] IDB 枚举名由枚举头承载(enum X {...} 同名
-        #   typedef = C2371 重定义冲突防除)
-        _idb_enum_names = set((_get_ida_structs() or {}).get('_enums', {}) or {})
-        for _td in sorted(set(_POD_TYPEDEFS)):
-            if _td.split()[-1].rstrip(';') in _idb_enum_names:
-                continue
-            _td_lines.append(_td + '\n')
-            _covered.add(_td.split()[-1].rstrip(';'))
-        _is_data_g = _get_ida_structs() or {}
-        for _pn in _pod_all:
-            if _pn in _covered or _pn in _idb_enum_names:
-                continue
-            # [嵌套限定名过滤 2026-11-18] typedef Cls::Nested非法C++(顶层名形式)
-            #   →PlayerMgr::PoisonState写入=PlayerMgr未声明级联C2065×251实证
-            if '::' in _pn:
-                continue
-            # [真定义冲突过滤] 手写/遗留头已有class/struct真定义的名字不入typedef
-            #   (gbVolumeModifier/BEZIER与gbengine_api.h真定义C2371实证)
-            if _pod_has_real_definition(_pn):
-                continue
-            _sz = (_is_data_g.get(_pn) or {}).get('size') or 4
-            _td_lines.append('typedef %s %s;' % (_sz_map.get(_sz, 'DWORD'), _pn) + '\n')
-        for _l in sorted(set(_td_lines)):
-            _f.write(_l)
-    print("  Scalar typedefs: %d(全集去重) in scalar_typedefs.h" % len(set(_td_lines)))
+        for _an in sorted(_reg_g.aliases):
+            _ae = _reg_g.aliases[_an]
+            _f.write('typedef %s %s;\n' % (_ae.get('base', 'int'), _an))
+    print("  Scalar typedefs: %d (type_aliases.json 显式别名唯一通道)" % len(_reg_g.aliases))
 
 
 def run_header_generation():
