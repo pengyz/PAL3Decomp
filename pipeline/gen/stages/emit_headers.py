@@ -4361,27 +4361,6 @@ def main():
     embedded_enums = set()  # enum names already embedded in a class header
 
     for cls_name in sorted(all_classes):
-        if cls_name == 'gbSingleton_gbGfxManager':
-            import sys as _s_dbg
-            _why = []
-            if name_in := (cls_name in SKIP_CLASSES):
-                _why.append('SKIP_CLASSES')
-            if cls_name in SDK_PLATFORM_TYPES:
-                _why.append('SDK')
-            for _p in SKIP_PREFIXES:
-                if cls_name.startswith(_p):
-                    _why.append('PREFIX:' + _p)
-            _st = _system_types()
-            if cls_name in _st['names']:
-                _why.append('DATA:names')
-            for _p in _st['prefixes']:
-                if cls_name.startswith(_p):
-                    _why.append('DATA-PFX:' + _p)
-            for _s in _st['suffixes']:
-                if cls_name.endswith(_s):
-                    _why.append('DATA-SFX:' + _s)
-            print('[DBG-GS] why=%s SKIP_CLASSES_size=%d' % (
-                _why or 'none-pass', len(SKIP_CLASSES)), file=_s_dbg.stderr)
         if should_skip_class(cls_name):
             continue
         # :: names are nested types — emitted inside parent via scope tree
