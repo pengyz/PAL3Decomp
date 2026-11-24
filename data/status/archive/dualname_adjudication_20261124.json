@@ -34,7 +34,17 @@
   "DEL_GLOBAL gbGfxDriverInfo g_hInstance (成员 hinst 1 refs 胜)",
   "DEL_GLOBAL gbGfxDriverInfo g_nScreenWidth (成员 newwindow 1 refs 胜)",
   "DEL_GLOBAL gbGfxDriverInfo g_nScreenHeight (成员 waitforverticalblank 1 refs 胜)",
-  "DEL_GLOBAL tagEffSParticleSys qword_17A8438 (成员 m_ptLastSpawn 3 refs 胜)"
+  "DEL_GLOBAL tagEffSParticleSys qword_17A8438 (成员 m_ptLastSpawn 3 refs 胜)",
+  {
+   "date": "2026-11-25",
+   "case": "RoleSystem 2 外来绑定(Camera::InitFromScene/ScriptSystem::UpdateTimers)",
+   "findings": [
+    "audit 正确: mov ecx,0xBFDBB0→call Camera::InitFromScene 站点真实存在(我方 B9 扫描因 get_name_ea_simple mangle 解析失败漏配)",
+    "0xBFDBB0=g_RoleSystemExtra0(RoleSystem 实例, m_nMoveMode 用法在册)同址受 Camera 接收——双身份并存",
+    "InitFromScene 方法体走查(163B): disp[16,680,1284,1356,1456]——RoleSystem 命中2(1284/1456)+Camera 命中1(16)+未知2=混合归属, 单方法证据不足定谳"
+   ],
+   "verdict": "开放案: Extra0 身份竞争(RoleSystem 成员用法 vs Camera 接收者)——需 InitFromScene 全族+Extra0/Extra1 完整走查聚类"
+  }
  ],
  "adjudications": [
   {
