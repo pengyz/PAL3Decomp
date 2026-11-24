@@ -397,8 +397,9 @@ def generate_forward_decls(all_code):
             seen_t = set()
             # [C2371修 2026-11-17] POD typedef型排除(对抗复核P2-5, 现库无命中,
             #   latent防漂移)——typedef已在ida_types.h链全域可见
-            from stages.emit_headers import _pod_scalar_names as _pod_g
-            _pod_gset = _pod_g()
+            # [P3b 2026-11-24] POD 扫描退役——别名表唯一通道(语义等价迁移)
+            from stages.emit_headers import _scalar_alias_names as _alias_g
+            _pod_gset = _alias_g()
             for _u, _t in _class_type_externs:
                 if _t in seen_t or _t in _pod_gset:
                     continue
@@ -1221,11 +1222,32 @@ def _emit_free_functions_header(store, header_dir):
     #   ida_types.h全域可见 ⇒ class前置=重定义）。延迟import避免环。
     # [对抗复核P2-4 2026-11-17] fail-open退役——import失败=管线已坏,
     #   静默跳过滤会让C2371复活无信号, 直接raise(fail-loud铁律)
-    from stages.emit_headers import _pod_scalar_names as _pod_names
-    fwd_types = {t for t in fwd_types if t not in _pod_names()}
-    if fwd_types:
-        for t in sorted(fwd_types):
-            h_lines.append('class %s;' % t)
+    # [P3b 2026-11-24] POD 扫描退役——别名表唯一通道(语义等价迁移)
+    from stages.emit_headers import _scalar_alias_names as _alias_names
+    fwd_types = {t for t in fwd_types if t not in _alias_names()}
+    # [S1 fwd gate 2026-11-24·用户批准②] external typedef/macro/enum 抑制
+    #   (prelude 已供, class 前置必炸 C2040); 未知名裁决队列(fail-loud)——
+    #   free_functions.h 同律。
+    from stages.emit_headers import get_type_registry, _adjudicate_type
+    _reg_ff = get_type_registry()
+    try:
+        import annotation_view as _av_ff
+    except ImportError:
+        from pipeline.gen import annotation_view as _av_ff
+    _ff_emitted = []
+    for t in sorted(fwd_types):
+        _dom, _ = _reg_ff.resolve(t)
+        if _dom == 'external':
+            if _reg_ff.external_kind(t) in ('typedef', 'macro', 'enum'):
+                continue
+        elif (_av_ff.struct_by_class(t) is None
+              and _reg_ff.header_for(t) is None
+              and t not in _ida_known_ff()):
+            _adjudicate_type(t, 'free_functions.h', sample='free-func decl')
+            continue   # 未知名: 裁决队列, 不静默前置
+        _ff_emitted.append(t)
+        h_lines.append('class %s;' % t)
+    if _ff_emitted:
         h_lines.append('')
     # [作用域限定声明守卫 2026-11-14] `Class::Method(...)` 形的类外成员声明
     # = 非法C++(C2653/C2039) —— free_functions.h 只发真自由函数。
@@ -1249,6 +1271,37 @@ def _emit_free_functions_header(store, header_dir):
         t.parent.mkdir(parents=True, exist_ok=True)
         with open(t, 'w', encoding='utf-8') as f:
             f.write(content)
+
+
+def _ida_known_ff():
+    """free_functions fwd gate 的 known 集 = ida_structs 键(生成头拥有者)。
+    [S1 2026-11-24] 注解∧ida 双源; 过严判据误杀 C2501×284 实证修正。"""
+    global _IDA_KNOWN_FF
+    if _IDA_KNOWN_FF is not None:
+        return _IDA_KNOWN_FF
+    from stages.emit_headers import _get_ida_structs, should_skip_class
+    _IDA_KNOWN_FF = {k for k, v in (_get_ida_structs() or {}).items()
+                     if isinstance(v, dict) and not should_skip_class(k)}
+    return _IDA_KNOWN_FF
+
+
+_IDA_KNOWN_FF = None
+
+def _flush_adjudication_queue():
+    """[S1] cpp 阶段收尾 flush——emit_headers main 在 headers 阶段已 flush 过,
+    cpp 阶段(fill_functions gate)新增项在此落盘。"""
+    from stages.emit_headers import _ADJUDICATION_QUEUE
+    import json as _json, time as _time
+    if _ADJUDICATION_QUEUE:
+        import sys as _sys
+        _sys.stderr.write('[adjudication-queue][cpp] %d 未知名: %s\n'
+                          % (len(_ADJUDICATION_QUEUE),
+                             ', '.join(sorted(_ADJUDICATION_QUEUE)[:12])))
+        _rp = store.project_root / 'data' / 'status' / 'adjudication_queue.json'
+        with open(_rp, 'w', encoding='utf-8') as _qf:
+            _json.dump({'generated_at': _time.strftime('%Y-%m-%d %H:%M:%S'),
+                        'queue': _ADJUDICATION_QUEUE}, _qf,
+                       ensure_ascii=False, indent=1)
 
 
 # [N18 2026-11-19] ida_structs flags 通道——export 盖章的注解复制(单向流合法),
@@ -1310,6 +1363,7 @@ def run_cpp_generation(filter_classes=None):
         print('[S3] scoped mode: skip free_functions.h regeneration (keep full)')
     else:
         _emit_free_functions_header(store, _header_dir)
+        _flush_adjudication_queue()   # [S1] cpp 阶段裁决队列落盘
 
     for cls_name, methods in sorted(by_class.items()):
         if filter_classes and cls_name not in filter_classes:

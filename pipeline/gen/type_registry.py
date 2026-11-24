@@ -57,6 +57,11 @@ class TypeRegistry(object):
         self.aliases = {}
         # gbengine 域: 类/枚举名 -> include 相对路径('gbengine/X.h')
         self.gbengine_types = {}
+        # [external 域 2026-11-24·用户批准② 对抗复核v2] 平台/工具链提供型:
+        #   name -> {'provided_by', 'kind': typedef|class|macro|enum}
+        #   语义="该名已由某外部头提供"(fwd 抑制/include 提供方头), 与
+        #   system_names 的"排除"语义轴不同。
+        self.external = {}
         # IDB _enums 有而 registry 无(渲染期硬报警 adjudication-required)
         self.adjudication_required = set()
         # 大小写 FS 碰撞(UIEMOTE/UIEmote 族)——注册表构建期一次裁决的输入
@@ -127,6 +132,33 @@ class TypeRegistry(object):
                 except Exception:
                     pass
 
+        # 3.5 [external 域 2026-11-24·用户批准②] 平台提供型两个数据源:
+        #   a) sdk_types.json 带 provided_by 的条目(对抗复核v2 迁册, 99 条)
+        #   b) prelude(include/pal3/ida_types.h)typedef 行扫描(gbengine 同款
+        #      自动建档——uchar/unchar/uint/_BYTE/_WORD/_DWORD/_QWORD 手工词表
+        #      与别名表脱节教训: class uchar; C2371×8 实证)
+        try:
+            with open(os.path.join(ann_dir, 'sdk_types.json'), encoding='utf-8') as f:
+                _sdk = json.load(f)
+            for e in _sdk:
+                if (isinstance(e, dict) and e.get('provided_by')
+                        and isinstance(e.get('name'), str)):
+                    reg.external[e['name']] = {
+                        'provided_by': e['provided_by'],
+                        'kind': e.get('kind') or 'typedef',
+                    }
+        except Exception:
+            pass
+        prelude = os.path.join(root, 'include', 'pal3', 'ida_types.h')
+        if os.path.exists(prelude):
+            _td_re = re.compile(r'^typedef\s+(?:unsigned\s+|signed\s+)?\w[\w\s]*?\**\s+(\w+)\s*;')
+            with open(prelude, encoding='utf-8', errors='replace') as f:
+                for line in f:
+                    m = _td_re.match(line.strip())
+                    if m:
+                        reg.external.setdefault(m.group(1), {
+                            'provided_by': 'pal3/ida_types.h', 'kind': 'typedef'})
+
         # 4. 头路径推导(TYPE_HEADER_MAP 面)
         #    平铺枚举 -> get_class_dir(name)/name.h; 嵌套枚举 -> 容器类头;
         #    类根 -> 同平铺式。lazy import 防环(emit_headers import 本模块)。
@@ -191,10 +223,38 @@ class TypeRegistry(object):
     def is_alias(self, type_name):
         return type_name in self.aliases
 
+    def is_external(self, type_name):
+        """平台/工具链提供型(external 域)。"""
+        return type_name in self.external
+
+    def external_kind(self, type_name):
+        e = self.external.get(type_name)
+        return e['kind'] if e else None
+
+    def resolve(self, type_name):
+        """[五域单点解析 2026-11-24·对抗复核v2] 类型名 → 声明通道。
+        返回 (domain, info): domain ∈ enum|alias|gbengine|external|class|None。
+        所有 include/fwd/参数候选统一过此单点——解析失败=裁决队列(fail-loud),
+        禁止静默 class 前置(静默降级公理)。"""
+        if self.is_enum(type_name):
+            return ('enum', self.enum_entry(type_name))
+        if type_name in self.aliases:
+            return ('alias', self.aliases[type_name])
+        if type_name in self.gbengine_types:
+            return ('gbengine', {'header': self.gbengine_types[type_name]})
+        if type_name in self.external:
+            return ('external', self.external[type_name])
+        if type_name in self.class_headers:
+            return ('class', {'header': self.class_headers[type_name]})
+        return (None, None)
+
     def header_for(self, type_name):
         """TYPE_HEADER_MAP(面3): 类型名 → '#include' 相对路径(pal3/src 基准)。
         枚举恒 include(VC6 无 enum fwd); gbengine → 'gbengine/X.h';
-        生成类 → 'Misc/X.h' 式; 嵌套枚举 → 容器头。未知返回 None。"""
+        生成类 → 'Misc/X.h' 式; 嵌套枚举 → 容器头;
+        external 且 provided_by 非系统头 → 提供方头(<d3dx9.h> 形)。
+        prelude 契约头(windows.h/stdio.h/pal3/ida_types.h/scalar_typedefs.h)
+        已被每个生成头引用 → 返回 None(调用方抑制 include/fwd)。未知返回 None。"""
         e = self.enum_entry(type_name)
         if e:
             return e['header_path']
@@ -202,6 +262,13 @@ class TypeRegistry(object):
             return self.gbengine_types[type_name]
         if type_name in self.class_headers:
             return self.class_headers[type_name]
+        ext = self.external.get(type_name)
+        if ext:
+            pb = ext.get('provided_by') or ''
+            if pb in ('windows.h', 'stdio.h', 'pal3/ida_types.h', 'scalar_typedefs.h',
+                      'pal3/globals.h'):
+                return None   # prelude 契约: 恒可见, 抑制
+            return '<%s>' % pb   # 系统头: 条件 include 形
         return None
 
     def flat_enum_names(self):

@@ -16,7 +16,7 @@
   },
   "0x4c": {
    "name": "m_state",
-   "type": "UIButton_UIBUTTON_STATE",
+   "type": "UIButton::UIBUTTON_STATE",
    "source": "annotation",
    "evidence_level": "unverified"
   },
@@ -311,5 +311,17 @@
    "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "nested_types": {
+  "UIBUTTON_STATE": {
+   "kind": "enum",
+   "binary_size": 4,
+   "values": {
+    "NORMAL": 0,
+    "MOUSEON": 1,
+    "MOUSEDOWN": 2,
+    "NUMSTATE": 3
+   }
+  }
+ }
 }

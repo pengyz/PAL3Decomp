@@ -40,7 +40,7 @@
   },
   "0x98": {
    "name": "m_state",
-   "type": "UIStaticFlex_State",
+   "type": "UIStaticFlex::State",
    "source": "pdb_fill_incomplete",
    "evidence_level": "unverified"
   }
@@ -52,5 +52,16 @@
    "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "nested_types": {
+  "State": {
+   "kind": "enum",
+   "binary_size": 4,
+   "values": {
+    "OPENING": 0,
+    "CLOSING": 1,
+    "NORMAL": 2
+   }
+  }
+ }
 }

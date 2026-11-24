@@ -709,7 +709,7 @@
  },
  "_doc3": "域字段律 2026-11-22(用户第一性质询裁决): 每条目应带 domain 显式标注(crt=VC6 CRT/STL 静态链接工具链域 | dll=GBENGINE 等引擎DLL域 | engine-header=引擎共享头类(逐类定谳排队) | deferred=暂缓未定谳)。collect 只机械读本表键集, 无任何 override/字段嗅探逻辑(管线只管收集)。域裁决变更=改本表, 不改管线。structs 注解与域排除正交: CRT/DLL 类可有注解 methods(供参考/匹配), 不改变域归属。",
  "types": {
-  "_doc": "系统库标记(通用规则, 用户裁定 20261124: 跳过的从头到尾都是系统库)——收集/导出/发射三面共读唯一数据源。P1b 收敛: emit_headers SKIP_CLASSES/SKIP_PREFIXES/SDK_PLATFORM_TYPES 硬编码内容并入 system_names/prefixes; 'gb' 前缀退役(域归属由 classes 显式清单+gbengine 头扫描承载, 未列名 gb* 走裁决队列), \"not a member\" 导入垃圾清除。",
+  "_doc": "系统库标记(通用规则, 用户裁定 20261124: 跳过的从头到尾都是系统库)——收集/导出/发射三面共读唯一数据源。P1b 收敛: emit_headers SKIP_CLASSES/SKIP_PREFIXES/SDK_PLATFORM_TYPES 硬编码内容并入 system_names/prefixes; 'gb' 前缀退役(域归属由 classes 显式清单+gbengine 头扫描承载, 未列名 gb* 走裁决队列), \"not a member\" 导入垃圾清除。 [2026-11-24 P4 修正] \"_inline_\" 前缀退役: IDA 合成名=伪影非系统库(语义归位 scope_tree.is_ida_artifact)——前缀激活后export 吞掉全部 _inline_ 合成类型(21 til 条目实证)致 S2 0/230。",
   "system_names": [
    "BOOL",
    "BYTE",
@@ -896,7 +896,6 @@
    "IDirect",
    "IUnknown",
    "_D3D",
-   "_inline_",
    "vtbl_",
    "_DI",
    "_IMAGE",

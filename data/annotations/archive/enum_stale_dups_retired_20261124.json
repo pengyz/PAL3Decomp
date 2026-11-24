@@ -51,6 +51,20 @@
     "值表冲突: 注解 TRIANGLE_LIST=1 vs 头 LINELIST=2——头赢(gbengine 域律), 差异留档待头值核证",
     "语料仅 (gbPrimType) 铸形用法, 零成员名依赖"
    ]
+  },
+  "UIStaticFlex_State (flat)→UIStaticFlex::State": {
+   "verdict": "S3-A 键形迁移(非退役): 平铺→嵌套, 值表随迁",
+   "evidence": [
+    "PAL3A PDB UIButton/UIStaticFlex 真类实证",
+    "NORMAL(2) vs NORMAL(0) C2371×230 全TU",
+    "用户裁定 A 双双迁嵌套 2026-11-24"
+   ]
+  },
+  "UIButton_UIBUTTON_STATE (flat)→UIButton::UIBUTTON_STATE": {
+   "verdict": "S3-A 键形迁移(非退役): 平铺→嵌套, 值表随迁",
+   "evidence": [
+    "同上; m_state@0x4C 成员引用同步"
+   ]
   }
  },
  "removed_values": {

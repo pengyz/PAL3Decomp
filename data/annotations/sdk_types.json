@@ -23,7 +23,10 @@
     "type": "long",
     "source": "sdk"
    }
-  }
+  },
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "tagPOINT",
@@ -39,7 +42,10 @@
     "type": "long",
     "source": "sdk"
    }
-  }
+  },
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "tagSIZE",
@@ -55,7 +61,10 @@
     "type": "long",
     "source": "sdk"
    }
-  }
+  },
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "tagMSG",
@@ -91,7 +100,10 @@
     "type": "tagPOINT",
     "source": "sdk"
    }
-  }
+  },
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "_GUID",
@@ -117,7 +129,10 @@
     "type": "unsigned char[8]",
     "source": "sdk"
    }
-  }
+  },
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "std::string",
@@ -173,13 +188,19 @@
   "name": "D3DXMATRIX",
   "binary_size": 64,
   "known_members": {},
-  "source": "DirectX8 SDK + 二进制步长（sg_emitter 0x40→0x4C=12 · sg_particle_data 0x44→0x54=16）"
+  "source": "DirectX8 SDK + 二进制步长（sg_emitter 0x40→0x4C=12 · sg_particle_data 0x44→0x54=16）",
+  "provided_by": "d3dx9.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "D3DXQUATERNION",
   "binary_size": 16,
   "known_members": {},
-  "source": "DirectX8 SDK + 二进制步长（sg_emitter 0x40→0x4C=12 · sg_particle_data 0x44→0x54=16）"
+  "source": "DirectX8 SDK + 二进制步长（sg_emitter 0x40→0x4C=12 · sg_particle_data 0x44→0x54=16）",
+  "provided_by": "d3dx9.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "D3DXPLANE",
@@ -203,18 +224,919 @@
     "source": "sdk"
    }
   },
-  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
+  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）",
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "SIZE",
   "binary_size": 8,
   "known_members": {},
-  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
+  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）",
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
  },
  {
   "name": "RECT",
   "binary_size": 16,
   "known_members": {},
-  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）"
+  "source": "Windows SDK winuser.h（POINT = 2×LONG = 8B）+ GRPinput stride（m_mouseX@0x38 等 long 链）",
+  "provided_by": "windows.h",
+  "kind": "class",
+  "domain": "platform"
+ },
+ {
+  "name": "ATOM",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "COLORREF",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "DWORD_PTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "EXCEPTION_POINTERS",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HACCEL",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HANDLE",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HBITMAP",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HBRUSH",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HCURSOR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HDC",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HFONT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HGDIOBJ",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HGLOBAL",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HICON",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HINSTANCE",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HKEY",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HKL",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HLOCAL",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HMENU",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HMODULE",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HPEN",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HRAWINPUT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HRESULT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HRGN",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HRSRC",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HWINEVENTHOOK",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "HWND",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "IDirectInput8A",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "IDirectInputDevice8A",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "INT16",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "INT32",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "INT64",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "INT8",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "INT_PTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LCID",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LONG_PTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPARAM",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPCSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPCTSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPCWSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPPOINT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPTSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPVOID",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LPWSTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LRESULT",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "LSTATUS",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "PSCOPETABLE_ENTRY",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "PVOID",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "QWORD",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "SIZE_T",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "UINT16",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "UINT32",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "UINT64",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "UINT8",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "UINT_PTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "ULONG_PTR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "WCHAR",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "WPARAM",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "intptr_t",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "size_t",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "time_t",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "uintptr_t",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "va_list",
+  "kind": "typedef",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h typedef; class 前置=C2040(GRPinput.h:9 LPPOINT 全TU毒化实证); 五集合并集退役迁册"
+ },
+ {
+  "name": "CRITICAL_SECTION",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h/CRT 真 struct/class; class 前置合法(pre-P3 生成头先例)"
+ },
+ {
+  "name": "LPTOP_LEVEL_EXCEPTION_FILTER",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h/CRT 真 struct/class; class 前置合法(pre-P3 生成头先例)"
+ },
+ {
+  "name": "MSG",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h/CRT 真 struct/class; class 前置合法(pre-P3 生成头先例)"
+ },
+ {
+  "name": "SCROLLINFO",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h/CRT 真 struct/class; class 前置合法(pre-P3 生成头先例)"
+ },
+ {
+  "name": "WINDOWPOS",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h/CRT 真 struct/class; class 前置合法(pre-P3 生成头先例)"
+ },
+ {
+  "name": "CreateDialog",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "CreateWindow",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "DestroyWindow",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "DrawText",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "GetObject",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "LoadCursor",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "LoadIcon",
+  "kind": "macro",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "windows.h 宏污染名(_MACRO_CONFLICT_NAMES 迁册)"
+ },
+ {
+  "name": "D3DCOLOR",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "D3DCOLORVALUE",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "ID3DXEffect",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3D9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DBaseTexture9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DDevice9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DIndexBuffer9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DSurface9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DTexture9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DVertexBuffer9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirect3DVertexDeclaration9",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirectInput8",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IDirectInputDevice8",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "IUnknown",
+  "kind": "class",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3DX9 SDK(_D3DX_TYPES 退役迁册+sig 语料扫描)"
+ },
+ {
+  "name": "_D3DBASISTYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DDEGREETYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DDEVTYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DLIGHTTYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DPOOL",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DRESOURCETYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DSWAPEFFECT",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DXPARAMETER_CLASS",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "name": "_D3DXPARAMETER_TYPE",
+  "kind": "enum",
+  "provided_by": "d3dx9.h",
+  "domain": "platform",
+  "evidence": "D3D SDK 枚举(注解 sig 26 无通道名扫描实测)"
+ },
+ {
+  "_doc": "provided_by 字段 [2026-11-24 对抗复核v2·用户批准①]: name→提供方头映射(TypeRegistry external 域消费); kind=typedef|class|macro|enum; typedef/macro 的 class 前置必炸(C2040); class 名前置合法; 无 provided_by 的既有条目=SDK 布局事实(apply 2b/_get_sdk_type_sizes 消费不变)。"
+ },
+ {
+  "name": "Concurrency",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "EXCEPTION_RECORD",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "FILE",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_CatchableType",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_CatchableTypeArray",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_DIMOUSESTATE2",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_EXCEPTION_RECORD",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_ThrowInfo",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_cpinfo",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_iobuf",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "exception",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "filebuf",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "std",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "stdiobuf",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "type_info",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "GUID",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "HICON__",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "IID",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "WNDCLASSA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_FILETIME",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_MEMORYSTATUS",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_OSVERSIONINFOA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_SECURITY_ATTRIBUTES",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_STARTUPINFOA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_SYSTEMTIME",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "_WIN32_FIND_DATAA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "tagOFNA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
+ },
+ {
+  "name": "tagWNDCLASSA",
+  "kind": "class",
+  "provided_by": "windows.h",
+  "domain": "platform",
+  "evidence": "WCT∪GLOBALS_WIN 并集补册(两域共存律: system_names=不发射头, external=前置抑制/放行)——stdiobuf 漏册致 free_functions.h C2501×284 实证"
  }
 ]

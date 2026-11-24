@@ -244,14 +244,6 @@
    "CTRL_FYS": "8"
   }
  },
- "UIButton_UIBUTTON_STATE": {
-  "values": {
-   "NORMAL": "0",
-   "MOUSEON": "1",
-   "MOUSEDOWN": "2",
-   "NUMSTATE": "3"
-  }
- },
  "UIEMOTE": {
   "values": {
    "EM_NONE": "0",
@@ -292,13 +284,6 @@
    "PAGEUP": "3",
    "PAGEDOWN": "4",
    "NONE": "5"
-  }
- },
- "UIStaticFlex_State": {
-  "values": {
-   "OPENING": "0",
-   "CLOSING": "1",
-   "NORMAL": "2"
   }
  },
  "VertexProcessingType": {
@@ -896,5 +881,24 @@
    "CD_NUM": "7"
   },
   "source": "[apply 41-failure 修 2026-10-16 analyzer] 悬挂类型定义补全（root cause=FATAL 族成员类型引用未定义枚举/结构 ⇒ add_udt 推入失败 ⇒ 空壳 UDT）——PDB 形 B 级参考（PAL3A 值形；语义常量非地址/偏移，PAL3 值差异风险低，值形需访问点复核标挂账）"
+ },
+ "UIStaticFlex::State": {
+  "values": {
+   "OPENING": "0",
+   "CLOSING": "1",
+   "NORMAL": "2"
+  },
+  "scope": "nested",
+  "evidence": "[2026-11-24 S3-A 用户裁定·平铺键迁嵌套] PAL3A PDB 实证真类(方法族在册), 原件=类作用域枚举(UIPushBtn::UIPUSHBUTTON_STATE 先例同构); 平铺 NORMAL(2) vs NORMAL(0) 经 globals.h 链 C2371×230 全TU 毒化——键名原样律以 PDB 原件形态为准。"
+ },
+ "UIButton::UIBUTTON_STATE": {
+  "values": {
+   "NORMAL": "0",
+   "MOUSEON": "1",
+   "MOUSEDOWN": "2",
+   "NUMSTATE": "3"
+  },
+  "scope": "nested",
+  "evidence": "[2026-11-24 S3-A 用户裁定·平铺键迁嵌套] PAL3A PDB 实证真类(方法族在册), 原件=类作用域枚举(UIPushBtn::UIPUSHBUTTON_STATE 先例同构); 平铺 NORMAL(2) vs NORMAL(0) 经 globals.h 链 C2371×230 全TU 毒化——键名原样律以 PDB 原件形态为准。"
  }
 }

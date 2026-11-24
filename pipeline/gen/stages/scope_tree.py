@@ -29,6 +29,11 @@ def is_ida_artifact(name: str) -> bool:
         return True
     if "$" in name or "?" in name or "<" in name:
         return True
+    # [P4 语义归位 2026-11-24] _inline_ 合成名 = IDA 伪影(inline UDT hoist 通道
+    #   专用), 不发独立头; 原挂在 domain_exclude 系统库前缀(语义错挂, 前缀激活
+    #   后吞掉 export 全部合成类型致 S2 0/230 实证)。
+    if name.startswith("_inline_"):
+        return True
     return False
 
 

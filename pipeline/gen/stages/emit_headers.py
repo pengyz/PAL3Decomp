@@ -151,6 +151,17 @@ def _supersede_type_name(t):
 _NS_DECL_REGISTRY = {}   # type_name -> (decl_lines, member_line_form)
 _NS_REGISTERED_BLOCKS = set()  # [P0-A 修 2026-10-19·更优案] 注册侧块去重（纵深防御）
 
+# [S1 裁决队列 2026-11-24·用户批准② 对抗复核v2] 类型解析失败 fail-loud——
+#   未知名禁止静默 class 前置(静默降级公理); 落盘 data/status/adjudication_queue.json
+_ADJUDICATION_QUEUE = {}   # name -> {'first_seen_in': cls, 'samples': [sig...]}
+
+
+def _adjudicate_type(name, cls_name, sample=''):
+    _q = _ADJUDICATION_QUEUE.setdefault(name, {'first_seen_in': cls_name, 'samples': []})
+    if sample and sample not in _q['samples'] and len(_q['samples']) < 3:
+        _q['samples'].append(sample[:120])
+    return False
+
 
 def named_udt_scope_form(type_name, kind, member_name, body_lines):
     """命名内联 UDT 的命名空间作用域提升形（纯函数，R15 单测点）→ (ns_lines, member_line)。
@@ -654,8 +665,8 @@ def _family_graph():
     fam = {}
     seen = set()
     for start in sorted(_is.keys()):
-        if start in seen:
-            continue
+        if start in seen or start.startswith('_'):
+            continue   # [P2a 留痕段守卫] _shadowed(list) 等非条目段不入族图
         comp = set()
         stack = [start]
         while stack:
@@ -664,7 +675,7 @@ def _family_graph():
                 continue
             comp.add(cur)
             seen.add(cur)
-            stack.extend(adj.get(cur, ()) - comp)
+            stack.extend(set(adj.get(cur, ())) - comp)
         for c in comp:
             fam[c] = frozenset(comp)
     _FAMILY_CACHE = fam
@@ -1098,6 +1109,10 @@ def should_skip_class(name):
     if name in _st['names']:
         return True
     if name in _GBENGINE_CLASSES:
+        return True
+    # [P4 语义归位 2026-11-24] _inline_ 合成名 = IDA 伪影(inline UDT hoist 通道
+    #   专用), 不发独立头——原挂 domain_exclude 系统库前缀(语义错挂已退役)
+    if name.startswith('_inline_'):
         return True
     for _p in _st['prefixes']:
         if name.startswith(_p):
@@ -2125,7 +2140,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                 if ret_match:
                     rt = ret_match.group(1)
                     if rt not in PRIMITIVES and rt not in SYSTEM_TYPES and rt != cls_name and rt != 'void':
-                        include_types.add(rt)   # 按值返回=需完整定义
+                        fwd_types.add(rt)   # [S1 修] 声明侧按值返回只需前置(C++ 标准);
+                                            #   include 语义=定义/值员; 前版致循环 include
+                                            #   (CCBFiveNimbusWindow↔UIFrameWnd C2504×230)
                 # [R-5 2026-11-24·用户批准重设计] 按值参数逐参 token 化入
                 #   include/fwd 面——旧正则只匹配 `Type *` 指针形, 按值参数
                 #   (ECBStageTaskState 实证)不入接线 = C2061×46 族根因。
@@ -2144,7 +2161,7 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                             if (_bt == cls_name or _bt in PRIMITIVES
                                     or _bt in SYSTEM_TYPES or '::' in _bt or '<' in _bt):
                                 continue
-                            include_types.add(_bt)
+                            fwd_types.add(_bt)   # [S1 修] 声明侧按值参数只需前置
                 except Exception:
                     pass
 
@@ -2165,12 +2182,19 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # [R-5 2026-11-24] TYPE_HEADER_MAP 纯内存解析——registry 命中(枚举恒
         #   include/gbengine/类根)或 known_classes(本次运行确定发射头集)。
         #   文件系统探测退役(上轮 stale 产物判真=运行间状态依赖病灶)。
+        # [S1 external 域 2026-11-24·用户批准②] resolve() 五域单点:
+        #   external+prelude 契约 → 抑制(恒可见); external+系统头 → 条件 include
+        #   (<d3dx9.h> 形); 未命中 → 裁决队列(fail-loud, 禁静默 demote——
+        #   class LPPOINT; C2040 全 TU 毒化根因)。
         resolved_includes = set()
         _reg_r = get_type_registry()
         for t in include_types:
-            if _reg_r.header_for(t) is not None:
-                resolved_includes.add(t)
-            elif t in known_classes:
+            _dom, _info = _reg_r.resolve(t)
+            if _dom == 'external':
+                if _reg_r.header_for(t) is not None:
+                    resolved_includes.add(t)   # <d3dx9.h> 形条件 include
+                continue   # prelude 契约: 抑制
+            if _dom is not None or t in known_classes:
                 resolved_includes.add(t)
             else:
                 fwd_types.add(t)
@@ -2232,9 +2256,26 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     # [C2371 修 2026-11-17] POD标量typedef型排除：scalar_typedefs.h已有typedef
     # （经ida_types.h全域可见），再发 `class X;` ⇒ C2371 redefinition; different basic types
     fwd_types = {t for t in fwd_types if t not in _scalar_alias_names()}
+    # [S1 fwd gate 2026-11-24·用户批准②] 三规则:
+    #   external typedef/macro/enum → 抑制(prelude 已供, class 前置必炸 C2040);
+    #   external class → 前置合法(接口类先例);
+    #   其余名 → known_classes ∪ 注解 json 名集才可前置, 未命中 = 裁决队列
+    #   (fail-loud)而非静默发射——静默降级公理。
+    _reg_f = get_type_registry()
+    _emitted_fwd = []
     for t in sorted(fwd_types):
+        _dom, _ = _reg_f.resolve(t)
+        if _dom == 'external':
+            if _reg_f.external_kind(t) in ('typedef', 'macro', 'enum'):
+                continue   # 恒可见/前置必炸——抑制
+            # class-kind: 前置合法, 放行
+        elif ((known_classes is not None and t not in known_classes)
+              and _ann_struct_path(t) is None):
+            _adjudicate_type(t, cls_name, sample='fwd-face in %s' % cls_name)
+            continue   # 未知名: 裁决队列, 不静默前置
         lines.append("class %s;" % t)
-    if fwd_types:
+        _emitted_fwd.append(t)
+    if _emitted_fwd:
         lines.append("")
 
     # Class declaration with inheritance
@@ -4613,6 +4654,18 @@ def main():
     print("  Template stubs: %d" % tmpl_count)
     if stale_removed:
         print("  Cleaned %d stale headers" % stale_removed)
+
+    # [S1 裁决队列落盘 2026-11-24·用户批准②] fail-loud: stderr 硬报警 + 台账落盘
+    #   恒写(空=清空陈旧残留, 文件恒反映当前运行状态)
+    if _ADJUDICATION_QUEUE:
+        import sys as _sys
+        _sys.stderr.write('[adjudication-queue] %d 个未知名走裁决队列(静默 class 前置已废除): %s\n'
+                          % (len(_ADJUDICATION_QUEUE),
+                             ', '.join(sorted(_ADJUDICATION_QUEUE)[:12])))
+    with open(PROJECT_ROOT / 'data' / 'status' / 'adjudication_queue.json', 'w',
+              encoding='utf-8') as _qf:
+        json.dump({'generated_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                   'queue': _ADJUDICATION_QUEUE}, _qf, ensure_ascii=False, indent=1)
 
     # --- Generate globals.h from annotations ---
     generate_globals()

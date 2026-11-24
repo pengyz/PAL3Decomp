@@ -1199,3 +1199,36 @@
 | `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 96 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, _DWORD, _DWORD, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 96))( gfxMgr, *(_DWORD *)((char *)v7 + (_DWORD)v10 - self), 0, 0)` |
 | `::PAL3_LoadUICursor` | inline | `gbGfxManager` | 104 | no_vtables_declaration | `(*(void (**)(gbGfxManager *, int))(*(_DWORD *)gfxMgr->_tail_000 + 104))(gfxMgr, 1)` |
 | `::_todo_541590` | inline | `gbGfxManager` | 100 | no_vtables_declaration | `(*(int (**)(gbGfxManager *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 100))( gfxMgr, *(_DWORD *)(result + 4 * param_1))` |
+| `AStarPathFinder::TryExpand` | inline | `AStarPathFinder` | 4 | no_idb_vtbl_struct | `(*(int (**)(AStarPathFinder *, int, int))(*(_DWORD *)this + 4))(this, nTileX, nTileY)` |
+| `AStarPathFinder::TryExpand` | inline | `AStarPathFinder` | 8 | no_idb_vtbl_struct | `(*(void (**)(AStarPathFinder *, int, int))(*(_DWORD *)this + 8))(this, nTileX, nTileY)` |
+| `AStarPathFinder::UpdateNeighbors` | inline | `AStarPathFinder` | 8 | no_idb_vtbl_struct | `(*(unsigned __int8 (**)(AStarPathFinder *, _DWORD, _DWORD))(*(_DWORD *)this + 8))( this, *(_DWORD *)(v4 + 12), *(_DWORD *)(v4 + 16))` |
+| `CCBResultWindow::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1009, this->m_id, LOWORD(pt.x) \| (LOWORD(pt.y) << 16))` |
+| `CCBUICtrl::CreateImbibeNimbus` | inline | `UIWnd` | 16 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, int, CCBUICtrl *))(*(_DWORD *)this->_todo_48 + 16))( this->_todo_48, 256, nCount, this)` |
+| `CCBUICtrl::HideAll` | inline | `UIWnd` | 20 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int))(*(_DWORD *)todo_48 + 20))(todo_48, 1)` |
+| `CCBUICtrl::CreateButton` | inline | `UIWnd` | 16 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, int, CCBUICtrl *))(*(_DWORD *)this->_todo_48 + 16))( this->_todo_48, 131, parent, this)` |
+| `CCBUICtrl::AddTask` | inline | `UIWnd` | 16 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, tagUITask *, CCBUICtrl *))(*(_DWORD *)this->_todo_48 + 16))( this->_todo_48, 150, pTask, this)` |
+| `CCBUICtrl::DestroyUIResources` | inline | `UIWnd` | 4 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *))(*(_DWORD *)v2 + 4))(v2)` |
+| `CEffMgr::ReleaseAllRefs` | inline | `CEffObj` | 12 | no_idb_vtbl_struct | `(*(int (**)(CEffObj *))(*(_DWORD *)*p_m_pEffect + 12))(*p_m_pEffect)` |
+| `CEffMgr::RenderAll` | inline | `CEffObj` | 24 | no_idb_vtbl_struct | `(*(int (**)(CEffObj *))(*(_DWORD *)*p_m_pEffect + 24))(*p_m_pEffect)` |
+| `CEffMgr::RenderUpdate` | inline | `CEffObj` | 16 | no_idb_vtbl_struct | `(*(int (**)(CEffObj *))(*(_DWORD *)*p_m_pEffect + 16))(*p_m_pEffect)` |
+| `CEffMgr::SetEffectsTimeScale` | inline | `CEffObj` | 44 | no_idb_vtbl_struct | `(*(int (**)(CEffObj *, int))(*(_DWORD *)*p_m_pEffect + 44))(*p_m_pEffect, nVal)` |
+| `CEffMgr::Init` | inline | `CEffObj` | 48 | no_idb_vtbl_struct | `(*(void (**)(CEffObj *, int *))(*(_DWORD *)this->m_spSlots[Effect].m_pEffect + 48))( this->m_spSlots[Effect].m_pEffect, v8)` |
+| `CEffMgr::ReleaseCompletedEffects` | inline | `CEffObj` | 12 | no_idb_vtbl_struct | `(*(void (**)(CEffObj *))(*(_DWORD *)*p_m_pEffect + 12))(*p_m_pEffect)` |
+| `CEffMgr::ReleaseCompletedEffects` | inline | `CEffObj` | 32 | no_idb_vtbl_struct | `(*(unsigned __int8 (**)(CEffObj *))(*(_DWORD *)*p_m_pEffect + 32))(*p_m_pEffect)` |
+| `MainEquipUI::HandleMessage` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(int (**)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)m_pfather + 24))(m_pfather, 1000, 0, 0)` |
+| `RoleShadow::InitFromTemplate` | inline | `PalScript` | 32 | no_idb_vtbl_struct | `(*(void (**)(PalScript *, int, int *, RoleShadow *, _DWORD, int))(*(_DWORD *)p_z + 32))( p_z, dword_56B220[v9], &v32, this, *(int *)((char *)&off_5AC088 + v9 * 4), v7)` |
+| `SkillUI::InitSkillUI` | inline | `PalScript` | 28 | no_idb_vtbl_struct | `(*(void (**)(PalScript *, const char *, int *, SkillUI *, char *, _DWORD, int))(*(_DWORD *)v21 + 28))( v21, *v20, &v54, this, aSubgameApprais_5, 0, v19)` |
+| `UIAnimateCtrlEX::StepAnimation` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(int (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, this->m_Scene.m_nClipY)` |
+| `UIAnimateCtrlEX::NextFrame` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(int (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, this->m_Scene.m_nClipY)` |
+| `UICaption::Update2` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1021, this->m_id, 1)` |
+| `UIListBox::OnMessage` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::LoadListItems` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, Child)` |
+| `UIListBox::ProcessSelection` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(int (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)m_pfather + 24))( m_pfather, 1006, this->m_id, result)` |
+| `UIMap::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, LONG))(*(_DWORD *)m_pfather + 24))( m_pfather, 1005, this->m_id, this[1].m_rect.top)` |
+| `UIProgressBar::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v24 + 24))( v24, 1016, this->m_id, v22)` |
+| `UIPushButton::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, int))(*(_DWORD *)v6 + 24))(v6, 1021, this->m_id, 1)` |
+| `UIScenePanel::Update` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIScenePanel::ProcessMessage` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, unsigned int, _DWORD))(*(_DWORD *)m_pfather + 24))( m_pfather, 1003, this->m_id, 0)` |
+| `UIWnd::HitTest` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(void (**)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
+| `UIWnd::SetRect` | inline | `UIWnd` | 24 | no_idb_vtbl_struct | `(*(int (**)(UIWnd *, int, _DWORD, _DWORD))(*(_DWORD *)this + 24))(this, 1022, 0, 0)` |
