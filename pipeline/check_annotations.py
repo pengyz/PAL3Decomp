@@ -963,6 +963,25 @@ def _run_type_resolve_gate(errors, warnings):
     for _src, _own, _fld, _ts, _base, _why in _failures:
         errors.append('REF:%s:%s:%s type=%r 未resolve(%s)'
                       % (_src, str(_own)[:14], _fld, str(_ts)[:50], _why))
+    # [依赖图导出 2026-11-24 用户裁定] resolve 归 check(最大检出)+图导出给 apply
+    #   消费——edges=(source, base, kind, field), kind: value=必须完整创建在前/
+    #   ref=前向声明即可。单趟 DAG 序的机制面(check 检出→图导出→apply 按图应用)。
+    try:
+        import json as _jg
+        import datetime as _dt
+        _gpath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                              'data', 'status', 'annotation_dep_graph.json')
+        _jg.dump({
+            'generated': _dt.datetime.now().isoformat(timespec='seconds'),
+            'nrefs': _nrefs, 'nreg': _nreg,
+            'failures': [list(f) for f in _failures],
+            'edges_value_ref': {
+                'value': sorted(set('%s|%s' % (e[0], e[1]) for e in _edges if e[2] == 'value')),
+                'ref': sorted(set('%s|%s' % (e[0], e[1]) for e in _edges if e[2] == 'ref')),
+            },
+        }, open(_gpath, 'w'), ensure_ascii=False, indent=1)
+    except Exception as _e2:
+        warnings.append('REF:dep_graph导出失败 %s' % _e2)
 
 
 def _run_keycase_gate(errors, warnings):

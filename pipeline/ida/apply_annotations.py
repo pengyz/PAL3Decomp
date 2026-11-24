@@ -2524,28 +2524,7 @@ def apply_annotations():
         for _addr, _old, _new in rename_fail[:10]:
             print("    [!] %s: '%s' → '%s' FAILED" % (_addr, _old[:40], _new[:40]))
 
-    # --- 2. Globals (names only; types deferred to step 6b after structs) ---
-    globs = data.get("globals", {})
-    g_named = 0
-    g_typed = 0
-    til = ida_typeinf.get_idati()
-    for addr_str, info in globs.items():
-        addr = int(addr_str, 16)
-        name = info.get("name", "")
-        gtype = info.get("type", "")
-        if name:
-            if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
-                g_named += 1
-        # Set type for globals with explicit type annotations (skip "skip" and empty)
-        # [归一律 2026-11-20·修订] 数据型保留 SetType: 它承担**数据项创建/尺寸调整**
-        # 语义([6b] g_palScript unk_XXX 病实证), apply_tinfo 无 item 魔法(T3 实证
-        # [6b] fail 3→1216)。弱路径退役的作用域=函数型(静默不采纳实证病)。
-        if name and gtype and gtype != "skip":
-            if idc.SetType(addr, gtype):
-                g_typed += 1
-
-    log("[2] Globals: named=%d/%d, typed=%d (incl. deferred)" % (g_named, len(globs), g_typed))
-
+    # [2] Globals 已迁至 [5b] 后(DAG 序: structs 先建, globals 后挂)——2026-11-24
     # --- 2b. SDK types (from data/annotations/sdk_types.json) ---
     _sdk_path = os.path.join(ANNOTATIONS_DIR, "sdk_types.json")
     _sdk_ok = 0
@@ -3100,6 +3079,31 @@ def apply_annotations():
         with open(LOG_FILE, 'w', encoding='utf-8') as _lf:
             _lf.write('\n'.join(log_lines))
         idc.qexit(1)
+
+    # --- 2. Globals (DAG 序修正 2026-11-24: 原位于 structs 创建前→新鲜 IDB 上
+#     SetType 静默失败(g_palScript unk/1B 实证), 迁至 structs/vtable/方法类型后。
+#     单趟 DAG 序应充分, [6b] 保留为兜底) ---
+    globs = data.get("globals", {})
+    g_named = 0
+    g_typed = 0
+    til = ida_typeinf.get_idati()
+    for addr_str, info in globs.items():
+        addr = int(addr_str, 16)
+        name = info.get("name", "")
+        gtype = info.get("type", "")
+        if name:
+            if ida_name.set_name(addr, name, ida_name.SN_NOWARN | ida_name.SN_FORCE):
+                g_named += 1
+        # Set type for globals with explicit type annotations (skip "skip" and empty)
+        # [归一律 2026-11-20·修订] 数据型保留 SetType: 它承担**数据项创建/尺寸调整**
+        # 语义([6b] g_palScript unk_XXX 病实证), apply_tinfo 无 item 魔法(T3 实证
+        # [6b] fail 3→1216)。弱路径退役的作用域=函数型(静默不采纳实证病)。
+        if name and gtype and gtype != "skip":
+            if idc.SetType(addr, gtype):
+                g_typed += 1
+
+    log("[2] Globals: named=%d/%d, typed=%d (incl. deferred)" % (g_named, len(globs), g_typed))
+
 
     # --- 6. Function signatures (after structs so types are resolved) ---
     import re as _re_sig
