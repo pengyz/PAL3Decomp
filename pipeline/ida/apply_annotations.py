@@ -1468,6 +1468,17 @@ def load_annotations():
     if os.path.exists(enums_path):
         with open(enums_path, "r", encoding="utf-8") as f:
             enums = json.load(f)
+    # [类属枚举数据家 2026-11-24·用户裁定] 嵌套(类属)枚举唯一数据家 =
+    #   类 json nested_types——apply 物化面同源注入(与 TypeRegistry 第二数据家
+    #   对齐)。枚举搬json家后 3b/对账仍全量可见(断链实证: reconcile 63→53)。
+    for _sname, _sdata in structs.items():
+        for _short, _nt in (_sdata.get("nested_types") or {}).items():
+            if (isinstance(_nt, dict) and _nt.get("kind") == "enum"
+                    and _nt.get("values")):
+                _full = "%s::%s" % (_sname, _short)
+                _vals = {m: (str(v) if not isinstance(v, str) else v)
+                         for m, v in _nt["values"].items()}
+                enums[_full] = {"values": _vals, "scope": "nested"}
     return {
         "functions": functions,
         "globals": globals_data,
