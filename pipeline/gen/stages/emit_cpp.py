@@ -934,6 +934,8 @@ def generate_class_cpp(cls_name, methods):
         code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
         code = _atexit_member_ref_rewrite(code)          # [atexit虚成员引用修正 2026-11-17]
         code = _apply_template_callform(code)            # [模板形直呼 2026-11-24·用户裁定]
+        code = _normalize_deleting_dtor_def(code, cls_name,
+                                            _ida_flags_for(cls_name, m.get('addr', '')))
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
 
@@ -1283,6 +1285,34 @@ def _emit_free_functions_header(store, header_dir):
             f.write(content)
 
 
+def _normalize_deleting_dtor_def(code, cls_name, flags):
+    """[删除形 ABI 发射形 2026-11-24] flags=deleting 的 dtor 定义行归一：
+    - 剥 IDB 泄漏返回型(析构无返回类型=C++ 硬语义; hexrays 对 ??_G 的类型推断
+      伪影 CCBAIWindow*/void*/int 全族实证)——C2631×22 根因
+    - flag 形参降级为局部声明(定义形 ~X() 与头声明 virtual ~X() 配对——
+      工作先例 CEffBink.cpp: def ~X() + 'char v2;' 局部 + body (v2 & 1))
+    数据驱动判据 = 注解 flags 通道(deleting), 非名形猜测。"""
+    if not code or not cls_name or not flags or 'deleting' not in flags:
+        return code
+    dtor_name = '~%s' % cls_name
+    if dtor_name not in code:
+        return code
+    # 定义行: [泄漏ret] Cls::~Cls(int flag) → Cls::~Cls() + 局部声明
+    _def_re = re.compile(
+        r'^(?:[A-Za-z_][\w\s\*]*\*\s*|[A-Za-z_]\w*\s+)?%s::~%s\s*\((\w+)(?:\s+(\w+))?\)'
+        % (re.escape(cls_name), re.escape(cls_name)), re.M)
+    m = _def_re.search(code)
+    if not m:
+        return code
+    _pt, _pn = m.group(1), (m.group(2) or 'a2')
+    code = code[:m.start()] + '%s::~%s()' % (cls_name, cls_name) + code[m.end():]
+    # flag 局部声明注入到体首(若体未自带同名局部)
+    _brace = code.find('{', m.start())
+    if _brace >= 0 and not re.search(r'\b%s\b[^;]*//' % re.escape(_pn), code[_brace:_brace + 200]):
+        code = code[:_brace + 1] + '\n  char %s; // deleted-form flag (ABI 形参降级局部)' % _pn + code[_brace + 1:]
+    return code
+
+
 def _apply_template_callform(code):
     """[模板形直呼 2026-11-24·用户裁定] 打平模板名 → template-id 直呼形。
     数据源 = emit_headers._template_callform_map()(templates.json +
@@ -1343,6 +1373,11 @@ def _ida_flags_for(cls_name, addr):
         try:
             _d = _json.load(open(_p, encoding='utf-8'))
             for _cls, _st in (_d or {}).items():
+                # [P2a 留痕段守卫] _shadowed(list) 等非条目段跳过——
+                #   无守卫时 .get 崩溃 → flags 通道恒降级为空 →
+                #   删除形 dtor 归一/全部 flags 消费面失明(N18-FLAGS 降级日志实证)
+                if not isinstance(_st, dict):
+                    continue
                 for _ka, _mm in (_st.get('methods') or {}).items():
                     if isinstance(_mm, dict):
                         _cache[(_cls, str(_ka).lower())] = _mm.get('flags') or []
