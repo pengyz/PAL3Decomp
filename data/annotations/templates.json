@@ -1,5 +1,5 @@
 {
- "_doc": "[模板映射表 20261124 用户枖架指令] hexrays/IDA til 无模板语法(名字打平化: gbSingleton<gbGfxManager>→gbSingleton_gbGfxManager, PAL3A PDB 尖括号同源互证)。codegen 消费: ①generate_header 拦 mapped 类发模板定义+实例化别名头(声明还原) ②stage5 透明指针规则(semantics.transparent_pointer_param → 用法退化到 args[param])。模板定义为人工语法还原(非原封罕) —— 原源码真实形态的注解层位重建。",
+ "_doc": "[模板映射表 20261124 用户枖架指令] hexrays/IDA til 无模板语法(名字打平化: gbSingleton<gbGfxManager>→gbSingleton_gbGfxManager, PAL3A PDB 尖括号同源互证)。codegen 消费: ①generate_header 拦 mapped 类发模板定义+实例化别名头(声明还原) ②stage5 透明指针规则(semantics.transparent_pointer_param → 用法退化到 args[param])。模板定义为人工语法还原(非原封罕) —— 原源码真实形态的注解层位重建。 [2026-11-24 模板形直呼·用户裁定] 实例别名 typedef 垫片退役——语料按模板形(template-id)直呼; instantiation.alias 默认 false(显式 true 才发typedef)。CTaskTpl 族走 template_bases.json 同律(短别名头不再产出)。",
  "templates": {
   "gbSingleton": {
    "kind": "class_template",
@@ -20,7 +20,8 @@
    "template": "gbSingleton",
    "args": [
     "gbGfxManager"
-   ]
+   ],
+   "alias": false
   }
  }
 }

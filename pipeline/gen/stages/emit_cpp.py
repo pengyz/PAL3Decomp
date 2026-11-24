@@ -933,6 +933,7 @@ def generate_class_cpp(cls_name, methods):
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
         code = _atexit_member_ref_rewrite(code)          # [atexit虚成员引用修正 2026-11-17]
+        code = _apply_template_callform(code)            # [模板形直呼 2026-11-24·用户裁定]
         transformed.append((m['addr'], code))
         transformed_methods.append({'code': code, 'method': m['method']})
 
@@ -954,11 +955,19 @@ def generate_class_cpp(cls_name, methods):
 
     # [S5 退役 2026-11-24·用户批准v2] _SKIP_INCLUDE 局部集退役——14 名已全部
     #   在 domain_exclude system_names(逐名核对属实), 改消费统一标记。
-    from stages.emit_headers import _is_system_type as _sys_inc, get_type_registry
+    from stages.emit_headers import (_is_system_type as _sys_inc,
+                                     get_type_registry, _template_callform_map)
     _reg_gb = get_type_registry()
+    _cf_inc = _template_callform_map()
 
     for c in sorted(needed_classes):
         if c.startswith('vtbl_') or _sys_inc(c):
+            continue
+        # [模板形直呼] 调用形打平名→include 其定义头(别名垫片已退役)
+        if c in _cf_inc:
+            _ci = _cf_inc[c]
+            _sub = get_class_dir(_ci['def_header'][:-2]) or 'Misc'
+            lines.append('#include "%s/%s"' % (_sub, _ci['def_header']))
             continue
         _c_subdir = get_class_dir(c)
         if _c_subdir:
@@ -1132,6 +1141,7 @@ def generate_free_funcs_cpp(funcs, atexit_aliases=None):
         code = rewrite_memberfn_slot_assignments(code)   # [T9] memfnptr 槽赋值
         code = _apply_voidstar_casts(code)               # [L-VOIDCAST] void* 显式 cast 律
         code = _atexit_member_ref_rewrite(code)          # [atexit虚成员引用修正 2026-11-17]
+        code = _apply_template_callform(code)            # [模板形直呼 2026-11-24·用户裁定]
         transformed.append((f['addr'], code))
 
     # Forward declarations
@@ -1271,6 +1281,22 @@ def _emit_free_functions_header(store, header_dir):
         t.parent.mkdir(parents=True, exist_ok=True)
         with open(t, 'w', encoding='utf-8') as f:
             f.write(content)
+
+
+def _apply_template_callform(code):
+    """[模板形直呼 2026-11-24·用户裁定] 打平模板名 → template-id 直呼形。
+    数据源 = emit_headers._template_callform_map()(templates.json +
+    template_bases.json); 词边界替换, 定义头可见性由类头 include 链供给
+    (CEffXxx.h → 特化定义头)。"""
+    if not code:
+        return code
+    from stages.emit_headers import _template_callform_map
+    _cf = _template_callform_map()
+    for _flat, _ci in _cf.items():
+        if _flat in code:
+            code = re.sub(r'\b%s\b' % re.escape(_flat),
+                          _ci['template_id'].replace('\\', '\\\\'), code)
+    return code
 
 
 def _ida_known_ff():

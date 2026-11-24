@@ -821,6 +821,81 @@ _GBENGINE_DIR = Path(__file__).parent.parent.parent.parent / "include" / "gbengi
 # codegen 会为它再生成一份 pal3 侧头文件 ⇒ 与 include/gbengine 里的定义冲突（C2011）。
 # [S7 去重 2026-11-24] _EXPORT_MACROS 单一定义点 = pipeline/gen/type_registry.py
 from pipeline.gen.type_registry import _EXPORT_MACROS
+
+# [模板形直呼 2026-11-24·用户裁定] 实例别名 typedef 垫片退役——语料按模板形
+#   (template-id)直呼。映射: 打平名 → (template_id_cb形, 定义头文件名)。
+#   数据源: templates.json instantiations(gbSingleton) + template_bases.json
+#   (CTaskTpl 族 20 条, 成员指针实参→_Xxx_cb typedef 形=特化头在册形)。
+_TEMPLATE_CALLFORM = None
+
+
+def _template_callform_map():
+    global _TEMPLATE_CALLFORM
+    if _TEMPLATE_CALLFORM is not None:
+        return _TEMPLATE_CALLFORM
+    _m = {}
+    try:
+        _tb = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'template_bases.json',
+                             encoding='utf-8'))
+        for _flat, _info in _tb.items():
+            if _flat.startswith('_') or not isinstance(_info, dict):
+                continue
+            _expr = _info.get('template') or ''
+            if '<' not in _expr:
+                continue
+            # 成员指针实参 → _Cls_cb typedef 名(与特化头发射同式)
+            _mm = re.search(r'\(\s*__thiscall\s+(\w+)\s*::\s*\*', _expr)
+            _cls_cb = _mm.group(1) if _mm else None
+            if _cls_cb:
+                # 整个成员指针类型(含返回类型前缀)→_Cls_cb(特化头在册形)
+                _tid = re.sub(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([^)]*\)',
+                              '_%s_cb' % _cls_cb, _expr)
+                _tid = re.sub(r'\s+', ' ', _tid)
+            else:
+                _tid = re.sub(r'\s+', ' ', _expr)
+            _m[_flat] = {'template_id': _tid,
+                         'def_header': '%s.h' % _sanitize_filename(_expr)}
+    except Exception:
+        pass
+    try:
+        _tj = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'templates.json',
+                             encoding='utf-8'))
+        for _flat, _info in (_tj.get('instantiations') or {}).items():
+            _tname = _info.get('template') or ''
+            _args = _info.get('args') or []
+            _m.setdefault(_flat, {
+                'template_id': '%s<%s>' % (_tname, ', '.join(_args)),
+                'def_header': '%s.h' % _sanitize_filename('%s<%s>' % (_tname, ', '.join(_args))),
+            })
+    except Exception:
+        pass
+    _TEMPLATE_CALLFORM = _m
+    return _m
+
+
+def _callform_by_tid():
+    """template_id → entry 反查(include 循环用)。"""
+    global _CALLFORM_BY_TID
+    if _CALLFORM_BY_TID is None:
+        _CALLFORM_BY_TID = {v['template_id']: v
+                            for v in _template_callform_map().values()}
+    return _CALLFORM_BY_TID
+
+
+def _callform_cb_names():
+    """全部调用形里的 _Xxx_cb typedef 名集(数据驱动, 非命名约定猜测)。"""
+    global _CALLFORM_CB_NAMES
+    if _CALLFORM_CB_NAMES is None:
+        _s = set()
+        for _v in _template_callform_map().values():
+            for _tok in re.findall(r'\b_(?:\w+)_cb\b', _v['template_id']):
+                _s.add(_tok)
+        _CALLFORM_CB_NAMES = _s
+    return _CALLFORM_CB_NAMES
+
+
+_CALLFORM_BY_TID = None
+_CALLFORM_CB_NAMES = None
 _CLASS_DECL_RE = re.compile(r'^(?:class|struct|enum)\s+(\w+)')
 
 
@@ -1834,7 +1909,9 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
                       _inst.get('template', ''), _full, cls_name),
                   '#include "pal3/ida_defs.h"', '']
         _lines.extend(_tdef)
-        if _inst.get('alias', True):
+        # [模板形直呼 2026-11-24·用户裁定] 别名 typedef 垫片退役(默认不再发);
+        #   templates.json instantiation 显式 "alias": true 才发(数据驱动)。
+        if _inst.get('alias'):
             _lines.append('typedef %s<%s> %s;' % (_inst['template'], _full, _alias))
         return '\n'.join(_lines) + '\n'
 
@@ -1959,6 +2036,8 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # [真相源迁移 2026-10-20] 只读 `bases`（base_class 已废弃删除）
         _base_list = _base_names(_ann_base_info)
         for b in _base_list:
+            if b in _template_callform_map():
+                continue   # [模板形直呼] 打平名→定义头 include 由基类循环供给
             bname = b.split('<')[0] if '<' in b else b
             if '::' not in bname:
                 include_types.add(bname)
@@ -2369,13 +2448,17 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
         # of the void* form (which is a DIFFERENT type -> C2039/C2653 on
         # this->Alias::member access).
         if allow_alias:
+            # [模板形直呼 2026-11-24·用户裁定] 别名 typedef 垫片退役——
+            #   反查打平名→cb 形 template-id(CTaskTpl<tagEffTaskParam, _Xxx_cb>)。
+            #   _Xxx_cb typedef 在特化定义头顶部, 无自引用问题(旧 void* hack 此处
+            #   不再需要)。idempotent: cb 形再入无 member-pointer 文本→原样返回。
+            _cf = _template_callform_map()
             for _k, _v in template_map.items():
-                # template_map membership implies the wrapper gets generated
-                # in this same run — do NOT consult disk: 'codegen all' wipes
-                # pal3/src first, so a disk check fails for every class
-                # sorting before the wrapper.
-                if _v == name:
-                    return _k
+                if _v == name and _k in _cf:
+                    return _cf[_k]['template_id']
+            for _k, _ci in _cf.items():
+                if _ci['template_id'] == name:
+                    return name
         p = (r'[\w\s]+\s*\(\s*__thiscall\s+' + re.escape(_cls)
              + r'\s*::\s*\*\s*\)\s*\([\w\s,]*\)')
         return re.sub(p, 'void*', name)
@@ -2390,23 +2473,26 @@ def generate_header(cls_name, ida_struct, methods, known_classes=None, enum_name
     for b in base_names:
         if b in SYSTEM_TYPES:
             continue
-        # Template alias bases (from template_bases.json) need their WRAPPER
-        # header — it declares the _X_cb typedef + the specialization; the
-        # bare primary template header does not define the alias identifier.
-        if b in template_map:
-            # wrapper is generated later in this same run — include by name,
-            # resolving the subdir from the class-dir mapping (default Misc)
-            _sub = get_class_dir(b) or 'Misc'
-            _alias_inc = '#include "%s/%s.h"' % (_sub, b)
-            if _alias_inc not in lines:
-                lines.insert(0, _alias_inc)
+        # [模板形直呼 2026-11-24] wrapper(别名垫片头)退役——基类为模板形时
+        #   include 其定义头(特化头: _Xxx_cb typedef+特化体都在场)。
+        _ci = _template_callform_map().get(b) or _callform_by_tid().get(b)
+        if _ci:
+            _sub = get_class_dir(_ci['def_header'][:-2]) or 'Misc'
+            _def_inc = '#include "%s/%s"' % (_sub, _ci['def_header'])
+            if _def_inc not in lines:
+                lines.insert(0, _def_inc)
         if '<' in b:
             base_inc = b.split('<')[0]
             if '$' in base_inc or ':' in base_inc:
                 continue
             # Also resolve template parameter types
+            # [模板形直呼] _Xxx_cb 成员指针 typedef 由定义头供给——class 前置
+            #   会 C2371 冲突; 数据驱动排除(调用形映射的 cb 名集, 非命名约定猜测)
+            _cb_names = _callform_cb_names()
             inner = b[b.find('<')+1:b.rfind('>')]
             for param in re.findall(r'[A-Za-z_]\w+', inner):
+                if param in _cb_names:
+                    continue
                 if len(param) > 1 and param not in PRIMITIVES and param not in SYSTEM_TYPES and param != cls_name:
                     gb_path = _gbengine_type_to_header.get(param, '')
                     if gb_path:
@@ -4301,25 +4387,9 @@ def main():
                         f.write(content)
                     expected_outputs.add(str(output_path))
                     generated += 1
-                    _fallback = _tpl_subdir_path / ("%s.h" % _sanitize_filename(cls_name))
-                    # [R-6] 写点即登记; exists() 探测退役(先知化——本次运行幂等重写)
-                    with open(_fallback, 'w', encoding='utf-8') as f:
-                        f.write('#pragma once\n')
-                        f.write('#include "%s"\n' % output_path.name)
-                        # Provide concrete typedef for the specialization
-                        # e.g. typedef CTaskTpl<tagEffTaskParam, _CEffModel_cb> CTaskTpl_tagEffTaskParam_CEffModel;
-                        _fb_mfp = re.search(r'__thiscall\s+(\w+)\s*::\s*\*', _tpl_expr)
-                        if _fb_mfp:
-                            _fb_cls = _fb_mfp.group(1)
-                            _fb_name = '_{}_cb'.format(_fb_cls)
-                            _fb_tpl_name = _tpl_expr.split('<')[0]
-                            _fb_params = _tpl_expr.split('<', 1)[1].rsplit('>', 1)[0]
-                            _fb_full = re.search(r'[\w\s]+\s*\(\s*__thiscall\s+\w+\s*::\s*\*\s*\)\s*\([\w\s,]*\)', _tpl_expr)
-                            if _fb_full:
-                                _fb_type = _fb_full.group(0)
-                                _fb_params_san = _fb_params.replace(_fb_type, _fb_name)
-                                f.write('typedef %s<%s> %s;\n' % (_fb_tpl_name, _fb_params_san, cls_name))
-                    expected_outputs.add(str(_fallback))
+                    # [模板形直呼 2026-11-24·用户裁定] 短别名 typedef 垫片头退役——
+                    #   语料按模板形直呼(emit_cpp 调用形替换+头基类替换), 消费方
+                    #   include 定义头(特化头)。fallback 文件不再产出。
                     continue
             continue
         ann_struct = _is_data.get(cls_name, {})
