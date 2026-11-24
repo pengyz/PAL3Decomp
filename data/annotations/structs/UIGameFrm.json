@@ -27,12 +27,6 @@
    "source": "gen_headers_9.2+codegen_infer",
    "evidence_level": "unverified"
   },
-  "0xf40": {
-   "name": "m_nRender",
-   "type": "int",
-   "source": "gen_headers_9.2 | 子对象嫌疑20261120(dtor cast直证: UIWnd)——type回退(C10: 尺寸冲突需布局专项)",
-   "evidence_level": "unverified"
-  },
   "0x100": {
    "name": "m_nStartPos",
    "type": "short",
@@ -95,23 +89,11 @@
    "source": "binary:10x abs refs (0x164) | 子对象嫌疑20261120(dtor cast直证: RoleCameraCtrl)——type回退(C10: 尺寸冲突需布局专项)",
    "evidence_level": "unverified"
   },
-  "0x290": {
-   "name": "m_nGameMode",
-   "type": "int",
-   "source": "binary:17x abs refs (0x290) | 子对象嫌疑20261120(dtor cast直证: UIListBox)——type回退(C10: 尺寸冲突需布局专项)",
-   "evidence_level": "unverified"
-  },
   "0x8ac": {
    "name": "m_pItemArray",
    "type": "int[13]",
    "source": "| inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）",
    "evidence_level": "A"
-  },
-  "0x1394": {
-   "name": "m_UITitle",
-   "type": "int",
-   "source": "ida_decomp:ctor_F050 UITitle::ctor, Init InitRoles, 2 refs | 子对象嫌疑20261120(dtor cast直证: UITitle)——type回退(C10: 尺寸冲突需布局专项)",
-   "evidence_level": "unverified"
   },
   "0x38d0": {
    "name": "m_aItemData",
@@ -633,5 +615,6 @@
  "bases_note": "继承证据: 表slot0=UIWnd删除式dtor 0x445e70(继承指纹) | 链法定谳20261117: dtor 0x44F050 call UIWnd~(0x445B40) → [UIWnd]保; ctor 0x44EB40存表待深trace",
  "_ctor_entry_note": "0x56B094 ctor 错挂摘除20261120: 该地址=vtable 表址(vtables[0].addr 已登记), 写表普查产物误挂 methods; 真 ctor 待查(写表者函数址)",
  "_subclass_verdict": "dtor 0x44f050 清理四子对象直证: 0x1394=UITitle(9236B!)/0xF40=UIWnd/0x290=UIListBox/0x164=RoleCameraCtrl(76B)——CGameData 真语义=游戏主框架窗口(g_gamefrm=game frame 名直证), 28KB 大部分=子对象区; \"Large game data container\" note=早期误读; 50 零踪迹成员多数=子对象区伪标量。type 回退原因: UITitle 9236B 覆盖 0x1394-0x3744 与现有散成员大面积冲突, RoleCameraCtrl 76B>52B 窗口——子对象布局重划=独立战役(牵动数十成员)挂账",
- "_phantom_absorbed": "幻影壳档案吸收20261120: 原UIGameFrm.json(方法尽迁RoleStatePanel后空壳)——其 bases PalScriptWaitObj@68 无证据弃置(真bases=[UIWnd]: dtor调UIWnd dtor+slot0指纹), size 28448 弃置(真size=28268: ctor/dtor链)"
+ "_phantom_absorbed": "幻影壳档案吸收20261120: 原UIGameFrm.json(方法尽迁RoleStatePanel后空壳)——其 bases PalScriptWaitObj@68 无证据弃置(真bases=[UIWnd]: dtor调UIWnd dtor+slot0指纹), size 28448 弃置(真size=28268: ctor/dtor链)",
+ "members_note": "超界仲裁 20261124(探针 #10 A 案): g_UISceneMapDlg@0xF40/g_UIListBoxDlg@0x290/g_CCBEditorInst@0x1394 = 独立对象实锤(绑定全景: 17/29/1 处代码引用全部来自 PalScript 系 Op_* 脚本操作/RoleSystem::UpdateFollowerMovement/UITitle::OnMessage/sub_426EB0——零 UIGameFrm 方法内嵌构造证据) → 对应折叠成员 m_nRender/m_nGameMode/m_UITitle 删除(双活渲染将在重导后转全局形). g_gamefrm 真类确认(75 接收站调 UIGameFrm::Load/InitUIComponents/GetMode)."
 }

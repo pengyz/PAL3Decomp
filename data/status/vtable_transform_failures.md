@@ -1183,3 +1183,6 @@
 | `CEffMgr::SceneMgrUpdate` | inline | `int` | 20 | non_class_hint | `(*(int (**)(int, _DWORD))(*(_DWORD *)*v4 + 20))(*v4, LODWORD(fVal))` |
 | `CEffMgr::SetEffectsTimeScale` | inline | `CEffObj` | 44 | name_not_declared_for_class | `(*(int (**)(CEffObj *, int))(*(_DWORD *)*p_m_pEffect + 44))(*p_m_pEffect, nVal)` |
 | `CEffMgr::Init` | inline | `CEffObj` | 48 | name_not_declared_for_class | `(*(void (**)(CEffObj *, int *))(*(_DWORD *)this->m_spSlots[Effect].m_pEffect + 48))( this->m_spSlots[Effect].m_pEffect, v8)` |
+| `UIGameFrm::HideAll` | inline | `_BYTE` | 12 | non_class_hint | `(*(void (**)(_BYTE *))(*(_DWORD *)(&this->m_bDialogActive + 75) + 12))(&this->m_bDialogActive + 75)` |
+| `UIGameFrm::Update` | inline | `_BYTE` | 8 | non_class_hint | `(*(int (**)(_BYTE *, int, int))(*(_DWORD *)(&this->m_bDialogActive + 75) + 8))( &this->m_bDialogActive + 75, nVal, nVal2)` |
+| `UIGameFrm::Render` | inline | `_BYTE` | 4 | non_class_hint | `(*(void (**)(_BYTE *))(*(_DWORD *)(&this->m_bDialogActive + 75) + 4))(&this->m_bDialogActive + 75)` |

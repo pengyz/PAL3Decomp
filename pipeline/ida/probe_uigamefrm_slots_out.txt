@@ -1,0 +1,110 @@
+========== A: UIGameFrm 内嵌三对象绑定全景 ==========
+g_UIListBoxDlg (0xDBA260): 17 代码引用
+   x8 [sub_426EB0] mov     ecx, offset g_UIListBoxDlg; this
+   x2 [sub_426EB0] mov     edx, dword ptr g_UIListBoxDlg
+   x2 [sub_426EB0] mov     ecx, offset g_UIListBoxDlg
+   x2 [?Op_RemoveItem@PalScript@@QAEXXZ] mov     ecx, offset g_UIListBoxDlg; this
+   x1 [?Op_RemoveItem@PalScript@@QAEXXZ] mov     edx, dword ptr g_UIListBoxDlg
+   x1 [?Op_RemoveItem@PalScript@@QAEXXZ] mov     ecx, offset g_UIListBoxDlg
+   x1 [?Op_RemoveItem@PalScript@@QAEXXZ] mov     eax, offset g_UIListBoxDlg
+
+g_UISceneMapDlg (0xDBAF10): 29 代码引用
+   x4 [?UpdateFollowerMovement@RoleSystem@@QAEXM@Z] mov     ecx, offset g_UISceneMapDlg
+   x2 [?UpdateFollowerMovement@RoleSystem@@QAEXM@Z] mov     ecx, offset g_UISceneMapDlg; this
+   x2 [?UpdateFollowerMovement@RoleSystem@@QAEXM@Z] mov     edx, dword ptr g_UISceneMapDlg
+   x2 [?UpdateFollowerMovement@RoleSystem@@QAEXM@Z] mov     eax, dword ptr g_UISceneMapDlg
+   x2 [?Op_Team@PalScript@@QAEXXZ] mov     ecx, offset g_UISceneMapDlg
+   x2 [?OnMessage@UITitle@@QAEHHIH@Z] mov     ecx, offset g_UISceneMapDlg
+   x1 [?Op_LK_Ghost@PalScript@@QAEXXZ] mov     ecx, offset g_UISceneMapDlg; this
+   x1 [?Op_FavorAdd@PalScript@@QAEXXZ] mov     ecx, offset g_UISceneMapDlg; this
+
+g_CCBEditorInst (0xDBB364): 1 代码引用
+   x1 [?Op_Movie@PalScript@@QAEXXZ] mov     ecx, offset g_CCBEditorInst; this
+
+--- g_gamefrm(0xDB9FD0) 接收者 ---
+mov ecx, 0xDB9FD0 站点: 75
+   x4 [StopAllSounds] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x3 [?Update@PAL3@@QAEHM@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x3 [?Update@RoleStatePanel@@QAEHHH@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x2 [?InitGame@PAL3@@QAEXH@Z] ?InitUIComponents@UIGameFrm@@QAEXXZ
+   x2 [LoadScene] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x2 [?CreateSettingsUI@UIScenePanel@@QAEXXZ] ?GetMode@UIGameFrm@@QAEHXZ
+   x2 [?Update@UISceneFrm@@QAEHHH@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x2 [?Update@UITitle_ArcSave@@QAEHHH@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x2 [?CombatDialogProc@CCBRoleState@@QAEHHHIHH@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+   x2 [?RenderFrameY@CUtil@@QAEHHH@Z] ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z
+
+========== B: RoleSystem mangle 调用的 ecx 来源普查 ==========
+RoleSystem mangle 调用点: 711
+SLOT-DERIVED ?Notify@RoleSystem@@QAEHXZ; @ ?Update@PAL3@@QAEHM@Z+0x2AD: call    ?UINotifyUpdate@Scene@@QAEHXZ; Scene::UINotifyUpdate(void) | mov     ecx, eax; this | call  
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ StartCombat+0x4C: push    ecx; index | mov     ecx, [ebx+274h] | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?EntryCatchGhost@PAL3@@QAEXXZ+0x80: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?CheckCollision@RoleSystem@@QAEHPAHH@Z; @ ?CheckSceneCollision@Actor@@QAEHPAHH@Z+0x19: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?BindRoleToScene@RoleSystem@@QAEHHPAMPAMHD@Z+0x1F: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?ValidatePath@RoleSystem@@QAEHPAHPAHPAHH @ ?BindRoleToScene@RoleSystem@@QAEHHPAMPAMHD@Z+0xED: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH @ ?SetMoveSpeed@RoleSystem@@QAEXMHH@Z+0x43: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?MoveToTile@RoleSystem@@QAEXHH@Z+0x2E: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?MoveRole@RoleSystem@@QAEHPAMHHH@Z+0x7D: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?MoveRole@RoleSystem@@QAEHPAMHHH@Z+0xF7: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?UpdateRole@RoleSystem@@QAEDPAMHH@Z+0x3A: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?MoveToTileCheck@RoleSystem@@QAEDHHH@Z+0x2E: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?PlaceAtRegion@RoleSystem@@QAEHHH@Z+0x1A: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?UpdateMovement_4350@RoleSystem@@QAENNPAVgbVec3D@@@Z+0x19: mov     eax, [esi+274h] | mov     ebp, eax | call    UISceneUpdate
+SLOT-DERIVED ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH @ ?PathFind@RoleSystem@@QAEHPAM@Z+0x103: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?PathFind@RoleSystem@@QAEHPAM@Z+0x129: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetPathTarget@RoleSystem@@QAEHPAHPAHPAH @ ?PathFind@RoleSystem@@QAEHPAM@Z+0x1A9: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?CheckMoveCollision@RoleSystem@@QAEHPAHP @ ?CheckMoveCollisionDist@RoleSystem@@QAEXPAM@Z+0x12B: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?CalcTileDistance@RoleSystem@@QAEHHH@Z+0x15: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?UpdateAnimation@RoleSystem@@QAEXPAM@Z+0x1EA: mov     eax, [edi+274h] | mov     ebx, eax | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?CheckVisibility@RoleSystem@@QAEHXZ+0x17D: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?CheckVisibility@RoleSystem@@QAEHXZ+0x1F8: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?SetState@RoleSystem@@QAEXH@Z+0x29: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?CheckCollision@RoleSystem@@QAEHPAHH@Z; @ ?SetState@RoleSystem@@QAEXH@Z+0x8F: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x26: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x3F: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x54: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x203: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x24E: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?SetMoveTarget@RoleSystem@@QAEXPAMH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x264: call    ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPADH@Z; RoleSystem::AdvanceOnPath(int *,char *,int,cha
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x2C4: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?StartPathMove@RoleSystem@@QAEHPADHPADHMH@Z+0x30B: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?TryMoveToTarget@RoleSystem@@QAEDFH@Z+0x166: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?TryMoveToTarget@RoleSystem@@QAEDFH@Z+0x1DD: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH @ ?GetActorState@RoleSystem@@QAEXNHHH@Z+0x35: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?StartLinearMove@RoleSystem@@QAEXPAHH@Z; @ ?GetActorState@RoleSystem@@QAEXNHHH@Z+0x4A: call    ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH@Z; RoleSystem::SetRoleParam(int,float *,int *,int *
+SLOT-DERIVED ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH @ ?RenderVertexPool@UIScene@@QAEHXZ+0x181: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?SetRoleParam@RoleSystem@@QAEXHPAMPAHPAH @ ?RenderVertexPool@UIScene@@QAEHXZ+0x267: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?AdvancePathStep@RoleSystem@@QAEHPAM@Z+0xE0: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?AdvanceOnPath@RoleSystem@@QAEHPAHPADHPA @ ?AdvancePathStep@RoleSystem@@QAEHPAM@Z+0x157: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?ScanMoveDirections@RoleSystem@@QAEXM@Z+0x22: mov     ebp, eax | mov     ecx, [esi+274h] | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?ApproachTarget@RoleSystem@@QAEDH@Z+0x17: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?ApproachTarget@RoleSystem@@QAEDH@Z+0xD8: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?SetState@RoleSystem@@QAEXH@Z; @ ?UpdateInternal@CameraCtrl@@QAEXM@Z+0xA02: call    ?FindNearest@UICamera@@QACHH@Z; UICamera::FindNearest(int) | mov     ecx, eax; this | call  
+SLOT-DERIVED ?GetMapNodePtr@RoleSystem@@QAEPADH@Z; @ ?CheckCollision2@Camera@@QAEHPAMHPAX@Z+0x12: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?UIPostUpdate@gbSound2DNode@@QAEXXZ+0x1E: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?IsTransitioning@Camera@@QAEDXZ+0x16: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?IsTileInBounds@RoleSystem@@QAEPAHHHH@Z; @ ?IsTransitioning@Camera@@QAEDXZ+0x5D: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?RenderRole@RoleSystem@@QAEXPAVgbMatrixS @ ?RenderWithStack@SystemUI@@QAEHPAX@Z+0x21: push    ebp; pStack | push    0; nVal | lea     edi, [ebx+0E0E4h]
+SLOT-DERIVED ?AdvancePathStep@RoleSystem@@QAEHPAM@Z; @ ?UINotifyUpdate@Scene@@QAEHXZ+0x2D: jnz     short loc_421C76 | cmp     byte ptr [esi+0ADh], 4 | lea     esi, [ebp+0E0E4h]
+SLOT-DERIVED ?HideAll@RoleSystem@@QAEXXZ; @ ?Destroy@UISystem@@QAEXXZ+0x2E: call    ?RemoveVisNode@Scene@@QAEXXZ; Scene::RemoveVisNode(void) | mov     ecx, eax; this | call    
+SLOT-DERIVED ?NotifyPathEnd@RoleSystem@@QAEPADH@Z; @ ?ProcessRoleLoading@PalScriptMgr@@QAEXXZ+0xBF: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?ProcessAction@RoleSystem@@QAEXXZ; @ ?ProcessRoleLoading@PalScriptMgr@@QAEXXZ+0xCE: call    ?NotifyPathEnd@RoleSystem@@QAEPADH@Z; RoleSystem::NotifyPathEnd(int) | mov     ecx, eax; thi
+SLOT-DERIVED ?IsPathMoving@RoleSystem@@QAEHXZ; @ ?Op_RolePathOut@PalScript@@QAEXXZ+0x8A: mov     ecx, [eax+784E4h] | mov     edx, [esi+274h] | call    UISceneUpdate
+SLOT-DERIVED ?SetInactive@RoleSystem@@QAEHH@Z; @ GetCurrentCamera+0x21: call    ?SetAction@PalScript@@QAEXH@Z; PalScript::SetAction(int) | mov     ecx, eax; this | call    
+SLOT-DERIVED ?GetRolePtr@RoleSystem@@QAEHH@Z; @ ?Op_LoadAct@PalScript@@QAEXXZ+0x44: and     ecx, 1 | mov     ecx, [esi+4] | call    UISceneUpdate
+SLOT-DERIVED ?ResetTransition@RoleSystem@@QAEXXZ; @ ?HandleItemPage@Array@@QAENHHH@Z+0x3DC: mov     ecx, eax; this | call    UISceneUpdate
+SLOT-DERIVED ?ExportRoleData@RoleSystem@@QAEHPAM@Z; @ ?LoadActorModel@Actor@@QAEHH@Z+0x727: mov     ecx, edi; this | lea     edx, [esp+282C0h+Buffer.m_fTargetAngle] | lea     edi, [ebx+0E0E4h]
+槽派生 RoleSystem 调用: 58 / 711
+
+--- UISceneUpdate 返回值的槽走查上下文(0xE0E4 基址算术全景) ---
++0xE0E4 立即数站点: 14
+   [?Reset@SystemUI@@QAEXXZ] lea     edx, [esi+0E0E4h]
+   [?Close@SystemUI@@QAEXXZ] lea     eax, [esi+0E0E4h]
+   [sub_41F8C0] lea     ebx, [esi+0E0E4h]
+   [?RenderWithStack@SystemUI@@QAEHPAX@Z] lea     edi, [ebx+0E0E4h]
+   [?UIUpdate@SystemUI@@QAENNN@Z] lea     ebx, [esi+0E0E4h]
+   [sub_420200] lea     eax, [edx+ecx+0E0E4h]
+   [?RenderActiveRoles@Scene@@QAEHXZ] lea     esi, [ebp+0E0E4h]
+   [?UINotifyUpdate@Scene@@QAEHXZ] lea     esi, [ebp+0E0E4h]
+   [?FindRoleByState@Scene@@QAEPAHD@Z] lea     eax, [ecx+edi+0E0E4h]
+   [AnimUpdate] lea     eax, [edx+ebp+0E0E4h]
