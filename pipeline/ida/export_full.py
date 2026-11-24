@@ -985,6 +985,7 @@ def export_structs(log):
     struct_count = 0
     enum_count = 0
     skipped_count = 0
+    _export_skipped_names = set()
     # [Task4 导出补 _inline_·修向② 2026-10-23] 被 named-supersede 跳过的 `_inline_*`
     # 合成名留存池（IDB 权威形状）；被成员型实际引用者由 post-pass 复出（见下）。
     _retained_synth = {}
@@ -1005,24 +1006,20 @@ def export_structs(log):
             except:
                 pass
 
-    # Types that should never be exported (CRT, Windows SDK, etc.)
-    SKIP_NAMES = {
-        'std', 'stdiobuf', 'exception', 'type_info', 'filebuf', 'string',
-        'strstreambuf', 'ios_base', 'facet', 'codecvt_base',
-        '_ThrowInfo', '_CatchableType', '_CatchableTypeArray',
-        '_s_ThrowInfo', '_s__ThrowInfo',
-        'DOUBLE', 'FLOAT', 'INT', 'CHAR', 'VOID', 'LONG', 'SHORT', 'BOOL',
-        'BYTE', 'WORD', 'DWORD', 'UINT', 'ULONG',
-        'RECT', 'POINT', 'SIZE', 'tagRECT', 'tagPOINT', 'tagSIZE', 'tagMSG',
-        '_iobuf', 'FILE', '_GUID', 'GUID', 'IID',
-        'HICON__', 'HWND__', 'HDC__', 'HINSTANCE__', 'HBRUSH__',
-        'HHOOK__', 'HKEY__', 'HMONITOR__', 'HWAVEOUT__',
-        'WNDCLASSA', 'tagWNDCLASSA', 'tagOFNA',
-        '_FILETIME', '_SYSTEMTIME', '_MEMORYSTATUS', '_SECURITY_ATTRIBUTES',
-        '_OSVERSIONINFOA', '_STARTUPINFOA', '_WIN32_FIND_DATAA',
-        'CURRENCY', 'tagCY', 'CY',
-    }
-    SKIP_PREFIXES = ('D3D', '_D3D', 'ID3D', 'IDirect', 'IUnknown')
+    # [系统库标记在注解层 2026-11-24 用户裁定] 跳过系统库不导出=通用规则,
+    #   标记归 domain_exclude.json types 段(与 globals type=skip/classes 域排除
+    #   同语义不同粒度)。PRIMITIVE_NAMES=类型系统词汇表, 留代码。
+    try:
+        _dex = json.load(open(os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            'data', 'annotations', 'domain_exclude.json')))
+        _ty = _dex.get('types', {})
+        SKIP_NAMES = set(_ty.get('system_names') or [])
+        SKIP_PREFIXES = tuple(_ty.get('system_prefixes') or [])
+    except Exception as _e_dex:
+        log("[!] domain_exclude types 读取失败(%s)——硬编码兜底退役, 跳过集为空" % _e_dex)
+        SKIP_NAMES = set()
+        SKIP_PREFIXES = ()
     # System types that are primitives — skip
     PRIMITIVE_NAMES = {
         'int', 'char', 'float', 'double', 'long', 'short', 'void',
@@ -1053,6 +1050,7 @@ def export_structs(log):
         type_name = ida_typeinf.get_numbered_type_name(til, ordinal)
         if not type_name or should_skip(type_name):
             skipped_count += 1
+            _export_skipped_names.add(type_name or '?')
             continue
 
         tif = ida_typeinf.tinfo_t()
@@ -1340,6 +1338,8 @@ def export_structs(log):
             continue
         if not _am.get('known_members'):
             continue  # 注解未声明布局 → 无断言
+        if _cn in _export_skipped_names:
+            continue  # 导出方裁定跳过(CRT/SDK 域) → 不在断言域
         _cm = result.get(_cn)
         if not _cm or not _cm.get('data_members'):
             _zero_member.append(_cn)

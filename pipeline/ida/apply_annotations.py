@@ -3143,6 +3143,14 @@ def apply_annotations():
                 if _ptif is not None:
                     _applied5 = bool(ida_typeinf.apply_tinfo(
                         _addr5, _ptif, ida_typeinf.TINFO_DEFINITE))
+                    if not _applied5:
+                        # [幂等判别 20261124] apply_tinfo 返 False = 目标类型已在位
+                        # 的 no-op([5] vtable 打型经槽传播先行实锤: 运行中插桩
+                        # pre==post==目标型) → 语义成功非失败
+                        _cur5 = ida_typeinf.tinfo_t()
+                        if (ida_nalt.get_tinfo(_cur5, _addr5)
+                                and _cur5 == _ptif):
+                            _applied5 = True
                 elif _au5 in ('0x004c20b0', '0x004c34b0'):
                     log("  [5b-PROG-ERR] %s: %s" % (_au5, _perr))
             if not _applied5 and _qsig5 is not None:

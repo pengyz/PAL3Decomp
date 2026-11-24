@@ -408,6 +408,38 @@ def _get_ida_structs():
 _pod_scalar_names_cache = None
 
 
+def _system_type_names():
+    """[系统库标记统一消费 2026-11-24 用户裁定] domain_exclude.json types 段
+    (系统库名单+前缀)——export/下游头生成统一消费同一标记。"""
+    global _system_type_names_cache
+    if _system_type_names_cache is not None:
+        return _system_type_names_cache
+    _names, _prefs = set(), ()
+    try:
+        _dex = json.load(open(PROJECT_ROOT / 'data' / 'annotations' / 'domain_exclude.json',
+                              encoding='utf-8'))
+        _ty = _dex.get('types', {})
+        _names = set(_ty.get('system_names') or [])
+        _prefs = tuple(_ty.get('system_prefixes') or [])
+    except Exception:
+        pass
+    _system_type_names_cache = (_names, _prefs)
+    return _names, _prefs
+
+
+_system_type_names_cache = None
+
+
+def _is_system_type(name):
+    _names, _prefs = _system_type_names()
+    if name in _names:
+        return True
+    for _p in _prefs:
+        if name.startswith(_p):
+            return True
+    return False
+
+
 def _pod_scalar_names():
     global _pod_scalar_names_cache
     if _pod_scalar_names_cache is not None:
@@ -415,6 +447,9 @@ def _pod_scalar_names():
     _out = set()
     for _n, _e in (_get_ida_structs() or {}).items():
         if not isinstance(_e, dict):
+            continue
+        # [系统库标记 20261124] domain_exclude.types 系统型不入 POD typedef
+        if _is_system_type(_n):
             continue
         _sz = _e.get('size')
         if _sz not in (1, 2, 4, 8):
