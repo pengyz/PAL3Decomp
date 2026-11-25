@@ -1,4 +1,4 @@
-S2-passing units: 155
+S2-passing units: 157
 decomp entries: 3588 | mangled methods: 10031 (mangle-fail 0) | unambiguous bases: 3584
 exe .text: base 0x400000 rva 0x1000 captured 1478656 bytes
   [  1] pal3/src/Combat/CCBAIWindow.cpp               funcs=  6 matched=  5 L1= 0 partial= 5
@@ -119,48 +119,50 @@ exe .text: base 0x400000 rva 0x1000 captured 1478656 bytes
   [116] pal3/src/Misc/UIProgressBar.cpp               funcs= 10 matched=  9 L1= 4 partial= 4
   [117] pal3/src/Misc/UIRoleDialog.cpp                funcs=  9 matched=  7 L1= 2 partial= 5
   [118] pal3/src/Misc/UIRoleSelect.cpp                funcs=  3 matched=  2 L1= 1 partial= 1
-  [119] pal3/src/Misc/UISceneFace.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
-  [120] pal3/src/Misc/UISceneMap.cpp                  funcs= 19 matched= 16 L1= 6 partial=10
-  [121] pal3/src/Misc/UIScrollBar.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [122] pal3/src/Misc/UITextArea.cpp                  funcs=  9 matched=  7 L1= 2 partial= 4
-  [123] pal3/src/Misc/UITitle.cpp                     funcs= 12 matched=  7 L1= 2 partial= 5
-  [124] pal3/src/Misc/UITitle_ArcSave.cpp             funcs= 11 matched=  6 L1= 1 partial= 5
-  [125] pal3/src/Misc/UITitle_QCYM.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
-  [126] pal3/src/Misc/VideoPlayer.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [127] pal3/src/Misc/WeatherEffectNode.cpp           funcs=  3 matched=  2 L1= 0 partial= 5
-  [128] pal3/src/Misc/_Console.cpp                    funcs=  3 matched=  2 L1= 1 partial= 1
-  [129] pal3/src/Misc/_Texture_Info.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [130] pal3/src/Misc/gbLightObj.cpp                  funcs=  6 matched=  5 L1= 1 partial= 4
-  [131] pal3/src/Misc/gbMatrixStack.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [132] pal3/src/Misc/gbOBBox.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [133] pal3/src/Misc/gbSound2DNode.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
-  [134] pal3/src/Misc/gbVec3D.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
-  [135] pal3/src/Misc/s_RoleState.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
-  [136] pal3/src/Misc/scAsmDecoder.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
-  [137] pal3/src/Misc/sg_emission_control.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
-  [138] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
-  [139] pal3/src/Misc/tagPlayerSet.cpp                funcs=  2 matched=  0 L1= 0 partial= 0
-  [140] pal3/src/Render/RenderTarget2.cpp             funcs= 33 matched= 32 L1= 2 partial=30
-  [141] pal3/src/Render/TextureLib.cpp                funcs= 13 matched= 11 L1= 2 partial= 9
-  [142] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
-  [143] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial=10
-  [144] pal3/src/Role/Role.cpp                        funcs= 15 matched= 13 L1= 1 partial=12
-  [145] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
-  [146] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
-  [147] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
-  [148] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
-  [149] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
-  [150] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
-  [151] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
-  [152] pal3/src/UI/UINote.cpp                        funcs=  6 matched=  5 L1= 1 partial= 4
-  [153] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
-  [154] pal3/src/UI/UIRenderObj.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
-  [155] pal3/src/UI/UIWnd.cpp                         funcs= 20 matched= 17 L1= 5 partial=12
-matched 1085/1189 symbols | L1 177 | partial 780 | oob 0 (text_end 0 / file_end 0) | unmatched 231 | compile-skip 0 | unresolved-synth 128
-L1 rate over matched: 177/957 = 18.5%
-[metric] L1 字节 7785 | 重定位覆盖字节 2196 (28.2%) | 被跳过且双侧不同的隐藏差异字节 1568 (20.1% 的 L1 字节 / 71.4% 的重定位字节)
-[metric] 重定位站点值核对：total=7532 ok=1793 mismatch=0 unresolved=5739
-[metric] 重定位目标核对（符号法）：total=7532 ok=95 mismatch=10 unresolved=11 unaligned=6983
+  [119] pal3/src/Misc/UIRoleSelectDialog.cpp          funcs= 21 matched= 11 L1= 2 partial= 9
+  [120] pal3/src/Misc/UISceneFace.cpp                 funcs=  4 matched=  3 L1= 1 partial= 2
+  [121] pal3/src/Misc/UISceneMap.cpp                  funcs= 19 matched= 16 L1= 6 partial=10
+  [122] pal3/src/Misc/UIScrollBar.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [123] pal3/src/Misc/UITextArea.cpp                  funcs=  9 matched=  7 L1= 2 partial= 4
+  [124] pal3/src/Misc/UITitle.cpp                     funcs= 12 matched=  7 L1= 2 partial= 5
+  [125] pal3/src/Misc/UITitle_ArcSave.cpp             funcs= 11 matched=  6 L1= 1 partial= 5
+  [126] pal3/src/Misc/UITitle_QCYM.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
+  [127] pal3/src/Misc/VideoPlayer.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [128] pal3/src/Misc/WeatherEffectNode.cpp           funcs=  3 matched=  2 L1= 0 partial= 5
+  [129] pal3/src/Misc/_Console.cpp                    funcs=  3 matched=  2 L1= 1 partial= 1
+  [130] pal3/src/Misc/_Texture_Info.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [131] pal3/src/Misc/gbLightObj.cpp                  funcs=  6 matched=  5 L1= 1 partial= 4
+  [132] pal3/src/Misc/gbMatrixStack.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [133] pal3/src/Misc/gbOBBox.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [134] pal3/src/Misc/gbSound2DNode.cpp               funcs=  2 matched=  1 L1= 0 partial= 1
+  [135] pal3/src/Misc/gbVec3D.cpp                     funcs=  2 matched=  1 L1= 0 partial= 1
+  [136] pal3/src/Misc/s_RoleState.cpp                 funcs=  4 matched=  3 L1= 0 partial= 3
+  [137] pal3/src/Misc/scAsmDecoder.cpp                funcs=  2 matched=  1 L1= 0 partial= 1
+  [138] pal3/src/Misc/sg_emission_control.cpp         funcs=  3 matched=  2 L1= 0 partial= 2
+  [139] pal3/src/Misc/sg_emitter.cpp                  funcs=  2 matched=  1 L1= 0 partial= 1
+  [140] pal3/src/Misc/tagPlayerSet.cpp                funcs=  2 matched=  0 L1= 0 partial= 0
+  [141] pal3/src/Render/RenderTarget2.cpp             funcs= 33 matched= 32 L1= 2 partial=30
+  [142] pal3/src/Render/TextureLib.cpp                funcs= 13 matched= 11 L1= 2 partial= 9
+  [143] pal3/src/Role/NPC.cpp                         funcs= 21 matched= 20 L1= 2 partial=18
+  [144] pal3/src/Role/ObjectCamera.cpp                funcs= 12 matched= 11 L1= 2 partial=10
+  [145] pal3/src/Role/Role.cpp                        funcs= 15 matched= 13 L1= 1 partial=12
+  [146] pal3/src/Scene/Camera.cpp                     funcs= 12 matched= 10 L1= 0 partial=10
+  [147] pal3/src/Scene/CameraSystem.cpp               funcs=  2 matched=  1 L1= 1 partial= 0
+  [148] pal3/src/UI/MagicUI.cpp                       funcs= 14 matched= 13 L1= 0 partial=13
+  [149] pal3/src/UI/UICamera.cpp                      funcs=  5 matched=  4 L1= 0 partial= 4
+  [150] pal3/src/UI/UICursor.cpp                      funcs=  3 matched=  2 L1= 0 partial= 2
+  [151] pal3/src/UI/UIDialog.cpp                      funcs=  5 matched=  4 L1= 2 partial= 2
+  [152] pal3/src/UI/UIItem.cpp                        funcs=  2 matched=  1 L1= 0 partial= 1
+  [153] pal3/src/UI/UILBColumn.cpp                    funcs=  3 matched=  2 L1= 0 partial= 2
+  [154] pal3/src/UI/UINote.cpp                        funcs=  6 matched=  5 L1= 1 partial= 4
+  [155] pal3/src/UI/UIQuadManager.cpp                 funcs=  2 matched=  1 L1= 0 partial= 1
+  [156] pal3/src/UI/UIRenderObj.cpp                   funcs=  3 matched=  2 L1= 0 partial= 2
+  [157] pal3/src/UI/UIWnd.cpp                         funcs= 20 matched= 17 L1= 5 partial=12
+matched 1110/1222 symbols | L1 179 | partial 799 | oob 0 (text_end 0 / file_end 0) | unmatched 243 | compile-skip 0 | unresolved-synth 132
+L1 rate over matched: 179/978 = 18.3%
+[metric] L1 字节 7896 | 重定位覆盖字节 2232 (28.3%) | 被跳过且双侧不同的隐藏差异字节 1594 (20.2% 的 L1 字节 / 71.4% 的重定位字节)
+[metric] 重定位站点值核对：total=7802 ok=1853 mismatch=0 unresolved=5949
+[metric] 重定位目标核对（符号法）：total=7802 ok=96 mismatch=10 unresolved=12 unaligned=7244
     [mismatch] 0x004c8950 off=4 orig=CEffgbParticle::Destroy__fastcall(void) ours=CEffgbParticle::~CEffgbParticle (??1CEffgbParticle@@UAE@XZ)
     [mismatch] 0x004c0540 off=4 orig=RenderTarget2::ExecutePasses(void) ours=CEffAction::~CEffAction (??1CEffAction@@UAE@XZ)
     [mismatch] 0x004c1640 off=4 orig=RenderTarget2::DestroyEffBase(void) ours=CEffBink::~CEffBink (??1CEffBink@@UAE@XZ)
@@ -169,8 +171,8 @@ L1 rate over matched: 177/957 = 18.5%
     [mismatch] 0x004c34b0 off=4 orig=RenderTarget2::DestroyEffCallBack(void) ours=EffCallBackNode::~EffCallBackNode (??1EffCallBackNode@@UAE@XZ)
     [mismatch] 0x004b6f90 off=4 orig=gbChain1DNode::Process(void) ours=PAL3VisNode::~PAL3VisNode (??1PAL3VisNode@@UAE@XZ)
     [mismatch] 0x0043d860 off=4 orig=UIFrameWnd::__deleting_view(void) ours=UI3DCtrl::~UI3DCtrl (??1UI3DCtrl@@UAE@XZ)
-L1 rate over matched: 177/957 = 18.5%
-carrier inventory: expected=204 paired=84 unpaired=120
+L1 rate over matched: 179/978 = 18.3%
+carrier inventory: expected=204 paired=88 unpaired=116
 carrier suspect L1 (deleting 无槽证据——标准形 P0-1 静态锚定缺失): 1
   suspect: ??_GEffCallBackNode@@UAEPAXI@Z EffCallBackNode::`scalar deleting de @0x004c34b0
   carrier unpaired: ??1AStarPathFinder@@UAE@XZ
@@ -187,9 +189,9 @@ carrier suspect L1 (deleting 无槽证据——标准形 P0-1 静态锚定缺失
   carrier unpaired: ??_GCCBStage@@UAEPAXI@Z
 report -> /home/peng/workspace/PAL3Decomp/data/status/s4_baseline.json
 registry -> /home/peng/workspace/PAL3Decomp/data/status/pal3_registry.jsonl
-diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (777 partial rows in 146 units)
+diff detail -> /home/peng/workspace/PAL3Decomp/data/status/s4_diff_detail.json (796 partial rows in 148 units)
 
-[L1 ratchet] previous 177 -> current 177
-[L1 ratchet] semantic: previous 12 -> current 12 (L1+sem: 189 -> 189)
-[L1 ratchet] population: previous matched=1085/1189 -> current matched=1085/1189
-[L1 ratchet] coverage: previous carrier.paired=84 -> current 84
+[L1 ratchet] previous 179 -> current 179
+[L1 ratchet] semantic: previous 12 -> current 12 (L1+sem: 191 -> 191)
+[L1 ratchet] population: previous matched=1110/1222 -> current matched=1110/1222
+[L1 ratchet] coverage: previous carrier.paired=88 -> current 88

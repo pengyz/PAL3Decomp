@@ -1,0 +1,74 @@
+C2440 ×176 根因族:
+Z-其他                         124
+    CCBCamControl.cpp      L1126  '=' : cannot convert from 'class gbVolumeModifier *' to 'flo | v4 = this->m_nTodo_EC.m_pModObj + 7;
+    CCBRoleState.cpp       L381   'type cast' : cannot convert from 'class UIWnd' to 'void (__ | m_SlotWidgets = (void (**)(UIWnd *, _DWORD))this->m_SlotWidgets;
+E-int→指针 常量/包装                29
+    CUtil.cpp              L168   '=' : cannot convert from 'int' to 'char *' | v9 = (int)v8;
+    PAL3.cpp               L3076  '=' : cannot convert from 'int' to 'char *' | pNewBuffer = v126 + v125;
+C-char*/uchar* 符号             10
+    CCBRoleState.cpp       L3353  '=' : cannot convert from 'unsigned char *' to 'char *' | for ( i = &this->m_Role[0].bValid; v16 < 5 || *i; i += 892 )
+    CCBRoleState.cpp       L3417  '=' : cannot convert from 'unsigned char *' to 'char *' | for ( j = &this->m_Role[0].bAlive; !*(j - 1) || *j != 1; j += 892 )
+G-→char* 传参                    7
+    ScriptVM.cpp           L2142  '=' : cannot convert from 'int' to 'const char *' | v3 = a4CCvd;
+    ScriptVM.cpp           L2144  '=' : cannot convert from 'int' to 'const char *' | v3 = a4C1Cvd;
+B-ulong vs uint 拼写             3
+    CCBStage.cpp           L5256  '=' : cannot convert from 'unsigned long' to 'unsigned int ( | v30 = v21;
+    PAL_GDB.cpp            L746   '=' : cannot convert from 'unsigned long [5]' to 'unsigned i | v25 = pOut;
+F-gb 结构值                       3
+    CCBStage.cpp           L7919  'type cast' : cannot convert from '' to 'struct gbVec3D *(__ | *(gbVec3D *)a2 = *((gbVec3D *(*)(gbVec3D * gbOBBox *))gbOBBox::GetCent
+    UIBigMap.cpp           L282   'type cast' : cannot convert from '' to 'struct gbVec3D *(__ | v46 = ((gbVec3D *(*)(gbVec3D * gbVec3D *))gbVec3D::operator-)(
+
+=== Z 桶细分采样 (按 msg 模式聚类) ===
+  Cls *                                  → unsigned long                           16
+  const int                              → enum UIButton::UIBUTTON_STATE           10
+  int                                    → int *                                    9
+  char *                                 → unsigned long                            5
+  int                                    → char *                                   5
+  Cls                                    → void (__cdecl *)(Cls ** ,int,unsigned long *,Cls *)   5
+  void *                                 → unsigned long *                          5
+  St                                     → void (__cdecl *)(Cls *,int,int,unsigned long)   4
+  void *                                 → int                                      4
+  const int                              → int *                                    4
+  unsigned long                          → unsigned long *                          4
+  Cls                                    → int                                      4
+  unsigned long [3]                      → int *                                    3
+  int                                    → Cls *                                    3
+  Cls *                                  → Cls                                      3
+  void *                                 → Cls                                      3
+  __int64                                → enum UIButton::UIBUTTON_STATE            3
+  float                                  → Cls *                                    3
+Cls*→ulong ×17:
+  CEffMgr.cpp            L623   '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+        *((_DWORD *)_this + 2) = (((gbEffectMgr *)*(gbEffectMgr **)(v9 + 200)))->gbEffec
+  CEffMgr.cpp            L624   '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+        *((_DWORD *)_this + 3) = (((gbEffectMgr *)*(gbEffectMgr **)(*(_DWORD *)_this + 2
+  PAL3.cpp               L793   '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EBP = g_pRoleSystem;
+  CCBUICtrl.cpp          L1914  '=' : cannot convert from 'struct HWND__ *' to 'unsigned long'
+        *(_DWORD *)((char *)((UIWnd *)this) + result) = hWnd;
+  ScriptVM.cpp           L431   '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EAX = g_pRoleSystem;
+  ScriptVM.cpp           L480   '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EDI = g_pRoleSystem;
+  ScriptVM.cpp           L2015  '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EAX = g_pRoleSystem;
+  ScriptVM.cpp           L2045  '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EAX = g_pRoleSystem;
+  ScriptVM.cpp           L2069  '=' : cannot convert from 'class RoleSystem *' to 'unsigned long'
+        reg_EAX = g_pRoleSystem;
+  UITitle_JDHY.cpp       L464   '=' : cannot convert from 'class Parent_Data *' to 'unsigned long'
+        *((_DWORD *)&this->m_NoteItem[17].m_HeadShot_NO_SEL[2].m_ppicInfo + 192 * this->
+  RenderTarget3.cpp      L131   '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+        *(_DWORD *)_this = (((gbEffectMgr *)pEffectMgr))->gbEffectMgr::NewRenderEffect("
+  RoleSystem.cpp         L2172  '=' : cannot convert from 'class UIWnd *' to 'unsigned long'
+        LODWORD(this->m_vTargetRotation.y) = this->m_FrameA.m_pfather;
+  RoleSystem.cpp         L3341  '=' : cannot convert from 'class UIWnd *' to 'unsigned long'
+        LODWORD(this->m_fPosY) = this->m_FrameA.m_pfather;
+  Scene.cpp              L2327  '=' : cannot convert from 'class gbImage2D *' to 'unsigned long'
+        LODWORD(this->m_roles[14].up.x) = this->m_roles[14].m_needscriptdel;
+  PalScript.cpp          L6687  '=' : cannot convert from 'class Scene *' to 'unsigned long'
+        *(_DWORD *)_this = UISceneUpdate();
+  UIManager.cpp          L150   '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+        *(_DWORD *)&this->_gap_004[4] = (((gbEffectMgr *)gfxMgr->pEffectMgr))->gbEffectM
+  UIManager.cpp          L151   '=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'
+        *(_DWORD *)&this->_gap_004[8] = (((gbEffectMgr *)gfxMgr->pEffectMgr))->gbEffectM

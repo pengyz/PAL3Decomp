@@ -18,29 +18,29 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1189,
-  "matched": 1085,
-  "unmatched": 231,
-  "match_L1": 177,
+  "symbols": 1222,
+  "matched": 1110,
+  "unmatched": 243,
+  "match_L1": 179,
   "match_L1_semantic": 12,
-  "partial": 780,
+  "partial": 799,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 128,
-  "reloc_total": 7532,
-  "reloc_ok": 1793,
+  "unresolved_synth": 132,
+  "reloc_total": 7802,
+  "reloc_ok": 1853,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 5739,
-  "rsite_total": 7532,
-  "rsite_unaligned": 6983,
-  "l1_bytes": 7785,
-  "l1_hidden_reloc_bytes": 1568,
-  "l1_reloc_covered_bytes": 2196,
-  "rsite_ok": 95,
-  "rsite_class_ok": 407,
-  "rsite_unresolved": 11,
+  "reloc_unresolved": 5949,
+  "rsite_total": 7802,
+  "rsite_unaligned": 7244,
+  "l1_bytes": 7896,
+  "l1_hidden_reloc_bytes": 1594,
+  "l1_reloc_covered_bytes": 2232,
+  "rsite_ok": 96,
+  "rsite_class_ok": 414,
+  "rsite_unresolved": 12,
   "rsite_unresolved_samples": [
    {
     "va": "0x0051b160",
@@ -160,6 +160,13 @@
     "tgt": "0x00000000",
     "exp": "sub_0",
     "sym": "__except_list"
+   },
+   {
+    "va": "0x00529770",
+    "off": 4,
+    "tgt": "0x00529790",
+    "exp": "sub_529790",
+    "sym": "??1UIRoleSelectDialog@@UAE@XZ"
    }
   ],
   "tail_jump_downgrades": 3,
@@ -268,8 +275,8 @@
   ],
   "carrier": {
    "expected": 204,
-   "paired": 84,
-   "unpaired": 120,
+   "paired": 88,
+   "unpaired": 116,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -2781,7 +2788,7 @@
    "name": "CEffectSystem::Update(void)",
    "va": "0x004c6670",
    "status": "partial",
-   "match_pct": 20.8,
+   "match_pct": 21.9,
    "size": 448
   },
   {
@@ -7069,6 +7076,105 @@
    "size": 13
   },
   {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?CreateDialog@UIRoleSelectDialog@@QAEHHPAXHPAD@Z",
+   "name": "UIRoleSelectDialog::CreateDialog(int,void *,int,char *)",
+   "va": "0x00451980",
+   "status": "partial",
+   "match_pct": 28.2,
+   "size": 273
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "??0UIRoleSelectDialog@@QAE@XZ",
+   "name": "UIRoleSelectDialog::UIRoleSelectDialog(void)",
+   "va": "0x005295f0",
+   "status": "partial",
+   "match_pct": 33.0,
+   "size": 379
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "??_GUIRoleSelectDialog@@UAEPAXI@Z",
+   "name": "UIRoleSelectDialog::`scalar deleting destructor'(uint)",
+   "va": "0x00529770",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "??1UIRoleSelectDialog@@UAE@XZ",
+   "name": "UIRoleSelectDialog::~UIRoleSelectDialog",
+   "va": "0x00529790",
+   "status": "partial",
+   "match_pct": 30.0,
+   "size": 213
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?Render@UIRoleSelectDialog@@UAEXXZ",
+   "name": "UIRoleSelectDialog::Render(void)",
+   "va": "0x00529cf0",
+   "status": "partial",
+   "match_pct": 10.0,
+   "size": 330
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?Update@UIRoleSelectDialog@@UAEHHH@Z",
+   "name": "UIRoleSelectDialog::Update(int,int)",
+   "va": "0x00529e40",
+   "status": "partial",
+   "match_pct": 16.0,
+   "size": 3081
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?SubtractFromStats@UIRoleSelectDialog@@QAEHXZ",
+   "name": "UIRoleSelectDialog::SubtractFromStats(void)",
+   "va": "0x0052aa50",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 81
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?OnMessage@UIRoleSelectDialog@@UAEHHIH@Z",
+   "name": "UIRoleSelectDialog::OnMessage(int,uint,int)",
+   "va": "0x0052aab0",
+   "status": "partial",
+   "match_pct": 20.7,
+   "size": 965
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?DestroyStatics@UIRoleSelectDialog@@QAEXXZ",
+   "name": "UIRoleSelectDialog::DestroyStatics(void)",
+   "va": "0x0052bbd0",
+   "status": "partial",
+   "match_pct": 22.4,
+   "size": 183
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?DestroyFrames@UIRoleSelectDialog@@QAEXXZ",
+   "name": "UIRoleSelectDialog::DestroyFrames(void)",
+   "va": "0x0052bc90",
+   "status": "partial",
+   "match_pct": 24.1,
+   "size": 191
+  },
+  {
+   "file": "pal3/src/Misc/UIRoleSelectDialog.cpp",
+   "symbol": "?IsRoleSelectable@UIRoleSelectDialog@@QAEDH@Z",
+   "name": "UIRoleSelectDialog::IsRoleSelectable(int)",
+   "va": "0x0052d200",
+   "status": "partial",
+   "match_pct": 17.8,
+   "size": 45
+  },
+  {
    "file": "pal3/src/Misc/UISceneFace.cpp",
    "symbol": "?SetFaceVisible@UISceneFace@@QAEHHI@Z",
    "name": "UISceneFace::SetFaceVisible(int,uint)",
@@ -8446,6 +8552,96 @@
    "size": 3
   },
   {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?InitFromScene@Camera@@QAEXPBD@Z",
+   "name": "Camera::InitFromScene(char const *)",
+   "va": "0x004125d0",
+   "status": "partial",
+   "match_pct": 27.6,
+   "size": 163
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "??0Camera@@QAE@PAVgbGfxManager@@@Z",
+   "name": "Camera::Camera(gbGfxManager *)",
+   "va": "0x0041be80",
+   "status": "partial",
+   "match_pct": 7.4,
+   "size": 312
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "??_GCamera@@UAEPAXI@Z",
+   "name": "Camera::`scalar deleting destructor'(uint)",
+   "va": "0x0041bfc0",
+   "status": "partial",
+   "match_pct": 50.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "??1Camera@@UAE@XZ",
+   "name": "Camera::~Camera(void)",
+   "va": "0x0041bfc0",
+   "status": "partial",
+   "match_pct": 26.7,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?CheckCollision1@Camera@@QAEHPAMPAX0@Z",
+   "name": "Camera::CheckCollision1(float *,void *,float *)",
+   "va": "0x0041e7d0",
+   "status": "partial",
+   "match_pct": 18.2,
+   "size": 555
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?CheckCollision2@Camera@@QAEHPAMHPAX@Z",
+   "name": "Camera::CheckCollision2(float *,int,void *)",
+   "va": "0x0041ea00",
+   "status": "partial",
+   "match_pct": 21.8,
+   "size": 331
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?IsTransitioning@Camera@@QAEDXZ",
+   "name": "Camera::IsTransitioning(void)",
+   "va": "0x0041ee60",
+   "status": "partial",
+   "match_pct": 65.6,
+   "size": 128
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?UpdateCameraLookAt@Camera@@QAEXHH@Z",
+   "name": "Camera::UpdateCameraLookAt(int,int)",
+   "va": "0x00439850",
+   "status": "partial",
+   "match_pct": 22.3,
+   "size": 224
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?UpdateCameraLookAt_9930@Camera@@QAEXHHH@Z",
+   "name": "Camera::UpdateCameraLookAt_9930(int,int,int)",
+   "va": "0x00439930",
+   "status": "partial",
+   "match_pct": 24.1,
+   "size": 232
+  },
+  {
+   "file": "pal3/src/Scene/Camera.cpp",
+   "symbol": "?InitUIElements@Camera@@QAEXXZ",
+   "name": "Camera::InitUIElements(void)",
+   "va": "0x0052beb0",
+   "status": "partial",
+   "match_pct": 15.1,
+   "size": 1435
+  },
+  {
    "file": "pal3/src/Scene/CameraSystem.cpp",
    "symbol": "?BindToRoleSlot@CameraSystem@@SAHH@Z",
    "name": "CameraSystem::BindToRoleSlot(int)",
@@ -9694,6 +9890,16 @@
    "UIRoleSelect::SetFieldLeft(int)",
    5392736,
    13
+  ],
+  [
+   "UIRoleSelectDialog::SubtractFromStats(void)",
+   5417552,
+   81
+  ],
+  [
+   "UIRoleSelectDialog::`scalar deleting destructor'(uint)",
+   5412720,
+   30
   ],
   [
    "UIScene::`scalar deleting destructor'(uint)",

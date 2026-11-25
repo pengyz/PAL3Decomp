@@ -10,7 +10,7 @@ WARN: functions[0x0052ec90]: '__thiscall' without '::' in 'GetCurrentNode' (sig:
 WARN: functions[0x00504e20]: '__thiscall' without '::' in 'j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: functions[0x00505400]: '__thiscall' without '::' in 'j_j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795594389)早于最新注解(1795594519)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795598060)早于最新注解(1795599390)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N20a[CCBUI]:0x00516100 del 压制态 L1 载体(注册符号 va=0x00516100 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
@@ -40,7 +40,7 @@ WARN: name_drift: globals[0x00a01b20] 注解名'byte_A01B20' != IDB名'unk_A01B2
 WARN: name_drift: globals[0x00a01b21] 注解名'byte_A01B21' != IDB名'unk_A01B21'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00a01b22] 注解名'byte_A01B22' != IDB名'unk_A01B22'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00a01b23] 注解名'byte_A01B23' != IDB名'unk_A01B23'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
-WARN: name_drift: 955 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: byte_17A7BBC, byte_17A7E84, byte_A00319, byte_C10CC0, byte_C10CC1, byte_C10D94, byte_C10DA4, byte_C11748
+WARN: name_drift: 70 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: dword_56AEE8, dword_56B884, dword_570324, dword_573800, dword_573810, dword_573A5C, dword_573C64, dword_5D41AC
 FROZEN: globals[0x00dba260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dba260] if intentional
 FROZEN: globals[0x00dbaf10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbaf10] if intentional
 FROZEN: globals[0x00dbb364]: 'g_CCBEditorInst' (CCBEditor, 9624b) at +5012 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbb364] if intentional

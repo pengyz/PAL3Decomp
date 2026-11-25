@@ -273,7 +273,7 @@
 {"addr": "0x004c6460", "name": "CEffectSystem::IsVisible(void)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 18.6, "size": 344}
 {"addr": "0x004c65c0", "name": "CEffectSystem::SetVisible(float)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 37.5, "size": 40}
 {"addr": "0x004c65f0", "name": "CEffectSystem::HandleViewMove(float)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 18.5, "size": 124}
-{"addr": "0x004c6670", "name": "CEffectSystem::Update(void)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 20.8, "size": 448}
+{"addr": "0x004c6670", "name": "CEffectSystem::Update(void)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 21.9, "size": 448}
 {"addr": "0x004c6870", "name": "CEffectSystem::FillDefaultUVSet(void)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 16.6, "size": 205}
 {"addr": "0x004cf580", "name": "CEffectSystem::CreateEffect(CEffectSystem *,int,CEffectSystem *)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 17.2, "size": 279}
 {"addr": "0x004e1190", "name": "CEffectSystem::CreateEffectChain(CCBUI *,int,uint,int,int)", "file": "pal3/src/Effect/CEffectSystem.cpp", "status": "partial", "match_pct": 21.4, "size": 1165}
@@ -750,6 +750,17 @@
 {"addr": "0x004a1d10", "name": "UIRoleDialog::OnMessage(int,uint,int)", "file": "pal3/src/Misc/UIRoleDialog.cpp", "status": "partial", "match_pct": 18.8, "size": 191}
 {"addr": "0x004a1530", "name": "UIRoleSelect::SetByte(char)", "file": "pal3/src/Misc/UIRoleSelect.cpp", "status": "partial", "match_pct": 21.8, "size": 239}
 {"addr": "0x00524960", "name": "UIRoleSelect::SetFieldLeft(int)", "file": "pal3/src/Misc/UIRoleSelect.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
+{"addr": "0x00451980", "name": "UIRoleSelectDialog::CreateDialog(int,void *,int,char *)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 28.2, "size": 273}
+{"addr": "0x005295f0", "name": "UIRoleSelectDialog::UIRoleSelectDialog(void)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 33.0, "size": 379}
+{"addr": "0x00529770", "name": "UIRoleSelectDialog::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00529790", "name": "UIRoleSelectDialog::~UIRoleSelectDialog", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 30.0, "size": 213}
+{"addr": "0x00529cf0", "name": "UIRoleSelectDialog::Render(void)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 10.0, "size": 330}
+{"addr": "0x00529e40", "name": "UIRoleSelectDialog::Update(int,int)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 16.0, "size": 3081}
+{"addr": "0x0052aa50", "name": "UIRoleSelectDialog::SubtractFromStats(void)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "match_L1", "match_pct": 100.0, "size": 81}
+{"addr": "0x0052aab0", "name": "UIRoleSelectDialog::OnMessage(int,uint,int)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 20.7, "size": 965}
+{"addr": "0x0052bbd0", "name": "UIRoleSelectDialog::DestroyStatics(void)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 22.4, "size": 183}
+{"addr": "0x0052bc90", "name": "UIRoleSelectDialog::DestroyFrames(void)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 24.1, "size": 191}
+{"addr": "0x0052d200", "name": "UIRoleSelectDialog::IsRoleSelectable(int)", "file": "pal3/src/Misc/UIRoleSelectDialog.cpp", "status": "partial", "match_pct": 17.8, "size": 45}
 {"addr": "0x0052d010", "name": "UISceneFace::SetFaceVisible(int,uint)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "partial", "match_pct": 19.7, "size": 188}
 {"addr": "0x0052d0d0", "name": "UISceneFace::ResetAllSlots(void)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "match_L1", "match_pct": 100.0, "size": 25}
 {"addr": "0x0052d0f0", "name": "UISceneFace::UpdateFacePosition(void)", "file": "pal3/src/Misc/UISceneFace.cpp", "status": "partial", "match_pct": 26.2, "size": 260}
@@ -903,6 +914,16 @@
 {"addr": "0x0041b640", "name": "Role::UpdateBoundingBox(int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 32.2, "size": 87}
 {"addr": "0x0041b6a0", "name": "Role::GetGfxManager(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 34.5, "size": 29}
 {"addr": "0x004af760", "name": "Role::UpdateFrame(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 0.0, "size": 3}
+{"addr": "0x004125d0", "name": "Camera::InitFromScene(char const *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 27.6, "size": 163}
+{"addr": "0x0041be80", "name": "Camera::Camera(gbGfxManager *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 7.4, "size": 312}
+{"addr": "0x0041bfc0", "name": "Camera::`scalar deleting destructor'(uint)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 50.0, "size": 30}
+{"addr": "0x0041bfc0", "name": "Camera::~Camera(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 26.7, "size": 30}
+{"addr": "0x0041e7d0", "name": "Camera::CheckCollision1(float *,void *,float *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 18.2, "size": 555}
+{"addr": "0x0041ea00", "name": "Camera::CheckCollision2(float *,int,void *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 21.8, "size": 331}
+{"addr": "0x0041ee60", "name": "Camera::IsTransitioning(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 65.6, "size": 128}
+{"addr": "0x00439850", "name": "Camera::UpdateCameraLookAt(int,int)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 22.3, "size": 224}
+{"addr": "0x00439930", "name": "Camera::UpdateCameraLookAt_9930(int,int,int)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 24.1, "size": 232}
+{"addr": "0x0052beb0", "name": "Camera::InitUIElements(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 15.1, "size": 1435}
 {"addr": "0x0041d980", "name": "CameraSystem::BindToRoleSlot(int)", "file": "pal3/src/Scene/CameraSystem.cpp", "status": "match_L1", "match_pct": 100.0, "size": 24}
 {"addr": "0x00484ed0", "name": "MagicUI::SelectTab3(uchar)", "file": "pal3/src/UI/MagicUI.cpp", "status": "partial", "match_pct": 33.3, "size": 21}
 {"addr": "0x00484ef0", "name": "MagicUI::SelectTab4(uchar)", "file": "pal3/src/UI/MagicUI.cpp", "status": "partial", "match_pct": 33.3, "size": 21}
