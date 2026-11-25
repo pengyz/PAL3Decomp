@@ -4,9 +4,9 @@
  "known_members": {
   "0x0": {
    "name": "m_nTaskFn",
-   "type": "int",
+   "type": "_DWORD *",
    "evidence_level": "A",
-   "source": "[A 级汇编 2026-11-18] 任务回调(int形态,调用方传 (int)CCBStage::ProcMagic 等)。dispatcher==3 派发 VA=0x4fcb95: call [edi+0x40]=本字段(ecx=this+[rec+4],push 0); dispatcher==4 VA=0x4fcb1a: 与 ProcFiveLienupFadeOut 比对; StartSubTask 锚 VA=0x4fce29: lea esi,[..+0xB8]"
+   "source": "[A 级汇编 2026-11-18] 任务回调(int形态,调用方传 (int)CCBStage::ProcMagic 等)。dispatcher==3 派发 VA=0x4fcb95: call [edi+0x40]=本字段(ecx=this+[rec+4],push 0); dispatcher==4 VA=0x4fcb1a: 与 ProcFiveLienupFadeOut 比对; StartSubTask 锚 VA=0x4fce29: lea esi,[..+0xB8] | 2026-11-25 成员型修正: int→_DWORD * (下标走查 0x3[v]/0x118[v] = 指针语义, lvar override 遮蔽回滚—用户裁定成员型层修)"
   },
   "0x4": {
    "name": "m_nTaskArg0",
