@@ -10,60 +10,106 @@ D0' 调用点必传 ctx 防无证据门退化）。宪法：stage↔stage 零互
 ——双注册会致 is 身份断言假红）；本模块内 store 用平铺形与 stage 同对象。
 """
 import re
+import os
+import collections
+import json as _json
 
 from data import store
-from pipeline.gen.tables import _GB_REF_PARAM_FUNCS
 
-_GB_REF_PARAM_TYPES = {
-    # [mangled name 证据表 2026-11-02] 从 gbengine.def 提取（AAU/ABU=引用证据）
-    # 原则：引用/指针判定必须来自 MSVC6 mangled name 证据，无证据默认指针
-    ('CalEffectiveVolMod', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('GetAABBox', 0): 'struct gbAABBox',  # AAU/ABU 证据
-    ('GetCollideOBB', 0): 'struct gbOBBox',  # AAU/ABU 证据
-    ('GetEffectOnPoint', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('GetListenerPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('GetPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('GetRadiusInDirection', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('GetSphere', 0): 'struct gbSphere',  # AAU/ABU 证据
-    ('GetViewMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
-    ('GetViewport', 0): 'struct gbViewPort',  # AAU/ABU 证据
-    ('GetWorldMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
-    ('IntersectPlane', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColAABB', 1): 'struct gbAABBox',  # AAU/ABU 证据
-    ('IsColAABB', 2): 'struct gbAABBox',  # AAU/ABU 证据
-    ('IsColOBB', 0): 'struct gbOBBox',  # AAU/ABU 证据
-    ('IsColOBB', 1): 'struct gbOBBox',  # AAU/ABU 证据
-    ('IsColOBB_H', 0): 'struct gbOBBox',  # AAU/ABU 证据
-    ('IsColPoint', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColPoint', 1): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColPoint', 2): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColQuad', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColSphere', 0): 'struct gbSphere',  # AAU/ABU 证据
-    ('IsColSphere', 1): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColTriangle', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColTriangle', 1): 'struct gbVec3D',  # AAU/ABU 证据
-    ('IsColTriangle', 2): 'struct gbVec3D',  # AAU/ABU 证据
-    ('LeftMultiply', 1): 'struct gbQuaternion',  # AAU/ABU 证据
-    ('LeftTranslate', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('MakeMatrix', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('PopMessage', 0): 'struct gbNodeMsgObj',  # AAU/ABU 证据
-    ('PushMessage', 0): 'struct gbNodeMsgObj',  # AAU/ABU 证据
-    ('RightMultiply', 1): 'struct gbQuaternion',  # AAU/ABU 证据
-    ('RightTranslate', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('Rotate', 0): 'struct gbQuaternion',  # AAU/ABU 证据
-    ('Rotate', 1): 'struct gbVec3D',  # AAU/ABU 证据
-    ('Scale', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetAmbientLight', 0): 'struct gbColorFlt',  # AAU/ABU 证据
-    ('SetCameraMatrix', 0): 'struct gbMatrix4',  # AAU/ABU 证据
-    ('SetListenerOrientation', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetListenerPosition', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetOrientation', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetPosition', 0): 'struct gbMatrix4',  # AAU/ABU 证据
-    ('SetPosition', 1): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetPosition', 2): 'struct gbVec3D',  # AAU/ABU 证据
-    ('SetVelocity', 0): 'struct gbVec3D',  # AAU/ABU 证据
-    ('Translate', 0): 'struct gbVec3D',  # AAU/ABU 证据
-}
+def _build_ref_tables():
+    """[Phase1 单源化 2026-11-25 用户裁定] gbengine_registry.jsonl → ref 参数表。
+
+    硬编码表(47 条 TYPES + 34 键 FUNCS)退役——数据真值=registry 的 demangled
+    name(AAU/ABU 引用拼写=A 级 mangle 证据, backref 已展开)。规则:
+    - 限定键 (Cls::meth, {arity: {idx: type}}) 恒发(每类每元数精确)
+    - 裸名集合键仅当跨类 idx-集与逐 idx 型一致(元数无关=保现行为); 冲突类
+      (SetPosition: gbVec3D vs gbMatrix4)保守省略=复核旗舰案
+    - 8 条无 mangle 背书死条目自动清(复核任务 D)
+    golden-lock: data/status/gen_ref_funcs_golden_20261125.json
+    """
+    path = os.path.join(os.path.dirname(__file__), '..', '..', 'data',
+                        'gbengine_registry.jsonl')
+    qual = {}
+    # 反证据账本: 同名同元数的指针/值形行 (B 修跨类纪律——任一非 ref 形即禁裸键,
+    # 实证: GetAABBox gbOBBox=AAU vs gbVisNode=PAU, 裸键曾误解引用实参 ⇒ C2664)
+    anti = collections.defaultdict(set)
+    with open(path, encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                r = _json.loads(line)
+            except Exception:
+                continue
+            m = re.match(r'^(\w[\w<>:]*)::(\w+)\((.*)\)$', r.get('name', ''))
+            if not m:
+                continue
+            cls, meth, params_s = m.groups()
+            if not params_s.strip() or params_s.strip() == 'void':
+                continue
+            depth, parts, buf = 0, [], ''
+            for ch in params_s:
+                if ch in '(<[':
+                    depth += 1
+                elif ch in ')>]':
+                    depth -= 1
+                if ch == ',' and depth == 0:
+                    parts.append(buf)
+                    buf = ''
+                else:
+                    buf += ch
+            if buf.strip():
+                parts.append(buf)
+            bare_key = (meth, len(parts))
+            for i, p in enumerate(parts):
+                p = p.strip()
+                ref = p.endswith('&')
+                t = re.sub(r'\bconst\b', '', p[:-1] if ref else p).strip()
+                t = re.sub(r'\s+', ' ', t)
+                # [golden 对齐 2026-11-25] registry demangle 短形 'gbVec3D &' → 旧表拼写
+                # 'struct gbVec3D &' (UDT 补 struct 前缀, 与旧表/gbengine 头一致)
+                if t and t[0].islower() and '*' not in t and '&' not in t and '.' not in t \
+                        and t not in ('float', 'int', 'ulong', 'char', 'bool', 'double', 'short', 'long', '__int64'):
+                    t = 'struct ' + t
+                if ref:
+                    qual.setdefault(cls + '::' + meth, {}).setdefault(len(parts), {})[i] = t
+                else:
+                    anti[bare_key].add((cls, i))
+    funcs, types = {}, {}
+    # 裸名跨元数组判: idx-集跨元数一致的 bare 名才发集合键 (多载异型如 Rotate
+    # {1}/{0} → 仅限定键, 杜绝 last-write-wins 覆写); 反证据(指针/值形同名行)禁裸键
+    by_bare_all = {}
+    for qm, arities in qual.items():
+        bare = qm.split('::')[-1]
+        for arity, idxmap in arities.items():
+            by_bare_all.setdefault(bare, {})[(qm, arity)] = idxmap
+    for bare, combos in sorted(by_bare_all.items()):
+        # 限定键恒发 (ref 行精确入表, 与反证据无关)
+        for (qm, arity), idxmap in sorted(combos.items()):
+            slots = funcs.setdefault(qm, {})
+            slots[arity] = dict(idxmap)
+            for i, t in idxmap.items():
+                types[(qm, i)] = t
+        # 裸键三重门: ①反证据(同名指针/值形行)禁入(B 修跨类纪律) ②idx-集跨元数
+        # 一致(多载异型 Rotate 仅限定键) ③逐 idx 型跨类一致(SetPosition gbVec3D
+        # vs gbMatrix4 冲突=复核旗舰案)
+        if any(k[0] == bare for k in anti):
+            continue
+        idx_sets = [frozenset(v) for v in combos.values()]
+        if len(set(idx_sets)) != 1:
+            continue
+        ref_view = next(iter(combos.values()))
+        qm0 = next(iter(combos))[0]
+        if not all(types[(qm0, i)] == t for i, t in ref_view.items()):
+            continue
+        funcs[bare] = set(ref_view)
+        for i, t in ref_view.items():
+            types[(bare, i)] = t
+    return funcs, types
+
+
+_GB_REF_PARAM_FUNCS, _GB_REF_PARAM_TYPES = _build_ref_tables()
 
 # NOTE (F1b): 'SetAxisAngle': {0} was WRONG and has been deleted.
 # `gbengine/gbengine.def` (authoritative, compiler-emitted mangled names):
@@ -180,6 +226,34 @@ def _build_var_types(code, ctx):
                                  'base': base, 'stars': max(p.count('*'), 1)})
     return vt
 
+import os
+import json as _json
+
+_MEMBER_TYPE_CACHE = None
+
+
+def _member_type_index():
+    """成员名 → 类型 映射(来自注解 structs jsons, 惰性一次)——Case 4 终端证据源。"""
+    global _MEMBER_TYPE_CACHE
+    if _MEMBER_TYPE_CACHE is None:
+        import glob as _glob
+        idx = {}
+        root = os.path.join(os.path.dirname(__file__), '..', '..', 'data',
+                            'annotations', 'structs')
+        for p in _glob.glob(os.path.join(root, '*.json')):
+            try:
+                d = _json.load(open(p, encoding='utf-8'))
+            except Exception:
+                continue
+            for k, v in (d.get('known_members') or {}).items():
+                if isinstance(v, dict) and v.get('name'):
+                    t = str(v.get('type') or '').strip()
+                    if t:
+                        idx.setdefault(v['name'], t)
+        _MEMBER_TYPE_CACHE = idx
+    return _MEMBER_TYPE_CACHE
+
+
 def _fix_single_ref_arg(arg, vt=None, ref_type=None):
     """Fix a single argument for a reference parameter.
 
@@ -279,6 +353,29 @@ def _fix_single_ref_arg(arg, vt=None, ref_type=None):
                 if _gt.endswith('*'):
                     return ident_m.group(1) + '*' + ident_m.group(2)
         return ident_m.group(1) + '*' + ident_m.group(2)
+    # Case 4 (W2 2026-11-25): 值参槽渲染的解引用拷贝形 *(lvalue 链) → lvalue 链。
+    # 根因: parse_decl 无法持 ref(实证: 'gbVec3D const &' parse → 'const gbVec3D *')
+    # ⇒ IAT 槽为值/指针形 ⇒ hexrays 渲染 *(obj) 拷贝形; 编译头为 T& ⇒ 对象本身绑定。
+    # 4a: *(chain) 终端为值型成员(证据=_member_type_index 非指针) → 剥解引用
+    # 4b: *(chain + N) → ((T *)&chain)[N] —— 邻接元素绑定, 批 E array[0] 先例的
+    #     指针算术形(语义等价: 基址+N*sizeof(T) 的引用绑定)
+    deref_chain_m = re.match(r'^\s*\*\s*\(\s*(.+?)\s*\)\s*$', arg)
+    if deref_chain_m and ref_type:
+        inner = deref_chain_m.group(1)
+        _norm_t = lambda t: re.sub(r'^(?:struct|class|enum|union)\s+', '', t.strip())
+        plus_m = re.match(r'^(.+?)\s*\+\s*([0-9]+)\s*$', inner)
+        if plus_m:
+            chain, k = plus_m.group(1).strip(), int(plus_m.group(1) and plus_m.group(2))
+            term = re.split(r'->|\.', chain)[-1].strip()
+            _t = _norm_t(_member_type_index().get(term, ''))
+            if _t == _norm_t(ref_type) and k >= 0:
+                return '((%s *)&%s)[%d]' % (_norm_t(ref_type), chain, k)
+            return arg  # 证据不足 fail-safe
+        term = re.split(r'->|\.', inner)[-1].strip()
+        _t = _norm_t(_member_type_index().get(term, ''))
+        if _t and not _t.endswith('*'):
+            return inner  # 值型对象本身绑引用 → 剥解引用
+        return arg  # 未知终端 fail-safe
     # Unknown pattern — leave unchanged to be safe
     return arg
 

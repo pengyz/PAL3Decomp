@@ -2022,6 +2022,9 @@ def _fix_gbengine_import_slots():
     log("[gb] import slots: names=%d member=%d demangled=%d parsed=%d typed=%d "
         "-> corrected=%d failed=%d"
         % (n_all, n_member, n_dem, n_regex, seen, fixed, failed))
+    log("[gb-import] mangle 解码: ok=%d try=%d skip=%d (ref-degrade=%d, _build_func_tinfo "
+        "基本型修复后基型可达; 引用降级指针计数)" % (gb_sig_ok, gb_sig_try, gb_sig_skip,
+        _REF_DEGRADE_COUNT[0]))
     for s in samples:
         log("     sample-reject: %s" % s)
     return fixed
@@ -2034,6 +2037,9 @@ def _fix_gbengine_import_slots():
 # C2664（Object3D.cpp L26/L31/L89；SoundMgr.cpp L21/L23）。新增四条按修饰名
 # （A 级，data/gbengine_registry.jsonl:911-913/1044）注入 enum 形参。
 # [退役 20261123] _GB_IMPORT_SIGS 21 条人工白名单→程序化 mangle 解码通道(全量覆盖)
+
+_REF_DEGRADE_COUNT = [0]
+
 
 def _build_func_tinfo(til, ret, args, cc_code):
     """[L-VAR 2026-11-12] 程序化函数型构造器——绕 parse_decl(til 带参函数型
@@ -2068,7 +2074,10 @@ def _build_func_tinfo(til, ret, args, cc_code):
             is_ref = True
             work = work[:-1].rstrip()
         if work in _BTF:
-            if not t.set_btf(_BTF[work]):
+            # [Phase0 修 2026-11-25 对抗复核] set_btf 在本 binding 不存在(子 agent
+            # 283 方法面实证) → 凡带基本类型签名全部静默 None。create_simple_type
+            # (BTF_*) 已验证可用。
+            if not t.create_simple_type(_BTF[work]):
                 return None
         else:
             if not t.get_named_type(til, work):
@@ -2079,8 +2088,13 @@ def _build_func_tinfo(til, ret, args, cc_code):
                 return None
             t = p
         if is_ref:
+            # [Phase0 修 2026-11-25 对抗复核] 本 binding 引用零表达力(无 create_ref/
+            # BT_REF/ptr_type_data_t.is_ref, deserialize 拒收一切候选字节)——显式降级
+            # 指针 + 告警计数, 替代静默 None。hexrays 渲染由 ref_params/tables 补偿层
+            # 承接(复核终审: 机制必须存在)。
+            _REF_DEGRADE_COUNT[0] += 1
             p = ida_typeinf.tinfo_t()
-            if not p.create_ref(t):
+            if not p.create_ptr(t):
                 return None
             t = p
         return t

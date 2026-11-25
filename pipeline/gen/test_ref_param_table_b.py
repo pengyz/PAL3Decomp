@@ -32,10 +32,14 @@ class TestRefParamTableB(unittest.TestCase):
         #   带 func_name.split('::')[-1] 裸名回退。原断言"限定名在表/裸名不在表"
         #   是修复前旧世界。
         from ref_params import _GB_REF_PARAM_TYPES as T
-        self.assertIn(('Rotate', 1), T)
-        self.assertEqual(T[('Rotate', 1)], 'struct gbVec3D')
-        self.assertIn(('Rotate', 0), T)
-        self.assertIn(('IsColOBB', 0), T)
+        # [Phase1 单源化 2026-11-25 重基线] 限定键直查替代裸名回退(多载异型名裸键禁入=复核旗舰案)
+        self.assertIn(('gbMatrixStack::Rotate', 1), T)
+        self.assertEqual(T[('gbMatrixStack::Rotate', 1)], 'struct gbVec3D')
+        self.assertEqual(T[('gbMatrixStack::Rotate', 0)], 'struct gbQuaternion')
+        # [Phase1 2026-11-25 重基线] 裸 IsColOBB 反证据禁入(gbOBBox::IsColOBB(gbOBBox *)
+        # = 指针形同名列)→限定键承接; 8 条无背书死条目同步清
+        self.assertIn(('gbRay::IsColOBB', 0), T)
+        self.assertIn(('gbPlane::IsColOBB', 0), T)
 
     def test_pau_pointer_form_untouched(self):
         # ④PAU 指针形不动（gbMatrix4::Rotate(gbVec3D const*,gbVec3D*) 出表）

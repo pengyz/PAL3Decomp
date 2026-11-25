@@ -1,0 +1,2072 @@
+{
+ "funcs": {
+  "CPK::GetFileSize": {
+   "3": {
+    "0": "ulong",
+    "1": "ulong"
+   }
+  },
+  "CalEffectiveVolMod": [
+   1
+  ],
+  "GetAABBox": [
+   0
+  ],
+  "GetBlend": [
+   0
+  ],
+  "GetCollideOBB": [
+   0
+  ],
+  "GetEffectOnPoint": [
+   0
+  ],
+  "GetFileSize": [
+   0,
+   1
+  ],
+  "GetListenerPosition": [
+   0
+  ],
+  "GetPosition": [
+   0
+  ],
+  "GetRadiusInDirection": [
+   0
+  ],
+  "GetSphere": [
+   0
+  ],
+  "GetViewPort": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "GetViewSizeOnNearPlane": [
+   0,
+   1
+  ],
+  "GetViewport": [
+   0
+  ],
+  "IntersectPlane": [
+   0,
+   1
+  ],
+  "IsColAABB": [
+   0
+  ],
+  "IsColOBB": [
+   0
+  ],
+  "IsColOBB_H": [
+   0
+  ],
+  "IsColPoint": [
+   0
+  ],
+  "IsColQuad": [
+   0,
+   1,
+   2
+  ],
+  "IsColSphere": [
+   0
+  ],
+  "IsColTriangle": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "LeftMultiply": [
+   0
+  ],
+  "LeftTranslate": [
+   0
+  ],
+  "LoadCVDFromStream": [
+   3
+  ],
+  "MakeMatrix": [
+   0,
+   1,
+   2
+  ],
+  "PointEyeToScr": [
+   1,
+   2
+  ],
+  "PointWorld2Scr_NR": [
+   1,
+   2
+  ],
+  "PointWorldToScr": [
+   1,
+   2
+  ],
+  "PopMessage": [
+   0
+  ],
+  "PushMessage": [
+   0
+  ],
+  "RightMultiply": [
+   0
+  ],
+  "RightTranslate": [
+   0
+  ],
+  "Rotate": [
+   1
+  ],
+  "Scale": [
+   0
+  ],
+  "SetAmbientLight": [
+   0
+  ],
+  "SetCameraMatrix": [
+   0,
+   1
+  ],
+  "SetListenerOrientation": [
+   0,
+   1
+  ],
+  "SetListenerPosition": [
+   0
+  ],
+  "SetOrientation": [
+   0
+  ],
+  "SetVelocity": [
+   0
+  ],
+  "Translate": [
+   0
+  ],
+  "gbAABBox::IsColAABB": {
+   "1": {
+    "0": "gbAABBox"
+   }
+  },
+  "gbAABBox::IsColPoint": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbActor": [
+   0
+  ],
+  "gbActor::GetCollideOBB": {
+   "1": {
+    "0": "gbOBBox"
+   }
+  },
+  "gbActor::gbActor": {
+   "1": {
+    "0": "gbActor"
+   }
+  },
+  "gbAnimNodeGroup::SetPosition": {
+   "1": {
+    "0": "gbMatrix4"
+   }
+  },
+  "gbAudioManager": [
+   0
+  ],
+  "gbAudioManager::GetListenerPosition": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbAudioManager::SetListenerOrientation": {
+   "2": {
+    "0": "gbVec3D",
+    "1": "gbVec3D"
+   }
+  },
+  "gbAudioManager::SetListenerPosition": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbAudioManager::gbAudioManager": {
+   "1": {
+    "0": "gbAudioManager"
+   },
+   "2": {
+    "0": "int"
+   }
+  },
+  "gbBaseMesh": [
+   0
+  ],
+  "gbBaseMesh::gbBaseMesh": {
+   "1": {
+    "0": "gbBaseMesh"
+   }
+  },
+  "gbBinaryTreeNode": [
+   0
+  ],
+  "gbBinaryTreeNode::gbBinaryTreeNode": {
+   "1": {
+    "0": "gbBinaryTreeNode"
+   }
+  },
+  "gbCamControler": [
+   0
+  ],
+  "gbCamControler::gbCamControler": {
+   "1": {
+    "0": "gbCamControler"
+   }
+  },
+  "gbCamQuakeControl": [
+   0
+  ],
+  "gbCamQuakeControl::gbCamQuakeControl": {
+   "1": {
+    "0": "gbCamQuakeControl"
+   }
+  },
+  "gbCamSpringControl": [
+   0
+  ],
+  "gbCamSpringControl::gbCamSpringControl": {
+   "1": {
+    "0": "gbCamSpringControl"
+   }
+  },
+  "gbCamera::GetViewPort": {
+   "4": {
+    "0": "float",
+    "1": "float",
+    "2": "float",
+    "3": "float"
+   }
+  },
+  "gbCamera::GetViewSizeOnNearPlane": {
+   "2": {
+    "0": "float",
+    "1": "float"
+   }
+  },
+  "gbCamera::PointEyeToScr": {
+   "3": {
+    "1": "float",
+    "2": "float"
+   }
+  },
+  "gbCamera::PointWorld2Scr_NR": {
+   "3": {
+    "1": "float",
+    "2": "float"
+   }
+  },
+  "gbCamera::PointWorldToScr": {
+   "3": {
+    "1": "float",
+    "2": "float"
+   }
+  },
+  "gbChain1DNode": [
+   0
+  ],
+  "gbChain1DNode::gbChain1DNode": {
+   "1": {
+    "0": "gbChain1DNode"
+   }
+  },
+  "gbChain2DNode": [
+   0
+  ],
+  "gbChain2DNode::gbChain2DNode": {
+   "1": {
+    "0": "gbChain2DNode"
+   }
+  },
+  "gbDropGroup": [
+   0
+  ],
+  "gbDropGroup::gbDropGroup": {
+   "1": {
+    "0": "gbDropGroup"
+   }
+  },
+  "gbDynVertBuf": [
+   0
+  ],
+  "gbDynVertBuf::gbDynVertBuf": {
+   "1": {
+    "0": "gbDynVertBuf"
+   }
+  },
+  "gbEffectMgr": [
+   0
+  ],
+  "gbEffectMgr::gbEffectMgr": {
+   "1": {
+    "0": "gbEffectMgr"
+   }
+  },
+  "gbGeomNode": [
+   0
+  ],
+  "gbGeomNode::LoadCVDFromStream": {
+   "4": {
+    "3": "int"
+   }
+  },
+  "gbGeomNode::gbGeomNode": {
+   "1": {
+    "0": "gbGeomNode"
+   }
+  },
+  "gbGfxManager": [
+   0
+  ],
+  "gbGfxManager::GetViewport": {
+   "1": {
+    "0": "gbViewPort"
+   }
+  },
+  "gbGfxManager::SetAmbientLight": {
+   "1": {
+    "0": "gbColorFlt"
+   }
+  },
+  "gbGfxManager::SetCameraMatrix": {
+   "2": {
+    "0": "gbMatrix4",
+    "1": "gbMatrix4"
+   }
+  },
+  "gbGfxManager::gbGfxManager": {
+   "2": {
+    "0": "int"
+   }
+  },
+  "gbIndexBubble": [
+   0
+  ],
+  "gbIndexBubble::gbIndexBubble": {
+   "1": {
+    "0": "gbIndexBubble"
+   }
+  },
+  "gbIndexPool": [
+   0
+  ],
+  "gbIndexPool::gbIndexPool": {
+   "1": {
+    "0": "gbIndexPool"
+   }
+  },
+  "gbLightObj": [
+   0
+  ],
+  "gbLightObj::GetEffectOnPoint": {
+   "2": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbLightObj::gbLightObj": {
+   "1": {
+    "0": "gbLightObj"
+   }
+  },
+  "gbMatrix4::LeftMultiply": {
+   "1": {
+    "0": "gbQuaternion"
+   }
+  },
+  "gbMatrix4::LeftTranslate": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbMatrix4::MakeMatrix": {
+   "3": {
+    "0": "gbVec3D",
+    "1": "gbVec3D",
+    "2": "gbVec3D"
+   }
+  },
+  "gbMatrix4::RightMultiply": {
+   "1": {
+    "0": "gbQuaternion"
+   }
+  },
+  "gbMatrix4::RightTranslate": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbMatrixStack::Rotate": {
+   "1": {
+    "0": "gbQuaternion"
+   },
+   "2": {
+    "1": "gbVec3D"
+   }
+  },
+  "gbMatrixStack::Scale": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbMatrixStack::Translate": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbNBTreeNode": [
+   0
+  ],
+  "gbNBTreeNode::gbNBTreeNode": {
+   "1": {
+    "0": "gbNBTreeNode"
+   }
+  },
+  "gbOBBox::GetAABBox": {
+   "1": {
+    "0": "gbAABBox"
+   }
+  },
+  "gbOBBox::GetRadiusInDirection": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbOBBox::GetSphere": {
+   "1": {
+    "0": "gbSphere"
+   }
+  },
+  "gbOBBox::IsColPoint": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbParticleEffect": [
+   0
+  ],
+  "gbParticleEffect::gbParticleEffect": {
+   "1": {
+    "0": "gbParticleEffect"
+   }
+  },
+  "gbParticleUnit": [
+   0
+  ],
+  "gbParticleUnit::gbParticleUnit": {
+   "1": {
+    "0": "gbParticleUnit"
+   }
+  },
+  "gbPlane::IsColAABB": {
+   "1": {
+    "0": "gbAABBox"
+   }
+  },
+  "gbPlane::IsColOBB": {
+   "1": {
+    "0": "gbOBBox"
+   }
+  },
+  "gbRain": [
+   0
+  ],
+  "gbRain::gbRain": {
+   "1": {
+    "0": "gbRain"
+   }
+  },
+  "gbRay::IntersectPlane": {
+   "2": {
+    "0": "gbVec3D",
+    "1": "gbVec3D"
+   }
+  },
+  "gbRay::IsColAABB": {
+   "1": {
+    "0": "gbAABBox"
+   }
+  },
+  "gbRay::IsColOBB": {
+   "1": {
+    "0": "gbOBBox"
+   }
+  },
+  "gbRay::IsColOBB_H": {
+   "1": {
+    "0": "gbOBBox"
+   }
+  },
+  "gbRay::IsColQuad": {
+   "3": {
+    "0": "gbVec3D",
+    "1": "gbVec3D",
+    "2": "gbVec3D"
+   }
+  },
+  "gbRay::IsColSphere": {
+   "1": {
+    "0": "gbSphere"
+   }
+  },
+  "gbRay::IsColTriangle": {
+   "3": {
+    "0": "gbVec3D",
+    "1": "gbVec3D",
+    "2": "gbVec3D"
+   },
+   "4": {
+    "0": "gbVec3D",
+    "1": "gbVec3D",
+    "2": "gbVec3D",
+    "3": "gbVec3D"
+   }
+  },
+  "gbRefObject": [
+   0
+  ],
+  "gbRefObject::gbRefObject": {
+   "1": {
+    "0": "gbRefObject"
+   }
+  },
+  "gbRenderEffect": [
+   0
+  ],
+  "gbRenderEffect::gbRenderEffect": {
+   "1": {
+    "0": "gbRenderEffect"
+   }
+  },
+  "gbResManager": [
+   0
+  ],
+  "gbResManager::gbResManager": {
+   "1": {
+    "0": "gbResManager"
+   }
+  },
+  "gbResource": [
+   0
+  ],
+  "gbResource::gbResource": {
+   "1": {
+    "0": "gbResource"
+   }
+  },
+  "gbSceneGraph": [
+   1
+  ],
+  "gbSceneGraph::CalEffectiveVolMod": {
+   "3": {
+    "1": "gbVec3D"
+   }
+  },
+  "gbSceneGraph::gbSceneGraph": {
+   "3": {
+    "1": "gbVec3D"
+   }
+  },
+  "gbSnow": [
+   0
+  ],
+  "gbSnow::gbSnow": {
+   "1": {
+    "0": "gbSnow"
+   }
+  },
+  "gbSound3DNode::GetPosition": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSound3DNode::SetOrientation": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSound3DNode::SetPosition": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSound3DNode::SetVelocity": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSphere::IsColPoint": {
+   "1": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSphere::IsColSphere": {
+   "2": {
+    "0": "gbVec3D"
+   }
+  },
+  "gbSphere::IsColTriangle": {
+   "3": {
+    "0": "gbVec3D",
+    "1": "gbVec3D",
+    "2": "gbVec3D"
+   }
+  },
+  "gbStaticMesh": [
+   0
+  ],
+  "gbStaticMesh::gbStaticMesh": {
+   "1": {
+    "0": "gbStaticMesh"
+   }
+  },
+  "gbVertexBubble": [
+   0
+  ],
+  "gbVertexBubble::gbVertexBubble": {
+   "1": {
+    "0": "gbVertexBubble"
+   }
+  },
+  "gbVertexPool": [
+   0
+  ],
+  "gbVertexPool::gbVertexPool": {
+   "1": {
+    "0": "gbVertexPool"
+   }
+  },
+  "gbVisNode": [
+   0
+  ],
+  "gbVisNode::GetBlend": {
+   "1": {
+    "0": "float"
+   }
+  },
+  "gbVisNode::PopMessage": {
+   "1": {
+    "0": "gbNodeMsgObj"
+   }
+  },
+  "gbVisNode::PushMessage": {
+   "1": {
+    "0": "gbNodeMsgObj"
+   }
+  },
+  "gbVisNode::gbVisNode": {
+   "1": {
+    "0": "gbVisNode"
+   }
+  },
+  "gbVolModNode": [
+   0
+  ],
+  "gbVolModNode::gbVolModNode": {
+   "1": {
+    "0": "gbVolModNode"
+   }
+  },
+  "gbVolumeModifier": [
+   0
+  ],
+  "gbVolumeModifier::gbVolumeModifier": {
+   "1": {
+    "0": "gbVolumeModifier"
+   }
+  }
+ },
+ "types": [
+  [
+   [
+    "CPK::GetFileSize",
+    0
+   ],
+   "ulong"
+  ],
+  [
+   [
+    "CPK::GetFileSize",
+    1
+   ],
+   "ulong"
+  ],
+  [
+   [
+    "CalEffectiveVolMod",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "GetAABBox",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "GetBlend",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetCollideOBB",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "GetEffectOnPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "GetFileSize",
+    0
+   ],
+   "ulong"
+  ],
+  [
+   [
+    "GetFileSize",
+    1
+   ],
+   "ulong"
+  ],
+  [
+   [
+    "GetListenerPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "GetPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "GetRadiusInDirection",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "GetSphere",
+    0
+   ],
+   "gbSphere"
+  ],
+  [
+   [
+    "GetViewPort",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewPort",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewPort",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewPort",
+    3
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewSizeOnNearPlane",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewSizeOnNearPlane",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "GetViewport",
+    0
+   ],
+   "gbViewPort"
+  ],
+  [
+   [
+    "IntersectPlane",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IntersectPlane",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColAABB",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "IsColOBB",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "IsColOBB_H",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "IsColPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColQuad",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColQuad",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColQuad",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColSphere",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColTriangle",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColTriangle",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColTriangle",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "IsColTriangle",
+    3
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "LeftMultiply",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "LeftTranslate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "LoadCVDFromStream",
+    3
+   ],
+   "int"
+  ],
+  [
+   [
+    "MakeMatrix",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "MakeMatrix",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "MakeMatrix",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "PointEyeToScr",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "PointEyeToScr",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "PointWorld2Scr_NR",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "PointWorld2Scr_NR",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "PointWorldToScr",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "PointWorldToScr",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "PopMessage",
+    0
+   ],
+   "gbNodeMsgObj"
+  ],
+  [
+   [
+    "PushMessage",
+    0
+   ],
+   "gbNodeMsgObj"
+  ],
+  [
+   [
+    "RightMultiply",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "RightTranslate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "Rotate",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "Rotate",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "Scale",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "SetAmbientLight",
+    0
+   ],
+   "gbColorFlt"
+  ],
+  [
+   [
+    "SetCameraMatrix",
+    0
+   ],
+   "gbMatrix4"
+  ],
+  [
+   [
+    "SetCameraMatrix",
+    1
+   ],
+   "gbMatrix4"
+  ],
+  [
+   [
+    "SetListenerOrientation",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "SetListenerOrientation",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "SetListenerPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "SetOrientation",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "SetVelocity",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "Translate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbAABBox::IsColAABB",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "gbAABBox::IsColPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbActor",
+    0
+   ],
+   "gbActor"
+  ],
+  [
+   [
+    "gbActor::GetCollideOBB",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "gbActor::gbActor",
+    0
+   ],
+   "gbActor"
+  ],
+  [
+   [
+    "gbAnimNodeGroup::SetPosition",
+    0
+   ],
+   "gbMatrix4"
+  ],
+  [
+   [
+    "gbAudioManager",
+    0
+   ],
+   "int"
+  ],
+  [
+   [
+    "gbAudioManager::GetListenerPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbAudioManager::SetListenerOrientation",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbAudioManager::SetListenerOrientation",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbAudioManager::SetListenerPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbAudioManager::gbAudioManager",
+    0
+   ],
+   "int"
+  ],
+  [
+   [
+    "gbBaseMesh",
+    0
+   ],
+   "gbBaseMesh"
+  ],
+  [
+   [
+    "gbBaseMesh::gbBaseMesh",
+    0
+   ],
+   "gbBaseMesh"
+  ],
+  [
+   [
+    "gbBinaryTreeNode",
+    0
+   ],
+   "gbBinaryTreeNode"
+  ],
+  [
+   [
+    "gbBinaryTreeNode::gbBinaryTreeNode",
+    0
+   ],
+   "gbBinaryTreeNode"
+  ],
+  [
+   [
+    "gbCamControler",
+    0
+   ],
+   "gbCamControler"
+  ],
+  [
+   [
+    "gbCamControler::gbCamControler",
+    0
+   ],
+   "gbCamControler"
+  ],
+  [
+   [
+    "gbCamQuakeControl",
+    0
+   ],
+   "gbCamQuakeControl"
+  ],
+  [
+   [
+    "gbCamQuakeControl::gbCamQuakeControl",
+    0
+   ],
+   "gbCamQuakeControl"
+  ],
+  [
+   [
+    "gbCamSpringControl",
+    0
+   ],
+   "gbCamSpringControl"
+  ],
+  [
+   [
+    "gbCamSpringControl::gbCamSpringControl",
+    0
+   ],
+   "gbCamSpringControl"
+  ],
+  [
+   [
+    "gbCamera::GetViewPort",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::GetViewPort",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::GetViewPort",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::GetViewPort",
+    3
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::GetViewSizeOnNearPlane",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::GetViewSizeOnNearPlane",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointEyeToScr",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointEyeToScr",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointWorld2Scr_NR",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointWorld2Scr_NR",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointWorldToScr",
+    1
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbCamera::PointWorldToScr",
+    2
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbChain1DNode",
+    0
+   ],
+   "gbChain1DNode"
+  ],
+  [
+   [
+    "gbChain1DNode::gbChain1DNode",
+    0
+   ],
+   "gbChain1DNode"
+  ],
+  [
+   [
+    "gbChain2DNode",
+    0
+   ],
+   "gbChain2DNode"
+  ],
+  [
+   [
+    "gbChain2DNode::gbChain2DNode",
+    0
+   ],
+   "gbChain2DNode"
+  ],
+  [
+   [
+    "gbDropGroup",
+    0
+   ],
+   "gbDropGroup"
+  ],
+  [
+   [
+    "gbDropGroup::gbDropGroup",
+    0
+   ],
+   "gbDropGroup"
+  ],
+  [
+   [
+    "gbDynVertBuf",
+    0
+   ],
+   "gbDynVertBuf"
+  ],
+  [
+   [
+    "gbDynVertBuf::gbDynVertBuf",
+    0
+   ],
+   "gbDynVertBuf"
+  ],
+  [
+   [
+    "gbEffectMgr",
+    0
+   ],
+   "gbEffectMgr"
+  ],
+  [
+   [
+    "gbEffectMgr::gbEffectMgr",
+    0
+   ],
+   "gbEffectMgr"
+  ],
+  [
+   [
+    "gbGeomNode",
+    0
+   ],
+   "gbGeomNode"
+  ],
+  [
+   [
+    "gbGeomNode::LoadCVDFromStream",
+    3
+   ],
+   "int"
+  ],
+  [
+   [
+    "gbGeomNode::gbGeomNode",
+    0
+   ],
+   "gbGeomNode"
+  ],
+  [
+   [
+    "gbGfxManager",
+    0
+   ],
+   "int"
+  ],
+  [
+   [
+    "gbGfxManager::GetViewport",
+    0
+   ],
+   "gbViewPort"
+  ],
+  [
+   [
+    "gbGfxManager::SetAmbientLight",
+    0
+   ],
+   "gbColorFlt"
+  ],
+  [
+   [
+    "gbGfxManager::SetCameraMatrix",
+    0
+   ],
+   "gbMatrix4"
+  ],
+  [
+   [
+    "gbGfxManager::SetCameraMatrix",
+    1
+   ],
+   "gbMatrix4"
+  ],
+  [
+   [
+    "gbGfxManager::gbGfxManager",
+    0
+   ],
+   "int"
+  ],
+  [
+   [
+    "gbIndexBubble",
+    0
+   ],
+   "gbIndexBubble"
+  ],
+  [
+   [
+    "gbIndexBubble::gbIndexBubble",
+    0
+   ],
+   "gbIndexBubble"
+  ],
+  [
+   [
+    "gbIndexPool",
+    0
+   ],
+   "gbIndexPool"
+  ],
+  [
+   [
+    "gbIndexPool::gbIndexPool",
+    0
+   ],
+   "gbIndexPool"
+  ],
+  [
+   [
+    "gbLightObj",
+    0
+   ],
+   "gbLightObj"
+  ],
+  [
+   [
+    "gbLightObj::GetEffectOnPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbLightObj::gbLightObj",
+    0
+   ],
+   "gbLightObj"
+  ],
+  [
+   [
+    "gbMatrix4::LeftMultiply",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "gbMatrix4::LeftTranslate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrix4::MakeMatrix",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrix4::MakeMatrix",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrix4::MakeMatrix",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrix4::RightMultiply",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "gbMatrix4::RightTranslate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrixStack::Rotate",
+    0
+   ],
+   "gbQuaternion"
+  ],
+  [
+   [
+    "gbMatrixStack::Rotate",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrixStack::Scale",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbMatrixStack::Translate",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbNBTreeNode",
+    0
+   ],
+   "gbNBTreeNode"
+  ],
+  [
+   [
+    "gbNBTreeNode::gbNBTreeNode",
+    0
+   ],
+   "gbNBTreeNode"
+  ],
+  [
+   [
+    "gbOBBox::GetAABBox",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "gbOBBox::GetRadiusInDirection",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbOBBox::GetSphere",
+    0
+   ],
+   "gbSphere"
+  ],
+  [
+   [
+    "gbOBBox::IsColPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbParticleEffect",
+    0
+   ],
+   "gbParticleEffect"
+  ],
+  [
+   [
+    "gbParticleEffect::gbParticleEffect",
+    0
+   ],
+   "gbParticleEffect"
+  ],
+  [
+   [
+    "gbParticleUnit",
+    0
+   ],
+   "gbParticleUnit"
+  ],
+  [
+   [
+    "gbParticleUnit::gbParticleUnit",
+    0
+   ],
+   "gbParticleUnit"
+  ],
+  [
+   [
+    "gbPlane::IsColAABB",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "gbPlane::IsColOBB",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "gbRain",
+    0
+   ],
+   "gbRain"
+  ],
+  [
+   [
+    "gbRain::gbRain",
+    0
+   ],
+   "gbRain"
+  ],
+  [
+   [
+    "gbRay::IntersectPlane",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IntersectPlane",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColAABB",
+    0
+   ],
+   "gbAABBox"
+  ],
+  [
+   [
+    "gbRay::IsColOBB",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "gbRay::IsColOBB_H",
+    0
+   ],
+   "gbOBBox"
+  ],
+  [
+   [
+    "gbRay::IsColQuad",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColQuad",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColQuad",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColSphere",
+    0
+   ],
+   "gbSphere"
+  ],
+  [
+   [
+    "gbRay::IsColTriangle",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColTriangle",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColTriangle",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRay::IsColTriangle",
+    3
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbRefObject",
+    0
+   ],
+   "gbRefObject"
+  ],
+  [
+   [
+    "gbRefObject::gbRefObject",
+    0
+   ],
+   "gbRefObject"
+  ],
+  [
+   [
+    "gbRenderEffect",
+    0
+   ],
+   "gbRenderEffect"
+  ],
+  [
+   [
+    "gbRenderEffect::gbRenderEffect",
+    0
+   ],
+   "gbRenderEffect"
+  ],
+  [
+   [
+    "gbResManager",
+    0
+   ],
+   "gbResManager"
+  ],
+  [
+   [
+    "gbResManager::gbResManager",
+    0
+   ],
+   "gbResManager"
+  ],
+  [
+   [
+    "gbResource",
+    0
+   ],
+   "gbResource"
+  ],
+  [
+   [
+    "gbResource::gbResource",
+    0
+   ],
+   "gbResource"
+  ],
+  [
+   [
+    "gbSceneGraph",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSceneGraph::CalEffectiveVolMod",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSceneGraph::gbSceneGraph",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSnow",
+    0
+   ],
+   "gbSnow"
+  ],
+  [
+   [
+    "gbSnow::gbSnow",
+    0
+   ],
+   "gbSnow"
+  ],
+  [
+   [
+    "gbSound3DNode::GetPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSound3DNode::SetOrientation",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSound3DNode::SetPosition",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSound3DNode::SetVelocity",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSphere::IsColPoint",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSphere::IsColSphere",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSphere::IsColTriangle",
+    0
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSphere::IsColTriangle",
+    1
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbSphere::IsColTriangle",
+    2
+   ],
+   "gbVec3D"
+  ],
+  [
+   [
+    "gbStaticMesh",
+    0
+   ],
+   "gbStaticMesh"
+  ],
+  [
+   [
+    "gbStaticMesh::gbStaticMesh",
+    0
+   ],
+   "gbStaticMesh"
+  ],
+  [
+   [
+    "gbVertexBubble",
+    0
+   ],
+   "gbVertexBubble"
+  ],
+  [
+   [
+    "gbVertexBubble::gbVertexBubble",
+    0
+   ],
+   "gbVertexBubble"
+  ],
+  [
+   [
+    "gbVertexPool",
+    0
+   ],
+   "gbVertexPool"
+  ],
+  [
+   [
+    "gbVertexPool::gbVertexPool",
+    0
+   ],
+   "gbVertexPool"
+  ],
+  [
+   [
+    "gbVisNode",
+    0
+   ],
+   "gbVisNode"
+  ],
+  [
+   [
+    "gbVisNode::GetBlend",
+    0
+   ],
+   "float"
+  ],
+  [
+   [
+    "gbVisNode::PopMessage",
+    0
+   ],
+   "gbNodeMsgObj"
+  ],
+  [
+   [
+    "gbVisNode::PushMessage",
+    0
+   ],
+   "gbNodeMsgObj"
+  ],
+  [
+   [
+    "gbVisNode::gbVisNode",
+    0
+   ],
+   "gbVisNode"
+  ],
+  [
+   [
+    "gbVolModNode",
+    0
+   ],
+   "gbVolModNode"
+  ],
+  [
+   [
+    "gbVolModNode::gbVolModNode",
+    0
+   ],
+   "gbVolModNode"
+  ],
+  [
+   [
+    "gbVolumeModifier",
+    0
+   ],
+   "gbVolumeModifier"
+  ],
+  [
+   [
+    "gbVolumeModifier::gbVolumeModifier",
+    0
+   ],
+   "gbVolumeModifier"
+  ]
+ ],
+ "golden_note": "[Phase1 golden-lock 2026-11-25] registry 派生表快照: FUNCS 157 键(限定元数字典式+裸名集合式)。对照现硬编码表 57 对: 覆盖 56, 唯一省略=裸 SetPosition(跨类 idx0 型冲突 gbVec3D vs gbMatrix4, 保守省略=复核旗舰案)。8 条无背书死条目自动清(IsColAABB/Point/Sphere/OBB/LeftMultiply/RightMultiply 等)。"
+}

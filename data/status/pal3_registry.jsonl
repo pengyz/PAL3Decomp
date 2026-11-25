@@ -542,9 +542,6 @@
 {"addr": "0x0044bd60", "name": "PtrArray::PtrArray(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 60.0, "size": 20}
 {"addr": "0x0053d0b0", "name": "PtrArray::ClearBoth(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 8.8, "size": 68}
 {"addr": "0x0053d1a0", "name": "PtrArray::SetResolution(int,int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 19.6, "size": 46}
-{"addr": "0x0041d410", "name": "RoleCamera::PushState(void)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "partial", "match_pct": 14.4, "size": 376}
-{"addr": "0x0044d180", "name": "RoleCamera::InitParticles(void)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "partial", "match_pct": 75.6, "size": 266}
-{"addr": "0x00534cf0", "name": "RoleCamera::UpdateAudioListener(int,int)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "match_L1", "match_pct": 100.0, "size": 95}
 {"addr": "0x00445860", "name": "RoleCameraCtrl::SetName(char const *)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 26.1, "size": 165}
 {"addr": "0x00445910", "name": "RoleCameraCtrl::SetTargetDistance(int)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x00450a60", "name": "RoleCameraCtrl::InitFrameUI(void)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 10.8, "size": 74}
@@ -594,8 +591,6 @@
 {"addr": "0x00526740", "name": "SkillUI::Update(int,int)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "partial", "match_pct": 32.1, "size": 610}
 {"addr": "0x00526a40", "name": "SkillUI::OnMessage(int,uint,int)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "partial", "match_pct": 19.0, "size": 1607}
 {"addr": "0x00527510", "name": "SkillUI::AdvanceToNextSlot(void)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "partial", "match_pct": 21.5, "size": 256}
-{"addr": "0x0053c340", "name": "SoundMgr::InitCPK(int,int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 36.3, "size": 223}
-{"addr": "0x0053ea80", "name": "SoundMgr::PlayCPKStream(int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 37.8, "size": 201}
 {"addr": "0x00402fb0", "name": "String::_Tidy(bool)", "file": "pal3/src/Misc/String.cpp", "status": "match_L1", "match_pct": 100.0, "size": 72}
 {"addr": "0x00407ab0", "name": "String::_Freeze(void)", "file": "pal3/src/Misc/String.cpp", "status": "partial", "match_pct": 63.6, "size": 118}
 {"addr": "0x00407b30", "name": "String::_Eos(uint)", "file": "pal3/src/Misc/String.cpp", "status": "match_L1", "match_pct": 100.0, "size": 17}
@@ -816,7 +811,7 @@
 {"addr": "0x0042c6e0", "name": "gbLightObj::GetGfxManager(int)", "file": "pal3/src/Misc/gbLightObj.cpp", "status": "partial", "match_pct": 89.7, "size": 29}
 {"addr": "0x0042c8d0", "name": "gbLightObj::GetCGEntry(char)", "file": "pal3/src/Misc/gbLightObj.cpp", "status": "partial", "match_pct": 37.5, "size": 8}
 {"addr": "0x0052f2e0", "name": "gbMatrixStack::SceneRenderWithRotation(void)", "file": "pal3/src/Misc/gbMatrixStack.cpp", "status": "match_L1", "match_pct": 100.0, "size": 28}
-{"addr": "0x0052f6c0", "name": "gbOBBox::GetBBox(void)", "file": "pal3/src/Misc/gbOBBox.cpp", "status": "partial", "match_pct": 4.7, "size": 317}
+{"addr": "0x0052f6c0", "name": "gbOBBox::GetBBox(void)", "file": "pal3/src/Misc/gbOBBox.cpp", "status": "partial", "match_pct": 6.0, "size": 317}
 {"addr": "0x0041eb80", "name": "gbSound2DNode::UIPostUpdate(void)", "file": "pal3/src/Misc/gbSound2DNode.cpp", "status": "partial", "match_pct": 31.2, "size": 382}
 {"addr": "0x0042fd40", "name": "gbVec3D::Copy(int,gbVec3D *)", "file": "pal3/src/Misc/gbVec3D.cpp", "status": "partial", "match_pct": 8.8, "size": 34}
 {"addr": "0x004a3a90", "name": "s_RoleState::LoadAndSetupRole(void)", "file": "pal3/src/Misc/s_RoleState.cpp", "status": "partial", "match_pct": 21.0, "size": 1071}
@@ -914,16 +909,6 @@
 {"addr": "0x0041b640", "name": "Role::UpdateBoundingBox(int)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 32.2, "size": 87}
 {"addr": "0x0041b6a0", "name": "Role::GetGfxManager(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 34.5, "size": 29}
 {"addr": "0x004af760", "name": "Role::UpdateFrame(void)", "file": "pal3/src/Role/Role.cpp", "status": "partial", "match_pct": 0.0, "size": 3}
-{"addr": "0x004125d0", "name": "Camera::InitFromScene(char const *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 27.6, "size": 163}
-{"addr": "0x0041be80", "name": "Camera::Camera(gbGfxManager *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 7.4, "size": 312}
-{"addr": "0x0041bfc0", "name": "Camera::`scalar deleting destructor'(uint)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 50.0, "size": 30}
-{"addr": "0x0041bfc0", "name": "Camera::~Camera(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 26.7, "size": 30}
-{"addr": "0x0041e7d0", "name": "Camera::CheckCollision1(float *,void *,float *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 18.2, "size": 555}
-{"addr": "0x0041ea00", "name": "Camera::CheckCollision2(float *,int,void *)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 21.8, "size": 331}
-{"addr": "0x0041ee60", "name": "Camera::IsTransitioning(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 65.6, "size": 128}
-{"addr": "0x00439850", "name": "Camera::UpdateCameraLookAt(int,int)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 22.3, "size": 224}
-{"addr": "0x00439930", "name": "Camera::UpdateCameraLookAt_9930(int,int,int)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 24.1, "size": 232}
-{"addr": "0x0052beb0", "name": "Camera::InitUIElements(void)", "file": "pal3/src/Scene/Camera.cpp", "status": "partial", "match_pct": 15.1, "size": 1435}
 {"addr": "0x0041d980", "name": "CameraSystem::BindToRoleSlot(int)", "file": "pal3/src/Scene/CameraSystem.cpp", "status": "match_L1", "match_pct": 100.0, "size": 24}
 {"addr": "0x00484ed0", "name": "MagicUI::SelectTab3(uchar)", "file": "pal3/src/UI/MagicUI.cpp", "status": "partial", "match_pct": 33.3, "size": 21}
 {"addr": "0x00484ef0", "name": "MagicUI::SelectTab4(uchar)", "file": "pal3/src/UI/MagicUI.cpp", "status": "partial", "match_pct": 33.3, "size": 21}
