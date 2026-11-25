@@ -1,0 +1,2115 @@
+{
+ "verified": 86,
+ "pass": 69,
+ "suspect_logical": [
+  "C2DSpark",
+  "C3DSpark",
+  "CCBLineupWindow",
+  "CCBStageCam",
+  "CCBStageEffect",
+  "CCBUI",
+  "CCCTData",
+  "CEffMgr",
+  "CEffectSystem",
+  "Camera",
+  "GRPinput",
+  "Iostream_init",
+  "OpenBaseFile",
+  "OpenNULLFile",
+  "UIWnd"
+ ],
+ "zero_call": [],
+ "results": {
+  "AStarPathFinder": {
+   "ctor_addr": "0x401000",
+   "ctor_code_size": 39,
+   "mangle_match": true,
+   "idb_name": "??0AStarPathFinder@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x408393",
+     "host": "SingletonThunk_004117A0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x14",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "ArraySlots": {
+   "ctor_addr": "0x44a790",
+   "ctor_code_size": 50,
+   "mangle_match": true,
+   "idb_name": "??0ArraySlots@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44ef5f",
+     "host": "SingletonThunk_0044ED80",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x58",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "C2DSpark": {
+   "ctor_addr": "0x4d5ab0",
+   "ctor_code_size": 770,
+   "mangle_match": true,
+   "idb_name": "??0C2DSpark@@QAE@HH@Z",
+   "callers": [
+    {
+     "site": "0x512b1b",
+     "host": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x5870",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?ProcNormalAttack@CCBSystem@@Q 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "C3DSpark": {
+   "ctor_addr": "0x4d6670",
+   "ctor_code_size": 751,
+   "mangle_match": true,
+   "idb_name": "??0C3DSpark@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x512b50",
+     "host": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x1c30",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?ProcNormalAttack@CCBSystem@@Q 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CCBAI": {
+   "ctor_addr": "0x4d6ff0",
+   "ctor_code_size": 57,
+   "mangle_match": true,
+   "idb_name": "??0CCBAI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4d6fe0",
+     "host": "j_CCBAI::CCBAI",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBControlWindow": {
+   "ctor_addr": "0x51a700",
+   "ctor_code_size": 381,
+   "mangle_match": true,
+   "idb_name": "??0CCBControlWindow@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x51a698",
+     "host": "?AddTask@CCBUICtrl@@QAEHPAVtagUITask@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBItemWindow": {
+   "ctor_addr": "0x4461b0",
+   "ctor_code_size": 25,
+   "mangle_match": true,
+   "idb_name": "??0CCBItemWindow@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44610a",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x1dc",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBLineupWindow": {
+   "ctor_addr": "0x51cfb0",
+   "ctor_code_size": 178,
+   "mangle_match": true,
+   "idb_name": "??0CCBLineupWindow@@QAE@PAPAVCCBControlWindow@@@Z",
+   "callers": [
+    {
+     "site": "0x517c1e",
+     "host": "?CreateAttackSequen@CCBUI@@QAE_NXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?CreateAttackSequen@CCBUI@@QAE 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CCBMagicWindow": {
+   "ctor_addr": "0x51b9f0",
+   "ctor_code_size": 178,
+   "mangle_match": true,
+   "idb_name": "??0CCBMagicWindow@@QAE@HHPAH@Z",
+   "callers": [
+    {
+     "site": "0x51bad2",
+     "host": "?Method@CCBMagicWindow@@QAEXH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x10",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBParabolaWindow": {
+   "ctor_addr": "0x51b710",
+   "ctor_code_size": 243,
+   "mangle_match": true,
+   "idb_name": "??0CCBParabolaWindow@@QAE@PAHH@Z",
+   "callers": [
+    {
+     "site": "0x517cd3",
+     "host": "?CreateBattleFieldAttr@CCBUI@@QAE_NXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x7c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBResultWindow": {
+   "ctor_addr": "0x444a20",
+   "ctor_code_size": 124,
+   "mangle_match": true,
+   "idb_name": "??0CCBResultWindow@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x529665",
+     "host": "??0UIRoleSelectDialog@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45a9f5",
+     "host": "??0SaleUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x470c40",
+     "host": "?InitWithPalScript@UIListBox@@QAEHHH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 3,
+   "factory_caller": true,
+   "max_this_write": "0xb4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBRoleState": {
+   "ctor_addr": "0x456ab0",
+   "ctor_code_size": 169,
+   "mangle_match": true,
+   "idb_name": "??0CCBRoleState@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44c60e",
+     "host": "?CreateSettingsUI@UIScenePanel@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x5058",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBStage": {
+   "ctor_addr": "0x51d710",
+   "ctor_code_size": 1639,
+   "mangle_match": true,
+   "idb_name": "??0CCBStage@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x5233e7",
+     "host": "?InitGameSystems@CUtil@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x1f74",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBStageCam": {
+   "ctor_addr": "0x504e70",
+   "ctor_code_size": 202,
+   "mangle_match": true,
+   "idb_name": "??0CCBStageCam@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4e6697",
+     "host": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateEditorState@CCBStageCam 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CCBStageEffect": {
+   "ctor_addr": "0x508e30",
+   "ctor_code_size": 250,
+   "mangle_match": true,
+   "idb_name": "??0CCBStageEffect@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4eb3a9",
+     "host": "DlgProcCameraConfig",
+     "ops_new": null
+    },
+    {
+     "site": "0x5084de",
+     "host": "?IsPointerUnderMouse@CCBCamControl@@QAE_NXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=DlgProcCameraConfig 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CCBStageRole": {
+   "ctor_addr": "0x522030",
+   "ctor_code_size": 166,
+   "mangle_match": true,
+   "idb_name": "??0CCBStageRole@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x52400b",
+     "host": "??0CScreenMode@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x214",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBStageScene": {
+   "ctor_addr": "0x50fee0",
+   "ctor_code_size": 495,
+   "mangle_match": true,
+   "idb_name": "??0CCBStageScene@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4fbb09",
+     "host": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x2ac",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBStageShadow": {
+   "ctor_addr": "0x511ee0",
+   "ctor_code_size": 167,
+   "mangle_match": true,
+   "idb_name": "??0CCBStageShadow@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4fbda0",
+     "host": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x44",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBSystem": {
+   "ctor_addr": "0x512500",
+   "ctor_code_size": 114,
+   "mangle_match": true,
+   "idb_name": "??0CCBSystem@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x404a2d",
+     "host": "?InitGame@PAL3@@QAEXH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x8a",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCBUI": {
+   "ctor_addr": "0x5160a0",
+   "ctor_code_size": 85,
+   "mangle_match": true,
+   "idb_name": "??0CCBUI@@QAE@H@Z",
+   "callers": [
+    {
+     "site": "0x5126bb",
+     "host": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x48c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?ProcNormalAttack@CCBSystem@@Q 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CCBUICtrl": {
+   "ctor_addr": "0x519310",
+   "ctor_code_size": 73,
+   "mangle_match": false,
+   "idb_name": "?CCBUI@CCBUICtrl@@QAEXXZ",
+   "callers": [
+    {
+     "site": "0x51cd1a",
+     "host": "?Destroy@CCBAIWindow@@QAEXH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "mangle 名不匹配 (IDB 名可能是 apply 写入的)"
+   ]
+  },
+  "CCBUIPanel": {
+   "ctor_addr": "0x4460d0",
+   "ctor_code_size": 213,
+   "mangle_match": true,
+   "idb_name": "??0CCBUIPanel@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44fe84",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x4998",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CCCTData": {
+   "ctor_addr": "0x5058f0",
+   "ctor_code_size": 63,
+   "mangle_match": true,
+   "idb_name": "??0CCCTData@@QAE@PAHPAH@Z",
+   "callers": [
+    {
+     "site": "0x4e667f",
+     "host": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4e8298",
+     "host": "?UpdateDebugDialog@CCCTData@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateEditorState@CCBStageCam 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常",
+    "caller=?UpdateDebugDialog@CCCTData@@Q 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CEffGrid": {
+   "ctor_addr": "0x4c9550",
+   "ctor_code_size": 190,
+   "mangle_match": true,
+   "idb_name": "??0CEffGrid@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4c9623",
+     "host": "AllocEffect",
+     "ops_new": null
+    },
+    {
+     "site": "0x4cf51f",
+     "host": "?CreateEffectType3@CEffMgr@@QAEHPAV1@HPAV1@@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0xb8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CEffGroupNode": {
+   "ctor_addr": "0x4b72e0",
+   "ctor_code_size": 38,
+   "mangle_match": true,
+   "idb_name": "??0CEffGroupNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b71e0",
+     "host": "sub_4B70C0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x74",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CEffMeteor": {
+   "ctor_addr": "0x4cb3a0",
+   "ctor_code_size": 223,
+   "mangle_match": true,
+   "idb_name": "??0CEffMeteor@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4cb493",
+     "host": "?AllocEffect@CEffMeteor@@QAEPAXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4cf75f",
+     "host": "?CreateEffectType4@CEffMgr@@QAEHPAV1@HPAV1@@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0xd0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CEffMgr": {
+   "ctor_addr": "0x4ce100",
+   "ctor_code_size": 408,
+   "mangle_match": true,
+   "idb_name": "??0CEffMgr@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4cdac7",
+     "host": "?Create@CEffMgr@@QAEPAV1@HHH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x4e8d89",
+     "host": "?UpdateStageCamera@CCBStageCam@@QAEHPAMHHHH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateStageCamera@CCBStageCam 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CEffModel": {
+   "ctor_addr": "0x4cfc70",
+   "ctor_code_size": 138,
+   "mangle_match": true,
+   "idb_name": "??0CEffModel@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4cf2dc",
+     "host": "?CreateModelEffect@CEffMgr@@QAEHPAV1@HPAV1@@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x4cfd10",
+     "host": "?AllocEffect@CEffModel@@QAEPAXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0x68",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CEffShock": {
+   "ctor_addr": "0x4d3870",
+   "ctor_code_size": 150,
+   "mangle_match": true,
+   "idb_name": "??0CEffShock@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4cf99f",
+     "host": "?CreateEffectType5@CEffMgr@@QAEHPAV1@HPAV1@@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x4d3923",
+     "host": "?AllocEffect@CEffShock@@QAEPAXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0x1098",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CEffectSystem": {
+   "ctor_addr": "0x4c61a0",
+   "ctor_code_size": 155,
+   "mangle_match": true,
+   "idb_name": "??0CEffectSystem@@QAE@H@Z",
+   "callers": [
+    {
+     "site": "0x512b77",
+     "host": "?ProcNormalAttack@CCBSystem@@QAEDXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x44",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?ProcNormalAttack@CCBSystem@@Q 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "CScreenMode": {
+   "ctor_addr": "0x523f30",
+   "ctor_code_size": 474,
+   "mangle_match": true,
+   "idb_name": "??0CScreenMode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x5233b5",
+     "host": "?InitGameSystems@CUtil@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x1574",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CScreenModeNode": {
+   "ctor_addr": "0x53d3a0",
+   "ctor_code_size": 45,
+   "mangle_match": true,
+   "idb_name": "??0CScreenModeNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x53daeb",
+     "host": "sub_53DAD0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x80",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "CUtil": {
+   "ctor_addr": "0x523130",
+   "ctor_code_size": 159,
+   "mangle_match": true,
+   "idb_name": "??0CUtil@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44fbbd",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x6ec",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "Camera": {
+   "ctor_addr": "0x41be80",
+   "ctor_code_size": 312,
+   "mangle_match": true,
+   "idb_name": "??0Camera@@QAE@PAVgbGfxManager@@@Z",
+   "callers": [
+    {
+     "site": "0x4050ff",
+     "host": "?InitGFX@PAL3@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x503fc2",
+     "host": "?ResetTurnData@CCBStage@@QAEHPAPAHPAVgbGfxManager@",
+     "ops_new": null
+    },
+    {
+     "site": "0x533cd2",
+     "host": "?UpdateCameraAndRole@SceneObjParam@@QAEHPAVgbGfxMa",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 3,
+   "factory_caller": true,
+   "max_this_write": "0x220",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateCameraAndRole@SceneObjP 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "DealData": {
+   "ctor_addr": "0x457260",
+   "ctor_code_size": 212,
+   "mangle_match": true,
+   "idb_name": "??0DealData@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4045f5",
+     "host": "SingletonThunk_004045F0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "EquipUI": {
+   "ctor_addr": "0x498820",
+   "ctor_code_size": 1104,
+   "mangle_match": true,
+   "idb_name": "??0EquipUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4a4648",
+     "host": "?Init@EquipUI@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x294",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "GRPinput": {
+   "ctor_addr": "0x402400",
+   "ctor_code_size": 236,
+   "mangle_match": true,
+   "idb_name": "??0GRPinput@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4055ec",
+     "host": "?Update@PAL3@@QAEHM@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x50",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?Update@PAL3@@QAEHM@Z 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "Iostream_init": {
+   "ctor_addr": "0x408bc0",
+   "ctor_code_size": 3,
+   "mangle_match": true,
+   "idb_name": "??0Iostream_init@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x408705",
+     "host": "SingletonThunk_00408700",
+     "ops_new": null
+    },
+    {
+     "site": "0x41d925",
+     "host": "SingletonThunk_0041D920",
+     "ops_new": null
+    },
+    {
+     "site": "0x431d95",
+     "host": "SingletonThunk_00431D90",
+     "ops_new": null
+    },
+    {
+     "site": "0x535216",
+     "host": "?Update@UICursor@@QAEHN@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x541bdf",
+     "host": "WinMain",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 5,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?Update@UICursor@@QAEHN@Z 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "JusticeBookUI": {
+   "ctor_addr": "0x5282e0",
+   "ctor_code_size": 474,
+   "mangle_match": true,
+   "idb_name": "??0JusticeBookUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x527b49",
+     "host": "?CreateSubPanels@SoundContext@@QAEXH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0xdb81",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "LineupComp": {
+   "ctor_addr": "0x44b850",
+   "ctor_code_size": 63,
+   "mangle_match": true,
+   "idb_name": "??0LineupComp@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44ac8e",
+     "host": "??0UITitle@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x47bc92",
+     "host": "??0UITitle_ArcSave@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": false,
+   "max_this_write": "0x718",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "LineupUI": {
+   "ctor_addr": "0x47e5c0",
+   "ctor_code_size": 812,
+   "mangle_match": true,
+   "idb_name": "??0LineupUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4a46ac",
+     "host": "?Init@EquipUI@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x170",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "MainEquipUI": {
+   "ctor_addr": "0x479300",
+   "ctor_code_size": 849,
+   "mangle_match": true,
+   "idb_name": "??0MainEquipUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x47c18c",
+     "host": "?InitEquipScreen@CScreenMode@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x68",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "MainPropUI": {
+   "ctor_addr": "0x4909f0",
+   "ctor_code_size": 1150,
+   "mangle_match": true,
+   "idb_name": "??0MainPropUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4a4616",
+     "host": "?Init@EquipUI@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x30a",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "Object3D": {
+   "ctor_addr": "0x47cb70",
+   "ctor_code_size": 17,
+   "mangle_match": true,
+   "idb_name": "??0Object3D@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x483442",
+     "host": "??1StateUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x52b310",
+     "host": "?CleanupCamera@CCBStageScene@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x562e04",
+     "host": "?Save@LineupUI@@QAEHXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x563074",
+     "host": "??1StateUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x568352",
+     "host": "?InitCameraPositions@CCBStageScene@@QAEPAHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 18,
+   "factory_caller": true,
+   "max_this_write": "0x58",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "OpenBaseFile": {
+   "ctor_addr": "0x401f50",
+   "ctor_code_size": 25,
+   "mangle_match": true,
+   "idb_name": "??0OpenBaseFile@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x401916",
+     "host": "sub_4018B0",
+     "ops_new": null
+    },
+    {
+     "site": "0x404bfa",
+     "host": "?InitGame@PAL3@@QAEXH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x4053e1",
+     "host": "?CreateEffectSystem@PAL3@@QAE_NXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x41f5fe",
+     "host": "?LoadShadowTexture@UIManager@@QAEPAXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x423ee7",
+     "host": "?LoadScene@UIBigMap@@QAEXHPBD@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 71,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateScriptRoles@PalScriptMg 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "OpenNULLFile": {
+   "ctor_addr": "0x401f90",
+   "ctor_code_size": 11,
+   "mangle_match": true,
+   "idb_name": "??0OpenNULLFile@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x40198a",
+     "host": "sub_4018B0",
+     "ops_new": null
+    },
+    {
+     "site": "0x404d16",
+     "host": "?InitGame@PAL3@@QAEXH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x405516",
+     "host": "?CreateEffectSystem@PAL3@@QAE_NXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x405534",
+     "host": "?CreateEffectSystem@PAL3@@QAE_NXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x41f66a",
+     "host": "?LoadShadowTexture@UIManager@@QAEPAXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 151,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "caller=?UpdateScriptRoles@PalScriptMg 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常",
+    "caller=?UpdateScriptRoles@PalScriptMg 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "OpenSceneFile": {
+   "ctor_addr": "0x401df0",
+   "ctor_code_size": 328,
+   "mangle_match": true,
+   "idb_name": "??0OpenSceneFile@@QAE@PAD@Z",
+   "callers": [
+    {
+     "site": "0x41fed4",
+     "host": "sub_41FE30",
+     "ops_new": null
+    },
+    {
+     "site": "0x422251",
+     "host": "VFileSystem::_auto_4221d0",
+     "ops_new": null
+    },
+    {
+     "site": "0x422bb8",
+     "host": "LoadScene",
+     "ops_new": null
+    },
+    {
+     "site": "0x423e01",
+     "host": "?LoadScene@UIBigMap@@QAEXHPBD@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x42c2d9",
+     "host": "?LoadSceneGeometry@PalScriptMgr@@QAEPAVgbVFileSyst",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 7,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PAL3": {
+   "ctor_addr": "0x404760",
+   "ctor_code_size": 131,
+   "mangle_match": true,
+   "idb_name": "??0PAL3@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x404750",
+     "host": "$E233",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PAL3VisNode": {
+   "ctor_addr": "0x4b6f70",
+   "ctor_code_size": 26,
+   "mangle_match": true,
+   "idb_name": "??0PAL3VisNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b72e3",
+     "host": "??0CEffGroupNode@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4b74a4",
+     "host": "??0UI3DModelNode@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4b7c4f",
+     "host": "??0ScreenEffectNode@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4bd833",
+     "host": "??0RenderTargetNode@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4bee7f",
+     "host": "??0ScreenEffectMgr@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 5,
+   "factory_caller": false,
+   "max_this_write": "0x5c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PAL_GDB": {
+   "ctor_addr": "0x478e00",
+   "ctor_code_size": 460,
+   "mangle_match": true,
+   "idb_name": "??0PAL_GDB@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x404968",
+     "host": "?InitGame@PAL3@@QAEXH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x457f13",
+     "host": "?RefreshSkillNumbers@PAL_GDB@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PalScript": {
+   "ctor_addr": "0x43a160",
+   "ctor_code_size": 106,
+   "mangle_match": true,
+   "idb_name": "??0PalScript@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4086c5",
+     "host": "SingletonThunk_004086C0",
+     "ops_new": null
+    },
+    {
+     "site": "0x446132",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x450e10",
+     "host": "?Init@UISceneMap@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45a97c",
+     "host": "??0SaleUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x46d237",
+     "host": "?InitUI@PropUI@@QAEHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 8,
+   "factory_caller": true,
+   "max_this_write": "0xa0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PalScriptMgr": {
+   "ctor_addr": "0x431e60",
+   "ctor_code_size": 10,
+   "mangle_match": true,
+   "idb_name": "??0PalScriptMgr@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x5801a8",
+     "host": "?",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "ParticleEffect": {
+   "ctor_addr": "0x4bc760",
+   "ctor_code_size": 46,
+   "mangle_match": true,
+   "idb_name": "??0ParticleEffect@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4beef8",
+     "host": "??0ScreenEffectMgr@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4c8b05",
+     "host": "?Create@CEffgbParticle@@QAEDPAVtagEffObjType@@@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": true,
+   "max_this_write": "0x10",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "PtrArray": {
+   "ctor_addr": "0x44bd60",
+   "ctor_code_size": 20,
+   "mangle_match": true,
+   "idb_name": "??0PtrArray@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44bb78",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44bbb3",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44bbee",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44bc29",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44bc64",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 6,
+   "factory_caller": false,
+   "max_this_write": "0x10",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "RenderTargetNode": {
+   "ctor_addr": "0x4bd830",
+   "ctor_code_size": 25,
+   "mangle_match": true,
+   "idb_name": "??0RenderTargetNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b710b",
+     "host": "sub_4B70C0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x60",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "Role": {
+   "ctor_addr": "0x411900",
+   "ctor_code_size": 622,
+   "mangle_match": true,
+   "idb_name": "??0Role@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x408a25",
+     "host": "SingletonThunk_00408A20",
+     "ops_new": null
+    },
+    {
+     "site": "0x408a75",
+     "host": "SingletonThunk_00408A70",
+     "ops_new": null
+    },
+    {
+     "site": "0x408ac5",
+     "host": "SingletonThunk_00408AC0",
+     "ops_new": null
+    },
+    {
+     "site": "0x428fda",
+     "host": "sub_426EB0",
+     "ops_new": null
+    },
+    {
+     "site": "0x408745",
+     "host": "sub_408740",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 6,
+   "factory_caller": false,
+   "max_this_write": "0x2200",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "RoleSystem": {
+   "ctor_addr": "0x420290",
+   "ctor_code_size": 7,
+   "mangle_match": true,
+   "idb_name": "??0RoleSystem@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x420273",
+     "host": "??1RoleSystem@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x420490",
+     "host": "sub_420450",
+     "ops_new": null
+    },
+    {
+     "site": "0x420936",
+     "host": "?InitInternal@RoleSystem@@QAEXH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x55f5f3",
+     "host": "??0SceneMapPlayer@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x55f613",
+     "host": "sub_420450",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 5,
+   "factory_caller": true,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "SaleUI": {
+   "ctor_addr": "0x45a7b0",
+   "ctor_code_size": 1555,
+   "mangle_match": true,
+   "idb_name": "??0SaleUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x459743",
+     "host": "?InitGameUI@CScreenMode@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x66f4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "Scene": {
+   "ctor_addr": "0x41f6f0",
+   "ctor_code_size": 267,
+   "mangle_match": false,
+   "idb_name": "?Reset@Scene@@QAEXXZ",
+   "callers": [
+    {
+     "site": "0x422615",
+     "host": "SingletonThunk_00422560",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xe0e4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "mangle 名不匹配 (IDB 名可能是 apply 写入的)"
+   ]
+  },
+  "SceneMapPlayer": {
+   "ctor_addr": "0x4203c0",
+   "ctor_code_size": 99,
+   "mangle_match": true,
+   "idb_name": "??0SceneMapPlayer@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4225a5",
+     "host": "SingletonThunk_00422560",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x104",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "ScreenEffect": {
+   "ctor_addr": "0x4bdfb0",
+   "ctor_code_size": 163,
+   "mangle_match": true,
+   "idb_name": "??0ScreenEffect@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4be5ab",
+     "host": "?GetInstance@ScreenEffectMgr@@QAEPAVScreenEffect@@",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x98",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "ScreenEffectMgr": {
+   "ctor_addr": "0x4bee60",
+   "ctor_code_size": 193,
+   "mangle_match": true,
+   "idb_name": "??0ScreenEffectMgr@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b7144",
+     "host": "sub_4B70C0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xac",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "ScreenEffectNode": {
+   "ctor_addr": "0x4b7c30",
+   "ctor_code_size": 132,
+   "mangle_match": true,
+   "idb_name": "??0ScreenEffectNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b7179",
+     "host": "sub_4B70C0",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xa4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "SkillUI": {
+   "ctor_addr": "0x525120",
+   "ctor_code_size": 927,
+   "mangle_match": true,
+   "idb_name": "??0SkillUI@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x527b87",
+     "host": "?CreateSubPanels@SoundContext@@QAEXH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x3adc",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "TxtFile": {
+   "ctor_addr": "0x431870",
+   "ctor_code_size": 36,
+   "mangle_match": true,
+   "idb_name": "??0TxtFile@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4044b5",
+     "host": "SingletonThunk_004044B0",
+     "ops_new": null
+    },
+    {
+     "site": "0x41efc1",
+     "host": "?Init@ScriptSystem@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4302b7",
+     "host": "?LoadScript@PalScript@@QAEHH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x44616c",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44b853",
+     "host": "??0LineupComp@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 13,
+   "factory_caller": true,
+   "max_this_write": "0x20c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UI3DCtrl": {
+   "ctor_addr": "0x43d830",
+   "ctor_code_size": 37,
+   "mangle_match": true,
+   "idb_name": "??0UI3DCtrl@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44111d",
+     "host": "?Init@UIMap@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45a95c",
+     "host": "??0SaleUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x46d207",
+     "host": "?InitUI@PropUI@@QAEHXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x470b3e",
+     "host": "?InitWithPalScript@UIListBox@@QAEHHH@Z",
+     "ops_new": null
+    },
+    {
+     "site": "0x470c68",
+     "host": "?InitWithPalScript@UIListBox@@QAEHHH@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 13,
+   "factory_caller": true,
+   "max_this_write": "0x54",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UI3DModelNode": {
+   "ctor_addr": "0x4b74a0",
+   "ctor_code_size": 67,
+   "mangle_match": true,
+   "idb_name": "??0UI3DModelNode@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4b71ae",
+     "host": "sub_4B70C0",
+     "ops_new": null
+    },
+    {
+     "site": "0x52af61",
+     "host": "?LoadModel@UI3DCtrl@@QAEDPBD@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": false,
+   "max_this_write": "0xf8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIAnimateCtrlEX": {
+   "ctor_addr": "0x452790",
+   "ctor_code_size": 148,
+   "mangle_match": true,
+   "idb_name": "??0UIAnimateCtrlEX@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4525ad",
+     "host": "_todo_ctor",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x3f4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIBigMap": {
+   "ctor_addr": "0x490e90",
+   "ctor_code_size": 541,
+   "mangle_match": true,
+   "idb_name": "??0UIBigMap@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x490bbd",
+     "host": "??0MainPropUI@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UICoverFrm": {
+   "ctor_addr": "0x52ba10",
+   "ctor_code_size": 412,
+   "mangle_match": true,
+   "idb_name": "??0UICoverFrm@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x52b7fd",
+     "host": "?CreateCamera@CCBStageScene@@QAEDXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": true,
+   "max_this_write": "0x329d",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIEmote": {
+   "ctor_addr": "0x44e530",
+   "ctor_code_size": 133,
+   "mangle_match": true,
+   "idb_name": "??0UIEmote@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44efcb",
+     "host": "SingletonThunk_0044ED80",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x8ac",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIFrameWnd": {
+   "ctor_addr": "0x43bb70",
+   "ctor_code_size": 25,
+   "mangle_match": true,
+   "idb_name": "??0UIFrameWnd@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x450324",
+     "host": "?LayoutDefault@UICaption@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x450a7d",
+     "host": "?InitFrameUI@RoleCameraCtrl@@QAEPAV1@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x450ddd",
+     "host": "?Init@UISceneMap@@QAEXXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45186d",
+     "host": "?UIListBox_Init@UIListBox@@QAEHXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x4a130d",
+     "host": "??0UIRoleDialog@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 5,
+   "factory_caller": true,
+   "max_this_write": "0x48",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIListBox": {
+   "ctor_addr": "0x43dcd0",
+   "ctor_code_size": 25,
+   "mangle_match": true,
+   "idb_name": "??0UIListBox@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4460ed",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44ba81",
+     "host": "??0UIScenePanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44fffd",
+     "host": "??0UISceneMap@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45072d",
+     "host": "??0UILoadingFrm@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x45259d",
+     "host": "_todo_ctor",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 42,
+   "factory_caller": true,
+   "max_this_write": "0x48",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UILoadingFrm": {
+   "ctor_addr": "0x450710",
+   "ctor_code_size": 84,
+   "mangle_match": true,
+   "idb_name": "??0UILoadingFrm@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44f91c",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x148",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIPushButton": {
+   "ctor_addr": "0x440740",
+   "ctor_code_size": 81,
+   "mangle_match": true,
+   "idb_name": "??0UIPushButton@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x47e85f",
+     "host": "??0LineupUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x47e86f",
+     "host": "??0LineupUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x47e87f",
+     "host": "??0LineupUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x47e88f",
+     "host": "??0LineupUI@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x47e89f",
+     "host": "??0LineupUI@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 34,
+   "factory_caller": true,
+   "max_this_write": "0x78",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIRenderObj": {
+   "ctor_addr": "0x541640",
+   "ctor_code_size": 203,
+   "mangle_match": true,
+   "idb_name": "??0UIRenderObj@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4061d2",
+     "host": "?Render@PAL3@@QAEXXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIRoleDialog": {
+   "ctor_addr": "0x4a12f0",
+   "ctor_code_size": 229,
+   "mangle_match": true,
+   "idb_name": "??0UIRoleDialog@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44614c",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44615c",
+     "host": "??0CCBUIPanel@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44ac3c",
+     "host": "??0UITitle@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44ac5e",
+     "host": "??0UITitle@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x44ac6e",
+     "host": "??0UITitle@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 41,
+   "factory_caller": true,
+   "max_this_write": "0x554",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIRoleSelectDialog": {
+   "ctor_addr": "0x5295f0",
+   "ctor_code_size": 379,
+   "mangle_match": true,
+   "idb_name": "??0UIRoleSelectDialog@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44fcc2",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x89c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UISceneFrm": {
+   "ctor_addr": "0x4590d0",
+   "ctor_code_size": 363,
+   "mangle_match": true,
+   "idb_name": "??0UISceneFrm@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44fa97",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xcd8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UISceneMap": {
+   "ctor_addr": "0x44ffe0",
+   "ctor_code_size": 142,
+   "mangle_match": true,
+   "idb_name": "??0UISceneMap@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44f98c",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x4c",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIScenePanel": {
+   "ctor_addr": "0x44ba60",
+   "ctor_code_size": 759,
+   "mangle_match": true,
+   "idb_name": "??0UIScenePanel@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44f9fc",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x364a",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UITitle": {
+   "ctor_addr": "0x44ab90",
+   "ctor_code_size": 298,
+   "mangle_match": true,
+   "idb_name": "??0UITitle@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44efc1",
+     "host": "SingletonThunk_0044ED80",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xce8",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UITitle_ArcSave": {
+   "ctor_addr": "0x47bbf0",
+   "ctor_code_size": 257,
+   "mangle_match": true,
+   "idb_name": "??0UITitle_ArcSave@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x44fb35",
+     "host": "?_init_44f8d0@UIGameFrm@@QAEPAVCCBUI@@H@Z",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0xfa4",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UITitle_BBTY": {
+   "ctor_addr": "0x451cc0",
+   "ctor_code_size": 184,
+   "mangle_match": true,
+   "idb_name": "??0UITitle_BBTY@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4525bd",
+     "host": "_todo_ctor",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 1,
+   "factory_caller": false,
+   "max_this_write": "0x494",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  },
+  "UIWnd": {
+   "ctor_addr": "0x445aa0",
+   "ctor_code_size": 115,
+   "mangle_match": false,
+   "idb_name": "ClearSubArraySlot",
+   "callers": [
+    {
+     "site": "0x43904e",
+     "host": "?ctor@UIProgressBar@@QAEPAHXZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x43a17e",
+     "host": "??0PalScript@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x43a78e",
+     "host": "?GetSys@NameSys@@QACPAV1@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x43bb73",
+     "host": "??0UIFrameWnd@@QAE@XZ",
+     "ops_new": null
+    },
+    {
+     "site": "0x43bce3",
+     "host": "?ctor@UIScene@@QAEPAHXZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 21,
+   "factory_caller": true,
+   "max_this_write": "0x44",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": [
+    "mangle 名不匹配 (IDB 名可能是 apply 写入的)",
+    "caller=?UpdateKeyCtrl@UIListBox@@QAEP 为逻辑方法(非工厂)——ctor 在逻辑方法内调用=异常"
+   ]
+  },
+  "exception": {
+   "ctor_addr": "0x408930",
+   "ctor_code_size": 17,
+   "mangle_match": true,
+   "idb_name": "??0exception@@QAE@XZ",
+   "callers": [
+    {
+     "site": "0x4088bc",
+     "host": "ResetPlayerAtts",
+     "ops_new": null
+    },
+    {
+     "site": "0x45a8d8",
+     "host": "??0SaleUI@@QAE@XZ",
+     "ops_new": null
+    }
+   ],
+   "caller_count": 2,
+   "factory_caller": false,
+   "max_this_write": "0xc",
+   "ops_new_size": null,
+   "size_ok": null,
+   "issues": []
+  }
+ }
+}
