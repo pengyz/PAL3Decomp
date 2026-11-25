@@ -129,3 +129,44 @@ pooldecode,dynamicinit}_20261126.json
 - W1 锚审计：PLACEMENT-CONFLICT 病新例（静态变量块被当对象锚）
 - globals.json：g_CCBCamControlData type=unsigned char const_data 反而
   接近真相（scratch 块），但 category 注记需按分解结果重写
+
+---
+
+# 定谳 v3（重建战役①收官）：编译器 sizeof 金表 + 双堆类终局
+
+## 决定性证据：`push 0x690B0; call ??2@YAPAXI@Z`（全二进制唯一）
+0x690B0=430256 的堆分配**真实存在**（new 后调用链通向 SetCamPos 方法族=
+far-tail 大类）——**CCBCamControl 注解 binary_size 精确命中**，但锚错位：
+真身是堆类 X（实例=[CCBStage+0x10] 等），不是 BSS 静态变量块。
+
+## 终局结构：两类并存（方法集交织=同编译单元家族）
+| | 类 X（far-tail 相机模块） | 类 Y（编辑器对话框） |
+|---|---|---|
+| sizeof（A 级） | **0x690B0=430256** | **0x62588=402824** |
+| ctor | new 后 SetCamPos 族链（地址被误名，真 ctor 待正名） | **CCCTData_6F10@0x4a6f10** |
+| 特征 | tail 相机状态 0x68FB0..0x690AE / m_nCurList@0x68FD0 / 任务池 | UIListBox 派生头域 0x58/0x5C/0x16C/0x224 |
+| 实例载体 | [CCBStage+0x10]/[CCBRoleState+0x10]/.data 表 | EquipUI+0x2AFC8 |
+| 方法归属 | SetCamPos/DoTask/ProcCamMove/SwapTask/InsertTaskToList（disp 至 0x690AE 自洽：430256-0x690AE=2） | 头域对话框方法 |
+两类方法在 0x505xxx-0x508xxx 地址段交织 = **同一 .cpp 编译单元**（VC6 聚合律）——
+逐方法归属需编译单元聚类+接收者载体双向证据。
+
+## 全项目大分配金表（probe_heap_alloc_census，33 笔 ≥0x4000）
+**精确命中 9 类**：ParticleEffect 362860 / MainEquipUI 209008 / RoleStatePanel
+176256 / LineupUI 171244 / SaleUI 105912 / SkillUI 101940 / CCBSystem 90840 /
+**CCBCamControl 430256** / CEffect 245800（=InitVertexBuffer@CEffectSystem）
+**虚胖待修 2 类**：MainPropUI 247976→**219984**（-27992）/ UITitle_JDHY
+377700→**290488**（-87212）
+**反向低估 1 类**：EquipUI 120116→**266260**（+146144，EquipUI=266KB 大容器，
+尾部 +0x2AFB8..0x2AFD0 持七模块指针表）
+**待名新类**：0x56630=353840 / 0x27BD4=162772（??0LineupUI mangle 惯性疑）
+**关联链**：CCBStage 0xA4128=672040(ctor)+0xA48B0=673968(InitFromDescriptor)
+——注解 673792 居中（真值待两态分辨）；CEffMgr 0xA930 ×3（池模式复分配）
+
+## 下轮（重建②-⑥）
+1. binary_size 金表修正（MainPropUI/UITitle_JDHY/EquipUI + CCBStage 两态分辨）
+   ——注意涟漪：空洞普查/语料重导随动
+2. 类 X/Y 方法编译单元聚类归属（CCBCamControl.json→类 X 真身重建；
+   CCCTData.json 退役；类 Y 新建）
+3. BSS 块分解（g_CCBCamControlData→逐变量 globals）
+4. 类名定谳（INI 节名全文+PDB 交叉）
+5. 池条目 204B 结构（归属类 X）
