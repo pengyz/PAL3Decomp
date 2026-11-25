@@ -1,0 +1,481 @@
+{
+ "CCBCamControl": {
+  "rows": {
+   "ProcessRenderQueue": {
+    "n": 5,
+    "max": "0x4af54",
+    "uniq": 5
+   },
+   "ShowAllSlots": {
+    "n": 32,
+    "max": "0x60640",
+    "uniq": 7
+   },
+   "GetData": {
+    "n": 3,
+    "max": "0x1f80",
+    "uniq": 2
+   },
+   "GetData_B720": {
+    "n": 6,
+    "max": "0x2590",
+    "uniq": 3
+   },
+   "GetData_B8D0": {
+    "n": 14,
+    "max": "0x2594",
+    "uniq": 12
+   },
+   "ShowCameraDialog": {
+    "n": 26,
+    "max": "0x2594",
+    "uniq": 24
+   },
+   "ReadCameraDialog": {
+    "n": 28,
+    "max": "0x2594",
+    "uniq": 24
+   },
+   "ProcessCamMove": {
+    "n": 10,
+    "max": "0xac4",
+    "uniq": 9
+   },
+   "SetCamPos": {
+    "n": 32,
+    "max": "0x690a8",
+    "uniq": 32
+   },
+   "Init": {
+    "n": 2,
+    "max": "0x69090",
+    "uniq": 1
+   },
+   "DoTask": {
+    "n": 35,
+    "max": "0x690ae",
+    "uniq": 20
+   },
+   "ClearFinishedTask": {
+    "n": 3,
+    "max": "0x68fd4",
+    "uniq": 3
+   },
+   "AddTask": {
+    "n": 3,
+    "max": "0x68fd4",
+    "uniq": 3
+   },
+   "ProcCamMove": {
+    "n": 13,
+    "max": "0x690ae",
+    "uniq": 6
+   },
+   "SwitchEditorCamPos": {
+    "n": 2,
+    "max": "0x69090",
+    "uniq": 2
+   },
+   "SetCircle": {
+    "n": 9,
+    "max": "0x9a0",
+    "uniq": 9
+   },
+   "IsPointerUnderMouse": {
+    "n": 27,
+    "max": "0x988",
+    "uniq": 21
+   },
+   "LoadPointer": {
+    "n": 6,
+    "max": "0x48",
+    "uniq": 6
+   },
+   "DoList": {
+    "n": 1,
+    "max": "0x984",
+    "uniq": 1
+   },
+   "ResetListFlag": {
+    "n": 29,
+    "max": "0x1c4",
+    "uniq": 18
+   },
+   "KeepCurCam": {
+    "n": 2,
+    "max": "0x98c",
+    "uniq": 1
+   },
+   "DoLineMove": {
+    "n": 6,
+    "max": "0x9ac",
+    "uniq": 4
+   }
+  },
+  "static_bind": [
+   [
+    "~CCBCamControl",
+    "0x5081f4",
+    "mov     dword ptr g_CCBCamControlData+5C0h, eax"
+   ],
+   [
+    "~CCBCamControl",
+    "0x508207",
+    "mov     dword ptr g_CCBCamControlData+5C4h, ecx"
+   ],
+   [
+    "~CCBCamControl",
+    "0x50820d",
+    "mov     dword ptr g_CCBCamControlData+5C8h, edx"
+   ],
+   [
+    "~CCBCamControl",
+    "0x508213",
+    "mov     dword ptr g_CCBCamControlData+5CCh, eax"
+   ],
+   [
+    "Create",
+    "0x508244",
+    "mov     dword ptr g_CCBCamControlData+5D0h, eax"
+   ],
+   [
+    "Create",
+    "0x508257",
+    "mov     dword ptr g_CCBCamControlData+5D4h, ecx"
+   ],
+   [
+    "Create",
+    "0x50825d",
+    "mov     dword ptr g_CCBCamControlData+5D8h, edx"
+   ],
+   [
+    "Create",
+    "0x508263",
+    "mov     dword ptr g_CCBCamControlData+5DCh, eax"
+   ],
+   [
+    "StartList",
+    "0x5082e4",
+    "mov     dword ptr g_CCBCamControlData+5F0h, eax"
+   ],
+   [
+    "StartList",
+    "0x5082f7",
+    "mov     dword ptr g_CCBCamControlData+5F4h, ecx"
+   ],
+   [
+    "StartList",
+    "0x5082fd",
+    "mov     dword ptr g_CCBCamControlData+5F8h, edx"
+   ],
+   [
+    "StartList",
+    "0x508303",
+    "mov     dword ptr g_CCBCamControlData+5FCh, eax"
+   ],
+   [
+    "StopList",
+    "0x508334",
+    "mov     dword ptr g_CCBCamControlData+600h, eax"
+   ],
+   [
+    "StopList",
+    "0x508347",
+    "mov     dword ptr g_CCBCamControlData+604h, ecx"
+   ],
+   [
+    "StopList",
+    "0x50834d",
+    "mov     dword ptr g_CCBCamControlData+608h, edx"
+   ],
+   [
+    "StopList",
+    "0x508353",
+    "mov     dword ptr g_CCBCamControlData+60Ch, eax"
+   ],
+   [
+    "UpdateCircleSet",
+    "0x508384",
+    "mov     dword ptr g_CCBCamControlData+610h, eax"
+   ],
+   [
+    "UpdateCircleSet",
+    "0x508397",
+    "mov     dword ptr g_CCBCamControlData+614h, ecx"
+   ],
+   [
+    "UpdateCircleSet",
+    "0x50839d",
+    "mov     dword ptr g_CCBCamControlData+618h, edx"
+   ],
+   [
+    "UpdateCircleSet",
+    "0x5083a3",
+    "mov     dword ptr g_CCBCamControlData+61Ch, eax"
+   ]
+  ],
+  "max_all": "0x690ae",
+  "n_methods_with_disp": 22
+ },
+ "CCCTData": {
+  "rows": {
+   "InitEntries": {
+    "n": 42,
+    "max": "0x2188",
+    "uniq": 8
+   },
+   "ProcessTask": {
+    "n": 58,
+    "max": "0xd0",
+    "uniq": 16
+   },
+   "InitImages": {
+    "n": 8,
+    "max": "0x1a8",
+    "uniq": 8
+   },
+   "DestroyImage": {
+    "n": 13,
+    "max": "0x1a4",
+    "uniq": 7
+   },
+   "CCCTData_6F10": {
+    "n": 117,
+    "max": "0x62028",
+    "uniq": 116
+   },
+   "Create_8770": {
+    "n": 119,
+    "max": "0x6194c",
+    "uniq": 63
+   },
+   "UpdateDebugDialog": {
+    "n": 44,
+    "max": "0x280a",
+    "uniq": 42
+   },
+   "UpdateCamera": {
+    "n": 5,
+    "max": "0x14",
+    "uniq": 5
+   },
+   "CCCTData": {
+    "n": 10,
+    "max": "0x690a8",
+    "uniq": 8
+   },
+   "~CCCTData": {
+    "n": 30,
+    "max": "0x690ac",
+    "uniq": 18
+   },
+   "Create": {
+    "n": 7,
+    "max": "0x69090",
+    "uniq": 7
+   },
+   "Destroy": {
+    "n": 1,
+    "max": "0x69090",
+    "uniq": 1
+   },
+   "Init": {
+    "n": 16,
+    "max": "0x68fd4",
+    "uniq": 11
+   },
+   "Save": {
+    "n": 3,
+    "max": "0x280a",
+    "uniq": 3
+   },
+   "Load": {
+    "n": 12,
+    "max": "0x68fb4",
+    "uniq": 12
+   },
+   "InsertTaskToList": {
+    "n": 119,
+    "max": "0x6903c",
+    "uniq": 57
+   },
+   "SwapTask": {
+    "n": 146,
+    "max": "0x69040",
+    "uniq": 56
+   }
+  },
+  "static_bind": [
+   [
+    "IsTaskValid",
+    "0x5081a5",
+    "mov     dword ptr g_CCBCamControlData+5B8h, eax"
+   ],
+   [
+    "GetFreeSpaceInPool",
+    "0x5081c8",
+    "fstp    dword ptr g_CCBCamControlData+5B4h"
+   ]
+  ],
+  "max_all": "0x690ac",
+  "n_methods_with_disp": 17
+ },
+ "names_in_span": [
+  [
+   "0x17aaf64",
+   "g_CCBCamControlData",
+   0
+  ],
+  [
+   "0x17ab588",
+   "g_nCBFormation1",
+   1572
+  ],
+  [
+   "0x17ab5e8",
+   "g_nCBFormation2",
+   1668
+  ],
+  [
+   "0x17ab658",
+   "g_nCBFormation3",
+   1780
+  ],
+  [
+   "0x17ab6b8",
+   "g_nCBFormation4",
+   1876
+  ],
+  [
+   "0x17ab6e8",
+   "g_nCBRoleAttackTable",
+   1924
+  ],
+  [
+   "0x17ab7a8",
+   "g_nCBRoleMoveTable",
+   2116
+  ],
+  [
+   "0x17ab874",
+   "g_nCBRoleHitTable",
+   2320
+  ],
+  [
+   "0x17abc60",
+   "g_StageRoleData",
+   3324
+  ],
+  [
+   "0x17abf00",
+   "g_CCBStageSceneData",
+   3996
+  ],
+  [
+   "0x17ac5d8",
+   "uType",
+   5748
+  ],
+  [
+   "0x17ac5dc",
+   "g_bCBFlag",
+   5752
+  ],
+  [
+   "0x17ac7dc",
+   "g_fCBDeltaTime",
+   6264
+  ],
+  [
+   "0x17ac7e0",
+   "g_nCBRoundCount",
+   6268
+  ],
+  [
+   "0x17ac7ec",
+   "g_fCBSpeed",
+   6280
+  ],
+  [
+   "0x17ac7f0",
+   "g_bCBActive",
+   6284
+  ],
+  [
+   "0x17aca78",
+   "g_fCBTimeScale",
+   6932
+  ],
+  [
+   "0x17aca80",
+   "g_nCBRolePos",
+   6940
+  ],
+  [
+   "0x17acb88",
+   "g_nAIWindowBase",
+   7204
+  ],
+  [
+   "0x17acb8c",
+   "g_nCCBAIWindow_17ACB8C",
+   7208
+  ],
+  [
+   "0x17ace10",
+   "g_fCBCamParam",
+   7852
+  ],
+  [
+   "0x17ace14",
+   "g_nCBCamState",
+   7856
+  ],
+  [
+   "0x17acf80",
+   "g_TempBuffer1024",
+   8220
+  ],
+  [
+   "0x17ad5c4",
+   "g_CCBProtectData",
+   9824
+  ],
+  [
+   "0x17af5c4",
+   "g_bgbGeomNodeFlag_17AF5C4",
+   18016
+  ],
+  [
+   "0x17b02ec",
+   "g_fSceneScale",
+   21384
+  ],
+  [
+   "0x17b1550",
+   "g_ActorSaveData",
+   26092
+  ],
+  [
+   "0x17b1cc0",
+   "Source",
+   27996
+  ],
+  [
+   "0x17b1ec0",
+   "g_InputState",
+   28508
+  ],
+  [
+   "0x17b30e4",
+   "g_nCBResultState",
+   33152
+  ],
+  [
+   "0x17b41e8",
+   "g_CScreenMode",
+   37508
+  ]
+ ],
+ "names_in_span_n": 31
+}

@@ -1,0 +1,800 @@
+{
+ "create_body": [
+  [
+   "0x508230",
+   "mov     eax, ds:dword_56FD9C"
+  ],
+  [
+   "0x508235",
+   "mov     ecx, ds:dword_56FDA0"
+  ],
+  [
+   "0x50823b",
+   "mov     edx, ds:dword_56FDA4"
+  ],
+  [
+   "0x508241",
+   "add     eax, 1Ch"
+  ],
+  [
+   "0x508244",
+   "mov     dword ptr g_CCBCamControlData+5D0h, eax"
+  ],
+  [
+   "0x508249",
+   "mov     eax, ds:dword_56FDA8"
+  ],
+  [
+   "0x50824e",
+   "add     ecx, 1Ch"
+  ],
+  [
+   "0x508251",
+   "add     edx, 1Ch"
+  ],
+  [
+   "0x508254",
+   "add     eax, 1Ch"
+  ],
+  [
+   "0x508257",
+   "mov     dword ptr g_CCBCamControlData+5D4h, ecx"
+  ],
+  [
+   "0x50825d",
+   "mov     dword ptr g_CCBCamControlData+5D8h, edx"
+  ],
+  [
+   "0x508263",
+   "mov     dword ptr g_CCBCamControlData+5DCh, eax"
+  ],
+  [
+   "0x508268",
+   "retn"
+  ]
+ ],
+ "dtor_d0": [],
+ "dtor_e0": [],
+ "init_writes": [
+  [
+   "0x5054b3",
+   430224,
+   "mov     ecx, [esi+69090h]"
+  ],
+  [
+   "0x5054bd",
+   0,
+   "mov     eax, [ecx]"
+  ],
+  [
+   "0x5054c3",
+   430224,
+   "mov     dword ptr [esi+69090h], 0"
+  ]
+ ],
+ "census": {
+  "ProcessRenderQueue": {
+   "ea": "0x48e600",
+   "n_disp": 5,
+   "max_disp": "0x4af54",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x4af48",
+    "0x4af50",
+    "0x4af54",
+    "0x3cfb8",
+    "0x4af4c"
+   ]
+  },
+  "ShowAllSlots": {
+   "ea": "0x4a9ed0",
+   "n_disp": 73,
+   "max_disp": "0x60640",
+   "scaled_disps": {
+    "0x0": 2,
+    "0x5d9ec": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x5f360",
+    "0x5f818",
+    "0x5fcd0",
+    "0x60188",
+    "0x60640",
+    "0x5558",
+    "0x5d9ec"
+   ]
+  },
+  "GetData": {
+   "ea": "0x4e9750",
+   "n_disp": 3,
+   "max_disp": "0x1f80",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x1f80",
+    "0xd0"
+   ]
+  },
+  "Show": {
+   "ea": "0x4eb6f0",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "GetData_B720": {
+   "ea": "0x4eb720",
+   "n_disp": 12,
+   "max_disp": "0x2590",
+   "scaled_disps": {
+    "0x0": 2,
+    "0x1c": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x2c",
+    "0x2590",
+    "0x1c"
+   ]
+  },
+  "GetData_B8D0": {
+   "ea": "0x4eb8d0",
+   "n_disp": 22,
+   "max_disp": "0x2594",
+   "scaled_disps": {
+    "0x0": 3,
+    "0x990": 1,
+    "0x1f90": 2
+   },
+   "top_disps": [
+    "0x0",
+    "0x1f90",
+    "0x2594",
+    "0x23c",
+    "0x23d",
+    "0x23e",
+    "0x23f",
+    "0x240",
+    "0x264",
+    "0x14",
+    "0x4c",
+    "0x990",
+    "0x9ac"
+   ]
+  },
+  "ShowCameraDialog": {
+   "ea": "0x4ebd30",
+   "n_disp": 29,
+   "max_disp": "0x2594",
+   "scaled_disps": {
+    "0x0": 2,
+    "0x98c": 1,
+    "0x990": 1,
+    "0x1f90": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x2594",
+    "0x14",
+    "0x1f90",
+    "0x4c",
+    "0x990",
+    "0x98c",
+    "0x20",
+    "0x18",
+    "0x34",
+    "0x8",
+    "0x24",
+    "0x9",
+    "0x25",
+    "0xa",
+    "0x26",
+    "0xb",
+    "0x27",
+    "0xc",
+    "0x10",
+    "0x28",
+    "0x2c",
+    "0x30",
+    "0x1c",
+    "0x38"
+   ]
+  },
+  "ReadCameraDialog": {
+   "ea": "0x4ebf90",
+   "n_disp": 32,
+   "max_disp": "0x2594",
+   "scaled_disps": {
+    "0x0": 2,
+    "0x98c": 1,
+    "0x1f90": 2
+   },
+   "top_disps": [
+    "0x0",
+    "0x2594",
+    "0x14",
+    "0x1f90",
+    "0x4c",
+    "0x98c",
+    "0x4",
+    "0x20",
+    "0x18",
+    "0x34",
+    "0x8",
+    "0x24",
+    "0x9",
+    "0x25",
+    "0xa",
+    "0x26",
+    "0xb",
+    "0x27",
+    "0xc",
+    "0x10",
+    "0x28",
+    "0x2c",
+    "0x30",
+    "0x1c",
+    "0x38"
+   ]
+  },
+  "ProcessCamMove": {
+   "ea": "0x4ff360",
+   "n_disp": 14,
+   "max_disp": "0xac4",
+   "scaled_disps": {
+    "0x0": 4,
+    "0xb8": 1,
+    "0xe1": 1,
+    "0xac4": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x4c",
+    "0xa0",
+    "0xa4",
+    "0xb8",
+    "0xe1",
+    "0xac4",
+    "0x38",
+    "0x29",
+    "0x10"
+   ]
+  },
+  "SetCamPos": {
+   "ea": "0x5052e0",
+   "n_disp": 34,
+   "max_disp": "0x690a8",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x0",
+    "0x69044",
+    "0x68fe0",
+    "0x68fe4",
+    "0x68fe8",
+    "0x68fec",
+    "0x68ff0",
+    "0x68ff4",
+    "0x69008",
+    "0x6900c",
+    "0x69010",
+    "0x69014",
+    "0x69018",
+    "0x6901c",
+    "0x69020",
+    "0x69024",
+    "0x69028",
+    "0x6902c",
+    "0x69030",
+    "0x69034",
+    "0x69038",
+    "0x6903c",
+    "0x69040",
+    "0x69094",
+    "0x69098",
+    "0x6909c",
+    "0x690a0",
+    "0x690a4",
+    "0x690a8",
+    "0x68fb0",
+    "0x68fb4",
+    "0x68fd4",
+    "0x68fb8"
+   ]
+  },
+  "Init": {
+   "ea": "0x5054b0",
+   "n_disp": 4,
+   "max_disp": "0x69090",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x69090",
+    "0x0"
+   ]
+  },
+  "DoTask": {
+   "ea": "0x5054f0",
+   "n_disp": 38,
+   "max_disp": "0x690ae",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x68fb4",
+    "0x68ffc",
+    "0x69024",
+    "0x0",
+    "0x69098",
+    "0x690a4",
+    "0x68fb0",
+    "0x50",
+    "0x1c0",
+    "0x68fbc",
+    "0x40",
+    "0x69000",
+    "0x69020",
+    "0x69004",
+    "0x54",
+    "0x690ad",
+    "0x69094",
+    "0x6909c",
+    "0x690ae",
+    "0x690a0",
+    "0x690a8"
+   ]
+  },
+  "ClearFinishedTask": {
+   "ea": "0x505770",
+   "n_disp": 3,
+   "max_disp": "0x68fd4",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x68fbc",
+    "0x68fd0",
+    "0x68fd4"
+   ]
+  },
+  "AddTask": {
+   "ea": "0x505800",
+   "n_disp": 3,
+   "max_disp": "0x68fd4",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x68fbc",
+    "0x68fd0",
+    "0x68fd4"
+   ]
+  },
+  "ProcCamMove": {
+   "ea": "0x505820",
+   "n_disp": 14,
+   "max_disp": "0x690ae",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x690ad",
+    "0x690ae",
+    "0x69094",
+    "0x4",
+    "0x8",
+    "0x690a0",
+    "0x0"
+   ]
+  },
+  "SwitchEditorCamPos": {
+   "ea": "0x5058e0",
+   "n_disp": 3,
+   "max_disp": "0x69090",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x69090",
+    "0x0",
+    "0x14"
+   ]
+  },
+  "~CCBCamControl": {
+   "ea": "0x5081e0",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "Reset": {
+   "ea": "0x508220",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "Create": {
+   "ea": "0x508230",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "Destroy": {
+   "ea": "0x508270",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "Update": {
+   "ea": "0x5082c0",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "StartList": {
+   "ea": "0x5082d0",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "StopList": {
+   "ea": "0x508320",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "HandleInput": {
+   "ea": "0x508360",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "UpdateCircleSet": {
+   "ea": "0x508370",
+   "n_disp": 0,
+   "max_disp": null,
+   "scaled_disps": {},
+   "top_disps": []
+  },
+  "SetCircle": {
+   "ea": "0x5083b0",
+   "n_disp": 10,
+   "max_disp": "0x9a0",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x10",
+    "0xec",
+    "0x9a0",
+    "0x0",
+    "0x14",
+    "0x18",
+    "0x1c",
+    "0x984",
+    "0x988",
+    "0x8"
+   ]
+  },
+  "IsPointerUnderMouse": {
+   "ea": "0x5084c0",
+   "n_disp": 32,
+   "max_disp": "0x988",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x0",
+    "0x4",
+    "0xc",
+    "0x8",
+    "0xc8",
+    "0x6c",
+    "0x60",
+    "0x64",
+    "0x68",
+    "0x1c",
+    "0x44",
+    "0x48",
+    "0x54",
+    "0x2c",
+    "0x30",
+    "0x34",
+    "0x38",
+    "0x3c",
+    "0x40",
+    "0x10",
+    "0x984",
+    "0x988"
+   ]
+  },
+  "LoadPointer": {
+   "ea": "0x508660",
+   "n_disp": 6,
+   "max_disp": "0x48",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x34",
+    "0x38",
+    "0x3c",
+    "0x40",
+    "0x44",
+    "0x48"
+   ]
+  },
+  "DoList": {
+   "ea": "0x508680",
+   "n_disp": 1,
+   "max_disp": "0x984",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x984"
+   ]
+  },
+  "ResetListFlag": {
+   "ea": "0x508690",
+   "n_disp": 36,
+   "max_disp": "0x1c4",
+   "scaled_disps": {},
+   "top_disps": [
+    "0x0",
+    "0x4",
+    "0xc",
+    "0x8",
+    "0x60",
+    "0x6c",
+    "0x1c",
+    "0x44",
+    "0x48",
+    "0x54",
+    "0x2c",
+    "0x30",
+    "0x34",
+    "0x38",
+    "0x3c",
+    "0x40",
+    "0xec",
+    "0xe8",
+    "0x1c4"
+   ]
+  },
+  "KeepCurCam": {
+   "ea": "0x508880",
+   "n_disp": 6,
+   "max_disp": "0x98c",
+   "scaled_disps": {
+    "0x0": 2,
+    "0x98c": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x98c"
+   ]
+  },
+  "DoLineMove": {
+   "ea": "0x5088d0",
+   "n_disp": 11,
+   "max_disp": "0x9ac",
+   "scaled_disps": {
+    "0x0": 3,
+    "0x990": 1
+   },
+   "top_disps": [
+    "0x0",
+    "0x8",
+    "0x2c",
+    "0x990",
+    "0x9ac"
+   ]
+  }
+ },
+ "hole_hits": {
+  "0x0-0x8": {
+   "bytes": 8,
+   "n_sites": 20,
+   "n_methods": 16,
+   "by_method": [
+    [
+     "ReadCameraDialog",
+     2
+    ],
+    [
+     "ProcCamMove",
+     2
+    ],
+    [
+     "IsPointerUnderMouse",
+     2
+    ],
+    [
+     "ResetListFlag",
+     2
+    ],
+    [
+     "ShowAllSlots",
+     1
+    ],
+    [
+     "GetData_B720",
+     1
+    ],
+    [
+     "GetData_B8D0",
+     1
+    ],
+    [
+     "ShowCameraDialog",
+     1
+    ],
+    [
+     "ProcessCamMove",
+     1
+    ],
+    [
+     "SetCamPos",
+     1
+    ],
+    [
+     "Init",
+     1
+    ],
+    [
+     "DoTask",
+     1
+    ],
+    [
+     "SwitchEditorCamPos",
+     1
+    ],
+    [
+     "SetCircle",
+     1
+    ],
+    [
+     "KeepCurCam",
+     1
+    ],
+    [
+     "DoLineMove",
+     1
+    ]
+   ],
+   "disps": [
+    "0x0",
+    "0x4"
+   ]
+  },
+  "0x14-0x34": {
+   "bytes": 32,
+   "n_sites": 37,
+   "n_methods": 10,
+   "by_method": [
+    [
+     "ShowCameraDialog",
+     11
+    ],
+    [
+     "ReadCameraDialog",
+     11
+    ],
+    [
+     "SetCircle",
+     3
+    ],
+    [
+     "IsPointerUnderMouse",
+     3
+    ],
+    [
+     "ResetListFlag",
+     3
+    ],
+    [
+     "GetData_B720",
+     2
+    ],
+    [
+     "GetData_B8D0",
+     1
+    ],
+    [
+     "ProcessCamMove",
+     1
+    ],
+    [
+     "SwitchEditorCamPos",
+     1
+    ],
+    [
+     "DoLineMove",
+     1
+    ]
+   ],
+   "disps": [
+    "0x14",
+    "0x18",
+    "0x1c",
+    "0x20",
+    "0x24",
+    "0x25",
+    "0x26",
+    "0x27",
+    "0x28",
+    "0x29",
+    "0x2c",
+    "0x30"
+   ]
+  },
+  "0x40-0xec": {
+   "bytes": 172,
+   "n_sites": 31,
+   "n_methods": 9,
+   "by_method": [
+    [
+     "IsPointerUnderMouse",
+     9
+    ],
+    [
+     "ResetListFlag",
+     7
+    ],
+    [
+     "ProcessCamMove",
+     5
+    ],
+    [
+     "DoTask",
+     3
+    ],
+    [
+     "LoadPointer",
+     3
+    ],
+    [
+     "GetData",
+     1
+    ],
+    [
+     "GetData_B8D0",
+     1
+    ],
+    [
+     "ShowCameraDialog",
+     1
+    ],
+    [
+     "ReadCameraDialog",
+     1
+    ]
+   ],
+   "disps": [
+    "0x40",
+    "0x44",
+    "0x48",
+    "0x4c",
+    "0x50",
+    "0x54",
+    "0x60",
+    "0x64",
+    "0x68",
+    "0x6c",
+    "0xa0",
+    "0xa4",
+    "0xb8",
+    "0xc8",
+    "0xd0",
+    "0xe1",
+    "0xe8"
+   ]
+  },
+  "0x1c8-0x260": {
+   "bytes": 152,
+   "n_sites": 5,
+   "n_methods": 1,
+   "by_method": [
+    [
+     "GetData_B8D0",
+     5
+    ]
+   ],
+   "disps": [
+    "0x23c",
+    "0x23d",
+    "0x23e",
+    "0x23f",
+    "0x240"
+   ]
+  }
+ }
+}
