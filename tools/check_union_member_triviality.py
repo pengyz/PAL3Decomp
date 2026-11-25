@@ -34,6 +34,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -72,9 +73,13 @@ def _union_variant_types(structs):
                 if not isinstance(v, dict):
                     continue
                 vt = v.get('type')
-                # 只取**按值**的类类型：排除指针/基础类型/内联 struct
-                if isinstance(vt, str) and vt in structs and not vt.endswith('*'):
-                    used.setdefault(vt, []).append((cls, off, m.get('name')))
+                # 只取**按值**的类类型：排除指针/基础类型/内联 struct。
+                # 数组形变体（tagCPKTable[32768]）同样是按值类——数组元素
+                # 逐一构造/析构，B34 地雷同在（对抗复核 2026-11-25 #12）
+                if isinstance(vt, str) and not vt.endswith('*'):
+                    stem = re.sub(r'\[.*$', '', vt).strip()
+                    if stem in structs:
+                        used.setdefault(stem, []).append((cls, off, m.get('name')))
     return used
 
 
