@@ -4,45 +4,46 @@
  "known_members": {
   "0x0": {
    "name": "dwCRC",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0x4": {
    "name": "dwFlag",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0x8": {
    "name": "dwFatherCRC",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0xc": {
    "name": "dwStartPos",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0x10": {
    "name": "dwPackedSize",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0x14": {
    "name": "dwOriginSize",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   },
   "0x18": {
    "name": "dwExtraInfoSize",
-   "type": "DWORD",
+   "type": "unsigned int",
    "source": "annotation",
    "evidence_level": "unverified"
   }
- }
+ },
+ "source": " | [型对齐 2026-11-25] DWORD→unsigned int ×7: 与 CPKFile 兄弟结构同名字段(unsigned int)一致+消费方 fnptr sig(uint*)/指针比较(ulong* vs uint*) C2446/C2230 消解; 同 4B 零字节差。"
 }

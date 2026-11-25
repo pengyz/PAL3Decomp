@@ -819,11 +819,13 @@
    "override_of": "0x00445d10",
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un",
+   "lvars_evidence": "buf[16] dword 读出=指针, 下标走查→指针型",
+   "source": " | [2026-11-25] v36/v33 C2440/C2110 挂账: 先考证成员注解层(buf/m_EquipData 型)能否让 hexrays 自然推断整型, lvar 标注需用户审批。",
    "lvars": {
-    "v36": "_DWORD *",
-    "v33": "_DWORD *"
+    "v33": "unsigned int",
+    "v36": "unsigned int"
    },
-   "lvars_evidence": "buf[16] dword 读出=指针, 下标走查→指针型"
+   "lvars_source": "[L-VAR 2026-11-25 用户批准] v33/v36: buf[16] 循环下标(eax 复用), hexrays eax 寄存器支配合并(CScreenMode* 指针流 v26-v30/Instance 同寄存器)致指针型误推断——成员层无解(buf 混用裸缓冲:buf[24]×32 字符串 vs DWORD 槽×38, char[256] 忠实), L-VAR 唯一精确通道(BuildCollisionMesh pVal:_WORD 2026-11-22 先例)。效果实测: EquipUI 9→2 错(C2440×4/C2110×2 全消)。"
   },
   "0x00484d20": {
    "name": "ShowPage",

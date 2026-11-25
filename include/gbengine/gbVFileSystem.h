@@ -60,13 +60,16 @@ struct CPKHeader {
 // ============================================================================
 
 struct CPKTable {
-    unsigned long dwCRC;            // 0x00: filename CRC32
-    unsigned long dwFlag;           // 0x04: flags
-    unsigned long dwFatherCRC;      // 0x08: parent directory CRC32
-    unsigned long dwStartPos;       // 0x0C: data offset in archive
-    unsigned long dwPackedSize;     // 0x10: compressed size
-    unsigned long dwOriginSize;     // 0x14: original size
-    unsigned long dwExtraInfoSize;  // 0x18: extra info size (filename length)
+    /* [拼写对齐 2026-11-25] unsigned long→unsigned int: 与 IDB til 渲染世界(uint)
+       一致——hexrays 对字段地址取型出 uint*, 手写头 ulong 拼写致双世界 C2446/C2230
+       (UIRoleSelectDialog L689/UIEmote fnptr 同源)。同 4B 零字节差。 */
+    unsigned int dwCRC;            // 0x00: filename CRC32
+    unsigned int dwFlag;           // 0x04: flags
+    unsigned int dwFatherCRC;      // 0x08: parent directory CRC32
+    unsigned int dwStartPos;       // 0x0C: data offset in archive
+    unsigned int dwPackedSize;     // 0x10: compressed size
+    unsigned int dwOriginSize;     // 0x14: original size
+    unsigned int dwExtraInfoSize;  // 0x18: extra info size (filename length)
 };
 
 // ============================================================================
