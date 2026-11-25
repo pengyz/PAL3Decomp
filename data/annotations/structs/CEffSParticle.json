@@ -233,7 +233,7 @@
    "name": "SetTimeScale",
    "evidence_level": "unverified",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
@@ -248,7 +248,8 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": " | [W2 返回型标准化 2026-11-25] signed __int32→int (VC6: signed __int32=int 同型但拼写不一致触发 C2556/C2371 重定义)"
   },
   "0x004d5860": {
    "name": "CreateTask",

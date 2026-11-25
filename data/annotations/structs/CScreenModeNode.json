@@ -75,11 +75,11 @@
   },
   "0x005420de": {
    "name": "GetAABBox",
-   "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针",
+   "source": "vtable_gap_fill_v1(from gbVisNode.json) | [真型补全 2026-10-16] (空) ⇒ void __thiscall(gbAABBox *pBox)：idapro decompile：thunk 转发 gbVisNode::GetAABBox(gbVisNode*, gbAABBox *p0) ⇒ 1 参指针 | [W2 返回型标准化 2026-11-25] signed __int32→int (VC6: signed __int32=int 同型但拼写不一致触发 C2556/C2371 重定义)",
    "evidence_level": "unverified",
    "adjudication": "shared_impl",
    "sig_model": {
-    "return": "signed __int32",
+    "return": "int",
     "cc": "thiscall",
     "params": [
      {
