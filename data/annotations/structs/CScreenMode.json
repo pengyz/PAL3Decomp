@@ -711,23 +711,6 @@
    "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
   },
-  "0x00527f50": {
-   "name": "InitSceneAudio",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitSceneAudio): int(int,int); 原注解无"
-  },
   "0x0052d230": {
    "name": "InitPlayerData",
    "evidence_level": "unverified",
@@ -821,35 +804,6 @@
     "pending": false
    }
   },
-  "0x0053c440": {
-   "name": "CreateDevice",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "a"
-     },
-     {
-      "type": "int",
-      "name": "b"
-     },
-     {
-      "type": "int",
-      "name": "c"
-     },
-     {
-      "type": "int",
-      "name": "d"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateDevice): int(int,int,int,int,int); 原注解无"
-  },
   "0x0053c460": {
    "name": "WaitBinkFrame",
    "evidence_level": "unverified",
@@ -909,66 +863,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(CheckFieldReady): int(int,int,int,int,int,int,int); 原注解无"
   },
-  "0x0053c5a0": {
-   "name": "PlayVideo",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(PlayVideo): int(int,int); 原注解无"
-  },
-  "0x0053c6f0": {
-   "name": "SetViewport",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "x"
-     },
-     {
-      "type": "int",
-      "name": "y"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetViewport): int(int,int,int); 原注解无"
-  },
-  "0x0053c710": {
-   "name": "GetWidth",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053c720": {
-   "name": "GetHeight",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x0053c8c0": {
    "name": "InitDisplayState",
    "evidence_level": "unverified",
@@ -997,69 +891,8 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(SetState): int(int,int); 原注解无"
   },
-  "0x0053d150": {
-   "name": "GetSoundList",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "PtrArray *",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053d1e0": {
-   "name": "SetAudioParam",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053d2d0": {
-   "name": "IsAudioReady",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x0053dc50": {
    "name": "CleanupSoundList",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053dd70": {
-   "name": "SetMode",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "mode"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetMode): int(v"
-  },
-  "0x0053def0": {
-   "name": "Restore",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "void",
@@ -1093,205 +926,6 @@
     "static"
    ],
    "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
-  },
-  "0x0053dfb0": {
-   "name": "PlaySoundStream",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "const void *",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0053e2e0": {
-   "name": "AudioSetPosition",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "const void *",
-      "name": "pData"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0053e490": {
-   "name": "AudioUpdate",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053e4e0": {
-   "name": "PlaySoundIfEnabled",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "void *",
-      "name": "pSound"
-     },
-     {
-      "type": "int",
-      "name": "nMode"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(PlaySoundIfEnab"
-  },
-  "0x0053e500": {
-   "name": "GetAudioManager",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053e510": {
-   "name": "PlaySceneMusic",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char *",
-      "name": "pszScene"
-     },
-     {
-      "type": "const char *",
-      "name": "pszArea"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0053e680": {
-   "name": "PlayCombatMusic",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char *",
-      "name": "pszSceneName"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(PlayCombatMusic"
-  },
-  "0x0053e720": {
-   "name": "StopAllAudio",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "unsigned int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053e740": {
-   "name": "PlayAmbientSound",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char *",
-      "name": "pszName"
-     },
-     {
-      "type": "gbAudioManager *",
-      "name": "pAudioMgr"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0053e890": {
-   "name": "ApplyColorFilter",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053e950": {
-   "name": "AudioStopAll",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053e970": {
-   "name": "StopAll",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "unsigned int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0053ea60": {
-   "name": "AudioFadeOut",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   },
   "0x0053eb50": {
    "name": "IterateChildList",
@@ -1560,21 +1194,6 @@
    },
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
-  "0x0053df70": {
-   "name": "GetInstance",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "CScreenMode *",
-    "cc": "cdecl",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "static"
-   ],
-   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
-  },
   "0x00494250": {
    "name": "ResetProgressList",
    "evidence_level": "unverified",
@@ -1648,5 +1267,5 @@
  ],
  "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445b90双UIWnd值; G2审计恢复",
  "base_size": 72,
- "source": " | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。"
+ "source": " | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。 | [第四孪生方法迁移 2026-11-25] 单例族 27 方法迁出至 gbBinkVideo(媒体管理器真名)。留守 44 方法=归属待考(垃圾罐迁徙后续战役)。70 成员污染挂账不变。"
 }

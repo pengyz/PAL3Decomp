@@ -81,47 +81,8 @@
    "evidence_level": "binary_layout_closure"
   }
  },
- "methods": {
-  "0x0053c340": {
-   "name": "InitCPK",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitCPK): int(char,int,int); 原注解无"
-  },
-  "0x0053ea80": {
-   "name": "PlayCPKStream",
-   "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal1"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(PlayCPKStream): int(int,int); 原注解无"
-  }
- },
+ "methods": {},
  "note": "布局定性20261120: 音频管理器, 13 成员全语义命名(脚本音乐/场景音乐/MusicTable/音量三件/CPK包), 非缺口",
- "source": " | [W1 查二 2026-11-25] max=0xE03EC=100.0%(PlayCPKStream)——918796 真实(CPK 音频流管理巨构)。零 ctor mangle=改名丢失, 真名考据随 W2 普查。 | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被三名字瓜分: SoundMgr/CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。"
+ "source": " | [W1 查二 2026-11-25] max=0xE03EC=100.0%(PlayCPKStream)——918796 真实(CPK 音频流管理巨构)。零 ctor mangle=改名丢失, 真名考据随 W2 普查。 | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被三名字瓜分: SoundMgr/CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。",
+ "_doc": "[退役归档 2026-11-25] 第四孪生定谳: gbBinkVideo 主名恢复(InitCPK 双 CPK 解码), SoundMgr 名退役。13 成员偏移与双 CPK 布局冲突=发明偏移不迁移(音频语义留档供 W2 重定位: m_audiodrv/m_pAudioMgr@0x328 与 CScreenMode 同址双名=GetAudioManager 语料佐证真域)。"
 }

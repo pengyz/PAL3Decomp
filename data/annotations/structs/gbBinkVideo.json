@@ -17,17 +17,465 @@
   "0x10": {
    "name": "m_Cpk",
    "type": "CPK",
-   "source": "annotation | 双CPK视频包(ctor直证+算术闭合)",
-   "evidence_level": "binary_layout_closure"
+   "evidence_level": "binary_layout_closure",
+   "source": " | [InitCPK 解码直证 2026-11-25] VA=0x53c38c lea esi,[edi+10h] → CPK#1.SetOpenMode/IsValidCPK/Load 链; 0xE01BC=sizeof(CPK) 算术闭合。"
   },
   "0xe01cc": {
    "name": "m_Cpk2",
    "type": "CPK",
-   "source": "annotation | 双CPK第二分包(尺寸闭合直证)",
-   "evidence_level": "binary_layout_closure"
+   "evidence_level": "binary_layout_closure",
+   "source": " | [InitCPK 解码直证 2026-11-25] VA=0x53c395 add edi,0E01CCh → CPK#2.SetOpenMode(1)——双 CPK 视频包第二实例。"
   }
  },
- "methods": {},
+ "methods": {
+  "0x00527f50": {
+   "name": "InitSceneAudio",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitSceneAudio): int(int,int); 原注解无",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c440": {
+   "name": "CreateDevice",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "a"
+     },
+     {
+      "type": "int",
+      "name": "b"
+     },
+     {
+      "type": "int",
+      "name": "c"
+     },
+     {
+      "type": "int",
+      "name": "d"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreateDevice): int(int,int,int,int,int); 原注解无",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c5a0": {
+   "name": "PlayVideo",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(PlayVideo): int(int,int); 原注解无",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c6f0": {
+   "name": "SetViewport",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "x"
+     },
+     {
+      "type": "int",
+      "name": "y"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetViewport): int(int,int,int); 原注解无",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c710": {
+   "name": "GetWidth",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c720": {
+   "name": "GetHeight",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053d150": {
+   "name": "GetSoundList",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "PtrArray *",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053d1e0": {
+   "name": "SetAudioParam",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053d2d0": {
+   "name": "IsAudioReady",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053dd70": {
+   "name": "SetMode",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "mode"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetMode): int(v",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053def0": {
+   "name": "Restore",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053dfb0": {
+   "name": "PlaySoundStream",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e2e0": {
+   "name": "AudioSetPosition",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *",
+      "name": "pData"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e490": {
+   "name": "AudioUpdate",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e4e0": {
+   "name": "PlaySoundIfEnabled",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "void *",
+      "name": "pSound"
+     },
+     {
+      "type": "int",
+      "name": "nMode"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(PlaySoundIfEnab",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e500": {
+   "name": "GetAudioManager",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e510": {
+   "name": "PlaySceneMusic",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *",
+      "name": "pszScene"
+     },
+     {
+      "type": "const char *",
+      "name": "pszArea"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e680": {
+   "name": "PlayCombatMusic",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *",
+      "name": "pszSceneName"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(PlayCombatMusic",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e720": {
+   "name": "StopAllAudio",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e740": {
+   "name": "PlayAmbientSound",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char *",
+      "name": "pszName"
+     },
+     {
+      "type": "gbAudioManager *",
+      "name": "pAudioMgr"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e890": {
+   "name": "ApplyColorFilter",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e950": {
+   "name": "AudioStopAll",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053e970": {
+   "name": "StopAll",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053ea60": {
+   "name": "AudioFadeOut",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053df70": {
+   "name": "GetInstance",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "CScreenMode *",
+    "cc": "cdecl",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "static"
+   ],
+   "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 CScreenMode 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053c340": {
+   "name": "InitCPK",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitCPK): int(char,int,int); 原注解无",
+   "source": " | [第四孪生方法迁移 2026-11-25] 自 SoundMgr 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)"
+  },
+  "0x0053ea80": {
+   "name": "PlayCPKStream",
+   "source": "| 签名缺参批量 2026-10-06：ret 12/4=3 参 vs 签名 0——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [第四孪生方法迁移 2026-11-25] 自 SoundMgr 迁入(单例族: GetInstance 前向扫/Audio 语义/媒体语义)",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(PlayCPKStream): int(int,int); 原注解无"
+  }
+ },
  "note": "布局定性20261120: Bink视频播放器(双CPK分包管理器), 尺寸精确闭合 0xE01CC+0xE01BC=0x1C0388✓✓, 结构完整非缺口",
- "source": " | [Wave1 考据 2026-11-25] 三面证据: ①??0gbBinkVideo@@ 在 IDB 零命中(11-24 全量重初始化丢失未入注解的改名——m_Cpk 注记'ctor直证+算术闭合'系旧 IDB 时代证据) ②语料零引用(仅生成头自身) ③binary_size 1.8MB=0x10+双 CPK(0xE01BC×2)算术形自洽但差 2048B 待精考。结论: 捏造嫌疑降级为'证据链断裂待重续'——下步工厂链重取证(视频播放调用面/CPK 双实例接收者)。 | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被三名字瓜分: gbBinkVideo/CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。"
+ "source": " | [第四孪生定谳 2026-11-25] 主名恢复: InitCPK@0x53c340 解码双 CPK(@0x10/@0xE01CC)与本项目注记精确吻合——g_ScreenMode@0xa3a7d8 单例真名=gbBinkVideo(媒体管理器: BINK 视频+双 CPK+音频+屏幕)。GetInstance@0x53df70 单例访问器 443 站。CScreenMode/SoundMgr 名仍现役(69+2 方法垃圾归属迁徙=后续战役), 本 json 先落布局与单例族方法。",
+ "_doc": "[退役归档 2026-11-25] 第四孪生合并: gbBinkVideo 名退役。三面证据(0 ctor mangle/语料零引用/成员 unverified)+同例语义(媒体管理器)已由 CScreenMode 承接。其双 CPK 布局主张(0x10 CPK×2)与接收者证据(CPK@0=InitPackFiles 基址)矛盾, 成员视为 stale 未采信。若后续视频播放面取证需要, 从本归档恢复考据。"
 }
