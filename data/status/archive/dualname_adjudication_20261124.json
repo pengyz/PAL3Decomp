@@ -56,6 +56,17 @@
     "开放案: Role(0x2200) vs RoleSystem(0x2200) 同尺寸身份结——Extra0/Extra1 双方法族(Camera+RoleSystem)宿主待定谳"
    ],
    "verdict": "B 案方向修正: 115 方法不迁移; Scene bases 裁决需全 Scene ctor(非 Reset)基构造链"
+  },
+  {
+   "date": "2026-11-25",
+   "case": "UIButton +0x4C 字段语义定谳立案（Family C enum cast 规则回滚）",
+   "findings": [
+    "+0x4C(m_state 注解, unverified)三重使用故事: ①Create 写 rect.left(位置语义) ②Render 写纹理运算值×4(渲染帧索引语义) ③TextureLibDataBase::SetLibFolder 定位构造于 &+0x4C(纹理库子对象语义)——三故事互斥",
+    "m_state 枚举注解(0/1/2 normal/mouseon/mousedown)无写入证据——真状态槽未知",
+    "ProcessMouseInput@0x46F480 误归 UIButton methods 表: this 域矩形@+0x65CC/字段@+0x68B0(大 UI 屏幕命中分发器, 非按钮)——methods 表含误归方法",
+    "枚举 cast 规则已回滚(未提交): 会把语义错位暴露点(C2440)静默化, 违反暴露原则"
+   ],
+   "verdict": "Family C 10 错保持可见(暴露原则); +0x4C 语义定谳战役立案: ①+0x4C 三故事裁决 ②真状态槽定位 ③ProcessMouseInput 等误归方法清理"
   }
  ],
  "adjudications": [
