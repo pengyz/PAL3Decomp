@@ -974,6 +974,60 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x0043afa0": {
+   "name": "SetTooltipText",
+   "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [W2 CScreenMode 退役·阶段二 2026-11-25] 邻域分析迁移: 地址夹于 UIScene 方法间(距离<300B=编译单元聚合=真主强信号)。原 CScreenMode 归属=垃圾罐误标。",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal1"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetTooltipText)"
+  },
+  "0x0043c550": {
+   "name": "SetProgress",
+   "source": "pdb_ret | [W2 CScreenMode 退役·阶段二 2026-11-25] 邻域分析迁移: 地址夹于 UIScene 方法间(距离<300B=编译单元聚合=真主强信号)。原 CScreenMode 归属=垃圾罐误标。",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "float",
+      "name": "fProgress"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetProgress): i"
+  },
+  "0x00493290": {
+   "name": "GetPlayerAttByIndex",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(GetPlayerAttByI",
+   "source": " | [W2 CScreenMode 退役·阶段二 2026-11-25] 邻域分析迁移: 地址夹于 UIScene 方法间(距离<300B=编译单元聚合=真主强信号)。原 CScreenMode 归属=垃圾罐误标。"
   }
  },
  "vtables": [

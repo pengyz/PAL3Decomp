@@ -1,4 +1,4 @@
-S1 headers: 744/767 ok  (71s)
+S1 headers: 744/767 ok  (72s)
   FAIL pal3/src/Misc/CPKTableU.h                C2011: 'CPKTableU' : 'union' type redefinition
   FAIL pal3/src/Misc/DICOLORSET.h               C2371: 'DICOLORSET' : redefinition; different basic types
   FAIL pal3/src/Misc/DIDEVCAPS.h                C2011: 'DIDEVCAPS' : 'struct' type redefinition
@@ -22,7 +22,7 @@ S1 headers: 744/767 ok  (71s)
   FAIL pal3/src/Misc/tagEffClass.h              C2440: '=' : cannot convert from 'int' to 'char [4]'
   FAIL pal3/src/Misc/unchar.h                   C2371: 'unchar' : redefinition; different basic types
   FAIL pal3/src/_ns_udts.h                      C2146: syntax error : missing ';' before identifier 'rc'
-S2 cpp: 157/230 ok | own-fail 73 | imported-only 0  (29s)
+S2 cpp: 156/230 ok | own-fail 74 | imported-only 0  (28s)
 Top root-cause headers (files blocked):
 report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
@@ -30,14 +30,14 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261124_221121
 基线时间: 2026-11-24T22:11:21.073273
-检测时间: 2026-11-25T21:49:06.451325
+检测时间: 2026-11-25T22:11:13.226941
 
 📊 摘要:
   总文件数: 1018
-  新失败: 2
+  新失败: 3
   新错误(真新增 (code,msg)): 8
   已修复: 114
-  错误收敛(消失 (code,msg)): 27
+  错误收敛(消失 (code,msg)): 25
   持续失败: 91
 
 🔢 逐错误码净增减 (正=增加，负=减少):
@@ -50,33 +50,45 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
   C2371    -26
   C2660    -13
   C2248    -11
-  C2059    -8
   C2679    -8
   C2106    +7  ⚠️ 增加
   C2784    -6
   C2100    -5
   C2109    +5  ⚠️ 增加
+  C2143    -4
   C2039    -4
   ⚠️ 注意: 以下错误码**净增** C2106, C2107, C2109, C2110, C2297, C2446 —— 即使总错误数在下降也要逐条归因
 
 ❌ 新失败 (之前成功，现在失败):
 ----------------------------------------
-  pal3/src/Misc/RoleCamera.cpp
-    L174: C2664 - 'SetListenerOrientation' : cannot convert parameter 1 from '
+  pal3/src/Misc/UITitle_ArcSave.cpp
+    L92: C2059 - syntax error : ')'
+    L99: C2059 - syntax error : ')'
+    L110: C2059 - syntax error : ')'
+    ... 还有 3 个错误
   pal3/src/Scene/Camera.cpp
     L221: C2664 - 'IntersectPlane' : cannot convert parameter 2 from 'struct g
+  pal3/src/Misc/RoleCamera.cpp
+    L174: C2664 - 'SetListenerOrientation' : cannot convert parameter 1 from '
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Role/Object3D.cpp
-    错误数: 5 -> 4  真新增 2 {'C2664': 2}
-    新增 L43: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
-    新增 L102: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
-  pal3/src/free_functions.cpp
-    错误数: 96 -> 52  真新增 3 {'C2106': 3}
-    新增 L2629: C2106 - '|=' : left operand must be l-value
-    新增 L2639: C2106 - '|=' : left operand must be l-value
-    新增 L2651: C2106 - '|=' : left operand must be l-value
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 30 -> 26  真新增 2 {'C2664': 2}
+    新增 L7451: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
+    新增 L7723: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+  pal3/src/Script/PalScript.cpp
+    错误数: 34 -> 22  真新增 1 {'C2440': 1}
+    新增 L304: C2440 - '=' : cannot convert from 'char *' to 'char'
+  pal3/src/Scene/CameraCtrl.cpp
+    错误数: 8 -> 11  真新增 3 {'C2664': 3}
+    新增 L1025: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
+    新增 L1070: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
+    新增 L1187: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
+  pal3/src/Role/RoleSystem.cpp
+    错误数: 43 -> 45  真新增 2 {'C2664': 2}
+    新增 L905: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
+    新增 L907: C2664 - 'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &)' : cann
   pal3/src/Misc/UIBigMap.cpp
     错误数: 15 -> 28  真新增 8 {'C2106': 4, 'C2664': 4}
     新增 L875: C2106 - '|=' : left operand must be l-value
@@ -84,204 +96,198 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L891: C2106 - '|=' : left operand must be l-value
     新增 L908: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
     新增 L918: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
-  pal3/src/Scene/CameraCtrl.cpp
-    错误数: 8 -> 11  真新增 3 {'C2664': 3}
-    新增 L1024: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
-    新增 L1069: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
-    新增 L1186: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
-  pal3/src/Role/RoleSystem.cpp
-    错误数: 43 -> 45  真新增 2 {'C2664': 2}
-    新增 L905: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
-    新增 L907: C2664 - 'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &)' : cann
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 30 -> 26  真新增 2 {'C2664': 2}
-    新增 L7451: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
-    新增 L7723: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
-  pal3/src/Script/PalScript.cpp
-    错误数: 34 -> 22  真新增 1 {'C2440': 1}
-    新增 L303: C2440 - '=' : cannot convert from 'char *' to 'char'
+  pal3/src/free_functions.cpp
+    错误数: 96 -> 52  真新增 3 {'C2106': 3}
+    新增 L2630: C2106 - '|=' : left operand must be l-value
+    新增 L2640: C2106 - '|=' : left operand must be l-value
+    新增 L2652: C2106 - '|=' : left operand must be l-value
+  pal3/src/Role/Object3D.cpp
+    错误数: 5 -> 4  真新增 2 {'C2664': 2}
+    新增 L43: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+    新增 L102: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
   pal3/src/Misc/SaleUI.cpp
     错误数: 37 -> 36  真新增 16 {'C2297': 2, 'C2664': 1, 'C2446': 4, 'C2040': 4, 'C2110': 2, 'C2107': 3}
-    新增 L770: C2297 - '*' : illegal, right operand has type 'unsigned long *'
     新增 L771: C2297 - '*' : illegal, right operand has type 'unsigned long *'
-    新增 L1101: C2664 - 'CreateFromTemplate' : cannot convert parameter 2 from 'unsigned long 
-    新增 L9268: C2446 - '>=' : no conversion from 'const int' to 'unsigned long *'
-    新增 L9268: C2040 - '>=' : 'unsigned long *' differs in levels of indirection from 'const 
+    新增 L772: C2297 - '*' : illegal, right operand has type 'unsigned long *'
+    新增 L1102: C2664 - 'CreateFromTemplate' : cannot convert parameter 2 from 'unsigned long 
+    新增 L9269: C2446 - '>=' : no conversion from 'const int' to 'unsigned long *'
+    新增 L9269: C2040 - '>=' : 'unsigned long *' differs in levels of indirection from 'const 
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/MiniGame/MiniGame3.cpp: {'C2440': 3}
-  pal3/src/Misc/UIBigMap.cpp: {'C2664': 4}
-  pal3/src/Scene/Scene.cpp: {'C2664': 16}
-  pal3/src/Misc/LineupUI.cpp: {'C2664': 7}
   pal3/src/GameBase/PAL3.cpp: {'C2065': 1}
-  s1:pal3/src/Misc/RoleAtt.h: {'C2501': 1}
   pal3/src/Combat/CCCTData.cpp: {'C2664': 3}
   s1:pal3/src/Misc/RoleAttRemarkSkills.h: {'C2501': 1}
+  pal3/src/Role/Actor.cpp: {'C2664': 1}
+  pal3/src/MiniGame/MiniGame3.cpp: {'C2440': 3}
+  pal3/src/Misc/LineupUI.cpp: {'C2664': 7}
+  s1:pal3/src/Misc/RoleAtt.h: {'C2501': 1}
+  pal3/src/Misc/UIBigMap.cpp: {'C2664': 4}
+  pal3/src/Scene/Scene.cpp: {'C2664': 16}
   pal3/src/Misc/MainEquipUI.cpp: {'C2664': 1}
-  pal3/src/UI/UIManager.cpp: {'C2440': 2}
   s1:pal3/src/Misc/PlayerAtt.h: {'C2501': 1}
   pal3/src/Misc/SaleUI.cpp: {'C2440': 4}
+  pal3/src/UI/UIManager.cpp: {'C2440': 2}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/Role/Object3D.cpp: 5 -> 4  (消失 3)
-  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 11  (消失 1)
-  pal3/src/free_functions.cpp: 96 -> 52  (消失 53)
-  pal3/src/UI/UIListBox.cpp: 3 -> 2  (消失 1)
-  pal3/src/Misc/RoleAtt.cpp: 5 -> 4  (消失 1)
-  pal3/src/UI/EquipUI.cpp: 8 -> 7  (消失 1)
-  pal3/src/MiniGame/MiniGame3.cpp: 6 -> 6  (消失 3)
-  pal3/src/Misc/UIBigMap.cpp: 15 -> 28  (消失 7)
-  pal3/src/Scene/Scene.cpp: 24 -> 24  (消失 16)
-  pal3/src/Misc/LineupUI.cpp: 23 -> 23  (消失 7)
-  pal3/src/Combat/CCBSystem.cpp: 18 -> 10  (消失 8)
+  pal3/src/Combat/CCBCamControl.cpp: 3 -> 1  (消失 2)
+  pal3/src/Combat/CCBStage.cpp: 30 -> 26  (消失 5)
   pal3/src/GameBase/PAL3.cpp: 24 -> 22  (消失 3)
-  s1:pal3/src/Misc/RoleAtt.h: 5 -> 3  (消失 3)
+  pal3/src/Script/PalScript.cpp: 34 -> 22  (消失 12)
   pal3/src/Combat/CCCTData.cpp: 22 -> 22  (消失 3)
+  pal3/src/Misc/RoleAtt.cpp: 5 -> 4  (消失 1)
+  pal3/src/Scene/SceneObj.cpp: 7 -> 2  (消失 5)
+  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 11  (消失 1)
+  s1:pal3/src/Misc/RoleAttRemarkSkills.h: 3 -> 3  (消失 1)
+  pal3/src/Role/Actor.cpp: 3 -> 3  (消失 1)
+  pal3/src/MiniGame/MiniGame3.cpp: 6 -> 6  (消失 3)
   pal3/src/Misc/UI3DModelNode.cpp: 2 -> 1  (消失 1)
+  pal3/src/Misc/LineupUI.cpp: 23 -> 23  (消失 7)
+  s1:pal3/src/Misc/RoleAtt.h: 5 -> 3  (消失 3)
+  pal3/src/Misc/UIBigMap.cpp: 15 -> 28  (消失 7)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  s1:pal3/src/Combat/CCBLineupWindow.h
-  s1:pal3/src/Role/Role.h
-  s1:pal3/src/Misc/Average.h
-  s1:pal3/src/Combat/CCBProtectWindow.h
-  s1:pal3/src/Misc/ComposeUI.h
-  s1:pal3/src/Misc/tagCamTask.h
-  s1:pal3/src/Effect/ScreenEffectMgr.h
-  s1:pal3/src/UI/UIListBox.h
-  s1:pal3/src/Misc/UIGameFrm.h
-  pal3/src/Effect/ScreenEffectMgr.cpp
-  s1:pal3/src/Combat/CCBAIWindow.h
-  s1:pal3/src/Misc/UIFrameContainer.h
-  s1:pal3/src/Misc/UIRoleSelectDialog.h
-  pal3/src/GameBase/Config.cpp
-  s1:pal3/src/Misc/UITitle_BBTY.h
-  pal3/src/Misc/OpenNULLFile.cpp
-  s1:pal3/src/Combat/CCBResultWindow.h
-  s1:pal3/src/Misc/CG_UI.h
-  s1:pal3/src/Misc/_Item_List_Info.h
-  s1:pal3/src/Misc/RoleCameraCtrl.h
-  s1:pal3/src/Misc/LineupUI.h
-  s1:pal3/src/Misc/ProtectPanel.h
-  s1:pal3/src/Effect/CEffExplosive.h
-  pal3/src/Misc/CScreenModeNode.cpp
-  s1:pal3/src/Script/PalScript.h
-  s1:pal3/src/Combat/CCBControlWindow.h
-  s1:pal3/src/Misc/TaskBookUI.h
-  s1:pal3/src/Misc/UIGameOver.h
-  s1:pal3/src/Misc/PalScriptIdleObj.h
-  s1:pal3/src/Effect/CEffQuad.h
-  s1:pal3/src/Misc/UICoverFrm.h
-  s1:pal3/src/Misc/tagCam.h
-  s1:pal3/src/Combat/CCBUI.h
-  pal3/src/Misc/OpenSceneFile.cpp
   s1:pal3/src/Misc/DealUI.h
-  s1:pal3/src/UI/EquipUI.h
-  s1:pal3/src/UI/PropUI.h
-  s1:pal3/src/Misc/PalScriptRoleSlotOverlay.h
-  s1:pal3/src/Combat/CCCTData.h
-  s1:pal3/src/Misc/UILoadingFrm.h
-  s1:pal3/src/Misc/_SAMPLE.h
-  s1:pal3/src/Misc/RoleSystemTeamSlotOverlay.h
-  pal3/src/Combat/CCBResultWindow.cpp
-  s1:pal3/src/Misc/ChoseCompose.h
-  s1:pal3/src/Misc/UIAnimateCtrlEX.h
-  s1:pal3/src/Misc/UISceneMap.h
-  s1:pal3/src/Misc/Comp_DonateUI.h
-  s1:pal3/src/Misc/MainEquipUI.h
-  s1:pal3/src/Combat/CCBStageScene.h
-  s1:pal3/src/Misc/CCBFiveNimbusWindow.h
-  s1:pal3/src/Combat/CCBMagicWindow.h
   s1:pal3/src/Misc/UITitle_QCYM.h
-  s1:pal3/src/Scene/Scene.h
-  s1:pal3/src/Misc/UITitle_ArcSave.h
-  s1:pal3/src/Misc/SaleUI.h
-  s1:pal3/src/Misc/ScreenFadeIn.h
-  s1:pal3/src/Misc/UIRoleSelect.h
-  s1:pal3/src/Misc/UIBigMap.h
-  s1:pal3/src/Misc/UITitle_XJTM.h
-  s1:pal3/src/Misc/UISceneFrm.h
-  pal3/src/Misc/ScreenEffectNode.cpp
-  pal3/src/Misc/UILoadingFrm.cpp
-  s1:pal3/src/Combat/CCBParabolaWindow.h
-  s1:pal3/src/Misc/CG_Scene.h
-  pal3/src/Misc/SkillUI.cpp
-  s1:pal3/src/Misc/CEffTrackQuad.h
-  s1:pal3/src/Combat/CCBSkillWindow.h
-  s1:pal3/src/Misc/UITitle_JDHY.h
-  s1:pal3/src/Combat/CCBStage.h
-  s1:pal3/src/Effect/CEffectSystem.h
-  s1:pal3/src/Misc/ScreenFadeOut.h
-  s1:pal3/src/Misc/CCBUICtrl.h
-  s1:pal3/src/Misc/UIChatRest.h
-  s1:pal3/src/Combat/CCBItemWindow.h
+  s1:pal3/src/Combat/CCBProtectWindow.h
+  s1:pal3/src/Misc/UIGameFrm.h
+  s1:pal3/src/UI/UIListBox.h
   s1:pal3/src/Misc/PalScriptDialogOverlay.h
-  s1:pal3/src/Misc/ScreenFadeWhite2.h
-  s1:pal3/src/Misc/JusticeBookUI.h
-  pal3/src/Misc/String.cpp
-  s1:pal3/src/Combat/CCBSystem.h
-  s1:pal3/src/Data/PAL_GDB.h
-  s1:pal3/src/Role/RoleSystem.h
-  s1:pal3/src/Scene/CameraCtrl.h
-  s1:pal3/src/Combat/CCBRoleState.h
-  s1:pal3/src/Misc/ScreenFadeWhite.h
-  s1:pal3/src/Misc/PalScriptAnimTimer.h
-  s1:pal3/src/Misc/UITitle.h
-  s1:pal3/src/Effect/CEffGrid.h
-  s1:pal3/src/UI/MagicUI.h
-  s1:pal3/src/Effect/ScreenEffect.h
-  s1:pal3/src/Misc/DealData.h
-  s1:pal3/src/Misc/tagCCT.h
-  pal3/src/Effect/CEffSParticle.cpp
-  s1:pal3/src/Combat/CCBStageCam.h
-  s1:pal3/src/Misc/UIFrameWnd.h
-  s1:pal3/src/Misc/SwordUI.h
-  s1:pal3/src/globals.h
-  s1:pal3/src/Combat/CCBCamControl.h
-  s1:pal3/src/UI/StateUI.h
-  s1:pal3/src/Misc/CEffTrackGrid.h
-  pal3/src/Misc/PtrArray.cpp
-  s1:pal3/src/Misc/UIRoleDialog.h
-  s1:pal3/src/GameBase/GRPinput.h
-  s1:pal3/src/Misc/ParticleVisNode.h
+  s1:pal3/src/Combat/CCCTData.h
+  s1:pal3/src/Misc/UIRoleSelect.h
+  pal3/src/Misc/OpenNULLFile.cpp
+  s1:pal3/src/Misc/UIChatRest.h
   s1:pal3/src/Misc/UITitle_YXXX.h
-  pal3/src/Render/CScreenMode.cpp
-  s1:pal3/src/Misc/SceneVisNode.h
-  s1:pal3/src/Misc/MUIDialog.h
+  s1:pal3/src/Combat/CCBUI.h
+  s1:pal3/src/Misc/UICoverFrm.h
+  s1:pal3/src/globals.h
+  s1:pal3/src/Combat/CCBAIWindow.h
+  s1:pal3/src/Misc/PalScriptAnimTimer.h
+  pal3/src/Misc/SkillUI.cpp
+  s1:pal3/src/Effect/ScreenEffectMgr.h
+  pal3/src/Effect/CEffSParticle.cpp
+  s1:pal3/src/Misc/CG_UI.h
   s1:pal3/src/Scene/Camera.h
+  s1:pal3/src/Combat/CCBResultWindow.h
+  s1:pal3/src/UI/MagicUI.h
+  s1:pal3/src/Combat/CCBStage.h
+  s1:pal3/src/Misc/UIRoleDialog.h
+  s1:pal3/src/Combat/CCBLineupWindow.h
+  s1:pal3/src/Misc/PalScriptIdleObj.h
+  s1:pal3/src/Misc/ProtectPanel.h
   s1:pal3/src/Misc/MainPropUI.h
-  s1:pal3/src/Misc/SkillUI.h
-  s1:pal3/src/Render/CScreenMode.h
-  pal3/src/UI/UIWnd.cpp
+  s1:pal3/src/Misc/UISceneMap.h
+  s1:pal3/src/Misc/UIRoleSelectDialog.h
+  s1:pal3/src/Misc/RoleSystemTeamSlotOverlay.h
+  s1:pal3/src/Misc/Comp_DonateUI.h
+  s1:pal3/src/Misc/CCBUICtrl.h
+  s1:pal3/src/UI/EquipUI.h
+  s1:pal3/src/Misc/UITitle_ArcSave.h
+  s1:pal3/src/Misc/UIFrameWnd.h
+  s1:pal3/src/Scene/CameraCtrl.h
+  pal3/src/Misc/UILoadingFrm.cpp
+  pal3/src/Misc/OpenSceneFile.cpp
+  pal3/src/Misc/ScreenEffectNode.cpp
+  s1:pal3/src/Misc/PalScriptRoleSlotOverlay.h
+  s1:pal3/src/Misc/ScreenFadeOut.h
+  s1:pal3/src/Misc/UISceneFrm.h
+  s1:pal3/src/Misc/CCBFiveNimbusWindow.h
+  s1:pal3/src/Combat/CCBStageScene.h
+  s1:pal3/src/Misc/LineupUI.h
+  s1:pal3/src/Scene/Scene.h
+  pal3/src/Misc/CScreenModeNode.cpp
+  s1:pal3/src/Misc/UILoadingFrm.h
+  pal3/src/Combat/CCBResultWindow.cpp
+  s1:pal3/src/Misc/_SAMPLE.h
+  s1:pal3/src/Combat/CCBRoleState.h
   pal3/src/Misc/OpenBaseFile.cpp
+  pal3/src/Misc/PtrArray.cpp
+  s1:pal3/src/Role/Role.h
+  s1:pal3/src/Effect/ScreenEffect.h
+  s1:pal3/src/Misc/CG_Scene.h
+  s1:pal3/src/Misc/SkillUI.h
+  s1:pal3/src/Misc/SaleUI.h
+  s1:pal3/src/Combat/CCBCamControl.h
+  s1:pal3/src/Misc/UIGameOver.h
   s1:pal3/src/GameBase/PAL3.h
+  s1:pal3/src/Misc/UIFrameContainer.h
+  s1:pal3/src/Combat/CCBParabolaWindow.h
+  s1:pal3/src/Misc/DealData.h
+  s1:pal3/src/Misc/tagCam.h
+  s1:pal3/src/Misc/MainEquipUI.h
+  s1:pal3/src/Effect/CEffQuad.h
+  s1:pal3/src/Combat/CCBSkillWindow.h
+  s1:pal3/src/Misc/UITitle_XJTM.h
+  s1:pal3/src/Combat/CCBItemWindow.h
+  s1:pal3/src/Misc/ScreenFadeWhite.h
+  s1:pal3/src/Combat/CCBSystem.h
+  s1:pal3/src/Combat/CCBStageCam.h
+  s1:pal3/src/Misc/ParticleVisNode.h
+  s1:pal3/src/Render/CScreenMode.h
+  s1:pal3/src/Misc/TaskBookUI.h
+  pal3/src/GameBase/Config.cpp
+  s1:pal3/src/Role/RoleSystem.h
+  s1:pal3/src/Misc/ComposeUI.h
+  s1:pal3/src/Misc/Average.h
+  s1:pal3/src/UI/StateUI.h
+  s1:pal3/src/Misc/UIBigMap.h
+  s1:pal3/src/Misc/CEffTrackGrid.h
+  s1:pal3/src/Misc/CEffTrackQuad.h
+  pal3/src/Misc/String.cpp
+  s1:pal3/src/Misc/ScreenFadeWhite2.h
+  pal3/src/Effect/ScreenEffectMgr.cpp
+  s1:pal3/src/Effect/CEffectSystem.h
+  s1:pal3/src/Misc/ChoseCompose.h
+  s1:pal3/src/Misc/MUIDialog.h
+  s1:pal3/src/Misc/SwordUI.h
+  s1:pal3/src/Combat/CCBControlWindow.h
+  s1:pal3/src/Misc/SceneVisNode.h
+  s1:pal3/src/Misc/JusticeBookUI.h
+  s1:pal3/src/Combat/CCBMagicWindow.h
+  s1:pal3/src/Misc/tagCamTask.h
+  s1:pal3/src/Misc/RoleCameraCtrl.h
+  s1:pal3/src/Misc/tagCCT.h
+  s1:pal3/src/UI/PropUI.h
+  s1:pal3/src/Effect/CEffGrid.h
+  pal3/src/UI/UIWnd.cpp
+  s1:pal3/src/Effect/CEffExplosive.h
+  s1:pal3/src/Misc/UIAnimateCtrlEX.h
+  s1:pal3/src/Script/PalScript.h
+  s1:pal3/src/Misc/ScreenFadeIn.h
+  s1:pal3/src/GameBase/GRPinput.h
+  s1:pal3/src/Misc/_Item_List_Info.h
+  s1:pal3/src/Misc/UITitle_JDHY.h
+  s1:pal3/src/Misc/UITitle.h
+  pal3/src/Render/CScreenMode.cpp
+  s1:pal3/src/Data/PAL_GDB.h
+  s1:pal3/src/Misc/UITitle_BBTY.h
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/Role/Object3D.cpp: 5 ↓ 4
-  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 11
-  pal3/src/free_functions.cpp: 96 ↓ 52
-  pal3/src/UI/UIListBox.cpp: 3 ↓ 2
-  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
-  pal3/src/UI/EquipUI.cpp: 8 ↓ 7
-  pal3/src/Misc/UIBigMap.cpp: 15 → 28
-  pal3/src/Scene/CameraCtrl.cpp: 8 → 11
-  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 10
+  pal3/src/Combat/CCBCamControl.cpp: 3 ↓ 1
+  pal3/src/Combat/CCBStage.cpp: 30 ↓ 26
   pal3/src/GameBase/PAL3.cpp: 24 ↓ 22
-  s1:pal3/src/Misc/RoleAtt.h: 5 ↓ 3
+  pal3/src/UI/UIListBox.cpp: 3 ↓ 2
+  pal3/src/Script/PalScript.cpp: 34 ↓ 22
+  pal3/src/Scene/CameraCtrl.cpp: 8 → 11
+  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
+  pal3/src/Scene/SceneObj.cpp: 7 ↓ 2
+  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 11
   pal3/src/Role/RoleSystem.cpp: 43 → 45
   pal3/src/Misc/UI3DModelNode.cpp: 2 ↓ 1
-  pal3/src/Combat/CCBStage.cpp: 30 ↓ 26
-  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 3
+  s1:pal3/src/Misc/RoleAtt.h: 5 ↓ 3
+  pal3/src/Misc/UIBigMap.cpp: 15 → 28
+  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 10
   pal3/src/Script/ScriptSystem.cpp: 14 ↓ 13
-  pal3/src/Combat/CCBCamControl.cpp: 3 ↓ 1
-  pal3/src/Scene/SceneObj.cpp: 7 ↓ 2
-  pal3/src/Script/PalScript.cpp: 34 ↓ 22
-  pal3/src/UI/UIManager.cpp: 6 ↓ 3
+  pal3/src/free_functions.cpp: 96 ↓ 52
   s1:pal3/src/Misc/PlayerAtt.h: 5 ↓ 3
+  pal3/src/Role/Object3D.cpp: 5 ↓ 4
   pal3/src/Misc/SaleUI.cpp: 37 ↓ 36
+  pal3/src/UI/UIManager.cpp: 6 ↓ 3
+  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 3
+  pal3/src/UI/EquipUI.cpp: 8 ↓ 7
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 ================================================================================
@@ -289,14 +295,14 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
 ================================================================================
 基线: 20261124_221121
 基线时间: 2026-11-24T22:11:21.073273
-检测时间: 2026-11-25T21:49:06.490690
+检测时间: 2026-11-25T22:11:13.261115
 
 📊 摘要:
   总文件数: 1018
-  新失败: 2
+  新失败: 3
   新错误(真新增 (code,msg)): 8
   已修复: 114
-  错误收敛(消失 (code,msg)): 27
+  错误收敛(消失 (code,msg)): 25
   持续失败: 91
 
 🔢 逐错误码净增减 (正=增加，负=减少):
@@ -304,17 +310,17 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
   C2504    -126
   C2501    -88
   C2146    -41
-  C2664    -38
   C2440    -38
+  C2664    -38
   C2371    -26
   C2660    -13
   C2248    -11
-  C2059    -8
   C2679    -8
   C2106    +7  ⚠️ 增加
   C2784    -6
   C2100    -5
   C2109    +5  ⚠️ 增加
+  C2143    -4
   C2039    -4
   ⚠️ 注意: 以下错误码**净增** C2106, C2107, C2109, C2110, C2297, C2446 —— 即使总错误数在下降也要逐条归因
 
@@ -324,37 +330,32 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     L174: C2664 - 'SetListenerOrientation' : cannot convert parameter 1 from '
   pal3/src/Scene/Camera.cpp
     L221: C2664 - 'IntersectPlane' : cannot convert parameter 2 from 'struct g
+  pal3/src/Misc/UITitle_ArcSave.cpp
+    L92: C2059 - syntax error : ')'
+    L99: C2059 - syntax error : ')'
+    L110: C2059 - syntax error : ')'
+    ... 还有 3 个错误
 
 ⚠️  真新增错误 (同码出现数抵不掉消失数):
 ----------------------------------------
-  pal3/src/Scene/CameraCtrl.cpp
-    错误数: 8 -> 11  真新增 3 {'C2664': 3}
-    新增 L1024: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
-    新增 L1069: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
-    新增 L1186: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
   pal3/src/Misc/SaleUI.cpp
     错误数: 37 -> 36  真新增 16 {'C2297': 2, 'C2664': 1, 'C2446': 4, 'C2040': 4, 'C2110': 2, 'C2107': 3}
-    新增 L770: C2297 - '*' : illegal, right operand has type 'unsigned long *'
     新增 L771: C2297 - '*' : illegal, right operand has type 'unsigned long *'
-    新增 L1101: C2664 - 'CreateFromTemplate' : cannot convert parameter 2 from 'unsigned long 
-    新增 L9268: C2446 - '>=' : no conversion from 'const int' to 'unsigned long *'
-    新增 L9268: C2040 - '>=' : 'unsigned long *' differs in levels of indirection from 'const 
-  pal3/src/Script/PalScript.cpp
-    错误数: 34 -> 22  真新增 1 {'C2440': 1}
-    新增 L303: C2440 - '=' : cannot convert from 'char *' to 'char'
-  pal3/src/free_functions.cpp
-    错误数: 96 -> 52  真新增 3 {'C2106': 3}
-    新增 L2629: C2106 - '|=' : left operand must be l-value
-    新增 L2639: C2106 - '|=' : left operand must be l-value
-    新增 L2651: C2106 - '|=' : left operand must be l-value
+    新增 L772: C2297 - '*' : illegal, right operand has type 'unsigned long *'
+    新增 L1102: C2664 - 'CreateFromTemplate' : cannot convert parameter 2 from 'unsigned long 
+    新增 L9269: C2446 - '>=' : no conversion from 'const int' to 'unsigned long *'
+    新增 L9269: C2040 - '>=' : 'unsigned long *' differs in levels of indirection from 'const 
+  pal3/src/Role/Object3D.cpp
+    错误数: 5 -> 4  真新增 2 {'C2664': 2}
+    新增 L43: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+    新增 L102: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
   pal3/src/Role/RoleSystem.cpp
     错误数: 43 -> 45  真新增 2 {'C2664': 2}
     新增 L905: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
     新增 L907: C2664 - 'void __thiscall gbMatrixStack::Rotate(float,struct gbVec3D &)' : cann
-  pal3/src/Combat/CCBStage.cpp
-    错误数: 30 -> 26  真新增 2 {'C2664': 2}
-    新增 L7451: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
-    新增 L7723: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+  pal3/src/Script/PalScript.cpp
+    错误数: 34 -> 22  真新增 1 {'C2440': 1}
+    新增 L304: C2440 - '=' : cannot convert from 'char *' to 'char'
   pal3/src/Misc/UIBigMap.cpp
     错误数: 15 -> 28  真新增 8 {'C2106': 4, 'C2664': 4}
     新增 L875: C2106 - '|=' : left operand must be l-value
@@ -362,185 +363,196 @@ report -> /home/peng/workspace/PAL3Decomp/data/status/probe_census.json
     新增 L891: C2106 - '|=' : left operand must be l-value
     新增 L908: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
     新增 L918: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
-  pal3/src/Role/Object3D.cpp
-    错误数: 5 -> 4  真新增 2 {'C2664': 2}
-    新增 L43: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
-    新增 L102: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+  pal3/src/Combat/CCBStage.cpp
+    错误数: 30 -> 26  真新增 2 {'C2664': 2}
+    新增 L7451: C2664 - 'void __thiscall gbMatrixStack::Translate(struct gbVec3D &)' : cannot 
+    新增 L7723: C2664 - 'void __thiscall gbMatrix4::RightTranslate(struct gbVec3D &)' : cannot
+  pal3/src/free_functions.cpp
+    错误数: 96 -> 52  真新增 3 {'C2106': 3}
+    新增 L2630: C2106 - '|=' : left operand must be l-value
+    新增 L2640: C2106 - '|=' : left operand must be l-value
+    新增 L2652: C2106 - '|=' : left operand must be l-value
+  pal3/src/Scene/CameraCtrl.cpp
+    错误数: 8 -> 11  真新增 3 {'C2664': 3}
+    新增 L1025: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
+    新增 L1070: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
+    新增 L1187: C2664 - 'GetPosition' : cannot convert parameter 1 from 'float' to 'float *'
 
 🔁 报错文本/站点变化 (同码增删并存 —— 不是新的错误种类，常见于 msg 里嵌了实参类型):
 ----------------------------------------
-  pal3/src/Misc/LineupUI.cpp: {'C2664': 7}
-  pal3/src/Misc/MainEquipUI.cpp: {'C2664': 1}
   pal3/src/Misc/SaleUI.cpp: {'C2440': 4}
-  s1:pal3/src/Misc/RoleAtt.h: {'C2501': 1}
-  s1:pal3/src/Misc/PlayerAtt.h: {'C2501': 1}
-  pal3/src/MiniGame/MiniGame3.cpp: {'C2440': 3}
   s1:pal3/src/Misc/RoleAttRemarkSkills.h: {'C2501': 1}
-  pal3/src/GameBase/PAL3.cpp: {'C2065': 1}
+  pal3/src/Misc/MainEquipUI.cpp: {'C2664': 1}
+  s1:pal3/src/Misc/PlayerAtt.h: {'C2501': 1}
   pal3/src/Scene/Scene.cpp: {'C2664': 16}
-  pal3/src/Combat/CCCTData.cpp: {'C2664': 3}
-  pal3/src/Misc/UIBigMap.cpp: {'C2664': 4}
+  pal3/src/GameBase/PAL3.cpp: {'C2065': 1}
+  s1:pal3/src/Misc/RoleAtt.h: {'C2501': 1}
   pal3/src/UI/UIManager.cpp: {'C2440': 2}
+  pal3/src/Combat/CCCTData.cpp: {'C2664': 3}
+  pal3/src/MiniGame/MiniGame3.cpp: {'C2440': 3}
+  pal3/src/Role/Actor.cpp: {'C2664': 1}
+  pal3/src/Misc/UIBigMap.cpp: {'C2664': 4}
+  pal3/src/Misc/LineupUI.cpp: {'C2664': 7}
 
 🔧 错误收敛 (仍失败，但部分错误消失):
 ----------------------------------------
-  pal3/src/UI/UIListBox.cpp: 3 -> 2  (消失 1)
-  pal3/src/UI/EquipUI.cpp: 8 -> 7  (消失 1)
-  pal3/src/Misc/LineupUI.cpp: 23 -> 23  (消失 7)
-  pal3/src/Combat/CCBSystem.cpp: 18 -> 10  (消失 8)
-  pal3/src/Misc/MainEquipUI.cpp: 2 -> 2  (消失 1)
-  pal3/src/Script/ScriptSystem.cpp: 14 -> 13  (消失 1)
-  pal3/src/Scene/SceneObj.cpp: 7 -> 2  (消失 5)
+  pal3/src/Misc/CCBUICtrl.cpp: 12 -> 11  (消失 1)
   pal3/src/Misc/SaleUI.cpp: 37 -> 36  (消失 11)
-  pal3/src/Script/PalScriptMgr.cpp: 4 -> 4  (消失 1)
-  pal3/src/Script/PalScript.cpp: 34 -> 22  (消失 13)
-  pal3/src/free_functions.cpp: 96 -> 52  (消失 53)
-  s1:pal3/src/Misc/RoleAtt.h: 5 -> 3  (消失 3)
-  s1:pal3/src/Misc/PlayerAtt.h: 5 -> 3  (消失 3)
-  pal3/src/MiniGame/MiniGame3.cpp: 6 -> 6  (消失 3)
+  pal3/src/Role/Object3D.cpp: 5 -> 4  (消失 3)
   s1:pal3/src/Misc/RoleAttRemarkSkills.h: 3 -> 3  (消失 1)
+  pal3/src/Combat/CCBStageScene.cpp: 4 -> 3  (消失 1)
+  pal3/src/Misc/MainEquipUI.cpp: 2 -> 2  (消失 1)
+  pal3/src/UI/EquipUI.cpp: 8 -> 7  (消失 1)
+  s1:pal3/src/Misc/PlayerAtt.h: 5 -> 3  (消失 3)
+  pal3/src/Scene/Scene.cpp: 24 -> 24  (消失 16)
+  pal3/src/GameBase/PAL3.cpp: 24 -> 22  (消失 3)
+  s1:pal3/src/Misc/RoleAtt.h: 5 -> 3  (消失 3)
+  pal3/src/Scene/SceneObj.cpp: 7 -> 2  (消失 5)
+  pal3/src/UI/UIManager.cpp: 6 -> 3  (消失 5)
+  pal3/src/Combat/CCCTData.cpp: 22 -> 22  (消失 3)
+  pal3/src/MiniGame/MiniGame3.cpp: 6 -> 6  (消失 3)
 
 ✅ 已修复 (之前失败，现在成功):
 ----------------------------------------
-  s1:pal3/src/Misc/UIFrameContainer.h
-  s1:pal3/src/Render/CScreenMode.h
-  s1:pal3/src/Misc/LineupUI.h
-  s1:pal3/src/Data/PAL_GDB.h
-  s1:pal3/src/Effect/ScreenEffectMgr.h
-  s1:pal3/src/Misc/RoleCameraCtrl.h
-  s1:pal3/src/Combat/CCBStageScene.h
+  s1:pal3/src/Misc/SaleUI.h
+  s1:pal3/src/Misc/CG_UI.h
+  s1:pal3/src/Combat/CCBRoleState.h
+  s1:pal3/src/Misc/UIGameFrm.h
+  pal3/src/Misc/UILoadingFrm.cpp
   s1:pal3/src/Misc/_SAMPLE.h
-  s1:pal3/src/Misc/UITitle_XJTM.h
-  s1:pal3/src/Misc/PalScriptIdleObj.h
-  pal3/src/Misc/CScreenModeNode.cpp
-  s1:pal3/src/Misc/Average.h
-  s1:pal3/src/Misc/ComposeUI.h
-  s1:pal3/src/globals.h
-  s1:pal3/src/Misc/ScreenFadeOut.h
-  s1:pal3/src/Combat/CCBSystem.h
-  s1:pal3/src/UI/MagicUI.h
-  s1:pal3/src/Misc/ChoseCompose.h
-  s1:pal3/src/Misc/PalScriptAnimTimer.h
-  s1:pal3/src/Role/Role.h
-  pal3/src/UI/UIWnd.cpp
-  s1:pal3/src/Scene/CameraCtrl.h
-  s1:pal3/src/Misc/tagCCT.h
-  s1:pal3/src/Misc/MainEquipUI.h
-  s1:pal3/src/Misc/CG_Scene.h
-  s1:pal3/src/Misc/UISceneFrm.h
-  s1:pal3/src/Effect/CEffExplosive.h
-  s1:pal3/src/Misc/tagCamTask.h
-  s1:pal3/src/Misc/UIRoleSelectDialog.h
   s1:pal3/src/Misc/CEffTrackQuad.h
-  s1:pal3/src/Misc/DealData.h
-  s1:pal3/src/Misc/UITitle_ArcSave.h
-  pal3/src/Render/CScreenMode.cpp
-  pal3/src/Misc/OpenSceneFile.cpp
-  s1:pal3/src/Combat/CCBLineupWindow.h
-  s1:pal3/src/Misc/UICoverFrm.h
-  s1:pal3/src/Combat/CCBAIWindow.h
-  s1:pal3/src/UI/EquipUI.h
-  s1:pal3/src/Misc/UITitle_YXXX.h
-  s1:pal3/src/Misc/SwordUI.h
-  s1:pal3/src/Misc/ParticleVisNode.h
-  s1:pal3/src/Misc/UILoadingFrm.h
-  s1:pal3/src/Misc/PalScriptDialogOverlay.h
-  s1:pal3/src/Misc/ScreenFadeWhite.h
-  s1:pal3/src/Misc/ProtectPanel.h
+  s1:pal3/src/Combat/CCBProtectWindow.h
+  s1:pal3/src/Role/Role.h
+  s1:pal3/src/Effect/ScreenEffectMgr.h
+  s1:pal3/src/Combat/CCBCamControl.h
   s1:pal3/src/Misc/tagCam.h
-  s1:pal3/src/Combat/CCBResultWindow.h
-  s1:pal3/src/Misc/UIAnimateCtrlEX.h
-  s1:pal3/src/Effect/CEffQuad.h
-  s1:pal3/src/GameBase/PAL3.h
-  s1:pal3/src/Combat/CCBSkillWindow.h
-  s1:pal3/src/Misc/UIRoleSelect.h
-  s1:pal3/src/Misc/MUIDialog.h
-  pal3/src/Combat/CCBResultWindow.cpp
+  s1:pal3/src/UI/UIListBox.h
+  s1:pal3/src/GameBase/GRPinput.h
+  pal3/src/GameBase/Config.cpp
+  s1:pal3/src/Misc/Comp_DonateUI.h
+  s1:pal3/src/Misc/ProtectPanel.h
   s1:pal3/src/Misc/MainPropUI.h
-  pal3/src/Misc/ScreenEffectNode.cpp
+  s1:pal3/src/Misc/UISceneMap.h
+  s1:pal3/src/UI/StateUI.h
+  s1:pal3/src/Misc/DealData.h
+  s1:pal3/src/Effect/CEffGrid.h
+  s1:pal3/src/Data/PAL_GDB.h
+  s1:pal3/src/Misc/UIFrameContainer.h
+  s1:pal3/src/Misc/Average.h
+  s1:pal3/src/Misc/CEffTrackGrid.h
   s1:pal3/src/Misc/_Item_List_Info.h
   s1:pal3/src/Misc/UIGameOver.h
-  s1:pal3/src/GameBase/GRPinput.h
-  s1:pal3/src/Misc/UISceneMap.h
-  s1:pal3/src/Misc/UIGameFrm.h
-  s1:pal3/src/Misc/TaskBookUI.h
   s1:pal3/src/Script/PalScript.h
-  s1:pal3/src/UI/PropUI.h
-  s1:pal3/src/Effect/ScreenEffect.h
-  s1:pal3/src/Scene/Camera.h
-  s1:pal3/src/Misc/CCBFiveNimbusWindow.h
-  s1:pal3/src/Misc/SceneVisNode.h
-  s1:pal3/src/UI/StateUI.h
+  s1:pal3/src/Combat/CCBLineupWindow.h
   s1:pal3/src/Misc/UIChatRest.h
-  s1:pal3/src/Misc/DealUI.h
-  s1:pal3/src/Misc/ScreenFadeWhite2.h
-  s1:pal3/src/Misc/UITitle_BBTY.h
-  s1:pal3/src/Combat/CCBCamControl.h
-  s1:pal3/src/Misc/CCBUICtrl.h
-  s1:pal3/src/Misc/Comp_DonateUI.h
-  s1:pal3/src/Misc/UIFrameWnd.h
+  s1:pal3/src/Misc/UITitle_YXXX.h
+  s1:pal3/src/Effect/CEffExplosive.h
+  pal3/src/Misc/CScreenModeNode.cpp
+  s1:pal3/src/Misc/UICoverFrm.h
   s1:pal3/src/Role/RoleSystem.h
-  pal3/src/Misc/String.cpp
-  s1:pal3/src/Combat/CCBStage.h
-  s1:pal3/src/Combat/CCBProtectWindow.h
-  s1:pal3/src/Combat/CCCTData.h
-  pal3/src/Effect/CEffSParticle.cpp
-  s1:pal3/src/Misc/CEffTrackGrid.h
-  s1:pal3/src/Misc/UIRoleDialog.h
-  s1:pal3/src/Misc/PalScriptRoleSlotOverlay.h
-  pal3/src/Misc/SkillUI.cpp
-  s1:pal3/src/Combat/CCBControlWindow.h
-  s1:pal3/src/Misc/RoleSystemTeamSlotOverlay.h
-  s1:pal3/src/Misc/ScreenFadeIn.h
-  pal3/src/Misc/UILoadingFrm.cpp
-  pal3/src/Misc/PtrArray.cpp
-  s1:pal3/src/Misc/SaleUI.h
-  s1:pal3/src/Effect/CEffGrid.h
+  s1:pal3/src/Effect/CEffQuad.h
   pal3/src/Misc/OpenNULLFile.cpp
-  pal3/src/Effect/ScreenEffectMgr.cpp
-  s1:pal3/src/Combat/CCBMagicWindow.h
-  s1:pal3/src/Misc/CG_UI.h
-  s1:pal3/src/Misc/SkillUI.h
+  s1:pal3/src/Misc/ScreenFadeWhite.h
+  s1:pal3/src/Misc/ScreenFadeWhite2.h
+  s1:pal3/src/Misc/UITitle_XJTM.h
+  s1:pal3/src/Misc/MUIDialog.h
+  s1:pal3/src/Misc/ParticleVisNode.h
+  s1:pal3/src/Misc/DealUI.h
+  s1:pal3/src/Misc/PalScriptRoleSlotOverlay.h
   s1:pal3/src/Combat/CCBItemWindow.h
-  s1:pal3/src/Scene/Scene.h
-  s1:pal3/src/Misc/UITitle_JDHY.h
-  s1:pal3/src/Combat/CCBParabolaWindow.h
-  pal3/src/Misc/OpenBaseFile.cpp
-  s1:pal3/src/Misc/UITitle.h
-  s1:pal3/src/Misc/UITitle_QCYM.h
-  s1:pal3/src/UI/UIListBox.h
-  s1:pal3/src/Misc/JusticeBookUI.h
+  pal3/src/Misc/SkillUI.cpp
+  s1:pal3/src/UI/MagicUI.h
+  pal3/src/Misc/OpenSceneFile.cpp
+  s1:pal3/src/Misc/ComposeUI.h
+  s1:pal3/src/Combat/CCBSkillWindow.h
+  s1:pal3/src/Render/CScreenMode.h
   s1:pal3/src/Misc/UIBigMap.h
-  s1:pal3/src/Combat/CCBRoleState.h
-  s1:pal3/src/Combat/CCBStageCam.h
-  pal3/src/GameBase/Config.cpp
+  s1:pal3/src/Combat/CCBStage.h
+  s1:pal3/src/Misc/UIRoleDialog.h
+  s1:pal3/src/Misc/CCBFiveNimbusWindow.h
   s1:pal3/src/Effect/CEffectSystem.h
+  s1:pal3/src/Misc/UIRoleSelectDialog.h
+  s1:pal3/src/Misc/UITitle.h
+  s1:pal3/src/Misc/UITitle_JDHY.h
+  s1:pal3/src/Misc/RoleCameraCtrl.h
+  s1:pal3/src/Combat/CCBStageScene.h
+  s1:pal3/src/Misc/LineupUI.h
+  s1:pal3/src/Effect/ScreenEffect.h
+  s1:pal3/src/UI/EquipUI.h
+  s1:pal3/src/Misc/TaskBookUI.h
+  s1:pal3/src/Combat/CCBSystem.h
+  s1:pal3/src/Misc/UITitle_QCYM.h
+  s1:pal3/src/Scene/Camera.h
+  s1:pal3/src/Misc/UIAnimateCtrlEX.h
+  pal3/src/Combat/CCBResultWindow.cpp
+  s1:pal3/src/Misc/JusticeBookUI.h
+  s1:pal3/src/Misc/PalScriptAnimTimer.h
+  s1:pal3/src/Combat/CCBControlWindow.h
+  s1:pal3/src/Combat/CCBAIWindow.h
+  s1:pal3/src/Misc/SkillUI.h
+  s1:pal3/src/Combat/CCBParabolaWindow.h
+  s1:pal3/src/GameBase/PAL3.h
+  pal3/src/Misc/String.cpp
   s1:pal3/src/Combat/CCBUI.h
+  pal3/src/Effect/ScreenEffectMgr.cpp
+  s1:pal3/src/Misc/UITitle_BBTY.h
+  s1:pal3/src/Misc/ScreenFadeIn.h
+  s1:pal3/src/Misc/CG_Scene.h
+  s1:pal3/src/Misc/UILoadingFrm.h
+  pal3/src/Misc/OpenBaseFile.cpp
+  pal3/src/Effect/CEffSParticle.cpp
+  s1:pal3/src/Combat/CCBResultWindow.h
+  s1:pal3/src/Misc/CCBUICtrl.h
+  pal3/src/UI/UIWnd.cpp
+  s1:pal3/src/UI/PropUI.h
+  s1:pal3/src/Misc/UIRoleSelect.h
+  s1:pal3/src/Misc/SwordUI.h
+  s1:pal3/src/Combat/CCBStageCam.h
+  s1:pal3/src/Misc/PalScriptIdleObj.h
+  s1:pal3/src/Scene/CameraCtrl.h
+  pal3/src/Misc/PtrArray.cpp
+  s1:pal3/src/Misc/UIFrameWnd.h
+  s1:pal3/src/Misc/SceneVisNode.h
+  pal3/src/Misc/ScreenEffectNode.cpp
+  s1:pal3/src/Misc/ScreenFadeOut.h
+  s1:pal3/src/Misc/tagCamTask.h
+  s1:pal3/src/Combat/CCBMagicWindow.h
+  s1:pal3/src/Misc/MainEquipUI.h
+  s1:pal3/src/Misc/UITitle_ArcSave.h
+  s1:pal3/src/Scene/Scene.h
+  s1:pal3/src/Misc/PalScriptDialogOverlay.h
+  s1:pal3/src/Misc/UISceneFrm.h
+  s1:pal3/src/globals.h
+  s1:pal3/src/Misc/RoleSystemTeamSlotOverlay.h
+  s1:pal3/src/Misc/ChoseCompose.h
+  s1:pal3/src/Misc/tagCCT.h
+  pal3/src/Render/CScreenMode.cpp
+  s1:pal3/src/Combat/CCCTData.h
 
 📈 错误数量变化:
 ----------------------------------------
-  pal3/src/UI/UIListBox.cpp: 3 ↓ 2
-  pal3/src/Scene/CameraCtrl.cpp: 8 → 11
-  pal3/src/UI/EquipUI.cpp: 8 ↓ 7
-  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 10
-  pal3/src/Script/ScriptSystem.cpp: 14 ↓ 13
-  pal3/src/Scene/SceneObj.cpp: 7 ↓ 2
+  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 11
   pal3/src/Misc/SaleUI.cpp: 37 ↓ 36
-  pal3/src/Script/PalScript.cpp: 34 ↓ 22
-  pal3/src/free_functions.cpp: 96 ↓ 52
-  s1:pal3/src/Misc/RoleAtt.h: 5 ↓ 3
+  pal3/src/Role/Object3D.cpp: 5 ↓ 4
+  pal3/src/Script/ScriptSystem.cpp: 14 ↓ 13
+  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 3
+  pal3/src/UI/EquipUI.cpp: 8 ↓ 7
   s1:pal3/src/Misc/PlayerAtt.h: 5 ↓ 3
   pal3/src/Role/RoleSystem.cpp: 43 → 45
-  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
   pal3/src/GameBase/PAL3.cpp: 24 ↓ 22
-  pal3/src/Combat/CCBCamControl.cpp: 3 ↓ 1
-  pal3/src/Combat/CCBStage.cpp: 30 ↓ 26
-  pal3/src/Combat/CCBStageScene.cpp: 4 ↓ 3
-  pal3/src/Misc/UIBigMap.cpp: 15 → 28
-  pal3/src/Misc/UI3DModelNode.cpp: 2 ↓ 1
-  pal3/src/Misc/CCBUICtrl.cpp: 12 ↓ 11
+  s1:pal3/src/Misc/RoleAtt.h: 5 ↓ 3
+  pal3/src/UI/UIListBox.cpp: 3 ↓ 2
+  pal3/src/Scene/SceneObj.cpp: 7 ↓ 2
   pal3/src/UI/UIManager.cpp: 6 ↓ 3
-  pal3/src/Role/Object3D.cpp: 5 ↓ 4
+  pal3/src/Combat/CCBSystem.cpp: 18 ↓ 10
+  pal3/src/Script/PalScript.cpp: 34 ↓ 22
+  pal3/src/Combat/CCBCamControl.cpp: 3 ↓ 1
+  pal3/src/Misc/UIBigMap.cpp: 15 → 28
+  pal3/src/Misc/RoleAtt.cpp: 5 ↓ 4
+  pal3/src/Combat/CCBStage.cpp: 30 ↓ 26
+  pal3/src/free_functions.cpp: 96 ↓ 52
+  pal3/src/Scene/CameraCtrl.cpp: 8 → 11
+  pal3/src/Misc/UI3DModelNode.cpp: 2 ↓ 1
 
 🚨 需要归因：存在新失败 / 真新增错误 / 净增错误码 —— 请逐条说明来源。
 

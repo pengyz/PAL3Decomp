@@ -235,6 +235,28 @@
     "pending": false
    },
    "name_note": "完全dtor(定义源)20261121(自scScriptInstance迁入): 体销毁PalScript[13]@[esi+0x50](eh vector dtor)+写双vptr([esi]=scScriptInstance表/[esi+44h]=off_56B044次表)+Object族表恢复——销毁全层级(UIEmote成员+基链)=完全dtor; mangle ??1scScriptInstance=转移器错挂基类名; 删除式0x44e5c0(slot8)call本形+operator delete=标准dtor对; 体120B含SEH框架+PalScript[13]析构=完整dtor ABI直证"
+  },
+  "0x0044e8b0": {
+   "name": "HideUIBars",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HideUIBars): in",
+   "source": " | [W2 CScreenMode 退役·阶段二 2026-11-25] 邻域分析迁移: 地址夹于 UIEmote 方法间(距离<300B=编译单元聚合=真主强信号)。原 CScreenMode 归属=垃圾罐误标。"
   }
  },
  "base_size": 76,

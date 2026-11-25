@@ -10,7 +10,7 @@ WARN: functions[0x0052ec90]: '__thiscall' without '::' in 'GetCurrentNode' (sig:
 WARN: functions[0x00504e20]: '__thiscall' without '::' in 'j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: functions[0x00505400]: '__thiscall' without '::' in 'j_j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795613607)早于最新注解(1795614067)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795614294)早于最新注解(1795615411)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N20a[CCBUI]:0x00516100 del 压制态 L1 载体(注册符号 va=0x00516100 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
@@ -116,21 +116,19 @@ FROZEN: CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size
 FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
-FROZEN: DATA:N13c:CScreenMode::Method 限定调用契约断(语料引用但注解methods与语料归属皆无名) → C2039/C2065族预测
 
-0 new errors + 38 frozen(advisory), 79 warnings — PASS
+0 new errors + 37 frozen(advisory), 79 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **4 个**
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
     CPK                      size=917948   (未找到生成头; 手写头 bad: include/pal3/gen/CPK.h)
-    gbBinkVideo              size=1835912  _gap_000[4] @+0x0
     gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
     gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
 [B] PASS：145 个 sub_ 符号的声明/调用形参数全部一致（另 99 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 4；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 [UnionTriviality] 检查 union 按值成员的平凡性（B34 成因，存量=0 ⇒ 硬失败）...
@@ -147,16 +145,15 @@ APPLY: updating annotations in PAL3.exe.i64 ...
 -> OK: annotations applied
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
-[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **4 个**
+[D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
     CPK                      size=917948   (未找到生成头; 手写头 bad: include/pal3/gen/CPK.h)
-    gbBinkVideo              size=1835912  _gap_000[4] @+0x0
     gbChain1DNode            size=8        (未找到生成头; 手写头 bad: include/pal3/gen/gbChain1DNode.h)
     gbLightObj               size=216      (未找到生成头; 手写头 bad: include/pal3/gen/gbLightObj.h)
 [A] PASS：没有任何 code 位置的 __vftable
 [B] PASS：145 个 sub_ 符号的声明/调用形参数全部一致（另 99 个是可变参原型 `(...)`，元数不限 ⇒ 不参与比较）
 
 [ADVISORY] 非门禁报告：以下计数不影响任何退出码
-编译阻塞项 4；潜伏项 0  => ADVISORY-ONLY（不阻断）
+编译阻塞项 3；潜伏项 0  => ADVISORY-ONLY（不阻断）
 [ADVISORY] 计数如上，**本模式恒 exit 0** —— 存量清零后才可升为硬失败 ✓
 
 Next: python pipeline/cli.py export

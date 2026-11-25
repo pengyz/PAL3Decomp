@@ -450,76 +450,23 @@
    ],
    "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
   },
-  "0x0043afa0": {
-   "name": "SetTooltipText",
-   "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
-   "evidence_level": "unverified",
+  "0x0042c1c0": {
+   "name": "CheckUIVisible",
+   "name_source": "IDA语义分析 2026-10-31 批3-6",
+   "name_note": "UI 可见性检查（switch 状态）",
    "sig_model": {
-    "return": "void",
+    "return": "bool",
     "cc": "thiscall",
     "params": [
      {
       "type": "int",
-      "name": "nVal1"
+      "name": "thisa"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetTooltipText)"
-  },
-  "0x0043dc40": {
-   "name": "SetPosition",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nX"
-     },
-     {
-      "type": "int",
-      "name": "nY"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetPosition): i"
-  },
-  "0x0044e8b0": {
-   "name": "HideUIBars",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(HideUIBars): in"
-  },
-  "0x00456280": {
-   "name": "GetMouseScroll",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00456e20": {
    "name": "PauseAllStreams",
@@ -542,56 +489,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(PauseAllStreams"
-  },
-  "0x004593c0": {
-   "name": "InitGameUI",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0047be20": {
-   "name": "InitEquipScreen",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00493290": {
-   "name": "GetPlayerAttByIndex",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nIndex"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(GetPlayerAttByI"
-  },
-  "0x004b30c0": {
-   "name": "GetMouseDelta",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   },
   "0x00569320": {
    "name": "LoadAudioFromFile",
@@ -654,53 +551,6 @@
     "pending": true
    },
    "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(OpenBinkVideo): int(int,?"
-  },
-  "0x0043c550": {
-   "name": "SetProgress",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": "fProgress"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetProgress): i"
-  },
-  "0x00494250": {
-   "name": "ResetProgressList",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0042c1c0": {
-   "name": "CheckUIVisible",
-   "name_source": "IDA语义分析 2026-10-31 批3-6",
-   "name_note": "UI 可见性检查（switch 状态）",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "thisa"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   }
  },
  "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓",
@@ -712,5 +562,5 @@
  ],
  "bases_note": "继承证据(slot指纹): 表含0x445e70/0x445b90双UIWnd值; G2审计恢复",
  "base_size": 72,
- "source": " | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。 | [第四孪生方法迁移 2026-11-25] 单例族 27 方法迁出至 gbBinkVideo(媒体管理器真名)。留守 44 方法=归属待考(垃圾罐迁徙后续战役)。70 成员污染挂账不变。 | [CScreenMode 退役·阶段一 2026-11-25] cluster 29 方法迁入 gbBinkVideo(编译单元聚合证据)。far 15 方法留守(0x40-0x4B 误归属旧债+0x569 远端)——逐方法真主定谳=后续战役。壳退役条件=far 全清。"
+ "source": " | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。 | [第四孪生方法迁移 2026-11-25] 单例族 27 方法迁出至 gbBinkVideo(媒体管理器真名)。留守 44 方法=归属待考(垃圾罐迁徙后续战役)。70 成员污染挂账不变。 | [CScreenMode 退役·阶段一 2026-11-25] cluster 29 方法迁入 gbBinkVideo(编译单元聚合证据)。far 15 方法留守(0x40-0x4B 误归属旧债+0x569 远端)——逐方法真主定谳=后续战役。壳退役条件=far 全清。 | [阶段二 2026-11-25] 10 方法按邻域分析迁出(编译单元强信号)。剩余 5 =弱信号待细考。"
 }

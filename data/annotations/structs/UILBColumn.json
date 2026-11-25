@@ -47,6 +47,28 @@
     "varargs": false,
     "pending": false
    }
+  },
+  "0x0043dc40": {
+   "name": "SetPosition",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nX"
+     },
+     {
+      "type": "int",
+      "name": "nY"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetPosition): i",
+   "source": " | [W2 CScreenMode 退役·阶段二 2026-11-25] 邻域分析迁移: 地址夹于 UILBColumn 方法间(距离<300B=编译单元聚合=真主强信号)。原 CScreenMode 归属=垃圾罐误标。"
   }
  },
  "methods_note": "2026-09-14: removed pseudo ctor@0x43DCA0 (11-byte accessor mislabeled by PDB drift); kept ~UILBColumn@0x43DCB0 (jmp Destroy = real dtor shape) and Destroy"
