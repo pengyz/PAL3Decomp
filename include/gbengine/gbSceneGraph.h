@@ -60,7 +60,7 @@ public:
 // ============================================================================
 struct gbRenderInfoObj {
     gbVisNode* pNode;           // +0x00 [0]: owner node
-    void* Z;      // +0x04 [1]: optional matrix override
+    float Z;      // +0x04 [1]: Z coordinate (3D position component)
     int Param;           // +0x08 [2]: mesh section index
     gbRenderEffect* pEffect;    // +0x0C [3]: render effect to use
     void* pTexArray;        // +0x10 [4]: pointer to section texture array
