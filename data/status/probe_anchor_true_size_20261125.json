@@ -1,0 +1,126 @@
+{
+ "gbBinkVideo": {
+  "ctors": [],
+  "factory_sites": [],
+  "ehvec": []
+ },
+ "SoundMgr": {
+  "ctors": [],
+  "factory_sites": [],
+  "ehvec": []
+ },
+ "DealData": {
+  "ctors": [
+   {
+    "ea": "0x457260",
+    "name": "??0DealData@@QAE@XZ",
+    "size": 212,
+    "max_write": "0xc4d3a"
+   }
+  ],
+  "factory_sites": [
+   {
+    "site": "0x4045f5",
+    "ctor": "0x457260",
+    "window": [
+     "mov     ecx, offset g_PAL3_Instance.m_nTodo_150",
+     "align 10h",
+     "jmp     loc_404600",
+     "call    SingletonThunk_004045F0",
+     "align 10h",
+     "jmp     NullCallback",
+     "mov     ecx, offset g_pGDB",
+     "align 10h"
+    ]
+   }
+  ],
+  "ehvec": []
+ },
+ "PAL_GDB": {
+  "ctors": [
+   {
+    "ea": "0x478e00",
+    "name": "??0PAL_GDB@@QAE@XZ",
+    "size": 460,
+    "max_write": "0xa0"
+   }
+  ],
+  "factory_sites": [
+   {
+    "site": "0x404968",
+    "ctor": "0x478e00",
+    "window": [
+     "mov     ecx, offset g_pGDB",
+     "call    ?InitParams@CameraCtrl@@QAEHPAX@Z",
+     "mov     [esp+95Ch+var_940], 0",
+     "mov     [esp+95Ch+var_944], 0",
+     "mov     [esp+95Ch+pParams], 0",
+     "push    eax",
+     "lea     eax, [esp+958h+pParams]",
+     "mov     ecx, g_pCameraCtrl"
+    ]
+   },
+   {
+    "site": "0x457f13",
+    "ctor": "0x478e00",
+    "window": [
+     "mov     ecx, ebp",
+     "lea     ebp, [esi+210h]",
+     "jz      short loc_457F7C",
+     "cmp     byte ptr [esi], 0",
+     "push    edi",
+     "mov     esi, ecx",
+     "push    esi",
+     "push    ebp"
+    ]
+   }
+  ],
+  "ehvec": []
+ },
+ "CCCTData": {
+  "ctors": [
+   {
+    "ea": "0x5058f0",
+    "name": "??0CCCTData@@QAE@PAHPAH@Z",
+    "size": 63,
+    "max_write": "0x690ac"
+   }
+  ],
+  "factory_sites": [
+   {
+    "site": "0x4e667f",
+    "ctor": "0x5058f0",
+    "window": [
+     "push    eax",
+     "mov     ecx, [edx+10h]",
+     "lea     eax, [esp+154h+p_DWORD]",
+     "mov     edx, [ecx+14h]",
+     "push    edx",
+     "mov     [esp+150h+var_D0], 42C80000h",
+     "mov     [esp+150h+var_D4], 42C80000h",
+     "mov     [esp+150h+p_DWORD2], 42C80000h"
+    ]
+   },
+   {
+    "site": "0x4e8298",
+    "ctor": "0x5058f0",
+    "window": [
+     "mov     ecx, [ecx+10h]",
+     "push    edx",
+     "mov     ecx, [eax+14h]",
+     "push    ecx",
+     "lea     edx, [esp+9Ch+p_DWORD]",
+     "lea     ecx, [esp+9Ch+p_DWORD2]",
+     "mov     eax, [edi]",
+     "mov     [esp+9Ch+var_8], eax"
+    ]
+   }
+  ],
+  "ehvec": []
+ },
+ "ARC_PAL_GDB": {
+  "ctors": [],
+  "factory_sites": [],
+  "ehvec": []
+ }
+}

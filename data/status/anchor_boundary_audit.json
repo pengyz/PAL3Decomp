@@ -196,6 +196,12 @@
     {
      "imm": "0x008acbf8",
      "offset": 8,
+     "target": "?_Freeze@String@@QAEXXZ",
+     "class": "String"
+    },
+    {
+     "imm": "0x008acbf8",
+     "offset": 8,
      "target": "?PollInputState@GRPinput@@QAEPAV_BYTE@@I@Z",
      "class": "GRPinput"
     },
@@ -214,7 +220,7 @@
    ],
    "method_extent_max": 0,
    "verdict": [
-    "PLACEMENT-CONFLICT: 8 外来类绑定(CG_Entry,DealData,GRPinput,PAL_GDB) → 超界嫌疑"
+    "PLACEMENT-CONFLICT: 9 外来类绑定(CG_Entry,DealData,GRPinput,PAL_GDB) → 超界嫌疑"
    ],
    "methods_scanned": 0,
    "dual_names": [],
@@ -255,11 +261,121 @@
    "method_extent_max": 56,
    "verdict": [
     "PLACEMENT-CONFLICT: 4 外来类绑定(Actor,RoleSystem,UIScene,UIWnd) → 超界嫌疑",
-    "EXTENT-GAP: this-form max disp 0x38 << binary_size 0x880 (数组计算指针访问或超界, 待查三)"
+    "EXTENT-GAP: this-form max disp 0x38 << binary_size 0x880 (数组计算指针访问或超界, 待查三)",
+    "DUAL-NAMES: 20 双名地址(0 裸全局形胜出) → 对称裁决待执行"
    ],
    "methods_scanned": 5,
-   "dual_names": [],
-   "dual_names_total": 0
+   "dual_names": [
+    {
+     "addr": "0x00c10a2c",
+     "offset": "0xC4",
+     "global": "dword_C10A2C",
+     "member": "m_pTexture",
+     "global_form": 0,
+     "member_form": 55,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a90",
+     "offset": "0x128",
+     "global": "dword_C10A90",
+     "member": "m_fElapsed",
+     "global_form": 0,
+     "member_form": 20,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a80",
+     "offset": "0x118",
+     "global": "dword_C10A80",
+     "member": "m_fScaleY",
+     "global_form": 0,
+     "member_form": 11,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10ac8",
+     "offset": "0x160",
+     "global": "dword_C10AC8",
+     "member": "m_EncampConfig",
+     "global_form": 0,
+     "member_form": 4,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a6c",
+     "offset": "0x104",
+     "global": "dword_C10A6C",
+     "member": "m_WaitObjList",
+     "global_form": 0,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a8c",
+     "offset": "0x124",
+     "global": "dword_C10A8C",
+     "member": "m_fInterval",
+     "global_form": 0,
+     "member_form": 2,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a10",
+     "offset": "0xA8",
+     "global": "dword_C10A10",
+     "member": "m_nItemCheck",
+     "global_form": 0,
+     "member_form": 2,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a30",
+     "offset": "0xC8",
+     "global": "dword_C10A30",
+     "member": "m_pTextureInfo",
+     "global_form": 0,
+     "member_form": 2,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a5c",
+     "offset": "0xF4",
+     "global": "dword_C10A5C",
+     "member": "m_bSoundType",
+     "global_form": 0,
+     "member_form": 2,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a58",
+     "offset": "0xF0",
+     "global": "dword_C10A58",
+     "member": "m_bCamActive",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10a60",
+     "offset": "0xF8",
+     "global": "dword_C10A60",
+     "member": "m_fCamScale",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00c10ad8",
+     "offset": "0x170",
+     "global": "dword_C10AD8",
+     "member": "m_nRepeatCount",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    }
+   ],
+   "dual_names_total": 20
   },
   "RenderTarget3": {
    "base": "0x00de6cd8",
@@ -339,6 +455,12 @@
     {
      "imm": "0x00d8c2b8",
      "offset": 4000,
+     "target": "?_Tidy@String@@QAEX_N@Z",
+     "class": "String"
+    },
+    {
+     "imm": "0x00d8c2b8",
+     "offset": 4000,
      "target": "?PollInputState@GRPinput@@QAEPAV_BYTE@@I@Z",
      "class": "GRPinput"
     },
@@ -363,49 +485,121 @@
    ],
    "method_extent_max": 0,
    "verdict": [
-    "PLACEMENT-CONFLICT: 8 外来类绑定(GRPinput,PtrArray,RoleSystem,String) → 超界嫌疑",
-    "DUAL-NAMES: 4 双名地址(2 裸全局形胜出) → 对称裁决待执行"
+    "PLACEMENT-CONFLICT: 9 外来类绑定(GRPinput,PtrArray,RoleSystem,String) → 超界嫌疑",
+    "DUAL-NAMES: 17 双名地址(0 裸全局形胜出) → 对称裁决待执行"
    ],
    "methods_scanned": 0,
    "dual_names": [
     {
-     "addr": "0x00d8c1ac",
-     "offset": "0xE94",
-     "global": "String",
-     "member": "m_String",
-     "global_form": 589,
-     "member_form": 6,
-     "pref": "GLOBAL"
-    },
-    {
-     "addr": "0x00d8bec4",
-     "offset": "0xBAC",
-     "global": "g_fScriptTileSize",
-     "member": "m_g_fTimeDelta",
-     "global_form": 8,
-     "member_form": 35,
+     "addr": "0x00d8bbec",
+     "offset": "0x8D4",
+     "global": "dword_D8BBEC",
+     "member": "m_nGameMode",
+     "global_form": 0,
+     "member_form": 39,
      "pref": "MEMBER"
     },
     {
-     "addr": "0x00d8c2b8",
-     "offset": "0xFA0",
-     "global": "byte_D8C2B8",
-     "member": "m_nCmdFA0",
-     "global_form": 24,
-     "member_form": 0,
-     "pref": "GLOBAL"
+     "addr": "0x00d8bc38",
+     "offset": "0x920",
+     "global": "dword_D8BC38",
+     "member": "m_nScriptFlag",
+     "global_form": 0,
+     "member_form": 12,
+     "pref": "MEMBER"
     },
     {
-     "addr": "0x00d8b938",
-     "offset": "0x620",
-     "global": "unk_D8B938",
-     "member": "m_scriptArray",
+     "addr": "0x00d8bc2c",
+     "offset": "0x914",
+     "global": "byte_D8BC2C",
+     "member": "m_bMapRenderFlags",
+     "global_form": 0,
+     "member_form": 8,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c324",
+     "offset": "0x100C",
+     "global": "byte_D8C324",
+     "member": "m_bScriptFlag",
+     "global_form": 0,
+     "member_form": 6,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c17c",
+     "offset": "0xE64",
+     "global": "dword_D8C17C",
+     "member": "m_fScriptTileSize2",
+     "global_form": 0,
+     "member_form": 5,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c31c",
+     "offset": "0x1004",
+     "global": "dword_D8C31C",
+     "member": "m_nTodo_1004",
+     "global_form": 0,
+     "member_form": 4,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bc30",
+     "offset": "0x918",
+     "global": "dword_D8BC30",
+     "member": "m_nScriptCounter0",
+     "global_form": 0,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bc34",
+     "offset": "0x91C",
+     "global": "dword_D8BC34",
+     "member": "m_nScriptCounter1",
+     "global_form": 0,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8c320",
+     "offset": "0x1008",
+     "global": "dword_D8C320",
+     "member": "m_nTodo_1008",
+     "global_form": 0,
+     "member_form": 3,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bbc0",
+     "offset": "0x8A8",
+     "global": "flt_D8BBC0",
+     "member": "m_fTimerA",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bbf4",
+     "offset": "0x8DC",
+     "global": "dword_D8BBF4",
+     "member": "m_nTodo_8DC",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00d8bbf8",
+     "offset": "0x8E0",
+     "global": "dword_D8BBF8",
+     "member": "m_nTodo_8E0",
      "global_form": 0,
      "member_form": 1,
      "pref": "MEMBER"
     }
    ],
-   "dual_names_total": 4
+   "dual_names_total": 17
   },
   "UIGameFrm": {
    "base": "0x00db9fd0",
@@ -478,11 +672,67 @@
    "method_extent_max": 14540,
    "verdict": [
     "PLACEMENT-CONFLICT: 10 外来类绑定(CCBEditor,CEffGroupNode,PalScriptIdleObj,PalScriptMgr) → 超界嫌疑",
-    "EXTENT-OK: max disp 0x38CC ≈ binary_size 0x6E6C"
+    "EXTENT-OK: max disp 0x38CC ≈ binary_size 0x6E6C",
+    "DUAL-NAMES: 6 双名地址(0 裸全局形胜出) → 对称裁决待执行"
    ],
    "methods_scanned": 7,
-   "dual_names": [],
-   "dual_names_total": 0
+   "dual_names": [
+    {
+     "addr": "0x00dba250",
+     "offset": "0x280",
+     "global": "dword_DBA250",
+     "member": "m_nTodo_280",
+     "global_form": 0,
+     "member_form": 14,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00dba25c",
+     "offset": "0x28C",
+     "global": "byte_DBA25C",
+     "member": "m_bSceneLoaded",
+     "global_form": 0,
+     "member_form": 6,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00dba240",
+     "offset": "0x270",
+     "global": "dword_DBA240",
+     "member": "m_nPlayerMoney",
+     "global_form": 0,
+     "member_form": 2,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00dba244",
+     "offset": "0x274",
+     "global": "dword_DBA244",
+     "member": "m_nMoneyAdd",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00dba248",
+     "offset": "0x278",
+     "global": "dword_DBA248",
+     "member": "m_nMoneySub",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    },
+    {
+     "addr": "0x00dba2b0",
+     "offset": "0x2E0",
+     "global": "dword_DBA2B0",
+     "member": "m_nMissionState",
+     "global_form": 0,
+     "member_form": 1,
+     "pref": "MEMBER"
+    }
+   ],
+   "dual_names_total": 6
   },
   "UIListBox": {
    "base": "0x00dba260",
@@ -501,8 +751,8 @@
   },
   "UIManager": {
    "base": "0x00c11758",
-   "claimed_size": 4,
-   "claimed_end": 12654428,
+   "claimed_size": 3756,
+   "claimed_end": 12658180,
    "receivers": 3,
    "embedded_calls": 0,
    "foreign_bindings": [
@@ -546,6 +796,21 @@
    "method_extent_max": 0,
    "verdict": [
     "NO-RECEIVER: 无 thiscall 接收点(纯静态访问或捏造嫌疑, 需查三/动态初始化取证)"
+   ],
+   "methods_scanned": 0,
+   "dual_names": [],
+   "dual_names_total": 0
+  },
+  "gbVFileSystem": {
+   "base": "0x006ebfa0",
+   "claimed_size": 917972,
+   "claimed_end": 8175988,
+   "receivers": 6,
+   "embedded_calls": 0,
+   "foreign_bindings": [],
+   "method_extent_max": 0,
+   "verdict": [
+    "CLEAN: 无外来绑定, 接收者 6"
    ],
    "methods_scanned": 0,
    "dual_names": [],
