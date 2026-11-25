@@ -10,7 +10,7 @@ WARN: functions[0x0052ec90]: '__thiscall' without '::' in 'GetCurrentNode' (sig:
 WARN: functions[0x00504e20]: '__thiscall' without '::' in 'j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: functions[0x00505400]: '__thiscall' without '::' in 'j_j_Method_4D70B0' (sig: bool __thiscall (void *)) — likely member function, needs IDA investigation
 WARN: N15[advisory普查]: 2个有vtable类无ctor证据=伪造候选(身份案队列): CCBUICtrl,SkillUI
-WARN: REF:gen 树(1795598060)早于最新注解(1795599390)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
+WARN: REF:gen 树(1795603264)早于最新注解(1795603564)——生成头陈旧, resolve 结果以陈旧声明域为准; codegen 后复跑
 WARN: N20a[CCBUI]:0x00516100 del 压制态 L1 载体(注册符号 va=0x00516100 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
 WARN: N20b[CCBUI]: 类级载体全空(2条dtor全压制) → ??1/??_G 符号双丢(债务可见)
 WARN: N20a[SkillUI]:0x00525520 del 压制态 L1 载体(注册符号 va=0x00525520 当前 match_L1, 字节匹配=最高证据级; O5 架构下配对与压制正交——del 压制 advisory(coverage 棘轮兜底))
@@ -40,6 +40,41 @@ WARN: name_drift: globals[0x00a01b20] 注解名'byte_A01B20' != IDB名'unk_A01B2
 WARN: name_drift: globals[0x00a01b21] 注解名'byte_A01B21' != IDB名'unk_A01B21'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00a01b22] 注解名'byte_A01B22' != IDB名'unk_A01B22'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: globals[0x00a01b23] 注解名'byte_A01B23' != IDB名'unk_A01B23'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005d8c04] 注解名'unk_5D8C04' != IDB名'dword_5D8C04'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005d8c08] 注解名'unk_5D8C08' != IDB名'dword_5D8C08'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dea3c] 注解名'unk_5DEA3C' != IDB名'dword_5DEA3C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dea64] 注解名'unk_5DEA64' != IDB名'dword_5DEA64'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dea8c] 注解名'unk_5DEA8C' != IDB名'dword_5DEA8C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deab0] 注解名'unk_5DEAB0' != IDB名'dword_5DEAB0'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dead4] 注解名'unk_5DEAD4' != IDB名'dword_5DEAD4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deafc] 注解名'unk_5DEAFC' != IDB名'dword_5DEAFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deb20] 注解名'unk_5DEB20' != IDB名'dword_5DEB20'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deb44] 注解名'unk_5DEB44' != IDB名'dword_5DEB44'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deb68] 注解名'unk_5DEB68' != IDB名'dword_5DEB68'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deb90] 注解名'unk_5DEB90' != IDB名'dword_5DEB90'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005debb4] 注解名'unk_5DEBB4' != IDB名'dword_5DEBB4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005debdc] 注解名'unk_5DEBDC' != IDB名'dword_5DEBDC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dec04] 注解名'unk_5DEC04' != IDB名'dword_5DEC04'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dec2c] 注解名'unk_5DEC2C' != IDB名'dword_5DEC2C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dec54] 注解名'unk_5DEC54' != IDB名'dword_5DEC54'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005dec7c] 注解名'unk_5DEC7C' != IDB名'dword_5DEC7C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005deca8] 注解名'unk_5DECA8' != IDB名'dword_5DECA8'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005decd4] 注解名'unk_5DECD4' != IDB名'dword_5DECD4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005decfc] 注解名'unk_5DECFC' != IDB名'dword_5DECFC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005def18] 注解名'unk_5DEF18' != IDB名'dword_5DEF18'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005def44] 注解名'unk_5DEF44' != IDB名'dword_5DEF44'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005def70] 注解名'unk_5DEF70' != IDB名'dword_5DEF70'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df320] 注解名'unk_5DF320' != IDB名'dword_5DF320'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df348] 注解名'unk_5DF348' != IDB名'dword_5DF348'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df370] 注解名'unk_5DF370' != IDB名'dword_5DF370'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df394] 注解名'unk_5DF394' != IDB名'dword_5DF394'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df3bc] 注解名'unk_5DF3BC' != IDB名'dword_5DF3BC'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df3e4] 注解名'unk_5DF3E4' != IDB名'dword_5DF3E4'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df408] 注解名'unk_5DF408' != IDB名'dword_5DF408'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df42c] 注解名'unk_5DF42C' != IDB名'dword_5DF42C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df450] 注解名'unk_5DF450' != IDB名'dword_5DF450'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df718] 注解名'unk_5DF718' != IDB名'dword_5DF718'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
+WARN: name_drift: globals[0x005df73c] 注解名'unk_5DF73C' != IDB名'dword_5DF73C'(decomp引用中, 非skip——改名链应已覆盖, 仅提示)
 WARN: name_drift: 70 个 decomp 引用的地址后缀标识符无 ida/注解条目(池余部病) — 字节直读取证后补 globals.json 条目: dword_56AEE8, dword_56B884, dword_570324, dword_573800, dword_573810, dword_573A5C, dword_573C64, dword_5D41AC
 FROZEN: globals[0x00dba260]: 'g_UIListBoxDlg' (UIListBox, 72b) at +656 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dba260] if intentional
 FROZEN: globals[0x00dbaf10]: 'g_UISceneMapDlg' (UISceneMap, 1012b) at +3904 inside 'g_gamefrm' (UIGameFrm) range [0xDB9FD0-0xDC0E3C] (entirely within) — add 'overlaps_with' to globals[0x00dbaf10] if intentional
@@ -73,8 +108,10 @@ FROZEN: CANON:C10:MainPropUI:buf:c MainPropUI.buf@+108 与 m_szListBuf@+104(size
 FROZEN: CANON:C10:RoleCamera:m_nStackIdx:a RoleCamera.m_nStackIdx@+28 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C10:RoleCamera:m_nStackSize:a RoleCamera.m_nStackSize@+32 落入基类gbCamera子对象区[0,376) — 布局冲突
 FROZEN: CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现['UIWnd']; 须落 data/status/bases_adjudications.json (ctor_evidence=基构造直调地址链)
+FROZEN: DATA:N13a:CScreenMode::m_Cpk 字段契约断(语料->引用73次, 类链known_members无名) → C2227族预测
+FROZEN: DATA:N13a:CScreenMode::m_cbbuf 字段契约断(语料->引用11次, 类链known_members无名) → C2227族预测
 
-0 new errors + 32 frozen(advisory), 41 warnings — PASS
+0 new errors + 34 frozen(advisory), 76 warnings — PASS
 
 [Invariants] advisory 模式（只报告计数，不影响退出码）...
 [D] FAIL（根因前置）：注解有 vtables 但生成头 +0x0 不是 vptr 的类 **3 个**
