@@ -1,0 +1,5854 @@
+{
+ "generated": "2026-11-25",
+ "total": 927,
+ "decoded": 86,
+ "no_ctor": 830,
+ "issue_dist": {
+  "vtable-write": 54,
+  "ctor-writes-far-less-than-annotated": 26,
+  "ctor-write-beyond-annotation": 10
+ },
+ "report": {
+  "ARC_ArcBrief": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "ARC_ArcHeader": {
+   "status": "no-ctor",
+   "annotated_size": 220
+  },
+  "ARC_ArcLocaleRole": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "ARC_ArcMsic": {
+   "status": "no-ctor",
+   "annotated_size": 552
+  },
+  "ARC_ComboAttack": {
+   "status": "no-ctor",
+   "annotated_size": 632
+  },
+  "ARC_FightItem": {
+   "status": "no-ctor",
+   "annotated_size": 800
+  },
+  "ARC_FightSkill": {
+   "status": "no-ctor",
+   "annotated_size": 760
+  },
+  "ARC_Inventory": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "ARC_MonsterStar": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ARC_OutFile": {
+   "status": "no-ctor",
+   "annotated_size": 160
+  },
+  "ARC_PAL_GDB": {
+   "status": "no-ctor",
+   "annotated_size": 804888
+  },
+  "ARC_PlayerAtt": {
+   "status": "no-ctor",
+   "annotated_size": 1412
+  },
+  "ARC_PlayerItem": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "ARC_PlayerMgrInfo": {
+   "status": "no-ctor",
+   "annotated_size": 7396
+  },
+  "ARC_Reoccupy": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ARC_RoleAtt": {
+   "status": "no-ctor",
+   "annotated_size": 852
+  },
+  "ASISTAGE": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "AStarPathFinder": {
+   "status": "decoded",
+   "annotated_size": 24,
+   "ctor_addr": "0x401000",
+   "ctor_size": 39,
+   "derived_min_size": "0x14",
+   "size_delta": 4,
+   "max_write_offset": "0x14",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "AStarPathFinder_0"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 4,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"AStarPathFinder_0\"}]"
+   ],
+   "member_offs_count": 5
+  },
+  "Actor": {
+   "status": "no-ctor",
+   "annotated_size": 820
+  },
+  "ArcBrief": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "ArcHeader": {
+   "status": "no-ctor",
+   "annotated_size": 224
+  },
+  "ArcLocale": {
+   "status": "no-ctor",
+   "annotated_size": 484
+  },
+  "ArcLocaleMusic": {
+   "status": "no-ctor",
+   "annotated_size": 18
+  },
+  "ArcLocaleRole": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "ArcMsic": {
+   "status": "no-ctor",
+   "annotated_size": 744
+  },
+  "ArcPastScene": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "ArcPosition": {
+   "status": "no-ctor",
+   "annotated_size": 256
+  },
+  "ArcScene": {
+   "status": "no-ctor",
+   "annotated_size": 164
+  },
+  "ArcSceneMonster": {
+   "status": "no-ctor",
+   "annotated_size": 352
+  },
+  "ArcSceneObject": {
+   "status": "no-ctor",
+   "annotated_size": 652
+  },
+  "Archive": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "Array": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ArraySlots": {
+   "status": "decoded",
+   "annotated_size": 96,
+   "ctor_addr": "0x44a790",
+   "ctor_size": 50,
+   "derived_min_size": "0x56",
+   "size_delta": 10,
+   "max_write_offset": "0x56",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "off_56AFB0"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 6,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"off_56AFB0\"}]"
+   ],
+   "member_offs_count": 2
+  },
+  "ArtistPlugIn": {
+   "status": "no-ctor",
+   "annotated_size": 560
+  },
+  "AudioContext": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "Average": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "BARRIER": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "BINK": {
+   "status": "no-ctor",
+   "annotated_size": 932
+  },
+  "BINKIO": {
+   "status": "no-ctor",
+   "annotated_size": 204
+  },
+  "BINKRECT": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "BINKSND": {
+   "status": "no-ctor",
+   "annotated_size": 192
+  },
+  "BOSSHURT": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "BUNDLEPOINTERS": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "BillBoardFace": {
+   "status": "no-ctor",
+   "annotated_size": 92
+  },
+  "BtnGroup": {
+   "status": "no-ctor",
+   "annotated_size": 740
+  },
+  "C2DSpark": {
+   "status": "decoded",
+   "annotated_size": 24688,
+   "ctor_addr": "0x4d5ab0",
+   "ctor_size": 770,
+   "derived_min_size": "0x586e",
+   "size_delta": 2050,
+   "max_write_offset": "0x586e",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x586E << annotated 0x6070 (gap 0x802)"
+   ],
+   "member_offs_count": 20
+  },
+  "C2DSpark_tagSpark": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "C3DSpark": {
+   "status": "decoded",
+   "annotated_size": 15920,
+   "ctor_addr": "0x4d6670",
+   "ctor_size": 751,
+   "derived_min_size": "0x1c30",
+   "size_delta": 8704,
+   "max_write_offset": "0x1c30",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 14,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x1C30 << annotated 0x3E30 (gap 0x2200)"
+   ],
+   "member_offs_count": 14
+  },
+  "C3DSpark_tagSpark": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "CAccelCentripetalPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CAcceleratedMotionPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "CArrayList": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "CCBAI": {
+   "status": "decoded",
+   "annotated_size": 3664,
+   "ctor_addr": "0x4d6ff0",
+   "ctor_size": 57,
+   "derived_min_size": "0x0",
+   "size_delta": 3664,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 14
+  },
+  "CCBAIWindow": {
+   "status": "no-ctor",
+   "annotated_size": 208
+  },
+  "CCBAttackSequen": {
+   "status": "no-ctor",
+   "annotated_size": 456
+  },
+  "CCBCamControl": {
+   "status": "no-ctor",
+   "annotated_size": 430256
+  },
+  "CCBControl": {
+   "status": "no-ctor",
+   "annotated_size": 368
+  },
+  "CCBControlWindow": {
+   "status": "decoded",
+   "annotated_size": 196,
+   "ctor_addr": "0x51a700",
+   "ctor_size": 381,
+   "derived_min_size": "0x0",
+   "size_delta": 196,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 13
+  },
+  "CCBDisplayChain": {
+   "status": "no-ctor",
+   "annotated_size": 17944
+  },
+  "CCBEditor": {
+   "status": "no-ctor",
+   "annotated_size": 9624
+  },
+  "CCBFiveNimbusWindow": {
+   "status": "no-func",
+   "annotated_size": 160
+  },
+  "CCBItemWindow": {
+   "status": "decoded",
+   "annotated_size": 188,
+   "ctor_addr": "0x4461b0",
+   "ctor_size": 25,
+   "derived_min_size": "0x1d9",
+   "size_delta": -285,
+   "max_write_offset": "0x1d9",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x1D9 > annotated 0xBC"
+   ],
+   "member_offs_count": 7
+  },
+  "CCBLineupWindow": {
+   "status": "decoded",
+   "annotated_size": 124,
+   "ctor_addr": "0x51cfb0",
+   "ctor_size": 178,
+   "derived_min_size": "0x0",
+   "size_delta": 124,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 5
+  },
+  "CCBMagicWindow": {
+   "status": "decoded",
+   "annotated_size": 208,
+   "ctor_addr": "0x51b9f0",
+   "ctor_size": 178,
+   "derived_min_size": "0x10",
+   "size_delta": 192,
+   "max_write_offset": "0x10",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 3,
+   "issues": [],
+   "member_offs_count": 12
+  },
+  "CCBPanelSlot": {
+   "status": "no-ctor",
+   "annotated_size": 476
+  },
+  "CCBParabolaWindow": {
+   "status": "decoded",
+   "annotated_size": 84,
+   "ctor_addr": "0x51b710",
+   "ctor_size": 243,
+   "derived_min_size": "0x7c",
+   "size_delta": -40,
+   "max_write_offset": "0x7c",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x7C > annotated 0x54"
+   ],
+   "member_offs_count": 3
+  },
+  "CCBProtectWindow": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "CCBResultWindow": {
+   "status": "decoded",
+   "annotated_size": 180,
+   "ctor_addr": "0x444a20",
+   "ctor_size": 124,
+   "derived_min_size": "0xb4",
+   "size_delta": 0,
+   "max_write_offset": "0xb4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AE84"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 9,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AE84\"}]"
+   ],
+   "member_offs_count": 17
+  },
+  "CCBRoleState": {
+   "status": "decoded",
+   "annotated_size": 22224,
+   "ctor_addr": "0x456ab0",
+   "ctor_size": 169,
+   "derived_min_size": "0x5058",
+   "size_delta": 1656,
+   "max_write_offset": "0x5058",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B364"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x456ace"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 512,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 5,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x5058 << annotated 0x56D0 (gap 0x678)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B364\"}]"
+   ],
+   "member_offs_count": 89
+  },
+  "CCBRoleStatePanel": {
+   "status": "no-ctor",
+   "annotated_size": 4132
+  },
+  "CCBRoleStatePanelM": {
+   "status": "no-ctor",
+   "annotated_size": 4132
+  },
+  "CCBRoleStatePanelS": {
+   "status": "no-ctor",
+   "annotated_size": 3788
+  },
+  "CCBSkillWindow": {
+   "status": "no-func",
+   "annotated_size": 84
+  },
+  "CCBStage": {
+   "status": "decoded",
+   "annotated_size": 673988,
+   "ctor_addr": "0x51d710",
+   "ctor_size": 1639,
+   "derived_min_size": "0xa3678",
+   "size_delta": 4684,
+   "max_write_offset": "0xa3678",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_5705D0"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x51d732"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d7c9"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d809"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d819"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d829"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d839"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d849"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d859"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d869"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x51d879"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 816,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0xA3678 << annotated 0xA48C4 (gap 0x124C)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_5705D0\"}]"
+   ],
+   "member_offs_count": 20
+  },
+  "CCBStageCam": {
+   "status": "decoded",
+   "annotated_size": 6272,
+   "ctor_addr": "0x504e70",
+   "ctor_size": 202,
+   "derived_min_size": "0x8",
+   "size_delta": 6264,
+   "max_write_offset": "0x8",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x8 << annotated 0x1880 (gap 0x1878)"
+   ],
+   "member_offs_count": 9
+  },
+  "CCBStageEffect": {
+   "status": "decoded",
+   "annotated_size": 2700,
+   "ctor_addr": "0x508e30",
+   "ctor_size": 250,
+   "derived_min_size": "0x0",
+   "size_delta": 2700,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "OpenBaseFile",
+     "ea": "0x508e53"
+    },
+    {
+     "target_class": "OpenNULLFile",
+     "ea": "0x508f0c"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 8
+  },
+  "CCBStageRole": {
+   "status": "decoded",
+   "annotated_size": 6848,
+   "ctor_addr": "0x522030",
+   "ctor_size": 166,
+   "derived_min_size": "0x214",
+   "size_delta": 6316,
+   "max_write_offset": "0x214",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "TxtFile",
+     "ea": "0x522057"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 12,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x214 << annotated 0x1AC0 (gap 0x18AC)"
+   ],
+   "member_offs_count": 98
+  },
+  "CCBStageScene": {
+   "status": "decoded",
+   "annotated_size": 1012,
+   "ctor_addr": "0x50fee0",
+   "ctor_size": 495,
+   "derived_min_size": "0x2ac",
+   "size_delta": 328,
+   "max_write_offset": "0x2ac",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x2AC << annotated 0x3F4 (gap 0x148)"
+   ],
+   "member_offs_count": 109
+  },
+  "CCBStageShadow": {
+   "status": "decoded",
+   "annotated_size": 1556,
+   "ctor_addr": "0x511ee0",
+   "ctor_size": 167,
+   "derived_min_size": "0x10",
+   "size_delta": 1540,
+   "max_write_offset": "0x10",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 3,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x10 << annotated 0x614 (gap 0x604)"
+   ],
+   "member_offs_count": 7
+  },
+  "CCBSystem": {
+   "status": "decoded",
+   "annotated_size": 90840,
+   "ctor_addr": "0x512500",
+   "ctor_size": 114,
+   "derived_min_size": "0x8a",
+   "size_delta": 90702,
+   "max_write_offset": "0x8a",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 7,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x8A << annotated 0x162D8 (gap 0x1624E)"
+   ],
+   "member_offs_count": 39
+  },
+  "CCBTaskGroup": {
+   "status": "no-ctor",
+   "annotated_size": 2632
+  },
+  "CCBTaskSlot": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "CCBTaskSlot208": {
+   "status": "no-ctor",
+   "annotated_size": 208
+  },
+  "CCBUI": {
+   "status": "decoded",
+   "annotated_size": 2632,
+   "ctor_addr": "0x5160a0",
+   "ctor_size": 85,
+   "derived_min_size": "0x48c",
+   "size_delta": 1468,
+   "max_write_offset": "0x48c",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_5704A8"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x5160bd"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x48C << annotated 0xA48 (gap 0x5BC)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_5704A8\"}]"
+   ],
+   "member_offs_count": 59
+  },
+  "CCBUICtrl": {
+   "status": "decoded",
+   "annotated_size": 116,
+   "ctor_addr": "0x519310",
+   "ctor_size": 73,
+   "derived_min_size": "0x4",
+   "size_delta": 112,
+   "max_write_offset": "0x4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_5704C8"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x51932d"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_5704C8\"}]"
+   ],
+   "member_offs_count": 2
+  },
+  "CCBUIPanel": {
+   "status": "decoded",
+   "annotated_size": 22112,
+   "ctor_addr": "0x4460d0",
+   "ctor_size": 213,
+   "derived_min_size": "0x4996",
+   "size_delta": 3274,
+   "max_write_offset": "0x4996",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AF80"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x4460ed"
+    },
+    {
+     "target_class": "PalScript",
+     "ea": "0x446132"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44614c"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44615c"
+    },
+    {
+     "target_class": "TxtFile",
+     "ea": "0x44616c"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 512,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 5,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x4996 << annotated 0x5660 (gap 0xCCA)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AF80\"}]"
+   ],
+   "member_offs_count": 58
+  },
+  "CCBUI_funcptr_t": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "CCCTData": {
+   "status": "decoded",
+   "annotated_size": 430000,
+   "ctor_addr": "0x5058f0",
+   "ctor_size": 63,
+   "derived_min_size": "0x690ac",
+   "size_delta": -252,
+   "max_write_offset": "0x690ac",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 6,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x690AC > annotated 0x68FB0"
+   ],
+   "member_offs_count": 3
+  },
+  "CCentripetalPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CD3DEnumeration": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "CD3DSettings": {
+   "status": "no-ctor",
+   "annotated_size": 108
+  },
+  "CDamplyCentripetalPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffAction": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "CEffAudio": {
+   "status": "no-ctor",
+   "annotated_size": 688
+  },
+  "CEffBase": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "CEffBink": {
+   "status": "no-ctor",
+   "annotated_size": 304
+  },
+  "CEffCallBack": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "CEffCamera": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffCustomShape": {
+   "status": "no-ctor",
+   "annotated_size": 172
+  },
+  "CEffCylinder": {
+   "status": "no-ctor",
+   "annotated_size": 4292
+  },
+  "CEffExplosive": {
+   "status": "no-ctor",
+   "annotated_size": 4288
+  },
+  "CEffGrid": {
+   "status": "decoded",
+   "annotated_size": 4280,
+   "ctor_addr": "0x4c9550",
+   "ctor_size": 190,
+   "derived_min_size": "0xb8",
+   "size_delta": 4096,
+   "max_write_offset": "0xb8",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F920"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0xB8 << annotated 0x10B8 (gap 0x1000)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F920\"}]"
+   ],
+   "member_offs_count": 32
+  },
+  "CEffGroupNode": {
+   "status": "decoded",
+   "annotated_size": 116,
+   "ctor_addr": "0x4b72e0",
+   "ctor_size": 38,
+   "derived_min_size": "0x74",
+   "size_delta": 0,
+   "max_write_offset": "0x74",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F3C0"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "PAL3VisNode",
+     "ea": "0x4b72e3"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 6,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F3C0\"}]"
+   ],
+   "member_offs_count": 6
+  },
+  "CEffMeteor": {
+   "status": "decoded",
+   "annotated_size": 4304,
+   "ctor_addr": "0x4cb3a0",
+   "ctor_size": 223,
+   "derived_min_size": "0xd0",
+   "size_delta": 4096,
+   "max_write_offset": "0xd0",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F978"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0xD0 << annotated 0x10D0 (gap 0x1000)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F978\"}]"
+   ],
+   "member_offs_count": 34
+  },
+  "CEffMgr": {
+   "status": "decoded",
+   "annotated_size": 43312,
+   "ctor_addr": "0x4ce100",
+   "ctor_size": 408,
+   "derived_min_size": "0x0",
+   "size_delta": 43312,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "OpenBaseFile",
+     "ea": "0x4ce133"
+    },
+    {
+     "target_class": "OpenNULLFile",
+     "ea": "0x4ce227"
+    },
+    {
+     "target_class": "OpenNULLFile",
+     "ea": "0x4ce28f"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 2
+  },
+  "CEffModel": {
+   "status": "decoded",
+   "annotated_size": 104,
+   "ctor_addr": "0x4cfc70",
+   "ctor_size": 138,
+   "derived_min_size": "0x68",
+   "size_delta": 0,
+   "max_write_offset": "0x68",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F9DC"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F9DC\"}]"
+   ],
+   "member_offs_count": 9
+  },
+  "CEffObj": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "CEffQuad": {
+   "status": "no-ctor",
+   "annotated_size": 4272
+  },
+  "CEffQuake": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "CEffSParticle": {
+   "status": "no-ctor",
+   "annotated_size": 100
+  },
+  "CEffShock": {
+   "status": "decoded",
+   "annotated_size": 4272,
+   "ctor_addr": "0x4d3870",
+   "ctor_size": 150,
+   "derived_min_size": "0x1098",
+   "size_delta": 24,
+   "max_write_offset": "0x1098",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56FADC"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56FADC\"}]"
+   ],
+   "member_offs_count": 29
+  },
+  "CEffTemplate": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffTime": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffTrackCustomShape": {
+   "status": "no-ctor",
+   "annotated_size": 200
+  },
+  "CEffTrackCylinder": {
+   "status": "no-ctor",
+   "annotated_size": 4320
+  },
+  "CEffTrackGrid": {
+   "status": "no-ctor",
+   "annotated_size": 4308
+  },
+  "CEffTrackModel": {
+   "status": "no-ctor",
+   "annotated_size": 132
+  },
+  "CEffTrackQuad": {
+   "status": "no-ctor",
+   "annotated_size": 4300
+  },
+  "CEffTrackSParticle": {
+   "status": "no-ctor",
+   "annotated_size": 116
+  },
+  "CEffect": {
+   "status": "no-ctor",
+   "annotated_size": 245800
+  },
+  "CEffectBubble": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffectSimple": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CEffectSystem": {
+   "status": "decoded",
+   "annotated_size": 360,
+   "ctor_addr": "0x4c61a0",
+   "ctor_size": 155,
+   "derived_min_size": "0x3c028",
+   "size_delta": -245440,
+   "max_write_offset": "0x3c028",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 2,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x3C028 > annotated 0x168"
+   ],
+   "member_offs_count": 14
+  },
+  "CEffgbParticle": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "CEmitter": {
+   "status": "no-ctor",
+   "annotated_size": 228
+  },
+  "CFadeColorPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CFadeInAlphaPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CFadeOutAlphaPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CG_Edit": {
+   "status": "no-ctor",
+   "annotated_size": 120
+  },
+  "CG_Entry": {
+   "status": "no-ctor",
+   "annotated_size": 204
+  },
+  "CG_Scene": {
+   "status": "no-ctor",
+   "annotated_size": 474200
+  },
+  "CG_Scene_ArrayErase": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CG_UI": {
+   "status": "no-ctor",
+   "annotated_size": 39240
+  },
+  "CIniFile": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "CJ_FindFile": {
+   "status": "no-ctor",
+   "annotated_size": 988
+  },
+  "CLoad3DS": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CMeteorChain": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "COLLIDE_DATA": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "CONTEXT": {
+   "status": "no-ctor",
+   "annotated_size": 716
+  },
+  "COnceFramePolicy": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "CPK": {
+   "status": "no-ctor",
+   "annotated_size": 917948
+  },
+  "CPKFile": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "CPPEH_RECORD": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "CParticleEffect": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "CParticleSystem": {
+   "status": "no-ctor",
+   "annotated_size": 220
+  },
+  "CParticleSystem_ParticleAttribute": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CParticleSystem_ParticleUnit": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "CRandomColorPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CReBackFramePolicy": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "CRenderTarget": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CRenderTarget2": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CResistanceMotionPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "CRotateEmitterPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "CSEHException": {
+   "status": "no-ctor",
+   "annotated_size": 264
+  },
+  "CScreenMode": {
+   "status": "decoded",
+   "annotated_size": 5496,
+   "ctor_addr": "0x523f30",
+   "ctor_size": 474,
+   "derived_min_size": "0x1574",
+   "size_delta": 4,
+   "max_write_offset": "0x1574",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_570630"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x523f50"
+    },
+    {
+     "target_class": "CCBStageRole",
+     "ea": "0x52400b"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x524027"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_570630\"}]"
+   ],
+   "member_offs_count": 70
+  },
+  "CScreenModeNode": {
+   "status": "decoded",
+   "annotated_size": 88,
+   "ctor_addr": "0x53d3a0",
+   "ctor_size": 45,
+   "derived_min_size": "0x80",
+   "size_delta": -40,
+   "max_write_offset": "0x80",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_570A24"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 4,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x80 > annotated 0x58",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_570A24\"}]"
+   ],
+   "member_offs_count": 0
+  },
+  "CSimpleDirPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CSimplePosPolicy": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CTaskTpl": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffAction": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffAudio": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffBink": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCallBack": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCamera": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCustomShape": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffCylinder": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffExplosive": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffGrid": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffMeteor": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffModel": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffQuad": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffQuake": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffSParticle": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffShock": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffTemplate": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffTime": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTaskTpl_tagEffTaskParam_CEffgbParticle": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "CTrail": {
+   "status": "no-ctor",
+   "annotated_size": 840
+  },
+  "CUSTOMSHAPEVERTEX": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "CUtil": {
+   "status": "decoded",
+   "annotated_size": 1772,
+   "ctor_addr": "0x523130",
+   "ctor_size": 159,
+   "derived_min_size": "0x6e9",
+   "size_delta": 3,
+   "max_write_offset": "0x6e9",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "off_5705F4"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x52314e"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x523179"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 12,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"off_5705F4\"}]"
+   ],
+   "member_offs_count": 18
+  },
+  "Camera": {
+   "status": "decoded",
+   "annotated_size": 544,
+   "ctor_addr": "0x41be80",
+   "ctor_size": 312,
+   "derived_min_size": "0x21e",
+   "size_delta": 2,
+   "max_write_offset": "0x21e",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AA84"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AA84\"}]"
+   ],
+   "member_offs_count": 47
+  },
+  "CameraCmd": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "CameraCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 4088
+  },
+  "CameraParam": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "CameraSystem": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "CatchableType": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "CatchableTypeArray": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ChoseCompose": {
+   "status": "no-ctor",
+   "annotated_size": 3770
+  },
+  "ColRet": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "Collide_Ray": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "Color4ub": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "Combat": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ComboAttack": {
+   "status": "no-ctor",
+   "annotated_size": 636
+  },
+  "Comp_Donate": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "Comp_DonateUI": {
+   "status": "no-ctor",
+   "annotated_size": 46840
+  },
+  "Comp_Donate_Detail": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "ComposeUI": {
+   "status": "no-ctor",
+   "annotated_size": 3896
+  },
+  "Config": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "ConfigFile": {
+   "status": "no-ctor",
+   "annotated_size": 260
+  },
+  "D3DAdapterInfo": {
+   "status": "no-ctor",
+   "annotated_size": 1112
+  },
+  "D3DDeviceCombo": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "D3DDeviceInfo": {
+   "status": "no-ctor",
+   "annotated_size": 316
+  },
+  "D3DDriverBug": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "D3DXCOLOR": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "D3DXFLOAT16": {
+   "status": "no-ctor",
+   "annotated_size": 2
+  },
+  "D3DXMATRIX": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "D3DXPlane": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "D3DXVECTOR2": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "D3DXVECTOR3": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "D3DXVECTOR4": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "DICOLORSET": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "DIDEVCAPS": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "DIDEVICEINSTANCEA": {
+   "status": "no-ctor",
+   "annotated_size": 708
+  },
+  "DIDEVICEOBJECTDATA": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "DIDEVICEOBJECTINSTANCEA": {
+   "status": "no-ctor",
+   "annotated_size": 380
+  },
+  "DIEFFECT": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "DIEFFECTINFOA": {
+   "status": "no-ctor",
+   "annotated_size": 356
+  },
+  "DIEFFESCAPE": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "DIENVELOPE": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "DIFILEEFFECT": {
+   "status": "no-ctor",
+   "annotated_size": 348
+  },
+  "DIPROPDWORD": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "DIPROPHEADER": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "DPINFO": {
+   "status": "no-ctor",
+   "annotated_size": 104
+  },
+  "DPINFO___unnamed": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "DataConst": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "DealData": {
+   "status": "decoded",
+   "annotated_size": 833340,
+   "ctor_addr": "0x457260",
+   "ctor_size": 212,
+   "derived_min_size": "0xc4d3a",
+   "size_delta": 27138,
+   "max_write_offset": "0xc4d3a",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "TxtFile",
+     "ea": "0x457282"
+    },
+    {
+     "target_class": "TxtFile",
+     "ea": "0x4572a3"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 5,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0xC4D3A << annotated 0xCB73C (gap 0x6A02)"
+   ],
+   "member_offs_count": 7
+  },
+  "DealUI": {
+   "status": "no-ctor",
+   "annotated_size": 3080
+  },
+  "DisplayConfig": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ECBRoleSpecState": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "EH3_EXCEPTION_REGISTRATION": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "EffAudioNode": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "EffBinkNode": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "EffCallBackNode": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "EffModeParam": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "EffMultiPassNode": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "EffObjectPool": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "EffTargetPool": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "EffectInfo": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "EffectItem": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "EquipUI": {
+   "status": "decoded",
+   "annotated_size": 120116,
+   "ctor_addr": "0x498820",
+   "ctor_size": 1104,
+   "derived_min_size": "0x2fcce",
+   "size_delta": -75674,
+   "max_write_offset": "0x2fcce",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56E170"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x49883e"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x498a0c"
+    },
+    {
+     "target_class": "UI3DCtrl",
+     "ea": "0x498ae2"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 5140,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 79892,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 156152,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 181388,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 183452,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x2FCCE > annotated 0x1D534",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56E170\"}]"
+   ],
+   "member_offs_count": 90
+  },
+  "ExternalStatistics": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "FILETIME": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "FLOATING_SAVE_AREA": {
+   "status": "no-ctor",
+   "annotated_size": 112
+  },
+  "FLTSTAGE": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "FightInfo": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "FightItem": {
+   "status": "no-ctor",
+   "annotated_size": 800
+  },
+  "FightItemScriptBlock": {
+   "status": "no-ctor",
+   "annotated_size": 512
+  },
+  "FightSkill": {
+   "status": "no-ctor",
+   "annotated_size": 760
+  },
+  "FindArc": {
+   "status": "no-ctor",
+   "annotated_size": 9476
+  },
+  "FontPrint3DInfo": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "FontPrintInfo": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "FontSortInfoObj": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "FrameTex": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "FuncInfoV1": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "GRP_KEYREG": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "GRPinput": {
+   "status": "decoded",
+   "annotated_size": 10584,
+   "ctor_addr": "0x402400",
+   "ctor_size": 236,
+   "derived_min_size": "0x50",
+   "size_delta": 10504,
+   "max_write_offset": "0x50",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 4,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x50 << annotated 0x2958 (gap 0x2908)"
+   ],
+   "member_offs_count": 38
+  },
+  "GameObject": {
+   "status": "no-func",
+   "annotated_size": 4
+  },
+  "GeomNode": {
+   "status": "no-ctor",
+   "annotated_size": 288
+  },
+  "GeomNote": {
+   "status": "no-ctor",
+   "annotated_size": 7
+  },
+  "GhostParam": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "Glow": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "GlowObj": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "GrayScale": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "HBRUSH__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HDC__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HHOOK__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HICON__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HINSTANCE__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HKEY__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HMONITOR__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HWAVEOUT__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HWND__": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "HandlerType": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "HeadMsg": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "IMAGE_DATA_DIRECTORY": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "IMAGE_FILE_HEADER": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "IMAGE_OPTIONAL_HEADER32": {
+   "status": "no-ctor",
+   "annotated_size": 248
+  },
+  "InputSystem": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "Inventory": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "Iostream_init": {
+   "status": "decoded",
+   "annotated_size": 4,
+   "ctor_addr": "0x408bc0",
+   "ctor_size": 3,
+   "derived_min_size": "0x0",
+   "size_delta": 4,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 1
+  },
+  "JusticeBookUI": {
+   "status": "decoded",
+   "annotated_size": 56192,
+   "ctor_addr": "0x5282e0",
+   "ctor_size": 474,
+   "derived_min_size": "0xdb81",
+   "size_delta": -1,
+   "max_write_offset": "0xdb81",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_570728"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x528300"
+    },
+    {
+     "target_class": "TxtFile",
+     "ea": "0x528408"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x528444"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 14124,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 35148,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 6,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0xDB81 > annotated 0xDB80",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_570728\"}]"
+   ],
+   "member_offs_count": 53
+  },
+  "KeyFrame": {
+   "status": "no-ctor",
+   "annotated_size": 264
+  },
+  "LARGE_INTEGER": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "LEVELPARAM": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "LINEUPINFO": {
+   "status": "no-ctor",
+   "annotated_size": 6
+  },
+  "LINEUP_SEQUENCE": {
+   "status": "no-ctor",
+   "annotated_size": 5
+  },
+  "LayerNode": {
+   "status": "no-ctor",
+   "annotated_size": 60
+  },
+  "LineupComp": {
+   "status": "decoded",
+   "annotated_size": 2012,
+   "ctor_addr": "0x44b850",
+   "ctor_size": 63,
+   "derived_min_size": "0x718",
+   "size_delta": 196,
+   "max_write_offset": "0x718",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "TxtFile",
+     "ea": "0x44b853"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 8,
+   "issues": [],
+   "member_offs_count": 14
+  },
+  "LineupPlank": {
+   "status": "no-ctor",
+   "annotated_size": 712
+  },
+  "LineupUI": {
+   "status": "decoded",
+   "annotated_size": 171244,
+   "ctor_addr": "0x47e5c0",
+   "ctor_size": 812,
+   "derived_min_size": "0x25ae4",
+   "size_delta": 16904,
+   "max_write_offset": "0x25ae4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B90C"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x47e5de"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e85f"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e86f"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e87f"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e88f"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e89f"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x47e8af"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 4696,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 79448,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 155412,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 156172,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 156932,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 7,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x25AE4 << annotated 0x29CEC (gap 0x4208)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B90C\"}]"
+   ],
+   "member_offs_count": 65
+  },
+  "LinkerVersion": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "Logger": {
+   "status": "no-ctor",
+   "annotated_size": 6360
+  },
+  "MIXSTAGE": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "MUIDialog": {
+   "status": "no-ctor",
+   "annotated_size": 1288
+  },
+  "MUIDialogMgr": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MU_SortFun": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MXCEft": {
+   "status": "no-ctor",
+   "annotated_size": 116
+  },
+  "MXFire": {
+   "status": "no-ctor",
+   "annotated_size": 248
+  },
+  "MXPoisonFog": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "MXSavePoint": {
+   "status": "no-ctor",
+   "annotated_size": 1060
+  },
+  "MXTransport": {
+   "status": "no-ctor",
+   "annotated_size": 363968
+  },
+  "MagicUI": {
+   "status": "no-ctor",
+   "annotated_size": 267300
+  },
+  "MainEquipUI": {
+   "status": "decoded",
+   "annotated_size": 209008,
+   "ctor_addr": "0x479300",
+   "ctor_size": 849,
+   "derived_min_size": "0x2a778",
+   "size_delta": 35064,
+   "max_write_offset": "0x2a778",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B820"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x47931f"
+    },
+    {
+     "target_class": "UI3DCtrl",
+     "ea": "0x4793cf"
+    },
+    {
+     "target_class": "PalScript",
+     "ea": "0x47942f"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x479543"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x479553"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x479563"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 164952,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 166624,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 173948,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x2A778 << annotated 0x33070 (gap 0x88F8)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B820\"}]"
+   ],
+   "member_offs_count": 76
+  },
+  "MainPropUI": {
+   "status": "decoded",
+   "annotated_size": 247976,
+   "ctor_addr": "0x4909f0",
+   "ctor_size": 1150,
+   "derived_min_size": "0x35a1c",
+   "size_delta": 28300,
+   "max_write_offset": "0x35a1c",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56D618"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x490a12"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x490cc2"
+    },
+    {
+     "target_class": "UI3DCtrl",
+     "ea": "0x490d7f"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 4864,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 79616,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 154508,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 210828,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 213476,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 19,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x35A1C << annotated 0x3C8A8 (gap 0x6E8C)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56D618\"}]"
+   ],
+   "member_offs_count": 80
+  },
+  "Math": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "Matrix4": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "MatrixStack": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MeshFx": {
+   "status": "no-ctor",
+   "annotated_size": 92
+  },
+  "MeshFxCreator": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MiniGame1": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MiniGame2Scene": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MiniGame3": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MonsterStar": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "MvcController": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MvcViewport": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "MyMdl": {
+   "status": "no-ctor",
+   "annotated_size": 84
+  },
+  "NGHHURT": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "NMHDR": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "NPC": {
+   "status": "no-ctor",
+   "annotated_size": 1152
+  },
+  "NPCInfo": {
+   "status": "no-ctor",
+   "annotated_size": 456
+  },
+  "NameSys": {
+   "status": "no-ctor",
+   "annotated_size": 280
+  },
+  "NameSys_NAMEFLAG": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "NavFace": {
+   "status": "no-ctor",
+   "annotated_size": 6
+  },
+  "NavFaceLayer": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "NavHeader": {
+   "status": "no-ctor",
+   "annotated_size": 14
+  },
+  "NavTile": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "NavTileLayer": {
+   "status": "no-ctor",
+   "annotated_size": 164
+  },
+  "NavTriangle": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "NavigationInfo": {
+   "status": "no-ctor",
+   "annotated_size": 364
+  },
+  "Note_Item": {
+   "status": "no-ctor",
+   "annotated_size": 3560
+  },
+  "OBJHELPER": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "ORect": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "ObjLockInput": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "ObjParam": {
+   "status": "no-ctor",
+   "annotated_size": 452
+  },
+  "Object": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "Object3D": {
+   "status": "decoded",
+   "annotated_size": 152,
+   "ctor_addr": "0x47cb70",
+   "ctor_size": 17,
+   "derived_min_size": "0x56",
+   "size_delta": 66,
+   "max_write_offset": "0x56",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [],
+   "member_offs_count": 34
+  },
+  "ObjectCamera": {
+   "status": "no-ctor",
+   "annotated_size": 124
+  },
+  "ObjectInfo": {
+   "status": "no-ctor",
+   "annotated_size": 604
+  },
+  "ObjectInfoBase": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "OpenBaseFile": {
+   "status": "decoded",
+   "annotated_size": 4,
+   "ctor_addr": "0x401f50",
+   "ctor_size": 25,
+   "derived_min_size": "0x4",
+   "size_delta": 0,
+   "max_write_offset": "0x4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "g_BaseVFileSystem"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"g_BaseVFileSystem\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "OpenFNWindow": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "OpenNULLFile": {
+   "status": "decoded",
+   "annotated_size": 4,
+   "ctor_addr": "0x401f90",
+   "ctor_size": 11,
+   "derived_min_size": "0x0",
+   "size_delta": 4,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 1
+  },
+  "OpenSceneFile": {
+   "status": "decoded",
+   "annotated_size": 4,
+   "ctor_addr": "0x401df0",
+   "ctor_size": 328,
+   "derived_min_size": "0x4",
+   "size_delta": 0,
+   "max_write_offset": "0x4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "g_VFileSystem"
+    },
+    {
+     "offset": 0,
+     "target": "g_VFileSystem"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"g_VFileSystem\"}, {\"offset\": 0, \"target\": \"g_VFileSystem\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "OutFile": {
+   "status": "no-ctor",
+   "annotated_size": 160
+  },
+  "PAL3": {
+   "status": "decoded",
+   "annotated_size": 4936,
+   "ctor_addr": "0x404760",
+   "ctor_size": 131,
+   "derived_min_size": "0x0",
+   "size_delta": 4936,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 43
+  },
+  "PAL3VisNode": {
+   "status": "decoded",
+   "annotated_size": 88,
+   "ctor_addr": "0x4b6f70",
+   "ctor_size": 26,
+   "derived_min_size": "0x5a",
+   "size_delta": -2,
+   "max_write_offset": "0x5a",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F37C"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x5A > annotated 0x58",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F37C\"}]"
+   ],
+   "member_offs_count": 0
+  },
+  "PAL_GDB": {
+   "status": "decoded",
+   "annotated_size": 814524,
+   "ctor_addr": "0x478e00",
+   "ctor_size": 460,
+   "derived_min_size": "0x0",
+   "size_delta": 814524,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [
+    {
+     "target_class": "OpenBaseFile",
+     "ea": "0x478e23"
+    },
+    {
+     "target_class": "OpenNULLFile",
+     "ea": "0x478fac"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 6
+  },
+  "PARTICLEVERTEX": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "PMD": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "PMFN": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "PalScript": {
+   "status": "decoded",
+   "annotated_size": 2176,
+   "ctor_addr": "0x43a160",
+   "ctor_size": 106,
+   "derived_min_size": "0x9e",
+   "size_delta": 2018,
+   "max_write_offset": "0x9e",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AC4C"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 5,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x9E << annotated 0x880 (gap 0x7E2)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AC4C\"}]"
+   ],
+   "member_offs_count": 44
+  },
+  "PalScriptAnimTimer": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "PalScriptBlendTimer": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "PalScriptDialogOverlay": {
+   "status": "no-ctor",
+   "annotated_size": 164
+  },
+  "PalScriptFadeInTimer": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "PalScriptFadeOutTimer": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "PalScriptIdleObj": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "PalScriptMgr": {
+   "status": "decoded",
+   "annotated_size": 9516,
+   "ctor_addr": "0x431e60",
+   "ctor_size": 10,
+   "derived_min_size": "0x0",
+   "size_delta": 9516,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 202
+  },
+  "PalScriptProgressTimer": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "PalScriptRoleSlotOverlay": {
+   "status": "no-ctor",
+   "annotated_size": 896
+  },
+  "PalScriptSlotStateOverlay": {
+   "status": "no-ctor",
+   "annotated_size": 864
+  },
+  "PalScriptWaitObj": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "PalScriptWaitTimer": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ParabolaCalculator": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "ParabolaCalculator_PRBL_STATE": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "Param0": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "Param1": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "Param2": {
+   "status": "no-ctor",
+   "annotated_size": 296
+  },
+  "Parent_Data": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ParticleEffect": {
+   "status": "decoded",
+   "annotated_size": 362860,
+   "ctor_addr": "0x4bc760",
+   "ctor_size": 46,
+   "derived_min_size": "0x5896c",
+   "size_delta": 0,
+   "max_write_offset": "0x5896c",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "off_56F4A0"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 4,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"off_56F4A0\"}]"
+   ],
+   "member_offs_count": 3
+  },
+  "ParticleVisNode": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "PathFinder": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "PathObj": {
+   "status": "no-ctor",
+   "annotated_size": 7208
+  },
+  "PlayerAtt": {
+   "status": "no-ctor",
+   "annotated_size": 1524
+  },
+  "PlayerAtts": {
+   "status": "no-ctor",
+   "annotated_size": 208
+  },
+  "PlayerItem": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "PlayerItemSortFun": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "PlayerMgr": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "PlayerSkill": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "PolyLine": {
+   "status": "no-ctor",
+   "annotated_size": 196
+  },
+  "PropUI": {
+   "status": "no-func",
+   "annotated_size": 29056
+  },
+  "ProtectPanel": {
+   "status": "no-ctor",
+   "annotated_size": 1208
+  },
+  "PtrArray": {
+   "status": "decoded",
+   "annotated_size": 16,
+   "ctor_addr": "0x44bd60",
+   "ctor_size": 20,
+   "derived_min_size": "0xe",
+   "size_delta": 2,
+   "max_write_offset": "0xe",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 3,
+   "issues": [],
+   "member_offs_count": 4
+  },
+  "PtrVec": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "PurgeEffect": {
+   "status": "no-ctor",
+   "annotated_size": 428
+  },
+  "RC_ARG": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "RELIVEPARAM": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "RGNDATAHEADER": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "RenderTarget": {
+   "status": "no-ctor",
+   "annotated_size": 200
+  },
+  "RenderTarget2": {
+   "status": "no-ctor",
+   "annotated_size": 4292
+  },
+  "RenderTarget3": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "RenderTarget4": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "RenderTargetNode": {
+   "status": "decoded",
+   "annotated_size": 96,
+   "ctor_addr": "0x4bd830",
+   "ctor_size": 25,
+   "derived_min_size": "0x5e",
+   "size_delta": 2,
+   "max_write_offset": "0x5e",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F4B0"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "PAL3VisNode",
+     "ea": "0x4bd833"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F4B0\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "Reoccupy": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "RestScript": {
+   "status": "no-ctor",
+   "annotated_size": 2068
+  },
+  "Role": {
+   "status": "decoded",
+   "annotated_size": 8704,
+   "ctor_addr": "0x411900",
+   "ctor_size": 622,
+   "derived_min_size": "0x2200",
+   "size_delta": 0,
+   "max_write_offset": "0x2200",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56A9BC"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56A9BC"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56A9BC\"}, {\"offset\": 0, \"target\": \"stru_56A9BC\"}]"
+   ],
+   "member_offs_count": 47
+  },
+  "RoleAtt": {
+   "status": "no-ctor",
+   "annotated_size": 852
+  },
+  "RoleAttRemarkSkills": {
+   "status": "no-ctor",
+   "annotated_size": 298
+  },
+  "RoleCamera": {
+   "status": "no-ctor",
+   "annotated_size": 692
+  },
+  "RoleCameraCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "RoleCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "RoleFadeIn": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "RoleFadeOut": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "RoleShadow": {
+   "status": "no-ctor",
+   "annotated_size": 5344
+  },
+  "RoleStatePanel": {
+   "status": "no-func",
+   "annotated_size": 176256
+  },
+  "RoleSystem": {
+   "status": "decoded",
+   "annotated_size": 8704,
+   "ctor_addr": "0x420290",
+   "ctor_size": 7,
+   "derived_min_size": "0x4",
+   "size_delta": 8700,
+   "max_write_offset": "0x4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AAD8"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x4 << annotated 0x2200 (gap 0x21FC)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AAD8\"}]"
+   ],
+   "member_offs_count": 151
+  },
+  "RoleSystemTeamSlotOverlay": {
+   "status": "no-ctor",
+   "annotated_size": 873
+  },
+  "RoleTask": {
+   "status": "no-ctor",
+   "annotated_size": 396
+  },
+  "RoleTaskLine": {
+   "status": "no-ctor",
+   "annotated_size": 140
+  },
+  "RoleTaskPool": {
+   "status": "no-ctor",
+   "annotated_size": 684
+  },
+  "Role_SPECIAL_ACTION": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "RotateInvObj": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "RotateObj": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "SCNFile": {
+   "status": "no-ctor",
+   "annotated_size": 33228
+  },
+  "SCNHeader": {
+   "status": "no-ctor",
+   "annotated_size": 18
+  },
+  "SPECIAL_ACTION": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SSE4xMatrix": {
+   "status": "no-ctor",
+   "annotated_size": 256
+  },
+  "S_Distribute": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "SaleUI": {
+   "status": "decoded",
+   "annotated_size": 105912,
+   "ctor_addr": "0x45a7b0",
+   "ctor_size": 1555,
+   "derived_min_size": "0x19db8",
+   "size_delta": 0,
+   "max_write_offset": "0x19db8",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B5CC"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x45a7d2"
+    },
+    {
+     "target_class": "UI3DCtrl",
+     "ea": "0x45a95c"
+    },
+    {
+     "target_class": "PalScript",
+     "ea": "0x45a97c"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x45aa6d"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 25492,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 26356,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 71000,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 83480,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 88880,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B5CC\"}]"
+   ],
+   "member_offs_count": 62
+  },
+  "SaleUI_SortData": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SaveTask": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "SceHeader": {
+   "status": "no-ctor",
+   "annotated_size": 7
+  },
+  "SceIndex": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "SceOpcodeEntry": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "Scene": {
+   "status": "decoded",
+   "annotated_size": 493156,
+   "ctor_addr": "0x41f6f0",
+   "ctor_size": 267,
+   "derived_min_size": "0x78664",
+   "size_delta": 0,
+   "max_write_offset": "0x78664",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [
+    {
+     "base_disp": 180,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 224,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 57572,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 15,
+   "issues": [],
+   "member_offs_count": 18
+  },
+  "SceneInfo": {
+   "status": "no-ctor",
+   "annotated_size": 132
+  },
+  "SceneMap": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "SceneMapObj": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "SceneMapPlayer": {
+   "status": "decoded",
+   "annotated_size": 392,
+   "ctor_addr": "0x4203c0",
+   "ctor_size": 99,
+   "derived_min_size": "0x104",
+   "size_delta": 132,
+   "max_write_offset": "0x104",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AAD8"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 2,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AAD8\"}]"
+   ],
+   "member_offs_count": 10
+  },
+  "SceneMgrCamBlock": {
+   "status": "no-ctor",
+   "annotated_size": 768
+  },
+  "SceneObj": {
+   "status": "no-func",
+   "annotated_size": 1784
+  },
+  "SceneObjParam": {
+   "status": "no-ctor",
+   "annotated_size": 708
+  },
+  "SceneObjScript": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "SceneObj_Common_State": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SceneObj_SubObj": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "SceneProp": {
+   "status": "no-ctor",
+   "annotated_size": 136
+  },
+  "SceneVisNode": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "ScreenEffect": {
+   "status": "decoded",
+   "annotated_size": 24,
+   "ctor_addr": "0x4bdfb0",
+   "ctor_size": 163,
+   "derived_min_size": "0x98",
+   "size_delta": -128,
+   "max_write_offset": "0x98",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F508"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 12,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0x98 > annotated 0x18",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F508\"}]"
+   ],
+   "member_offs_count": 4
+  },
+  "ScreenEffectMgr": {
+   "status": "decoded",
+   "annotated_size": 152,
+   "ctor_addr": "0x4bee60",
+   "ctor_size": 193,
+   "derived_min_size": "0xaa",
+   "size_delta": -18,
+   "max_write_offset": "0xaa",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F580"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "PAL3VisNode",
+     "ea": "0x4bee7f"
+    },
+    {
+     "target_class": "ParticleEffect",
+     "ea": "0x4beef8"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 2,
+   "issues": [
+    "ctor-write-beyond-annotation: derived 0xAA > annotated 0x98",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F580\"}]"
+   ],
+   "member_offs_count": 16
+  },
+  "ScreenEffectNode": {
+   "status": "decoded",
+   "annotated_size": 220,
+   "ctor_addr": "0x4b7c30",
+   "ctor_size": 132,
+   "derived_min_size": "0xa4",
+   "size_delta": 56,
+   "max_write_offset": "0xa4",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F450"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "PAL3VisNode",
+     "ea": "0x4b7c4f"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F450\"}]"
+   ],
+   "member_offs_count": 2
+  },
+  "ScreenFadeIn": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "ScreenFadeOut": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "ScreenFadeWhite": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "ScreenFadeWhite2": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "ScriptCounter": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "ScriptData": {
+   "status": "no-ctor",
+   "annotated_size": 1288
+  },
+  "ScriptHelper": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ScriptObj": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ScriptPoolPage": {
+   "status": "no-ctor",
+   "annotated_size": 512
+  },
+  "ScriptSystem": {
+   "status": "no-ctor",
+   "annotated_size": 8704
+  },
+  "ScriptSystemData": {
+   "status": "no-ctor",
+   "annotated_size": 4128
+  },
+  "ScriptVM": {
+   "status": "no-ctor",
+   "annotated_size": 888
+  },
+  "ScriptWaitFrm": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "SkillData": {
+   "status": "no-ctor",
+   "annotated_size": 260
+  },
+  "SkillUI": {
+   "status": "decoded",
+   "annotated_size": 101940,
+   "ctor_addr": "0x525120",
+   "ctor_size": 927,
+   "derived_min_size": "0x18384",
+   "size_delta": 2736,
+   "max_write_offset": "0x18384",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_5706CC"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x525140"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x5251d3"
+    },
+    {
+     "target_class": "UIPushButton",
+     "ea": "0x5251e3"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x52541e"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x52542e"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 352,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 2080,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": null,
+     "elem_size": null,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 36092,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 57116,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x18384 << annotated 0x18E34 (gap 0xAB0)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_5706CC\"}]"
+   ],
+   "member_offs_count": 0
+  },
+  "SkyBox": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "SkyboxEff": {
+   "status": "no-ctor",
+   "annotated_size": 144
+  },
+  "SkyboxEffMgr": {
+   "status": "no-ctor",
+   "annotated_size": 260
+  },
+  "SkyboxEffTex": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SoundAttachObj": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "SoundContext": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SoundItem": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "SoundMgr": {
+   "status": "no-ctor",
+   "annotated_size": 918796
+  },
+  "SoundSystem": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "StateUI": {
+   "status": "no-ctor",
+   "annotated_size": 162000
+  },
+  "String": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "StringTable": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "SwitchVariable": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "SwordUI": {
+   "status": "no-ctor",
+   "annotated_size": 388952
+  },
+  "TaskBookUI": {
+   "status": "no-func",
+   "annotated_size": 143672
+  },
+  "TaskMgr": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "TaskMgr_SceneObjParam_SceneObj": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "TextureLib": {
+   "status": "no-ctor",
+   "annotated_size": 532
+  },
+  "TextureLibDataBase": {
+   "status": "no-ctor",
+   "annotated_size": 584
+  },
+  "TextureLib_Data": {
+   "status": "no-ctor",
+   "annotated_size": 1116
+  },
+  "ThrowInfo": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "TileMap": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "TimeCtl": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "Triangle": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "TryBlockMapEntry": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "TxtFile": {
+   "status": "decoded",
+   "annotated_size": 524,
+   "ctor_addr": "0x431870",
+   "ctor_size": 36,
+   "derived_min_size": "0x20c",
+   "size_delta": 0,
+   "max_write_offset": "0x20c",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 3,
+   "issues": [],
+   "member_offs_count": 4
+  },
+  "UI3DCtrl": {
+   "status": "decoded",
+   "annotated_size": 308,
+   "ctor_addr": "0x43d830",
+   "ctor_size": 37,
+   "derived_min_size": "0x54",
+   "size_delta": 224,
+   "max_write_offset": "0x54",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56ACFC"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 4,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56ACFC\"}]"
+   ],
+   "member_offs_count": 19
+  },
+  "UI3DModelNode": {
+   "status": "decoded",
+   "annotated_size": 248,
+   "ctor_addr": "0x4b74a0",
+   "ctor_size": 67,
+   "derived_min_size": "0xf8",
+   "size_delta": 0,
+   "max_write_offset": "0xf8",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56F404"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "PAL3VisNode",
+     "ea": "0x4b74a4"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 7,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56F404\"}]"
+   ],
+   "member_offs_count": 8
+  },
+  "UI3DObj": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "UIAnimCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIAnimate": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "UIAnimateCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 164
+  },
+  "UIAnimateCtrlEX": {
+   "status": "decoded",
+   "annotated_size": 1012,
+   "ctor_addr": "0x452790",
+   "ctor_size": 148,
+   "derived_min_size": "0x3f2",
+   "size_delta": 2,
+   "max_write_offset": "0x3f2",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B1DC"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B1DC\"}]"
+   ],
+   "member_offs_count": 6
+  },
+  "UIBase": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIBigDialog": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIBigMap": {
+   "status": "decoded",
+   "annotated_size": 10248,
+   "ctor_addr": "0x490e90",
+   "ctor_size": 541,
+   "derived_min_size": "0x0",
+   "size_delta": 10248,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [
+    {
+     "base_disp": 3204,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 4724,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 6244,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 25
+  },
+  "UIButton": {
+   "status": "no-func",
+   "annotated_size": 344
+  },
+  "UIButtonEX": {
+   "status": "no-ctor",
+   "annotated_size": 392
+  },
+  "UIButtonEXA": {
+   "status": "no-ctor",
+   "annotated_size": 376
+  },
+  "UIButton_UIBUTTON_STATE": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UICamera": {
+   "status": "no-ctor",
+   "annotated_size": 636
+  },
+  "UICaption": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "UIChatRest": {
+   "status": "no-ctor",
+   "annotated_size": 9516
+  },
+  "UICoverFrm": {
+   "status": "decoded",
+   "annotated_size": 14952,
+   "ctor_addr": "0x52ba10",
+   "ctor_size": 412,
+   "derived_min_size": "0x329a",
+   "size_delta": 1998,
+   "max_write_offset": "0x329a",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_570830"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x52ba2e"
+    },
+    {
+     "target_class": "TxtFile",
+     "ea": "0x52ba4d"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x52bb52"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x52bb62"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 1496,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 2424,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x329A << annotated 0x3A68 (gap 0x7CE)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_570830\"}]"
+   ],
+   "member_offs_count": 51
+  },
+  "UICursor": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "UIDialog": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "UIDragBar": {
+   "status": "no-ctor",
+   "annotated_size": 272
+  },
+  "UIEmote": {
+   "status": "decoded",
+   "annotated_size": 2272,
+   "ctor_addr": "0x44e530",
+   "ctor_size": 133,
+   "derived_min_size": "0x8aa",
+   "size_delta": 54,
+   "max_write_offset": "0x8aa",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B050"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [
+    {
+     "base_disp": 80,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 6,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B050\"}]"
+   ],
+   "member_offs_count": 6
+  },
+  "UIFlexBar": {
+   "status": "no-ctor",
+   "annotated_size": 84
+  },
+  "UIFrameContainer": {
+   "status": "no-func",
+   "annotated_size": 136
+  },
+  "UIFrameWnd": {
+   "status": "decoded",
+   "annotated_size": 72,
+   "ctor_addr": "0x43bb70",
+   "ctor_size": 25,
+   "derived_min_size": "0x46",
+   "size_delta": 2,
+   "max_write_offset": "0x46",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56ACB8"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56ACB8\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "UIGameFrm": {
+   "status": "no-ctor",
+   "annotated_size": 28268
+  },
+  "UIGameOver": {
+   "status": "no-ctor",
+   "annotated_size": 232
+  },
+  "UIGroupCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "UIHeadDialog": {
+   "status": "no-ctor",
+   "annotated_size": 352
+  },
+  "UIInventory": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "UIItem": {
+   "status": "no-ctor",
+   "annotated_size": 232
+  },
+  "UILBColumn": {
+   "status": "no-ctor",
+   "annotated_size": 84
+  },
+  "UILBItem": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "UIListBox": {
+   "status": "decoded",
+   "annotated_size": 72,
+   "ctor_addr": "0x43dcd0",
+   "ctor_size": 25,
+   "derived_min_size": "0x46",
+   "size_delta": 2,
+   "max_write_offset": "0x46",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AD20"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AD20\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "UIListView": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UILoadingFrm": {
+   "status": "decoded",
+   "annotated_size": 332,
+   "ctor_addr": "0x450710",
+   "ctor_size": 84,
+   "derived_min_size": "0x146",
+   "size_delta": 6,
+   "max_write_offset": "0x146",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B100"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x45072d"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 1,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B100\"}]"
+   ],
+   "member_offs_count": 5
+  },
+  "UIManager": {
+   "status": "no-ctor",
+   "annotated_size": 3756
+  },
+  "UIMap": {
+   "status": "no-ctor",
+   "annotated_size": 152
+  },
+  "UINote": {
+   "status": "no-ctor",
+   "annotated_size": 268
+  },
+  "UIObj": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIPar_Meteor": {
+   "status": "no-ctor",
+   "annotated_size": 276
+  },
+  "UIPar_Star": {
+   "status": "no-ctor",
+   "annotated_size": 124
+  },
+  "UIPar_TimeCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "UIParabolaCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIParticle": {
+   "status": "no-ctor",
+   "annotated_size": 584
+  },
+  "UIPosMaker": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "UIProgressBar": {
+   "status": "no-ctor",
+   "annotated_size": 244
+  },
+  "UIPushButton": {
+   "status": "decoded",
+   "annotated_size": 248,
+   "ctor_addr": "0x440740",
+   "ctor_size": 81,
+   "derived_min_size": "0x78",
+   "size_delta": 128,
+   "max_write_offset": "0x78",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AD88"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 8,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AD88\"}]"
+   ],
+   "member_offs_count": 14
+  },
+  "UIQuadManager": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIRenderObj": {
+   "status": "decoded",
+   "annotated_size": 32,
+   "ctor_addr": "0x541640",
+   "ctor_size": 203,
+   "derived_min_size": "0x0",
+   "size_delta": 32,
+   "max_write_offset": "0",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 0,
+   "issues": [],
+   "member_offs_count": 1
+  },
+  "UIRoleDialog": {
+   "status": "decoded",
+   "annotated_size": 1368,
+   "ctor_addr": "0x4a12f0",
+   "ctor_size": 229,
+   "derived_min_size": "0x554",
+   "size_delta": 4,
+   "max_write_offset": "0x554",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56E190"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIFrameWnd",
+     "ea": "0x4a130d"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 12,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56E190\"}]"
+   ],
+   "member_offs_count": 14
+  },
+  "UIRoleSelect": {
+   "status": "no-ctor",
+   "annotated_size": 1488
+  },
+  "UIRoleSelectDialog": {
+   "status": "decoded",
+   "annotated_size": 2292,
+   "ctor_addr": "0x5295f0",
+   "ctor_size": 379,
+   "derived_min_size": "0x899",
+   "size_delta": 91,
+   "max_write_offset": "0x899",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_57076C"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x52960e"
+    },
+    {
+     "target_class": "CCBResultWindow",
+     "ea": "0x529665"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 512,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 20,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_57076C\"}]"
+   ],
+   "member_offs_count": 11
+  },
+  "UIScene": {
+   "status": "no-ctor",
+   "annotated_size": 344
+  },
+  "UISceneFace": {
+   "status": "no-ctor",
+   "annotated_size": 1780
+  },
+  "UISceneFrm": {
+   "status": "decoded",
+   "annotated_size": 3288,
+   "ctor_addr": "0x4590d0",
+   "ctor_size": 363,
+   "derived_min_size": "0xcd5",
+   "size_delta": 3,
+   "max_write_offset": "0xcd5",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B394"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x4590ee"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 468,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 17,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B394\"}]"
+   ],
+   "member_offs_count": 2
+  },
+  "UISceneMap": {
+   "status": "decoded",
+   "annotated_size": 1012,
+   "ctor_addr": "0x44ffe0",
+   "ctor_size": 142,
+   "derived_min_size": "0x4a",
+   "size_delta": 938,
+   "max_write_offset": "0x4a",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B0B4"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x44fffd"
+    }
+   ],
+   "ehvec_calls": [],
+   "scalar_write_count": 3,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x4A << annotated 0x3F4 (gap 0x3AA)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B0B4\"}]"
+   ],
+   "member_offs_count": 6
+  },
+  "UISceneObj": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIScenePanel": {
+   "status": "decoded",
+   "annotated_size": 14232,
+   "ctor_addr": "0x44ba60",
+   "ctor_size": 759,
+   "derived_min_size": "0x364a",
+   "size_delta": 334,
+   "max_write_offset": "0x364a",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "stru_56B018"
+    },
+    {
+     "offset": 0,
+     "target": "off_56AFFC"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x44ba81"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 512,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 5088,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 8416,
+     "elem_size": 237,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 344,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 344,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 16,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x364A << annotated 0x3798 (gap 0x14E)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"stru_56B018\"}, {\"offset\": 0, \"target\": \"off_56AFFC\"}]"
+   ],
+   "member_offs_count": 71
+  },
+  "UIScrollBar": {
+   "status": "no-ctor",
+   "annotated_size": 352
+  },
+  "UIScrollBar_SB_AREA": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UISelectDialog": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UISlider": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIStatic": {
+   "status": "no-ctor",
+   "annotated_size": 152
+  },
+  "UIStaticCB": {
+   "status": "no-ctor",
+   "annotated_size": 156
+  },
+  "UIStaticEX": {
+   "status": "no-ctor",
+   "annotated_size": 184
+  },
+  "UIStaticEXA": {
+   "status": "no-ctor",
+   "annotated_size": 192
+  },
+  "UIStaticFlex": {
+   "status": "no-ctor",
+   "annotated_size": 192
+  },
+  "UIStaticFlex_State": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "UIStaticFlip": {
+   "status": "no-ctor",
+   "annotated_size": 156
+  },
+  "UIStaticRM": {
+   "status": "no-ctor",
+   "annotated_size": 180
+  },
+  "UITabBtn": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "UITabCtrl": {
+   "status": "no-ctor",
+   "annotated_size": 148
+  },
+  "UITextArea": {
+   "status": "no-ctor",
+   "annotated_size": 192
+  },
+  "UITextureArray": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "UITitle": {
+   "status": "decoded",
+   "annotated_size": 9520,
+   "ctor_addr": "0x44ab90",
+   "ctor_size": 298,
+   "derived_min_size": "0xce8",
+   "size_delta": 6216,
+   "max_write_offset": "0xce8",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AFD4"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44ac3c"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44ac5e"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44ac6e"
+    },
+    {
+     "target_class": "UIRoleDialog",
+     "ea": "0x44ac7e"
+    },
+    {
+     "target_class": "LineupComp",
+     "ea": "0x44ac8e"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 428,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 7,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0xCE8 << annotated 0x2530 (gap 0x1848)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AFD4\"}]"
+   ],
+   "member_offs_count": 37
+  },
+  "UITitle_ArcSave": {
+   "status": "decoded",
+   "annotated_size": 4004,
+   "ctor_addr": "0x47bbf0",
+   "ctor_size": 257,
+   "derived_min_size": "0xfa1",
+   "size_delta": 3,
+   "max_write_offset": "0xfa1",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B850"
+    }
+   ],
+   "embedded_calls": [
+    {
+     "target_class": "UIListBox",
+     "ea": "0x47bc0d"
+    },
+    {
+     "target_class": "LineupComp",
+     "ea": "0x47bc92"
+    }
+   ],
+   "ehvec_calls": [
+    {
+     "base_disp": 432,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 9,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B850\"}]"
+   ],
+   "member_offs_count": 1
+  },
+  "UITitle_BBTY": {
+   "status": "decoded",
+   "annotated_size": 5252,
+   "ctor_addr": "0x451cc0",
+   "ctor_size": 184,
+   "derived_min_size": "0x492",
+   "size_delta": 4082,
+   "max_write_offset": "0x492",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56B19C"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [
+    {
+     "base_disp": 556,
+     "elem_size": 234,
+     "count": null,
+     "elem_class": null
+    },
+    {
+     "base_disp": 1172,
+     "elem_size": 236,
+     "count": null,
+     "elem_class": null
+    }
+   ],
+   "scalar_write_count": 1,
+   "issues": [
+    "ctor-writes-far-less-than-annotated: derived 0x492 << annotated 0x1484 (gap 0xFF2)",
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56B19C\"}]"
+   ],
+   "member_offs_count": 17
+  },
+  "UITitle_JDHY": {
+   "status": "no-func",
+   "annotated_size": 377700
+  },
+  "UITitle_QCYM": {
+   "status": "no-ctor",
+   "annotated_size": 17676
+  },
+  "UITitle_XJTM": {
+   "status": "no-ctor",
+   "annotated_size": 5052
+  },
+  "UITitle_YXXX": {
+   "status": "no-func",
+   "annotated_size": 3832
+  },
+  "UIWnd": {
+   "status": "decoded",
+   "annotated_size": 68,
+   "ctor_addr": "0x445aa0",
+   "ctor_size": 115,
+   "derived_min_size": "0x44",
+   "size_delta": 0,
+   "max_write_offset": "0x44",
+   "vtable_writes": [
+    {
+     "offset": 0,
+     "target": "stru_56AEC8"
+    }
+   ],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 11,
+   "issues": [
+    "vtable-write: [{\"offset\": 0, \"target\": \"stru_56AEC8\"}]"
+   ],
+   "member_offs_count": 10
+  },
+  "UnderWater": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "UnwindMapEntry": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "VertPoolMgr": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "VideoPlayer": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "WAVEFORMAT": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "WeatherEffectNode": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "WishPool": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "XJ_Pic": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_ADPCMDATATAG": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "_Btn_BtnID": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_CLOUD": {
+   "status": "no-ctor",
+   "annotated_size": 204
+  },
+  "_CONTEXT": {
+   "status": "no-ctor",
+   "annotated_size": 716
+  },
+  "_Collvec": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_Console": {
+   "status": "no-ctor",
+   "annotated_size": 10540
+  },
+  "_Console__ConCmd": {
+   "status": "no-ctor",
+   "annotated_size": 136
+  },
+  "_Ctypevec": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_Cvtvec": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DADAPTER_IDENTIFIER9": {
+   "status": "no-ctor",
+   "annotated_size": 1100
+  },
+  "_D3DBOX": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "_D3DCAPS9": {
+   "status": "no-ctor",
+   "annotated_size": 304
+  },
+  "_D3DCLIPSTATUS9": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DCOLORVALUE": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DDEVICE_CREATION_PARAMETERS": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DDISPLAYMODE": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DGAMMARAMP": {
+   "status": "no-ctor",
+   "annotated_size": 1536
+  },
+  "_D3DINDEXBUFFER_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "_D3DLIGHT9": {
+   "status": "no-ctor",
+   "annotated_size": 104
+  },
+  "_D3DLOCKED_BOX": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_D3DLOCKED_RECT": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DMATERIAL9": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "_D3DMATRIX": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "_D3DPRESENT_PARAMETERS_": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "_D3DPSHADERCAPS2_0": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "_D3DRASTER_STATUS": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DRECT": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DRECTPATCH_INFO": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "_D3DSURFACE_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "_D3DTRIPATCH_INFO": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DVECTOR": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_D3DVERTEXBUFFER_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "_D3DVERTEXELEMENT9": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DVIEWPORT9": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "_D3DVOLUME_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "_D3DVSHADERCAPS2_0": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DXEFFECT_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_D3DXFUNCTION_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DXPARAMETER_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "_D3DXPASS_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 1116
+  },
+  "_D3DXSEMANTIC": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_D3DXTECHNIQUE_DESC": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_DIACTIONA": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "_DIACTIONFORMATA": {
+   "status": "no-ctor",
+   "annotated_size": 392
+  },
+  "_DICOLORSET": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "_DICONFIGUREDEVICESPARAMSA": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "_DIDATAFORMAT": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "_DIDEVICEIMAGEINFOA": {
+   "status": "no-ctor",
+   "annotated_size": 416
+  },
+  "_DIDEVICEIMAGEINFOHEADERA": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "_DIG_DRIVER": {
+   "status": "no-ctor",
+   "annotated_size": 724
+  },
+  "_DIOBJECTDATAFORMAT": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_EH3_EXCEPTION_REGISTRATION": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_EXCEPTION_POINTERS": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_EXCEPTION_RECORD": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "_FLOATING_SAVE_AREA": {
+   "status": "no-ctor",
+   "annotated_size": 112
+  },
+  "_FLOORPARAM": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_FLTPROVIDER": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "_IMAGE_DATA_DIRECTORY": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_IMAGE_DOS_HEADER": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "_IMAGE_FILE_HEADER": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "_IMAGE_NT_HEADERS": {
+   "status": "no-ctor",
+   "annotated_size": 248
+  },
+  "_IMAGE_OPTIONAL_HEADER": {
+   "status": "no-ctor",
+   "annotated_size": 224
+  },
+  "_Item": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "_Item_List_Info": {
+   "status": "no-ctor",
+   "annotated_size": 5784
+  },
+  "_LARGE_INTEGER": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_MapElement": {
+   "status": "no-ctor",
+   "annotated_size": 392
+  },
+  "_PMD": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_PURGE_INFO": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_PlugInfo": {
+   "status": "no-ctor",
+   "annotated_size": 584
+  },
+  "_RGNDATA": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "_RGNDATAHEADER": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "_SAMPLE": {
+   "status": "no-ctor",
+   "annotated_size": 652
+  },
+  "_SCOPETABLE_ENTRY": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_STREAM": {
+   "status": "no-ctor",
+   "annotated_size": 276
+  },
+  "_SUBMAP": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "_Tex_uv": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_Texture_Info": {
+   "status": "no-ctor",
+   "annotated_size": 1088
+  },
+  "_Texture_uv": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_ThrowInfo": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_TimeMgr": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_TypeDescriptor": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_UDACCEL": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_UIPOS": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "_XCPT_ACTION": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "__m64": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "__old_sbh_page_struct": {
+   "status": "no-ctor",
+   "annotated_size": 512
+  },
+  "__unnamed": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_better_note": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_btnOPTDATA": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_count_string": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "_cpinfo": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "_s__CatchableType": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "_s__CatchableTypeArray": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "_s__ThrowInfo": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "_strflt": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "code_page_info": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "collision": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "direction_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "doubleint": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "elelife_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "elerandvec_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "emissionrate_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "errentry": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "exception": {
+   "status": "decoded",
+   "annotated_size": 12,
+   "ctor_addr": "0x408930",
+   "ctor_size": 17,
+   "derived_min_size": "0xc",
+   "size_delta": 0,
+   "max_write_offset": "0xc",
+   "vtable_writes": [],
+   "embedded_calls": [],
+   "ehvec_calls": [],
+   "scalar_write_count": 2,
+   "issues": [],
+   "member_offs_count": 2
+  },
+  "filebuf": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbAABBox": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "gbActor": {
+   "status": "no-ctor",
+   "annotated_size": 116
+  },
+  "gbActorDef": {
+   "status": "no-ctor",
+   "annotated_size": 92
+  },
+  "gbActorExpNode": {
+   "status": "no-ctor",
+   "annotated_size": 132
+  },
+  "gbActorMgr": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "gbAnimKey": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbAnimScript": {
+   "status": "no-ctor",
+   "annotated_size": 136
+  },
+  "gbAudioManager": {
+   "status": "no-ctor",
+   "annotated_size": 244
+  },
+  "gbAudioMgrDesc": {
+   "status": "no-ctor",
+   "annotated_size": 268
+  },
+  "gbBaseMesh": {
+   "status": "no-ctor",
+   "annotated_size": 120
+  },
+  "gbBinkVideo": {
+   "status": "no-ctor",
+   "annotated_size": 1835912
+  },
+  "gbCamControler": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "gbCamera": {
+   "status": "no-ctor",
+   "annotated_size": 376
+  },
+  "gbChain1D": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbChain1DNode": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbClearParam": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbColorFlt": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbColorQuad": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbColorQuadChannels": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbCursorRes": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "gbDropDesc": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "gbDropGroup": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "gbDropUnit": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "gbDynVertBuf": {
+   "status": "no-ctor",
+   "annotated_size": 60
+  },
+  "gbEffectMgr": {
+   "status": "no-ctor",
+   "annotated_size": 2088
+  },
+  "gbEmitterData": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "gbEmitterShape": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "gbEmitterSphere": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbEmitterSquare": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "gbFileStream": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbFogParam": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "gbGammaRamp": {
+   "status": "no-ctor",
+   "annotated_size": 1536
+  },
+  "gbGeomNode": {
+   "status": "no-ctor",
+   "annotated_size": 288
+  },
+  "gbGeomQuad": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "gbGfxCaps": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "gbGfxDriverInfo": {
+   "status": "no-ctor",
+   "annotated_size": 184
+  },
+  "gbGfxManager": {
+   "status": "no-ctor",
+   "annotated_size": 1520
+  },
+  "gbGfxManager_D3D": {
+   "status": "no-ctor",
+   "annotated_size": 2288
+  },
+  "gbGfxStatistic": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "gbImage2D": {
+   "status": "no-ctor",
+   "annotated_size": 200
+  },
+  "gbImage2DInfo": {
+   "status": "no-ctor",
+   "annotated_size": 128
+  },
+  "gbIndexBubble": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "gbIndexPool": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "gbKeyControler": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "gbLight": {
+   "status": "no-ctor",
+   "annotated_size": 104
+  },
+  "gbLightObj": {
+   "status": "no-ctor",
+   "annotated_size": 216
+  },
+  "gbMaterial": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "gbMatrix4": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "gbMatrix4Flat": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "gbMatrixStack": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbMeshData": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbMeshMemCache": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbMeshSection": {
+   "status": "no-ctor",
+   "annotated_size": 188
+  },
+  "gbMixActInfo": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "gbNBTreeNode": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "gbNodeMsgObj": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbNodeMsgPayload": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbOBBox": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "gbOctree": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbOctreeNode": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbPartEmitter": {
+   "status": "no-ctor",
+   "annotated_size": 27768
+  },
+  "gbPartGroupParam": {
+   "status": "no-ctor",
+   "annotated_size": 18752
+  },
+  "gbPartParamControl": {
+   "status": "no-ctor",
+   "annotated_size": 4580
+  },
+  "gbParticleEffect": {
+   "status": "no-ctor",
+   "annotated_size": 352
+  },
+  "gbParticleGroup": {
+   "status": "no-ctor",
+   "annotated_size": 144
+  },
+  "gbParticleUnit": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "gbPixelFormat": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "gbPrintFont": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "gbPrintFontMgr": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "gbQuaternion": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbRain": {
+   "status": "no-ctor",
+   "annotated_size": 344
+  },
+  "gbRay": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "gbRefObject": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbRenderEffect": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "gbRenderEffect_D3D": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbRenderInfoObj": {
+   "status": "no-ctor",
+   "annotated_size": 112
+  },
+  "gbResManager": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "gbResource": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "gbSceneGraph": {
+   "status": "no-ctor",
+   "annotated_size": 67256
+  },
+  "gbSceneNode": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "gbSingleton_gbGfxManager": {
+   "status": "no-ctor",
+   "annotated_size": 1
+  },
+  "gbSnow": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "gbSound2DNode": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbSound3DNode": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "gbSoundData": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "gbSphere": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbSurfaceDesc": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "gbTagNode": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "gbTagXBladeNode": {
+   "status": "no-ctor",
+   "annotated_size": 100
+  },
+  "gbTexFlipAnim": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbTexture": {
+   "status": "no-ctor",
+   "annotated_size": 84
+  },
+  "gbTextureArray": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "gbTexture_D3D": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "gbUIQuad": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "gbVFile1": {
+   "status": "no-ctor",
+   "annotated_size": 272
+  },
+  "gbVFileSystem": {
+   "status": "no-ctor",
+   "annotated_size": 917972
+  },
+  "gbVec2D": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbVec3D": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "gbVec4D": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "gbVertPoolMgr": {
+   "status": "no-ctor",
+   "annotated_size": 1572
+  },
+  "gbVertexBubble": {
+   "status": "no-ctor",
+   "annotated_size": 56
+  },
+  "gbVertexElement": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "gbVertexPool": {
+   "status": "no-ctor",
+   "annotated_size": 60
+  },
+  "gbViewPort": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "gbVisNode": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "gbVolModNode": {
+   "status": "no-ctor",
+   "annotated_size": 220
+  },
+  "gbVolumeModifier": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "graph": {
+   "status": "no-ctor",
+   "annotated_size": 1920
+  },
+  "h3DPOBJECT": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "ioinfo": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "lconv": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "localVar0": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "localVar1": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "localVar2": {
+   "status": "no-ctor",
+   "annotated_size": 268
+  },
+  "m_RoleState": {
+   "status": "no-ctor",
+   "annotated_size": 4132
+  },
+  "magic_tab": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "me_RoleState": {
+   "status": "no-ctor",
+   "annotated_size": 9372
+  },
+  "p_RoleState": {
+   "status": "no-ctor",
+   "annotated_size": 4132
+  },
+  "pcmwaveformat_tag": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "primitive": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "rgbcolor_particle_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "rotation_particle_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "rotmulti_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "rterrmsgs": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "sCollision": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "s_RoleState": {
+   "status": "no-ctor",
+   "annotated_size": 3788
+  },
+  "s_SpecialPropItem": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "scAsmDecoder": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "scCmdDef": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "scGlobalUserVar": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "scSCEFile": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "scScriptBlock": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "scScriptInstance": {
+   "status": "no-ctor",
+   "annotated_size": 68
+  },
+  "scUserVarInfo": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "scVARIANT": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "scVARIANT_data": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "scVarStack": {
+   "status": "no-ctor",
+   "annotated_size": 260
+  },
+  "sg_customshape": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "sg_emission_control": {
+   "status": "no-ctor",
+   "annotated_size": 36952
+  },
+  "sg_emitter": {
+   "status": "no-ctor",
+   "annotated_size": 32088
+  },
+  "sg_emitter_data": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "sg_emitter_sphere": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "sg_emitter_square": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "sg_particle": {
+   "status": "no-ctor",
+   "annotated_size": 21572
+  },
+  "sg_particle_data": {
+   "status": "no-ctor",
+   "annotated_size": 92
+  },
+  "sg_particle_scene": {
+   "status": "no-ctor",
+   "annotated_size": 362832
+  },
+  "size_particle_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "sizemulti_emitter_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "skill_tab": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "st_Manager": {
+   "status": "no-ctor",
+   "annotated_size": 244
+  },
+  "std": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "subPARAM": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "t3DModel": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "t3DObject": {
+   "status": "no-ctor",
+   "annotated_size": 288
+  },
+  "tChunk": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tFace": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "tMaterialInfo": {
+   "status": "no-ctor",
+   "annotated_size": 548
+  },
+  "tag17A7BData": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "tag17A8Data": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "tag4DWORD": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagActionCommand": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "tagAnimStateSplit": {
+   "status": "no-ctor",
+   "annotated_size": 2
+  },
+  "tagAttackSequen": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "tagC10Data": {
+   "status": "no-ctor",
+   "annotated_size": 60
+  },
+  "tagCCBStageData": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "tagCCT": {
+   "status": "no-ctor",
+   "annotated_size": 204
+  },
+  "tagCOPYDATASTRUCT": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagCPKHeader": {
+   "status": "no-ctor",
+   "annotated_size": 128
+  },
+  "tagCPKTable": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "tagCam": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "tagCamTask": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "tagCmdData": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "tagCmdDataDestRoleView": {
+   "status": "no-ctor",
+   "annotated_size": 11
+  },
+  "tagCombatTaskData": {
+   "status": "no-ctor",
+   "annotated_size": 384
+  },
+  "tagCombatTimerState": {
+   "status": "no-ctor",
+   "annotated_size": 873
+  },
+  "tagControlData": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagControlThread": {
+   "status": "no-ctor",
+   "annotated_size": 64
+  },
+  "tagDemand": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagEffClass": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "tagEffGroup": {
+   "status": "no-ctor",
+   "annotated_size": 324
+  },
+  "tagEffLinker": {
+   "status": "no-ctor",
+   "annotated_size": 60
+  },
+  "tagEffMgrData": {
+   "status": "no-ctor",
+   "annotated_size": 1500
+  },
+  "tagEffObj": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "tagEffObjType": {
+   "status": "no-ctor",
+   "annotated_size": 280
+  },
+  "tagEffSPSlot": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "tagEffSParticleSys": {
+   "status": "no-ctor",
+   "annotated_size": 808
+  },
+  "tagEffTaskParam": {
+   "status": "no-ctor",
+   "annotated_size": 124
+  },
+  "tagEntry": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagEntryEnd": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "tagExplosive": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "tagFightScriptData": {
+   "status": "no-ctor",
+   "annotated_size": 512
+  },
+  "tagFormationSceneState": {
+   "status": "no-ctor",
+   "annotated_size": 864
+  },
+  "tagGroup": {
+   "status": "no-ctor",
+   "annotated_size": 516
+  },
+  "tagHeader": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "tagImbibeNimbus": {
+   "status": "no-ctor",
+   "annotated_size": 44
+  },
+  "tagKBDLLHOOKSTRUCT": {
+   "status": "no-ctor",
+   "annotated_size": 20
+  },
+  "tagLVCOLUMNA": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "tagLVITEMA": {
+   "status": "no-ctor",
+   "annotated_size": 40
+  },
+  "tagListHead": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "tagLoggerCallback": {
+   "status": "no-ctor",
+   "annotated_size": 136
+  },
+  "tagMeteor": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "tagMeteorNode": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "tagNMHDR": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagNMITEMACTIVATE": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "tagNewItem": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagOFNA": {
+   "status": "no-ctor",
+   "annotated_size": 76
+  },
+  "tagPALETTEENTRY": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "tagPOINT": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "tagParam": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagPartical": {
+   "status": "no-ctor",
+   "annotated_size": 48
+  },
+  "tagPartyInitView": {
+   "status": "no-ctor",
+   "annotated_size": 402
+  },
+  "tagPlayerSet": {
+   "status": "no-ctor",
+   "annotated_size": 52
+  },
+  "tagQuad": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "tagRGBQUAD": {
+   "status": "no-ctor",
+   "annotated_size": 4
+  },
+  "tagRegion": {
+   "status": "no-ctor",
+   "annotated_size": 580
+  },
+  "tagRoleActionState": {
+   "status": "no-ctor",
+   "annotated_size": 896
+  },
+  "tagRoleSlot": {
+   "status": "no-ctor",
+   "annotated_size": 896
+  },
+  "tagRoleState": {
+   "status": "no-ctor",
+   "annotated_size": 600
+  },
+  "tagRoleSystemData": {
+   "status": "no-ctor",
+   "annotated_size": 404
+  },
+  "tagRoleTask": {
+   "status": "no-ctor",
+   "annotated_size": 96
+  },
+  "tagRoleTaskData": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "tagRoleTaskSlotsView": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagRoleTaskVec3View": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagScriptCmd": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagScriptPtrQuad": {
+   "status": "no-ctor",
+   "annotated_size": 164
+  },
+  "tagShockUnit": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "tagShowItem": {
+   "status": "no-ctor",
+   "annotated_size": 280
+  },
+  "tagSkillCountBlock": {
+   "status": "no-ctor",
+   "annotated_size": 298
+  },
+  "tagStageRoleData": {
+   "status": "no-ctor",
+   "annotated_size": 160
+  },
+  "tagStageSubTask": {
+   "status": "no-ctor",
+   "annotated_size": 80
+  },
+  "tagStageTask": {
+   "status": "no-ctor",
+   "annotated_size": 2632
+  },
+  "tagTCITEMA": {
+   "status": "no-ctor",
+   "annotated_size": 28
+  },
+  "tagTaskLayoutPtrs": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagTaskSlotHeader": {
+   "status": "no-ctor",
+   "annotated_size": 8
+  },
+  "tagTaskVecXYZ": {
+   "status": "no-ctor",
+   "annotated_size": 12
+  },
+  "tagTeamSlotsBOverlay": {
+   "status": "no-ctor",
+   "annotated_size": 800
+  },
+  "tagThread": {
+   "status": "no-ctor",
+   "annotated_size": 88
+  },
+  "tagUIParam": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "tagUITask": {
+   "status": "no-ctor",
+   "annotated_size": 72
+  },
+  "tagUV": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagUVSet": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "tagVA": {
+   "status": "no-ctor",
+   "annotated_size": 24
+  },
+  "tagVAF": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  },
+  "tagVAO": {
+   "status": "no-ctor",
+   "annotated_size": 16
+  },
+  "util": {
+   "status": "no-ctor",
+   "annotated_size": 1044
+  },
+  "vert": {
+   "status": "no-ctor",
+   "annotated_size": 36
+  },
+  "vertexalpha_particle_graph": {
+   "status": "no-ctor",
+   "annotated_size": 5300
+  },
+  "waveformat_tag": {
+   "status": "no-ctor",
+   "annotated_size": 14
+  },
+  "wavehdr_tag": {
+   "status": "no-ctor",
+   "annotated_size": 32
+  }
+ }
+}
