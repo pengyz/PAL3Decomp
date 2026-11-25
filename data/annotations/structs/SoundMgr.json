@@ -123,5 +123,5 @@
   }
  },
  "note": "布局定性20261120: 音频管理器, 13 成员全语义命名(脚本音乐/场景音乐/MusicTable/音量三件/CPK包), 非缺口",
- "source": " | [W1 查二 2026-11-25] max=0xE03EC=100.0%(PlayCPKStream)——918796 真实(CPK 音频流管理巨构)。零 ctor mangle=改名丢失, 真名考据随 W2 普查。"
+ "source": " | [W1 查二 2026-11-25] max=0xE03EC=100.0%(PlayCPKStream)——918796 真实(CPK 音频流管理巨构)。零 ctor mangle=改名丢失, 真名考据随 W2 普查。 | [W1 第四孪生发现 2026-11-25] g_ScreenMode@0xa3a7d8 单例被三名字瓜分: SoundMgr/CScreenMode(69 方法散布 0x40eb10-0x5694f0=垃圾罐型历史归属, ProcessGameMode/SetTooltipText/SetProgress 等 UI 方法混入)+SoundMgr(2 方法 InitCPK/PlayCPKStream, CPK 音频语义)+gbBinkVideo(0 方法, 双 CPK 1.8MB 发明尺寸)。语料同址双人格实锤: PAL3.cpp L234 (SoundMgr*)&g_ScreenMode->InitCPK vs L350-353 (CScreenMode*)&g_ScreenMode->PlayVideo(CreateDevice(\"movie\\\\logo.bik\"))/GetHeight/GetWidth/SetViewport。语义同源=BINK 视频+CPK 媒体管理器单例(vtable=CPK 系 B9 旧证)。=SystemUI/Scene/UISystem 三孪生案第四组。定谳战役待开: 逐方法接收者证据+三名字合并(媒体管理器单一真值源)。"
 }
