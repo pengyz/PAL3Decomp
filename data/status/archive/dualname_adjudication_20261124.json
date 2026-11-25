@@ -78,6 +78,18 @@
     "UIRenderObj::&pszFolder/CountEntries/sub_43B660: None(未解析)"
    ],
    "verdict": "Family B/C 统一真根因=hexrays 未型 this 槽渲染族(近邻成员吸收): 修=逐宿主嵌入 TLDB 注解(位冲突裁决前置: 宿主+8 vs UIWnd m_wndcolor 布局重审)——独立战役立案, 本轮不蛮干"
+  },
+  {
+   "date": "2026-11-25",
+   "case": "Role/RoleSystem 同尺寸身份结裁决",
+   "findings": [
+    "Extra0(0xBFDBB0)=BSS 段(加载器零初始化, IDA 静态视图=0xFF/未知)——静态 vtable 不可读",
+    "Role binary_size=8704(0x2200) bases=[Object,PalScriptWaitObj,GlowObj] 16 方法 47 成员",
+    "RoleSystem binary_size=8704(0x2200) bases=[UIWnd] 150 方法 151 成员 vtable=0x56AAD8",
+    "运行时证据: 115 RoleSystem 方法接收者=Extra0/Extra1 链(压倒性); ScriptUpdate 读 Extra0/1.m_nMoveMode",
+    "Camera::InitFromScene/ScriptSystem::UpdateTimers 绑定=hexrays 未型 this 槽渲染族(与 SetLibFolder 同款)"
+   ],
+   "verdict": "Extra0/Extra1 注解 type: RoleSystem 维持不变(运行时证据压倒性); Camera/ScriptSystem 绑定=hexrays 渲染族(非身份竞争); Role vs RoleSystem 同尺寸=待定谳(无 ctor 交叉证据, 不定谳)"
   }
  ],
  "adjudications": [
