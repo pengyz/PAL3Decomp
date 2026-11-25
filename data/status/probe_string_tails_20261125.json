@@ -1,0 +1,38 @@
+{
+ "_Tidy": {
+  "size": 72,
+  "tail_hex": "000000005ec20400",
+  "tail_disasm": [
+   "mov     dword ptr [esi+0Ch], 0",
+   "pop     esi"
+  ],
+  "tinfo": null
+ },
+ "_Split": {
+  "size": 201,
+  "tail_hex": "040b005f5e5d5bc3",
+  "tail_disasm": [
+   "mov     byte ptr [ebx+ecx], 0",
+   "pop     esi"
+  ],
+  "tinfo": null
+ },
+ "_Freeze": {
+  "size": 118,
+  "tail_hex": "04c646ffff5f5ec3",
+  "tail_disasm": [
+   "jz      short loc_407B23",
+   "mov     byte ptr [esi-1], 0FFh"
+  ],
+  "tinfo": null
+ },
+ "Assign": {
+  "size": 208,
+  "tail_hex": "085f5e5d5bc20800",
+  "tail_disasm": [
+   "mov     [ebx+8], eax",
+   "pop     ebx"
+  ],
+  "tinfo": "void __thiscall(String *__hidden this, char *src, int len)"
+ }
+}

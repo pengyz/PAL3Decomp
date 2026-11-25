@@ -79,6 +79,15 @@
 {"addr": "0x0051ca50", "name": "CCBParabolaWindow::ShowClipped(int)", "file": "pal3/src/Combat/CCBParabolaWindow.cpp", "status": "partial", "match_pct": 50.6, "size": 77}
 {"addr": "0x0051caa0", "name": "CCBParabolaWindow::Render(void)", "file": "pal3/src/Combat/CCBParabolaWindow.cpp", "status": "partial", "match_pct": 9.9, "size": 191}
 {"addr": "0x00449be0", "name": "CCBProtectWindow::ValidateSlot(uint)", "file": "pal3/src/Combat/CCBProtectWindow.cpp", "status": "partial", "match_pct": 15.9, "size": 63}
+{"addr": "0x00443190", "name": "CCBResultWindow::Create(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 22.2, "size": 18}
+{"addr": "0x00444a20", "name": "CCBResultWindow::CCBResultWindow(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 22.6, "size": 124}
+{"addr": "0x00444aa0", "name": "CCBResultWindow::`scalar deleting destructor'(uint)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00444ac0", "name": "CCBResultWindow::~CCBResultWindow(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 11}
+{"addr": "0x00444ad0", "name": "CCBResultWindow::Render(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 16.4, "size": 566}
+{"addr": "0x00444d10", "name": "CCBResultWindow::StartAnim(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 13.3, "size": 15}
+{"addr": "0x00444d20", "name": "CCBResultWindow::SetDirty(void)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
+{"addr": "0x00444d30", "name": "CCBResultWindow::Update(int,int)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 33.0, "size": 437}
+{"addr": "0x00515ce0", "name": "CCBResultWindow::FindChildByID(int)", "file": "pal3/src/Combat/CCBResultWindow.cpp", "status": "partial", "match_pct": 41.7, "size": 48}
 {"addr": "0x0051b860", "name": "CCBSkillWindow::OnMessage(int,uint,int)", "file": "pal3/src/Combat/CCBSkillWindow.cpp", "status": "partial", "match_pct": 95.2, "size": 83}
 {"addr": "0x0051bc00", "name": "CCBSkillWindow::~CCBSkillWindow(void)", "file": "pal3/src/Combat/CCBSkillWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 79}
 {"addr": "0x0051bbe0", "name": "CCBSkillWindow::`scalar deleting destructor'(uint)", "file": "pal3/src/Combat/CCBSkillWindow.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -289,6 +298,43 @@
 {"addr": "0x004bdfb0", "name": "ScreenEffect::ScreenEffect(void)", "file": "pal3/src/Effect/ScreenEffect.cpp", "status": "partial", "match_pct": 16.6, "size": 163}
 {"addr": "0x004be060", "name": "ScreenEffect::`scalar deleting destructor'(uint)", "file": "pal3/src/Effect/ScreenEffect.cpp", "status": "partial", "match_pct": 50.0, "size": 30}
 {"addr": "0x004be830", "name": "ScreenEffect::CopyParams(int *)", "file": "pal3/src/Effect/ScreenEffect.cpp", "status": "partial", "match_pct": 2.9, "size": 34}
+{"addr": "0x004bdf30", "name": "ScreenEffectMgr::_todo_4BDF30(float)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 25.0, "size": 36}
+{"addr": "0x004bdf60", "name": "ScreenEffectMgr::IsScriptDelNeeded(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 75.0, "size": 4}
+{"addr": "0x004bdf70", "name": "ScreenEffectMgr::StartFade(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 86.7, "size": 15}
+{"addr": "0x004be080", "name": "ScreenEffectMgr::ClearAllEffects(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 12.8, "size": 281}
+{"addr": "0x004be1a0", "name": "ScreenEffectMgr::ProcessEffect(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 15.3, "size": 686}
+{"addr": "0x004be4a0", "name": "ScreenEffectMgr::UpdateFrontEffect(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 11.1, "size": 234}
+{"addr": "0x004be590", "name": "ScreenEffectMgr::GetInstance(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "match_L1", "match_pct": 100.0, "size": 51}
+{"addr": "0x004be5e0", "name": "ScreenEffectMgr::IsFadeWhiteHolding(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 41.7, "size": 12}
+{"addr": "0x004be5f0", "name": "ScreenEffectMgr::DrainQueue(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 11.6, "size": 181}
+{"addr": "0x004be6b0", "name": "ScreenEffectMgr::AllocEffectBlock(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 14.8, "size": 345}
+{"addr": "0x004be810", "name": "ScreenEffectMgr::GetFadeFlags(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 29.6, "size": 27}
+{"addr": "0x004be920", "name": "ScreenEffectMgr::RenderFadeOut(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 9.0, "size": 145}
+{"addr": "0x004be9c0", "name": "ScreenEffectMgr::ToggleFade(float)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 6.7, "size": 30}
+{"addr": "0x004be9e0", "name": "ScreenEffectMgr::StartFadeIn(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 8.3, "size": 12}
+{"addr": "0x004beab0", "name": "ScreenEffectMgr::RenderFadeIn(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 9.4, "size": 139}
+{"addr": "0x004bec00", "name": "ScreenEffectMgr::RenderFadeWhiteOut(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 82.1, "size": 140}
+{"addr": "0x004bed50", "name": "ScreenEffectMgr::RenderFadeWhiteIn(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 82.2, "size": 146}
+{"addr": "0x004bee60", "name": "ScreenEffectMgr::ScreenEffectMgr(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 37.3, "size": 193}
+{"addr": "0x004befb0", "name": "ScreenEffectMgr::LoadResources(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 28.8, "size": 438}
+{"addr": "0x004bf170", "name": "ScreenEffectMgr::CleanupTextures(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 21.5, "size": 65}
+{"addr": "0x004bf1c0", "name": "ScreenEffectMgr::Create(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 26.7, "size": 15}
+{"addr": "0x004bf1d0", "name": "ScreenEffectMgr::Destroy(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 18.6, "size": 129}
+{"addr": "0x004bf260", "name": "ScreenEffectMgr::Render(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 24.4, "size": 652}
+{"addr": "0x004bf4f0", "name": "ScreenEffectMgr::UpdateAnimation(float)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 38.5, "size": 397}
+{"addr": "0x004bf680", "name": "ScreenEffectMgr::GetPageIndex(int)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 14.3, "size": 49}
+{"addr": "0x004bf6c0", "name": "ScreenEffectMgr::SetFadeParams(gbMatrix4 *)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "match_L1", "match_pct": 100.0, "size": 35}
+{"addr": "0x004bf760", "name": "ScreenEffectMgr::ResetFadeState(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 57.7, "size": 26}
+{"addr": "0x0052f310", "name": "ScreenEffectMgr::ProcessInstance(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 36.4, "size": 22}
+{"addr": "0x0052f330", "name": "ScreenEffectMgr::IsFadeActive(void)", "file": "pal3/src/Effect/ScreenEffectMgr.cpp", "status": "partial", "match_pct": 16.0, "size": 25}
+{"addr": "0x0042fda0", "name": "Config::ReadINIInt(char *,char *)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 94.4, "size": 18}
+{"addr": "0x0042fdc0", "name": "Config::FormatSectionPath(char *,char *)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 96.3, "size": 27}
+{"addr": "0x0042feb0", "name": "Config::ResetField7(void)", "file": "pal3/src/GameBase/Config.cpp", "status": "match_L1", "match_pct": 100.0, "size": 10}
+{"addr": "0x0042fec0", "name": "Config::InitDefaults(int *,int *)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 18.5, "size": 119}
+{"addr": "0x0042ff40", "name": "Config::ReadFloatArray(int,int,int *,int *)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 12.3, "size": 308}
+{"addr": "0x00430080", "name": "Config::SetSlotValue(int,int)", "file": "pal3/src/GameBase/Config.cpp", "status": "match_L1", "match_pct": 100.0, "size": 31}
+{"addr": "0x004300a0", "name": "Config::GetNextEntry(int,int *,int *,int *)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 10.2, "size": 166}
+{"addr": "0x00430670", "name": "Config::ParseSection(int)", "file": "pal3/src/GameBase/Config.cpp", "status": "partial", "match_pct": 15.6, "size": 282}
 {"addr": "0x0053c990", "name": "Logger::Render(void)", "file": "pal3/src/GameBase/Logger.cpp", "status": "partial", "match_pct": 7.9, "size": 381}
 {"addr": "0x0053cb10", "name": "Logger::WinProc_HWND_InputLine(char)", "file": "pal3/src/GameBase/Logger.cpp", "status": "partial", "match_pct": 7.5, "size": 255}
 {"addr": "0x0053cc10", "name": "Logger::RegisterCallback(int *,char *,char *)", "file": "pal3/src/GameBase/Logger.cpp", "status": "partial", "match_pct": 25.0, "size": 92}
@@ -445,7 +491,7 @@
 {"addr": "0x00438640", "name": "PalScriptFadeInTimer::UpdateFadeIn", "file": "pal3/src/Misc/PalScriptFadeInTimer.cpp", "status": "partial", "match_pct": 32.3, "size": 93}
 {"addr": "0x00438540", "name": "PalScriptFadeOutTimer::UpdateFadeOut", "file": "pal3/src/Misc/PalScriptFadeOutTimer.cpp", "status": "partial", "match_pct": 76.2, "size": 84}
 {"addr": "0x0044a970", "name": "PalScriptIdleObj::LoadScriptTexture(int,int)", "file": "pal3/src/Misc/PalScriptIdleObj.cpp", "status": "partial", "match_pct": 28.6, "size": 161}
-{"addr": "0x00453c00", "name": "PalScriptIdleObj::UpdateWait(void const *,uint)", "file": "pal3/src/Misc/PalScriptIdleObj.cpp", "status": "partial", "match_pct": 44.9, "size": 156}
+{"addr": "0x00453c00", "name": "PalScriptIdleObj::UpdateWait(void const *,uint)", "file": "pal3/src/Misc/PalScriptIdleObj.cpp", "status": "partial", "match_pct": 99.4, "size": 156}
 {"addr": "0x00535600", "name": "PalScriptIdleObj::ResetTimers(void)", "file": "pal3/src/Misc/PalScriptIdleObj.cpp", "status": "match_L1", "match_pct": 100.0, "size": 40}
 {"addr": "0x00438110", "name": "PalScriptProgressTimer::UpdateWaitTimer(void)", "file": "pal3/src/Misc/PalScriptProgressTimer.cpp", "status": "partial", "match_pct": 26.8, "size": 127}
 {"addr": "0x00438190", "name": "PalScriptProgressTimer::~PalScriptProgressTimer(void)", "file": "pal3/src/Misc/PalScriptProgressTimer.cpp", "status": "partial", "match_pct": 26.7, "size": 30}
@@ -469,10 +515,37 @@
 {"addr": "0x00407dc0", "name": "PathObj::CalcLength(void)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 14.7, "size": 251}
 {"addr": "0x0041f120", "name": "PathObj::GetPosition(float,float *,int *)", "file": "pal3/src/Misc/PathObj.cpp", "status": "partial", "match_pct": 6.0, "size": 299}
 {"addr": "0x0043a690", "name": "PlayerAtt::CheckCurRV(void)", "file": "pal3/src/Misc/PlayerAtt.cpp", "status": "partial", "match_pct": 63.6, "size": 44}
+{"addr": "0x004019b0", "name": "PtrArray::ReleasePtrArray(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 31.5, "size": 54}
+{"addr": "0x0040d620", "name": "PtrArray::GetSize(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 18.8, "size": 32}
+{"addr": "0x0040d640", "name": "PtrArray::GetAt(void *,uint)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 4.8, "size": 105}
+{"addr": "0x0040d6b0", "name": "PtrArray::Insert(void *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 14.8, "size": 1282}
+{"addr": "0x0040dbd0", "name": "PtrArray::Find(void *,void *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 8.6, "size": 222}
+{"addr": "0x0040dcd0", "name": "PtrArray::CompareValues(int *,int *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "match_L1", "match_pct": 100.0, "size": 22}
+{"addr": "0x00431cb0", "name": "PtrArray::Reset(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 20.0, "size": 25}
+{"addr": "0x004325a0", "name": "PtrArray::IsArrayReady(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 27.1, "size": 85}
+{"addr": "0x00432660", "name": "PtrArray::Clear(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 45.0, "size": 20}
+{"addr": "0x00432770", "name": "PtrArray::SetAt(int,int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 30.8, "size": 52}
+{"addr": "0x004327b0", "name": "PtrArray::RemoveAt(int,int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 11.9, "size": 59}
+{"addr": "0x004327f0", "name": "PtrArray::FindFirst(void *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 13.6, "size": 59}
+{"addr": "0x00432980", "name": "PtrArray::ResizeOpcodeParams(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 36.4, "size": 11}
+{"addr": "0x00433dc0", "name": "PtrArray::CopyRange(int *,int,int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 7.4, "size": 443}
+{"addr": "0x00434130", "name": "PtrArray::InitFromStream(int,int,char)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 15.8, "size": 152}
+{"addr": "0x004341e0", "name": "PtrArray::~PtrArray(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 24.1, "size": 87}
+{"addr": "0x00432960", "name": "PtrArray::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 13.3, "size": 30}
+{"addr": "0x00434240", "name": "PtrArray::SetSize(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 20.1, "size": 363}
+{"addr": "0x004343b0", "name": "PtrArray::SetAtGrow(ushort,int *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 49.1, "size": 53}
+{"addr": "0x004343f0", "name": "PtrArray::FindByName(char const *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 66.4, "size": 113}
+{"addr": "0x00434490", "name": "PtrArray::Remove(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 14.5, "size": 83}
+{"addr": "0x004344f0", "name": "PtrArray::InsertAt(char const *)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 22.3, "size": 382}
+{"addr": "0x00434670", "name": "PtrArray::DestroyAll(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 24.8, "size": 226}
+{"addr": "0x004348e0", "name": "PtrArray::ReadFileSection(int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 21.8, "size": 565}
+{"addr": "0x0044bd60", "name": "PtrArray::PtrArray(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 60.0, "size": 20}
+{"addr": "0x0053d0b0", "name": "PtrArray::ClearBoth(void)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 8.8, "size": 68}
+{"addr": "0x0053d1a0", "name": "PtrArray::SetResolution(int,int)", "file": "pal3/src/Misc/PtrArray.cpp", "status": "partial", "match_pct": 19.6, "size": 46}
 {"addr": "0x0041d410", "name": "RoleCamera::PushState(void)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "partial", "match_pct": 14.4, "size": 376}
 {"addr": "0x0044d180", "name": "RoleCamera::InitParticles(void)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "partial", "match_pct": 75.6, "size": 266}
 {"addr": "0x00534cf0", "name": "RoleCamera::UpdateAudioListener(int,int)", "file": "pal3/src/Misc/RoleCamera.cpp", "status": "match_L1", "match_pct": 100.0, "size": 95}
-{"addr": "0x00445860", "name": "RoleCameraCtrl::SetName(char const *)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 20.0, "size": 165}
+{"addr": "0x00445860", "name": "RoleCameraCtrl::SetName(char const *)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 26.1, "size": 165}
 {"addr": "0x00445910", "name": "RoleCameraCtrl::SetTargetDistance(int)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "match_L1", "match_pct": 100.0, "size": 13}
 {"addr": "0x00450a60", "name": "RoleCameraCtrl::InitFrameUI(void)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 10.8, "size": 74}
 {"addr": "0x00450ad0", "name": "RoleCameraCtrl::~RoleCameraCtrl(void)", "file": "pal3/src/Misc/RoleCameraCtrl.cpp", "status": "partial", "match_pct": 63.4, "size": 82}
@@ -502,6 +575,16 @@
 {"addr": "0x005330f0", "name": "SceneProp::CalculateWorldPos(float)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 10.2, "size": 343}
 {"addr": "0x00533bc0", "name": "SceneProp::CalcScreenPosition(void)", "file": "pal3/src/Misc/SceneProp.cpp", "status": "partial", "match_pct": 16.4, "size": 116}
 {"addr": "0x0052b980", "name": "SceneVisNode::Remove(int)", "file": "pal3/src/Misc/SceneVisNode.cpp", "status": "match_L1", "match_pct": 100.0, "size": 31}
+{"addr": "0x004b7c30", "name": "ScreenEffectNode::ScreenEffectNode(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 31.8, "size": 132}
+{"addr": "0x004b7cc0", "name": "ScreenEffectNode::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x004b7ce0", "name": "ScreenEffectNode::~ScreenEffectNode(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 77.2, "size": 79}
+{"addr": "0x004b7d30", "name": "ScreenEffectNode::LoadTexture(int)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 34.4, "size": 459}
+{"addr": "0x004b7f00", "name": "ScreenEffectNode::ReleaseResources(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 6.5, "size": 93}
+{"addr": "0x004b7f60", "name": "ScreenEffectNode::_todo_7F60(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 0.0, "size": 13}
+{"addr": "0x004b7f80", "name": "ScreenEffectNode::RenderTransformed(int)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 45.3, "size": 172}
+{"addr": "0x004b8030", "name": "ScreenEffectNode::UpdateRenderInfo(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 18.6, "size": 129}
+{"addr": "0x004b80c0", "name": "ScreenEffectNode::RenderActorTransform(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 33.2, "size": 223}
+{"addr": "0x004b81a0", "name": "ScreenEffectNode::_todo_81A0(void)", "file": "pal3/src/Misc/ScreenEffectNode.cpp", "status": "partial", "match_pct": 17.1, "size": 35}
 {"addr": "0x0041d100", "name": "ScriptPoolPage::ScriptPoolPage_Manage(int)", "file": "pal3/src/Misc/ScriptPoolPage.cpp", "status": "partial", "match_pct": 98.5, "size": 268}
 {"addr": "0x00525120", "name": "SkillUI::SkillUI(void)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "partial", "match_pct": 18.1, "size": 927}
 {"addr": "0x00525520", "name": "SkillUI::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -513,6 +596,13 @@
 {"addr": "0x00527510", "name": "SkillUI::AdvanceToNextSlot(void)", "file": "pal3/src/Misc/SkillUI.cpp", "status": "partial", "match_pct": 21.5, "size": 256}
 {"addr": "0x0053c340", "name": "SoundMgr::InitCPK(int,int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 36.3, "size": 223}
 {"addr": "0x0053ea80", "name": "SoundMgr::PlayCPKStream(int)", "file": "pal3/src/Misc/SoundMgr.cpp", "status": "partial", "match_pct": 37.8, "size": 201}
+{"addr": "0x00402fb0", "name": "String::_Tidy(bool)", "file": "pal3/src/Misc/String.cpp", "status": "match_L1", "match_pct": 100.0, "size": 72}
+{"addr": "0x00407ab0", "name": "String::_Freeze(void)", "file": "pal3/src/Misc/String.cpp", "status": "partial", "match_pct": 63.6, "size": 118}
+{"addr": "0x00407b30", "name": "String::_Eos(uint)", "file": "pal3/src/Misc/String.cpp", "status": "match_L1", "match_pct": 100.0, "size": 17}
+{"addr": "0x00407c70", "name": "String::_Split(void)", "file": "pal3/src/Misc/String.cpp", "status": "partial", "match_pct": 19.9, "size": 201}
+{"addr": "0x00407d40", "name": "String::max_size(void)", "file": "pal3/src/Misc/String.cpp", "status": "match_L1", "match_pct": 100.0, "size": 6}
+{"addr": "0x004317d0", "name": "String::Compare(int,int,char *,int)", "file": "pal3/src/Misc/String.cpp", "status": "partial", "match_pct": 33.3, "size": 105}
+{"addr": "0x004326a0", "name": "String::Assign(char *,int)", "file": "pal3/src/Misc/String.cpp", "status": "partial", "match_pct": 24.0, "size": 208}
 {"addr": "0x004aad90", "name": "SwordUI::RenderSword(void)", "file": "pal3/src/Misc/SwordUI.cpp", "status": "partial", "match_pct": 19.6, "size": 1290}
 {"addr": "0x00454ba0", "name": "TaskBookUI::~TaskBookUI(void)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "partial", "match_pct": 32.2, "size": 242}
 {"addr": "0x00454980", "name": "TaskBookUI::`scalar deleting destructor'(uint)", "file": "pal3/src/Misc/TaskBookUI.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
@@ -568,7 +658,7 @@
 {"addr": "0x00535e70", "name": "UIAnimateCtrlEX::NormalizeVector(int,int,int,int)", "file": "pal3/src/Misc/UIAnimateCtrlEX.cpp", "status": "partial", "match_pct": 31.0, "size": 155}
 {"addr": "0x0043a810", "name": "UICaption::Destroy2(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 17.4, "size": 92}
 {"addr": "0x0043ab00", "name": "UICaption::Destroy(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 40.0, "size": 20}
-{"addr": "0x004427c0", "name": "UICaption::SetEnable(int,int)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 8.8, "size": 205}
+{"addr": "0x004427c0", "name": "UICaption::SetEnable(int,int)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 19.0, "size": 205}
 {"addr": "0x004461f0", "name": "UICaption::DestroyPanel(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "match_L1", "match_pct": 100.0, "size": 8}
 {"addr": "0x0044ab40", "name": "UICaption::_ArraySlots", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 0.0, "size": 8}
 {"addr": "0x0044bda0", "name": "UICaption::DestroyAll(void)", "file": "pal3/src/Misc/UICaption.cpp", "status": "partial", "match_pct": 16.8, "size": 95}
@@ -848,3 +938,20 @@
 {"addr": "0x005415f0", "name": "UIQuadManager::GetInstance(void)", "file": "pal3/src/UI/UIQuadManager.cpp", "status": "partial", "match_pct": 68.6, "size": 51}
 {"addr": "0x00541640", "name": "UIRenderObj::UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 10.3, "size": 203}
 {"addr": "0x00541710", "name": "UIRenderObj::~UIRenderObj(void)", "file": "pal3/src/UI/UIRenderObj.cpp", "status": "partial", "match_pct": 27.5, "size": 51}
+{"addr": "0x00445b40", "name": "UIWnd::~UIWnd(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 37.5, "size": 80}
+{"addr": "0x00445b20", "name": "UIWnd::`scalar deleting destructor'(uint)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 30}
+{"addr": "0x00445b90", "name": "UIWnd::Create(int,tagRECT *,UIWnd *)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 43.7, "size": 87}
+{"addr": "0x00445c10", "name": "UIWnd::HideAll(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 23.5, "size": 68}
+{"addr": "0x00445c60", "name": "UIWnd::Update(int,int)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 16.2, "size": 99}
+{"addr": "0x00445cd0", "name": "UIWnd::Render(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 44.9, "size": 49}
+{"addr": "0x00445d10", "name": "UIWnd::OnMessage(int,uint,int)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 5}
+{"addr": "0x00445d20", "name": "UIWnd::MoveToAbsolute(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 14.3, "size": 28}
+{"addr": "0x00445d40", "name": "UIWnd::HitTest(int,int)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 66.0, "size": 103}
+{"addr": "0x00445e10", "name": "UIWnd::OffsetRect(tagRECT *)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 51}
+{"addr": "0x00445e70", "name": "UIWnd::ShowClipped(int)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 62.2, "size": 37}
+{"addr": "0x00445f20", "name": "UIWnd::MoveWindow(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 52}
+{"addr": "0x00445fa0", "name": "UIWnd::SetRect(void *)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 86.5, "size": 52}
+{"addr": "0x00450390", "name": "UIWnd::DelegateRender(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 11.8, "size": 34}
+{"addr": "0x00451730", "name": "UIWnd::GetState(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "match_L1", "match_pct": 100.0, "size": 7}
+{"addr": "0x00457340", "name": "UIWnd::CleanupScript(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 13.5, "size": 96}
+{"addr": "0x004d5950", "name": "UIWnd::BringWindowToTop(void)", "file": "pal3/src/UI/UIWnd.cpp", "status": "partial", "match_pct": 10.8, "size": 166}

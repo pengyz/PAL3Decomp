@@ -1,0 +1,177 @@
+{
+ "assign_body": [
+  "0x4326a0  mov     eax, [esp+len]",
+  "0x4326a4  push    ebx",
+  "0x4326a5  push    ebp",
+  "0x4326a6  push    esi",
+  "0x4326a7  xor     esi, esi",
+  "0x4326a9  mov     ebx, ecx",
+  "0x4326ab  cmp     eax, esi",
+  "0x4326ad  jle     short loc_4326B2",
+  "0x4326af  mov     [ebx+0Ch], eax",
+  "0x4326b2  mov     ebp, [esp+0Ch+src]",
+  "0x4326b6  mov     eax, [ebx]",
+  "0x4326b8  cmp     ebp, esi",
+  "0x4326ba  jnz     short loc_4326D7",
+  "0x4326bc  cmp     eax, esi",
+  "0x4326be  jz      short loc_4326CB",
+  "0x4326c0  push    eax",
+  "0x4326c1  call    _free",
+  "0x4326c6  add     esp, 4",
+  "0x4326c9  mov     [ebx], esi",
+  "0x4326cb  mov     [ebx+8], esi",
+  "0x4326ce  mov     [ebx+4], esi",
+  "0x4326d1  pop     esi",
+  "0x4326d2  pop     ebp",
+  "0x4326d3  pop     ebx",
+  "0x4326d4  retn    8",
+  "0x4326d7  cmp     eax, esi",
+  "0x4326d9  jnz     short loc_4326FE",
+  "0x4326db  mov     eax, [ebx+0Ch]",
+  "0x4326de  mov     [ebx+4], ebp",
+  "0x4326e1  add     eax, ebp",
+  "0x4326e3  mov     [ebx+8], eax",
+  "0x4326e6  lea     ecx, ds:0[eax*4]",
+  "0x4326ed  push    ecx",
+  "0x4326ee  call    _malloc",
+  "0x4326f3  add     esp, 4",
+  "0x4326f6  mov     [ebx], eax",
+  "0x4326f8  pop     esi",
+  "0x4326f9  pop     ebp",
+  "0x4326fa  pop     ebx",
+  "0x4326fb  retn    8",
+  "0x4326fe  cmp     ebp, [ebx+8]",
+  "0x432701  jg      short loc_43270C",
+  "0x432703  mov     [ebx+4], ebp",
+  "0x432706  pop     esi",
+  "0x432707  pop     ebp",
+  "0x432708  pop     ebx",
+  "0x432709  retn    8",
+  "0x43270c  mov     edx, [ebx+0Ch]",
+  "0x43270f  mov     eax, [ebx+4]",
+  "0x432712  add     eax, edx",
+  "0x432714  mov     [esp+0Ch+len], ebp",
+  "0x432718  cmp     ebp, eax",
+  "0x43271a  jg      short loc_432720",
+  "0x43271c  mov     [esp+0Ch+len], eax",
+  "0x432720  mov     ecx, [esp+0Ch+len]",
+  "0x432724  push    edi",
+  "0x432725  lea     edx, ds:0[ecx*4]",
+  "0x43272c  push    edx",
+  "0x43272d  call    _malloc",
+  "0x432732  mov     ecx, [ebx+4]",
+  "0x432735  mov     esi, [ebx]",
+  "0x432737  shl     ecx, 2",
+  "0x43273a  mov     [esp+14h+src], eax",
+  "0x43273e  mov     edi, eax",
+  "0x432740  mov     eax, ecx",
+  "0x432742  shr     ecx, 2",
+  "0x432745  rep movsd",
+  "0x432747  mov     ecx, eax",
+  "0x432749  and     ecx, 3",
+  "0x43274c  rep movsb",
+  "0x43274e  mov     ecx, [ebx]",
+  "0x432750  push    ecx",
+  "0x432751  call    _free",
+  "0x432756  mov     edx, [esp+18h+src]",
+  "0x43275a  mov     eax, [esp+18h+len]",
+  "0x43275e  add     esp, 8",
+  "0x432761  mov     [ebx+4], ebp",
+  "0x432764  mov     [ebx], edx",
+  "0x432766  mov     [ebx+8], eax",
+  "0x432769  pop     edi",
+  "0x43276a  pop     esi",
+  "0x43276b  pop     ebp",
+  "0x43276c  pop     ebx",
+  "0x43276d  retn    8"
+ ],
+ "string_ctors": [],
+ "eos_callers": [
+  {
+   "site": "0x407b04",
+   "caller": "?_Freeze@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ"
+  },
+  {
+   "site": "0x4306e8",
+   "caller": "?ParseSection@Config@@QAEHH@Z"
+  },
+  {
+   "site": "0x43077c",
+   "caller": "?ParseSection@Config@@QAEHH@Z"
+  },
+  {
+   "site": "0x4308a8",
+   "caller": "?InitScriptObj@PalScript@@QAEHPAHII@Z"
+  },
+  {
+   "site": "0x431623",
+   "caller": "?ConstructStringObj@PalScript@@QAEXPAD@Z"
+  },
+  {
+   "site": "0x4316aa",
+   "caller": "?SetWaitRange@PalScript@@QAEHII@Z"
+  },
+  {
+   "site": "0x444c61",
+   "caller": "?Render@CCBResultWindow@@QAEXXZ"
+  },
+  {
+   "site": "0x4531c4",
+   "caller": "?_init_4530c0@SceneObj@@QAEXPBD@Z"
+  },
+  {
+   "site": "0x453308",
+   "caller": "?Render@SceneObj@@QAEXXZ"
+  },
+  {
+   "site": "0x453b0e",
+   "caller": "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z"
+  },
+  {
+   "site": "0x453b5a",
+   "caller": "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z"
+  },
+  {
+   "site": "0x53e395",
+   "caller": "?PlaySound@CCBStage@@QAEXPADH@Z"
+  },
+  {
+   "site": "0x53f108",
+   "caller": "?StringCopyCat@SceneObj@@QAEXPAV1@PAV1@@Z"
+  }
+ ],
+ "callers__Tidy": {
+  "n": 49,
+  "sample": [
+   "?SetJoystickPos@GRPinput@@QAEXPBDH@Z",
+   "?SetJoystickPos@GRPinput@@QAEXPBDH@Z",
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
+   "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
+   "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ"
+  ]
+ },
+ "callers__Split": {
+  "n": 10,
+  "sample": [
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?ParseSection@Config@@QAEHH@Z",
+   "?ParseSection@Config@@QAEHH@Z",
+   "?InitScriptObj@PalScript@@QAEHPAHII@Z",
+   "?InitScriptObj@PalScript@@QAEHPAHII@Z",
+   "?LoadData@SceneObj@@QAEDXZ",
+   "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z",
+   "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z"
+  ]
+ },
+ "callers__Freeze": {
+  "n": 3,
+  "sample": [
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?LoadData@SceneObj@@QAEDXZ",
+   "?LoadData@SceneObj@@QAEDXZ"
+  ]
+ }
+}

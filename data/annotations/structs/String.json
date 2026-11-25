@@ -1,6 +1,6 @@
 {
  "name": "String",
- "binary_size": 4,
+ "binary_size": 16,
  "methods": {
   "0x004326a0": {
    "name": "Assign",
@@ -21,17 +21,142 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Assign): int(vo"
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Assign): int(vo",
+   "source": " | [对抗复核挂账 2026-11-25] 语料渲染 malloc(4*len)/(int)src 指针参与计数运算——Assign 首参用法与 _Eos/_Split 的字节串读法矛盾, 真语义待全函数定谳(开放案), 现注解 (char*,int) 按 mangle QAE 形保持。"
+  },
+  "0x00407b30": {
+   "name": "_Eos",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned int",
+      "name": "_N"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体17B硬证据: mov eax,[esp+4]; mov [ecx+8],eax; mov ecx,[ecx+4]; mov byte[ecx+eax],0; retn 4 => 1栈参uint, 写len@+8 + NUL@buf[len]。语料曾渲染0参(IDB类型空)=13站渲染缺口根因。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。 FLIRT名 ?_Eos@?$basic_string@ 算法身份保留。"
+  },
+  "0x00402fb0": {
+   "name": "_Tidy",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "bool",
+      "name": "_Init"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体72B: mov al,[esp+4](bool test) + 清零 [esi+4]/[esi+8]/[esi+0xC] 三域(复核逐字节确认 +0 不在 _Tidy 清零面; +0 的 malloc/free 证据在 Assign) + 尾 retn 4 => 1参bool。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。 49调用者(游戏函数直调=头文件inline展开形)。"
+  },
+  "0x00407c70": {
+   "name": "_Split",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体201B: 读[ebp+4](buf)+[buf-1]refcnt, 尾 pop ebx/ebp/esi/edi; retn 0 => 0参; COW拆离。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。"
+  },
+  "0x00407ab0": {
+   "name": "_Freeze",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体118B: mov eax,[esi+4](buf); mov al,[eax-1](refcnt); 尾 mov byte[esi-1],0FFh(FROZEN); retn 0 => 0参。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。 3调用者(DefaultKeyMap/LoadData)。"
+  },
+  "0x00407d40": {
+   "name": "max_size",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "unsigned int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体6B: mov eax,0FFFFFFFDh; retn => 0参常量(0xFFFFFFFD)。unsigned 返回=cmp/jb 无符号比较语义(_Grow族域 jnb/jb 同款)。语料 max_size(this)<v6 渲染缺口=IDB类型空。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。"
+  },
+  "0x004317d0": {
+   "name": "Compare",
+   "evidence_level": "verified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "pos"
+     },
+     {
+      "type": "int",
+      "name": "n"
+     },
+     {
+      "type": "char *",
+      "name": "s"
+     },
+     {
+      "type": "int",
+      "name": "count"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "体硬证据: retn 10h=4栈参; len@+8 vs pos 越界卫兵(call ?_Xran@std@@); repe cmpsb 有界比较; sbb eax,eax/sbb eax,-1 => -1/0/1 比较器。FLIRT名_Grow证伪(体非grow语义)=字节撞名又一例。",
+   "source": " | 2026-11-25 String 类身份定谳: 游戏自有 COW String 类(ptr@4/len@8/refcnt@buf-1), FLIRT 字节撞名 VC6 STL basic_string 误名史见 tools/probe_string_helpers_20261125.py + data/status/probe_string_class_20261125.json。 唯一caller EvalExpression@PalScript; 语料L616曾渲染3参(render gap)。"
   }
  },
  "name_source_note": "[gap-fill 空壳治理 2026-10-16] ⚠️ **误挂待终审**：mangled 零命中（`@String@@` 不在二进制）⇒ 非经修饰名证实的类名；空壳零员零法零表 ⇒ 疑 gap-fill 名噪声",
  "known_members": {
   "0x0": {
-   "name": "_tail_000",
-   "type": "char[4]",
+   "name": "m_allocData",
+   "type": "char *",
+   "evidence_level": "verified",
+   "note": "Assign 路径 malloc/_free([this+0]) 实证; _Tidy 清零面不含 +0(复核修正)。"
+  },
+  "0x4": {
+   "name": "m_data",
+   "type": "char *",
+   "evidence_level": "verified",
+   "note": "_Eos 解引用 buf[len]=0/_Freeze 读 [buf-1] refcnt/Assign 存 src 指针"
+  },
+  "0x8": {
+   "name": "m_len",
+   "type": "int",
+   "evidence_level": "verified",
+   "note": "_Eos 写 len/_Freeze 读 [esi+8]/Compare vs len 比较。⚠️ Assign 尾写 [ebx+8] 但写值=f(src,gap) 非直写 len 参——Assign 语义与字节串模型存在未调和矛盾(挂账: Assign 全语义定谳, 见 methods/0x4326a0)。"
+  },
+  "0xc": {
+   "name": "_gap_000",
+   "type": "int",
    "interim": true,
-   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+   "note": "写入域(_Tidy 清零/Assign len>0 时写)但语义未定谳——N12 留 gap"
   }
  },
- "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账"
+ "members_note": "零成员interim态: 全结构=未名尾部数组, 语义普查挂账",
+ "source": " | [布局定谳 2026-11-25] sizeof=16(写入界 0..0xF: _Tidy 清 0/+4/+8/+0xC), 布局=游戏自有 COW String {allocData, data, len, cap?}。sizeof 敏感站审计: 栈上 String 局部仅 CScreenMode L2597(fail 单元零 L1 风险), 指针算术站 PalScript L1453(fail 单元)——全零字节风险。 | [引证修正 2026-11-25 对抗复核] ①_Tidy 清零面=+4/+8/+0xC 三域(+0 不清, 原注'清 0/+4/+8/+0xC'引证有误); ②sizeof=16 上界证据=+0xC 写界(_Tidy/Assign)≥16, 上界(≤16)无直接写证, 16 为写界最小对齐推定; ③sizeof 敏感站审计补全: 栈上 String 局部三处=CScreenMode L2597 + PalScript L266/267/269/398 + CCBStage L13257(复核补), 全部 fail 单元零 L1 风险。"
 }

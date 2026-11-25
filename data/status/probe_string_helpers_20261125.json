@@ -1,0 +1,111 @@
+{
+ "_Eos": [
+  {
+   "ea": "0x407b30",
+   "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAE",
+   "callers": 13,
+   "body": {
+    "size": 17,
+    "bytes": "8b4424048941088b4904c6040100c20400",
+    "disasm": [
+     "mov     eax, [esp+arg_0]",
+     "mov     [ecx+8], eax",
+     "mov     ecx, [ecx+4]",
+     "mov     byte ptr [ecx+eax], 0",
+     "retn    4"
+    ]
+   }
+  }
+ ],
+ "_Grow": [],
+ "max_size": [],
+ "_Tidy": [
+  {
+   "ea": "0x402fb0",
+   "name": "?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AA",
+   "callers": 49,
+   "body": {
+    "size": 72,
+    "bytes": "8a4424045684c08bf174248b460485c0741d8d48ff8a40ff84c0740a3cff7406fec88801eb0951e8",
+    "disasm": [
+     "mov     al, [esp+arg_0]",
+     "push    esi",
+     "test    al, al",
+     "mov     esi, ecx",
+     "jz      short loc_402FDF",
+     "mov     eax, [esi+4]",
+     "test    eax, eax",
+     "jz      short loc_402FDF",
+     "lea     ecx, [eax-1]"
+    ]
+   }
+  }
+ ],
+ "_Split": [
+  {
+   "ea": "0x407c70",
+   "name": "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A",
+   "callers": 10,
+   "body": {
+    "size": 201,
+    "bytes": "53558be933d256578b4d043bca0f84b10000008a41ff84c00f84a60000003cff0f849e000000fec8",
+    "disasm": [
+     "push    ebx",
+     "push    ebp",
+     "mov     ebp, ecx",
+     "xor     edx, edx",
+     "push    esi",
+     "push    edi",
+     "mov     ecx, [ebp+4]",
+     "cmp     ecx, edx",
+     "jz      loc_407D34"
+    ]
+   }
+  }
+ ],
+ "_Freeze": [
+  {
+   "ea": "0x407ab0",
+   "name": "?_Freeze@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@",
+   "callers": 3,
+   "body": {
+    "size": 118,
+    "bytes": "568bf1578b460485c0745d8a40ff84c074563cff74528b7e0883fffd7605e848a213008b4e0485c9",
+    "disasm": [
+     "push    esi",
+     "mov     esi, ecx",
+     "push    edi",
+     "mov     eax, [esi+4]",
+     "test    eax, eax",
+     "jz      short loc_407B18",
+     "mov     al, [eax-1]",
+     "test    al, al",
+     "jz      short loc_407B18"
+    ]
+   }
+  }
+ ],
+ "_Copy": [],
+ "String.Assign": [
+  {
+   "ea": "0x4326a0",
+   "name": "?Assign@String@@QAEXPADH@Z",
+   "callers": 9,
+   "body": {
+    "size": 208,
+    "bytes": "8b44240853555633f68bd93bc67e0389430c8b6c24108b033bee751b3bc6740b50e88f08120083c4",
+    "disasm": [
+     "mov     eax, [esp+len]",
+     "push    ebx",
+     "push    ebp",
+     "push    esi",
+     "xor     esi, esi",
+     "mov     ebx, ecx",
+     "cmp     eax, esi",
+     "jle     short loc_4326B2",
+     "mov     [ebx+0Ch], eax"
+    ]
+   }
+  }
+ ]
+}

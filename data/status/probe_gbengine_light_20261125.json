@@ -1,0 +1,76 @@
+{
+ "init_fns": [
+  {
+   "ea": "0x100131f0",
+   "name": "?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z",
+   "size": 123,
+   "body": [
+    "0x100131f0  fld     ds:dbl_100F5638",
+    "0x100131f6  fsqrt",
+    "0x100131f8  mov     eax, [esp+arg_0]",
+    "0x100131fc  mov     edx, 3F800000h",
+    "0x10013201  mov     [ecx+8], eax",
+    "0x10013204  xor     eax, eax",
+    "0x10013206  mov     [ecx+18h], edx",
+    "0x10013209  mov     [ecx+14h], edx",
+    "0x1001320c  mov     [ecx+10h], edx",
+    "0x1001320f  mov     [ecx+0Ch], edx",
+    "0x10013212  mov     [ecx+28h], eax",
+    "0x10013215  mov     [ecx+24h], eax",
+    "0x10013218  mov     [ecx+20h], eax",
+    "0x1001321b  mov     [ecx+1Ch], eax",
+    "0x1001321e  mov     dword ptr [ecx+2Ch], 1",
+    "0x10013225  mov     dword ptr [ecx+30h], 1",
+    "0x1001322c  mov     [ecx+38h], eax",
+    "0x1001322f  mov     [ecx+34h], eax",
+    "0x10013232  mov     [ecx+44h], eax",
+    "0x10013235  mov     [ecx+48h], edx",
+    "0x10013238  mov     [ecx+4Ch], eax",
+    "0x1001323b  mov     dword ptr [ecx+50h], 42B40000h",
+    "0x10013242  mov     dword ptr [ecx+54h], 42B60000h",
+    "0x10013249  mov     [ecx+58h], edx",
+    "0x1001324c  fst     dword ptr [ecx+40h]",
+    "0x1001324f  fstp    dword ptr [ecx+3Ch]",
+    "0x10013252  mov     [ecx+68h], eax",
+    "0x10013255  mov     [ecx+64h], eax",
+    "0x10013258  mov     [ecx+60h], eax",
+    "0x1001325b  mov     dword ptr [ecx+5Ch], 7F7FFFFFh",
+    "0x10013262  mov     [ecx+0D4h], eax",
+    "0x10013268  retn    4"
+   ]
+  }
+ ],
+ "enums": {
+  "LIGHT_TYPE": {
+   "ordinal": 0
+  },
+  "LGT_TYPE": {
+   "ordinal": 0
+  },
+  "enum_LIGHT_TYPE": {
+   "ordinal": 0
+  }
+ },
+ "light_name_hits": [
+  "?GetLight@gbGfxManager@@QBEPBUgbLight@@H@Z",
+  "?IsLightEnable@gbGfxManager@@QBEHH@Z",
+  "?SetAmbientLight@gbGfxManager@@QAEXABUgbColorFlt@@@Z",
+  "?GetAmbientLight@gbGfxManager@@QAE?AUgbColorFlt@@XZ",
+  "?GetSysLight@gbLightObj@@QAEPAUgbLight@@XZ",
+  "??0gbLightObj@@QAE@XZ",
+  "??0gbLightObj@@QAE@ABV0@@Z",
+  "??4gbLightObj@@QAEAAV0@ABV0@@Z",
+  "?GetLightObj@gbVolModNode@@QAEPAVgbLightObj@@XZ",
+  "?GetType@gbLightObj@@UAEHXZ",
+  "?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z",
+  "?GetBoundSphere@gbLightObj@@UAEPBUgbSphere@@XZ",
+  "?ComputeBoundSphere@gbLightObj@@QAEXXZ",
+  "?GetEffectOnPoint@gbLightObj@@UAEMABUgbVec3D@@H@Z",
+  "?Compute@gbLightObj@@UAEXPAVgbVolModNode@@@Z",
+  "?gbLoadLightFile@@YAPAVgbVisNode@@PBD@Z",
+  "?gbLoadLightFile@@YAPAVgbVisNode@@PBD@Z_SEH",
+  "??_7gbLightObj@@6B@",
+  "aLightenable",
+  "aLightphi"
+ ]
+}

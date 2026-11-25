@@ -1,0 +1,96 @@
+{
+ "r1_body": {
+  "ea": "0x4d70b0",
+  "size": 3,
+  "bytes": "b001c3",
+  "disasm": [
+   "mov     al, 1",
+   "align 10h"
+  ]
+ },
+ "r1_plain_names": [
+  {
+   "ea": "0x504e20",
+   "name": "j_codecvt_base::do_always_noconv"
+  },
+  {
+   "ea": "0x505400",
+   "name": "j_j_codecvt_base::do_always_noconv"
+  }
+ ],
+ "r2_enums": {
+  "LIGHT_TYPE": {
+   "ordinal": 1184,
+   "decl": "LIGHT_TYPE\n"
+  },
+  "LGT_TYPE": {
+   "ordinal": 136,
+   "decl": "LGT_TYPE\n"
+  }
+ },
+ "r3_eos": [
+  {
+   "ea": "0x407b30",
+   "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z",
+   "type": null
+  }
+ ],
+ "r4_init_xrefs": [
+  {
+   "from": "0x405243",
+   "type": 17,
+   "caller": "?InitGFX@PAL3@@QAEXXZ"
+  },
+  {
+   "from": "0x508541",
+   "type": 17,
+   "caller": "?IsPointerUnderMouse@CCBCamControl@@QAE_NXZ"
+  },
+  {
+   "from": "0x508714",
+   "type": 17,
+   "caller": "?ResetListFlag@CCBCamControl@@QAEXXZ"
+  },
+  {
+   "from": "0x52f147",
+   "type": 17,
+   "caller": "?InitEndScreen@CScreenMode@@QAEXXZ"
+  },
+  {
+   "from": "0x53089d",
+   "type": 17,
+   "caller": "?LoadModelAndInit@RoleAtt@@QAEXXZ"
+  },
+  {
+   "from": "0x405243",
+   "type": 3,
+   "caller": "?InitGFX@PAL3@@QAEXXZ"
+  },
+  {
+   "from": "0x508541",
+   "type": 3,
+   "caller": "?IsPointerUnderMouse@CCBCamControl@@QAE_NXZ"
+  },
+  {
+   "from": "0x508714",
+   "type": 3,
+   "caller": "?ResetListFlag@CCBCamControl@@QAEXXZ"
+  },
+  {
+   "from": "0x52f147",
+   "type": 3,
+   "caller": "?InitEndScreen@CScreenMode@@QAEXXZ"
+  },
+  {
+   "from": "0x53089d",
+   "type": 3,
+   "caller": "?LoadModelAndInit@RoleAtt@@QAEXXZ"
+  }
+ ],
+ "r5_procfling_site": [
+  "0x512ca8  push    1"
+ ],
+ "r5_procnormal_site": [
+  "0x512663  lea     edi, [esp+1018h+pExceptionObject]"
+ ]
+}

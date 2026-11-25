@@ -1,0 +1,109 @@
+{
+ "codecvt": [
+  {
+   "ea": "0x4d70b0",
+   "name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
+   "type": "bool __thiscall(std::codecvt_base *__hidden this)",
+   "callers": [
+    [
+     "0x4fbd20",
+     "?ResetSceneState@CCBStageScene@@QAEHXZ"
+    ],
+    [
+     "0x4fbec4",
+     "?Create_be50@CCBStage@@QAE_NXZ"
+    ],
+    [
+     "0x4fbf0c",
+     "?Create_be50@CCBStage@@QAE_NXZ"
+    ],
+    [
+     "0x504e20",
+     "j_codecvt_base::do_always_noconv"
+    ],
+    [
+     "0x512678",
+     "?ProcNormalAttack@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512831",
+     "?ProcNormalAttack@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512957",
+     "?ProcNormalAttack@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x5129f0",
+     "?ProcNormalAttack@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512bdc",
+     "?ProcFling@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512c30",
+     "?ProcFling@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512c7b",
+     "?ProcFling@CCBSystem@@QAEDXZ"
+    ],
+    [
+     "0x512cb8",
+     "?ProcFling@CCBSystem@@QAEDXZ"
+    ]
+   ],
+   "caller_n": 12
+  },
+  {
+   "ea": "0x504e20",
+   "name": "j_codecvt_base::do_always_noconv",
+   "type": "bool __thiscall(std::codecvt_base *__hidden this)",
+   "callers": [
+    [
+     "0x505400",
+     "j_j_codecvt_base::do_always_noconv"
+    ],
+    [
+     "0x566d73",
+     "?SetCamPos@CCBCamControl@@QAEPAVCCBStageCam@@PAPAHH@Z"
+    ]
+   ],
+   "caller_n": 2
+  },
+  {
+   "ea": "0x505400",
+   "name": "j_j_codecvt_base::do_always_noconv",
+   "type": "bool __thiscall(std::codecvt_base *__hidden this)",
+   "callers": [
+    [
+     "0x4fbef4",
+     "?Create_be50@CCBStage@@QAE_NXZ"
+    ]
+   ],
+   "caller_n": 1
+  }
+ ],
+ "eos": [],
+ "init_fns": [
+  {
+   "ea": "0x56a5a0",
+   "name": "?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z",
+   "type": "void (__thiscall *)(gbLightObj *, enum LIGHT_TYPE)"
+  }
+ ],
+ "enums": {
+  "LIGHT_TYPE": {
+   "ordinal": 1184,
+   "decl": "LIGHT_TYPE\n",
+   "size": 4
+  },
+  "LGT_TYPE": {
+   "ordinal": 136,
+   "decl": "LGT_TYPE\n",
+   "size": 4
+  }
+ },
+ "init_callers": []
+}

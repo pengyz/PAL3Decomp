@@ -1,0 +1,66 @@
+{
+ "_Grow": {
+  "ea": "0x4317d0",
+  "size": 105,
+  "body": [
+   "0x4317d0  push    ebx",
+   "0x4317d1  push    esi",
+   "0x4317d2  mov     esi, ecx",
+   "0x4317d4  push    edi",
+   "0x4317d5  mov     edi, [esp+0Ch+arg_0]",
+   "0x4317d9  cmp     [esi+8], edi",
+   "0x4317dc  jnb     short loc_4317E3",
+   "0x4317de  call    ?_Xran@std@@YAXXZ",
+   "0x4317e3  mov     eax, [esi+8]",
+   "0x4317e6  mov     edx, [esp+0Ch+arg_4]",
+   "0x4317ea  sub     eax, edi",
+   "0x4317ec  cmp     eax, edx",
+   "0x4317ee  jnb     short loc_4317F2",
+   "0x4317f0  mov     edx, eax",
+   "0x4317f2  mov     ebx, [esp+0Ch+arg_C]",
+   "0x4317f6  mov     ecx, edx",
+   "0x4317f8  cmp     edx, ebx",
+   "0x4317fa  jb      short loc_4317FE",
+   "0x4317fc  mov     ecx, ebx",
+   "0x4317fe  mov     eax, [esi+4]",
+   "0x431801  test    eax, eax",
+   "0x431803  jnz     short loc_431809",
+   "0x431805  xor     esi, esi",
+   "0x431807  jmp     short loc_43180C",
+   "0x431809  lea     esi, [eax+edi]",
+   "0x43180c  mov     edi, [esp+0Ch+arg_8]",
+   "0x431810  xor     eax, eax",
+   "0x431812  repe cmpsb",
+   "0x431814  jz      short loc_43181B",
+   "0x431816  sbb     eax, eax",
+   "0x431818  sbb     eax, 0FFFFFFFFh",
+   "0x43181b  test    eax, eax",
+   "0x43181d  jnz     short loc_431833",
+   "0x43181f  cmp     edx, ebx",
+   "0x431821  jnb     short loc_43182C",
+   "0x431823  pop     edi",
+   "0x431824  pop     esi",
+   "0x431825  or      eax, 0FFFFFFFFh",
+   "0x431828  pop     ebx",
+   "0x431829  retn    10h"
+  ],
+  "callers_n": 1,
+  "callers": [
+   "?EvalExpression@PalScript@@QAEPAHPAHPAD@Z"
+  ]
+ },
+ "max_size": {
+  "ea": "0x407d40",
+  "size": 6,
+  "body": [
+   "0x407d40  mov     eax, 0FFFFFFFDh",
+   "0x407d45  retn"
+  ],
+  "callers_n": 3,
+  "callers": [
+   "?DefaultKeyMap@PAL3@@QAEXHH@Z",
+   "?InitScriptObj@PalScript@@QAEHPAHII@Z",
+   "?_init_4530c0@SceneObj@@QAEXPBD@Z"
+  ]
+ }
+}

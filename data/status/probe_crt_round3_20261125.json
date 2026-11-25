@@ -1,0 +1,250 @@
+{
+ "eos_body": {
+  "size": 17,
+  "bytes": "8b4424048941088b4904c6040100c20400",
+  "disasm": [
+   "mov     eax, [esp+arg_0]",
+   "mov     [ecx+8], eax",
+   "mov     ecx, [ecx+4]",
+   "mov     byte ptr [ecx+eax], 0",
+   "retn    4",
+   "align 10h",
+   "push    ebx",
+   "push    esi"
+  ]
+ },
+ "eos_xrefs": [
+  {
+   "site": "0x407b04",
+   "caller": "?_Freeze@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
+   "win": [
+    "0x407afd  test    ecx, ecx",
+    "0x407aff  jz      short loc_407B18",
+    "0x407b01  push    edi",
+    "0x407b02  mov     ecx, esi",
+    "0x407b04  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x4306e8",
+   "caller": "?ParseSection@Config@@QAEHH@Z",
+   "win": [
+    "0x4306e1  test    al, al",
+    "0x4306e3  jz      short loc_4306ED",
+    "0x4306e5  push    ebp",
+    "0x4306e6  mov     ecx, ebx",
+    "0x4306e8  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x43077c",
+   "caller": "?ParseSection@Config@@QAEHH@Z",
+   "win": [
+    "0x430773  mov     ecx, eax",
+    "0x430775  and     ecx, 3",
+    "0x430778  rep movsb",
+    "0x43077a  mov     ecx, ebx",
+    "0x43077c  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x4308a8",
+   "caller": "?InitScriptObj@PalScript@@QAEHPAHII@Z",
+   "win": [
+    "0x43089d  test    al, al",
+    "0x43089f  jz      loc_4309C7",
+    "0x4308a5  push    esi",
+    "0x4308a6  mov     ecx, ebp",
+    "0x4308a8  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x431623",
+   "caller": "?ConstructStringObj@PalScript@@QAEXPAD@Z",
+   "win": [
+    "0x43161a  mov     ecx, eax",
+    "0x43161c  and     ecx, 3",
+    "0x43161f  rep movsb",
+    "0x431621  mov     ecx, ebx",
+    "0x431623  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x4316aa",
+   "caller": "?SetWaitRange@PalScript@@QAEHII@Z",
+   "win": [
+    "0x4316a1  mov     ecx, edx",
+    "0x4316a3  and     ecx, 3",
+    "0x4316a6  rep movsb",
+    "0x4316a8  mov     ecx, ebp",
+    "0x4316aa  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x444c61",
+   "caller": "?Render@CCBResultWindow@@QAEXXZ",
+   "win": [
+    "0x444c5a  test    ecx, ecx",
+    "0x444c5c  jz      short loc_444C75",
+    "0x444c5e  push    ebx",
+    "0x444c5f  mov     ecx, edi",
+    "0x444c61  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x4531c4",
+   "caller": "?_init_4530c0@SceneObj@@QAEXPBD@Z",
+   "win": [
+    "0x4531bc  push    ebp",
+    "0x4531bd  and     ecx, 3",
+    "0x4531c0  rep movsb",
+    "0x4531c2  mov     ecx, ebx",
+    "0x4531c4  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x453308",
+   "caller": "?Render@SceneObj@@QAEXXZ",
+   "win": [
+    "0x4532ff  mov     ecx, edx",
+    "0x453301  and     ecx, 3",
+    "0x453304  rep movsb",
+    "0x453306  mov     ecx, ebp",
+    "0x453308  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x453b0e",
+   "caller": "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z",
+   "win": [
+    "0x453b07  test    al, al",
+    "0x453b09  jz      short loc_453B13",
+    "0x453b0b  push    ebx",
+    "0x453b0c  mov     ecx, ebp",
+    "0x453b0e  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x453b5a",
+   "caller": "?InsertAt@SceneObj@@QAEPAV1@PAV1@II@Z",
+   "win": [
+    "0x453b4f  test    al, al",
+    "0x453b51  jz      loc_453BF3",
+    "0x453b57  push    esi",
+    "0x453b58  mov     ecx, ebp",
+    "0x453b5a  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x53e395",
+   "caller": "?PlaySound@CCBStage@@QAEXPADH@Z",
+   "win": [
+    "0x53e38b  push    ebp",
+    "0x53e38c  and     ecx, 3",
+    "0x53e38f  rep movsb",
+    "0x53e391  lea     ecx, [esp+34h+nVal2]",
+    "0x53e395  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  },
+  {
+   "site": "0x53f108",
+   "caller": "?StringCopyCat@SceneObj@@QAEXPAV1@PAV1@@Z",
+   "win": [
+    "0x53f101  test    al, al",
+    "0x53f103  jz      short loc_53F10D",
+    "0x53f105  push    ebx",
+    "0x53f106  mov     ecx, ebp",
+    "0x53f108  call    ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z"
+   ]
+  }
+ ],
+ "init_sites": {
+  "0x405243": [
+   "0x405230  jmp     short loc_405234",
+   "0x405232  xor     esi, esi",
+   "0x405234  push    2",
+   "0x405236  mov     ecx, esi",
+   "0x405238  mov     [esp+840h+var_4], 0FFFFFFFFh",
+   "0x405243  call    ds:?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z"
+  ],
+  "0x508541": [
+   "0x508532  jmp     short loc_508536",
+   "0x508534  xor     esi, esi",
+   "0x508536  push    ebp",
+   "0x508537  mov     ecx, esi",
+   "0x508539  mov     [esp+34h+var_4], 0FFFFFFFFh",
+   "0x508541  call    ds:?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z"
+  ],
+  "0x508714": [
+   "0x508704  jmp     short loc_508708",
+   "0x508706  xor     esi, esi",
+   "0x508708  push    0",
+   "0x50870a  mov     ecx, esi",
+   "0x50870c  mov     [esp+30h+var_4], 0FFFFFFFFh",
+   "0x508714  call    ds:?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z"
+  ],
+  "0x52f147": [
+   "0x52f13a  jmp     short loc_52F143",
+   "0x52f13c  xor     edi, edi",
+   "0x52f13e  mov     ebp, 1",
+   "0x52f143  push    2",
+   "0x52f145  mov     ecx, edi",
+   "0x52f147  call    ds:?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z"
+  ],
+  "0x53089d": [
+   "0x530893  mov     esi, eax",
+   "0x530895  jmp     short loc_530899",
+   "0x530897  xor     esi, esi",
+   "0x530899  push    2",
+   "0x53089b  mov     ecx, esi",
+   "0x53089d  call    ds:?Init@gbLightObj@@QAEXW4LIGHT_TYPE@1@@Z"
+  ]
+ },
+ "codecvt_sites": {
+  "0x512678": [
+   "0x512663  lea     edi, [esp+1018h+pExceptionObject]",
+   "0x512667  lea     eax, [esp+1018h+pExceptionObject]",
+   "0x51266b  push    offset __TI1?AV_Exception@@",
+   "0x512670  push    eax",
+   "0x512671  rep movsd",
+   "0x512673  call    __CxxThrowException@8",
+   "0x512678  call    ?do_always_noconv@codecvt_base@std@@MBE_NXZ_0"
+  ],
+  "0x4fbd20": [
+   "0x4fbd0d  lea     eax, [esp+101Ch+pExceptionObject]",
+   "0x4fbd11  push    offset __TI1?AV_Exception@@",
+   "0x4fbd16  push    eax",
+   "0x4fbd17  rep movsd",
+   "0x4fbd19  call    __CxxThrowException@8",
+   "0x4fbd1e  mov     ecx, eax",
+   "0x4fbd20  call    ?do_always_noconv@codecvt_base@std@@MBE_NXZ_0"
+  ],
+  "0x505400": [
+   "0x5053e4  mov     eax, esi",
+   "0x5053e6  pop     esi",
+   "0x5053e7  mov     large fs:0, ecx",
+   "0x5053ee  add     esp, 10h",
+   "0x5053f1  retn    8",
+   "0x5053f4  align 10h",
+   "0x505400  jmp     j_codecvt_base__do_always_noconv"
+  ]
+ },
+ "thunks": {
+  "0x504e20": {
+   "size": 5,
+   "bytes": "e98b22fdff",
+   "disasm": [
+    "jmp     ?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
+    "align 10h"
+   ]
+  },
+  "0x505400": {
+   "size": 5,
+   "bytes": "e91bfaffff",
+   "disasm": [
+    "jmp     j_codecvt_base__do_always_noconv",
+    "align 10h"
+   ]
+  }
+ }
+}

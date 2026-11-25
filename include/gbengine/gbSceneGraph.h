@@ -88,15 +88,11 @@ enum LIGHT_TYPE {
     LIGHT_DIRECTIONAL = 3
 };
 
-/* [L-VAR 2026-11-12] LGT_ light-type family hoisted (enums.json 521-523:
-   LGT_OMNI=0/LGT_SPOT=1/LGT_DIRECT=2, distinct from gbengine LIGHT_TYPE).
-   decomp references unqualified (CCBCamControl Init(LGT_OMNI)); enums have
-   no storage -- hoisting is ABI-neutral, same law as LIGHT_TYPE. */
-enum LGT_TYPE {
-    LGT_OMNI = 0,
-    LGT_SPOT = 1,
-    LGT_DIRECT = 2
-};
+/* [2026-11-25] LGT_TYPE 家族退役: gbengine.dll 无此 mangle/til 枚举, enums.json
+   亦无此键(521-523 历史行号早已退役)。Init 参数家族由二进制三证定谳为 LIGHT_TYPE:
+   mangle W4LIGHT_TYPE@1 + IAT 导入调用(call ds:) + 语料渲染 LIGHT_SPOT(值2)。 
+   2026-11-12 的 LGT_TYPE "矫正"撤销(依据=调用点值 0/1/2 全在 LGT 域——实为值 2
+   同域歧义误读, 见 tools/probe_gbengine_light_20261125.py)。 */
 
 class GBAPI gbLightObj : public gbVolumeModifier {
 public:
@@ -104,11 +100,11 @@ public:
     gbLightObj(void);
     gbLightObj(const gbLightObj& other);
     virtual ~gbLightObj(void);
-    /* [L-VAR 2026-11-12] param type corrected: registry mangled name says
-       "LIGHT_TYPE" but all 5 call sites pass LGT_* family values (0/1/2,
-       enums.json 521-523) and zero LIGHT_* (1/2/3) -- IDB enum naming
-       inertia. True family = LGT_TYPE (hoisted above). */
-    void Init(enum LGT_TYPE type);
+    /* [2026-11-25 revert 2026-11-12 矫正] 参数家族=LIGHT_TYPE: mangle
+       W4LIGHT_TYPE@1(二进制硬真值) + call ds: IAT 导入 + 5 调用点 raw push
+       {0, ebp, 0, 2, 2}(值2=LIGHT_SPOT 渲染一致)。DLL 端 Init 体无 switch
+       直存 this+8(值域无 DLL 约束)。 */
+    void Init(enum LIGHT_TYPE type);
     void ComputeBoundSphere(void);
     virtual float GetEffectOnPoint(const gbVec3D& point, int useAttenuation);
     virtual void Compute(gbVolModNode* volmod);

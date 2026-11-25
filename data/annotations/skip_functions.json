@@ -129,11 +129,6 @@
   "reason": "thunk",
   "skip_reason": "awaiting_signature"
  },
- "0x00402fb0": {
-  "name": "?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z",
-  "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
  "0x00403110": {
   "name": "unknown_libname_291",
   "reason": "crt_runtime",
@@ -327,26 +322,6 @@
  "0x00407790": {
   "name": "sub_407790",
   "reason": "crt_init",
-  "skip_reason": "awaiting_signature"
- },
- "0x00407ab0": {
-  "name": "?_Freeze@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
-  "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
- "0x00407b30": {
-  "name": "?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z",
-  "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
- "0x00407c70": {
-  "name": "?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ",
-  "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
- "0x00407d40": {
-  "name": "?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ",
-  "reason": "std_library",
   "skip_reason": "awaiting_signature"
  },
  "0x00407d50": {
@@ -1177,11 +1152,6 @@
  "0x00431060": {
   "name": "string::_auto_431060",
   "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
- "0x004317d0": {
-  "name": "std::string::_Grow",
-  "reason": "CRT/STL internal, no valid class for IDA",
   "skip_reason": "awaiting_signature"
  },
  "0x00431840": {
@@ -2246,7 +2216,7 @@
  },
  "0x004530c0": {
   "name": "SceneObj::_init_4530c0",
-  "reason": "no_decomp: 体渲染带 3 新错（std::_Eos 变参丢失 ×2 + RoleAtt::_sub_4531F0 实参错位）⇒ 声明收编形（批 12-13）：skip=体排除 + structs 方法 declaration_only=声明收编 2026-10-14；归属已修正 string::→SceneObj::（vtable 0x56B200 A 级证，见 SceneObj.json methods.source）",
+  "reason": "no_decomp: 原阻塞=std::_Eos 变参丢失×2(已愈: String::_Eos 1参 sig 2026-11-25落地, 外部调用站已正确渲染)+RoleAtt::_sub_4531F0 实参错位(剩余阻塞)。声明收编形保持(skip=体排除+structs 方法 declaration_only)。退役重审排队: 仅剩单站阻塞可试体发射。",
   "skip_reason": "awaiting_signature"
  },
  "0x00453ca0": {
@@ -4103,11 +4073,6 @@
   "target_name": "??0CCBAI@@QAE@PAVCCBSystem@@@Z",
   "skip_reason": "linker_generated"
  },
- "0x004d70b0": {
-  "name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
-  "reason": "std_library",
-  "skip_reason": "awaiting_signature"
- },
  "0x004db240": {
   "name": "unknown_libname_465",
   "reason": "crt_runtime",
@@ -4686,17 +4651,17 @@
   "skip_reason": "awaiting_signature"
  },
  "0x00504e20": {
-  "name": "j_codecvt_base::do_always_noconv",
+  "name": "j_Method_4D70B0",
   "reason": "thunk",
   "target_addr": "0x004d70b0",
-  "target_name": "?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
+  "target_name": "Method_4D70B0",
   "skip_reason": "linker_generated"
  },
  "0x00505400": {
-  "name": "j_j_codecvt_base::do_always_noconv",
+  "name": "j_j_Method_4D70B0",
   "reason": "thunk",
   "target_addr": "0x00504e20",
-  "target_name": "j_?do_always_noconv@codecvt_base@std@@MBE_NXZ_0",
+  "target_name": "j_Method_4D70B0",
   "skip_reason": "linker_generated"
  },
  "0x005057b0": {

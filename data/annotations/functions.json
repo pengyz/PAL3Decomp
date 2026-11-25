@@ -3907,5 +3907,56 @@
    "pending": false
   },
   "source": "20261124 SceneMgr 捏造实锤退役归位(archive/scenemgr_retired_20261124.json); 挂账: thiscall 接收者未证(LoadMainUITexture this=Render_14/OnMessage_12 局部 ebx; GetCurrentNode this=_init_44f8d0 局部 eax)——归位自由条目待接收者溯源后重归属"
+ },
+ "0x004d70b0": {
+  "name": "Method_4D70B0",
+  "free_helper_confirmed": true,
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "[FLIRT撞名+ICF折叠 2026-11-25] 体3B b001c3(mov al,1;ret)=返true, CRT codecvt_base::do_always_noconv返false => 误名实锤; _0后缀=IDA同名duplicate; 12游戏调用者(ProcNormalAttack×4/ProcFling×4/ResetSceneState/Create_be50×2+thunk×3)=微小常量谓词ICF折叠, 单一真名不可恢复 => 中性名(Method_3CB0先例)。证据: tools/probe_crt_leak_and_light_20261125.py + probe_crt_round2/3。 | [sig 形修正 2026-11-25 对抗复核] 0参形 parse_decl 失败(signature_failures 25 例在册)且与语料1参渲染形矛盾; 显式 void* a1=ecx 接收者参数化(Method_3CB0 int __thiscall(_BYTE *this) 先例形), thiscall ABI=参数走 ecx 零栈参, 字节忠实。"
+ },
+ "0x00504e20": {
+  "name": "j_Method_4D70B0",
+  "declaration_only": true,
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "增量链接jmp thunk(5B e98b22fdff→0x4d70b0); 体排除skip在册, 声明收编供语料j_前缀调用站。 | [FLIRT撞名+ICF折叠 2026-11-25] 体3B b001c3(mov al,1;ret)=返true, CRT codecvt_base::do_ | [sig 形修正 2026-11-25 对抗复核] 0参形 parse_decl 失败(signature_failures 25 例在册)且与语料1参渲染形矛盾; 显式 void* a1=ecx 接收者参数化(Method_3CB0 int __thiscall(_BYTE *this) 先例形), thiscall ABI=参数走 ecx 零栈参, 字节忠实。"
+ },
+ "0x00505400": {
+  "name": "j_j_Method_4D70B0",
+  "declaration_only": true,
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *",
+     "name": "a1"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "二级jmp thunk(5B→0x504e20); 同上声明收编。 | [FLIRT撞名+ICF折叠 2026-11-25] 体3B b001c3(mov al,1;ret)=返true, CRT codecvt_base::do_ | [sig 形修正 2026-11-25 对抗复核] 0参形 parse_decl 失败(signature_failures 25 例在册)且与语料1参渲染形矛盾; 显式 void* a1=ecx 接收者参数化(Method_3CB0 int __thiscall(_BYTE *this) 先例形), thiscall ABI=参数走 ecx 零栈参, 字节忠实。"
  }
 }
