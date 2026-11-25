@@ -72,6 +72,21 @@ struct CPKTable {
     unsigned int dwExtraInfoSize;  // 0x18: extra info size (filename length)
 };
 
+/* [W2 union 落地 2026-11-25] CPK 表区双视图: 挂载全表 | 音频叠加视图。 
+   音频态(基+0x328 = CPK#1 表区+0x290, GetAudioManager 7B 体直读 43 调用点)
+   与表条目 23+ 运行时顺序化共存(InitCPK 全表填 → InitSceneAudio 后写;
+   挂载影像包条目少无冲突)。两副型皆平凡 ✓ */
+class gbAudioManager;
+struct tagCpkAudioOvl {
+    unsigned char _pad_tableprefix[656]; // 0x00: 表条目 0-23 实用前缀 (联合基→0x290)
+    gbAudioManager* m_pAudioMgr;         // 0x290: 音频管理器 (绝对=CPK+0x318)
+};
+
+union CPKTableU {
+    CPKTable m_CPKTable[CPK_MAX_TABLE_NUM]; // 挂载全表视图 (DLL Reset/Load/Open 走 0xE01B8)
+    tagCpkAudioOvl m_audioOvl;              // 音频叠加视图
+};
+
 // ============================================================================
 // CPKFile class - Handle for an opened file within a CPK archive
 // sizeof(CPKFile) == 0x30 (48 bytes, embedded at gbVFile+272)
@@ -114,7 +129,7 @@ public:
     unsigned long   m_dwAllocGranularity;           // +0x00
     ECPKMode        m_eMode;                        // +0x04
     CPKHeader       m_CPKHeader;                    // +0x08 (0x80 bytes)
-    CPKTable        m_CPKTable[CPK_MAX_TABLE_NUM];  // +0x88 (0x8000 * 0x1C = 0xE0000 bytes)
+    CPKTableU       m_tableU;                        // +0x88 (union: 全表 0xE0000 | 音频叠加视图)
     gbVFile*        m_pCPKFile[CPK_MAX_OPEN_FILES]; // +0xE0088: gbVFile[8] (each 0x140 bytes)
     bool            m_bLoaded;                      // +0xE00A8
     unsigned char   _pad[3];                        // +0xE00A9

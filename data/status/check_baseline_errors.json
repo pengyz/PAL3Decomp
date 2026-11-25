@@ -66,5 +66,7 @@
  "DATA:N13a:SoundMgr::m_audiodrv 字段契约断(语料->引用2次, 类链known_members无名) → C2227族预测",
  "DATA:N13a:SoundMgr::m_cbbuf 字段契约断(语料->引用3次, 类链known_members无名) → C2227族预测",
  "DATA:N13a:SoundMgr::m_szScriptMusic 字段契约断(语料->引用2次, 类链known_members无名) → C2227族预测",
- "DATA:N14:SoundMgr 引用类型无建档(语料限定前缀2次) → C2061族预测"
+ "DATA:N14:SoundMgr 引用类型无建档(语料限定前缀2次) → C2061族预测",
+ "structs[gbBinkVideo]: member overlap: m_Cpk(CPK, size=917948)@16 ends@917964 > next m_pAudioMgr@808",
+ "CANON:C10:gbBinkVideo:m_pAudioMgr:c gbBinkVideo.m_pAudioMgr@+808 与 m_Cpk@+16(size 917948) 重叠(非union) — 布局冲突"
 ]

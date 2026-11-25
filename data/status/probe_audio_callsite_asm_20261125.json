@@ -1,0 +1,120 @@
+{
+ "GetAudioManager": [
+  {
+   "site": "0x405a5d",
+   "window": [
+    "0x405a20  mov     edx, [eax+7Ch]",
+    "0x405a23  mov     ecx, offset g_gamefrm",
+    "0x405a28  cmp     edx, 2",
+    "0x405a2b  setz    dl",
+    "0x405a2e  mov     g_szGamePath, dl",
+    "0x405a34  call    ?GetMode@UIGameFrm@@QAEHXZ",
+    "0x405a39  push    eax",
+    "0x405a3a  mov     ecx, offset g_gamefrm",
+    "0x405a3f  call    ?Load@UIGameFrm@@QAEHPAVCUtil@@@Z",
+    "0x405a44  call    CombatEnter",
+    "0x405a49  test    byte ptr g_dwGameFlags, 4",
+    "0x405a50  jz      loc_405AE1",
+    "0x405a56  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x405a5b  mov     ecx, eax"
+   ]
+  },
+  {
+   "site": "0x407759",
+   "window": [
+    "0x40772e  jz      loc_4076A3",
+    "0x407734  pop     edi",
+    "0x407735  mov     al, 1",
+    "0x407737  pop     esi",
+    "0x407738  add     esp, 1Ch",
+    "0x40773b  retn",
+    "0x40773c  align 10h",
+    "0x407740  mov     eax, [esp+arg_0]",
+    "0x407744  sub     eax, 2",
+    "0x407747  jnz     short locret_407784",
+    "0x407749  test    byte ptr g_dwGameFlags, 1",
+    "0x407750  jz      short loc_407766",
+    "0x407752  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x407757  mov     ecx, eax"
+   ]
+  },
+  {
+   "site": "0x437c6e",
+   "window": [
+    "0x437c35  align 10h",
+    "0x437c40  call    UISceneUpdate",
+    "0x437c45  mov     ecx, eax",
+    "0x437c47  jmp     ?BindRolesToStage@PalScript@@QAEXXZ",
+    "0x437c4c  align 10h",
+    "0x437c50  sub     esp, 104h",
+    "0x437c56  push    ebx",
+    "0x437c57  call    ?GetString@PalScript@@QAEPADXZ",
+    "0x437c5c  mov     ebx, eax",
+    "0x437c5e  test    ebx, ebx",
+    "0x437c60  jz      loc_437D7C",
+    "0x437c66  push    esi",
+    "0x437c67  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x437c6c  mov     ecx, eax"
+   ]
+  }
+ ],
+ "PlayCPKStream": [
+  {
+   "site": "0x449965",
+   "window": [
+    "0x44993c  call    ds:?DetachAll3D@gbAudioManager@@QAEXXZ",
+    "0x449942  mov     edi, ds:?StopSoundStream@gbAudioManager@@QAEXH@Z",
+    "0x449948  push    0",
+    "0x44994a  mov     ecx, esi",
+    "0x44994c  call    edi",
+    "0x44994e  push    2",
+    "0x449950  mov     ecx, esi",
+    "0x449952  call    edi",
+    "0x449954  mov     edx, off_598C0C",
+    "0x44995a  push    0",
+    "0x44995c  push    edx",
+    "0x44995d  push    ebx",
+    "0x44995e  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x449963  mov     ecx, eax"
+   ]
+  },
+  {
+   "site": "0x44c6e5",
+   "window": [
+    "0x44c6bd  call    ds:?DetachAll3D@gbAudioManager@@QAEXXZ",
+    "0x44c6c3  mov     ebp, ds:?StopSoundStream@gbAudioManager@@QAEXH@Z",
+    "0x44c6c9  push    ebx",
+    "0x44c6ca  mov     ecx, edi",
+    "0x44c6cc  call    ebp",
+    "0x44c6ce  push    2",
+    "0x44c6d0  mov     ecx, edi",
+    "0x44c6d2  call    ebp",
+    "0x44c6d4  mov     ecx, off_59DD00",
+    "0x44c6da  push    ebx",
+    "0x44c6db  push    ecx",
+    "0x44c6dc  push    1",
+    "0x44c6de  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x44c6e3  mov     ecx, eax"
+   ]
+  },
+  {
+   "site": "0x45982e",
+   "window": [
+    "0x459806  call    ds:?DetachAll3D@gbAudioManager@@QAEXXZ",
+    "0x45980c  mov     ebp, ds:?StopSoundStream@gbAudioManager@@QAEXH@Z",
+    "0x459812  push    0",
+    "0x459814  mov     ecx, edi",
+    "0x459816  call    ebp",
+    "0x459818  push    2",
+    "0x45981a  mov     ecx, edi",
+    "0x45981c  call    ebp",
+    "0x45981e  mov     eax, off_5B20B4",
+    "0x459823  push    0",
+    "0x459825  push    eax",
+    "0x459826  push    ebx",
+    "0x459827  call    ?GetInstance@gbBinkVideo@@QACPAVCScreenMode@@XZ",
+    "0x45982c  mov     ecx, eax"
+   ]
+  }
+ ]
+}

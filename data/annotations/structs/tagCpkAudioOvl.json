@@ -1,0 +1,19 @@
+{
+ "name": "tagCpkAudioOvl",
+ "binary_size": 917504,
+ "known_members": {
+  "0x0": {
+   "name": "_pad_tableprefix",
+   "type": "char[656]",
+   "interim": true,
+   "note": "0x88 联合基→0x290: CPK 表条目 0-23 区(挂载包实用前缀)"
+  },
+  "0x290": {
+   "name": "m_pAudioMgr",
+   "type": "gbAudioManager *",
+   "evidence_level": "verified",
+   "note": "PAL3 GetAudioManager@0x53e500 7B 体 mov eax,[ecx+328h] 直读——绝对偏移 基+0x328 = CPK#1(基+0x10)+0x318 = 表区(基+0x88)+0x290。43 调用点。"
+  }
+ },
+ "source": " | [W2 2026-11-25] CPK 表区音频叠加视图(union 副型): 音频态叠加于表条目 23+ 区(运行时顺序化: InitCPK 全表填 → InitSceneAudio 后写音频态; 挂载包条目少无冲突)。与 tagCPKTable 联合于 CPK+0x88。"
+}

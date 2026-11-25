@@ -21,10 +21,21 @@
    "evidence_level": "unverified"
   },
   "0x88": {
-   "name": "m_CPKTable",
-   "type": "tagCPKTable[32768]",
-   "source": "annotation | CPKTable[32768] 32768×0x1C=0xE0000 精确闭合(0x88→0xE0088)",
-   "evidence_level": "binary_layout_closure"
+   "name": "m_tableU",
+   "evidence_level": "binary_layout_closure",
+   "type": {
+    "union": [
+     {
+      "name": "m_CPKTable",
+      "type": "tagCPKTable[32768]"
+     },
+     {
+      "name": "m_audioOvl",
+      "type": "tagCpkAudioOvl"
+     }
+    ]
+   },
+   "source": " | [W2 union 落地 2026-11-25] 表区双视图 union: tagCPKTable[32768](挂载全表, DLL Reset/Load/Open 全走 0xE01B8) | tagCpkAudioOvl(音频叠加视图——GetAudioManager [基+0x328] 链)。两副型皆平凡 ✓ UnionTriviality 合规。调用点 ASM 终审见 probe_audio_callsite_asm/probe_audio_receiver_k。"
   },
   "0xe0088": {
    "name": "m_pCPKFile",
@@ -148,5 +159,6 @@
    ]
   }
  ],
- "note": "布局定性20261120: CPK 包文件管理器, 结构完整闭合 0x88+32768×0x1C=0xE0088=m_pCPKFile ✓, 非缺口"
+ "note": "布局定性20261120: CPK 包文件管理器, 结构完整闭合 0x88+32768×0x1C=0xE0088=m_pCPKFile ✓, 非缺口",
+ "source": " | [W2 2026-11-25] sizeof(CPK)=0xE01BC DLL A 级确认; 表区 union 双视图落地。"
 }
