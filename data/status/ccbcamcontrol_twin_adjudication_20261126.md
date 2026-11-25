@@ -75,3 +75,57 @@ CCBCamControl 348KB"洞" = 真子结构未解码（池 204×idx 间接访问不�
 
 —— 探针产物: data/status/probe_ccbcamcontrol_{census,global_census,twin,
 pooldecode,dynamicinit}_20261126.json
+
+---
+
+# 定谳 v2（同日续战：接收者回溯 6 探针后反转）
+
+## 终局裁决：BSS"全局"不是对象，真实例在堆上
+
+### 1. g_CCBCamControlData@0x17AAF64 = 静态变量块（对象身份证伪，A 级）
+54 个引用点全分类（probe_dynamicinit）：**50 绝对写 + 2 ABS_RW + 2 CIniFile push，
+零 `mov reg,offset` 装载形**——该地址从未作为对象指针传递。绝对写 disp 全景：
+- `+0x0`：sprintf 缓冲（`sprintf(buf,&g_CCBCamControlData,"EditorCamD%d",idx)`）
+- `+0x2C4..+0x32C`：独立静态变量（compiler_init_00503DD0/E20/EC0/F10/F60、
+  ui_width_init_00503E70 等微函数各写 4-16B）
+- `+0x5B4..+0x61C`：七个方法各自的状态导出槽（GetFreeSpace-folded +5B4/
+  IsTaskValid-folded +5B8/~CCBCamControl +5C0/Create +5D0/CCBCamControl_Init
+  +5E0/StartList +5F0/StopList +600/UpdateCircleSet +610，各 16B=4 dword）
+- **binary_size 0x690B0 锚声明全错**：吞了 ~30 独立全局（g_nCBFormation 等）+
+  静态变量块；CCBCamControl.json 的现注解不可修复，需退役重建
+
+### 2. 真实例 = 堆对象，多载体（probe_receiver 调用点 ecx 全回溯）
+| 载体 | 接收的方法 | 证据 |
+|---|---|---|
+| [CCBStage+0x10] | Init/DoTask/ProcCamMove/AddTask/ClearFinishedTask/CCCTData-copy-ctor | Create_be50 创建+delete；disp 至 0x690AE |
+| [CCBStage+0x4C] | DoList/ProcessCamMove/KeepCurCam/DoLineMove | Create_be50: call DoList 后 delete |
+| [CCBRoleState/CCBSystem/RenderTarget2/CCBStageCam+0x10] | 同 [CCBStage+0x10] 方法族 | 四类共用指针成员 |
+| .data 指针表 dword_56FD88..56FDA8 | Create/StartList/StopList/UpdateCircleSet/Create | `mov ecx, ds:dword_56FD90` 直装 |
+| DlgProc esi | Show/ShowCameraDialog/ReadCameraDialog/GetData_B8D0 | 对话框过程携带 |
+
+### 3. CCCTData 身份完全溶解
+- 4 个"池方法"=FLIRT/ICF 假名（v1 已证）
+- "ctor"=错挂（写序=相机域 vec，v1 已证）
+- m_Pool tagCCT[2000] 模型半真半假：stride 204/idx 乘法链是**真池**但属于
+  **堆类**（InsertTaskToList 接收者=[X+0x10] 堆对象），不属于 BSS 全局
+- m_bPoolInUse/m_nCCTIndex 偏移维度双错（v1 已证）
+
+## 重建战役立案（下轮主攻）
+1. **创建点定尺寸**：找 [CCBStage+0x10] 的 operator new 字面量 → 编译器
+   sizeof A 级（堆类真尺寸）
+2. **编译单元聚类归属**：33+22 方法按地址域聚类（0x505-0x508 交织=同一
+   .cpp；CalcDist@0x41c900/ProcessTask@0x4533f0 远散=疑错挂）逐方法
+   接收者定主
+3. **实例拓扑**：[CCBStage+0x10] vs [CCBStage+0x4C] 同类两实例 or 两类？
+   .data 指针表 9 槽各指什么？
+4. **BSS 块分解**：g_CCBCamControlData 退役 → 逐变量 globals 条目
+   （+0x2C4..0x32C 静态变量族 + +0x5B4..0x61C 状态导出槽族）
+5. **池条目 204B 结构**（v1 开放案③不变，归属改堆类）
+6. **类名定谳**（v1 开放案④：INI 节名全文+PDB 交叉）
+
+## 对既有机制的连带
+- 空洞普查：CCBCamControl 348KB"洞"将在重建后消解（二注解全退役，
+  BSS 块分解后洞归零或重归真结构）
+- W1 锚审计：PLACEMENT-CONFLICT 病新例（静态变量块被当对象锚）
+- globals.json：g_CCBCamControlData type=unsigned char const_data 反而
+  接近真相（scratch 块），但 category 注记需按分解结果重写

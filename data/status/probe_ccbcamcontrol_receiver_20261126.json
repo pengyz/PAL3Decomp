@@ -1,0 +1,1100 @@
+{
+ "CCCTData": {
+  "CalcDist": {
+   "ea": "0x41c900",
+   "n_callers": 5,
+   "forms": {
+    "OTHER": 5
+   },
+   "callers": [
+    {
+     "site": "0x506826",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebx+68FB4h]"
+    },
+    {
+     "site": "0x506d8e",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    },
+    {
+     "site": "0x5073f4",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebx+68FB4h]"
+    },
+    {
+     "site": "0x507a64",
+     "caller": "?InsertTaskToList@CCCTData@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    },
+    {
+     "site": "0x508003",
+     "caller": "?SwapTask@CCCTData@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    }
+   ]
+  },
+  "InitEntries": {
+   "ea": "0x44d780",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x44ddb5",
+     "caller": "StopAllSounds",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ProcessTask": {
+   "ea": "0x4533f0",
+   "n_callers": 2,
+   "forms": {
+    "UNKNOWN": 1,
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x453240",
+     "caller": "?Render@SceneObj@@QAEXXZ",
+     "form": "UNKNOWN",
+     "detail": ""
+    },
+    {
+     "site": "0x4533d6",
+     "caller": "?Render@SceneObj@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "InitImages": {
+   "ea": "0x4a6730",
+   "n_callers": 1,
+   "forms": {
+    "LEA_OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4a7330",
+     "caller": "?CCCTData_6F10@CCCTData@@QAEXXZ",
+     "form": "LEA_OTHER",
+     "detail": "[esi+5D718h]"
+    }
+   ]
+  },
+  "DestroyImage": {
+   "ea": "0x4a67b0",
+   "n_callers": 3,
+   "forms": {
+    "LEA_OTHER": 1,
+    "OTHER": 2
+   },
+   "callers": [
+    {
+     "site": "0x4a790f",
+     "caller": "??1Scene@@QAE@XZ",
+     "form": "LEA_OTHER",
+     "detail": "[esi+5D718h]"
+    },
+    {
+     "site": "0x5656a2",
+     "caller": "?CCCTData_6F10@CCCTData@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[ebp-10h]"
+    },
+    {
+     "site": "0x565b82",
+     "caller": "??1Scene@@QAE@XZ",
+     "form": "OTHER",
+     "detail": "[ebp-10h]"
+    }
+   ]
+  },
+  "CCCTData_6F10": {
+   "ea": "0x4a6f10",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4a467a",
+     "caller": "?Init@EquipUI@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "eax"
+    }
+   ]
+  },
+  "Create_8770": {
+   "ea": "0x4a8770",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4ac7c1",
+     "caller": "?InitEquipUI@EquipUI@@QAEHH@Z",
+     "form": "REG_CARRY",
+     "detail": "ebp"
+    }
+   ]
+  },
+  "UpdateDebugDialog": {
+   "ea": "0x4e7d70",
+   "n_callers": 3,
+   "forms": {
+    "REG_CARRY": 3
+   },
+   "callers": [
+    {
+     "site": "0x4e6223",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4e643c",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4e692c",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "UpdateCamera": {
+   "ea": "0x5044c0",
+   "n_callers": 10,
+   "forms": {
+    "REG_CARRY": 3,
+    "BLOCKED": 1,
+    "OTHER": 6
+   },
+   "callers": [
+    {
+     "site": "0x4e6bd7",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "edi"
+    },
+    {
+     "site": "0x4e6c60",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "edi"
+    },
+    {
+     "site": "0x5044ff",
+     "caller": "j_CCCTData::UpdateCamera",
+     "form": "BLOCKED",
+     "detail": "call    j_InputSystem__ProcessKeyboard"
+    },
+    {
+     "site": "0x504d42",
+     "caller": "?ProcessQueuedCommand@CCBStage@@QAEHH@Z",
+     "form": "REG_CARRY",
+     "detail": "edi"
+    },
+    {
+     "site": "0x505579",
+     "caller": "?DoTask@CCBCamControl@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[esi+68FB4h]"
+    },
+    {
+     "site": "0x506938",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebx+68FB4h]"
+    },
+    {
+     "site": "0x506ed0",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    },
+    {
+     "site": "0x5075c5",
+     "caller": "sub_506340",
+     "form": "OTHER",
+     "detail": "[ebx+68FB4h]"
+    },
+    {
+     "site": "0x507ab7",
+     "caller": "?InsertTaskToList@CCCTData@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    },
+    {
+     "site": "0x508125",
+     "caller": "?SwapTask@CCCTData@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[ebp+68FB4h]"
+    }
+   ]
+  },
+  "CCCTData": {
+   "ea": "0x5058f0",
+   "n_callers": 2,
+   "forms": {
+    "OTHER": 2
+   },
+   "callers": [
+    {
+     "site": "0x4e667f",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4e8298",
+     "caller": "?UpdateDebugDialog@CCCTData@@QAEHXZ",
+     "form": "OTHER",
+     "detail": "[ecx+10h]"
+    }
+   ]
+  },
+  "~CCCTData": {
+   "ea": "0x505930",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fc671",
+     "caller": "?EditorUpdate@CCBStage@@QAEXM@Z",
+     "form": "OTHER",
+     "detail": "[esi+10h]"
+    }
+   ]
+  },
+  "Create": {
+   "ea": "0x506020",
+   "n_callers": 2,
+   "forms": {
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x50587f",
+     "caller": "?ProcCamMove@CCBCamControl@@QAEDXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x505898",
+     "caller": "?ProcCamMove@CCBCamControl@@QAEDXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "Destroy": {
+   "ea": "0x5060d0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x5054a1",
+     "caller": "?Destroy@CCBStageCam@@QAE_NXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "Init": {
+   "ea": "0x5061a0",
+   "n_callers": 1,
+   "forms": {
+    "BLOCKED": 1
+   },
+   "callers": [
+    {
+     "site": "0x505510",
+     "caller": "?DoTask@CCBCamControl@@QAEXXZ",
+     "form": "BLOCKED",
+     "detail": "call    ?Create@CCBStageCam@@QAE_NXZ"
+    }
+   ]
+  },
+  "Save": {
+   "ea": "0x506260",
+   "n_callers": 2,
+   "forms": {
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x505793",
+     "caller": "?ClearFinishedTask@CCBCamControl@@QAEDH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x5057d9",
+     "caller": "sub_5057B0",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "Load": {
+   "ea": "0x5062d0",
+   "n_callers": 5,
+   "forms": {
+    "REG_CARRY": 5
+   },
+   "callers": [
+    {
+     "site": "0x5063f3",
+     "caller": "sub_506340",
+     "form": "REG_CARRY",
+     "detail": "ebx"
+    },
+    {
+     "site": "0x5069c5",
+     "caller": "sub_506340",
+     "form": "REG_CARRY",
+     "detail": "ebp"
+    },
+    {
+     "site": "0x506f53",
+     "caller": "sub_506340",
+     "form": "REG_CARRY",
+     "detail": "ebx"
+    },
+    {
+     "site": "0x507698",
+     "caller": "?InsertTaskToList@CCCTData@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "ebp"
+    },
+    {
+     "site": "0x507b75",
+     "caller": "?SwapTask@CCCTData@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "ebp"
+    }
+   ]
+  },
+  "InsertTaskToList": {
+   "ea": "0x5075e0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x506242",
+     "caller": "?Init@CCCTData@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "SwapTask": {
+   "ea": "0x507b20",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x506250",
+     "caller": "?Init@CCCTData@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ClearList": {
+   "ea": "0x508190",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "IsTaskValid": {
+   "ea": "0x5081a0",
+   "n_callers": 1,
+   "forms": {
+    "BLOCKED": 1
+   },
+   "callers": [
+    {
+     "site": "0x508190",
+     "caller": "?ClearList@CCCTData@@QAE_NXZ",
+     "form": "BLOCKED",
+     "detail": "call    _atexit"
+    }
+   ]
+  },
+  "GetTaskNumInList": {
+   "ea": "0x5081b0",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "GetFreeSpaceInPool": {
+   "ea": "0x5081c0",
+   "n_callers": 1,
+   "forms": {
+    "BLOCKED": 1
+   },
+   "callers": [
+    {
+     "site": "0x5081b0",
+     "caller": "?GetTaskNumInList@CCCTData@@QAEXXZ",
+     "form": "BLOCKED",
+     "detail": "jmp     ?IsTaskValid@CCCTData@@QAE_NXZ"
+    }
+   ]
+  }
+ },
+ "CCBCamControl": {
+  "ProcessRenderQueue": {
+   "ea": "0x48e600",
+   "n_callers": 4,
+   "forms": {
+    "REG_CARRY": 4
+   },
+   "callers": [
+    {
+     "site": "0x48d2ea",
+     "caller": "?UpdateBlendWeight@CameraCtrl@@QAEXHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x48d37a",
+     "caller": "?UpdateBlendWeight@CameraCtrl@@QAEXHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x48d4e2",
+     "caller": "?UpdateBlendWeight@CameraCtrl@@QAEXHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x48d56b",
+     "caller": "?UpdateBlendWeight@CameraCtrl@@QAEXHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ShowAllSlots": {
+   "ea": "0x4a9ed0",
+   "n_callers": 5,
+   "forms": {
+    "REG_CARRY": 5
+   },
+   "callers": [
+    {
+     "site": "0x4a8761",
+     "caller": "?CreateNoteEntry@Scene@@QAEDHHHDHHE@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4aa717",
+     "caller": "?ProcessListInput@UIListBox@@QAEXH@Z",
+     "form": "REG_CARRY",
+     "detail": "ebx"
+    },
+    {
+     "site": "0x4adf4f",
+     "caller": "?OnMessage@Scene@@QAEHHIH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4ae1aa",
+     "caller": "?OnMessage@Scene@@QAEHHIH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4ae34e",
+     "caller": "?OnMessage@Scene@@QAEHHIH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "GetData": {
+   "ea": "0x4e9750",
+   "n_callers": 3,
+   "forms": {
+    "REG_CARRY": 3
+   },
+   "callers": [
+    {
+     "site": "0x4e8592",
+     "caller": "?UpdateStageCamera@CCBStageCam@@QAEHPAMHHHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4e85c5",
+     "caller": "?UpdateStageCamera@CCBStageCam@@QAEHPAMHHHH@Z",
+     "form": "REG_CARRY",
+     "detail": "ebp"
+    },
+    {
+     "site": "0x4e966d",
+     "caller": "?Update_95A0@CCBStageCam@@QAEHH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "Show": {
+   "ea": "0x4eb6f0",
+   "n_callers": 2,
+   "forms": {
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x4e1073",
+     "caller": "DlgProcEditorMain",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4eb3b5",
+     "caller": "DlgProcCameraConfig",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "GetData_B720": {
+   "ea": "0x4eb720",
+   "n_callers": 1,
+   "forms": {
+    "UNKNOWN": 1
+   },
+   "callers": [
+    {
+     "site": "0x4eb6f9",
+     "caller": "?Show@CCBCamControl@@QAEXH@Z",
+     "form": "UNKNOWN",
+     "detail": ""
+    }
+   ]
+  },
+  "GetData_B8D0": {
+   "ea": "0x4eb8d0",
+   "n_callers": 2,
+   "forms": {
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x4eb2e4",
+     "caller": "DlgProcCameraConfig",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4eb701",
+     "caller": "?Show@CCBCamControl@@QAEXH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ShowCameraDialog": {
+   "ea": "0x4ebd30",
+   "n_callers": 2,
+   "forms": {
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x4eb400",
+     "caller": "DlgProcCameraConfig",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4eb709",
+     "caller": "?Show@CCBCamControl@@QAEXH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ReadCameraDialog": {
+   "ea": "0x4ebf90",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4eb2dc",
+     "caller": "DlgProcCameraConfig",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "ProcessCamMove": {
+   "ea": "0x4ff360",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "SetCamPos": {
+   "ea": "0x5052e0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fbc50",
+     "caller": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "eax"
+    }
+   ]
+  },
+  "Init": {
+   "ea": "0x5054b0",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fbee6",
+     "caller": "?Create_be50@CCBStage@@QAE_NXZ",
+     "form": "OTHER",
+     "detail": "[esi+10h]"
+    }
+   ]
+  },
+  "DoTask": {
+   "ea": "0x5054f0",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fc10d",
+     "caller": "?Update_C0A0@CCBStage@@QAEXXZ",
+     "form": "OTHER",
+     "detail": "[edi+10h]"
+    }
+   ]
+  },
+  "ClearFinishedTask": {
+   "ea": "0x505770",
+   "n_callers": 10,
+   "forms": {
+    "OTHER": 10
+   },
+   "callers": [
+    {
+     "site": "0x4c3a33",
+     "caller": "?ProcessCameraPass@RenderTarget2@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[ecx+10h]"
+    },
+    {
+     "site": "0x4ddd6d",
+     "caller": "?EndRoundTasks@CCBRoleState@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4ddef6",
+     "caller": "?EndRoundTasks@CCBRoleState@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[ecx+10h]"
+    },
+    {
+     "site": "0x4de84f",
+     "caller": "?EndRoundTasks@CCBRoleState@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4e660e",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "OTHER",
+     "detail": "[esp+150h+Buffer]"
+    },
+    {
+     "site": "0x4f7a66",
+     "caller": "?ProcessActions@CCBRoleState@@QAEPAXXZ",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4f7b35",
+     "caller": "?ProcessActions@CCBRoleState@@QAEPAXXZ",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4f7e32",
+     "caller": "?ProcessActions@CCBRoleState@@QAEPAXXZ",
+     "form": "OTHER",
+     "detail": "[eax+10h]"
+    },
+    {
+     "site": "0x512f07",
+     "caller": "?ProcWeaponSkill@CCBSystem@@QAEDXZ",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x512f20",
+     "caller": "?ProcWeaponSkill@CCBSystem@@QAEDXZ",
+     "form": "OTHER",
+     "detail": "[eax+10h]"
+    }
+   ]
+  },
+  "AddTask": {
+   "ea": "0x505800",
+   "n_callers": 3,
+   "forms": {
+    "OTHER": 3
+   },
+   "callers": [
+    {
+     "site": "0x4c39d7",
+     "caller": "?ProcessCameraPass@RenderTarget2@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[edx+10h]"
+    },
+    {
+     "site": "0x4c3a5e",
+     "caller": "?ProcessCameraPass@RenderTarget2@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[ecx+10h]"
+    },
+    {
+     "site": "0x4e6626",
+     "caller": "?UpdateEditorState@CCBStageCam@@QAEHXZ",
+     "form": "OTHER",
+     "detail": "[esp+150h+Buffer]"
+    }
+   ]
+  },
+  "ProcCamMove": {
+   "ea": "0x505820",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x5055b7",
+     "caller": "?DoTask@CCBCamControl@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "SwitchEditorCamPos": {
+   "ea": "0x5058e0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x5055b0",
+     "caller": "?DoTask@CCBCamControl@@QAEXXZ",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    }
+   ]
+  },
+  "~CCBCamControl": {
+   "ea": "0x5081e0",
+   "n_callers": 1,
+   "forms": {
+    "BLOCKED": 1
+   },
+   "callers": [
+    {
+     "site": "0x5081d0",
+     "caller": "??1CCBCamControl@@QAE@XZ",
+     "form": "BLOCKED",
+     "detail": "jmp     ?GetFreeSpaceInPool@CCCTData@@QAEXXZ"
+    }
+   ]
+  },
+  "Reset": {
+   "ea": "0x508220",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "Create": {
+   "ea": "0x508230",
+   "n_callers": 1,
+   "forms": {
+    "GLOBAL_PTR": 1
+   },
+   "callers": [
+    {
+     "site": "0x508220",
+     "caller": "?Reset@CCBCamControl@@QAEXXZ",
+     "form": "GLOBAL_PTR",
+     "detail": "ds:dword_56FD90"
+    }
+   ]
+  },
+  "Destroy": {
+   "ea": "0x508270",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "Update": {
+   "ea": "0x5082c0",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "StartList": {
+   "ea": "0x5082d0",
+   "n_callers": 1,
+   "forms": {
+    "GLOBAL_PTR": 1
+   },
+   "callers": [
+    {
+     "site": "0x5082c0",
+     "caller": "?Update@CCBCamControl@@QAEHXZ",
+     "form": "GLOBAL_PTR",
+     "detail": "ds:dword_56FD90"
+    }
+   ]
+  },
+  "StopList": {
+   "ea": "0x508320",
+   "n_callers": 1,
+   "forms": {
+    "GLOBAL_PTR": 1
+   },
+   "callers": [
+    {
+     "site": "0x508310",
+     "caller": "CCBCamControl::StartList_8310",
+     "form": "GLOBAL_PTR",
+     "detail": "ds:dword_56FDA0"
+    }
+   ]
+  },
+  "HandleInput": {
+   "ea": "0x508360",
+   "n_callers": 0,
+   "forms": {},
+   "callers": []
+  },
+  "UpdateCircleSet": {
+   "ea": "0x508370",
+   "n_callers": 1,
+   "forms": {
+    "GLOBAL_PTR": 1
+   },
+   "callers": [
+    {
+     "site": "0x508360",
+     "caller": "?HandleInput@CCBCamControl@@QAEXXZ",
+     "form": "GLOBAL_PTR",
+     "detail": "ds:dword_56FD90"
+    }
+   ]
+  },
+  "SetCircle": {
+   "ea": "0x5083b0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fbdd0",
+     "caller": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "eax"
+    }
+   ]
+  },
+  "IsPointerUnderMouse": {
+   "ea": "0x5084c0",
+   "n_callers": 1,
+   "forms": {
+    "REG_CARRY": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fbe26",
+     "caller": "?ResetSceneState@CCBStageScene@@QAEHXZ",
+     "form": "REG_CARRY",
+     "detail": "eax"
+    }
+   ]
+  },
+  "LoadPointer": {
+   "ea": "0x508660",
+   "n_callers": 2,
+   "forms": {
+    "LEA_OTHER": 2
+   },
+   "callers": [
+    {
+     "site": "0x508527",
+     "caller": "?IsPointerUnderMouse@CCBCamControl@@QAE_NXZ",
+     "form": "LEA_OTHER",
+     "detail": "[esi+6Ch]"
+    },
+    {
+     "site": "0x5086f9",
+     "caller": "?ResetListFlag@CCBCamControl@@QAEXXZ",
+     "form": "LEA_OTHER",
+     "detail": "[esi+6Ch]"
+    }
+   ]
+  },
+  "DoList": {
+   "ea": "0x508680",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fbf58",
+     "caller": "?Create_be50@CCBStage@@QAE_NXZ",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    }
+   ]
+  },
+  "ResetListFlag": {
+   "ea": "0x508690",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4fc05c",
+     "caller": "?Destroy@CCBStage@@QAE_NXZ",
+     "form": "OTHER",
+     "detail": "[ebp+4Ch]"
+    }
+   ]
+  },
+  "KeepCurCam": {
+   "ea": "0x508880",
+   "n_callers": 9,
+   "forms": {
+    "OTHER": 7,
+    "REG_CARRY": 2
+   },
+   "callers": [
+    {
+     "site": "0x4ebc31",
+     "caller": "?GetData_B8D0@CCBCamControl@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esp+50h+var_34]"
+    },
+    {
+     "site": "0x4ebe54",
+     "caller": "?ShowCameraDialog@CCBCamControl@@QAEXH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4ec0b4",
+     "caller": "?ReadCameraDialog@CCBCamControl@@QAEXH@Z",
+     "form": "REG_CARRY",
+     "detail": "esi"
+    },
+    {
+     "site": "0x4ff3a1",
+     "caller": "?ProcessCamMove@CCBCamControl@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    },
+    {
+     "site": "0x4ff61c",
+     "caller": "?ProcShowCost@CCBStage@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[edi+4Ch]"
+    },
+    {
+     "site": "0x4ffb69",
+     "caller": "?TaskExecAttack@CCBStage@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    },
+    {
+     "site": "0x500011",
+     "caller": "?TaskExecMagicEffect@CCBStage@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[edi+4Ch]"
+    },
+    {
+     "site": "0x500386",
+     "caller": "?TaskExecSkill@CCBStage@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    },
+    {
+     "site": "0x500646",
+     "caller": "?TaskExecItem@CCBStage@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    }
+   ]
+  },
+  "DoLineMove": {
+   "ea": "0x5088d0",
+   "n_callers": 1,
+   "forms": {
+    "OTHER": 1
+   },
+   "callers": [
+    {
+     "site": "0x4ff3ad",
+     "caller": "?ProcessCamMove@CCBCamControl@@QAEHH@Z",
+     "form": "OTHER",
+     "detail": "[esi+4Ch]"
+    }
+   ]
+  }
+ }
+}
