@@ -67,6 +67,17 @@
     "枚举 cast 规则已回滚(未提交): 会把语义错位暴露点(C2440)静默化, 违反暴露原则"
    ],
    "verdict": "Family C 10 错保持可见(暴露原则); +0x4C 语义定谳战役立案: ①+0x4C 三故事裁决 ②真状态槽定位 ③ProcessMouseInput 等误归方法清理"
+  },
+  {
+   "date": "2026-11-25",
+   "case": "SetLibFolder 全族 21 调用点终勘——hexrays 未型 this 槽渲染族定谳",
+   "findings": [
+    "内嵌形: UIScene/UIListBox/UICaption(RenderContent)/PalScript/Render_E8A0 → lea ecx,[esi+8] (嵌入 TLDB 于宿主+8——但四宿主 bases=[UIWnd@0] 且 UIWnd+8=m_wndcolor gbColorQuad (16B)——嵌入位与基类布局冲突=宿主真实布局重审线索)",
+    "栈拷贝形: lea ecx,[esp+..var_44]; this (IDA thiscall 标记)——TLDB 栈拷贝调用法",
+    "UIButton::Render 混合: None×2(reload 遮蔽)/0x10/0x4C/0x5C——0x4C=our m_state 吸收位",
+    "UIRenderObj::&pszFolder/CountEntries/sub_43B660: None(未解析)"
+   ],
+   "verdict": "Family B/C 统一真根因=hexrays 未型 this 槽渲染族(近邻成员吸收): 修=逐宿主嵌入 TLDB 注解(位冲突裁决前置: 宿主+8 vs UIWnd m_wndcolor 布局重审)——独立战役立案, 本轮不蛮干"
   }
  ],
  "adjudications": [
