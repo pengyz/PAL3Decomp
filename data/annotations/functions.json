@@ -3958,5 +3958,89 @@
    "pending": false
   },
   "source": "二级jmp thunk(5B→0x504e20); 同上声明收编。 | [FLIRT撞名+ICF折叠 2026-11-25] 体3B b001c3(mov al,1;ret)=返true, CRT codecvt_base::do_ | [sig 形修正 2026-11-25 对抗复核] 0参形 parse_decl 失败(signature_failures 25 例在册)且与语料1参渲染形矛盾; 显式 void* a1=ecx 接收者参数化(Method_3CB0 int __thiscall(_BYTE *this) 先例形), thiscall ABI=参数走 ecx 零栈参, 字节忠实。"
+ },
+ "0x0040eb10": {
+  "name": "ProcessGameMode",
+  "sig_model": {
+   "return": "void",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int",
+     "name": "nVal"
+    },
+    {
+     "type": "int",
+     "name": "nVal2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [W2 CScreenMode 退役·壳退役 2026-11-25] 自 CScreenMode.json 方法表退役——cdecl=自由函数本位。"
+ },
+ "0x0042c1c0": {
+  "name": "CheckUIVisible",
+  "sig_model": {
+   "return": "bool",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "int",
+     "name": "thisa"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": " | [W2 CScreenMode 退役·壳退役 2026-11-25] 自 CScreenMode.json 方法表退役——thiscall=孤儿方法待真主类(非 CScreenMode 成员, this-disp 排除)。",
+  "declaration_only": true,
+  "free_helper_confirmed": false
+ },
+ "0x00456e20": {
+  "name": "PauseAllStreams",
+  "sig_model": {
+   "return": "void",
+   "cc": "thiscall",
+   "params": [
+    {
+     "type": "void *",
+     "name": "pStreams"
+    },
+    {
+     "type": "unsigned __int8",
+     "name": "a2"
+    }
+   ],
+   "varargs": false,
+   "pending": false
+  },
+  "source": "| param1 fn-ptr-table -> void *: body iterates 52 objects of 0x178 bytes dispatching vtable slot 0 with the flag — an object pointer with unknown class, void * per generalization rule | [W2 CScreenMode 退役·壳退役 2026-11-25] 自 CScreenMode.json 方法表退役——thiscall=孤儿方法待真主类(非 CScreenMode 成员, this-disp 排除)。",
+  "declaration_only": true,
+  "free_helper_confirmed": false
+ },
+ "0x00569320": {
+  "name": "LoadAudioFromFile",
+  "sig_model": {
+   "return": "int",
+   "cc": "cdecl",
+   "params": [
+    {
+     "type": "int *",
+     "name": "p_DWORD"
+    },
+    {
+     "type": "FILE",
+     "name": "Stream"
+    },
+    {
+     "type": "int *",
+     "name": "p_DWORD2"
+    }
+   ],
+   "varargs": false,
+   "pending": true
+  },
+  "source": " | [W2 CScreenMode 退役·壳退役 2026-11-25] 自 CScreenMode.json 方法表退役——cdecl=自由函数本位。"
  }
 }
