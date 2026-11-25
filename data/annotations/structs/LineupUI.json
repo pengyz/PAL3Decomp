@@ -1,6 +1,6 @@
 {
  "name": "LineupUI",
- "binary_size": 171244,
+ "binary_size": 162772,
  "known_members": {
   "0x48": {
    "name": "rc",
@@ -1003,5 +1003,6 @@
    "offset": 0
   }
  ],
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~LineupUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留"
+ "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~LineupUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留",
+ "binary_size_source": "ctor ??0LineupUI + push 0x27BD4 (EquipUI::Init [esi+0x2AFCC]) 编译器sizeof A级; 旧值171244=邻类(0x29CEC,首call Save@LineupUI误名) [2026-11-26 金表对账 probe_heap_alloc_census]"
 }
