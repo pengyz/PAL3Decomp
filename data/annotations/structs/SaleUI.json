@@ -40,8 +40,8 @@
   },
   "0x46b4": {
    "name": "m_sort",
-   "type": "SaleUI_SortData[299][5]",
-   "source": "annotation",
+   "type": "int[299][5]",
+   "source": "RC2-member-type 修复 2026-11-25: 元素 SaleUI_SortData→int（维度/跨度不变, 布局零改动）。赋值目标定真型定律: 语料存入值全为原始 dword(整数 65/86/68/800/600/bkWidth + 指针值 m_pEquipAtt1/2[..] + _tail_000[0..3] 字节级行走), SaleUI_SortData 自身标注即判 gap-fill 噪声(mangled 零命中 @SaleUI_SortData@@ 不在二进制, 误挂待终审, 零成员 interim 态)。原型致 C2440 RoleAtt*→SaleUI_SortData ×10 (SaleUI.cpp 7754/7873-7875/7996-7998/8055-8057) + 包装类 operator= 味 char[4]=int ×7 (SaleUI_SortData.h:16, emit_headers operator= 无 _tail_ 守卫, F2a 2026-11-18 operator int() 同款先例)",
    "evidence_level": "unverified"
   },
   "0x756c": {

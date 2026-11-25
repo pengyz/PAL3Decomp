@@ -172,8 +172,8 @@
   },
   "0xc0": {
    "name": "m_pgrmode",
-   "type": "PGR_MODE",
-   "source": "gen_headers_9.2",
+   "type": "float",
+   "source": "RC2-member-type 修复 2026-11-25: 全语料唯一访问点 UILoadingFrm::ResetAllState 写 1065353216=0x3F800000(1.0f 位型, CLAUDE.md 值位面判据#1); PGR_MODE 成员值 {NORMAL_PGR=0,ALPHA_PGR=1} 全语料零使用, 0x3F800000 既非 0 也非 1; 邻位 m_bradius/m_Val 同函数写 1.0f; PDB(PAL3A 参考级) m_pgrmode@0xD4 与 PAL3 偏移差 -0x14, 名随 PDB 型不随; 原 PGR_MODE 类型致 C2440 const int→enum PGR_MODE ×1 (UILoadingFrm.cpp:190)",
    "evidence_level": "unverified"
   },
   "0xc4": {

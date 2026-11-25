@@ -2196,17 +2196,23 @@
   "category": "const_data",
   "source": " | categorize: G7 裁决改类（零引用≠可删，实证=表片段：表基址 [base+idx] 寻址、"
  },
- "0x006ebfa0": {
-  "name": "g_VFileSystem",
+ "0x0056a598": {
+  "name": "g_pVFileSys",
   "type": "gbVFileSystem *",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": "RC2-member-type 修复 2026-11-25: IAT 槽(0x56a598) IDB 现态 gbVFileSystem** 与修饰名矛盾; 真型=单指针。A级证据: 导入修饰名 ?g_pVFileSys@@3PAVgbVFileSystem@@A (3=数据 P=指针 A=near V=类 A=非const ⇒ gbVFileSystem* 单指针, literal_pool 0x57eeb6 在档); 手写头 include/gbengine/gbVFileSystem.h:285 extern GBAPI gbVFileSystem* g_pVFileSys; 全语料 100+ 处 (gbVFileSystem *)g_pVFileSys 作 this 单指针传参; 赋值面 g_pVFileSys=&g_VFileSystem/&g_BaseVFileSystem=&stru_60BDC8 全为对象取址。原 ** 型致 RHS 强插 (gbVFileSystem**) cast → C2440 ×7 (OpenSceneFile 27/31/39, OpenNULLFile 11, OpenBaseFile 12/20, free_functions 164)"
+ },
+ "0x006ebfa0": {
+  "name": "g_VFileSystem",
+  "type": "gbVFileSystem",
+  "category": "game_state",
+  "source": "RC2-member-type 修复 2026-11-25: 指针→对象（双指针→单指针级联层解引用）。全语料 9 处访问全为 (&g_VFileSystem) 对象地址形: gbVFileSystem::Init/Release((gbVFileSystem *)&g_VFileSystem,..) 成员调用、OpenSceneFile/OpenBaseFile g_pVFileSys=&g_VFileSystem(g_pVFileSys 声明=gbVFileSystem*, gbVFileSystem.h:285+gbengine.def)、if(g_VFileSystem) 对象真值判; 同域 stru_60BDC8 已按对象渲染(globals.cpp:948 gbVFileSystem stru_60BDC8; FileSysInit v0(&stru_60BDC8,0)=Init this-call 实证对象存储模型)。原 gbVFileSystem * 型致 &g_VFileSystem=gbVFileSystem** → C2440 ×7 (OpenSceneFile 27/31/39, OpenNULLFile 11, OpenBaseFile 12/20, free_functions 164)"
  },
  "0x007cc178": {
   "name": "g_BaseVFileSystem",
-  "type": "gbVFileSystem *",
+  "type": "gbVFileSystem",
   "category": "game_state",
-  "source": " | categorize: G2-G8 补标（分类源=global_reality_scan 五维判据）：真"
+  "source": "RC2-member-type 修复 2026-11-25: 指针→对象，同 g_VFileSystem 证据链: FileSysInit(0x401c70) gbVFileSystem::Init((gbVFileSystem *)&g_BaseVFileSystem, v2) 成员调用 + g_pVFileSys=&g_BaseVFileSystem 指针赋值; OpenSceneFile::~OpenSceneFile g_pVFileSys=&g_BaseVFileSystem"
  },
  "0x008834c0": {
   "name": "g_nSaveDataSize",
