@@ -1020,6 +1020,40 @@
    },
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
    "source": " | [W2 CScreenMode 退役·cluster 迁移 2026-11-25] 编译器按编译单元聚合(CScreenMode.cpp 地址域 0x523xxx-0x53Fxxx=真类方法组)——同一编译单元=同一真实类的方法集合。 自 CScreenMode.json 迁入。"
+  },
+  "0x005694f0": {
+   "name": "OpenBinkVideo",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "cdecl",
+    "params": [
+     {
+      "type": "CScreenMode *",
+      "name": "pScreen"
+     },
+     {
+      "type": "const char *",
+      "name": "szFilename"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     },
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": true
+   },
+   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(OpenBinkVideo): int(int,?",
+   "source": " | [W2 确认迁移 2026-11-25] this-disp top3=gbBinkVideo 实证。"
   }
  },
  "note": "布局定性20261120: Bink视频播放器(双CPK分包管理器), 尺寸精确闭合 0xE01CC+0xE01BC=0x1C0388✓✓, 结构完整非缺口",

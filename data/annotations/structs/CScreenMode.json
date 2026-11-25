@@ -518,39 +518,6 @@
     "static"
    ],
    "name_note": "[static迁移 20261123] static:true字段退役→flags(发射唯一决策源=flags), 语义不变"
-  },
-  "0x005694f0": {
-   "name": "OpenBinkVideo",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "cdecl",
-    "params": [
-     {
-      "type": "CScreenMode *",
-      "name": "pScreen"
-     },
-     {
-      "type": "const char *",
-      "name": "szFilename"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nFlags"
-     }
-    ],
-    "varargs": false,
-    "pending": true
-   },
-   "sig_note": "2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, 待RET判据+IDB类型逐条定谳。2026-11-18 mangle硬真值全量定谳(OpenBinkVideo): int(int,?"
   }
  },
  "_cascade_note": "2026-09-22 复核：该类内嵌 UIRoleDialog@0xF24，但其后**无声明成员** ⇒ **不做平移、不改尺寸** ✗（先前脚本误加 0x58 已撤回 ✓）；其真实尺寸需另行由二进制裁定 ✓",
