@@ -587,7 +587,12 @@
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitCombatUI): int(int,int); 原注解无"
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitCombatUI): int(int,int); 原注解无",
+   "lvars": {
+    "v36": "_DWORD *",
+    "v65": "_DWORD *"
+   },
+   "lvars_evidence": "remarkbuf dword 读出值=指针, 0x118[v] 下标走查→指针型"
   },
   "0x00461c50": {
    "name": "InitMode",
@@ -875,7 +880,13 @@
     "override"
    ],
    "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导"
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "lvars": {
+    "v36": "_DWORD *",
+    "v65": "_DWORD *",
+    "v73": "_DWORD *"
+   },
+   "lvars_evidence": "remarkbuf dword 读出=指针(同族)"
   },
   "0x0046adf0": {
    "name": "GetCellStateByte",
