@@ -62,6 +62,8 @@
 - [git rev:path 树内路径必须正斜杠](gotcha_git_rev_path_needs_posix_separators.md) — Windows 下 `git show HEAD:<WindowsPath>` rc=128 "exists on disk, but not in 'HEAD'"；`ls-tree` pathspec 容忍反斜杠 ⇒ 列表正常、逐文件读全灭，症状像"内容读不出"；修 `.as_posix()`（实测案例 annotation_diff 942 文件）
 
 - [隐性撞名三联病灶：剥戳分叉/sig_key 末参泄漏/棘轮冻结](gotcha_hidden_collision_strip_machinery_divergence.md) — ①剥戳 3 副本语义不一（collect 无条件剥=定义名剥落真路径、emit_headers 撞则不剥、emit_cpp 只清调用形）⇒ 双定义 C2084 静默生成 ②cxx_sig_key 参名剥离不吃行尾 ⇒ 末参名泄进键 ⇒ 真撞名误判"合法重载" ③grandfather 冻结先于门禁存在的撞名（一条还是注解粒度假阳性）。多副本归一化必须单点+防回流锁
+- [loop 是唯一权威读数；并发/陈旧产物会污染 census](gotcha_loop_reading_contamination.md) — 只认当轮完整 loop 的 S2/总错误/L1/[metric]；两个 loop 会互相覆盖 ida_structs、pal3/src（codegen 先 rmtree）、probe_census、基线与同名日志；21:24 中间态曾 0/229、4348；读数前验进程/时间戳/generated_at，L1 先看 population
+- [类尺寸用分配 + ctor 写界闭合，注解末端算术会混装](gotcha_class_size_ctor_closure_vs_annotation_tail.md) — `CCBRoleState` 注解 22,224/89 员，但 `operator new` 只分配 `0x5058`、ctor 最远写 `[esi+0x5054]+4=0x5058`；尾部 23 员分属 20,644B 类/零访问/CCBUIPanel/PropUI；IDB 尺寸照抄注解，loop 回退是注解自洽拦截，不是二进制要求
 
 ## Patterns
 - [字段"类型与名字"的证据分级（disp32 全二进制扫描）](pattern_member_evidence_grading_by_disp32_scan.md) — 对每个偏移扫 disp32 小端模式：**0 命中 ⇒ 无直接访问 ⇒ 不得给类型/语义名**（应作 padding/未知）；命中须回 disasm 确认承载指令（假阳性常见：栈偏移/立即数）；类型可证到"宽度+int/float/指针+有/无符号"，名字仅在字符串/RTTI/API/PDB 等**语义把手**存在时可给 ✓
@@ -72,6 +74,7 @@
 - [无证据批量重命名](pattern_annotation_batch_rename_no_evidence.md) — A:cascade_sync 标记的伪语义重命名事故，check_annotations 通过 ≠ 标注质量真实提升
 - [**恢复多态基类的虚方法集合**](pattern_recover_polymorphic_base_virtual_methods.md) — 从二进制取证虚方法的完整方法链 + MSVC6 vtable 发射条件（定义本类虚函数才发射）+ ??_E/??_G 是同一函数
 - [**用 ctor 做二进制挂钩前先验本体**](pattern_verify_ctor_body_before_binary_hooks.md) — 注解里的"ctor"可能是静态初始化 thunk（实测 `0x51D6E0`）；真 ctor 的判据是 `mov [this], offset <自己的vtable>`；配方=vtable 归属 → 表的 DATA XREF → 写表者
+- [struct-hole-fill-campaign-20261126](struct_hole_fill_campaign_20261126.md) — R1-R3.5 结构洞填充战役的可复用方法：洞口径（4B 粒度扫注解尾到 binary_size，vptr/数组豁免）、三锚闭合（CCBCamControl 池区/EquipUI 尾区九数组/RoleStatePanel 40 员）、证据分级与 `m_unk_<offset>` 留白命名；含当前开放洞与 R4-R6 入口
 
 ## Debugging
 
