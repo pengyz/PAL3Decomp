@@ -170,3 +170,52 @@ far-tail 大类）——**CCBCamControl 注解 binary_size 精确命中**，但�
 3. BSS 块分解（g_CCBCamControlData→逐变量 globals）
 4. 类名定谳（INI 节名全文+PDB 交叉）
 5. 池条目 204B 结构（归属类 X）
+
+---
+
+# 定谳 v4（重建③·PDB 交叉）：双真类架构 + tagCCT 闭合
+
+## PDB 金矿（data/pdb/pdb_export.json，PAL3A 符号族 242 命中）
+- `??0CCBCamControl@@QAE@PAVCCBStage@@PAVCCBStageCam@@@Z` — 构造签名
+  (CCBStage*, CCBStageCam*) **恰对齐尾成员 m_pStage@0x68FB0/m_pCam@0x68FB4**
+- `?DestroyObj@CCBStage@@AAE_NPAPAVCCBCamControl@@@Z` — CCBStage 指针成员
+  类型 = **CCBCamControl\***（[CCBStage+0x10]/+0x4C 载体定谳）
+- **CCCTData 15 方法全真**：InsertTaskToList/SwapTask/GetFreeSpaceInPool/
+  IsTaskValid/ClearList/GetTaskNumInList/AddTaskToList/DelTaskInList/GetCCT/
+  Create/Destroy/Init/Load/Save/Reset——二进制 4 微型函数=注解错挂地址
+  （名字不假，地址错；真体在别处待重挂）
+- **CCBCamControl 40 方法**：平行任务 API + DoCircleMove(+SpeedUnknow/
+  TargetUnknow/TimeUnknow 变体，PDB 源码拼写彩蛋)/DoLineMove(+3)/
+  DoMechanicsMove/GetCCT/GetCircleCenter/GetCircleEnd/GetCurList/GetCurTask/
+  HandleInput/DoList——语料 GetData/GetData_B720/GetData_B8D0=GetCCT 误名
+- `??0tagCCT@@QAE@XZ` — **tagCCT 真名实锤**
+
+## tagCCT 尺寸闭合（池模型定谳）
+tagCCT.json binary_size = **204 = 0xCC** 与池乘法链 `shl4→×17→×3→×4` 精确
+一致；字段地图完整（fp[4]@0x0/dwID@0x10/bValid..bSplice@0x14-17/fStartTime/
+fExpectTime/StartPos tagCam@0x20/EndPos@0x38/nStartCam/nEndCam@0x50-54/...
+fCircleEndZ/fSwing 族/fStartFOV/fEndFOV/dwReserved@0xC4——0x58-0x5B 域=
+二进制状态字节 bValid 族邻域待核）。池 = `this + 204×handle`，句柄表
+int[50][50]@0x64080（T+50L+102500 闭合）。
+
+## 架构模型（v4）
+- **类 X = CCBCamControl**（0x690B0=430256 A 级 ✓）：池+句柄表+m_nCurList/
+  m_nCurTask@0x68FD0/4+相机尾域 0x68FB0..0x690AE+任务 API——实例 =
+  [CCBStage+0x10]（CCBCamControl\* PDB 型证）
+- **类 Y = CCCTData**（0x62588=402824）：ctor=??0CCCTData（PAL3
+  0x4a6f10，UIListBox 派生——任务编辑对话框数据类），实例=EquipUI+0x2AFC8
+- **判别证据**：池方法 disp 0x68FD0=425424 > 402824 ⇒ 池方法属类 X 非 Y；
+  CCBCamControl 的平行任务 API = 转发或自有实现（逐方法定谳挂下轮）
+- **现注解 chimera 实锤**：CCCTData.json binary_size=430256(=X 的尺寸!)+
+  成员池模型(=X 的域)——两类内容被混装；CCBCamControl.json 头域成员
+  （m_pvecCenter@0x8 等）与池[0] 域冲突（tagCCT[0].fp[2]@0x8）——头域成员
+  证据链疑错挂（source 引 CCBRoleState::ProcessActions 混乱链）
+
+## 下轮手术清单（重建④）
+1. CCCTData.json 重铸：binary_size 0x62588=402824、方法表=15 PDB API、
+   池/表成员重验（类 Y 自有池尺寸？）
+2. CCBCamControl.json 重铸：确认=类 X；头域成员逐个重取证（与 tagCCT[0]
+   冲突面）；池成员 m_Pool tagCCT[2000]@0x0 落位（2000=0x63A80/204 闭合）
+3. 方法重命名红利：GetData 族→GetCCT（PDB 对齐，语料渲染随动）
+4. 4 微型函数错挂重挂（IsTaskValid/GetFreeSpaceInPool 真体搜索）
+5. 类名定谳收官：类 Y 在 EquipUI+0x2AFC8 的完整证据链落 globals
