@@ -2,8 +2,8 @@
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
   "classes_with_holes": 201,
-  "total_hole_bytes": 1584073,
-  "total_holes": 1161,
+  "total_hole_bytes": 1431785,
+  "total_holes": 1139,
   "unresolved_type_members": 6,
   "vptr_exempt_classes": 59,
   "overlay_twin_bytes": 919151,
@@ -53,160 +53,9 @@
    "vptr_slot_exempt": true
   },
   {
-   "cls": "EquipUI",
-   "size": 266260,
-   "members": 90,
-   "bases": 1,
-   "holes": [
-    [
-     "0x26c",
-     "0x45d8",
-     17260
-    ],
-    [
-     "0x6448",
-     "0x6450",
-     8
-    ],
-    [
-     "0x653c",
-     "0x6544",
-     8
-    ],
-    [
-     "0x65dc",
-     "0x65e4",
-     8
-    ],
-    [
-     "0x667c",
-     "0x6684",
-     8
-    ],
-    [
-     "0x671c",
-     "0x6724",
-     8
-    ],
-    [
-     "0x67bc",
-     "0x67c4",
-     8
-    ],
-    [
-     "0x6b60",
-     "0x6b88",
-     40
-    ],
-    [
-     "0xfa70",
-     "0x101f0",
-     1920
-    ],
-    [
-     "0x13170",
-     "0x133f0",
-     640
-    ],
-    [
-     "0x199ac",
-     "0x19a9c",
-     240
-    ],
-    [
-     "0x1ac6c",
-     "0x1ad5c",
-     240
-    ],
-    [
-     "0x1b448",
-     "0x1b4a8",
-     96
-    ],
-    [
-     "0x1b540",
-     "0x1b548",
-     8
-    ],
-    [
-     "0x1b5e0",
-     "0x1b5e8",
-     8
-    ],
-    [
-     "0x1b940",
-     "0x1b948",
-     8
-    ],
-    [
-     "0x1b9f0",
-     "0x1b9f8",
-     8
-    ],
-    [
-     "0x1c248",
-     "0x1c2b8",
-     112
-    ],
-    [
-     "0x1c350",
-     "0x1c358",
-     8
-    ],
-    [
-     "0x1c3f0",
-     "0x1c3f8",
-     8
-    ],
-    [
-     "0x1c490",
-     "0x1c498",
-     8
-    ],
-    [
-     "0x1c4e0",
-     "0x1c9a0",
-     1216
-    ],
-    [
-     "0x1cd34",
-     "0x1cd3c",
-     8
-    ],
-    [
-     "0x1cdd4",
-     "0x1cddc",
-     8
-    ],
-    [
-     "0x1ce84",
-     "0x1ce8c",
-     8
-    ],
-    [
-     "0x1cf34",
-     "0x1cf3c",
-     8
-    ],
-    [
-     "0x1cfe4",
-     "0x1cfec",
-     8
-    ],
-    [
-     "0x1d474",
-     "0x41014",
-     146336
-    ]
-   ],
-   "hole_bytes": 168244,
-   "total_holes": 28,
-   "vptr_slot_exempt": true
-  },
-  {
    "cls": "RoleStatePanel",
    "size": 176256,
-   "members": 11,
+   "members": 16,
    "bases": 1,
    "holes": [
     [
@@ -231,13 +80,8 @@
     ],
     [
      "0x2a800",
-     "0x2afbc",
-     1980
-    ],
-    [
-     "0x2afc4",
-     "0x2afd4",
-     16
+     "0x2afb8",
+     1976
     ],
     [
      "0x2afdc",
@@ -245,8 +89,8 @@
      156
     ]
    ],
-   "hole_bytes": 156453,
-   "total_holes": 7,
+   "hole_bytes": 156433,
+   "total_holes": 6,
    "vptr_slot_exempt": true
   },
   {
@@ -1368,6 +1212,52 @@
    ],
    "hole_bytes": 16896,
    "total_holes": 34,
+   "vptr_slot_exempt": true
+  },
+  {
+   "cls": "EquipUI",
+   "size": 266260,
+   "members": 23,
+   "bases": 1,
+   "holes": [
+    [
+     "0x26c",
+     "0x1414",
+     4520
+    ],
+    [
+     "0x25c14",
+     "0x261f8",
+     1508
+    ],
+    [
+     "0x2c184",
+     "0x2c48c",
+     776
+    ],
+    [
+     "0x2d26c",
+     "0x2d3f0",
+     388
+    ],
+    [
+     "0x2db10",
+     "0x2f760",
+     7248
+    ],
+    [
+     "0x2f864",
+     "0x2fe04",
+     1440
+    ],
+    [
+     "0x40fc4",
+     "0x41014",
+     80
+    ]
+   ],
+   "hole_bytes": 15960,
+   "total_holes": 7,
    "vptr_slot_exempt": true
   },
   {
@@ -6163,6 +6053,27 @@
    "total_holes": 6
   },
   {
+   "cls": "UIFrameContainer",
+   "size": 152,
+   "members": 2,
+   "bases": 1,
+   "holes": [
+    [
+     "0x48",
+     "0x60",
+     24
+    ],
+    [
+     "0x7c",
+     "0x98",
+     28
+    ]
+   ],
+   "hole_bytes": 52,
+   "total_holes": 2,
+   "vptr_slot_exempt": true
+  },
+  {
    "cls": "CCBTaskGroup",
    "size": 2632,
    "members": 7,
@@ -6326,27 +6237,6 @@
    ],
    "hole_bytes": 36,
    "total_holes": 1
-  },
-  {
-   "cls": "UIFrameContainer",
-   "size": 136,
-   "members": 2,
-   "bases": 1,
-   "holes": [
-    [
-     "0x48",
-     "0x60",
-     24
-    ],
-    [
-     "0x7c",
-     "0x88",
-     12
-    ]
-   ],
-   "hole_bytes": 36,
-   "total_holes": 2,
-   "vptr_slot_exempt": true
   },
   {
    "cls": "ArcSceneObject",

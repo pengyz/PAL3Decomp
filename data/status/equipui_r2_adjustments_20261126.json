@@ -1,0 +1,1177 @@
+{
+ "name": "equipui_r2_adjustments_20261126",
+ "title": "R2-T2 EquipUI 九数组落位/旧注解几何互斥退役台账（76 退役 + 9 落位 + UIFrameContainer 136→152）",
+ "date": "2026-11-26",
+ "round": "R2",
+ "task": "Task 2（EquipUI 九数组落位）",
+ "context": "Task1 探针（data/status/probe_equipui_arrays_20261126.json）解出 ctor ??0EquipUI(0x498820) 内九笔 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场三元组；gate① 对抗复核裁定终版落位表（PDB 数组类型 UIParticle[16][8]/[5][12] 匹配 #1/2/8/9；#6 ABI 压栈序 count=12/stride=152 且元素真类=UIStatic——corpus UIFrameContainer(136)/UIStatic(152) 同一 152B 类双条目；#3/#4 元素复合类未名以 unsigned char 忠实落位）。本任务按 gate① 表落位九员并对 EquipUI 既有 90 员做几何对账：offset 或末端（checker _estimate_member_size 真类型尺寸口径）落入任一数组区间者=证伪退役。",
+ "gate1_table": [
+  {
+   "num": 1,
+   "offset": "0x1414",
+   "type": "UIParticle[128]",
+   "末端": "0x13814"
+  },
+  {
+   "num": 2,
+   "offset": "0x13814",
+   "type": "UIParticle[128]",
+   "末端": "0x25C14"
+  },
+  {
+   "num": 3,
+   "offset": "0x261f8",
+   "type": "unsigned char[24460]（元素 4892B stride 复合类未名，note 注明）",
+   "末端": "0x2c184"
+  },
+  {
+   "num": 4,
+   "offset": "0x2c48c",
+   "type": "unsigned char[2064]（元素 344B stride vtable-0x56ac70 族未名，note）",
+   "末端": "0x2cc9c"
+  },
+  {
+   "num": 5,
+   "offset": "0x2cc9c",
+   "type": "UIPushButton[6]",
+   "末端": "0x2d26c"
+  },
+  {
+   "num": 6,
+   "offset": "0x2d3f0",
+   "type": "UIStatic[12]",
+   "末端": "0x2db10"
+  },
+  {
+   "num": 7,
+   "offset": "0x2f760",
+   "type": "tagPlayerSet[5]",
+   "末端": "0x2f864"
+  },
+  {
+   "num": 8,
+   "offset": "0x2fe04",
+   "type": "UIParticle[60]",
+   "末端": "0x386e4"
+  },
+  {
+   "num": 9,
+   "offset": "0x386e4",
+   "type": "UIParticle[60]",
+   "末端": "0x40fc4"
+  }
+ ],
+ "placements": [
+  {
+   "#": 1,
+   "name": "m_par",
+   "offset": "0x1414",
+   "type": "UIParticle[128]",
+   "末端": "0x13814",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4989d7（push 248h + lea eax,[esi+1414h] + push 80h(=128)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x1414,128,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[16][8] 零命中，gate① 该主张按门②撤收）；邻接：#2 起于 0x13814=span_end。命名 m_par 循同族先例 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2（均 UIParticle[16][7]）；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage"
+  },
+  {
+   "#": 2,
+   "name": "m_par2",
+   "offset": "0x13814",
+   "type": "UIParticle[128]",
+   "末端": "0x25C14",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4989fc（push 248h + lea ecx,[esi+13814h] + push 80h(=128)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x13814,128,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[16][8] 零命中，gate① 该主张按门②撤收）；回调同 #1（0x4b4690/0x4b47e0，名弱）；邻接：starts_at_prev_span_end（#1 末端无缝链接），span_end=0x25c14。命名 m_par2 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage"
+  },
+  {
+   "#": 3,
+   "name": "_arr5x4892",
+   "offset": "0x261f8",
+   "type": "unsigned char[24460]",
+   "末端": "0x2c184",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498a2epush 131Ch(=4892) + lea edx,[esi+261F8h] + push 5；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x498c90 ?DestroyStaticsEx@UITitle_XJTM + dtor 回调 0x498e60 ?DestroyFramesEx@UITitle_XJTM 双回调同主类（强类名信号）但 UITitle_XJTM.json binary_size=5052≠stride 4892（差+160，尺寸调和未决）→ 元素 4892B stride 复合类未名待鉴定（gate① 注明），本笔以 unsigned char[24460]（5×4892=24460）忠实落位；ctor 回调字段足迹 [0..0x1278)⊆4892。命名 _arr5x4892 机械名（元素类未名禁伪语义，待鉴定后正名）"
+  },
+  {
+   "#": 4,
+   "name": "_arr6x344",
+   "offset": "0x2c48c",
+   "type": "unsigned char[2064]",
+   "末端": "0x2cc9c",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498aa0push 158h(=344) + lea eax,[esi+2C48Ch] + push 6；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x43a770（corpus 名 ?GetSys@NameSys@@QACPAV1@XZ 疑误标——带指针返回签名非 void(void*) 形，Task1）；corpus vtable 台账 data/status/_cleanup_vtable_class_reconcile.md §2：0x43A770 实为写表 0x56AC70 的 344B 类 ctor（push $0x158; call 0x55353b ×2，stride 0x158 全库 106 对）；0x56AC70 现被 UICaption(96B) 错挂；dtor 回调 0x43a810 ?Destroy2@UICaption@@QAEXXZ 同错挂族 → 元素 344B stride vtable-0x56ac70 族未名待鉴定（gate① 注明），本笔以 unsigned char[2064]（6×344=2064）忠实落位；ctor 回调字段足迹 [0..0xD8)⊆344；邻接：#5 起于 0x2cc9c=span_end。命名 _arr6x344 机械名"
+  },
+  {
+   "#": 5,
+   "name": "m_Pushbtn",
+   "offset": "0x2cc9c",
+   "type": "UIPushButton[6]",
+   "末端": "0x2d26c",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498ac2push 0F8h(=248) + lea ecx,[esi+2CC9Ch] + push 6；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x440740 ??0UIPushButton@@QAE@XZ + dtor 回调 0x4407c0 ??1UIPushButton@@QAE@XZ ctor+dtor 双吻合（probe annotation_match verdict=both，248==248）；UIPushButton.json binary_size=248==stride；ctor 回调字段足迹 [0..0x7C)⊆248；邻接：starts_at_prev_span_end（#4 末端无缝链接），span_end=0x2d26c。命名 m_Pushbtn 循 corpus UIPushButton[5] m_Pushbtn 先例"
+  },
+  {
+   "#": 6,
+   "name": "m_Frames",
+   "offset": "0x2d3f0",
+   "type": "UIFrameContainer[12]",
+   "末端": "0x2db10",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 元素名裁定 UIStatic[12]→UIFrameContainer[12]（口径题收口，几何/末端 0x2db10 不变）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498b14（push 98h(=152) + lea edx,[esi+2D3F0h] + push 0Ch(=12)）【ABI 右起压栈序第3推=count/第4推=size ⇒ count=12/stride=152，乘积 0x720 不变，前轮 (152,0xC) 为转置】；元素类钥匙=回调地址同一性（最强库内钥匙）：ctor 回调 0x4422e0 ResetContainerState + dtor 回调 0x442390 ??1UIFrameContainer@@QAE@XZ（真名 mangle）双回调同主类 UIFrameContainer（两址均 UIFrameContainer.json methods A 级在档；probe annotation_match verdict=none 仅因旧 binary_size 136≠152，本批 resize 后闭合）；元素尺寸双证：stride 0x98=152 + ctor 回调字段足迹 [0..0x98)==152；UIFrameContainer.json binary_size=152==stride（本批 gate① resize：ctor 写表普查 0x56add0 verdict=CONFIRMED + 涟漪 grep 零成员内嵌）；UIStatic 主张库内不可再证（data/pdb/pdb_export.json：UIFrameContainer 零命中；UIStatic[12] ×2 均属他类 SwordUI m_ListGrid/m_ListGridPurge 布局）且与 PDB 布局互斥——UIStatic/UIFrameContainer 双条目成员级调和挂账未来轮；邻接：#5 末端 0x2d26c 后隙 388B 起本员。命名 m_Frames 取元素类 UIFrameContainer 窗框容器组语义（ResetContainerState 清框）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage"
+  },
+  {
+   "#": 7,
+   "name": "m_Player",
+   "offset": "0x2f760",
+   "type": "tagPlayerSet[5]",
+   "末端": "0x2f864",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498b93push 34h(=52) + lea eax,[esi+2F760h] + push 5；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x45add0 InitState=tagPlayerSet::InitState（corpus methods 唯一 claim，evidence_level=verified）52==52（probe annotation_match verdict=ctor）；dtor 回调 0x401800 ?DestroyEffect@CEffObj@@QAEXXZ 空函数 retn=no-op 析构（钥匙弱，probe notes）；tagPlayerSet.json binary_size=52==stride；ctor 回调字段足迹 [0..0x34)⊆52。命名 m_Player 循 ArcMsic/CCBSystem tagPlayerSet[5] m_Player 先例"
+  },
+  {
+   "#": 8,
+   "name": "m_par3",
+   "offset": "0x2fe04",
+   "type": "UIParticle[60]",
+   "末端": "0x386e4",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498bff（push 248h + lea ecx,[esi+2FE04h] + push 3Ch(=60)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x2fe04,60,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[5][12] 零命中，gate① 该主张按门②撤收）；回调同 #1（名弱）；邻接：#9 起于 0x386e4=span_end。命名 m_par3 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage"
+  },
+  {
+   "#": 9,
+   "name": "m_par4",
+   "offset": "0x386e4",
+   "type": "UIParticle[60]",
+   "末端": "0x40fc4",
+   "处置": "落位（EquipUI.json known_members 新增，evidence_level=verified）",
+   "证据": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498c21（push 248h + lea edx,[esi+386E4h] + push 3Ch(=60)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x386e4,60,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[5][12] 零命中，gate① 该主张按门②撤收）；回调同 #1（名弱）；邻接：starts_at_prev_span_end（#8 末端无缝链接），span_end=0x40fc4 恰接类尾 0x41014（binary_size 266260）。命名 m_par4 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage"
+  }
+ ],
+ "decisions": [
+  {
+   "name": "p_DealData",
+   "offset": "0x45d8",
+   "type": "PlayerItem *",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x45d8' p_DealData（PlayerItem *），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_TempData",
+   "offset": "0x45dc",
+   "type": "PlayerAtt[5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x45dc' m_TempData（PlayerAtt[5]），source=annotation，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "rc",
+   "offset": "0x63a0",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x63a0' rc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Frame",
+   "offset": "0x63b0",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x63b0' m_Frame（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_FrameBar",
+   "offset": "0x6450",
+   "type": "UIFlexBar",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6450' m_FrameBar（UIFlexBar），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Flag",
+   "offset": "0x64a4",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x64a4' m_Flag（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_OutFrameT",
+   "offset": "0x6544",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6544' m_OutFrameT（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_OutFrameR",
+   "offset": "0x65e4",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x65e4' m_OutFrameR（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_OutFrameL",
+   "offset": "0x6684",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6684' m_OutFrameL（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_OutFrameB",
+   "offset": "0x6724",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6724' m_OutFrameB（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ani",
+   "offset": "0x67c4",
+   "type": "UIAnimateCtrl",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x67c4' m_ani（UIAnimateCtrl），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Role",
+   "offset": "0x6868",
+   "type": "UIStatic[5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6868' m_Role（UIStatic[5]），source=annotation，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_RoleRc",
+   "offset": "0x6b88",
+   "type": "tagRECT[5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6b88' m_RoleRc（tagRECT[5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "RoleX",
+   "offset": "0x6bd8",
+   "type": "int",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6bd8' RoleX（int），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "RoleY",
+   "offset": "0x6bdc",
+   "type": "int",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6bdc' RoleY（int），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "HeadW",
+   "offset": "0x6be0",
+   "type": "int",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6be0' HeadW（int），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "HeadH",
+   "offset": "0x6be4",
+   "type": "int",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6be4' HeadH（int），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Is",
+   "offset": "0x6be8",
+   "type": "unsigned char[5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6be8' m_Is（unsigned char[5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Arrow",
+   "offset": "0x6bf0",
+   "type": "UIStatic[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x6bf0' m_Arrow（UIStatic[8][6][5]），source=annotation，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ArrowNum",
+   "offset": "0x101f0",
+   "type": "UIStatic[8][2][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x101f0' m_ArrowNum（UIStatic[8][2][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ArrowRc",
+   "offset": "0x133f0",
+   "type": "tagRECT[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #1 [0x1414,0x13814) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x133f0' m_ArrowRc（tagRECT[8][6][5]），source=annotation，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 1 行（offset 0x1414，type 末端 0x13814）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsArrow",
+   "offset": "0x142f0",
+   "type": "unsigned char[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x142f0' m_IsArrow（unsigned char[8][6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_OldSelect",
+   "offset": "0x143e0",
+   "type": "int",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x143e0' m_OldSelect（int），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsMove",
+   "offset": "0x143e4",
+   "type": "unsigned char[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x143e4' m_IsMove（unsigned char[8][6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_AnimateRc",
+   "offset": "0x144d4",
+   "type": "tagRECT[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x144d4' m_AnimateRc（tagRECT[8][6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ArrowMove",
+   "offset": "0x153d4",
+   "type": "UIAnimate[8][6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x153d4' m_ArrowMove（UIAnimate[8][6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Icon",
+   "offset": "0x18494",
+   "type": "UIStaticRM[6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x18494' m_Icon（UIStaticRM[6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Select",
+   "offset": "0x19a9c",
+   "type": "UIStatic[6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x19a9c' m_Select（UIStatic[6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsControlEquip",
+   "offset": "0x1ad5c",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ad5c' m_IsControlEquip（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsEquip",
+   "offset": "0x1ad5d",
+   "type": "unsigned char[6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ad5d' m_IsEquip（unsigned char[6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsMsg",
+   "offset": "0x1ad7b",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ad7b' m_IsMsg（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipingNum",
+   "offset": "0x1ad7c",
+   "type": "int *",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ad7c' m_EquipingNum（int *），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Equiping",
+   "offset": "0x1ad80",
+   "type": "int[6][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ad80' m_Equiping（int[6][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_UnEquipingNum",
+   "offset": "0x1adf8",
+   "type": "int *",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1adf8' m_UnEquipingNum（int *），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_MaxNum",
+   "offset": "0x1adfc",
+   "type": "int *",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1adfc' m_MaxNum（int *），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Adorn",
+   "offset": "0x1ae00",
+   "type": "unsigned char[2][5]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ae00' m_Adorn（unsigned char[2][5]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_3DObj",
+   "offset": "0x1ae0c",
+   "type": "UI3DCtrl",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ae0c' m_3DObj（UI3DCtrl），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Msg",
+   "offset": "0x1af40",
+   "type": "MUIDialog",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1af40' m_Msg（MUIDialog），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_TalkFrame",
+   "offset": "0x1b4a8",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b4a8' m_TalkFrame（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_Ready",
+   "offset": "0x1b548",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b548' m_Ready（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ReadyRc",
+   "offset": "0x1b5e8",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b5e8' m_ReadyRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_EquipYes",
+   "offset": "0x1b5f8",
+   "type": "UIButton",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b5f8' mb_EquipYes（UIButton），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_EquipNo",
+   "offset": "0x1b750",
+   "type": "UIButton",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b750' mb_EquipNo（UIButton），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipTalk",
+   "offset": "0x1b8a8",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b8a8' m_EquipTalk（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipRc",
+   "offset": "0x1b948",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b948' m_EquipRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ListFrame",
+   "offset": "0x1b958",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b958' m_ListFrame（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ListGrid",
+   "offset": "0x1b9f8",
+   "type": "UIStatic[14]",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1b9f8' m_ListGrid（UIStatic[14]），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ScrollHB",
+   "offset": "0x1c2b8",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c2b8' m_ScrollHB（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipFlag",
+   "offset": "0x1c358",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c358' m_EquipFlag（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ListEquipTitle",
+   "offset": "0x1c3f8",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c3f8' m_ListEquipTitle（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "ml_ListEquip",
+   "offset": "0x1c498",
+   "type": "UIListBox",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c498' ml_ListEquip（UIListBox），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "ml_ListEquipRc",
+   "offset": "0x1c9a0",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c9a0' ml_ListEquipRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_btnGroup",
+   "offset": "0x1c9b0",
+   "type": "BtnGroup",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1c9b0' m_btnGroup（BtnGroup），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_ctrlTime",
+   "offset": "0x1cc94",
+   "type": "float",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cc94' m_ctrlTime（float），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_bCanUpdate1",
+   "offset": "0x1cc98",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cc98' m_bCanUpdate1（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_bCanUpdate2",
+   "offset": "0x1cc99",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cc99' m_bCanUpdate2（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipRemarkBk",
+   "offset": "0x1cc9c",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cc9c' m_EquipRemarkBk（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipRemark",
+   "offset": "0x1cd3c",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cd3c' m_EquipRemark（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipRemarkRc",
+   "offset": "0x1cddc",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cddc' m_EquipRemarkRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipAtt",
+   "offset": "0x1cdec",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cdec' m_EquipAtt（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_EquipAttRc",
+   "offset": "0x1ce8c",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ce8c' m_EquipAttRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_MoneyRemark",
+   "offset": "0x1ce9c",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1ce9c' m_MoneyRemark（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_MoneyRc",
+   "offset": "0x1cf3c",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cf3c' m_MoneyRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_SumEquip",
+   "offset": "0x1cf4c",
+   "type": "UIStatic",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cf4c' m_SumEquip（UIStatic），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_SumRc",
+   "offset": "0x1cfec",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cfec' m_SumRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_OK",
+   "offset": "0x1cffc",
+   "type": "UIButton",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1cffc' mb_OK（UIButton），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_OKRc",
+   "offset": "0x1d154",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d154' mb_OKRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_IsDicker",
+   "offset": "0x1d164",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d164' m_IsDicker（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_Cancel",
+   "offset": "0x1d168",
+   "type": "UIButton",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d168' mb_Cancel（UIButton），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_CancelRc",
+   "offset": "0x1d2c0",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d2c0' mb_CancelRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_Exit",
+   "offset": "0x1d2d0",
+   "type": "UIButton",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d2d0' mb_Exit（UIButton），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_ExitRc",
+   "offset": "0x1d428",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d428' mb_ExitRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_TabBtn",
+   "offset": "0x1d438",
+   "type": "UITabBtn",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d438' m_TabBtn（UITabBtn），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "mb_DKRc",
+   "offset": "0x1d450",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d450' mb_DKRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "haveRc",
+   "offset": "0x1d460",
+   "type": "tagRECT",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d460' haveRc（tagRECT），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  },
+  {
+   "name": "m_isCancelTalk",
+   "offset": "0x1d470",
+   "type": "unsigned char",
+   "处置": "retired（本笔从 EquipUI.json known_members 删除；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "几何互斥退役（R2-T2 gate① 终版落位表九数组 verified 落位）：本员 offset 落入 ??_L 构造现场 A 级证实的数组区间 #2 [0x13814,0x25C14) 内。旧注解 source=annotation/evidence_level=unverified（纯注解无二进制锚）的区间填充模型被 gate① 落位压倒：??_L@YGXPAXIHP6EX0@Z 三元组 (offset,count,stride) + ctor/dtor 回调 + PDB 数组类型/元素类 binary_size==stride 对账为 A 级硬证；落位后区间内不容旧注解员共存（几何互斥，无\"都保留\"解，循 CCBCamControl R1 Task4 controller 裁定先例）。证据引用见 decisions[].证据引用 与 consistency 节。",
+   "原证据": "EquipUI.json known_members '0x1d470' m_isCancelTalk（unsigned char），source=annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别，evidence_level=unverified（纯注解无二进制锚）",
+   "证据引用": "gate① 2026-11-26 终版落位表第 2 行（offset 0x13814，type 末端 0x25C14）；??_L 构造现场三元组 data/status/probe_equipui_arrays_20261126.json + data/status/probe_equipui_tail_20261126.json array_coverage；对账口径=checker _estimate_member_size 真类型尺寸（与本台账 consistency.reconcile 脚本同法）",
+   "未来重建线索": "不可按旧名/旧型直接复活：本区间已由 verified 数组占据；若未来在数组元素内拆出语义字段，须以元素类（UIParticle/待鉴定复合类）视角重建并落元素类注解"
+  }
+ ],
+ "keeps": {
+  "note": "几何对账后保持不动的既有员（14 员）：offset 与类型化末端均不触及九区间。特别注记 m_EquipData@0x178 st_Manager：corpus binary_size=244 ⇒ 类型化末端 0x26C < 区间#1 起点 0x1414，checker 口径无几何冲突；旁证=ctor this_writes 0x26C/0x274/0x279/0x27C..0x290 连续小 disp 写形（probe_equipui_tail_20261126.json）与小尺寸 st_Manager 自洽。旧注解布局暗示的 0x178..0x45d8 大槽位与 verified 数组区几何互斥，属旧注解填充形状错误，但 m_EquipData 本员（按 corpus st_Manager 尺寸）不落入区间 ⇒ 按\"重叠员\"定义保持。",
+  "members": [
+   {
+    "offset": "0x48",
+    "name": "bkWndX",
+    "type": "int",
+    "typed_end": "0x4c"
+   },
+   {
+    "offset": "0x4c",
+    "name": "bkWndY",
+    "type": "int",
+    "typed_end": "0x50"
+   },
+   {
+    "offset": "0x50",
+    "name": "buf",
+    "type": "char[256]",
+    "typed_end": "0x150"
+   },
+   {
+    "offset": "0x150",
+    "name": "m_SelNum",
+    "type": "int",
+    "typed_end": "0x154"
+   },
+   {
+    "offset": "0x154",
+    "name": "m_ListNum",
+    "type": "int *",
+    "typed_end": "0x158"
+   },
+   {
+    "offset": "0x158",
+    "name": "m_x",
+    "type": "int",
+    "typed_end": "0x15c"
+   },
+   {
+    "offset": "0x15c",
+    "name": "m_y",
+    "type": "int",
+    "typed_end": "0x160"
+   },
+   {
+    "offset": "0x160",
+    "name": "m_Sum",
+    "type": "int",
+    "typed_end": "0x164"
+   },
+   {
+    "offset": "0x164",
+    "name": "i",
+    "type": "int",
+    "typed_end": "0x168"
+   },
+   {
+    "offset": "0x168",
+    "name": "j",
+    "type": "int",
+    "typed_end": "0x16c"
+   },
+   {
+    "offset": "0x16c",
+    "name": "k",
+    "type": "int",
+    "typed_end": "0x170"
+   },
+   {
+    "offset": "0x170",
+    "name": "_isCreatable",
+    "type": "unsigned char",
+    "typed_end": "0x171"
+   },
+   {
+    "offset": "0x174",
+    "name": "_flashSpeed",
+    "type": "float",
+    "typed_end": "0x178"
+   },
+   {
+    "offset": "0x178",
+    "name": "m_EquipData",
+    "type": "st_Manager",
+    "typed_end": "0x26c"
+   }
+  ]
+ },
+ "uiframecontainer_resize": {
+  "change": "binary_size 136→152",
+  "evidence": "①ctor 写表普查 0x56add0 verdict=CONFIRMED（UIFrameContainer.json vtables.source）②PDB 真类 UIStatic=152（UIStatic.json binary_size）③??_L site 0x498b14 stride 0x98=152 + ResetContainerState 字段足迹 [0..0x98)==152（probe #6，旧 136 与足迹 0x94 处写矛盾）",
+  "ripple_grep": "全库 grep UIFrameContainer：零 \"type\": \"UIFrameContainer 成员内嵌（data/annotations 全树）；引用面=散文注记 3 处（CCBPanelSlot bases_note / SkillUI note / CCBUICtrl note，非编译面）+ IDB decomp 名（非注解驱动）⇒ 引用单元编译面零变化，无 Task 4 归因项"
+ },
+ "consistency": {
+  "reconcile": "对账脚本：读 EquipUI.json 90 员，checker _estimate_member_size 同法算类型化末端，与 gate① 九区间求交 → KEEP 14 / RETIRE 76（全员 offset 直接落区间：#1×21、#2×55）；留档 /tmp/t2_reconcile.py 输出",
+  "arithmetic": "128×584=74752=0x12400（#1/#2）；5×4892=24460=0x5F8C（#3）；6×344=2064=0x810（#4）；6×248=1488=0x5D0（#5）；12×152=1824=0x720（#6）；5×52=260=0x104（#7）；60×584=35040=0x88E0（#8/#9）；#1[0x1414,0x13814)+#2[0x13814,0x25C14) 无缝；#4[0x2c48c,0x2cc9c)+#5[0x2cc9c,0x2d26c) 无缝；#8[0x2fe04,0x386e4)+#9[0x386e4,0x40fc4) 无缝；#9 末端 0x40fc4 + 类尾 80B = 0x41014 = binary_size 266260（binary_size_source 在案）",
+  "member_sizes_match_stride": {
+   "UIParticle": 584,
+   "UIPushButton": 248,
+   "UIStatic": 152,
+   "tagPlayerSet": 52
+  },
+  "probes": [
+   "data/status/probe_equipui_arrays_20261126.json",
+   "data/status/probe_equipui_tail_20261126.json"
+  ]
+ },
+ "check": {
+  "before": "0 new errors + 38 frozen (advisory) — PASS（改动前基线快照 /tmp/t2_check_before.txt）",
+  "after_edit": "5 new errors + 38 frozen — FAIL（全部=退役员语料悬空 N13a×5：EquipUI::m_Arrow/m_ArrowRc/m_Role/m_TempData/m_isCancelTalk；无 overlap 类新错误——76 员退役真消，零 overlap 残留）",
+  "after_freeze": "0 new errors + 43 frozen (advisory) — PASS（38 存量 + 5 新冻结 EquipUI N13a，过渡协议挂账 Task7 loop 重渲后解冻正名；overlap 类错误未冻结=真消不符冻结定义）",
+  "new_frozen_n13a": 5,
+  "frozen_strings": [
+   "DATA:N13a:EquipUI::m_Arrow 字段契约断(语料->引用4次, 类链known_members无名) → C2227族预测",
+   "DATA:N13a:EquipUI::m_ArrowRc 字段契约断(语料->引用2次, 类链known_members无名) → C2227族预测",
+   "DATA:N13a:EquipUI::m_Role 字段契约断(语料->引用4次, 类链known_members无名) → C2227族预测",
+   "DATA:N13a:EquipUI::m_TempData 字段契约断(语料->引用12次, 类链known_members无名) → C2227族预测",
+   "DATA:N13a:EquipUI::m_isCancelTalk 字段契约断(语料->引用355次, 类链known_members无名) → C2227族预测"
+  ],
+  "note": "语料引用预扫描（decomp 箭头名普查）与 check 实测完全一致：EquipUI 类链引用退役名恰 5 名；其余类（PropUI/SaleUI/LineupUI 等）引用同名属各自类链自有成员，不受本退役影响"
+ },
+ "census": {
+  "tool": "tools/census_struct_holes.py",
+  "before": "含洞类 201 | 总空洞 1161 处 | 1546 KB (1.51 MB) | unresolved=6 vptr豁免=59；EquipUI size=266260 holes=28 164 KB；UIFrameContainer 无洞未列",
+  "after": "含洞类 201 | 总空洞 1140 处 | 1398 KB (1.37 MB) | unresolved=6 vptr豁免=59；EquipUI size=266260 holes=7 15 KB；UIFrameContainer 无洞未列",
+  "delta": "总空洞 -21 处 / -148 KB；EquipUI holes 28→7、164 KB→15 KB——九数组落位填补旧注解散布小成员间空洞的直接效果",
+  "note": "UIFrameContainer 两态各 2 洞：36B→52B（resize 后 +16B；明细 [0x48,0x60)=24B + [0x7c,0x88)=12B → [0x7c,0x98)=28B，data/status/struct_holes_20261125.json）。EquipUI 7 洞 15960B=头区 [0x26c,0x1414) 4520B + 阵间间隙 5 处 11360B（1508/776/388/7248/1440）+ 尾 [0x40fc4,0x41014) 80B；keep 区 3B 缝 [0x171,0x174) 在 census 阈值外不计。先前 census 节\"UIFrameContainer 无洞未列\"系 grep 截断误读，门②勘误。"
+ },
+ "gate2_overrides": {
+  "date": "2026-11-26",
+  "by": "对抗复核门②",
+  "scope": "证据/文档层三须修；九区间几何/76 退役对账/census 全部独立确认维持，不动几何与数值",
+  "fix1": "#1/#2/#8/#9 source 撤收 gate① \"PDB 数组类型 UIParticle[16][8]/[5][12]\" 主张（data/pdb/pdb_export.json 穷举零命中；引源 original/PAL3A.pdb.xml 不可库内再证），改写为可证引用式：??_L 三元组+offset+stride==UIParticle(584)(corpus 约定)+m_par 族 PDB 先例 UIParticle[16][7]（pdb_export ×16；StateUI/MainEquipUI 在档）。复核注记：SystemUI 未建档（DATA:N14 在案），引用面按库内实档收敛为 StateUI/MainEquipUI",
+  "fix2": "#6 元素名裁定 UIStatic[12]→UIFrameContainer[12]：回调地址同一性（ResetContainerState@0x4422e0 + 真名 mangle dtor ??1UIFrameContainer@0x442390）最强库内钥匙；UIStatic 主张库内不可再证（pdb_export：UIFrameContainer 零命中，UIStatic[12] ×2 属 SwordUI m_ListGrid/m_ListGridPurge 布局）且与 PDB 布局互斥；UIStatic/UIFrameContainer 双条目成员级调和挂账未来轮",
+  "fix3": "报告两句勘误：阵间间隙 5 处 11360B / 全类 7 洞 15960B（census 明细逐洞复核）；UIFrameContainer 两态各 2 洞 36B→52B（resize 后 +16B）",
+  "extra": "UIFrameContainer.json binary_size_source 措辞同步降级（数值 152 不动）：撤收\"PDB 真类 UIStatic\"归属，resize 锚改三条库内可证项（写表普查 CONFIRMED + stride/足迹 + corpus 同尺寸旁证）"
+ },
+ "task3_rolestatepanel_seven_ptrs": {
+  "date": "2026-11-26",
+  "task": "R2 Task 3（RoleStatePanel 七模块指针落位）",
+  "scope": "RoleStatePanel@0x2B080(176256 金表闭合; Init@0x4A4220 mangle 名义性错挂, 真接收者=UIGameFrm+0x6E14 缓存 RoleStatePanel 实例)七槽 [0x2AFB8..0x2AFD0]",
+  "probes": [
+   "data/status/probe_equipui_tail_20261126.json seven_ptr_consumers (消费面 27/26/26/26/15/14/9 读点全活, seven_stored_via_esi ×2/槽, InitUI/Init/HideAll 三写/槽)",
+   "corpus 全档 binary_size 对账 (171244/353840/402824/290488 零命中; 219984=MainPropUI/266260=EquipUI/162772=LineupUI 唯一命中)"
+  ],
+  "placements_seven": [
+   {
+    "offset": "0x2afb8",
+    "name": "m_pTabPanel",
+    "type": "void *",
+    "pointee": "171244B 未名 (ctor 名义 Save@LineupUI 误名)",
+    "consumption": "27 读点; callee 簇 SelectTab0..4(EquipUI/StateUI/MagicUI)+DispatchSlotMethod@LineupComp+CreatePreviewScene@LineupUI+j_NPC__UpdateAnim",
+    "naming": "语义名: SelectTab 素簇 (七槽唯一)",
+    "storage": "0x4a20c5/0x4a45c4/0x4a668d"
+   },
+   {
+    "offset": "0x2afbc",
+    "name": "m_pSubTabPanel",
+    "type": "void *",
+    "pointee": "353840B 未名 (ctor 名义 InitChildPanels@RenderTarget 误名)",
+    "consumption": "26 读点; callee 簇 SelectSubTab1..4+SetSubTab+SetMonsterState/UpdateNPCAnims2@UITitle_XJTM+CreateCameraUI@CameraCtrl",
+    "naming": "语义名: SubTab 簇; 承退役员 m_pSubTab1 同址语义",
+    "storage": "0x4a20cb/0x4a45f6/0x4a6693"
+   },
+   {
+    "offset": "0x2afc0",
+    "name": "m_pMainPropUI",
+    "type": "MainPropUI *",
+    "pointee": "219984B==MainPropUI.json binary_size, ctor ??0MainPropUI",
+    "consumption": "26 读点; callee 簇 SelectBigMapTab0..4+ForwardToBigMap+SetEntryVisible/UpdateNPCAnimations@UIBigMap+CreateSceneEntities (名义错挂名, 不作类归属主张)",
+    "naming": "类名派生 (StateUI p_mPropUI 先例)",
+    "storage": "0x4a20d1/0x4a4628/0x4a6699"
+   },
+   {
+    "offset": "0x2afc4",
+    "name": "m_pEquipUI",
+    "type": "EquipUI *",
+    "pointee": "266260B==EquipUI.json binary_size, ctor ??0EquipUI(0x498820)=九数组类; ctor→store 直证 site 0x4a4648→esi+0x2afc4",
+    "consumption": "26 读点; callee 簇 SelectXJTMTab1..4+SetSubTab2+SetMonsterState2/UpdateNPCAnims@UITitle_XJTM+CreateListPanel@MainEquipUI",
+    "naming": "类名派生",
+    "storage": "0x4a20d7/0x4a465a/0x4a669f"
+   },
+   {
+    "offset": "0x2afc8",
+    "name": "m_pPanel_2afc8",
+    "type": "void *",
+    "pointee": "402824B 类Y 未名 (PDB 三类零命中; ctor 名义 CCCTData_6F10 误名, CCCTData=430256B)",
+    "consumption": "15 读点; callee 簇 InitEquipUI(名义)+10× 虚表 thunk [edx+18h] — 语义薄",
+    "naming": "地址消歧诚实形 (m_nTodo_00C 族先例)",
+    "storage": "0x4a20dd/0x4a468c/0x4a66a5"
+   },
+   {
+    "offset": "0x2afcc",
+    "name": "m_pLineupUI",
+    "type": "LineupUI *",
+    "pointee": "162772B==LineupUI.json binary_size, ctor ??0LineupUI",
+    "consumption": "14 读点; callee 簇 ProcessTree(名义)+虚表 thunk",
+    "naming": "类名派生 (StateUI p_LineupUI 先例)",
+    "storage": "0x4a20e9/0x4a46be/0x4a66ab"
+   },
+   {
+    "offset": "0x2afd0",
+    "name": "m_pPanel_2afd0",
+    "type": "void *",
+    "pointee": "290488B=UITitle_JDHY 金表分配尺寸但注解 binary_size=377700 不合 (290488 corpus 零命中), 待 Note_Item 仲裁→透明指针; ctor 名义 DestroyPages@UITitle_JDHY 误名",
+    "consumption": "9 读点; callee 簇 PopulateContent/SaveData@UITitle_JDHY (名义)+虚表 thunk",
+    "naming": "地址消歧诚实形 (禁预判 JDHY 归属)",
+    "storage": "0x4a20ef/0x4a46f2/0x4a66b1"
+   }
+  ],
+  "retirements": [
+   {
+    "offset": "0x2afbc",
+    "name": "m_pSubTab1",
+    "type": "UITitle_XJTM *",
+    "was_evidence_level": "A",
+    "reason": "七槽金表落位几何互斥 (0x2afbc ∈ [0x2AFB8,0x2AFD4)); 旧 A 级类归属证伪线索: SetMonsterState(0x00488C70) 名义 UITitle_XJTM 方法绑 this ⇒ UITitle_XJTM 对象, 与金表 pointee 353840B 互斥 (UITitle_XJTM.json binary_size=5052B), 系名义错挂",
+    "successor": "m_pSubTabPanel@0x2afbc (同址语义连续)"
+   },
+   {
+    "offset": "0x2afc0",
+    "name": "m_pSubTab2",
+    "type": "void *",
+    "was_evidence_level": "A",
+    "reason": "同上几何互斥 (0x2afc0 ∈ 区间); 旧注记『5 槽指针数组 0x2afc0..0x2afd4 清零』系七槽表尾部五槽的旧锚观察 (漏锚 0x2afb8), 新落位以 0x2afb8 为锚七槽全置超规格取代",
+    "successor": "m_pMainPropUI@0x2afc0"
+   }
+  ],
+  "overlap_audit": "RoleStatePanel 现 known_members 11 员 (非消息内假设的 90 员) 与 [0x2AFB8,0x2AFD4) 求交: 仅 m_pSubTab1@0x2afbc (4B) 与 m_pSubTab2@0x2afc0 (注记 5 槽 20B) 两员重叠 → 退役; 其余 9 员几何无冲突 (m_roles [0x25e04,0x2a800) 止于槽区前 1980B; m_nEquipSlot@0x2afd4 恰起于槽区末端)",
+  "check": {
+   "before": "0 new errors + 43 frozen (advisory), 109 warnings — PASS",
+   "after_edit": "2 new errors + 43 frozen — FAIL (全部=退役员语料悬空 N13a: RoleStatePanel::m_pSubTab1 引用18次 + m_pSubTab2 引用59次; 无 overlap/C10 类新错误; 语料预扫描 18/59 与 check 实测一致, 引用全部在 RoleStatePanel_* 11 个 decomp 文件, 他类零引用)",
+   "after_freeze": "0 new errors + 45 frozen (advisory), 109 warnings — PASS (43 存量 + 2 新冻结 RoleStatePanel N13a, 过渡协议挂账 codegen 重渲后解冻正名)"
+  },
+  "census": {
+   "before": "含洞类 201 | 总空洞 1140 处 | 1398 KB; RoleStatePanel size=176256 holes=7 hole_bytes=156453",
+   "after": "含洞类 201 | 总空洞 1139 处 | 1398 KB; RoleStatePanel holes=6 hole_bytes=156433 (-1 洞 / -20B)",
+   "detail": "七槽区 [0x2afb8,0x2afd4) 全覆盖: 洞 [0x2afc4,0x2afd4) 16B 消失; 洞 [0x2a800,0x2afbc) 1980B→[0x2a800,0x2afb8) 1976B; 其余 5 洞不变 (28/261/160/153852/156B)"
+  },
+  "backups": [
+   "/tmp/RoleStatePanel.json.bak-task3-20261126 (752d5fc8ed4d47863ebce0a50cb8257f)",
+   "/tmp/check_baseline_errors.json.bak-task3-20261126 (41d3160b792426c6c2b40197ab833223)",
+   "/tmp/equipui_r2_adjustments_20261126.json.bak-task3-20261126 (21b34f0298c829a359dd3342fdd9aaf5)"
+  ]
+ },
+ "task5_dead_baseline_removal": {
+  "date": "2026-11-26",
+  "task": "R2 Task 5（落账段·门④挂账执行）",
+  "scope": "check_baseline_errors.json 摘除 RoleStatePanel 8 条死冻结（60→52 条）",
+  "removed_8": [
+   "CANON:C9:RoleStatePanel:0x004a5930:name (slot1 RenderThrottled vs Render)",
+   "CANON:C9:RoleStatePanel:0x004a5930:sig RenderThrottled (int vs void)",
+   "CANON:C9:RoleStatePanel:0x004a5b30:name (slot2 UpdateCaptions vs Update)",
+   "CANON:C9:RoleStatePanel:0x004a5b30:sig UpdateCaptions (int/0参 vs BOOL/2参)",
+   "CANON:C9:RoleStatePanel:0x004a6600:name (slot3 Destroy vs HideAll)",
+   "CANON:C9:RoleStatePanel:0x004a6600:sig Destroy (int vs void)",
+   "CXX_GATE:new_violation:cxx_rule:RoleStatePanel:Render:('__thiscall','',''):x2",
+   "CXX_GATE:new_violation:same_name:RoleStatePanel:Render:x2"
+  ],
+  "death_cause": "触发条件已消失——loop 前已死于 2026-11-20 槽链定谳（RoleStatePanel.json 链律名修正20261120：RenderThrottled→Render / UpdateCaptions→Update / Destroy→HideAll + 槽链契约定谳 int→void，『C9 六条定谳』），冲突串在注解模型中已不存在，非『重渲停止触发』。Task4 门④原措辞（七指针重渲同时停止触发）按此更正；重渲停止触发仅适用于 7 条 N13a 解冻，不适用于本 8 条",
+  "removal_semantics": "死条目摘除，非静默吸收（Task4 门④裁定沿用）：摘前 check 全输出逐串比对确认 8 条均不在触发清单（38 条触发中 RoleStatePanel 仅剩 C11 bases 1 条历史冻结），摘除不改变触发数",
+  "check": {
+   "before": "0 new errors + 38 frozen (advisory), 109 warnings — PASS（基线 60 条，摘前快照 /tmp/t5_check_baseline_before.json）",
+   "after_removal": "0 new errors + 38 frozen (advisory), 109 warnings — PASS（基线 52 条；frozen 触发数不变=38，恰证摘除的是不触发的死条目）"
+  },
+  "kept": "RoleStatePanel 其余 4 条历史条目原样保留（C11 bases + C9 sig Render/Update/HideAll 三条非 slot 形），与本批无关"
+ }
+}

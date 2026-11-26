@@ -1,6 +1,6 @@
 {
  "name": "UIFrameContainer",
- "binary_size": 136,
+ "binary_size": 152,
  "known_members": {
   "0x60": {
    "name": "m_bFlag96",
@@ -159,5 +159,6 @@
    "offset": 0
   }
  ],
- "bases_note": "继承证据: 表slot1=CalculateLayout@0x442890(UIFrameWnd码区)+slot族0x442xxx+dtor链; G2审计恢复"
+ "bases_note": "继承证据: 表slot1=CalculateLayout@0x442890(UIFrameWnd码区)+slot族0x442xxx+dtor链; G2审计恢复",
+ "binary_size_source": "[gate① 2026-11-26 R2-T2 裁定 136→152；gate② 2026-11-26 证据措辞降级（数值/几何不动）] 152 为真尺寸的库内可证锚：①ctor 写表普查——0x4422E0(+82) 写 0x56add0 verdict=CONFIRMED（本文件 vtables.source 在案）②EquipUI ??_L site 0x498b14 元素 stride 0x98=152 且 ctor 回调 ResetContainerState 字段足迹 [0..0x98) 恰 152（data/status/probe_equipui_arrays_20261126.json #6；旧 136 与足迹 0x94 处写矛盾）③corpus UIStatic.json binary_size=152 同尺寸旁证（corpus 约定）。成员末端 0x7C<152 无冲突；涟漪面=零按值内嵌（全库 grep 无 \"type\": \"UIFrameContainer 成员），编译面仅本类自身头文件 sizeof。gate② 注记：原\"PDB 真类 UIStatic=152\"主张撤收——data/pdb/pdb_export.json 对 UIFrameContainer 零命中、UIStatic[12] ×2 均属他类 SwordUI m_ListGrid/m_ListGridPurge 布局；UIStatic/UIFrameContainer 双条目成员级调和挂账未来轮"
 }

@@ -1,0 +1,942 @@
+{
+ "meta": {
+  "tool": "tools/probe_equipui_arrays_20261126.py",
+  "db": "original/PAL3.exe.i64",
+  "date": "2026-11-26",
+  "ctor_ea": "0x498820",
+  "ctor_range": [
+   "0x498820",
+   "0x498c70"
+  ],
+  "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+  "helper_ea": "0x553627",
+  "method": "forward push-model scan of ??0EquipUI; ??_L stdcall args (ptr,size,count,ctor,dtor) pushed right-to-left: push dtor; push ctor; push count; push size; push ptr; call ??_L",
+  "class_key_rule": "SceneBuf 先例: ctor 回调函数名主人类 = 元素类钥匙; usable 判据 = 注解存在且 binary_size==stride",
+  "expect_basis": "data/status/probe_equipui_tail_20261126.json 九笔 (offset,count,stride)"
+ },
+ "n_helper_calls_found": 9,
+ "arrays": [
+  {
+   "site": "0x4989d7",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x4989b7",
+     "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    ],
+    [
+     "0x4989bc",
+     "push    offset ?Reset@UIListBox@@QAEXXZ"
+    ],
+    [
+     "0x4989c1",
+     "push    80h"
+    ],
+    [
+     "0x4989c6",
+     "lea     eax, [esi+1414h]"
+    ],
+    [
+     "0x4989cc",
+     "push    248h"
+    ],
+    [
+     "0x4989d1",
+     "push    eax"
+    ],
+    [
+     "0x4989d2",
+     "mov     byte ptr [esp+2Ch+var_4], 12h"
+    ],
+    [
+     "0x4989d7",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 5140,
+   "count": 128,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span_end": "0x13814",
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x1414",
+     "count": 128,
+     "stride": 584
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 72,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 1012,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调字段足迹 [0..0x248) ⊆ stride(584), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "next_starts_at_span_end"
+   ]
+  },
+  {
+   "site": "0x4989fc",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x4989dc",
+     "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    ],
+    [
+     "0x4989e1",
+     "push    offset ?Reset@UIListBox@@QAEXXZ"
+    ],
+    [
+     "0x4989e6",
+     "push    80h"
+    ],
+    [
+     "0x4989eb",
+     "lea     ecx, [esi+13814h]"
+    ],
+    [
+     "0x4989f1",
+     "push    248h"
+    ],
+    [
+     "0x4989f6",
+     "push    ecx"
+    ],
+    [
+     "0x4989f7",
+     "mov     byte ptr [esp+2Ch+var_4], 13h"
+    ],
+    [
+     "0x4989fc",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 79892,
+   "count": 128,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span_end": "0x25c14",
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x13814",
+     "count": 128,
+     "stride": 584
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 72,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 1012,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调字段足迹 [0..0x248) ⊆ stride(584), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "starts_at_prev_span_end"
+   ]
+  },
+  {
+   "site": "0x498a2e",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498a11",
+     "push    offset ?DestroyFramesEx@UITitle_XJTM@@QAEXXZ"
+    ],
+    [
+     "0x498a16",
+     "push    offset ?DestroyStaticsEx@UITitle_XJTM@@QAEXXZ"
+    ],
+    [
+     "0x498a1b",
+     "push    5"
+    ],
+    [
+     "0x498a1d",
+     "lea     edx, [esi+261F8h]"
+    ],
+    [
+     "0x498a23",
+     "push    131Ch"
+    ],
+    [
+     "0x498a28",
+     "push    edx"
+    ],
+    [
+     "0x498a29",
+     "mov     byte ptr [esp+2Ch+var_4], 15h"
+    ],
+    [
+     "0x498a2e",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 156152,
+   "count": 5,
+   "stride": 4892,
+   "ctor_ea": "0x498c90",
+   "ctor_name": "?DestroyStaticsEx@UITitle_XJTM@@QAEXXZ",
+   "ctor_class_mangled": "UITitle_XJTM",
+   "dtor_ea": "0x498e60",
+   "dtor_name": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+   "dtor_class_mangled": "UITitle_XJTM",
+   "span_end": "0x2c184",
+   "ctor_owner": {
+    "class": "UITitle_XJTM",
+    "method": "DestroyStaticsEx",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UITitle_XJTM",
+    "method": "DestroyFramesEx",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UITitle_XJTM",
+   "dtor_class": "UITitle_XJTM",
+   "ctor_demangled": "public: void __thiscall UITitle_XJTM::DestroyStaticsEx(void)",
+   "dtor_demangled": "public: void __thiscall UITitle_XJTM::DestroyFramesEx(void)",
+   "callback_owners_agree": true,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x261f8",
+     "count": 5,
+     "stride": 4892
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 5052,
+     "base_size": 72,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 5052,
+     "base_size": 72,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x1274",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "双回调同主类(强类名信号)但 binary_size(5052)!=stride(4892), 差 +160 字节, Task2 需尺寸调和",
+    "ctor 回调字段足迹 [0..0x1278) ⊆ stride(4892), 佐证元素尺寸"
+   ],
+   "adjacency": []
+  },
+  {
+   "site": "0x498aa0",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498a83",
+     "push    offset ?Destroy2@UICaption@@QAEXXZ"
+    ],
+    [
+     "0x498a88",
+     "push    offset ?GetSys@NameSys@@QACPAV1@XZ"
+    ],
+    [
+     "0x498a8d",
+     "push    6"
+    ],
+    [
+     "0x498a8f",
+     "lea     eax, [esi+2C48Ch]"
+    ],
+    [
+     "0x498a95",
+     "push    158h"
+    ],
+    [
+     "0x498a9a",
+     "push    eax"
+    ],
+    [
+     "0x498a9b",
+     "mov     byte ptr [esp+2Ch+var_4], 1Bh"
+    ],
+    [
+     "0x498aa0",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 181388,
+   "count": 6,
+   "stride": 344,
+   "ctor_ea": "0x43a770",
+   "ctor_name": "?GetSys@NameSys@@QACPAV1@XZ",
+   "ctor_class_mangled": "NameSys",
+   "dtor_ea": "0x43a810",
+   "dtor_name": "?Destroy2@UICaption@@QAEXXZ",
+   "dtor_class_mangled": "UICaption",
+   "span_end": "0x2cc9c",
+   "ctor_owner": {
+    "class": "NameSys",
+    "method": "GetSys",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UICaption",
+    "method": "Destroy2",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "NameSys",
+   "dtor_class": "UICaption",
+   "ctor_demangled": "public: class NameSys * __pascal NameSys::GetSys(void)",
+   "dtor_demangled": "public: void __thiscall UICaption::Destroy2(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x2c48c",
+     "count": 6,
+     "stride": 344
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 280,
+     "base_size": null,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 96,
+     "base_size": 76,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0xd4",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调签名带返回指针(非 void(void*) 形态), 名字钥匙存疑",
+    "ctor 回调字段足迹 [0..0xD8) ⊆ stride(344), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "next_starts_at_span_end"
+   ]
+  },
+  {
+   "site": "0x498ac2",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498aa5",
+     "push    offset ??1UIPushButton@@QAE@XZ"
+    ],
+    [
+     "0x498aaa",
+     "push    offset ??0UIPushButton@@QAE@XZ"
+    ],
+    [
+     "0x498aaf",
+     "push    6"
+    ],
+    [
+     "0x498ab1",
+     "lea     ecx, [esi+2CC9Ch]"
+    ],
+    [
+     "0x498ab7",
+     "push    0F8h"
+    ],
+    [
+     "0x498abc",
+     "push    ecx"
+    ],
+    [
+     "0x498abd",
+     "mov     byte ptr [esp+2Ch+var_4], 1Ch"
+    ],
+    [
+     "0x498ac2",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 183452,
+   "count": 6,
+   "stride": 248,
+   "ctor_ea": "0x440740",
+   "ctor_name": "??0UIPushButton@@QAE@XZ",
+   "ctor_class_mangled": null,
+   "dtor_ea": "0x4407c0",
+   "dtor_name": "??1UIPushButton@@QAE@XZ",
+   "dtor_class_mangled": null,
+   "span_end": "0x2d26c",
+   "ctor_owner": {
+    "class": "UIPushButton",
+    "method": "UIPushButton",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UIPushButton",
+    "method": "~UIPushButton",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIPushButton",
+   "dtor_class": "UIPushButton",
+   "ctor_demangled": "public: __thiscall UIPushButton::UIPushButton(void)",
+   "dtor_demangled": "public: __thiscall UIPushButton::~UIPushButton(void)",
+   "callback_owners_agree": true,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x2cc9c",
+     "count": 6,
+     "stride": 248
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 248,
+     "base_size": 68,
+     "stride_equal": true
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 248,
+     "base_size": 68,
+     "stride_equal": true
+    },
+    "verdict": "both"
+   },
+   "element_class_candidate": "UIPushButton",
+   "candidate_usable": true,
+   "candidate_basis": "ctor_callback_owner",
+   "ctor_cb_max_this_disp": "0x78",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调字段足迹 [0..0x7C) ⊆ stride(248), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "starts_at_prev_span_end"
+   ]
+  },
+  {
+   "site": "0x498b14",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498af7",
+     "push    offset ??1UIFrameContainer@@QAE@XZ"
+    ],
+    [
+     "0x498afc",
+     "push    offset ResetContainerState"
+    ],
+    [
+     "0x498b01",
+     "push    0Ch"
+    ],
+    [
+     "0x498b03",
+     "lea     edx, [esi+2D3F0h]"
+    ],
+    [
+     "0x498b09",
+     "push    98h"
+    ],
+    [
+     "0x498b0e",
+     "push    edx"
+    ],
+    [
+     "0x498b0f",
+     "mov     byte ptr [esp+2Ch+var_4], 20h"
+    ],
+    [
+     "0x498b14",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 185328,
+   "count": 12,
+   "stride": 152,
+   "ctor_ea": "0x4422e0",
+   "ctor_name": "ResetContainerState",
+   "ctor_class_mangled": null,
+   "dtor_ea": "0x442390",
+   "dtor_name": "??1UIFrameContainer@@QAE@XZ",
+   "dtor_class_mangled": null,
+   "span_end": "0x2db10",
+   "ctor_owner": {
+    "class": "UIFrameContainer",
+    "method": "ResetContainerState",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UIFrameContainer",
+    "method": "~UIFrameContainer",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "ctor_class": "UIFrameContainer",
+   "dtor_class": "UIFrameContainer",
+   "ctor_demangled": "ResetContainerState",
+   "dtor_demangled": "public: __thiscall UIFrameContainer::~UIFrameContainer(void)",
+   "callback_owners_agree": true,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": false,
+    "stride_ok": false,
+    "expect": {
+     "offset": "0x2d3f0",
+     "count": 152,
+     "stride": 12
+    },
+    "note": "expect 的 count/stride 互为转置 (乘积相同, 以 ABI 压栈序第3推=count/第4推=size 为准)"
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 136,
+     "base_size": null,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 136,
+     "base_size": null,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x94",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "双回调同主类(强类名信号)但 binary_size(136)!=stride(152), 差 -16 字节, Task2 需尺寸调和",
+    "ctor 回调字段足迹 [0..0x98) ⊆ stride(152), 佐证元素尺寸"
+   ],
+   "adjacency": []
+  },
+  {
+   "site": "0x498b93",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498b79",
+     "push    offset ?DestroyEffect@CEffObj@@QAEXXZ"
+    ],
+    [
+     "0x498b7e",
+     "push    offset InitState"
+    ],
+    [
+     "0x498b83",
+     "push    5"
+    ],
+    [
+     "0x498b85",
+     "lea     eax, [esi+2F760h]"
+    ],
+    [
+     "0x498b8b",
+     "push    34h"
+    ],
+    [
+     "0x498b8d",
+     "push    eax"
+    ],
+    [
+     "0x498b8e",
+     "mov     byte ptr [esp+2Ch+var_4], 27h"
+    ],
+    [
+     "0x498b93",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 194400,
+   "count": 5,
+   "stride": 52,
+   "ctor_ea": "0x45add0",
+   "ctor_name": "InitState",
+   "ctor_class_mangled": null,
+   "dtor_ea": "0x401800",
+   "dtor_name": "?DestroyEffect@CEffObj@@QAEXXZ",
+   "dtor_class_mangled": "CEffObj",
+   "span_end": "0x2f864",
+   "ctor_owner": {
+    "class": "tagPlayerSet",
+    "method": "InitState",
+    "evidence_level": "verified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "CEffObj",
+    "method": "DestroyEffect",
+    "evidence_level": "binary_vtable_slot",
+    "n_claims": 1
+   },
+   "ctor_class": "tagPlayerSet",
+   "dtor_class": "CEffObj",
+   "ctor_demangled": "InitState",
+   "dtor_demangled": "public: void __thiscall CEffObj::DestroyEffect(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x2f760",
+     "count": 5,
+     "stride": 52
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 52,
+     "base_size": null,
+     "stride_equal": true
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 12,
+     "base_size": null,
+     "stride_equal": false
+    },
+    "verdict": "ctor"
+   },
+   "element_class_candidate": "tagPlayerSet",
+   "candidate_usable": true,
+   "candidate_basis": "ctor_callback_owner",
+   "ctor_cb_max_this_disp": "0x30",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "dtor 回调为空函数(retn)= no-op 析构, 其类名钥匙弱",
+    "ctor 回调字段足迹 [0..0x34) ⊆ stride(52), 佐证元素尺寸"
+   ],
+   "adjacency": []
+  },
+  {
+   "site": "0x498bff",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498be2",
+     "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    ],
+    [
+     "0x498be7",
+     "push    offset ?Reset@UIListBox@@QAEXXZ"
+    ],
+    [
+     "0x498bec",
+     "push    3Ch"
+    ],
+    [
+     "0x498bee",
+     "lea     ecx, [esi+2FE04h]"
+    ],
+    [
+     "0x498bf4",
+     "push    248h"
+    ],
+    [
+     "0x498bf9",
+     "push    ecx"
+    ],
+    [
+     "0x498bfa",
+     "mov     byte ptr [esp+2Ch+var_4], 2Ch"
+    ],
+    [
+     "0x498bff",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 196100,
+   "count": 60,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span_end": "0x386e4",
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x2fe04",
+     "count": 60,
+     "stride": 584
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 72,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 1012,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调字段足迹 [0..0x248) ⊆ stride(584), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "next_starts_at_span_end"
+   ]
+  },
+  {
+   "site": "0x498c21",
+   "n_pending": 5,
+   "push_window": [
+    [
+     "0x498c04",
+     "mov     byte ptr [esp+18h+var_4], 2Dh"
+    ],
+    [
+     "0x498c09",
+     "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    ],
+    [
+     "0x498c0e",
+     "push    offset ?Reset@UIListBox@@QAEXXZ"
+    ],
+    [
+     "0x498c13",
+     "push    3Ch"
+    ],
+    [
+     "0x498c15",
+     "lea     edx, [esi+386E4h]"
+    ],
+    [
+     "0x498c1b",
+     "push    248h"
+    ],
+    [
+     "0x498c20",
+     "push    edx"
+    ],
+    [
+     "0x498c21",
+     "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    ]
+   ],
+   "stack_form_ok": true,
+   "offset": 231140,
+   "count": 60,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span_end": "0x40fc4",
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "expect_check": {
+    "offset_ok": true,
+    "count_ok": true,
+    "stride_ok": true,
+    "expect": {
+     "offset": "0x386e4",
+     "count": 60,
+     "stride": 584
+    }
+   },
+   "annotation_match": {
+    "ctor": {
+     "annotation": true,
+     "binary_size": 72,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "dtor": {
+     "annotation": true,
+     "binary_size": 1012,
+     "base_size": 68,
+     "stride_equal": false
+    },
+    "verdict": "none"
+   },
+   "element_class_candidate": "unknown",
+   "candidate_usable": false,
+   "candidate_basis": null,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "notes": [
+    "ctor 回调字段足迹 [0..0x248) ⊆ stride(584), 佐证元素尺寸"
+   ],
+   "adjacency": [
+    "starts_at_prev_span_end"
+   ]
+  }
+ ],
+ "expect_summary": {
+  "all_offset_match": true,
+  "all_count_match": false,
+  "all_stride_match": false
+ }
+}

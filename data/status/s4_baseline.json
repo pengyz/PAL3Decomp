@@ -18,28 +18,28 @@
   "/Gd"
  ],
  "stats": {
-  "symbols": 1254,
-  "matched": 1146,
-  "unmatched": 241,
-  "match_L1": 188,
+  "symbols": 1259,
+  "matched": 1152,
+  "unmatched": 242,
+  "match_L1": 189,
   "match_L1_semantic": 12,
-  "partial": 824,
+  "partial": 827,
   "oob": 0,
   "compile_skip": 0,
   "oob_text_end": 0,
   "oob_file_end": 0,
-  "unresolved_synth": 134,
-  "reloc_total": 8015,
-  "reloc_ok": 1909,
+  "unresolved_synth": 136,
+  "reloc_total": 8044,
+  "reloc_ok": 1915,
   "reloc_mismatch": 0,
-  "reloc_unresolved": 6106,
-  "rsite_total": 8015,
-  "rsite_unaligned": 7440,
-  "l1_bytes": 8166,
-  "l1_hidden_reloc_bytes": 1642,
-  "l1_reloc_covered_bytes": 2300,
-  "rsite_ok": 99,
-  "rsite_class_ok": 425,
+  "reloc_unresolved": 6129,
+  "rsite_total": 8044,
+  "rsite_unaligned": 7467,
+  "l1_bytes": 8196,
+  "l1_hidden_reloc_bytes": 1646,
+  "l1_reloc_covered_bytes": 2308,
+  "rsite_ok": 100,
+  "rsite_class_ok": 426,
   "rsite_unresolved": 13,
   "rsite_unresolved_samples": [
    {
@@ -282,8 +282,8 @@
   ],
   "carrier": {
    "expected": 204,
-   "paired": 91,
-   "unpaired": 113,
+   "paired": 93,
+   "unpaired": 111,
    "unpaired_syms": [
     "??1AStarPathFinder@@UAE@XZ",
     "??_GAStarPathFinder@@UAEPAXI@Z",
@@ -6912,6 +6912,42 @@
    "size": 1137
   },
   {
+   "file": "pal3/src/Misc/UIFrameContainer.cpp",
+   "symbol": "??1UIFrameContainer@@UAE@XZ",
+   "name": "UIFrameContainer::~UIFrameContainer(void)",
+   "va": "0x00442390",
+   "status": "partial",
+   "match_pct": 44.1,
+   "size": 136
+  },
+  {
+   "file": "pal3/src/Misc/UIFrameContainer.cpp",
+   "symbol": "??_GUIFrameContainer@@UAEPAXI@Z",
+   "name": "UIFrameContainer::`scalar deleting destructor'(uint)",
+   "va": "0x00442370",
+   "status": "match_L1",
+   "match_pct": 100.0,
+   "size": 30
+  },
+  {
+   "file": "pal3/src/Misc/UIFrameContainer.cpp",
+   "symbol": "?Render@UIFrameContainer@@UAEXXZ",
+   "name": "UIFrameContainer::Render(void)",
+   "va": "0x00442890",
+   "status": "partial",
+   "match_pct": 10.2,
+   "size": 568
+  },
+  {
+   "file": "pal3/src/Misc/UIFrameContainer.cpp",
+   "symbol": "?Update@UIFrameContainer@@UAEHHH@Z",
+   "name": "UIFrameContainer::Update(int,int)",
+   "va": "0x00442ad0",
+   "status": "partial",
+   "match_pct": 14.2,
+   "size": 395
+  },
+  {
    "file": "pal3/src/Misc/UIFrameWnd.cpp",
    "symbol": "??0UIFrameWnd@@QAE@XZ",
    "name": "UIFrameWnd::UIFrameWnd(void)",
@@ -10155,6 +10191,11 @@
    10
   ],
   [
+   "UIFrameContainer::`scalar deleting destructor'(uint)",
+   4465520,
+   30
+  ],
+  [
    "UIFrameWnd::Render_3950(void)",
    4471120,
    24
@@ -10364,5 +10405,19 @@
    5436128,
    28
   ]
- ]
+ ],
+ "rebaseline": {
+  "reason": "R2 诚实增益重锚: L1 188→189(matched 1146/1254→1152/1259), UIFrameContainer resize 136→152 析构+30B 诚实配对(l1_bytes 恰+30), N13a 7 条语料重渲清零, EquipUI.cpp 42→9 改善——T4 loop 全链绿 probe 零回归后显式重锚",
+  "at": "2026-11-26T14:17:46",
+  "prev_match_L1": 189,
+  "cur_match_L1": 189,
+  "prev_population": {
+   "matched": 1152,
+   "symbols": 1259
+  },
+  "cur_population": {
+   "matched": 1152,
+   "symbols": 1259
+  }
+ }
 }

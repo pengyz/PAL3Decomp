@@ -388,17 +388,47 @@
    "source": "SetItemData stride 3788 x5 | normalize_key: 0x25e04 -> 155140",
    "evidence_level": "unverified"
   },
+  "0x2afb8": {
+   "name": "m_pTabPanel",
+   "type": "void *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合（binary_size 176256=0x2B080，operator new(0x2B080)@0x44f1d5，probe init_receiver receiver_new_size）容器七模块槽表首槽；pointee 171244B 未名类（corpus 全档 binary_size 对账零命中），ctor 名义 ?Save@LineupUI 系误名（名义类 LineupUI=162772B≠171244B），类身份待鉴定故落透明指针；②存储=[esi+2afb8] 三写：InitUI@0x4a1e40 清零（site 0x4a20c5）+ Init@0x4a4220 构造存储（site 0x4a45c4 mov [esi+2AFB8h],eax；接收者=UIGameFrm+0x6E14 缓存 RoleStatePanel 实例，probe init_receiver）+ HideAll@0x4a6600 再清零（site 0x4a668d）；③消费面=27 读点（probe seven_ptr_consumers.reader_funcs 12 函数），callee 簇=SelectTab0@EquipUI/SelectTab1,2@StateUI/SelectTab3,4@MagicUI（五页签选择）+ DispatchSlotMethod@LineupComp + CreatePreviewScene@LineupUI + j_NPC__UpdateAnim + 虚表 thunk [eax+0Ch]/[edx+4/8/14h/18h]。命名 m_pTabPanel 取消费面 SelectTab0..4 页签选择簇语义（七槽中唯一素 SelectTab 簇；callee 名义名不作类归属主张）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
+  },
   "0x2afbc": {
-   "name": "m_pSubTab1",
-   "type": "UITitle_XJTM *",
-   "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afbc -> 176060 | void*语义化 2026-10-15：A 级=SetMonsterState(0x00488C70)签名 int __thiscall UITitle_XJTM::SetMonsterState(int, unsigned int)（UITitle_XJTM 方法）+ 调用形把 m_pSubTab1 绑为 this ⇒ 目标=UITitle_XJTM 对象；辅证 vtable 槽+4 间接调（多态）",
-   "evidence_level": "A"
+   "name": "m_pSubTabPanel",
+   "type": "void *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 2；pointee 353840B 未名类（corpus 全档 binary_size 对账零命中），ctor 名义 InitChildPanels@RenderTarget 系误名（RenderTarget=200B≠353840B），类身份待鉴定故落透明指针；②存储=[esi+2afbc] 三写：InitUI 清零（site 0x4a20cb）+ Init@0x4a4220 构造存储（site 0x4a45f6）+ HideAll 再清零（site 0x4a6693）；③消费面=26 读点，callee 簇=SelectSubTab1,2@StateUI/SelectSubTab3,4@MagicUI + SetSubTab@EquipUI（子页签选择）+ SetMonsterState/UpdateNPCAnims2@UITitle_XJTM（NPC 显示，名义错挂名）+ CreateCameraUI@CameraCtrl + 虚表 thunk。命名 m_pSubTabPanel 取消费面 SelectSubTab1..4+SetSubTab 簇语义；承本址退役员 m_pSubTab1（旧 A 级类归属 UITitle_XJTM* 按金表证伪：UITitle_XJTM=5052B≠353840B，SetMonsterState 绑 this 形系名义错挂，退役记录见 data/status/equipui_r2_adjustments_20261126.json task3 节）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
   },
   "0x2afc0": {
-   "name": "m_pSubTab2",
+   "name": "m_pMainPropUI",
+   "type": "MainPropUI *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 3；pointee 219984B==MainPropUI.json binary_size（corpus 全档 binary_size 对账唯一命中），ctor ??0MainPropUI，落位类型化；②存储=[esi+2afc0] 三写：InitUI 清零（site 0x4a20d1）+ Init@0x4a4220 构造存储（site 0x4a4628）+ HideAll 再清零（site 0x4a6699）；③消费面=26 读点，callee 簇=SelectBigMapTab0@EquipUI/SelectBigMapTab2@StateUI/SelectBigMapTab3,4@MagicUI + ForwardToBigMap@StateUI + SetEntryVisible/UpdateNPCAnimations@UIBigMap + CreateSceneEntities（大地图子功能簇，名义错挂名不作类归属主张）。命名 m_pMainPropUI 循 pointee 类名派生（StateUI p_mPropUI:MainPropUI* 先例）；承本址退役员 m_pSubTab2（5 槽指针数组旧锚观察被七槽表 0x2afb8 锚超规格取代）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
+  },
+  "0x2afc4": {
+   "name": "m_pEquipUI",
+   "type": "EquipUI *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 4；pointee 266260B==EquipUI.json binary_size（corpus 全档 binary_size 对账唯一命中），ctor ??0EquipUI(0x498820)=九数组类（Task2 同一 ctor），ctor→存储直证：ctor_callers site 0x4a4648 call ??0EquipUI→store esi+0x2afc4（probe ctor_callers n=1），落位类型化；②存储=[esi+2afc4] 三写：InitUI 清零（site 0x4a20d7）+ Init 构造存储（site 0x4a465a）+ HideAll 再清零（site 0x4a669f）；③消费面=26 读点，callee 簇=SelectXJTMTab1,2@StateUI/SelectXJTMTab3,4@MagicUI + SetSubTab2@EquipUI + SetMonsterState2/UpdateNPCAnims@UITitle_XJTM + CreateListPanel@MainEquipUI（名义错挂名不作类归属主张）。命名 m_pEquipUI 循 pointee 类名派生。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
+  },
+  "0x2afc8": {
+   "name": "m_pPanel_2afc8",
    "type": "void *",
-   "source": "0xa1 family sub-control (has vtable) | normalize_key: 0x2afc0 -> 176064 | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：指针槽数组（子 tab 组）——5 槽清零（+0..+4 dwords）+ 槽值作 EquipUI*/StateUI* 调用 this + `(&field+1)` 元素（InitUI@0x4A1E40/SetItemData 族）",
-   "evidence_level": "A"
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 5；pointee 402824B 类Y 身份未名（PDB 三类零命中 + corpus 全档 binary_size 对账零命中），ctor 名义 CCCTData_6F10 系误名（CCCTData=430256B≠402824B），落透明指针；②存储=[esi+2afc8] 三写：InitUI 清零（site 0x4a20dd）+ Init 构造存储（site 0x4a468c）+ HideAll 再清零（site 0x4a66a5）；③消费面=15 读点，callee 簇=InitEquipUI@EquipUI（名义名×1）+ 10× 虚表 thunk [edx+18h]（语义薄不足命名）。命名 m_pPanel_2afc8 地址消歧诚实形（m_nTodo_00C 族先例：数据成员地址后缀合法惯例）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
+  },
+  "0x2afcc": {
+   "name": "m_pLineupUI",
+   "type": "LineupUI *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 6；pointee 162772B==LineupUI.json binary_size（corpus 全档 binary_size 对账唯一命中），ctor ??0LineupUI，落位类型化；②存储=[esi+2afcc] 三写：InitUI 清零（site 0x4a20e9）+ Init 构造存储（site 0x4a46be）+ HideAll 再清零（site 0x4a66ab）；③消费面=14 读点，callee 簇=ProcessTree + 虚表 thunk [edx+8]/[eax+4]/[edx+18h]（ProcessTree 名义名不作类归属主张）。命名 m_pLineupUI 循 pointee 类名派生（StateUI p_LineupUI:LineupUI* 先例）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
+  },
+  "0x2afd0": {
+   "name": "m_pPanel_2afd0",
+   "type": "void *",
+   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 7（末槽）；pointee 290488B=UITitle_JDHY 金表分配尺寸，但 UITitle_JDHY.json binary_size=377700 与 290488 不合（290488 corpus 全档对账零命中），身份待 Note_Item 仲裁——尺寸不合前落透明指针 void*（禁预判 JDHY 归属）；ctor 名义 DestroyPages@UITitle_JDHY 系误名；②存储=[esi+2afd0] 三写：InitUI 清零（site 0x4a20ef）+ Init 构造存储（site 0x4a46f2）+ HideAll 再清零（site 0x4a66b1）；③消费面=9 读点，callee 簇=PopulateContent/SaveData@UITitle_JDHY（名义错挂名）+ 虚表 thunk [eax+4]/[edx+8/14h/18h]。命名 m_pPanel_2afd0 地址消歧诚实形（类型化前置=Note_Item 仲裁）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "evidence_level": "verified"
   },
   "0x2afd4": {
    "name": "m_nEquipSlot",
@@ -438,7 +468,7 @@
   }
  },
  "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json",
- "members_note": "\n[R2 2026-11-19] 骨架: m_RoleStatics UIStatic[5] [0x210,0x508)。未定谳挂账: 0x508 起 stride-344 序列(UIButton 尺寸候选, N 未定)/RenderThrottled 深区 disp 0x12F8/0x136F8/0x25B80/池区主体。",
+ "members_note": "\n[R2 2026-11-19] 骨架: m_RoleStatics UIStatic[5] [0x210,0x508)。未定谳挂账: 0x508 起 stride-344 序列(UIButton 尺寸候选, N 未定)/RenderThrottled 深区 disp 0x12F8/0x136F8/0x25B80/池区主体。\n[R2 2026-11-26 Task3] 七模块指针落位 [0x2afb8..0x2afd0] verified (金表+Init@0x4a4220 [esi+off] 存储+消费面 27/26/26/26/15/14/9 读点三证): m_pTabPanel/m_pSubTabPanel/m_pMainPropUI(MainPropUI*)/m_pEquipUI(EquipUI*)/m_pPanel_2afc8/m_pLineupUI(LineupUI*)/m_pPanel_2afd0; 退役同址旧员 m_pSubTab1(0x2afbc UITitle_XJTM* 名义错挂证伪)+m_pSubTab2(0x2afc0 5槽旧锚) 见 equipui_r2_adjustments_20261126.json task3 节; 四个未名 pointee (171244B/353840B/402824B 类Y/290488B 待 Note_Item 仲裁) 透明指针挂账。",
  "bases": [
   {
    "name": "UIWnd",

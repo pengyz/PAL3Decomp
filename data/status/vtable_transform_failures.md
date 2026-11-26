@@ -1260,3 +1260,21 @@
 | `CCCTData::Create_8770` | vftable_local | `_BYTE` | 16 | non_class_hint | `(*(void (**)(_BYTE *, __int16 *, int *, CCCTData *))(v2 + 16))( &this->_tail_000[386032], &word_A00552, &v70, this)` |
 | `CCCTData::Create_8770` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void (**)(UIPushButton *, __int16 *, int *, CCCTData *))(*(_DWORD *)&v19->UIWnd + 16))( v19, &word_A00552, &v77, this)` |
 | `CCCTData::Create_8770` | inline | `_BYTE` | 16 | non_class_hint | `(*(void (**)(_BYTE *, __int16 *, int *, CCCTData *))(*(_DWORD *)&this->_tail_000[386184] + 16))( &this->_tail_000[386184], &word_A00552, &v89, this)` |
+| `EquipUI::InitEquipUI` | inline | `char` | 16 | non_class_hint | `(*(void (**)(char *, int, _DWORD *, EquipUI *))(*(_DWORD *)&this->m_par[31]._texName[52] + 16))( &this->m_par[31]._texName[52], 161, v105, this)` |
+| `EquipUI::InitEquipUI` | vftable_local | `char` | 16 | non_class_hint | `(*(void (**)(char *, int, int *, EquipUI *))(v6 + 16))(&this->m_par[31]._texName[204], 161, &v92, this)` |
+| `EquipUI::InitEquipUI` | inline | `_BYTE` | 16 | non_class_hint | `(*(int (**)(_BYTE *, int *, _BYTE *, EquipUI *))(*(_DWORD *)&this->_arr5x4892[22652] + 16))( &this->_arr5x4892[22652], &dword_A00500, &this->_arr5x4892[23316], this)` |
+| `EquipUI::InitEquipUI` | vftable_local | `_BYTE` | 16 | non_class_hint | `(*(void (**)(_BYTE *, int *, _DWORD *, EquipUI *))(v16 + 16))( &this->_arr5x4892[21428], &dword_A00510, v115, this)` |
+| `EquipUI::InitEquipUI` | vftable_local | `_BYTE` | 28 | non_class_hint | `(*(void (**)(_BYTE *, char *, _DWORD *, EquipUI *, char *, int, int))(v23 + 28))( &this->_arr5x4892[22956], &byte_A00571, v114, this, aUiGamemainuiSw_1, 1, v22)` |
+| `EquipUI::InitEquipUI` | inline | `_BYTE` | 28 | non_class_hint | `(*(void (**)(_BYTE *, char *, unsigned __int8 *, EquipUI *, char *, _DWORD, int))(*(_DWORD *)&this->_arr6x344[944] + 28))( &this->_arr6x344[944], &byte_A00543, a8, this, aUiGamemai` |
+| `EquipUI::InitEquipUI` | vftable_local | `UIPUSHBUTTON_STATE` | 16 | no_vtables_declaration | `(*(void (**)(UIPUSHBUTTON_STATE *, char *, int *, EquipUI *))(v59 + 16))( &this->m_Pushbtn[5].m_state, &byte_A00568, &v88, this)` |
+| `EquipUI::InitEquipUI` | inline | `char` | 28 | non_class_hint | `(*(void (**)(char *, char *, _DWORD *, EquipUI *, char *, int, int))(*(_DWORD *)&this[1].m_par2[61]._texName[224] + 28))( &this[1].m_par2[61]._texName[224], &byte_A00565, v108, thi` |
+| `RoleStatePanel::Render` | inline | `EquipUI` | 4 | self_arg_mismatch | `(*(void (**)(EquipUI *))(*(_DWORD *)&this->m_pEquipUI->UIWnd + 4))(this->m_pEquipUI)` |
+| `RoleStatePanel::Render` | inline | `MainPropUI` | 4 | self_arg_mismatch | `(*(void (**)(MainPropUI *))(*(_DWORD *)&this->m_pMainPropUI->UIWnd + 4))(this->m_pMainPropUI)` |
+| `RoleStatePanel::Render` | inline | `LineupUI` | 4 | self_arg_mismatch | `(*(void (**)(LineupUI *))(*(_DWORD *)&this->m_pLineupUI->UIWnd + 4))(this->m_pLineupUI)` |
+| `RoleStatePanel::Update` | inline | `EquipUI` | 8 | self_arg_mismatch | `(*(void (**)(EquipUI *, int, int))(*(_DWORD *)&this->m_pEquipUI->UIWnd + 8))(this->m_pEquipUI, a2, a3)` |
+| `RoleStatePanel::Update` | inline | `MainPropUI` | 8 | self_arg_mismatch | `(*(void (**)(MainPropUI *, int, int))(*(_DWORD *)&this->m_pMainPropUI->UIWnd + 8))( this->m_pMainPropUI, a2, a3)` |
+| `RoleStatePanel::Update` | inline | `LineupUI` | 8 | self_arg_mismatch | `(*(void (**)(LineupUI *, int, int))(*(_DWORD *)&this->m_pLineupUI->UIWnd + 8))( this->m_pLineupUI, a2, a3)` |
+| `RoleStatePanel::HideAll` | inline | `void` | 12 | non_class_hint | `(*(void (**)(void *))(*(_DWORD *)this->m_pTabPanel + 12))(this->m_pTabPanel)` |
+| `RoleStatePanel::HideAll` | inline | `MainPropUI` | 20 | self_arg_mismatch | `(*(void (**)(MainPropUI *, int))(*(_DWORD *)&m_pMainPropUI->UIWnd + 20))(m_pMainPropUI, 1)` |
+| `RoleStatePanel::HideAll` | inline | `EquipUI` | 20 | self_arg_mismatch | `(*(void (**)(EquipUI *, int))(*(_DWORD *)&m_pEquipUI->UIWnd + 20))(m_pEquipUI, 1)` |
+| `RoleStatePanel::HideAll` | inline | `LineupUI` | 20 | self_arg_mismatch | `(*(void (**)(LineupUI *, int))(*(_DWORD *)&m_pLineupUI->UIWnd + 20))(m_pLineupUI, 1)` |
