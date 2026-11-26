@@ -337,7 +337,7 @@
    }
   }
  },
- "source": " | [尺寸修正 2026-11-25 Wave1] 430000→430256(0x690B0): ctor 0x5058f0 参数拷贝体写[this+0x69094]/[this+0x690A0] 两个 12B vec3 形结构(体 63B 全解码, retn 8 双参)——写界 A 级压倒。尾两 vec3 语义未名留 gap(N12)。挂账: m_Pool[2000]×tagCCT(204)=408000≠m_bPoolInUse@0x639C0(408512)——池算术 512B 断口待考。",
+ "source": " | [尺寸修正 2026-11-25 Wave1] 430000→430256(0x690B0): ctor 0x5058f0 参数拷贝体写[this+0x69094]/[this+0x690A0] 两个 12B vec3 形结构(体 63B 全解码, retn 8 双参)——写界 A 级压倒。尾两 vec3 语义未名留 gap(N12)。挂账: m_Pool[2000]×tagCCT(204)=408000≠m_bPoolInUse@0x639C0(408000)——复核 20261126 修正: 408000=204x2000 整除, 无断口(早前换算错)。",
  "binary_size_contested": {
   "current": 430256,
   "candidates": {

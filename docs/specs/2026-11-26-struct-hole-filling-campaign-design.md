@@ -15,18 +15,25 @@
   3. 洞字节下降达标（当轮预期值 ±10% 内，超出须归因）
 - L1/S2 渲染 churn 按既有棘轮律处理；回归门基线按归因知情刷新
   （CScreenMode 单元退役先例）。
-- **预计终态**：目标面 1478KB → ~200-300KB 残洞（真无证据区，诚实债务清单）。
+- **预计终态（复核 B4 修正）**：目标面 1478KB → **~400-450KB 残洞**。
+  算术：点名大锚最大可收 ≈1075KB → floor = 1513.6−1075 ≈ 439KB；189 个
+  非点名类长尾 ~443KB 无轮次承接，留后续战役。
+- ±10% 验收基准 = 预期**中值**（区间预期取 (上+下)/2）；R4/R6 定性轮
+  （验收=诊断完成/裁决完成，不设数字阈值）。
+- **R1 推迟分支重排规则（复核 B5）**：池计数探针失败（无 push 0x7D0 字面量
+  且最大句柄上界不可得）→ 池落位推迟，R1 预期重排为 **−22KB**（句柄表
+  20000B+杂项），验收按重排值执行，不视为轮失败。
 
 ## 2. 轮次规划（R1-R6）
 
 | 轮 | 主攻（主洞） | 副线 | 预期洞收缩 |
 |---|---|---|---|
-| R1 | CCBCamControl 348KB：池计数探针→`m_Pool tagCCT[2000]@0x0` 落位 + 句柄表 `int[50][50]@0x64080` 落位 + 头域冲突面重取证（m_pvecCenter@0x8 vs tagCCT[0].fp[2]） | SkillUI 57 退赔成员重挂（99KB，台账 data/annotations/archive/ccbui_identity_adjudication_20261121.json） | −250~300KB |
+| R1 | CCBCamControl 348KB **整表重建**（孪生定谳 v2 裁决"现注解不可修复"）：①池计数探针（push 0x7D0/最大句柄上界）→`m_Pool tagCCT[N]@0x0` 落位（N 有证才落）②句柄表落位 `@0x64190`（**复核 A2c 修正锚**：公式 4×102500=410000=0x64190，闭合 0x68FB0=430000 精确；行步距 200B=50 项/行，L 行数上界取证）③冲突面 17 员整表重建（复核 C8 名单：12 unverified + m_nCurPageTab + **4 A 级已证伪填充物** m_RenderQueue/m_SelectRect/m_SlotButtons/m_TabLists 优先退役）④CCCTData.json 三员（m_Pool/m_bPoolInUse/m_nCCTIndex）同步处置防 chimera 复刻 | SkillUI **53 条**退赔重挂（复核 A2a 修正：台账 53 retired+4 kept；census 口径仅消 240B——账务修复非消洞） | 池有证：−337~348.7KB（复核 A3 复算式）；池推迟：**−22KB**（§1 重排规则） |
 | R2 | EquipUI 164KB：尾区七模块指针落位（A级证据在档：EquipUI::Init 分配+存储+金表尺寸）+ 尾区 disp 普查（成员末端仅 36KB，~229KB 内区待查） | — | −100KB 级 |
 | R3 | RoleStatePanel 152KB：ctor 写序解码 + disp 普查 + 字段验证（CEffMgr 模式） | — | −100KB 级 |
-| R4 | ScreenEffectMgr 355KB：从零诊断（新立案；ctor+普查） | — | 视诊断 |
+| R4 | ScreenEffectMgr 355KB：从零诊断（新立案；ctor+普查） | — | 定性轮（诊断完成即验收，数字下轮报） |
 | R5 | MagicUI 43KB + SaleUI 43KB 批量小锚 | UIGameFrm 27KB | −80KB 级 |
-| R6 | 挂账批：金表第二批（UITitle_JDHY Note_Item 双布局仲裁/C2DSpark tagSpark 重验/CCBStage 三数字两态/PropUI 差164/CCBRoleState ctor 写界取证）+ CCCTData.json 尺寸三候选裁决 | — | 口径收尾 |
+| R6 | 挂账批：金表第二批（UITitle_JDHY Note_Item 双布局仲裁/C2DSpark tagSpark 重验/CCBStage 三数字两态/PropUI 差164/CCBRoleState ctor 写界取证）+ **堆类身份定谳**（复核 C10 改写：430256=X 已裁[金表 site 0x4fbc2e+ctor 链]；402824=类Y[site 0x4a4660]待名；425136 候选**除名**——换算错，0x68FB0=430000≠425136；继承边界候选=430000，须 CCBCamControl ctor 基类构造直调证据，0x5052e0 已解码无显式基类调用[内联可能]，弱证据待另证） | — | 定性轮（裁决完成即验收） |
 
 轮次间可按对抗复核结果重排（真 bug 多的锚优先返工）。
 
@@ -62,6 +69,9 @@
 
 - 池/数组落位：**stride 乘法链 + 计数闭合**（tagCCT=204=0xCC 先例）；
   计数无代码字面量（如 push 0x7D0 / 最大句柄上界）时不上注解、推迟并挂探针案
+- **PDB 证边界（复核 C9）**：单一 PDB mangle 不定谳，须与二进制证据组合；
+  本族 PDB 名仅作线索（DoTask/AddTask 不在 PDB CCBCamControl 表=构建漂移
+  实锤；4 个"CCCTData 方法"FLIRT/ICF 假名实证）
 - 禁 slot_N / sub_ / unk_ 占位语义名（N12/语义退化禁令）
 - 禁魔法关键词豁免、禁无证据 gap 填充（对齐 pad 由普查器自动扣除，不手填）
 - 成员名用真语义名或地址消歧形（HideAll_3DE40 先例）；置信度留档

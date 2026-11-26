@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """probe_ccbcamcontrol_pooldecode_20261126.py — CCT 任务池本体解码 v5。
 
-m_Pool tagCCT[2000]@0x0 止于 m_bPoolInUse@0x639c0, 但 409280/2000=204.64
-非整数 stride = 注解池模型存疑。全量反汇编池方法 + INI 装载器:
+m_Pool tagCCT[2000]@0x0 止于 m_bPoolInUse@0x639c0(=408000=204x2000 整除,
+stride 204 精确闭合——复核 20261126 修正早前 409280/204.64 换算错)。全量反汇编池方法 + INI 装载器:
   InsertTaskToList@0x5075e0 / SwapTask@0x507b20 / ClearList@0x508190
   IsTaskValid@0x5081a0 / GetTaskNumInList@0x5081b0 / GetFreeSpaceInPool@0x5081c0
   InitEntries@0x44d780 / Create_8770@0x4a8770 / CCCTData_6F10@0x4a6f10
