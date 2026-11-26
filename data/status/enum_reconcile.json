@@ -2,8 +2,8 @@
  "generated": "2026-11-24",
  "phase": "P2b-reconcile",
  "total": 63,
- "ok": 62,
- "collisions": 1,
+ "ok": 61,
+ "collisions": 2,
  "failed": 0,
  "value_diffs": 0,
  "enums": {
@@ -338,29 +338,32 @@
    "extra_in_idb": []
   },
   "UIButton::UIBUTTON_STATE": {
+   "status": "landed",
+   "added_members": [],
+   "value_diff": {},
+   "extra_in_idb": []
+  },
+  "UIPushButton::UIPUSHBUTTON_STATE": {
    "status": "collision",
    "added_members": [
-    "NORMAL",
     "NUMSTATE"
    ],
    "value_diff": {},
    "extra_in_idb": [],
    "collisions": {
-    "NORMAL": "UIStaticFlex::State",
-    "NUMSTATE": "UIPushButton::UIPUSHBUTTON_STATE"
+    "NUMSTATE": "UIButton::UIBUTTON_STATE"
    }
   },
-  "UIPushButton::UIPUSHBUTTON_STATE": {
-   "status": "landed",
-   "added_members": [],
-   "value_diff": {},
-   "extra_in_idb": []
-  },
   "UIStaticFlex::State": {
-   "status": "landed",
-   "added_members": [],
+   "status": "collision",
+   "added_members": [
+    "NORMAL"
+   ],
    "value_diff": {},
-   "extra_in_idb": []
+   "extra_in_idb": [],
+   "collisions": {
+    "NORMAL": "UIButton::UIBUTTON_STATE"
+   }
   },
   "gbFogParam::gbFogMode": {
    "status": "landed",

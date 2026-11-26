@@ -1,0 +1,114 @@
+{
+ "_doc": "R1 全轮对抗复核裁决表（Task 6）。评审=独立子代理，全程只读；唯一写=本文件。基线：git HEAD 工作树对照 + spec docs/specs/2026-11-26-struct-hole-filling-campaign-design.md + .superpowers/sdd/2026-11-26-r1-implementation-plan/task-{1..5}-report.md + progress.md 门①-⑤记录。独立手段：①自写 /tmp 探针（不 import 原探针）对 IDB original/PAL3.exe.i64 反汇编逐址重验 ②census 独立重跑（/tmp 输出，未触仓库文件）③check 门禁现场复跑 ④六份台账/基线 JSON 逐字段对账",
+ "date": "2026-11-26",
+ "round": "R1",
+
+ "spec_coverage": {
+  "①池计数探针": "PASS——tools/probe_ccbcamcontrol_poolcount_20261126.py + data/status/probe_ccbcamcontrol_poolcount_20261126.json 在档；v1 unresolved 被门①推翻→v2 落账，本复核独立反汇编证实 v2 归因（见 evidence_audit）。注意 spec 字面 'push 0x7D0' 实为 mov/push/cmp 多形态、宿主为池对象持久化路径族（CCBStageCam/CCBStage 系 PDB 名漂移），门①归因规则 v2 已裁定且经本次逐址证实",
+  "②句柄表@0x64190": "PASS——m_TaskListIndex int[100][50] 落位 CCBCamControl.json；idx 公式 4·(T+50L+102500)=410000=0x64190 经独立反汇编逐条闭合（InsertTaskToList 0x5075ec-0x5075f9 / SwapTask 0x507b35-0x507b42 双方法同式）；行步距 200B=50 项/行=代码推导；外维 100 系几何闭合推导，source 诚实披露'运行时上界待证'（见 verdicts R1-C7）",
+  "③冲突面17员": "PASS——spec C8 名单构成精确对上（12 unverified + m_nCurPageTab + 4 A级 m_RenderQueue/m_SelectRect/m_SlotButtons/m_TabLists）；执行为整表退役（controller 裁定：与 verified 池几何互斥，无'都保留'解），逐员台账 data/status/ccbcamcontrol_r1_retirement_20261126.json decisions[3..19]，含 access 证据+固定槽视图重建假说。spec 用词'整表重建'与执行'整表退役+重建线索挂账'语义一致（重建=未来 tagCCT 视角普查），口径成立",
+  "④CCCTData同步": "PASS——三员（m_Pool/m_bPoolInUse/m_nCCTIndex）全部移除，known_members={}；binary_size=430256 未动（符合 §5 chimera 风险条'R6 裁决前不动尺寸'）；binary_size_contested 字段未触碰；全洞化 430256B 为诚实中间态（台账/孪生 v4 已立案）",
+  "⑤SkillUI53退赔": "PASS——53/53 与 data/annotations/archive/ccbui_identity_adjudication_20261121.json retired_members 三元组(name/type/reason)程序化对账全等；kept 4 员（0x48/0x4c/0x50/0x68）零碰撞未触碰；evidence_level 全部保持 unverified（重挂≠升级）；台账 data/status/skillui_rehang_20261126.json n=53。census 实消 2440B（spec 行'仅消240B'为预估误差，已由 T5 归因修正，见 verdicts R1-C2）",
+  "轮验收三件": {
+   "check门禁PASS": "PASS——本复核现场复跑：0 new errors + 55 frozen(advisory), 109 warnings — PASS；[D] 3 类 vptr 失配为既存（T5 stash 基线同款）",
+   "loop全链绿": "DEFERRED(计划内)——最后一次 loop（今日 08:22–08:38）早于终态注解落盘（CCCTData 09:51 / CCBCamControl 10:13 / SkillUI 10:37）；生成头树 pal3/src/Combat/CCBCamControl.h+CCCTData.h（08:22 版）仍为退役前布局。属 R1 计划 Task 7 'loop 重渲→N13a 解冻验证' 既定步骤，非违规；但 Task 7 完成前不得宣称轮验收第 2 件达成（verdicts R1-A2）",
+   "洞字节达标": "PASS——CCBCamControl −348.7KB 恰中 spec 预期带 −337~348.7KB 上沿（差 0%，无 >10% 项）；SkillUI −2.4KB；CCCTData +430000B 全洞化中间态符合预期"
+  }
+ },
+
+ "redline_scan": {
+  "范围": "本轮全部改动成员：CCBCamControl 新增 3（m_Pool/m_bPoolInUse/m_TaskListIndex）+ 退役 17；CCCTData 删 3；SkillUI 重挂 53",
+  "N12占位名": "PASS——零 slot_N/sub_/unk_ 占位；m_Pool/m_bPoolInUse 为语料真名（CCCTData 语料 374/1 处引用），m_TaskListIndex 为公式语义名（InsertTaskToList/SwapTask 访问形），SkillUI 53 名全部承自 2026-11-21 定谳台账语义名",
+  "证据背书": "PASS——全部落位成员 evidence_level + source 齐备；无证据区零填充（CCCTData 空表=诚实债务清单；CCBCamControl 唯一残洞 12B 留存）",
+  "PDB单证": "PASS——无单一 PDB mangle 定谳案；门③反将 PDB 名降级（0x504e70 PDB 名 ??0CCBStageCam 实为 flexcam.dat 写手、接收者几何=CCBCamControl 430256B 形）——本次独立反汇编证实该降级正确",
+  "ctor三件套": "PASS(不适用)——本轮零 ctor 注解改动（methods 块三文件逐字节 identical，33/22/8 个方法未动）",
+  "函数命名重载规则": "PASS(不适用)——零函数改名/新增（数字后缀禁令无触点）；存量 HideAll_3DE40 违规仍挂账（非本轮范围）",
+  "stride乘法链+计数闭合": "PASS——m_Pool: 204·handle 乘法链指令级证实+计数 2000 四路独立背书；m_bPoolInUse: 布局+清零形+活性消费者；m_TaskListIndex: 总量 20000B 双字面量（0x1388h dwords + 0x4E20h bytes），仅 2D 因子化(100×50)为推导且已披露",
+  "bases变更落账": "PASS(不适用)——零 bases 变更（三文件非 known_members/members_note 顶层字段逐一 identical）",
+  "管线新机制": "PASS——N13a 过渡冻结=既有 check_baseline_errors.json 冻结机制的组合使用，带显式解冻条件（Task 7 loop 重渲验证后），非静默吸收；未引入未经批准的新机制"
+ },
+
+ "evidence_audit": {
+  "m_Pool@0x0_tagCCT[2000]_verified": "六证择二满足（实为四路独立）：①乘法链 shl4→+h→×3→×4=204·h 指令级证实（0x507603-0x50760b：shl eax,4 / add eax,edx / lea [eax+eax*2] / lea [ecx+eax*4]；SwapTask 0x507b4d-0x507b55 同式）②计数字面量 0x7D0：0x504dd3（2000×0xCC 步进清零循环）+0x504ecf（2000 槽 init）③派生常量 ResetAllData@0x504e33 mov ecx,18E70h + rep stosd = 408000B=0x639C0 ④文件布局 fwrite/fread 0x639C0（0x504ef3/0x504fe9 存读双路）。条目状态字节 [eax+59h/5Ah/5Bh] 访问形与 tagCCT 注解对账",
+  "m_bPoolInUse@0x639c0_uchar[2000]_verified": "三路独立：①flexcam.dat 存读布局（0x639C0 起 0x7D0B 写@0x504f01-0x504f0d / 读@0x504ff9-0x505007）②ResetAllData@0x504e3e-0x504e49 mov ecx,1F4h + lea edi,[edx+639C0h] + rep stosd = 2000B 清零 ③活性消费者 IsCamValid@0x5052c0：[ecx+eax+639C0h] 逐槽 flag 扫描，flag==0 命中返回、界 cmp eax,7D0h、全满返 -1（门③'空闲槽分配器'描述逐字证实）。与池条目内状态字节两机制并存不同义的语义切分成立（两地址空间：0x639C0 独立数组 vs 条目内 +0x59/5A/5B）",
+  "m_TaskListIndex@0x64190_int[100][50]_verified": "四路独立：①idx 公式 lea eax,[eax+eax*4+280Ah]→lea eax,[eax+eax*4]→lea edx,[edx+eax*2]→mov edx,[ecx+edx*4]：4·(T+50L+102500)=4T+200L+410000，410000=0x64190 精确（0x280A×40=410000）②几何闭合 0x64190+20000=0x68FB0=尾域起点，同族 11 处 [ebp+68FB0h] 直访证实尾界 ③ResetAllData@0x504e4b-0x504e59 mov ecx,1388h + or eax,0FFFFFFFFh + lea edi,[edx+64190h] + rep stosd = 20000B 全 -1 哨兵填充（与 0x5075fc cmp edx,-1 消费形闭合）④flexcam 存读 0x4E20（0x504f15-0x504f21/0x505010-0x50501e）",
+  "SkillUI53员_unverified": "台账回归诚实——evidence_level 全部 unverified（未借重挂升级）；source 三元组（archive 出处+原退役理由逐字+重挂背景）53/53 对账；0xa30 fp 原 source 'PAL3patch_verified' 出处保留在 archive 未失传（T5 披露）。'重挂≠新证据填充'口径与 spec 副线定位（账务修复非消洞）一致",
+  "门①v2归因规则复核": "成立——v2（池对象 init/持久化/分配路径字面量均属池证据）经独立反汇编逐址证实：五址全部作用于 430256B 池对象几何（this+0/+0x639C0/+0x64190/+0x68FD0/D4），PDB 名 CCBStageCam/CCBStage 系构建漂移（spec §4 边界条既证），接收者身份不受 PDB 名误导",
+  "结论": "全部落位成员证据 ≥2 独立证，且强于注解 source 所载（新增 ResetAllData 三组 rep stosd 原文、IsCamValid 消费者全文、fwrite/fread 双路）"
+ },
+
+ "census_attribution": {
+  "方法": "census_struct_holes.py 复制至 /tmp 改输出路径重跑（仓库 data/status/struct_holes_20261125.json 未触碰）；结果与仓库现值 classes 数组逐字段 identical=True（可复现性✓）",
+  "基线(HEAD)": "201 类 / 1168 洞 / 1513593B=1478.1KB——与 spec §7 '201类/1168洞/1478KB' 精确一致",
+  "现读数(独立重跑)": "201 类 / 1161 洞 / 1584073B=1547.0KB",
+  "归因": {
+   "CCBCamControl": "357092B→12B = −357080B（−348.7KB）——恰中 spec 预期带 [−337,−348.7KB] 上沿；残洞 [0x68fc4,0x68fd0) 12B 为尾域既存隙（非本轮引入）；洞数 11→1（−10）",
+   "SkillUI": "101868B→99428B = −2440B（−2.4KB）——洞数 1→4（+3）；与 T5 精确字节四洞清单逐项一致",
+   "CCCTData": "256B→430256B = +430000B——全洞化中间态，与预期 +430KB 精确一致（R6 类Y重铸收口）",
+   "闭合校验": "−357080−2440+430000 = +70480B = 总增量（逐字节闭合，无未归因残差、无其他类漂移）",
+   "洞数闭合": "1168→1161 = −7 = −10(CCBCamControl) + 3(SkillUI)"
+  },
+  "差10pct项": "无——三项全部命中预期；spec 行'SkillUI 仅消240B'为预估口径误差（实际 2440B，10 倍），性质不变（账务归真非消洞），T5 已归因（m_Task tagUITask[19]=1368B 数组跨度漏估），见 verdicts R1-C2"
+ },
+
+ "freeze_ledger": {
+  "现冻结数": "55（本复核现场复跑 check 确认：0 new + 55 frozen(advisory) PASS）",
+  "构成": "存量 37 + R1 新冻 18 = 55（progress.md/复核委托口径'17条新+38存量'系拆分笔误，总数 55 正确——见 verdicts R1-C3）",
+  "R1新冻18条明细": {
+   "CCCTData×3": "m_nCCTIndex(186次引用,T2) / m_Pool(374次,T3) / m_bPoolInUse(1次,T3)",
+   "CCBCamControl×15": "m_CamCtrlData(11)/m_CamEntries(16)/m_RenderQueue(1)/m_SelectRect(4)/m_SlotButtons(2)/m_TabLists(71)/m_fCamBlendA(1)/m_fCamBlendB(1)/m_nCurCamIdx(7)/m_nCurPageTab(3)/m_nList(3)/m_nPointerUnderMouse(2)/m_nTodo_010(2)/m_nTodo_EC(2)/m_pvecCenter(3)",
+   "无语料引用未冻": "m_nTodo_00C、m_PanelSlots（17 员退役 → 15 条 N13a 的差额解释核实成立）"
+  },
+  "台账对账": "check_baseline_errors.json 76→94 条（+18 精确，零误删、零计划外增）",
+  "解冻条件": "18 条 R1 N13a：Task 7 cli.py loop 重渲语料（悬空引用渲染为裸偏移或新成员名）→ 验证通过后从基线移除；若重渲后仍悬空即暴露（协议自带非静默）。存量 37：沿用各自既有条件（scVARIANT as_float@1 MemberExtent advisory、Comp_DonateUI m_state 等既存缺陷台账）",
+  "性质判定": "18 条均为'应修非冻'的过渡冻结（协议显式挂 Task 7），非静默吸收——符合 spec §5 语料 churn 防护条"
+ },
+
+ "diff_audit": {
+  "范围": "git diff HEAD -- data/annotations/ data/status/ tools/ + 全工作树扫描",
+  "注解文件": {
+   "CCBCamControl.json": "known_members 42→28（+3 落位/−17 退役）+ members_note 改写；methods(33)/binary_size(430256)/vtables/其余顶层字段逐字节 identical",
+   "CCCTData.json": "known_members 3→{}；methods(22)/binary_size(430256)/binary_size_contested/其余 identical",
+   "SkillUI.json": "known_members 0→53；methods(8)/vtables(1)/binary_size(101940)/其余 identical",
+   "越权改动": "零——methods/binary_size/尾域/vtables 四项全部零变化"
+  },
+  "status文件": {
+   "check_baseline_errors.json": "+18 精确（R1 N13a），零误删",
+   "struct_holes_20261125.json": "census 工具固有重生成；与本复核独立重跑 identical",
+   "baselines/latest.json": "时间戳+行号漂移；status 变更 0、错误集变更 0（纯渲染 churn）",
+   "s4_baseline.json": "1222/1110/L1 179 → 1254/1146/L1 188 = spec §7 战役起点读数（L1 188, matched 1146/1254）——HEAD 提交版陈旧，本轮 loop 重跑对齐；棘轮不回归（179→188, 1110→1146 均升）",
+   "pal3_registry.jsonl": "979→1012 行（+36=matched 增量自洽）；match_pct 8 升 8 降，仅 CEffCylinder::Destroy 54.5→29.5 一处 ≥10pp 降（渲染 churn，非注解面函数）",
+   "s4_l1_identity_cur.json": "907→942 身份（+35，如 CCBFiveNimbusWindow::ApplySelection/GetSlotA/GetSlotB）——只增不减",
+   "s4_diff_detail.json/link_census.json": "loop 重生成明细；link_census units_linked 159→157 未归因（verdicts R1-C4）",
+   "enum_reconcile.json": "collision 归属洗牌（ok 62→61 / collisions 1→2 类；成员级债务 NORMAL/NUMSTATE 不变，落地顺序非确定性）——R1 未触 enums，纯重跑伪影（verdicts R1-C5）",
+   "vtable_transform_failures.md": "+5 行 advisory（UIGameFrm::_init_44f8d0 等）——重渲 churn，报告未点名（verdicts R1-A3）",
+   "adjudication_queue.json": "仅时间戳，queue 仍空"
+  },
+  "tools": "零 tracked 改动；新增 untracked tools/probe_ccbcamcontrol_poolcount_20261126.py（计划内产物，判定逻辑仍 v1，见 verdicts R1-A1）",
+  "计划外改动": {
+   "docs_superpowers删42文件": "plans+specs 历史 42 个 md 在工作树被删——未提交、无迁移落点（docs/plans 不含同名）、R1 五份报告与 progress.md 零提及（verdicts R1-C6，可 git checkout 恢复）",
+   "thirdparty子模块": "ghidra-mcp/pal3-redivivus 指针未变、工作树 dirty（环境噪声，非内容变更）",
+   "pipeline_logs": "loop 四日志=本轮管线运行记录（预期）",
+   "untracked_11-25产物": "archive/gbBinkVideo_retired_20261125.json、archive/s4_diff_detail_regressed_20261125T212412.json、idb_type_delta_20261125.json、original/PAL3.exe.i64.bak-20261125-retire、.zcode/workflow-drafts/——均早于 R1，提交时需决定纳管或排除",
+   "pal3_src生成头树": "gitignore 内（不入库）；当前为 08:22 退役前布局，Task 7 loop 将再生——中间态符合 spec §3.3 陷阱条预案"
+  }
+ },
+
+ "verdicts": [
+  {"id": "R1-A1", "severity": "近似", "finding": "探针脚本 tools/probe_ccbcamcontrol_poolcount_20261126.py 仍编码 v1 判定规则（unresolved），而产出 JSON 顶层已被门①裁决改写为 v2 对象——按现状重跑会以 v1 口径覆盖已裁定产出（T1 报告已自曝，脚本限定未修）", "action": "Task 8 前将归因规则 v2 固化进脚本（池对象 init/持久化/分配路径归因+派生常量清单），或显式标注脚本为 v1 历史版禁重跑覆盖"},
+  {"id": "R1-A2", "severity": "近似", "finding": "轮验收第 2 件（cli.py loop 全链绿）尚未在终态注解上执行：最后一次 loop 08:22–08:38 早于终态注解落盘 09:51–10:37，生成头树仍为退役前布局；N13a×18 冻结与 loop 重渲解冻构成计划内闭环前置", "action": "Task 7 按序执行：loop 重渲（若 codegen 中途夭折，先独立 codegen all 完成头树再生再进 loop——spec §3.3 陷阱条）→ 验证 18 条 N13a 渲染形 → 解冻 → 复跑 check/census"},
+  {"id": "R1-A3", "severity": "近似", "finding": "vtable_transform_failures.md +5 行 advisory 失败（UIGameFrm::_init_44f8d0/UISceneFrm::InitGameUI/RenderText/PostRender/StopAllSounds）系 08:2x loop 重渲 churn，五份任务报告均未点名", "action": "Task 7 loop 后复核该 5 行是否复现/消失，随渲染 churn 归因落账（spec §5 棘轮律）"},
+  {"id": "R1-C1", "severity": "口径题", "finding": "SkillUI census 实消 2440B vs spec R1 行'仅消 240B'（10 倍差）：T5 已归因（brief 估算只数裸指针条目，m_Task tagUITask[19]=1368B 数组跨度漏估），性质不变（账务归真非消洞），但 spec 文本未回写", "action": "R1 汇总/提交信息按 2440B 口径表述；spec 行文可在战役收尾时一并勘误，无需数据修复"},
+  {"id": "R1-C2", "severity": "口径题", "finding": "冻结拆分表述偏差：实际 R1 新冻 N13a=18 条（T2 1+T3 2+T4 15）、存量=37，progress.md 与复核委托口径写'17+38'——总数 55 两种口径一致，仅拆分笔误", "action": "Task 8 提交信息与台账按 18/37 修正表述"},
+  {"id": "R1-C3", "severity": "口径题", "finding": "link_census.json units_linked 159→157 且 unresolved 集大换血（958 条变化，g_pVFileSys/gbBinkVideo::GetInstance 等新增 unresolved，UIWnd 族转 resolved）——08:2x loop 重跑读数漂移，报告未归因", "action": "Task 7 loop 后核对哪两个 unit 退出/进入并归因；advisory 级，不阻断"},
+  {"id": "R1-C4", "severity": "口径题", "finding": "enum_reconcile.json collision 归属洗牌（ok 62→61/collisions 1→2 类）：UIBUTTON_STATE/UIPushButton/UIStaticFlex::State 三枚举的 NORMAL/NUMSTATE 冲突归属随落地顺序翻转，成员级债务集合不变——R1 零 enums 改动，纯重跑顺序非确定性伪影", "action": "不动数据；后续触及 enum 工作时给 reconcile 落地顺序定序（确定性化）"},
+  {"id": "R1-C5", "severity": "口径题", "finding": "计划外工作树改动：docs/superpowers/{plans,specs} 42 个历史文档被删除——未提交、无迁移落点、R1 全部台账零提及，来源不明（疑为前会话遗留未提交动作）", "action": "向用户/主控确认意图：有意归档则补迁移台账后一并提交；无意则 git checkout -- docs/superpowers 恢复后再提交 R1"},
+  {"id": "R1-D1", "severity": "确认", "finding": "m_TaskListIndex 外维 100 无直接代码字面量（几何闭合推导），但总量 20000B 有双字面量背书（ResetAllData 0x1388h dwords=-1 哨兵填充 + flexcam 0x4E20h 存读双路），source 已诚实披露'行数100=几何闭合推导…运行时上界待证'——红线精神（不发明计数）符合", "action": "维持注解；若未来获得 100 上界直证可升级表述，无需现在动作"},
+  {"id": "R1-D2", "severity": "确认", "finding": "探针 v1 counts.table_sentinel=0 系扫描形态盲区：实际 ResetAllData@0x504e50 or eax,0FFFFFFFFh + rep stosd(0x1388 dwords)@+0x64190 正是 -1 哨兵整表填充，且 InsertTaskToList 0x5075fc cmp edx,-1 消费形与之闭合——哨兵证据存在且强化落位", "action": "读 v1 报告者按本复核补注；无需改历史记录"},
+  {"id": "R1-D3", "severity": "确认", "finding": "0x7D0 五址归因细分：0x504f07/0x504fff 两址实为 flag 数组(1B×2000)存读尺寸而非池槽计数本体，但 1B×2000 flag 与 2000 槽 1:1 对应本身即布局证据；池槽计数另有 0x504dd3(2000×0xCC 循环)+0x504ecf(2000 槽 init)+0x18E70 dwords(408000B)+fwrite 0x639C0 四路独立背书——计数证据链成立，v2 归因逐址证实", "action": "无（记录口径，供后续引用探针数字时精确化）"},
+  {"id": "R1-D4", "severity": "确认", "finding": "CCBCamControl 唯一残洞 [0x68fc4,0x68fd0) 12B 为尾域既存隙（改动前即存在），非本轮引入；四段连续闭合 [0,0x639C0)+[0x639C0,0x64190)+[0x64190,0x68FB0)+尾域 256B=430256 精确，独立算术复核通过", "action": "无"}
+ ],
+
+ "counts": {"真bug": 0, "近似": 3, "口径题": 5, "确认": 4},
+ "final": "R1 通过（条件收口）——零真 bug；落位三员证据经独立反汇编逐指令证实且强于注解所载，census 归因逐字节闭合（+70480B=−357080−2440+430000），check 门禁现场复跑 0 new + 55 frozen PASS；须修项为零，3 项近似全部挂计划内后续任务（R1-A1 探针脚本 v2 化、R1-A2 Task 7 loop 重渲+18 条 N13a 解冻验证、R1-A3 churn 复核），5 项口径题中 R1-C5（docs/superpowers 42 文件删除）建议提交 R1 前向用户确认意图"
+}

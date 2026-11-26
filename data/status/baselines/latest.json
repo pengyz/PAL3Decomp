@@ -1,6 +1,6 @@
 {
-  "name": "20261126_011557",
-  "timestamp": "2026-11-26T01:15:57.700106",
+  "name": "20261126_111730",
+  "timestamp": "2026-11-26T11:17:30.849676",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -13,12 +13,12 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBAttackSequen.h": {
-      "status": "ok",
+      "status": "harness_error",
       "error_count": 0,
       "errors": []
     },
     "s1:pal3/src/Combat/CCBCamControl.h": {
-      "status": "ok",
+      "status": "harness_error",
       "error_count": 0,
       "errors": []
     },
@@ -4085,8 +4085,8 @@
       "errors": [
         {
           "code": "C2440",
-          "msg": "'=' : cannot convert from 'class gbVolumeModifier *' to 'float *'",
-          "line": 1134
+          "msg": "'=' : cannot convert from 'class gbRenderEffect *' to 'unsigned long'",
+          "line": 1097
         }
       ]
     },
@@ -4370,17 +4370,17 @@
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'class gbVisNode *'",
-          "line": 1312
+          "line": 1306
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'char *' to 'unsigned long'",
-          "line": 1703
+          "line": 1697
         },
         {
           "code": "C2440",
           "msg": "'=' : cannot convert from 'void *' to 'unsigned long'",
-          "line": 1789
+          "line": 1783
         }
       ]
     },
@@ -4457,117 +4457,82 @@
     },
     "pal3/src/Combat/CCCTData.cpp": {
       "status": "fail",
-      "error_count": 22,
+      "error_count": 15,
       "errors": [
         {
-          "code": "C2446",
-          "msg": "'==' : no conversion from 'char *' to 'int'",
-          "line": 522
-        },
-        {
-          "code": "C2040",
-          "msg": "'==' : 'int' differs in levels of indirection from 'char *'",
-          "line": 522
+          "code": "C2664",
+          "msg": "'void (char *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 790
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 793
+          "msg": "'void (char *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 803
         },
         {
           "code": "C2664",
-          "msg": "'void (unsigned int *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 806
+          "msg": "'void (char *,__int16 *,unsigned long *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 825
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,unsigned long *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 828
+          "msg": "'void (class UIPushButton *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 985
         },
         {
           "code": "C2664",
-          "msg": "'int (char *,char *,int *,class CCCTData *,unsigned long,int,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 935
+          "msg": "'void (char *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1080
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 992
+          "msg": "'void (char *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1093
         },
         {
           "code": "C2664",
-          "msg": "'void (char *,char *,unsigned long *,class CCCTData *,char *,unsigned long,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1031
+          "msg": "'void (char *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1113
         },
         {
           "code": "C2664",
-          "msg": "'void (char *,char *,unsigned long *,class CCCTData *,char *,unsigned long,int)' : cannot convert parameter 1 from 'unsigned char *' to 'char *'",
-          "line": 1076
+          "msg": "'void (class UIPushButton *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1170
         },
         {
           "code": "C2664",
-          "msg": "'void (char ** ,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1087
+          "msg": "'void (char *,__int16 *,int *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1249
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1100
+          "msg": "'void (char *,__int16 *,int *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1263
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1120
+          "msg": "'void (char *,__int16 *,unsigned long *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1275
         },
         {
           "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1179
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'union _inline_tagCam_yaw' (or there is no acceptable conversion)",
-          "line": 1191
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (float *,__int16 *,int *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1264
-        },
-        {
-          "code": "C2679",
-          "msg": "binary '=' : no operator defined which takes a right-hand operand of type 'union _inline_tagCam_yaw' (or there is no acceptable conversion)",
-          "line": 1269
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (union _inline_tagCam_yaw *,__int16 *,int *,char *,unsigned long,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1280
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (float *,__int16 *,unsigned long *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1294
-        },
-        {
-          "code": "C2664",
-          "msg": "'void (float *,__int16 *,unsigned long *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
-          "line": 1305
+          "msg": "'void (char *,__int16 *,unsigned long *,class CCCTData *)' : cannot convert parameter 2 from 'unsigned short *' to '__int16 *'",
+          "line": 1286
         },
         {
           "code": "C2227",
           "msg": "left of '->CCCTData' must point to class/struct/union",
-          "line": 1565
+          "line": 1536
         },
         {
           "code": "C2653",
           "msg": "'CCCTData' : is not a class or namespace name",
-          "line": 1565
+          "line": 1536
         },
         {
           "code": "C2039",
           "msg": "'ProcessKeyboard' : is not a member of 'InputSystem'",
-          "line": 1575
+          "line": 1546
         }
       ]
     },
@@ -6958,7 +6923,7 @@
       "errors": [
         {
           "code": "C2664",
-          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'struct _iobuf *' to 'int'",
+          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'int' to 'struct _iobuf *'",
           "line": 2330
         }
       ]

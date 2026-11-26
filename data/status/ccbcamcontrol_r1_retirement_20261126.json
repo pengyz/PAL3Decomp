@@ -1,0 +1,230 @@
+{
+ "name": "ccbcamcontrol_r1_retirement_20261126",
+ "title": "R1 孪生清理退役/迁移台账（CCBCamControl/CCCTData chimera 三员处置 + Task 4 冲突面 17 员整表退役）",
+ "date": "2026-11-26",
+ "round": "R1",
+ "context": "T1 门①裁定池计数 2000 有直接字面量证据（literal 0x7D0）→ Task 3 走落位分支；门①结构事实（flexcam.dat 存读布局）复活 flag 数组——m_bPoolInUse 迁移重挂（非退役）。CCCTData 注解经孪生定谳 v4 实锤 chimera（binary_size 装的是类 X 尺寸 + 池成员是类 X 的域），池区成员按证归属迁移至 CCBCamControl，CCCTData 侧同步删除防复刻。",
+ "decisions": [
+  {
+   "name": "m_nCCTIndex",
+   "offset": "0x64190",
+   "original_type": "int[50][100]",
+   "处置": "删除（T2 已执行，本台账补记）",
+   "original_evidence": "CCCTData.json known_members '0x64190'，source='annotation'，evidence_level='unverified'（纯注解无二进制锚）",
+   "new_evidence": "孪生定谳 v1 §2：idx 公式 T+50L+102500 句柄表访问形（InsertTaskToList 0x5075e0/SwapTask 0x507b20）；v4 复核修正 A2c：基址=4×102500=410000=0x64190，+20000B=0x68FB0 精确闭合，行步距 200B=50 项/行 → int[100][50]（旧注解内外维倒挂）",
+   "disposition_detail": "T2 以 verified 落入 CCBCamControl.json '0x64190' m_TaskListIndex int[100][50]（dims 修正：外维 100=L 行、内维 50=T 项）；探针 data/status/probe_ccbcamcontrol_pooldecode_20261126.json"
+  },
+  {
+   "name": "m_Pool",
+   "offset": "0x0",
+   "original_type": "tagCCT[2000]",
+   "处置": "迁移（CCCTData.json → CCBCamControl.json，evidence_level unverified→verified）",
+   "original_evidence": "CCCTData.json known_members '0x0'，source='annotation'，evidence_level='unverified'（纯注解无二进制锚）",
+   "new_evidence": "①寻址形 this+204*handle（shl4→x17→x3→x4 乘法链，InsertTaskToList 0x5075e0/SwapTask 0x507b20 双方法同式）②tagCCT=204 闭合（孪生 v4 PDB ??0tagCCT + tagCCT.json binary_size=0xCC）③计数字面量 0x7D0 五址（0x504dd3/0x504ecf/0x504f07/0x504fff/0x5052d2，CCBStageCam init/持久化路径，门① v2 归因规则）+ ResetAllData@0x504e30 派生常量三组（0x18E70h dwords=408000B/0x1F4h dwords=2000B/0x1388h dwords=20000B）④408000B=0x639C0 恰接 flag 数组——池区全域闭合",
+   "disposition_detail": "Task 3 落位 CCBCamControl.json '0x0' m_Pool tagCCT[2000] verified；CCCTData.json 同步删除防 chimera 复刻；探针 data/status/probe_ccbcamcontrol_poolcount_20261126.json 顶层 pool_count_evidence v2 对象"
+  },
+  {
+   "name": "m_bPoolInUse",
+   "offset": "0x639c0",
+   "original_type": "unsigned char[2000]",
+   "处置": "迁移复活（CCCTData.json → CCBCamControl.json，evidence_level unverified→verified；孪生 v1'证伪'被门① v2 后裁推翻）",
+   "original_evidence": "CCCTData.json known_members '0x639c0'，source='annotation'，evidence_level='unverified'；后被孪生定谳 v1 §2'证伪'：状态字节在池条目内 +0x59/+0x5A/+0x5B → 独立数组模型判区间填充物（ccbcamcontrol_twin_adjudication_20261126.md 证伪清单第 2 行）",
+   "new_evidence": "门① v2 后裁（覆盖 v1'证伪'）：①flexcam.dat 存读布局 0x639C0+0x7D0+0x4E20 自证独立 flag 数组（0x7D0=2000 槽×1B + 0x4E20=20000B 句柄表紧随）②ResetAllData@0x504e30 0x1F4h dwords=2000B 清零形（整槽 unsigned char 语义吻合）③几何闭合 0x639C0+2000=0x64190 恰接 m_TaskListIndex",
+   "disposition_detail": "Task 3 以 verified 落入 CCBCamControl.json '0x639c0' m_bPoolInUse unsigned char[2000]；CCCTData.json 同步删除防 chimera 复刻；存留语义注记：与池条目内状态字节(+0x59/5A/5B)语义并存不同义，后续普查可再拆"
+  },
+  {
+   "name": "m_pvecCenter",
+   "offset": "0x8",
+   "type": "gbVec3D *",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 7 方法各 1 站（ShowCameraDialog/ReadCameraDialog/ProcMove/SetCircle/IsPointerUnderMouse/ResetListFlag/DoLineMove）；近邻洞 [0x14,0x34) 37 站 10 方法（疑经此指针的解引用散布）；probe 精确 disp 方法串：ShowCameraDialogx1,ReadCameraDialogx1,ProcCamMovex1,SetCirclex1,IsPointerUnderMousex1,ResetListFlagx1,DoLineMovex1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nTodo_00C",
+   "offset": "0xc",
+   "type": "float",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 4 方法各 1 站（ShowCameraDialog/ReadCameraDialog/IsPointerUnderMouse/ResetListFlag）；probe 精确 disp 方法串：ShowCameraDialogx1,ReadCameraDialogx1,IsPointerUnderMousex1,ResetListFlagx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nTodo_010",
+   "offset": "0x10",
+   "type": "gbVolModNode *",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 5 方法各 1 站（ShowCameraDialog/ReadCameraDialog/ProcessCamMove/SetCircle/IsPointerUnderMouse）；probe 精确 disp 方法串：ShowCameraDialogx1,ReadCameraDialogx1,ProcessCamMovex1,SetCirclex1,IsPointerUnderMousex1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_fCamBlendA",
+   "offset": "0x34",
+   "type": "float",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 5 方法各 1 站（ShowCameraDialog/ReadCameraDialog/IsPointerUnderMouse/LoadPointer/ResetListFlag）；洞 [0x40,0xEC) 31 站紧随其后；probe 精确 disp 方法串：ShowCameraDialogx1,ReadCameraDialogx1,IsPointerUnderMousex1,LoadPointerx1,ResetListFlagx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_fCamBlendB",
+   "offset": "0x38",
+   "type": "float",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 6 方法各 1 站（ShowCameraDialog/ReadCameraDialog/ProcessCamMove/IsPointerUnderMouse/LoadPointer/ResetListFlag）；probe 精确 disp 方法串：ShowCameraDialogx1,ReadCameraDialogx1,ProcessCamMovex1,IsPointerUnderMousex1,LoadPointerx1,ResetListFlagx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_CamCtrlData",
+   "offset": "0x3c",
+   "type": "int",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 3 方法各 1 站（IsPointerUnderMouse/LoadPointer/ResetListFlag）；旧证据 dword 索引 25/26/124 即池槽内 dword 寻址形；probe 精确 disp 方法串：IsPointerUnderMousex1,LoadPointerx1,ResetListFlagx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nTodo_EC",
+   "offset": "0xec",
+   "type": "gbVolModNode",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 2 方法各 1 站（SetCircle/ResetListFlag）；洞 [0x40,0xEC) 31 站 9 方法恰终于本址——31 站为池区散布访问非本员独占；probe 精确 disp 方法串：SetCirclex1,ResetListFlagx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_PanelSlots",
+   "offset": "0x260",
+   "type": "CCBPanelSlot[38]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 0 站；洞 [0x1C8,0x260) 5 站 1 方法（SetCircle 0x23C-0x240 字节散布）终于本址——无独立访问证据；probe 精确 disp 无站",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nList",
+   "offset": "0x984",
+   "type": "gbRefObject *",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 3 方法各 1 站（SetCircle/IsPointerUnderMouse/DoList）；probe 精确 disp 方法串：SetCirclex1,IsPointerUnderMousex1,DoListx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nPointerUnderMouse",
+   "offset": "0x988",
+   "type": "int",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 2 方法各 1 站（SetCircle/IsPointerUnderMouse）；probe 精确 disp 方法串：SetCirclex1,IsPointerUnderMousex1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_CamEntries",
+   "offset": "0x98c",
+   "type": "int[1794]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 基址 3 方法 6 站（ShowCameraDialogx2/ReadCameraDialogx2/KeepCurCamx2）；stride 60B 遍历形即池条目 204B 内字段步进误读候选；probe 精确 disp 方法串：ShowCameraDialogx2,ReadCameraDialogx2,KeepCurCamx2",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nCurCamIdx",
+   "offset": "0x2594",
+   "type": "int",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 3 方法各 1 站（GetData_B8D0/ShowCameraDialog/ReadCameraDialog）；probe 精确 disp 方法串：GetData_B8D0x1,ShowCameraDialogx1,ReadCameraDialogx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_RenderQueue",
+   "offset": "0x3cfb8",
+   "type": "UIParticle[98]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 1 站（ProcessRenderQueue 基址）；A 级证自被池几何压倒——98×584B 循环即池区线性扫描误读形；孪生定谳 v1 证伪第 4 填充物之一（复核 C8）；probe 精确 disp 方法串：ProcessRenderQueuex1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_SelectRect",
+   "offset": "0x4af48",
+   "type": "int[4]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 1 站（ProcessRenderQueue 基址）；同上池扫描误读形；复核 C8 名单；probe 精确 disp 方法串：ProcessRenderQueuex1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_nCurPageTab",
+   "offset": "0x5558",
+   "type": "int",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 1 站（ShowAllSlots）；B 级语料锚 3057*4 算术形落池区内——语料锚实为池槽 dword 写；probe 精确 disp 方法串：ShowAllSlotsx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_SlotButtons",
+   "offset": "0x5d9ec",
+   "type": "UIButton[5]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 基址 2 站（ShowAllSlots scaled x2）；344B stride 循环即池区扫描误读形；复核 C8 名单；probe 精确 disp 方法串：ShowAllSlotsx2",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  },
+  {
+   "name": "m_TabLists",
+   "offset": "0x5f360",
+   "type": "_BYTE[6040]",
+   "处置": "retired",
+   "退役理由": "池区几何互斥：offset ∈ 池区 [0x0,0x639C0)（m_Pool tagCCT[2000] verified，204×2000=408000B 三证闭合：寻址乘法链 this+204*handle + 计数字面量 0x7D0 五址 + 文件布局 0x639C0 恰接 flag 数组）；成员模型=区间填充形状错误（controller 裁定：池模型 A 级三证压倒，无'都保留'解）；本次 Task 4 整表退役（与 T3 三员同轮，controller 2026-11-26 裁定）",
+   "access_证据": "exact-disp 1 站（ShowAllSlots 基址）；1208B stride 5 页签形落池区内；复核 C8 名单；语料引用 71 次为最重悬空（Task 7 重渲首要对象）；probe 精确 disp 方法串：ShowAllSlotsx1",
+   "证据源": "data/status/probe_ccbcamcontrol_census_20261126.json（disp 普查 32 方法）+ data/status/probe_ccbcamcontrol_poolcount_20261126.json（池三证）",
+   "未来重建线索": "未来重建线索（固定槽视图假说）：该访问可能为池内特定槽或特定字段的常量视图，供未来普查以 tagCCT 视角重建——不可按旧名/旧型直接复活，须先以池条目内字段语义定谳"
+  }
+ ],
+ "consistency": {
+  "pool_region_closure": "m_Pool tagCCT[2000]@0x0 [0x0,0x639C0) + m_bPoolInUse uchar[2000]@0x639C0 [0x639C0,0x64190) + m_TaskListIndex int[100][50]@0x64190 [0x64190,0x68FB0) + 尾域 25 员（42=改动前全类员数）[0x68FB0,0x690B0)——四段连续无一字节缺口",
+  "arithmetic": "204×2000=408000=0x639C0；0x639C0+0x7D0=0x64190；0x64190+20000=0x68FB0=430000；binary_size 430256=0x690B0",
+  "probes": [
+   "data/status/probe_ccbcamcontrol_poolcount_20261126.json",
+   "data/status/probe_ccbcamcontrol_pooldecode_20261126.json",
+   "data/status/probe_ccbcamcontrol_twin_20261126.json",
+   "data/status/probe_ccbcamcontrol_receiver_20261126.json"
+  ],
+  "adjudication": "data/status/ccbcamcontrol_twin_adjudication_20261126.md（v1 证伪 → v4 tagCCT 闭合 → 门① v2 后裁复活 flag 数组）"
+ },
+ "task4": {
+  "date": "2026-11-26",
+  "scope": "CCBCamControl.json 池区 [0x0,0x639C0) 内全部 17 个头域/中域成员退役（0x8~0x5F360），与 m_Pool 几何互斥",
+  "controller_ruling": "池模型 A 级三证（计数 2000 字面量+乘法链+文件布局）压倒成员区间填充模型；17 员全部退役，无'都保留'解",
+  "check_前": "2 new errors（member overlap m_Pool>m_pvecCenter + C10 m_pvecCenter）+ 40 frozen FAIL",
+  "check_后": "0 new errors + 55 frozen PASS（40 存量 + 15 新冻结 CCBCamControl N13a，过渡协议挂账 Task 7 loop 重渲后解冻）",
+  "new_frozen_n13a": 15,
+  "no_corpus_ref_members": [
+   "m_nTodo_00C",
+   "m_PanelSlots"
+  ],
+  "backup": "/tmp/CCBCamControl.json.bak-task4-20261126 (md5 b02fd81d828301710b01713770fe28fb)"
+ }
+}

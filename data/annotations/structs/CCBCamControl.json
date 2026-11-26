@@ -153,108 +153,23 @@
    "offset": 430254,
    "evidence_level": "unverified"
   },
-  "0x8": {
-   "name": "m_pvecCenter",
-   "type": "gbVec3D *",
-   "source": "A+:decomp_assigned_from_param_pvecCenter",
-   "evidence_level": "unverified"
+  "0x0": {
+   "name": "m_Pool",
+   "type": "tagCCT[2000]",
+   "evidence_level": "verified",
+   "source": "2026-11-26 R1: 寻址 this+204*handle(shl4->x17->x3->x4 乘法链, InsertTaskToList 0x5075e0/SwapTask 0x507b20); tagCCT=204 已闭合; 计数字面量 0x7D0 五址+ResetAllData 派生常量三组(探针 probe_ccbcamcontrol_poolcount v2); 408000B=0x639C0 恰接 flag 数组"
   },
-  "0x984": {
-   "name": "m_nList",
-   "type": "gbRefObject *",
-   "source": "decomp_offset+codegen_infer",
-   "evidence_level": "unverified"
+  "0x639c0": {
+   "name": "m_bPoolInUse",
+   "type": "unsigned char[2000]",
+   "evidence_level": "verified",
+   "source": "2026-11-26 R1: 门①复活迁移(自 CCCTData.json)——flexcam.dat 存读布局 0x639C0+0x7D0+0x4E20 自证独立 flag 数组每槽 1B; ResetAllData@0x504e30 0x1F4h dwords=2000B; 孪生 v1'证伪'被门① v2 后裁覆盖; 注意与池条目内状态字节(+0x59/5A/5B)语义并存不同义, 后续普查可再拆"
   },
-  "0x988": {
-   "name": "m_nPointerUnderMouse",
-   "type": "int",
-   "source": "decomp_offset",
-   "evidence_level": "unverified"
-  },
-  "0xc": {
-   "name": "m_nTodo_00C",
-   "type": "float",
-   "source": "A:FPU_disp8_in_class_method",
-   "evidence_level": "unverified"
-  },
-  "0x10": {
-   "name": "m_nTodo_010",
-   "type": "gbVolModNode *",
-   "source": "reverted_auto_semantic:2x_access",
-   "evidence_level": "unverified"
-  },
-  "0x34": {
-   "name": "m_fCamBlendA",
-   "type": "float",
-   "source": "decomp:LoadPointer_set_0.0(camera_blend_param)",
-   "evidence_level": "unverified"
-  },
-  "0x38": {
-   "name": "m_fCamBlendB",
-   "type": "float",
-   "source": "decomp:LoadPointer_set_0.0(camera_blend_param)",
-   "evidence_level": "unverified"
-  },
-  "0x3c": {
-   "name": "m_CamCtrlData",
-   "type": "int",
-   "source": "decomp:LoadPointer_16byte_clear+_auto_4ff360_base_for_dword_index_25/26/124",
-   "evidence_level": "unverified"
-  },
-  "0xec": {
-   "name": "m_nTodo_EC",
-   "type": "gbVolModNode",
-   "source": "A:LEA_ecx_[esi+0ECh]_2refs_confirm_embed,binary_size=220,no_overlap | [批4 诚实化 2026-10-16] A偏移形：_embed_gbVolModNode_EC⇒m_nTodo_EC（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
-  "0x98c": {
-   "name": "m_CamEntries",
-   "type": "int[1794]",
-   "source": "A+:ida_decomp stride=15*4(60bytes), 119 entries, pattern: for(i=&this->field; *i!=pCam; i+=15)",
-   "evidence_level": "unverified"
-  },
-  "0x2594": {
-   "name": "m_nCurCamIdx",
-   "type": "int",
-   "source": "A+:decomp_cmp_-1+index_into_cam_array_5refs",
-   "evidence_level": "unverified"
-  },
-  "0x260": {
-   "name": "m_PanelSlots",
-   "type": "CCBPanelSlot",
-   "count": 38,
-   "source": "| normalize_key: 0x260 -> 608",
-   "evidence_level": "unverified"
-  },
-  "0x3cfb8": {
-   "name": "m_RenderQueue",
-   "type": "UIParticle[98]",
-   "evidence_level": "A",
-   "source": "[A 级汇编+语料三重互证 2026-11-18] ProcessRenderQueue VA=0x48e600: v12=98 do-while(--v12)=98 次迭代 (R1 初版误读 12, 复核 P0-2 证伪), 步进 584B (VA=0x48e75x add esi,248h); 98*584=0xDF90, 0x3CFB8+0xDF90=0x4AF48 与选区 m_SelectRect 邻接三角互证; 语料 m_RenderQueue[98].m_viewRect.left 渲染实证; UIParticle sizeof=584 注解对账"
-  },
-  "0x5d9ec": {
-   "name": "m_SlotButtons",
-   "type": "UIButton[5]",
-   "evidence_level": "A",
-   "source": "[A 级汇编 2026-11-18] ShowAllSlots VA=0x4a9eda: lea edi,[esi+5D9ECh]; VA=0x4a9f07: lea ecx,[esi+ecx*8+5D9ECh] (86*4=344 stride), 循环界 v3=5; UIButton sizeof=344 (注解对账); sub_445E50 链表头操作"
-  },
-  "0x5f360": {
-   "name": "m_TabLists",
-   "type": "_BYTE[6040]",
-   "evidence_level": "A",
-   "source": "[A 级汇编 2026-11-18] ShowAllSlots VA=0x4a9f32/0x4a9f50: lea [esi+5F360h]/[esi+5F818h] stride 1208B (0x5F818-0x5F360=0x4B8), 5 页签; UIListBox::ClearAll/GetItem 虚调用经此 (对象有 vptr 但 1208B 身份未定谳, UIListBox=72B 不符) → _BYTE 占位, 身份定谳挂账"
-  },
-  "0x4af48": {
-   "name": "m_SelectRect",
-   "type": "int[4]",
-   "evidence_level": "A",
-   "source": "[A 级汇编 2026-11-18] ProcessRenderQueue VA=0x48e606: mov esi,[ecx+4AF48h] (x1) / VA=0x48e60d: [ecx+4AF50h] (x2) / VA=0x48e615: [ecx+4AF54h] (y2), y1@0x4AF4C 隐含; CalcRenderDimensions(v2=x2-x1, v6=y2-y1) 消费。R1 初版误落 0x4AF4C (复核 P0-3: x1 撂在成员外+含越界 4B), 修正基址"
-  },
-  "0x5558": {
-   "name": "m_nCurPageTab",
-   "type": "int",
-   "evidence_level": "B",
-   "source": "[B 级语料锚 2026-11-18] ShowAllSlots: *(&m_nCurCamIdx+3057)=nVal; 3057*4=12228=0x2FC4, 0x2594+0x2FC4=0x5558 (R1 初版 0x2FE4 算术错, 复核 P0-1 证伪); B 级待汇编直接捕获"
+  "0x64190": {
+   "name": "m_TaskListIndex",
+   "type": "int[100][50]",
+   "evidence_level": "verified",
+   "source": "2026-11-26 R1: idx公式T+50L+102500 -> 基址4x102500=0x64190(410000), +20000=0x68FB0=430000精确闭合(=binary_size尾域起点); 访问形 lea eax,[eax+eax*4+280Ah]/lea eax,[eax+eax*4]/lea edx,[edx+eax*2]/mov edx,[ecx+edx*4] (InsertTaskToList 0x5075e0/SwapTask 0x507b20 双方法同式); 行步距200B=50项/行; 行数100=几何闭合推导(0x64190+100行x200B恰抵尾域起点0x68FB0), 非池计数字面量, 运行时上界待证; 探针 data/status/probe_ccbcamcontrol_pooldecode_20261126.json"
   }
  },
  "methods": {
@@ -751,5 +666,5 @@
   }
  },
  "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）",
- "members_note": "\n[R1 2026-11-18 修正版·复核P0后] 池区骨架 (全部汇编 disp 对齐):\n  m_RenderQueue UIParticle[98] [0x3CFB8,0x4AF48) — 98x584 与选区邻接互证\n  m_SelectRect int[4] [0x4AF48,0x4AF58) — x1/x2/y2 disp 实测\n  m_nCurPageTab int [0x5558,0x555C) — B级语料锚 3057*4\n  m_SlotButtons UIButton[5] [0x5D9EC,0x5E0A4) — stride 344 循环界 5\n  m_TabLists _BYTE[6040] [0x5F360,0x60AF8) — stride 1208 身份未定谳\n未名 gap ≈396KB: [0x24e4,0x5558)+[0x555c,0x3cfb8)+[0x4af58,0x5d9ec)+[0x5e0a4,0x5f360)+[0x60af8,0x68fb0) 自然保留挂账 (R1 初版账本边界 4 处算错已重算, 复核 P1-6)。"
+ "members_note": "\n[R1 2026-11-26 Task 4 池区整表退役版] 四段连续闭合：m_Pool tagCCT[2000] [0x0,0x639C0) + m_bPoolInUse uchar[2000] [0x639C0,0x64190) + m_TaskListIndex int[100][50] [0x64190,0x68FB0) + 尾域 25 员 [0x68FB0,0x690B0)。旧 R1 2026-11-18 池区头域/中域 17 员（m_pvecCenter@0x8 ~ m_TabLists@0x5F360，含 4 个 A 级'填充物'）经 controller 裁定整表退役：offset 全落池区内与 m_Pool 几何互斥，池模型 A 级三证压倒成员区间填充模型。逐员台账（name/offset/access 证据/固定槽视图假说重建线索）见 data/status/ccbcamcontrol_r1_retirement_20261126.json decisions[3..19]；语料引用悬空 N13a×15 冻结于 check_baseline_errors.json（Task 7 loop 重渲后解冻）。"
 }

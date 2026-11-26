@@ -1252,3 +1252,11 @@
 | `gbBinkVideo::IsSceneReady` | inline | `int` | 84 | self_arg_mismatch | `(*(int (__stdcall **)(int *, _DWORD))(*(_DWORD *)gfxMgr->_tail_000 + 84))(v6, 0)` |
 | `gbBinkVideo::IsSceneReady` | inline | `gbGfxManager` | 88 | no_vtables_declaration | `(*(void (**)(gbGfxManager *))(*(_DWORD *)gfxMgr->_tail_000 + 88))(gfxMgr)` |
 | `gbBinkVideo::IsSceneReady` | inline | `_DWORD` | 68 | non_class_hint | `(*(void (__stdcall **)(_DWORD, _DWORD, _DWORD, _DWORD, _DWORD))(*(_DWORD *)LODWORD(v3[1].InvViewMatrix.xy) + 68))( LODWORD(v3[1].InvViewMatrix.xy), 0, 0, 0, 0)` |
+| `UIGameFrm::_init_44f8d0` | inline | `UISceneFrm` | 24 | self_arg_mismatch | `(*(void (**)(UISceneFrm *, int, int, _DWORD))(*(_DWORD *)&m_pUtil->UIWnd + 24))(m_pUtil, 1000, 1, 0)` |
+| `UISceneFrm::InitGameUI` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(int (**)(UIPushButton *, int, LONG *, UISceneFrm *))(*(_DWORD *)&v8->UIWnd + 16))( v8, 2, &this->m_map.m_rect.right, this)` |
+| `::RenderText` | inline | `ArraySlots` | 12 | no_vtables_declaration | `(*(void (**)(ArraySlots *))(*(_DWORD *)_this + 12))(_this)` |
+| `::PostRender` | inline | `int` | 4 | non_class_hint | `(*(void (**)(int, UIScenePanel *))(*(_DWORD *)m_hSettingsUI + 4))(m_hSettingsUI, _this)` |
+| `::StopAllSounds` | inline | `int` | 8 | non_class_hint | `(*(void (**)(int, _DWORD, int))(*(_DWORD *)v29 + 8))(v29, LODWORD(fFade), nFlags)` |
+| `CCCTData::Create_8770` | vftable_local | `_BYTE` | 16 | non_class_hint | `(*(void (**)(_BYTE *, __int16 *, int *, CCCTData *))(v2 + 16))( &this->_tail_000[386032], &word_A00552, &v70, this)` |
+| `CCCTData::Create_8770` | inline | `UIPushButton` | 16 | self_arg_mismatch | `(*(void (**)(UIPushButton *, __int16 *, int *, CCCTData *))(*(_DWORD *)&v19->UIWnd + 16))( v19, &word_A00552, &v77, this)` |
+| `CCCTData::Create_8770` | inline | `_BYTE` | 16 | non_class_hint | `(*(void (**)(_BYTE *, __int16 *, int *, CCCTData *))(*(_DWORD *)&this->_tail_000[386184] + 16))( &this->_tail_000[386184], &word_A00552, &v89, this)` |

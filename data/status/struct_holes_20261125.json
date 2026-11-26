@@ -2,8 +2,8 @@
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
   "classes_with_holes": 201,
-  "total_hole_bytes": 1513593,
-  "total_holes": 1168,
+  "total_hole_bytes": 1584073,
+  "total_holes": 1161,
   "unresolved_type_members": 6,
   "vptr_exempt_classes": 59,
   "overlay_twin_bytes": 919151,
@@ -16,6 +16,21 @@
   ]
  },
  "classes": [
+  {
+   "cls": "CCCTData",
+   "size": 430256,
+   "members": 0,
+   "bases": 0,
+   "holes": [
+    [
+     "0x0",
+     "0x690b0",
+     430256
+    ]
+   ],
+   "hole_bytes": 430256,
+   "total_holes": 1
+  },
   {
    "cls": "ScreenEffectMgr",
    "size": 363968,
@@ -36,71 +51,6 @@
    "hole_bytes": 363820,
    "total_holes": 2,
    "vptr_slot_exempt": true
-  },
-  {
-   "cls": "CCBCamControl",
-   "size": 430256,
-   "members": 42,
-   "bases": 0,
-   "holes": [
-    [
-     "0x0",
-     "0x8",
-     8
-    ],
-    [
-     "0x14",
-     "0x34",
-     32
-    ],
-    [
-     "0x40",
-     "0xec",
-     172
-    ],
-    [
-     "0x1c8",
-     "0x260",
-     152
-    ],
-    [
-     "0x43c",
-     "0x984",
-     1352
-    ],
-    [
-     "0x2598",
-     "0x5558",
-     12224
-    ],
-    [
-     "0x555c",
-     "0x3cfb8",
-     227932
-    ],
-    [
-     "0x4af58",
-     "0x5d9ec",
-     76436
-    ],
-    [
-     "0x5e0a4",
-     "0x5f360",
-     4796
-    ],
-    [
-     "0x60af8",
-     "0x68fb0",
-     33976
-    ],
-    [
-     "0x68fc4",
-     "0x68fd0",
-     12
-    ]
-   ],
-   "hole_bytes": 357092,
-   "total_holes": 11
   },
   {
    "cls": "EquipUI",
@@ -302,17 +252,32 @@
   {
    "cls": "SkillUI",
    "size": 101940,
-   "members": 0,
+   "members": 53,
    "bases": 1,
    "holes": [
     [
      "0x48",
+     "0x94",
+     76
+    ],
+    [
+     "0x4b4",
+     "0x4b8",
+     4
+    ],
+    [
+     "0xa10",
+     "0xa30",
+     32
+    ],
+    [
+     "0xa40",
      "0x18e34",
-     101868
+     99316
     ]
    ],
-   "hole_bytes": 101868,
-   "total_holes": 1,
+   "hole_bytes": 99428,
+   "total_holes": 4,
    "vptr_slot_exempt": true
   },
   {
@@ -2642,7 +2607,7 @@
   },
   {
    "cls": "CCBRoleState",
-   "size": 20568,
+   "size": 22224,
    "members": 89,
    "bases": 1,
    "holes": [
@@ -5331,21 +5296,6 @@
    "total_holes": 1
   },
   {
-   "cls": "CCCTData",
-   "size": 430256,
-   "members": 3,
-   "bases": 0,
-   "holes": [
-    [
-     "0x68fb0",
-     "0x690b0",
-     256
-    ]
-   ],
-   "hole_bytes": 256,
-   "total_holes": 1
-  },
-  {
    "cls": "ConfigFile",
    "size": 260,
    "members": 1,
@@ -6800,6 +6750,21 @@
    "hole_bytes": 16,
    "total_holes": 1,
    "vptr_slot_exempt": true
+  },
+  {
+   "cls": "CCBCamControl",
+   "size": 430256,
+   "members": 28,
+   "bases": 0,
+   "holes": [
+    [
+     "0x68fc4",
+     "0x68fd0",
+     12
+    ]
+   ],
+   "hole_bytes": 12,
+   "total_holes": 1
   },
   {
    "cls": "CCBPanelSlot",

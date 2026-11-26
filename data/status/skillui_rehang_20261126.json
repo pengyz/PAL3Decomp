@@ -1,0 +1,333 @@
+{
+ "date": "2026-11-26",
+ "action": "SkillUI 53 retired_members 退赔重挂 (R1 Task 5)",
+ "source_archive": "data/annotations/archive/ccbui_identity_adjudication_20261121.json",
+ "target": "data/annotations/structs/SkillUI.json known_members",
+ "kept_untouched": [
+  "0x48",
+  "0x4c",
+  "0x50",
+  "0x68"
+ ],
+ "n": 53,
+ "rehung": [
+  {
+   "key": "0x94",
+   "name": "m_pRoleStatePanel",
+   "type": "UIStatic *[4]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0xa4",
+   "name": "m_pRoleStateFace",
+   "type": "UIStatic *[5]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0xb8",
+   "name": "m_pRoleStateFaceName",
+   "type": "UIStatic *[5]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0xcc",
+   "name": "m_pRoleStateAttackInc",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0xf8",
+   "name": "m_pRoleStateAttackDec",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x124",
+   "name": "m_pRoleStateDefenceInc",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x150",
+   "name": "m_pRoleStateDefenceDec",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x17c",
+   "name": "m_pRoleStateLuckInc",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x1a8",
+   "name": "m_pRoleStateLuckDec",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x1d4",
+   "name": "m_pRoleStateSpeedInc",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x200",
+   "name": "m_pRoleStateSpeedDec",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x22c",
+   "name": "m_pRoleStateStable",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x258",
+   "name": "m_pRoleStateBlank",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x284",
+   "name": "m_pRoleStateForbid",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x2b0",
+   "name": "m_pRoleStateSleep",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x2dc",
+   "name": "m_pRoleStateChaos",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x308",
+   "name": "m_pRoleStateMad",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x334",
+   "name": "m_pRoleStateMirror",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x360",
+   "name": "m_pRoleStateWall",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x38c",
+   "name": "m_pRoleStateBound",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x3b8",
+   "name": "m_pRoleStateHermit",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x3e4",
+   "name": "m_pRoleStateImmunity",
+   "type": "UIStatic *[11]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x410",
+   "name": "m_pWinPanel",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x414",
+   "name": "m_pLosePanel",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x418",
+   "name": "m_pRoleStateHP",
+   "type": "UIProgressBar *[4]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x428",
+   "name": "m_pRoleStateGP",
+   "type": "UIProgressBar *[4]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x438",
+   "name": "m_pRoleStateMP",
+   "type": "UIProgressBar *[4]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x448",
+   "name": "m_pRoleStateSword",
+   "type": "UIProgressBar *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x44c",
+   "name": "m_pTrickName",
+   "type": "UIStaticCB *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x450",
+   "name": "m_pTrickName2",
+   "type": "UIStaticCB *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x454",
+   "name": "m_pDialogBack",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x458",
+   "name": "m_pResultLevelup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x45c",
+   "name": "m_pResultWindLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x460",
+   "name": "m_pResultThunderLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x464",
+   "name": "m_pResultWaterLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x468",
+   "name": "m_pResultFireLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x46c",
+   "name": "m_pResultEarthLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x470",
+   "name": "m_pResultDoubleLvup",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x474",
+   "name": "m_pResultGetItem",
+   "type": "UIStatic *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x478",
+   "name": "m_pMain",
+   "type": "CCBControlWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x47c",
+   "name": "m_pItemWindow",
+   "type": "CCBItemWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x480",
+   "name": "m_pParabolaWindow",
+   "type": "CCBParabolaWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x484",
+   "name": "m_pMagicWindow",
+   "type": "CCBMagicWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x488",
+   "name": "m_pSkillWindow",
+   "type": "CCBSkillWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x48c",
+   "name": "m_pAIWindow",
+   "type": "CCBAIWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x490",
+   "name": "m_pLineupWindow",
+   "type": "CCBLineupWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x494",
+   "name": "m_pProtectWindow",
+   "type": "CCBProtectWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x498",
+   "name": "m_pResultWindow",
+   "type": "CCBResultWindow *[4]",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x4a8",
+   "name": "m_pFiveNimbusWindow",
+   "type": "CCBFiveNimbusWindow *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x4ac",
+   "name": "m_pCBSystem",
+   "type": "CCBSystem *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x4b0",
+   "name": "m_pUtil",
+   "type": "CUtil *",
+   "original_reason": "(起点越界(≥116))"
+  },
+  {
+   "key": "0x4b8",
+   "name": "m_Task",
+   "type": "tagUITask[19]",
+   "original_reason": "(值数组语义证伪(AddTask=tagUITask*指针式)+零访问者+越界)"
+  },
+  {
+   "key": "0xa30",
+   "name": "fp",
+   "type": "CCBUI_funcptr_t",
+   "original_reason": "(起点越界(≥116))"
+  }
+ ]
+}
