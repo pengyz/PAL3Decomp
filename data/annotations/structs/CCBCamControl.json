@@ -654,25 +654,28 @@
    }
   },
   "0x005052e0": {
-   "name": "SetCamPos",
-   "evidence_level": "unverified",
+   "name": "CCBCamControl",
+   "evidence_level": "verified",
    "sig_model": {
-    "return": "CCBStageCam *",
+    "return": "void",
     "cc": "thiscall",
     "params": [
      {
-      "type": "int **",
-      "name": "pCamParam"
+      "type": "CCBStage *",
+      "name": "pStage"
      },
      {
-      "type": "int",
-      "name": "nVal"
+      "type": "CCBStageCam *",
+      "name": "pCam"
      }
     ],
     "varargs": false,
     "pending": false
    },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+   "sig_note": "2026-11-26 ctor A级定谳(旧名SetCamPos双重误名撤销): ①分配点 push 0x690B0+new 后首调本址(编译器sizeof金表) ②PDB mangle ??0CCBCamControl@@QAE@PAVCCBStage@@PAVCCBStageCam@@@Z 逐参吻合(参数直接写 m_pStage@0x68FB0/m_pCam@0x68FB4, eax=this) ③m_nCurTask@0x68FD4 初始化-1 ④内嵌 ??0gbMatrix4@0x69044(m_OBBox首成员). 注意: PDB SetCamPos 真身=CCBStageCam::SetCamPos(tagCam*) 非本类; ResetSceneState@CCBStageScene 为第二调用点(对象重初始化形)",
+   "flags": [
+    "ctor"
+   ]
   },
   "0x004e9750": {
    "name": "GetData",

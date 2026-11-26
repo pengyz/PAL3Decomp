@@ -337,5 +337,14 @@
    }
   }
  },
- "source": " | [尺寸修正 2026-11-25 Wave1] 430000→430256(0x690B0): ctor 0x5058f0 参数拷贝体写[this+0x69094]/[this+0x690A0] 两个 12B vec3 形结构(体 63B 全解码, retn 8 双参)——写界 A 级压倒。尾两 vec3 语义未名留 gap(N12)。挂账: m_Pool[2000]×tagCCT(204)=408000≠m_bPoolInUse@0x639C0(408512)——池算术 512B 断口待考。"
+ "source": " | [尺寸修正 2026-11-25 Wave1] 430000→430256(0x690B0): ctor 0x5058f0 参数拷贝体写[this+0x69094]/[this+0x690A0] 两个 12B vec3 形结构(体 63B 全解码, retn 8 双参)——写界 A 级压倒。尾两 vec3 语义未名留 gap(N12)。挂账: m_Pool[2000]×tagCCT(204)=408000≠m_bPoolInUse@0x639C0(408512)——池算术 512B 断口待考。",
+ "binary_size_contested": {
+  "current": 430256,
+  "candidates": {
+   "430256": "类X(CCBCamControl)尺寸——现值实为X尺寸, 非本类(金表判别)",
+   "402824": "类Y(0x62588分配, ctor=0x4a6f10)——Y身份未名(PDB三类零命中)",
+   "425136": "继承边界假说(若CCBCamControl:CCCTData@0, 边界=尾域起点0x68FB0)"
+  },
+  "note": "2026-11-26 v4: 本注解chimera实锤——binary_size装的是X尺寸; 池方法族(PDB CCCTData 15API)二进制接收者=X实例([CCBStage+0x10]); 类Y观察方法(InitImages/UpdateDebugDialog/InitEntries)PDB三类零命中. 三候选待裁, 修正前不猜(错误该暴露暴露)"
+ }
 }
