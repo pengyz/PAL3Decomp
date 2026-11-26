@@ -1,6 +1,6 @@
 {
-  "name": "20261126_135158",
-  "timestamp": "2026-11-26T13:51:58.299280",
+  "name": "20261126_183755",
+  "timestamp": "2026-11-26T18:37:55.179697",
   "results": {
     "s1:pal3/src/Combat/CCBAI.h": {
       "status": "ok",
@@ -8,7 +8,7 @@
       "errors": []
     },
     "s1:pal3/src/Combat/CCBAIWindow.h": {
-      "status": "ok",
+      "status": "harness_error",
       "error_count": 0,
       "errors": []
     },
@@ -5684,9 +5684,15 @@
       ]
     },
     "pal3/src/Misc/RoleStatePanel.cpp": {
-      "status": "ok",
-      "error_count": 0,
-      "errors": []
+      "status": "fail",
+      "error_count": 1,
+      "errors": [
+        {
+          "code": "C2440",
+          "msg": "'=' : cannot convert from 'char [8]' to 'unsigned long *'",
+          "line": 777
+        }
+      ]
     },
     "pal3/src/Misc/SaleUI.cpp": {
       "status": "fail",
@@ -6917,7 +6923,7 @@
       "errors": [
         {
           "code": "C2664",
-          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'struct _iobuf *' to 'int'",
+          "msg": "'LoadAudioFromFile' : cannot convert parameter 2 from 'int' to 'struct _iobuf *'",
           "line": 2330
         }
       ]
@@ -7916,7 +7922,7 @@
         {
           "code": "C2660",
           "msg": "'UIDestorySystem' : function does not take 6 parameters",
-          "line": 710
+          "line": 649
         }
       ]
     },

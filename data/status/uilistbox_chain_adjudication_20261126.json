@@ -1,0 +1,146 @@
+{
+ "generated": "2026-11-26",
+ "task": "R3 Task1: UIListBox 基类链裁决（阻塞项先行）",
+ "authority": "纯二进制证据(本机 capstone+PE 直读 original/PAL3.exe, 零 IDB 依赖; 探针 /tmp/probe_uilistbox_chain.py + probe_round2/3/4/5.py); PAL3A PDB 仅作参考(REPO 铁律); IDA .asm 导出(sub_43DCD0 形=IDA 未命名)为名字取证",
+ "verdict": "B",
+ "verdict_summary": "双类并存: 0x43DCD0 类(72B, 表0x56AD20) 与 0x43DFC0 类(1208B, 表0x56AD40) 是两个独立的 UIWnd 直接派生类; 名义裁决=UIListBox 名归 1208B 类(0x43DFC0), 72B 类挂 address-tag cls_43dcd0 待建 struct JSON。态A(整类1208)与态C(挂账)均被二进制证据排除。",
+ "recon_correction": {
+  "premise_was": "侦查既证: 0x43dcd0 构造真身 1208B(UIWnd 三重指纹)",
+  "corrected_to": "0x43DCD0 是 72B 类的 ctor(8 指令: call UIWnd ctor 0x445AA0 + mov [esi],0x56AD20 + mov [esi+0x44],0 + ret); 1208B 类的 ctor 是 0x43DFC0(写表面最大 [esi+0x4B4]+4=0x4B8=1208)。原前提把两个 ctor 误并为一个(=20261016『4表裁决』『ctor 双写 0x56AD20+0x56AD40=MI 双表形』的错误根源——实际两 ctor 各写一表, 无 MI)"
+ },
+ "class_small_72B": {
+  "tag_name": "cls_43dcd0",
+  "size": 72,
+  "size_evidence": [
+   "ctor 0x43DCD0 体 [43DCD0,43DCE9) 8指令, 字段写最大 disp=0x44(dword), 对象尾 0x48=72",
+   "独立旁证A: 72B 数组元素助手 0x43DED0/0x43DEF0 = rep stosd 0x12 dwords(=0x48B) 清零, 0x43DEF0 先经 [0x56A58C] 释放 [edi] 纹理句柄(与 HideAll 同构)",
+   "独立旁证B: _todo_ctor 0x452580 构造链第二子对象 lea ecx,[esi+0x48] call 0x452790(基区恰 0x48)",
+   "独立旁证C: 槽方法只触 ≤0x44: Render 0x43DDF0 读 [esi+0x38]/[esi+0x44]/[esi+8]/[esi+0x10]; HideAll 0x43DE40 释放 [esi+0x44] 后 call UIWnd 0x445C10"
+  ],
+  "vtable": {
+   "addr": "0x56AD20",
+   "slots_raw": [
+    "0x445E70",
+    "0x43DDF0",
+    "0x445C60",
+    "0x43DE40",
+    "0x445B90",
+    "0x43DCF0",
+    "0x445D10"
+   ],
+   "n_slots": 7,
+   "uiwnd_fingerprint": "slot0=0x445E70/slot2=0x445C60/slot4=0x445B90/slot6=0x445D10 与 UIWnd 表 0x56AEC8 逐址相同(继承); slot1/3/5 派生覆盖(Render 0x43DDF0 / HideAll 0x43DE40 / deleting dtor 0x43DCF0)",
+   "table_tail": "0x56AD3C=0x41400000(float 12.0, 表尾共 7 槽)"
+  },
+  "methods_confirmed": {
+   "0x43DCD0": "ctor (call 0x445AA0 + [esi]=0x56AD20 + [esi+0x44]=0)",
+   "0x43DCF0": "deleting dtor (call 0x43DD10 + test [esp+8]&1 + delete 0x541D10 + ret 4); .asm 证 DATA XREF .rdata:0056AD34=表slot5",
+   "0x43DD10": "full dtor (SEH + [esi]=0x56AD20 + call 0x43DE40 + ...)",
+   "0x43DD60": "SetSelTexture(own 非虚方法): 经 [0xBFDA60] 管理器虚表+8 载纹理→[esi+0x44], 非零则 [0x56A594] AddRef, 再 call UIWnd::Create 0x445B90; ret 0x18(6栈参)",
+   "0x43DDF0": "Render (slot1 override): [esi+0x44] 非零则 0x540440 DrawImage([esi+8],[esi+0x10],0x114,tex,1,0) 再 call 0x445CD0(UIWnd slot1)",
+   "0x43DE40": "HideAll (slot3 override): 释放 [esi+0x44] (call [0x56A58C]) + [esi+0x44]=0 + call 0x445C10(UIWnd slot3)"
+  },
+  "semantics": "UIWnd + 4B 纹理句柄 m_selcolor@0x44; Render 画该纹理; SetSelTexture 换纹理; = 简单静态纹理控件族(与 20261016 注记『候选=简单 UIWnd 派生控件族』一致)",
+  "pdb_search": "PAL3A PDB 无匹配类: UIDialog(0x48, m_bmodal int@0x44) 语义不合(+0x44 是纹理句柄非 modal 标志); UIFrameWnd(0x48) override slot0 而 cls_43dcd0 slot0=继承 → 均排除",
+  "consumers": "43 个 call 位点: RoleStatePanel InitUI 0x4A1E40(首调@this+0), CCBUICtrl ctor 0x519310(0x51932D; 其表 0x5704C8 slot1=0x43DDF0 继承指纹), SkillUI ctor 0x525120(0x525140), _todo_ctor 0x452580(+0 基), sub_519BB0 ×4 等; full dtor 0x43DD10 127 xrefs",
+  "ida_name": "sub_43DCD0(IDA 未命名); 『??0UIListBox@@QAE@XZ』名源于项目 decomp 文件名(UIListBox_UIListBoxvoid_0043dcd0.json), 非 IDA/非 PDB"
+ },
+ "class_big_1208B": {
+  "verdict_name": "UIListBox",
+  "size": 1208,
+  "size_evidence": [
+   "ctor 0x43DFC0 写表面: 最大 [esi+0x4B4](dword)+4=0x4B8=1208 精确收口; 尾三连零 [esi+0x4AC]/[esi+0x4B0]/[esi+0x4B4](=PDB m_firstshow/m_onsel/m_locksel 同位)",
+   "真 new 算子面: push $0x4B8 → call operator new 0x55353B → call 0x43DFC0 ×3 (0x519D05/0x51A558/0x51AEAA, sub_519BB0)",
+   "嵌入式构造面: LoadStateUIRenderTarget 连续 lea ecx,[esi+0x3A8C4]→[esi+0x3AD7C] call 0x43DFC0, 步距=0x4B8 精确",
+   "dtor 对偶面: deleting 0x43E100 / full 0x43E120 (还原表 0x56AD40, free [esi+0x4AC] 动态数组, 0x553549 数组析构@[esi+0x1B4], 0x4411D0 @[esi+0x50], UIWnd dtor 0x445B40)"
+  ],
+  "vtable": {
+   "addr": "0x56AD40",
+   "slots_raw": [
+    "0x445E70",
+    "0x43E8A0",
+    "0x43EBE0",
+    "0x43E520",
+    "0x445B90",
+    "0x43E100",
+    "0x43E480",
+    "0x43E1C0"
+   ],
+   "n_slots": 8,
+   "uiwnd_fingerprint": "slot0=0x445E70/slot4=0x445B90 与 UIWnd 表逐址相同(继承); slot1/2/3/5/6 派生覆盖; slot7=0x43E1C0=新增第8虚槽(UIWnd 仅 7 槽)",
+   "writers": [
+    "0x43E0E0 (ctor 内)",
+    "0x43E140 (full dtor 0x43E120 内)"
+   ]
+  },
+  "ctor_field_map_vs_pdb": {
+   "note": "PAL3A PDB <class name=UIListBox length=0x508> 仅作参考(REPO 铁律), 但字段写入图逐位吻合:",
+   "0x44": "m_selcolor gbColorQuad — ctor 字节写 0x44..0x47 (0xFA/0x37/0xC8 色值) ✓",
+   "0x48": "m_showGrayBk int — ctor dword 零写 [esi+0x48] ✓",
+   "0x50": "m_scrollbar UIScrollBar — ctor lea ecx,[esi+0x50] call 0x4410F0; dtor 对偶 0x4411D0 ✓",
+   "0x1B4": "列/行数组 — ctor 经 0x553627(elem ctor 0x43DF10/elem dtor 0x43DF20, stride 8, count 0x54) ✓",
+   "0x4AC_0x4B0_0x4B4": "m_firstshow/m_onsel/m_locksel — ctor 三连 dword 零写, 收口 0x4B8 ✓ (PAL3A 多出 0x4B8..0x508 尾段 m_scrollRc/pbkpic/selpic/m_rowenable 等 = 续作新增, 解释 0x508 vs 0x4B8)"
+  },
+  "consumers": "35 个 call 位点: sub_519BB0 ×3(new 1208), InitState ×7, LoadStateUIRenderTarget ×8, LoadBigMapRenderTarget ×6, LoadGameFrmRenderTarget ×6, GetDataPtr2, 0x451890(已注 UIListBox_Init 0x451850 内 ✓ 自洽) 等",
+  "ida_name": "sub_43DFC0(IDA 未命名); decomp 名 UIListBox_UpdateKeyCtrlvoid_0043dfc0(PDB 来源可疑: PDB UpdateKeyCtrl len=0x55F vs 本体 0x140, 名仅供参考)"
+ },
+ "g_UIListBoxDlg_window": {
+  "addr": "0xDBA260 (g_gamefrm+0x290, BSS, overlaps_with g_gamefrm)",
+  "refs": "14 处立即数引用, 全部传参形态, 零直接 [reg] 字段访问",
+  "consumption": "①mov ecx,0xDBA260 + call 0x451AD0(wrapper: [this+0x54]=-1, [this+0x58]→call 0x43F360) ②call 0x451AF0(repne scasb 取串长, 经 [this+0x58] call 0x43E5C0/0x43F6A0/0x43F5B0, 维护 [this+0x54] 上限) ③vptr@[0xDBA260] 虚调用 slot0(call [edx], push 1) ④vptr@[0xDBA2A8=+0x48] 虚调用 slot1(call [eax+4]) ⑤[0xDBA2B0=+0x50] 直读 ⑥neg/sbb/and 取舍 &window[0x48] 传 0x434C40",
+  "verdict": "窗口是复合体(≥2 个带 vptr 子对象@+0/+0x48 + wrapper 态@+0x54/+0x58), 既非裸 72B 亦非裸 1208B 实例; globals.json type=UIListBox/binary_size=1208 属窗口切片锚近似(既有约定), 精确重划=独立战役(挂账)"
+ },
+ "rolestatepanel_resolution": {
+  "blocking_question": "RoleStatePanel bases 注解=[UIWnd@0] 挂裁决; [0x44,0x4B8) 段归属",
+  "answer": "InitUI 0x4A1E40 首调 0x43DCD0(72B 类 ctor)@this+0 → 0x43DCD0 直调 UIWnd ctor 0x445AA0 + 存表 0x56AD20。+0 子对象=72B 类(cls_43dcd0), UIWnd 子对象内嵌其 [0,0x44)。[0x44,0x48) 的 dword=m_selcolor 属基类子对象成员, 非 RoleStatePanel own。[0x48,0x4B8) 从来不是『1208B UIListBox 基类』问题——RoleStatePanel(176256B=0x2B080, new@0x44F1D5) own 区自 0x48 起(观察首个 own 写 [esi+0x58]=0x320)",
+  "c11_landing": "bases 保持 [UIWnd@0](二进制真: UIWnd 子对象确在 +0, 链 UIWnd→cls_43dcd0→RoleStatePanel); 即时基改挂 cls_43dcd0@0 待其 struct JSON 建立(债务账 #1/#3)"
+ },
+ "evidence_refutations": {
+  "operator_new_1208_at_4e_sites": "REFUTED: 0x4E11A9/0x4E9D20 等 6 处 push 0x4B8 实为对话框控制 ID 序列(0x4B3/0x4B8/0x4C1/0x4C3/0x4C4/0x4C5/0x4C8...)+call edi 间接调用, 上下文 cmp ecx,0x110(WM_INITDIALOG)/0x10/0x4E=DialogProc 分派; 与 operator new 无关。20261016 size_evidence ①新算子面证据源失效(其『1208 确认』结论本身由本案其它证据面另行成立)",
+  "mi_double_table_write": "REFUTED: 『ctor 双写 0x56AD20+0x56AD40=MI 双表形』(20261016 4表裁决)——0x43DCD0 只写 0x56AD20, 0x43DFC0 只写 0x56AD40, 写者普查(C7 /0 全 .text 扫描)仅此 4 处(43DCD8/43DD2D/43E0E0/43E140); 两表=两个独立类的表",
+  "addcolumn_at_43dea0": "REFUTED(方法归属): 0x43DEA0 体=mov eax,[0x56AD3C]; mov [0xD902F4],eax; ret = float 常量全局初始化 stub(读 UIWnd 表尾 float 12.0), 非任何类方法; 同簇 0x43DEB0/0x43DEC0 同型。0x43DF10/0x43DF20(CalHeightCount/GetItemPos 名)实为 0x1B4 数组 elem ctor/dtor 对(被 0x43DFC0 push 传 0x553627)。→ UIListBox.json 存量条目误名普查=债务账 #5"
+ },
+ "name_binding_verdict": {
+  "landed_today": "态B(任务书框架): UIListBox 名与 72B 类(0x43DCD0, 表0x56AD20)绑定维持不变, binary_size=72 维持; 1208B 类挂 address-tag cls_43dfc0(任务书授权形态)",
+  "why_landed_this_way": "①任务书态B明文: 72B UIListBox + 1208B 未名类→1208类需名字; ②下游 bases 晶格(SkillUI/StateUI/CCBUICtrl→[UIListBox@0])全部锚定 72B 类, 落地 1208 绑定触发 check C10 布局冲突 280 项(实证: SkillUI own 成员 +1100..+1200/StateUI own +72 起全部落 [0,1208) 冲突区=二进制再次证明它们的基是 72B 类), 而改写晶格超出今日三文件契约; ③今日改判的是函数映射(0x43DCD0=72B ctor; 0x43DFC0=1208B ctor), 不是名字锚",
+  "counter_evidence_on_file": "名义重锚议题(PDB UIListBox=0x508 列表形: 滚动条子对象@0x50/列数组@0x1B4/m_firstshow-m_onsel-m_locksel@0x4AC-0x4B8 与 0x43DFC0 写入图逐位吻合; 列表语义方法簇全在 0x43DFC0 地址域; REPO 在档 20261016『0x56AD40=UIListBox 本体 vtable』)完整保留于本文件, 供后续名义重锚战役裁决——该战役须联动: cls_43dcd0/cls_43dfc0 双 struct JSON 建立 + SkillUI/StateUI/CCBUICtrl bases 晶格改写 + decomp 语料改名, 非单任务可落",
+  "g_UIListBoxDlg_note": "窗口复合体(见 g_UIListBoxDlg_window), type=UIListBox(1208) 的 globals.json 在档注解属窗口切片锚近似, 72/1208 之争对该全局而言是伪命题(它两个类都不是), 精确重划挂账"
+ },
+ "files_changed_today": {
+  "data/annotations/structs/UIListBox.json": "binary_size 维持 72; 6 条 72B 类方法恢复并以体证加固(ctor 0x43DCD0/SetSelTexture 0x43DD60/Render 0x43DDF0/HideAll 0x43DE40/dtor 0x43DCF0/0x43DD10); vtables 维持 0x56AD20(写者普查注记); size_note/size_evidence 重写=自相矛盾解除(1208 证据链整体改判归属 cls_43dfc0, 含被证伪的 4e-site 新算子证据); 注: 中途曾落地 1208 绑定, check C10 实证 280 布局冲突后按任务书框架回改",
+  "data/status/bases_adjudications.json": "RoleStatePanel 条目 C11 落地: bases=[UIListBox@0](任务书 B 形), ctor_evidence=首调 0x43DCD0@this+0 链, dtor_evidence 补, landing_note 记 struct 侧联动债务",
+  "data/status/uilistbox_chain_adjudication_20261126.json": "本文件"
+ },
+ "debt_ledger": [
+  {
+   "id": 1,
+   "item": "创建 data/annotations/structs/cls_43dfc0.json (1208B 未名类, ctor 0x43DFC0, 表 0x56AD40 8槽, UIScrollBar 子对象@0x50 ctor 0x4410F0/dtor 0x4411D0, 列数组@0x1B4 elem 0x43DF10/0x43DF20, 动态数组@0x4AC, 尾三连 0x4AC/0x4B0/0x4B4); UIListBox.json 内 0x43DFC0 簇存量方法条目(0x43E1C0/0x43E330/0x43E3B0/0x43E440/0x43E480/0x43E520/0x43E560/0x43E5C0/0x43E7D0/0x43E8A0/0x43EBA0/0x43EBB0/0x43EBE0/0x43F080/0x43F360/0x43F410/0x43F520/0x43F560/0x43F590/0x43F5B0/0x43F640/0x43F650/0x43F670/0x43F690/0x43F6A0/0x43F6D0/0x43FE90/0x451850/0x451900/0x451AA0/0x451AD0/0x451AF0/0x451B40/0x451C10/0x451C70/0x452600 等)迁移归位",
+   "priority": "P0"
+  },
+  {
+   "id": 2,
+   "item": "名义重锚战役(须用户裁决): PDB 形证+20261016 在档『0x56AD40=UIListBox 本体』支持 UIListBox 名随 1208 类; 联动 cls_43dcd0 JSON + SkillUI/StateUI/CCBUICtrl/RoleStatePanel bases 晶格 + decomp 语料改名; 本文件 class_big_1208B/ctor_field_map_vs_pdb 为证据卷宗",
+   "priority": "P1"
+  },
+  {
+   "id": 3,
+   "item": "RoleStatePanel.json structs 侧 bases [UIWnd@0]→[UIListBox@0](台账已落地, struct 侧联动; vtables[0].base 同步 UIListBox)",
+   "priority": "P1"
+  },
+  {
+   "id": 4,
+   "item": "decomp 语料: UIListBox_UpdateKeyCtrlvoid_0043dfc0/UIListBox_DeleteRowvoid_0043e120 名源 PDB len 不吻合(0x55F vs 0x140 / 0x1DF vs ~0xA0)待复核; 0x43DCD0/0x43DD10 两文件随名义重锚定去向",
+   "priority": "P1"
+  },
+  {
+   "id": 5,
+   "item": "UIListBox.json 存量条目误名普查(探针已证: 0x43DEA0 AddColumn=float-init stub; 0x43DEB0/0x43DEC0 同型; 0x43DF10 CalHeightCount/0x43DF20 GetItemPos=cls_43dfc0 列数组 elem ctor/dtor; 0x431CD0/0x432680/0x49CF20/0x4A9870/0x527950/0x5279F0/0x532A40/0x53D100 疑似非成员)",
+   "priority": "P2"
+  },
+  {
+   "id": "6",
+   "item": "g_UIListBoxDlg 窗口复合体重划(≥2 vptr 子对象 +0/+0x48 + wrapper 态 +0x54/+0x58; Op_* 脚本簇 0x426E80/0x435380 + wrapper 0x451AD0/0x451AF0; globals.json type/binary_size 届时重审)",
+   "priority": "P2"
+  }
+ ]
+}

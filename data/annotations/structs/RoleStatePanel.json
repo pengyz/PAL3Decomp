@@ -5,7 +5,7 @@
  "vtables": [
   {
    "addr": "0x0056f040",
-   "base": "UIWnd",
+   "base": "UIListBox",
    "note": "表字节已验20261120: original/PAL3.exe .rdata VA 0x56f040 七槽逐字直读=[0x445e70,0x4a5930,0x4a5b30,0x4a6600,0x445b90,0x4a2150,0x4a6120] 与本注解一致; slot0/4 坐 UIWnd 原址=继承槽直证; installed by InitUI@0x4A1E40",
    "slots": [
     {
@@ -385,8 +385,8 @@
   "0x25e04": {
    "name": "m_roles",
    "type": "s_RoleState[5]",
-   "source": "SetItemData stride 3788 x5 | normalize_key: 0x25e04 -> 155140",
-   "evidence_level": "unverified"
+   "source": "[R3 ??_L 三元组定谳 2026-11-26 verified] ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4a2057 三元组 (offset,count,stride)=(0x25e04,5,0xECC=3788)（push 5 + lea edx,[esi+25E04h] + push 0ECCh，probe array_ctls[2]）＋s_RoleState.json binary_size=3788 核对一致（stride_classes 命中）＋ctor span [0x25e04,0x2a800) 精确闭合＋SetItemData@0x4a3900 stride this+id*3788 消费直证（前注在档）；回调名义 ?InitCompose@ChoseCompose/?DestroySubWindows@ChoseCompose owners agree 但 annotation_match verdict=none（ChoseCompose binary_size 3770≠3788 → 名义类误标，元素类不从回调名取）；孪生注记：CCBRoleStatePanelS.json binary_size=3788 同尺寸孪生存疑挂账，本落位承 R2 前注 m_roles/s_RoleState 名（corpus this->m_roles ×19 直引，0x25e04 -> 155140）。probe data/status/probe_rolestatepanel_layout_20261126.json",
+   "evidence_level": "verified"
   },
   "0x2afb8": {
    "name": "m_pTabPanel",
@@ -460,21 +460,255 @@
    "source": "HandleDeviceLostB (size-4 anchor) | normalize_key: 0x2b07c -> 176252",
    "evidence_level": "unverified"
   },
+  "0x12f8": {
+   "name": "m_par",
+   "type": "UIParticle[128]",
+   "evidence_level": "verified",
+   "source": "[R3 ??_L 三元组落位 2026-11-26 verified] ctor 内 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4a1fd0 三元组 (offset,count,stride)=(0x12f8,128,0x248=584)（lea eax,[esi+12F8h] + push 248h + push 80h(=128)，push_window 全行 probe array_ctls[0]）；元素类三角定位（R2 gate① 同款裁定先例 equipui_r2_adjustments_20261126.json gate1_table #1/#2/#8/#9）：①stride 0x248=584==UIParticle.json binary_size；②ctor 回调字段足迹 ctor_cb_max_this_disp=0x244⊆584（ctor_cb_extent_fits_stride）；③回调=EquipUI 九数组同款误名对（ctor ?Reset@UIListBox@@QAEXXZ 0x4b4690 名义 72B / dtor ?Destructor@UISceneMap@@QAEXXZ 0x4b47e0 名义 1012B，callback_owners_agree=false + annotation_match verdict=none → 名字钥匙弱，元素类不从回调名取）→ 落 UIParticle[128]；命名 m_par 循同族先例（StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2、EquipUI m_par/m_par2）；消费面旁证：Render@0x4a5930 以 [fvf*16+i] 16 步 IsVisible+UIParticle::Apply 走本区（corpus decomp）；span [0x12f8,0x136f8) 精确闭合。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x136f8": {
+   "name": "m_par2",
+   "type": "UIParticle[128]",
+   "evidence_level": "verified",
+   "source": "[R3 ??_L 三元组落位 2026-11-26 verified] ctor 内 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4a1ff5 三元组 (offset,count,stride)=(0x136f8,128,0x248=584)（lea ecx,[esi+136F8h] + push 248h + push 80h(=128)，push_window 全行 probe array_ctls[1]）；元素类三角定位（R2 gate① 同款裁定先例 equipui_r2_adjustments_20261126.json gate1_table #1/#2/#8/#9）：①stride 0x248=584==UIParticle.json binary_size；②ctor 回调字段足迹 ctor_cb_max_this_disp=0x244⊆584（ctor_cb_extent_fits_stride）；③回调=EquipUI 九数组同款误名对（ctor ?Reset@UIListBox@@QAEXXZ 0x4b4690 名义 72B / dtor ?Destructor@UISceneMap@@QAEXXZ 0x4b47e0 名义 1012B，callback_owners_agree=false + annotation_match verdict=none → 名字钥匙弱，元素类不从回调名取）→ 落 UIParticle[128]；命名 m_par2 循同族先例（StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2、EquipUI m_par/m_par2）；消费面旁证：Render@0x4a5930 以 [fvf*16+i] 16 步 IsVisible+UIParticle::Apply 走本区（corpus decomp）；span [0x136f8,0x25af8) 精确闭合。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2a800": {
+   "name": "m_frames_2a800",
+   "type": "UIFrameContainer[4]",
+   "evidence_level": "verified",
+   "source": "[R3 ??_L 三元组落位 2026-11-26 verified] ctor 内 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4a2079 三元组 (offset,count,stride)=(0x2a800,4,0x98=152)（lea eax,[esi+2A800h] + push 98h + push 4，probe array_ctls[3]）；元素类 UIFrameContainer 直接 usable：callback_owners_agree=true + annotation_match verdict=both （ctor ResetContainerState 0x4422e0 evidence A + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152 对账，candidate_basis=ctor_callback_owner candidate_usable=true）；stride 0x98 上 UIStatic/UIScene/Object3D/UIMap 同尺寸候选按回调地址同一性排除（R2 gate② fix2 同款钥匙）；span [0x2a800,0x2aa60) 精确闭合；消费面 disp 走步 0x2a800/0x2a898/0x2a930/0x2a9c8 (Update×4 员) + 0x2aa60（stride 0x98 逐员）。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2ab08": {
+   "name": "m_frames_2ab08",
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "verified",
+   "source": "[R3 ??_L 三元组落位 2026-11-26 verified] ctor 内 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4a20ab 三元组 (offset,count,stride)=(0x2ab08,5,0x98=152)（lea ecx,[esi+2AB08h] + push 98h + push 5，probe array_ctls[4]）；元素类 UIFrameContainer 直接 usable：callback_owners_agree=true + annotation_match verdict=both （ctor ResetContainerState 0x4422e0 evidence A + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152 对账，candidate_basis=ctor_callback_owner candidate_usable=true）；stride 0x98 上 UIStatic/UIScene/Object3D/UIMap 同尺寸候选按回调地址同一性排除（R2 gate② fix2 同款钥匙）；span [0x2ab08,0x2ae00) 精确闭合；消费面 disp 走步 0x2ab08 (InitUI/~RoleStatePanel)（stride 0x98 逐员）。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x178": {
+   "name": "m_frame_178",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+178：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+178h]（call site 0x4a1e9b，probe ctor_decode.sub_ctor_pairs 第2对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
   "0x210": {
-   "name": "m_RoleStatics",
-   "type": "UIStatic[5]",
-   "evidence_level": "A",
-   "source": "[A 级汇编 2026-11-19] InitUI VA=0x4a1e40 / ~RoleStatePanel VA=0x4a2450 ctor/dtor 配对 disp 序列 0x210/2a8/340/3d8/470 stride 152B; UIStatic sizeof=152 (IDA 对账, UIWnd 派生); 体语义: 5 角色状态静态框 (对齐 m_roles s_RoleState[5]@0x25E04 的 5 角色分组)"
+   "name": "m_frame_210",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+210：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+210h]（call site 0x4a1eab，probe ctor_decode.sub_ctor_pairs 第3对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2a8": {
+   "name": "m_frame_2a8",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+2a8：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+2a8h]（call site 0x4a1ebb，probe ctor_decode.sub_ctor_pairs 第4对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x340": {
+   "name": "m_frame_340",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+340：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+340h]（call site 0x4a1ecb，probe ctor_decode.sub_ctor_pairs 第5对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x3d8": {
+   "name": "m_frame_3d8",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+3d8：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+3d8h]（call site 0x4a1edb，probe ctor_decode.sub_ctor_pairs 第6对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x470": {
+   "name": "m_frame_470",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+470：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+470h]（call site 0x4a1eeb，probe ctor_decode.sub_ctor_pairs 第7对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x1120": {
+   "name": "m_frame_1120",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+1120：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+1120h]（call site 0x4a1f8b，probe ctor_decode.sub_ctor_pairs 第18对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x11c8": {
+   "name": "m_frame_11c8",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+11c8：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+11c8h]（call site 0x4a1f9b，probe ctor_decode.sub_ctor_pairs 第19对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x1260": {
+   "name": "m_frame_1260",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+1260：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+1260h]（call site 0x4a1fab，probe ctor_decode.sub_ctor_pairs 第20对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x25b94": {
+   "name": "m_frame_25b94",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+25b94：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+25b94h]（call site 0x4a2005，probe ctor_decode.sub_ctor_pairs 第23对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x25c2c": {
+   "name": "m_frame_25c2c",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+25c2c：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+25c2ch]（call site 0x4a2015，probe ctor_decode.sub_ctor_pairs 第24对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x25cc4": {
+   "name": "m_frame_25cc4",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+25cc4：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+25cc4h]（call site 0x4a2025，probe ctor_decode.sub_ctor_pairs 第25对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x25d5c": {
+   "name": "m_frame_25d5c",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+25d5c：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+25d5ch]（call site 0x4a2035，probe ctor_decode.sub_ctor_pairs 第26对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2aa60": {
+   "name": "m_frame_2aa60",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+2aa60：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+2aa60h]（call site 0x4a2089，probe ctor_decode.sub_ctor_pairs 第28对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2afdc": {
+   "name": "m_frame_2afdc",
+   "type": "UIFrameContainer",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 152B 子对象 @this+2afdc：call ResetContainerState(0x4422e0) 前置 lea ecx,[esi+2afdch]（call site 0x4a20fb，probe ctor_decode.sub_ctor_pairs 第31对 + ctor_layout_map inplace_obj_152B owner=UIFrameContainer(A)）；类钥匙三证：①回调对 adjudication=verdict both（ctor ResetContainerState 0x4422e0 + dtor ??1UIFrameContainer@@QAE@XZ 0x442390 真名 mangle，UIFrameContainer.json binary_size=152，ctor_cb_max_this_disp=0x94⊆152）；②~RoleStatePanel@0x4a2450 尾段连呼 ??1UIFrameContainer@0x4a2662..0x4a26a2 ×5 后 0x4a26b1 ??1UIListBox 收尾（probe bases_evidence.dtor_calls_tail）；③decomp 语料 ~RoleStatePanel 体同址 UIFrameContainer::~UIFrameContainer 直调（this+0x178=corpus m_bSlotFlags[15] 记法形）；152B=corpus UIFrameContainer（R2 定谳 136→152，equipui_r2_adjustments_20261126.json uiframecontainer_resize）；⚠尺寸孪生 UIStatic=152 库内并存，本落位按回调地址同一性+dtor 真名取 UIFrameContainer（R2 gate② fix2 同款），双条目成员级调和挂账。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x508": {
+   "name": "_arr344_508",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+508：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+508h]（call site 0x4a1efb，probe ctor_layout_map inplace_obj_344B 第1段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [508,0x660)；disp 508 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x660": {
+   "name": "_arr344_660",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+660：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+660h]（call site 0x4a1f0b，probe ctor_layout_map inplace_obj_344B 第2段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [660,0x7b8)；disp 660 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x7b8": {
+   "name": "_arr344_7b8",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+7b8：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+7b8h]（call site 0x4a1f1b，probe ctor_layout_map inplace_obj_344B 第3段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [7b8,0x910)；disp 7b8 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x910": {
+   "name": "_arr344_910",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+910：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+910h]（call site 0x4a1f2b，probe ctor_layout_map inplace_obj_344B 第4段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [910,0xa68)；disp 910 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0xa68": {
+   "name": "_arr344_a68",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+a68：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+a68h]（call site 0x4a1f3b，probe ctor_layout_map inplace_obj_344B 第5段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [a68,0xbc0)；disp a68 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0xbc0": {
+   "name": "_arr344_bc0",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+bc0：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+bc0h]（call site 0x4a1f4b，probe ctor_layout_map inplace_obj_344B 第6段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [bc0,0xd18)；disp bc0 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0xd18": {
+   "name": "_arr344_d18",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+d18：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+d18h]（call site 0x4a1f5b，probe ctor_layout_map inplace_obj_344B 第7段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [d18,0xe70)；disp d18 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0xe70": {
+   "name": "_arr344_e70",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+e70：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+e70h]（call site 0x4a1f6b，probe ctor_layout_map inplace_obj_344B 第8段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [e70,0xfc8)；disp e70 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0xfc8": {
+   "name": "_arr344_fc8",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+fc8：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+fc8h]（call site 0x4a1f7b，probe ctor_layout_map inplace_obj_344B 第9段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [fc8,0x1120)；disp fc8 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x2ae50": {
+   "name": "_arr344_2ae50",
+   "type": "unsigned char[344]",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] InitUI@0x4a1e40 就地构造 344B 子对象 @this+2ae50：call ?GetSys@NameSys@@QACPAV1@XZ-named(0x43a770) 前置 lea ecx,[esi+2ae50h]（call site 0x4a20bb，probe ctor_layout_map inplace_obj_344B 第10段）；回调名义名系误名（GetSys 返回指针语义与就地 344B 清零构造不符，名字钥匙弃用）；stride 0x158=344 的 stride_classes 候选 [gbRain/UIButton/UIScene] 各有自有 vtable 与 0x56ac70 族指纹不合，R2 EquipUI #4 同 stride 已定 vtable-0x56ac70 族未名（equipui_r2_adjustments_20261126.json gate1_table #4）→ 元素类未名，byte 形 unsigned char[344] 忠实落位（几何名 _arr 形，禁发明类名）；span [2ae50,0x2afa8)；disp 2ae50 (InitUI/~RoleStatePanel ×2 THIS)。probe data/status/probe_rolestatepanel_layout_20261126.json"
+  },
+  "0x58": {
+   "name": "m_nTodo_58",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 写 [esi+58h]=320h(800)（site 0x4a1e6f，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode this_write_disps[0]）+ disp 0x58 (InitUI×1 THIS)；邻证 800/600 对（0x5c=0x258）疑窗口宽高语义，未取证前诚实几何名挂账"
+  },
+  "0x5c": {
+   "name": "m_nTodo_5c",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 写 [esi+5Ch]=258h(600)（site 0x4a1e76，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode）+ disp 0x5c (InitUI×1 THIS)；与 0x58 成 800/600 对，语义待证"
+  },
+  "0x64": {
+   "name": "m_nTodo_64",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 [esi+64h]=ebx（site 0x4a1e80，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode；[Task3 妆级订正 2026-11-26: 原记 site 0x4a1e7d 系误记——该址实为 write#2 清 [esi+60h] 现场，[esi+64h] 写在 0x4a1e80，独立重扫 probe_rolestatepanel_holes_20261126.json ctor_decode this_writes #3 复核一致]）+ disp 0x64 (InitUI×1 THIS)；0x58/0x5c/0x60/0x64 stride-4 dword 序列尾员（probe stride_series_this[0]）"
+  },
+  "0x68": {
+   "name": "m_nTodo_68",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 disp 直证落位 2026-11-26 verified] disp 0x68 (Update×4 THIS，data/status/probe_rolestatepanel_layout_20261126.json disp_histogram)；消费面旁证：Update@0x4a5b30 sprintf 文本缓冲落此（&m_nScanIndex+8 记法=0x68）+ UICaption::SetEnable((UICaption*)this+0x68) ×2（corpus decomp）→ UICaption(96B) 形子对象假说挂账待鉴定；未类型化=零 ctor 写证据子区间 [0x6c,0x168) 留洞原则"
+  },
+  "0x168": {
+   "name": "m_nTodo_168",
+   "type": "unsigned char",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 [esi+168h]=bl（site 0x4a1e83，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode）+ disp 0x168 (InitUI×1)；0x168..0x16d 六字节旗标块头员；corpus 记法 m_bSlotFlags[-1] 位（0x169 起为在册 m_bSlotFlags[5]）"
+  },
+  "0x170": {
+   "name": "m_nTodo_170",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 dword [esi+170h]（site 0x4a1e89，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode）+ disp 0x170 (InitUI×1)；corpus 记法 *(_DWORD*)&m_bSlotFlags[7]=0（0x169+7=0x170）"
+  },
+  "0x174": {
+   "name": "m_nTodo_174",
+   "type": "unsigned char",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 [esi+174h]=bl（site 0x4a1e8f，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode）+ disp 0x174 (InitUI/OnMessage/Update ×4 THIS)；corpus 记法 m_bSlotFlags[11]（OnMessage case1000 置位/Update 门标/HideAll 清零）"
+  },
+  "0x175": {
+   "name": "m_nTodo_175",
+   "type": "unsigned char",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 [esi+175h]=bl（site 0x4a1e95，data/status/probe_rolestatepanel_layout_20261126.json ctor_decode）+ disp 0x175 (InitUI×1)；corpus 记法 m_bSlotFlags[12]"
+  },
+  "0x25b78": {
+   "name": "m_bRtVisible",
+   "type": "unsigned char[8]",
+   "evidence_level": "verified",
+   "source": "[R3 disp 直证+消费簇落位 2026-11-26 verified] disp 0x25b78..0x25b7f（0x25b78 n=3（InitUI+OnMessage）；余七字节各 n=2 全 OnMessage；data/status/probe_rolestatepanel_layout_20261126.json disp_histogram stride_series_this[5]；[Task3 妆级订正 2026-11-26: 原「八字节各 n=2 全 OnMessage」与直方图不符——首字节 0x25b78 含 InitUI 清零触点计 n=3，probe_rolestatepanel_holes_20261126.json 独立重扫同判]）；消费簇：OnMessage case1003 LOBYTE/BYTE1/BYTE2/HIBYTE 逐目标字节清零 + case1000 *p=0/p[1]=0 八字节清零 + case1002 按字节判发 LoadGameFrmRenderTarget(i) + Render 按本字节门控 m_par[m_nRtIndex*16+i] IsVisible/UIParticle::Apply 走步（corpus decomp，hexrays m_RoleStatics[1012].m_pbk2 记法=超界指针算术伪影，真址 0x25b78）→ 8 渲染目标可见旗标；ctor 清零同域（corpus InitUI 尾段）；命名取消费簇语义（R2 Task3 m_pTabPanel 同法）"
+  },
+  "0x25b80": {
+   "name": "m_nRtIndex",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor+disp 直证落位 2026-11-26 verified] ctor 清零 dword [esi+25B80h]（data/status/probe_rolestatepanel_layout_20261126.json ctor_decode this_write_disps）+ disp 0x25b80 (InitUI/OnMessage/Render ×22)；消费簇：OnMessage case1002/1003 按 nVal2 写 0..7 后 LoadGameFrmRenderTarget(idx) + Render 以此索引 m_par/m_par2 [idx*16+i] 走步（corpus decomp）→ 当前渲染目标索引 0..7；hexrays m_RoleStatics[1012].m_FVF 记法=超界伪影，真址 0x25b80"
+  },
+  "0x2b074": {
+   "name": "m_nTodo_2b074",
+   "type": "int",
+   "evidence_level": "verified",
+   "source": "[R3 ctor 解码落位 2026-11-26 verified] ctor 清零 dword @0x2b074（data/status/probe_rolestatepanel_layout_20261126.json ctor_decode this_write_disps 末员；corpus InitUI 尾句 *(_DWORD*)(&m_nTodo_2afd9+155)=0 记法（0x2afd9+155=0x2b074））+ disp 0x2b074 (HandleDeviceLostB/InitUI ×4 THIS)；与 0x2b078/0x2b07c 成 stride-4 尾三连（probe stride_series_this[9]）"
   }
  },
  "_naming_note": "descriptive name (5-role state panel, equip/magic/state tabs); original source name unrecoverable — see _rolestatepanel_verdict.json",
- "members_note": "\n[R2 2026-11-19] 骨架: m_RoleStatics UIStatic[5] [0x210,0x508)。未定谳挂账: 0x508 起 stride-344 序列(UIButton 尺寸候选, N 未定)/RenderThrottled 深区 disp 0x12F8/0x136F8/0x25B80/池区主体。\n[R2 2026-11-26 Task3] 七模块指针落位 [0x2afb8..0x2afd0] verified (金表+Init@0x4a4220 [esi+off] 存储+消费面 27/26/26/26/15/14/9 读点三证): m_pTabPanel/m_pSubTabPanel/m_pMainPropUI(MainPropUI*)/m_pEquipUI(EquipUI*)/m_pPanel_2afc8/m_pLineupUI(LineupUI*)/m_pPanel_2afd0; 退役同址旧员 m_pSubTab1(0x2afbc UITitle_XJTM* 名义错挂证伪)+m_pSubTab2(0x2afc0 5槽旧锚) 见 equipui_r2_adjustments_20261126.json task3 节; 四个未名 pointee (171244B/353840B/402824B 类Y/290488B 待 Note_Item 仲裁) 透明指针挂账。",
+ "members_note": "\n[R2 2026-11-19] 骨架: m_RoleStatics UIStatic[5] [0x210,0x508)。未定谳挂账: 0x508 起 stride-344 序列(UIButton 尺寸候选, N 未定)/RenderThrottled 深区 disp 0x12F8/0x136F8/0x25B80/池区主体。\n[R2 2026-11-26 Task3] 七模块指针落位 [0x2afb8..0x2afd0] verified (金表+Init@0x4a4220 [esi+off] 存储+消费面 27/26/26/26/15/14/9 读点三证): m_pTabPanel/m_pSubTabPanel/m_pMainPropUI(MainPropUI*)/m_pEquipUI(EquipUI*)/m_pPanel_2afc8/m_pLineupUI(LineupUI*)/m_pPanel_2afd0; 退役同址旧员 m_pSubTab1(0x2afbc UITitle_XJTM* 名义错挂证伪)+m_pSubTab2(0x2afc0 5槽旧锚) 见 equipui_r2_adjustments_20261126.json task3 节; 四个未名 pointee (171244B/353840B/402824B 类Y/290488B 待 Note_Item 仲裁) 透明指针挂账。\n[R3 2026-11-26 Task2] ctor(InitUI@0x4a1e40) 全量解码落位（probe probe_rolestatepanel_layout_20261126.json）：五笔 ??_L=m_par/m_par2 UIParticle[128]×2（0x12f8/0x136f8，R2 gate① 同款三角定位）+m_roles s_RoleState[5] 证据升级 verified（0x25e04 stride 3788==s_RoleState.json）+m_frames_2a800/m_frames_2ab08 UIFrameContainer[4]/[5]（verdict=both）；25 子对象就地构造对=15×152B UIFrameContainer 单员（m_frame_*，回调 ResetContainerState+dtor ??1UIFrameContainer 真名+尾段连呼）+10×344B vtable-0x56ac70 族未名（_arr344_* byte 形）；前区 ctor/disp 散字段 8 员（m_nTodo_58..175）+渲染目标旗标对 m_bRtVisible[8]/m_nRtIndex（0x25b78/0x25b80）+m_nTodo_2b074；退役 1 员：m_RoleStatics UIStatic[5]@0x210（ctor 回调+dtor 真名证伪 UIStatic 类型归属，同址 5×m_frame_2xx 取代；语料悬空引用 N13a 冻结过渡协议）→ 台账 data/status/rolestatepanel_r3_adjustments_20261126.json。基类链 bases=[UIListBox@0] 落地（Task1 裁决，UIWnd 68B 内嵌 [0,0x44)）。零证据子区间留洞：[0x48,0x58)/[0x6c,0x168)/[0x11b8,0x11c8)/[0x25af8,0x25b78)/[0x25b84,0x25b94)/[0x25df4,0x25e04)/[0x2aaf8,0x2ab08)/[0x2ae00,0x2ae50)/[0x2afa8,0x2afb8)。\n[R3 2026-11-26 Task3] 9 残洞逐洞独立重扫裁决=0 落位/9 诚实留（probe data/status/probe_rolestatepanel_holes_20261126.json，独立现扫不读 Task2 probe：四通道 A=ctor 写序 24 写/B=ctor 子对象对 27+??_L span 5/C=全方法 disp 触场 353 触点+THIS-lea 72（方法集 20=Task2 十八法+vtable 继承槽 ShowClipped/Create）+scaled/indexed 补扫/D=dtor 拆解 27 对——入洞全零；[0x48,0x58) 唯一异形触场 mov ecx,[eax+54h]@0x4a4810 系 ?GetActiveTexture@RenderTarget 返回 gbTexture 外对象读，非本类字段证据，裁决留洞）；妆级订正 2 处：m_nTodo_64 ctor site 0x4a1e7d→0x4a1e80（0x4a1e7d 实为 write#2 清 [esi+60h] 现场）/m_bRtVisible 记法「八字节各 n=2」→「0x25b78 n=3（InitUI+OnMessage）+余七字节各 n=2 全 OnMessage」；vtables[0].base UIWnd→UIListBox（Task1 债务#3 收尾一行修，与 bases=[UIListBox@0] 对齐）。",
  "bases": [
   {
-   "name": "UIWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
- "bases_note": "base补声明20261120: 表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel(own dtor override) + slot1/2/3/6 派生覆盖——链法定谳; 此前 bases:null 致祖先链断(C7 误判继承槽为自有)",
+ "bases_note": "[R3 基类链落地 2026-11-26] bases=[UIListBox@0]（Task1 裁决 B structs 侧落位，债务#3 清账）：InitUI@0x4a1e40 首调 ??0UIListBox@@QAE@XZ(0x43dcd0)@this+0（probe bases_evidence.ctor_first_calls[0] + ctor_first_call_is_uiListBox_ctor）→ 0x43dcd0 体 call UIWnd ctor 0x445aa0 + 存表 0x56ad20，UIWnd(68B=[0,0x44)) 内嵌其内；dtor 尾 0x4a26b1 ??1UIListBox@@QAE@XZ 收尾；表 0x56f040 七槽对 UIListBox 表 0x56ad20 slot0/4 同址继承、slot1/2/3/6 派生覆盖、slot5 own（probe vtable_fingerprint inherit_fingerprint=true）；布局定谳：+0 基子对象=UIListBox(72B=[0,0x48))，0x44 dword=m_selcolor 属基子对象（Task1 裁决），RoleStatePanel own 区自 0x48 起（首 own 写 [esi+58h]=0x320）；裁决台账 data/status/bases_adjudications.json RoleStatePanel 条目 + data/status/uilistbox_chain_adjudication_20261126.json",
  "note": " | 槽链契约定谳20261120: C9轮\"基类不一致冻结=MSVC6容忍返回型不协变\"前提被C2555硬错证伪, \"decomp int直证\"实为hexrays scratch-eax伪影(LOBYTE(result)=IsVisible)+撞名自递归伪影; 真签名=家族契约(Render void()/Update BOOL(CCBUI**,int)/HideAll void()), 三重A级: 表字节+12族共识+C2555编译 verdict; 0x4a4820双Render退赔(条目删除, N12铁律)"
 }

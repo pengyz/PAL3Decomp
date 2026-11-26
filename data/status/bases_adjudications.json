@@ -100,10 +100,14 @@
  },
  "RoleStatePanel": {
   "bases": [
-   "UIWnd@0"
+   "UIListBox@0"
   ],
-  "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖",
-  "at": "2026-11-20"
+  "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖; [C11链定谳20261126 uilistbox_chain_adjudication_20261126.json] InitUI 0x4A1E40 首调 0x43DCD0(UIListBox 72B类 ctor)@this+0 → 0x43DCD0 体 call UIWnd ctor 0x445AA0 + 存表0x56AD20; 表0x56F040 七槽对 UIListBox 表0x56AD20: slot0/4 同址继承(0x445E70/0x445B90), slot1/2/3/6 派生覆盖, slot5 own deleting dtor——全槽吻合; 布局定谳: +0 基子对象=UIListBox(72B, [0,0x48)), +0x44 dword=m_selcolor 属基子对象, RoleStatePanel own 区自 0x48 起(首own写 [esi+0x58]=0x320; binary_size 0x2B080)。[0x44,0x4B8) 段归属裁决: 0x44 属基类 m_selcolor; [0x48,0x4B8) 属 RoleStatePanel own——1208B 基类假说(cls_43dfc0)被 caller 链证伪(RoleStatePanel 构造链只经 0x43DCD0)",
+  "at": "2026-11-26",
+  "ctor_evidence": "首调 0x43DCD0@this+0 链: InitUI 0x4A1E40 mov esi,ecx 后首 call 0x43DCD0(this+0=基子对象@偏移0) → 0x43DCD0 call 0x445AA0(UIWnd ctor)直调+存表0x56AD20@+0 → UIWnd 子对象内嵌 [0,0x44); RoleStatePanel 表0x56F040 由 InitUI 安装(slot0/4 坐 UIListBox/0x56AD20 slot0/4 原址=0x445E70/0x445B90 继承指纹)",
+  "verdict_by": "base_chain_tracer + uilistbox_chain_adjudication_20261126(本机capstone探针)",
+  "dtor_evidence": "~RoleStatePanel deleting 0x4A2150(slot5)→0x4A2450 全形→基链待 cls_43dcd0 链目建立后复核(0x43DD10 现有127 xrefs 含 RoleStatePanel 簇 0x45B1E9/0x46D750 属 InitState 系, 非本类)",
+  "landing_note": "RoleStatePanel.json structs 侧 bases 字段今日契约外未改(仍 [UIWnd@0]); 本台账为裁决权威记录, struct 侧落地=债务账#3(与 #1 cls_43dcd0 JSON 联动后 bases 直挂 UIListBox@0 即可, 无需新类名)"
  },
  "UIGameFrm": {
   "bases": [

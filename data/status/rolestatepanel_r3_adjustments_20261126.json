@@ -1,0 +1,410 @@
+{
+ "name": "rolestatepanel_r3_adjustments_20261126",
+ "title": "R3-T2 RoleStatePanel ctor 解码成员落位台账（40 落位 + 1 升级 + 1 退役 + bases=[UIListBox@0] 落地；洞 156433B→556B）",
+ "date": "2026-11-26",
+ "round": "R3",
+ "task": "Task 2（ctor 解码成员落位）",
+ "context": "探针 data/status/probe_rolestatepanel_layout_20261126.json 五查产出：ctor InitUI@0x4a1e40 全量解码（23 this 写/五笔 ??_L@YGXPAXIHP6EX0@Z1@Z/27 sub_ctor 对）+ 18 方法 disp 直方图 + census 六洞交叉 + C11 bases 证据 + UIWnd 基类尺寸覆盖。基类链承 Task1 裁决（data/status/uilistbox_chain_adjudication_20261126.json）：直接基=UIListBox 72B@0（UIWnd 68B=[0,0x44) 内嵌其中），own 区=[0x48,0x2B080)。本任务按 ctor_layout_map 段表逐员落位并与既有 16 员几何对账（offset 或类型化末端落入新区间者=证伪退役）。",
+ "ctor_evidence_summary": {
+  "ctor": "InitUI@0x4a1e40（mangled_ctor 不存在，??0RoleStatePanel 形未导出；ctor_func_range [0x4a1e40,0x4a2150)）",
+  "n_this_writes": 23,
+  "n_eh_array": 5,
+  "n_inplace_subobjects": 25,
+  "inplace_breakdown": "152B×15（owner=UIFrameContainer(A)）+ 344B×10（vtable-0x56ac70 族未名）",
+  "brief_count_reconciliation": "任务书『23 子对象构造对：152B×11+344B×10』与探针段表 25 对（152B×15+344B×10）数差说明：344B×10 两处一致；152B 探针实测 15 段（0x178/0x210/0x2a8/0x340/0x3d8/0x470/0x1120/0x11c8/0x1260/0x25b94/0x25c2c/0x25cc4/0x25d5c/0x2aa60/0x2afdc，owner 一律 UIFrameContainer(A)），任务书 11 系计数口径差——按任务书『每员 offset 从 ctor_layout_map 精确取』指令以探针段表为准全数落位（其中 [0x210,0x508) 五段与在册 m_RoleStatics 几何互斥，触发退役，见 retirement 节）。"
+ },
+ "placements": [
+  {
+   "#": 1,
+   "offset": "0x12f8",
+   "name": "m_par",
+   "type": "UIParticle[128]",
+   "证据要点": "??_L site 0x4a1fd0 三元组 (0x12f8,128,0x248)；元素三角定位=584==UIParticle.json+ctor_cb 足迹 0x244⊆584+EquipUI 九数组同款误名回调对（?Reset@UIListBox 72B/?Destructor@UISceneMap 1012B，owners disagree，verdict none）→ R2 gate① 同款裁定（gate1_table #1/#2/#8/#9 先例）；命名循 m_par 族先例"
+  },
+  {
+   "#": 2,
+   "offset": "0x136f8",
+   "name": "m_par2",
+   "type": "UIParticle[128]",
+   "证据要点": "??_L site 0x4a1ff5 同款三元组 (0x136f8,128,0x248)；同上三角定位；span [0x136f8,0x25af8) 与 #1 无缝衔接"
+  },
+  {
+   "#": 3,
+   "offset": "0x25e04",
+   "name": "m_roles（升级，非新增）",
+   "type": "s_RoleState[5]",
+   "证据要点": "??_L site 0x4a2057 (0x25e04,5,0xECC=3788) + s_RoleState.json binary_size=3788 核对一致 + span [0x25e04,0x2a800) 闭合 + SetItemData stride 消费直证；回调名义 ChoseCompose(3770≠3788) 误标弃用；孪生 CCBRoleStatePanelS(3788) 挂账注记；evidence_level unverified→verified"
+  },
+  {
+   "#": 4,
+   "offset": "0x2a800",
+   "name": "m_frames_2a800",
+   "type": "UIFrameContainer[4]",
+   "证据要点": "??_L site 0x4a2079 (0x2a800,4,0x98) verdict=both candidate_usable=true；disp 走步 0x2a800/0x2a898/0x2a930/0x2a9c8"
+  },
+  {
+   "#": 5,
+   "offset": "0x2ab08",
+   "name": "m_frames_2ab08",
+   "type": "UIFrameContainer[5]",
+   "证据要点": "??_L site 0x4a20ab (0x2ab08,5,0x98) verdict=both candidate_usable=true"
+  },
+  {
+   "#": 6,
+   "offset": "0x178",
+   "name": "m_frame_178",
+   "type": "UIFrameContainer",
+   "证据要点": "就地 152B：ResetContainerState(0x4422e0)@0x4a1e9b + lea [esi+178h]；dtor 尾段连呼 ??1UIFrameContainer×5；corpus ~体同址直调"
+  },
+  {
+   "#": 7,
+   "offset": "0x210",
+   "name": "m_frame_210",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1eab（取代退役 m_RoleStatics[0] 位）"
+  },
+  {
+   "#": 8,
+   "offset": "0x2a8",
+   "name": "m_frame_2a8",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1ebb"
+  },
+  {
+   "#": 9,
+   "offset": "0x340",
+   "name": "m_frame_340",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1ecb"
+  },
+  {
+   "#": 10,
+   "offset": "0x3d8",
+   "name": "m_frame_3d8",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1edb"
+  },
+  {
+   "#": 11,
+   "offset": "0x470",
+   "name": "m_frame_470",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1eeb"
+  },
+  {
+   "#": 12,
+   "offset": "0x508",
+   "name": "_arr344_508",
+   "type": "unsigned char[344]",
+   "证据要点": "就地 344B：?GetSys@NameSys-named(0x43a770)@0x4a1efb 误名弃用；vtable-0x56ac70 族未名（R2 EquipUI #4 同 stride 先例）→ byte 形"
+  },
+  {
+   "#": 13,
+   "offset": "0x660",
+   "name": "_arr344_660",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f0b"
+  },
+  {
+   "#": 14,
+   "offset": "0x7b8",
+   "name": "_arr344_7b8",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f1b"
+  },
+  {
+   "#": 15,
+   "offset": "0x910",
+   "name": "_arr344_910",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f2b"
+  },
+  {
+   "#": 16,
+   "offset": "0xa68",
+   "name": "_arr344_a68",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f3b"
+  },
+  {
+   "#": 17,
+   "offset": "0xbc0",
+   "name": "_arr344_bc0",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f4b"
+  },
+  {
+   "#": 18,
+   "offset": "0xd18",
+   "name": "_arr344_d18",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f5b"
+  },
+  {
+   "#": 19,
+   "offset": "0xe70",
+   "name": "_arr344_e70",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f6b"
+  },
+  {
+   "#": 20,
+   "offset": "0xfc8",
+   "name": "_arr344_fc8",
+   "type": "unsigned char[344]",
+   "证据要点": "同上 site 0x4a1f7b"
+  },
+  {
+   "#": 21,
+   "offset": "0x1120",
+   "name": "m_frame_1120",
+   "type": "UIFrameContainer",
+   "证据要点": "同 152B 钥匙，site 0x4a1f8b"
+  },
+  {
+   "#": 22,
+   "offset": "0x11c8",
+   "name": "m_frame_11c8",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1f9b"
+  },
+  {
+   "#": 23,
+   "offset": "0x1260",
+   "name": "m_frame_1260",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a1fab"
+  },
+  {
+   "#": 24,
+   "offset": "0x25b94",
+   "name": "m_frame_25b94",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a2005"
+  },
+  {
+   "#": 25,
+   "offset": "0x25c2c",
+   "name": "m_frame_25c2c",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a2015"
+  },
+  {
+   "#": 26,
+   "offset": "0x25cc4",
+   "name": "m_frame_25cc4",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a2025"
+  },
+  {
+   "#": 27,
+   "offset": "0x25d5c",
+   "name": "m_frame_25d5c",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a2035"
+  },
+  {
+   "#": 28,
+   "offset": "0x2ae50",
+   "name": "_arr344_2ae50",
+   "type": "unsigned char[344]",
+   "证据要点": "同 344B 钥匙，site 0x4a20bb；span [0x2ae50,0x2afa8)"
+  },
+  {
+   "#": 29,
+   "offset": "0x2aa60",
+   "name": "m_frame_2aa60",
+   "type": "UIFrameContainer",
+   "证据要点": "同 152B 钥匙，site 0x4a2089"
+  },
+  {
+   "#": 30,
+   "offset": "0x2afdc",
+   "name": "m_frame_2afdc",
+   "type": "UIFrameContainer",
+   "证据要点": "同上 site 0x4a20fb；corpus 记法 &m_nTodo_2afd9+3"
+  },
+  {
+   "#": 31,
+   "offset": "0x58",
+   "name": "m_nTodo_58",
+   "type": "int",
+   "证据要点": "ctor 写 0x320(800) site 0x4a1e6f + disp InitUI×1；800/600 对疑宽高语义待证，诚实名挂账"
+  },
+  {
+   "#": 32,
+   "offset": "0x5c",
+   "name": "m_nTodo_5c",
+   "type": "int",
+   "证据要点": "ctor 写 0x258(600) site 0x4a1e76 + disp InitUI×1"
+  },
+  {
+   "#": 33,
+   "offset": "0x64",
+   "name": "m_nTodo_64",
+   "type": "int",
+   "证据要点": "ctor 清零 site 0x4a1e7d + disp InitUI×1；0x58..0x68 stride-4 序列尾"
+  },
+  {
+   "#": 34,
+   "offset": "0x68",
+   "name": "m_nTodo_68",
+   "type": "int",
+   "证据要点": "disp Update×4；消费旁证 sprintf 文本缓冲+UICaption::SetEnable((UICaption*)0x68)×2（corpus）→ UICaption(96B) 假说挂账；零 ctor 证据子区间留洞原则故未类型化"
+  },
+  {
+   "#": 35,
+   "offset": "0x168",
+   "name": "m_nTodo_168",
+   "type": "unsigned char",
+   "证据要点": "ctor 清零 site 0x4a1e83 + disp InitUI×1；0x168..0x16d 六字节旗标块头"
+  },
+  {
+   "#": 36,
+   "offset": "0x170",
+   "name": "m_nTodo_170",
+   "type": "int",
+   "证据要点": "ctor 清零 dword site 0x4a1e89 + disp InitUI×1；corpus 记法 *(dword*)&m_bSlotFlags[7]=0"
+  },
+  {
+   "#": 37,
+   "offset": "0x174",
+   "name": "m_nTodo_174",
+   "type": "unsigned char",
+   "证据要点": "ctor 清零 site 0x4a1e8f + disp ×4（OnMessage 置位/Update 门标/HideAll 清零）；corpus m_bSlotFlags[11]"
+  },
+  {
+   "#": 38,
+   "offset": "0x175",
+   "name": "m_nTodo_175",
+   "type": "unsigned char",
+   "证据要点": "ctor 清零 site 0x4a1e95 + disp InitUI×1；corpus m_bSlotFlags[12]"
+  },
+  {
+   "#": 39,
+   "offset": "0x25b78",
+   "name": "m_bRtVisible",
+   "type": "unsigned char[8]",
+   "证据要点": "disp 0x25b78..0x25b7f 八字节全 OnMessage（case1003 逐目标清零/case1002 判发 LoadGameFrmRenderTarget/Render 门控 m_par[idx*16+i] IsVisible 走步）→ 8 渲染目标可见旗标；命名循消费簇语义（R2 Task3 m_pTabPanel 同法）"
+  },
+  {
+   "#": 40,
+   "offset": "0x25b80",
+   "name": "m_nRtIndex",
+   "type": "int",
+   "证据要点": "ctor 清零（this_write 0x25b80）+ disp ×22（InitUI/OnMessage/Render）；case1002/1003 按 nVal2 写 0..7 → 当前渲染目标索引；hexrays m_RoleStatics[1012].m_FVF 记法=超界伪影"
+  },
+  {
+   "#": 41,
+   "offset": "0x2b074",
+   "name": "m_nTodo_2b074",
+   "type": "int",
+   "证据要点": "ctor 清零（this_write 末员；corpus &m_nTodo_2afd9+155 记法）+ disp ×4（HandleDeviceLostB/InitUI）；尾三连 stride-4"
+  }
+ ],
+ "placements_note": "净新增 40 员（2×UIParticle[128] + 2×UIFrameContainer[4]/[5] + 15×UIFrameContainer 单员 + 10×unsigned char[344] + 8×前区 ctor/disp 散字段 + m_bRtVisible/m_nRtIndex + m_nTodo_2b074）+ 1 在册员升级（m_roles@0x25e04 偏移/名/型不变，evidence_level unverified→verified）→ known_members 16 − 1(退役) + 40 = 55，与 census members=55 一致。全员 evidence_level=verified，source 引 ctor 0x4a1e40 + ??_L 三元组 + 探针 JSON；152B 类钥匙=回调地址同一性（ResetContainerState@0x4422e0 + ??1UIFrameContainer@@QAE@XZ 真名 mangle）+ dtor 尾段连呼 ×5（0x4a2662..0x4a26a2）+ decomp 同址直调三证；⚠UIStatic=152 尺寸孪生存疑注记在册（R2 gate② fix2 同款钥匙裁决，双条目调和挂账）。",
+ "retirement": [
+  {
+   "offset": "0x210",
+   "name": "m_RoleStatics",
+   "type": "UIStatic[5]",
+   "处置": "retired（从 RoleStatePanel.json known_members 删除；同址 [0x210,0x508) 由 m_frame_210..m_frame_470 五员 UIFrameContainer 取代；语料悬空引用走 N13a 冻结过渡协议，Task7 loop 重渲后解冻正名）",
+   "退役理由": "类型证伪退役（非纯几何）：旧员 evidence_level=A（2026-11-19）其 A 级证据=ctor/dtor disp 序列 stride 152 配对+『UIStatic sizeof=152 对账』——尺寸匹配推理，类型未锚定。新证据三面压倒：①ctor InitUI 对 [0x210,0x508) 五段就地构造回调=ResetContainerState(0x4422e0)，与 ??_L [4]/[5] 数组同款，annotation_match verdict=both 锚定 UIFrameContainer；②~RoleStatePanel 对同址真名 mangle 调 ??1UIFrameContainer@@QAE@XZ（dtor_calls_tail）+decomp 体 UIFrameContainer::~UIFrameContainer 直调——析构函数地址=最强类身份钥匙；③UIStatic.json 无任何回调链锚定本区。UIStatic/UIFrameContainer 同为 152B（尺寸孪生），旧『sizeof 对账』证据不具区分力。落位后区间内不容旧员共存（几何互斥，循 CCBCamControl R1 Task4 / EquipUI R2-T2 退役先例）。",
+   "原证据": "RoleStatePanel.json known_members '0x210' m_RoleStatics（UIStatic[5]），evidence_level=A，source=[A 级汇编 2026-11-19] ctor/dtor 配对 disp 序列 stride 152B + UIStatic sizeof=152 对账 + 5 角色分组语义推测",
+   "语料引用": "this->m_RoleStatics ×81（InitUI 15/Render 10/OnMessage 33/~21/Update 2，箭头名普查与 check 实测一致）",
+   "未来重建线索": "不可按旧名/旧型复活；五员已由 UIFrameContainer verified 落位。若未来拆语义，须以 UIFrameContainer 成员视角或子对象内部视角重建；『5 员对齐 m_roles 5 角色分组』旧语义推测转挂 m_frame_210..470 note 级假说"
+  }
+ ],
+ "upgrade": [
+  {
+   "offset": "0x25e04",
+   "name": "m_roles",
+   "type": "s_RoleState[5]",
+   "处置": "evidence_level unverified→verified（名字/类型/偏移三不变，source 重写为 ??_L 三元组+s_RoleState.json binary_size=3788 核对+span 闭合+SetItemData 消费直证；孪生 CCBRoleStatePanelS(3788) 注记挂账）"
+  }
+ ],
+ "bases_landing": {
+  "change": "bases: [UIWnd@0] → [UIListBox@0]",
+  "evidence": "Task1 裁决 structs 侧落地（债务#3 清账）：InitUI@0x4a1e40 首调 ??0UIListBox(0x43dcd0)@this+0 → 0x43dcd0 call UIWnd ctor 0x445aa0 + 存表 0x56ad20（UIWnd 68B=[0,0x44) 内嵌）；dtor 尾 0x4a26b1 ??1UIListBox；表 0x56f040 七槽对 0x56ad20 slot0/4 同址继承+slot5 own（vtable_fingerprint inherit_fingerprint=true）；布局：0x44 dword=m_selcolor 属基子对象，own 区自 0x48 起",
+  "ledger": "data/status/bases_adjudications.json RoleStatePanel 条目（Task1 已落，ctor_evidence 在册）→ C11 门禁凭既有裁决条目通过；旧冻结串『CANON:C11:RoleStatePanel bases变更无裁决条目: 快照[] → 现[UIWnd]』随本次落地停止触发（触发条件消失，非静默吸收——留基线串不摘，摘除走死条目清理轮）"
+ },
+ "consistency": {
+  "arithmetic": "128×584=74752=0x12400（m_par [0x12f8,0x136f8)）；128×584 同（m_par2 [0x136f8,0x25af8)，两阵无缝）；5×3788=18940=0x4AFC（m_roles [0x25e04,0x2a800)）；4×152=608=0x260（m_frames_2a800 [0x2a800,0x2aa60)）；5×152=760=0x2F8（m_frames_2ab08 [0x2ab08,0x2ae00)）；344=0x158（十员 _arr344_*：0x508/0x660/.../0xfc8 步距 0x158 与 disp stride_series[3] 完全重合 + [0x2ae50,0x2afa8)）；15×152B 单员逐员无缝（0x178→0x508 六连/0x11c8→0x12f8 两连/0x25b94→0x25df4 四连）；末端 0x2b07c+4=0x2B080=binary_size 精确闭合",
+  "overlap": "checker 口径 55 员排序跨距两两相交=0（preflight overlap_span=0；台账脚本独立复算一致）",
+  "residual_holes": "零证据子区间留洞 9 处 556B：[0x48,0x58)16/[0x6c,0x168)252/[0x11b8,0x11c8)16/[0x25af8,0x25b78)128/[0x25b84,0x25b94)16/[0x25df4,0x25e04)16/[0x2aaf8,0x2ab08)16/[0x2ae00,0x2ae50)80/[0x2afa8,0x2afb8)16（均无 ctor 写亦无 disp 触场，符合留洞原则；另 2B×3+3B 缝在 census 4B 阈下）",
+  "probes": [
+   "data/status/probe_rolestatepanel_layout_20261126.json"
+  ]
+ },
+ "check": {
+  "before": "0 new errors + 37 frozen (advisory) — PASS（改动前基线快照 /tmp/r3t2_check_before.txt）",
+  "after_edit": "1 new error + 37 frozen — FAIL（唯一新增=退役员语料悬空 N13a×1：RoleStatePanel::m_RoleStatics 语料->引用81次，与预扫描 81 完全一致；无 overlap/C10/C11 类新错误）",
+  "after_freeze": "0 new errors + 38 frozen (advisory), 110 warnings — PASS（37 存量 + 1 新冻结 RoleStatePanel N13a，过渡协议挂账 Task7 loop 重渲后解冻正名；overlap 类错误未冻结=真消不符冻结定义）",
+  "new_frozen_n13a": 1,
+  "frozen_strings": [
+   "DATA:N13a:RoleStatePanel::m_RoleStatics 字段契约断(语料->引用81次, 类链known_members无名) → C2227族预测"
+  ],
+  "note": "preflight（check_annotation_preflight --cls RoleStatePanel）零 overlap 项；唯一 MEDIUM=duplicate_method_name ??1RoleStatePanel@@QAE@XZ ×2 系在册既有双析构条目（0x4a2150 declaration_only + 0x4a2450），本任务前已在，非本轮引入"
+ },
+ "census": {
+  "tool": "tools/census_struct_holes.py",
+  "before": "RoleStatePanel size=176256 members=16 holes=6 hole_bytes=156433（probe holes_cross.census_row 同读数）",
+  "after": "RoleStatePanel size=176256 members=55 bases=1 holes=9 hole_bytes=556",
+  "delta": "hole_bytes 156433→556（−99.64%）；members 16→55；全局：含洞类 201 | 总空洞 1142 处 | 1246 KB （+2 处=大洞拆分出 9 小洞的记账形变，RoleStatePanel 小洞均 ≤252B）；CCBRoleStatePanelS 未动",
+  "holes_after": [
+   [
+    "0x48",
+    "0x58",
+    16
+   ],
+   [
+    "0x6c",
+    "0x168",
+    252
+   ],
+   [
+    "0x11b8",
+    "0x11c8",
+    16
+   ],
+   [
+    "0x25af8",
+    "0x25b78",
+    128
+   ],
+   [
+    "0x25b84",
+    "0x25b94",
+    16
+   ],
+   [
+    "0x25df4",
+    "0x25e04",
+    16
+   ],
+   [
+    "0x2aaf8",
+    "0x2ab08",
+    16
+   ],
+   [
+    "0x2ae00",
+    "0x2ae50",
+    80
+   ],
+   [
+    "0x2afa8",
+    "0x2afb8",
+    16
+   ]
+  ],
+  "output": "data/status/struct_holes_20261125.json"
+ },
+ "open_items": [
+  "UIStatic/UIFrameContainer 152B 尺寸孪生双条目成员级调和（承 R2 gate② 挂账）",
+  "CCBRoleStatePanelS/s_RoleState 3788 孪生鉴别（m_roles 现名承 corpus 直引 ×19）",
+  "0x68 UICaption(96B) 形子对象假说（SetEnable×2+sprintf 文本缓冲旁证）待鉴定类型化",
+  "m_nTodo_58/5c 800/600 宽高语义待证",
+  "留洞 9 处 556B 待后续轮取证（最大 [0x6c,0x168) 252B 疑 UICaption 尾+缓冲区）"
+ ]
+}

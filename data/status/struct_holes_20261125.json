@@ -2,8 +2,8 @@
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
   "classes_with_holes": 201,
-  "total_hole_bytes": 1431785,
-  "total_holes": 1139,
+  "total_hole_bytes": 1275908,
+  "total_holes": 1142,
   "unresolved_type_members": 6,
   "vptr_exempt_classes": 59,
   "overlay_twin_bytes": 919151,
@@ -50,47 +50,6 @@
    ],
    "hole_bytes": 363820,
    "total_holes": 2,
-   "vptr_slot_exempt": true
-  },
-  {
-   "cls": "RoleStatePanel",
-   "size": 176256,
-   "members": 16,
-   "bases": 1,
-   "holes": [
-    [
-     "0x44",
-     "0x60",
-     28
-    ],
-    [
-     "0x64",
-     "0x169",
-     261
-    ],
-    [
-     "0x170",
-     "0x210",
-     160
-    ],
-    [
-     "0x508",
-     "0x25e04",
-     153852
-    ],
-    [
-     "0x2a800",
-     "0x2afb8",
-     1976
-    ],
-    [
-     "0x2afdc",
-     "0x2b078",
-     156
-    ]
-   ],
-   "hole_bytes": 156433,
-   "total_holes": 6,
    "vptr_slot_exempt": true
   },
   {
@@ -4645,6 +4604,62 @@
    ],
    "hole_bytes": 557,
    "total_holes": 13
+  },
+  {
+   "cls": "RoleStatePanel",
+   "size": 176256,
+   "members": 55,
+   "bases": 1,
+   "holes": [
+    [
+     "0x48",
+     "0x58",
+     16
+    ],
+    [
+     "0x6c",
+     "0x168",
+     252
+    ],
+    [
+     "0x11b8",
+     "0x11c8",
+     16
+    ],
+    [
+     "0x25af8",
+     "0x25b78",
+     128
+    ],
+    [
+     "0x25b84",
+     "0x25b94",
+     16
+    ],
+    [
+     "0x25df4",
+     "0x25e04",
+     16
+    ],
+    [
+     "0x2aaf8",
+     "0x2ab08",
+     16
+    ],
+    [
+     "0x2ae00",
+     "0x2ae50",
+     80
+    ],
+    [
+     "0x2afa8",
+     "0x2afb8",
+     16
+    ]
+   ],
+   "hole_bytes": 556,
+   "total_holes": 9,
+   "vptr_slot_exempt": true
   },
   {
    "cls": "PalScript",
