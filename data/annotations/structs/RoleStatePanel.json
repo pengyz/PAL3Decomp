@@ -709,6 +709,7 @@
    "offset": 0
   }
  ],
+ "base_size": 72,
  "bases_note": "[R3 基类链落地 2026-11-26] bases=[UIListBox@0]（Task1 裁决 B structs 侧落位，债务#3 清账）：InitUI@0x4a1e40 首调 ??0UIListBox@@QAE@XZ(0x43dcd0)@this+0（probe bases_evidence.ctor_first_calls[0] + ctor_first_call_is_uiListBox_ctor）→ 0x43dcd0 体 call UIWnd ctor 0x445aa0 + 存表 0x56ad20，UIWnd(68B=[0,0x44)) 内嵌其内；dtor 尾 0x4a26b1 ??1UIListBox@@QAE@XZ 收尾；表 0x56f040 七槽对 UIListBox 表 0x56ad20 slot0/4 同址继承、slot1/2/3/6 派生覆盖、slot5 own（probe vtable_fingerprint inherit_fingerprint=true）；布局定谳：+0 基子对象=UIListBox(72B=[0,0x48))，0x44 dword=m_selcolor 属基子对象（Task1 裁决），RoleStatePanel own 区自 0x48 起（首 own 写 [esi+58h]=0x320）；裁决台账 data/status/bases_adjudications.json RoleStatePanel 条目 + data/status/uilistbox_chain_adjudication_20261126.json",
  "note": " | 槽链契约定谳20261120: C9轮\"基类不一致冻结=MSVC6容忍返回型不协变\"前提被C2555硬错证伪, \"decomp int直证\"实为hexrays scratch-eax伪影(LOBYTE(result)=IsVisible)+撞名自递归伪影; 真签名=家族契约(Render void()/Update BOOL(CCBUI**,int)/HideAll void()), 三重A级: 表字节+12族共识+C2555编译 verdict; 0x4a4820双Render退赔(条目删除, N12铁律)"
 }

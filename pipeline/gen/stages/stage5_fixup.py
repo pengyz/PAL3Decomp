@@ -776,10 +776,14 @@ def _global_base_type(name):
     return _GLOBAL_BASE_TYPE_MAP.get(name)
 
 
-def _path_is_pointer(path, vt, ctx):
+def _path_is_pointer(path, vt, ctx, array_decays=False):
     """Resolve a member access path like g_X.a.b / this->m_x / p->a.b.
 
     Returns True/False when decidable, None when any link is unknown.
+    `array_decays` allows the final link to be an array member (e.g.
+    `unsigned char[8]`) to count as a pointer: in C++ an array decays to a
+    pointer to its first element in value context. Callers must pass False
+    when the source text subscripts that member (an element access is a value).
     """
     parts = re.split(r'(?:->|\.)', path.strip())
     if len(parts) < 2:
@@ -796,7 +800,8 @@ def _path_is_pointer(path, vt, ctx):
                 cls = t['base']
     if not cls:
         return None
-    for member in parts[1:]:
+    last = len(parts) - 2
+    for idx, member in enumerate(parts[1:]):
         if not member:
             return None
         mt = _member_type(cls, member)
@@ -804,6 +809,8 @@ def _path_is_pointer(path, vt, ctx):
             return None
         mt = str(mt).strip()
         if '*' in mt:
+            return True
+        if array_decays and idx == last and re.search(r'\[[^\]]*\]\s*$', mt):
             return True
         cls = re.sub(r'\s*\[[^\]]*\]\s*$', '', mt)
     return False
@@ -861,7 +868,7 @@ def _expr_is_pointer(e, vt, ctx):
         if pt is not None:
             return pt
     if re.search(r'(?:->|\.)', e):
-        pt = _path_is_pointer(e, vt, ctx)
+        pt = _path_is_pointer(e, vt, ctx, array_decays=('[' not in e))
         if pt is not None:
             return pt
     # subscript: base[...] keeps the base's pointer-ness

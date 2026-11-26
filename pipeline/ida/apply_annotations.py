@@ -2022,9 +2022,6 @@ def _fix_gbengine_import_slots():
     log("[gb] import slots: names=%d member=%d demangled=%d parsed=%d typed=%d "
         "-> corrected=%d failed=%d"
         % (n_all, n_member, n_dem, n_regex, seen, fixed, failed))
-    log("[gb-import] mangle 解码: ok=%d try=%d skip=%d (ref-degrade=%d, _build_func_tinfo "
-        "基本型修复后基型可达; 引用降级指针计数)" % (gb_sig_ok, gb_sig_try, gb_sig_skip,
-        _REF_DEGRADE_COUNT[0]))
     for s in samples:
         log("     sample-reject: %s" % s)
     return fixed
@@ -2265,6 +2262,10 @@ def import_gbengine_types():
                 gb_sig_skip += 1
             return True
         ida_nalt.enum_import_names(i, _set_import_type)
+    # [2026-11-26] 计数日志自 _fix_gbengine_import_slots 迁来：原处引用本函数局部变量
+    # gb_sig_ok/gb_sig_try/gb_sig_skip（先用后定义）必抛 NameError，且该函数内无这三个名字。
+    log("[gb-import] mangle 解码: ok=%d try=%d skip=%d (ref-degrade=%d)"
+        % (gb_sig_ok, gb_sig_try, gb_sig_skip, _REF_DEGRADE_COUNT[0]))
 
 
 # ============================================================
