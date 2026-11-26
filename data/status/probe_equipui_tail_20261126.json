@@ -1,0 +1,4160 @@
+{
+ "init_receiver": {
+  "init_ea": "0x4a4220",
+  "mangle": "?Init@EquipUI@@QAEXXZ",
+  "ctor_ea": "0x498820",
+  "dtor_ea": "0x499030",
+  "initequipui_ea": "0x4ab6b0",
+  "n_callers": 1,
+  "callers": [
+   {
+    "site": "0x44f206",
+    "caller": "?InitUIComponents@UIGameFrm@@QAEXXZ",
+    "form": "REG_CARRY",
+    "detail": "eax",
+    "deep": {
+     "form": "REG_CARRY",
+     "detail": "eax",
+     "receiver_new_size": "0x2B080",
+     "receiver_alloc_call": {
+      "site": "0x44f1da",
+      "form": "call    ??2@YAPAXI@Z"
+     },
+     "receiver_ctor_call": {
+      "site": "0x44f1f1",
+      "form": "call    ?InitUI@RoleStatePanel@@QAEHXZ"
+     },
+     "receiver_cache_slots": [
+      {
+       "site": "0x44f1ca",
+       "slot": "esi+0x6E10"
+      }
+     ]
+    },
+    "deep_lines": [
+     [
+      "0x44f1f8",
+      "xor     eax, eax"
+     ],
+     [
+      "0x44f1f6",
+      "jmp     short loc_44F1FA"
+     ],
+     [
+      "0x44f1f1",
+      "call    ?InitUI@RoleStatePanel@@QAEHXZ"
+     ],
+     [
+      "0x44f1ef",
+      "mov     ecx, eax"
+     ],
+     [
+      "0x44f1ed",
+      "jz      short loc_44F1F8"
+     ],
+     [
+      "0x44f1e8",
+      "mov     byte ptr [esp+34h+var_4], 2"
+     ],
+     [
+      "0x44f1e6",
+      "cmp     eax, ebx"
+     ],
+     [
+      "0x44f1e2",
+      "mov     [esp+34h+var_20], eax"
+     ],
+     [
+      "0x44f1df",
+      "add     esp, 4"
+     ],
+     [
+      "0x44f1da",
+      "call    ??2@YAPAXI@Z"
+     ],
+     [
+      "0x44f1d5",
+      "push    2B080h"
+     ],
+     [
+      "0x44f1d0",
+      "call    ?Init@PropUI@@QAEXXZ"
+     ],
+     [
+      "0x44f1ca",
+      "mov     [esi+6E10h], eax"
+     ],
+     [
+      "0x44f1c6",
+      "mov     byte ptr [esp+34h+var_4], bl"
+     ],
+     [
+      "0x44f1c4",
+      "mov     ecx, eax"
+     ],
+     [
+      "0x44f1c2",
+      "xor     eax, eax"
+     ],
+     [
+      "0x44f1c0",
+      "jmp     short loc_44F1C4"
+     ],
+     [
+      "0x44f1bb",
+      "call    _todo_ctor"
+     ],
+     [
+      "0x44f1b9",
+      "mov     ecx, eax"
+     ],
+     [
+      "0x44f1b7",
+      "jz      short loc_44F1C2"
+     ],
+     [
+      "0x44f1b2",
+      "mov     byte ptr [esp+34h+var_4], 1"
+     ],
+     [
+      "0x44f1b0",
+      "cmp     eax, ebx"
+     ],
+     [
+      "0x44f1ac",
+      "mov     [esp+34h+var_20], eax"
+     ],
+     [
+      "0x44f1a9",
+      "add     esp, 4"
+     ]
+    ],
+    "backtrace": [
+     [
+      "0x44f200",
+      "mov     [esi+6E14h], eax"
+     ],
+     [
+      "0x44f1fc",
+      "mov     byte ptr [esp+34h+var_4], bl"
+     ],
+     [
+      "0x44f1fa",
+      "mov     ecx, eax"
+     ]
+    ]
+   }
+  ],
+  "form_counts": {
+   "REG_CARRY": 1
+  },
+  "called_by_ctor": false,
+  "create_chain_callers": [],
+  "caller_upstream": [
+   {
+    "site": "0x404b22",
+    "caller": "?InitGame@PAL3@@QAEXH@Z",
+    "form": "IMM_OTHER",
+    "detail": "offset g_gamefrm"
+   },
+   {
+    "site": "0x404b7f",
+    "caller": "?InitGame@PAL3@@QAEXH@Z",
+    "form": "IMM_OTHER",
+    "detail": "offset g_gamefrm"
+   }
+  ],
+  "ctor_calls_Init": [],
+  "ctor_call_list": [
+   [
+    "0x49883e",
+    "call    ??0UIListBox@@QAE@XZ"
+   ],
+   [
+    "0x4988a2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4988b2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4988c2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4988d2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4988e2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4988f2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498902",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498912",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498922",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498932",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498942",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498952",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498962",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498972",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498982",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498992",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4989a2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4989b2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x4989d7",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x4989fc",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498a0c",
+    "call    ??0UIRoleDialog@@QAE@XZ"
+   ],
+   [
+    "0x498a2e",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498a3e",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498a4e",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498a5e",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498a6e",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498a7e",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498aa0",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498ac2",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498ad2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498ae2",
+    "call    ??0UI3DCtrl@@QAE@XZ"
+   ],
+   [
+    "0x498af2",
+    "call    ResetContainerState"
+   ],
+   [
+    "0x498b14",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498b24",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b34",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b44",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b54",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b64",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b74",
+    "call    ?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ"
+   ],
+   [
+    "0x498b93",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498ba3",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498bb3",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498bc3",
+    "call    ?GetSys@NameSys@@QACPAV1@XZ"
+   ],
+   [
+    "0x498bdd",
+    "call    ?ctor@UIProgressBar@@QAEPAHXZ"
+   ],
+   [
+    "0x498bff",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ],
+   [
+    "0x498c21",
+    "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+   ]
+  ],
+  "esi_from_ecx": [
+   {
+    "site": "0x4a423b",
+    "form": "mov     esi, ecx"
+   }
+  ],
+  "esi_write_count": 1,
+  "esi_writes_first": [
+   {
+    "site": "0x4a423b",
+    "form": "mov     esi, ecx"
+   }
+  ],
+  "seven_store_sites": [
+   {
+    "site": "0x4a45c4",
+    "form": "mov     [esi+2AFB8h], eax",
+    "off": "0x2afb8",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a45f6",
+    "form": "mov     [esi+2AFBCh], eax",
+    "off": "0x2afbc",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a4628",
+    "form": "mov     [esi+2AFC0h], eax",
+    "off": "0x2afc0",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a465a",
+    "form": "mov     [esi+2AFC4h], eax",
+    "off": "0x2afc4",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a468c",
+    "form": "mov     [esi+2AFC8h], eax",
+    "off": "0x2afc8",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a46be",
+    "form": "mov     [esi+2AFCCh], eax",
+    "off": "0x2afcc",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a46e7",
+    "form": "mov     ecx, [esi+2AFB8h]",
+    "off": "0x2afb8",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a46f2",
+    "form": "mov     [esi+2AFD0h], eax",
+    "off": "0x2afd0",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a46fd",
+    "form": "mov     ecx, [esi+2AFBCh]",
+    "off": "0x2afbc",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a4709",
+    "form": "mov     ecx, [esi+2AFC0h]",
+    "off": "0x2afc0",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a4715",
+    "form": "mov     ecx, [esi+2AFC4h]",
+    "off": "0x2afc4",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a4721",
+    "form": "mov     ecx, [esi+2AFC8h]",
+    "off": "0x2afc8",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a472d",
+    "form": "mov     ecx, [esi+2AFCCh]",
+    "off": "0x2afcc",
+    "base_reg": "esi"
+   },
+   {
+    "site": "0x4a4739",
+    "form": "mov     ecx, [esi+2AFD0h]",
+    "off": "0x2afd0",
+    "base_reg": "esi"
+   }
+  ],
+  "seven_store_via_esi": {
+   "0x2afb8": 2,
+   "0x2afbc": 2,
+   "0x2afc0": 2,
+   "0x2afc4": 2,
+   "0x2afc8": 2,
+   "0x2afcc": 2,
+   "0x2afd0": 2
+  },
+  "equipui_alloc_context": [
+   {
+    "site": "0x4a461b",
+    "form": "jmp     short loc_4A461F"
+   },
+   {
+    "site": "0x4a461d",
+    "form": "xor     eax, eax"
+   },
+   {
+    "site": "0x4a461f",
+    "form": "push    41014h"
+   },
+   {
+    "site": "0x4a4624",
+    "form": "mov     [esp+68h+var_4], edi"
+   },
+   {
+    "site": "0x4a4628",
+    "form": "mov     [esi+2AFC0h], eax"
+   },
+   {
+    "site": "0x4a462e",
+    "form": "call    ??2@YAPAXI@Z"
+   },
+   {
+    "site": "0x4a4633",
+    "form": "add     esp, 4"
+   },
+   {
+    "site": "0x4a4636",
+    "form": "mov     [esp+64h+var_54], eax"
+   },
+   {
+    "site": "0x4a463a",
+    "form": "cmp     eax, ebx"
+   },
+   {
+    "site": "0x4a463c",
+    "form": "mov     [esp+64h+var_4], 3"
+   },
+   {
+    "site": "0x4a4644",
+    "form": "jz      short loc_4A464F"
+   },
+   {
+    "site": "0x4a4646",
+    "form": "mov     ecx, eax"
+   },
+   {
+    "site": "0x4a4648",
+    "form": "call    ??0EquipUI@@QAE@XZ"
+   },
+   {
+    "site": "0x4a464d",
+    "form": "jmp     short loc_4A4651"
+   },
+   {
+    "site": "0x4a464f",
+    "form": "xor     eax, eax"
+   },
+   {
+    "site": "0x4a4651",
+    "form": "push    62588h"
+   },
+   {
+    "site": "0x4a4656",
+    "form": "mov     [esp+68h+var_4], edi"
+   },
+   {
+    "site": "0x4a465a",
+    "form": "mov     [esi+2AFC4h], eax"
+   },
+   {
+    "site": "0x4a4660",
+    "form": "call    ??2@YAPAXI@Z"
+   },
+   {
+    "site": "0x4a4665",
+    "form": "add     esp, 4"
+   },
+   {
+    "site": "0x4a4668",
+    "form": "mov     [esp+64h+var_54], eax"
+   },
+   {
+    "site": "0x4a466c",
+    "form": "cmp     eax, ebx"
+   },
+   {
+    "site": "0x4a466e",
+    "form": "mov     [esp+64h+var_4], 4"
+   },
+   {
+    "site": "0x4a4676",
+    "form": "jz      short loc_4A4681"
+   },
+   {
+    "site": "0x4a4678",
+    "form": "mov     ecx, eax"
+   },
+   {
+    "site": "0x4a467a",
+    "form": "call    ?CCCTData_6F10@CCCTData@@QAEXXZ"
+   },
+   {
+    "site": "0x4a467f",
+    "form": "jmp     short loc_4A4683"
+   },
+   {
+    "site": "0x4a4681",
+    "form": "xor     eax, eax"
+   }
+  ],
+  "init_memset_or_stos": []
+ },
+ "ctor_writes": {
+  "ctor_ea": "0x498820",
+  "n_heads": 228,
+  "push_41014_sites": [],
+  "stosd_sites": [],
+  "array_iterator_calls": [
+   {
+    "site": "0x4989d7",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x1414",
+    "elem_size": 584,
+    "elem_count": 128,
+    "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ",
+    "span_end": "0x13814"
+   },
+   {
+    "site": "0x4989fc",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x13814",
+    "elem_size": 584,
+    "elem_count": 128,
+    "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ",
+    "span_end": "0x25c14"
+   },
+   {
+    "site": "0x498a2e",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x261f8",
+    "elem_size": 4892,
+    "elem_count": 5,
+    "ctor_fn": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ",
+    "span_end": "0x2c184"
+   },
+   {
+    "site": "0x498aa0",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x2c48c",
+    "elem_size": 344,
+    "elem_count": 6,
+    "ctor_fn": "?Destroy2@UICaption@@QAEXXZ",
+    "span_end": "0x2cc9c"
+   },
+   {
+    "site": "0x498ac2",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x2cc9c",
+    "elem_size": 248,
+    "elem_count": 6,
+    "ctor_fn": "??1UIPushButton@@QAE@XZ",
+    "span_end": "0x2d26c"
+   },
+   {
+    "site": "0x498b14",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x2d3f0",
+    "elem_size": 152,
+    "elem_count": 12,
+    "ctor_fn": "??1UIFrameContainer@@QAE@XZ",
+    "span_end": "0x2db10"
+   },
+   {
+    "site": "0x498b93",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x2f760",
+    "elem_size": 52,
+    "elem_count": 5,
+    "ctor_fn": "?DestroyEffect@CEffObj@@QAEXXZ",
+    "span_end": "0x2f864"
+   },
+   {
+    "site": "0x498bff",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x2fe04",
+    "elem_size": 584,
+    "elem_count": 60,
+    "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ",
+    "span_end": "0x386e4"
+   },
+   {
+    "site": "0x498c21",
+    "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z",
+    "base_disp": "0x386e4",
+    "elem_size": 584,
+    "elem_count": 60,
+    "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ",
+    "span_end": "0x40fc4"
+   }
+  ],
+  "call_counts": {
+   "??0UIListBox@@QAE@XZ": 1,
+   "ResetContainerState": 16,
+   "?GetSys@NameSys@@QACPAV1@XZ": 12,
+   "??0UIRoleDialog@@QAE@XZ": 1,
+   "??0UI3DCtrl@@QAE@XZ": 1,
+   "?UpdateKeyCtrl@UIListBox@@QAEPAV1@XZ": 6,
+   "?ctor@UIProgressBar@@QAEPAHXZ": 1
+  },
+  "n_other_calls": 38,
+  "this_writes": [
+   {
+    "site": "0x49884f",
+    "disp": "0x58",
+    "cls": "THIS",
+    "form": "mov     dword ptr [esi+58h], 320h"
+   },
+   {
+    "site": "0x498856",
+    "disp": "0x5c",
+    "cls": "THIS",
+    "form": "mov     dword ptr [esi+5Ch], 258h"
+   },
+   {
+    "site": "0x49885d",
+    "disp": "0x68",
+    "cls": "THIS",
+    "form": "mov     [esi+68h], ebx"
+   },
+   {
+    "site": "0x498860",
+    "disp": "0x26c",
+    "cls": "THIS",
+    "form": "mov     [esi+26Ch], bl"
+   },
+   {
+    "site": "0x498866",
+    "disp": "0x274",
+    "cls": "THIS",
+    "form": "mov     [esi+274h], ebx"
+   },
+   {
+    "site": "0x49886c",
+    "disp": "0x279",
+    "cls": "THIS",
+    "form": "mov     [esi+279h], bl"
+   },
+   {
+    "site": "0x498872",
+    "disp": "0x27c",
+    "cls": "THIS",
+    "form": "mov     [esi+27Ch], ebx"
+   },
+   {
+    "site": "0x498878",
+    "disp": "0x280",
+    "cls": "THIS",
+    "form": "mov     [esi+280h], ebx"
+   },
+   {
+    "site": "0x49887e",
+    "disp": "0x284",
+    "cls": "THIS",
+    "form": "mov     [esi+284h], ebx"
+   },
+   {
+    "site": "0x498884",
+    "disp": "0x288",
+    "cls": "THIS",
+    "form": "mov     [esi+288h], ebx"
+   },
+   {
+    "site": "0x49888a",
+    "disp": "0x28d",
+    "cls": "THIS",
+    "form": "mov     [esi+28Dh], bl"
+   },
+   {
+    "site": "0x498890",
+    "disp": "0x28e",
+    "cls": "THIS",
+    "form": "mov     [esi+28Eh], bl"
+   },
+   {
+    "site": "0x498896",
+    "disp": "0x28f",
+    "cls": "THIS",
+    "form": "mov     [esi+28Fh], bl"
+   },
+   {
+    "site": "0x49889c",
+    "disp": "0x290",
+    "cls": "THIS",
+    "form": "mov     [esi+290h], ebx"
+   },
+   {
+    "site": "0x498bd3",
+    "disp": "0x2fccc",
+    "cls": "THIS",
+    "form": "mov     dword ptr [esi+2FCCCh], 0FFFFFFFFh"
+   },
+   {
+    "site": "0x498c34",
+    "disp": "0x271",
+    "cls": "THIS",
+    "form": "mov     [esi+271h], bl"
+   },
+   {
+    "site": "0x498c3a",
+    "disp": "0x270",
+    "cls": "THIS",
+    "form": "mov     [esi+270h], bl"
+   },
+   {
+    "site": "0x498c40",
+    "disp": "0x26e",
+    "cls": "THIS",
+    "form": "mov     [esi+26Eh], bl"
+   },
+   {
+    "site": "0x498c46",
+    "disp": "0x26d",
+    "cls": "THIS",
+    "form": "mov     [esi+26Dh], bl"
+   },
+   {
+    "site": "0x498c4c",
+    "disp": "0x26f",
+    "cls": "THIS",
+    "form": "mov     [esi+26Fh], bl"
+   },
+   {
+    "site": "0x498c54",
+    "disp": "0x4",
+    "cls": "THIS",
+    "form": "mov     [ecx+4], eax"
+   },
+   {
+    "site": "0x498c5b",
+    "disp": "0x25c9c",
+    "cls": "THIS",
+    "form": "mov     [esi+25C9Ch], ebx"
+   }
+  ],
+  "subptr_writes": [],
+  "other_writes": [],
+  "n_this_writes": 22,
+  "n_subptr_writes": 0,
+  "this_write_disp_max": "0x2fccc",
+  "this_write_disp_min": "0x4",
+  "this_write_disps_ge_8E80": [
+   "0x25c9c",
+   "0x2fccc"
+  ],
+  "this_write_tail_max": "0x2fccc"
+ },
+ "ctor_callers": {
+  "n": 1,
+  "callers": [
+   {
+    "site": "0x4a4648",
+    "caller": "?Init@EquipUI@@QAEXXZ",
+    "ecx_form": "REG_CARRY",
+    "ecx_detail": "eax",
+    "store": "esi+0x2AFC4"
+   }
+  ]
+ },
+ "seven_ptr_consumers": {
+  "0x2afb8": {
+   "n_reads": 27,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Init@RoleStatePanel@@QAEXH@Z",
+    "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+     "site": "0x4a3a77",
+     "form": "mov     ecx, [ebp+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?DispatchSlotMethod@LineupComp@@QAEHHI@Z"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a46e7",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?CreatePreviewScene@LineupUI@@QAEPAXH@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a48f6",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab0@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4940",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab0@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a49a6",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a49f0",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a56",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4aa0",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4b06",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4b50",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4bb6",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4c00",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a50af",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a514a",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a51e5",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5280",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5328",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a53d0",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5471",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5531",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a55f1",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a56b1",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a3b",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5ee9",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+     "site": "0x4a60d0",
+     "form": "mov     ecx, [ebx+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    j_NPC__UpdateAnim"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6609",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+0Ch]"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6614",
+     "form": "mov     ecx, [esi+2AFB8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20c5",
+     "form": "mov     [esi+2AFB8h], ebx",
+     "kind": "WRITE",
+     "next_call": ""
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a45c4",
+     "form": "mov     [esi+2AFB8h], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a668d",
+     "form": "mov     [esi+2AFB8h], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afbc": {
+   "n_reads": 26,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Init@RoleStatePanel@@QAEXH@Z",
+    "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+     "site": "0x4a3a50",
+     "form": "mov     ecx, [ebp+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SetMonsterState@UITitle_XJTM@@QAEHHI@Z"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a46fd",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?CreateCameraUI@CameraCtrl@@QAEPAXH@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a48cf",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SetSubTab@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a491c",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SetSubTab@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a497f",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a49cc",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a2f",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a7c",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4adf",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4b2c",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4b8f",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4bdc",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?SelectSubTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a504f",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a50ea",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5185",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5220",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a52c8",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5370",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5411",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a54d1",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5591",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5651",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a59fa",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5e49",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+     "site": "0x4a60e1",
+     "form": "mov     ecx, [ebx+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    ?UpdateNPCAnims2@UITitle_XJTM@@QAEHHH@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6627",
+     "form": "mov     ecx, [esi+2AFBCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20cb",
+     "form": "mov     [esi+2AFBCh], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a45f6",
+     "form": "mov     [esi+2AFBCh], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6693",
+     "form": "mov     [esi+2AFBCh], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afc0": {
+   "n_reads": 26,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Init@RoleStatePanel@@QAEXH@Z",
+    "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+     "site": "0x4a3a5d",
+     "form": "mov     ecx, [ebp+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SetEntryVisible@UIBigMap@@QAEHHE@Z"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a4709",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    CreateSceneEntities"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a48dc",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab0@EquipUI@@QAEHD@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4928",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab0@EquipUI@@QAEHD@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a498c",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?ForwardToBigMap@StateUI@@QAEHD@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a49d8",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?ForwardToBigMap@StateUI@@QAEHD@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a3c",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab2@StateUI@@QAEHD@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a88",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab2@StateUI@@QAEHD@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4aec",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab3@MagicUI@@QAEHD@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4b38",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab3@MagicUI@@QAEHD@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4b9c",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab4@MagicUI@@QAEHD@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4be8",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectBigMapTab4@MagicUI@@QAEHD@Z"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5067",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5102",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a519d",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5238",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a52e0",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5388",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5429",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a54e9",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a55a9",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5669",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a07",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5e69",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+     "site": "0x4a60f2",
+     "form": "mov     ecx, [ebx+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    ?UpdateNPCAnimations@UIBigMap@@QAEHHH@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6638",
+     "form": "mov     ecx, [esi+2AFC0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20d1",
+     "form": "mov     [esi+2AFC0h], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a4628",
+     "form": "mov     [esi+2AFC0h], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6699",
+     "form": "mov     [esi+2AFC0h], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afc4": {
+   "n_reads": 26,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Init@RoleStatePanel@@QAEXH@Z",
+    "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+     "site": "0x4a3a6a",
+     "form": "mov     ecx, [ebp+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SetMonsterState2@UITitle_XJTM@@QAEHHI@Z"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a4715",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?CreateListPanel@MainEquipUI@@QAEPAXH@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a48e9",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SetSubTab2@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4934",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SetSubTab2@EquipUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4999",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a49e4",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab1@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a49",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4a94",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab2@StateUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4af9",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+     "site": "0x4a4b44",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab3@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4ba9",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?Init@RoleStatePanel@@QAEXH@Z",
+     "site": "0x4a4bf4",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?SelectXJTMTab4@MagicUI@@QAEHE@Z"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a507f",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a511a",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a51b5",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5250",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a52f8",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a53a0",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5441",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5501",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a55c1",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5681",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a14",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5e89",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+     "site": "0x4a6103",
+     "form": "mov     ecx, [ebx+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    ?UpdateNPCAnims@UITitle_XJTM@@QAEHHH@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a6649",
+     "form": "mov     ecx, [esi+2AFC4h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20d7",
+     "form": "mov     [esi+2AFC4h], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a465a",
+     "form": "mov     [esi+2AFC4h], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a669f",
+     "form": "mov     [esi+2AFC4h], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afc8": {
+   "n_reads": 15,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?LayoutHandleNav@RoleStatePanel@@QAEHXZ",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a4721",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    ?InitEquipUI@EquipUI@@QAEHH@Z"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5097",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5132",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a51cd",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5268",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5310",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a53b8",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5459",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5519",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a55d9",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5699",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a21",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+4]"
+    },
+    {
+     "func": "?LayoutHandleNav@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a5aad",
+     "form": "mov     eax, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5ea9",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a665a",
+     "form": "mov     ecx, [esi+2AFC8h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20dd",
+     "form": "mov     [esi+2AFC8h], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a468c",
+     "form": "mov     [esi+2AFC8h], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a66a5",
+     "form": "mov     [esi+2AFC8h], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afcc": {
+   "n_reads": 14,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a472d",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    ProcessTree"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a50c7",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5162",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a51fd",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5298",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5340",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a53e8",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": ""
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5489",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5549",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5609",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a56c9",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a2e",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5ec9",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a666b",
+     "form": "mov     ecx, [esi+2AFCCh]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20e9",
+     "form": "mov     [esi+2AFCCh], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a46be",
+     "form": "mov     [esi+2AFCCh], eax",
+     "kind": "WRITE",
+     "next_call": "call    ??2@YAPAXI@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a66ab",
+     "form": "mov     [esi+2AFCCh], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  },
+  "0x2afd0": {
+   "n_reads": 9,
+   "n_writes": 3,
+   "n_lea": 0,
+   "n_other": 0,
+   "reader_funcs": [
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "reads": [
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a4739",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    ?PopulateContent@UITitle_JDHY@@QAEHXZ"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a54a1",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5561",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a5621",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?HandleMessage@MainEquipUI@@QAEHH@Z",
+     "site": "0x4a56e1",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+18h]"
+    },
+    {
+     "func": "?Render@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a5a48",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [eax+4]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5f09",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+8]"
+    },
+    {
+     "func": "?Update@RoleStatePanel@@QAEHHH@Z",
+     "site": "0x4a5f19",
+     "form": "mov     esi, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    ?SaveData@UITitle_JDHY@@QAEPAVFILE@@NH@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a667c",
+     "form": "mov     ecx, [esi+2AFD0h]",
+     "kind": "READ",
+     "next_call": "call    dword ptr [edx+14h]"
+    }
+   ],
+   "writes": [
+    {
+     "func": "?InitUI@RoleStatePanel@@QAEHXZ",
+     "site": "0x4a20ef",
+     "form": "mov     [esi+2AFD0h], ebx",
+     "kind": "WRITE",
+     "next_call": "call    ResetContainerState"
+    },
+    {
+     "func": "?Init@EquipUI@@QAEXXZ",
+     "site": "0x4a46f2",
+     "form": "mov     [esi+2AFD0h], eax",
+     "kind": "WRITE",
+     "next_call": "call    ?CreatePreviewScene@LineupUI@@QAEPAXH@Z"
+    },
+    {
+     "func": "?HideAll@RoleStatePanel@@QAEXXZ",
+     "site": "0x4a66b1",
+     "form": "mov     [esi+2AFD0h], edi",
+     "kind": "WRITE",
+     "next_call": ""
+    }
+   ],
+   "leas": []
+  }
+ },
+ "tail_disp_histogram": {
+  "range": [
+   "0x8e80",
+   "0x41014"
+  ],
+  "funcs_scanned": 5604,
+  "equip_funcs_scanned": [
+   "0x484d20",
+   "0x484e70",
+   "0x48a2f0",
+   "0x494040",
+   "0x494250",
+   "0x4945c0",
+   "0x494d70",
+   "0x498820",
+   "0x498c70",
+   "0x499030",
+   "0x49e840",
+   "0x49f9b0",
+   "0x49fa10",
+   "0x49fbe0",
+   "0x49fe00",
+   "0x49ff30",
+   "0x49ff60",
+   "0x49ff90",
+   "0x4a00b0",
+   "0x4a0370",
+   "0x4a4220",
+   "0x4ab6b0",
+   "0x5137ef"
+  ],
+  "n_unique_disps": 132,
+  "hist": {
+   "0x12400": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "InitParticleEffects"
+    ]
+   },
+   "0x13814": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x25c14": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "InitParticleEffects"
+    ]
+   },
+   "0x25c18": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "InitParticleEffects"
+    ]
+   },
+   "0x25c94": {
+    "n": 5,
+    "cls": {
+     "THIS": 5
+    },
+    "methods": [
+     "EquipUI",
+     "InitParticleEffects",
+     "OnMessage"
+    ]
+   },
+   "0x25c95": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c96": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c97": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c98": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c99": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c9a": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c9b": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x25c9c": {
+    "n": 22,
+    "cls": {
+     "THIS": 22
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "Render"
+    ]
+   },
+   "0x25ca0": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x261dd": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "NavigateSlots"
+    ]
+   },
+   "0x261f8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x265b4": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ]
+   },
+   "0x267d8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ]
+   },
+   "0x269fc": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ]
+   },
+   "0x2746c": {
+    "n": 5,
+    "cls": {
+     "THIS": 5
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x27a78": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x27bd0": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x27d28": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x27e80": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x27fd8": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x28130": {
+    "n": 6,
+    "cls": {
+     "OTHER": 6
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x2a800": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afb8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afbc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afc0": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afc4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afc8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afcc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afd0": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afd8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2afd9": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Init"
+    ]
+   },
+   "0x2b514": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b5ac": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b644": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b6dc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b774": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b7b8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b7bc": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b7c0": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b8a8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b8ec": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b8f0": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b8f4": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2b9dc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2ba74": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bb0c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bba4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bcfc": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd00": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd04": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd08": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd0c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd10": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd14": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd18": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd1c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd2c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd2e": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bd34": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2be8c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2bfe4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c13c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c184": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2c21c": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "~EquipUI"
+    ]
+   },
+   "0x2c294": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c2b4": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "~EquipUI"
+    ]
+   },
+   "0x2c35c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2c3ec": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c3f4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2c484": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c48c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2c51c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c5b4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c64c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c6e4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c83c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2c994": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2caec": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2cc44": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2cc9c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2cd9c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2ce34": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2cecc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2cf64": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2cffc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d094": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d12c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d1c4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d25c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d26c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2d2f4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitEquipUI"
+    ]
+   },
+   "0x2d304": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2d358": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2d3f0": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2db10": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2dfc8": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2e480": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2e938": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2edf0": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2f2a8": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "SetGroupVisible",
+     "~EquipUI"
+    ]
+   },
+   "0x2f760": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2f8c4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2fa1c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2fb74": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x2fccc": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage"
+    ]
+   },
+   "0x2fcd0": {
+    "n": 5,
+    "cls": {
+     "THIS": 5
+    },
+    "methods": [
+     "EquipUI",
+     "OnMessage",
+     "~EquipUI"
+    ]
+   },
+   "0x2fd18": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x2fd1c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x2fd28": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "OnMessage"
+    ]
+   },
+   "0x2fe04": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "EquipUI",
+     "~EquipUI"
+    ]
+   },
+   "0x31e88": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "ResetProgressList"
+    ]
+   },
+   "0x31fb8": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "HandleInput",
+     "ResetProgressList",
+     "UpdateSlot"
+    ]
+   },
+   "0x32050": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "HandleInput",
+     "ResetProgressList",
+     "UpdateSlot"
+    ]
+   },
+   "0x3489c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35144": {
+    "n": 7,
+    "cls": {
+     "THIS": 7
+    },
+    "methods": [
+     "HandleInput",
+     "ResetProgressList"
+    ]
+   },
+   "0x35148": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x3523c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35240": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35338": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x3533c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35a18": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35a1c": {
+    "n": 7,
+    "cls": {
+     "THIS": 7
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35a64": {
+    "n": 7,
+    "cls": {
+     "THIS": 7
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x35a68": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "HandleInput",
+     "ResetProgressList"
+    ]
+   },
+   "0x35a74": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "HandleInput"
+    ]
+   },
+   "0x386e4": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "EquipUI",
+     "Render",
+     "~EquipUI"
+    ]
+   },
+   "0x40fc8": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "UpdateDisplay"
+    ]
+   }
+  },
+  "gaps_all_top": [
+   {
+    "lo": "0x13814",
+    "hi": "0x25c14",
+    "gap": "0x12400"
+   },
+   {
+    "lo": "0x386e4",
+    "hi": "0x40fc8",
+    "gap": "0x88e4"
+   },
+   {
+    "lo": "0x35a74",
+    "hi": "0x386e4",
+    "gap": "0x2c70"
+   },
+   {
+    "lo": "0x32050",
+    "hi": "0x3489c",
+    "gap": "0x284c"
+   },
+   {
+    "lo": "0x28130",
+    "hi": "0x2a800",
+    "gap": "0x26d0"
+   },
+   {
+    "lo": "0x2fe04",
+    "hi": "0x31e88",
+    "gap": "0x2084"
+   },
+   {
+    "lo": "0x12400",
+    "hi": "0x13814",
+    "gap": "0x1414"
+   },
+   {
+    "lo": "0x269fc",
+    "hi": "0x2746c",
+    "gap": "0xa70"
+   },
+   {
+    "lo": "0x3489c",
+    "hi": "0x35144",
+    "gap": "0x8a8"
+   },
+   {
+    "lo": "0x2a800",
+    "hi": "0x2afb8",
+    "gap": "0x7b8"
+   },
+   {
+    "lo": "0x2d3f0",
+    "hi": "0x2db10",
+    "gap": "0x720"
+   },
+   {
+    "lo": "0x3533c",
+    "hi": "0x35a18",
+    "gap": "0x6dc"
+   },
+   {
+    "lo": "0x2746c",
+    "hi": "0x27a78",
+    "gap": "0x60c"
+   },
+   {
+    "lo": "0x25ca0",
+    "hi": "0x261dd",
+    "gap": "0x53d"
+   },
+   {
+    "lo": "0x2afd9",
+    "hi": "0x2b514",
+    "gap": "0x53b"
+   },
+   {
+    "lo": "0x2db10",
+    "hi": "0x2dfc8",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2dfc8",
+    "hi": "0x2e480",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2e480",
+    "hi": "0x2e938",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2e938",
+    "hi": "0x2edf0",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2edf0",
+    "hi": "0x2f2a8",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2f2a8",
+    "hi": "0x2f760",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x261f8",
+    "hi": "0x265b4",
+    "gap": "0x3bc"
+   },
+   {
+    "lo": "0x265b4",
+    "hi": "0x267d8",
+    "gap": "0x224"
+   },
+   {
+    "lo": "0x267d8",
+    "hi": "0x269fc",
+    "gap": "0x224"
+   }
+  ],
+  "gaps_this_top": [
+   {
+    "lo": "0x13814",
+    "hi": "0x25c94",
+    "gap": "0x12480"
+   },
+   {
+    "lo": "0x2746c",
+    "hi": "0x2a800",
+    "gap": "0x3394"
+   },
+   {
+    "lo": "0x35a74",
+    "hi": "0x386e4",
+    "gap": "0x2c70"
+   },
+   {
+    "lo": "0x32050",
+    "hi": "0x3489c",
+    "gap": "0x284c"
+   },
+   {
+    "lo": "0x2fe04",
+    "hi": "0x31e88",
+    "gap": "0x2084"
+   },
+   {
+    "lo": "0x269fc",
+    "hi": "0x2746c",
+    "gap": "0xa70"
+   },
+   {
+    "lo": "0x3489c",
+    "hi": "0x35144",
+    "gap": "0x8a8"
+   },
+   {
+    "lo": "0x2a800",
+    "hi": "0x2afb8",
+    "gap": "0x7b8"
+   },
+   {
+    "lo": "0x2d3f0",
+    "hi": "0x2db10",
+    "gap": "0x720"
+   },
+   {
+    "lo": "0x3533c",
+    "hi": "0x35a18",
+    "gap": "0x6dc"
+   },
+   {
+    "lo": "0x25ca0",
+    "hi": "0x261dd",
+    "gap": "0x53d"
+   },
+   {
+    "lo": "0x2afd9",
+    "hi": "0x2b514",
+    "gap": "0x53b"
+   },
+   {
+    "lo": "0x2db10",
+    "hi": "0x2dfc8",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2dfc8",
+    "hi": "0x2e480",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2e480",
+    "hi": "0x2e938",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2e938",
+    "hi": "0x2edf0",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2edf0",
+    "hi": "0x2f2a8",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x2f2a8",
+    "hi": "0x2f760",
+    "gap": "0x4b8"
+   },
+   {
+    "lo": "0x261f8",
+    "hi": "0x265b4",
+    "gap": "0x3bc"
+   },
+   {
+    "lo": "0x265b4",
+    "hi": "0x267d8",
+    "gap": "0x224"
+   },
+   {
+    "lo": "0x267d8",
+    "hi": "0x269fc",
+    "gap": "0x224"
+   },
+   {
+    "lo": "0x2f760",
+    "hi": "0x2f8c4",
+    "gap": "0x164"
+   },
+   {
+    "lo": "0x2bba4",
+    "hi": "0x2bcfc",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x2bd34",
+    "hi": "0x2be8c",
+    "gap": "0x158"
+   }
+  ],
+  "annotated_members_in_tail": [
+   {
+    "off": "0x101f0",
+    "name": "m_ArrowNum",
+    "hist_n": 0
+   },
+   {
+    "off": "0x133f0",
+    "name": "m_ArrowRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x142f0",
+    "name": "m_IsArrow",
+    "hist_n": 0
+   },
+   {
+    "off": "0x143e0",
+    "name": "m_OldSelect",
+    "hist_n": 0
+   },
+   {
+    "off": "0x143e4",
+    "name": "m_IsMove",
+    "hist_n": 0
+   },
+   {
+    "off": "0x144d4",
+    "name": "m_AnimateRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x153d4",
+    "name": "m_ArrowMove",
+    "hist_n": 0
+   },
+   {
+    "off": "0x18494",
+    "name": "m_Icon",
+    "hist_n": 0
+   },
+   {
+    "off": "0x19a9c",
+    "name": "m_Select",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ad5c",
+    "name": "m_IsControlEquip",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ad5d",
+    "name": "m_IsEquip",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ad7b",
+    "name": "m_IsMsg",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ad7c",
+    "name": "m_EquipingNum",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ad80",
+    "name": "m_Equiping",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1adf8",
+    "name": "m_UnEquipingNum",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1adfc",
+    "name": "m_MaxNum",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ae00",
+    "name": "m_Adorn",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ae0c",
+    "name": "m_3DObj",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1af40",
+    "name": "m_Msg",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b4a8",
+    "name": "m_TalkFrame",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b548",
+    "name": "m_Ready",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b5e8",
+    "name": "m_ReadyRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b5f8",
+    "name": "mb_EquipYes",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b750",
+    "name": "mb_EquipNo",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b8a8",
+    "name": "m_EquipTalk",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b948",
+    "name": "m_EquipRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b958",
+    "name": "m_ListFrame",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1b9f8",
+    "name": "m_ListGrid",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c2b8",
+    "name": "m_ScrollHB",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c358",
+    "name": "m_EquipFlag",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c3f8",
+    "name": "m_ListEquipTitle",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c498",
+    "name": "ml_ListEquip",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c9a0",
+    "name": "ml_ListEquipRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1c9b0",
+    "name": "m_btnGroup",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cc94",
+    "name": "m_ctrlTime",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cc98",
+    "name": "m_bCanUpdate1",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cc99",
+    "name": "m_bCanUpdate2",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cc9c",
+    "name": "m_EquipRemarkBk",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cd3c",
+    "name": "m_EquipRemark",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cddc",
+    "name": "m_EquipRemarkRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cdec",
+    "name": "m_EquipAtt",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ce8c",
+    "name": "m_EquipAttRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1ce9c",
+    "name": "m_MoneyRemark",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cf3c",
+    "name": "m_MoneyRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cf4c",
+    "name": "m_SumEquip",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cfec",
+    "name": "m_SumRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1cffc",
+    "name": "mb_OK",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d154",
+    "name": "mb_OKRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d164",
+    "name": "m_IsDicker",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d168",
+    "name": "mb_Cancel",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d2c0",
+    "name": "mb_CancelRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d2d0",
+    "name": "mb_Exit",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d428",
+    "name": "mb_ExitRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d438",
+    "name": "m_TabBtn",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d450",
+    "name": "mb_DKRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d460",
+    "name": "haveRc",
+    "hist_n": 0
+   },
+   {
+    "off": "0x1d470",
+    "name": "m_isCancelTalk",
+    "hist_n": 0
+   }
+  ]
+ },
+ "verdicts": {
+  "init_receiver": {
+   "ea": "0x4a4220",
+   "n_callers": 1,
+   "caller_forms": {
+    "REG_CARRY": 1
+   },
+   "called_by_ctor": false,
+   "create_chain": false,
+   "esi_eq_ecx": true,
+   "esi_eq_ecx_site": "0x4a423b",
+   "esi_write_count": 1,
+   "seven_stored_via_esi": {
+    "0x2afb8": 2,
+    "0x2afbc": 2,
+    "0x2afc0": 2,
+    "0x2afc4": 2,
+    "0x2afc8": 2,
+    "0x2afcc": 2,
+    "0x2afd0": 2
+   },
+   "receiver_provenance": {
+    "form": "REG_CARRY",
+    "detail": "eax",
+    "receiver_new_size": "0x2B080",
+    "receiver_alloc_call": {
+     "site": "0x44f1da",
+     "form": "call    ??2@YAPAXI@Z"
+    },
+    "receiver_ctor_call": {
+     "site": "0x44f1f1",
+     "form": "call    ?InitUI@RoleStatePanel@@QAEHXZ"
+    },
+    "receiver_cache_slots": [
+     {
+      "site": "0x44f1ca",
+      "slot": "esi+0x6E10"
+     }
+    ]
+   },
+   "receiver_cache_slot_lines": [
+    [
+     "0x44f200",
+     "mov     [esi+6E14h], eax"
+    ]
+   ],
+   "note": "Init this=ecx→esi 全程一致; 接收者为调用者上游 new 出的容器对象"
+  },
+  "seven_ptr_liveness": {
+   "reads_per_slot": {
+    "0x2afb8": 27,
+    "0x2afbc": 26,
+    "0x2afc0": 26,
+    "0x2afc4": 26,
+    "0x2afc8": 15,
+    "0x2afcc": 14,
+    "0x2afd0": 9
+   },
+   "writes_per_slot": {
+    "0x2afb8": 3,
+    "0x2afbc": 3,
+    "0x2afc0": 3,
+    "0x2afc4": 3,
+    "0x2afc8": 3,
+    "0x2afcc": 3,
+    "0x2afd0": 3
+   },
+   "all_slots_live": true,
+   "reader_union_funcs": [
+    "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "?HandleMessage@MainEquipUI@@QAEHH@Z",
+    "?HideAll@RoleStatePanel@@QAEXXZ",
+    "?Init@EquipUI@@QAEXXZ",
+    "?Init@RoleStatePanel@@QAEXH@Z",
+    "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "?LayoutHandleNav@RoleStatePanel@@QAEHXZ",
+    "?ProcessInput@Comp_DonateUI@@QAEHH@Z",
+    "?Render@RoleStatePanel@@QAEXXZ",
+    "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "?Update@RoleStatePanel@@QAEHHH@Z"
+   ],
+   "note": "全部七槽有 [reg+disp]→ecx 装载+立即 call 方法 的活分派形"
+  },
+  "tail_boundaries": {
+   "n_unique_disps": 132,
+   "n_this_disps": 122,
+   "gaps_this_top6": [
+    {
+     "lo": "0x13814",
+     "hi": "0x25c94",
+     "gap": "0x12480"
+    },
+    {
+     "lo": "0x2746c",
+     "hi": "0x2a800",
+     "gap": "0x3394"
+    },
+    {
+     "lo": "0x35a74",
+     "hi": "0x386e4",
+     "gap": "0x2c70"
+    },
+    {
+     "lo": "0x32050",
+     "hi": "0x3489c",
+     "gap": "0x284c"
+    },
+    {
+     "lo": "0x2fe04",
+     "hi": "0x31e88",
+     "gap": "0x2084"
+    },
+    {
+     "lo": "0x269fc",
+     "hi": "0x2746c",
+     "gap": "0xa70"
+    }
+   ],
+   "annotated_in_tail": {
+    "n": 57,
+    "max_annotated": "0x1d470"
+   },
+   "note": "Init(容器接收者)的 0x2AFB8..0x2AFD0 命中属容器类, 非 EquipUI 尾员"
+  },
+  "ctor_write_bound": {
+   "memset_in_ctor": false,
+   "stosd_in_ctor": false,
+   "array_iterator_calls": 9,
+   "array_coverage": [
+    {
+     "site": "0x4989d7",
+     "base_disp": "0x1414",
+     "elem_size": 584,
+     "elem_count": 128,
+     "span_end": "0x13814",
+     "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ"
+    },
+    {
+     "site": "0x4989fc",
+     "base_disp": "0x13814",
+     "elem_size": 584,
+     "elem_count": 128,
+     "span_end": "0x25c14",
+     "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ"
+    },
+    {
+     "site": "0x498a2e",
+     "base_disp": "0x261f8",
+     "elem_size": 4892,
+     "elem_count": 5,
+     "span_end": "0x2c184",
+     "ctor_fn": "?DestroyFramesEx@UITitle_XJTM@@QAEXXZ"
+    },
+    {
+     "site": "0x498aa0",
+     "base_disp": "0x2c48c",
+     "elem_size": 344,
+     "elem_count": 6,
+     "span_end": "0x2cc9c",
+     "ctor_fn": "?Destroy2@UICaption@@QAEXXZ"
+    },
+    {
+     "site": "0x498ac2",
+     "base_disp": "0x2cc9c",
+     "elem_size": 248,
+     "elem_count": 6,
+     "span_end": "0x2d26c",
+     "ctor_fn": "??1UIPushButton@@QAE@XZ"
+    },
+    {
+     "site": "0x498b14",
+     "base_disp": "0x2d3f0",
+     "elem_size": 152,
+     "elem_count": 12,
+     "span_end": "0x2db10",
+     "ctor_fn": "??1UIFrameContainer@@QAE@XZ"
+    },
+    {
+     "site": "0x498b93",
+     "base_disp": "0x2f760",
+     "elem_size": 52,
+     "elem_count": 5,
+     "span_end": "0x2f864",
+     "ctor_fn": "?DestroyEffect@CEffObj@@QAEXXZ"
+    },
+    {
+     "site": "0x498bff",
+     "base_disp": "0x2fe04",
+     "elem_size": 584,
+     "elem_count": 60,
+     "span_end": "0x386e4",
+     "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ"
+    },
+    {
+     "site": "0x498c21",
+     "base_disp": "0x386e4",
+     "elem_size": 584,
+     "elem_count": 60,
+     "span_end": "0x40fc4",
+     "ctor_fn": "?Destructor@UISceneMap@@QAEXXZ"
+    }
+   ],
+   "this_write_disp_max": "0x2fccc",
+   "this_write_max_vs_8E80": false,
+   "note": "push 41014h 是 Init 内 operator new 尺寸参; ctor 无 memset/rep stosd, 尾区由 ??_L 原位数组构造(批量子对象)+直接 this 写(至 max)填满"
+  }
+ }
+}
