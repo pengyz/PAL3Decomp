@@ -107,6 +107,13 @@
    "evidence_level": "A",
    "span_bytes": 36480
   },
+  "0xf574": {
+   "name": "m_unk_0xf574",
+   "type": "unsigned char[3840]",
+   "source": "ctor/dtor 无逐元素初始化（??0SaleUI 0x45A7B0 / ??1SaleUI 0x45AE60 全文无 [esi+F5xx..1047x] 固定 disp 写）；运行期按 16B 元素读写，语料/汇编 site：sub_45E9F0 asm:145625/145629/145643 [edx+esi+0F574h]、asm:150403 lea edx,[ecx+esi+0F574h] 后连取 +0/+4/+8/+0Ch；[#22 独立复核 2026-11-26] 判定为 240×16B 同构表（源表），故按字节数组建模、洞记账不再计入",
+   "evidence_level": "B",
+   "span_bytes": 3840
+  },
   "0x10474": {
    "name": "m_unk_0x10474",
    "type": "unsigned char[240]",
@@ -114,12 +121,26 @@
    "evidence_level": "A",
    "span_bytes": 240
   },
+  "0x10564": {
+   "name": "m_unk_0x10564",
+   "type": "unsigned int",
+   "source": "ctor ??0SaleUI(0x45A7B0) asm:141136 mov [esi+10564h],ebx(0) 直接写；方法 sub_4623A0 读 asm:150262 mov eax,[esi+10564h]、写 asm:150274 mov [esi+10564h],edx；4B 整对齐、按 dword 访问（#18 判为 CCBUIPanel*，本卡只据 asm 保留数值型）",
+   "evidence_level": "A",
+   "span_bytes": 4
+  },
   "0x10568": {
    "name": "m_unk_0x10568",
    "type": "unsigned char[240]",
    "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AD61 rep stosd 0x3C 清零",
    "evidence_level": "A",
    "span_bytes": 240
+  },
+  "0x10658": {
+   "name": "m_unk_0x10658",
+   "type": "unsigned char[3840]",
+   "source": "ctor/dtor 无逐元素初始化；运行期按 16B 元素读写，语料/汇编 site：asm:147165 mov ecx,[edx+esi+0F578h] → mov [eax+1065Ch],ecx、asm:147167 mov edx,[ecx+esi+0F574h] → mov [eax+10658h],edx（源表→目标表拷贝）；asm:160345 lea edx,[edx+esi+10658h] 后连拷 4 dword；[#22 独立复核] 240×16B 同构表（目标表）",
+   "evidence_level": "B",
+   "span_bytes": 3840
   },
   "0x11558": {
    "name": "m_unk_0x11558_view",

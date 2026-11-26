@@ -1,11 +1,11 @@
 {
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
-  "classes_with_holes": 201,
-  "total_hole_bytes": 1239032,
-  "total_holes": 1122,
+  "classes_with_holes": 200,
+  "total_hole_bytes": 867548,
+  "total_holes": 1120,
   "unresolved_type_members": 6,
-  "vptr_exempt_classes": 59,
+  "vptr_exempt_classes": 58,
   "overlay_twin_bytes": 919151,
   "overlay_twins": [
    "tagCpkAudioOvl",
@@ -30,27 +30,6 @@
    ],
    "hole_bytes": 430256,
    "total_holes": 1
-  },
-  {
-   "cls": "ScreenEffectMgr",
-   "size": 363968,
-   "members": 16,
-   "bases": 0,
-   "holes": [
-    [
-     "0x90",
-     "0x94",
-     4
-    ],
-    [
-     "0x98",
-     "0x58dc0",
-     363816
-    ]
-   ],
-   "hole_bytes": 363820,
-   "total_holes": 2,
-   "vptr_slot_exempt": true
   },
   {
    "cls": "SkillUI",
@@ -2326,32 +2305,6 @@
    ],
    "hole_bytes": 8223,
    "total_holes": 19,
-   "vptr_slot_exempt": true
-  },
-  {
-   "cls": "SaleUI",
-   "size": 105912,
-   "members": 55,
-   "bases": 1,
-   "holes": [
-    [
-     "0xf574",
-     "0x10474",
-     3840
-    ],
-    [
-     "0x10564",
-     "0x10568",
-     4
-    ],
-    [
-     "0x10658",
-     "0x11558",
-     3840
-    ]
-   ],
-   "hole_bytes": 7684,
-   "total_holes": 3,
    "vptr_slot_exempt": true
   },
   {
@@ -6388,6 +6341,32 @@
    ],
    "hole_bytes": 24,
    "total_holes": 3
+  },
+  {
+   "cls": "ScreenEffectMgr",
+   "size": 363968,
+   "members": 26,
+   "bases": 0,
+   "holes": [
+    [
+     "0x90",
+     "0x94",
+     4
+    ],
+    [
+     "0x98",
+     "0xa4",
+     12
+    ],
+    [
+     "0xac",
+     "0xb0",
+     4
+    ]
+   ],
+   "hole_bytes": 20,
+   "total_holes": 3,
+   "vptr_slot_exempt": true
   },
   {
    "cls": "UIButton",
