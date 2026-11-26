@@ -1,0 +1,412 @@
+{
+    "name": "ScreenEffectRingNode",
+    "binary_size": 363968,
+    "base_size": 92,
+    "known_members": {
+        "0x5c": {
+            "name": "m_fAnimAccum",
+            "type": "float",
+            "evidence_level": "A",
+            "source": "binary: 0x4BF519 `fadd [edi+0x5c]` / 0x4BF51F `fstp [edi+0x5c]`（动画累加量）| #16 §2.3"
+        },
+        "0x60": {
+            "name": "m_hResLarge",
+            "type": "void *",
+            "evidence_level": "A",
+            "source": "binary: LoadResources 0x4BF139 `mov [esi+0x60],eax`；CleanupTextures 0x4BF19B/0x4BF1AA；Render 0x4BF2F4/0x4BF464 读 | #16 §2.3"
+        },
+        "0x64": {
+            "name": "m_hResSmall",
+            "type": "void *",
+            "evidence_level": "A",
+            "source": "binary: LoadResources 0x4BF116 写；CleanupTextures 0x4BF18F/0x4BF198；Render 0x4BF326 `lea ebx,[esi+0x64]` | #16 §2.3"
+        },
+        "0xa4": {
+            "name": "m_nGeometryReady",
+            "type": "int",
+            "source": "A: ctor 0x4BEE8C `movl $0,0xa4(%edi)` 置0; LoadResources 0x4BF11B `movl $1,0xa4(%esi)` 成功置1; CleanupTextures 0x4BF19E `mov %ebx(0),0xa4(%esi)` 清0 ——几何资源就绪三态直证（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0xa8": {
+            "name": "m_pGeomRenderEffect",
+            "type": "gbRenderEffect *",
+            "source": "A: ctor 0x4BEF07 `movl $0,0xa8(%edi)`; LoadResources 0x4BF0ED 把 NewRenderEffect 返回值存 0xa8 （0x4BF0E3 调用点）; 0x4BF17D `mov 0xa8,%ecx` 取回对象、0x4BF189 置 0 释放; Render 侧 11 处读点 Begin/Pass/End（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0xb0": {
+            "name": "m_ringQuadsLarge",
+            "type": "gbGeomQuad[6]",
+            "source": "A: ctor 0x4BEE96 `lea 0xb0(%edi),%esi` + 循环6次 `call 0x401810`(gbGeomQuad ctor) + 0x4BEEB1 `add $0x44,%esi`（0x44=sizeof gbGeomQuad=68）; LoadResources GenerateRingMesh(41.0,28.0,..,6,ptr,6) 与 Render count=6 同源; stride 链 6*0x44=0x198, 0xB0+0x198=0x248 与下一段起点闭合；Large/Small 仅指 GenerateRingMesh 半径对 41.0/28.0 大于 34.0/18.0，不声称外/内环语义（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0x248": {
+            "name": "m_ringQuadsSmall",
+            "type": "gbGeomQuad[6]",
+            "source": "A: ctor 0x4BEEB7 `lea 0x248(%edi),%esi` + 同一 6 次 `call 0x401810` + `add $0x44` 循环; GenerateRingMesh(34.0,18.0,..) 与 Render count=6; stride 链 6*0x44=0x198, 0x248+0x198=0x3E0 闭合；Small 为半径对 34.0/18.0 较小者，不声称外/内环语义（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0x3e0": {
+            "name": "m_singleQuad",
+            "type": "gbGeomQuad",
+            "source": "A: ctor 0x4BEED9 `lea 0x3e0(%edi),%esi` + 循环4次 `call *0x56a56c`(gbVec3D ctor) + `add $0xc` 构造 gbVec3D[4] 至 0x410; Render 0x4BF4C4 `movl $0xffffffff,0x420(%esi)` 写 quad color; Render count=1; 0x3E0+0x44=0x424 闭合（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0x424": {
+            "name": "m_fAnimTime",
+            "type": "float",
+            "source": "A: UpdateAnimation 0x4BF519 `fadds 0x424(%edi)` + 0x4BF51F `fsts 0x424(%edi)` 累加; 0x4BF531 `movl $0x40800000(4.0f),0x424` 越界重置; Render 0x4BF620 读取（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0x428": {
+            "name": "m_fAnimSpeed",
+            "type": "float",
+            "source": "A: UpdateAnimation 0x4BF587 `fstps 0x428(%edi)`（由 timer 经 cos 派生）; Render 0x4BF3CE `lea 0x428(%esi),%ebx` 取址传出使用（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        },
+        "0x42c": {
+            "name": "m_aAnimCurve",
+            "type": "float[6]",
+            "source": "A: UpdateAnimation 循环 `lea 0x42c(%edi),%esi`(0x4BF593) + `add $0x8,%esi`(0x4BF610) 三次, 组内 cur=0x42C/0x434/0x43C、派生=0x430/0x438/0x440; GetPageIndex 0x4BF695 `rep stos` ecx=8 dword 从 0x424 清零到 0x443 ⇒ 0x424–0x444 恰为 8 个 dword（timer+speed+6 float）（#2 报告 §4.1 备注）",
+            "evidence_level": "A"
+        },
+        "0x444": {
+            "name": "m_aAnimFlags",
+            "type": "int[4]",
+            "source": "A: UpdateAnimation 0x4BF53B 写 0x444=1（timer 越界）、0x4BF572 读 0x444 与 1 比较; 随后 `lea 0x448(%edi),%ebp`(0x4BF58D) + `add $0x4,%ebp`(0x4BF60D) 三次写/读 0x448/0x44C/0x450; GetPageIndex 0x4BF69A `add $0x444,%edx` 后清 (%edx)/0x4/0x8/0xc 四个 dword ⇒ 0x444–0x454 闭合（#2 报告 §4.1）",
+            "evidence_level": "A"
+        },
+        "0x454": {
+            "name": "m_particleEffect",
+            "type": "ParticleEffect",
+            "source": "A: ctor 0x4BEEF2 `lea 0x454(%edi),%ecx` + 0x4BEEF8 `call 0x4bc760`(??0ParticleEffect 就地构造); sizeof 算术 0x454+362860=0x58DC0=363968 与工厂 0x4B7121 `push $0x58dc0`/0x4B7126 operator new 闭合; ParticleEffect.json binary_size=362860（#2 报告 §3/§4.1）",
+            "evidence_level": "A"
+        }
+    },
+    "methods": {
+        "0x004bee60": {
+            "name": "ScreenEffectRingNode",
+            "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型Cls*：ScreenEffectMgr *__thiscall ScreenEffectMgr::ScreenEffectMgr() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0PAL3VisNode(基类)",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            },
+            "flags": [
+                "ctor"
+            ],
+            "flags_evidence": "IDA名字形态=ScreenEffectMgr(??0构造); decomp文件=ScreenEffectMgr_ScreenEffectMgrvoid_004bee60 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)",
+            "name_note": " | #19 拆分：原 _misattrib_evidence(max_offset=1108>152) 针对 chimera 152B，现类 363968B 成立，证据作废"
+        },
+        "0x004bef30": {
+            "name": "~ScreenEffectRingNode",
+            "source": "vtable_gap_fill_v1(IDB:sub_4BEF30) | vtable_sig_arity_fill(ret-N=4) | vtable_sig_arity_fill(ret-N=4)",
+            "evidence_level": "unverified",
+            "adjudication": "rejected",
+            "name_note": "; B6定谳: slot0(vtables[0]首槽)=删除式dtor正主(槽位律); 伴生complete=0x4be8f0(declaration_only) | C8定义源20261121: declaration_only剥除——本形为家族定义源(伴生删除后唯一~Cls条目, 体织入由stage1剥) | #19 C8 定义源形状修正：删除式(??_G)为伴生侧，标 declaration_only；定义源=complete dtor 0x004bef50",
+            "sig_model": {
+                "return": "CCBAIWindow *",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": null
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "flags": [
+                "dtor",
+                "deleting"
+            ],
+            "flags_evidence": "IDA名字形态=~ScreenEffectMgr(??1/??_G析构族); decomp文件=ScreenEffectMgr_ScreenEffectMgr_004bef30 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+            "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只",
+            "declaration_only": true
+        },
+        "0x004bef50": {
+            "name": "~ScreenEffectRingNode",
+            "name_source": "从 functions.json 迁移 2026-10-31 双副本清理",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            },
+            "flags": [
+                "dtor"
+            ],
+            "flags_evidence": "complete dtor（??1）：写 vptr 0x56F580、调 CleanupTextures/ParticleEffect dtor/PAL3VisNode dtor；slot0 由 deleting dtor 0x4BEF30 占用 ⇒ 本产物为伴生侧 declaration_only | #16 §1.4/§4",
+            "name_note": " | #19 C8：本形为家族定义源（complete dtor ??1，写 vptr + 逆序成员析构），删除式 0x004bef30 退为伴生"
+        },
+        "0x004befb0": {
+            "name": "LoadResources",
+            "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
+            "ordinal": 10,
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "gbVFileSystem *",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": "nVal"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+        },
+        "0x004bf170": {
+            "name": "CleanupTextures",
+            "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+            "ordinal": 11,
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            }
+        },
+        "0x004bf1c0": {
+            "name": "Create",
+            "source": "pdb_ret",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": "nVal"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Create): int(vo"
+        },
+        "0x004bf1d0": {
+            "name": "Destroy",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "int",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": "nVal"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 mangle硬真值全量定谳(Destroy): int(int,int); 原注解无"
+        },
+        "0x004bf260": {
+            "name": "Render",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": "nVal"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(Render): int(vo"
+        },
+        "0x004bf4f0": {
+            "name": "UpdateAnimation",
+            "source": "[36 条真型按单执行 2026-10-16] ret-N A级=4；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 1",
+            "ordinal": 12,
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "void",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "float",
+                        "name": "fVal"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(UpdateAnimation"
+        },
+        "0x004bf680": {
+            "name": "GetPageIndex",
+            "ordinal": 13,
+            "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(int nType)：idapro decompile：`this->m_fadeWhite2.m_nType = nVal` ⇒ 参数语义=nType（型 int ✓ 仅正名）",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "int",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "int",
+                        "name": "nType"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 mangle硬真值全量定谳(GetPageIndex): int(int,int); 原注解无"
+        },
+        "0x004bf6c0": {
+            "name": "SetFadeParams",
+            "ordinal": 14,
+            "source": "| [真型补全 2026-10-16] int __thiscall(int nVal) ⇒ int __thiscall(gbMatrix4 *pMat)：idapro decompile（session 1af5c89c）铁证：`gbMatrix4::LoadIdentity((gbMatrix4 *)nVal)` + `*(_DWORD *)(nVal + 68/72)` 偏移写 ⇒ **nVal 实为 gbMatrix4***（占位 int 错型）",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "int",
+                "cc": "thiscall",
+                "params": [
+                    {
+                        "type": "gbMatrix4 *",
+                        "name": "pMat"
+                    }
+                ],
+                "varargs": false,
+                "pending": false
+            },
+            "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+        },
+        "0x004bf760": {
+            "name": "ResetFadeState",
+            "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "int *",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            }
+        },
+        "0x0052f310": {
+            "name": "ProcessInstance",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "int",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            }
+        },
+        "0x0052f330": {
+            "name": "IsFadeActive",
+            "source": "[36 条真型按单执行 2026-10-16] ret-N A级=0；返回型保留原样（修复固化单丢*缺陷）+ ret-N 正参 0",
+            "evidence_level": "unverified",
+            "sig_model": {
+                "return": "BOOL",
+                "cc": "thiscall",
+                "params": [],
+                "varargs": false,
+                "pending": false
+            }
+        }
+    },
+    "vtables": [
+        {
+            "addr": "0x0056f580",
+            "base": "PAL3VisNode",
+            "slots": [
+                {
+                    "addr": "0x004bef30",
+                    "name": "~ScreenEffectRingNode"
+                },
+                {
+                    "addr": "0x004bf260",
+                    "name": "Render"
+                },
+                {
+                    "addr": "0x00542102",
+                    "name": "SceneVisNode_adjthunk_2102",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x004bf1d0",
+                    "name": "Destroy"
+                },
+                {
+                    "addr": "0x004bf1c0",
+                    "name": "Create"
+                },
+                {
+                    "addr": "0x0054211a",
+                    "name": "VisUpdate",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x00542114",
+                    "name": "SceneVisNode_adjthunk_2114",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x0054210e",
+                    "name": "SceneVisNode_adjthunk_210E",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x005420de",
+                    "name": "GetAABBox",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x005420d8",
+                    "name": "EnableShadow",
+                    "name_note": "继承槽：同址于 VisNode 家族表（CScreenModeNode/ParticleVisNode/RenderTargetNode）已有语义名，直接沿用；本类未覆盖"
+                },
+                {
+                    "addr": "0x004befb0",
+                    "name": "LoadResources"
+                },
+                {
+                    "addr": "0x004bf170",
+                    "name": "CleanupTextures"
+                },
+                {
+                    "addr": "0x004bf4f0",
+                    "name": "UpdateAnimation"
+                },
+                {
+                    "addr": "0x004bf680",
+                    "name": "GetPageIndex"
+                },
+                {
+                    "addr": "0x004bf6c0",
+                    "name": "SetFadeParams"
+                }
+            ],
+            "source": "binary: ctor 0x4BEE60 写 0x56F580（15 槽，含 6 个 adjthunk 0x5420DE/0x542102/0x54210E/0x542114/0x54211A）；归属由 ScreenEffectMgr 迁入 ScreenEffectRingNode | #16 §1.1/§4 | vtable 原文 source: "
+        }
+    ],
+    "bases": [
+        {
+            "name": "PAL3VisNode",
+            "offset": 0
+        }
+    ],
+    "known_methods": {
+        "_UIWnd": {
+            "name": "_UIWnd",
+            "address": "0x004bef50",
+            "source": "manual:N13b 消解 20261122——语料限定引用 _UIWnd, 注解 methods 直通依赖显式化为 known_methods 记录 | R4 拆类 2026-11-26：该地址归 ScreenEffectRingNode（complete dtor），别名随条目迁入"
+        }
+    },
+    "name_note": "行为推导名（非 PDB 名）：由 vis-node 工厂创建（0x4B7121 `push 0x58DC0` → ctor 0x4BEE60），基类 PAL3VisNode；LoadResources 两处调 GenerateRingMesh(41,28,50,6, base=0xB0) 与 GenerateRingMesh(34,18,68,6, base=0x248)，各生成 6 片 0x44 环形网格；另有 1 个 gbGeomQuad（4×gbVec3D）与就地 ParticleEffect@0x454。证据链见 docs/specs/2026-11-26-r4-fill-change-plan.md §1.3/§2.3",
+    "note": "R4 拆类 2026-11-26（#19 落地）：本类原被混入 ScreenEffectMgr（chimera）。B2 已补 0x5C/0x60/0x64（A 级证据）。仍留三段洞，本卡不填、不用 m_unk_ 占位（命名铁律）：0x68..0xA4（60B，B 方法域无访问点）、0xAC..0xB0（4B 对齐空隙）、0x410..0x424（20B，有写入但缺读点语义；0x410/0x414 清零、0x418/0x41C=1.0f、0x420=0xFFFFFFFF）。取证入口见 #16 §6 D-8。"
+}

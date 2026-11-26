@@ -1625,8 +1625,8 @@
   }
  },
  "0x004be5d0": {
-  "name": "InitScreenEffectSingleton",
-  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7DF8h;jmp 004BE080h（ECX 自装固定全局非入参）| IDA 注型 push offset unk ; void (__cdecl *)() + call _atexit | decomp 体仅访固定全局(&g_PAL3.m_gametime+51)零 this 使用 | 尾跳目标 004BE080=ScreenEffectMgr::ClearAllEffects plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属——偏移[116,148]系全局对象所属类成员非 Actor 拥有） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BE5D0 ⇒ InitScreenEffectSingleton | evidence: ①ScreenEffectMgr::GetInstance ②**ScreenEffectMgr::ClearAllEffects** ③165B ④✓ ⑤单例初始化+效果清理 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建",
+  "name": "DestroyScreenEffectSingleton",
+  "source": "atexit 析构 thunk 归属修正 2026-10-14：A级 objdump mov ecx,00DE7DF8h;jmp 004BE080h（ECX 自装固定全局非入参）| IDA 注型 push offset unk ; void (__cdecl *)() + call _atexit | decomp 体仅访固定全局(&g_PAL3.m_gametime+51)零 this 使用 | 尾跳目标 004BE080=ScreenEffectMgr::ClearAllEffects plain ret(C3) 0 参 ⇒ void __cdecl() 自由函数（原 Actor.__thiscall(int) 误归属——偏移[116,148]系全局对象所属类成员非 Actor 拥有） | 46五面专轮 2026-10-17（verifier·证据账目制 evidence+confidence）：原名 _todo_004BE5D0 ⇒ InitScreenEffectSingleton | evidence: ①ScreenEffectMgr::GetInstance ②**ScreenEffectMgr::ClearAllEffects** ③165B ④✓ ⑤单例初始化+效果清理 | confidence: high | [sig_model 回填 20261123] signature 退役收尾, parse_signature 解析旧 signature 补建 | R4 拆类 2026-11-26（#19）：体 `mov ecx,0xDE7DF8; jmp 0x4BE080` 是 atexit 析构 thunk，调 complete dtor ⇒ 正名 DestroyScreenEffectSingleton（原名 Init 系误名，见 #16 §0-3/§4 行5）",
   "sig_model": {
    "return": "void",
    "cc": "cdecl",

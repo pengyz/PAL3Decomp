@@ -1,7 +1,14 @@
 {
  "name": "PAL3VisNode",
- "binary_size": 88,
- "known_members": {},
+ "binary_size": 92,
+ "known_members": {
+  "0x58": {
+   "name": "m_nState",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "binary: ctor 0x4B6F70 在 +0x58 写 4B，值域 0/1/-1；getter 0x4B7020 读；RenderTargetNode 0x4BD92B/0x4BD997、ScreenEffectRingNode 0x4BF39F/0x4BF680 读写 | 尺寸取证见 docs/specs/2026-11-26-pal3visnode-size-evidence.md §0/§3.4（binary_size 88→92、base_size 保持 88=直接基类 gbVisNode 尺寸）"
+  }
+ },
  "methods": {
   "0x004b6f70": {
    "name": "PAL3VisNode",
@@ -102,5 +109,6 @@
    "offset": 0
   }
  ],
- "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查"
+ "members_note": "尾部数组回退20261117: 有基类(@+0与基区重叠=C++非法); 基区访问待基类成员普查",
+ "note": "R4 级联 2026-11-26：#19 按 #15 取证把 binary_size 88→92 并补 m_nState@0x58（base_size 仍 88，语义=直接基类 gbVisNode 的 binary_size；派生首员在 0x5C）"
 }
