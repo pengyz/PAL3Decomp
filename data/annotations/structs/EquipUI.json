@@ -105,13 +105,13 @@
    "evidence_level": "verified"
   },
   "0x261f8": {
-   "name": "_arr5x4892",
+   "name": "m_unk_0x261f8",
    "type": "unsigned char[24460]",
    "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498a2epush 131Ch(=4892) + lea edx,[esi+261F8h] + push 5；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x498c90 ?DestroyStaticsEx@UITitle_XJTM + dtor 回调 0x498e60 ?DestroyFramesEx@UITitle_XJTM 双回调同主类（强类名信号）但 UITitle_XJTM.json binary_size=5052≠stride 4892（差+160，尺寸调和未决）→ 元素 4892B stride 复合类未名待鉴定（gate① 注明），本笔以 unsigned char[24460]（5×4892=24460）忠实落位；ctor 回调字段足迹 [0..0x1278)⊆4892。命名 _arr5x4892 机械名（元素类未名禁伪语义，待鉴定后正名）",
    "evidence_level": "verified"
   },
   "0x2c48c": {
-   "name": "_arr6x344",
+   "name": "m_unk_0x2c48c",
    "type": "unsigned char[2064]",
    "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498aa0push 158h(=344) + lea eax,[esi+2C48Ch] + push 6；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x43a770（corpus 名 ?GetSys@NameSys@@QACPAV1@XZ 疑误标——带指针返回签名非 void(void*) 形，Task1）；corpus vtable 台账 data/status/_cleanup_vtable_class_reconcile.md §2：0x43A770 实为写表 0x56AC70 的 344B 类 ctor（push $0x158; call 0x55353b ×2，stride 0x158 全库 106 对）；0x56AC70 现被 UICaption(96B) 错挂；dtor 回调 0x43a810 ?Destroy2@UICaption@@QAEXXZ 同错挂族 → 元素 344B stride vtable-0x56ac70 族未名待鉴定（gate① 注明），本笔以 unsigned char[2064]（6×344=2064）忠实落位；ctor 回调字段足迹 [0..0xD8)⊆344；邻接：#5 起于 0x2cc9c=span_end。命名 _arr6x344 机械名",
    "evidence_level": "verified"
