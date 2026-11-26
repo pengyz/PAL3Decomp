@@ -74,7 +74,11 @@
   实锤；4 个"CCCTData 方法"FLIRT/ICF 假名实证）
 - 禁 slot_N / sub_ / unk_ 占位语义名（N12/语义退化禁令）
 - 禁魔法关键词豁免、禁无证据 gap 填充（对齐 pad 由普查器自动扣除，不手填）
-- 成员名用真语义名或地址消歧形（HideAll_3DE40 先例）；置信度留档
+- **函数命名遵循 C++ 重载规则（用户裁定 2026-11-26，撤销 HideAll_3DE40
+  地址消歧先例）**：函数名禁数字后缀；同语义名靠参数签名区分=重载
+  （VC6 mangle 承载）；同签名同名的 ICF 折叠案=单一真名不可恢复→
+  中性名 Method_XXXXXX 先例。存量 HideAll_3DE40=违规待改（挂账）。
+  数据成员无重载机制：真语义名，无证据不注（N12）
 - ctor 注解三件套：类名 + `flags:["ctor"]` + sig 返 this/void
   （emit_headers fail-loud 门禁强制，SceneMapPlayer/CCBCamControl 先例）
 - bases 变更必须落 data/status/bases_adjudications.json（C11 门禁）
