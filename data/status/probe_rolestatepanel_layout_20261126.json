@@ -1,0 +1,4579 @@
+{
+ "meta": {
+  "tool": "tools/probe_rolestatepanel_layout_20261126.py",
+  "db": "original/PAL3.exe.i64",
+  "run_auto_analysis": false,
+  "date": "2026-11-26",
+  "class": "RoleStatePanel",
+  "binary_size": 176256,
+  "method": "R3 五查: ①ctor 全量解码(??_L 五参=R2 九数组同法 probe_equipui_arrays_20261126) ②全方法 disp 直方图(Prov this/subptr 溯源, probe_equipui_tail_20261126 同法) ③census 六洞交叉 ④C11 bases 证据(ctor/dtor 基构造直调+表字节指纹) ⑤UIWnd 基类尺寸覆盖",
+  "inputs": [
+   "data/annotations/structs/RoleStatePanel.json",
+   "data/annotations/structs/UIWnd.json",
+   "data/status/struct_holes_20261125.json"
+  ]
+ },
+ "alloc_chain": {
+  "caller_ea": "0x44f130",
+  "caller": "?InitUIComponents@UIGameFrm@@QAEXXZ",
+  "new_ctx": [
+   {
+    "site": "0x44f195",
+    "form": "mov     ecx, offset stru_1894B78"
+   },
+   {
+    "site": "0x44f19a",
+    "form": "call    ?LoadFromFile@ParticleEffect@@QAE_NPAD@Z"
+   },
+   {
+    "site": "0x44f19f",
+    "form": "push    0B30h"
+   },
+   {
+    "site": "0x44f1a4",
+    "form": "call    ??2@YAPAXI@Z"
+   }
+  ]
+ },
+ "ctor_identity": {
+  "ctor_mangle_expect": "?InitUI@RoleStatePanel@@QAEHXZ",
+  "mangled_ctor_exists": false,
+  "mangled_ctor_ea": null,
+  "initui_sym_ea": "0x4a1e40",
+  "alloc_call_target_sym": null,
+  "alloc_call_target_is_initui": false,
+  "db_names_containing_RoleStatePanel": [
+   {
+    "ea": "0x4a1e40",
+    "name": "?InitUI@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a2150",
+    "name": "??1RoleStatePanel@@QAE@XZ_0",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a2450",
+    "name": "??1RoleStatePanel@@QAE@XZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a3900",
+    "name": "?SetItemData@RoleStatePanel@@QAEHHI@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4780",
+    "name": "?HandleDeviceLostB@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4890",
+    "name": "?GetSelected@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a48b0",
+    "name": "?InitSlots@RoleStatePanel@@QAEXH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4960",
+    "name": "?InitLayout@RoleStatePanel@@QAEHH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4a10",
+    "name": "?CreateWidgets@RoleStatePanel@@QAEXH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4ac0",
+    "name": "?SetSelectedData@RoleStatePanel@@QAEHH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4b70",
+    "name": "?Init@RoleStatePanel@@QAEXH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4c20",
+    "name": "?Create@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a4fc0",
+    "name": "?SetEquipSlotData@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a5930",
+    "name": "?Render@RoleStatePanel@@QAEXXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a5a80",
+    "name": "?LayoutHandleNav@RoleStatePanel@@QAEHXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a5b30",
+    "name": "?Update@RoleStatePanel@@QAEHHH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a6120",
+    "name": "?OnMessage@RoleStatePanel@@QAEHHIH@Z",
+    "is_func": true
+   },
+   {
+    "ea": "0x4a6600",
+    "name": "?HideAll@RoleStatePanel@@QAEXXZ",
+    "is_func": true
+   },
+   {
+    "ea": "0x56f040",
+    "name": "RoleStatePanel",
+    "is_func": false
+   }
+  ],
+  "ctor_func_range": [
+   "0x4a1e40",
+   "0x4a2150"
+  ],
+  "ctor_xrefs": [
+   {
+    "site": "0x44f1f1",
+    "caller": "?InitUIComponents@UIGameFrm@@QAEXXZ"
+   }
+  ]
+ },
+ "ctor_decode": {
+  "ea": "0x4a1e40",
+  "n_instructions": 162,
+  "head_lines": [
+   {
+    "site": "0x4a1e40",
+    "form": "push    0FFFFFFFFh"
+   },
+   {
+    "site": "0x4a1e42",
+    "form": "push    offset SEH_4A1E40"
+   },
+   {
+    "site": "0x4a1e47",
+    "form": "mov     eax, large fs:0"
+   },
+   {
+    "site": "0x4a1e4d",
+    "form": "push    eax"
+   },
+   {
+    "site": "0x4a1e4e",
+    "form": "mov     large fs:0, esp"
+   },
+   {
+    "site": "0x4a1e55",
+    "form": "push    ecx"
+   },
+   {
+    "site": "0x4a1e56",
+    "form": "push    ebx"
+   },
+   {
+    "site": "0x4a1e57",
+    "form": "push    esi"
+   },
+   {
+    "site": "0x4a1e58",
+    "form": "mov     esi, ecx"
+   },
+   {
+    "site": "0x4a1e5a",
+    "form": "mov     [esp+18h+var_10], esi"
+   },
+   {
+    "site": "0x4a1e5e",
+    "form": "call    ??0UIListBox@@QAE@XZ"
+   },
+   {
+    "site": "0x4a1e63",
+    "form": "xor     ebx, ebx"
+   },
+   {
+    "site": "0x4a1e65",
+    "form": "lea     ecx, [esi+178h]"
+   },
+   {
+    "site": "0x4a1e6b",
+    "form": "mov     [esp+18h+var_4], ebx"
+   },
+   {
+    "site": "0x4a1e6f",
+    "form": "mov     dword ptr [esi+58h], 320h"
+   },
+   {
+    "site": "0x4a1e76",
+    "form": "mov     dword ptr [esi+5Ch], 258h"
+   },
+   {
+    "site": "0x4a1e7d",
+    "form": "mov     [esi+60h], ebx"
+   },
+   {
+    "site": "0x4a1e80",
+    "form": "mov     [esi+64h], ebx"
+   },
+   {
+    "site": "0x4a1e83",
+    "form": "mov     [esi+168h], bl"
+   },
+   {
+    "site": "0x4a1e89",
+    "form": "mov     [esi+170h], ebx"
+   },
+   {
+    "site": "0x4a1e8f",
+    "form": "mov     [esi+174h], bl"
+   },
+   {
+    "site": "0x4a1e95",
+    "form": "mov     [esi+175h], bl"
+   },
+   {
+    "site": "0x4a1e9b",
+    "form": "call    ResetContainerState"
+   },
+   {
+    "site": "0x4a1ea0",
+    "form": "lea     ecx, [esi+210h]"
+   }
+  ],
+  "vtable_installs": [
+   {
+    "site": "0x4a210c",
+    "form": "mov     dword ptr [esi], offset RoleStatePanel",
+    "vt_name": "RoleStatePanel"
+   }
+  ],
+  "base_ctor_calls": [],
+  "calls": [
+   {
+    "site": "0x4a1e5e",
+    "target": "??0UIListBox@@QAE@XZ",
+    "target_ea": "0x43dcd0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1e9b",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1eab",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1ebb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1ecb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1edb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1eeb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1efb",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f0b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f1b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f2b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f3b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f4b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f5b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f6b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f7b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f8b",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1f9b",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1fab",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1fd0",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "target_ea": "0x553627",
+    "kind": "eh_helper"
+   },
+   {
+    "site": "0x4a1ff5",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "target_ea": "0x553627",
+    "kind": "eh_helper"
+   },
+   {
+    "site": "0x4a2005",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a2015",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a2025",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a2035",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a2057",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "target_ea": "0x553627",
+    "kind": "eh_helper"
+   },
+   {
+    "site": "0x4a2079",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "target_ea": "0x553627",
+    "kind": "eh_helper"
+   },
+   {
+    "site": "0x4a2089",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a20ab",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "target_ea": "0x553627",
+    "kind": "eh_helper"
+   },
+   {
+    "site": "0x4a20bb",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "target_ea": "0x43a770",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a20fb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   }
+  ],
+  "n_calls": 31,
+  "sub_ctor_pairs": [
+   {
+    "site": "0x4a1e5e",
+    "target": "??0UIListBox@@QAE@XZ",
+    "this_disp": null,
+    "window": [
+     {
+      "site": "0x4a1e57",
+      "form": "push    esi"
+     },
+     {
+      "site": "0x4a1e58",
+      "form": "mov     esi, ecx"
+     },
+     {
+      "site": "0x4a1e5a",
+      "form": "mov     [esp+18h+var_10], esi"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1e9b",
+    "target": "ResetContainerState",
+    "this_disp": "0x178",
+    "window": [
+     {
+      "site": "0x4a1e89",
+      "form": "mov     [esi+170h], ebx"
+     },
+     {
+      "site": "0x4a1e8f",
+      "form": "mov     [esi+174h], bl"
+     },
+     {
+      "site": "0x4a1e95",
+      "form": "mov     [esi+175h], bl"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1eab",
+    "target": "ResetContainerState",
+    "this_disp": "0x210",
+    "window": [
+     {
+      "site": "0x4a1e9b",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1ea0",
+      "form": "lea     ecx, [esi+210h]"
+     },
+     {
+      "site": "0x4a1ea6",
+      "form": "mov     byte ptr [esp+18h+var_4], 1"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1ebb",
+    "target": "ResetContainerState",
+    "this_disp": "0x2a8",
+    "window": [
+     {
+      "site": "0x4a1eab",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1eb0",
+      "form": "lea     ecx, [esi+2A8h]"
+     },
+     {
+      "site": "0x4a1eb6",
+      "form": "mov     byte ptr [esp+18h+var_4], 2"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1ecb",
+    "target": "ResetContainerState",
+    "this_disp": "0x340",
+    "window": [
+     {
+      "site": "0x4a1ebb",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1ec0",
+      "form": "lea     ecx, [esi+340h]"
+     },
+     {
+      "site": "0x4a1ec6",
+      "form": "mov     byte ptr [esp+18h+var_4], 3"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1edb",
+    "target": "ResetContainerState",
+    "this_disp": "0x3d8",
+    "window": [
+     {
+      "site": "0x4a1ecb",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1ed0",
+      "form": "lea     ecx, [esi+3D8h]"
+     },
+     {
+      "site": "0x4a1ed6",
+      "form": "mov     byte ptr [esp+18h+var_4], 4"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1eeb",
+    "target": "ResetContainerState",
+    "this_disp": "0x470",
+    "window": [
+     {
+      "site": "0x4a1edb",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1ee0",
+      "form": "lea     ecx, [esi+470h]"
+     },
+     {
+      "site": "0x4a1ee6",
+      "form": "mov     byte ptr [esp+18h+var_4], 5"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1efb",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0x508",
+    "window": [
+     {
+      "site": "0x4a1eeb",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1ef0",
+      "form": "lea     ecx, [esi+508h]"
+     },
+     {
+      "site": "0x4a1ef6",
+      "form": "mov     byte ptr [esp+18h+var_4], 6"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f0b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0x660",
+    "window": [
+     {
+      "site": "0x4a1efb",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f00",
+      "form": "lea     ecx, [esi+660h]"
+     },
+     {
+      "site": "0x4a1f06",
+      "form": "mov     byte ptr [esp+18h+var_4], 7"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f1b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0x7b8",
+    "window": [
+     {
+      "site": "0x4a1f0b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f10",
+      "form": "lea     ecx, [esi+7B8h]"
+     },
+     {
+      "site": "0x4a1f16",
+      "form": "mov     byte ptr [esp+18h+var_4], 8"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f2b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0x910",
+    "window": [
+     {
+      "site": "0x4a1f1b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f20",
+      "form": "lea     ecx, [esi+910h]"
+     },
+     {
+      "site": "0x4a1f26",
+      "form": "mov     byte ptr [esp+18h+var_4], 9"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f3b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0xa68",
+    "window": [
+     {
+      "site": "0x4a1f2b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f30",
+      "form": "lea     ecx, [esi+0A68h]"
+     },
+     {
+      "site": "0x4a1f36",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Ah"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f4b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0xbc0",
+    "window": [
+     {
+      "site": "0x4a1f3b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f40",
+      "form": "lea     ecx, [esi+0BC0h]"
+     },
+     {
+      "site": "0x4a1f46",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Bh"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f5b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0xd18",
+    "window": [
+     {
+      "site": "0x4a1f4b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f50",
+      "form": "lea     ecx, [esi+0D18h]"
+     },
+     {
+      "site": "0x4a1f56",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Ch"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f6b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0xe70",
+    "window": [
+     {
+      "site": "0x4a1f5b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f60",
+      "form": "lea     ecx, [esi+0E70h]"
+     },
+     {
+      "site": "0x4a1f66",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Dh"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f7b",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0xfc8",
+    "window": [
+     {
+      "site": "0x4a1f6b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f70",
+      "form": "lea     ecx, [esi+0FC8h]"
+     },
+     {
+      "site": "0x4a1f76",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Eh"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f8b",
+    "target": "ResetContainerState",
+    "this_disp": "0x1120",
+    "window": [
+     {
+      "site": "0x4a1f7b",
+      "form": "call    ?GetSys@NameSys@@QACPAV1@XZ"
+     },
+     {
+      "site": "0x4a1f80",
+      "form": "lea     ecx, [esi+1120h]"
+     },
+     {
+      "site": "0x4a1f86",
+      "form": "mov     byte ptr [esp+18h+var_4], 0Fh"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1f9b",
+    "target": "ResetContainerState",
+    "this_disp": "0x11c8",
+    "window": [
+     {
+      "site": "0x4a1f8b",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1f90",
+      "form": "mov     byte ptr [esp+18h+var_4], 10h"
+     },
+     {
+      "site": "0x4a1f95",
+      "form": "lea     ecx, [esi+11C8h]"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1fab",
+    "target": "ResetContainerState",
+    "this_disp": "0x1260",
+    "window": [
+     {
+      "site": "0x4a1f9b",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a1fa0",
+      "form": "lea     ecx, [esi+1260h]"
+     },
+     {
+      "site": "0x4a1fa6",
+      "form": "mov     byte ptr [esp+18h+var_4], 11h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1fd0",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "this_disp": null,
+    "window": [
+     {
+      "site": "0x4a1fc5",
+      "form": "push    248h"
+     },
+     {
+      "site": "0x4a1fca",
+      "form": "push    eax"
+     },
+     {
+      "site": "0x4a1fcb",
+      "form": "mov     byte ptr [esp+2Ch+var_4], 12h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a1ff5",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "this_disp": "0x136f8",
+    "window": [
+     {
+      "site": "0x4a1fea",
+      "form": "push    248h"
+     },
+     {
+      "site": "0x4a1fef",
+      "form": "push    ecx"
+     },
+     {
+      "site": "0x4a1ff0",
+      "form": "mov     byte ptr [esp+2Ch+var_4], 13h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2005",
+    "target": "ResetContainerState",
+    "this_disp": "0x25b94",
+    "window": [
+     {
+      "site": "0x4a1ff5",
+      "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+     },
+     {
+      "site": "0x4a1ffa",
+      "form": "lea     ecx, [esi+25B94h]"
+     },
+     {
+      "site": "0x4a2000",
+      "form": "mov     byte ptr [esp+18h+var_4], 14h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2015",
+    "target": "ResetContainerState",
+    "this_disp": "0x25c2c",
+    "window": [
+     {
+      "site": "0x4a2005",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a200a",
+      "form": "lea     ecx, [esi+25C2Ch]"
+     },
+     {
+      "site": "0x4a2010",
+      "form": "mov     byte ptr [esp+18h+var_4], 15h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2025",
+    "target": "ResetContainerState",
+    "this_disp": "0x25cc4",
+    "window": [
+     {
+      "site": "0x4a2015",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a201a",
+      "form": "lea     ecx, [esi+25CC4h]"
+     },
+     {
+      "site": "0x4a2020",
+      "form": "mov     byte ptr [esp+18h+var_4], 16h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2035",
+    "target": "ResetContainerState",
+    "this_disp": "0x25d5c",
+    "window": [
+     {
+      "site": "0x4a2025",
+      "form": "call    ResetContainerState"
+     },
+     {
+      "site": "0x4a202a",
+      "form": "lea     ecx, [esi+25D5Ch]"
+     },
+     {
+      "site": "0x4a2030",
+      "form": "mov     byte ptr [esp+18h+var_4], 17h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2057",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "this_disp": null,
+    "window": [
+     {
+      "site": "0x4a204c",
+      "form": "push    0ECCh"
+     },
+     {
+      "site": "0x4a2051",
+      "form": "push    edx"
+     },
+     {
+      "site": "0x4a2052",
+      "form": "mov     byte ptr [esp+2Ch+var_4], 18h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2079",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "this_disp": null,
+    "window": [
+     {
+      "site": "0x4a206e",
+      "form": "push    98h"
+     },
+     {
+      "site": "0x4a2073",
+      "form": "push    eax"
+     },
+     {
+      "site": "0x4a2074",
+      "form": "mov     byte ptr [esp+2Ch+var_4], 19h"
+     }
+    ]
+   },
+   {
+    "site": "0x4a2089",
+    "target": "ResetContainerState",
+    "this_disp": "0x2aa60",
+    "window": [
+     {
+      "site": "0x4a2079",
+      "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+     },
+     {
+      "site": "0x4a207e",
+      "form": "lea     ecx, [esi+2AA60h]"
+     },
+     {
+      "site": "0x4a2084",
+      "form": "mov     byte ptr [esp+18h+var_4], 1Ah"
+     }
+    ]
+   },
+   {
+    "site": "0x4a20ab",
+    "target": "??_L@YGXPAXIHP6EX0@Z1@Z",
+    "this_disp": "0x2ab08",
+    "window": [
+     {
+      "site": "0x4a20a0",
+      "form": "push    98h"
+     },
+     {
+      "site": "0x4a20a5",
+      "form": "push    ecx"
+     },
+     {
+      "site": "0x4a20a6",
+      "form": "mov     byte ptr [esp+2Ch+var_4], 1Bh"
+     }
+    ]
+   },
+   {
+    "site": "0x4a20bb",
+    "target": "?GetSys@NameSys@@QACPAV1@XZ",
+    "this_disp": "0x2ae50",
+    "window": [
+     {
+      "site": "0x4a20ab",
+      "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+     },
+     {
+      "site": "0x4a20b0",
+      "form": "lea     ecx, [esi+2AE50h]"
+     },
+     {
+      "site": "0x4a20b6",
+      "form": "mov     byte ptr [esp+18h+var_4], 1Ch"
+     }
+    ]
+   },
+   {
+    "site": "0x4a20fb",
+    "target": "ResetContainerState",
+    "this_disp": "0x2afdc",
+    "window": [
+     {
+      "site": "0x4a20e9",
+      "form": "mov     [esi+2AFCCh], ebx"
+     },
+     {
+      "site": "0x4a20ef",
+      "form": "mov     [esi+2AFD0h], ebx"
+     },
+     {
+      "site": "0x4a20f5",
+      "form": "mov     [esi+2AFD4h], ebx"
+     }
+    ]
+   }
+  ],
+  "rep_stosd": [],
+  "this_write_disps": [
+   "0x58",
+   "0x5c",
+   "0x60",
+   "0x64",
+   "0x168",
+   "0x169",
+   "0x16a",
+   "0x16b",
+   "0x16c",
+   "0x16d",
+   "0x170",
+   "0x174",
+   "0x175",
+   "0x25b80",
+   "0x2afb8",
+   "0x2afbc",
+   "0x2afc0",
+   "0x2afc4",
+   "0x2afc8",
+   "0x2afcc",
+   "0x2afd0",
+   "0x2afd4",
+   "0x2b074"
+  ],
+  "this_write_min": "0x58",
+  "this_write_max": "0x2b074",
+  "n_this_writes": 23,
+  "subptr_writes": []
+ },
+ "array_ctls": [
+  {
+   "site": "0x4a1fd0",
+   "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+   "push_window": [
+    {
+     "site": "0x4a1fb0",
+     "form": "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    },
+    {
+     "site": "0x4a1fb5",
+     "form": "push    offset ?Reset@UIListBox@@QAEXXZ"
+    },
+    {
+     "site": "0x4a1fba",
+     "form": "push    80h"
+    },
+    {
+     "site": "0x4a1fbf",
+     "form": "lea     eax, [esi+12F8h]"
+    },
+    {
+     "site": "0x4a1fc5",
+     "form": "push    248h"
+    },
+    {
+     "site": "0x4a1fca",
+     "form": "push    eax"
+    },
+    {
+     "site": "0x4a1fcb",
+     "form": "mov     byte ptr [esp+2Ch+var_4], 12h"
+    },
+    {
+     "site": "0x4a1fd0",
+     "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    }
+   ],
+   "stack_form_ok": true,
+   "offset": 4856,
+   "count": 128,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span": [
+    "0x12f8",
+    "0x136f8"
+   ],
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "annotation_match": {
+    "ctor_binary_size": 72,
+    "dtor_binary_size": 1012,
+    "verdict": "none"
+   },
+   "element_class": "UIListBox",
+   "candidate_basis": null,
+   "candidate_usable": false,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "stride_classes": [
+    "TextureLibDataBase",
+    "UIParticle",
+    "_PlugInfo"
+   ]
+  },
+  {
+   "site": "0x4a1ff5",
+   "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+   "push_window": [
+    {
+     "site": "0x4a1fd5",
+     "form": "push    offset ?Destructor@UISceneMap@@QAEXXZ"
+    },
+    {
+     "site": "0x4a1fda",
+     "form": "push    offset ?Reset@UIListBox@@QAEXXZ"
+    },
+    {
+     "site": "0x4a1fdf",
+     "form": "push    80h"
+    },
+    {
+     "site": "0x4a1fe4",
+     "form": "lea     ecx, [esi+136F8h]"
+    },
+    {
+     "site": "0x4a1fea",
+     "form": "push    248h"
+    },
+    {
+     "site": "0x4a1fef",
+     "form": "push    ecx"
+    },
+    {
+     "site": "0x4a1ff0",
+     "form": "mov     byte ptr [esp+2Ch+var_4], 13h"
+    },
+    {
+     "site": "0x4a1ff5",
+     "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    }
+   ],
+   "stack_form_ok": true,
+   "offset": 79608,
+   "count": 128,
+   "stride": 584,
+   "ctor_ea": "0x4b4690",
+   "ctor_name": "?Reset@UIListBox@@QAEXXZ",
+   "ctor_class_mangled": "UIListBox",
+   "dtor_ea": "0x4b47e0",
+   "dtor_name": "?Destructor@UISceneMap@@QAEXXZ",
+   "dtor_class_mangled": "UISceneMap",
+   "span": [
+    "0x136f8",
+    "0x25af8"
+   ],
+   "ctor_owner": {
+    "class": "UIListBox",
+    "method": "Reset",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UISceneMap",
+    "method": "Destructor",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "UIListBox",
+   "dtor_class": "UISceneMap",
+   "ctor_demangled": "public: void __thiscall UIListBox::Reset(void)",
+   "dtor_demangled": "public: void __thiscall UISceneMap::Destructor(void)",
+   "callback_owners_agree": false,
+   "annotation_match": {
+    "ctor_binary_size": 72,
+    "dtor_binary_size": 1012,
+    "verdict": "none"
+   },
+   "element_class": "UIListBox",
+   "candidate_basis": null,
+   "candidate_usable": false,
+   "ctor_cb_max_this_disp": "0x244",
+   "ctor_cb_extent_fits_stride": true,
+   "stride_classes": [
+    "TextureLibDataBase",
+    "UIParticle",
+    "_PlugInfo"
+   ]
+  },
+  {
+   "site": "0x4a2057",
+   "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+   "push_window": [
+    {
+     "site": "0x4a203a",
+     "form": "push    offset ?DestroySubWindows@ChoseCompose@@QAEXXZ"
+    },
+    {
+     "site": "0x4a203f",
+     "form": "push    offset ?InitCompose@ChoseCompose@@QAEXXZ"
+    },
+    {
+     "site": "0x4a2044",
+     "form": "push    5"
+    },
+    {
+     "site": "0x4a2046",
+     "form": "lea     edx, [esi+25E04h]"
+    },
+    {
+     "site": "0x4a204c",
+     "form": "push    0ECCh"
+    },
+    {
+     "site": "0x4a2051",
+     "form": "push    edx"
+    },
+    {
+     "site": "0x4a2052",
+     "form": "mov     byte ptr [esp+2Ch+var_4], 18h"
+    },
+    {
+     "site": "0x4a2057",
+     "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    }
+   ],
+   "stack_form_ok": true,
+   "offset": 155140,
+   "count": 5,
+   "stride": 3788,
+   "ctor_ea": "0x4a2170",
+   "ctor_name": "?InitCompose@ChoseCompose@@QAEXXZ",
+   "ctor_class_mangled": "ChoseCompose",
+   "dtor_ea": "0x4a22e0",
+   "dtor_name": "?DestroySubWindows@ChoseCompose@@QAEXXZ",
+   "dtor_class_mangled": "ChoseCompose",
+   "span": [
+    "0x25e04",
+    "0x2a800"
+   ],
+   "ctor_owner": {
+    "class": "ChoseCompose",
+    "method": "InitCompose",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "ChoseCompose",
+    "method": "DestroySubWindows",
+    "evidence_level": "unverified",
+    "n_claims": 1
+   },
+   "ctor_class": "ChoseCompose",
+   "dtor_class": "ChoseCompose",
+   "ctor_demangled": "public: void __thiscall ChoseCompose::InitCompose(void)",
+   "dtor_demangled": "public: void __thiscall ChoseCompose::DestroySubWindows(void)",
+   "callback_owners_agree": true,
+   "annotation_match": {
+    "ctor_binary_size": 3770,
+    "dtor_binary_size": 3770,
+    "verdict": "none"
+   },
+   "element_class": "ChoseCompose",
+   "candidate_basis": null,
+   "candidate_usable": false,
+   "ctor_cb_max_this_disp": "0xe24",
+   "ctor_cb_extent_fits_stride": true,
+   "stride_classes": [
+    "CCBRoleStatePanelS",
+    "s_RoleState"
+   ]
+  },
+  {
+   "site": "0x4a2079",
+   "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+   "push_window": [
+    {
+     "site": "0x4a205c",
+     "form": "push    offset ??1UIFrameContainer@@QAE@XZ"
+    },
+    {
+     "site": "0x4a2061",
+     "form": "push    offset ResetContainerState"
+    },
+    {
+     "site": "0x4a2066",
+     "form": "push    4"
+    },
+    {
+     "site": "0x4a2068",
+     "form": "lea     eax, [esi+2A800h]"
+    },
+    {
+     "site": "0x4a206e",
+     "form": "push    98h"
+    },
+    {
+     "site": "0x4a2073",
+     "form": "push    eax"
+    },
+    {
+     "site": "0x4a2074",
+     "form": "mov     byte ptr [esp+2Ch+var_4], 19h"
+    },
+    {
+     "site": "0x4a2079",
+     "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    }
+   ],
+   "stack_form_ok": true,
+   "offset": 174080,
+   "count": 4,
+   "stride": 152,
+   "ctor_ea": "0x4422e0",
+   "ctor_name": "ResetContainerState",
+   "ctor_class_mangled": null,
+   "dtor_ea": "0x442390",
+   "dtor_name": "??1UIFrameContainer@@QAE@XZ",
+   "dtor_class_mangled": null,
+   "span": [
+    "0x2a800",
+    "0x2aa60"
+   ],
+   "ctor_owner": {
+    "class": "UIFrameContainer",
+    "method": "ResetContainerState",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UIFrameContainer",
+    "method": "~UIFrameContainer",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "ctor_class": "UIFrameContainer",
+   "dtor_class": "UIFrameContainer",
+   "ctor_demangled": "ResetContainerState",
+   "dtor_demangled": "public: __thiscall UIFrameContainer::~UIFrameContainer(void)",
+   "callback_owners_agree": true,
+   "annotation_match": {
+    "ctor_binary_size": 152,
+    "dtor_binary_size": 152,
+    "verdict": "both"
+   },
+   "element_class": "UIFrameContainer",
+   "candidate_basis": "ctor_callback_owner",
+   "candidate_usable": true,
+   "ctor_cb_max_this_disp": "0x94",
+   "ctor_cb_extent_fits_stride": true,
+   "stride_classes": [
+    "Object3D",
+    "UIFrameContainer",
+    "UIMap",
+    "UIStatic"
+   ]
+  },
+  {
+   "site": "0x4a20ab",
+   "helper": "??_L@YGXPAXIHP6EX0@Z1@Z",
+   "push_window": [
+    {
+     "site": "0x4a208e",
+     "form": "push    offset ??1UIFrameContainer@@QAE@XZ"
+    },
+    {
+     "site": "0x4a2093",
+     "form": "push    offset ResetContainerState"
+    },
+    {
+     "site": "0x4a2098",
+     "form": "push    5"
+    },
+    {
+     "site": "0x4a209a",
+     "form": "lea     ecx, [esi+2AB08h]"
+    },
+    {
+     "site": "0x4a20a0",
+     "form": "push    98h"
+    },
+    {
+     "site": "0x4a20a5",
+     "form": "push    ecx"
+    },
+    {
+     "site": "0x4a20a6",
+     "form": "mov     byte ptr [esp+2Ch+var_4], 1Bh"
+    },
+    {
+     "site": "0x4a20ab",
+     "form": "call    ??_L@YGXPAXIHP6EX0@Z1@Z"
+    }
+   ],
+   "stack_form_ok": true,
+   "offset": 174856,
+   "count": 5,
+   "stride": 152,
+   "ctor_ea": "0x4422e0",
+   "ctor_name": "ResetContainerState",
+   "ctor_class_mangled": null,
+   "dtor_ea": "0x442390",
+   "dtor_name": "??1UIFrameContainer@@QAE@XZ",
+   "dtor_class_mangled": null,
+   "span": [
+    "0x2ab08",
+    "0x2ae00"
+   ],
+   "ctor_owner": {
+    "class": "UIFrameContainer",
+    "method": "ResetContainerState",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "dtor_owner": {
+    "class": "UIFrameContainer",
+    "method": "~UIFrameContainer",
+    "evidence_level": "A",
+    "n_claims": 1
+   },
+   "ctor_class": "UIFrameContainer",
+   "dtor_class": "UIFrameContainer",
+   "ctor_demangled": "ResetContainerState",
+   "dtor_demangled": "public: __thiscall UIFrameContainer::~UIFrameContainer(void)",
+   "callback_owners_agree": true,
+   "annotation_match": {
+    "ctor_binary_size": 152,
+    "dtor_binary_size": 152,
+    "verdict": "both"
+   },
+   "element_class": "UIFrameContainer",
+   "candidate_basis": "ctor_callback_owner",
+   "candidate_usable": true,
+   "ctor_cb_max_this_disp": "0x94",
+   "ctor_cb_extent_fits_stride": true,
+   "stride_classes": [
+    "Object3D",
+    "UIFrameContainer",
+    "UIMap",
+    "UIStatic"
+   ]
+  }
+ ],
+ "disp_histogram": {
+  "range": [
+   "0x0",
+   "0x2b080"
+  ],
+  "n_methods_scanned": 18,
+  "method_addrs": [
+   "0x4a1e40",
+   "0x4a2150",
+   "0x4a2450",
+   "0x4a3900",
+   "0x4a4780",
+   "0x4a4890",
+   "0x4a48b0",
+   "0x4a4960",
+   "0x4a4a10",
+   "0x4a4ac0",
+   "0x4a4b70",
+   "0x4a4c20",
+   "0x4a4fc0",
+   "0x4a5930",
+   "0x4a5a80",
+   "0x4a5b30",
+   "0x4a6120",
+   "0x4a6600"
+  ],
+  "zone_counts": {
+   "base": 24,
+   "derived": 312
+  },
+  "n_unique_disps": 99,
+  "n_unique_disps_derived": 95,
+  "n_unique_disps_this_derived": 71,
+  "hist": {
+   "0x4": {
+    "n": 9,
+    "cls": {
+     "OTHER": 4,
+     "SUBPTR": 4,
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI",
+     "OnMessage",
+     "Render"
+    ],
+    "n_sites": 9
+   },
+   "0x8": {
+    "n": 7,
+    "cls": {
+     "THIS": 7
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 7
+   },
+   "0xc": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "HideAll"
+    ],
+    "n_sites": 1
+   },
+   "0x14": {
+    "n": 7,
+    "cls": {
+     "OTHER": 7
+    },
+    "methods": [
+     "HideAll"
+    ],
+    "n_sites": 7
+   },
+   "0x54": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "HandleDeviceLostB"
+    ],
+    "n_sites": 1
+   },
+   "0x58": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x5c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x5f": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "Create"
+    ],
+    "n_sites": 1
+   },
+   "0x60": {
+    "n": 29,
+    "cls": {
+     "THIS": 29
+    },
+    "methods": [
+     "Create",
+     "GetSelected",
+     "InitUI",
+     "Update"
+    ],
+    "n_sites": 29
+   },
+   "0x64": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x68": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 4
+   },
+   "0x168": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x169": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitSlots",
+     "InitUI"
+    ],
+    "n_sites": 3
+   },
+   "0x16a": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitLayout",
+     "InitUI"
+    ],
+    "n_sites": 3
+   },
+   "0x16b": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "CreateWidgets",
+     "InitUI"
+    ],
+    "n_sites": 3
+   },
+   "0x16c": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitUI",
+     "SetSelectedData"
+    ],
+    "n_sites": 3
+   },
+   "0x16d": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "Init",
+     "InitUI"
+    ],
+    "n_sites": 3
+   },
+   "0x170": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x174": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "InitUI",
+     "OnMessage",
+     "Update"
+    ],
+    "n_sites": 4
+   },
+   "0x175": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI"
+    ],
+    "n_sites": 1
+   },
+   "0x178": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x1bc": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "Create"
+    ],
+    "n_sites": 1
+   },
+   "0x1c0": {
+    "n": 2,
+    "cls": {
+     "OTHER": 1,
+     "THIS": 1
+    },
+    "methods": [
+     "SetEquipSlotData",
+     "Update"
+    ],
+    "n_sites": 2
+   },
+   "0x210": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x2a8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x340": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x3d8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x470": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x508": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x660": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x7b8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x910": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0xa68": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0xbc0": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0xd18": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0xe70": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0xfc8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x1120": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x11c8": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitUI",
+     "Update",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 3
+   },
+   "0x1260": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitUI",
+     "Update",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 3
+   },
+   "0x12f8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x4b2c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "SetEquipSlotData",
+     "Update"
+    ],
+    "n_sites": 2
+   },
+   "0x136f8": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x25b78": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitUI",
+     "OnMessage"
+    ],
+    "n_sites": 3
+   },
+   "0x25b79": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7a": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7b": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7d": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7e": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b7f": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "OnMessage"
+    ],
+    "n_sites": 2
+   },
+   "0x25b80": {
+    "n": 22,
+    "cls": {
+     "THIS": 22
+    },
+    "methods": [
+     "InitUI",
+     "OnMessage",
+     "Render"
+    ],
+    "n_sites": 22
+   },
+   "0x25b94": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x25c2c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x25cc4": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x25d5c": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x25e04": {
+    "n": 4,
+    "cls": {
+     "THIS": 2,
+     "OTHER": 2
+    },
+    "methods": [
+     "InitUI",
+     "SetItemData",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 4
+   },
+   "0x25e9c": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x25f34": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26064": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26100": {
+    "n": 1,
+    "cls": {
+     "SUBPTR": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x26158": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26288": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26324": {
+    "n": 1,
+    "cls": {
+     "SUBPTR": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x2637c": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x264ac": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26548": {
+    "n": 1,
+    "cls": {
+     "SUBPTR": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x265a0": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26638": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x266d0": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26768": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26800": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26898": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26930": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x269c8": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26a60": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26af8": {
+    "n": 2,
+    "cls": {
+     "OTHER": 2
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 2
+   },
+   "0x26b90": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "SetItemData"
+    ],
+    "n_sites": 1
+   },
+   "0x2a800": {
+    "n": 3,
+    "cls": {
+     "THIS": 3
+    },
+    "methods": [
+     "InitUI",
+     "Update",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 3
+   },
+   "0x2a898": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x2a930": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x2a9c8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "Update"
+    ],
+    "n_sites": 1
+   },
+   "0x2aa60": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x2ab08": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x2ae50": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x2afb8": {
+    "n": 17,
+    "cls": {
+     "THIS": 17
+    },
+    "methods": [
+     "CreateWidgets",
+     "HideAll",
+     "Init",
+     "InitLayout",
+     "InitSlots",
+     "InitUI",
+     "Render",
+     "SetItemData"
+    ],
+    "n_sites": 17
+   },
+   "0x2afbc": {
+    "n": 16,
+    "cls": {
+     "THIS": 16
+    },
+    "methods": [
+     "CreateWidgets",
+     "HideAll",
+     "Init",
+     "InitLayout",
+     "InitSlots",
+     "InitUI",
+     "Render",
+     "SetItemData"
+    ],
+    "n_sites": 16
+   },
+   "0x2afc0": {
+    "n": 16,
+    "cls": {
+     "THIS": 16
+    },
+    "methods": [
+     "CreateWidgets",
+     "HideAll",
+     "Init",
+     "InitLayout",
+     "InitSlots",
+     "InitUI",
+     "Render",
+     "SetItemData"
+    ],
+    "n_sites": 16
+   },
+   "0x2afc4": {
+    "n": 16,
+    "cls": {
+     "THIS": 16
+    },
+    "methods": [
+     "CreateWidgets",
+     "HideAll",
+     "Init",
+     "InitLayout",
+     "InitSlots",
+     "InitUI",
+     "Render",
+     "SetItemData"
+    ],
+    "n_sites": 16
+   },
+   "0x2afc8": {
+    "n": 6,
+    "cls": {
+     "THIS": 6
+    },
+    "methods": [
+     "HideAll",
+     "InitUI",
+     "LayoutHandleNav",
+     "Render",
+     "Update"
+    ],
+    "n_sites": 6
+   },
+   "0x2afcc": {
+    "n": 5,
+    "cls": {
+     "THIS": 5
+    },
+    "methods": [
+     "HideAll",
+     "InitUI",
+     "Render",
+     "Update"
+    ],
+    "n_sites": 5
+   },
+   "0x2afd0": {
+    "n": 6,
+    "cls": {
+     "THIS": 6
+    },
+    "methods": [
+     "HideAll",
+     "InitUI",
+     "Render",
+     "Update"
+    ],
+    "n_sites": 6
+   },
+   "0x2afd4": {
+    "n": 12,
+    "cls": {
+     "THIS": 12
+    },
+    "methods": [
+     "InitUI",
+     "LayoutHandleNav",
+     "Render",
+     "SetEquipSlotData",
+     "Update"
+    ],
+    "n_sites": 12
+   },
+   "0x2afd8": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "SetEquipSlotData"
+    ],
+    "n_sites": 1
+   },
+   "0x2afd9": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "SetEquipSlotData"
+    ],
+    "n_sites": 1
+   },
+   "0x2afdc": {
+    "n": 2,
+    "cls": {
+     "THIS": 2
+    },
+    "methods": [
+     "InitUI",
+     "~RoleStatePanel"
+    ],
+    "n_sites": 2
+   },
+   "0x2b074": {
+    "n": 4,
+    "cls": {
+     "THIS": 4
+    },
+    "methods": [
+     "HandleDeviceLostB",
+     "InitUI"
+    ],
+    "n_sites": 4
+   },
+   "0x2b078": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleDeviceLostB"
+    ],
+    "n_sites": 1
+   },
+   "0x2b07c": {
+    "n": 1,
+    "cls": {
+     "THIS": 1
+    },
+    "methods": [
+     "HandleDeviceLostB"
+    ],
+    "n_sites": 1
+   }
+  },
+  "derived_disp_keys_sorted": [
+   "0x54",
+   "0x58",
+   "0x5c",
+   "0x5f",
+   "0x60",
+   "0x64",
+   "0x68",
+   "0x168",
+   "0x169",
+   "0x16a",
+   "0x16b",
+   "0x16c",
+   "0x16d",
+   "0x170",
+   "0x174",
+   "0x175",
+   "0x178",
+   "0x1bc",
+   "0x1c0",
+   "0x210",
+   "0x2a8",
+   "0x340",
+   "0x3d8",
+   "0x470",
+   "0x508",
+   "0x660",
+   "0x7b8",
+   "0x910",
+   "0xa68",
+   "0xbc0",
+   "0xd18",
+   "0xe70",
+   "0xfc8",
+   "0x1120",
+   "0x11c8",
+   "0x1260",
+   "0x12f8",
+   "0x4b2c",
+   "0x136f8",
+   "0x25b78",
+   "0x25b79",
+   "0x25b7a",
+   "0x25b7b",
+   "0x25b7c",
+   "0x25b7d",
+   "0x25b7e",
+   "0x25b7f",
+   "0x25b80",
+   "0x25b94",
+   "0x25c2c",
+   "0x25cc4",
+   "0x25d5c",
+   "0x25e04",
+   "0x25e9c",
+   "0x25f34",
+   "0x26064",
+   "0x26100",
+   "0x26158",
+   "0x26288",
+   "0x26324",
+   "0x2637c",
+   "0x264ac",
+   "0x26548",
+   "0x265a0",
+   "0x26638",
+   "0x266d0",
+   "0x26768",
+   "0x26800",
+   "0x26898",
+   "0x26930",
+   "0x269c8",
+   "0x26a60",
+   "0x26af8",
+   "0x26b90",
+   "0x2a800",
+   "0x2a898",
+   "0x2a930",
+   "0x2a9c8",
+   "0x2aa60",
+   "0x2ab08",
+   "0x2ae50",
+   "0x2afb8",
+   "0x2afbc",
+   "0x2afc0",
+   "0x2afc4",
+   "0x2afc8",
+   "0x2afcc",
+   "0x2afd0",
+   "0x2afd4",
+   "0x2afd8",
+   "0x2afd9",
+   "0x2afdc",
+   "0x2b074",
+   "0x2b078",
+   "0x2b07c"
+  ],
+  "derived_this_disp_keys_sorted": [
+   "0x58",
+   "0x5c",
+   "0x60",
+   "0x64",
+   "0x68",
+   "0x168",
+   "0x169",
+   "0x16a",
+   "0x16b",
+   "0x16c",
+   "0x16d",
+   "0x170",
+   "0x174",
+   "0x175",
+   "0x178",
+   "0x1c0",
+   "0x210",
+   "0x2a8",
+   "0x340",
+   "0x3d8",
+   "0x470",
+   "0x508",
+   "0x660",
+   "0x7b8",
+   "0x910",
+   "0xa68",
+   "0xbc0",
+   "0xd18",
+   "0xe70",
+   "0xfc8",
+   "0x1120",
+   "0x11c8",
+   "0x1260",
+   "0x12f8",
+   "0x4b2c",
+   "0x136f8",
+   "0x25b78",
+   "0x25b79",
+   "0x25b7a",
+   "0x25b7b",
+   "0x25b7c",
+   "0x25b7d",
+   "0x25b7e",
+   "0x25b7f",
+   "0x25b80",
+   "0x25b94",
+   "0x25c2c",
+   "0x25cc4",
+   "0x25d5c",
+   "0x25e04",
+   "0x2a800",
+   "0x2a898",
+   "0x2a930",
+   "0x2a9c8",
+   "0x2aa60",
+   "0x2ab08",
+   "0x2ae50",
+   "0x2afb8",
+   "0x2afbc",
+   "0x2afc0",
+   "0x2afc4",
+   "0x2afc8",
+   "0x2afcc",
+   "0x2afd0",
+   "0x2afd4",
+   "0x2afd8",
+   "0x2afd9",
+   "0x2afdc",
+   "0x2b074",
+   "0x2b078",
+   "0x2b07c"
+  ],
+  "stride_series_this": [
+   {
+    "start": "0x58",
+    "stride": "0x4",
+    "n": 5,
+    "end": "0x68",
+    "extrapolated_series_start": "0x54",
+    "members": [
+     "0x58",
+     "0x5c",
+     "0x60",
+     "0x64",
+     "0x68"
+    ]
+   },
+   {
+    "start": "0x168",
+    "stride": "0x1",
+    "n": 6,
+    "end": "0x16d",
+    "extrapolated_series_start": "0x167",
+    "members": [
+     "0x168",
+     "0x169",
+     "0x16a",
+     "0x16b",
+     "0x16c",
+     "0x16d"
+    ]
+   },
+   {
+    "start": "0x210",
+    "stride": "0x98",
+    "n": 6,
+    "end": "0x508",
+    "extrapolated_series_start": "0x178",
+    "members": [
+     "0x210",
+     "0x2a8",
+     "0x340",
+     "0x3d8",
+     "0x470",
+     "0x508"
+    ]
+   },
+   {
+    "start": "0x660",
+    "stride": "0x158",
+    "n": 9,
+    "end": "0x1120",
+    "extrapolated_series_start": "0x508",
+    "members": [
+     "0x660",
+     "0x7b8",
+     "0x910",
+     "0xa68",
+     "0xbc0",
+     "0xd18",
+     "0xe70",
+     "0xfc8",
+     "0x1120"
+    ]
+   },
+   {
+    "start": "0x11c8",
+    "stride": "0x98",
+    "n": 3,
+    "end": "0x12f8",
+    "extrapolated_series_start": "0x1130",
+    "members": [
+     "0x11c8",
+     "0x1260",
+     "0x12f8"
+    ]
+   },
+   {
+    "start": "0x25b78",
+    "stride": "0x1",
+    "n": 9,
+    "end": "0x25b80",
+    "extrapolated_series_start": "0x25b77",
+    "members": [
+     "0x25b78",
+     "0x25b79",
+     "0x25b7a",
+     "0x25b7b",
+     "0x25b7c",
+     "0x25b7d",
+     "0x25b7e",
+     "0x25b7f",
+     "0x25b80"
+    ]
+   },
+   {
+    "start": "0x25b94",
+    "stride": "0x98",
+    "n": 4,
+    "end": "0x25d5c",
+    "extrapolated_series_start": "0x25afc",
+    "members": [
+     "0x25b94",
+     "0x25c2c",
+     "0x25cc4",
+     "0x25d5c"
+    ]
+   },
+   {
+    "start": "0x2a800",
+    "stride": "0x98",
+    "n": 5,
+    "end": "0x2aa60",
+    "extrapolated_series_start": "0x2a768",
+    "members": [
+     "0x2a800",
+     "0x2a898",
+     "0x2a930",
+     "0x2a9c8",
+     "0x2aa60"
+    ]
+   },
+   {
+    "start": "0x2afb8",
+    "stride": "0x4",
+    "n": 9,
+    "end": "0x2afd8",
+    "extrapolated_series_start": "0x2afb4",
+    "members": [
+     "0x2afb8",
+     "0x2afbc",
+     "0x2afc0",
+     "0x2afc4",
+     "0x2afc8",
+     "0x2afcc",
+     "0x2afd0",
+     "0x2afd4",
+     "0x2afd8"
+    ]
+   },
+   {
+    "start": "0x2b074",
+    "stride": "0x4",
+    "n": 3,
+    "end": "0x2b07c",
+    "extrapolated_series_start": "0x2b070",
+    "members": [
+     "0x2b074",
+     "0x2b078",
+     "0x2b07c"
+    ]
+   }
+  ],
+  "gaps_all_top": [
+   {
+    "lo": "0x136f8",
+    "hi": "0x25b78",
+    "gap": "0x12480"
+   },
+   {
+    "lo": "0x4b2c",
+    "hi": "0x136f8",
+    "gap": "0xebcc"
+   },
+   {
+    "lo": "0x26b90",
+    "hi": "0x2a800",
+    "gap": "0x3c70"
+   },
+   {
+    "lo": "0x12f8",
+    "hi": "0x4b2c",
+    "gap": "0x3834"
+   },
+   {
+    "lo": "0x2ab08",
+    "hi": "0x2ae50",
+    "gap": "0x348"
+   },
+   {
+    "lo": "0x2ae50",
+    "hi": "0x2afb8",
+    "gap": "0x168"
+   },
+   {
+    "lo": "0x508",
+    "hi": "0x660",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x660",
+    "hi": "0x7b8",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x7b8",
+    "hi": "0x910",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x910",
+    "hi": "0xa68",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xa68",
+    "hi": "0xbc0",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xbc0",
+    "hi": "0xd18",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xd18",
+    "hi": "0xe70",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xe70",
+    "hi": "0xfc8",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xfc8",
+    "hi": "0x1120",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x25f34",
+    "hi": "0x26064",
+    "gap": "0x130"
+   },
+   {
+    "lo": "0x26158",
+    "hi": "0x26288",
+    "gap": "0x130"
+   },
+   {
+    "lo": "0x2637c",
+    "hi": "0x264ac",
+    "gap": "0x130"
+   },
+   {
+    "lo": "0x68",
+    "hi": "0x168",
+    "gap": "0x100"
+   },
+   {
+    "lo": "0x1120",
+    "hi": "0x11c8",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x25d5c",
+    "hi": "0x25e04",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x2aa60",
+    "hi": "0x2ab08",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x26064",
+    "hi": "0x26100",
+    "gap": "0x9c"
+   },
+   {
+    "lo": "0x26288",
+    "hi": "0x26324",
+    "gap": "0x9c"
+   },
+   {
+    "lo": "0x264ac",
+    "hi": "0x26548",
+    "gap": "0x9c"
+   },
+   {
+    "lo": "0x210",
+    "hi": "0x2a8",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x2a8",
+    "hi": "0x340",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x340",
+    "hi": "0x3d8",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x3d8",
+    "hi": "0x470",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x470",
+    "hi": "0x508",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x11c8",
+    "hi": "0x1260",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x1260",
+    "hi": "0x12f8",
+    "gap": "0x98"
+   }
+  ],
+  "gaps_this_top": [
+   {
+    "lo": "0x136f8",
+    "hi": "0x25b78",
+    "gap": "0x12480"
+   },
+   {
+    "lo": "0x4b2c",
+    "hi": "0x136f8",
+    "gap": "0xebcc"
+   },
+   {
+    "lo": "0x25e04",
+    "hi": "0x2a800",
+    "gap": "0x49fc"
+   },
+   {
+    "lo": "0x12f8",
+    "hi": "0x4b2c",
+    "gap": "0x3834"
+   },
+   {
+    "lo": "0x2ab08",
+    "hi": "0x2ae50",
+    "gap": "0x348"
+   },
+   {
+    "lo": "0x2ae50",
+    "hi": "0x2afb8",
+    "gap": "0x168"
+   },
+   {
+    "lo": "0x508",
+    "hi": "0x660",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x660",
+    "hi": "0x7b8",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x7b8",
+    "hi": "0x910",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x910",
+    "hi": "0xa68",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xa68",
+    "hi": "0xbc0",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xbc0",
+    "hi": "0xd18",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xd18",
+    "hi": "0xe70",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xe70",
+    "hi": "0xfc8",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0xfc8",
+    "hi": "0x1120",
+    "gap": "0x158"
+   },
+   {
+    "lo": "0x68",
+    "hi": "0x168",
+    "gap": "0x100"
+   },
+   {
+    "lo": "0x1120",
+    "hi": "0x11c8",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x25d5c",
+    "hi": "0x25e04",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x2aa60",
+    "hi": "0x2ab08",
+    "gap": "0xa8"
+   },
+   {
+    "lo": "0x210",
+    "hi": "0x2a8",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x2a8",
+    "hi": "0x340",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x340",
+    "hi": "0x3d8",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x3d8",
+    "hi": "0x470",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x470",
+    "hi": "0x508",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x11c8",
+    "hi": "0x1260",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x1260",
+    "hi": "0x12f8",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x25b94",
+    "hi": "0x25c2c",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x25c2c",
+    "hi": "0x25cc4",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x25cc4",
+    "hi": "0x25d5c",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x2a800",
+    "hi": "0x2a898",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x2a898",
+    "hi": "0x2a930",
+    "gap": "0x98"
+   },
+   {
+    "lo": "0x2a930",
+    "hi": "0x2a9c8",
+    "gap": "0x98"
+   }
+  ],
+  "annotated_members_hit": [
+   {
+    "off": "0x60",
+    "name": "m_nScanIndex",
+    "hist_n": 29
+   },
+   {
+    "off": "0x169",
+    "name": "m_bSlotFlags",
+    "hist_n": 3
+   },
+   {
+    "off": "0x210",
+    "name": "m_RoleStatics",
+    "hist_n": 2
+   },
+   {
+    "off": "0x25e04",
+    "name": "m_roles",
+    "hist_n": 4
+   },
+   {
+    "off": "0x2afb8",
+    "name": "m_pTabPanel",
+    "hist_n": 17
+   },
+   {
+    "off": "0x2afbc",
+    "name": "m_pSubTabPanel",
+    "hist_n": 16
+   },
+   {
+    "off": "0x2afc0",
+    "name": "m_pMainPropUI",
+    "hist_n": 16
+   },
+   {
+    "off": "0x2afc4",
+    "name": "m_pEquipUI",
+    "hist_n": 16
+   },
+   {
+    "off": "0x2afc8",
+    "name": "m_pPanel_2afc8",
+    "hist_n": 6
+   },
+   {
+    "off": "0x2afcc",
+    "name": "m_pLineupUI",
+    "hist_n": 5
+   },
+   {
+    "off": "0x2afd0",
+    "name": "m_pPanel_2afd0",
+    "hist_n": 6
+   },
+   {
+    "off": "0x2afd4",
+    "name": "m_nEquipSlot",
+    "hist_n": 12
+   },
+   {
+    "off": "0x2afd8",
+    "name": "m_nTodo_2afd8",
+    "hist_n": 1
+   },
+   {
+    "off": "0x2afd9",
+    "name": "m_nTodo_2afd9",
+    "hist_n": 1
+   },
+   {
+    "off": "0x2b078",
+    "name": "m_nDevLost1",
+    "hist_n": 1
+   },
+   {
+    "off": "0x2b07c",
+    "name": "m_nDevLost2",
+    "hist_n": 1
+   }
+  ]
+ },
+ "holes_cross": {
+  "census_row": {
+   "size": 176256,
+   "members": 16,
+   "hole_bytes": 156433,
+   "total_holes": 6
+  },
+  "holes": [
+   {
+    "range": [
+     "0x44",
+     "0x60"
+    ],
+    "bytes": 28,
+    "ctor_array_spans": [],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [
+     "0x58",
+     "0x5c"
+    ],
+    "n_ctor_this_writes_in_hole": 2,
+    "hist_unique_disps": 4,
+    "hist_this_unique": 2,
+    "hist_total_n": 4,
+    "hist_disps": [
+     "0x54",
+     "0x58",
+     "0x5c",
+     "0x5f"
+    ],
+    "nearest_hist_below_lo": "0x14",
+    "nearest_hist_above_hi": "0x60",
+    "tags": [
+     "ctor_this_writes",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 20,
+     "subranges": [
+      [
+       "0x44",
+       "0x58"
+      ]
+     ]
+    }
+   },
+   {
+    "range": [
+     "0x64",
+     "0x169"
+    ],
+    "bytes": 261,
+    "ctor_array_spans": [],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [
+     "0x64",
+     "0x168"
+    ],
+    "n_ctor_this_writes_in_hole": 2,
+    "hist_unique_disps": 3,
+    "hist_this_unique": 3,
+    "hist_total_n": 6,
+    "hist_disps": [
+     "0x64",
+     "0x68",
+     "0x168"
+    ],
+    "nearest_hist_below_lo": "0x60",
+    "nearest_hist_above_hi": "0x169",
+    "tags": [
+     "ctor_this_writes",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 256,
+     "subranges": [
+      [
+       "0x68",
+       "0x168"
+      ]
+     ]
+    }
+   },
+   {
+    "range": [
+     "0x170",
+     "0x210"
+    ],
+    "bytes": 160,
+    "ctor_array_spans": [],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [
+     "0x170",
+     "0x174",
+     "0x175"
+    ],
+    "n_ctor_this_writes_in_hole": 3,
+    "hist_unique_disps": 6,
+    "hist_this_unique": 5,
+    "hist_total_n": 11,
+    "hist_disps": [
+     "0x170",
+     "0x174",
+     "0x175",
+     "0x178",
+     "0x1bc",
+     "0x1c0"
+    ],
+    "nearest_hist_below_lo": "0x16d",
+    "nearest_hist_above_hi": "0x210",
+    "tags": [
+     "ctor_this_writes",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 2,
+     "subranges": [
+      [
+       "0x176",
+       "0x178"
+      ]
+     ]
+    }
+   },
+   {
+    "range": [
+     "0x508",
+     "0x25e04"
+    ],
+    "bytes": 153852,
+    "ctor_array_spans": [
+     {
+      "span": [
+       "0x12f8",
+       "0x136f8"
+      ],
+      "elem": "UIListBox",
+      "site": "0x4a1fd0"
+     },
+     {
+      "span": [
+       "0x136f8",
+       "0x25af8"
+      ],
+      "elem": "UIListBox",
+      "site": "0x4a1ff5"
+     }
+    ],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [
+     "0x25b80"
+    ],
+    "n_ctor_this_writes_in_hole": 1,
+    "hist_unique_disps": 28,
+    "hist_this_unique": 28,
+    "hist_total_n": 79,
+    "hist_disps": [
+     "0x508",
+     "0x660",
+     "0x7b8",
+     "0x910",
+     "0xa68",
+     "0xbc0",
+     "0xd18",
+     "0xe70",
+     "0xfc8",
+     "0x1120",
+     "0x11c8",
+     "0x1260",
+     "0x12f8",
+     "0x4b2c",
+     "0x136f8",
+     "0x25b78",
+     "0x25b79",
+     "0x25b7a",
+     "0x25b7b",
+     "0x25b7c",
+     "0x25b7d",
+     "0x25b7e",
+     "0x25b7f",
+     "0x25b80"
+    ],
+    "nearest_hist_below_lo": "0x470",
+    "nearest_hist_above_hi": "0x25e04",
+    "tags": [
+     "ctor_array_span",
+     "ctor_this_writes",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 184,
+     "subranges": [
+      [
+       "0x11b8",
+       "0x11c8"
+      ],
+      [
+       "0x25af8",
+       "0x25b80"
+      ],
+      [
+       "0x25b84",
+       "0x25b94"
+      ],
+      [
+       "0x25df4",
+       "0x25e04"
+      ]
+     ]
+    }
+   },
+   {
+    "range": [
+     "0x2a800",
+     "0x2afb8"
+    ],
+    "bytes": 1976,
+    "ctor_array_spans": [
+     {
+      "span": [
+       "0x2a800",
+       "0x2aa60"
+      ],
+      "elem": "UIFrameContainer",
+      "site": "0x4a2079"
+     },
+     {
+      "span": [
+       "0x2ab08",
+       "0x2ae00"
+      ],
+      "elem": "UIFrameContainer",
+      "site": "0x4a20ab"
+     }
+    ],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [],
+    "n_ctor_this_writes_in_hole": 0,
+    "hist_unique_disps": 7,
+    "hist_this_unique": 7,
+    "hist_total_n": 12,
+    "hist_disps": [
+     "0x2a800",
+     "0x2a898",
+     "0x2a930",
+     "0x2a9c8",
+     "0x2aa60",
+     "0x2ab08",
+     "0x2ae50"
+    ],
+    "nearest_hist_below_lo": "0x26b90",
+    "nearest_hist_above_hi": "0x2afb8",
+    "tags": [
+     "ctor_array_span",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 112,
+     "subranges": [
+      [
+       "0x2aaf8",
+       "0x2ab08"
+      ],
+      [
+       "0x2ae00",
+       "0x2ae50"
+      ],
+      [
+       "0x2afa8",
+       "0x2afb8"
+      ]
+     ]
+    }
+   },
+   {
+    "range": [
+     "0x2afdc",
+     "0x2b078"
+    ],
+    "bytes": 156,
+    "ctor_array_spans": [],
+    "ctor_stosd_spans": [],
+    "ctor_this_write_disps_in_hole": [
+     "0x2b074"
+    ],
+    "n_ctor_this_writes_in_hole": 1,
+    "hist_unique_disps": 2,
+    "hist_this_unique": 2,
+    "hist_total_n": 6,
+    "hist_disps": [
+     "0x2afdc",
+     "0x2b074"
+    ],
+    "nearest_hist_below_lo": "0x2afd9",
+    "nearest_hist_above_hi": "0x2b078",
+    "tags": [
+     "ctor_this_writes",
+     "disp_live"
+    ],
+    "placeable": true,
+    "ctor_residual_unexplained": {
+     "bytes": 0,
+     "subranges": []
+    }
+   }
+  ],
+  "ctor_evidence_spans": [
+   {
+    "kind": "array_eh_ctor",
+    "span": [
+     "0x12f8",
+     "0x136f8"
+    ],
+    "elem": "UIListBox",
+    "site": "0x4a1fd0"
+   },
+   {
+    "kind": "array_eh_ctor",
+    "span": [
+     "0x136f8",
+     "0x25af8"
+    ],
+    "elem": "UIListBox",
+    "site": "0x4a1ff5"
+   },
+   {
+    "kind": "array_eh_ctor",
+    "span": [
+     "0x25e04",
+     "0x2a800"
+    ],
+    "elem": "ChoseCompose",
+    "site": "0x4a2057"
+   },
+   {
+    "kind": "array_eh_ctor",
+    "span": [
+     "0x2a800",
+     "0x2aa60"
+    ],
+    "elem": "UIFrameContainer",
+    "site": "0x4a2079"
+   },
+   {
+    "kind": "array_eh_ctor",
+    "span": [
+     "0x2ab08",
+     "0x2ae00"
+    ],
+    "elem": "UIFrameContainer",
+    "site": "0x4a20ab"
+   }
+  ],
+  "summary": {
+   "n_placeable": 6,
+   "n_zero_evidence": 0
+  },
+  "ctor_layout_map": {
+   "segments": [
+    {
+     "range": [
+      "0x0",
+      "0x44"
+     ],
+     "kind": "base_subobject",
+     "note": "UIWnd binary_size=68; 直调基构造=??0UIListBox-named @this+0 (bases C11 张力: UIListBox.json binary_size=72 vs 其 size_evidence 1208 裁决, R3 需调和)"
+    },
+    {
+     "range": [
+      "0x58",
+      "0x5c"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x5c",
+      "0x60"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x60",
+      "0x64"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x64",
+      "0x68"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x168",
+      "0x169"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x169",
+      "0x16a"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x16a",
+      "0x16b"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x16b",
+      "0x16c"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x16c",
+      "0x16d"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x16d",
+      "0x16e"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x170",
+      "0x174"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x174",
+      "0x175"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x175",
+      "0x176"
+     ],
+     "kind": "field_write",
+     "bytes": 1
+    },
+    {
+     "range": [
+      "0x178",
+      "0x210"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1e9b"
+    },
+    {
+     "range": [
+      "0x210",
+      "0x2a8"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1eab"
+    },
+    {
+     "range": [
+      "0x2a8",
+      "0x340"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1ebb"
+    },
+    {
+     "range": [
+      "0x340",
+      "0x3d8"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1ecb"
+    },
+    {
+     "range": [
+      "0x3d8",
+      "0x470"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1edb"
+    },
+    {
+     "range": [
+      "0x470",
+      "0x508"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1eeb"
+    },
+    {
+     "range": [
+      "0x508",
+      "0x660"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1efb"
+    },
+    {
+     "range": [
+      "0x660",
+      "0x7b8"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f0b"
+    },
+    {
+     "range": [
+      "0x7b8",
+      "0x910"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f1b"
+    },
+    {
+     "range": [
+      "0x910",
+      "0xa68"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f2b"
+    },
+    {
+     "range": [
+      "0xa68",
+      "0xbc0"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f3b"
+    },
+    {
+     "range": [
+      "0xbc0",
+      "0xd18"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f4b"
+    },
+    {
+     "range": [
+      "0xd18",
+      "0xe70"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f5b"
+    },
+    {
+     "range": [
+      "0xe70",
+      "0xfc8"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f6b"
+    },
+    {
+     "range": [
+      "0xfc8",
+      "0x1120"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a1f7b"
+    },
+    {
+     "range": [
+      "0x1120",
+      "0x11b8"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1f8b"
+    },
+    {
+     "range": [
+      "0x11c8",
+      "0x1260"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1f9b"
+    },
+    {
+     "range": [
+      "0x1260",
+      "0x12f8"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a1fab"
+    },
+    {
+     "range": [
+      "0x12f8",
+      "0x136f8"
+     ],
+     "kind": "array",
+     "elem": "UIListBox",
+     "count": 128,
+     "stride": 584,
+     "candidate_usable": false,
+     "site": "0x4a1fd0"
+    },
+    {
+     "range": [
+      "0x136f8",
+      "0x25af8"
+     ],
+     "kind": "array",
+     "elem": "UIListBox",
+     "count": 128,
+     "stride": 584,
+     "candidate_usable": false,
+     "site": "0x4a1ff5"
+    },
+    {
+     "range": [
+      "0x25b80",
+      "0x25b84"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x25b94",
+      "0x25c2c"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a2005"
+    },
+    {
+     "range": [
+      "0x25c2c",
+      "0x25cc4"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a2015"
+    },
+    {
+     "range": [
+      "0x25cc4",
+      "0x25d5c"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a2025"
+    },
+    {
+     "range": [
+      "0x25d5c",
+      "0x25df4"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a2035"
+    },
+    {
+     "range": [
+      "0x25e04",
+      "0x2a800"
+     ],
+     "kind": "array",
+     "elem": "ChoseCompose",
+     "count": 5,
+     "stride": 3788,
+     "candidate_usable": false,
+     "site": "0x4a2057"
+    },
+    {
+     "range": [
+      "0x2a800",
+      "0x2aa60"
+     ],
+     "kind": "array",
+     "elem": "UIFrameContainer",
+     "count": 4,
+     "stride": 152,
+     "candidate_usable": true,
+     "site": "0x4a2079"
+    },
+    {
+     "range": [
+      "0x2aa60",
+      "0x2aaf8"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a2089"
+    },
+    {
+     "range": [
+      "0x2ab08",
+      "0x2ae00"
+     ],
+     "kind": "array",
+     "elem": "UIFrameContainer",
+     "count": 5,
+     "stride": 152,
+     "candidate_usable": true,
+     "site": "0x4a20ab"
+    },
+    {
+     "range": [
+      "0x2ae50",
+      "0x2afa8"
+     ],
+     "kind": "inplace_obj_344B",
+     "cb": "?GetSys@NameSys-named(0x43a770)",
+     "stride_classes": [
+      "gbRain",
+      "UIButton",
+      "UIScene"
+     ],
+     "site": "0x4a20bb"
+    },
+    {
+     "range": [
+      "0x2afb8",
+      "0x2afbc"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afbc",
+      "0x2afc0"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afc0",
+      "0x2afc4"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afc4",
+      "0x2afc8"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afc8",
+      "0x2afcc"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afcc",
+      "0x2afd0"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afd0",
+      "0x2afd4"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afd4",
+      "0x2afd8"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    },
+    {
+     "range": [
+      "0x2afdc",
+      "0x2b074"
+     ],
+     "kind": "inplace_obj_152B",
+     "cb": "ResetContainerState(0x4422e0)",
+     "owner": "UIFrameContainer(A)",
+     "site": "0x4a20fb"
+    },
+    {
+     "range": [
+      "0x2b074",
+      "0x2b078"
+     ],
+     "kind": "field_write",
+     "bytes": 4
+    }
+   ],
+   "ctor_cover_merged": [
+    [
+     "0x0",
+     "0x44"
+    ],
+    [
+     "0x58",
+     "0x68"
+    ],
+    [
+     "0x168",
+     "0x16e"
+    ],
+    [
+     "0x170",
+     "0x176"
+    ],
+    [
+     "0x178",
+     "0x11b8"
+    ],
+    [
+     "0x11c8",
+     "0x25af8"
+    ],
+    [
+     "0x25b80",
+     "0x25b84"
+    ],
+    [
+     "0x25b94",
+     "0x25df4"
+    ],
+    [
+     "0x25e04",
+     "0x2aaf8"
+    ],
+    [
+     "0x2ab08",
+     "0x2ae00"
+    ],
+    [
+     "0x2ae50",
+     "0x2afa8"
+    ],
+    [
+     "0x2afb8",
+     "0x2afd8"
+    ],
+    [
+     "0x2afdc",
+     "0x2b078"
+    ]
+   ],
+   "total_residual_unexplained_bytes": 574
+  }
+ },
+ "bases_evidence": {
+  "uiwnd_ctor_ea": "0xffffffffffffffff",
+  "uiwnd_dtor_ea": "0x445b40",
+  "ctor_first_calls": [
+   {
+    "site": "0x4a1e5e",
+    "target": "??0UIListBox@@QAE@XZ",
+    "target_ea": "0x43dcd0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1e9b",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1eab",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1ebb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1ecb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   },
+   {
+    "site": "0x4a1edb",
+    "target": "ResetContainerState",
+    "target_ea": "0x4422e0",
+    "kind": "other"
+   }
+  ],
+  "ctor_calls_uiwnd_ctor": false,
+  "ctor_uiwnd_call": null,
+  "ctor_this_pass_lines": [],
+  "dtor_calls_tail": [
+   {
+    "site": "0x4a2662",
+    "target": "??1UIFrameContainer@@QAE@XZ",
+    "target_ea": "0x442390"
+   },
+   {
+    "site": "0x4a2672",
+    "target": "??1UIFrameContainer@@QAE@XZ",
+    "target_ea": "0x442390"
+   },
+   {
+    "site": "0x4a2682",
+    "target": "??1UIFrameContainer@@QAE@XZ",
+    "target_ea": "0x442390"
+   },
+   {
+    "site": "0x4a2692",
+    "target": "??1UIFrameContainer@@QAE@XZ",
+    "target_ea": "0x442390"
+   },
+   {
+    "site": "0x4a26a2",
+    "target": "??1UIFrameContainer@@QAE@XZ",
+    "target_ea": "0x442390"
+   },
+   {
+    "site": "0x4a26b1",
+    "target": "??1UIListBox@@QAE@XZ",
+    "target_ea": "0x43dd10"
+   }
+  ],
+  "dtor_calls_uiwnd_dtor": false,
+  "dtor_this_pass_lines": [],
+  "vtable_fingerprint": {
+   "rolestatepanel_vt_0x56f040_slots": [
+    "0x445e70",
+    "0x4a5930",
+    "0x4a5b30",
+    "0x4a6600",
+    "0x445b90",
+    "0x4a2150",
+    "0x4a6120"
+   ],
+   "uiwnd_vt_0x56aec8_slots": [
+    "0x445e70",
+    "0x445cd0",
+    "0x445c60",
+    "0x445c10",
+    "0x445b90",
+    "0x445b20",
+    "0x445d10"
+   ],
+   "slot0_equal": true,
+   "slot4_equal": true,
+   "inherit_fingerprint": true
+  },
+  "ctor_first_call_is_uiListBox_ctor": true,
+  "uilib_ct": {
+   "ea": "0x43dcd0",
+   "func_range": [
+    "0x43dcd0",
+    "0x43dce9"
+   ],
+   "head_calls": [
+    {
+     "site": "0x43dcd3",
+     "target": "ClearSubArraySlot",
+     "is_uiwnd_ctor": false
+    }
+   ],
+   "calls_uiwnd_ctor": false,
+   "vt_installs": [
+    {
+     "site": "0x43dcd8",
+     "vt": "stru_56AD20"
+    }
+   ],
+   "vtable_0x56ad20_slots": [
+    "0x445e70",
+    "0x43ddf0",
+    "0x445c60",
+    "0x43de40",
+    "0x445b90",
+    "0x43dcf0",
+    "0x445d10"
+   ],
+   "vt_slot0_eq_uiwnd": true,
+   "vt_slot4_eq_uiwnd": true,
+   "annotation_binary_size": 72,
+   "annotation_bases": [
+    {
+     "name": "UIWnd",
+     "offset": 0
+    }
+   ],
+   "annotation_size_evidence_head": "[UIListBox binary_size 重审 2026-10-16] ✅ **1208 确认**（二选一裁决：真尺寸=1208，非 72；调用目标名 `??0UIListBox@@QAE@XZ` **正确**非错位）——A 级三面：① new 算子：`push $0x4b8` ×2+（0x4e11a9/0x4e9d20 等）= operator new(1208)；② 成员面：最大成员 m_rowenable@1192 末端 11"
+  },
+  "dtor_chain_names": [
+   "??1UIFrameContainer@@QAE@XZ",
+   "??1UIListBox@@QAE@XZ",
+   "??_M@YGXPAXIHP6EX0@Z@Z",
+   "?Destroy2@UICaption@@QAEXXZ",
+   "?HideAll@RoleStatePanel@@QAEXXZ"
+  ],
+  "dtor_calls_uilib_dtor": true
+ },
+ "uiwnd_size": {
+  "uiwnd_binary_size": 68,
+  "base_subobject": [
+   "0x0",
+   "0x44"
+  ],
+  "uiwnd_members": [
+   {
+    "off": "0x4",
+    "name": "m_fontcolor",
+    "type": "gbColorQuad",
+    "size": 4
+   },
+   {
+    "off": "0x8",
+    "name": "m_wndcolor",
+    "type": "gbColorQuad",
+    "size": 4
+   },
+   {
+    "off": "0xc",
+    "name": "m_id",
+    "type": "unsigned int",
+    "size": 4
+   },
+   {
+    "off": "0x10",
+    "name": "m_rect",
+    "type": "tagRECT",
+    "size": 16
+   },
+   {
+    "off": "0x20",
+    "name": "m_pfather",
+    "type": "UIWnd *",
+    "size": 4
+   },
+   {
+    "off": "0x24",
+    "name": "m_childs",
+    "type": "PtrArray",
+    "size": 16
+   },
+   {
+    "off": "0x34",
+    "name": "m_bcreateok",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "off": "0x38",
+    "name": "m_bvisible",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "off": "0x3c",
+    "name": "m_benable",
+    "type": "int",
+    "size": 4
+   },
+   {
+    "off": "0x40",
+    "name": "m_bfocus",
+    "type": "int",
+    "size": 4
+   }
+  ],
+  "coverage_gaps_in_base": [],
+  "vptr_exempt": [
+   "0x0",
+   "0x4"
+  ],
+  "fully_covered": true,
+  "rolestatepanel_disp_in_base": {
+   "0x4": {
+    "n": 9,
+    "cls": {
+     "OTHER": 4,
+     "SUBPTR": 4,
+     "THIS": 1
+    },
+    "methods": [
+     "InitUI",
+     "OnMessage",
+     "Render"
+    ]
+   },
+   "0x8": {
+    "n": 7,
+    "cls": {
+     "THIS": 7
+    },
+    "methods": [
+     "Update"
+    ]
+   },
+   "0xc": {
+    "n": 1,
+    "cls": {
+     "OTHER": 1
+    },
+    "methods": [
+     "HideAll"
+    ]
+   },
+   "0x14": {
+    "n": 7,
+    "cls": {
+     "OTHER": 7
+    },
+    "methods": [
+     "HideAll"
+    ]
+   }
+  }
+ }
+}
