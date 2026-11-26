@@ -1,0 +1,961 @@
+{
+ "name": "SaleUI",
+ "binary_size": 105912,
+ "known_members": {
+  "0x48": {
+   "name": "bkWidth",
+   "type": "int",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A7F6 写 800",
+   "evidence_level": "A",
+   "span_bytes": 4
+  },
+  "0x4c": {
+   "name": "bkHeight",
+   "type": "int",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A7FD 写 600",
+   "evidence_level": "A",
+   "span_bytes": 4
+  },
+  "0x50": {
+   "name": "buf",
+   "type": "char[256]",
+   "source": "annotation（既有成员，本轮未取得二进制证据）",
+   "evidence_level": "unverified",
+   "span_bytes": 256
+  },
+  "0x150": {
+   "name": "m_unk_0x150",
+   "type": "unsigned char[40]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A805–0x45A830 写 0x150/0x154/0x160..0x170(byte)/0x174(=11.0f)",
+   "evidence_level": "A",
+   "span_bytes": 40
+  },
+  "0x178": {
+   "name": "m_unk_0x178",
+   "type": "unsigned char[17504]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ACFB rep stosd 0x1118 dword 整段清零（含 0x37C8/0x3E08/0x4448 子清零）",
+   "evidence_level": "A",
+   "span_bytes": 17504
+  },
+  "0x45d8": {
+   "name": "m_unk_0x45d8",
+   "type": "int",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A8A8 写 0",
+   "evidence_level": "A",
+   "span_bytes": 4
+  },
+  "0x45dc": {
+   "name": "m_unk_0x45dc",
+   "type": "unsigned char[7040]",
+   "source": "ctor ??0SaleUI(0x45A7B0) 循环 0x45A878–0x45A940，5×0x580",
+   "evidence_level": "A",
+   "span_bytes": 7040
+  },
+  "0x615c": {
+   "name": "m_unk_0x615c",
+   "type": "unsigned char[16]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 16
+  },
+  "0x616c": {
+   "name": "m_unk_0x616c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A977 ResetContainerState；dtor ??1SaleUI(0x45AE60) 0x45B1D0 ~UIFrameContainer",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x6204": {
+   "name": "m_unk_0x6204",
+   "type": "unsigned char[84]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A984 ??0UI3DCtrl；dtor ??1SaleUI(0x45AE60) 0x45B1C0 __deleting_view；邻接 84B（IDB 308 不适用）",
+   "evidence_level": "A",
+   "span_bytes": 84
+  },
+  "0x6258": {
+   "name": "m_unk_0x6258",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A993；dtor ??1SaleUI(0x45AE60) 0x45B1B0",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x62f0": {
+   "name": "m_unk_0x62f0",
+   "type": "unsigned char[164]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9A2；dtor ??1SaleUI(0x45AE60) 0x45B1A0；邻接 164B（IDB 2176 不适用）",
+   "evidence_level": "A",
+   "span_bytes": 164
+  },
+  "0x6394": {
+   "name": "m_unk_0x6394",
+   "type": "UIFrameContainer[5]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A98D ??_L(0x98,5)；dtor ??1SaleUI(0x45AE60) 0x45B18A ??_M",
+   "evidence_level": "A",
+   "span_bytes": 760
+  },
+  "0x668c": {
+   "name": "m_unk_0x668c",
+   "type": "unsigned char[104]",
+   "source": "相邻池空隙",
+   "evidence_level": "A",
+   "span_bytes": 104
+  },
+  "0x66f4": {
+   "name": "m_unk_0x66f4",
+   "type": "UIFrameContainer[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9B2 ??_L(0x98,240)；dtor ??1SaleUI(0x45AE60) 0x45B16D ??_M",
+   "evidence_level": "A",
+   "span_bytes": 36480
+  },
+  "0x10474": {
+   "name": "m_unk_0x10474",
+   "type": "unsigned char[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AD54 rep stosd 0x3C 清零（无构造调用）",
+   "evidence_level": "A",
+   "span_bytes": 240
+  },
+  "0x10568": {
+   "name": "m_unk_0x10568",
+   "type": "unsigned char[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AD61 rep stosd 0x3C 清零",
+   "evidence_level": "A",
+   "span_bytes": 240
+  },
+  "0x11558": {
+   "name": "m_unk_0x11558",
+   "type": "unsigned char[12480]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9D7 ??_L(0x34,240,ctor InitState,dtor CEffObj::DestroyEffect)；元素类未定",
+   "evidence_level": "A",
+   "span_bytes": 12480
+  },
+  "0x14618": {
+   "name": "m_unk_0x14618",
+   "type": "CCBResultWindow[30]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9FC ??_L(0xB4,30)；dtor ??1SaleUI(0x45AE60) 0x45B130",
+   "evidence_level": "A",
+   "span_bytes": 5400
+  },
+  "0x15b30": {
+   "name": "m_unk_0x15b30",
+   "type": "UIFrameContainer[30]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA1E ??_L(0x98,30)，紧接写 [esi+16D00h]；dtor ??1SaleUI(0x45AE60) 0x45B113",
+   "evidence_level": "A",
+   "span_bytes": 4560
+  },
+  "0x16d00": {
+   "name": "m_unk_0x16d00",
+   "type": "unsigned char[176]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA3C–0x45AA5E 写 0x16D00/0x16D1F/0x16D20/0x16D9C/0x16DA0；0x16D01/0x16D24/0x16DA4 三处清零",
+   "evidence_level": "A",
+   "span_bytes": 176
+  },
+  "0x16db0": {
+   "name": "m_unk_0x16db0",
+   "type": "UIProgressBar",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA6B ?ctor@UIProgressBar；dtor ??1SaleUI(0x45AE60) 0x45B0FC PalScript::Reset",
+   "evidence_level": "A",
+   "span_bytes": 244
+  },
+  "0x16ea4": {
+   "name": "m_unk_0x16ea4",
+   "type": "unsigned char[64]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 64
+  },
+  "0x16ee4": {
+   "name": "m_unk_0x16ee4",
+   "type": "UIRoleDialog",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA8B ??0UIRoleDialog；dtor ??1SaleUI(0x45AE60) 0x45B0EC；1368 与 IDB 一致",
+   "evidence_level": "A",
+   "span_bytes": 1368
+  },
+  "0x1743c": {
+   "name": "m_unk_0x1743c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA9A；dtor ??1SaleUI(0x45AE60) 0x45B0DC",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x174d4": {
+   "name": "m_unk_0x174d4",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAA9；dtor ??1SaleUI(0x45AE60) 0x45B0CC",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x1756c": {
+   "name": "m_unk_0x1756c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAB8；dtor ??1SaleUI(0x45AE60) 0x45B0BC",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x17604": {
+   "name": "m_unk_0x17604",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAC7；dtor ??1SaleUI(0x45AE60) 0x45B0AC；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x176ac": {
+   "name": "m_unk_0x176ac",
+   "type": "unsigned char[344]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAD6 GetSys(注解名)；dtor ??1SaleUI(0x45AE60) 0x45B09C ?Destroy2@UICaption；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x17804": {
+   "name": "m_unk_0x17804",
+   "type": "unsigned char[344]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAE5；dtor ??1SaleUI(0x45AE60) 0x45B091 ?Destroy2@UICaption；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x1795c": {
+   "name": "m_unk_0x1795c",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAF4；dtor ??1SaleUI(0x45AE60) 0x45B07C；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x17a04": {
+   "name": "m_unk_0x17a04",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB03；dtor ??1SaleUI(0x45AE60) 0x45B06C",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x17a9c": {
+   "name": "m_unk_0x17a9c",
+   "type": "UIFrameContainer[13]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAFE ??_L(0x98,13)；dtor ??1SaleUI(0x45AE60) 0x45B056；13×152 与 0x18254 闭合",
+   "evidence_level": "A",
+   "span_bytes": 1976
+  },
+  "0x18254": {
+   "name": "m_unk_0x18254",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB21；dtor ??1SaleUI(0x45AE60) 0x45B03F",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x182ec": {
+   "name": "m_unk_0x182ec",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB30；dtor ??1SaleUI(0x45AE60) 0x45B02F",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x18384": {
+   "name": "m_unk_0x18384",
+   "type": "unsigned char[1224]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB3F sub_43DFC0；dtor ??1SaleUI(0x45AE60) 0x45B01F sub_43E120；组件类未定",
+   "evidence_level": "A",
+   "span_bytes": 1224
+  },
+  "0x1884c": {
+   "name": "m_unk_0x1884c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AFF8 ?Destroy2@UICaption；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x189a4": {
+   "name": "m_unk_0x189a4",
+   "type": "unsigned char[404]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 404
+  },
+  "0x18b38": {
+   "name": "m_unk_0x18b38",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB7A；dtor ??1SaleUI(0x45AE60) 0x45AFE8",
+   "evidence_level": "A",
+   "span_bytes": 152
+  },
+  "0x18bd0": {
+   "name": "m_unk_0x18bd0",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB89；dtor ??1SaleUI(0x45AE60) 0x45AFD8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x18c78": {
+   "name": "m_unk_0x18c78",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB98；dtor ??1SaleUI(0x45AE60) 0x45AFC8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x18d20": {
+   "name": "m_unk_0x18d20",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABA7；dtor ??1SaleUI(0x45AE60) 0x45AFB8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x18dc8": {
+   "name": "m_unk_0x18dc8",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABB6；dtor ??1SaleUI(0x45AE60) 0x45AFA8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
+  },
+  "0x18e70": {
+   "name": "m_unk_0x18e70",
+   "type": "unsigned char[364]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF98 ?Destroy2@UICaption；邻接 364",
+   "evidence_level": "A",
+   "span_bytes": 364
+  },
+  "0x18fdc": {
+   "name": "m_unk_0x18fdc",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF88；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
+  },
+  "0x19144": {
+   "name": "m_unk_0x19144",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF78；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
+  },
+  "0x192ac": {
+   "name": "m_unk_0x192ac",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF68；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
+  },
+  "0x19414": {
+   "name": "m_unk_0x19414",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF58；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x1956c": {
+   "name": "m_unk_0x1956c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF48；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x196c4": {
+   "name": "m_unk_0x196c4",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF38；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x1981c": {
+   "name": "m_unk_0x1981c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF28；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
+  },
+  "0x19974": {
+   "name": "m_unk_0x19974",
+   "type": "unsigned char[376]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF18；邻接 376",
+   "evidence_level": "A",
+   "span_bytes": 376
+  },
+  "0x19aec": {
+   "name": "m_unk_0x19aec",
+   "type": "unsigned char[154]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC63；dtor ??1SaleUI(0x45AE60) 0x45AF08；段长 154 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 154
+  },
+  "0x19b86": {
+   "name": "m_unk_0x19b86",
+   "type": "unsigned char[256]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC81 lstrcpyA 目标；0x19B84/0x19B85/0x19D86 byte 写",
+   "evidence_level": "A",
+   "span_bytes": 256
+  },
+  "0x19c86": {
+   "name": "m_unk_0x19c86",
+   "type": "unsigned char[306]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC86 lstrcpyA 目标；至 class_size",
+   "evidence_level": "A",
+   "span_bytes": 306
+  }
+ },
+ "methods": {
+  "0x0045a7b0": {
+   "name": "SaleUI",
+   "source": "| [签名层正交治理 2026-10-16] B限定冗余+返回型：int __thiscall SaleUI::SaleUI() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox 等成员ctor",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "ctor"
+   ],
+   "flags_evidence": "IDA名字形态=SaleUI(??0构造); decomp文件=SaleUI_SaleUIvoid_0045a7b0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+  },
+  "0x004615f0": {
+   "name": "DestroySubFrames",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0046acd0": {
+   "name": "ConsumeItems",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0046a8b0": {
+   "name": "Update",
+   "evidence_level": "chain_unified",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | 链约束统一20261117→BOOL: UIWnd::Update体return v6==0计算值(BOOL)+override一致约束 | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | C9sig链统一20261117→BOOL __thiscall(CCBUI **deltatime): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x0046b040": {
+   "name": "Update",
+   "ordinal": 2,
+   "evidence_level": "chain_unified",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIWnd) | C9name定谳20261117→Update: 体尾UIWnd::Update(this,deltatime,haveinput)铁证; 原名ProcessCellAnimations留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445c60",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x004ab5e0": {
+   "name": "InitColumnWidths",
+   "_misattrib_evidence": "max_offset=383296>class_size=111488",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x005263c0": {
+   "name": "ResetGridState",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00462220": {
+   "name": "GetValue",
+   "_misattrib_evidence": "saleui-slider: accesses +0x1795C(96,604) > PAL3 size; SaleUI ctor inits same layout",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nIndex"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetValue): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
+  },
+  "0x00462080": {
+   "name": "SetRange",
+   "_misattrib_evidence": "saleui-slider: accesses +0x192AC/+0x18E70 — exactly the offsets SaleUI ctor initializes",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nMax"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetRange): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
+  },
+  "0x00461fd0": {
+   "name": "SetValue",
+   "_misattrib_evidence": "saleui-slider: alloc 0x19DB8 + PDB ctor ??0SaleUI inits same layout; PAL3(91024B) too small",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "nValue"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetValue): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
+  },
+  "0x0045ae60": {
+   "name": "~SaleUI",
+   "_misattrib_evidence": "round5: installs vtable 0x56B5CC at 0x45ae81 and tears members down descending (+0x19DB4 first); sole caller is ?_scalar_dtor@SaleUI@@ 0x45ae43 - this is ~SaleUI, IDA had it as ?ctor@PlayerMgr (no PDB mangled PlayerMgr exists)",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "IDA名字形态=~SaleUI(??1/??_G析构族); decomp文件=SaleUI_~SaleUIvoid_0045ae60 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+  },
+  "0x0045b7a0": {
+   "name": "LoadState",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "unsigned __int8",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "const void *",
+      "name": "arg0"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x0045b990": {
+   "name": "InitCombatUI",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitCombatUI): int(int,int); 原注解无",
+   "lvars": {
+    "v36": "_DWORD *",
+    "v65": "_DWORD *"
+   },
+   "lvars_evidence": "remarkbuf dword 读出值=指针, 0x118[v] 下标走查→指针型"
+  },
+  "0x00461c50": {
+   "name": "InitMode",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(InitMode): int("
+  },
+  "0x004620e0": {
+   "name": "SendInputToRole",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SendInputToRole): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
+  },
+  "0x00462120": {
+   "name": "SetSelectionFlags",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetSelectionFlags): int(int,int); 原注解无"
+  },
+  "0x004623a0": {
+   "name": "CreatePanelElements",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "CCBUIPanel *",
+      "name": "arg0"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+  },
+  "0x00469d50": {
+   "name": "AddItem",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "source": "| 签名缺参批量 2026-10-06：ret 16/4=4 参 vs 签名 1——补 3 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧）",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00469d90": {
+   "name": "SetupPlayerDisplay",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SetupPlayerDisp"
+  },
+  "0x00469eb0": {
+   "name": "HandleInput",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nInputID"
+     },
+     {
+      "type": "int",
+      "name": "nParam"
+     },
+     {
+      "type": "int",
+      "name": "nFlags"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(HandleInput): int(int,int,int,int); 原注解无"
+  },
+  "0x00471220": {
+   "name": "ToggleSlot0",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ToggleSlot0): int(char,int); 原注解2026-11-18 mangle硬真值定谳(DH): char(int); 原"
+  },
+  "0x004712d0": {
+   "name": "ToggleSlot1",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ToggleSlot1): int(char,int); 原注解2026-11-18 mangle硬真值定谳(DH): char(int); 原"
+  },
+  "0x00471380": {
+   "name": "ToggleSlot2",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ToggleSlot2): int(char,int); 原注解2026-11-18 mangle硬真值定谳(DH): char(int); 原"
+  },
+  "0x00471430": {
+   "name": "ToggleSlot3",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ToggleSlot3): int(char,int); 原注解2026-11-18 mangle硬真值定谳(DH): char(int); 原"
+  },
+  "0x004714e0": {
+   "name": "ToggleSlot4",
+   "_misattrib_evidence": "round5: PlayerMgr is a phantom pseudo-name (0 PDB mangled); physically interleaved with PDB SaleUI methods; offsets fit SaleUI 0x19DB8",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "unsigned __int8",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ToggleSlot4): int(char,int); 原注解2026-11-18 mangle硬真值定谳(DH): char(int); 原"
+  },
+  "0x00460a90": {
+   "name": "UpdateSkillPanel",
+   "_misattrib_evidence": "round5: max this-offset 0x19DA8 fits SaleUI 0x19DB8; block-adjacent to PDB ?DestroySubFrames@SaleUI@@ 0x4615F0; callers are SaleUI methods",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x0045ae40": {
+   "name": "~SaleUI",
+   "source": "vtable_gap_fill_v1(from SaleUI.json)",
+   "evidence_level": "unverified",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void *",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": "pData"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_AE40(??1/??_G析构族); decomp文件=SaleUI_scalar_dtor_AE40UIWnd_char_0045ae40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "adjudication": "confirmed"
+  },
+  "0x0046b4b0": {
+   "name": "OnMessage",
+   "source": "[批1-5#5 vtable 补槽 2026-10-15] A 级本体 0x46b4b0 `mov 0x4(%esp),%eax; sub $0x110,%esp; add $0xfffffc18,%eax`（参1 运算）+ 尾 `ret $0xc`（3 栈参）；语义未定 ⇒ _todo_ 占位。SaleUI 继承槽 slot[6] 的基类侧缺失（from=UIListBox） | multiclaim 裁决 2026-11-03: 败于 SaleUI（uniq=13）",
+   "evidence_level": "chain_unified",
+   "adjudication": "rejected",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 链律(slot6=OnMessage位); 原名_todo_N12占位; 原名_todo_0046B4B0留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "lvars": {
+    "v36": "_DWORD *",
+    "v65": "_DWORD *",
+    "v73": "_DWORD *"
+   },
+   "lvars_evidence": "remarkbuf dword 读出=指针(同族)"
+  },
+  "0x0046adf0": {
+   "name": "GetCellStateByte",
+   "evidence_level": "verified",
+   "source": " | [成员迁移 20261123] functions.json自由条目→成员(迁移判据六步: 自由条目删/幽灵声明清偿/语料重导类限定)。证据: 五面满卡face①调用者SaleUI::ProcessCellAnimations✓face③this[95265]偏移读(thiscall ABI=ecx成员)✓face④类=SaleUI✓; this偏移95265<SaleUI binary_size 105912界内互证; 现役SaleUI C2660(裸this实参=成员调用渲染, 自由形无处安放)。free_helper_confirmed标记(20261122)与face④竞争, 本次以调用点ABI+界内互证裁决成员形",
+   "sig_model": {
+    "return": "char",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  }
+ },
+ "vtables": [
+  {
+   "addr": "0x0056b5cc",
+   "base": "UIListBox",
+   "slots": [
+    {
+     "addr": "0x00445e70"
+    },
+    {
+     "addr": "0x0043ddf0",
+     "name": "Render"
+    },
+    {
+     "addr": "0x0046b040",
+     "name": "Update"
+    },
+    {
+     "addr": "0x0043de40",
+     "name": "HideAll"
+    },
+    {
+     "addr": "0x00445b90"
+    },
+    {
+     "addr": "0x0045ae40",
+     "name": "_scalar_dtor_AE40"
+    },
+    {
+     "addr": "0x0046b4b0",
+     "name": "OnMessage"
+    }
+   ]
+  }
+ ],
+ "base_size": 72,
+ "size_evidence": "operator new(0x19DB8)=105,912 at CScreenMode::InitGameUI+0x459724 followed by ctor 0x45A7B0; cross-check: ~SaleUI teardown touches +0x19DB4 (=size-4 last dword). NOTE: an earlier session recorded 105,656 - decimal conversion error, fixed 2026-09-14. 2026-09-15 round6 cleanup: deleted 32 out-of-bounds known_members (offset>=105912, max was m_SaleAtt@111276) plus 2 member-overlap intruders (pNGHVarianceParticle@88408, m_nDataPoolBase@88540) — all were unverified gen_headers_9.2/PlayerMgr-import debris (see CHANGE_LOG 2026-09-15 entry, data/status/_cleanup_fix_saleui.json). Ctor 0x45A7B0 last write is [esi+19DB4h] (byte, =105908); dtor 0x45AE60 descending teardown starts at [esi+19AECh]=105196 then jumps straight to vtable-install/base-dtor — neither function ever touches an offset >=105912. binary_size is NOT changed; it remains the hard ctor/alloc-anchored 105912.",
+ "_naming_note": "类名标签 \"SaleUI\" 源自非权威 PDB 导出（data/pdb 版本与二进制不符），仅作标识符使用。类身份由二进制证据钉死：分配 0x19DB8（CScreenMode::InitGameUI）、ctor 升序初始化、~dtor 降序拆除（0x45AE60，scalar_dtor 调用链）、vtable 0x56B5CC 同表安装。幻影 \"PlayerMgr\" 注解已于 2026-09-14 解散并入（_round5_verdict.json）。2026-09-15 round6：round5 合并 PlayerMgr 时把其 20 个 known_members 整批带入，其中 10 个落在 105912 界外、2 个落在 m_ani/m_Role 内造成 overlap，均未逐条验证 this-offset 是否真被 SaleUI 的 ctor/dtor 访问——本轮复核确认 ctor(0x45A7B0)/dtor(0x45AE60) 均止步于 <105912，故予以删除（保留另外 8 个界内但落在 m_data/m_TempData 数组间隙、checker 未标记为 overlap 的同源字段，标为待查，未删除，见 _cleanup_fix_saleui.json）。",
+ "bases": [
+  {
+   "name": "UIListBox",
+   "offset": 0
+  }
+ ],
+ "note": "| 删认领20261121: 0x525120 InitUI(name-pass错挂——该函数=SkillUI ctor1, new(0x18E34)@0x527b68直调; 真SaleUI表0x56B5CC/ctor 0x45A7B0/分配0x19DB8)\n[R5 草案 2026-11-26] 按 ??_L/??_M 池三元组 + ctor/dtor 邻接重建；既有 30 条 unverified 合成成员被二进制真布局取代。"
+}

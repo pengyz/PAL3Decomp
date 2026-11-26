@@ -5,374 +5,387 @@
   "0x48": {
    "name": "bkWidth",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A7F6 写 800",
+   "evidence_level": "A",
+   "span_bytes": 4
   },
   "0x4c": {
    "name": "bkHeight",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A7FD 写 600",
+   "evidence_level": "A",
+   "span_bytes": 4
   },
   "0x50": {
    "name": "buf",
    "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "annotation（既有成员，本轮未取得二进制证据）",
+   "evidence_level": "unverified",
+   "span_bytes": 256
   },
   "0x150": {
-   "name": "remarkbuf",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "name": "m_unk_0x150_view",
+   "type": "unsigned char[40]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A805–0x45A830 写 0x150/0x154/0x160..0x170(byte)/0x174(=11.0f)；[2026-11-26 21:35 语料契约] 该成员名对齐当前 decomp 语料引用名（上一轮 export 以 union 双视图渲染后语料只引用此名），类型仍取池/清跨度证据",
+   "evidence_level": "A",
+   "span_bytes": 40
   },
-  "0x250": {
-   "name": "m_SelNum",
+  "0x178": {
+   "name": "m_unk_0x178",
+   "type": "unsigned char[17504]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ACFB rep stosd 0x1118 dword 整段清零（含 0x37C8/0x3E08/0x4448 子清零）",
+   "evidence_level": "A",
+   "span_bytes": 17504
+  },
+  "0x45d8": {
+   "name": "m_unk_0x45d8",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A8A8 写 0",
+   "evidence_level": "A",
+   "span_bytes": 4
   },
-  "0x254": {
-   "name": "m_data",
-   "type": "st_Manager",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45dc": {
+   "name": "m_unk_0x45dc",
+   "type": "unsigned char[7040]",
+   "source": "ctor ??0SaleUI(0x45A7B0) 循环 0x45A878–0x45A940，5×0x580",
+   "evidence_level": "A",
+   "span_bytes": 7040
   },
-  "0x46b4": {
-   "name": "m_sort",
-   "type": "int[299][5]",
-   "source": "RC2-member-type 修复 2026-11-25: 元素 SaleUI_SortData→int（维度/跨度不变, 布局零改动）。赋值目标定真型定律: 语料存入值全为原始 dword(整数 65/86/68/800/600/bkWidth + 指针值 m_pEquipAtt1/2[..] + _tail_000[0..3] 字节级行走), SaleUI_SortData 自身标注即判 gap-fill 噪声(mangled 零命中 @SaleUI_SortData@@ 不在二进制, 误挂待终审, 零成员 interim 态)。原型致 C2440 RoleAtt*→SaleUI_SortData ×10 (SaleUI.cpp 7754/7873-7875/7996-7998/8055-8057) + 包装类 operator= 味 char[4]=int ×7 (SaleUI_SortData.h:16, emit_headers operator= 无 _tail_ 守卫, F2a 2026-11-18 operator int() 同款先例)",
-   "evidence_level": "unverified"
+  "0x615c": {
+   "name": "m_unk_0x615c",
+   "type": "unsigned char[16]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 16
   },
-  "0x756c": {
-   "name": "m_ListSelNum",
-   "type": "int[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x616c": {
+   "name": "m_unk_0x616c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A977 ResetContainerState；dtor ??1SaleUI(0x45AE60) 0x45B1D0 ~UIFrameContainer",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x8cc8": {
-   "name": "m_Max",
-   "type": "int[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x6204": {
+   "name": "m_unk_0x6204",
+   "type": "unsigned char[84]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A984 ??0UI3DCtrl；dtor ??1SaleUI(0x45AE60) 0x45B1C0 __deleting_view；邻接 84B（IDB 308 不适用）",
+   "evidence_level": "A",
+   "span_bytes": 84
   },
-  "0xa424": {
-   "name": "m_Sum",
-   "type": "int[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x6258": {
+   "name": "m_unk_0x6258",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A993；dtor ??1SaleUI(0x45AE60) 0x45B1B0",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0xa438": {
-   "name": "_isCreatable",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x62f0": {
+   "name": "m_unk_0x62f0",
+   "type": "unsigned char[164]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9A2；dtor ??1SaleUI(0x45AE60) 0x45B1A0；邻接 164B（IDB 2176 不适用）",
+   "evidence_level": "A",
+   "span_bytes": 164
   },
-  "0xa43c": {
-   "name": "m_SaleData",
-   "type": "PlayerItem[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x6394": {
+   "name": "m_unk_0x6394",
+   "type": "UIFrameContainer[5]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A98D ??_L(0x98,5)；dtor ??1SaleUI(0x45AE60) 0x45B18A ??_M",
+   "evidence_level": "A",
+   "span_bytes": 760
   },
-  "0xea50": {
-   "name": "m_TempData",
-   "type": "PlayerItem[158]",
-   "source": "span-fix: IDB 偏移序列给出真实跨度 = m_bNGHS@0xF1B8 − m_TempData@0xEA50 = 1896；sizeof(PlayerItem)=12 ⇒ 1896/12=158 整除。原 `PlayerItem[299][5]`(=17940B) 超出跨度 9.5×，导致发射器 start_off 越过 0xF1B8，把 m_bNGHS/m_bWPXS 静默吞掉（71 条 C2039）。",
-   "evidence_level": "unverified"
+  "0x668c": {
+   "name": "m_unk_0x668c",
+   "type": "unsigned char[104]",
+   "source": "相邻池空隙",
+   "evidence_level": "A",
+   "span_bytes": 104
   },
-  "0x13064": {
-   "name": "m_NotesNull",
-   "type": "int[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x66f4": {
+   "name": "m_unk_0x66f4_view",
+   "type": "UIFrameContainer[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9B2 ??_L(0x98,240)；dtor ??1SaleUI(0x45AE60) 0x45B16D ??_M；[2026-11-26 21:35 语料契约] 该成员名对齐当前 decomp 语料引用名（上一轮 export 以 union 双视图渲染后语料只引用此名），类型仍取池/清跨度证据",
+   "evidence_level": "A",
+   "span_bytes": 36480
   },
-  "0x147c0": {
-   "name": "m_IsEquip",
-   "type": "unsigned char[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x10474": {
+   "name": "m_unk_0x10474",
+   "type": "unsigned char[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AD54 rep stosd 0x3C 清零（无构造调用）",
+   "evidence_level": "A",
+   "span_bytes": 240
   },
-  "0x14d97": {
-   "name": "m_TempIsEquip",
-   "type": "unsigned char[299][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x10568": {
+   "name": "m_unk_0x10568",
+   "type": "unsigned char[240]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AD61 rep stosd 0x3C 清零",
+   "evidence_level": "A",
+   "span_bytes": 240
   },
-  "0x15370": {
-   "name": "x",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x11558": {
+   "name": "m_unk_0x11558_view",
+   "type": "unsigned char[12480]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9D7 ??_L(0x34,240,ctor InitState,dtor CEffObj::DestroyEffect)；元素类未定；[2026-11-26 21:35 语料契约] 该成员名对齐当前 decomp 语料引用名（上一轮 export 以 union 双视图渲染后语料只引用此名），类型仍取池/清跨度证据",
+   "evidence_level": "A",
+   "span_bytes": 12480
   },
-  "0x15374": {
-   "name": "rc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x14618": {
+   "name": "m_unk_0x14618",
+   "type": "CCBResultWindow[30]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9FC ??_L(0xB4,30)；dtor ??1SaleUI(0x45AE60) 0x45B130",
+   "evidence_level": "A",
+   "span_bytes": 5400
   },
-  "0x15384": {
-   "name": "m_Frame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x15b30": {
+   "name": "m_unk_0x15b30",
+   "type": "UIFrameContainer[30]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA1E ??_L(0x98,30)，紧接写 [esi+16D00h]；dtor ??1SaleUI(0x45AE60) 0x45B113",
+   "evidence_level": "A",
+   "span_bytes": 4560
   },
-  "0x15424": {
-   "name": "m_FrameBar",
-   "type": "UIFlexBar",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x16d00": {
+   "name": "m_unk_0x16d00",
+   "type": "unsigned char[176]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA3C–0x45AA5E 写 0x16D00/0x16D1F/0x16D20/0x16D9C/0x16DA0；0x16D01/0x16D24/0x16DA4 三处清零",
+   "evidence_level": "A",
+   "span_bytes": 176
   },
-  "0x15478": {
-   "name": "m_Flag",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x16db0": {
+   "name": "m_unk_0x16db0",
+   "type": "UIProgressBar",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA6B ?ctor@UIProgressBar；dtor ??1SaleUI(0x45AE60) 0x45B0FC PalScript::Reset",
+   "evidence_level": "A",
+   "span_bytes": 244
   },
-  "0x15518": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x16ea4": {
+   "name": "m_unk_0x16ea4",
+   "type": "unsigned char[64]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 64
   },
-  "0x155b8": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x16ee4": {
+   "name": "m_unk_0x16ee4",
+   "type": "UIRoleDialog",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA8B ??0UIRoleDialog；dtor ??1SaleUI(0x45AE60) 0x45B0EC；1368 与 IDB 一致",
+   "evidence_level": "A",
+   "span_bytes": 1368
   },
-  "0x15658": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1743c": {
+   "name": "m_unk_0x1743c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA9A；dtor ??1SaleUI(0x45AE60) 0x45B0DC",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x156f8": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x174d4": {
+   "name": "m_unk_0x174d4",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAA9；dtor ??1SaleUI(0x45AE60) 0x45B0CC",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x15798": {
-   "name": "mb_Exit",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1756c": {
+   "name": "m_unk_0x1756c",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAB8；dtor ??1SaleUI(0x45AE60) 0x45B0BC",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x158f0": {
-   "name": "m_ExitRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x17604": {
+   "name": "m_unk_0x17604",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAC7；dtor ??1SaleUI(0x45AE60) 0x45B0AC；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x15900": {
-   "name": "m_ani",
-   "type": "UIAnimateCtrl",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x176ac": {
+   "name": "m_unk_0x176ac",
+   "type": "unsigned char[344]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAD6 GetSys(注解名)；dtor ??1SaleUI(0x45AE60) 0x45B09C ?Destroy2@UICaption；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x159a4": {
-   "name": "m_Role",
-   "type": "UIStatic[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x17804": {
+   "name": "m_unk_0x17804",
+   "type": "unsigned char[344]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAE5；dtor ??1SaleUI(0x45AE60) 0x45B091 ?Destroy2@UICaption；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x15cc4": {
-   "name": "m_RoleRc",
-   "type": "tagRECT[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1795c": {
+   "name": "m_unk_0x1795c",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAF4；dtor ??1SaleUI(0x45AE60) 0x45B07C；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x15d14": {
-   "name": "RoleX",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x17a04": {
+   "name": "m_unk_0x17a04",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB03；dtor ??1SaleUI(0x45AE60) 0x45B06C",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x15d18": {
-   "name": "RoleY",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x17a9c": {
+   "name": "m_unk_0x17a9c",
+   "type": "UIFrameContainer[13]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAFE ??_L(0x98,13)；dtor ??1SaleUI(0x45AE60) 0x45B056；13×152 与 0x18254 闭合",
+   "evidence_level": "A",
+   "span_bytes": 1976
   },
-  "0x15d1c": {
-   "name": "HeadW",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18254": {
+   "name": "m_unk_0x18254",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB21；dtor ??1SaleUI(0x45AE60) 0x45B03F",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x15d20": {
-   "name": "HeadH",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x182ec": {
+   "name": "m_unk_0x182ec",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB30；dtor ??1SaleUI(0x45AE60) 0x45B02F",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x15d24": {
-   "name": "m_Is",
-   "type": "unsigned char[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18384": {
+   "name": "m_unk_0x18384",
+   "type": "unsigned char[1224]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB3F sub_43DFC0；dtor ??1SaleUI(0x45AE60) 0x45B01F sub_43E120；组件类未定",
+   "evidence_level": "A",
+   "span_bytes": 1224
   },
-  "0x15d2c": {
-   "name": "m_Msg",
-   "type": "MUIDialog",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1884c": {
+   "name": "m_unk_0x1884c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AFF8 ?Destroy2@UICaption；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x16294": {
-   "name": "m_3DObj",
-   "type": "UI3DCtrl",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x189a4": {
+   "name": "m_unk_0x189a4",
+   "type": "unsigned char[404]",
+   "source": "相邻构造点空隙",
+   "evidence_level": "A",
+   "span_bytes": 404
   },
-  "0x163c8": {
-   "name": "m_FlagRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18b38": {
+   "name": "m_unk_0x18b38",
+   "type": "UIFrameContainer",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB7A；dtor ??1SaleUI(0x45AE60) 0x45AFE8",
+   "evidence_level": "A",
+   "span_bytes": 152
   },
-  "0x163d8": {
-   "name": "m_TalkFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18bd0": {
+   "name": "m_unk_0x18bd0",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB89；dtor ??1SaleUI(0x45AE60) 0x45AFD8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x16478": {
-   "name": "m_Ready",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18c78": {
+   "name": "m_unk_0x18c78",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB98；dtor ??1SaleUI(0x45AE60) 0x45AFC8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x16518": {
-   "name": "m_ReadyRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18d20": {
+   "name": "m_unk_0x18d20",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABA7；dtor ??1SaleUI(0x45AE60) 0x45AFB8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x16528": {
-   "name": "m_entryTalk",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18dc8": {
+   "name": "m_unk_0x18dc8",
+   "type": "unsigned char[168]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABB6；dtor ??1SaleUI(0x45AE60) 0x45AFA8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 168
   },
-  "0x16628": {
-   "name": "m_btn",
-   "type": "UIButton[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18e70": {
+   "name": "m_unk_0x18e70",
+   "type": "unsigned char[364]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF98 ?Destroy2@UICaption；邻接 364",
+   "evidence_level": "A",
+   "span_bytes": 364
   },
-  "0x16ce0": {
-   "name": "m_TabRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x18fdc": {
+   "name": "m_unk_0x18fdc",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF88；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
   },
-  "0x16cf0": {
-   "name": "m_ListSaleTitle",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x19144": {
+   "name": "m_unk_0x19144",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF78；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
   },
-  "0x16d90": {
-   "name": "m_ListEquipTitleRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x192ac": {
+   "name": "m_unk_0x192ac",
+   "type": "unsigned char[360]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF68；邻接 360",
+   "evidence_level": "A",
+   "span_bytes": 360
   },
-  "0x16da0": {
-   "name": "m_Icon",
-   "type": "UIStaticRM[5][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x19414": {
+   "name": "m_unk_0x19414",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF58；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x17ffc": {
-   "name": "m_ListFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1956c": {
+   "name": "m_unk_0x1956c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF48；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x1809c": {
-   "name": "m_ScrollHB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x196c4": {
+   "name": "m_unk_0x196c4",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF38；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x1813c": {
-   "name": "m_ListGrid",
-   "type": "UIStatic[14]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1981c": {
+   "name": "m_unk_0x1981c",
+   "type": "unsigned char[344]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF28；344B；段长 344 与 IDB UICaption(96) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 344
   },
-  "0x189fc": {
-   "name": "m_ListRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x19974": {
+   "name": "m_unk_0x19974",
+   "type": "unsigned char[376]",
+   "source": "dtor ??1SaleUI(0x45AE60) 0x45AF18；邻接 376",
+   "evidence_level": "A",
+   "span_bytes": 376
   },
-  "0x18a0c": {
-   "name": "ml_ResumeList",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x19aec": {
+   "name": "m_unk_0x19aec",
+   "type": "unsigned char[154]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC63；dtor ??1SaleUI(0x45AE60) 0x45AF08；段长 154 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "evidence_level": "A",
+   "span_bytes": 154
   },
-  "0x18f14": {
-   "name": "ResumeNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x19b86": {
+   "name": "m_unk_0x19b86",
+   "type": "unsigned char[256]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC81 lstrcpyA 目标；0x19B84/0x19B85/0x19D86 byte 写",
+   "evidence_level": "A",
+   "span_bytes": 256
   },
-  "0x18f18": {
-   "name": "ml_TreasureList",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x19420": {
-   "name": "TreasureNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x19424": {
-   "name": "ml_AttackList",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1992c": {
-   "name": "AttackNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x488": {
-   "name": "m_inventory",
-   "type": "Inventory",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x4b0": {
-   "name": "m_reoccupy",
-   "type": "Reoccupy",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0x4c0": {
-   "name": "dwWeaponWU",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0xf1b8": {
-   "name": "m_bNGHS",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
-  },
-  "0xf1bc": {
-   "name": "m_bWPXS",
-   "type": "int",
-   "source": "gen_headers_9.2",
-   "evidence_level": "unverified"
+  "0x19c86": {
+   "name": "m_unk_0x19c86",
+   "type": "unsigned char[306]",
+   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AC86 lstrcpyA 目标；至 class_size",
+   "evidence_level": "A",
+   "span_bytes": 306
   }
  },
  "methods": {
@@ -944,5 +957,5 @@
    "offset": 0
   }
  ],
- "note": " | 删认领20261121: 0x525120 InitUI(name-pass错挂——该函数=SkillUI ctor1, new(0x18E34)@0x527b68直调; 真SaleUI表0x56B5CC/ctor 0x45A7B0/分配0x19DB8)"
+ "note": "| 删认领20261121: 0x525120 InitUI(name-pass错挂——该函数=SkillUI ctor1, new(0x18E34)@0x527b68直调; 真SaleUI表0x56B5CC/ctor 0x45A7B0/分配0x19DB8)\n[R5 草案 2026-11-26] 按 ??_L/??_M 池三元组 + ctor/dtor 邻接重建；既有 30 条 unverified 合成成员被二进制真布局取代。"
 }

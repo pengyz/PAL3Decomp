@@ -1,0 +1,644 @@
+{
+ "class": "SaleUI",
+ "ctor": "0x45A7B0",
+ "dtor": "0x45AE60",
+ "class_size": "0x19DB8",
+ "arrays": [
+  {
+   "off": "0x6394",
+   "stride": 152,
+   "count": 5,
+   "elem": "UIFrameContainer",
+   "end": "0x668c",
+   "site": "0x45A98D"
+  },
+  {
+   "off": "0x66f4",
+   "stride": 152,
+   "count": 240,
+   "elem": "UIFrameContainer",
+   "end": "0xf574",
+   "site": "0x45A9B2"
+  },
+  {
+   "off": "0x11558",
+   "stride": 52,
+   "count": 240,
+   "elem": "unknown52",
+   "end": "0x14618",
+   "site": "0x45A9D7",
+   "ctor_cb": "InitState",
+   "dtor_cb": "CEffObj::DestroyEffect"
+  },
+  {
+   "off": "0x14618",
+   "stride": 180,
+   "count": 30,
+   "elem": "CCBResultWindow",
+   "end": "0x15b30",
+   "site": "0x45A9FC"
+  },
+  {
+   "off": "0x15b30",
+   "stride": 152,
+   "count": 30,
+   "elem": "UIFrameContainer",
+   "end": "0x16d00",
+   "site": "0x45AA1E"
+  },
+  {
+   "off": "0x17a9c",
+   "stride": 152,
+   "count": 13,
+   "elem": "UIFrameContainer",
+   "end": "0x18254",
+   "site": "0x45AAFE"
+  },
+  {
+   "off": "0x45dc",
+   "stride": 1408,
+   "count": 5,
+   "elem": "unknown1408",
+   "end": "0x615c",
+   "site": "0x45A878 loop"
+  }
+ ],
+ "clear_spans": [
+  {
+   "off": "0x178",
+   "len": "0x4460",
+   "site": "0x45ACFB rep stosd"
+  },
+  {
+   "off": "0x37c8",
+   "len": "0x640",
+   "site": "0x45A846"
+  },
+  {
+   "off": "0x3e08",
+   "len": "0x640",
+   "site": "0x45A860"
+  },
+  {
+   "off": "0x4448",
+   "len": "0x190",
+   "site": "0x45A853"
+  }
+ ],
+ "ctor_sites": [
+  {
+   "off": "0x37c0",
+   "site": "0045A811",
+   "target": null,
+   "pre": "mov     [esi+164h], ebx mov     [esi+168h], ebx mov     [esi+16Ch], ebx mov     [esi+170h], bl"
+  },
+  {
+   "off": "0x37c8",
+   "site": "0045A82C",
+   "target": null,
+   "pre": "mov     dword ptr [esi+174h], 41000000h xor     eax, eax mov     [esi+17Ah], bx mov     [ecx], eax"
+  },
+  {
+   "off": "0x4448",
+   "site": "0045A84D",
+   "target": null,
+   "pre": "mov     [ecx+4], eax mov     ecx, 190h rep stosd mov     ecx, 64h ; 'd'"
+  },
+  {
+   "off": "0x3e08",
+   "site": "0045A855",
+   "target": null,
+   "pre": "rep stosd mov     ecx, 64h ; 'd' lea     edi, [esi+4448h] rep stosd"
+  },
+  {
+   "off": "0x45dc",
+   "site": "0045A862",
+   "target": null,
+   "pre": "rep stosd lea     edi, [esi+3E08h] mov     ecx, 190h rep stosd"
+  },
+  {
+   "off": "0x616c",
+   "site": "0045A946",
+   "target": "call    ResetContainerState",
+   "pre": "dec     eax mov     [esp+28h+var_18], edx mov     [esp+28h+var_14], eax jnz     loc_45A880"
+  },
+  {
+   "off": "0x6204",
+   "site": "0045A951",
+   "target": "UI3DCtrl::UI3DCtrl(void)",
+   "pre": "mov     [esp+28h+var_14], eax jnz     loc_45A880 lea     ecx, [esi+616Ch]; pWnd call    ResetContainerState"
+  },
+  {
+   "off": "0x6258",
+   "site": "0045A961",
+   "target": "call    ResetContainerState",
+   "pre": "lea     ecx, [esi+6204h]; this mov     byte ptr [esp+28h+var_4], 1 call    ??0UI3DCtrl@@QAE@XZ; UI3DCtrl::UI3DCtrl(void)"
+  },
+  {
+   "off": "0x62f0",
+   "site": "0045A971",
+   "target": "PalScript::PalScript(void)",
+   "pre": " UI3DCtrl::UI3DCtrl(void) lea     ecx, [esi+6258h]; pWnd mov     byte ptr [esp+28h+var_4], 2 call    ResetContainerState"
+  },
+  {
+   "off": "0x6394",
+   "site": "0045A98D",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "iner@@QAE@XZ; void (__thiscall *)(void *) push    offset ResetContainerState; void (__thiscall *)(void *) push    5; int"
+  },
+  {
+   "off": "0x66f4",
+   "site": "0045A9B2",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "r@@QAE@XZ; void (__thiscall *)(void *) push    offset ResetContainerState; void (__thiscall *)(void *) push    0F0h; int"
+  },
+  {
+   "off": "0x11558",
+   "site": "0045A9D7",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "ect@CEffObj@@QAEXXZ; void (__thiscall *)(void *) push    offset InitState; void (__thiscall *)(void *) push    0F0h; int"
+  },
+  {
+   "off": "0x14618",
+   "site": "0045A9FC",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "@XZ; void (__thiscall *)(void *) push    offset ??0CCBResultWindow@@QAE@XZ; void (__thiscall *)(void *) push    1Eh; int"
+  },
+  {
+   "off": "0x15b30",
+   "site": "0045AA1E",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "er@@QAE@XZ; void (__thiscall *)(void *) push    offset ResetContainerState; void (__thiscall *)(void *) push    1Eh; int"
+  },
+  {
+   "off": "0x16db0",
+   "site": "0045AA34",
+   "target": "UIProgressBar::ctor(void)",
+   "pre": ", 8 call    ??_L@YGXPAXIHP6EX0@Z1@Z; `eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))"
+  },
+  {
+   "off": "0x16ee4",
+   "site": "0045AA62",
+   "target": "UIRoleDialog::UIRoleDialog(void)",
+   "pre": "ebx mov     [esi+16D9Ch], ebx mov     [esi+16DA0h], ebx call    ?ctor@UIProgressBar@@QAEPAHXZ; UIProgressBar::ctor(void)"
+  },
+  {
+   "off": "0x1743c",
+   "site": "0045AA72",
+   "target": "call    ResetContainerState",
+   "pre": "si+16EE4h]; this mov     byte ptr [esp+28h+var_4], 0Ah call    ??0UIRoleDialog@@QAE@XZ; UIRoleDialog::UIRoleDialog(void)"
+  },
+  {
+   "off": "0x174d4",
+   "site": "0045AA82",
+   "target": "call    ResetContainerState",
+   "pre": "og::UIRoleDialog(void) lea     ecx, [esi+1743Ch]; pWnd mov     byte ptr [esp+28h+var_4], 0Bh call    ResetContainerState"
+  },
+  {
+   "off": "0x1756c",
+   "site": "0045AA92",
+   "target": "call    ResetContainerState",
+   "pre": "   ResetContainerState lea     ecx, [esi+174D4h]; pWnd mov     byte ptr [esp+28h+var_4], 0Ch call    ResetContainerState"
+  },
+  {
+   "off": "0x17604",
+   "site": "0045AAA2",
+   "target": "call    ResetContainerState",
+   "pre": "   ResetContainerState lea     ecx, [esi+1756Ch]; pWnd mov     byte ptr [esp+28h+var_4], 0Dh call    ResetContainerState"
+  },
+  {
+   "off": "0x176ac",
+   "site": "0045AAB2",
+   "target": "NameSys::GetSys(void)",
+   "pre": "   ResetContainerState lea     ecx, [esi+17604h]; pWnd mov     byte ptr [esp+28h+var_4], 0Eh call    ResetContainerState"
+  },
+  {
+   "off": "0x17804",
+   "site": "0045AAC2",
+   "target": "NameSys::GetSys(void)",
+   "pre": "x, [esi+176ACh]; void * mov     byte ptr [esp+28h+var_4], 0Fh call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x1795c",
+   "site": "0045AAD2",
+   "target": "call    ResetContainerState",
+   "pre": "x, [esi+17804h]; void * mov     byte ptr [esp+28h+var_4], 10h call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x17a04",
+   "site": "0045AAE2",
+   "target": "call    ResetContainerState",
+   "pre": " NameSys::GetSys(void) lea     ecx, [esi+1795Ch]; pWnd mov     byte ptr [esp+28h+var_4], 11h call    ResetContainerState"
+  },
+  {
+   "off": "0x17a9c",
+   "site": "0045AAFE",
+   "target": "`eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))",
+   "pre": "er@@QAE@XZ; void (__thiscall *)(void *) push    offset ResetContainerState; void (__thiscall *)(void *) push    0Dh; int"
+  },
+  {
+   "off": "0x18254",
+   "site": "0045AB14",
+   "target": "call    ResetContainerState",
+   "pre": "13h call    ??_L@YGXPAXIHP6EX0@Z1@Z; `eh vector constructor iterator'(void *,uint,int,void (*)(void *),void (*)(void *))"
+  },
+  {
+   "off": "0x182ec",
+   "site": "0045AB24",
+   "target": "call    ResetContainerState",
+   "pre": "d *),void (*)(void *)) lea     ecx, [esi+18254h]; pWnd mov     byte ptr [esp+28h+var_4], 14h call    ResetContainerState"
+  },
+  {
+   "off": "0x18384",
+   "site": "0045AB34",
+   "target": "call    sub_43DFC0",
+   "pre": "   ResetContainerState lea     ecx, [esi+182ECh]; pWnd mov     byte ptr [esp+28h+var_4], 15h call    ResetContainerState"
+  },
+  {
+   "off": "0x1884c",
+   "site": "0045AB44",
+   "target": "NameSys::GetSys(void)",
+   "pre": "call    ResetContainerState lea     ecx, [esi+18384h]; this mov     byte ptr [esp+28h+var_4], 16h call    sub_43DFC0"
+  },
+  {
+   "off": "0x18b38",
+   "site": "0045AB8B",
+   "target": "call    ResetContainerState",
+   "pre": "ov     dword ptr [edi+2D0h], 20h ; ' ' mov     dword ptr [edi+2D4h], 10h mov     [edi+2D8h], ebx mov     [edi+2DCh], ebx"
+  },
+  {
+   "off": "0x18bd0",
+   "site": "0045AB9B",
+   "target": "call    ResetContainerState",
+   "pre": "ov     [edi+2DCh], ebx lea     ecx, [esi+18B38h]; pWnd mov     byte ptr [esp+28h+var_4], 19h call    ResetContainerState"
+  },
+  {
+   "off": "0x18c78",
+   "site": "0045ABAB",
+   "target": "call    ResetContainerState",
+   "pre": "   ResetContainerState lea     ecx, [esi+18BD0h]; pWnd mov     byte ptr [esp+28h+var_4], 1Ah call    ResetContainerState"
+  },
+  {
+   "off": "0x18d20",
+   "site": "0045ABBB",
+   "target": "call    ResetContainerState",
+   "pre": "   ResetContainerState lea     ecx, [esi+18C78h]; pWnd mov     byte ptr [esp+28h+var_4], 1Bh call    ResetContainerState"
+  },
+  {
+   "off": "0x18dc8",
+   "site": "0045ABCB",
+   "target": "call    ResetContainerState",
+   "pre": "   ResetContainerState lea     ecx, [esi+18D20h]; pWnd mov     byte ptr [esp+28h+var_4], 1Ch call    ResetContainerState"
+  },
+  {
+   "off": "0x18e70",
+   "site": "0045ABE0",
+   "target": "NameSys::GetSys(void)",
+   "pre": "si+18DC8h]; pWnd mov     byte ptr [esp+28h+var_4], 1Dh call    ResetContainerState mov     byte ptr [esp+28h+var_4], 1Eh"
+  },
+  {
+   "off": "0x18fdc",
+   "site": "0045ABEB",
+   "target": "NameSys::GetSys(void)",
+   "pre": "te ptr [esp+28h+var_4], 1Eh lea     ecx, [esi+18E70h]; void * call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x19144",
+   "site": "0045ABFB",
+   "target": "NameSys::GetSys(void)",
+   "pre": "x, [esi+18FDCh]; void * mov     byte ptr [esp+28h+var_4], 1Fh call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x192ac",
+   "site": "0045AC0B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+19144h]; void * mov     byte ptr [esp+28h+var_4], 20h ; ' ' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x19414",
+   "site": "0045AC1B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+192ACh]; void * mov     byte ptr [esp+28h+var_4], 21h ; '!' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x1956c",
+   "site": "0045AC2B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+19414h]; void * mov     byte ptr [esp+28h+var_4], 22h ; '\"' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x196c4",
+   "site": "0045AC3B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+1956Ch]; void * mov     byte ptr [esp+28h+var_4], 23h ; '#' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x1981c",
+   "site": "0045AC4B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+196C4h]; void * mov     byte ptr [esp+28h+var_4], 24h ; '$' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x19974",
+   "site": "0045AC5B",
+   "target": "NameSys::GetSys(void)",
+   "pre": "i+1981Ch]; void * mov     byte ptr [esp+28h+var_4], 25h ; '%' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x19aec",
+   "site": "0045AC6B",
+   "target": "call    ResetContainerState",
+   "pre": "i+19974h]; void * mov     byte ptr [esp+28h+var_4], 26h ; '&' call    ?GetSys@NameSys@@QACPAV1@XZ; NameSys::GetSys(void)"
+  },
+  {
+   "off": "0x19b86",
+   "site": "0045AC81",
+   "target": null,
+   "pre": "ecx, [esi+19AECh]; pWnd mov     byte ptr [esp+28h+var_4], 27h ; ''' call    ResetContainerState mov     edi, ds:lstrcpyA"
+  },
+  {
+   "off": "0x19c86",
+   "site": "0045ACE6",
+   "target": "lstrcpyA",
+   "pre": "mov     [esi+19DACh], bl mov     [esi+19DB4h], bl mov     dword ptr [esi], offset stru_56B5CC call    edi ; lstrcpyA"
+  },
+  {
+   "off": "0x178",
+   "site": "0045ACFB",
+   "target": null,
+   "pre": "push    edx; lpString1 call    edi ; lstrcpyA mov     ecx, 1118h xor     eax, eax"
+  },
+  {
+   "off": "0x45dc",
+   "site": "0045AD08",
+   "target": null,
+   "pre": "xor     eax, eax lea     edi, [esi+178h] rep stosd mov     ecx, 160h"
+  },
+  {
+   "off": "0x16d01",
+   "site": "0045AD15",
+   "target": null,
+   "pre": "mov     ecx, 160h lea     edi, [esi+45DCh] rep stosd mov     ecx, 7"
+  },
+  {
+   "off": "0x16d24",
+   "site": "0045AD45",
+   "target": null,
+   "pre": "rep stosd stosw mov     ecx, 1Eh mov     eax, ebp"
+  },
+  {
+   "off": "0x10474",
+   "site": "0045AD54",
+   "target": null,
+   "pre": "lea     edi, [esi+16D24h] rep stosd mov     ecx, 3Ch ; '<' xor     eax, eax"
+  },
+  {
+   "off": "0x10568",
+   "site": "0045AD61",
+   "target": null,
+   "pre": "xor     eax, eax lea     edi, [esi+10474h] rep stosd mov     ecx, 3Ch ; '<'"
+  },
+  {
+   "off": "0x16da4",
+   "site": "0045AD69",
+   "target": null,
+   "pre": "rep stosd mov     ecx, 3Ch ; '<' lea     edi, [esi+10568h] rep stosd"
+  }
+ ],
+ "dtor_sites": [
+  {
+   "off": "0x19aec",
+   "site": "0045AF08",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "mov     ecx, esi; self mov     [esi+170h], bl mov     [esi+19DB4h], bl call    HideAll_3DE40"
+  },
+  {
+   "off": "0x19974",
+   "site": "0045AF18",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "v     byte ptr [esp+20h+var_4], 26h ; '&' call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x1981c",
+   "site": "0045AF28",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "19974h]; this mov     byte ptr [esp+20h+var_4], 25h ; '%' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x196c4",
+   "site": "0045AF38",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "1981Ch]; this mov     byte ptr [esp+20h+var_4], 24h ; '$' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x1956c",
+   "site": "0045AF48",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "196C4h]; this mov     byte ptr [esp+20h+var_4], 23h ; '#' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x19414",
+   "site": "0045AF58",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "1956Ch]; this mov     byte ptr [esp+20h+var_4], 22h ; '\"' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x192ac",
+   "site": "0045AF68",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "19414h]; this mov     byte ptr [esp+20h+var_4], 21h ; '!' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x19144",
+   "site": "0045AF78",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "192ACh]; this mov     byte ptr [esp+20h+var_4], 20h ; ' ' call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x18fdc",
+   "site": "0045AF88",
+   "target": "UICaption::Destroy2(void)",
+   "pre": " [esi+19144h]; this mov     byte ptr [esp+20h+var_4], 1Fh call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x18e70",
+   "site": "0045AF98",
+   "target": "UICaption::Destroy2(void)",
+   "pre": " [esi+18FDCh]; this mov     byte ptr [esp+20h+var_4], 1Eh call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x18dc8",
+   "site": "0045AFA8",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": " [esi+18E70h]; this mov     byte ptr [esp+20h+var_4], 1Dh call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x18d20",
+   "site": "0045AFB8",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 1Ch call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x18c78",
+   "site": "0045AFC8",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 1Bh call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x18bd0",
+   "site": "0045AFD8",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 1Ah call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x18b38",
+   "site": "0045AFE8",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 19h call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x1884c",
+   "site": "0045AFF8",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 18h call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x18384",
+   "site": "0045B01F",
+   "target": "call    sub_43E120",
+   "pre": "cx, [edi+20h]; this mov     byte ptr [esp+20h+var_4], 17h call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x182ec",
+   "site": "0045B02F",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "EXXZ; UICaption::Destroy2(void) lea     ecx, [esi+18384h]; this mov     byte ptr [esp+20h+var_4], 16h call    sub_43E120"
+  },
+  {
+   "off": "0x18254",
+   "site": "0045B03F",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 15h call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x17a9c",
+   "site": "0045B056",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": "tainer::~UIFrameContainer(void) push    offset ??1UIFrameContainer@@QAE@XZ; void (__thiscall *)(void *) push    0Dh; int"
+  },
+  {
+   "off": "0x17a04",
+   "site": "0045B06C",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "r [esp+30h+var_4], 13h call    ??_M@YGXPAXIHP6EX0@Z@Z; `eh vector destructor iterator'(void *,uint,int,void (*)(void *))"
+  },
+  {
+   "off": "0x1795c",
+   "site": "0045B07C",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 12h call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x17804",
+   "site": "0045B091",
+   "target": "UICaption::Destroy2(void)",
+   "pre": "11h call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void) mov     byte ptr [esp+20h+var_4], 10h"
+  },
+  {
+   "off": "0x176ac",
+   "site": "0045B09C",
+   "target": "UICaption::Destroy2(void)",
+   "pre": " ptr [esp+20h+var_4], 10h lea     ecx, [esi+17804h]; this call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x17604",
+   "site": "0045B0AC",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": " [esi+176ACh]; this mov     byte ptr [esp+20h+var_4], 0Fh call    ?Destroy2@UICaption@@QAEXXZ; UICaption::Destroy2(void)"
+  },
+  {
+   "off": "0x1756c",
+   "site": "0045B0BC",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 0Eh call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x174d4",
+   "site": "0045B0CC",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 0Dh call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x1743c",
+   "site": "0045B0DC",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 0Ch call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x16ee4",
+   "site": "0045B0EC",
+   "target": "UIRoleDialog::~UIRoleDialog(void)",
+   "pre": "his mov     byte ptr [esp+20h+var_4], 0Bh call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x16db0",
+   "site": "0045B0FC",
+   "target": "PalScript::Reset(void)",
+   "pre": "i+16EE4h]; this mov     byte ptr [esp+20h+var_4], 0Ah call    ??1UIRoleDialog@@QAE@XZ; UIRoleDialog::~UIRoleDialog(void)"
+  },
+  {
+   "off": "0x15b30",
+   "site": "0045B113",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": "@QAEXXZ; PalScript::Reset(void) push    offset ??1UIFrameContainer@@QAE@XZ; void (__thiscall *)(void *) push    1Eh; int"
+  },
+  {
+   "off": "0x14618",
+   "site": "0045B130",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": "oid *,uint,int,void (*)(void *)) push    offset ??1CCBResultWindow@@QAE@XZ; void (__thiscall *)(void *) push    1Eh; int"
+  },
+  {
+   "off": "0x11558",
+   "site": "0045B150",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": ",uint,int,void (*)(void *)) push    offset ?DestroyEffect@CEffObj@@QAEXXZ; void (__thiscall *)(void *) push    0F0h; int"
+  },
+  {
+   "off": "0x66f4",
+   "site": "0045B16D",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": "d *,uint,int,void (*)(void *)) push    offset ??1UIFrameContainer@@QAE@XZ; void (__thiscall *)(void *) push    0F0h; int"
+  },
+  {
+   "off": "0x6394",
+   "site": "0045B18A",
+   "target": "`eh vector destructor iterator'(void *,uint,int,void (*)(void *))",
+   "pre": "void *,uint,int,void (*)(void *)) push    offset ??1UIFrameContainer@@QAE@XZ; void (__thiscall *)(void *) push    5; int"
+  },
+  {
+   "off": "0x62f0",
+   "site": "0045B1A0",
+   "target": "PalScript::~PalScript(void)",
+   "pre": "ptr [esp+30h+var_4], 4 call    ??_M@YGXPAXIHP6EX0@Z@Z; `eh vector destructor iterator'(void *,uint,int,void (*)(void *))"
+  },
+  {
+   "off": "0x6258",
+   "site": "0045B1B0",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": "    ecx, [esi+62F0h]; this mov     byte ptr [esp+20h+var_4], 3 call    ??1PalScript@@QAE@XZ; PalScript::~PalScript(void)"
+  },
+  {
+   "off": "0x6204",
+   "site": "0045B1C0",
+   "target": "UIFrameWnd::__deleting_view(void)",
+   "pre": " this mov     byte ptr [esp+20h+var_4], 2 call    ??1UIFrameContainer@@QAE@XZ; UIFrameContainer::~UIFrameContainer(void)"
+  },
+  {
+   "off": "0x616c",
+   "site": "0045B1D0",
+   "target": "UIFrameContainer::~UIFrameContainer(void)",
+   "pre": " this mov     byte ptr [esp+20h+var_4], 1 call    ?__deleting_view@UIFrameWnd@@QAEXXZ; UIFrameWnd::__deleting_view(void)"
+  }
+ ]
+}
