@@ -31,7 +31,6 @@ VC6_BIN = VC6_ROOT / "Bin"
 VC6_INCLUDE = VC6_ROOT / "Include"
 VC6_LIB = PROJECT_ROOT / "tools" / "vc6" / "Lib"  # Lib from SP5 (compatible)
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
-NAMES_PATH = PROJECT_ROOT / "asm" / "pal3" / "pal3_names.json"
 BUILD_DIR = PROJECT_ROOT / "build" / "pal3"
 SRC_DIR = PROJECT_ROOT / "src" / "pal3"
 

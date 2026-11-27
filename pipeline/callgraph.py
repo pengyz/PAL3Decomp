@@ -24,7 +24,8 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 CALLGRAPH_PATH = PROJECT_ROOT / "asm" / "pal3" / "call_graph.json"
-NAMES_PATH = PROJECT_ROOT / "asm" / "pal3" / "pal3_names.json"
+IDENTITY_PATH = PROJECT_ROOT / "asm" / "pal3" / "function_identity.json"
+FREE_NAMES_PATH = PROJECT_ROOT / "data" / "annotations" / "functions.json"
 PDB_EXPORT_PATH = PROJECT_ROOT / "asm" / "pal3a" / "pdb_export.json"
 DECOMP_DIR = PROJECT_ROOT / "asm" / "pal3" / "decomp"
 SRC_DIR = PROJECT_ROOT / "src" / "pal3"
@@ -63,15 +64,72 @@ EXTERNAL_PATTERNS = [
 ]
 
 
+POLICY = 'B'  # 显示名口径：'A'=字面(mangled->class::kind)，'B'=mangled->注解自由函数名->ctor/dtor类限定->sub_
+
+_free_names_cache = None
+
+
+def _free_names():
+    """VA -> 自由函数名（data/annotations/functions.json，注解层权威来源）。"""
+    global _free_names_cache
+    if _free_names_cache is None:
+        _free_names_cache = {}
+        if FREE_NAMES_PATH.exists():
+            with open(FREE_NAMES_PATH) as f:
+                for k, v in json.load(f).items():
+                    name = (v or {}).get("name")
+                    if name:
+                        _free_names_cache[int(k, 16)] = name
+    return _free_names_cache
+
+
+_CTOR_DTOR_KINDS = ("ctor", "dtor", "deleting_dtor", "adjthunk", "dtor_adjthunk", "dtor_thunk")
+
+
+def _display_name(addr, row):
+    """显示名：mangled[0] -> 注解自由函数名 -> ctor/dtor/adjthunk 类限定 -> sub_%X。
+
+    POLICY='A' 时退化为字面口径（mangled -> class::kind -> sub_），不做自由函数名与 kind 过滤。
+    """
+    mangled = row.get("mangled") or []
+    if mangled:
+        return mangled[0]
+    if POLICY == 'B':
+        free = _free_names().get(addr)
+        if free:
+            return free
+    cls = row.get("ann_class") or ""
+    kind = row.get("ann_kind") or ""
+    if cls and kind:
+        if POLICY == 'A' or kind in _CTOR_DTOR_KINDS:
+            return "%s::%s" % (cls, kind)
+    return "sub_%X" % addr
+
+
 def load_names():
-    """Load pal3_names.json function database."""
-    with open(NAMES_PATH) as f:
+    """Load function_identity.json (名层真源).
+
+    返回 {addr: {demangled, class, size, mangled, named}}，兼容旧调用方读取
+    info["demangled"]（get_function_name 的首选键）与 info.get("size")。
+    """
+    if not IDENTITY_PATH.exists():
+        return {}
+    with open(IDENTITY_PATH) as f:
         data = json.load(f)
-    # Build address -> info map
     addr_map = {}
-    for func in data["functions"]:
-        addr = int(func["address"], 16)
-        addr_map[addr] = func
+    for row in data.get("rows", []):
+        va = row.get("va")
+        if not va:
+            continue
+        addr = int(va, 16)
+        mangled = row.get("mangled") or []
+        addr_map[addr] = {
+            "demangled": _display_name(addr, row),
+            "class": row.get("ann_class") or "",
+            "size": row.get("size") or 0,
+            "mangled": mangled[0] if mangled else "",
+            "named": True,
+        }
     return addr_map
 
 
@@ -169,7 +227,7 @@ def save_callgraph(cg):
         json.dump(cg, f, indent=2)
 
 
-def get_decomp_file(addr, names_map):
+def get_decomp_file(addr):
     """Find the decomp JSON file for a given address."""
     # Search decomp directory for matching address
     addr_hex = f"{addr:08x}"
@@ -257,7 +315,7 @@ def cmd_init(args):
     root_info = names_map.get(root_addr, {})
 
     # Find WinMain's decomp file
-    root_decomp = get_decomp_file(root_addr, names_map)
+    root_decomp = get_decomp_file(root_addr)
     has_decomp = root_decomp is not None
 
     # Create root node
@@ -306,7 +364,7 @@ def cmd_init(args):
             continue
 
         callee_info = names_map.get(callee_addr, {})
-        callee_decomp = get_decomp_file(callee_addr, names_map)
+        callee_decomp = get_decomp_file(callee_addr)
         addr_str = f"0x{callee_addr:08X}"
 
         suggested = infer_source_path(name)
@@ -499,7 +557,7 @@ def cmd_expand(args):
 
     # Find decomp file for this function
     addr_int = int(addr_str, 16)
-    decomp_path = get_decomp_file(addr_int, names_map)
+    decomp_path = get_decomp_file(addr_int)
 
     new_callees = []
     if decomp_path:
@@ -523,7 +581,7 @@ def cmd_expand(args):
                 continue
 
             callee_info = names_map.get(callee_addr, {})
-            callee_decomp = get_decomp_file(callee_addr, names_map)
+            callee_decomp = get_decomp_file(callee_addr)
 
             suggested = infer_source_path(name)
             new_node = {
