@@ -7,12 +7,6 @@
    "type": "gbImage2D *",
    "source": "annotation",
    "evidence_level": "unverified"
-  },
-  "0x0": {
-   "name": "m_nTodo_000",
-   "type": "void *",
-   "source": "binary:SceneObj ctor 0x453030 存 SceneObj vtable(0x56B200) 于 this+0（provenance ✓）⇒ PalScriptWaitObj offset0 = vfptr 槽（派生类复用）；ReleaseObject 系派生实例独立生命周期 | void*语义化 2026-10-16（idapro A 级）：ReleaseObject@0x4A68D0 cast `(gbRefObject*)this->m_nTodo_000` + **`gbRefObject::Release(m)` this-绑定调用** ⇒ 目标=gbRefObject 对象 | 31站修法 2026-10-16（verifier·A 级·repr 改型=off[_variant]+union:true 惯例）：RoleCameraCtrl L151 `m_nTodo_000[3]` fnptr 槽调用 + ReleaseObject@0x4A68D0 gbRefObject::Release this-绑定 ⇒ **双视图**（前轮单视语义化过窄，本轮记全）⇒ 回退 void*",
-   "evidence_level": "A"
   }
  },
  "methods": {
@@ -32,6 +26,34 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(ReleaseObject): int(char,char *); 原注解2026-11-18 mangle硬真值定谳(DPAD): char(char "
+  },
+  "0x0044ab00": {
+   "name": "GetType",
+   "source": "A裁定2026-11-27 #53 槽位契约(同址UIEmote/ArraySlots链)",
+   "evidence_level": "A",
+   "name_note": "槽链同址语义名 GetType; PSWO 声明为虚槽, 实现由派生/折叠载体提供",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x004af760": {
+   "name": "UpdateFrame",
+   "source": "A裁定2026-11-27 #53 槽位契约(同址Role链)",
+   "evidence_level": "A",
+   "name_note": "槽链同址语义名 UpdateFrame; PSWO 声明为虚槽, 实现由派生/折叠载体提供",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "_adjudicated_tables": [
@@ -40,6 +62,29 @@
    "verdict": "PSWO型3槽第二基表(派生对象遍布: UICaption第二真表同型[thunk,ICF取成员,Object::Update])",
    "evidence": "adjustor sub=0x44/0x48簇+Role族bases引用+reconcile铁证",
    "date": "2026-11-15"
+  }
+ ],
+ "vtables": [
+  {
+   "addr": "0x0056afa4",
+   "base": null,
+   "slots": [
+    {
+     "addr": "0x0044ab40",
+     "name": "UICaption_dtor_adjthunk",
+     "name_note": "0x44AB40 体=`sub ecx,0x44; jmp 0x44A7D0`（8B，objdump data/status/_disasm_cache.txt）⇒ 二基子对象(PSWO@+0x44)的 adjustor thunk，落 UICaption 标量删除 dtor 0x44A7D0（??_G 体：call 0x44A7F0 → test al,1 → call 0x541D10 operator delete → ret 4）；0x44A7F0 双写 0x56AFB0(UI主表)/0x56AFA4(本表)；PDB 11412 条函数中无此 VA ⇒ 非本类自有析构器，名不用 '~' 形。2026-11-27 #59"
+    },
+    {
+     "addr": "0x0044ab00",
+     "name": "GetType"
+    },
+    {
+     "addr": "0x004af760",
+     "name": "UpdateFrame"
+    }
+   ],
+   "source": "A裁定2026-11-27 #53: 0x56AFA4=PSWO型3槽第二基表(ArraySlots/UIEmote族同构); slot0=UICaption族complete dtor adjustor thunk(0x44A7F0双写0x56AFB0/0x56AFA4), slot1/2=同址GetType/UpdateFrame",
+   "evidence_level": "A"
   }
  ]
 }
