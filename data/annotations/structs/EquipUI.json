@@ -3,148 +3,336 @@
  "binary_size": 266260,
  "known_members": {
   "0x48": {
-   "name": "bkWndX",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "name": "rc",
+   "type": "tagRECT",
+   "evidence_level": "A-",
+   "source": "复核 P1-1：L233245–233266（sub_49F2E0，工厂 [2AFC4] 调用）写 left@0x48=0/top@0x4C=0/right@0x50=800/bottom@0x54=600 并整块传 sub_43DD60；同类 MainPropUI/LineupUI 0x48 均为 tagRECT"
   },
-  "0x4c": {
-   "name": "bkWndY",
+  "0x58": {
+   "name": "m_equipWndWidth",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "ctor L223667 `mov dword ptr [esi+58h], 320h`（800）"
   },
-  "0x50": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x5c": {
+   "name": "m_equipWndHeight",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "ctor L223668 `mov dword ptr [esi+5Ch], 258h`（600）"
+  },
+  "0x60": {
+   "name": "m_nCurPage",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "复核 P1-2：L234645 `eax=[esi+60h]` 作页索引（×0x131C 记录/×16 RECT），L234826 OnMessage 写，L226221/226261/226270 页循环读写"
+  },
+  "0x64": {
+   "name": "m_unk_0x64",
+   "type": "unsigned char[4]",
+   "evidence_level": "A",
+   "source": "页索引 dword 后 4B 无访问（复核 P1-2 指出的未用余量）"
+  },
+  "0x68": {
+   "name": "m_equipItemPathBuf",
+   "type": "char[232]",
+   "evidence_level": "C",
+   "source": "8 处 `lea e?,[esi+68h]` 作为 `Item\\%s%s.pol/.tga` 拼接缓冲（#77 段2 行为列）；长度按到 0x150 边界"
   },
   "0x150": {
    "name": "m_SelNum",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x154": {
    "name": "m_ListNum",
    "type": "int *",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x158": {
    "name": "m_x",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x15c": {
    "name": "m_y",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x160": {
    "name": "m_Sum",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x164": {
    "name": "i",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
    "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+   "source": "annotation | 零访问分型20261120: EquipUI 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)"
   },
   "0x168": {
    "name": "j",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "annotation"
   },
   "0x16c": {
    "name": "k",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "annotation"
   },
   "0x170": {
    "name": "_isCreatable",
    "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "annotation"
+  },
+  "0x171": {
+   "name": "m_unk_0x171",
+   "type": "unsigned char[3]",
+   "evidence_level": "A",
+   "source": "ctor 无写点；0x174 前对齐"
   },
   "0x174": {
    "name": "_flashSpeed",
    "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "annotation"
   },
   "0x178": {
    "name": "m_EquipData",
    "type": "st_Manager",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "unverified",
+   "source": "annotation"
+  },
+  "0x26c": {
+   "name": "m_unk_0x26c",
+   "type": "unsigned char[16]",
+   "evidence_level": "A",
+   "source": "ctor 写 `[esi+26Ch..274h]`（bl/dword）+ `[270h]`，结构未证按字节留白"
+  },
+  "0x27c": {
+   "name": "m_unk_0x27c",
+   "type": "int[4]",
+   "evidence_level": "A",
+   "source": "ctor `[27Ch/280h/284h/288h]` 四个 dword 清 0"
+  },
+  "0x28c": {
+   "name": "m_unk_0x28c",
+   "type": "unsigned char[8]",
+   "evidence_level": "A",
+   "source": "ctor 写 `[28Dh/28Eh/28Fh]` 与 `[290h]`"
+  },
+  "0x294": {
+   "name": "m_unk_0x294",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段3；ctor L223665 `lea [esi+294h]`+sub_4422E0"
+  },
+  "0x32c": {
+   "name": "m_unk_0x32c",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段4；L223682+sub_4422E0"
+  },
+  "0x3c4": {
+   "name": "m_unk_0x3c4",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段5；L223685+sub_4422E0"
+  },
+  "0x45c": {
+   "name": "m_sharedTabBarBlock",
+   "type": "unsigned char[3720]",
+   "evidence_level": "A",
+   "source": "共用层整块 0x45C–0x12E4（#77 §3：3 StpBar+9 页签+Effect+16B 状态），本类不得命名子件；A5 sub_4993D0 以宿主为 this 写入"
+  },
+  "0x12e4": {
+   "name": "m_unk_0x12e4",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段12；L223727+sub_4422E0"
+  },
+  "0x137c": {
+   "name": "m_unk_0x137c",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段13；L223730+sub_4422E0"
   },
   "0x1414": {
    "name": "m_par",
    "type": "UIParticle[128]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4989d7（push 248h + lea eax,[esi+1414h] + push 80h(=128)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x1414,128,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[16][8] 零命中，gate① 该主张按门②撤收）；邻接：#2 起于 0x13814=span_end。命名 m_par 循同族先例 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2（均 UIParticle[16][7]）；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；ctor L223736 `lea [esi+1414h]`+??_L(248h,80h)"
   },
   "0x13814": {
    "name": "m_par2",
    "type": "UIParticle[128]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x4989fc（push 248h + lea ecx,[esi+13814h] + push 80h(=128)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x13814,128,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[16][8] 零命中，gate① 该主张按门②撤收）；回调同 #1（0x4b4690/0x4b47e0，名弱）；邻接：starts_at_prev_span_end（#1 末端无缝链接），span_end=0x25c14。命名 m_par2 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；ctor L223744"
+  },
+  "0x25c14": {
+   "name": "m_equipEffectState",
+   "type": "unsigned char[128]",
+   "evidence_level": "A",
+   "source": "0x25C14–0x25C94：ctor 无写点，OnMessage 33 处/Render 5 处访问（#77 段16 行为列）"
+  },
+  "0x25c94": {
+   "name": "m_equipEffectTail",
+   "type": "int[3]",
+   "evidence_level": "A",
+   "source": "ctor 尾部 `lea ecx,[esi+25C94h]` + `mov [ecx]/[ecx+4]` 清 0 + `mov [esi+25C9Ch],ebx`"
+  },
+  "0x25ca0": {
+   "name": "m_equipRoleDialog",
+   "type": "UIRoleDialog",
+   "evidence_level": "A",
+   "source": "#41 §4 段17 / #67 G2；ctor L223749+sub_4A12F0；尺寸三证见 #77 §2.2"
   },
   "0x261f8": {
-   "name": "m_unk_0x261f8",
-   "type": "unsigned char[24460]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498a2epush 131Ch(=4892) + lea edx,[esi+261F8h] + push 5；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x498c90 ?DestroyStaticsEx@UITitle_XJTM + dtor 回调 0x498e60 ?DestroyFramesEx@UITitle_XJTM 双回调同主类（强类名信号）但 UITitle_XJTM.json binary_size=5052≠stride 4892（差+160，尺寸调和未决）→ 元素 4892B stride 复合类未名待鉴定（gate① 注明），本笔以 unsigned char[24460]（5×4892=24460）忠实落位；ctor 回调字段足迹 [0..0x1278)⊆4892。命名 _arr5x4892 机械名（元素类未名禁伪语义，待鉴定后正名）",
-   "evidence_level": "verified"
+   "name": "m_equipRecords",
+   "type": "unsigned char[5][4892]",
+   "evidence_level": "A",
+   "source": "#41 §4 段18：`??_L(261F8,131Ch,5,sub_498C90,sub_498E60)` ⇒ 5×0x131C 记录；元素字段未证，按记录数组留白（禁单块 uchar[24460]）"
+  },
+  "0x2c184": {
+   "name": "m_unk_0x2c184",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段19；L223760"
+  },
+  "0x2c21c": {
+   "name": "m_unk_0x2c21c",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段20；L223763"
+  },
+  "0x2c2b4": {
+   "name": "m_unk_0x2c2b4",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段21；L223766"
+  },
+  "0x2c34c": {
+   "name": "m_unk_0x2c34c",
+   "type": "unsigned char[16]",
+   "evidence_level": "A",
+   "source": "对齐间隙 16B（#41 §4 段22），无构造；给显式成员以消洞"
+  },
+  "0x2c35c": {
+   "name": "m_unk_0x2c35c",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段23；L223769"
+  },
+  "0x2c3f4": {
+   "name": "m_unk_0x2c3f4",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段24；L223772"
   },
   "0x2c48c": {
-   "name": "m_unk_0x2c48c",
-   "type": "unsigned char[2064]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498aa0push 158h(=344) + lea eax,[esi+2C48Ch] + push 6；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x43a770（corpus 名 ?GetSys@NameSys@@QACPAV1@XZ 疑误标——带指针返回签名非 void(void*) 形，Task1）；corpus vtable 台账 data/status/_cleanup_vtable_class_reconcile.md §2：0x43A770 实为写表 0x56AC70 的 344B 类 ctor（push $0x158; call 0x55353b ×2，stride 0x158 全库 106 对）；0x56AC70 现被 UICaption(96B) 错挂；dtor 回调 0x43a810 ?Destroy2@UICaption@@QAEXXZ 同错挂族 → 元素 344B stride vtable-0x56ac70 族未名待鉴定（gate① 注明），本笔以 unsigned char[2064]（6×344=2064）忠实落位；ctor 回调字段足迹 [0..0xD8)⊆344；邻接：#5 起于 0x2cc9c=span_end。命名 _arr6x344 机械名",
-   "evidence_level": "verified"
+   "name": "m_equipPageButtons",
+   "type": "unsigned char[6][344]",
+   "evidence_level": "A",
+   "source": "#41 §4 段25 / #63 C7：`??_L(2C48C,158h,6,sub_43A770,sub_43A810)` ⇒ 6×344 元素数组；元素表 0x56AC70 与 UIButton(0x56AD64) 不同 ⇒ 不造类，按元素数组留白"
   },
   "0x2cc9c": {
    "name": "m_Pushbtn",
    "type": "UIPushButton[6]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498ac2push 0F8h(=248) + lea ecx,[esi+2CC9Ch] + push 6；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x440740 ??0UIPushButton@@QAE@XZ + dtor 回调 0x4407c0 ??1UIPushButton@@QAE@XZ ctor+dtor 双吻合（probe annotation_match verdict=both，248==248）；UIPushButton.json binary_size=248==stride；ctor 回调字段足迹 [0..0x7C)⊆248；邻接：starts_at_prev_span_end（#4 末端无缝链接），span_end=0x2d26c。命名 m_Pushbtn 循 corpus UIPushButton[5] m_Pushbtn 先例",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；#41 §4 段26"
+  },
+  "0x2d26c": {
+   "name": "m_unk_0x2d26c",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段27；L223791"
+  },
+  "0x2d304": {
+   "name": "m_equipFlexBar",
+   "type": "UIFlexBar",
+   "evidence_level": "A",
+   "source": "#41 §4 段28；L223794+sub_43D830（84B）；类名 UIFlexBar 为几何名，语义未证（报告 §已知债）",
+   "name_note": "84B 控件按 ctor sub_43D830 几何命名；UIFlexBar 语义未证（#41 §9-4）"
+  },
+  "0x2d358": {
+   "name": "m_unk_0x2d358",
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "#41 §4 段29；L223797"
   },
   "0x2d3f0": {
    "name": "m_Frames",
    "type": "UIFrameContainer[12]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 元素名裁定 UIStatic[12]→UIFrameContainer[12]（口径题收口，几何/末端 0x2db10 不变）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498b14（push 98h(=152) + lea edx,[esi+2D3F0h] + push 0Ch(=12)）【ABI 右起压栈序第3推=count/第4推=size ⇒ count=12/stride=152，乘积 0x720 不变，前轮 (152,0xC) 为转置】；元素类钥匙=回调地址同一性（最强库内钥匙）：ctor 回调 0x4422e0 ResetContainerState + dtor 回调 0x442390 ??1UIFrameContainer@@QAE@XZ（真名 mangle）双回调同主类 UIFrameContainer（两址均 UIFrameContainer.json methods A 级在档；probe annotation_match verdict=none 仅因旧 binary_size 136≠152，本批 resize 后闭合）；元素尺寸双证：stride 0x98=152 + ctor 回调字段足迹 [0..0x98)==152；UIFrameContainer.json binary_size=152==stride（本批 gate① resize：ctor 写表普查 0x56add0 verdict=CONFIRMED + 涟漪 grep 零成员内嵌）；UIStatic 主张库内不可再证（data/pdb/pdb_export.json：UIFrameContainer 零命中；UIStatic[12] ×2 均属他类 SwordUI m_ListGrid/m_ListGridPurge 布局）且与 PDB 布局互斥——UIStatic/UIFrameContainer 双条目成员级调和挂账未来轮；邻接：#5 末端 0x2d26c 后隙 388B 起本员。命名 m_Frames 取元素类 UIFrameContainer 窗框容器组语义（ResetContainerState 清框）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；#41 §4 段30"
+  },
+  "0x2db10": {
+   "name": "m_equipDialogs",
+   "type": "unsigned char[6][1208]",
+   "evidence_level": "A",
+   "source": "#41 §4 段31 / #67 G3：6×1208B（ctor sub_43DFC0 ×6，步长0x4B8）；元素类未登记（vtable 0x56AD40），按记录数组留白，禁单块 uchar[7248]"
   },
   "0x2f760": {
    "name": "m_Player",
    "type": "tagPlayerSet[5]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498b93push 34h(=52) + lea eax,[esi+2F760h] + push 5；三元组+offset+stride 证据探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage; ctor 回调 0x45add0 InitState=tagPlayerSet::InitState（corpus methods 唯一 claim，evidence_level=verified）52==52（probe annotation_match verdict=ctor）；dtor 回调 0x401800 ?DestroyEffect@CEffObj@@QAEXXZ 空函数 retn=no-op 析构（钥匙弱，probe notes）；tagPlayerSet.json binary_size=52==stride；ctor 回调字段足迹 [0..0x34)⊆52。命名 m_Player 循 ArcMsic/CCBSystem tagPlayerSet[5] m_Player 先例",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；#41 §4 段32"
+  },
+  "0x2f864": {
+   "name": "m_equipSlotRects",
+   "type": "tagRECT[5]",
+   "evidence_level": "A",
+   "source": "复核 P1-4：L225994–226002 写 left/top/right/bottom（idx 0..4），L234652–234665 以 [esi+60h] 页索引读 ⇒ 5×16B"
+  },
+  "0x2f8b4": {
+   "name": "m_unk_0x2f8b4",
+   "type": "unsigned char[16]",
+   "evidence_level": "A",
+   "source": "0x2F8B4–0x2F8C4：上列 5 个 RECT 未用的 16B 余量（复核 P1-4）"
+  },
+  "0x2f8c4": {
+   "name": "m_equipActionButtons",
+   "type": "unsigned char[3][344]",
+   "evidence_level": "A",
+   "source": "#41 §4 段34：三次 sub_43A770（表 0x56AC70 未注解族）⇒ 3×344 元素数组，不造类"
+  },
+  "0x2fccc": {
+   "name": "m_equipSentinel",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "ctor `mov dword ptr [esi+2FCCCh], 0FFFFFFFFh`（-1 哨兵/索引）"
+  },
+  "0x2fcd0": {
+   "name": "m_equipGauge",
+   "type": "UI3DCtrl",
+   "evidence_level": "A",
+   "source": "#41 §4 段36；L223843+sub_439030；类名 UI3DCtrl（vtable 0x56AC20）"
   },
   "0x2fe04": {
    "name": "m_par3",
    "type": "UIParticle[60]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498bff（push 248h + lea ecx,[esi+2FE04h] + push 3Ch(=60)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x2fe04,60,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[5][12] 零命中，gate① 该主张按门②撤收）；回调同 #1（名弱）；邻接：#9 起于 0x386e4=span_end。命名 m_par3 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；#41 §4 段37"
   },
   "0x386e4": {
    "name": "m_par4",
    "type": "UIParticle[60]",
-   "source": "[EquipUI 九数组落位 gate① 2026-11-26 verified；gate② 2026-11-26 证据引用改写（撤收 [16][8]/[5][12] 主张）] ctor ??0EquipUI(0x498820) 内联 ??_L@YGXPAXIHP6EX0@Z1@Z 构造现场 site 0x498c21（push 248h + lea edx,[esi+386E4h] + push 3Ch(=60)）；元素类钥匙=??_L 三元组 (offset,count,stride)=(0x386e4,60,0x248) + stride==UIParticle(584)（corpus 约定：UIParticle.json binary_size=584）+ m_par 族 PDB 先例 UIParticle[16][7]（data/pdb/pdb_export.json 命中×16；corpus 在档 StateUI m_par/m_par2、MainEquipUI m_btnPar/m_btnPar2；SystemUI 未建档——DATA:N14 在案；pdb_export 对 UIParticle[5][12] 零命中，gate① 该主张按门②撤收）；回调同 #1（名弱）；邻接：starts_at_prev_span_end（#8 末端无缝链接），span_end=0x40fc4 恰接类尾 0x41014（binary_size 266260）。命名 m_par4 同族数字序先例；ctor 回调 0x4b4690 ?Reset@UIListBox@@QAEXXZ / dtor 回调 0x4b47e0 ?Destructor@UISceneMap@@QAEXXZ（双回调主人分裂且双双疑误标——Task1 报告第5条，名字钥匙弱，元素类不从回调名取）；ctor 回调字段足迹 [0..0x248)⊆584（probe ctor_cb_max_this_disp=0x244）。探针 data/status/probe_equipui_arrays_20261126.json（push_window 全行留档）+ data/status/probe_equipui_tail_20261126.json array_coverage",
-   "evidence_level": "verified"
+   "evidence_level": "A",
+   "source": "保留既有名；#41 §4 段38"
+  },
+  "0x40fc4": {
+   "name": "m_equipParticleRects",
+   "type": "tagRECT[5]",
+   "evidence_level": "A",
+   "source": "复核 P1-3：L225875–225881 写 left/top/right/bottom（idx 0..4），L233970–233983 按四边求中心 spawn 粒子；ctor/dtor 无写点属实，但它是活 RECT[5]",
+   "name_note": "ctor/dtor 内无 40FC4h 写点（构造由运行期做）；消费点 L233970–233983 证明是活 RECT[5]，非空白"
   }
  },
  "methods": {
@@ -353,34 +541,6 @@
    },
    "lvars_source": "[L-VAR 2026-11-25 用户批准] v33/v36: buf[16] 循环下标(eax 复用), hexrays eax 寄存器支配合并(CScreenMode* 指针流 v26-v30/Instance 同寄存器)致指针型误推断——成员层无解(buf 混用裸缓冲:buf[24]×32 字符串 vs DWORD 槽×38, char[256] 忠实), L-VAR 唯一精确通道(BuildCollisionMesh pVal:_WORD 2026-11-22 先例)。效果实测: EquipUI 9→2 错(C2440×4/C2110×2 全消)。"
   },
-  "0x00484d20": {
-   "name": "ShowPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004945c0": {
-   "name": "SelectBigMapTab0",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "nTab"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectBigMapTab0): int(int,char); 原注解无"
-  },
   "0x00498c70": {
    "name": "~EquipUI",
    "reason": "compiler-generated ctor/dtor/thunk, not game logic | [N20b 修复 20261122] 解除压制: deleted-form ABI 删除式可当定义源——??1/??_G 载体恢复(类级载体全空债务清偿)",
@@ -424,40 +584,6 @@
    ],
    "override_of": "0x0043ddf0",
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x0043ddf0(UIListBox) 2026-11-17 机械推导(sig退役后纯结构化判定)"
-  },
-  "0x00484e70": {
-   "name": "SelectTab0",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "unsigned __int8",
-      "name": "nTab"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SelectTab0): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
-  },
-  "0x0048a2f0": {
-   "name": "SetSubTab",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "unsigned __int8",
-      "name": "nTab"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetSubTab): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0049e840": {
    "name": "SetSubTab2",
@@ -516,24 +642,6 @@
    "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
-  "0x004ab6b0": {
-   "name": "InitEquipUI",
-   "_misattrib_evidence": "max_offset=401448>class_size=120116",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(InitEquipUI): int(int,int); 原注解无"
-  },
   "0x0049ff30": {
    "name": "FindNextSlot",
    "evidence_level": "unverified",
@@ -584,7 +692,7 @@
  "vtables": [
   {
    "addr": "0x0056e170",
-   "base": "UIWnd",
+   "base": "UIListBox",
    "slots": [
     {
      "addr": "0x00445e70"
@@ -612,7 +720,8 @@
      "addr": "0x004a0370",
      "name": "OnMessage"
     }
-   ]
+   ],
+   "base_note": "ctor 首调 sub_43DCD0 写 UIListBox 表 0x56AD20；本表 0x56E170 槽3=0x43DE40 同 UIListBox（#41 §5）"
   }
  ],
  "base_size": 72,
